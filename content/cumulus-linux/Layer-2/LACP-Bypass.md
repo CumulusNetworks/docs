@@ -3,24 +3,24 @@ title: LACP Bypass
 author: Cumulus Networks
 weight: 125
 aliases:
- - /display/CL37/LACP-Bypass
+ - /display/DOCS/LACP+Bypass
  - /pages/viewpage.action?pageId=8362694
 pageID: 8362694
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 On Cumulus Linux, *LACP Bypass* is a feature that allows a
-[bond](/version/cumulus-linux-377/Layer-2/Bonding---Link-Aggregation)
-configured in 802.3ad mode to become active and forward traffic even
-when there is no LACP partner. A typical use case for this feature is to
-enable a host, without the capability to run LACP, to PXE boot while
-connected to a switch on a bond configured in 802.3ad mode. Once the
-pre-boot process finishes and the host is capable of running LACP, the
-normal 802.3ad link aggregation operation takes over.
+[bond](/cumulus-linux/Layer-2/Bonding-Link-Aggregation) configured in
+802.3ad mode to become active and forward traffic even when there is no
+LACP partner. A typical use case for this feature is to enable a host,
+without the capability to run LACP, to PXE boot while connected to a
+switch on a bond configured in 802.3ad mode. Once the pre-boot process
+finishes and the host is capable of running LACP, the normal 802.3ad
+link aggregation operation takes over.
 
-## <span>LACP Bypass All-active Mode</span>
+## LACP Bypass All-active Mode
 
 When a bond has multiple slave interfaces, each bond slave interface
 operates as an active link while the bond is in bypass mode. This is
@@ -37,7 +37,7 @@ Keep in the mind the following caveats with all-active mode:
     slave interfaces when the LACP bond is in all-active mode.
     Therefore, only use all-active mode on host-facing LACP bonds.
     Cumulus Networks highly recommends you configure [STP BPDU
-    guard](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-8362689_SpanningTreeandRapidSpanningTree-bpdu)
+    guard](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard)
     along with all-active mode.
 
 {{%notice note%}}
@@ -57,14 +57,14 @@ The following features are not supported:
 {{%notice note%}}
 
 In an [MLAG
-deployment](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+deployment](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 where bond slaves of a host are connected to two switches and the bond
 is in all-active mode, all the slaves of bond are active on both the
 primary and secondary MLAG nodes.
 
 {{%/notice%}}
 
-## <span>Configure LACP Bypass</span>
+## Configure LACP Bypass
 
 To enable LACP bypass on the host-facing bond, set
 `bond-lacp-bypass-allow` to *yes*.
@@ -155,21 +155,21 @@ interface <bond>` on the bond and its slave interfaces:
 Use the `cat` command to verify that LACP bypass is enabled on a bond
 and its slave interfaces:
 
-    cumulus@switch:~$ cat /sys/class/net/bond1/bonding/lacp_bypass 
+    cumulus@switch:~$ cat /sys/class/net/bond1/bonding/lacp_bypass
     on 1
     cumulus@switch:~$ cat /sys/class/net/bond1/bonding/slaves
     swp51 swp52
-    cumulus@switch:~$ cat /sys/class/net/swp52/bonding_slave/ad_rx_bypass 
+    cumulus@switch:~$ cat /sys/class/net/swp52/bonding_slave/ad_rx_bypass
     1
-    cumulus@switch:~$ cat /sys/class/net/swp51/bonding_slave/ad_rx_bypass 
+    cumulus@switch:~$ cat /sys/class/net/swp51/bonding_slave/ad_rx_bypass
     1
 
 The following configuration shows LACP bypass enabled for multiple
 active interfaces (all-active mode) with a bridge in [traditional bridge
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode):
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode):
 
     auto bond1
-    iface bond1 
+    iface bond1
         bond-slaves swp3 swp4
         bond-lacp-bypass-allow 1
      

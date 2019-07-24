@@ -3,13 +3,13 @@ title: Monitoring Virtual Device Counters
 author: Cumulus Networks
 weight: 221
 aliases:
- - /display/CL37/Monitoring-Virtual-Device-Counters
+ - /display/DOCS/Monitoring+Virtual+Device+Counters
  - /pages/viewpage.action?pageId=8362605
 pageID: 8362605
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Linux gathers statistics for VXLANs and VLANs using virtual
 device counters. These counters are supported on Tomahawk, Trident II+
@@ -19,7 +19,7 @@ HCL](http://cumulusnetworks.com/hcl/) for a list of supported platforms.
 You can retrieve the data from these counters using tools like `ip -s
 link show`, `ifconfig`, `/proc/net/dev`, or `netstat -i`.
 
-## <span>Sample VXLAN Statistics</span>
+## Sample VXLAN Statistics
 
 VXLAN statistics are available as follows:
 
@@ -47,7 +47,7 @@ To get VNI statistics, run:
     cumulus@switch:~$ ip -s link show br-vxln16757104
     62: br-vxln16757104: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
         link/ether 44:38:39:00:69:88 brd ff:ff:ff:ff:ff:ff
-        RX: bytes  packets  errors  dropped overrun mcast 
+        RX: bytes  packets  errors  dropped overrun mcast
         10848      158      0       0       0       0     
         TX: bytes  packets  errors  dropped carrier collsns
         27816      541      0       0       0       0
@@ -57,7 +57,7 @@ To get access statistics, run:
     cumulus@switch:~$ ip -s link show swp2s0.6       
     63: swp2s0.6@swp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln16757104 state UP mode DEFAULT
         link/ether 44:38:39:00:69:88 brd ff:ff:ff:ff:ff:ff
-        RX: bytes  packets  errors  dropped overrun mcast 
+        RX: bytes  packets  errors  dropped overrun mcast
         2680       39       0       0       0       0     
         TX: bytes  packets  errors  dropped carrier collsns
         7558       140      0       0       0       0
@@ -67,17 +67,17 @@ To get network statistics, run:
     cumulus@switch:~$ ip -s link show vxln16757104
     61: vxln16757104: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln16757104 state UNKNOWN mode DEFAULT
         link/ether e2:37:47:db:f1:94 brd ff:ff:ff:ff:ff:ff
-        RX: bytes  packets  errors  dropped overrun mcast 
+        RX: bytes  packets  errors  dropped overrun mcast
         0          0        0       0       0       0     
         TX: bytes  packets  errors  dropped carrier collsns
         0          0        0       9       0       0
 
-## <span>Sample VLAN Statistics</span>
+## Sample VLAN Statistics
 
-### <span>For VLANs Using the VLAN-aware Bridge Mode Driver</span>
+### For VLANs Using the VLAN-aware Bridge Mode Driver
 
 For a bridge using the [VLAN-aware bridge
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 driver, the bridge is a just a container and each VLAN (VID/PVID) in the
 bridge is an independent L2 broadcast domain. As there is no netdev
 available to display these VLAN statistics, the `switchd` nodes are used
@@ -103,10 +103,10 @@ instead:
     Total Out Octets                : 387
     Total Out Packets               : 3
 
-### <span>For VLANs Using the Traditional Bridge Mode Driver</span>
+### For VLANs Using the Traditional Bridge Mode Driver
 
 For a bridge using the [traditional bridge
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode)
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
 driver, each bridge is a single L2 broadcast domain and is associated
 with an internal VLAN. This internal VLAN's counters are displayed as
 bridge netdev stats.
@@ -118,17 +118,17 @@ bridge netdev stats.
     cumulus@switch:~$ ip -s link show br0
     42: br0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
         link/ether 44:38:39:00:69:89 brd ff:ff:ff:ff:ff:ff
-        RX: bytes  packets  errors  dropped overrun mcast 
+        RX: bytes  packets  errors  dropped overrun mcast
         23201498   227514   0       0       0       0     
         TX: bytes  packets  errors  dropped carrier collsns
         18198262   178443   0       0       0       0
 
-## <span>Configure the Counters in switchd</span>
+## Configure the Counters in switchd
 
 These counters are enabled by default. To configure them, use `cl-cfg`
 and configure them as you would any other [`switchd`
-parameter](/version/cumulus-linux-377/System-Configuration/Configuring-switchd).
-The `switchd` parameters are as follows:
+parameter](/cumulus-linux/System-Configuration/Configuring-switchd). The
+`switchd` parameters are as follows:
 
   - `stats.vlan.aggregate`, which controls the statistics available for
     each VLAN. Its value defaults to *BRIEF*.
@@ -160,7 +160,7 @@ changed; previously allocated counters remain as is.
 
 {{%/notice%}}
 
-### <span>Configure the Poll Interval</span>
+### Configure the Poll Interval
 
 The virtual device counters are polled periodically. This can be CPU
 intensive, so the interval is configurable in `switchd`, with a default
@@ -169,7 +169,7 @@ of 2 seconds.
     # Virtual devices hw-stat poll interval (in seconds)
     #stats.vdev_hw_poll_interval = 2
 
-### <span>Configure Internal VLAN Statistics</span>
+### Configure Internal VLAN Statistics
 
 For debugging purposes, you may need to access packet statistics
 associated with internal VLAN IDs. These statistics are hidden by
@@ -177,17 +177,17 @@ default, but can be configured in `switchd`:
 
     #stats.vlan.show_internal_vlans = FALSE
 
-### <span>Clear Statistics</span>
+### Clear Statistics
 
 Since `ethtool` is not supported for virtual devices, you cannot clear
 the statistics cache maintained by the kernel. You can clear the
 hardware statistics via `switchd`:
 
-    cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vlan 
-    cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan 
+    cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vlan
+    cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan
     cumulus@switch:~$
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata
 
   - Currently the CPU port is internally added as a member of all VLANs.
     Because of this, packets sent to the CPU are counted against the

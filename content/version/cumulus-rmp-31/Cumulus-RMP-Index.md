@@ -3,7 +3,7 @@ title: Cumulus RMP Index
 author: Cumulus Networks
 weight: 23
 aliases:
- - /display/RMP31/Cumulus-RMP-Index
+ - /display/RMP31/Cumulus+RMP+Index
  - /pages/viewpage.action?pageId=5122802
 pageID: 5122802
 product: Cumulus RMP

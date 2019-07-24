@@ -3,7 +3,7 @@ title: What's New in Cumulus Linux 3.1
 author: Cumulus Networks
 weight: 11
 aliases:
- - /display/CL31/What's-New-in-Cumulus-Linux-3.1
+ - /display/CL31/What's+New+in+Cumulus+Linux+3.1
  - /pages/viewpage.action?pageId=5122208
 pageID: 5122208
 product: Cumulus Linux
@@ -11,7 +11,7 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-## <span>What's New in Cumulus Linux 3.1.2</span>
+## What's New in Cumulus Linux 3.1.2</span>
 
 Cumulus Linux 3.1.2 includes bug fixes as well as the following [early
 access
@@ -19,7 +19,7 @@ feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
 
   - [Edge-Core 5812-54X](http://cumulusnetworks.com/HCL)
 
-## <span>What's New in Cumulus Linux 3.1.1</span>
+## What's New in Cumulus Linux 3.1.1</span>
 
 Cumulus Linux 3.1.1 contains bug fixes and the following [early access
 features](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
@@ -33,16 +33,16 @@ features](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
     (ECN) — Mellanox switches only
 
   - [Ethernet virtual private
-    networks](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+    networks](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
     (EVPN) — Broadcom switches only
 
 No special steps are needed to enable PFC and ECN, and you do not need
 to enable the Early Access repository to use them. You need to install
 the `cumulus-evpn` metapackage to use EVPN; read the [EVPN
-chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 for instructions.
 
-## <span>What's New in Cumulus Linux 3.1.0</span>
+## What's New in Cumulus Linux 3.1.0</span>
 
 Cumulus Linux 3.1.0 includes many new features and platforms. In
 addition to this chapter, please read the [release
@@ -51,7 +51,7 @@ to learn about known issues with this release.
 
   - Mellanox platform enhancements:
     
-      - [ACL](/version/cumulus-linux-31/System-Management/Netfilter---ACLs/)
+      - [ACL](/version/cumulus-linux-31/System-Management/Netfilter-ACLs/)
         — 512 ACLs, line rate: 128 byte
     
       - [LACP
@@ -60,9 +60,9 @@ to learn about known issues with this release.
       - [sFlow](/version/cumulus-linux-31/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow)
         — 32G sampling rate
     
-      - [VRF](/version/cumulus-linux-31/Layer-3-Features/Virtual-Routing-and-Forwarding---VRF)
+      - [VRF](/version/cumulus-linux-31/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF)
 
-  - [PoE+](/version/cumulus-linux-31/System-Management/Power-over-Ethernet---PoE)
+  - [PoE+](/version/cumulus-linux-31/System-Management/Power-over-Ethernet-PoE)
     (Power over Ethernet)
 
   - [VXLAN with VLAN-aware
@@ -97,7 +97,7 @@ New platforms include:
     
       - Mellanox SN2410B
 
-### <span>Early Access Features</span>
+### Early Access Features</span>
 
 The following [early access
 features](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
@@ -111,7 +111,7 @@ are included in Cumulus Linux 3.1.0:
   - [OpenStack
     ML2](/version/cumulus-linux-31/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
 
-  - [PIM-SM](/version/cumulus-linux-31/Layer-3-Features/Protocol-Independent-Multicast---PIM)
+  - [PIM-SM](/version/cumulus-linux-31/Layer-3-Features/Protocol-Independent-Multicast-PIM)
 
   - [TACACS+](/version/cumulus-linux-31/System-Management/Authentication-Authorization-and-Accounting/TACACS+)
 

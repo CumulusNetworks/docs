@@ -3,7 +3,7 @@ title: Managing Cumulus RMP Disk Images
 author: Cumulus Networks
 weight: 145
 aliases:
- - /display/RMP31/Managing-Cumulus-RMP-Disk-Images
+ - /display/RMP31/Managing+Cumulus+RMP+Disk+Images
  - /pages/viewpage.action?pageId=5122744
 pageID: 5122744
 product: Cumulus RMP
@@ -54,7 +54,7 @@ PXE on servers, that allows installation of network operating systems
 Unlike Cumulus Linux, there is no license to install on a Cumulus RMP
 switch.
 
-## <span>Understanding these Examples</span>
+## Understanding these Examples</span>
 
 The sections in this chapter are ordered from the most repeatable to the
 least repeatable methods. For instance, DHCP can scale to hundreds of
@@ -66,7 +66,7 @@ You can name your Cumulus RMP installer binary using any of the [ONIE
 naming schemes mentioned
 here](http://opencomputeproject.github.io/onie/docs/design-spec/discovery.html#default-file-name-search-order).
 
-## <span id="src-5122744_ManagingCumulusRMPDiskImages-dhcp_options" class="confluence-anchor-link"></span><span>Installing via a DHCP/Web Server Method with DHCP Options</span>
+## <span id="src-5122744_ManagingCumulusRMPDiskImages-dhcp_options" class="confluence-anchor-link"></span>Installing via a DHCP/Web Server Method with DHCP Options</span>
 
 Installing Cumulus RMP in this manner is as simple as setting up a
 DHCP/Web server on your laptop and connecting the eth0 management port
@@ -115,7 +115,7 @@ assignment):
 Don't have a Web server? There is a [free Apache
 example](https://www.apachefriends.org/index.html) you can utilize.
 
-## <span id="src-5122744_ManagingCumulusRMPDiskImages-dhcp_noopts" class="confluence-anchor-link"></span><span>Installing via a DHCP/Web Server Method without DHCP Options</span>
+## <span id="src-5122744_ManagingCumulusRMPDiskImages-dhcp_noopts" class="confluence-anchor-link"></span>Installing via a DHCP/Web Server Method without DHCP Options</span>
 
 If you have a laptop on same network and the switch can pull DHCP from
 the corporate network, but you cannot modify DHCP options (maybe it's
@@ -128,7 +128,7 @@ controlled by another team), do the following:
     
         ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 
-## <span id="src-5122744_ManagingCumulusRMPDiskImages-web_nodhcp" class="confluence-anchor-link"></span><span>Installing via a Web Server with no DHCP</span>
+## <span id="src-5122744_ManagingCumulusRMPDiskImages-web_nodhcp" class="confluence-anchor-link"></span>Installing via a Web Server with no DHCP</span>
 
 Use the following method if your laptop is on the same network as the
 switch eth0 interface but no DHCP server is available.
@@ -158,7 +158,7 @@ port, you need to disable discovery mode or else ONIE may get confused.
     
         ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 
-## <span id="src-5122744_ManagingCumulusRMPDiskImages-ftp" class="confluence-anchor-link"></span><span>Installing via FTP or TFTP without a Web Server</span>
+## <span id="src-5122744_ManagingCumulusRMPDiskImages-ftp" class="confluence-anchor-link"></span>Installing via FTP or TFTP without a Web Server</span>
 
 1.  Set up DHCP or static addressing for eth0, as in the examples above.
 
@@ -173,7 +173,7 @@ port, you need to disable discovery mode or else ONIE may get confused.
          
         ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 
-## <span id="src-5122744_ManagingCumulusRMPDiskImages-local" class="confluence-anchor-link"></span><span>Installing via a Local File</span>
+## <span id="src-5122744_ManagingCumulusRMPDiskImages-local" class="confluence-anchor-link"></span>Installing via a Local File</span>
 
 1.  Set up DHCP or static addressing for eth0, as in the examples above.
 
@@ -188,7 +188,7 @@ port, you need to disable discovery mode or else ONIE may get confused.
     
         ONIE# onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
 
-## <span id="src-5122744_ManagingCumulusRMPDiskImages-usb" class="confluence-anchor-link"></span><span>Installing via USB</span>
+## <span id="src-5122744_ManagingCumulusRMPDiskImages-usb" class="confluence-anchor-link"></span>Installing via USB</span>
 
 Follow the steps below to conduct a full installation of Cumulus RMP.
 This wipes out all pre-existing configuration files that may be present
@@ -202,7 +202,7 @@ finishes.
 
 {{%/notice%}}
 
-### <span>Preparing for USB Installation</span>
+### Preparing for USB Installation</span>
 
 1.  Download the Cumulus RMP image from the [Cumulus Downloads
     page](http://cumulusnetworks.com/downloads/).
@@ -369,7 +369,7 @@ finishes.
      sudo mount /dev/sdb1 /mnt/mountpoint
     ```
 
-## <span id="src-5122744_ManagingCumulusRMPDiskImages-upgrade" class="confluence-anchor-link"></span><span>Upgrading Cumulus RMP</span>
+## <span id="src-5122744_ManagingCumulusRMPDiskImages-upgrade" class="confluence-anchor-link"></span>Upgrading Cumulus RMP</span>
 
 If you already have Cumulus RMP installed on your switch and you are
 upgrading to an X.Y.Z release, like 2.5.7 from an earlier release in the
@@ -386,7 +386,7 @@ To upgrade to a maintenance (X.Y.Z) release using `apt-get`:
 
 3.  Reboot the switch.
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [Open Network Install Environment (ONIE) Home
     Page](http://opencomputeproject.github.io/onie/)

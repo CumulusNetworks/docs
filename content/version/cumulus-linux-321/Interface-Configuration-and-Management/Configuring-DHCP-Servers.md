@@ -3,7 +3,7 @@ title: Configuring DHCP Servers
 author: Cumulus Networks
 weight: 89
 aliases:
- - /display/CL321/Configuring-DHCP-Servers
+ - /display/CL321/Configuring+DHCP+Servers
  - /pages/viewpage.action?pageId=5127018
 pageID: 5127018
 product: Cumulus Linux
@@ -29,7 +29,7 @@ services.
 
 {{%/notice%}}
 
-## <span>Configuring DHCP Server on Cumulus Linux Switches</span>
+## Configuring DHCP Server on Cumulus Linux Switches</span>
 
 You can use the following sample configurations for `dhcp.conf` and
 `dhcpd6.conf` to start both an IPv4 and an IPv6 DHCP server. The
@@ -40,7 +40,7 @@ pools:
 
   - Pool 2: Subnet that includes the addresses
 
-### <span>Configuring the IPv4 DHCP Server</span>
+### Configuring the IPv4 DHCP Server</span>
 
 In a text editor, edit the `dhcpd.conf` file with a configuration
 similar to the following:
@@ -71,7 +71,7 @@ After you've finished configuring the DHCP server, enable the ` dhcpd
 
     cumulus@switch:~$ sudo systemctl enable dhcpd.service
 
-### <span>Configuring the IPv6 DHCP Server</span>
+### Configuring the IPv6 DHCP Server</span>
 
 In a text editor, edit the `dhcpd6.conf` file with a configuration
 similar to the following:
@@ -108,7 +108,7 @@ After you've finished configuring the DHCP server, enable the`  dhcpd6
 
     cumulus@switch:~$ sudo systemctl enable dhcpd6.service
 
-## <span>Troubleshooting the Log from a DHCP Server</span>
+## Troubleshooting the Log from a DHCP Server</span>
 
 The DHCP server knows whether a DHCP request is a relay or a non-relay
 DHCP request. On isc-dhcp-server, for example, it is possible to tail

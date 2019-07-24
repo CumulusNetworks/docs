@@ -3,7 +3,7 @@ title: Ethernet Bridging - VLANs
 author: Cumulus Networks
 weight: 109
 aliases:
- - /display/CL321/Ethernet-Bridging---VLANs
+ - /display/CL321/Ethernet+Bridging+++VLANs
  - /pages/viewpage.action?pageId=5126836
 pageID: 5126836
 product: Cumulus Linux
@@ -36,13 +36,13 @@ interfaces that traverse an 802.1Q VLAN trunk.
 {{%notice tip%}}
 
 Cumulus Networks recommends using *[VLAN-aware
-mode](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
+mode](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
 bridges, rather than *traditional mode* bridges. The bridge driver in
 Cumulus Linux is capable of VLAN filtering, which allows for
 configurations that are similar to incumbent network devices. While
 Cumulus Linux supports Ethernet bridges in traditional mode, Cumulus
 Networks **** recommends using
-[VLAN-aware](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+[VLAN-aware](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 mode.
 
 {{%/notice%}}
@@ -69,18 +69,18 @@ VLAN-aware bridge on a given switch.
 
 {{%/notice%}}
 
-## <span>Creating a VLAN-aware Bridge</span>
+## Creating a VLAN-aware Bridge</span>
 
 To learn about VLAN-aware bridges and how to configure them, read
 [VLAN-aware Bridge Mode for Large-scale Layer 2
-Environments](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
+Environments](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
 
-## <span>Creating a Traditional Mode Bridge</span>
+## Creating a Traditional Mode Bridge</span>
 
 To create a traditional mode bridge, see [Traditional Mode
-Bridges](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging---VLANs/Traditional-Mode-Bridges).
+Bridges](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges).
 
-## <span>Configuring Bridge MAC Addresses</span>
+## Configuring Bridge MAC Addresses</span>
 
 The MAC address for a frame is learned when the frame enters the bridge
 via an interface. The MAC address is recorded in the bridge table, and
@@ -99,7 +99,7 @@ The following example output shows a MAC address table for the bridge:
     untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
     untagged  bridge    swp1         44:38:39:00:00:04                permanent           20 days, 01:14:03
 
-## <span id="src-5126836_EthernetBridging-VLANs-svi" class="confluence-anchor-link"></span><span>Configuring an SVI (Switch VLAN Interface)</span>
+## <span id="src-5126836_EthernetBridging-VLANs-svi" class="confluence-anchor-link"></span>Configuring an SVI (Switch VLAN Interface)</span>
 
 Bridges can be included as part of a routing topology after being
 assigned an IP address. This enables hosts within the bridge to
@@ -153,7 +153,7 @@ configuration:
     iface bridge.10
         address 10.100.100.1/24
 
-### <span>Keeping the SVI in an UP State</span>
+### Keeping the SVI in an UP State</span>
 
 When a switch is initially configured, all southbound bridge ports may
 be down, which means that, by default, the SVI is also down. However,
@@ -233,7 +233,7 @@ remain up:
     35: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
         link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - A bridge cannot contain multiple subinterfaces of the **same** port.
     Attempting this configuration results in an error.
@@ -243,7 +243,7 @@ remain up:
     normal interface in a VLAN-aware bridge, the bridge will be flapped
     when the traditional bridge's bond subinterface is brought down.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Linux Foundation -
     Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)

@@ -3,7 +3,7 @@ title: Policy-based Routing
 author: Cumulus Networks
 weight: 183
 aliases:
- - /display/CL36/Policy-based-Routing
+ - /display/CL36/Policy+based+Routing
  - /pages/viewpage.action?pageId=8362440
 pageID: 8362440
 product: Cumulus Linux
@@ -46,7 +46,7 @@ that determine rules and specify where to forward the packets.
 
 {{%/notice%}}
 
-## <span>Configuring PBR</span>
+## Configuring PBR</span>
 
 A PBR policy contains one or more policy maps. Each policy map:
 
@@ -156,7 +156,7 @@ To configure a PBR policy:
     
     {{%/notice%}}
 
-## <span>Configuration Example</span>
+## Configuration Example</span>
 
 In the following example, the PBR-enabled switch has a PBR policy to
 route all traffic from the Internet to a server that performs anti-DDOS.
@@ -182,7 +182,7 @@ file.
     match src-ip 0.0.0.0/0
     set nexthop 192.168.0.32
 
-## <span>Reviewing Your Configuration</span>
+## Reviewing Your Configuration</span>
 
 Use the following commands to see the configured PBR policies.
 
@@ -242,7 +242,7 @@ A new Linux routing table ID is used for each nexthop and nexthop group.
 
 {{%/notice%}}
 
-## <span>Deleting PBR Rules and Policies</span>
+## Deleting PBR Rules and Policies</span>
 
 You can delete a PBR rule, a nexthop group, or a policy with the `net
 del` command.  

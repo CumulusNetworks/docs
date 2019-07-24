@@ -3,7 +3,7 @@ title: VXLAN Hyperloop
 author: Cumulus Networks
 weight: 155
 aliases:
- - /display/CL34/VXLAN-Hyperloop
+ - /display/CL34/VXLAN+Hyperloop
  - /pages/viewpage.action?pageId=7112552
 pageID: 7112552
 product: Cumulus Linux
@@ -34,7 +34,7 @@ feature; see [VXLAN
 Routing](/version/cumulus-linux-343/Network-Virtualization/VXLAN-Routing)
 for more information.
 
-## <span id="src-7112552_VXLANHyperloop-reqs" class="confluence-anchor-link"></span><span>Requirements</span>
+## <span id="src-7112552_VXLANHyperloop-reqs" class="confluence-anchor-link"></span>Requirements</span>
 
   - VXLAN hyperloop only works on an ASIC capable of encapsulating and
     decapsulating VXLAN traffic, which includes:
@@ -53,7 +53,7 @@ for more information.
     of Cumulus Linux.
 
   - If you are using
-    [EVPN](/version/cumulus-linux-343/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN),
+    [EVPN](/version/cumulus-linux-343/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN),
     you must be running FRRouting version eau8. Use a `dpkg -l` to check
     the FRRouting version:
     
@@ -67,10 +67,10 @@ for more information.
     
     If you are not running the right version of FRRouting for EVPN,
     [follow these
-    directions](/version/cumulus-linux-343/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+    directions](/version/cumulus-linux-343/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
     to upgrade.
 
-## <span>Hyperloop Use Cases</span>
+## Hyperloop Use Cases</span>
 
 Without native VXLAN routing support, external gateways, firewalls or
 routers are attached to a VTEP do the routing, as in the diagram below.
@@ -114,9 +114,9 @@ You should **not** use a hyperloop under these circumstances:
     requires dedicated edge gateways to achieve the same result, like
     NAT.
 
-### <span id="src-7112552_VXLANHyperloop-hyperloop" class="confluence-anchor-link"></span><span>Exiting a VXLAN with a Hyperloop</span>
+### <span id="src-7112552_VXLANHyperloop-hyperloop" class="confluence-anchor-link"></span>Exiting a VXLAN with a Hyperloop</span>
 
-### <span></span>
+### </span>
 
 This limitation means a physical cable must be attached from one port on
 leaf1 to another port on leaf1. One port is a layer 3 port while the
@@ -183,11 +183,11 @@ following on exit01:
         vxlan-local-tunnelip 10.0.0.11
         bridge-access 200
 
-### <span>Packet Flow Diagram</span>
+### Packet Flow Diagram</span>
 
 {{% imgOld 1 %}}
 
-### <span>Trident II and Tomahawk switchd Flag</span>
+### Trident II and Tomahawk switchd Flag</span>
 
 In order for the Broadcom Trident II and Tomahawk ASICs to be able to
 have a hyperloop work correctly, you must configure the following
@@ -216,13 +216,13 @@ on this specific ASIC type.
 
 {{%/notice%}}
 
-## <span>VXLAN Hyperloop Troubleshooting Matrix</span>
+## VXLAN Hyperloop Troubleshooting Matrix</span>
 
 Before you follow these troubleshooting steps, make sure your switch
 meets the [requirements specified
 above](#src-7112552_VXLANHyperloop-reqs).
 
-### <span>Are HER (Head End Replication) entries being programmed into the bridge fdb table?</span>
+### Are HER (Head End Replication) entries being programmed into the bridge fdb table?</span>
 
 Check for 00:00:00:00:00:00 entries for each VXLAN using `bridge fdb
 show`:
@@ -282,7 +282,7 @@ If you are not getting HER entries, there are some steps you can try:
     is 3000-3999. This range is stored in the `resv_vlan_range` variable
     in the `/etc/cumulus/switchd.conf` file.
 
-### <span>If you are using an MLAG VTEP (dual attached), is it set up correctly?</span>
+### If you are using an MLAG VTEP (dual attached), is it set up correctly?</span>
 
 Check the outputs. Often, when VXLAN is considered to be non-working,
 it's actually due to an incorrect setup on the server OS, whether it's
@@ -291,7 +291,7 @@ Ubuntu, Microsoft Windows or RHEL.
 
 {{% imgOld 2 %}}
 
-### <span>Can you ping from host to host on the same VXLAN?</span>
+### Can you ping from host to host on the same VXLAN?</span>
 
 For example, in the following network diagram, can server01 ping to
 server03 on any of the VLANs (VLAN1, VLAN100, VLAN200)?  
@@ -310,7 +310,7 @@ connectivity on the same VXLAN.
 
 {{%/notice%}}
 
-### <span>Is the SVI on a physical interface or on a traditional bridge? </span>
+### Is the SVI on a physical interface or on a traditional bridge? </span>
 
 {{%notice warning%}}
 
@@ -319,7 +319,7 @@ a traditional bridge. Please follow the configuration guidelines above.
 
 {{%/notice%}}
 
-### <span>Is the port plugged in where it is supposed to be plugged in?</span>
+### Is the port plugged in where it is supposed to be plugged in?</span>
 
 Use `lldpctl` or `net show lldp` to see what ports are hooked up:
 
@@ -338,10 +338,10 @@ Use `lldpctl` or `net show lldp` to see what ports are hooked up:
 Notice above that swp53 and swp54 are a loopback cable (hyperloop) where
 it is connected to itself.
 
-### <span>Is the VRR MAC address unique per subnet?</span>
+### Is the VRR MAC address unique per subnet?</span>
 
 Make sure that [VRR is configured
-correctly](/version/cumulus-linux-343/Layer-One-and-Two/Virtual-Router-Redundancy---VRR/)
+correctly](/version/cumulus-linux-343/Layer-One-and-Two/Virtual-Router-Redundancy-VRR/)
 and that each MAC address is unique per VLAN.
 
 <article id="html-search-results" class="ht-content" style="display: none;">

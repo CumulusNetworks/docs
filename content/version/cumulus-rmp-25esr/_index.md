@@ -3,7 +3,7 @@ title: Cumulus RMP User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/RMP25ESR/Cumulus-RMP-User-Guide
+ - /display/RMP25ESR/Cumulus+RMP+User+Guide
  - /pages/viewpage.action?pageId=5116301
 pageID: 5116301
 product: Cumulus RMP
@@ -12,7 +12,7 @@ imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 subsection: true
 ---
-## <span>Welcome to Cumulus Networks</span>
+## Welcome to Cumulus Networks</span>
 
 We are transforming networking with Cumulus Linux, the industry's first,
 full-featured Linux operating system for networking hardware. Cumulus
@@ -36,7 +36,7 @@ Read the <span style="color: #007937;"> [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/223501428)
 </span> for new features and known issues in this release.
 
-## <span>Extended Support Release</span>
+## Extended Support Release</span>
 
 This version of Cumulus RMP is an Extended Support Release (ESR).
 Cumulus Linux 2.5 ESR started with Cumulus RMP 2.5.6 and all future

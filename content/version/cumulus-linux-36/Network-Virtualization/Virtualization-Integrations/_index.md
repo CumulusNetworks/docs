@@ -3,7 +3,7 @@ title: Virtualization Integrations
 author: Cumulus Networks
 weight: 149
 aliases:
- - /display/CL36/Virtualization-Integrations
+ - /display/CL36/Virtualization+Integrations
  - /pages/viewpage.action?pageId=8362286
 pageID: 8362286
 product: Cumulus Linux

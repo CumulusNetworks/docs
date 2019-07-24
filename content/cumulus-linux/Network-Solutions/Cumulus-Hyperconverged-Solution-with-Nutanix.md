@@ -3,13 +3,13 @@ title: Cumulus Hyperconverged Solution with Nutanix
 author: Cumulus Networks
 weight: 261
 aliases:
- - /display/CL37/Cumulus-Hyperconverged-Solution-with-Nutanix
+ - /display/DOCS/Cumulus+Hyperconverged+Solution+with+Nutanix
  - /pages/viewpage.action?pageId=9012165
 pageID: 9012165
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The Cumulus Hyperconverged Solution (HCS) in Cumulus Linux supports
 automated integration with the Nutanix Prism Management solution and the
@@ -22,7 +22,7 @@ In addition, you can augment the deployment with:
   - [Cumulus on a
     Stick](https://cumulusnetworks.com/cumulus-on-a-stick/) for [zero
     touch
-    provisioning](/version/cumulus-linux-377/Installation-Management/Zero-Touch-Provisioning---ZTP)
+    provisioning](/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP)
     Nutanix and Cumulus HCS without any user interaction or additional
     equipment.
 
@@ -31,7 +31,7 @@ In addition, you can augment the deployment with:
     network and virtual machines.
 
   - Out-of-band management and IPMI access using [Cumulus
-    RMP](https://docs.cumulusnetworks.com/display/RMP/Cumulus+RMP) or a
+    RMP](/cumulus-rmp) or a
     generic Cumulus Linux switch, enabling the full provisioning of a
     zero-touch data and management network, eliminating any network
     deployment delays when standing up a Nutanix cluster.
@@ -48,19 +48,19 @@ Cumulus HCS has two major components:
     a message to the Cumulus Linux switch with the physical server name
     and relevant VLANs. The switch then dynamically provisions the
     configuration on the ports of the specific physical server.  
-      
+
     Cumulus HCS periodically polls Nutanix Prism for information about
     VMs in the cluster. When a new VM is discovered, the service
     automatically identifies the physical Nutanix server hosting the VM
     and discovers any VLANs required for the VM. The service then
     automatically adds these VLANs to the default [VLAN-aware
-    bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode),
+    bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
     the MLAG peer link and the automatically created bond to the Nutanix
     node. When a VM is powered off, removed or moved, and the associated
     VLAN has no other VMs, the VLAN is automatically removed from the
     bridge, peer link and dynamic bond.
 
-## <span>Prerequisites</span>
+## Prerequisites
 
   - 2 [Cumulus Networks-compatible
     switches](https://cumulusnetworks.com/hcl) running Cumulus Linux
@@ -75,7 +75,7 @@ Cumulus HCS has two major components:
   - IP connectivity between the Cumulus Linux switches and the Nutanix
     controller VMs (CVMs)
 
-  - [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+  - [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
     enabled on the Cumulus Linux switches
 
 Cumulus HCS runs on any platform. However, this chapter assumes a
@@ -92,7 +92,7 @@ typical Nutanix deployment with the following configuration:
   - Connections to other infrastructure are on ports swp51 and above
 
   - The eth0 management interface is configured for [management
-    VRF](/version/cumulus-linux-377/Layer-3/Management-VRF) via DHCP
+    VRF](/cumulus-linux/Layer-3/Management-VRF) via DHCP
 
   - For automatic configuration, the gateway IP addresses for all VMs,
     including the CVM, do not exist on the Cumulus Linux switches.
@@ -103,12 +103,11 @@ for spine01 and spine02 are not included.
 
 {{% imgOld 0 %}}
 
-## <span>Configure Cumulus HCS and Nutanix</span>
+## Configure Cumulus HCS and Nutanix
 
 The method you choose for configuring Cumulus HCS and Nutanix depends
 upon whether or not you already have Cumulus Linux installed on your
-switches, which are named <span style="color: #000000;"> *leaf01* and
-*leaf02* </span> in the example configuration above.
+switches, which are named *leaf01* and *leaf02* in the example configuration above.
 
   - If you have bare-metal switches without Cumulus Linux installed,
     follow the steps below for configuring a bare-metal switch with ZTP.
@@ -117,11 +116,10 @@ switches, which are named <span style="color: #000000;"> *leaf01* and
     steps below for manually configuring an existing Cumulus Linux
     switch.
 
-### <span>Configure the Service with ZTP</span>
+### Configure the Service with ZTP
 
-The following steps describe how to <span style="color: #000000;"> use
-zero touch provisioning </span> to install Cumulus Linux and fully
-configure Cumulus HCS and Nutanix on your network.
+The following steps describe how to use zero touch provisioning to install
+Cumulus Linux and fully configure Cumulus HCS and Nutanix on your network.
 
 To do this, you need a [Cumulus on a
 Stick](https://cumulusnetworks.com/cumulus-on-a-stick/) disk image and a
@@ -130,13 +128,12 @@ USB stick with at least 1GB of storage.
 1.  Insert the USB stick into your computer and copy the Cumulus on a
     Stick files onto it.
 
-2.  <span style="color: #000000;"> On the USB stick, open the
+2.  On the USB stick, open the
     `ztp_config.txt` file in a text editor and set your Nutanix username
     and password and the server IP address, then save and close the
     file.  
-    </span>
-    
-        # Fill in the parameters below to allow for ZTP to 
+
+        # Fill in the parameters below to allow for ZTP to
         # automatically configure the switch for Nutanix
         #
         # The username for the Nutanix API. Likely the username you use to login to Prism. (Required)
@@ -167,7 +164,7 @@ USB stick with at least 1GB of storage.
 4.  When the installation completes, remove the USB stick and repeat
     this procedure on the other Cumulus Linux switch (leaf02).
 
-### <span>Configure the Service Manually</span>
+### Configure the Service Manually
 
 If Cumulus Linux is already installed on your switches, follow the steps
 below to configure Cumulus Linux, Nutanix and Cumulus HCS.
@@ -177,41 +174,41 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
     and must be the same on both MLAG peers. If you are deploying more
     than one pair of switches with MLAG, the `sys-mac` must be unique
     for each pair of MLAG-configured switches.
-    
+
         cumulus@leaf01:~$ net add interface swp49,swp50 mtu 9216
         cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 primary
         cumulus@leaf01:~$ net commit
-    
+
         cumulus@leaf02:~$ net add interface swp49,swp50 mtu 9216
         cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 secondary
         cumulus@leaf02:~$ net commit
 
 2.  Configure the default layer 2 bridge. Add a unique IP address to
     each leaf in the same subnet as the CVM.
-    
+
         cumulus@leaf01:~$ net add bridge bridge ports peerlink
         cumulus@leaf01:~$ net add bridge bridge pvid 1
         cumulus@leaf01:~$ net add vlan 1 ip address 10.1.1.201/24
         cumulus@leaf01:~$ net commit
-    
+
         cumulus@leaf02:~$ net add bridge bridge ports peerlink
         cumulus@leaf02:~$ net add bridge bridge pvid 1
         cumulus@leaf02:~$ net add vlan 1 ip address 10.1.1.202/24
         cumulus@leaf02:~$ net commit
-    
+
     {{%notice note%}}
-    
-    In both configurations the `pvid` value of *1* indicates the native
+
+In both configurations the `pvid` value of *1* indicates the native
     VLAN ID. If you don't know the value for the native VLAN ID, use
     *1*.
-    
+
     {{%/notice%}}
 
 3.  Edit the `/etc/default/cumulus-hyperconverged` file and set the
     Nutanix username, password and server IP address. Do this on both
     switches (leaf01 and leaf02). Cumulus Linux uses the settings in
     this file to authenticate and communicate with the Nutanix cluster.
-    
+
         cumulus@leaf02:~$ sudo nano /etc/default/cumulus-hyperconverged
          
         ### /etc/default/cumulus-hyperconverged config file
@@ -233,31 +230,31 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
         LOGLEVEL=verbose
         # periodic sync timeout (optional)
         #PERIODIC_SYNC_TIMEOUT=60
-    
+
     {{%notice tip%}}
-    
-    These settings are defined
+
+These settings are defined
     [below](#src-9012165_CumulusHyperconvergedSolutionwithNutanix-chs_settings).
-    
+
     {{%/notice%}}
-    
+
     {{%notice note%}}
-    
-    The server IP address may be a specific Nutanix CVM address or the
+
+The server IP address may be a specific Nutanix CVM address or the
     virtual cluster IP address.
-    
+
     {{%/notice%}}
 
 4.  Enable and start Cumulus HCS on leaf01 and leaf02.
-    
+
         cumulus@leaf01:~$ sudo systemctl enable cumulus-hyperconverged
         cumulus@leaf01:~$ sudo systemctl start cumulus-hyperconverged
-    
+
         cumulus@leaf02:~$ sudo systemctl enable cumulus-hyperconverged
         cumulus@leaf02:~$ sudo systemctl start cumulus-hyperconverged
 
 5.  Verify that the service is running on leaf01 and leaf02.
-    
+
         cumulus@leaf01:~$ sudo systemctl status cumulus-hyperconverged
         ● cumulus-hyperconverged.service - Cumulus Linux Hyperconverged Daemon
            Loaded: loaded (/lib/systemd/system/cumulus-hyperconverged.service; enabled)
@@ -266,7 +263,7 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
            CGroup: /system.slice/cumulus-hyperconverged.service
                    ├─4206 /usr/bin/python /usr/bin/cumulus-hyperconverged
                    └─6300 /usr/sbin/lldpcli -f json watch
-    
+
         cumulus@leaf02:~$ sudo systemctl status cumulus-hyperconverged
         ● cumulus-hyperconverged.service - Cumulus Linux Hyperconverged Daemon
            Loaded: loaded (/lib/systemd/system/cumulus-hyperconverged.service; enabled)
@@ -275,28 +272,28 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
            CGroup: /system.slice/cumulus-hyperconverged.service
                    ├─4207 /usr/bin/python /usr/bin/cumulus-hyperconverged
                    └─4300 /usr/sbin/lldpcli -f json watch
-    
+
     {{%notice tip%}}
-    
-    If the service fails to start, you may find more information in the
+
+If the service fails to start, you may find more information in the
     service's log file. View the log with `sudo journalctl -u
     cumulus-hyperconverged`.
-    
+
     {{%/notice%}}
 
 6.  Enable the server-facing ports to accept inbound LLDP frames and
     configure jumbo MTU on both leaf01 and leaf02.
-    
+
         cumulus@leaf01:~$ net add interface swp1-48 mtu 9216
         cumulus@leaf01:~$ net commit
-    
+
         cumulus@leaf02:~$ net add interface swp1-48 mtu 9216
         cumulus@leaf02:~$ net commit
 
 At this point, the service is fully configured. It may take up to 60
 seconds for LLDP frames to be received to trigger Cumulus HCS.
 
-### <span>Cumulus HCS Configuration Settings</span>
+### Cumulus HCS Configuration Settings
 
 Some of the settings you can configure include:
 
@@ -322,7 +319,7 @@ Some of the settings you can configure include:
     dynamic configurations without contacting the Nutanix API. The
     default is *60* seconds.
 
-## <span>Configure Uplinks</span>
+## Configure Uplinks
 
 How you configure uplinks depends upon whether you configured Cumulus
 HCS with ZTP or manually.
@@ -354,7 +351,7 @@ VLAN ID (`pvid`) *1*. Change the VLAN ID as needed.
 
 {{%/notice%}}
 
-## <span>Add Local Default Gateways</span>
+## Add Local Default Gateways
 
 You can add one or more local default gateways on both switches to
 provide a redundant solution, as shown below. It does not matter whether
@@ -363,12 +360,12 @@ gateway configuration.
 
 To provide redundant gateways for the dual-attached Nutanix servers,
 Cumulus Linux relies on [Virtual Router
-Redundancy](/version/cumulus-linux-377/Layer-2/Virtual-Router-Redundancy---VRR-and-VRRP)
+Redundancy](/cumulus-linux/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP)
 (VRR). VRR enables hosts to communicate with any redundant router
 without reconfiguration, running dynamic routing protocols, or running
 router redundancy protocols. This means that redundant routers will
 respond to [Address Resolution
-Protocol](/version/cumulus-linux-377/Layer-3/Address-Resolution-Protocol---ARP)
+Protocol](/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP)
 (ARP) requests from hosts. Routers are configured to respond in an
 identical manner, but if one fails, the other redundant routers will
 continue to respond, leaving the hosts with the impression that nothing
@@ -395,18 +392,16 @@ between 00 and ff. Both leaf01 and leaf02 must have the same MAC
 address. Outside of this switch pair, this MAC address must be unique
 and only be assigned to a single switch pair in your network.
 
-## <span>Out-of-band Solutions</span>
+## Out-of-band Solutions
 
 You can configure out-of-band management in one of two ways:
 
-  - Using [Cumulus
-    RMP](https://docs.cumulusnetworks.com/display/RMP/Cumulus+RMP),
-    which is the recommended way.
+  - Using [Cumulus RMP](/cumulus-rmp), which is the recommended way.
 
   - Running Cumulus Linux on a [supported 1G non-Cumulus RMP
     switch](https://cumulusnetworks.com/products/hardware-compatibility-list/?Speed=1G).
 
-### <span>Cumulus RMP</span>
+### Cumulus RMP
 
 Cumulus RMP is a ready-to-deploy solution that enables out-of-band
 management for web-scale networks. With Cumulus RMP, you can directly
@@ -420,10 +415,10 @@ configuration is required.
 Cumulus RMP does not support MLAG or active/active connections across
 Cumulus RMP switches. Connections across more than one Cumulus RMP
 switch rely on traditional [spanning tree
-protocol](/version/cumulus-linux-377/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree)
+protocol](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree)
 for redundancy.
 
-### <span>Other Cumulus Linux 1G Switches</span>
+### Other Cumulus Linux 1G Switches
 
 If you want to use a non-Cumulus RMP 1G switch that supports Cumulus
 Linux for out-of-band management, you must manually install the Cumulus
@@ -455,7 +450,7 @@ both commands with the desired VLAN ID.
 
 {{%/notice%}}
 
-## <span>Troubleshoot Cumulus HCS</span>
+## Troubleshoot Cumulus HCS
 
 Some ways you can troubleshoot Cumulus HCS include:
 
@@ -465,7 +460,7 @@ Some ways you can troubleshoot Cumulus HCS include:
 
   - Verifying the Cumulus HCS configuration.
 
-### <span>Verify Dynamic Bonds Are Being Created</span>
+### Verify Dynamic Bonds Are Being Created
 
 Use the `net show interface bonds` command to verify that bonds are
 being dynamically created. The following example shows that three bonds,
@@ -482,12 +477,12 @@ with the interface name.
     UP  bond_swp3  1G     1500  802.3ad  Bond Members: swp3(UP)
     UP  peerlink   2G     1500  802.3ad  Bond Members: swp49(UP), swp50(UP)
 
-### <span>Verify LLDP Messages Are Being Received</span>
+### Verify LLDP Messages Are Being Received
 
 If bonds are not being created, then
-[LLDP](/version/cumulus-linux-377/Layer-2/Link-Layer-Discovery-Protocol/)
-messages may not be getting through. You can check for this possibility
-using the `net show lldp` command:
+[LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) messages
+may not be getting through. You can check for this possibility using the
+`net show lldp` command:
 
     cumulus@leaf01:~$ net show lldp
     LocalPort  Speed  Mode           RemoteHost       RemotePort
@@ -500,7 +495,7 @@ using the `net show lldp` command:
     swp52      1G     NotConfigured  spine01          swp1
     swp52      1G     NotConfigured  spine02          swp1
 
-### <span>View Detailed Nutanix LLDP Information</span>
+### View Detailed Nutanix LLDP Information
 
 Cumulus HCS replies on the LLDP `SysDescr` field to identify a Nutanix
 host. Run the `net show lldp <swp>` command to view the complete LLDP
@@ -532,24 +527,14 @@ details of the Nutanix node and verify the `SysDescr` field.
           MAU oper type: 1000BaseTFD - Four-pair Category 5 UTP, full duplex mode
     -------------------------------------------------------------------------------
 
-## <span>Caveats</span>
+## Caveats
 
   - Reloading Cumulus HCS causes the bond interfaces to rebuild. For the
     stability of the Nutanix cluster, do not reload the service on both
     leaf switches simultaneously.
 
-## <span>More Information</span>
+## More Information
 
   - [Hyperconverged infrastructure
     site](https://cumulusnetworks.com/networking-solutions/converged-infrastructure/)
     on the Cumulus Networks website
-
-  
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

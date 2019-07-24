@@ -3,7 +3,7 @@ title: 'Authentication, Authorization, and Accounting'
 author: Cumulus Networks
 weight: 37
 aliases:
- - '/display/RMP25ESR/Authentication,-Authorization,-and-Accounting'
+ - '/display/RMP25ESR/Authentication,+Authorization,+and+Accounting'
  - /pages/viewpage.action?pageId=5116310
 pageID: 5116310
 product: Cumulus RMP

@@ -3,7 +3,7 @@ title: Voice VLAN
 author: Cumulus Networks
 weight: 311
 aliases:
- - /display/CL34/Voice-VLAN
+ - /display/CL34/Voice+VLAN
  - /pages/viewpage.action?pageId=7112405
 pageID: 7112405
 product: Cumulus Linux
@@ -15,12 +15,12 @@ In Cumulus Linux, a *voice VLAN* is a VLAN dedicated to voice traffic on
 a switch. However, the term can mean different things to different
 vendors.
 
-## <span>Cumulus Linux Voice VLAN Example</span>
+## Cumulus Linux Voice VLAN Example</span>
 
 {{% imgOld 0 %}}
 
 You can configure the topology above using the following
-[NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility---NCLU)
+[NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU)
 commands:
 
     cumulus@switch:~$ net add bridge bridge ports swp1-3
@@ -73,7 +73,7 @@ command:
     swp3         1         PVID, Egress Untagged
                  2-1000
 
-## <span>Cumulus Linux vs Cisco IOS Configuration</span>
+## Cumulus Linux vs Cisco IOS Configuration</span>
 
 <table>
 <colgroup>
@@ -103,7 +103,7 @@ iface swp1
 </tbody>
 </table>
 
-## <span>Cisco Voice VLAN and 802.1q Trunk Differences</span>
+## Cisco Voice VLAN and 802.1q Trunk Differences</span>
 
 On Cisco Systems' Catalyst software, when a switch port is configured as
 an access port (switchport mode access), and has a voice VLAN configured

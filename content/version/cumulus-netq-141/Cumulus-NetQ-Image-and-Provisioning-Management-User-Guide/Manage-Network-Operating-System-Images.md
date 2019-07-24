@@ -3,7 +3,7 @@ title: Manage Network Operating System Images
 author: Cumulus Networks
 weight: 35
 aliases:
- - /display/NETQ141/Manage-Network-Operating-System-Images
+ - /display/NETQ141/Manage+Network+Operating+System+Images
  - /pages/viewpage.action?pageId=10453545
 pageID: 10453545
 product: Cumulus NetQ
@@ -36,7 +36,7 @@ The command syntax is:
 option. </span> The *--with-date* option lists the timestamp when the
 last mapping occurred.
 
-## <span>Import NOS Images</span>
+## Import NOS Images</span>
 
 While IPM is preconfigured to use the latest Cumulus Linux NOS, you can
 add prior NOS images to manage switches installed with earlier releases.
@@ -55,7 +55,7 @@ This example shows the import of a NOS image.
     <username>@<ts>:~$ tips-easy --images <path>/<image-filename>
     <username>@<ts>:~$ tipctl show nos
 
-## <span>View Stored Images</span>
+## View Stored Images</span>
 
 You can view all of the images stored in IPM using the `tipctl show nos`
 command. You can filter the results by MAC address and NOS image.
@@ -85,7 +85,7 @@ NOS of *cumulus-rmp-3.6.1-bcm-amd64.bin*.
     ---------- ----------------- -------------------------------
     onie_mac   00:11:22:33:44:55 cumulus-rmp-3.6.1-bcm-amd64.bin
 
-## <span>Apply Images</span>
+## Apply Images</span>
 
 Once you have all of the NOS images loaded into IPM, you can then map
 the images to the various switches in your network using the `tipctl add
@@ -104,13 +104,13 @@ and then verify the mapping.
 If you want to add a NOS to multiple switches, create an automation
 script that runs the `add nos` command.
 
-## <span>Manage Images </span>
+## Manage Images </span>
 
 IPM enables you to manage your local image repository, including
 mapping, deleting, and viewing images. Mapping images was covered above.
 Viewing and deleting images are described here.
 
-### <span>View Images in Repository</span>
+### View Images in Repository</span>
 
 You can view the NOS image repository located in the
 */var/tips/www/onie/images/* directory on the Telemetry Server.
@@ -134,7 +134,7 @@ This example shows how to view the contents of the NOS repository.
     cumulus-linux-3.6.1-vx-amd64.qcow2
     cumulus-linux-bcm-amd64.bin
 
-### <span>Remove Image Mappings</span>
+### Remove Image Mappings</span>
 
 You can remove all mappings to a NOS image or the mapping to a
 particular switch.This example shows how to remove the mapping of a NOS
@@ -150,7 +150,7 @@ switch with a MAC address of A0:00:00:00:00:12.
     cumulus@ts:~$ tipctl del nos mac a0:00:00:00:00:12
     cumulus@ts:~$ tipctl show nos mac a0:00:00:00:00:12
 
-### <span>Delete Images from Repository</span>
+### Delete Images from Repository</span>
 
 If you are no longer using a particular NOS, you can remove it from your
 local repository to simplify your management processes and prevent

@@ -3,7 +3,7 @@ title: VXLAN Hyperloop
 author: Cumulus Networks
 weight: 139
 aliases:
- - /display/CL321/VXLAN-Hyperloop
+ - /display/CL321/VXLAN+Hyperloop
  - /pages/viewpage.action?pageId=5126975
 pageID: 5126975
 product: Cumulus Linux
@@ -87,11 +87,11 @@ bridging using a hyperloop: </span>
     be provided by leaf switches and so it requires dedicated edge
     gateways to achieve the same, like NAT.
 
-## <span>Exiting a VXLAN with a Hyperloop</span>
+## Exiting a VXLAN with a Hyperloop</span>
 
-### <span id="src-5126975_VXLANHyperloop-hyperloop" class="confluence-anchor-link"></span><span>VXLAN Hyperloop</span>
+### <span id="src-5126975_VXLANHyperloop-hyperloop" class="confluence-anchor-link"></span>VXLAN Hyperloop</span>
 
-### <span></span>
+### </span>
 
 This limitation means a physical cable must be attached from one port on
 leaf1 to another port on leaf1. One port is an L3 port while the other
@@ -153,11 +153,11 @@ vni-10, you could configure the following on exit01:
         vxlan-local-tunnelip 10.0.0.11
         bridge-access 200
 
-### <span>Packet Flow Diagram</span>
+### Packet Flow Diagram</span>
 
 {{% imgOld 1 %}}
 
-### <span>Trident II and Tomahawk switchd Flag</span>
+### Trident II and Tomahawk switchd Flag</span>
 
 For the Broadcom Trident II and Tomahawk ASICs to be able to have a
 hyperloop work correctly, you must configure a `switchd` flag. This
@@ -186,7 +186,7 @@ limitation on this specific ASIC type.
 
 {{%/notice%}}
 
-## <span>VXLAN Routing and Hyperloop Troubleshooting Matrix</span>
+## VXLAN Routing and Hyperloop Troubleshooting Matrix</span>
 
   - **Are you running an ASIC capable of VXLAN?**  
       
@@ -242,7 +242,7 @@ limitation on this specific ASIC type.
     You must be running *eau8* as shown above under the Version column.
     If you are not running the right version of Quagga for EVPN [follow
     the directions
-    here](/version/cumulus-linux-321/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN).
+    here](/version/cumulus-linux-321/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN).
 
   - **Are HER (Head End Replication) entries being programmed into the
     bridge fdb table?**  

@@ -3,7 +3,7 @@ title: Monitoring and Troubleshooting
 author: Cumulus Networks
 weight: 21
 aliases:
- - /display/RMP25ESR/Monitoring-and-Troubleshooting
+ - /display/RMP25ESR/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=5116323
 pageID: 5116323
 product: Cumulus RMP
@@ -13,13 +13,13 @@ siteSlug: cumulus-rmp-25esr
 ---
 This chapter introduces monitoring and troubleshooting Cumulus RMP.
 
-## <span>Commands</span>
+## Commands</span>
 
   - cl-support
 
   - fw\_setenv
 
-## <span>Using the Serial Console</span>
+## Using the Serial Console</span>
 
 The serial console can be a useful tool for debugging issues, especially
 when you find yourself rebooting the switch often or if you don’t have a
@@ -28,7 +28,7 @@ reliable network connection.
 The default serial console baud rate is 115200, which is the baud rate
 [ONIE](http://opencomputeproject.github.io/onie/) uses.
 
-### <span>Configuring the Serial Console on PowerPC Switches</span>
+### Configuring the Serial Console on PowerPC Switches</span>
 
 On PowerPC switches, the U-Boot environment variable `baudrate`
 identifies the baud rate of the serial console. To change the `baudrate`
@@ -60,7 +60,7 @@ The valid values for `baudrate` are:
 
   - 115200
 
-### <span>Configuring the Serial Console on x86 Switches</span>
+### Configuring the Serial Console on x86 Switches</span>
 
 On x86 switches, you configure serial console baud rate by editing
 `grub`. The valid values for the baud rate are:
@@ -105,7 +105,7 @@ To change the serial console baud rate:
 
 4.  Reboot the switch.
 
-## <span>Diagnostics Using cl-support</span>
+## Diagnostics Using cl-support</span>
 
 You can use `cl-support` to generate a single export file that contains
 various details and the configuration from a switch. This is useful for
@@ -168,11 +168,11 @@ Decoding the cl-support Output
 File](/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/)
 .
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/cumulus/switchd.conf
 
-## <span>Next Steps</span>
+## Next Steps</span>
 
 The links listed under Child Pages below discuss more specific
 monitoring topics.

@@ -3,7 +3,7 @@ title: Investigate NetQ Issues
 author: Cumulus Networks
 weight: 111
 aliases:
- - /display/NETQ22/Investigate-NetQ-Issues
+ - /display/NETQ/Investigate+NetQ+Issues
  - /pages/viewpage.action?pageId=12321057
 pageID: 12321057
 product: Cumulus NetQ
@@ -17,7 +17,7 @@ and log files, verifying NetQ Agent health, and verifying NetQ Platform
 configuration. If these do not produce a resolution, you can capture a
 log to use in discussion with Cumulus Networks support team.
 
-## <span>Browse Configuration and Log Files</span>
+## Browse Configuration and Log Files
 
 To aid in troubleshooting issues with NetQ, there are the following
 configuration and log files that can provide insight into the root cause
@@ -29,7 +29,7 @@ of the issue:
 | `/var/log/netqd.log`      | The NetQ daemon log file for the NetQ CLI. This log file appears only if you installed the `netq-apps` package on the system.        |
 | `/var/log/netq-agent.log` | The NetQ Agent log file. This log file appears only if you installed the NetQ Agent on the system.                                   |
 
-## <span>Check NetQ Agent Health</span>
+## Check NetQ Agent Health
 
 Checking the health of the NetQ Agents is a good way to start
 troubleshooting NetQ on your network. If any agents are rotten, meaning
@@ -37,15 +37,12 @@ three heartbeats in a row were not sent, then you can investigate the
 rotten node. In the example below, the NetQ Agent on server01 is rotten,
 so you know where to start looking for problems:
 
-<div class="confbox panel">
-
-<div class="panel-content">
-
+```
     cumulus@switch:$ netq check agents     
     Checked nodes: 12,    
-         
+
     Rotten nodes: 1    
-    netq@446c0319c06a:/$ netq show agents 
+    netq@446c0319c06a:/$ netq show agents
     Node      Status    Sys Uptime    Agent Uptime
     --------  --------  ------------  --------------
     exit01        
@@ -85,11 +82,9 @@ so you know where to start looking for problems:
     Fresh    
          8h ago        4h ago
 
-</div>
+```
 
-</div>
-
-## <span>Generate a Support File</span>
+## Generate a Support File
 
 The `opta-support` command generates an archive of useful information
 for troubleshooting issues with NetQ. It is an extension of the

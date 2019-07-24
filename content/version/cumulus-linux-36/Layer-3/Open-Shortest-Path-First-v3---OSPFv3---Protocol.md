@@ -3,7 +3,7 @@ title: Open Shortest Path First v3 - OSPFv3 - Protocol
 author: Cumulus Networks
 weight: 179
 aliases:
- - /display/CL36/Open-Shortest-Path-First-v3---OSPFv3---Protocol
+ - /display/CL36/Open+Shortest+Path+First+v3+++OSPFv3+++Protocol
  - /pages/viewpage.action?pageId=8362394
 pageID: 8362394
 product: Cumulus Linux
@@ -13,7 +13,7 @@ siteSlug: cumulus-linux-36
 ---
 OSPFv3 is a revised version of OSPFv2 to support the IPv6 address
 family. Refer to [Open Shortest Path First (OSPF)
-Protocol](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First---OSPF---Protocol)
+Protocol](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-OSPF---Protocol)
 for a discussion on the basic concepts, which remain the same between
 the two versions.
 
@@ -34,7 +34,7 @@ support it yet.
 
 {{%/notice%}}
 
-## <span>Configuring OSPFv3</span>
+## Configuring OSPFv3</span>
 
 Configuring OSPFv3 involves the following tasks:
 
@@ -74,7 +74,7 @@ address to interfaces between routers.
 
 {{%/notice%}}
 
-## <span>Configuring the OSPFv3 Area</span>
+## Configuring the OSPFv3 Area</span>
 
 Different areas can be used to control routing. You can:
 
@@ -101,7 +101,7 @@ determine the shortest paths to the destination. For example:
 
 The value for cost must be between 0 and 16777215.
 
-## <span>Configuring the OSPFv3 Distance</span>
+## Configuring the OSPFv3 Distance</span>
 
 Cumulus Linux provides several commands to change the administrative
 distance for OSPF routes.
@@ -150,7 +150,7 @@ part:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## <span>Configuring OSPFv3 Interfaces</span>
+## Configuring OSPFv3 Interfaces</span>
 
 You can configure an interface, a bond interface, or a VLAN with an
 advertise prefix list.  
@@ -170,10 +170,10 @@ swp2.
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## <span>Debugging OSPF</span>
+## Debugging OSPF</span>
 
 See [Debugging
-OSPF](Open-Shortest-Path-First---OSPF---Protocol.html#src-8362392_OpenShortestPathFirst-OSPF-Protocol-ospf_debug)
+OSPF](Open-Shortest-Path-First-OSPF---Protocol.html#src-8362392_OpenShortestPathFirst-OSPF-Protocol-ospf_debug)
 for OSPFv2 for the troubleshooting discussion. The equivalent commands
 are:
 
@@ -184,10 +184,10 @@ are:
 Another helpful command is `net show ospf6 spf tree`. It dumps the node
 topology as computed by SPF to help visualize the network view.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Bidirectional forwarding
-    detection](/version/cumulus-linux-36/Layer-3/Bidirectional-Forwarding-Detection---BFD)
+    detection](/version/cumulus-linux-36/Layer-3/Bidirectional-Forwarding-Detection-BFD)
     (BFD) and OSPF
 
   - [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)
@@ -197,7 +197,7 @@ topology as computed by SPF to help visualize the network view.
   - [RFC 2740 OSPFv3 OSPF for IPv6](https://tools.ietf.org/html/rfc2740)
 
   - [Auto-cost reference
-    bandwidth](Open-Shortest-Path-First---OSPF---Protocol.html#src-8362392_OpenShortestPathFirst-OSPF-Protocol-acrb)
+    bandwidth](Open-Shortest-Path-First-OSPF---Protocol.html#src-8362392_OpenShortestPathFirst-OSPF-Protocol-acrb)
     (OSPFv2 chapter)
 
 <article id="html-search-results" class="ht-content" style="display: none;">

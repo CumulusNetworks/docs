@@ -3,7 +3,7 @@ title: Methods for Diagnosing Network Issues
 author: Cumulus Networks
 weight: 107
 aliases:
- - /display/NETQ22/Methods-for-Diagnosing-Network-Issues
+ - /display/NETQ/Methods+for+Diagnosing+Network+Issues
  - /pages/viewpage.action?pageId=12321056
 pageID: 12321056
 product: Cumulus NetQ
@@ -19,7 +19,7 @@ for analysis. This enables you to replay and analyze network-wide events
 for better visibility and to correlate patterns. This allows for
 root-cause analysis and optimization of network configs for the future.
 
-## <span>Diagnose an Event after It Occurs</span>
+## Diagnose an Event after It Occurs
 
 NetQ provides a number of commands for diagnosing past events.
 
@@ -38,9 +38,9 @@ and VLAN consistency checks for every link along the path.
 For example, say you get an alert about a BGP session failure. You can
 quickly run `netq check bgp` to determine what sessions failed:
 
-``` 
+```
 cumulus@switch:~$ netq check bgp
-Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24, 
+Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
 Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
 ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
 exit-1            DataVrf1080     swp6.2            firewall-1        BGP session with peer firewall-1 swp6.2: AFI/ 1d:7h:56m:9s
@@ -86,7 +86,7 @@ the problem.
                                             m failed to Established
     ...
 
-## <span id="src-12321056_MethodsforDiagnosingNetworkIssues-time_machine" class="confluence-anchor-link"></span><span>Use NetQ as a Time Machine</span>
+## Use NetQ as a Time Machine
 
 With NetQ, you can travel back to a specific point in time or a range of
 times to help you isolate errors and issues.
@@ -95,18 +95,10 @@ For example, if you think you had an issue with your sensors last night,
 you can check the sensors on all your nodes around the time you think
 the issue occurred:
 
-<div class="confbox panel">
-
-<div class="panel-content">
-
-``` 
-cumulus@leaf01:~$ netq check sensors around 12h    
-Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0    
 ```
-
-</div>
-
-</div>
+cumulus@leaf01:~$ netq check sensors around 12h    
+Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0
+```
 
 Or you can specify a range of times using the `between` option. The
 units of time you can specify are second (*s*), minutes (*m*), hours
@@ -142,7 +134,7 @@ exit01, which has the IP address 27.0.0.1:
     spine02 -- spine02:swp3 -- exit01:swp6.4 -- exit01:swp3 -- exit01
                             -- spine02:swp7  -- spine02
 
-### <span>Trace Paths in a VRF</span>
+### Trace Paths in a VRF
 
 The `netq trace` command works with VRFs as well:
 
@@ -150,7 +142,7 @@ The `netq trace` command works with VRFs as well:
     spine01 -- spine01:swp1 -- leaf01:vlan20
             -- spine01:swp2 -- leaf02:vlan20
 
-## <span>Sample Commands for Various Components</span>
+## Sample Commands for Various Components
 
 NetQ provides network validation for the entire stack, providing
 algorithmic answers to many questions, both simple and intractable, that
@@ -158,9 +150,9 @@ pertain to your network fabric.
 
 <table>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 20%" />
+<col style="width: 40%" />
+<col style="width: 40%" />
 </colgroup>
 <thead>
 <tr class="header">

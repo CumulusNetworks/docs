@@ -3,7 +3,7 @@ title: Monitoring Interfaces and Transceivers Using ethtool
 author: Cumulus Networks
 weight: 191
 aliases:
- - /display/RMP30/Monitoring-Interfaces-and-Transceivers-Using-ethtool
+ - /display/RMP30/Monitoring+Interfaces+and+Transceivers+Using+ethtool
  - /pages/viewpage.action?pageId=5118700
 pageID: 5118700
 product: Cumulus RMP
@@ -18,13 +18,13 @@ prints the current settings of the network device. See `man ethtool(8)`
 for details. Not all options are currently supported on switch port
 interfaces.
 
-## <span>Commands</span>
+## Commands</span>
 
   - cl-netstat
 
   - ethtool
 
-## <span>Monitoring Interfaces Using ethtool</span>
+## Monitoring Interfaces Using ethtool</span>
 
 To check the status of an interface using `ethtool`:
 
@@ -81,7 +81,7 @@ To query interface statistics:
             SoftOutTxFifoFull: 0
             HwIfOutQLen: 0
 
-### <span>Viewing and Clearing Interface Counters</span>
+### Viewing and Clearing Interface Counters</span>
 
 Interface counters contain information about an interface. You can view
 this information when you run `cl-netstat`, `ifconfig`, or `cat
@@ -111,7 +111,7 @@ information:
 | \-t \<tag name\> | Saves statistics with `<tag name>`.                                                 |
 | \-v              | Prints `cl-netstat` version and exits.                                              |
 
-## <span>Monitoring Switch Port SFP/QSFP Using ethtool</span>
+## Monitoring Switch Port SFP/QSFP Using ethtool</span>
 
 To see hardware capabilities and measurement information on SFP or the
 QSFP module installed in a particular port, use the ` ethtool -m

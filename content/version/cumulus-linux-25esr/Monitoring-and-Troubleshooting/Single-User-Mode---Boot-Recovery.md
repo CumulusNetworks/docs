@@ -3,7 +3,7 @@ title: Single User Mode - Boot Recovery
 author: Cumulus Networks
 weight: 153
 aliases:
- - /display/CL25ESR/Single-User-Mode---Boot-Recovery
+ - /display/CL25ESR/Single+User+Mode+++Boot+Recovery
  - /pages/viewpage.action?pageId=5115975
 pageID: 5115975
 product: Cumulus Linux
@@ -16,7 +16,7 @@ for password recovery. Entering single user mode is
 [platform-specific](http://cumulusnetworks.com/hcl/), so follow the
 appropriate steps for your x86, ARM or PowerPC switch.
 
-## <span>Entering Single User Mode on an x86 Switch</span>
+## Entering Single User Mode on an x86 Switch</span>
 
 1.  Boot the switch, as soon as you see the GRUB menu, use the ^ and v
     arrow keys to select the boot entry you wish to modify, then press
@@ -119,7 +119,7 @@ appropriate steps for your x86, ARM or PowerPC switch.
     Restarting the system.    
     ```
 
-## <span>Entering Single User Mode on a PowerPC Switch</span>
+## Entering Single User Mode on a PowerPC Switch</span>
 
 1.  From the console, boot the switch, interrupting the U-Boot countdown
     to enter the U-Boot prompt. Enter the following:
@@ -141,7 +141,7 @@ appropriate steps for your x86, ARM or PowerPC switch.
         cumulus@switch:~$ sudo reboot -f  
         Restarting the system.
 
-## <span>Entering Single User Mode on an ARM Switch</span>
+## Entering Single User Mode on an ARM Switch</span>
 
 1.  From the console, boot the switch, interrupting the U-Boot countdown
     to enter the U-Boot prompt. Enter the following:

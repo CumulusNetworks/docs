@@ -3,7 +3,7 @@ title: Introduction to Routing Protocols
 author: Cumulus Networks
 weight: 123
 aliases:
- - /display/CL25ESR/Introduction-to-Routing-Protocols
+ - /display/CL25ESR/Introduction+to+Routing+Protocols
  - /pages/viewpage.action?pageId=5116103
 pageID: 5116103
 product: Cumulus Linux
@@ -14,7 +14,7 @@ siteSlug: cumulus-linux-25esr
 This chapter discusses the various routing protocols, and how to
 configure them.
 
-## <span>Defining Routing Protocols</span>
+## Defining Routing Protocols</span>
 
 A *routing protocol* dynamically computes reachability between various
 end points. This enables communication to work around link and node
@@ -36,7 +36,7 @@ this information to determine the routes to each end station. To scale
 the amount of information that needs to be exchanged, routes are
 computed on address prefixes rather than on every end point address.
 
-## <span>Configuring Routing Protocols</span>
+## Configuring Routing Protocols</span>
 
 A routing protocol needs to know three pieces of information, at a
 minimum:
@@ -54,7 +54,7 @@ differently.
 The way they answer these questions affects the network design and
 thereby configuration. For example, in a link-state protocol such as
 OSPF (see [Open Shortest Path First (OSPF)
-Protocol](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First---OSPF---Protocol))
+Protocol](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol))
 or IS-IS, complete local information (links and attached address
 prefixes) about a node is disseminated to every other node in the
 network. Since the state that a node has to keep grows rapidly in such a
@@ -68,7 +68,7 @@ Besides the two critical pieces of information mentioned above,
 protocols have other parameters that can be configured. These are
 usually specific to each protocol.
 
-## <span>Protocol Tuning</span>
+## Protocol Tuning</span>
 
 Most protocols provide certain tunable parameters that are specific to
 convergence during changes.
@@ -121,7 +121,7 @@ Usually, the default values initialized within each protocol are good
 enough for most networks. Cumulus Networks recommends you do not adjust
 these settings.
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/quagga/daemons
 

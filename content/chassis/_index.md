@@ -54,50 +54,6 @@ The chassis fits into a 21" rack that is 10 RU in height.
 
 {{% imgOld 0 %}}
 
-## <span>Recent activity</span>
-
-  - [![/images/download/attachments/1704089/pete-27211-pp-profilepic.jpg](/images/download/attachments/1704089/pete-27211-pp-profilepic.jpg)](https://docs.cumulusnetworks.com/display/~pete)
-    
-    [Pete Bratach](https://docs.cumulusnetworks.com/display/~pete)
-
-  - [Fabric Port, Line Card and Switch Port
-    Interfaces](/version/chassis/Fabric-Port-Line-Card-and-Switch-Port-Interfaces)updated
-    Jul 02, 2019[view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=7766298&selectedPageVersions=2&selectedPageVersions=1)
-
-  - [Chassis Default
-    Configurations](/version/chassis/Chassis-Default-Configurations)updated
-    Jul 02, 2019[view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=7113477&selectedPageVersions=9&selectedPageVersions=8)
-
-  - [Monitoring and Troubleshooting a
-    Chassis](/version/chassis/Monitoring-and-Troubleshooting-a-Chassis)updated
-    Jul 02, 2019[view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=7113871&selectedPageVersions=5&selectedPageVersions=4)
-
-  - [Chassis-specific
-    Commands](/version/chassis/Chassis-specific-Commands)updated Jul 02,
-    2019[view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=7766308&selectedPageVersions=2&selectedPageVersions=1)
-
-  - [Accessing the
-    Console](/version/chassis/Accessing-the-Console)updated Jul 02,
-    2019[view
-    change](https://docs.cumulusnetworks.com/pages/diffpagesbyversion.action?pageId=7766291&selectedPageVersions=4&selectedPageVersions=3)
-
-[Show
-More](https://docs.cumulusnetworks.com/plugins/recently-updated/changes.action?theme=social&pageSize=5&startIndex=5&searchToken=78349&spaceKeys=CHASSIS&contentType=page,%20comment,%20blogpost)
-
-![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/wait.gif](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/wait.gif)  
-<span class="caption">Please wait</span>
-
-## <span>Space contributors</span>
-
-  - [Pete Bratach](https://docs.cumulusnetworks.com/display/~pete) (8
-    days ago)
-
-  - [Dan Cawley](https://docs.cumulusnetworks.com/display/~dcawley) (58
-    days ago)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

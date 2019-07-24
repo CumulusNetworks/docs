@@ -3,7 +3,7 @@ title: VXLAN Routing
 author: Cumulus Networks
 weight: 145
 aliases:
- - /display/CL35/VXLAN-Routing
+ - /display/CL35/VXLAN+Routing
  - /pages/viewpage.action?pageId=8357513
 pageID: 8357513
 product: Cumulus Linux
@@ -17,7 +17,7 @@ traffic is based on the inner header or the overlay tenant IP address.
 
 Because VXLAN routing is fundamentally routing, it is most commonly
 deployed with a control plane, such as Ethernet Virtual Private Network
-([EVPN](/version/cumulus-linux-35/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)).
+([EVPN](/version/cumulus-linux-35/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)).
 You can set up static routing too, either with or without the Cumulus
 [Lightweight Network
 Virtualization](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
@@ -26,16 +26,16 @@ Virtualization](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Net
 This chapter describes the platform and hardware considerations for
 VXLAN routing. For a detailed description of different VXLAN routing
 models and configuration examples, refer to [the EVPN
-chapter](/version/cumulus-linux-35/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN).
+chapter](/version/cumulus-linux-35/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN).
 
 VXLAN routing supports full layer 3 multi-tenancy; all routing occurs in
 the context of a
-[VRF](/version/cumulus-linux-35/Layer-3/Virtual-Routing-and-Forwarding---VRF).
+[VRF](/version/cumulus-linux-35/Layer-3/Virtual-Routing-and-Forwarding-VRF).
 Also, VXLAN routing is supported for dual-attached hosts where the
 associated VTEPs function in [active-active
 mode](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode).
 
-## <span>Supported Platforms</span>
+## Supported Platforms</span>
 
 The following chipsets support VXLAN routing:
 
@@ -56,13 +56,13 @@ The following chipsets support VXLAN routing:
 
   - For additional restrictions and considerations for VXLAN routing
     with EVPN, refer to [the EVPN
-    chapter](/version/cumulus-linux-35/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN).
+    chapter](/version/cumulus-linux-35/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN).
 
 {{%/notice%}}
 
-## <span>VXLAN Routing Data Plane and the Broadcom Trident II+, Maverick and Tomahawk Platforms</span>
+## VXLAN Routing Data Plane and the Broadcom Trident II+, Maverick and Tomahawk Platforms</span>
 
-### <span>Trident II+ and Maverick</span>
+### Trident II+ and Maverick</span>
 
 The Trident II+ and Maverick ASICs provide native support for VXLAN
 routing, also referred to as Routing In and Out of Tunnels (RIOT).
@@ -110,7 +110,7 @@ VXLAN SVI interfaces.
 To disable the VXLAN routing capability on a Trident II+ switch, set the
 `vxlan_routing_overlay.profile` field to *disable*.
 
-### <span>Tomahawk</span>
+### Tomahawk</span>
 
 The Tomahawk ASIC does not support RIOT natively; you must configure the
 switch ports for VXLAN routing to use internal loopback (also referred
@@ -155,13 +155,13 @@ for the changes to take effect.
 {{%notice note%}}
 
 VXLAN routing using internal loopback is supported only with [VLAN-aware
-bridges](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments);
+bridges](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments);
 you cannot use a bridge in [traditional
-mode](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging---VLANs/Traditional-Mode-Bridges).
+mode](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges).
 
 {{%/notice%}}
 
-## <span id="src-8357513_VXLANRouting-t2" class="confluence-anchor-link"></span><span>VXLAN Routing Data Plane and Broadcom Trident II Platforms</span>
+## <span id="src-8357513_VXLANRouting-t2" class="confluence-anchor-link"></span>VXLAN Routing Data Plane and Broadcom Trident II Platforms</span>
 
 The Trident II ASIC does not support RIOT natively or VXLAN routing
 using internal loopback. To achieve VXLAN routing in a deployment using
@@ -201,7 +201,7 @@ interface (named *inside*) is a member of the bridge. The ports swp45
 and swp47 are bonded together (named *outside*) and act as the layer 3
 end with SVIs configured for VLANs 100 and 200 with the corresponding
 gateway IP addresses. Because the two layer 3 gateways are in an
-[MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG)
 configuration, they use a virtual IP address as the gateway IP. The
 relevant interface configuration on *exit01* is as follows:
 
@@ -272,7 +272,7 @@ ASIC.
 
 {{%/notice%}}
 
-## <span>VXLAN Routing Data Plane and the Mellanox Spectrum Platform</span>
+## VXLAN Routing Data Plane and the Mellanox Spectrum Platform</span>
 
 There is no special configuration required for VXLAN routing on the
 Mellanox Spectrum platform.

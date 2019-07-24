@@ -5,14 +5,10 @@ name = "netDocs"
 license = "MIT"
 licenselink = ""
 description = ""
-homepage = "http://example.com/"
+homepage = ""
 tags = []
 features = []
 min_version = "0.41"
-
-[author]
-  name = "Daniel Cawley"
-  homepage = "https://github.com/cawleyflower/testDocs"
 
 # If porting an existing theme
 [original]

@@ -3,7 +3,7 @@ title: Static MAC Bindings with VXLAN
 author: Cumulus Networks
 weight: 253
 aliases:
- - /display/CL25ESR/Static-MAC-Bindings-with-VXLAN
+ - /display/CL25ESR/Static+MAC+Bindings+with+VXLAN
  - /pages/viewpage.action?pageId=5116068
 pageID: 5116068
 product: Cumulus Linux
@@ -15,7 +15,7 @@ siteSlug: cumulus-linux-25esr
 
 Cumulus Linux includes native Linux VXLAN kernel support.
 
-## <span>Requirements</span>
+## Requirements</span>
 
 A VXLAN configuration requires a switch with a Trident II chipset
 running Cumulus Linux 2.0 or later.
@@ -32,7 +32,7 @@ For a basic VXLAN configuration, you should ensure that:
     Linux does not support more than one VXLAN link in a bridge; however
     a switch can have multiple bridges.
 
-## <span>Example VXLAN Configuration</span>
+## Example VXLAN Configuration</span>
 
 Consider the following example:
 
@@ -50,7 +50,7 @@ NSX](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722660).
 
 {{%/notice%}}
 
-## <span>Configuring the Static MAC Bindings VXLAN</span>
+## Configuring the Static MAC Bindings VXLAN</span>
 
 To configure the example illustrated above, edit
 `/etc/network/interfaces` with a text editor like vi, nano or zile.
@@ -191,7 +191,7 @@ following:
         root@hostC:~# arp –s 10.1.1.1 00:00:10:00:00:0A
         root@hostC:~# arp –s 10.1.1.2 00:00:10:00:00:0B
 
-## <span>Troubleshooting VXLANs in Cumulus Linux</span>
+## Troubleshooting VXLANs in Cumulus Linux</span>
 
 Use the following commands to troubleshoot issues on the switch:
 

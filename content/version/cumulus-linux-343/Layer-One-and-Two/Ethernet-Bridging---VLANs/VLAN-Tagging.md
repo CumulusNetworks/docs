@@ -3,7 +3,7 @@ title: VLAN Tagging
 author: Cumulus Networks
 weight: 327
 aliases:
- - /display/CL34/VLAN-Tagging
+ - /display/CL34/VLAN+Tagging
  - /pages/viewpage.action?pageId=7112424
 pageID: 7112424
 product: Cumulus Linux
@@ -15,7 +15,7 @@ This article shows two examples of VLAN tagging, one basic and one more
 advanced. They both demonstrate the streamlined interface configuration
 from `ifupdown2`.
 
-## <span>VLAN Tagging, a Basic Example</span>
+## VLAN Tagging, a Basic Example</span>
 
 A simple configuration demonstrating VLAN tagging involves two hosts
 connected to a switch.
@@ -51,7 +51,7 @@ and add a configuration like the following:
     auto swp2.130
     iface swp2.130
 
-## <span>VLAN Tagging, an Advanced Example</span>
+## VLAN Tagging, an Advanced Example</span>
 
 This example of VLAN tagging is more complex, involving three hosts and
 two switches, with a number of bridges and a bond connecting them all.
@@ -277,7 +277,7 @@ an error:
 
 {{%/notice%}}
 
-### <span>VLAN Translation</span>
+### VLAN Translation</span>
 
 By default, Cumulus Linux does not allow VLAN subinterfaces associated
 with different VLAN IDs to be part of the same bridge. Base interfaces
@@ -296,10 +296,10 @@ with the VLAN ID translated.
 {{%notice note%}}
 
 A bridge in [VLAN-aware
-mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 cannot have VLAN translation enabled for it; only bridges configured in
 [traditional
-mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging---VLANs/Traditional-Mode-Bridges)
+mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges)
 can utilize VLAN translation.
 
 {{%/notice%}}

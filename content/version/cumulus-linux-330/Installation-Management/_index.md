@@ -3,7 +3,7 @@ title: Installation Management
 author: Cumulus Networks
 weight: 13
 aliases:
- - /display/CL33/Installation-Management
+ - /display/CL33/Installation+Management
  - /pages/viewpage.action?pageId=5866164
 pageID: 5866164
 product: Cumulus Linux

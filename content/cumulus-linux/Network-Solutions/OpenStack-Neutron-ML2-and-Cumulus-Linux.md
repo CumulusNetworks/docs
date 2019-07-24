@@ -3,13 +3,13 @@ title: OpenStack Neutron ML2 and Cumulus Linux
 author: Cumulus Networks
 weight: 255
 aliases:
- - /display/CL37/OpenStack-Neutron-ML2-and-Cumulus-Linux
+ - /display/DOCS/OpenStack+Neutron+ML2+and+Cumulus+Linux
  - /pages/viewpage.action?pageId=8362989
 pageID: 8362989
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The Modular Layer 2 (ML2) plugin is a framework that allows OpenStack
 Networking to utilize a variety of non-vendor-specific layer 2
@@ -37,10 +37,10 @@ Cumulus Linux switches, you need the following:
 
 {{% imgOld 0 %}}
 
-## <span>Configure the REST API</span>
+## Configure the REST API
 
 1.  Configure the relevant settings in `/etc/restapi.conf`:
-    
+
         [ML2]
         #local_bind = 10.40.10.122
         #service_node = 10.40.10.1
@@ -52,13 +52,13 @@ Cumulus Linux switches, you need the following:
 
 2.  Restart the REST API service for the configuration changes to take
     effect:
-    
+
         cumulus@switch:~$ sudo systemctl restart restserver
 
 Additional REST API calls have been added to support the configuration
 of bridge using the bridge name instead of network ID.
 
-## <span id="src-8362989_OpenStackNeutronML2andCumulusLinux-install" class="confluence-anchor-link"></span><span>Install and Configure the Cumulus Networks Modular Layer 2 Mechanism Driver</span>
+## Install and Configure the Cumulus Networks Modular Layer 2 Mechanism Driver
 
 You need to install the Cumulus Networks ML2 mechanism driver on your
 Neutron host, which is available upstream:
@@ -99,11 +99,11 @@ You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
     value is *False*.
 
   - `new_bridge` — Enables/disables [VLAN-aware bridge
-    mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+    mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
     for the bridge configuration. The default value is *False*, so a
     traditional mode bridge is created.
 
-## <span>Try OpenStack with Cumulus in the Cloud</span>
+## Try OpenStack with Cumulus in the Cloud
 
 OpenStack Neutron is available as a preconfigured option with [Cumulus
 in the

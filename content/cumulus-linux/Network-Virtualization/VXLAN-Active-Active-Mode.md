@@ -3,26 +3,26 @@ title: VXLAN Active-Active Mode
 author: Cumulus Networks
 weight: 147
 aliases:
- - /display/CL37/VXLAN-Active-Active-Mode
+ - /display/DOCS/VXLAN+Active+Active+Mode
  - /pages/viewpage.action?pageId=8362725
 pageID: 8362725
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 *VXLAN active-active mode* allows a pair of
-[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 switches to act as a single VTEP, providing active-active VXLAN
 termination for bare metal as well as virtualized workloads.
 
 There are some differences whether you're deploying this with
-[EVPN](/version/cumulus-linux-377/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+[EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 or
-[LNV](/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/).
+[LNV](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/).
 This chapter outlines the configurations for both options.
 
-## <span>Terminology</span>
+## Terminology
 
 | Term                     | Definition                                                                                                                                                                                                                                                                                                                                                                                      |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -36,7 +36,7 @@ This chapter outlines the configurations for both options.
 | VXLAN routing            | The industry standard term for the ability to route in and out of a VXLAN. Equivalent to the Broadcom RIOT feature.                                                                                                                                                                                                                                                                             |
 | `clagd-vxlan-anycast-ip` | The anycast address for the MLAG pair to share and bind to when MLAG is up and running.                                                                                                                                                                                                                                                                                                         |
 
-## <span id="src-8362725_VXLANActive-ActiveMode-config" class="confluence-anchor-link"></span><span>Configure VXLAN Active-active Mode</span>
+## Configure VXLAN Active-active Mode
 
 VXLAN active-active mode requires the following underlying technologies
 to work correctly.
@@ -59,7 +59,7 @@ to work correctly.
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/display/CL37/Open+Shortest+Path+First+-+OSPF+-+Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF">OSPF chapter</a> or the <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>STP</p></td>
@@ -69,7 +69,7 @@ Configurations for the demonstration are provided below.</p></td>
 </tbody>
 </table>
 
-### <span>Active-active VTEP Anycast IP Behavior</span>
+### Active-active VTEP Anycast IP Behavior
 
 You must provision each individual switch within an MLAG pair with a
 virtual IP address in the form of an anycast IP address for VXLAN
@@ -98,7 +98,7 @@ interface on each switch in the MLAG pair.
 
 {{%/notice%}}
 
-### <span>Failure Scenario Behaviors</span>
+### Failure Scenario Behaviors
 
 | Scenario                                                                            | Behavior                                                                                                                                                                                                                                                                                                                                                                            |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -109,7 +109,7 @@ interface on each switch in the MLAG pair.
 | When the peer link goes down but the peer switch is up (the backup link is active). | All VXLAN interfaces are put into a PROTO\_DOWN state on the secondary switch.                                                                                                                                                                                                                                                                                                      |
 | A configuration mismatch between the MLAG switches                                  | The VXLAN interface is placed into a PROTO\_DOWN state on the secondary switch.                                                                                                                                                                                                                                                                                                     |
 
-### <span>Check VXLAN Interface Configuration Consistency</span>
+### Check VXLAN Interface Configuration Consistency
 
 The active-active configuration for a given VXLAN interface must be
 consistent between the MLAG switches for correct traffic behavior. MLAG
@@ -127,7 +127,7 @@ The consistency checks include:
 You can use the `clagctl` command to check if any VXLAN switches are in
 a PROTO\_DOWN state.
 
-### <span>Configure the Anycast IP Address</span>
+### Configure the Anycast IP Address
 
 With MLAG peering, both switches use an anycast IP address for VXLAN
 encapsulation and decapsulation. This allows remote VTEPs to learn the
@@ -148,7 +148,7 @@ address under the loopback interface, as shown below.
       address 10.0.0.12/32
       clagd-vxlan-anycast-ip 10.10.10.20
 
-## <span id="src-8362725_VXLANActive-ActiveMode-example" class="confluence-anchor-link"></span><span>Example VXLAN Active-Active Configuration</span>
+## Example VXLAN Active-Active Configuration
 
 {{% imgOld 1 %}}
 
@@ -156,16 +156,15 @@ Note the configuration of the local IP address in the VXLAN interfaces
 below. They are configured with individual IP addresses, which `clagd`
 changes to anycast upon MLAG peering.
 
-### <span>FRRouting Configuration</span>
+### FRRouting Configuration
 
 You can configure the layer 3 fabric using
-[BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
-or
-[OSPF](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF).
-The following example uses BGP unnumbered. The MLAG switch configuration
-for the topology above is shown below.
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) or
+[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF). The
+following example uses BGP unnumbered. The MLAG switch configuration for
+the topology above is shown below.
 
-### <span>Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing
 
 The IP address configuration for this example:
 
@@ -179,7 +178,7 @@ The IP address configuration for this example:
 <td><pre><code>auto lo
 iface lo inet loopback
     address 10.0.0.21/32
-    
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -232,7 +231,7 @@ iface swp30</code></pre></td>
 iface lo inet loopback
     address 10.0.0.11/32
     clagd-vxlan-anycast-ip 10.10.10.20
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -246,32 +245,32 @@ iface swp50
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
   clagd-peer-ip 169.254.1.2
-  clagd-backup-ip 10.0.0.12 
+  clagd-backup-ip 10.0.0.12
   clagd-sys-mac 44:38:39:FF:40:94
  
 # Downlinks
 auto swp1
 iface swp1
  
-auto bond0 
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
-    
+
 auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports peerlink bond0 vni10 vni20
   bridge-vids 10 20
-      
+
 auto vlan10
 iface vlan10
- 
+
 auto vlan20
 iface vlan20
  
@@ -305,7 +304,7 @@ iface swp52  </code></pre></td>
 iface lo inet loopback
     address 10.0.0.12/32
     clagd-vxlan-anycast-ip 10.10.10.20
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -319,7 +318,7 @@ iface swp50
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
-       
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.2/30
@@ -331,20 +330,20 @@ iface peerlink.4094
 auto swp1
 iface swp1
  
-auto bond0 
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
-    
+
 auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports peerlink bond0 vni10 vni20
   bridge-vids 10 20
-    
+
 auto vlan10
 iface vlan10
-  
+
 auto vlan20
 iface vlan20
  
@@ -357,7 +356,7 @@ iface vni10
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
-    
+
 auto vni20
 iface vni20
   vxlan-id 20
@@ -380,7 +379,7 @@ iface swp52  </code></pre></td>
 iface lo inet loopback
   address 10.0.0.13/32
   clagd-vxlan-anycast-ip 10.10.10.30
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -394,7 +393,7 @@ iface sw50p
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
-       
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
@@ -405,24 +404,24 @@ iface peerlink.4094
 # Downlinks
 auto swp1
 iface swp1
-  
-auto bond0 
+
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
-    
+
 auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports peerlink bond0 vni10 vni20
   bridge-vids 10 20
-    
+
 auto vlan10
 iface vlan10
-  
+
 auto vlan20
 iface vlan20
- 
+
 auto vni10
 iface vni10
   vxlan-id 10
@@ -432,7 +431,7 @@ iface vni10
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
-    
+
 auto vni20
 iface vni20
   vxlan-id 20
@@ -443,7 +442,7 @@ iface vni20
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
  
- 
+
 # uplinks
 auto swp51
 iface swp51
@@ -454,7 +453,7 @@ iface swp52    </code></pre></td>
 iface lo inet loopback
   address 10.0.0.14/32
   clagd-vxlan-anycast-ip 10.10.10.30
-       
+
 auto eth0
 iface eth0 inet dhcp
  
@@ -468,7 +467,7 @@ iface swp50
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
-       
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.2/30
@@ -479,24 +478,24 @@ iface peerlink.4094
 # Downlinks
 auto swp1
 iface swp1
-  
-auto bond0 
+
+auto bond0
 iface bond0
-    bond-slaves swp1 
+    bond-slaves swp1
     clag-id 1
-    
+
 auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports peerlink bond0 vni10 vni20
   bridge-vids 10 20
-    
+
 auto vlan10
 iface vlan10
-  
+
 auto vlan20
 iface vlan20
- 
+
 auto vni10
 iface vni10
   vxlan-id 10
@@ -506,7 +505,7 @@ iface vni10
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
-    
+
 auto vni20
 iface vni20
   vxlan-id 20
@@ -517,7 +516,7 @@ iface vni20
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
  
-  
+
 # uplinks
 auto swp51
 iface swp51
@@ -528,7 +527,7 @@ iface swp52    </code></pre></td>
 </tbody>
 </table>
 
-### <span>Host Configuration</span>
+### Host Configuration
 
 In this example, the servers are running Ubuntu 14.04. A layer2 bond
 must be mapped from server01 and server03 to the respective switch. In
@@ -547,18 +546,18 @@ iface lo inet loopback
 auto lo
 iface lo inet static
   address 10.0.0.31/32
-  
+
 auto eth0
 iface eth0 inet dhcp
  
 auto eth1
 iface eth1 inet manual
     bond-master bond0
-        
+
 auto eth2
 iface eth2 inet manual
     bond-master bond0
-    
+
 auto bond0
 iface bond0 inet static
   bond-slaves none
@@ -572,7 +571,7 @@ iface bond0 inet static
 auto bond0.10
 iface bond0.10 inet static
   address 172.16.10.101/24
-  
+
 auto bond0.20
 iface bond0.20 inet static
   address 172.16.20.101/24</code></pre></td>
@@ -582,18 +581,18 @@ iface lo inet loopback
 auto lo
 iface lo inet static
   address 10.0.0.33/32
-  
+
 auto eth0
 iface eth0 inet dhcp
  
 auto eth1
 iface eth1 inet manual
     bond-master bond0
-        
+
 auto eth2
 iface eth2 inet manual
     bond-master bond0
-    
+
 auto bond0
 iface bond0 inet static
   bond-slaves none
@@ -607,7 +606,7 @@ iface bond0 inet static
 auto bond0.10
 iface bond0.10 inet static
   address 172.16.10.103/24
-  
+
 auto bond0.20
 iface bond0.20 inet static
   address 172.16.20.103/24</code></pre></td>
@@ -615,10 +614,10 @@ iface bond0.20 inet static
 </tbody>
 </table>
 
-## <span>Using Active-active Mode with LNV</span>
+## Using Active-active Mode with LNV
 
 When using VXLAN active-active mode with [lightweight network
-virtualization](/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+virtualization](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 (LNV), follow the steps outlined above. In addition, the following
 configuration steps are needed:
 
@@ -632,7 +631,7 @@ configuration steps are needed:
 
   - Configuring the service node
 
-### <span>Terminology</span>
+### Terminology
 
 <table>
 <colgroup>
@@ -673,7 +672,7 @@ configuration steps are needed:
 </tbody>
 </table>
 
-### <span>Configure the Loopback Interface for Active-active Mode</span>
+### Configure the Loopback Interface for Active-active Mode
 
 You configure active-active mode as you would for EVPN, as described
 above, adding two more configuration options to the loopback interface:
@@ -735,7 +734,7 @@ iface lo inet loopback
 </tbody>
 </table>
 
-### <span>Enable the Registration Daemon</span>
+### Enable the Registration Daemon
 
 You must enable the registration daemon (`vxrd`) on each ToR switch
 acting as a VTEP that is participating in the VXLAN. The daemon is
@@ -744,33 +743,33 @@ installed by default.
 1.  Open the `/etc/default/vxrd` configuration file in a text editor.
 
 2.  Enable the daemon, then save the file.
-    
+
         START=yes
 
 3.  Restart the `vxrd` daemon.
-    
+
         cumulus@leaf0X:~$ sudo systemctl restart vxrd.service
 
-### <span>Configure a VTEP</span>
+### Configure a VTEP
 
 The registration node is already configured in
 `/etc/network/interfaces`; no additional configuration is typically
 needed. However, you can configure the VTEP in the `/etc/vxrd.conf` file
 instead, which has additional configuration knobs available.
 
-### <span>Enable the Service Node Daemon</span>
+### Enable the Service Node Daemon
 
 1.  Open the `/etc/default/vxsnd` configuration file in a text editor.
 
 2.  Enable the daemon, then save the file:
-    
+
         START=yes
 
 3.  Restart the daemon.
-    
+
         cumulus@spine0X:~$ sudo systemctl restart vxsnd.service
 
-### <span>Configure the Service Node</span>
+### Configure the Service Node
 
 To configure the service node daemon, edit the `/etc/vxsnd.conf`
 configuration file:
@@ -792,47 +791,47 @@ svcnode_peers = 10.0.0.21 10.0.0.22</code></pre>
 <pre><code>[common]
 # Log level is one of DEBUG, INFO, WARNING, ERROR, CRITICAL
 #loglevel = INFO
- 
+
 # Destination for log message.  Can be a file name, &#39;stdout&#39;, or &#39;syslog&#39;
 #logdest = syslog
- 
+
 # log file size in bytes. Used when logdest is a file
 #logfilesize = 512000
- 
+
 # maximum number of log files stored on disk. Used when logdest is a file
 #logbackupcount = 14
- 
+
 # The file to write the pid. If using monit, this must match the one
 # in the vxsnd.rc
 #pidfile = /var/run/vxsnd.pid
- 
+
 # The file name for the unix domain socket used for mgmt.
 #udsfile = /var/run/vxsnd.sock
- 
+
 # UDP port for vxfld control messages
 #vxfld_port = 10001
- 
+
 # This is the address to which registration daemons send control messages for
 # registration and/or BUM packets for replication
 svcnode_ip = 10.10.10.10
- 
+
 # Holdtime (in seconds) for soft state. It is used when sending a
 # register msg to peers in response to learning a &lt;vni, addr&gt; from a
 # VXLAN data pkt
 #holdtime = 90
- 
+
 # Local IP address to bind to for receiving inter-vxsnd control traffic
 src_ip = 10.0.0.21
- 
+
 [vxsnd]
 # Space separated list of IP addresses of vxsnd to share state with
 svcnode_peers = 10.0.0.21 10.0.0.22
- 
+
 # When set to true, the service node will listen for vxlan data traffic
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #enable_vxlan_listen = true
- 
+
 # When set to true, the svcnode_ip will be installed on the loopback
 # interface, and it will be withdrawn when the vxsnd is no longer in
 # service.  If set to true, the svcnode_ip configuration
@@ -840,7 +839,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #install_svcnode_ip = false
- 
+
 # Seconds to wait before checking the database to age out stale entries
 #age_check = 90</code></pre>
 </details></td>
@@ -854,47 +853,47 @@ svcnode_peers = 10.0.0.21 10.0.0.22</code></pre>
 <pre><code>[common]
 # Log level is one of DEBUG, INFO, WARNING, ERROR, CRITICAL
 #loglevel = INFO
- 
+
 # Destination for log message.  Can be a file name, &#39;stdout&#39;, or &#39;syslog&#39;
 #logdest = syslog
- 
+
 # log file size in bytes. Used when logdest is a file
 #logfilesize = 512000
- 
+
 # maximum number of log files stored on disk. Used when logdest is a file
 #logbackupcount = 14
- 
+
 # The file to write the pid. If using monit, this must match the one
 # in the vxsnd.rc
 #pidfile = /var/run/vxsnd.pid
- 
+
 # The file name for the unix domain socket used for mgmt.
 #udsfile = /var/run/vxsnd.sock
- 
+
 # UDP port for vxfld control messages
 #vxfld_port = 10001
- 
+
 # This is the address to which registration daemons send control messages for
 # registration and/or BUM packets for replication
 svcnode_ip = 10.10.10.10
- 
+
 # Holdtime (in seconds) for soft state. It is used when sending a
 # register msg to peers in response to learning a &lt;vni, addr&gt; from a
 # VXLAN data pkt
 #holdtime = 90
- 
+
 # Local IP address to bind to for receiving inter-vxsnd control traffic
 src_ip = 10.0.0.22
- 
+
 [vxsnd]
 # Space separated list of IP addresses of vxsnd to share state with
 svcnode_peers = 10.0.0.21 10.0.0.22
- 
+
 # When set to true, the service node will listen for vxlan data traffic
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #enable_vxlan_listen = true
- 
+
 # When set to true, the svcnode_ip will be installed on the loopback
 # interface, and it will be withdrawn when the vxsnd is no longer in
 # service.  If set to true, the svcnode_ip configuration
@@ -902,7 +901,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 # Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
 # for False
 #install_svcnode_ip = false
- 
+
 # Seconds to wait before checking the database to age out stale entries
 #age_check = 90</code></pre>
 </details></td>
@@ -910,10 +909,10 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 </tbody>
 </table>
 
-## <span>Troubleshooting</span>
+## Troubleshooting
 
 In addition to [troubleshooting single-attached
-configurations](/version/cumulus-linux-377/Network-Virtualization/Troubleshooting-VXLANs),
+configurations](/cumulus-linux/Network-Virtualization/Troubleshooting-VXLANs),
 there is now the MLAG daemon (`clagd`) to consider. The `clagctl`
 command gives the output of MLAG behavior and any inconsistencies that
 might arise between a MLAG pair.
@@ -964,16 +963,16 @@ that there is a `vxlan-id` mis-match on VXLAN10.
               vxlan1   vxlan1             -         -                      -
              vxlan10   -                  -         -                      vxlan-single
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata
 
-### <span>Use VLAN for Peer Link Only Once</span>
+### Use VLAN for Peer Link Only Once
 
 Do not reuse the VLAN used for the peer link layer 3 subinterface for
 any other interface in the system. A high VLAN ID value is recommended.
 For more information on VLAN ID ranges, refer to the [VLAN-aware bridge
 chapter](VLAN-aware-Bridge-Mode.html#src-8362673_VLAN-awareBridgeMode-vlan_range).
 
-### <span>Bonds with Vagrant in Cumulus VX</span>
+### Bonds with Vagrant in Cumulus VX
 
 Bonds (or LACP Etherchannels) fail to work in a Vagrant setup unless the
 link is set to *promiscuous* mode. This is a limitation on virtual
@@ -990,9 +989,9 @@ topologies only, and is not needed on real hardware.
       post-up ip link set $IFACE promisc on
 
 For more information on using Cumulus VX and Vagrant, refer to the
-[Cumulus VX documentation](https://docs.cumulusnetworks.com/display/VX).
+[Cumulus VX documentation](/cumulus-vx).
 
-### <span>With LNV, Unique Node ID Required for vxrd in Cumulus VX</span>
+### With LNV, Unique Node ID Required for vxrd in Cumulus VX
 
 `vxrd` requires a unique `node_id` for each individual switch. This
 `node_id` is based off the first interface's MAC address; when using
@@ -1032,7 +1031,7 @@ To set the `node_id` manually:
 
 2.  Set the `node_id` value within the `common` section, then save the
     file:
-    
+
         [common]
         node_id = 13
 
@@ -1043,10 +1042,10 @@ mode can function correctly.
 
 {{%/notice%}}
 
-## <span>Related Information</span>
+## Related Information
 
   - [Network virtualization chapter, Cumulus Linux user
-    guide](/version/cumulus-linux-377/Network-Virtualization/)
+    guide](/cumulus-linux/Network-Virtualization/)
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

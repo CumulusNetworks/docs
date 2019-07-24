@@ -3,7 +3,7 @@ title: Cumulus Linux Index
 author: Cumulus Networks
 weight: 29
 aliases:
- - /display/CL36/Cumulus-Linux-Index
+ - /display/CL36/Cumulus+Linux+Index
  - /pages/viewpage.action?pageId=8362443
 pageID: 8362443
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Configure and Manage DHCP Options
 author: Cumulus Networks
 weight: 33
 aliases:
- - /display/NETQ141/Configure-and-Manage-DHCP-Options
+ - /display/NETQ141/Configure+and+Manage+DHCP+Options
  - /pages/viewpage.action?pageId=10453548
 pageID: 10453548
 product: Cumulus NetQ
@@ -20,7 +20,7 @@ reservations are configured. While not required, you may want to s
 well-suited for your environment or set up reservations for interfaces
 that require unchanging IP addresses. </span>
 
-## <span>Command Overview</span>
+## Command Overview</span>
 
 IPM enables you to add, delete, and view all of the DHCP configurations.
 The command syntax is:
@@ -38,7 +38,7 @@ The command syntax is:
 
 The *-h* option provides help information for the command.
 
-## <span>View the Current DHCP Configuration</span>
+## View the Current DHCP Configuration</span>
 
 <span style="color: #000000;"> You can view the current configuration of
 the DHCP server using the `tipctl show dhcp` command. This example shows
@@ -58,12 +58,12 @@ should reflect the IP addressing scheme of your network. </span>
     ntp-servers            10.255.0.92
     www-server             10.255.0.92
 
-## <span>Configure DHCP Address Pool</span>
+## Configure DHCP Address Pool</span>
 
 You can configure a pool that uses a single contiguous address space.
 You can also change or remove a configured address pool.
 
-### <span>Configure an Address Pool</span>
+### Configure an Address Pool</span>
 
 Only one DHCP address pool can be defined, and it must be contained
 within a contiguous address space. The only exception to this is if you
@@ -104,7 +104,7 @@ Then it shows the updated configuration with the newly created pool,
     cumulus@ts:~$ tipctl config verify
     The TIPS application is running as expected.
 
-### <span>Modify an Address Pool</span>
+### Modify an Address Pool</span>
 
 You might want to change the range of addresses available to the DHCP
 server due to network changes or current address reservations. For
@@ -145,7 +145,7 @@ Then it shows the updated configuration with the newly modified pool,
     cumulus@ts:~$ tipctl config verify
     The TIPS application is running as expected.
 
-### <span>Remove an Address Pool</span>
+### Remove an Address Pool</span>
 
 You might want to remove the designated address pool altogether if you
 are using a separate DHCP server or server pool in your network.
@@ -180,7 +180,7 @@ properly.
     cumulus@ts:~$ tipctl config verify
     The TIPS application is running as expected.
 
-## <span>Configure DHCP Reservations</span>
+## Configure DHCP Reservations</span>
 
 <span style="color: #000000;"> DHCP reservations are used when you have
 a switch that requires the same IP address every time you want to reach
@@ -196,7 +196,7 @@ reservation itself maps an IP address to the MAC address of the switch.
 DHCP reservations. Adding reservations can be performed one at a time or
 import many from a file. </span>
 
-### <span>Add Reservations Manually</span>
+### Add Reservations Manually</span>
 
 <span style="color: #000000;"> You can add DHCP reservations one at a
 time using the `tipctl add dhcp reservation` command. </span>
@@ -221,7 +221,7 @@ The example then reviews the configuration change.
     -----------------  ------------  ----------
     A0:00:00:00:00:21  192.168.0.21  spine01
 
-### <span>Import Reservations from a File</span>
+### Import Reservations from a File</span>
 
 <span style="color: #000000;"> If you have a number of switches that you
 want to specify DHCP reservations for, then importing the mapping
@@ -303,7 +303,7 @@ numeric offset to identify the locations of the data.
 If the `dhcp load` command was not successful, when you run the `show`
 command, a *No DHCP reservations* message appears.
 
-### <span>Remove a Reservation</span>
+### Remove a Reservation</span>
 
 <span style="color: #000000;"> You can remove a DHCP reservation at any
 time using the `tipctl` `del dhcp` command with the *reservation*
@@ -316,7 +316,7 @@ with a MAC address of *A0:00:00:00:00:22*. </span>
     -----------------  ------------  ----------
     A0:00:00:00:00:21  192.168.0.21  spine01
 
-## <span>View Leases</span>
+## View Leases</span>
 
 <span style="color: #000000;"> It can be useful to view the leases
 currently being used by the DHCP server when you are troubleshooting.

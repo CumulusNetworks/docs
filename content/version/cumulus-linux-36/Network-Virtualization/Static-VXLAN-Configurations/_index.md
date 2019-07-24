@@ -3,7 +3,7 @@ title: Static VXLAN Configurations
 author: Cumulus Networks
 weight: 141
 aliases:
- - /display/CL36/Static-VXLAN-Configurations
+ - /display/CL36/Static+VXLAN+Configurations
  - /pages/viewpage.action?pageId=8362280
 pageID: 8362280
 product: Cumulus Linux

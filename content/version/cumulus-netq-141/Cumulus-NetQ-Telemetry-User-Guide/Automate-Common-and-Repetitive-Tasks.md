@@ -3,7 +3,7 @@ title: Automate Common and Repetitive Tasks
 author: Cumulus Networks
 weight: 71
 aliases:
- - /display/NETQ141/Automate-Common-and-Repetitive-Tasks
+ - /display/NETQ141/Automate+Common+and+Repetitive+Tasks
  - /pages/viewpage.action?pageId=10453520
 pageID: 10453520
 product: Cumulus NetQ
@@ -16,7 +16,7 @@ Chef, or Puppet; depending on the outcome of the automation tests, the
 script can either continue the deployment, or roll back the changes
 until the issues are addressed.
 
-## <span>Run NetQ Commands in Automation Scripts</span>
+## Run NetQ Commands in Automation Scripts</span>
 
 Using NetQ for preventative care of your network pairs well with
 automation scripts and playbooks to prevent errors on your network

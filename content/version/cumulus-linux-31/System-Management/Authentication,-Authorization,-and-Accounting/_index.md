@@ -3,7 +3,7 @@ title: 'Authentication, Authorization, and Accounting'
 author: Cumulus Networks
 weight: 59
 aliases:
- - '/display/CL31/Authentication,-Authorization,-and-Accounting'
+ - '/display/CL31/Authentication,+Authorization,+and+Accounting'
  - /pages/viewpage.action?pageId=5121924
 pageID: 5121924
 product: Cumulus Linux

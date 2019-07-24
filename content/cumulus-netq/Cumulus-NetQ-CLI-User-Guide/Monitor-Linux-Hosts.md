@@ -3,7 +3,7 @@ title: Monitor Linux Hosts
 author: Cumulus Networks
 weight: 45
 aliases:
- - /display/NETQ22/Monitor-Linux-Hosts
+ - /display/NETQ/Monitor+Linux+Hosts
  - /pages/viewpage.action?pageId=12321043
 pageID: 12321043
 product: Cumulus NetQ
@@ -19,36 +19,29 @@ devices.
 The NetQ Agent is supported on the following Linux hosts:
 
   - CentOS 7
-
   - Red Hat Enterprise Linux 7.1
-
   - Ubuntu 16.04
 
 You need to [install the OS-specific NetQ
-metapack](/version/cumulus-netq-22/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
+metapack](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 on every host you want to monitor with NetQ.
 
 The NetQ Agent monitors the following on Linux hosts:
 
   - netlink
-
   - Layer 2: LLDP and VLAN-aware bridge
-
   - Layer 3: IPv4, IPv6
-
   - Routing on the Host: BGP, OSPF
-
   - systemctl for services
-
   - Docker containers — refer to the [Monitor Container
-    Environments](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/Monitor-Container-Environments)
+    Environments](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Container-Environments)
     topic
 
 Using NetQ on a Linux host is the same as using it on a Cumulus Linux
 switch. For example, if you want to check LLDP neighbor information
 about a given host, run:
 
-    cumulus@switch:~$ netq server01 show lldp 
+    cumulus@switch:~$ netq server01 show lldp
     Matching lldp records:
     Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
     ----------------- ------------------------- ----------------- ------------------------- -------------------------

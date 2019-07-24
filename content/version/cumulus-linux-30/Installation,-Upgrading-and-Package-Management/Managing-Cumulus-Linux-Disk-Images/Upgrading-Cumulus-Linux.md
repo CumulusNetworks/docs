@@ -3,7 +3,7 @@ title: Upgrading Cumulus Linux
 author: Cumulus Networks
 weight: 205
 aliases:
- - /display/CL30/Upgrading-Cumulus-Linux
+ - /display/CL30/Upgrading+Cumulus+Linux
  - /pages/viewpage.action?pageId=5118269
 pageID: 5118269
 product: Cumulus Linux
@@ -17,9 +17,9 @@ software. Before we discuss the various ways to upgrade Cumulus Linux
 switches, let's review the general considerations and strategies used to
 upgrade network devices and Linux hosts.
 
-## <span>Upgrades: Comparing the Network Device Worldview vs. the Linux Host Worldview</span>
+## Upgrades: Comparing the Network Device Worldview vs. the Linux Host Worldview</span>
 
-### <span>Manual vs. Automated Configuration</span>
+### Manual vs. Automated Configuration</span>
 
 Historically, *network devices* were configured in place, and most
 network devices required customized configurations, which led
@@ -39,7 +39,7 @@ installing and configuring hosts did not work at the scale of a data
 center. Nearly all tasks are done via commonly available provisioning
 and orchestration tools.
 
-### <span>Pre-deployment Testing of Production Environments</span>
+### Pre-deployment Testing of Production Environments</span>
 
 Historically, the cost of *network device* testing has been hampered by
 the cost of a single device. Setting up an appropriately sized lab
@@ -53,7 +53,7 @@ using virtualization), so rigorous testing of a release before deploying
 it is not encumbered by budgeting concerns. Most sysadmins extensively
 test new releases in the complete application environment.
 
-### <span>Locations of Configuration Data vs. Executables</span>
+### Locations of Configuration Data vs. Executables</span>
 
 *Network devices* generally separate configuration data from the
 executable code. On bootup, the executable code looks into a different
@@ -79,7 +79,7 @@ supported, and while there are some generally accepted guiding
 principles on how their configuration data is formatted, no central
 authority exists to control or ensure compliance.
 
-### <span>Upgrade Procedure</span>
+### Upgrade Procedure</span>
 
 Both network admins and sysadmins generally plan upgrades only to gain
 new functionality or to get bug fixes when the workarounds become too
@@ -101,7 +101,7 @@ when needed. Every few years, when a new kernel train is released, a
 major upgrade is planned. A major upgrade involves wiping and replacing
 the entire OS and migrating configuration data.
 
-### <span>Rollback Procedure</span>
+### Rollback Procedure</span>
 
 Even the most well planned and tested upgrades can result in unforeseen
 problems, and sometimes the best solution to new problems is to roll
@@ -129,7 +129,7 @@ approaches:
   - Backup and restore: Another common strategy is to restore to a
     previous state via a backup captured before the upgrade.
 
-### <span>Third Party Packages</span>
+### Third Party Packages</span>
 
 Third party packages are rare in the *network device* world. Because the
 network OS is usually proprietary, third party packages are usually
@@ -142,13 +142,13 @@ example, Debian uses `apt-get`). Or the package may be compiled and
 installed by the sysadmin. Configuration and executable files generally
 follow the same filesystem hierarchy standards as other applications.
 
-## <span>Upgrading Cumulus Linux Devices: Strategies and Processes</span>
+## Upgrading Cumulus Linux Devices: Strategies and Processes</span>
 
 Because Cumulus Linux is both Linux *and* a network device, it has
 characteristics of both paradigms. The following describes the Cumulus
 Linux paradigm with respect to upgrade planning and execution.
 
-### <span>Automated Configuration Is Preferred over Manual Configuration</span>
+### Automated Configuration Is Preferred over Manual Configuration</span>
 
 Because Cumulus Linux *is* Linux, Cumulus Networks recommends that even
 with small networks or test labs, network admins should make the jump to
@@ -162,7 +162,7 @@ upgrade dozens of devices in a repeatable manner.
 Switches, like servers, should be treated like *[cattle, not
 pets](https://www.google.com/search?q=cattle+not+pets).*
 
-### <span id="src-5118269_UpgradingCumulusLinux-outofband" class="confluence-anchor-link"></span><span>Out-of-Band Management Is Worth the Investment</span>
+### <span id="src-5118269_UpgradingCumulusLinux-outofband" class="confluence-anchor-link"></span>Out-of-Band Management Is Worth the Investment</span>
 
 Because network devices are reachable via the IP addresses on the front
 panel ports, many network admins of small-to-medium sized networks use
@@ -191,14 +191,14 @@ remote-controllable power distribution units (PDUs) in each rack to the
 management network, so you can have complete control to remote power
 cycle every device in that rack.
 
-### <span>Pre-Deployment Testing of New Releases Is Advised and Enabled </span>
+### Pre-Deployment Testing of New Releases Is Advised and Enabled </span>
 
 White box switches and virtualization (Cumulus VX) bring the cost of
 networking devices down, so the ability for network admins to test their
 own procedures, configurations, applications, and network topology in an
 appropriately-sized lab topology becomes extremely affordable.
 
-### <span id="src-5118269_UpgradingCumulusLinux-UnderstandingLocations" class="confluence-anchor-link"></span><span>Understanding the Locations of Configuration Data is Required for Successful Upgrades, Migration, and Backup</span>
+### <span id="src-5118269_UpgradingCumulusLinux-UnderstandingLocations" class="confluence-anchor-link"></span>Understanding the Locations of Configuration Data is Required for Successful Upgrades, Migration, and Backup</span>
 
 As with other Linux distributions, the `/etc` directory is the primary
 location for all configuration data in Cumulus Linux. The following list
@@ -207,7 +207,7 @@ release, but any file that has been changed would need to be examined.
 Cumulus Networks recommends you consider making the following files and
 directories part of a backup strategy.
 
-#### <span>Network Configuration Files</span>
+#### Network Configuration Files</span>
 
 | File Name and Location    | Explanation                                                                                          | Cumulus Linux Documentation                                                                                                                                                                 | Debian Documentation                                                                                                         |
 | ------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -218,7 +218,7 @@ directories part of a backup strategy.
 | /etc/cumulus/ports.conf   | Breakout cable configuration file                                                                    | [Layer 1 and Switch Port Attributes\#ConfiguringBreakoutPorts](Layer-1-and-Switch-Port-Attributes.html#src-5118373_Layer1andSwitchPortAttributes-ConfiguringBreakoutPorts)                  | N/A; please read the guide on breakout cables                                                                                |
 | /etc/cumulus/switchd.conf | Switchd configuration                                                                                | [Configuring switchd](/version/cumulus-linux-30/System-Management/Configuring-switchd)                                                                                                      | N/A; please read the guide on switchd configuration                                                                          |
 
-#### <span>Additional Commonly Used Files</span>
+#### Additional Commonly Used Files</span>
 
 | File Name and Location | Explanation                                              | Cumulus Linux Documentation                                                                                                                                            | Debian Documentation                                                                                                         |
 | ---------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -237,7 +237,7 @@ directories part of a backup strategy.
   - If you have custom user accounts, consider including
     `/home/<username>/`.
 
-#### <span id="src-5118269_UpgradingCumulusLinux-FilesToNeverMigrate" class="confluence-anchor-link"></span><span>Files That Should Never Be Migrated Between Versions or Boxes</span>
+#### <span id="src-5118269_UpgradingCumulusLinux-FilesToNeverMigrate" class="confluence-anchor-link"></span>Files That Should Never Be Migrated Between Versions or Boxes</span>
 
 | File Name and Location | Explanation                                                                                                                      |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -263,11 +263,11 @@ directories part of a backup strategy.
 | /root/.ansible         | Ansible tmp files. Do not copy.                                                                                                  |
 | /home/cumulus/.ansible | Ansible tmp files. Do not copy.                                                                                                  |
 
-### <span>Upgrading Switches in an MLAG Pair</span>
+### Upgrading Switches in an MLAG Pair</span>
 
 If you have a pair of Cumulus Linux switches as part of an [MLAG
 (multi-chassis link aggregation)
-pair](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation---MLAG),
+pair](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG),
 you should only upgrade each switch when it is in the *secondary role*.
 The upgrade path is as follows:
 
@@ -288,9 +288,9 @@ The upgrade path is as follows:
 
 For more information about setting the priority, see [Understanding
 Switch
-Roles](Multi-Chassis-Link-Aggregation---MLAG.html#src-5118344_Multi-ChassisLinkAggregation-MLAG-roles).
+Roles](Multi-Chassis-Link-Aggregation-MLAG.html#src-5118344_Multi-ChassisLinkAggregation-MLAG-roles).
 
-## <span>Upgrading Cumulus Linux: Choosing between a Binary Install vs. Package Upgrade</span>
+## Upgrading Cumulus Linux: Choosing between a Binary Install vs. Package Upgrade</span>
 
 Network admins have two ways to upgrade Cumulus Linux:
 
@@ -304,7 +304,7 @@ Network admins have two ways to upgrade Cumulus Linux:
 There are advantages and disadvantages to using these methods, which are
 outlined below.
 
-### <span id="src-5118269_UpgradingCumulusLinux-apt_upgrade" class="confluence-anchor-link"></span><span>Upgrading Using Package Installs (apt-get update && apt-get upgrade)</span>
+### <span id="src-5118269_UpgradingCumulusLinux-apt_upgrade" class="confluence-anchor-link"></span>Upgrading Using Package Installs (apt-get update && apt-get upgrade)</span>
 
 Pros:
 
@@ -394,7 +394,7 @@ results that you may or may not have expected:
 
 {{%/notice%}}
 
-### <span id="src-5118269_UpgradingCumulusLinux-binary_upgrade" class="confluence-anchor-link"></span><span>Upgrading via Binary Install (ONIE)</span>
+### <span id="src-5118269_UpgradingCumulusLinux-binary_upgrade" class="confluence-anchor-link"></span>Upgrading via Binary Install (ONIE)</span>
 
 Pros:
 
@@ -442,7 +442,7 @@ To upgrade the switch by running a binary install:
 
 5.  Reinstall third party apps and associated configurations.
 
-## <span>Rolling Back a Cumulus Linux Installation</span>
+## Rolling Back a Cumulus Linux Installation</span>
 
 Rolling back to an earlier release after upgrading the packages on the
 switch follows the same procedure as described for the Linux host OS
@@ -466,7 +466,7 @@ Which method you employ is specific to your deployment strategy, so
 providing detailed steps for each scenario is outside the scope of this
 document.
 
-## <span>Third Party Package Considerations</span>
+## Third Party Package Considerations</span>
 
 Note that if you install any third party apps on a Cumulus Linux switch,
 any configuration data will likely be installed into the `/etc`
@@ -478,7 +478,7 @@ After you upgrade the OS using a full binary install, you will need to
 reinstall any third party packages or any Cumulus Linux add-on packages,
 such as `vxsnd` or `vxrd`.
 
-## <span>Installation and Upgrade Workflow in Cumulus Linux 3.0</span>
+## Installation and Upgrade Workflow in Cumulus Linux 3.0</span>
 
 Cumulus Linux 3.0 completely embraces the Linux and Debian upgrade
 workflow. In this paradigm, a base image is installed using an
@@ -499,7 +499,7 @@ the configuration files, examine them to verify correctness with 3.0,
 and then to redeploy the configuration files on the new 3.0
 installation.
 
-## <span>Caveats When Migrating Configuration Files Between Cumulus Linux 2.5.z and 3.0</span>
+## Caveats When Migrating Configuration Files Between Cumulus Linux 2.5.z and 3.0</span>
 
 Generally, the configuration files in Cumulus Linux 2.5.z should be able
 to migrate to version 3.0 without any problems, but there are some known
@@ -528,7 +528,7 @@ Known caveats when migrating files from version 2.x to 3.0:
     switch, they need to be migrated into the 3.0 `sources.list` file or
     the `sources.d/` directory.
 
-## <span>Using the Config File Migration Script to Identify and Move Files to Cumulus Linux 3.0</span>
+## Using the Config File Migration Script to Identify and Move Files to Cumulus Linux 3.0</span>
 
 You can use the [Config File Migration
 Script](https://github.com/CumulusNetworks/config-backup-upgrade-helper)
@@ -587,7 +587,7 @@ The example provided below excludes `/etc/apt`, `/etc/passwd` and
     
     {{%/notice%}}
 
-## <span id="src-5118269_UpgradingCumulusLinux-Using_Automation_Tools" class="confluence-anchor-link"></span><span>Using Automation Tools to Back Up 2.5.z Configurations</span>
+## <span id="src-5118269_UpgradingCumulusLinux-Using_Automation_Tools" class="confluence-anchor-link"></span>Using Automation Tools to Back Up 2.5.z Configurations</span>
 
 Adopting the use of orchestration tools like Ansible, Chef or Puppet for
 configuration management greatly increases the speed and accuracy of the

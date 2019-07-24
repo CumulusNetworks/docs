@@ -3,7 +3,7 @@ title: Installing and Configuring the NetQ Virtual Environment
 author: Cumulus Networks
 weight: 29
 aliases:
- - /display/NETQ110/Installing-and-Configuring-the-NetQ-Virtual-Environment
+ - /display/NETQ110/Installing+and+Configuring+the+NetQ+Virtual+Environment
  - /pages/viewpage.action?pageId=7111328
 pageID: 7111328
 product: Cumulus NetQ

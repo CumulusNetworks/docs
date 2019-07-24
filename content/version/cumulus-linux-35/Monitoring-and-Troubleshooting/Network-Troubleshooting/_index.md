@@ -3,7 +3,7 @@ title: Network Troubleshooting
 author: Cumulus Networks
 weight: 217
 aliases:
- - /display/CL35/Network-Troubleshooting
+ - /display/CL35/Network+Troubleshooting
  - /pages/viewpage.action?pageId=8357378
 pageID: 8357378
 product: Cumulus Linux
@@ -14,7 +14,7 @@ siteSlug: cumulus-linux-35
 Cumulus Linux contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.
 
-## <span>Checking Reachability Using ping</span>
+## Checking Reachability Using ping</span>
 
 `ping` is used to check reachability of a host. `ping` also calculates
 the time it takes for packets to travel the round trip. See `man ping`
@@ -58,7 +58,7 @@ otherwise `ping` waits for two RTTs (round trip time in milliseconds).
 packet.  
 `-awk` substitutes human readable time format for unix time.
 
-## <span>Printing Route Trace Using traceroute</span>
+## Printing Route Trace Using traceroute</span>
 
 `traceroute` tracks the route that packets take from an IP network on
 their way to a given host. See `man traceroute` for details.
@@ -74,7 +74,7 @@ To track the route to an IPv4 host:
     7  72.14.232.35 (72.14.232.35)  27.505 ms  22.925 ms  22.323 ms
     8  nuq04s19-in-f17.1e100.net (74.125.239.49)  23.544 ms  21.851 ms  22.604 ms
 
-## <span>Manipulating the System ARP Cache</span>
+## Manipulating the System ARP Cache</span>
 
 `arp` manipulates or displays the kernel’s IPv4 network neighbor cache.
 See `man arp` for details.
@@ -107,7 +107,7 @@ you can disable dynamic ARP learning:
 
     cumulus@switch:~$ ip link set arp off dev INTERFACE
 
-## <span>Generating Traffic Using mz</span>
+## Generating Traffic Using mz</span>
 
 `mz` is a fast traffic generator. It can generate a large variety of
 packet types at high speed. See `man mz` for details.
@@ -144,11 +144,11 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
      TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
 
-## <span id="src-8357378_NetworkTroubleshooting-counter_acl" class="confluence-anchor-link"></span><span>Creating Counter ACL Rules</span>
+## <span id="src-8357378_NetworkTroubleshooting-counter_acl" class="confluence-anchor-link"></span>Creating Counter ACL Rules</span>
 
 In Linux, all ACL rules are always counted. To create an ACL rule for
 counting purposes only, set the rule action to ACCEPT. See the
-[Netfilter](/version/cumulus-linux-35/System-Configuration/Netfilter---ACLs/)
+[Netfilter](/version/cumulus-linux-35/System-Configuration/Netfilter-ACLs/)
 chapter for details on how to use `cl-acltool` to set up
 iptables-/ip6tables-/ebtables-based ACLs.
 
@@ -189,7 +189,7 @@ to reinstall all the rules.
 
 {{%/notice%}}
 
-## <span id="src-8357378_NetworkTroubleshooting-span" class="confluence-anchor-link"></span><span>Configuring SPAN and ERSPAN</span>
+## <span id="src-8357378_NetworkTroubleshooting-span" class="confluence-anchor-link"></span>Configuring SPAN and ERSPAN</span>
 
 SPAN (Switched Port Analyzer) provides for the mirroring of all packets
 coming in from or going out of an interface (the *SPAN source*), and
@@ -220,7 +220,7 @@ packets may be discarded.
 
 SPAN and ERSPAN are configured via `cl-acltool`, the [same utility for
 security ACL
-configuration](/version/cumulus-linux-35/System-Configuration/Netfilter---ACLs/).
+configuration](/version/cumulus-linux-35/System-Configuration/Netfilter-ACLs/).
 The match criteria for SPAN and ERSPAN is usually an interface; for more
 granular match terms, use [selective
 spanning](#src-8357378_NetworkTroubleshooting-selective_spanning). The
@@ -245,7 +245,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
 In order to configure SPAN or ERSPAN on a Tomahawk-based switch, you
 must enable [non-atomic update
-mode](Netfilter---ACLs.html#src-8357345_Netfilter-ACLs-tomahawk_atomic).
+mode](Netfilter-ACLs.html#src-8357345_Netfilter-ACLs-tomahawk_atomic).
 
 {{%/notice%}}
 
@@ -256,7 +256,7 @@ a subinterface.
 
 {{%/notice%}}
 
-### <span>Configuring SPAN for Switch Ports</span>
+### Configuring SPAN for Switch Ports</span>
 
 This section describes how to set up, install, verify and uninstall SPAN
 rules. In the examples that follow, you will span (mirror) switch port
@@ -354,7 +354,7 @@ Verify that the SPAN rules were installed:
     38025 7034K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19
     50832   55M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp19
 
-### <span>Configuring SPAN for Bonds</span>
+### Configuring SPAN for Bonds</span>
 
 This section describes how to configure SPAN for all packets going out
 of `bond0` locally to `bond1`.
@@ -391,7 +391,7 @@ Verify that the SPAN rules were installed:
     cumulus@switch:~$ sudo iptables -L -v | grep SPAN
        19  1938 SPAN       all  --  any    bond0   anywhere             anywhere             dport:bond1
 
-### <span>Configuring ERSPAN</span>
+### Configuring ERSPAN</span>
 
 This section describes how to configure ERSPAN for all packets coming in
 from `swp1` to 12.0.0.2.
@@ -452,7 +452,7 @@ frame** option.
 
 {{%/notice%}}
 
-### <span id="src-8357378_NetworkTroubleshooting-selective_spanning" class="confluence-anchor-link"></span><span>Selective Spanning</span>
+### <span id="src-8357378_NetworkTroubleshooting-selective_spanning" class="confluence-anchor-link"></span>Selective Spanning</span>
 
 SPAN/ERSPAN traffic rules can be configured to limit the traffic that is
 spanned, to reduce the volume of copied data.
@@ -484,7 +484,7 @@ Exceeding this limit produces an error when you install the rules with
 
 {{%/notice%}}
 
-#### <span>SPAN Examples</span>
+#### SPAN Examples</span>
 
   - To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
     DIP 20.0.1.2 to port swp1s1:
@@ -508,7 +508,7 @@ Exceeding this limit produces an error when you install the rules with
     
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j SPAN --dport swp1s2
 
-#### <span>ERSPAN Examples</span>
+#### ERSPAN Examples</span>
 
   - To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
     DIP 20.0.1.2:
@@ -532,7 +532,7 @@ Exceeding this limit produces an error when you install the rules with
     
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
 
-### <span>Removing SPAN Rules</span>
+### Removing SPAN Rules</span>
 
 To remove your SPAN rules, run:
 
@@ -547,7 +547,7 @@ To verify that the SPAN rules were removed:
     cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
     cumulus@switch:~$
 
-## <span>Monitoring Control Plane Traffic with tcpdump</span>
+## Monitoring Control Plane Traffic with tcpdump</span>
 
 You can use `tcpdump` to monitor control plane traffic — traffic sent to
 and coming from the switch CPUs. `tcpdump` does **not** monitor data
@@ -586,13 +586,13 @@ The following example incorporates a few `tcpdump` options:
     12 packets received by filter
     0 packets dropped by kernel
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - SPAN rules cannot match outgoing subinterfaces.
 
   - ERSPAN rules must include `ttl` for versions 1.5.1 and earlier.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [www.perihel.at/sec/mz/mzguide.html](http://www.perihel.at/sec/mz/mzguide.html)
 

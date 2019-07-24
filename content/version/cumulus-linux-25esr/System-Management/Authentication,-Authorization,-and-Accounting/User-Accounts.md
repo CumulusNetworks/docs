@@ -3,7 +3,7 @@ title: User Accounts
 author: Cumulus Networks
 weight: 217
 aliases:
- - /display/CL25ESR/User-Accounts
+ - /display/CL25ESR/User+Accounts
  - /pages/viewpage.action?pageId=5115902
 pageID: 5115902
 product: Cumulus Linux
@@ -54,7 +54,7 @@ so be sure to include them in the *sudo* group.
 
 To access the switch without any password requires booting into a single
 shell/user mode. [Here are the
-instructions](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Single-User-Mode---Boot-Recovery)
+instructions](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery)
 on how to do this using PowerPC and x86 switches.
 
 <article id="html-search-results" class="ht-content" style="display: none;">

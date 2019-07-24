@@ -3,7 +3,7 @@ title: Monitoring Virtual Device Counters
 author: Cumulus Networks
 weight: 217
 aliases:
- - /display/CL34/Monitoring-Virtual-Device-Counters
+ - /display/CL34/Monitoring+Virtual+Device+Counters
  - /pages/viewpage.action?pageId=7112362
 pageID: 7112362
 product: Cumulus Linux
@@ -19,7 +19,7 @@ HCL](http://cumulusnetworks.com/hcl/) for a list of supported platforms.
 You can retrieve the data from these counters using tools like `ip -s
 link show`, `ifconfig`, `/proc/net/dev`, or `netstat -i`.
 
-## <span>Sample VXLAN Statistics</span>
+## Sample VXLAN Statistics</span>
 
 VXLAN statistics are available as follows:
 
@@ -72,9 +72,9 @@ To get network statistics, run:
         TX: bytes  packets  errors  dropped carrier collsns
         0          0        0       9       0       0
 
-## <span>Sample VLAN Statistics</span>
+## Sample VLAN Statistics</span>
 
-### <span>For VLANs Using the non-VLAN-aware Bridge Driver</span>
+### For VLANs Using the non-VLAN-aware Bridge Driver</span>
 
 In this case, each bridge is a single L2 broadcast domain and is
 associated with an internal VLAN. This internal VLAN's counters are
@@ -92,10 +92,10 @@ displayed as bridge netdev stats.
         TX: bytes  packets  errors  dropped carrier collsns
         18198262   178443   0       0       0       0
 
-### <span>For VLANs Using the VLAN-aware Bridge Driver</span>
+### For VLANs Using the VLAN-aware Bridge Driver</span>
 
 For a bridge using the [VLAN-aware
-driver](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
+driver](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
 the bridge is a just a container and each VLAN (VID/PVID) in the bridge
 is an independent L2 broadcast domain. As there is no netdev available
 to display these VLAN statistics, the `switchd` nodes are used instead:
@@ -120,7 +120,7 @@ to display these VLAN statistics, the `switchd` nodes are used instead:
     Total Out Octets                : 387
     Total Out Packets               : 3
 
-## <span>Configuring the Counters in switchd</span>
+## Configuring the Counters in switchd</span>
 
 These counters are enabled by default. To configure them, use `cl-cfg`
 and configure them as you would any other [`switchd`
@@ -157,7 +157,7 @@ changed; previously allocated counters remain as is.
 
 {{%/notice%}}
 
-### <span>Configuring the Poll Interval</span>
+### Configuring the Poll Interval</span>
 
 The virtual device counters are polled periodically. This can be CPU
 intensive, so the interval is configurable in `switchd`, with a default
@@ -166,7 +166,7 @@ of 2 seconds.
     # Virtual devices hw-stat poll interval (in seconds)
     #stats.vdev_hw_poll_interval = 2
 
-### <span>Configuring Internal VLAN Statistics</span>
+### Configuring Internal VLAN Statistics</span>
 
 For debugging purposes, you may need to access packet statistics
 associated with internal VLAN IDs. These statistics are hidden by
@@ -174,7 +174,7 @@ default, but can be configured in `switchd`:
 
     #stats.vlan.show_internal_vlans = FALSE
 
-### <span>Clearing Statistics</span>
+### Clearing Statistics</span>
 
 Since `ethtool` is not supported for virtual devices, you cannot clear
 the statistics cache maintained by the kernel. You can clear the
@@ -184,7 +184,7 @@ hardware statistics via `switchd`:
     cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan 
     cumulus@switch:~$
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - Currently the CPU port is internally added as a member of all VLANs.
     Because of this, packets sent to the CPU are counted against the

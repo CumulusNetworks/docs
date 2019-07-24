@@ -3,7 +3,7 @@ title: Zero Touch Provisioning
 author: Cumulus Networks
 weight: 149
 aliases:
- - /display/RMP31/Zero-Touch-Provisioning
+ - /display/RMP31/Zero+Touch+Provisioning
  - /pages/viewpage.action?pageId=5122747
 pageID: 5122747
 product: Cumulus RMP
@@ -39,11 +39,11 @@ in this order:
 
 Each method is discussed in greater detail below.
 
-## <span>Commands</span>
+## Commands</span>
 
   - ztp
 
-## <span>Zero Touch Provisioning Using a Local File</span>
+## Zero Touch Provisioning Using a Local File</span>
 
 ZTP only looks once for a ZTP script on the local file system when the
 switch boots. ZTP searches for an install script that matches an
@@ -73,7 +73,7 @@ For example:
 You can also trigger the ZTP process manually by running the `ztp --run
 <URL>` command, where the URL is the path to the ZTP script.
 
-## <span>Zero Touch Provisioning Using USB (ZTP-USB)</span>
+## Zero Touch Provisioning Using USB (ZTP-USB)</span>
 
 {{%notice note%}}
 
@@ -113,7 +113,7 @@ Follow these steps to perform zero touch provisioning using USB:
     `CUMULUS-AUTOPROVISIONING` flag (see [example
     scripts](#src-5122747_ZeroTouchProvisioning-example_scripts)).
 
-## <span>Zero Touch Provisioning over DHCP</span>
+## Zero Touch Provisioning over DHCP</span>
 
 If the `ztp` process did not discover a local/ONIE script or applicable
 USB drive, it checks DHCP every 10 seconds for up to 5 minutes for the
@@ -151,7 +151,7 @@ The zero touch provisioning process over DHCP follows these steps:
     provisioning state is marked as complete in the autoprovisioning
     configuration file.
 
-### <span>Triggering ZTP over DHCP</span>
+### Triggering ZTP over DHCP</span>
 
 If provisioning has not already occurred, it is possible to trigger the
 zero touch provisioning process over DHCP when eth0 is set to use DHCP
@@ -166,7 +166,7 @@ and one of the following events occur:
 You can also run the `ztp --run <URL>` command, where the URL is the
 path to the ZTP script.
 
-### <span>Configuring The DCHP Server</span>
+### Configuring The DCHP Server</span>
 
 During the DHCP process over eth0, Cumulus RMP will request DHCP option
 239. This option is used to specify the custom provisioning script.
@@ -192,7 +192,7 @@ Additionally, the hostname of the switch can be specified via the
 
 <span id="src-5122747_ZeroTouchProvisioning-http_headers"></span>
 
-### <span>Detailed Look at HTTP Headers</span>
+### Detailed Look at HTTP Headers</span>
 
 The following HTTP headers are sent in the request to the webserver to
 retrieve the provisioning script:
@@ -210,7 +210,7 @@ retrieve the provisioning script:
     CUMULUS-PROV-COUNT                                  0
     CUMULUS-PROV-MAX                                    32
 
-## <span>Writing ZTP Scripts </span>
+## Writing ZTP Scripts </span>
 
 {{%notice note%}}
 
@@ -243,7 +243,7 @@ The script must return an exit code of 0 upon success, as this triggers
 the autoprovisioning process to be marked as complete in the
 autoprovisioning configuration file.
 
-### <span id="src-5122747_ZeroTouchProvisioning-example_scripts" class="confluence-anchor-link"></span><span>Example ZTP Scripts</span>
+### <span id="src-5122747_ZeroTouchProvisioning-example_scripts" class="confluence-anchor-link"></span>Example ZTP Scripts</span>
 
 The following script install Cumulus RMP from USB and applies a
 configuration:
@@ -329,7 +329,7 @@ interfaces and routing protocols.
 Several ZTP example scripts are available in the [Cumulus GitHub
 repository](https://github.com/CumulusNetworks/example-ztp-scripts).
 
-## <span>Testing and Debugging ZTP Scripts</span>
+## Testing and Debugging ZTP Scripts</span>
 
 There are a few commands you can use to test and debug your ZTP scripts.
 
@@ -456,7 +456,7 @@ as above.
     Method     ZTP Manual                     
     URL        http://192.0.2.1/demo.sh
 
-## <span>Manually Using the ztp Command</span>
+## Manually Using the ztp Command</span>
 
 To enable zero touch provisioning, use the `-e` option:
 
@@ -513,7 +513,7 @@ To see the current `ztp` state, use the `-s` option:
     Method Switch manually configured  
     URL None
 
-## <span>Notes</span>
+## Notes</span>
 
   - During the development of a provisioning script, the switch may need
     to be reset.
@@ -522,7 +522,7 @@ To see the current `ztp` state, use the `-s` option:
     switch to reprovision itself and install a network operating system
     again using ONIE.
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /var/lib/cumulus/autoprovision.conf
 

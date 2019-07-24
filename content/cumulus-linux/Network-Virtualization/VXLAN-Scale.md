@@ -3,13 +3,13 @@ title: VXLAN Scale
 author: Cumulus Networks
 weight: 151
 aliases:
- - /display/CL37/VXLAN-Scale
+ - /display/DOCS/VXLAN+Scale
  - /pages/viewpage.action?pageId=8362768
 pageID: 8362768
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 On Broadcom Trident II and Tomahawk switches running Cumulus Linux,
 there is a limit to the number of VXLANs you can configure
@@ -33,17 +33,14 @@ mappings in hardware before you encounter hash collisions. There is also
 an upper limit of around 3000 VLANs you can configure before you hit the
 reserved range (Cumulus Linux uses 3000-3999 by default). Cumulus
 Networks typically uses a soft number because the math is unique to each
-environment. An internal VLAN is consumed by each
-<span style="color: #222222;"> layer 3 port, subinterface, [traditional
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/Traditional-Bridge-Mode),
-and the [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode).
-Therefore, the number of configurable VLANs is: </span>
+environment. An internal VLAN is consumed by each layer 3 port, subinterface,
+[traditional bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode),
+and the [VLAN-aware bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
+Therefore, the number of configurable VLANs is:
 
-<span style="color: #222222;"> (total configurable 802.1q VLANs) -
-(reserved VLANS) - (physical or logical interfaces) =  
+(total configurable 802.1q VLANs) - (reserved VLANS) - (physical or logical interfaces) =  
 4094-999-eth0-loopback = **3093** by default (without any other
-configuration) </span>
+configuration)
 
 The equation for the number of configurable VXLANs looks like this:
 
@@ -91,11 +88,3 @@ The equation now looks like this:
 18 \* X = 11943
 
 663 = VXLANS (still configurable) for a total of **863**
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

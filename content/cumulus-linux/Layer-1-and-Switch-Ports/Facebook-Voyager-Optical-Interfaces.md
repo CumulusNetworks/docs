@@ -3,13 +3,13 @@ title: Facebook Voyager Optical Interfaces
 author: Cumulus Networks
 weight: 99
 aliases:
- - /display/CL37/Facebook-Voyager-Optical-Interfaces
+ - /display/DOCS/Facebook+Voyager+Optical+Interfaces
  - /pages/viewpage.action?pageId=8363049
 pageID: 8363049
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Facebook Voyager is a Broadcom Tomahawk-based switch with added Dense
 Wave Division Multiplexing (DWDM) ports that can connect to another
@@ -20,7 +20,7 @@ physical fiber, they do not interact with each other, similar to VLANs
 on a trunk. Each wavelength can transport very high speeds over very
 long distances.
 
-## <span>The Voyager Platform</span>
+## The Voyager Platform
 
 The Voyager platform has 16 ports on the front of the switch:
 
@@ -41,7 +41,7 @@ The `fc` designations on the Tomahawk stand for Falcon Core. Each AC400
 module has four 100G interfaces connected to the Tomahawk and two
 interfaces connected to the front of the box.
 
-### <span>Inside the AC400</span>
+### Inside the AC400
 
 The way in which the client ports are mapped to the network ports in an
 AC400 depends on the modulation format and coupling mode. Cumulus Linux
@@ -80,39 +80,19 @@ this modulation format. However, unlike other modulation formats that
 use independent mode, the coupled mode means that data from each client
 interface is carried on both of the network interfaces.
 
-### <span>Client to Network Connection</span>
+### Client to Network Connection
 
 For each of the five supported modulation configurations, the client
 interface to network interface connections are as follows:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>{{% imgOld 1 %}}</p></td>
-<td><p>In this configuration, two client interfaces, 0 and 2, are mapped to the two network interfaces. Client interfaces 1 and 3 are not used.</p></td>
-</tr>
-<tr class="even">
-<td><p>{{% imgOld 2 %}}</p></td>
-<td><p>In this configuration, two client interfaces are mapped to each network interface. Each network interface, therefore, has two tributaries.</p></td>
-</tr>
-<tr class="odd">
-<td><p>{{% imgOld 3 %}}</p>
-<p>{{% imgOld 4 %}}</p></td>
-<td><p>These configurations are combinations of the previous two.</p>
-<p>The network interface configured for QPSK connects to one client interface and the network interface configured for 16-QAM connects to two client interfaces.</p></td>
-</tr>
-<tr class="even">
-<td><p>{{% imgOld 5 %}}</p></td>
-<td><p>This configuration uses three client interfaces, for a total of 300Gbps; 150Gbps on each network interface. Because the network interfaces are coupled, they cannot be connected to different far-end systems. Each network interface carries three tributaries.</p></td>
-</tr>
-</tbody>
-</table>
+|||
+|--- |--- |
+|{{% imgOld 1 %}}|In this configuration, two client interfaces, 0 and 2, are mapped to the two network interfaces. Client interfaces 1 and 3 are not used.|
+|{{% imgOld 2 %}}|In this configuration, two client interfaces are mapped to each network interface. Each network interface, therefore, has two tributaries.|
+|{{% imgOld 3 %}} <br /> {{% imgOld 4 %}}|These configurations are combinations of the previous two. The network interface configured for QPSK connects to one client interface and the network interface configured for 16-QAM connects to two client interfaces.|
+|{{% imgOld 5 %}}|This configuration uses three client interfaces, for a total of 300Gbps; 150Gbps on each network interface. Because the network interfaces are coupled, they cannot be connected to different far-end systems. Each network interface carries three tributaries.|
 
-## <span>Configure the Voyager Ports</span>
+## Configure the Voyager Ports
 
 To configure the five modulation and coupling configurations described
 above, edit the `/etc/cumulus/ports.conf` file. The ports do not exist
@@ -122,81 +102,37 @@ The file has lines for the 12 QSPF28 ports. The four DWDM Line ports are
 labeled labeled **L1** thru **L4**. To program the AC400 modulation and
 coupling into the five configurations, configure these ports as follows:
 
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>ports.conf</p></th>
-<th><p>L1 Modulation</p></th>
-<th><p>L2 Modulation</p></th>
-<th><p>Independent/Coupled</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>L1=1x<br />
-L2=1x</p></td>
-<td><p>QPSK</p></td>
-<td><p>QPSK</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="even">
-<td><p>L1=1x<br />
-L2=2x</p></td>
-<td><p>QPSK</p></td>
-<td><p>16-QAM</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="odd">
-<td><p>L1=2x<br />
-L2=1x</p></td>
-<td><p>16-QAM</p></td>
-<td><p>QPSK</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="even">
-<td><p>L1=2x<br />
-L2=2x</p></td>
-<td><p>16-QAM</p></td>
-<td><p>16-QAM</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="odd">
-<td><p>L1=3/2<br />
-L2=3/2</p></td>
-<td><p>8-QAM</p></td>
-<td><p>8-QAM</p></td>
-<td><p>Coupled</p></td>
-</tr>
-</tbody>
-</table>
+|ports.conf|L1 Modulation|L2 Modulation|Independent/Coupled|
+|--- |--- |--- |--- |
+|L1=1x <br /><br /> L2=1x|QPSK|QPSK|Independent|
+|L1=1x <br /><br /> L2=2x|QPSK|16-QAM|Independent|
+|L1=2x <br /><br /> L2=1x|16-QAM|QPSK|Independent|
+|L1=2x <br /><br /> L2=2x|16-QAM|16-QAM|Independent|
+|L1=3/2 <br /><br /> L2=3/2|8-QAM|8-QAM|Coupled|
 
 The following example `/etc/cumulus/ports.conf` file shows configuration
 for all of the modes.
 
-    1=1x    # Creates swp1
-    2=2x    # Creates swp2s0 and swp2s1
-    3=4x    # Creates four 25G ports: swp3s0, swp3s1, swp3s2, and swp3s3
-    4=1x40G # Creates swp4
-    5=4x10G # Creates four 10G ports: swp5s0, swp5s1, swp5s2, and swp5s3
-    6=1x
-    7=1x
-    8=1x
-    9=1x
-    10=1x
-    11=1x
-    12=1x
-    L1=2x   # Creates swpL1s0 and swpL1s1
-    L2=1x   # Creates swpL2
-    L3=3/2  # Creates swpL3s0, swpL3s1, and swpL3s2
-    L4=3/2  # Creates no "swpL4" ports since L4 is ganged with L3
+```
+1=1x    # Creates swp1
+2=2x    # Creates swp2s0 and swp2s1
+3=4x    # Creates four 25G ports: swp3s0, swp3s1, swp3s2, and swp3s3
+4=1x40G # Creates swp4
+5=4x10G # Creates four 10G ports: swp5s0, swp5s1, swp5s2, and swp5s3
+6=1x
+7=1x
+8=1x
+9=1x
+10=1x
+11=1x
+12=1x
+L1=2x   # Creates swpL1s0 and swpL1s1
+L2=1x   # Creates swpL2
+L3=3/2  # Creates swpL3s0, swpL3s1, and swpL3s2
+L4=3/2  # Creates no "swpL4" ports since L4 is ganged with L3
+```
 
-## <span>Configure the Transponder Modules</span>
+## Configure the Transponder Modules
 
 The Voyager platform contains two AC400 transponder modules, which you
 configure with NCLU commands.
@@ -210,13 +146,12 @@ system; L1, L2, L3, or L4.
 Using NCLU commands is the preferred way to configure the transponder
 modules. However, as an alternative, you can edit the
 `/etc/cumulus/transponders.ini` file to make configuration changes. See
-[Edit the transponder.ini
-file](#src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
+[Edit the transponder.ini file](#edit-the-transponders-ini-file)
 below.
 
 {{%/notice%}}
 
-### <span>Set the Transponder State</span>
+### Set the Transponder State
 
 Each transponder module has a state, which is set to `ready` by default.
 The available transponder states are listed below.
@@ -233,22 +168,26 @@ To change the state of the module, run the `net add interface
 to change the state of the transponder module to low power for L2, run
 the following command:
 
-    cumulus@switch:~$ net add interface L2 state low-power
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface L2 state low-power
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 This command creates the following configuration snippet in the
 `/etc/cumulus/transponders.ini` file:
 
-    cumulus@switch:~$ cat /etc/cumulus/transponders.ini
-    ...
-    [AC400_2]
-    Location = 2
-    NetworkMode = independent
-    NetworkInterfaces = L1, L2
-    HostInterfaces = Host4, Host5, Host6, Host7
-    OperStatus = low_power
-    ...
+```
+cumulus@switch:~$ cat /etc/cumulus/transponders.ini
+...
+[AC400_2]
+Location = 2
+NetworkMode = independent
+NetworkInterfaces = L1, L2
+HostInterfaces = Host4, Host5, Host6, Host7
+OperStatus = low_power
+...
+```
 
 {{%notice note%}}
 
@@ -259,7 +198,7 @@ specified.
 
 {{%/notice%}}
 
-### <span>Disable the Transmitter</span>
+### Disable the Transmitter
 
 You can disable or enable the transmitter of an individual network
 interface.
@@ -268,39 +207,47 @@ To disable the transmitter of a network interface, run the `net add
 interface <trans-port> transmit-disable` command. The following example
 command disables the L1 transmitter:
 
-    cumulus@switch:~$ net add interface L1 transmit-disable
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface L1 transmit-disable
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 This command creates the following configuration snippet in the
 `/etc/cumulus/transponders.ini` file:
 
-    cumulus@switch:~$ cat /etc/cumulus/transponders.ini
-    ...
-    [L1]
-    Location = 0
-    TxEnable = false
-    ...
+```
+cumulus@switch:~$ cat /etc/cumulus/transponders.ini
+...
+[L1]
+Location = 0
+TxEnable = false
+...
+```
 
 To enable the transmitter of an individual network interface, run the
 `net del interface <trans-port> transmit-disable` command. The following
 example command enables the L1 transmitter:
 
-    cumulus@switch:~$ net del interface L1 transmit-disable
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net del interface L1 transmit-disable
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 This command creates the following configuration snippet in the
 `/etc/cumulus/transponders.ini` file:
 
-    cumulus@switch:~$ cat /etc/cumulus/transponders.ini
-    ...
-    [L1]
-    Location = 0
-    TxEnable = true
-    ...
+```
+cumulus@switch:~$ cat /etc/cumulus/transponders.ini
+...
+[L1]
+Location = 0
+TxEnable = true
+...
+```
 
-### <span>Change the Grid Spacing</span>
+### Change the Grid Spacing
 
 You can set grid spacing between two adjacent channels (the distance
 between channel frequencies) to 12.5GHz or 50GHz. The default spacing is
@@ -310,23 +257,26 @@ To change the grid spacing, run the `n``et add interface <trans-port>
 grid-spacing (12.5|50)` command. The following command sets the grid
 spacing on L2 to 12.5GHz:
 
-    cumulus@switch:~$ net add interface L2 grid-spacing 12.5
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface L2 grid-spacing 12.5
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
-<span style="color: #36424a;"> </span> This command creates the
-following configuration snippet in the `/etc/cumulus/transponders.ini`
+This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini`
 file:
 
-    cumulus@switch:~$ cat /etc/cumulus/transponders.ini
-    ...
-    [L2]
-    Location = 1
-    TxEnable = true
-    TxGridSpacing = 12.5ghz
-    ...
+```
+cumulus@switch:~$ cat /etc/cumulus/transponders.ini
+...
+[L2]
+Location = 1
+TxEnable = true
+TxGridSpacing = 12.5ghz
+...
+```
 
-### <span>Set the Channel Frequency </span>
+### Set the Channel Frequency
 
 To set the frequency used by the network interface, run the `net add
 interface <trans-port> frequency <trans-frequency>` command.
@@ -338,53 +288,59 @@ with the corresponding channel number and wavelength.
 
 The following example command sets the frequency used by L2 to 195.30:
 
-    cumulus@switch:~$ net add interface L2 frequency 195.30
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface L2 frequency 195.30
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 This command creates the following configuration snippet in the
 `/etc/cumulus/transponders.ini` file:
 
-    cumulus@switch:~$ cat /etc/cumulus/transponders.ini
-    ...
-    [L2]
-    Location = 1
-    TxEnable = true
-    TxGridSpacing = 50ghz
-    TxChannel = 84
-    ...
+```
+cumulus@switch:~$ cat /etc/cumulus/transponders.ini
+...
+[L2]
+Location = 1
+TxEnable = true
+TxGridSpacing = 50ghz
+TxChannel = 84
+...
+```
 
 The following example shows the command with the output when using tab
 completion:
 
-    cumulus@switch:~$ net add interface L1 frequency 195.<tab>
-    195.00 THz : Channel 78, Wavelength 1537.40 nm
-    195.05 THz : Channel 79, Wavelength 1537.00 nm
-    195.10 THz : Channel 80, Wavelength 1536.61 nm
-    195.15 THz : Channel 81, Wavelength 1536.22 nm
-    195.20 THz : Channel 82, Wavelength 1535.82 nm
-    195.25 THz : Channel 83, Wavelength 1535.43 nm
-    195.30 THz : Channel 84, Wavelength 1535.04 nm
-    195.35 THz : Channel 85, Wavelength 1534.64 nm
-    195.40 THz : Channel 86, Wavelength 1534.25 nm
-    195.45 THz : Channel 87, Wavelength 1533.86 nm
-    195.50 THz : Channel 88, Wavelength 1533.47 nm
-    195.55 THz : Channel 89, Wavelength 1533.07 nm
-    195.60 THz : Channel 90, Wavelength 1532.68 nm
-    195.65 THz : Channel 91, Wavelength 1532.29 nm
-    195.70 THz : Channel 92, Wavelength 1531.90 nm
-    195.75 THz : Channel 93, Wavelength 1531.51 nm
-    195.80 THz : Channel 94, Wavelength 1531.12 nm
-    195.85 THz : Channel 95, Wavelength 1530.72 nm
-    195.90 THz : Channel 96, Wavelength 1530.33 nm
-    195.95 THz : Channel 97, Wavelength 1529.94 nm
+```
+cumulus@switch:~$ net add interface L1 frequency 195.<tab>
+195.00 THz : Channel 78, Wavelength 1537.40 nm
+195.05 THz : Channel 79, Wavelength 1537.00 nm
+195.10 THz : Channel 80, Wavelength 1536.61 nm
+195.15 THz : Channel 81, Wavelength 1536.22 nm
+195.20 THz : Channel 82, Wavelength 1535.82 nm
+195.25 THz : Channel 83, Wavelength 1535.43 nm
+195.30 THz : Channel 84, Wavelength 1535.04 nm
+195.35 THz : Channel 85, Wavelength 1534.64 nm
+195.40 THz : Channel 86, Wavelength 1534.25 nm
+195.45 THz : Channel 87, Wavelength 1533.86 nm
+195.50 THz : Channel 88, Wavelength 1533.47 nm
+195.55 THz : Channel 89, Wavelength 1533.07 nm
+195.60 THz : Channel 90, Wavelength 1532.68 nm
+195.65 THz : Channel 91, Wavelength 1532.29 nm
+195.70 THz : Channel 92, Wavelength 1531.90 nm
+195.75 THz : Channel 93, Wavelength 1531.51 nm
+195.80 THz : Channel 94, Wavelength 1531.12 nm
+195.85 THz : Channel 95, Wavelength 1530.72 nm
+195.90 THz : Channel 96, Wavelength 1530.33 nm
+195.95 THz : Channel 97, Wavelength 1529.94 nm
+```
 
 To see a complete list of the frequencies, channels, and wavelengths,
 run the `net show transponder frequency-map` command (described in
 [Display Available
-Frequencies](#src-8363049_FacebookVoyagerOpticalInterfaces-display_channel_freq)).
+Frequencies](#display-available-channel-frequencies).
 
-### <span>Set the Transmit Power</span>
+### Set the Transmit Power
 
 To set the amount of transmit power for a network interface, run the
 `net add interface <trans-port> power <trans-dBm>` command.
@@ -393,25 +349,28 @@ To set the amount of transmit power for a network interface, run the
 This value can range from -35.0 to 10.0. The following example command
 sets the transmit power for L1 to 10.0 dBm.
 
+```
     cumulus@switch:~$ net add interface L1 power 10.0
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
+```
 
-<span style="color: #36424a;"> </span> This command creates the
-following configuration snippet in the `/etc/cumulus/transponders.ini`
+This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini`
 file:
 
-    cumulus@switch:~$ cat /etc/cumulus/transponders.ini
-    ...
-    [L1]
-    Location = 0
-    TxEnable = true
-    TxGridSpacing = 50ghz
-    TxChannel = 52
-    OutputPower = 10.0
-    ...
+```
+cumulus@switch:~$ cat /etc/cumulus/transponders.ini
+...
+[L1]
+Location = 0
+TxEnable = true
+TxGridSpacing = 50ghz
+TxChannel = 52
+OutputPower = 10.0
+...
+```
 
-### <span>Change the Modulation</span>
+### Change the Modulation
 
 To change the modulation technique used on a network interface, run the
 `net add interface <trans-port> modulation (16-qam|8-qam|pm-qpsk)`
@@ -419,9 +378,11 @@ command. The available modulation options are 16-qam, 8-qam, and
 pm-qpsk. The following example command changes the modulation on L1 to
 8-qam:
 
-    cumulus@switch:~$ net add interface L1 modulation 8-qam
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface L1 modulation 8-qam
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 Changing the modulation also changes the Linux interfaces available in
 the system, removing existing interfaces and adding the new ones.
@@ -447,7 +408,7 @@ pm-qpsk. Attempting to change the modulation from pm-qpsk while
 15%\_ac100 FEC is configured is not allowed. First change the FEC mode
 to something other than 15%\_ac100 and then the modulation.
 
-### <span>Set the Differential Encoding</span>
+### Set the Differential Encoding
 
 To select non-differential encoding on the network interface, run the
 `net add interface <trans-port> non-differential` command. To revert to
@@ -455,52 +416,60 @@ differential encoding (the default), run the `net del interface
 <trans-port> non-differential` command. The following example command
 selects non-differential encoding for L1:
 
-    cumulus@switch:~$ net add interface L1 non-differential
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface L1 non-differential
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 This command creates the following configuration snippet in the
 `/etc/cumulus/transponders.ini` file:
 
-    cumulus@switch:~$ cat /etc/cumulus/transponders.ini
-    ...
-    [L1]
-    Location = 0
-    TxEnable = true
-    TxGridSpacing = 50ghz
-    TxChannel = 52
-    OutputPower = 10.0
-    TxFineTuneFrequency = 0
-    MasterEnable = true
-    ModulationFormat = 16-qam
-    DifferentialEncoding = false
-    ...
+```
+cumulus@switch:~$ cat /etc/cumulus/transponders.ini
+...
+[L1]
+Location = 0
+TxEnable = true
+TxGridSpacing = 50ghz
+TxChannel = 52
+OutputPower = 10.0
+TxFineTuneFrequency = 0
+MasterEnable = true
+ModulationFormat = 16-qam
+DifferentialEncoding = false
+...
+```
 
 The following example command reverts to differential encoding (the
 default) for L1:
 
-    cumulus@switch:~$ net del interface L1 non-differential
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net del interface L1 non-differential
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 This command creates the following configuration snippet in the
 `/etc/cumulus/transponders.ini` file:
 
-    cumulus@switch:~$ cat /etc/cumulus/transponders.ini
-    ...
-    [L1]
-    Location = 0
-    TxEnable = true
-    TxGridSpacing = 50ghz
-    TxChannel = 52
-    OutputPower = 10.0
-    TxFineTuneFrequency = 0
-    MasterEnable = true
-    ModulationFormat = 16-qam
-    DifferentialEncoding = true
-    ...
+```
+cumulus@switch:~$ cat /etc/cumulus/transponders.ini
+...
+[L1]
+Location = 0
+TxEnable = true
+TxGridSpacing = 50ghz
+TxChannel = 52
+OutputPower = 10.0
+TxFineTuneFrequency = 0
+MasterEnable = true
+ModulationFormat = 16-qam
+DifferentialEncoding = true
+...
+```
 
-### <span>Change Forward Error Correction</span>
+### Change Forward Error Correction
 
 To select Forward Error Correction (FEC) mode, run the `net add
 interface <trans-port> fec (15%|15%_ac100|25%)` command. The available
@@ -508,62 +477,67 @@ modes are `15%` (15% overhead SDFEC), `15%_ac100` (15% overhead SDFEC
 compatible with AC100), and `25%` ( 25% overhead SDFEC). The following
 example command sets FEC mode on L1 to 15%:
 
-    cumulus@switch:~$ net add interface L1 fec 15%
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface L1 fec 15%
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 This command creates the following configuration snippet in the
 `/etc/cumulus/transponders.ini` file:
 
-    cumulus@switch:~$ cat /etc/cumulus/transponders.ini
-    ...
-    [L1]
-    Location = 0
-    TxEnable = true
-    TxGridSpacing = 50ghz
-    TxChannel = 52
-    OutputPower = 10.0
-    TxFineTuneFrequency = 0
-    MasterEnable = true
-    ModulationFormat = 16-qam
-    DifferentialEncoding = true
-    FecMode = 15%
-    ...
+```
+cumulus@switch:~$ cat /etc/cumulus/transponders.ini
+...
+[L1]
+Location = 0
+TxEnable = true
+TxGridSpacing = 50ghz
+TxChannel = 52
+OutputPower = 10.0
+TxFineTuneFrequency = 0
+MasterEnable = true
+ModulationFormat = 16-qam
+DifferentialEncoding = true
+FecMode = 15%
+...
+```
 
-### <span>Configure a Line Side Loopback</span>
+### Configure a Line Side Loopback
 
 Line side loopback mode enables you to send and receive data from the
 same network interface port to verify that the port is operational.
 
 To enable line side loopback mode, run the `net add interface
-<interface> facility-loopback` command. You can enable
-<span style="color: #000000;"> line side loopback mode on one or
-multiple interfaces. </span> The following example enables loopback mode
+<interface> facility-loopback` command. You can enable line side loopback mode on one or
+multiple interfaces. The following example enables loopback mode
 on the L1, L2, L3, and L4 network interfaces:
 
-    cumulus@switch:~$ net add interface L1-4 facility-loopback
-    cumulus@switch:~$ net pending 
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface L1-4 facility-loopback
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 To disable loopback mode, run the `net del interface <interface>
 facility-loopback` command. The following example disables loopback mode
 on the L1, L2, L3, and L4 network interfaces:
 
-    cumulus@switch:~$ net del interface L1-4 facility-loopback
-    cumulus@switch:~$ net pending 
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net del interface L1-4 facility-loopback
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 {{%notice note%}}
 
 To enable loopback on the client interface (internal loopback for DWDM
-testing), edit the `/etc/cumulus/transponders.ini` file. See [Edit the
-transponder.ini
-file](#src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
-below
+testing), edit the `/etc/cumulus/transponders.ini` file. See
+[Edit the transponder.ini file](#edit-the-transponders-ini-file) below.
 
 {{%/notice%}}
 
-### <span>Display the Transponder Status</span>
+### Display the Transponder Status
 
 To display the current status of the transponder module, run the `net
 show transponder` command. The first two lines of command output
@@ -571,32 +545,33 @@ displays the status of the module and the next section displays the
 status of the network interfaces. This is repeated for each module in
 the system.
 
-    cumulus@switch:~$ net show transponder
-    Module: 1 ready Acacia Comm Inc. AC400-004-330 S/N:170212599 53.88C 11.89V
-        Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
+```
+cumulus@switch:~$ net show transponder
+Module: 1 ready Acacia Comm Inc. AC400-004-330 S/N:170212599 53.88C 11.89V
+    Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
      
-                                               Network Interfaces                    
-                                         L3                           L4             
-                           ---------------------------  ---------------------------  
-                Modulation 16-qam                       16-qam                       
-                 Frequency 193.70 THz, Channel 52       193.70 THz, Channel 52      
-               Current BER 1.428e-04                    1.387e-05                    
-              Current OSNR 84.90dBm                     84.80dBm
-    Current Chromatic Disp 13ps/nm                      9ps/nm
-               TX/RX Power 0.99dBm/0.66dBm              1.00dBm/0.43dBm              
-                  Encoding differential                 differential                 
-                 Alignment TX & RX                      TX & RX                      
-              Grid Spacing 50ghz                        50ghz                        
-                  FEC Mode 25%                          25%                          
-    Uncorrectable FEC Errs 0                            0                          
-             TX/RX Turn-up power_adjusted/locked        power_adjusted/locked        
+                                            Network Interfaces                    
+                                      L3                           L4             
+                        ---------------------------  ---------------------------  
+            Modulation 16-qam                       16-qam                       
+              Frequency 193.70 THz, Channel 52      193.70 THz, Channel 52      
+            Current BER 1.428e-04                   1.387e-05                    
+          Current OSNR 84.90dBm                     84.80dBm
+Current Chromatic Disp 13ps/nm                      9ps/nm
+            TX/RX Power 0.99dBm/0.66dBm             1.00dBm/0.43dBm              
+              Encoding differential                 differential                 
+              Alignment TX & RX                     TX & RX                      
+          Grid Spacing 50ghz                        50ghz                        
+              FEC Mode 25%                          25%                          
+Uncorrectable FEC Errs 0                            0                          
+          TX/RX Turn-up power_adjusted/locked       power_adjusted/locked        
      
-    Module: 2 ready Acacia Comm Inc. AC400-004-330 S/N:170212585 55.00C 11.90V
-        Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
+Module: 2 ready Acacia Comm Inc. AC400-004-330 S/N:170212585 55.00C 11.90V
+    Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
      
-                                               Network Interfaces                    
-                                         L1                           L2             
-                           ---------------------------  ---------------------------  
+                                            Network Interfaces                    
+                                      L1                           L2             
+                        ---------------------------  ---------------------------  
                 Modulation 16-qam                       16-qam                       
                  Frequency 193.70 THz, Channel 52       193.70 THz, Channel 52       
                Current BER 7.039e-05                    7.404e-05                    
@@ -609,20 +584,21 @@ the system.
                   FEC Mode 25%                          25%                          
     Uncorrectable FEC Errs 0                            0                            
              TX/RX Turn-up power_adjusted/locked        power_adjusted/locked
+```
 
 To display only the status of a particular module, use the `module
 <trans-module>` option, which specifies the transponder module number.
 The following example command displays the status of transponder module
 1:
 
-``` 
+```
 cumulus@switch:~$ net show transponder module 1
 Module: 1 ready Acacia Comm Inc. AC400-004-330 S/N:170212599 53.75C 11.89V
     Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
  
                                            Network Interfaces                    
                                      L3                           L4             
-                       ---------------------------  --------------------------- 
+                       ---------------------------  ---------------------------
             Modulation 16-qam                       16-qam          
              Frequency 193.70 THz, Channel 52       193.70 THz, Channel 52       
            Current BER 1.626e-04                    1.343e-05
@@ -692,7 +668,7 @@ format:
                     },
     ...
 
-### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-display_channel_freq" class="confluence-anchor-link"></span><span>Display Available Channel Frequencies</span>
+### Display Available Channel Frequencies
 
 To display a map of available channel frequencies, numbers, and
 wavelengths, run the `net show transponder frequency-map [json]`
@@ -749,7 +725,7 @@ frequencies, numbers, and wavelengths in JSON format.
         ],
     ...
 
-### <span>Display the Current Transponder Configuration</span>
+### Display the Current Transponder Configuration
 
 To display the current configuration state of the transponders, run the
 following command:
@@ -757,54 +733,54 @@ following command:
     cumulus@switch:~$ net show configuration transponders
      
     transponders
-      
+
       AC400_1
-        
+
         Location
           1
-        
+
         NetworkMode
           independent
-        
+
         L3
-          
+
           Location
             0
-          
+
           TxEnable
             true
-          
+
           TxGridSpacing
             50ghz
-          
+
           TxChannel
             52
-          
+
           OutputPower
             1
-          
+
           TxFineTuneFrequency
             0
-          
+
           MasterEnable
             true
-          
+
           ModulationFormat
             16-qam
-          
+
           DifferentialEncoding
             true
-          
+
           FecMode
             25%
-          
+
           Loopback
             false
-          
+
           TxTributaryIndependent
             0
             1
-          
+
           TxTributaryCoupled
             0
             1
@@ -812,12 +788,12 @@ following command:
             15
     ...
 
-### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-edit_transponders.ini" class="confluence-anchor-link"></span><span>Edit the transponders.ini File</span>
+### Edit the transponders.ini File
 
 As an alternative to using NCLU commands to configure the transponder
 modules (described above), you can edit the
 `/etc/cumulus/transponders.ini` file, then [Initiate a hardware
-update](#src-8363049_FacebookVoyagerOpticalInterfaces-initiate-hardware-update).
+update](#initiate-a-hardware-update).
 
 {{%notice note%}}
 
@@ -839,7 +815,9 @@ file. Key-value pairs have the form `key=value`. Spaces before and after
 the = character are ignored. Lines beginning with \# and blank lines are
 considered comments.
 
-Here is an example `/etc/cumulus/transponders.ini` file:
+<details>
+
+<summary>Here is an example `/etc/cumulus/transponders.ini` file:</summary>
 
     #
     # Configuration file for Voyager transponder modules
@@ -1065,6 +1043,8 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     RxTributaryCoupled=65535
     Loopback=false
 
+</details>
+
 The file contains four configuration groups:
 
   - The Modules group
@@ -1075,7 +1055,7 @@ The file contains four configuration groups:
 
   - The client interface groups
 
-#### <span>Modules Group</span>
+#### Modules Group
 
 The **Modules** **group** identifies the names of the other groups in
 the file. This is the *root* group from which all other groups are
@@ -1087,28 +1067,22 @@ represents a transponder in the system. There must be a group within the
 file that has the same name as each value in the list.
 
 The following example shows that there are two modules in the system
-named AC400\_1 and AC400\_2. The `transponders.ini` file must conain
+named AC400\_1 and AC400\_2. The `transponders.ini` file must contain
 these two groups.
 
     [Modules]
     Names=AC400_1,AC400_2
 
-#### <span>Module Groups</span>
+#### Module Groups
 
-The **module groups** are i <span style="color: #222222;"> ndividual
-groups for each of the predefined modules and </span> define the
-attributes of the transponders in the system. The name of a module group
+The **module groups** are individual groups for each of the predefined modules
+and define the attributes of the transponders in the system. The name of a module group
 is defined in the values of the `Names` key in the Modules group (shown
 above).
 
 The following table describes the key-value pairs in the module groups.
 
 <table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th><p>Key</p></th>
@@ -1175,7 +1149,7 @@ file. The operational status of the module is `ready`.
     HostInterfaces=Client0,Client1,Client2,Client3
     OperStatus=ready
 
-#### <span>Network Interface Groups</span>
+#### Network Interface Groups
 
 The network interface groups define the attributes of the network
 interfaces on the module. The name of a network interface group is
@@ -1203,7 +1177,7 @@ interface groups.
 <td><p><code>Location</code></p></td>
 <td><p>Integer: 0-1</p></td>
 <td><p>The location or index of the network interface within a module. The Voyager AC400 modules each have two network interfaces that are connected to the external ports as follows:</p>
-<div class="tablewrap">
+
 <table>
 <thead>
 <tr class="header">
@@ -1235,7 +1209,7 @@ interface groups.
 </tr>
 </tbody>
 </table>
-</div></td>
+</td>
 </tr>
 <tr class="even">
 <td><p><code>TxEnable</code></p></td>
@@ -1254,7 +1228,6 @@ interface groups.
 <td><details>
 <p>The channel number upon which the network interface transmits and receives data.</p>
 <summary>Click here to see the frequency and wavelength per channel </summary>
-<div class="tablewrap">
 <table>
 <colgroup>
 <col style="width: 33%" />
@@ -1774,7 +1747,6 @@ Number</p></th>
 </tr>
 </tbody>
 </table>
-</div>
 </details></td>
 </tr>
 <tr class="odd">
@@ -1861,7 +1833,7 @@ disabled.
     TxTributaryCoupled=0,1,2,15
     Loopback=false
 
-#### <span>Client Interface Groups</span>
+#### Client Interface Groups
 
 The client interface groups define the attributes of the client
 interfaces on the module. The name of a client interface group is
@@ -1934,8 +1906,6 @@ The location or index of the client interface within a module. The
 Voyager AC400 modules each have four network interfaces that are
 connected to the Tomahawk ASIC as follows:
 
-<div class="tablewrap">
-
 | Module Location | Network Interface Location | Tomahawk Falcon Core |
 | --------------- | -------------------------- | -------------------- |
 | 1               | 0                          | fc11                 |
@@ -1947,28 +1917,16 @@ connected to the Tomahawk ASIC as follows:
 | 2               | 2                          | fc17                 |
 | 2               | 3                          | fc16                 |
 
-</div>
-
 </td>
-
 </tr>
-
 <tr>
-
 <td class="confluenceTd" rowspan="1" colspan="1">
-
 `Rate`
-
 </td>
-
 <td class="confluenceTd" rowspan="1" colspan="1">
-
 String: `otu4` or `100ge`
-
 </td>
-
 <td class="confluenceTd" rowspan="1" colspan="1">
-
 The rate at which the client interface operates. Because the client
 interfaces on Voyager are always connected to a Tomahawk ASIC, always
 set this value to `100ge`.
@@ -2241,7 +2199,7 @@ data from the appropriate network interface, not this attribute.
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-<span id="src-8363049_FacebookVoyagerOpticalInterfaces-terminalLoopback"></span>`Loopback`
+`Loopback`
 
 </td>
 
@@ -2287,7 +2245,7 @@ interface group.
     RxTributaryCoupled=0
     Loopback=false
 
-### <span id="src-8363049_FacebookVoyagerOpticalInterfaces-initiate-hardware-update" class="confluence-anchor-link"></span><span>Initiate a Hardware Update</span>
+### Initiate a Hardware Update
 
 After making a change to the `transponders.ini` file, you must program
 the change into the hardware by issuing a `systemd reload` command:
@@ -2324,11 +2282,3 @@ messages.
     2018-04-24T18:18:49.965701+00:00 cumulus voyager_tai_adapter[5793]: Setting FecEncoder (268435459) to false, was true
     ...
     2018-04-24T18:21:24.164981+00:00 cumulus voyager_tai_adapter[5793]: Config has been reloaded
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

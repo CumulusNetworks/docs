@@ -3,7 +3,7 @@ title: Managing Cumulus Linux Disk Images
 author: Cumulus Networks
 weight: 41
 aliases:
- - /display/CL34/Managing-Cumulus-Linux-Disk-Images
+ - /display/CL34/Managing+Cumulus+Linux+Disk+Images
  - /pages/viewpage.action?pageId=7112388
 pageID: 7112388
 product: Cumulus Linux
@@ -15,12 +15,12 @@ The Cumulus Linux operating system resides on a switch as a *disk
 image*. This section discusses how to manage the image, including
 installation and upgrading.
 
-## <span id="src-7112388_ManagingCumulusLinuxDiskImages-new_image" class="confluence-anchor-link"></span><span>Installing a New Cumulus Linux Image</span>
+## <span id="src-7112388_ManagingCumulusLinuxDiskImages-new_image" class="confluence-anchor-link"></span>Installing a New Cumulus Linux Image</span>
 
 For details, read the chapter, [Installing a New Cumulus Linux
 Image](/version/cumulus-linux-343/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
 
-## <span id="src-7112388_ManagingCumulusLinuxDiskImages-upgrade" class="confluence-anchor-link"></span><span>Upgrading Cumulus Linux</span>
+## <span id="src-7112388_ManagingCumulusLinuxDiskImages-upgrade" class="confluence-anchor-link"></span>Upgrading Cumulus Linux</span>
 
 There are two ways you can upgrade Cumulus Linux:
 
@@ -35,7 +35,7 @@ There are two ways you can upgrade Cumulus Linux:
 The entire upgrade process is described in [Upgrading Cumulus
 Linux](/version/cumulus-linux-343/Installation-Management/Upgrading-Cumulus-Linux).
 
-## <span>x86 vs ARM Switches</span>
+## x86 vs ARM Switches</span>
 
 You can easily determine whether your switch is on an x86 or ARM
 platform by using the `uname -m` command.
@@ -54,7 +54,7 @@ You can also visit the HCL ([hardware compatibility
 list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
 to look at your hardware to determine the processor type.
 
-## <span>Reprovisioning the System (Restart Installer)</span>
+## Reprovisioning the System (Restart Installer)</span>
 
 You can reprovision the system, wiping out the contents of the whole
 switch.
@@ -87,7 +87,7 @@ using `onie-select -c`:
 
 {{%/notice%}}
 
-## <span>Uninstalling All Images and Removing the Configuration</span>
+## Uninstalling All Images and Removing the Configuration</span>
 
 To remove all installed images and configurations, returning the switch
 to its factory defaults, use `onie-select -k`:
@@ -117,7 +117,7 @@ using `onie-select -c`:
 
 {{%/notice%}}
 
-## <span>Booting into Rescue Mode</span>
+## Booting into Rescue Mode</span>
 
 If your system becomes broken is some way, you may be able to correct
 things by booting into ONIE rescue mode. In rescue mode, the file
@@ -150,7 +150,7 @@ by using `onie-select -c`:
 
 {{%/notice%}}
 
-## <span>Inspecting Image File Contents</span>
+## Inspecting Image File Contents</span>
 
 The Cumulus Linux installation disk image file is executable. From a
 running switch, you can display the contents of the Cumulus Linux image
@@ -226,7 +226,7 @@ Finally, you can verify the contents of the image file by passing the
     -rw-r--r-- 1 1063 3000   5391348 Jun 10 18:44 vmlinuz-initrd.tar.xz
     -rw-r--r-- 1 1063 3000        44 Jun 10 18:44 vmlinuz-initrd.tar.xz.sha1 
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Open Network Install Environment (ONIE) Home
     Page](http://opencomputeproject.github.io/onie/)

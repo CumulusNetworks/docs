@@ -3,13 +3,13 @@ title: IGMP and MLD Snooping
 author: Cumulus Networks
 weight: 129
 aliases:
- - /display/CL37/IGMP-and-MLD-Snooping
+ - /display/DOCS/IGMP+and+MLD+Snooping
  - /pages/viewpage.action?pageId=8362696
 pageID: 8362696
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 IGMP (Internet Group Management Protocol) and MLD (Multicast Listener
 Discovery) snooping are implemented in the bridge driver in the Cumulus
@@ -24,7 +24,7 @@ In Cumulus Linux 3.7.4 and later, IGMP and MLD snooping is supported
 over VXLAN bridges on Broadcom switches; however, this feature is *not*
 enabled by default. To enable IGMP and MLD over VXLAN, see [Configure
 IGMP/MLD Snooping over
-VXLAN](#src-8362696_safe-id-SUdNUGFuZE1MRFNub29waW5nLUNvbmZpZ3VyZUlHTVAvTUxEU25vb3BpbmdvdmVyVlhMQU4).
+VXLAN](#configure-igmp-mld-snooping-over-vxlan).
 
 {{%/notice%}}
 
@@ -46,7 +46,7 @@ ports interested in receiving multicast traffic destined to that group.
 
 {{% imgOld 0 %}}
 
-## <span>Configure IGMP/MLD Snooping over VXLAN</span>
+## Configure IGMP/MLD Snooping over VXLAN
 
 Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN
 bridges on Broadcom switches, where VXLAN ports are set as router ports.
@@ -60,13 +60,13 @@ mcsnoop yes` command:
 
 Cumulus Networks recommends that you also configure IGMP/MLD querier.
 See [Configure IGMP/MLD
-Querier](#src-8362696_safe-id-SUdNUGFuZE1MRFNub29waW5nLUNvbmZpZ3VyZUlHTVAvTUxEUXVlcmllcg),
+Querier](#configure-igmp-mld-querier),
 below.
 
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge
 <bridge> mcsnoop no` command.
 
-## <span>Configure IGMP/MLD Querier</span>
+## Configure IGMP/MLD Querier
 
 If no multicast router is sending queries to configure IGMP/MLD querier
 on the switch, you can add a configuration similar to the following in
@@ -80,13 +80,13 @@ For an explanation of the relevant parameters, see the
 `ifupdown-addons-interfaces` man page.
 
 For a [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode),
+bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
 use a configuration like the following:
 
     auto bridge.100
     vlan bridge.100
       bridge-igmp-querier-src 123.1.1.1
-     
+
     auto bridge
     iface bridge
       bridge-ports swp1 swp2 swp3
@@ -107,8 +107,8 @@ You can specify a range of VLANs as well. For example:
       bridge-igmp-querier-src 123.1.1.1
 
 For a bridge in [traditional
-mode](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/),
-use a configuration like the following:
+mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/), use a
+configuration like the following:
 
     auto br0
     iface br0
@@ -118,14 +118,10 @@ use a configuration like the following:
       bridge-mcquerier 1
       bridge-mcqifaddr 1
 
-## <span>Disable IGMP and MLD Snooping</span>
+## Disable IGMP and MLD Snooping
 
-<span id="src-8362696_IGMPandMLDSnooping-igmp_disable"></span>To disable
+To disable
 IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
-
-{{%notice info%}}
-
-**Example Disable IGMP MLD Snooping Configuration**
 
 The example NCLU commands below create a VLAN-aware bridge interface for
 a VRR-enabled network:
@@ -146,9 +142,7 @@ example bridge in `/etc/network/interfaces`:
       bridge-vids 100 200
       bridge-vlan-aware yes
 
-{{%/notice%}}
-
-## <span>Troubleshooting</span>
+## Troubleshooting
 
 To show the IGMP/MLD snooping bridge state, run `brctl showstp
 <bridge>`:
@@ -211,7 +205,7 @@ command. To show router ports and group information use the `bridge -d
      dev bridge port swp2 grp ff1a::9 permanent 0.00
      router ports on bridge: swp3
 
-## <span>Related Information</span>
+## Related Information
 
   - [tools.ietf.org/html/rfc4541](https://tools.ietf.org/html/rfc4541)
 

@@ -3,7 +3,7 @@ title: OpenStack Neutron ML2 and Cumulus Linux
 author: Cumulus Networks
 weight: 225
 aliases:
- - /display/CL321/OpenStack-Neutron-ML2-and-Cumulus-Linux
+ - /display/CL321/OpenStack+Neutron+ML2+and+Cumulus+Linux
  - /pages/viewpage.action?pageId=5127086
 pageID: 5127086
 product: Cumulus Linux
@@ -51,7 +51,7 @@ Cumulus Linux switches, you need to install two packages:
 
 {{% imgOld 0 %}}
 
-## <span>Installing and Configuring the REST API</span>
+## Installing and Configuring the REST API</span>
 
 To install the `python-falcon` and `python-cumulus-restapi` packages,
 follow these instructions:
@@ -88,7 +88,7 @@ follow these instructions:
 Additional REST API calls have been added to support the configuration
 of bridge using the bridge name instead of network ID.
 
-## <span>Installing and Configuring the Cumulus Networks Modular Layer 2 Mechanism Driver</span>
+## Installing and Configuring the Cumulus Networks Modular Layer 2 Mechanism Driver</span>
 
 You need to install the Cumulus Networks ML2 mechanism driver on your
 Neutron host, which is available upstream:
@@ -130,11 +130,11 @@ You configure them in the
     value is *False*.
 
   - `new_bridge` — Enables/disables [VLAN-aware bridge
-    mode](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+    mode](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
     for the bridge configuration. The default value is *False*, so a
     traditional mode bridge is created.
 
-## <span>Demo</span>
+## Demo</span>
 
 A demo involving OpenStack with Cumulus Linux is available in the
 [Cumulus Networks knowledge

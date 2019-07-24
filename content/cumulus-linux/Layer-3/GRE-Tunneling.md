@@ -3,13 +3,13 @@ title: GRE Tunneling
 author: Cumulus Networks
 weight: 199
 aliases:
- - /display/CL37/GRE-Tunneling
+ - /display/DOCS/GRE+Tunneling
  - /pages/viewpage.action?pageId=8362966
 pageID: 8362966
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 {{%notice warning%}}
 
@@ -59,7 +59,7 @@ the outer IPv4 header.
 
 {{% imgOld 0 %}}
 
-## <span>Configure GRE Tunneling</span>
+## Configure GRE Tunneling
 
 To configure GRE tunneling, you create a GRE tunnel interface with
 routes for tunneling on both endpoints as follows:
@@ -141,7 +141,7 @@ the following commands directly in the `/etc/network/interfaces` file.
 For more information about the `pre-up`, `post-up`, and `post-down`
 commands, run the `man interfaces` command.
 
-## <span>Verify GRE Tunnel Settings</span>
+## Verify GRE Tunnel Settings
 
 Use the `ip tunnel show` command to check GRE tunnel settings:
 
@@ -149,7 +149,7 @@ Use the `ip tunnel show` command to check GRE tunnel settings:
     gre0: gre/ip remote any local any ttl inherit nopmtudisc
     Tunnel-R1: gre/ip remote 10.0.0.2 local 10.0.0.9 ttl 255
 
-## <span>Delete a GRE Tunnel Interface</span>
+## Delete a GRE Tunnel Interface
 
 Use the `ip tunnel del` command to delete a GRE tunnel, remove the
 tunnel interface, and remove the routes configured with the tunnel
@@ -165,7 +165,7 @@ file instead of using the `ip tunnel del` command. Make sure you run the
 
 {{%/notice%}}
 
-## <span>Change GRE Tunnel Settings</span>
+## Change GRE Tunnel Settings
 
 Use the `ip tunnel change` command to make changes to the GRE tunnel
 settings. The following example changes the remote underlay IP address
@@ -181,13 +181,3 @@ command. Make sure you run the `ifreload -a` command after you update
 the interfaces file.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

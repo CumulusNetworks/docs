@@ -3,7 +3,7 @@ title: Configuring the NetQ Virtual Environment
 author: Cumulus Networks
 weight: 27
 aliases:
- - /display/NETQ10/Configuring-the-NetQ-Virtual-Environment
+ - /display/NETQ10/Configuring+the+NetQ+Virtual+Environment
  - /pages/viewpage.action?pageId=6488222
 pageID: 6488222
 product: Cumulus NetQ
@@ -22,7 +22,7 @@ topology](https://github.com/cumulusnetworks/cldemo-vagrant). This
 section provides high level instructions for installing and configuring
 the virtual environment.
 
-## <span>Setting up the Demo Environment with Vagrant and VirtualBox</span>
+## Setting up the Demo Environment with Vagrant and VirtualBox</span>
 
 {{%notice note%}}
 

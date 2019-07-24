@@ -3,7 +3,7 @@ title: Cumulus RMP User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/RMP30/Cumulus-RMP-User-Guide
+ - /display/RMP30/Cumulus+RMP+User+Guide
  - /pages/viewpage.action?pageId=5118664
 pageID: 5118664
 product: Cumulus RMP
@@ -12,7 +12,7 @@ imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
 subsection: true
 ---
-## <span>Welcome to Cumulus Networks</span>
+## Welcome to Cumulus Networks</span>
 
 We are transforming networking with Cumulus Linux, the industry's first,
 full-featured Linux operating system for networking hardware. Cumulus

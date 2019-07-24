@@ -3,18 +3,18 @@ title: Introduction to Routing Protocols
 author: Cumulus Networks
 weight: 171
 aliases:
- - /display/CL37/Introduction-to-Routing-Protocols
+ - /display/DOCS/Introduction+to+Routing+Protocols
  - /pages/viewpage.action?pageId=8362913
 pageID: 8362913
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 This chapter discusses the various routing protocols, and how to
 configure them.
 
-## <span>Routing Protocols</span>
+## Routing Protocols
 
 A *routing protocol* dynamically computes reachability between various
 end points. This enables communication to work around link and node
@@ -36,7 +36,7 @@ this information to determine the routes to each end station. To scale
 the amount of information that needs to be exchanged, routes are
 computed on address prefixes rather than on every end point address.
 
-## <span>Configure Routing Protocols</span>
+## Configure Routing Protocols
 
 A routing protocol needs to know three pieces of information, at a
 minimum:
@@ -54,11 +54,11 @@ differently.
 The way they answer these questions affects the network design and
 thereby configuration. For example, in a link-state protocol such as
 OSPF (see [Open Shortest Path First (OSPF)
-Protocol](/version/cumulus-linux-377/Layer-3/Open-Shortest-Path-First---OSPF))
-or IS-IS, complete local information (links and attached address
-prefixes) about a node is disseminated to every other node in the
-network. Since the state that a node has to keep grows rapidly in such a
-case, link-state protocols typically limit the number of nodes that
+Protocol](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF)) or
+IS-IS, complete local information (links and attached address prefixes)
+about a node is disseminated to every other node in the network. Since
+the state that a node has to keep grows rapidly in such a case,
+link-state protocols typically limit the number of nodes that
 communicate this way. They allow for bigger networks to be built by
 breaking up a network into a set of smaller subnetworks (which are
 called areas or levels), and by advertising summarized information about
@@ -68,7 +68,7 @@ Besides the two critical pieces of information mentioned above,
 protocols have other parameters that can be configured. These are
 usually specific to each protocol.
 
-## <span>Protocol Tuning</span>
+## Protocol Tuning
 
 Most protocols provide certain tunable parameters that are specific to
 convergence during changes.

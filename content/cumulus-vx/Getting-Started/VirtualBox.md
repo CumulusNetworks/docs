@@ -8,8 +8,8 @@ aliases:
 pageID: 5126701
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 The following sections describe how to import and set up a
 two-leaf/two-spine Cumulus VX topology with VirtualBox.
@@ -22,14 +22,14 @@ documentation](https://www.virtualbox.org/wiki/Documentation).
 
 {{%/notice%}}
 
-## <span>Create a Cumulus VX VM with VirtualBox</span>
+## Create a Cumulus VX VM with VirtualBox</span>
 
 {{%notice note%}}
 
 This section assumes that you have downloaded the Cumulus VX disk image
 for VirtualBox and that VirtualBox is installed. For more download
 locations and steps, refer to the [Getting
-Started](/version/cumulus-vx-34/Getting-Started/) page.
+Started](/cumulus-vx/Getting-Started/) page.
 
 {{%/notice%}}
 
@@ -44,7 +44,7 @@ Started](/version/cumulus-vx-34/Getting-Started/) page.
     
     {{% imgOld 0 %}}
 
-## <span>Next Steps</span>
+## Next Steps</span>
 
 {{%notice note%}}
 
@@ -71,8 +71,8 @@ above, and that you now have a VM called `CumulusVX-leaf1`.
 
 5.  After you have created all four VMs, follow the steps in [Create a
     Two-Leaf, Two-Spine
-    Topology](/version/cumulus-vx-34/Create-a-Two-Leaf-Two-Spine-Topology)
-    to configure the network interfaces and routing.
+    Topology](/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology) to
+    configure the network interfaces and routing.
 
 {{%notice note%}}
 
@@ -95,7 +95,7 @@ prefer to clone VMs:
 
 {{%/notice%}}
 
-## <span>VirtualBox Caveats and Errata</span>
+## VirtualBox Caveats and Errata</span>
 
 Consider the following caveats and expected behaviors when using Cumulus
 VX with VirtualBox:
@@ -121,7 +121,7 @@ VX with VirtualBox:
     which might not be up and active on your system when you import the
     image, causing the error message.
 
-### <span>Network Interface Limitations</span>
+### Network Interface Limitations</span>
 
 By default, the VirtualBox Manager only displays the first 8 virtual
 NICs, and you can only modify the first 4. However, if you plan on using

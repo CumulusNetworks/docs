@@ -3,7 +3,7 @@ title: Proactively Monitoring the Network Fabric
 author: Cumulus Networks
 weight: 17
 aliases:
- - /display/NETQ10/Proactively-Monitoring-the-Network-Fabric
+ - /display/NETQ10/Proactively+Monitoring+the+Network+Fabric
  - /pages/viewpage.action?pageId=6488207
 pageID: 6488207
 product: Cumulus NetQ
@@ -16,7 +16,7 @@ real-time alerts via *NetQ Notifier* to notify users that a network
 state deviation has occurred. When alerted, you can determine precisely
 where the fault occurred so you can remediate quickly.
 
-## <span>NetQ Notifier</span>
+## NetQ Notifier</span>
 
 The NetQ Notifier's role within the NetQ suite of applications is to
 deliver alerts to users through mediums such as Slack and syslog,
@@ -55,7 +55,7 @@ for more information. For a thorough example, read about troubleshooting
 [MLAG node
 failures](/version/cumulus-netq-10/Proactively-Monitoring-the-Network-Fabric/MLAG-Troubleshooting-with-NetQ).
 
-### <span>Log Message Format</span>
+### Log Message Format</span>
 
 Messages have the following structure:
 
@@ -69,7 +69,7 @@ Enumerated lists are appended to the next line:
 
     WARNING: VLAN: 3 mismatch(es) are found. They are: server01 torbond1, server02 torbond1, server03 torbond1
 
-### <span>Supported Third-party Applications</span>
+### Supported Third-party Applications</span>
 
 The following applications are supported by NetQ for notifications:
 
@@ -90,7 +90,7 @@ The following applications are supported by NetQ for notifications:
     
     {{% imgOld 3 %}}
 
-### <span>Early Access Support</span>
+### Early Access Support</span>
 
 Early access features include NetQ Notifier integration with:
 
@@ -118,7 +118,7 @@ plugins to handle `rsyslog` inputs.
 To configure PagerDuty, Slack or `syslog`, you need to edit the NetQ
 configuration file `/etc/netq/netq.yml`.
 
-### <span>Exporting to ELK</span>
+### Exporting to ELK</span>
 
 To export NetQ Notifier data to ELK via Logstash, on the host running
 the NetQ Telemetry Server and NetQ Notifier, configure the notifier to
@@ -158,7 +158,7 @@ Then restart Logstash:
 NetQ Notifier logs now appear in `/tmp/logstash_notifier.log` on the
 Logstash host.
 
-### <span>Exporting to Splunk</span>
+### Exporting to Splunk</span>
 
 To export NetQ Notifier data to Splunk, on the host running the NetQ
 Telemetry Server and NetQ Notifier, configure the notifier to send the
@@ -183,7 +183,7 @@ To configure Splunk, do the following:
 
 NetQ Notifier messages now appear in Splunk.
 
-### <span>Precisely Locating an Issue on the Network</span>
+### Precisely Locating an Issue on the Network</span>
 
 NetQ helps you locate exactly where you have an issue on your network.
 Use `netq check` or `netq trace` to locate a fault, then run `netq show
@@ -204,7 +204,7 @@ see where some nodes have mismatched VLANs with their peers:
     server03  torbond1     102-106,1000-1005  leaf04   hostbond2         101-106,1000-1005  VLAN set Mismatch
     server03  torbond1     102-106,1000-1005  leaf03   hostbond2         101-106,1000-1005  VLAN set Mismatch
 
-## <span>Extending NetQ with Custom Services Using curl</span>
+## Extending NetQ with Custom Services Using curl</span>
 
 You can extend NetQ to monitor parameters beyond what it monitors by
 default. For example, you can create a service that runs a series of
@@ -275,7 +275,7 @@ capability regarding `netq show services`.
     
         cumulus@leaf01: netq show services web
 
-## <span>Exporting NetQ Data</span>
+## Exporting NetQ Data</span>
 
 Data from the NetQ Telemetry Server can be exported in a number of ways.
 First, you can use the `json` option to output check and show commands

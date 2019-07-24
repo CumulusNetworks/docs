@@ -3,7 +3,7 @@ title: Using Cumulus VX with GNS3
 author: Cumulus Networks
 weight: 19
 aliases:
- - /display/VX30/Using-Cumulus-VX-with-GNS3
+ - /display/VX30/Using+Cumulus+VX+with+GNS3
  - /pages/viewpage.action?pageId=5126598
 pageID: 5126598
 product: Cumulus VX

@@ -3,7 +3,7 @@ title: Power over Ethernet - PoE
 author: Cumulus Networks
 weight: 67
 aliases:
- - /display/CL31/Power-over-Ethernet---PoE
+ - /display/CL31/Power+over+Ethernet+++PoE
  - /pages/viewpage.action?pageId=5121942
 pageID: 5121942
 product: Cumulus Linux
@@ -25,7 +25,7 @@ includes:
   - Edge-Core AS4610-54P, which supports PoE and PoE+ and configuration
     over Ethernet layer 2 LLDP for power negotiation
 
-## <span>How It Works</span>
+## How It Works</span>
 
 PoE functionality is provided by the `cumulus-poe` package. When a
 powered device is connected to the switch via an Ethernet cable:
@@ -62,14 +62,14 @@ The AS4610-54P has an LED on the front panel to indicate PoE status:
   - Yellow: One or more errors are detected or the `poed` daemon is not
     running
 
-### <span>About Link State and PoE State</span>
+### About Link State and PoE State</span>
 
 Link state and PoE state are completely independent of each other. When
 a link is brought down on a particular port using `ip link <port> down`,
 power on that port is not turned off; however, LLDP negotiation is not
 possible.
 
-## <span>Configuring PoE</span>
+## Configuring PoE</span>
 
 You use the `poectl` command utility to configure PoE on a [switch that
 supports](http://cumulusnetworks.com/hcl/) the feature. You can:
@@ -248,7 +248,7 @@ To see all the PoE information for a switch, run `poectl -s`:
 The set commands (priority, enable, disable) either succeed silently or
 display an error message if the command fails.
 
-### <span id="src-5121942_PoweroverEthernet-PoE-args" class="confluence-anchor-link"></span><span>poectl Arguments</span>
+### <span id="src-5121942_PoweroverEthernet-PoE-args" class="confluence-anchor-link"></span>poectl Arguments</span>
 
 The `poectl` command takes the following arguments:
 
@@ -319,7 +319,7 @@ The `poectl` command takes the following arguments:
 </tbody>
 </table>
 
-## <span>Troubleshooting PoE and PoE+</span>
+## Troubleshooting PoE and PoE+</span>
 
 You can troubleshoot PoE and PoE+ using the following utilities and
 files:
@@ -339,7 +339,7 @@ files:
   - The contents of the PoE/PoE+ `/etc/lldpd.d/poed.conf` configuration
     file, as described above.
 
-### <span>Using ip link show</span>
+### Using ip link show</span>
 
 LLDP requires network connectivity, so run `ip link show` to verify that
 the link is up.
@@ -348,7 +348,7 @@ the link is up.
     22: swp20: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
         link/ether 00:30:ab:f2:d7:b9 brd ff:ff:ff:ff:ff:ff
 
-### <span>Using lldpcli</span>
+### Using lldpcli</span>
 
 You can run `lldpcli` to view the LLDP information that has been
 received on a switch port. For example:
@@ -388,7 +388,7 @@ received on a switch port. For example:
         TLV:          OUI: 00,01,42, SubType: 1, Len: 1 0D
     -------------------------------------------------------------------------------
 
-### <span>Using tcpdump</span>
+### Using tcpdump</span>
 
 You can use `tcpdump` to view the LLDP frames being transmitted and
 received. For example:
@@ -448,7 +448,7 @@ received. For example:
           0x0000:  0001 4201 01
         End TLV (0), length 0
 
-### <span>Logging poed Events in syslog</span>
+### Logging poed Events in syslog</span>
 
 The `poed` service logs the following events to `syslog`:
 

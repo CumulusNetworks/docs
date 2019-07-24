@@ -3,25 +3,25 @@ title: Static VXLAN Tunnels
 author: Cumulus Networks
 weight: 363
 aliases:
- - /display/CL37/Static-VXLAN-Tunnels
+ - /display/DOCS/Static+VXLAN+Tunnels
  - /pages/viewpage.action?pageId=8362793
 pageID: 8362793
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 In VXLAN-based networks, there are a range of complexities and
 challenges in determining the destination *virtual tunnel endpoints*
 (VTEPs) for any given VXLAN. At scale, various solutions, including
 [Lightweight Network
-Virtualization](/version/cumulus-linux-377/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+Virtualization](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 (LNV), controller-based options like [Midokura
-MidoNet](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
+MidoNet](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
 or [VMware
-NSX](/version/cumulus-linux-377/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+NSX](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
 and even new standards like
-[EVPN](/version/cumulus-linux-377/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+[EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 are attempts to address these complexities, however do retain their own
 complexities.
 
@@ -33,7 +33,7 @@ which VTEPs are in a particular VNI, you can avoid the tedious process
 of defining connections to every VLAN on every other VTEP on every other
 rack.
 
-## <span>Requirements</span>
+## Requirements
 
 Cumulus Networks supports static VXLAN tunnels only on switches in the
 [Cumulus Linux HCL](http://cumulusnetworks.com/hcl/) using the Broadcom
@@ -51,29 +51,29 @@ For a basic VXLAN configuration, make sure that:
   - Each traditional bridge on the switch has only one VXLAN interface.
     Cumulus Linux does not support more than one VXLAN ID per
     traditional bridge.
-    
+
     {{%notice note%}}
-    
-    When deploying VXLAN with a VLAN-aware bridge, there is no
+
+When deploying VXLAN with a VLAN-aware bridge, there is no
     restriction on using a single VNI. This limitation is only present
     when using the traditional bridge configuration.
-    
+
     {{%/notice%}}
 
   - The VXLAN registration daemon (`vxrd`) is not running. Static VXLAN
     tunnels do not interoperate with LNV or EVPN. If `vxrd` is running,
     stop it with the following command:
-    
+
         cumulus@switch:~ sudo systemctl stop vxrd.service
 
-## <span>Example Configuration</span>
+## Example Configuration
 
 The following topology is used in this chapter. Each IP address
 corresponds to the loopback address of the switch.
 
 {{% imgOld 0 %}}
 
-## <span>Configure Static VXLAN Tunnels</span>
+## Configure Static VXLAN Tunnels
 
 To configure static VXLAN tunnels, do the following for each leaf:
 
@@ -280,7 +280,7 @@ iface vni-10
 </tbody>
 </table>
 
-## <span>Verify the Configuration</span>
+## Verify the Configuration
 
 After you configure all the leaf switches, check for replication
 entries:
@@ -290,7 +290,7 @@ entries:
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.12 self permanent
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.13 self permanent
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata
 
 Cumulus Linux does not support different `bridge-learning` settings for
 different VNIs of VXLAN tunnels between 2 VTEPs. For example, the
@@ -302,13 +302,13 @@ supported.
     iface vni300
     vxlan-id 300
     vxlan-local-tunnelip 10.252.255.58
-    vxlan-remoteip 10.250.255.161 
+    vxlan-remoteip 10.250.255.161
     mtu 9000
      
     auto vni258
     iface vni258
     vxlan-id 258
-    vxlan-local-tunnelip 10.252.255.58 
+    vxlan-local-tunnelip 10.252.255.58
     vxlan-remoteip 10.250.255.161
     bridge-access 258
     bridge-learning off

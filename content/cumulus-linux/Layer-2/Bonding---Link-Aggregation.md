@@ -3,13 +3,13 @@ title: Bonding - Link Aggregation
 author: Cumulus Networks
 weight: 119
 aliases:
- - /display/CL37/Bonding---Link-Aggregation
+ - /display/DOCS/Bonding+Link+Aggregation
  - /pages/viewpage.action?pageId=8362653
 pageID: 8362653
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Linux bonding provides a method for aggregating multiple network
 interfaces (*slaves*) into a single logical bonded interface (*bond*).
@@ -24,7 +24,7 @@ Cumulus Linux supports two bonding modes:
   - Balance-xor mode, where the bonding of slave interfaces are static
     and all slave interfaces are active for load balancing and fault
     tolerance purposes. This is useful for
-    [MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+    [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
     deployments.
 
 The benefits of link aggregation include:
@@ -38,9 +38,9 @@ The benefits of link aggregation include:
 Cumulus Linux uses version 1 of the LAG control protocol (LACP).
 
 To temporarily bring up a bond even when there is no LACP partner, use
-[LACP Bypass](/version/cumulus-linux-377/Layer-2/LACP-Bypass).
+[LACP Bypass](/cumulus-linux/Layer-2/LACP-Bypass).
 
-## <span>Hash Distribution</span>
+## Hash Distribution
 
 Egress traffic through a bond is distributed to a slave based on a
 packet hash calculation, providing load balancing over the slaves; many
@@ -64,37 +64,33 @@ over available slaves.
 
 {{%/notice%}}
 
-## <span>Create a Bond</span>
+## Create a Bond
 
 You can create and configure a bond with the Network Command Line
 Utility
-([NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)).
+([NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)).
 Follow the steps below to create a new bond:
 
 1.  SSH into the switch.
 
 2.  Add a bond using the `net add bond` command, replacing `[bond-name]`
     with the name of the bond, and `[slaves]` with the list of slaves:
-    
+
         cumulus@switch:~$ net add bond [bond-name] bond slaves [slaves]
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
-    
+
     The bond is configured by default in IEEE 802.3ad link aggregation
     mode. To configure the bond in balance-xor mode, see [bond
-    mode](#src-8362653_Bonding-LinkAggregation-bond_mode) below.
+    mode](#configuration-options) below.
 
 {{%notice note%}}
 
-The name of the bond must be:
-
-  - Compliant with Linux interface naming conventions.
-
-  - Unique within the switch.
+The name of the bond must be compliant with Linux interface naming conventions and unique within the switch.
 
 {{%/notice%}}
 
-### <span>Configuration Options</span>
+### Configuration Options
 
 The configuration options and their default values are listed in the
 table below.
@@ -105,7 +101,7 @@ Each bond configuration option, except for `bond slaves,` is set to the
 recommended value by default in Cumulus Linux. Only configure an option
 if a different setting is needed. For more information on configuration
 values, refer to the [Related
-Information](#src-8362653_Bonding-LinkAggregation-related-information)
+Information](#elated-information)
 section below.
 
 {{%/notice%}}
@@ -128,7 +124,7 @@ section below.
 <td><p><code>bond mode</code></p></td>
 <td><p>The bonding mode. Cumulus Linux supports IEEE 802.3ad link aggregation mode and balance-xor mode. IEEE 802.3ad link aggregation is the default mode.</p>
 <p>You can change the bond mode using NCLU. The following example changes bond1 to balance-xor mode.</p>
-<p><strong>Note</strong>: Use balance-xor mode only if you cannot use LACP. <a href="#src-8362653_Bonding-LinkAggregation-balance_xor">See below</a> for more information.</p>
+<p><strong>Note</strong>: Use balance-xor mode only if you cannot use LACP. <a href="xs#enable-balance-xor-mode">See below</a> for more information.</p>
 <pre><code>cumulus@switch:~$ net add bond bond1 bond mode balance-xor
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit</code></pre>
@@ -173,13 +169,13 @@ cumulus@switch:~$ net commit</code></pre></td>
 </tr>
 <tr class="even">
 <td><p><code>bond lacp-bypass-allow</code></p></td>
-<td><p>Enables <a href="/version/cumulus-linux-377/Layer-2/LACP-Bypass">LACP bypass</a>.</p></td>
+<td><p>Enables <a href="/cumulus-linux/Layer-2/LACP-Bypass">LACP bypass</a>.</p></td>
 <td><p>N/A</p></td>
 </tr>
 <tr class="odd">
 <td><p><code>bond lacp-rate</code></p></td>
 <td><p>Sets the rate to ask the link partner to transmit LACP control packets.</p>
-<p>You can set the LACP rate to slow using <a href="/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU">NCLU</a>:</p>
+<p>You can set the LACP rate to slow using <a href="/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU">NCLU</a>:</p>
 <pre><code>cumulus@switch:~$ net add bond bond01 bond lacp-rate slow</code></pre></td>
 <td><p>1</p></td>
 </tr>
@@ -194,7 +190,7 @@ cumulus@switch:~$ net commit</code></pre></td>
 </tbody>
 </table>
 
-### <span id="src-8362653_Bonding-LinkAggregation-balance_xor" class="confluence-anchor-link"></span><span>Enable balance-xor Mode</span>
+### Enable balance-xor Mode
 
 When you enable *balance-xor mode*, the bonding of slave interfaces are
 static and all slave interfaces are active for load balancing and fault
@@ -202,7 +198,7 @@ tolerance purposes. Packet transmission on the bond is based on the hash
 policy specified by `xmit-hash-policy`.
 
 When using balance-xor mode to dual-connect host-facing bonds in an
-[MLAG](/version/cumulus-linux-377/Layer-2/Multi-Chassis-Link-Aggregation---MLAG)
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 environment, you **must** configure the `clag_id` parameter on the MLAG
 bonds and it must be the same on both MLAG switches. Otherwise, the
 bonds are treated by the MLAG switch pair as single-connected.
@@ -242,9 +238,9 @@ These commands create the following configuration in the
         bond-slaves swp3 swp4
 
 To view the bond, use
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU):
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU):
 
-    cumulus@switch:~$ net show interface bond1 
+    cumulus@switch:~$ net show interface bond1
         Name    MAC                Speed    MTU    Mode
     --  ------  -----------------  -------  -----  ------
     UP  bond1   00:02:00:00:00:12  20G      1500   Bond
@@ -281,7 +277,7 @@ To view the bond, use
       inet6 fe80::202:ff:fe00:12/64
       Interface Type Other
 
-## <span>Example Configuration: Bonding 4 Slaves</span>
+## Example Configuration: Bonding 4 Slaves
 
 In the following example, the front panel port interfaces swp1 thru swp4
 are slaves in bond0, while swp5 and swp6 are not part of bond0.
@@ -307,11 +303,6 @@ file:
         address 10.0.0.1/30
         bond-slaves swp1 swp2 swp3 swp4
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
 
 {{%notice info%}}
 
@@ -319,10 +310,6 @@ If the bond is going to become part of a bridge, you do not need to
 specify an IP address.
 
 {{%/notice%}}
-
-</div>
-
-</div>
 
 {{%/notice%}}
 
@@ -360,7 +347,7 @@ address traffic to the bond.
 
 {{%/notice%}}
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata
 
   - An interface cannot belong to multiple bonds.
 
@@ -372,7 +359,7 @@ address traffic to the bond.
     sure they match the link partner’s slave ports.
 
   - On a [Cumulus
-    RMP](https://docs.cumulusnetworks.com/display/RMP/Cumulus+RMP)
+    RMP](/cumulus-rmp)
     switch, if you create a bond with multiple 10G member ports, traffic
     gets dropped when the bond uses members of the same *unit* listed in
     the `/var/lib/cumulus/porttab` file. For example, traffic gets
@@ -385,16 +372,16 @@ address traffic to the bond.
     swp52 xe0 1 0 -1 0  
     Single port member bonds, bonds with different units (xe0 or xe1, as
     above), or layer 3 bonds do not have this issue.
-    
+
     {{%notice note%}}
-    
-    On Cumulus RMP switches, which are built with two Hurricane2 ASICs,
+
+On Cumulus RMP switches, which are built with two Hurricane2 ASICs,
     you cannot form an LACP bond on links that terminate on different
     Hurricane2 ASICs.
-    
+
     {{%/notice%}}
 
-## <span id="src-8362653_Bonding-LinkAggregation-related-information" class="confluence-anchor-link"></span><span>Related Information</span>
+## Related Information
 
   - [Linux Foundation -
     Bonding](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)

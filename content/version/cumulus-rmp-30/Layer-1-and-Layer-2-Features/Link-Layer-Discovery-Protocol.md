@@ -3,7 +3,7 @@ title: Link Layer Discovery Protocol
 author: Cumulus Networks
 weight: 73
 aliases:
- - /display/RMP30/Link-Layer-Discovery-Protocol
+ - /display/RMP30/Link+Layer+Discovery+Protocol
  - /pages/viewpage.action?pageId=5118711
 pageID: 5118711
 product: Cumulus RMP
@@ -30,19 +30,19 @@ by default into `/var/log/daemon.log` with an `lldpd` prefix.
 statistics and other running configuration information. See `man
 lldpcli(8)` for details.
 
-## <span>Commands</span>
+## Commands</span>
 
   - lldpd (daemon)
 
   - lldpcli (interactive CLI)
 
-## <span>Man Pages</span>
+## Man Pages</span>
 
   - man lldpd
 
   - man lldpcli
 
-## <span>Configuring LLDP</span>
+## Configuring LLDP</span>
 
 You configure `lldpd` settings in `/etc/lldpd.conf` or `/etc/lldpd.d/`.
 
@@ -61,7 +61,7 @@ Here is an example persistent configuration:
     Aug  7 17:26:17 switch lldpcli[1711]: lldpd should resume operations
     Aug  7 17:26:32 switch lldpd[1805]: NET-SNMP version 5.4.3 AgentX subagent connected
 
-## <span>Example lldpcli Commands</span>
+## Example lldpcli Commands</span>
 
 To see all neighbors on all ports/interfaces:
 
@@ -229,7 +229,7 @@ To reset any interface list to none:
 
     lldpcli configure system interface pattern-blacklist ""
 
-## <span>Enabling the SNMP Subagent in LLDP</span>
+## Enabling the SNMP Subagent in LLDP</span>
 
 LLDP does not enable the SNMP subagent by default. You need to edit
 `/etc/default/lldpd` and enable the `-x` option.
@@ -243,7 +243,7 @@ LLDP does not enable the SNMP subagent by default. You need to edit
     DAEMON_ARGS="-c"
     DAEMON_ARGS="-x"
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/lldpd.conf
 
@@ -251,13 +251,13 @@ LLDP does not enable the SNMP subagent by default. You need to edit
 
   - /etc/default/lldpd
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - <http://vincentbernat.github.io/lldpd/>
 
   - <http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol>
 
-## <span>Caveats and Errata</span>
+## Caveats and Errata</span>
 
   - Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
 

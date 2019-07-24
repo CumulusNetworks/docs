@@ -3,7 +3,7 @@ title: Collecting Interface Statistics
 author: Cumulus Networks
 weight: 79
 aliases:
- - /display/NETQ121/Collecting-Interface-Statistics
+ - /display/NETQ121/Collecting+Interface+Statistics
  - /pages/viewpage.action?pageId=8356589
 pageID: 8356589
 product: Cumulus NetQ
@@ -39,7 +39,7 @@ in Cumulus NetQ 1.2.
 
 {{%/notice%}}
 
-## <span>Configuring Counter Collection</span>
+## Configuring Counter Collection</span>
 
 The InfluxDB database is installed in its own container by default on
 the telemetry server. The `netq-stats-pushd` service is also installed,
@@ -70,7 +70,7 @@ Once the agent is restarted, the `netq-stats-pushd` service starts
 collecting interface statistics and pushes them to the database on the
 telemetry server.
 
-## <span>Troubelshooting</span>
+## Troubelshooting</span>
 
 The primary log files for the telemetry server are:
 
@@ -80,7 +80,7 @@ The primary log files for the telemetry server are:
 
 On each node, check the NetQ Agent log file: `/var/log/netq-agent.log`.
 
-## <span>Disabling Counter Collection</span>
+## Disabling Counter Collection</span>
 
 To disable counter collection on a node, run the following commands:
 

@@ -3,7 +3,7 @@ title: Layer Three
 author: Cumulus Networks
 weight: 23
 aliases:
- - /display/CL33/Layer-Three
+ - /display/CL33/Layer+Three
  - /pages/viewpage.action?pageId=5866411
 pageID: 5866411
 product: Cumulus Linux

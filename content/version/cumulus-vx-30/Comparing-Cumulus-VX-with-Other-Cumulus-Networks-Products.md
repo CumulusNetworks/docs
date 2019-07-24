@@ -3,7 +3,7 @@ title: Comparing Cumulus VX with Other Cumulus Networks Products
 author: Cumulus Networks
 weight: 21
 aliases:
- - /display/VX30/Comparing-Cumulus-VX-with-Other-Cumulus-Networks-Products
+ - /display/VX30/Comparing+Cumulus+VX+with+Other+Cumulus+Networks+Products
  - /pages/viewpage.action?pageId=5126616
 pageID: 5126616
 product: Cumulus VX
@@ -52,7 +52,7 @@ Cumulus VX and other Cumulus Networks operating systems.
 | Security                                             | Yes                                                                                                                                                                                          |
 | QoS                                                  | Yes                                                                                                                                                                                          |
 
-## <span>Comparing Cumulus VX with Cumulus Workbench</span>
+## Comparing Cumulus VX with Cumulus Workbench</span>
 
 The following table describes how Cumulus VX differs from [Cumulus
 Workbench](http://cumulusnetworks.com/cumulus-workbench/).

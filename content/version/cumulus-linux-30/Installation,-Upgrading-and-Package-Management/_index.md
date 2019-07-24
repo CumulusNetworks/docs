@@ -3,7 +3,7 @@ title: 'Installation, Upgrading and Package Management'
 author: Cumulus Networks
 weight: 15
 aliases:
- - '/display/CL30/Installation,-Upgrading-and-Package-Management'
+ - '/display/CL30/Installation,+Upgrading+and+Package+Management'
  - /pages/viewpage.action?pageId=5118252
 pageID: 5118252
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: Managing Application Daemons
 author: Cumulus Networks
 weight: 71
 aliases:
- - /display/CL33/Managing-Application-Daemons
+ - /display/CL33/Managing+Application+Daemons
  - /pages/viewpage.action?pageId=5866125
 pageID: 5866125
 product: Cumulus Linux
@@ -24,7 +24,7 @@ following ways:
 
   - Disabling or enabling a specific daemon
 
-## <span>Using systemd and the systemctl Command</span>
+## Using systemd and the systemctl Command</span>
 
 In general, you manage services using `systemd` via the `systemctl`
 command. You use it with any service on the switch to
@@ -44,7 +44,7 @@ written **after** the systemctl subcommand, not before it.
 
 {{%/notice%}}
 
-### <span>Understanding the systemctl Subcommands</span>
+### Understanding the systemctl Subcommands</span>
 
 `systemctl` has a number of subcommands that perform a specific
 operation on a given daemon.
@@ -76,7 +76,7 @@ operation on a given daemon.
     this so that any new *Wants* or *WantedBy* lines create the symlinks
     necessary for ordering. This has no side effects on other daemons.
 
-### <span>Ensuring a Service Starts after Multiple Restarts</span>
+### Ensuring a Service Starts after Multiple Restarts</span>
 
 By default, `systemd` is configured to try to restart a particular
 service only a certain number of times within a given interval before
@@ -102,14 +102,14 @@ you know you are going to restart frequently (multiple times within the
 StartLimitInterval), you can run the same command before you issue the
 restart request. This also applies to stop followed by start.
 
-### <span>Keeping systemd Services from Hanging after Starting</span>
+### Keeping systemd Services from Hanging after Starting</span>
 
 If you start, restart or reload any `systemd` service that could be
 started from another `systemd` service, you must use the `--no-block`
 option with `systemctl`. Otherwise, that service or even the switch
 itself may hang after starting or restarting.
 
-## <span>Identifying Active Listener Ports for IPv4 and IPv6</span>
+## Identifying Active Listener Ports for IPv4 and IPv6</span>
 
 You can identify the active listener ports under both IPv4 and IPv6
 using the `netstat` command:
@@ -138,7 +138,7 @@ using the `netstat` command:
     udp6       0      0 :::4784                 :::*                                909/ptmd        
     udp6       0      0 :::3784                 :::*                                909/ptmd
 
-## <span>Identifying Daemons Currently Active or Stopped</span>
+## Identifying Daemons Currently Active or Stopped</span>
 
 To determine which daemons are currently active or stopped, run
 `cl-service-summary`:
@@ -369,7 +369,7 @@ services on the switch and see which ones are enabled:
     191 unit files listed.
     lines 147-194/194 (END)
 
-## <span>Identifying Essential Services</span>
+## Identifying Essential Services</span>
 
 If you need to know which services are required to run when the switch
 boots, run:

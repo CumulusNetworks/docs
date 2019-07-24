@@ -3,7 +3,7 @@ title: Managing Cumulus RMP Disk Images
 author: Cumulus Networks
 weight: 131
 aliases:
- - /display/RMP25ESR/Managing-Cumulus-RMP-Disk-Images
+ - /display/RMP25ESR/Managing+Cumulus+RMP+Disk+Images
  - /pages/viewpage.action?pageId=5116319
 pageID: 5116319
 product: Cumulus RMP
@@ -17,7 +17,7 @@ The Cumulus RMP operating system resides on a switch as a *disk image*.
 Switches running Cumulus RMP can be configured with multiple disk
 images. This section discusses how to manage them.
 
-## <span>Commands</span>
+## Commands</span>
 
   - cl-img-install
 
@@ -25,7 +25,7 @@ images. This section discusses how to manage them.
 
   - cl-img-pkg
 
-## <span id="src-5116319_ManagingCumulusRMPDiskImages-upgrade" class="confluence-anchor-link"></span><span>Upgrading Cumulus RMP</span>
+## <span id="src-5116319_ManagingCumulusRMPDiskImages-upgrade" class="confluence-anchor-link"></span>Upgrading Cumulus RMP</span>
 
 If you already have Cumulus RMP installed on your switch and you are
 upgrading to an X.Y.Z release, like 2.5.7 from an earlier release in the
@@ -51,7 +51,7 @@ slots.
 
 {{%/notice%}}
 
-## <span id="src-5116319_ManagingCumulusRMPDiskImages-new_image" class="confluence-anchor-link"></span><span>Installing a New Cumulus RMP Image</span>
+## <span id="src-5116319_ManagingCumulusRMPDiskImages-new_image" class="confluence-anchor-link"></span>Installing a New Cumulus RMP Image</span>
 
 Cumulus RMP comes preinstalled on your switch. However there may be
 instances where you need to perform a full image installation. Before
@@ -85,7 +85,7 @@ PXE on servers, that allows installation of network operating systems
 Unlike Cumulus Linux, there is no license to install on a Cumulus RMP
 switch.
 
-### <span id="src-5116319_ManagingCumulusRMPDiskImages-alreadyinstalled" class="confluence-anchor-link"></span><span>Installing a New Image when Cumulus RMP Is already Installed</span>
+### <span id="src-5116319_ManagingCumulusRMPDiskImages-alreadyinstalled" class="confluence-anchor-link"></span>Installing a New Image when Cumulus RMP Is already Installed</span>
 
 Follow these upgrade steps for both major and minor releases, where:
 
@@ -124,7 +124,7 @@ below.
 
 {{%/notice%}}
 
-### <span>Step 1: Installing the New Image</span>
+### Step 1: Installing the New Image</span>
 
 Use the `cl-img-install` command to ****install a new image into the
 **alternate** image slot.
@@ -188,12 +188,12 @@ This example assumes the new image is located in the current directory
     done
     Success: /home/cumulus/CumulusRMP-2.5.7-amd64.bin loaded into image slot 2.
 
-### <span id="src-5116319_ManagingCumulusRMPDiskImages-persistent_config" class="confluence-anchor-link"></span><span>Step 2: Backing up Your Configuration Files into /mnt/persist </span>
+### <span id="src-5116319_ManagingCumulusRMPDiskImages-persistent_config" class="confluence-anchor-link"></span>Step 2: Backing up Your Configuration Files into /mnt/persist </span>
 
 Any files that have been modified from the factory default should be
 backed up to `/mnt/persist`.
 
-#### <span>Recommended Files to Make Persistent</span>
+#### Recommended Files to Make Persistent</span>
 
 Cumulus Networks recommends you consider making the following files and
 directories part of a persistent configuration.
@@ -225,7 +225,7 @@ directories part of a persistent configuration.
   - If you have custom user accounts, consider including
     `/home/<username>/`.
 
-#### <span>Simple Bash Script Example</span>
+#### Simple Bash Script Example</span>
 
 <summary>Example Bash script to automate /mnt/persist backup; click to
 expand... </summary>
@@ -302,7 +302,7 @@ To check if the script worked use the Linux `tree` command:
             |-- ssh_host_rsa_key.pub
             `-- sshd_config
 
-### <span>Step 3: Selecting the Alternate Slot for Next Boot</span>
+### Step 3: Selecting the Alternate Slot for Next Boot</span>
 
 To select the slot you just installed into, either use `cl-img-select
 -s` to switch the primary slot to the alternate slot, or use
@@ -315,13 +315,13 @@ example, `cl-img-select 2`).
               slot 2 (primary): 2.5.6-3b46bef-201509041633-build
     Reboot required to take effect.
 
-### <span>Step 4: Rebooting the Switch</span>
+### Step 4: Rebooting the Switch</span>
 
 Reboot the switch to boot into the new primary slot.
 
     cumulus@switch$ reboot
 
-### <span>Step 5: Copying the Files from /mnt/persist to the New Slot </span>
+### Step 5: Copying the Files from /mnt/persist to the New Slot </span>
 
 Files in `/mnt/persist` automatically are rolled into the primary image
 slot when the switch boots. For example, in this scenario everything in
@@ -343,7 +343,7 @@ Use the tree command to look at the folder structure of `/mnt/`.
 So in this case `/mnt/persist/etc/network/interfaces` overrides the
 primary slot's `/etc/network/interfaces` on boot.
 
-### <span>Step 6: Clearing /mnt/persist </span>
+### Step 6: Clearing /mnt/persist </span>
 
 If `/mnt/persist` is not cleared out, everything in `/mnt/persist` will
 overwrite any relative files in the primary slot whenever the switch
@@ -364,7 +364,7 @@ primary slot.
 
 {{%/notice%}}
 
-### <span id="src-5116319_ManagingCumulusRMPDiskImages-usb" class="confluence-anchor-link"></span><span>Full Installation of Cumulus RMP Using ONIE over USB</span>
+### <span id="src-5116319_ManagingCumulusRMPDiskImages-usb" class="confluence-anchor-link"></span>Full Installation of Cumulus RMP Using ONIE over USB</span>
 
 Follow the steps below to conduct a full installation of Cumulus RMP.
 This wipes out all pre-existing configuration files that may be present
@@ -378,7 +378,7 @@ finishes.
 
 {{%/notice%}}
 
-#### <span>Preparing for USB Installation</span>
+#### Preparing for USB Installation</span>
 
 1.  Download the appropriate Cumulus RMP image for your x86 platform
     from the [Cumulus Downloads
@@ -499,7 +499,7 @@ finishes.
 
 <span id="src-5116319_ManagingCumulusRMPDiskImages-slots"></span>
 
-## <span>Understanding Image Slots</span>
+## Understanding Image Slots</span>
 
 Cumulus RMP uses the concept of *image slots* to manage two separate
 Cumulus RMP images. The slots are described as follows:
@@ -542,7 +542,7 @@ disk:
   - A boot partition, shared by the logical volumes. Each volume mounts
     this partition as `/boot`.
 
-### <span>Managing Slot Sizes</span>
+### Managing Slot Sizes</span>
 
 As space in a slot is used, you may need to increase the size of the
 root filesystem by increasing the size of the corresponding logical
@@ -608,7 +608,7 @@ expand the filesystem as needed.
 
 <span id="src-5116319_ManagingCumulusRMPDiskImages-alt_slot"></span>
 
-## <span>Accessing the Alternate Image Slot</span>
+## Accessing the Alternate Image Slot</span>
 
 It may be useful to ****access the content of the alternate slot to
 retrieve configuration or logs.
@@ -645,7 +645,7 @@ done.
         cumulus@switch$ cd /
         cumulus@switch$ sudo umount /mnt/alt/
 
-## <span>Reprovisioning the System (Restart Installer)</span>
+## Reprovisioning the System (Restart Installer)</span>
 
 You can reprovision the system, wiping out the contents of both image
 slots and `/mnt/persist`.
@@ -678,7 +678,7 @@ using `cl-img-select -c`:
 
 {{%/notice%}}
 
-## <span>Uninstalling All Images and Removing the Configuration</span>
+## Uninstalling All Images and Removing the Configuration</span>
 
 To remove all installed images and configurations, returning the switch
 to its factory defaults, use `cl-img-select -k`:
@@ -708,7 +708,7 @@ using `cl-img-select -c`:
 
 {{%/notice%}}
 
-## <span>Booting into Rescue Mode</span>
+## Booting into Rescue Mode</span>
 
 If your system becomes broken is some way, you may be able to correct
 things by booting into ONIE rescue mode. In rescue mode, the file
@@ -743,7 +743,7 @@ Cancelling pending rescue at next reboot...done.
 
 {{%/notice%}}
 
-## <span>Inspecting Image File Contents</span>
+## Inspecting Image File Contents</span>
 
 From a running system you can display the contents of a Cumulus RMP
 image file using `cl-img-pkg -d`:
@@ -794,7 +794,7 @@ You can also extract the image files to the current directory with the
     -rw-r--r-- 1 1063 3000   5391348 Jun 10 18:44 vmlinuz-initrd.tar.xz
     -rw-r--r-- 1 1063 3000        44 Jun 10 18:44 vmlinuz-initrd.tar.xz.sha1 
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [Open Network Install Environment (ONIE) Home
     Page](http://opencomputeproject.github.io/onie/)

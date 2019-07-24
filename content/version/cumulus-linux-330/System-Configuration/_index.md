@@ -3,7 +3,7 @@ title: System Configuration
 author: Cumulus Networks
 weight: 15
 aliases:
- - /display/CL33/System-Configuration
+ - /display/CL33/System+Configuration
  - /pages/viewpage.action?pageId=5866100
 pageID: 5866100
 product: Cumulus Linux

@@ -3,7 +3,7 @@ title: SSH for Remote Access
 author: Cumulus Networks
 weight: 217
 aliases:
- - /display/CL30/SSH-for-Remote-Access
+ - /display/CL30/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=5118211
 pageID: 5118211
 product: Cumulus Linux
@@ -24,7 +24,7 @@ the account.
 
 {{%/notice%}}
 
-## <span>Access Using Passkey (Basic Setup)</span>
+## Access Using Passkey (Basic Setup)</span>
 
 Cumulus Linux uses the openSSH package to provide SSH functionality. The
 standard mechanisms of generating passwordless access just applies. The
@@ -62,13 +62,13 @@ Next, append the public key in `~/.ssh/id_rsa.pub` into
         Enter passphrase for key '/home/cumulus/.ssh/id_rsa':
         id_rsa.pub
 
-### <span>Completely Passwordless System</span>
+### Completely Passwordless System</span>
 
 When generating the passphrase and its associated keys, as in the first
 step above, do not enter a passphrase. Follow all the other
 instructions.
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - <http://www.debian-administration.org/articles/152>
 

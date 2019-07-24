@@ -3,7 +3,7 @@ title: Monitoring Linux Hosts with NetQ
 author: Cumulus Networks
 weight: 25
 aliases:
- - /display/NETQ121/Monitoring-Linux-Hosts-with-NetQ
+ - /display/NETQ121/Monitoring+Linux+Hosts+with+NetQ
  - /pages/viewpage.action?pageId=8356583
 pageID: 8356583
 product: Cumulus NetQ

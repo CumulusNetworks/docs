@@ -3,13 +3,13 @@ title: GNS3 and QEMU - KVM
 author: Cumulus Networks
 weight: 65
 aliases:
- - /display/VX/GNS3-and-QEMU---KVM
+ - /display/VX/GNS3-and-QEMU-KVM
  - /pages/viewpage.action?pageId=5126717
 pageID: 5126717
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 Before you run your virtual network under GNS3, make sure you:
 
@@ -129,7 +129,7 @@ Start all the VMs.
 
 You should be able to ping between the VMs and between the virtual PCs.
 
-## <span>Caveats</span>
+## Caveats</span>
 
   - After you start the VMs, they run headless. You can SSH into a VM
     as:  
@@ -143,7 +143,7 @@ You should be able to ping between the VMs and between the virtual PCs.
   - Console access does not work with GNS3 in this configuration. For a
     workaround, run QEMU/KVM from the command line; see below.
 
-## <span>KVM/QEMU from the Command Line</span>
+## KVM/QEMU from the Command Line</span>
 
 For console access with GNS3 and QEMU/KVM VMs, use the qemu binary that
 is bundled with GNS3. On OSX, this binary is located in:

@@ -3,7 +3,7 @@ title: MLAG Troubleshooting with NetQ
 author: Cumulus Networks
 weight: 61
 aliases:
- - /display/NETQ121/MLAG-Troubleshooting-with-NetQ
+ - /display/NETQ121/MLAG+Troubleshooting+with+NetQ
  - /pages/viewpage.action?pageId=8356554
 pageID: 8356554
 product: Cumulus NetQ
@@ -37,7 +37,7 @@ NetQ can monitor many aspects of an MLAG configuration, including:
 
   - Verifying that STP priorities are the same across both peers
 
-## <span>All Nodes Are Up</span>
+## All Nodes Are Up</span>
 
 When the MLAG configuration is running smoothly, NetQ Notifier sends out
 a message that all nodes are up:
@@ -95,7 +95,7 @@ state:
     vx-35            vx-35            -       -                    - 
     vx-34            vx-34            -       -                    -
 
-## <span>Dual-connected Bond Is Down</span>
+## Dual-connected Bond Is Down</span>
 
 When dual connectivity is lost in an MLAG configuration, you'll receive
 messages from NetQ Notifier similar to the following:
@@ -177,7 +177,7 @@ state:
     vx-35            vx-35            -       -                    - 
     vx-34            vx-34            -       -                    - 
 
-## <span>VXLAN Active-active Device or Interface Is Down</span>
+## VXLAN Active-active Device or Interface Is Down</span>
 
 When a VXLAN active-active device or interface in an MLAG configuration
 is down, log messages also include VXLAN and LNV checks.
@@ -258,7 +258,7 @@ state:
     vx-35            vx-35            -       -                    - 
     vx-34            vx-34            -       -                    - 
 
-## <span>Remote-side clagd Stopped by systemctl Command</span>
+## Remote-side clagd Stopped by systemctl Command</span>
 
 In the event the `clagd` service is stopped via the `systemctl` command,
 NetQ Notifier sends messages similar to the following:

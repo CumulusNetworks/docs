@@ -3,7 +3,7 @@ title: Static MAC Bindings with VXLAN
 author: Cumulus Networks
 weight: 147
 aliases:
- - /display/CL34/Static-MAC-Bindings-with-VXLAN
+ - /display/CL34/Static+MAC+Bindings+with+VXLAN
  - /pages/viewpage.action?pageId=7112511
 pageID: 7112511
 product: Cumulus Linux
@@ -13,7 +13,7 @@ siteSlug: cumulus-linux-343
 ---
 Cumulus Linux includes native Linux VXLAN kernel support.
 
-## <span>Requirements</span>
+## Requirements</span>
 
 A VXLAN configuration requires a switch with a Broadcom Tomahawk,
 Trident II+ or Trident II chipset running Cumulus Linux 2.0 or later, or
@@ -27,7 +27,7 @@ For a basic VXLAN configuration, you should ensure that:
   - The VXLAN link and local interfaces are added to bridge to create
     the association between port, VLAN and VXLAN instance.
 
-## <span>Example VXLAN Configuration</span>
+## Example VXLAN Configuration</span>
 
 Consider the following example:
 
@@ -45,7 +45,7 @@ NSX](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722660).
 
 {{%/notice%}}
 
-## <span>Configuring the Static MAC Bindings VXLAN</span>
+## Configuring the Static MAC Bindings VXLAN</span>
 
 To configure the example illustrated above, first create the following
 configuration on switch1:
@@ -103,7 +103,7 @@ These commands create the following configuration in the
         post-up bridge fdb add 00:00:10:00:00:0A dev vtep1000 dst 172.10.1.1 vni 1000
         post-up bridge fdb add 00:00:10:00:00:0B dev vtep1000 dst 172.10.1.1 vni 1000
 
-## <span>Troubleshooting VXLANs in Cumulus Linux</span>
+## Troubleshooting VXLANs in Cumulus Linux</span>
 
 Use the following commands to troubleshoot issues on the switch:
 

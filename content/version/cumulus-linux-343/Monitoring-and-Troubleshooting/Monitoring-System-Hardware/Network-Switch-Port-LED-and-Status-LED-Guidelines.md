@@ -3,7 +3,7 @@ title: Network Switch Port LED and Status LED Guidelines
 author: Cumulus Networks
 weight: 389
 aliases:
- - /display/CL34/Network-Switch-Port-LED-and-Status-LED-Guidelines
+ - /display/CL34/Network+Switch+Port+LED+and+Status+LED+Guidelines
  - /pages/viewpage.action?pageId=7112352
 pageID: 7112352
 product: Cumulus Linux
@@ -19,7 +19,7 @@ network switch. This provides a network operator with a standard way to
 identify the state of a switch and its ports by looking at its front
 panel, irrespective of the hardware vendor or NOS.
 
-## <span>Network Port LEDs</span>
+## Network Port LEDs</span>
 
 A network port LED indicates the state of the link, e.g. link UP, Tx/Rx
 activity etc.. Here are the requirements for these LEDs
@@ -80,7 +80,7 @@ activity etc.. Here are the requirements for these LEDs
         | Fault               | Slow Blinking Amber  | Slow Blinking Amber    |
         
 
-## <span>Status LEDs</span>
+## Status LEDs</span>
 
 A set of status LEDs are typically located on one side of a network
 switch. The status LEDs provide a visual indication on what is
@@ -161,7 +161,7 @@ components for which the LEDs are there as just units for now.
     | Locate disabled | Off           |
     
 
-### <span>Locate a Switch</span>
+### Locate a Switch</span>
 
 Cumulus Linux 3.3 and newer versions support the locator LED
 functionality for identifying a switch, by blinking a single LED on a

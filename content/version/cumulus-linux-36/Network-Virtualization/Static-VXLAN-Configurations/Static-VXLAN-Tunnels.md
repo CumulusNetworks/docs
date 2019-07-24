@@ -3,7 +3,7 @@ title: Static VXLAN Tunnels
 author: Cumulus Networks
 weight: 381
 aliases:
- - /display/CL36/Static-VXLAN-Tunnels
+ - /display/CL36/Static+VXLAN+Tunnels
  - /pages/viewpage.action?pageId=8362285
 pageID: 8362285
 product: Cumulus Linux
@@ -21,7 +21,7 @@ MidoNet](/version/cumulus-linux-36/Network-Virtualization/Virtualization-Integra
 or [VMware
 NSX](/version/cumulus-linux-36/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX)
 and even new standards like
-[EVPN](/version/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network---EVPN)
+[EVPN](/version/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 are attempts to address these complexities, however do retain their own
 complexities.
 
@@ -33,7 +33,7 @@ which VTEPs are in a particular VNI, you can avoid the tedious process
 of defining connections to every VLAN on every other VTEP on every other
 rack.
 
-## <span>Requirements</span>
+## Requirements</span>
 
 Cumulus Networks supports static VXLAN tunnels only on switches in the
 [Cumulus Linux HCL](http://cumulusnetworks.com/hcl/) using the Broadcom
@@ -66,14 +66,14 @@ For a basic VXLAN configuration, make sure that:
     
         cumulus@switch:~ sudo systemctl stop vxrd.service
 
-## <span>Example Configuration</span>
+## Example Configuration</span>
 
 The following topology is used in this chapter. Each IP address
 corresponds to the loopback address of the switch.
 
 {{% imgOld 0 %}}
 
-## <span>Configuring Static VXLAN Tunnels</span>
+## Configuring Static VXLAN Tunnels</span>
 
 To configure static VXLAN tunnels, do the following for each leaf:
 
@@ -280,7 +280,7 @@ iface vni-10
 </tbody>
 </table>
 
-## <span>Verifying the Configuration</span>
+## Verifying the Configuration</span>
 
 After you configure all the leaf switches, check for replication
 entries:

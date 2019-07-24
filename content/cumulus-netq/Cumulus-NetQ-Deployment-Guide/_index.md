@@ -1,9 +1,9 @@
 ---
 title: Cumulus NetQ Deployment Guide
 author: Cumulus Networks
-weight: 15
+weight: 13
 aliases:
- - /display/NETQ22/Cumulus-NetQ-Deployment-Guide
+ - /display/NETQ/Cumulus+NetQ+Deployment+Guide
  - /pages/viewpage.action?pageId=12320788
 pageID: 12320788
 product: Cumulus NetQ
@@ -23,9 +23,9 @@ switches and you are ready to add these NetQ capabilities.
 
 For information about monitoring and troubleshooting your network, refer
 to the [Cumulus NetQ CLI User
-Guide](/version/cumulus-netq-22/Cumulus-NetQ-CLI-User-Guide/) or the
+Guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/) or the
 [Cumulus NetQ UI User
-Guide](https://docs.cumulusnetworks.com/display/NETQ/Cumulus+NetQ+UI+User+Guide).
+Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide).
 
 {{%notice tip%}}
 

@@ -3,7 +3,7 @@ title: Monitoring System Statistics and Network Traffic with sFlow
 author: Cumulus Networks
 weight: 309
 aliases:
- - /display/CL30/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow
+ - /display/CL30/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow
  - /pages/viewpage.action?pageId=5118233
 pageID: 5118233
 product: Cumulus Linux
@@ -29,14 +29,14 @@ sFlow is not supported on switches with Spectrum ASICs.
 
 {{%/notice%}}
 
-## <span>Installing hsflowd</span>
+## Installing hsflowd</span>
 
 To download and install the `hsflowd` package, use `apt-get`:
 
     cumulus@switch:~$ sudo apt-get update
     cumulus@switch:~$ sudo apt-get install -y hsflowd
 
-## <span>Configuring sFlow</span>
+## Configuring sFlow</span>
 
 You can configure `hsflowd` to send to the designated collectors via two
 methods:
@@ -45,7 +45,7 @@ methods:
 
   - Manually configuring `/etc/hsflowd.conf`
 
-### <span>Configuring sFlow via DNS-SD</span>
+### Configuring sFlow via DNS-SD</span>
 
 With this method, you need to configure your DNS zone to advertise the
 collectors and polling information to all interested clients. Add the
@@ -85,7 +85,7 @@ running:
 
 No additional configuration is required in `/etc/hsflowd.conf`.
 
-### <span>Manually Configuring /etc/hsflowd.conf</span>
+### Manually Configuring /etc/hsflowd.conf</span>
 
 With this method you will set up the collectors and variables on each
 switch.
@@ -129,17 +129,17 @@ for your collector for more information.
 
 {{%/notice%}}
 
-## <span>Configuring sFlow Visualization Tools</span>
+## Configuring sFlow Visualization Tools</span>
 
 For information on configuring various sFlow visualization tools, read
 this [Help Center
 article](https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools).
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/hsflowd.conf
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [sFlow Collectors](http://www.sflow.org/products/collectors.php)
 

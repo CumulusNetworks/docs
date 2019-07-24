@@ -8,8 +8,8 @@ aliases:
 pageID: 5126706
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 The following sections describe how to configure network interfaces and
 FRRouting for a two-leaf/two-spine Cumulus VX network topology:
@@ -28,12 +28,12 @@ FRRouting for a two-leaf/two-spine Cumulus VX network topology:
 These instructions assume that you have installed the relevant images
 and hypervisors, created four VMs with appropriate names, and that the
 VMs are running. Refer to the [Getting
-Started](/version/cumulus-vx-34/Getting-Started/) chapter of this guide
-for more information on setting up the VMs.
+Started](/cumulus-vx/Getting-Started/) chapter of this guide for more
+information on setting up the VMs.
 
 {{%/notice%}}
 
-## <span>Configure CumulusVX-leaf1</span>
+## Configure CumulusVX-leaf1</span>
 
 You can configure each of the VMs using the Network Command Line Utility
 (NCLU) or by editing the `/etc/network/interfaces` and
@@ -135,7 +135,7 @@ To configure CumulusVX-leaf1:
     
         cumulus@switch:~$ sudo systemctl restart frr.service
 
-## <span>Configure the Remaining VMs</span>
+## Configure the Remaining VMs</span>
 
 The configuration steps for CumulusVX-leaf2, CumulusVX-spine1, and
 CumulusVX-spine2 are the same as
@@ -300,7 +300,7 @@ continuing.
 
 {{%/notice%}}
 
-## <span>Create Point-to-Point Connections Between VMs</span>
+## Create Point-to-Point Connections Between VMs</span>
 
 To use the two-leaf/two-spine Cumulus VX network topology you configured
 above, you need to configure the network adapter settings for each VM to
@@ -364,7 +364,7 @@ Make sure that the VM is powered off.
 |                  | swp2 | Adapter 3            | Internal                | Intnet-4 |
 |                  | swp3 | Adapter 4 (disabled) |                         |          |
 
-## <span>Test the Network Topology Connections</span>
+## Test the Network Topology Connections</span>
 
 After you restart the VMs, ping across VMs to test the connections:
 

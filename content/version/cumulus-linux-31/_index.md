@@ -3,7 +3,7 @@ title: Cumulus Linux User Guide
 author: Cumulus Networks
 weight: 1
 aliases:
- - /display/CL31/Cumulus-Linux-User-Guide
+ - /display/CL31/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=5121907
 pageID: 5121907
 product: Cumulus Linux
@@ -12,7 +12,7 @@ imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 subsection: true
 ---
-## <span>Welcome to Cumulus Networks</span>
+## Welcome to Cumulus Networks</span>
 
 We are transforming networking with Cumulus Linux, the industry's first,
 full-featured Linux operating system for networking hardware. Cumulus

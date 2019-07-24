@@ -25,7 +25,7 @@ supported in the following environments:
 
   - Docker containers
 
-## <span>Install the FRR Package on a Bare Metal Server</span>
+## Install the FRR Package on a Bare Metal Server</span>
 
 1.  If FRRouting is already installed on the host, you must uninstall
     that package before you install FRR.
@@ -149,7 +149,7 @@ supported in the following environments:
 
 7.  Enable the daemons you intend to use (such as `bgpd`, `ospfd` or
     `ospf6d`). For more information, see [Configuring FRRouting on the
-    Host](/version/hostpack/Configuring-FRRouting-on-the-Host).
+    Host](/host-pack/Configuring-FRRouting-on-the-Host).
 
 8.  Start the FRR service.
 
@@ -163,12 +163,12 @@ supported in the following environments:
     
         root@host:~# systemctl start frr.service
 
-## <span id="src-5868795_InstallingFRRoutingontheHost-container" class="confluence-anchor-link"></span><span>Start the Cumulus Host Pack FRR Docker Container</span>
+## Start the Cumulus Host Pack FRR Docker Container</span>
 
 {{%notice note%}}
 
 Before you can use the Cumulus Host Pack FRR Docker container, you must
-[install Docker](/version/hostpack/Installing-Docker).
+[install Docker](/host-pack/Installing-Docker).
 
 {{%/notice%}}
 
@@ -285,11 +285,11 @@ The following steps were done on an Ubuntu 16.04 host.
             end
             host#
 
-## <span>Configure FRR</span>
+## Configure FRR</span>
 
 Once you have finished installing FRR on your servers or in your
 containers, you are ready to [configure
-FRR](/version/hostpack/Configuring-FRRouting-on-the-Host).
+FRR](/host-pack/Configuring-FRRouting-on-the-Host).
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

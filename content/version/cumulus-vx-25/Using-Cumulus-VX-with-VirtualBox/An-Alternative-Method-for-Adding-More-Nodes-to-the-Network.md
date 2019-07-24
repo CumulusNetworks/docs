@@ -3,7 +3,7 @@ title: An Alternative Method for Adding More Nodes to the Network
 author: Cumulus Networks
 weight: 53
 aliases:
- - /display/VX25/An-Alternative-Method-for-Adding-More-Nodes-to-the-Network
+ - /display/VX25/An+Alternative+Method+for+Adding+More+Nodes+to+the+Network
  - /pages/viewpage.action?pageId=5115402
 pageID: 5115402
 product: Cumulus VX

@@ -3,7 +3,7 @@ title: Restoring from Backups with NetQ
 author: Cumulus Networks
 weight: 29
 aliases:
- - /display/NETQ10/Restoring-from-Backups-with-NetQ
+ - /display/NETQ10/Restoring+from+Backups+with+NetQ
  - /pages/viewpage.action?pageId=6488228
 pageID: 6488228
 product: Cumulus NetQ
@@ -26,7 +26,7 @@ snapshots occur automatically.
 
 {{%/notice%}}
 
-## <span>Backup Locations</span>
+## Backup Locations</span>
 
 Backup snapshots can be found in two file locations on the NetQ
 Telemetry Server:
@@ -35,7 +35,7 @@ Telemetry Server:
 
   - `/var/backup`: Directory of previous snapshots.
 
-## <span>Use Cases</span>
+## Use Cases</span>
 
 There are several use-cases in which restoring from a snapshot may be
 warranted. These include:
@@ -46,7 +46,7 @@ warranted. These include:
 
   - A NetQ Telemetry Server crash.
 
-## <span>Restoring from a Snapshot</span>
+## Restoring from a Snapshot</span>
 
 The following steps outline the process for restoring the NetQ Telemetry
 Server from a snapshot:

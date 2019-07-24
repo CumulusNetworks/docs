@@ -8,8 +8,8 @@ aliases:
 pageID: 5126718
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 The solution described in this chapter requires four components:
 
@@ -39,7 +39,7 @@ The solution described in this chapter requires four components:
 The following sections describe how to install `libvirt`, KVM/QEMU, and
 Vagrant on a Linux server.
 
-## <span>Install libvirt</span>
+## Install libvirt</span>
 
 1.  
     
@@ -128,7 +128,7 @@ Vagrant on a Linux server.
 After completing these steps, `libvirt` and KVM/QEMU are installed. The
 Linux server is now ready to run VMs.
 
-## <span>Install Vagrant</span>
+## Install Vagrant</span>
 
 You must install Vagrant **after** you install `libvirt`. Vagrant might
 not properly detect the necessary files if it is installed before
@@ -225,7 +225,7 @@ later is recommended.
 
 After completing these steps, Vagrant is now set up.
 
-## <span>Create the Vagrantfile and Launch KVM Instances</span>
+## Create the Vagrantfile and Launch KVM Instances</span>
 
 1.  
     

@@ -3,7 +3,7 @@ title: Traditional Bridge Mode
 author: Cumulus Networks
 weight: 353
 aliases:
- - /display/CL36/Traditional-Bridge-Mode
+ - /display/CL36/Traditional+Bridge+Mode
  - /pages/viewpage.action?pageId=8362161
 pageID: 8362161
 product: Cumulus Linux
@@ -12,17 +12,17 @@ imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
 Cumulus Networks recommends you use a [VLAN-aware
-bridge](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+bridge](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 on your switch. You use traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.
 
-## <span>Creating a Traditional Mode Bridge</span>
+## Creating a Traditional Mode Bridge</span>
 
 You can configure a traditional mode bridge either using
-[NCLU](/version/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility---NCLU/)
+[NCLU](/version/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility-NCLU/)
 or manually editing the `/etc/network/interfaces` file.
 
-### <span>Using NCLU to Configure a Traditional Bridge</span>
+### Using NCLU to Configure a Traditional Bridge</span>
 
 NCLU has limited support for configuring bridges in traditional mode.
 
@@ -30,7 +30,7 @@ NCLU has limited support for configuring bridges in traditional mode.
 
 The traditional bridge must be named something other than *bridge*, ****
 as that name is reserved for the single [VLAN-aware
-bridge](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+bridge](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 that you can configure on the switch.
 
 {{%/notice%}}
@@ -110,7 +110,7 @@ Verify the configuration by running `net show config commands`:
     net add interface swp2 stp portrestrrole
     ...
 
-### <span>Manually Configuring a Traditional Mode Bridge</span>
+### Manually Configuring a Traditional Mode Bridge</span>
 
 To create a traditional mode bridge manually, you need to hand edit the
 `/etc/network/interfaces` file:
@@ -232,7 +232,7 @@ This example configuration looks like this in the
 
 {{%/notice%}}
 
-## <span id="src-8362161_TraditionalBridgeMode-VLAN_tagging" class="confluence-anchor-link"></span><span>Using Trunks in Traditional Bridge Mode</span>
+## <span id="src-8362161_TraditionalBridgeMode-VLAN_tagging" class="confluence-anchor-link"></span>Using Trunks in Traditional Bridge Mode</span>
 
 The [IEEE standard](http://www.ieee802.org/1/pages/802.1Q.html) for
 trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within
@@ -275,7 +275,7 @@ native VLAN, thus merging those two VLANs and their spanning tree state.
 
 {{%/notice%}}
 
-### <span>Trunk Example</span>
+### Trunk Example</span>
 
 {{% imgOld 1 %}}
 
@@ -293,12 +293,12 @@ To create the above example, add the following configuration to the
      bridge-ports swp1.200 swp2.200
      bridge-stp on
 
-### <span>VLAN Tagging Examples</span>
+### VLAN Tagging Examples</span>
 
 You can find more examples of VLAN tagging in [this
-chapter](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging---VLANs/VLAN-Tagging).
+chapter](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-### <span id="src-8362161_TraditionalBridgeMode-arp" class="confluence-anchor-link"></span><span>Configuring ARP Timers</span>
+### <span id="src-8362161_TraditionalBridgeMode-arp" class="confluence-anchor-link"></span>Configuring ARP Timers</span>
 
 Cumulus Linux does not often interact directly with end systems as much
 as end systems interact with one another. Thus, after a successful

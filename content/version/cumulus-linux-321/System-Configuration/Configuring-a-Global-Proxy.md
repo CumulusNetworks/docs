@@ -3,7 +3,7 @@ title: Configuring a Global Proxy
 author: Cumulus Networks
 weight: 71
 aliases:
- - /display/CL321/Configuring-a-Global-Proxy
+ - /display/CL321/Configuring+a+Global+Proxy
  - /pages/viewpage.action?pageId=5126769
 pageID: 5126769
 product: Cumulus Linux
@@ -75,7 +75,7 @@ proxy is set up correctly:
         cumulus@switch:~$ echo $https_proxy
         https://myproxy.domain.com:8080
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [Setting up an apt package
     cache](https://support.cumulusnetworks.com/hc/en-us/articles/232058388-Setting-up-an-apt-Package-Cache)

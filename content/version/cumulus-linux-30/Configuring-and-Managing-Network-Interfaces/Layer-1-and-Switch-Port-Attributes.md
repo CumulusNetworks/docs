@@ -3,7 +3,7 @@ title: Layer 1 and Switch Port Attributes
 author: Cumulus Networks
 weight: 81
 aliases:
- - /display/CL30/Layer-1-and-Switch-Port-Attributes
+ - /display/CL30/Layer+1+and+Switch+Port+Attributes
  - /pages/viewpage.action?pageId=5118373
 pageID: 5118373
 product: Cumulus Linux
@@ -16,13 +16,13 @@ siteSlug: cumulus-linux-30
 This chapter discusses the various network interfaces on a switch
 running Cumulus Linux.
 
-## <span>Commands</span>
+## Commands</span>
 
   - ethtool
 
   - ip
 
-## <span>Man Pages</span>
+## Man Pages</span>
 
   - man ethtool
 
@@ -34,13 +34,13 @@ running Cumulus Linux.
 
   - man ip link
 
-## <span>Configuration Files</span>
+## Configuration Files</span>
 
   - /etc/cumulus/ports.conf
 
   - /etc/network/interfaces
 
-## <span>Interface Types</span>
+## Interface Types</span>
 
 Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
@@ -56,7 +56,7 @@ and logical devices:
   - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
     port channels)
 
-## <span>Settings</span>
+## Settings</span>
 
 You can set the MTU, speed, duplex and auto-negotiation settings under a
 physical or logical interface stanza:
@@ -73,7 +73,7 @@ To load the updated configuration, run the `ifreload -a` command:
 
     cumulus@switch:~$ sudo ifreload -a
 
-### <span>Port Speed and Duplexing</span>
+### Port Speed and Duplexing</span>
 
 Cumulus Linux supports both half- and
 [full-duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
@@ -125,7 +125,7 @@ You can also configure these settings at run time, using `ethtool`.
 </tbody>
 </table>
 
-#### <span>Port Speed Limitations</span>
+#### Port Speed Limitations</span>
 
 Ports can be configured to one speed less than their maximum speed.
 
@@ -138,7 +138,7 @@ Ports can be configured to one speed less than their maximum speed.
 
 \*Requires the port to be converted into a breakout port.
 
-### <span>Auto-negotiation</span>
+### Auto-negotiation</span>
 
 You can enable or disable
 [auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation) (that
@@ -177,7 +177,7 @@ interfaces.
 
 <span id="src-5118373_Layer1andSwitchPortAttributes-mtu"></span>
 
-### <span>MTU</span>
+### MTU</span>
 
 Interface MTU applies to the management port, front panel port, bridge,
 VLAN subinterfaces and bonds.
@@ -245,7 +245,7 @@ To show MTU, use `ip link show`:
     3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 
-## <span id="src-5118373_Layer1andSwitchPortAttributes-breakout" class="confluence-anchor-link"></span><span>Configuring Breakout Ports</span>
+## <span id="src-5118373_Layer1andSwitchPortAttributes-breakout" class="confluence-anchor-link"></span>Configuring Breakout Ports</span>
 
 Cumulus Linux has the ability to:
 
@@ -259,7 +259,7 @@ Cumulus Linux has the ability to:
   - Combine (also called *aggregating* or *ganging*) four 10G switch
     ports into one 40G port for use with a breakout cable ([not to be
     confused with a
-    bond](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Bonding---Link-Aggregation)).
+    bond](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation)).
 
 You configure breakout ports in the `/etc/cumulus/ports.conf` file.
 After you modify the configuration, [restart
@@ -275,7 +275,7 @@ compatibility list](http://www.cumulusnetworks.com/hcl).
 
 {{%/notice%}}
 
-### <span>Breaking Out a 100G Port</span>
+### Breaking Out a 100G Port</span>
 
 A snippet from the `/etc/cumulus/ports.conf` looks on a Tomahawk switch
 like this:
@@ -412,7 +412,7 @@ In any case, when you finish editing `ports.conf`, make sure to [restart
 `switchd`](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd)
 to reload your changes.
 
-### <span>Breaking Out a 40G Port</span>
+### Breaking Out a 40G Port</span>
 
 A snippet from the `/etc/cumulus/ports.conf` looks on a 40G switch like
 this:
@@ -466,7 +466,7 @@ In `/etc/cumulus/ports.conf`:
 
 {{%/notice%}}
 
-### <span>Combining Four 10G Ports into One 40G Port</span>
+### Combining Four 10G Ports into One 40G Port</span>
 
 To gang (aggregate) four 10G ports into one 40G port for use with a
 breakout cable, you must edit `/etc/cumulus/ports.conf`.
@@ -522,7 +522,7 @@ Cumulus Linux if possible in this situation.
 
 {{%/notice%}}
 
-## <span>Logical Switch Port Limitations</span>
+## Logical Switch Port Limitations</span>
 
 100G and 40G switches with Spectrum, Tomahawk, Trident II and Trident
 II+ chipsets (check the
@@ -570,9 +570,9 @@ logical ports in total. However, the logical ports must be configured in
 a specific way. See [the
 note](#src-5118373_Layer1andSwitchPortAttributes-breakout) above.
 
-## <span>Verification and Troubleshooting Commands</span>
+## Verification and Troubleshooting Commands</span>
 
-### <span>Statistics</span>
+### Statistics</span>
 
 High-level interface statistics are available with the `ip -s link`
 command:
@@ -616,7 +616,7 @@ Low-level interface statistics are available with `ethtool`:
          SoftOutTxFifoFull: 0
          HwIfOutQLen: 0
 
-### <span>Querying SFP Port Information</span>
+### Querying SFP Port Information</span>
 
 You can verify SFP settings using `ethtool -m`. The following example
 shows the output for 1G and 10G modules:
@@ -632,7 +632,7 @@ shows the output for 1G and 10G modules:
                   RXPower : -3.2532dBm
                   TXPower : -2.0817dBm
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - <http://wiki.debian.org/NetworkConfiguration>
 

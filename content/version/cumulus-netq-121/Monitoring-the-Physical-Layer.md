@@ -3,7 +3,7 @@ title: Monitoring the Physical Layer
 author: Cumulus Networks
 weight: 23
 aliases:
- - /display/NETQ121/Monitoring-the-Physical-Layer
+ - /display/NETQ121/Monitoring+the+Physical+Layer
  - /pages/viewpage.action?pageId=8356585
 pageID: 8356585
 product: Cumulus NetQ
@@ -28,7 +28,7 @@ NetQ uses [LLDP](/display/NETQ121/Link+Layer+Discovery+Protocol) to
 collect port information. It can also identify peer ports for DACs and
 AOCs without using LLDP or even if the link is not UP.
 
-## <span>Managing the Layer 1 Inventory</span>
+## Managing the Layer 1 Inventory</span>
 
 NetQ provides detailed information about the cabling on a given node:
 
@@ -181,7 +181,7 @@ physical model PARTNUMBER`:
     act-5712-12      swp44     up    10G     off     SFP       OEM              SFP-H10GB-CU1M   17:22:06 ago
     act-5712-12      swp14     up    10G     off     SFP       OEM              SFP-H10GB-CU1M   17:22:36 ago
 
-## <span>Checking Peer Connections</span>
+## Checking Peer Connections</span>
 
 NetQ checks peer connections using LLDP. For DACs and AOCs, NetQ
 determines the peers using their serial numbers in the port EEPROMs,
@@ -227,7 +227,7 @@ Hostname         Interface Peer Hostname    Peer Interface State Message
 cel-smallxp-13   swp31     cel-smallxp-13   swp32          up   
 ```
 
-## <span>Layer 1 Configuration Checks</span>
+## Layer 1 Configuration Checks</span>
 
 You can verify that the following configurations are the same on both
 ends of two peer interfaces:

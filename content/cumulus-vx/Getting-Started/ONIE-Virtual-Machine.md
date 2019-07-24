@@ -8,8 +8,8 @@ aliases:
 pageID: 5126699
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 Cumulus VX images now include the GRUB boot loader and [Open Network
 Install Environment (ONIE)](http://onie.org/) preinstalled. You can
@@ -34,21 +34,21 @@ configured the VM.
 
 1.  After booting the VM, reboot into ONIE Rescue mode using one of two
     methods:
-    
+
     1.  Select ONIE Rescue mode on next reboot and reboot the VM:
-        
+
             cumulus@switch:$ sudo onie-select -rf && sudo reboot
-    
+
     2.  Reboot and during the first 5 seconds on the GRUB menu, change
         the boot image to `ONIE`, then select `ONIE Rescue Mode` using
         the GRUB menu.
 
 2.  To install Cumulus VX, run the following command:
-    
+
         cumulus@switch:~$ onie-nos-install <URL to cumulus-linux-vx-amd64.bin>
-    
+
     Refer to [Installing a New Cumulus Linux
-    Image](/display/VX/Installing+a+New+Cumulus+Linux+Image) or the
+    Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image/) or the
     [ONIE Quick Start
     Guide](https://github.com/opencomputeproject/onie/wiki/Quick-Start-Guide)
     for specific instructions on various install methods.

@@ -3,7 +3,7 @@ title: Cumulus NetQ Deployment Guide
 author: Cumulus Networks
 weight: 15
 aliases:
- - /display/NETQ141/Cumulus-NetQ-Deployment-Guide
+ - /display/NETQ141/Cumulus+NetQ+Deployment+Guide
  - /pages/viewpage.action?pageId=10453397
 pageID: 10453397
 product: Cumulus NetQ

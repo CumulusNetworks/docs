@@ -3,13 +3,13 @@ title: Monitoring Interfaces and Transceivers Using ethtool
 author: Cumulus Networks
 weight: 457
 aliases:
- - /display/CL37/Monitoring-Interfaces-and-Transceivers-Using-ethtool
+ - /display/DOCS/Monitoring+Interfaces+and+Transceivers+Using+ethtool
  - /pages/viewpage.action?pageId=8362604
 pageID: 8362604
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The `ethtool` command enables you to query or control the network driver
 and hardware settings. It takes the device name (like swp1) as an
@@ -18,7 +18,7 @@ prints the current settings of the network device. See `man ethtool(8)`
 for details. Not all options are currently supported on switch port
 interfaces.
 
-## <span>Monitor Interface Status Using ethtool</span>
+## Monitor Interface Status Using ethtool
 
 To check the status of an interface using `ethtool`:
 
@@ -45,7 +45,7 @@ To check the status of an interface using `ethtool`:
 {{%notice note%}}
 
 The switch hardware contains the [active port
-settings](/version/cumulus-linux-377/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
+settings](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
 The output of `ethtool swpXX` shows the port settings stored in the
 kernel. The `switchd` process keeps the hardware and kernel in sync for
 the important port settings (speed, auto-negotiation, and link detected)
@@ -86,7 +86,7 @@ To query interface statistics:
             SoftOutTxFifoFull: 0
             HwIfOutQLen: 0
 
-## <span>View and Clear Interface Counters</span>
+## View and Clear Interface Counters
 
 Interface counters contain information about an interface. You can view
 this information when you run `cl-netstat`, `ifconfig`, or `cat
@@ -149,7 +149,7 @@ information:
 </tbody>
 </table>
 
-## <span>Monitor Switch Port SFP/QSFP Hardware Information Using ethtool</span>
+## Monitor Switch Port SFP/QSFP Hardware Information Using ethtool
 
 To see hardware capabilities and measurement information on the SFP or
 QSFP module installed in a particular port, use the `ethtool -m`

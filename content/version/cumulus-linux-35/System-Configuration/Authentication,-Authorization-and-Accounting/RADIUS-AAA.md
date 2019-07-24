@@ -3,7 +3,7 @@ title: RADIUS AAA
 author: Cumulus Networks
 weight: 277
 aliases:
- - /display/CL35/RADIUS-AAA
+ - /display/CL35/RADIUS+AAA
  - /pages/viewpage.action?pageId=8357341
 pageID: 8357341
 product: Cumulus Linux
@@ -18,7 +18,7 @@ There is no need to create accounts or directories on the switch.
 Authentication is handled via PAM, and includes login, `ssh`, `sudo` and
 `su`.
 
-## <span>Installing and Configuring the RADIUS Packages</span>
+## Installing and Configuring the RADIUS Packages</span>
 
 The plugin is installed from two RADIUS packages, which are not in the
 base Cumulus Linux image. There is no RADIUS metapackage.
@@ -36,7 +36,7 @@ During installation, the PAM configuration is modified automatically via
 plugins. If you remove or purge the packages, these files are modified
 to remove the configuration for these plugins.
 
-## <span>Configuring the RADIUS Client</span>
+## Configuring the RADIUS Client</span>
 
 For common use cases, the only configuration file that needs to be
 modified is `/etc/pam_radius_auth.conf`. You need to add the hostname or
@@ -106,9 +106,9 @@ support, man pages describing the PAM and RADIUS configuration, and the
 setting of the `SUDO_PROMPT` environment variable to the login name as
 part of the mapping support described below.
 
-## <span>Configuring NCLU for RADIUS Users</span>
+## Configuring NCLU for RADIUS Users</span>
 
-[NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility---NCLU/)
+[NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/)
 has its own configuration file to enable RADIUS users to run the `net`
 command. Edit the `/etc/netd.conf` file, then:
 
@@ -152,7 +152,7 @@ a message similar to the following gets displayed:
     rad_user@switch:~$ net show version
     net not authorized by TACACS+ with given arguments, not executing
 
-### <span>Enabling Login without Local Accounts</span>
+### Enabling Login without Local Accounts</span>
 
 The above description of the PAM interfaces is similar to the normal
 Debian `libpam-radius-auth` package, which work without the
@@ -197,7 +197,7 @@ A flat file mapping is done based on the session number assigned during
 login, and it persists across `su` and `sudo`. The mapping is removed at
 logout.
 
-## <span>Enabling sudo Access for RADIUS Users</span>
+## Enabling sudo Access for RADIUS Users</span>
 
 To allow RADIUS users to use `sudo`, you need to create a `sudoers` file
 authorizing them. The simplest case is to give them full `sudo` access,
@@ -215,7 +215,7 @@ members of the *radius\_users* group:
     cumulus@switch:~$ sudo vi /etc/sudoers.d/radius
     %radius_users ALL=(ALL:ALL) ALL
 
-## <span id="src-8357341_RADIUSAAA-remove" class="confluence-anchor-link"></span><span>Removing the RADIUS Client Packages</span>
+## <span id="src-8357341_RADIUSAAA-remove" class="confluence-anchor-link"></span>Removing the RADIUS Client Packages</span>
 
 You can remove the RADIUS packages with the following command:
 
@@ -261,9 +261,9 @@ that account name instead of *radius\_user*).
     cumulus@switch:~$ sudo deluser --remove-home radius_user
     cumulus@switch:~$ sudo delgroup radius_users
 
-## <span>Limitations</span>
+## Limitations</span>
 
-### <span>Multiple RADIUS Users</span>
+### Multiple RADIUS Users</span>
 
 If two or more RADIUS users are logged in simultaneously, a UID lookup
 only returns the user that logged in first. This means that any
@@ -276,7 +276,7 @@ user from the password file.
 The current algorithm returns the first name matching the UID from the
 mapping file; this could be the first or second user that logged in.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [TACACS+
     client](/version/cumulus-linux-35/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)

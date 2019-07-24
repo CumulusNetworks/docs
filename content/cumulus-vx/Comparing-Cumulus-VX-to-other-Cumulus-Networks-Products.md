@@ -8,8 +8,8 @@ aliases:
 pageID: 5126709
 product: Cumulus VX
 version: '3.4'
-imgData: cumulus-vx-34
-siteSlug: cumulus-vx-34
+imgData: cumulus-vx
+siteSlug: cumulus-vx
 ---
 Cumulus VX is not a production-ready virtual switch or router. It has
 the same foundation as Cumulus Linux and Cumulus RMP, including all the

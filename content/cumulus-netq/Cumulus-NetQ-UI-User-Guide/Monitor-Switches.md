@@ -3,7 +3,7 @@ title: Monitor Switches
 author: Cumulus Networks
 weight: 95
 aliases:
- - /display/NETQ22/Monitor-Switches
+ - /display/NETQ/Monitor+Switches
  - /pages/viewpage.action?pageId=12321794
 pageID: 12321794
 product: Cumulus NetQ
@@ -19,9 +19,9 @@ compliance, and other planning tasks. Viewing individual switch health
 helps isolate performance issues.
 
 For network-wide monitoring, refer to [Monitor the
-Network](/version/cumulus-netq-22/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/).
+Network](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/).
 
-## <span>Monitor Switch Performance</span>
+## Monitor Switch Performance
 
 Viewing detail about a particular switch is essential when
 troubleshooting performance issues. With NetQ you can view the overall
@@ -29,7 +29,7 @@ performance and drill down to view attributes of the switch, interface
 performance and the events associated with a switch. This is
 accomplished through the Switches card.
 
-### <span>Switch Card Workflow Summary</span>
+### Switch Card Workflow Summary
 
 The small Switch card displays:
 
@@ -37,8 +37,8 @@ The small Switch card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -48,8 +48,7 @@ The small Switch card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 1 %}}</p></td>
+<td><p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -94,8 +93,8 @@ The medium Switch card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -105,8 +104,7 @@ The medium Switch card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 5 %}}</p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -132,8 +130,8 @@ The *Attributes* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -143,8 +141,7 @@ The *Attributes* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 7 %}}</p></td>
+<td><p>{{% imgOld 7 %}}</p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -208,8 +205,8 @@ The *Utilization* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -219,8 +216,7 @@ The *Utilization* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 9 %}}</p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Indicates utilization data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -249,8 +245,8 @@ addresses, and all interfaces.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -325,14 +321,13 @@ addresses, and all interfaces.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 12 %}}</p></td>
+<td><p>{{% imgOld 12 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
 </table>
 
-### <span>View the Overall Health of a Switch</span>
+### View the Overall Health of a Switch
 
 When you want to monitor the health of a particular switch, open the
 small Switch card. It is unlikely that you would have this card open for
@@ -343,32 +338,28 @@ status and summary performance score and trend.
 
 To view the summary:
 
-1.  Click <span style="color: #353744;"> </span>
-    
-    {{% imgOld 13 %}}
-    
-    , and select Devices|Switch. A dialog box opens.
-    
+1.  Click {{% imgOld 13 %}}, and select Devices|Switch. A dialog box opens.
+
     {{% imgOld 14 %}}
 
 2.  Begin typing the hostname of the device you are interested in.
     Select it from the suggested matches when it appears.
-    
+
     {{% imgOld 15 %}}
 
 3.  Select the size of the card, *L1*, to open the small size card.
-    
+
     {{% imgOld 16 %}}
 
 4.  Click **Add**, or **Cancel** to exit the process.
-    
+
     {{% imgOld 17 %}}
 
 In this example, we see that the leaf01 switch has had very few alarms
 overall, but the number is trending upward, with a total count of 24
 alarms currently.
 
-### <span>View Health Performance Metrics</span>
+### View Health Performance Metrics
 
 When you are monitoring switches that have been problematic or are newly
 installed, you might want to view more than a summary. Instead, seeing
@@ -381,11 +372,8 @@ comprise that score. The key metric scores are based on the number of
 alarms attributed to the following activities on the switch:
 
   - network services, such as BGP, EVPN, CLAG, NTP, and so forth
-
   - scheduled traces
-
   - interface performance
-
   - platform performance
 
 {{% imgOld 18 %}}
@@ -395,7 +383,7 @@ metrics. You can view the key performance metrics as numerical scores or
 as line charts over time, by clicking **Charts** or **Score** at the top
 of the card.
 
-### <span>View Attributes of a Switch</span>
+### View Attributes of a Switch
 
 For a quick look at the key attributes of a particular switch, open the
 large Switch card. Attributes are displayed as the default tab.
@@ -405,7 +393,7 @@ large Switch card. Attributes are displayed as the default tab.
 In this example, the items of interest might be the five interfaces that
 are down and what version of OS and NetQ Agent the switch is running.
 
-### <span>View Current Resource Utilization for a Switch</span>
+### View Current Resource Utilization for a Switch
 
 The NetQ GUI enables you to easily view the performance of various
 hardware components and the network tables. This enables you to
@@ -415,48 +403,37 @@ performance with other switches.
 To view the resource utilization on a particular switch:
 
 1.  Open the large Switch card.
-
-2.  Hover over the card and click
-    
-    {{% imgOld 20 %}}
-    
-    .
-
+2.  Hover over the card and click {{% imgOld 20 %}}.
 3.  The card is divided into two sections, one displaying
     hardware-related performance through a series of charts, and one
     displaying the performance of the network tables, also through a
     series of charts.
-    
+
     {{% imgOld 21 %}}
 
 4.  Look at the hardware performance charts. Are there any that are
     reaching critical usage levels? Scroll down to view all available
     charts.
-
 5.  Open a new large Switch card for the same switch and change the time
     period. Is the performance about the same? Better? Worse? The
     results can guide your decisions about upgrade options or just times
     of day when the system is more heavily used.
-
 6.  Optionally, filter for a particular chart, by clicking **Filter**
     above the charts. Begin typing the name of the chart you want to
     focus on; the charts that match the filter remain, while the others
     are hidden from view. Delete the filter to see all charts again.
-
 7.  Look at the network table performance. Are there any tables that are
     reaching their maximum size? Does it stay at that level or spike at
     peak times? Scroll down to view all available charts.
-
 8.  Compare this data with that in the second card you opened in step 5.
     Is the performance about the same? Better? Worse? The results can
     guide you toward any next steps if needed.
-
 9.  Optionally, filter for a particular chart, by clicking **Filter**
     above the charts. Begin typing the name of the chart you want to
     focus on; the charts that match the filter remain, while the others
     are hidden from view. Delete the filter to see all charts again.
 
-### <span>View All Addresses for a Switch</span>
+### View All Addresses for a Switch
 
 It can be useful to view all of the configured addresses that this
 switch is using. You can view all IP addresses or all MAC addresses
@@ -466,38 +443,28 @@ To view all IP addresses:
 
 1.  Open the full screen Switch card. The **IP addresses** tab is shown
     by default.
-    
+
     {{% imgOld 22 %}}
 
 2.  Review the addresses for any anomalies, to obtain prefix
     information, determine if it is an IPv4 or IPv6 address, and so
     forth.
 
-3.  To return to the workbench, click <span style="color: #353744;">
-    </span>
-    
-    {{% imgOld 23 %}}
-    
-    in the top right corner.
+3.  To return to the workbench, click {{% imgOld 23 %}} in the top right corner.
 
 To view all MAC addresses:
 
 1.  Open the full screen Switch card and click the **MAC Addresses**
     tab.
-    
+
     {{% imgOld 24 %}}
 
 2.  Review the addresses for any anomalies, to see the associated egress
     port, associated VLANs, and so forth.
 
-3.  To return to the workbench, click <span style="color: #353744;">
-    </span>
-    
-    {{% imgOld 25 %}}
-    
-    in the top right corner.
+3.  To return to the workbench, click {{% imgOld 25 %}} in the top right corner.
 
-### <span>View All Interfaces on a Switch</span>
+### View All Interfaces on a Switch
 
 You can view all of the configured interfaces on a switch in one place
 making it easier to see inconsistencies in the configuration, quickly
@@ -507,36 +474,26 @@ To view all interfaces:
 
 1.  Open the full screen Switch card and click the **All Interfaces**
     tab.
-    
+
     {{% imgOld 26 %}}
 
 2.  Look for interfaces that are down, shown in the **State** column.
-
 3.  Look for recent changes to the interfaces, shown in the **Last
     Changed** column.
-
 4.  View details about each interface, shown in the **Details** column.
-
 5.  Verify they are of the correct kind for their intended function,
     shown in the **Type** column.
-
 6.  Verify the correct VRF interface is assigned to an interface, shown
     in the **VRF** column.
+7.  To return to the workbench, click {{% imgOld 27 %}} in the top right corner.
 
-7.  To return to the workbench, click <span style="color: #353744;">
-    </span>
-    
-    {{% imgOld 27 %}}
-    
-    in the top right corner.
-
-## <span>Monitor Switch Component Inventory</span>
+## Monitor Switch Component Inventory
 
 Knowing what components are included on all of your switches aids in
 upgrade, compliance, and other planning tasks. Viewing this data is
 accomplished through the Switch Inventory card.
 
-### <span>Switch Inventory Card Workflow Summary</span>
+### Switch Inventory Card Workflow Summary
 
 The small Switch Inventory card displays:
 
@@ -554,8 +511,8 @@ The medium Switch Inventory card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -565,8 +522,7 @@ The medium Switch Inventory card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 31 %}}</p></td>
+<td><p>{{% imgOld 31 %}}</p></td>
 <td><p>Indicates data is for switch inventory</p></td>
 </tr>
 <tr class="even">
@@ -593,8 +549,8 @@ The *Summary* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -618,7 +574,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="even">
 <td><p>Unique</p></td>
-<td><p>Number of unique versions of the various switch components. For example, for OS, you might have CL 3.7.1 and CL 3.7.4 making the unique value two.</p></td>
+<td><p>Number of unique versions of the various switch components. For example, for OS, you might have CL 3.7.6 and CL 3.7.4 making the unique value two.</p></td>
 </tr>
 </tbody>
 </table>
@@ -629,8 +585,8 @@ The *ASIC* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -640,8 +596,7 @@ The *ASIC* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 35 %}}</p></td>
+<td><p>{{% imgOld 35 %}}</p></td>
 <td><p>Indicates data is for ASIC information</p></td>
 </tr>
 <tr class="even">
@@ -669,8 +624,8 @@ The *Platform* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -680,8 +635,7 @@ The *Platform* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 37 %}}</p></td>
+<td><p>{{% imgOld 37 %}}</p></td>
 <td><p>Indicates data is for platform information</p></td>
 </tr>
 <tr class="even">
@@ -713,8 +667,8 @@ The *Software* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -724,8 +678,7 @@ The *Software* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 39 %}}</p></td>
+<td><p>{{% imgOld 39 %}}</p></td>
 <td><p>Indicates data is for software information</p></td>
 </tr>
 <tr class="even">
@@ -756,7 +709,7 @@ ASIC, platform, CPU, memory, disk, and OS components.
 There are a multitude of ways to view and analyze the available data
 within this workflow. A few examples are provided here.
 
-### <span>View a Summary of Communication Status for All Switches </span>
+### View a Summary of Communication Status for All Switches
 
 A communication status summary for all of your switches across the
 network is available from the small Switch Inventory card.
@@ -766,7 +719,7 @@ network is available from the small Switch Inventory card.
 In this example, we see all 13 switches have been heard from recently
 (they are fresh).
 
-### <span>View the Number of Types of Any Component Deployed</span>
+### View the Number of Types of Any Component Deployed
 
 For each of the components monitored on a switch, NetQ displays the
 variety of those component by way of a count. For example, if you have
@@ -777,7 +730,7 @@ you only use Cumulus Linux, then the count shows as one.
 To view this count for all of the components on the switch:
 
 1.  Open the medium Switch Inventory card.
-    
+
     {{% imgOld 42 %}}
 
 2.  Note the number in the **Unique** column for each component.  
@@ -795,7 +748,7 @@ could select **Rotten Switches** from the dropdown at the top of the
 card and see if they all use the same OS (count would be 1). It may not
 be the cause of the lack of communication, but you get the idea.
 
-### <span>View the Distribution of Any Component Deployed</span>
+### View the Distribution of Any Component Deployed
 
 NetQ monitors a number of switch components. For each component you can
 view the distribution of versions or models or vendors deployed across
@@ -805,11 +758,11 @@ To view the distribution:
 
 1.  Open the medium or large Switch Inventory card. Each component has a
     chart showing the distribution.  
-    
+
     {{% imgOld 43 %}}
-    
+
     OR
-    
+
     {{% imgOld 44 %}}
 
 2.  Hover over a segment of the chart to view the name, version, model
@@ -818,7 +771,7 @@ To view the distribution:
     On the large Switch Inventory card, hovering also highlights the
     related components for the selected component. This is shown in blue
     here.
-    
+
     {{% imgOld 45 %}}
 
 3.  Point to additional segments on that component or other components
@@ -826,7 +779,7 @@ To view the distribution:
 
 4.  Scroll down to view additional components.
 
-### <span>View the Number of Switches with Invalid or Missing Licenses</span>
+### View the Number of Switches with Invalid or Missing Licenses
 
 It is important to know when you have switches that have invalid or
 missing Cumulus Linux licenses, as not all of the features are
@@ -836,32 +789,19 @@ count.
 
 {{% imgOld 46 %}}
 
-To view which vendors and platforms have bad or missing licenses, open
-the large Switch Inventory card, <span style="color: #000000;"> and
-click </span>
-
-{{% imgOld 47 %}}
-
-to open the **Platform Details** tab. Hover over the License State bar
-chart to highlight the vendor and platforms with the various states.
+To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click {{% imgOld 47 %}} to open the **Platform Details** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
 
 To view *which* switches have invalid or missing licenses, either:
 
-  - hover over the large Switch Inventory card and click
-    
-    {{% imgOld 48 %}}
-    
-    to open the **Platform Details** tab. Above the Licenses State or
-    the Vendor chart, click **Show All**.
-
-  - open the full screen Switch Inventory card .
+  - hover over the large Switch Inventory card and click {{% imgOld 48 %}} to open the **Platform Details** tab. Above the Licenses State or the Vendor chart, click **Show All**.
+  - open the full screen Switch Inventory card.
 
 Then sort the **All Switches** tab data table by the **License State**
 column to locate the switches with bad or missing licenses.
 
 {{% imgOld 49 %}}
 
-### <span>View the Most Commonly Deployed ASIC</span>
+### View the Most Commonly Deployed ASIC
 
 It can be useful to know the quantity and ratio of many components
 deployed in your network to determine the scope of upgrade tasks,
@@ -876,54 +816,36 @@ To view the most commonly deployed ASIC, for example:
 2.  Hover over the *largest* segment in the ASIC chart. The tooltip that
     appears shows you the number of switches with the given ASIC and the
     percentage of your entire switch population with this ASIC.  
-    
+
     {{% imgOld 50 %}}
-    
-      
+
+
     Click on any other component in a similar fashion to see the most
     common type of that component.
 
-3.  <span style="color: #000000;"> If you opened the medium
-    <span style="color: #000000;"> Switch Inventory </span> card, s
-    </span> witch to the large card.
+3.  If you opened the medium Switch Inventory card, switch to the large card.
 
-4.  Hover over the card, and click <span style="color: #353744;">
-    </span>
-    
-    {{% imgOld 51 %}}
-    
-    to open the **ASIC Details** tab. Here you can more easily view the
+4.  Hover over the card, and click {{% imgOld 51 %}} to open the **ASIC Details** tab. Here you can more easily view the
     various vendors and platforms based on the ASIC deployed.
 
-5.  <span style="color: #353744;"> *Hover* over the **Vendor** pie chart
+5.  *Hover* over the **Vendor** pie chart
     to highlight which platforms are supported by the vendor; and vice
     versa, hover over the **Platform** pie chart to see which vendor
     supports that platform. Moving your cursor off of the carts removes
-    the highlight.  
-    </span>
-    
+    the highlight.
+
     {{% imgOld 52 %}}
-    
-      
 
-6.  <span style="color: #353744;"> *Click* on a segment of the
+6.  *Click* on a segment of the
     **Vendor** pie chart to drill down and see only that Vendor and its
-    supported models. A <span style="color: #353744;"> filter tag is
-    placed at the top of the charts </span> .  
-    </span>
-    
+    supported models. A filter tag is
+    placed at the top of the charts.
+
     {{% imgOld 53 %}}
-    
-      
 
-7.  <span style="color: #353744;"> To return to the complete view of
-    vendors and platforms, click </span>
-    
-    {{% imgOld 54 %}}
-    
-    on the filter tag.
+7.  To return to the complete view of vendors and platforms, click {{% imgOld 54 %}} on the filter tag.
 
-### <span>View the Number of Switches with a Particular NetQ Agent</span>
+### View the Number of Switches with a Particular NetQ Agent
 
 It is recommended that when you upgrade NetQ that you also upgrade the
 NetQ Agents. You can determine if you have covered all of your agents
@@ -933,10 +855,8 @@ distribution by version:
 1.  Open the medium Switch Inventory card.
 
 2.  View the number in the Unique column next to Agent.  
-    
+
     {{% imgOld 55 %}}
-    
-      
 
 3.  If the number is greater than one, you have multiple NetQ Agent
     versions deployed.
@@ -946,39 +866,27 @@ distribution by version:
 
 5.  For more detail, switch to the large Switch Inventory card.
 
-6.  Hover over the card and click
-    
-    {{% imgOld 56 %}}
-    
-    to open the **Software Details** tab.  
-    
+6.  Hover over the card and click {{% imgOld 56 %}} to open the **Software Details** tab.  
+
     {{% imgOld 57 %}}
-    
-      
 
 7.  Hover over the chart on the right to view the number of switches
     using the various versions of the NetQ Agent.
 
 8.  Hover over the Operating System chart to see which NetQ Agent
     versions are being run on each OS.  
-    
+
     {{% imgOld 58 %}}
-    
-      
 
 9.  Click either chart to focus on a particular OS or agent version.
 
-10. To return to the full view, click
-    
-    {{% imgOld 59 %}}
-    
-    in the filter tag.
+10. To return to the full view, click {{% imgOld 59 %}} in the filter tag.
 
 11. Filter the data on the card by switches that are having trouble
     communicating, by selecting *Rotten Switches* from the dropdown
     above the charts.
 
-### <span>View a List of All Data for a Specific Component</span>
+### View a List of All Data for a Specific Component
 
 When the small, medium and large Switch Inventory cards do not provide
 either enough information or are not organized in a fashion that

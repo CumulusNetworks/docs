@@ -3,7 +3,7 @@ title: Network Command Line Utility - NCLU
 author: Cumulus Networks
 weight: 63
 aliases:
- - /display/CL36/Network-Command-Line-Utility---NCLU
+ - /display/CL36/Network+Command+Line+Utility+++NCLU
  - /pages/viewpage.action?pageId=8362075
 pageID: 8362075
 product: Cumulus Linux
@@ -43,7 +43,7 @@ configure both the `/etc/network/interfaces` and `/etc/frr/frr.conf`
 files with `net`, in addition to running show and clear commands related
 to `ifupdown2` and FRRouting.
 
-## <span>Installing NCLU</span>
+## Installing NCLU</span>
 
 If you upgraded Cumulus Linux from a version earlier than 3.2 instead of
 performing a full binary install, you need to install the `nclu` package
@@ -64,7 +64,7 @@ the following message:
 
 {{%/notice%}}
 
-## <span>Getting Started</span>
+## Getting Started</span>
 
 Use the following workflow to stage and commit changes to Cumulus Linux
 with NCLU:
@@ -130,7 +130,7 @@ configuration with the following commands:
     
     {{%/notice%}}
 
-### <span>Tab Completion, Verification and Inline Help</span>
+### Tab Completion, Verification and Inline Help</span>
 
 In addition to tab completion and partial keyword command
 identification, NCLU includes verification checks to ensure correct
@@ -227,7 +227,7 @@ You can configure multiple interfaces at once:
 
 {{%/notice%}}
 
-### <span id="src-8362075_NetworkCommandLineUtility-NCLU-questionmark" class="confluence-anchor-link"></span><span>Adding ? (Question Mark) Ability to NCLU</span>
+### <span id="src-8362075_NetworkCommandLineUtility-NCLU-questionmark" class="confluence-anchor-link"></span>Adding ? (Question Mark) Ability to NCLU</span>
 
 While tab completion is enabled by default, you can also configure NCLU
 to use the **?** (question mark character) to look at available
@@ -270,7 +270,7 @@ terminal. This is normal, expected behavior.
 
 {{%/notice%}}
 
-### <span>Built-In Examples</span>
+### Built-In Examples</span>
 
 NCLU has a number of built in examples to guide users through basic
 configuration setup:
@@ -336,7 +336,7 @@ configuration setup:
     switch1# net show interface
     switch1# net show bridge macs
 
-## <span>Configuring User Accounts</span>
+## Configuring User Accounts</span>
 
 You can configure user accounts in Cumulus Linux with read-only or edit
 permissions for NCLU:
@@ -401,7 +401,7 @@ error displays:
     myuser@switch:~$ net add hostname host01
     ERROR: User username does not have permission to make networking changes.
 
-### <span>Editing the netd.conf File</span>
+### Editing the netd.conf File</span>
 
 Instead of using the NCLU commands described above, you can manually
 configure users and groups to be able to run NCLU commands.
@@ -437,14 +437,14 @@ group](TACACS-Plus.html#src-8362053_TACACSPlus-nclu).
 
 {{%/notice%}}
 
-## <span id="src-8362075_NetworkCommandLineUtility-NCLU-restart" class="confluence-anchor-link"></span><span>Restarting the netd Service</span>
+## <span id="src-8362075_NetworkCommandLineUtility-NCLU-restart" class="confluence-anchor-link"></span>Restarting the netd Service</span>
 
 Whenever you modify `netd.conf`, you must restart the `netd` service for
 the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart netd.service
 
-## <span id="src-8362075_NetworkCommandLineUtility-NCLU-backuptofile" class="confluence-anchor-link"></span><span>Backing up the Configuration to a Single File</span>
+## <span id="src-8362075_NetworkCommandLineUtility-NCLU-backuptofile" class="confluence-anchor-link"></span>Backing up the Configuration to a Single File</span>
 
 You can easily back up your NCLU configuration to a file by outputting
 the results of `net show configuration commands` to a file, then
@@ -463,7 +463,7 @@ configuration by running:
 
     cumulus@leaf01:~$ source leaf01.txt
 
-## <span id="src-8362075_NetworkCommandLineUtility-NCLU-conf" class="confluence-anchor-link"></span><span>Advanced Configuration</span>
+## <span id="src-8362075_NetworkCommandLineUtility-NCLU-conf" class="confluence-anchor-link"></span>Advanced Configuration</span>
 
 NCLU needs no initial configuration; it is ready to go in Cumulus Linux.
 However, if you need to modify its configuration, you must manually

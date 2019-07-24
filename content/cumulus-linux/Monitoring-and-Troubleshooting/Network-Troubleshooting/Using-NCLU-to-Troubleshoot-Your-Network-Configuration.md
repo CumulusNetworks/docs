@@ -3,25 +3,25 @@ title: Using NCLU to Troubleshoot Your Network Configuration
 author: Cumulus Networks
 weight: 471
 aliases:
- - /display/CL37/Using-NCLU-to-Troubleshoot-Your-Network-Configuration
+ - /display/DOCS/Using+NCLU+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=8362599
 pageID: 8362599
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The [network command line
-utility](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
+utility](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
 (NCLU) can quickly return a lot of information about your network
 configuration.
 
-## <span>net show Commands</span>
+## net show Commands
 
 Running `net show` and pressing TAB displays all available command line
 arguments usable by `net`. The output looks like this:
 
-    cumulus@switch:~$ net show <TAB> 
+    cumulus@switch:~$ net show <TAB>
         bgp            :  Border Gateway Protocol
         bridge         :  A layer2 bridge
         clag           :  Multi-Chassis Link Aggregation
@@ -46,7 +46,7 @@ arguments usable by `net`. The output looks like this:
         system         :  System information
         version        :  Version number
 
-## <span>Show Interfaces</span>
+## Show Interfaces
 
 To show all available interfaces that are physically UP, run `net show
 interface`:
@@ -71,7 +71,7 @@ interface`:
 Whereas `net show interface all` displays every interface regardless of
 state:
 
-    cumulus@switch:~$ net show interface all 
+    cumulus@switch:~$ net show interface all
            Name     Speed    MTU    Mode           Summary
     -----  -------  -------  -----  -------------  --------------------------------------
     UP     lo       N/A      65536  Loopback       IP: 10.0.0.11/32, 127.0.0.1/8, ::1/128
@@ -102,7 +102,7 @@ system`:
      
     Build............ Cumulus Linux 3.7.4~1551312781.35d3264
     Uptime........... 8 days, 12:24:01.770000
-     
+
     Model............ Cel REDSTONE
     CPU.............. x86_64 Intel Atom C2538 2.4 GHz
     Memory........... 4GB
@@ -112,7 +112,7 @@ system`:
     Base MAC Address. a0:00:00:00:00:50
     Serial Number.... A1010B2A011212AB000001
 
-## <span>Other Useful Features</span>
+## Other Useful Features
 
 NCLU uses the [python
 network-docopt](https://pypi.python.org/pypi/network-docopt) package.
@@ -123,7 +123,7 @@ and running the complete option. For example:
 `net show int` runs `netshow interface`  
 `net show sys` runs `netshow system`
 
-## <span>Install netshow on a Linux Server</span>
+## Install netshow on a Linux Server
 
 `netshow` is a tool developed by Cumulus Networks for troubleshooting
 networks. In Cumulus Linux, it's been replaced by NCLU. However, NCLU is

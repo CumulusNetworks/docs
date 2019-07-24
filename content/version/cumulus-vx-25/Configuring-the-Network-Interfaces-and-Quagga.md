@@ -3,7 +3,7 @@ title: Configuring the Network Interfaces and Quagga
 author: Cumulus Networks
 weight: 23
 aliases:
- - /display/VX25/Configuring-the-Network-Interfaces-and-Quagga
+ - /display/VX25/Configuring+the+Network+Interfaces+and+Quagga
  - /pages/viewpage.action?pageId=5115426
 pageID: 5115426
 product: Cumulus VX
@@ -15,7 +15,7 @@ This section covers configuring the network interfaces and Quagga for a
 2 leaf/2 spine topology. The steps below assume that the VMs have been
 set up. Refer to earlier sections of this guide to set up the VMs.
 
-## <span>Configuring leaf1 VM</span>
+## Configuring leaf1 VM</span>
 
 To configure leaf1:
 
@@ -94,7 +94,7 @@ To configure leaf1:
     
         root@leaf1:~$ service quagga restart
 
-## <span>Configuring leaf2, spine1, and spine2 VMs</span>
+## Configuring leaf2, spine1, and spine2 VMs</span>
 
 The configuration steps for `leaf2`, `spine1`, and `spine2` are the same
 as those listed above for `leaf1`, however the file configurations are
@@ -231,7 +231,7 @@ continuing.
 
 {{%/notice%}}
 
-## <span>Testing the Connections</span>
+## Testing the Connections</span>
 
 Once the VMs have been restarted, you can ping across VMs to test:
 

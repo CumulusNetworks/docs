@@ -3,7 +3,7 @@ title: Event Message Reference
 author: Cumulus Networks
 weight: 123
 aliases:
- - /display/NETQ141/Event-Message-Reference
+ - /display/NETQ141/Event+Message+Reference
  - /pages/viewpage.action?pageId=10453533
 pageID: 10453533
 product: Cumulus NetQ

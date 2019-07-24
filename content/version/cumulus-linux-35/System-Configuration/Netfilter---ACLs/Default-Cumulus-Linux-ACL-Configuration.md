@@ -3,7 +3,7 @@ title: Default Cumulus Linux ACL Configuration
 author: Cumulus Networks
 weight: 289
 aliases:
- - /display/CL35/Default-Cumulus-Linux-ACL-Configuration
+ - /display/CL35/Default+Cumulus+Linux+ACL+Configuration
  - /pages/viewpage.action?pageId=8357356
 pageID: 8357356
 product: Cumulus Linux
@@ -196,7 +196,7 @@ ACL Configuration link:
      
     Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 
-## <span>IP Tables</span>
+## IP Tables</span>
 
 <table>
 <colgroup>
@@ -310,7 +310,7 @@ bits.
 
 {{%/notice%}}
 
-## <span>IPv6 Tables</span>
+## IPv6 Tables</span>
 
 <table>
 <colgroup>
@@ -441,7 +441,7 @@ bits.
 
 {{%/notice%}}
 
-## <span>EB Tables</span>
+## EB Tables</span>
 
 <table>
 <colgroup>

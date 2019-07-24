@@ -3,13 +3,13 @@ title: Monitoring System Statistics and Network Traffic with sFlow
 author: Cumulus Networks
 weight: 473
 aliases:
- - /display/CL37/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow
+ - /display/DOCS/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow
  - /pages/viewpage.action?pageId=8362597
 pageID: 8362597
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 [sFlow](http://www.sflow.org/index.php) is a monitoring protocol that
 samples network packets, application operations, and system counters.
@@ -25,15 +25,15 @@ automatically when the switch boots up.
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF),
-including the [management
-VRF](/version/cumulus-linux-377/Layer-3/Management-VRF), follow [these
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
+including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
+follow [these
 steps](Management-VRF.html#src-8362940_ManagementVRF-services) for
 configuring the service.
 
 {{%/notice%}}
 
-## <span>Configure sFlow</span>
+## Configure sFlow
 
 To configure `hsflowd` to send to the designated collectors, either:
 
@@ -41,7 +41,7 @@ To configure `hsflowd` to send to the designated collectors, either:
 
   - Manually configure the `/etc/hsflowd.conf` file
 
-### <span>Configure sFlow via DNS-SD</span>
+### Configure sFlow via DNS-SD
 
 You can configure your DNS zone to advertise the collectors and polling
 information to all interested clients.
@@ -83,7 +83,7 @@ Start the sFlow daemon:
 
 No additional configuration is required in `/etc/hsflowd.conf`.
 
-### <span>Manually Configure /etc/hsflowd.conf</span>
+### Manually Configure /etc/hsflowd.conf
 
 You can set up the collectors and variables on each switch.
 
@@ -124,13 +124,13 @@ collector for more information.
 
 {{%/notice%}}
 
-## <span>Configure sFlow Visualization Tools</span>
+## Configure sFlow Visualization Tools
 
 For information on configuring various sFlow visualization tools, read
 this [Help Center
 article](https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools).
 
-## <span>Related Information</span>
+## Related Information
 
   - [sFlow Collectors](http://www.sflow.org/products/collectors.php)
 

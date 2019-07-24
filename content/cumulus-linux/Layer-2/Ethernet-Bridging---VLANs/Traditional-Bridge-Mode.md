@@ -3,34 +3,34 @@ title: Traditional Bridge Mode
 author: Cumulus Networks
 weight: 349
 aliases:
- - /display/CL37/Traditional-Bridge-Mode
+ - /display/DOCS/Traditional+Bridge+Mode
  - /pages/viewpage.action?pageId=8362670
 pageID: 8362670
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Networks recommends you use a [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 on your switch. You use traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.
 
-## <span>Create a Traditional Mode Bridge</span>
+## Create a Traditional Mode Bridge
 
 You can configure a traditional mode bridge either using
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU)
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
 or manually editing the `/etc/network/interfaces` file.
 
-### <span>Configure a Traditional Bridge with NCLU</span>
+### Configure a Traditional Bridge with NCLU
 
 NCLU has limited support for configuring bridges in traditional mode.
 
 {{%notice note%}}
 
-The traditional bridge must be named something other than *bridge*, ****
-as that name is reserved for the single [VLAN-aware
-bridge](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode)
+The traditional bridge must be named something other than *bridge*, as that name
+is reserved for the single
+[VLAN-aware bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 that you can configure on the switch.
 
 {{%/notice%}}
@@ -47,19 +47,16 @@ following elements to the configuration:
 
   - You can set two STP attributes on the bridge ports: *portautoedge*
     and *portrestrole*.
-    
+
     {{%notice note%}}
-    
-    The **** *portautoedge* attribute defaults to *yes*; to use a
-    setting other than the default, you must set this attribute to *no*.
-    
-    The *portrestrrole* attribute defaults to *no*, but to use a setting
+
+The *portautoedge* attribute defaults to *yes*; to use a
+    setting other than the default, you must set this attribute to *no*. The *portrestrrole* attribute defaults to *no*, but to use a setting
     other than the default, you must specify this attribute **without**
     setting an option.
-    
     The defaults for these attributes do not appear in the NCLU
     configuration.
-    
+
     {{%/notice%}}
 
 To configure a traditional mode bridge using NCLU, do the following:
@@ -93,10 +90,10 @@ These commands create the following configuration snippet in the
     iface swp4
      
     ...
-    auto my_bridge_A 
-    iface my_bridge_A 
-        address 10.10.10.10/24 
-        bridge-ports swp1 swp2 swp3 swp4 
+    auto my_bridge_A
+    iface my_bridge_A
+        address 10.10.10.10/24
+        bridge-ports swp1 swp2 swp3 swp4
         bridge-vlan-aware no
 
 Verify the configuration by running `net show config commands`:
@@ -110,7 +107,7 @@ Verify the configuration by running `net show config commands`:
     net add interface swp2 stp portrestrrole
     ...
 
-### <span>Manually Configure a Traditional Mode Bridge</span>
+### Manually Configure a Traditional Mode Bridge
 
 To create a traditional mode bridge manually, you need to hand edit the
 `/etc/network/interfaces` file:
@@ -120,13 +117,13 @@ To create a traditional mode bridge manually, you need to hand edit the
 2.  Add a new stanza to create the bridge, and save the file. The
     example below creates a bridge with STP enabled and the MAC address
     ageing timer configured to a lower value than the default:
-    
+
         auto my_bridge
         iface my_bridge
             bridge-ports bond0 swp5 swp6
             bridge-ageing 150
             bridge-stp on
-    
+
     <table>
     <colgroup>
     <col style="width: 33%" />
@@ -154,32 +151,28 @@ To create a traditional mode bridge manually, you need to hand edit the
     <tr class="odd">
     <td><p>bridge-stp</p></td>
     <td><p>Enables spanning tree protocol on this bridge. The default spanning tree mode is Per VLAN Rapid Spanning Tree Protocol (PVRST).</p>
-    <p>For more information on spanning-tree configurations see the configuration section: <a href="/version/cumulus-linux-377/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">Spanning Tree and Rapid Spanning Tree</a>.</p></td>
+    <p>For more information on spanning-tree configurations see the configuration section: <a href="/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">Spanning Tree and Rapid Spanning Tree</a>.</p></td>
     <td><p>off</p></td>
     </tr>
     </tbody>
     </table>
-    
+
     {{%notice note%}}
-    
-    The name of the bridge must be:
-    
-      - Compliant with Linux interface naming conventions.
-    
-      - Unique within the switch.
-    
+
+The name of the bridge must be compliant with Linux interface naming conventions and unique within the switch.
+
     {{%/notice%}}
-    
+
     {{%notice warning%}}
-    
-    Do not try to bridge the management port, eth0, with any switch
+
+Do not try to bridge the management port, eth0, with any switch
     ports (like swp0, swp1, and so forth). For example, if you created a
     bridge with eth0 and swp1, it will **not** work.
-    
+
     {{%/notice%}}
 
 3.  Reload the network configuration using the `ifreload` command:
-    
+
         cumulus@switch:~$ sudo ifreload -a
 
 {{%notice info%}}
@@ -208,7 +201,7 @@ This example configuration looks like this in the
     iface bridge-A
         bridge-ports swp1 swp2
         bridge-stp on
-     
+           
     auto bridge-B
     iface bridge-B
         bridge-ports swp3 swp4
@@ -216,7 +209,7 @@ This example configuration looks like this in the
 
 {{%/notice%}}
 
-## <span id="src-8362670_TraditionalBridgeMode-VLAN_tagging" class="confluence-anchor-link"></span><span>Trunks in Traditional Bridge Mode</span>
+## Trunks in Traditional Bridge Mode
 
 The [IEEE standard](http://www.ieee802.org/1/pages/802.1Q.html) for
 trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within
@@ -259,7 +252,7 @@ native VLAN, thus merging those two VLANs and their spanning tree state.
 
 {{%/notice%}}
 
-### <span>Trunk Example</span>
+### Trunk Example
 
 {{% imgOld 1 %}}
 
@@ -270,19 +263,18 @@ To create the above example, add the following configuration to the
     iface br-VLAN100
      bridge-ports swp1.100 swp2.100
      bridge-stp on
-     
-     
+
     auto br-VLAN200
     iface br-VLAN200
      bridge-ports swp1.200 swp2.200
      bridge-stp on
 
-### <span>VLAN Tagging Examples</span>
+### VLAN Tagging Examples
 
 You can find more examples of VLAN tagging in [the VLAN tagging
-chapter](/version/cumulus-linux-377/Layer-2/Ethernet-Bridging---VLANs/VLAN-Tagging).
+chapter](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-### <span id="src-8362670_TraditionalBridgeMode-arp" class="confluence-anchor-link"></span><span>Configure ARP Timers</span>
+### Configure ARP Timers
 
 Cumulus Linux does not often interact directly with end systems as much
 as end systems interact with one another. Thus, after a successful
@@ -301,7 +293,7 @@ change this setting by following the procedures outlined in this
 [knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
 
-## <span>Caveats</span>
+## Caveats
 
 On Broadcom switches, when two VLAN subinterfaces are bridged to each
 other in a traditional mode bridge, `switchd` does not assign an
@@ -309,11 +301,3 @@ internal resource ID to the subinterface, which is expected for each
 VLAN subinterface.  
 To work around this issue, add a VXLAN on the bridge so that it does not
 require a real tunnel IP address.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

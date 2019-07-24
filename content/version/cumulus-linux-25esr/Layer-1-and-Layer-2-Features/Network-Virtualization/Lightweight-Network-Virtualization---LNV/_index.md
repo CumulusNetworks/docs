@@ -3,7 +3,7 @@ title: Lightweight Network Virtualization - LNV
 author: Cumulus Networks
 weight: 251
 aliases:
- - /display/CL25ESR/Lightweight-Network-Virtualization---LNV
+ - /display/CL25ESR/Lightweight+Network+Virtualization+++LNV
  - /pages/viewpage.action?pageId=5116051
 pageID: 5116051
 product: Cumulus Linux
@@ -36,7 +36,7 @@ Cumulus Linux.
 
 {{%/notice%}}
 
-## <span>Understanding LNV Concepts</span>
+## Understanding LNV Concepts</span>
 
 To best describe this feature, consider the following example
 deployment:
@@ -52,7 +52,7 @@ tunnel end points). The IP address associated with this VTEP is most
 commonly configured as its loopback address — in the image above, the
 loopback address is 10.2.1.1 for leaf1 and 10.2.1.2 for leaf2.
 
-### <span>Acquiring the Forwarding Database at the Service Node</span>
+### Acquiring the Forwarding Database at the Service Node</span>
 
 In order to connect these two VXLANs together and forward BUM
 (Broadcast, Unknown-unicast, Multicast) packets to members of a VXLAN,
@@ -62,7 +62,7 @@ registration daemon running on each leaf switch that contains a VTEP
 participating in LNV. The registration process informs the service node
 of all the VXLANs to which the switch belongs.
 
-### <span>MAC Learning and Flooding</span>
+### MAC Learning and Flooding</span>
 
 With LNV, as with traditional bridging of physical LANs or VLANs, a
 bridge automatically learns the location of hosts as a side effect of
@@ -81,7 +81,7 @@ it a packet (server2, for example)? In this case, the VXLAN interface
 sends the packet to the service node, which sends a copy to every other
 VTEP that belongs to the same VXLAN.
 
-### <span>Handling BUM Traffic</span>
+### Handling BUM Traffic</span>
 
 Cumulus Linux has two ways of handling BUM (Broadcast Unknown-Unicast
 and Multicast) traffic:
@@ -103,7 +103,7 @@ packet to every remote VTEP.
 
 <span id="src-5116051_LightweightNetworkVirtualization-LNV-head-end"></span>
 
-#### <span>Head End Replication </span>
+#### Head End Replication </span>
 
 The Trident II chipset is capable of head end replication — the ability
 to generate all the BUM (Broadcast Unknown-Unicast and Multicast)
@@ -116,7 +116,7 @@ Cumulus Linux supports up to 64 VTEPs with head end replication.
 To disable head end replication, edit `/etc/vxrd.conf` and set
 `head_rep` to *False*.
 
-#### <span>Service Node Replication</span>
+#### Service Node Replication</span>
 
 Cumulus Linux also supports service node replication for VXLAN BUM
 packets. This is useful with LNV if you have more than 64 VTEPs.
@@ -144,16 +144,16 @@ To enable service node replication:
         *True*:  
         `enable_vxlan_listen = true`
 
-## <span>Requirements</span>
+## Requirements</span>
 
-### <span>Hardware Requirements</span>
+### Hardware Requirements</span>
 
   - Switches with a Trident II chipset running Cumulus Linux 2.5.4 or
     later. Please refer to the Cumulus Networks [hardware compatibility
     list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/)
     for a list of supported switch models.
 
-### <span>Configuration Requirements</span>
+### Configuration Requirements</span>
 
   - The VXLAN has an associated **V**XLAN **N**etwork **I**dentifier
     (VNI), also interchangeably called a VXLAN ID.
@@ -169,9 +169,9 @@ To enable service node replication:
     however, a switch can have multiple bridges.
 
   - Only use bridges in [traditional
-    mode](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/);
+    mode](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/);
     [VLAN-aware
-    bridges](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+    bridges](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
     are not supported with VXLAN at this time.
 
   - An SVI (Switch VLAN Interface) or L3 address on the bridge is not
@@ -181,7 +181,7 @@ To enable service node replication:
     Gateway](#src-5116051_LightweightNetworkVirtualization-LNV-l3gateway)
     below for more information.
 
-### <span>Installing the LNV Packages</span>
+### Installing the LNV Packages</span>
 
 The LNV packages are not installed automatically if you upgrade Cumulus
 Linux. You can install LNV in one of two ways:
@@ -194,7 +194,7 @@ Linux. You can install LNV in one of two ways:
     daemons using `apt-get install vxfld-vxrd` and/or `apt-get install
     vxfld-vxsnd`, depending upon how you intend to use LNV
 
-## <span>Sample LNV Configuration</span>
+## Sample LNV Configuration</span>
 
 The following images illustrate the configuration that is referenced
 throughout this chapter.
@@ -221,7 +221,7 @@ Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/).
 
 {{%/notice%}}
 
-### <span>Network Connectivity</span>
+### Network Connectivity</span>
 
 There must be full network connectivity before you can configure LNV.
 The layer 3 IP addressing information as well as the OSPF configuration
@@ -235,7 +235,7 @@ With Cumulus Linux this can be achieved with static routes, OSPF or BGP.
 
 {{%/notice%}}
 
-### <span>Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing</span>
 
 Here is the configuration for the IP addressing information used in this
 example.
@@ -345,13 +345,13 @@ iface swp1s3
 </tbody>
 </table>
 
-### <span>Layer 3 Fabric</span>
+### Layer 3 Fabric</span>
 
 The service nodes and registration nodes must all be routable between
 each other. The L3 fabric on Cumulus Linux can either be
-[BGP](/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Border-Gateway-Protocol---BGP)
+[BGP](/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Border-Gateway-Protocol-BGP)
 or
-[OSPF](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First---OSPF---Protocol).
+[OSPF](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol).
 In this example, OSPF is used to demonstrate full reachability. Expand
 the Quagga configurations below.
 
@@ -474,7 +474,7 @@ router ospf
 </tbody>
 </table>
 
-### <span>Host Configuration</span>
+### Host Configuration</span>
 
 In this example, the servers are running Ubuntu 14.04. There needs to be
 a trunk mapped from server1 and server2 to the respective switch. In
@@ -531,7 +531,7 @@ in Cumulus Linux):
     Set name-type for VLAN subsystem. Should be visible in /proc/net/vlan/config
     Added VLAN with VID == 30 to IF -:eth3:-
 
-## <span id="src-5116051_LightweightNetworkVirtualization-LNV-mapping" class="confluence-anchor-link"></span><span>Configuring the VLAN to VXLAN Mapping</span>
+## <span id="src-5116051_LightweightNetworkVirtualization-LNV-mapping" class="confluence-anchor-link"></span>Configuring the VLAN to VXLAN Mapping</span>
 
 Configure the VLANS and associated VXLANs. In this example, there are 3
 VLANs and 3 VXLAN IDs (VNIs). VLANs 10, 20 and 30 are used and
@@ -644,7 +644,7 @@ correlate VLANs to VXLANs. It is completely up to you.
 
 {{%/notice%}}
 
-## <span>Verifying the VLAN to VXLAN Mapping</span>
+## Verifying the VLAN to VXLAN Mapping</span>
 
 Use the `brctl show` command to see the physical and logical interfaces
 associated with that bridge:
@@ -671,14 +671,14 @@ name, use the `ip -d link show` command:
 The *vxlan id 10* indicates the VXLAN ID/VNI is indeed 10 as the logical
 name suggests.
 
-## <span>Enabling and Managing Service Node and Registration Daemons</span>
+## Enabling and Managing Service Node and Registration Daemons</span>
 
 Every VTEP must run the registration daemon (`vxrd`). Typically, every
 leaf switch acts as a VTEP. A minimum of 1 switch (a switch not already
 acting as a VTEP) must run the service node daemon (`vxsnd`). The
 instructions for enabling these daemons follows.
 
-### <span>Enabling the Service Node Daemon</span>
+### Enabling the Service Node Daemon</span>
 
 The service node daemon (`vxsnd)` is included in the Cumulus Linux
 repository as `vxfld-vxsnd`. The service node daemon can run on any
@@ -705,7 +705,7 @@ Save and quit the text editor and reboot the `vxsnd` daemon:
     cumulus@spine1$ sudo service vxsnd restart
     [ ok ] Starting /usr/bin/vxsnd ....
 
-### <span>Enabling the Registration Daemon</span>
+### Enabling the Registration Daemon</span>
 
 The registration daemon (`vxrd`) is included in the Cumulus Linux
 package as `vxfld-vxrd`. The registration daemon must run on each VTEP
@@ -738,7 +738,7 @@ Save and quit the text editor and reboot the `vxrd` daemon:
     cumulus@leaf1$ sudo service vxrd restart
     [ ok ] Starting /usr/bin/vxrd ....
 
-### <span>Checking the Daemon Status</span>
+### Checking the Daemon Status</span>
 
 To determine if the daemon is running, use the `service <daemon name>
 status` command.
@@ -753,7 +753,7 @@ For the registration daemon:
     cumulus@leaf1$ sudo service vxrd status
     [ ok ] vxrd is running.
 
-## <span id="src-5116051_LightweightNetworkVirtualization-LNV-regnode" class="confluence-anchor-link"></span><span>Configuring the Registration Node</span>
+## <span id="src-5116051_LightweightNetworkVirtualization-LNV-regnode" class="confluence-anchor-link"></span>Configuring the Registration Node</span>
 
 The registration node was configured earlier in
 `/etc/network/interfaces` in the [VXLAN
@@ -814,7 +814,7 @@ Use *1*, *yes*, *true* or *on* for True for each relevant option. Use
 
 {{%/notice%}}
 
-## <span>Configuring the Service Node</span>
+## Configuring the Service Node</span>
 
 To configure the service node daemon, edit the `/etc/vxsnd.conf`
 configuration file.
@@ -864,9 +864,9 @@ Use *1*, *yes*, *true* or *on* for True for each relevant option. Use
 
 {{%/notice%}}
 
-## <span>Verification and Troubleshooting</span>
+## Verification and Troubleshooting</span>
 
-### <span>Verifying the Registration Node Daemon </span>
+### Verifying the Registration Node Daemon </span>
 
 Use the `vxrdctl vxlans` ****command to see the configured VNIs, the
 local address being used to source the VXLAN tunnel and the service node
@@ -936,7 +936,7 @@ option to *True*. Otherwise, replication is done by the service node.
 
 {{%/notice%}}
 
-### <span>Verifying the Service Node Daemon</span>
+### Verifying the Service Node Daemon</span>
 
 Use the `vxsndctl fdb` command to verify which VNIs belong to which VTEP
 (leaf switches).
@@ -951,7 +951,7 @@ Use the `vxsndctl fdb` command to verify which VNIs belong to which VTEP
     2000    10.2.1.1        82
     2000    10.2.1.2        77
 
-### <span>Verifying Traffic Flow and Checking Counters</span>
+### Verifying Traffic Flow and Checking Counters</span>
 
 VXLAN transit traffic information is stored in a flat file located at
 `/cumulus/switchd/run/stats/vxlan/all`.
@@ -999,7 +999,7 @@ VXLAN transit traffic information is stored in a flat file located at
     Total In Packets                : 15
     Total Out Octets                : 446
 
-### <span>Pinging to Test Connectivity</span>
+### Pinging to Test Connectivity</span>
 
 To test the connectivity across the VXLAN tunnel with an ICMP echo
 request (ping), make sure to ping from the server rather than the switch
@@ -1066,7 +1066,7 @@ server1:
     4 packets transmitted, 4 received, 0% packet loss, time 3000ms
     rtt min/avg/max/mdev = 0.185/0.622/1.853/0.711 ms
 
-### <span>Troubleshooting with MAC Addresses</span>
+### Troubleshooting with MAC Addresses</span>
 
 Since there is no SVI, there is no way to ping from the server to the
 directly attached leaf (top of rack) switch without cabling the switch
@@ -1092,7 +1092,7 @@ Next, check the MAC address table of the leaf switch:
 *90:e2:ba:55:f0:85* appears in the MAC address table, which indicates
 that connectivity is occurring between leaf1 and server1.
 
-### <span>Checking the Service Node Configuration</span>
+### Checking the Service Node Configuration</span>
 
 Use `ip -d link show` to verify the service node, VNI and administrative
 state of a particular logical VNI interface:
@@ -1105,7 +1105,7 @@ state of a particular logical VNI interface:
 
 <span id="src-5116051_LightweightNetworkVirtualization-LNV-l3gateway"></span>
 
-## <span>Creating a Layer 3 Gateway</span>
+## Creating a Layer 3 Gateway</span>
 
 The Trident II ASIC has a limitation because of a restriction in the
 hardware, where an IP address cannot be configured on the same bridge of
@@ -1147,9 +1147,9 @@ physical port does not need to be used for this purpose.
 
 <span id="src-5116051_LightweightNetworkVirtualization-LNV-loadbalancing"></span>
 
-## <span>Advanced LNV Usage</span>
+## Advanced LNV Usage</span>
 
-### <span>Scaling LNV by Load Balancing with Anycast</span>
+### Scaling LNV by Load Balancing with Anycast</span>
 
 The above configuration assumes a single service node. A single service
 node can quickly be overwhelmed by BUM traffic. To load balance BUM
@@ -1158,9 +1158,9 @@ traffic across multiple service nodes, use
 traffic to reach the topologically nearest service node rather than
 overwhelming a single service node.
 
-#### <span></span>
+#### </span>
 
-#### <span>Enabling the Service Node Daemon on Additional Spine Switches</span>
+#### Enabling the Service Node Daemon on Additional Spine Switches</span>
 
 In this example, spine1 already has the service node daemon enabled.
 Enable it on the spine2 switch with the following commands:
@@ -1178,7 +1178,7 @@ Save and quit the text editor and reboot the `vxsnd` daemon:
     cumulus@spine2$ sudo service vxsnd restart
     [ ok ] Starting /usr/bin/vxsnd ....
 
-#### <span>Configuring the AnyCast Address on All Participating Service Nodes</span>
+#### Configuring the AnyCast Address on All Participating Service Nodes</span>
 
 <table>
 <colgroup>
@@ -1229,7 +1229,7 @@ iface lo inet loopback
 </tbody>
 </table>
 
-#### <span>Configuring the Service Node vxsnd.conf File</span>
+#### Configuring the Service Node vxsnd.conf File</span>
 
 <table>
 <colgroup>
@@ -1272,7 +1272,7 @@ src_ip = 10.2.1.4</code></pre>
 </tbody>
 </table>
 
-#### <span>Reconfiguring the VTEPs (Leafs) to Use the Anycast Address</span>
+#### Reconfiguring the VTEPs (Leafs) to Use the Anycast Address</span>
 
 <table>
 <colgroup>
@@ -1362,7 +1362,7 @@ VNI     Local Addr       Svc Node
 </tbody>
 </table>
 
-#### <span>Testing Connectivity</span>
+#### Testing Connectivity</span>
 
 Repeat the ping tests from the previous section. Here is the table again
 for reference:
@@ -1399,7 +1399,7 @@ for reference:
     2 packets transmitted, 2 received, 0% packet loss, time 1001ms
     rtt min/avg/max/mdev = 0.191/0.913/1.635/0.722 ms
 
-## <span>Additional Resources</span>
+## Additional Resources</span>
 
 Both `vxsnd` and `vxrd` have man pages in Cumulus Linux.
 
@@ -1411,7 +1411,7 @@ For `vxrd`:
 
     cumulus@leaf1$ man vxrd
 
-## <span>See Also</span>
+## See Also</span>
 
   - <https://tools.ietf.org/html/rfc7348>
 

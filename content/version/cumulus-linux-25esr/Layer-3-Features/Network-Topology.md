@@ -3,7 +3,7 @@ title: Network Topology
 author: Cumulus Networks
 weight: 125
 aliases:
- - /display/CL25ESR/Network-Topology
+ - /display/CL25ESR/Network+Topology
  - /pages/viewpage.action?pageId=5116104
 pageID: 5116104
 product: Cumulus Linux
@@ -15,7 +15,7 @@ In computer networks, *topology* refers to the structure of
 interconnecting various nodes. Some commonly used topologies in networks
 are star, hub and spoke, leaf and spine, and broadcast.
 
-## <span>Clos Topologies</span>
+## Clos Topologies</span>
 
 In the vast majority of modern data centers, [Clos or fat tree
 topology](http://en.wikipedia.org/wiki/Clos_network) is very popular.
@@ -59,7 +59,7 @@ In a three tier network of 64-port switches, the total number of servers
 that can be connected are (40\*64\*64)/2 = 81920. As you can see, this
 kind of topology can serve quite a large network with three tiers.
 
-## <span>Over-Subscribed and Non-Blocking Configurations</span>
+## Over-Subscribed and Non-Blocking Configurations</span>
 
 In the above example, the network is *over-subscribed*; that is, 400G of
 bandwidth from end stations (40 servers \* 10GE links) is serviced by
@@ -78,7 +78,7 @@ In such a network, the total number of servers that can be connected are
 (64\*64)/2 = 2048. Similarly, a three-tier version of the same can serve
 up to (64\*64\*64)/4 = 65536 servers.
 
-## <span>Containing the Failure Domain</span>
+## Containing the Failure Domain</span>
 
 Traditional data centers were built using just two spine switches. This
 means that if one of those switches fails, the network bandwidth is cut
@@ -104,7 +104,7 @@ to 32 spine switches.
 
 <span id="src-5116104_NetworkTopology-load_balancing"></span>
 
-## <span>Load Balancing</span>
+## Load Balancing</span>
 
 In a Clos network, traffic is load balanced across the multiple links
 using equal cost multi-pathing (ECMP).

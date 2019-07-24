@@ -3,7 +3,7 @@ title: Managing Application Daemons
 author: Cumulus Networks
 weight: 97
 aliases:
- - /display/RMP25ESR/Managing-Application-Daemons
+ - /display/RMP25ESR/Managing+Application+Daemons
  - /pages/viewpage.action?pageId=5116328
 pageID: 5116328
 product: Cumulus RMP
@@ -21,7 +21,7 @@ You manage application daemons in Cumulus RMP in the following ways:
 
   - Disabling or enabling a specific daemon
 
-## <span>Identifying Active Listener Ports for IPv4 and IPv6</span>
+## Identifying Active Listener Ports for IPv4 and IPv6</span>
 
 You can identify the active listener ports under both IPv4 and IPv6
 using the `lsof` command:
@@ -44,7 +44,7 @@ using the `lsof` command:
     ntpd 1882 104 21u IPv6 3966 0t0 UDP [fe80::7272:cfff:fe96:6639]:123
     sshd 2496 0 4u IPv6 5811 0t0 TCP *:22 (LISTEN)
 
-## <span>Identifying Daemons Currently Active or Stopped</span>
+## Identifying Daemons Currently Active or Stopped</span>
 
 To determine which daemons are currently active or stopped, use the
 `service` --`status-all` command, then pipe the results to `grep`, using
@@ -62,7 +62,7 @@ the - or + operators:
      [ - ] ptmd
      ...
 
-## <span>Identifying Boot Time State of a Specific Daemon</span>
+## Identifying Boot Time State of a Specific Daemon</span>
 
 The `ls` command can provide the boot time state of a daemon. A file
 link with a name starting with **S** identifies a boot-time-enabled
@@ -83,7 +83,7 @@ For example:
     lrwxrwxrwx 1 root root 15 Apr 4 2014 S01snmpd -> ../init.d/snmpd
     lrwxrwxrwx 1 root root 15 Apr 4 2014 K02snmpd -> ../init.d/snmpd
 
-## <span>Disabling or Enabling a Specific Daemon</span>
+## Disabling or Enabling a Specific Daemon</span>
 
 To enable or disable a specific daemon, run:
 

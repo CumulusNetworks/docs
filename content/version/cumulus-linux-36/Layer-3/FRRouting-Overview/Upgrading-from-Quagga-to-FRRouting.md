@@ -3,7 +3,7 @@ title: Upgrading from Quagga to FRRouting
 author: Cumulus Networks
 weight: 425
 aliases:
- - /display/CL36/Upgrading-from-Quagga-to-FRRouting
+ - /display/CL36/Upgrading+from+Quagga+to+FRRouting
  - /pages/viewpage.action?pageId=8362388
 pageID: 8362388
 product: Cumulus Linux
@@ -188,7 +188,7 @@ To complete the transition to FRR:
         cumulus@switch:~$ sudo systemctl start frr.service
         cumulus@switch:~$ sudo systemctl -l status frr.service
 
-## <span>Troubleshooting</span>
+## Troubleshooting</span>
 
 If the `systemctl -l status frr` output shows an issue, edit the
 configuration files to correct it, and repeat the process. If issues

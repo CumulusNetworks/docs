@@ -3,7 +3,7 @@ title: Network Virtualization
 author: Cumulus Networks
 weight: 113
 aliases:
- - /display/CL30/Network-Virtualization
+ - /display/CL30/Network+Virtualization
  - /pages/viewpage.action?pageId=5118291
 pageID: 5118291
 product: Cumulus Linux
@@ -57,7 +57,7 @@ destination.
 
 {{%/notice%}}
 
-## <span>Commands</span>
+## Commands</span>
 
   - brctl
 
@@ -71,7 +71,7 @@ destination.
 
   - vtep-ctl
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [VXLAN IETF
     draft](http://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-06)

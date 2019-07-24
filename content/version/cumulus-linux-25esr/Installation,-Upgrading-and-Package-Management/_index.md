@@ -3,7 +3,7 @@ title: 'Installation, Upgrading and Package Management'
 author: Cumulus Networks
 weight: 13
 aliases:
- - '/display/CL25ESR/Installation,-Upgrading-and-Package-Management'
+ - '/display/CL25ESR/Installation,+Upgrading+and+Package+Management'
  - /pages/viewpage.action?pageId=5115985
 pageID: 5115985
 product: Cumulus Linux

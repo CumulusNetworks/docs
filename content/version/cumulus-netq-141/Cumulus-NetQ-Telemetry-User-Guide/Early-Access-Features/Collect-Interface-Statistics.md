@@ -3,7 +3,7 @@ title: Collect Interface Statistics
 author: Cumulus Networks
 weight: 111
 aliases:
- - /display/NETQ141/Collect-Interface-Statistics
+ - /display/NETQ141/Collect+Interface+Statistics
  - /pages/viewpage.action?pageId=10453499
 pageID: 10453499
 product: Cumulus NetQ
@@ -40,7 +40,7 @@ in Cumulus NetQ 1.3 and later.
 
 {{%/notice%}}
 
-## <span>Configure Interface Statistic Collection</span>
+## Configure Interface Statistic Collection</span>
 
 InfluxDB is installed in its own container by default on the Telemetry
 Server. The `netq-stats-pushd` service is also installed by default, but
@@ -82,7 +82,7 @@ As each NetQ Agent is restarted, the `netq-stats-pushd` service starts
 collecting interface statistics and the agent pushes them to the
 database on the Telemetry Server.
 
-## <span>View Interface Statistics in Grafana</span>
+## View Interface Statistics in Grafana</span>
 
 You can use the open platform [Grafana](https://grafana.com/) analytics
 and monitoring tool to view the interface statistics collected by the
@@ -224,12 +224,12 @@ To set up Grafana to view NetQ interface statistics:
 You now have a customized view of the NetQ interface statistics. You can
 add and remove panels at any time.
 
-### <span>Add Common Interface Statistics to Dashboard</span>
+### Add Common Interface Statistics to Dashboard</span>
 
 There are many options for displaying the statistics in Grafana. Two
 examples are provided here.
 
-#### <span>Example: Add Dropped Packets Panels </span>
+#### Example: Add Dropped Packets Panels </span>
 
 When you are monitoring your network, it is useful to see the total
 number of packets that are being dropped by various interfaces and
@@ -360,7 +360,7 @@ To add a trend view of dropped packets to your dashboard:
     
     {{% imgOld 22 %}}
 
-#### <span>Example: Add Received Bytes Panel</span>
+#### Example: Add Received Bytes Panel</span>
 
 The following example shows the Received Bytes on spine01 for all
 interfaces over time.
@@ -418,7 +418,7 @@ To add trend view of received bytes to the dashboard:
     
     {{% imgOld 28 %}}
 
-## <span>Resolve Issues</span>
+## Resolve Issues</span>
 
 If you are experiencing issues with the configuration or behavior of the
 interface statistic collection feature, you can check log files on the
@@ -436,7 +436,7 @@ On the Telemetry Server, you can:
 
 On each node, check the NetQ Agent log file `/var/log/netq-agent.log`.
 
-### <span>Example: Verifying InfluxDB Status</span>
+### Example: Verifying InfluxDB Status</span>
 
 1.  Validate the database is up.
     
@@ -498,7 +498,7 @@ On each node, check the NetQ Agent log file `/var/log/netq-agent.log`.
         procnetdev,hostname=spine02,interface=vagrant
         ...
 
-## <span>Disable Interface Statistics Collection</span>
+## Disable Interface Statistics Collection</span>
 
 If you no longer wish to collect interface statistics, you can disable
 the feature.

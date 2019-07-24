@@ -3,7 +3,7 @@ title: Quick Start Guide
 author: Cumulus Networks
 weight: 11
 aliases:
- - /display/RMP31/Quick-Start-Guide
+ - /display/RMP31/Quick+Start+Guide
  - /pages/viewpage.action?pageId=5122730
 pageID: 5122730
 product: Cumulus RMP
@@ -14,14 +14,14 @@ siteSlug: cumulus-rmp-31
 This chapter helps you get up and running with Cumulus RMP quickly and
 easily.
 
-## <span>What's New in Cumulus RMP 3.1.2</span>
+## What's New in Cumulus RMP 3.1.2</span>
 
 Cumulus RMP 3.1.2 contains bug fixes only. The [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/231749047)
 contain information about the new features and known issues in this
 release.
 
-## <span>Open Source Contributions</span>
+## Open Source Contributions</span>
 
 Cumulus Networks has forked various software projects, like CFEngine,
 `Netdev` and some Puppet Labs packages in order to implement various
@@ -34,7 +34,7 @@ applications as well.
 The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com) page.
 
-## <span>Prerequisites</span>
+## Prerequisites</span>
 
 Prior intermediate Linux knowledge is assumed for this guide. You should
 be familiar with basic text editing, Unix file permissions, and process
@@ -59,7 +59,7 @@ Linux in general and some Cumulus Linux-specific concepts in particular.
 
 {{%/notice%}}
 
-## <span>Supported Hardware</span>
+## Supported Hardware</span>
 
 You can find the most up to date list of supported switches
 [here](http://cumulusnetworks.com/rmp/how-to-buy/). Use this page to
@@ -67,7 +67,7 @@ confirm that your switch model is supported by Cumulus Networks. The
 page is updated regularly, listing products by port configuration,
 manufacturer, and SKU part number.
 
-## <span>Setting up a Cumulus RMP Switch</span>
+## Setting up a Cumulus RMP Switch</span>
 
 Setting up a Cumulus RMP switch is simple and straightforward. It
 involves:
@@ -83,7 +83,7 @@ involves:
 This quick start guide walks you through the steps necessary for getting
 your Cumulus RMP switch up and running after you remove it from the box.
 
-## <span>Upgrading Cumulus RMP</span>
+## Upgrading Cumulus RMP</span>
 
 If you already have Cumulus RMP installed on your switch and are
 upgrading to a maintenance release (X.Y.Z, like 2.5.7) from an earlier
@@ -93,7 +93,7 @@ to the new version instead. See [Upgrading Cumulus
 RMP](/version/cumulus-rmp-31/System-Management/Installation-Upgrading-and-Package-Management/Managing-Cumulus-RMP-Disk-Images)
 for details.
 
-## <span>Configuring Cumulus RMP</span>
+## Configuring Cumulus RMP</span>
 
 When bringing up Cumulus RMP for the first time, the management port
 makes a DHCPv4 request. To determine the IP address of the switch, you
@@ -101,7 +101,7 @@ can cross reference the MAC address of the switch with your DHCP server.
 The MAC address should be located on the side of the switch or on the
 box in which the unit was shipped.
 
-### <span>Login Credentials</span>
+### Login Credentials</span>
 
 The default installation includes one system account, *root*, with full
 system privileges, and one user account, *cumulus*, with `sudo`
@@ -128,7 +128,7 @@ change the system configuration require this elevated level of access.
 For more information about sudo, read [Using sudo to Delegate
 Privileges](/version/cumulus-rmp-31/System-Management/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
 
-### <span>Serial Console Management</span>
+### Serial Console Management</span>
 
 Users are encouraged to perform management and configuration over the
 network, either in band or out of band. Use of the serial console is
@@ -138,7 +138,7 @@ network-based management.
 Typically, switches will ship from the manufacturer with a mating DB9
 serial cable. Switches with ONIE are always set to a 115200 baud rate.
 
-### <span>Wired Ethernet Management</span>
+### Wired Ethernet Management</span>
 
 Switches supported in Cumulus RMP contain a number of dedicated Ethernet
 management ports, the first of which is named *eth0*. These interfaces
@@ -154,7 +154,7 @@ file:
         address 192.0.2.42/24
         gateway 192.0.2.1
 
-### <span>In-Band Ethernet Management</span>
+### In-Band Ethernet Management</span>
 
 All traffic that goes to the RMP switch via an interface called *vlan.1*
 is marked for in-band management. DHCP is enabled on this interface by
@@ -167,7 +167,7 @@ configuration for vlan.1 in `/etc/network/interfaces`:
         address 10.0.1.1/24
         gateway 10.0.2.1
 
-### <span>Configuring the Hostname and Time Zone</span>
+### Configuring the Hostname and Time Zone</span>
 
 To change the hostname, modify the `/etc/hostname` and `/etc/hosts`
 files with the desired hostname and reboot the switch. First, edit
@@ -202,7 +202,7 @@ site](https://github.com/CumulusNetworks/customer-scripts/blob/master/change_hos
 
 {{%/notice%}}
 
-### <span>Testing Cable Connectivity</span>
+### Testing Cable Connectivity</span>
 
 By default, all data plane ports and the management interface are
 enabled.
@@ -224,16 +224,16 @@ output of a port in "admin down", "down" and "up" mode, respectively:
     # Administratively Up, Layer 2 protocol is Up
     swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
 
-## <span>Configuring Switch Ports</span>
+## Configuring Switch Ports</span>
 
-### <span>Layer 2 Port Configuration</span>
+### Layer 2 Port Configuration</span>
 
 Cumulus RMP does not put all ports into a bridge by default. To
 configure a front panel port or create a bridge, edit the
 `/etc/network/interfaces` file. After saving the file, to activate the
 change, use the `ifup` command.
 
-#### <span>Examples</span>
+#### Examples</span>
 
 In the following configuration example, the front panel port swp1 is
 placed into a bridge called br0:
@@ -273,7 +273,7 @@ bridge](https://support.cumulusnetworks.com/hc/en-us/articles/203508477).
 
 {{%/notice%}}
 
-### <span>Layer 3 Port Configuration</span>
+### Layer 3 Port Configuration</span>
 
 To configure a front panel port or bridge interface as a Layer 3 port,
 edit the `/etc/network/interfaces` file.
@@ -312,7 +312,7 @@ To view the changes in the kernel use the `ip addr show` command:
     link/ether 44:38:39:00:6e:fe brd ff:ff:ff:ff:ff:ff
     inet 10.1.1.1/30 scope global swp1
 
-## <span>Configuring a Loopback Interface</span>
+## Configuring a Loopback Interface</span>
 
 Cumulus RMP has a loopback preconfigured in `/etc/network/interfaces`.
 When the switch boots up, it has a loopback interface, called *lo*,

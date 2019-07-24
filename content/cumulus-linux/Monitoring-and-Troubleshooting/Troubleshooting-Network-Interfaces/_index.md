@@ -3,18 +3,18 @@ title: Troubleshooting Network Interfaces
 author: Cumulus Networks
 weight: 227
 aliases:
- - /display/CL37/Troubleshooting-Network-Interfaces
+ - /display/DOCS/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=8362603
 pageID: 8362603
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 The following sections describe various ways you can troubleshoot
 `ifupdown2`.
 
-## <span>Enable Logging for Networking</span>
+## Enable Logging for Networking
 
 The `/etc/default/networking` file contains two settings for logging:
 
@@ -48,7 +48,7 @@ start/stop/reload the networking service.
     # Exclude interfaces
     EXCLUDE_INTERFACES=
 
-## <span>Use ifquery to Validate and Debug Interface Configurations</span>
+## Use ifquery to Validate and Debug Interface Configurations
 
 You use `ifquery` to print parsed `interfaces` file entries.
 
@@ -103,7 +103,7 @@ database.
     auto eth0
     iface eth0 inet dhcp
 
-## <span>Mako Template Errors</span>
+## Mako Template Errors
 
 An easy way to debug and get details about template errors is to use the
 `mako-render` command on your interfaces template file or on
@@ -112,30 +112,30 @@ An easy way to debug and get details about template errors is to use the
     cumulus@switch:~$ sudo mako-render /etc/network/interfaces
     # This file describes the network interfaces available on your system
     # and how to activate them. For more information, see interfaces(5).
-      
+
     # The loopback network interface
     auto lo
     iface lo inet loopback
-      
+
     # The primary network interface
     auto eth0
     iface eth0 inet dhcp
     #auto eth1
     #iface eth1 inet dhcp
-      
+
     # Include any platform-specific interface configuration
     source /etc/network/interfaces.d/*.if
-      
+
     # ssim2 added
     auto swp45
     iface swp45
      
     auto swp46
     iface swp46
-      
+
     cumulus@switch:~$ sudo mako-render /etc/network/interfaces.d/<interfaces_stub_file>
 
-## <span>ifdown Cannot Find an Interface that Exists</span>
+## ifdown Cannot Find an Interface that Exists
 
 If you are trying to bring down an interface that you know exists, use
 `ifdown` with the `--use-current-config` option to force `ifdown` to
@@ -151,9 +151,9 @@ was interrupted before it updated the state database. For example:
     br0     8000.44383900279f   yes     downlink
                                 peerlink
      
-    cumulus@switch:~$ sudo ifdown br0 --use-current-config 
+    cumulus@switch:~$ sudo ifdown br0 --use-current-config
 
-## <span>Remove All References to a Child Interface</span>
+## Remove All References to a Child Interface
 
 If you have a configuration with a child interface, whether it's a VLAN,
 bond or another physical interface, and you remove that interface from a
@@ -188,7 +188,7 @@ Notice that bond1 is a member of br0. If bond1 is removed, you must
 remove the reference to it from the br0 configuration. Otherwise, if you
 reload the configuration with `ifreload -a`, bond1 is still part of br0.
 
-## <span>MTU Set on a Logical Interface Fails with Error: "Numerical result out of range"</span>
+## MTU Set on a Logical Interface Fails with Error: "Numerical result out of range"
 
 This error occurs when the
 [MTU](Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-mtu)
@@ -202,15 +202,15 @@ to physical interface swp1. If you want to change the MTU to 9000 on the
 VLAN interface, you must include the new MTU on the lower interface swp1
 as well.
 
-    auto swp1.100 
-    iface swp1.100 
-        mtu 9000 
+    auto swp1.100
+    iface swp1.100
+        mtu 9000
      
-    auto swp1 
+    auto swp1
     iface swp1  
         mtu 9000
 
-## <span>iproute2 batch Command Failures</span>
+## iproute2 batch Command Failures
 
 `ifupdown2` batches `iproute2` commands for performance reasons. A batch
 command contains `ip -force -batch -` in the error message. The command
@@ -224,11 +224,11 @@ bridge`. There was an error adding the bond *host2* to the bridge named
     addr flush dev host2
     link set dev host1 master bridge
     addr flush dev host1
-    ]'(RTNETLINK answers: Invalid argument 
-    Command failed -:1) 
-    warning: bridge configuration failed (missing ports) 
+    ]'(RTNETLINK answers: Invalid argument
+    Command failed -:1)
+    warning: bridge configuration failed (missing ports)
 
-## <span>"RTNETLINK answers: Invalid argument" Error when Adding a Port to a Bridge</span>
+## "RTNETLINK answers: Invalid argument" Error when Adding a Port to a Bridge
 
 This error can occur when the bridge port does not have a valid hardware
 address.
@@ -237,13 +237,13 @@ This can typically occur when the interface being added to the bridge is
 an incomplete bond; a bond without slaves is incomplete and does not
 have a valid hardware address.
 
-## <span>MLAG Peerlink Interface Drops Many Packets</span>
+## MLAG Peerlink Interface Drops Many Packets
 
 Losing a large number of packets across an MLAG peerlink interface may
 not be a problem. Instead this could be occurring in order to prevent
 looping of BUM (broadcast, unknown unicast and multicast) packets. For
 more information, and how to detect these drops, read the [MLAG
-chapter](Multi-Chassis-Link-Aggregation---MLAG.html#src-8362677_Multi-ChassisLinkAggregation-MLAG-drops).
+chapter](Multi-Chassis-Link-Aggregation-MLAG.html#src-8362677_Multi-ChassisLinkAggregation-MLAG-drops).
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

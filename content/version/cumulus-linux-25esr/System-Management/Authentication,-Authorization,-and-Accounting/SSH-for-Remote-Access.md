@@ -3,7 +3,7 @@ title: SSH for Remote Access
 author: Cumulus Networks
 weight: 215
 aliases:
- - /display/CL25ESR/SSH-for-Remote-Access
+ - /display/CL25ESR/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=5115901
 pageID: 5115901
 product: Cumulus Linux
@@ -14,7 +14,7 @@ siteSlug: cumulus-linux-25esr
 You use [SSH](http://en.wikipedia.org/wiki/Secure_Shell) to securely
 access a Cumulus Linux switch remotely.
 
-## <span>Access Using Passkey (Basic Setup)</span>
+## Access Using Passkey (Basic Setup)</span>
 
 Cumulus Linux uses the openSSH package to provide SSH functionality. The
 standard mechanisms of generating passwordless access just applies. The
@@ -61,13 +61,13 @@ for the account.
 
 {{%/notice%}}
 
-### <span>Completely Passwordless System</span>
+### Completely Passwordless System</span>
 
 When generating the passphrase and its associated keys, as in the first
 step above, do not enter a passphrase. Follow all the other
 instructions.
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - <http://www.debian-administration.org/articles/152>
 

@@ -3,7 +3,7 @@ title: Monitor Data Link Layer Devices and Protocols
 author: Cumulus Networks
 weight: 61
 aliases:
- - /display/NETQ141/Monitor-Data-Link-Layer-Devices-and-Protocols
+ - /display/NETQ141/Monitor+Data+Link+Layer+Devices+and+Protocols
  - /pages/viewpage.action?pageId=10453521
 pageID: 10453521
 product: Cumulus NetQ
@@ -33,7 +33,7 @@ It helps answer questions such as:
 
   - Can device A reach device B using MAC addresses?
 
-## <span>Monitor LLDP Operation</span>
+## Monitor LLDP Operation</span>
 
 LLDP is <span style="color: #545454;"> used by network devices for
 advertising their identity, capabilities, and neighbors on a LAN. You
@@ -46,7 +46,7 @@ command. The syntax for this command is: </span>
     netq [<hostname>] show lldp [<remote-physical-interface>] [around <text-time>] [json]
     netq [<hostname>] show lldp [<remote-physical-interface>] changes [between <text-time> and <text-endtime>] [json]
 
-### <span>View LLDP Information for All Devices</span>
+### View LLDP Information for All Devices</span>
 
 <span style="color: #545454;"> This example shows the interface and peer
 information that is advertised for each device. </span>
@@ -92,7 +92,7 @@ information that is advertised for each device. </span>
     spine02           swp3                      leaf03            swp52                     4h:16m:22s
     spine02           swp4                      leaf04            swp52                     4h:16m:22s
 
-### <span>View Changes to LLDP Information </span>
+### View Changes to LLDP Information </span>
 
 <span style="color: #545454;"> If you are experiencing a connectivity
 issue with a particular device, using the `changes` keyword can help
@@ -140,7 +140,7 @@ for *tor-1*. </span>
     tor-1             swp2                      noc-se            swp4                      Add        30m:24.678s
     tor-1             swp1                      noc-pr            swp4                      Add        30m:24.678s
 
-## <span>Check for MTU Inconsistencies</span>
+## Check for MTU Inconsistencies</span>
 
 The maximum transmission unit (MTU) determines the largest size packet
 or frame that can be transmitted across a given communication link. When
@@ -167,7 +167,7 @@ misconfiguration.
     spine02           swp29                     9216   exit02            swp52                     1500     MTU Mismatch
     exit02            swp52                     1500   spine02           swp29                     9216     MTU Mismatch
 
-## <span>Monitor VLAN Configurations</span>
+## Monitor VLAN Configurations</span>
 
 <span style="color: #36424a;"> </span> A VLAN (Virtual Local Area
 Network) enables devices on one or more LANs to communicate as if they
@@ -214,7 +214,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View VLAN Information for All Devices</span>
+### View VLAN Information for All Devices</span>
 
 <span style="color: #545454;"> This example shows the VLANs configured
 across your network. </span>
@@ -230,7 +230,7 @@ across your network. </span>
     leaf03            1,13,24,4001              13 24 4001                19h:37m:6s
     leaf04            1,13,24,4001              13 24 4001                19h:33m:46s
 
-### <span>View Changes to VLAN Information </span>
+### View Changes to VLAN Information </span>
 
 <span style="color: #545454;"> If you are experiencing a connectivity
 issue with a particular device, using the `changes` keyword can help
@@ -264,7 +264,7 @@ occurred for all VLANs on the network in the past two days. </span>
     leaf02            1,13,24,4001              13 24 4001                Add        19h:39m:54s
     leaf01            1,13,24,4001              13 24 4001                Add        20h:26m:34s
 
-### <span>View VLAN Interface Information</span>
+### View VLAN Interface Information</span>
 
 You can view the current or past state of the interfaces associated with
 VLANs using the `netq show interfaces` command. This provides the status
@@ -294,7 +294,7 @@ and the last time it was changed.
     leaf04            vlan24                    vlan             up         vrf1            MTU:1500                            19h:37m:58s
     leaf04            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:37m:58s
 
-### <span>View MAC Addresses Associated with a VLAN</span>
+### View MAC Addresses Associated with a VLAN</span>
 
 You can determine the MAC addresses associated with a given VLAN using
 the `netq show macs vlan` command. The command also provides the
@@ -342,7 +342,7 @@ This example shows the MAC addresses associated with *VLAN13*.
     yes    44:39:39:ff:00:13  13     leaf03            bridge               no     19h:43m:55s
     yes    44:39:39:ff:00:13  13     leaf04            bridge               no     19h:40m:34s
 
-### <span>View MAC Addresses Associated with an Egress Port</span>
+### View MAC Addresses Associated with an Egress Port</span>
 
 You can filter that information down to just the MAC addresses that are
 associated with a given VLAN that use a particular egress port. This
@@ -356,7 +356,7 @@ example shows MAC addresses associated with the *leaf03* switch and
     yes    44:38:39:00:00:23  13     leaf03            bridge               no     20h:46m:17s
     yes    44:39:39:ff:00:13  13     leaf03            bridge               no     20h:46m:17s
 
-### <span>View the MAC Addresses Associated with VRR Configurations</span>
+### View the MAC Addresses Associated with VRR Configurations</span>
 
 You can view all of the MAC addresses associated with your VRR (virtual
 router reflector) interface configuration using the `netq show
@@ -385,7 +385,7 @@ VRR configuration.
     leaf04            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             20h:46m:25s
                                                                                             Mode: Private
 
-## <span>Monitor MLAG Configurations</span>
+## Monitor MLAG Configurations</span>
 
 Multi-Chassis Link Aggregation (MLAG) is used to enable a server or
 switch with a two-port bond (such as a link aggregation group/LAG,
@@ -423,7 +423,7 @@ the show command is:
     netq [<hostname>] show clag [around <text-time>] [json]
     netq [<hostname>] show clag changes [between <text-time> and <text-endtime>] [json]
 
-### <span>View MLAG Configuration and Status for all Devices</span>
+### View MLAG Configuration and Status for all Devices</span>
 
 This example shows the configuration and status of MLAG for all devices.
 In this case, three MLAG pairs are seen between torc-11 and torc-12
@@ -458,7 +458,7 @@ the last five minutes.
     torc-21(P)        torc-22           44:38:39:ff:ff:02  up         up     8     8     30m:20.856s
     torc-22           torc-21(P)        44:38:39:ff:ff:02  up         up     8     8     30m:18.583s
 
-### <span>View MLAG Configuration and Status for Given Devices</span>
+### View MLAG Configuration and Status for Given Devices</span>
 
 This example shows that xxx device is up and MLAG properly configured
 with a peer connection to yyy and 8 bonds, all of which are dual bonded.
@@ -495,7 +495,7 @@ state:
     vx-35            vx-35            -       -                    - 
     vx-34            vx-34            -       -                    -
 
-## <span>Monitor Time Synchronization Status for Devices</span>
+## Monitor Time Synchronization Status for Devices</span>
 
 It is important that the switches and hosts remain in time
 synchronization with the Telemetry Server to ensure collected data is
@@ -550,7 +550,7 @@ This example shows the time synchronization status for *leaf01*.
     ----------------- -------- ----------------- ------- ---------------------
     leaf01            yes      kilimanjaro       2       ntpq
 
-## <span>Monitor Spanning Tree Protocol Configuration</span>
+## Monitor Spanning Tree Protocol Configuration</span>
 
 <span style="color: #36424a;"> The Spanning Tree Protocol (STP) is used
 in Ethernet-based networks to prevent communication loops when you have
@@ -604,7 +604,7 @@ viewed from the *spine1* switch. </span>
                                       -- edge1:EdgeIntf(dual_host1) -- hdedge1
                                       -- edge1:ClagIsl(peer-bond1) -- edge2
 
-## <span>Validate Paths between Devices</span>
+## Validate Paths between Devices</span>
 
 If you have VLANs configured, you can <span style="color: #353744;">
 view the available paths between two devices on the VLAN currently and
@@ -654,7 +654,7 @@ to ping the identified device so that its address becomes known.
 
 {{%/notice%}}
 
-### <span>View Paths between Two Switches with Pretty Output</span>
+### View Paths between Two Switches with Pretty Output</span>
 
 This example shows the available paths between a top of rack switch,
 *tor-1*, and a server, *hostd-11*. The request is to go through VLAN
@@ -688,7 +688,7 @@ in this example.
               swp1 -- swp5 <vlan1000> tor-1 <vlan1001> vni: 34 uplink-1 -- downlink-5 spine-1 downlink-2 -- uplink-1 vni: 34 <vlan1001> torc-12 hostbond4 -- swp2 hostd-11  
                                                                uplink-1 -- downlink-5 spine-1 downlink-1 -- uplink-1 vni: 34 <vlan1001> torc-11 hostbond4 -- swp1 hostd-11
 
-### <span>View Forward and Reverse Paths between Two Switches with Pretty Output</span>
+### View Forward and Reverse Paths between Two Switches with Pretty Output</span>
 
 Like the previous example, this shows the paths between tor-1 and
 hostd-11, but by adding the *bidir* keyword both the forward and reverse
@@ -714,7 +714,7 @@ hostname to achieve the same results.
      hostd-11 swp2 -- uplink-2 vni: 34 torc-12 hostbond4 -- downlink-2 spine-2 downlink-5 -- uplink-1 vni:34 tor-1
                       uplink-1 vni: 34 torc-12 hostbond4 -- downlink-2 spine-2 downlink-5 -- uplink-1 vni:34 tor-1
 
-### <span>View Paths between Two Switches with Detailed Output</span>
+### View Paths between Two Switches with Detailed Output</span>
 
 This example provides the same path information as the pretty output,
 but displays the information in a tabular output.

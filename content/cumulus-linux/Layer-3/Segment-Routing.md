@@ -3,13 +3,13 @@ title: Segment Routing
 author: Cumulus Networks
 weight: 203
 aliases:
- - /display/CL37/Segment-Routing
+ - /display/DOCS/Segment+Routing
  - /pages/viewpage.action?pageId=8362962
 pageID: 8362962
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 {{%notice warning%}}
 
@@ -30,13 +30,13 @@ switching (MPLS) controllers program labels into the network for traffic
 engineering.
 
 Cumulus Linux provides full label-based forwarding, relying on
-[BGP](/version/cumulus-linux-377/Layer-3/Border-Gateway-Protocol---BGP)
-for label exchange. However, Cumulus Linux does not provide LDP
-interoperability for MPLS and it does not support
-[VRFs](/version/cumulus-linux-377/Layer-3/Virtual-Routing-and-Forwarding---VRF)
-for tenant isolation.
+[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) for label
+exchange. However, Cumulus Linux does not provide LDP interoperability
+for MPLS and it does not support
+[VRFs](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF) for
+tenant isolation.
 
-## <span>Features</span>
+## Features
 
 Segment routing is MPLS for the data plane **only**. In this EA release,
 Cumulus Linux does not impose the labels, the host does. The MTUs should
@@ -45,7 +45,7 @@ Segment routing supports the following features:
 
   - MPLS label edge router (LER) functionality for IPv4 and IPv6 routing
     with
-    [ECMP](/version/cumulus-linux-377/Layer-3/Equal-Cost-Multipath-Load-Sharing---Hardware-ECMP).
+    [ECMP](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP).
     An ingress LER first adds an MPLS label to an IP packet. An egress
     LER removes the outermost MPLS label (also called *popping* the
     label).
@@ -53,15 +53,14 @@ Segment routing supports the following features:
   - MPLS label switch router (LSR) functionality with ECMP. The LSR
     receives a packet with a label and forwards it based on that label.
 
-  - [FRRouting](/version/cumulus-linux-377/Layer-3/FRRouting-Overview/)
-    support for MPLS transit label switched paths (LSPs) and labeled
-    routes (LER), both static routes and routes using BGP
-    labeled-unicast (LU).
+  - [FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/) support for
+    MPLS transit label switched paths (LSPs) and labeled routes (LER),
+    both static routes and routes using BGP labeled-unicast (LU).
 
   - FRR support for BGP/MPLS segment routing based on
     [draft-ietf-idr-bgp-prefix-sid-06](https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-prefix-sid/).
 
-## <span>Example Configuration</span>
+## Example Configuration
 
 Consider the following topology. Typically, host1 sends traffic to host2
 through r1, r2 and r3. However, you can use segment routing to route
@@ -120,27 +119,27 @@ The table below contains the configuration for all five nodes.
 <pre><code>auto lo
 iface lo inet loopback
     address 10.1.1.1/32
- 
+
 auto swp2
 iface swp2
     mpls-enable yes
- 
+
 auto swp4
 iface swp4
     mpls-enable yes
- 
+
 auto swp10
 iface swp10
     address 192.168.11.1/24
     mpls-enable yes
- 
+
 auto vagrant
 iface vagrant inet dhcp
- 
+
 auto eth0
 iface eth0 inet dhcp
  vrf mgmt
- 
+
 auto mgmt
 iface mgmt
   address 127.0.0.1/8
@@ -190,26 +189,26 @@ line vty
 <pre><code>auto lo
 iface lo inet loopback
     address 10.1.1.2/32
- 
+
 auto swp1
 iface swp1
     mpls-enable yes
- 
+
 auto swp3
 iface swp3
     mpls-enable yes
- 
+
 auto swp5
 iface swp5
     mpls-enable yes
- 
+
 auto vagrant
 iface vagrant inet dhcp
- 
+
 auto eth0
 iface eth0 inet dhcp
  vrf mgmt
- 
+
 auto mgmt
 iface mgmt
   address 127.0.0.1/8
@@ -260,27 +259,27 @@ line vty
 <pre><code>auto lo
 iface lo inet loopback
     address 10.1.1.3/32
- 
+
 auto swp2
 iface swp2
     mpls-enable yes
- 
+
 auto swp5
 iface swp5
     mpls-enable yes
- 
+
 auto swp10
 iface swp10
     address 192.168.22.1/24
     mpls-enable yes
- 
+
 auto vagrant
 iface vagrant inet dhcp
- 
+
 auto eth0
 iface eth0 inet dhcp
  vrf mgmt
- 
+
 auto mgmt
 iface mgmt
   address 127.0.0.1/8
@@ -330,22 +329,22 @@ line vty
 <pre><code>auto lo
 iface lo inet loopback
     address 10.1.1.4/32
- 
+
 auto swp1
 iface swp1
     mpls-enable yes
- 
+
 auto swp5
 iface swp5
     mpls-enable yes
- 
+
 auto vagrant
 iface vagrant inet dhcp
- 
+
 auto eth0
 iface eth0 inet dhcp
  vrf mgmt
- 
+
 auto mgmt
 iface mgmt
   address 127.0.0.1/8
@@ -395,27 +394,27 @@ line vty
 <pre><code>auto lo
 iface lo inet loopback
     address 10.1.1.5/32
- 
+
 auto swp2
 iface swp2
     mpls-enable yes
- 
+
 auto swp5
 iface swp5
     mpls-enable yes
- 
+
 auto swp10
 iface swp10
     address 192.168.22.1/24
     mpls-enable yes
- 
+
 auto vagrant
 iface vagrant inet dhcp
- 
+
 auto eth0
 iface eth0 inet dhcp
  vrf mgmt
- 
+
 auto mgmt
 iface mgmt
   address 127.0.0.1/8
@@ -463,11 +462,11 @@ line vty
 </tbody>
 </table>
 
-## <span>Configure Segment Routing</span>
+## Configure Segment Routing
 
 To configure the segment routing example above, use the `label-index`
 option in
-[NCLU](/version/cumulus-linux-377/System-Configuration/Network-Command-Line-Utility---NCLU).
+[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
 Configure the following on each node:
 
     cumulus@switch:~$ net add bgp network 10.1.1.1/32 label-index 1
@@ -480,10 +479,10 @@ Configure the following on each node:
 
 Then, for each switch in the topology, define the *global-block* of
 labels to use for segment routing in
-[FRR](/version/cumulus-linux-377/Layer-3/Configuring-FRRouting/). The
-default global-block is 16000-23999. The example configuration uses
-global-block `100 200`. The *local label* is the MPLS label global-block
-plus the label-index.
+[FRR](/cumulus-linux/Layer-3/Configuring-FRRouting/). The default
+global-block is 16000-23999. The example configuration uses global-block
+`100 200`. The *local label* is the MPLS label global-block plus the
+label-index.
 
     cumulus@switch:~$ cat /etc/frr/frr.conf
     router bgp 400
@@ -504,7 +503,7 @@ plus the label-index.
     !
     mpls label global-block 100 200
 
-## <span>View the Configuration</span>
+## View the Configuration
 
 You can see the label-index when you show the BGP configuration on a
 router.
@@ -534,7 +533,7 @@ Or from another node in the network:
           Label Index: 4
           AddPath ID: RX 0, TX 14
           Last update: Tue Aug 15 13:57:45 2017
-    cumulus@r1:~$ 
+    cumulus@r1:~$
 
 You can see the FRR MPLS table in the output below, where r1 receives a
 packet with label 104. Its outbound label is 3, which appears as
@@ -553,30 +552,30 @@ swp3, the interface to r4:
          106      BGP  fe80::202:ff:fe00:1         3
          107      BGP  fe80::202:ff:fe00:6       107
      
-    cumulus@r1:~$ 
-    cumulus@r1:~$ 
+    cumulus@r1:~$
+    cumulus@r1:~$
     cumulus@r1:~$ net show mpls table 104
     Local label: 104 (installed)
      type: BGP remote label: implicit-null distance: 150
       via fe80::202:ff:fe00:c dev swp3 (installed)
-    cumulus@r1:~$ 
+    cumulus@r1:~$
 
 You can see the MPLS routing table that is installed in the kernel as
 well:
 
     cumulus@r1:~$ ip -f mpls route show
-    102 via inet6 fe80::202:ff:fe00:6 dev swp2  proto zebra 
-    103 as to 103 via inet6 fe80::202:ff:fe00:6 dev swp2  proto zebra 
-    104 via inet6 fe80::202:ff:fe00:c dev swp3  proto zebra 
-    105  proto zebra 
+    102 via inet6 fe80::202:ff:fe00:6 dev swp2  proto zebra
+    103 as to 103 via inet6 fe80::202:ff:fe00:6 dev swp2  proto zebra
+    104 via inet6 fe80::202:ff:fe00:c dev swp3  proto zebra
+    105  proto zebra
         nexthop as to 105  via inet6 fe80::202:ff:fe00:6  dev swp2
         nexthop as to 105  via inet6 fe80::202:ff:fe00:c  dev swp3
-    106 via inet6 fe80::202:ff:fe00:1 dev swp1  proto zebra 
+    106 via inet6 fe80::202:ff:fe00:1 dev swp1  proto zebra
     107 as to 107 via inet6 fe80::202:ff:fe00:6 dev swp2  proto zebra  
-    cumulus@r1:~$ 
+    cumulus@r1:~$
     cumulus@r1:~$ ip -f mpls route show 104
-    104 via inet6 fe80::202:ff:fe00:c dev swp3  proto zebra 
-    cumulus@r1:~$ 
+    104 via inet6 fe80::202:ff:fe00:c dev swp3  proto zebra
+    cumulus@r1:~$
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

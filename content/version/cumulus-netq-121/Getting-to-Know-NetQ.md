@@ -3,7 +3,7 @@ title: Getting to Know NetQ
 author: Cumulus Networks
 weight: 13
 aliases:
- - /display/NETQ121/Getting-to-Know-NetQ
+ - /display/NETQ121/Getting+to+Know+NetQ
  - /pages/viewpage.action?pageId=8356582
 pageID: 8356582
 product: Cumulus NetQ
@@ -11,7 +11,7 @@ version: 1.2.1
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
 ---
-## <span>Using netq example</span>
+## Using netq example</span>
 
 After you've installed NetQ, running `netq example` gives you some
 pointers as to how it helps you solve issues across your network.
@@ -85,7 +85,7 @@ And `netq help` shows you information about specific commands.
        netq <hostname> show interfaces <remote-interface> changes [between <text-time> and <text-endtime>] [json]
        netq [<hostname>] show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan) changes [between <text-time> and <text-endtime>] [json]
 
-## <span>Getting Information about Network Hardware</span>
+## Getting Information about Network Hardware</span>
 
 You can get information about the hardware on the nodes in the network
 with `netq show inventory` command. You can get details about the ASIC,
@@ -108,7 +108,7 @@ shorter summary, use the `brief` option:
     spine01   VX        Cumulus Linux  x86_64  N/A     N/A
     spine02   VX        Cumulus Linux  x86_64  N/A     N/A
 
-## <span>Using the NetQ Shell on the NetQ Telemetry Server</span>
+## Using the NetQ Shell on the NetQ Telemetry Server</span>
 
 If you need to run `netq` commands from the telemetry server, use the
 NetQ shell. While most other Linux commands can work from this shell,
@@ -138,7 +138,7 @@ Cumulus Networks recommends you only run `netq` commands here.
      
     ...
 
-## <span>Using the netq resolve Command</span>
+## Using the netq resolve Command</span>
 
 Linux commands can be piped through NetQ with the `netq resolve`
 command, in order to provide more contextual information and colored
@@ -259,7 +259,7 @@ piping the output through `netq resolve` so the output looks like this:
     eth0    
      )
 
-## <span>Sample Commands for Various Components </span>
+## Sample Commands for Various Components </span>
 
 NetQ provides network validation for the entire stack, providing
 algorithmic answers to many questions, both simple and intractable, that
@@ -342,7 +342,7 @@ pertain to your network fabric.
 </tbody>
 </table>
 
-## <span>Understanding Timestamps in NetQ</span>
+## Understanding Timestamps in NetQ</span>
 
 Every event or entry in the NetQ database is stored with a timestamp of
 when the event was captured by the NetQ agent on the node. This

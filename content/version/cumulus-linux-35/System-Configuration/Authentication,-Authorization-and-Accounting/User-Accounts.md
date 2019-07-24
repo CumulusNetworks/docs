@@ -3,7 +3,7 @@ title: User Accounts
 author: Cumulus Networks
 weight: 269
 aliases:
- - /display/CL35/User-Accounts
+ - /display/CL35/User+Accounts
  - /pages/viewpage.action?pageId=8357334
 pageID: 8357334
 product: Cumulus Linux
@@ -30,7 +30,7 @@ The *cumulus* account:
     [SSH](/version/cumulus-linux-35/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access)
 
   - Along with the cumulus group, has both show and edit rights for
-    [NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility---NCLU/)
+    [NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/)
 
 The *root* account:
 
@@ -51,14 +51,14 @@ so be sure to include them in the *sudo* group.
 
 To access the switch without any password requires [booting into a
 single shell/user
-mode](/version/cumulus-linux-35/Monitoring-and-Troubleshooting/Single-User-Mode---Boot-Recovery).
+mode](/version/cumulus-linux-35/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery).
 
 You can add and configure user accounts in Cumulus Linux with read-only
 or edit permissions for NCLU. For more information, see [Configuring
 User
-Accounts](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility---NCLU/).
+Accounts](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/).
 
-## <span>Enabling Remote Access for the root User</span>
+## Enabling Remote Access for the root User</span>
 
 As mentioned above, the root user does not have a password set for it,
 and it cannot log in to a switch via SSH. This default account behavior
@@ -69,7 +69,7 @@ root account, you can do one of two things for the account:
 
   - Set a password
 
-### <span id="src-8357334_UserAccounts-ssh_key" class="confluence-anchor-link"></span><span>Generating an SSH Key for the root Account</span>
+### <span id="src-8357334_UserAccounts-ssh_key" class="confluence-anchor-link"></span>Generating an SSH Key for the root Account</span>
 
 1.  First, in a terminal on your host system (not the switch), check to
     see if a key already exists:
@@ -100,7 +100,7 @@ root account, you can do one of two things for the account:
         cumulus@switch:~$ sudo mkdir -p /root/.ssh
         cumulus@switch:~$ echo <SSH public key string> | sudo tee -a /root/.ssh/authorized_keys
 
-### <span id="src-8357334_UserAccounts-root_passwd" class="confluence-anchor-link"></span><span>Setting the root User Password</span>
+### <span id="src-8357334_UserAccounts-root_passwd" class="confluence-anchor-link"></span>Setting the root User Password</span>
 
 1.  Run:
     

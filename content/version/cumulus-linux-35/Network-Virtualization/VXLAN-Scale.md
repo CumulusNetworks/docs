@@ -3,7 +3,7 @@ title: VXLAN Scale
 author: Cumulus Networks
 weight: 149
 aliases:
- - /display/CL35/VXLAN-Scale
+ - /display/CL35/VXLAN+Scale
  - /pages/viewpage.action?pageId=8357534
 pageID: 8357534
 product: Cumulus Linux
@@ -25,9 +25,9 @@ hit the reserved range (Cumulus Linux uses 3000-3999 by default).
 Cumulus Networks typically uses a soft number because the math is unique
 to each customer's environment. An internal VLAN is consumed by each
 <span style="color: #222222;"> layer 3 port, subinterface, [traditional
-bridge](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging---VLANs/Traditional-Mode-Bridges)
+bridge](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges)
 and the [VLAN-aware
-bridge](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging---VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
+bridge](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
 Thus, the number of configurable VXLANs is: </span>
 
 <span style="color: #222222;"> (total configurable 802.1q VLANs) -

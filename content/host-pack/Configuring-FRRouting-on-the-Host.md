@@ -11,7 +11,6 @@ version: '1.0'
 imgData: hostpack
 siteSlug: hostpack
 ---
-<details>
 
 This section provides an overview of configuring
 [FRRouting](https://frrouting.org) (FRR), the IP routing protocol suite
@@ -20,15 +19,15 @@ your Ubuntu or Red Hat Enterprise Linux hosts or in containers.
 
 {{%notice note%}}
 
-All [BFD](/display/HOSTPACK/Bidirectional+Forwarding+Detection+-+BFD)
+All [BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD/)
 (bidirectional forwarding detection) and
-[PTM](/display/HOSTPACK/Prescriptive+Topology+Manager+-+PTM)
+[PTM](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/)
 (Prescriptive Topology Manager) commands do not work on server hosts
 because PTM is not enabled on the host.
 
 {{%/notice%}}
 
-## <span>Configuration Files</span>
+## Configuration Files
 
 At startup, FRR reads a set of files to determine the startup
 configuration. The files and what they contain are specified below:
@@ -48,13 +47,11 @@ configuration. The files and what they contain are specified below:
 {{%notice note%}}
 
 The individual configuration files are not present unless you disable
-`integrated-vtysh-config`; [see
-below](#src-5868796_ConfiguringFRRoutingontheHost-integrated_cfg) for
-details.
+`integrated-vtysh-config`; [see below](#integrated-configurations) for details.
 
 {{%/notice%}}
 
-## <span>Configure FRRouting</span>
+## Configure FRRouting
 
 FRR does not start by default. Before you run FRR, make sure all you
 have enabled relevant daemons that you intend to use — `zebra`, `bgpd`,
@@ -94,7 +91,7 @@ After you copy the file to the container, start FRR, as described below.
 
 {{%/notice%}}
 
-### <span>Start the FRR Service</span>
+### Start the FRR Service
 
 On an Ubuntu 16.04 or RHEL 7 host, enable and start the FRR service:
 
@@ -112,7 +109,7 @@ For a Docker container, on the host, run:
     Starting FRR monitor daemon: watchfrr.
     Exiting from the script
 
-### <span id="src-5868796_ConfiguringFRRoutingontheHost-integrated_cfg" class="confluence-anchor-link"></span><span>Integrated Configurations</span>
+### Integrated Configurations
 
 By default, FRR saves the configuration of all daemons in a single
 integrated configuration file, `frr.conf`.
@@ -152,7 +149,7 @@ this:
     Configuration saved to /etc/frr/bgpd.conf
     [OK]
 
-### <span>Cumulus FRR Defaults for the Data Center</span>
+### Cumulus FRR Defaults for the Data Center
 
 Located within the default configuration of FRRouting is the following
 line:
@@ -187,11 +184,11 @@ completes. However, it sets the following FRR options:
 
 You can modify these settings on the command line.
 
-### <span>Set the Source on a Route-map for BGP Unnumbered Configurations</span>
+### Set the Source on a Route-map for BGP Unnumbered Configurations
 
-When using a [BGP unnumbered interfaces
-configuration](/display/HOSTPACK/Border+Gateway+Protocol+-+BGP), the
-Linux kernel may choose the eth0 management interface for external
+When using a
+[BGP unnumbered interfaces configuration](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/),
+the Linux kernel may choose the eth0 management interface for external
 communications instead of the loopback interface. To ensure that the
 loopback interface is used for external communications, set the source
 for a route-map utilizing the loopback IP address. Add a command similar
@@ -212,7 +209,7 @@ looks like this:
      
     10.97.1.1 via 169.254.0.1 dev eth1 proto bgp src 10.97.1.161 metric 20 onlink
 
-### <span>Restore the Default Configuration</span>
+### Restore the Default Configuration
 
 If you need to restore the FRR configuration to the default running
 configuration, you need to delete the `frr.conf` file and restart the
@@ -220,26 +217,26 @@ configuration, you need to delete the `frr.conf` file and restart the
 you may remove, see the note below) before proceeding.
 
 1.  Confirm service `integrated-vtysh-config` is enabled:
-    
-    ``` 
+
+    ```
     root@host:~# vtysh -c "show run" | grep integrated
     service integrated-vtysh-config  
     ```
 
 2.  Remove `/etc/frr/frr.conf`:
-    
+
         root@host:~# rm /etc/frr/frr.conf
 
 3.  Restart FRR. On an Ubuntu 16.04 or RHEL 7 host, run this command:
-    
+
         root@host:~# systemctl restart frr.service
-    
+
     On an Ubuntu 14.04 host, run this command:
-    
+
         root@host:~# service frr restart
-    
+
     For a Docker container, on the host, run:
-    
+
         root@host:~# docker exec FRR /usr/lib/frr/frr restart
 
 {{%notice note%}}
@@ -250,7 +247,7 @@ or `ospf6d.conf`) instead of `frr.conf` in step 2 above.
 
 {{%/notice%}}
 
-## <span>Configure FRR in a Container</span>
+## Configure FRR in a Container
 
 If you're using FRR with containers, you have three ways to configure
 FRR:
@@ -274,7 +271,7 @@ it into the container, as containers do not contain text editors such as
 restart FRR:
 
     root@host:~# docker cp frr.conf FRR:/etc/frr/frr.conf
-    root@host:~# docker exec frr /usr/lib/frr/frr restart 
+    root@host:~# docker exec frr /usr/lib/frr/frr restart
 
 {{%notice note%}}
 
@@ -301,7 +298,7 @@ When you log into to privileged container, the prompt does not change.
 
 Configure FRR as you would for a host, described above.
 
-### <span>Stop and Remove Containers</span>
+### Stop and Remove Containers
 
 To stop and remove all containers (a container must be stopped before it
 can be removed):
@@ -312,16 +309,14 @@ Remove all containers:
 
     root@host:/etc/apt/sources.list.d# docker rm $(docker ps -a -q)
 
-## <span>Interface IP Addresses</span>
+## Interface IP Addresses
 
 FRR inherits the IP addresses and any associated routing tables for the
 network interfaces from the `/etc/network/interfaces` file. This is the
 recommended way to define the addresses; do **not** create interfaces
-using FRR. For more information, see [Configuring IP
-Addresses](/display/HOSTPACK/Interface+Configuration+and+Management) in
-the Cumulus Linux user guide.
+using FRR. For more information, see [Configuring IP Addresses](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/) in the Cumulus Linux user guide.
 
-## <span>The vtysh Modal CLI</span>
+## The vtysh Modal CLI
 
 FRR provides a [CLI](http://docs.frrouting.org/en/latest/vtysh.html) –
 `vtysh` – for configuring and displaying the state of the protocols. It
@@ -459,7 +454,7 @@ running-config` command:
 
     host# show running-config
     Building configuration...
-     
+
     Current configuration:
     !
     hostname frr
@@ -519,7 +514,7 @@ started, `vtysh` silently ignores those commands.
 
 {{%/notice%}}
 
-## <span>Example vtysh Commands</span>
+## Example vtysh Commands
 
 This section illustrates various `vtysh` commands for use when
 configuring FRR.
@@ -600,7 +595,7 @@ host(config-if)# ipv6 ospf6 hello-interval  60</code></pre></td>
 </tbody>
 </table>
 
-## <span>Reload the FRR Configuration</span>
+## Reload the FRR Configuration
 
 If you make a change to your routing configuration, you need to reload
 so your changes take place. *FRR reload* enables you to apply only the
@@ -631,14 +626,14 @@ in `/etc/frr/frr.conf`:
 
     root@host:~# vtysh -c 'show run'
 
-### <span>Reload FRR in a Container</span>
+### Reload FRR in a Container
 
 When you change the FRR configuration, you need to reload FRR for your
 changes to take place. Run the following command:
 
     root@host:# docker exec -it frr /usr/lib/frr/frr-reload.py --reload /etc/frr/frr.conf
 
-## <span>Debug Steps</span>
+## Debug Steps
 
 If the running configuration is not what you expected, please [submit a
 support
@@ -652,7 +647,7 @@ supply the following information:
 
   - The contents of the `/var/log/frr/` directory
 
-## <span>Useful Links</span>
+## Useful Links
 
   - [FRR BGP
     documentation](http://docs.frrouting.org/en/latest/bgp.html)
@@ -661,14 +656,4 @@ supply the following information:
     documentation](http://docs.frrouting.org/en/latest/ipv6.html)
 
   - [FRR Zebra
-    documentation](http://docs.frrouting.org/en/latest/zebra.html)[](https://frrouting.org/user-guide/Zebra.html#Zebra)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>
+    documentation](http://docs.frrouting.org/en/latest/zebra.html)

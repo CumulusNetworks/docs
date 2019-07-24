@@ -3,11 +3,11 @@ title: Monitor Data Link Layer Devices and Protocols
 author: Cumulus Networks
 weight: 39
 aliases:
- - /display/NETQ22/Monitor-Data-Link-Layer-Devices-and-Protocols
+ - /display/NETQ/Monitor+Data+Link+Layer+Devices+and+Protocols
  - /pages/viewpage.action?pageId=12321048
 pageID: 12321048
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2.1
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -18,38 +18,32 @@ network ensures consistent and error-free communications between
 devices. NetQ provides the ability to:
 
   - Monitor and validate device and protocol configurations
-
   - View available communication paths between devices
 
 It helps answer questions such as:
 
   - Is a VLAN misconfigured?
-
   - Is there an MTU mismatch in my network?
-
   - Is MLAG configured correctly?
-
   - Is there an STP loop?
-
   - Can device A reach device B using MAC addresses?
 
-## <span>Monitor LLDP Operation</span>
+## Monitor LLDP Operation
 
-LLDP is <span style="color: #545454;"> used by network devices for
+LLDP is used by network devices for
 advertising their identity, capabilities, and neighbors on a LAN. You
 can view this information for one or more devices. You can also view the
 information at an earlier point in time or view changes that have
 occurred to the information during a specified timeframe. NetQ enables
 you to view LLDP information for your devices using the `netq show lldp`
-command. The syntax for this command is: </span>
+command. The syntax for this command is:
 
     netq [<hostname>] show lldp [<remote-physical-interface>] [around <text-time>] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type lldp [between <text-time> and <text-endtime>] [json]
 
-### <span>View LLDP Information for All Devices</span>
+### View LLDP Information for All Devices
 
-<span style="color: #545454;"> This example shows the interface and peer
-information that is advertised for each device. </span>
+This example shows the interface and peer information that is advertised for each device.
 
     cumulus@switch:~$ netq show lldp 
      
@@ -85,12 +79,12 @@ information that is advertised for each device. </span>
     server12          swp1                      leaf01            swp8                      Thu Feb  7 18:31:47 2019
     server12          swp2                      leaf02            swp8                      Thu Feb  7 18:31:47 2019
 
-## <span>Monitor Interface Health</span>
+## Monitor Interface Health
 
 Interface (link) health can be monitored using the `netq show
 interfaces` command. You can view status of the links, whether they are
 operating over a VRF interface, the MTU of the link, and so forth. Using
-the *hostname* keyword enables you to view only the interfaces for a
+the `hostname` option enables you to view only the interfaces for a
 given device. View changes to interfaces using the `netq show events`
 command.
 
@@ -100,7 +94,7 @@ The syntax for these commands is:
     netq <hostname> show interfaces [type bond|type bridge|type eth|type loopback|type macvlan|type swp|type vlan|type vrf|type vxlan] [state <remote-interface-state>] [around <text-time>] [count] [json]
     netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type interfaces [between <text-time> and <text-endtime>] [json]
 
-### <span>View Status for All Interfaces</span>
+### View Status for All Interfaces
 
 Viewing the status of all interfaces at once can be helpful when you are
 trying to compare configuration or status of a set of links, or
@@ -143,7 +137,7 @@ This example shows all interfaces network-wide.
                                                                                             : leaf02:swp50
     ...
 
-### <span>View Interface Status for a Given Device</span>
+### View Interface Status for a Given Device
 
 If you are interested in only a the interfaces on a specific device, you
 can view only those.
@@ -183,7 +177,7 @@ This example shows all interfaces on the *spine01* device.
                                                                                             PVID: 0 MTU: 9216 LLDP: leaf04:swp5
                                                                                             1
 
-### <span>View All Interfaces of a Given Type</span>
+### View All Interfaces of a Given Type
 
 It can be can be useful to see the status of a particular type of
 interface.
@@ -219,17 +213,17 @@ that are up.
     server03          bond0                     bond             up         default         Slave:bond0 LLDP: leaf04:swp1       Mon Apr 29 21:19:07 2019
     server04          bond0                     bond             up         default         Slave:bond0 LLDP: leaf04:swp2       Mon Apr 29 21:19:07 2019
 
-### <span>View the Total Number of Interfaces</span>
+### View the Total Number of Interfaces
 
 For a quick view of the amount of interfaces currently operating on a
-device, use the *hostname* and *count* keywords together.
+device, use the `hostname` and `count` options together.
 
 This example shows the count of interfaces on the *leaf03* switch.
 
     cumulus@switch:~$ netq leaf03 show interfaces count
     Count of matching link records: 28
 
-### <span>View the Total Number of a Given Interface Type</span>
+### View the Total Number of a Given Interface Type
 
 It can be useful to see how many interfaces of a particular type you
 have on a device.
@@ -240,7 +234,7 @@ switch.
     cumulus@switch:~$ netq leaf03 show interfaces type swp count
     Count of matching link records: 11
 
-### <span>View Changes to Interfaces</span>
+### View Changes to Interfaces
 
 If you suspect that an interface is not working as expected, seeing a
 drop in performance or a large number of dropped messages for example,
@@ -264,7 +258,7 @@ This example shows info level events for all interfaces in your network:
                                                                 m down to up Interface:eth2
     ...
 
-## <span>Check for MTU Inconsistencies</span>
+## Check for MTU Inconsistencies
 
 The maximum transmission unit (MTU) determines the largest size packet
 or frame that can be transmitted across a given communication link. When
@@ -290,12 +284,12 @@ misconfiguration.
     spine02           swp30                     9216   exit01            swp52                     1500     MTU Mismatch
     spine02           swp29                     9216   exit02            swp52                     1500     MTU Mismatch
 
-## <span>Monitor VLAN Configurations</span>
+## Monitor VLAN Configurations
 
-<span style="color: #36424a;"> </span> A VLAN (Virtual Local Area
+A VLAN (Virtual Local Area
 Network) enables devices on one or more LANs to communicate as if they
 were on the same network, without being physically connected. The VLAN
-<span style="color: #545454;"> enables network administrators to
+enables network administrators to
 partition a network for functional or security requirements without
 changing physical infrastructure. With NetQ, you can view the operation
 of VLANs for one or all devices. You can also view the information at an
@@ -304,7 +298,6 @@ information during a specified timeframe. NetQ enables you to view basic
 VLAN information for your devices using the `netq show vlan` command.
 Additional show commands enable you to view VLAN information associated
 with interfaces and MAC addresses. The syntax for these commands is:
-</span>
 
     netq [<hostname>] show interfaces [type vlan] [state <remote-interface-state>] [around <text-time>] [json]
     netq <hostname> show interfaces [type vlan] [state <remote-interface-state>] [around <text-time>] [count] [json]
@@ -314,19 +307,15 @@ with interfaces and MAC addresses. The syntax for these commands is:
     netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
     netq [<hostname>] show vlan [<1-4096>] [around <text-time>] [json]
 
-{{%notice info%}}
+{{%notice note%}}
 
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
   - d: day(s)
-
   - h: hour(s)
-
   - m: minute(s)
-
   - s: second(s)
-
   - now
 
 For time ranges, the `<text-time>` is the most recent time and the
@@ -335,10 +324,9 @@ same unit of measure.
 
 {{%/notice%}}
 
-### <span>View VLAN Information for All Devices</span>
+### View VLAN Information for All Devices
 
-<span style="color: #545454;"> This example shows the VLANs configured
-across your network. </span>
+This example shows the VLANs configured across your network.
 
     cumulus@switch:~$ netq show vlan
     Matching vlan records:
@@ -351,7 +339,7 @@ across your network. </span>
     leaf03            1,13,24,4001              13 24 4001                Thu Feb  7 18:31:38 2019
     leaf04            1,13,24,4001              13 24 4001                Thu Feb  7 18:31:38 2019
 
-### <span>View VLAN Interface Information</span>
+### View VLAN Interface Information
 
 You can view the current or past state of the interfaces associated with
 VLANs using the `netq show interfaces` command. This provides the status
@@ -381,11 +369,11 @@ and the last time it was changed.
     leaf04            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
     leaf04            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
 
-### <span>View MAC Addresses Associated with a VLAN</span>
+### View MAC Addresses Associated with a VLAN
 
 You can determine the MAC addresses associated with a given VLAN using
 the `netq show macs vlan` command. The command also provides the
-hostname of the devices, the egress port for the interface, whether the
+hostnames of the devices, the egress port for the interface, whether the
 MAC address originated from the given device, whether it learns the MAC
 address from the peer (remote=yes), and the last time the configuration
 was changed.
@@ -429,7 +417,7 @@ This example shows the MAC addresses associated with *VLAN13*.
     yes    44:39:39:ff:00:13  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
     yes    44:39:39:ff:00:13  13     leaf04            bridge               no     Fri Feb  8 00:24:28 2019
 
-### <span>View MAC Addresses Associated with an Egress Port</span>
+### View MAC Addresses Associated with an Egress Port
 
 You can filter that information down to just the MAC addresses that are
 associated with a given VLAN that use a particular egress port. This
@@ -443,7 +431,7 @@ example shows MAC addresses associated with the *leaf03* switch and
     yes    44:38:39:00:00:23  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
     yes    44:39:39:ff:00:13  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
 
-### <span>View the MAC Addresses Associated with VRR Configurations</span>
+### View the MAC Addresses Associated with VRR Configurations
 
 You can view all of the MAC addresses associated with your VRR (virtual
 router reflector) interface configuration using the `netq show
@@ -472,7 +460,7 @@ VRR configuration.
     leaf04            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
                                                                                             Mode: Private
 
-## <span>Monitor MLAG Configurations</span>
+## Monitor MLAG Configurations
 
 Multi-Chassis Link Aggregation (MLAG) is used to enable a server or
 switch with a two-port bond (such as a link aggregation group/LAG,
@@ -487,10 +475,9 @@ physical switches.
 {{%notice tip%}}
 
 **MLAG or CLAG?**
-
 The Cumulus Linux implementation of MLAG is referred to by other vendors
 as CLAG, MC-LAG or VPC. You will even see references to CLAG in Cumulus
-Linux, including the management daemon, named `clagd`, and other options
+Linux and Cumulus NetQ, including the management daemon, named `clagd`, and other options
 in the code, such as `clag-id`, which exist for historical purposes. The
 Cumulus Linux implementation is truly a multi-chassis link aggregation
 protocol, so we call it MLAG.
@@ -498,7 +485,7 @@ protocol, so we call it MLAG.
 {{%/notice%}}
 
 For instructions on configuring MLAG, refer to the
-[MLAG](/display/NETQ22/Multi-Chassis+Link+Aggregation+-+MLAG) topic in
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) topic in
 the Cumulus Linux User Guide.
 
 With NetQ, you can view the configuration and operation of devices using
@@ -510,7 +497,7 @@ the show command is:
     netq [<hostname>] show clag [around <text-time>] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type clag [between <text-time> and <text-endtime>] [json]
 
-### <span>View MLAG Configuration and Status for all Devices</span>
+### View MLAG Configuration and Status for all Devices
 
 This example shows the configuration and status of MLAG for all devices.
 In this case, three MLAG pairs are seen between leaf11 and leaf12 (which
@@ -544,7 +531,7 @@ the last five minutes.
     leaf21(P)         leaf22            44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:30 2019
     leaf22            leaf21(P)         44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:30 2019
 
-### <span>View MLAG Configuration and Status for Given Devices</span>
+### View MLAG Configuration and Status for Given Devices
 
 This example shows that leaf22 is up and MLAG properly configured with a
 peer connection to leaf21 through 8 bonds, all of which are dual bonded.
@@ -564,7 +551,7 @@ state:
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
@@ -572,16 +559,16 @@ state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            vx-38            -       -                    - 
-    vx-33            vx-33            -       -                    - 
-    hostbond4        hostbond4        1       -                    - 
-    hostbond5        hostbond5        2       -                    - 
-    vx-37            vx-37            -       -                    - 
-    vx-36            vx-36            -       -                    - 
-    vx-35            vx-35            -       -                    - 
+    vx-38            vx-38            -       -                    -
+    vx-33            vx-33            -       -                    -
+    hostbond4        hostbond4        1       -                    -
+    hostbond5        hostbond5        2       -                    -
+    vx-37            vx-37            -       -                    -
+    vx-36            vx-36            -       -                    -
+    vx-35            vx-35            -       -                    -
     vx-34            vx-34            -       -                    -
 
-## <span>Monitor Time Synchronization Status for Devices</span>
+## Monitor Time Synchronization Status for Devices
 
 It is important that the switches and hosts remain in time
 synchronization with the NetQ Platform to ensure collected data is
@@ -636,21 +623,20 @@ This example shows the time synchronization status for *leaf01*.
     ----------------- -------- ----------------- ------- ---------------------
     leaf01            yes      kilimanjaro       2       ntpq
 
-## <span>Monitor Spanning Tree Protocol Configuration</span>
+## Monitor Spanning Tree Protocol Configuration
 
-<span style="color: #36424a;"> The Spanning Tree Protocol (STP) is used
+The Spanning Tree Protocol (STP) is used
 in Ethernet-based networks to prevent communication loops when you have
 redundant paths on a bridge or switch. Loops cause excessive broadcast
 messages greatly impacting the network performance. With NetQ, you can
 view the STP topology on a bridge or switch to ensure no loops have been
 created using the `netq show stp topology` command. You can also view
 the topology information for a prior point in time to see if any changes
-were made around then. The syntax for the show command is: </span>
+were made around then. The syntax for the show command is:
 
     netq <hostname> show stp topology [around <text-time>] [json]
 
-<span style="color: #36424a;"> This example shows the STP topology as
-viewed from the *spine1* switch. </span>
+This example shows the STP topology as viewed from the *spine1* switch.
 
     cumulus@switch:~$ netq spine1 show stp topology
     Root(spine1) -- spine1:sw_clag200 -- leaf2:EdgeIntf(sng_hst2) -- hsleaf21
@@ -688,20 +674,9 @@ viewed from the *spine1* switch. </span>
                                       -- edge1:EdgeIntf(dual_host1) -- hdedge1
                                       -- edge1:ClagIsl(peer-bond1) -- edge2
 
-## <span>Validate Paths between Devices</span>
+## Validate Paths between Devices
 
-If you have VLANs configured, you can <span style="color: #353744;">
-view the available paths between two devices on the VLAN currently and
-at a time in the past using their MAC addresses </span> . You can
-<span style="color: #353744;"> view the output in one of three formats (
-</span> *json, pretty,* <span style="color: #353744;"> and </span>
-*detail* <span style="color: #353744;"> ). JSON output provides the
-output in a JSON file format for ease of importing to other applications
-or software. Pretty output lines up the paths in a pseudo-graphical
-manner to help visualize multiple paths. Detail output is useful for
-traces with higher hop counts where the pretty output wraps lines,
-making it harder to interpret the results. The detail output displays a
-table with a row for each path. </span>
+If you have VLANs configured, you can view the available paths between two devices on the VLAN currently and at a time in the past using their MAC addresses  . You can view the output in one of three formats (*json*, *pretty*, and *detail*). JSON output provides the output in a JSON file format for ease of importing to other applications or software. Pretty output lines up the paths in a pseudo-graphical manner to help visualize multiple paths. Detail output is useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. The detail output displays a table with a row for each path.
 
 To view the paths:
 
@@ -710,17 +685,16 @@ To view the paths:
 2.  Identify the IP address or hostname for the source device
 
 3.  Use the `netq trace` command to see the available paths between
-    those devices. <span style="color: #353744;">  
-    </span>
+    those devices.
 
-<span style="color: #353744;"> The trace command syntax is: </span>
+The trace command syntax is:
 
     netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
 
-{{%notice info%}}
+{{%notice note%}}
 
-The syntax requires the destination device address first, *\<mac\>*, and
-then the source device address or hostname. Additionally, the *vlan*
+The syntax requires the destination device address first, `mac`, and
+then the source device address or hostname. Additionally, the `vlan`
 keyword-value pair is required for layer 2 traces even though the syntax
 indicates it is optional.
 
@@ -730,7 +704,7 @@ to ping the identified device so that its address becomes known.
 
 {{%/notice%}}
 
-### <span>View Paths between Two Switches with Pretty Output</span>
+### View Paths between Two Switches with Pretty Output
 
 This example shows the available paths between a top of rack switch,
 *tor-1*, and a server, *server11*. The request is to go through VLAN
@@ -739,7 +713,7 @@ including the total number of paths available, those with errors and
 warnings, and the MTU of the paths. In this case, the results are
 displayed in pseudo-graphical output.
 
-``` 
+```
 cumulus@switch:~$ netq trace 00:02:00:00:00:02 vlan 1001 from leaf01 vrf vrf1 pretty
 Number of Paths: 4
 Number of Paths with Errors: 0
@@ -754,7 +728,7 @@ Path MTU: 9152
 Alternately, you can use the IP address of the source device, as shown
 in this example.
 
-    cumulus@redis-1:~$  netq trace 00:02:00:00:00:02 vlan 1001 from 10.0.0.8 vrf vrf1 pretty 
+    cumulus@redis-1:~$  netq trace 00:02:00:00:00:02 vlan 1001 from 10.0.0.8 vrf vrf1 pretty
     Number of Paths: 4
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0
@@ -764,7 +738,7 @@ in this example.
               swp1 -- swp5 <vlan1000> tor-1 <vlan1001> vni: 34 uplink-1 -- downlink-5 spine01 downlink-2 -- uplink-1 vni: 34 <vlan1001> leaf12 hostbond4 -- swp2 server11  
                                                                uplink-1 -- downlink-5 spine01 downlink-1 -- uplink-1 vni: 34 <vlan1001> leaf11 hostbond4 -- swp1 server11
 
-### <span>View Paths between Two Switches with Detailed Output</span>
+### View Paths between Two Switches with Detailed Output
 
 This example provides the same path information as the pretty output,
 but displays the information in a tabular output.

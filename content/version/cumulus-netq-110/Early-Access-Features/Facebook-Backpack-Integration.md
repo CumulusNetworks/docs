@@ -3,7 +3,7 @@ title: Facebook Backpack Integration
 author: Cumulus Networks
 weight: 73
 aliases:
- - /display/NETQ110/Facebook-Backpack-Integration
+ - /display/NETQ110/Facebook+Backpack+Integration
  - /pages/viewpage.action?pageId=7111339
 pageID: 7111339
 product: Cumulus NetQ

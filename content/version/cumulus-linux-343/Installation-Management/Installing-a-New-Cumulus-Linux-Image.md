@@ -3,7 +3,7 @@ title: Installing a New Cumulus Linux Image
 author: Cumulus Networks
 weight: 43
 aliases:
- - /display/CL34/Installing-a-New-Cumulus-Linux-Image
+ - /display/CL34/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=7112397
 pageID: 7112397
 product: Cumulus Linux
@@ -50,7 +50,7 @@ systems (NOS) on bare metal switches.
 
 {{%/notice%}}
 
-## <span>Understanding these Examples</span>
+## Understanding these Examples</span>
 
 The sections in this chapter are ordered from the most repeatable to the
 least repeatable methods. For instance, DHCP can scale to hundreds of
@@ -65,7 +65,7 @@ but is not scalable.
   - In the examples below, \[PLATFORM\] can be any supported Cumulus
     Linux platform, such as *x86\_64*, or *arm*.
 
-## <span id="src-7112397_InstallingaNewCumulusLinuxImage-dhcp_options" class="confluence-anchor-link"></span><span>Installing via a DHCP/Web Server Method with DHCP Options</span>
+## <span id="src-7112397_InstallingaNewCumulusLinuxImage-dhcp_options" class="confluence-anchor-link"></span>Installing via a DHCP/Web Server Method with DHCP Options</span>
 
 Installing Cumulus Linux in this manner is as simple as setting up a
 DHCP/web server on your laptop and connecting the eth0 management port
@@ -114,7 +114,7 @@ assignment):
 If you don't have a web server, you can use [this free Apache
 example](https://www.apachefriends.org/index.html).
 
-## <span id="src-7112397_InstallingaNewCumulusLinuxImage-dhcp_noopts" class="confluence-anchor-link"></span><span> Installing via a DHCP/Web Server Method without DHCP Options</span>
+## <span id="src-7112397_InstallingaNewCumulusLinuxImage-dhcp_noopts" class="confluence-anchor-link"></span> Installing via a DHCP/Web Server Method without DHCP Options</span>
 
 If you have a laptop on the same network and the switch can pull DHCP
 from the corporate network, but you cannot modify DHCP options (maybe
@@ -133,19 +133,19 @@ it's controlled by another team), do the following:
         
             cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin && sudo reboot
 
-## <span id="src-7112397_InstallingaNewCumulusLinuxImage-web_nodhcp" class="confluence-anchor-link"></span><span>Installing via a Web Server with no DHCP</span>
+## <span id="src-7112397_InstallingaNewCumulusLinuxImage-web_nodhcp" class="confluence-anchor-link"></span>Installing via a Web Server with no DHCP</span>
 
 If your laptop is on the same network as the switch eth0 interface but
 no DHCP server is available, you can still install directly from Cumulus
 Linux or using ONIE.
 
-### <span>Installing from Cumulus Linux</span>
+### Installing from Cumulus Linux</span>
 
 From Cumulus Linux, run the `onie-install` command:
 
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin && sudo reboot
 
-### <span>Installing from ONIE</span>
+### Installing from ONIE</span>
 
 Do the following steps to run the install using ONIE. Note that ONIE is
 in [*discovery
@@ -170,13 +170,13 @@ mode*](http://opencomputeproject.github.io/onie/design-spec/discovery.html#insta
     
         ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 
-## <span id="src-7112397_InstallingaNewCumulusLinuxImage-ftp" class="confluence-anchor-link"></span><span> Installing via FTP or TFTP without a Web Server</span>
+## <span id="src-7112397_InstallingaNewCumulusLinuxImage-ftp" class="confluence-anchor-link"></span> Installing via FTP or TFTP without a Web Server</span>
 
 If your laptop is on the same network as the switch eth0 interface but
 no DHCP server is available, you can still install directly from Cumulus
 Linux or using ONIE.
 
-### <span>Installing from Cumulus Linux</span>
+### Installing from Cumulus Linux</span>
 
 If you are not utilizing DHCP options, run one of the following commands
 (`tftp` for TFTP or `ftp` for FTP), from the Cumulus Linux command
@@ -186,7 +186,7 @@ prompt:
      
     cumulus@switch:~$ sudo onie-install -a -i tftp://local-tftp-server/cumulus-install-[PLATFORM].bin && sudo reboot
 
-### <span>Installing from ONIE</span>
+### Installing from ONIE</span>
 
 To install without DHCP options using ONIE, do the following:
 
@@ -204,18 +204,18 @@ To install without DHCP options using ONIE, do the following:
          
         ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 
-## <span id="src-7112397_InstallingaNewCumulusLinuxImage-local" class="confluence-anchor-link"></span><span> Installing via a Local File</span>
+## <span id="src-7112397_InstallingaNewCumulusLinuxImage-local" class="confluence-anchor-link"></span> Installing via a Local File</span>
 
 You can still install referencing a local file, directly from Cumulus
 Linux or using ONIE.
 
-### <span>Installing from Cumulus Linux</span>
+### Installing from Cumulus Linux</span>
 
 From Cumulus Linux, run the `onie-install` command:
 
     cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin && sudo reboot
 
-### <span>Installing from ONIE</span>
+### Installing from ONIE</span>
 
 1.  Set up DHCP or static addressing for eth0, as in the examples above.
 
@@ -230,7 +230,7 @@ From Cumulus Linux, run the `onie-install` command:
     
         ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
 
-## <span id="src-7112397_InstallingaNewCumulusLinuxImage-usb" class="confluence-anchor-link"></span><span>Installing via USB</span>
+## <span id="src-7112397_InstallingaNewCumulusLinuxImage-usb" class="confluence-anchor-link"></span>Installing via USB</span>
 
 Following the steps below produces a clean installation of Cumulus
 Linux. This wipes out all pre-existing configuration files that may be
@@ -247,7 +247,7 @@ configuration of your switch after the installation finishes.
 
 {{%/notice%}}
 
-### <span>Preparing for USB Installation</span>
+### Preparing for USB Installation</span>
 
 1.  Download the appropriate Cumulus Linux image for your x86 or ARM
     platform from the [Cumulus Networks Downloads
@@ -327,7 +327,7 @@ configuration of your switch after the installation finishes.
 4.  Insert the USB stick into the switch, then continue with the
     appropriate instructions below for your x86 or ARM platform.
 
-### <span>Instructions for x86 Platforms</span>
+### Instructions for x86 Platforms</span>
 
 <summary>Click to expand x86 instructions... </summary>
 
@@ -434,7 +434,7 @@ configuration of your switch after the installation finishes.
     
         sudo reboot
 
-### <span>Instructions for ARM Platforms</span>
+### Instructions for ARM Platforms</span>
 
 <summary>Click to expand ARM instructions... </summary>
 
@@ -564,7 +564,7 @@ configuration of your switch after the installation finishes.
     
         sudo reboot
 
-## <span id="src-7112397_InstallingaNewCumulusLinuxImage-alreadyinstalled" class="confluence-anchor-link"></span><span>Installing a New Image when Cumulus Linux Is already Installed</span>
+## <span id="src-7112397_InstallingaNewCumulusLinuxImage-alreadyinstalled" class="confluence-anchor-link"></span>Installing a New Image when Cumulus Linux Is already Installed</span>
 
 At times it may be necessary to put the switch into ONIE in order to do
 an install. This may be required when moving between major releases or
@@ -572,7 +572,7 @@ re-installing from an early version of 3.y.z. For more information, see
 [Upgrading Cumulus
 Linux](Upgrading-Cumulus-Linux.html#src-7112401_UpgradingCumulusLinux-binary_upgrade).
 
-### <span id="src-7112397_InstallingaNewCumulusLinuxImage-oniemode" class="confluence-anchor-link"></span><span>Entering ONIE Mode from Cumulus Linux</span>
+### <span id="src-7112397_InstallingaNewCumulusLinuxImage-oniemode" class="confluence-anchor-link"></span>Entering ONIE Mode from Cumulus Linux</span>
 
 If Cumulus Linux is already installed on the switch, you can enter ONIE
 mode in one of two ways, using:

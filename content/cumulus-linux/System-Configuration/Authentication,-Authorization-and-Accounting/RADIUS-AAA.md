@@ -3,13 +3,13 @@ title: RADIUS AAA
 author: Cumulus Networks
 weight: 283
 aliases:
- - /display/CL37/RADIUS-AAA
+ - /display/DOCS/RADIUS+AAA
  - /pages/viewpage.action?pageId=8362559
 pageID: 8362559
 product: Cumulus Linux
 version: 3.7.7
-imgData: cumulus-linux-377
-siteSlug: cumulus-linux-377
+imgData: cumulus-linux
+siteSlug: cumulus-linux
 ---
 Cumulus Networks offers add-on packages that enable
 [RADIUS](https://en.wikipedia.org/wiki/RADIUS) users to log in to
@@ -18,7 +18,7 @@ There is no need to create accounts or directories on the switch.
 Authentication is handled with PAM and includes login, `ssh`, `sudo` and
 `su`.
 
-## <span>Install the RADIUS Packages</span>
+## Install the RADIUS Packages
 
 The RADIUS packages are not included in the base Cumulus Linux image;
 there is no RADIUS metapackage.
@@ -66,12 +66,12 @@ During package installation:
     enabled. It is not required for regular RADIUS client use.
 
   - The `radius_user` account is added to the `netshow` group and the
-    `radius_priv_user` account to the `netedit` and `sudo` ****groups.
+    `radius_priv_user` account to the `netedit` and `sudo` groups.
     This change enables all RADUS logins to run NCLU `net show` commands
     and all privileged RADIUS users to also run ` net add,  ``net del`,
     and `net commit` commands, and to use `sudo`.
 
-## <span>Configure the RADIUS Client</span>
+## Configure the RADIUS Client
 
 To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf`
 file:
@@ -80,22 +80,22 @@ file:
     as a [*freeradius*](http://freeradius.org/) server on Linux) and the
     shared secret used to authenticate and encrypt communication with
     each server.
-    
+
     {{%notice tip%}}
-    
-    The hostname of the switch must be resolvable to an IP address,
+
+The hostname of the switch must be resolvable to an IP address,
     which, in general, is fixed in DNS. If for some reason you cannot
     find the hostname in DNS, you can add the hostname to the
     `/etc/hosts` file manually. However, this can cause problems because
     the IP address is usually assigned by DHCP, which can change at any
     time.
-    
+
     {{%/notice%}}
-    
+
     Multiple server configuration lines are verified in the order
     listed. Other than memory, there is no limit to the number of RADIUS
     servers you want to use.
-    
+
     The server port number or name is optional. The system looks up the
     port in the `/etc/services` file. However, you can override the
     ports in the `/etc/pam_radius_auth.conf` file.
@@ -109,9 +109,8 @@ file:
     option, you must also specify the `timeout` option.
 
 4.  Set the `vrf-name` field. This is typically set to *mgmt* if you are
-    using a [management
-    VRF](/version/cumulus-linux-377/Layer-3/Management-VRF). You cannot
-    specify more than one VRF.
+    using a [management VRF](/cumulus-linux/Layer-3/Management-VRF). You
+    cannot specify more than one VRF.
 
 The configuration file includes the `mapped_priv_user` field that sets
 the account used for privileged RADIUS users and the `priv-lvl` field
@@ -144,7 +143,7 @@ the `/usr/share/pam-configs/radius` file. After you edit the file, you
 must run the `pam-auth-update --package` command. PAM configuration
 keywords are described in the `pam_radius_auth (8)` man page.
 
-## <span>Enable Login without Local Accounts</span>
+## Enable Login without Local Accounts
 
 Because LDAP is not commonly used with switches and adding accounts
 locally is cumbersome, Cumulus Linux includes a mapping capability with
@@ -185,7 +184,7 @@ A flat file mapping is done based on the session number assigned during
 login, which persists across `su` and `sudo`. The mapping is removed at
 logout.
 
-## <span> Local Fallback Authentication</span>
+##  Local Fallback Authentication
 
 If a site wants to allow local fallback authentication for a user when
 none of the RADIUS servers can be reached, you can add a privileged user
@@ -200,19 +199,19 @@ To configure local fallback authentication:
     `radius_priv_user:x:1002:1001::/home/radius_priv_user:/sbin/radius_shell`,
     run the following command to add a local privileged user account
     named johnadmin:
-    
+
         cumulus@switch:~$ sudo useradd -u 1002 -g 1001 -o -s /sbin/radius_shell johnadmin
 
 2.  To enable the local privileged user to run `sudo` and NCLU commands,
     run the following commands:
-    
+
         cumulus@switch:~$ sudo adduser johnadmin netedit
         cumulus@switch:~$ sudo adduser johnadmin sudo
         cumulus@switch:~$ sudo systemctl restart netd
 
 3.  Edit the `/etc/passwd` file to move the local user line before to
     the `radius_priv_user` line:
-    
+
         cumulus@switch:~$ sudo vi /etc/passwd
          
         ...
@@ -221,10 +220,10 @@ To configure local fallback authentication:
 
 4.  To set the local password for the local user, run the following
     command:
-    
+
         cumulus@switch:~$ sudo passwd johnadmin
 
-## <span>Verify RADIUS Client Configuration</span>
+## Verify RADIUS Client Configuration
 
 To verify that the RADIUS client is configured correctly, log in as a
 non-privileged user and run a `net add interface` command.
@@ -238,6 +237,7 @@ cannot add an interface.
 In this example, the `admin` user is a privileged RADIUS user (with
 privilege level 15) so is able to add interface swp1.
 
+```
     admin@leaf01:~$ net add interface swp1
     admin@leaf01:~$ net pending
     --- /etc/network/interfaces    2018-04-06 14:49:33.099331830 +0000
@@ -257,8 +257,9 @@ privilege level 15) so is able to add interface swp1.
     +auto swp1
     +iface swp1
     ...
+```
 
-## <span id="src-8362559_RADIUSAAA-remove" class="confluence-anchor-link"></span><span>Remove RADIUS Client Packages</span>
+## Remove RADIUS Client Packages
 
 Remove the RADIUS packages with the following command:
 
@@ -294,8 +295,10 @@ where USERNAME is the account name (the home directory relative
 portion). This command gives the following warning because the user is
 not listed in the `/etc/passwd` file.
 
+```
     userdel: cannot remove entry 'USERNAME' from /etc/passwd
     /usr/sbin/deluser: `/usr/sbin/userdel USERNAME' returned error code 1. Exiting.
+```
 
 After removing all the RADIUS users, run the command to remove the fixed
 account. If the account has been changed in the `/etc/nss_mapuser.conf`
@@ -305,7 +308,7 @@ file, use that account name instead of *radius\_user*.
     cumulus@switch:~$ sudo deluser --remove-home radius_priv_user
     cumulus@switch:~$ sudo delgroup radius_users
 
-## <span>Limitations</span>
+## Limitations
 
 If two or more RADIUS users are logged in simultaneously, a UID lookup
 only returns the user that logged in first. Any processes run by either
@@ -318,10 +321,10 @@ password file.
 The current algorithm returns the first name matching the UID from the
 mapping file; this might be the first or second user that logged in.
 
-## <span>Related Information</span>
+## Related Information
 
   - [TACACS+
-    client](/version/cumulus-linux-377/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
+    client](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
 
   - [Cumulus Networks RADIUS demo on
     GitHub](https://github.com/CumulusNetworks/cldemo-radius)

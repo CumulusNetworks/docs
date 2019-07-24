@@ -3,7 +3,7 @@ title: Monitoring System Hardware
 author: Cumulus Networks
 weight: 215
 aliases:
- - /display/CL36/Monitoring-System-Hardware
+ - /display/CL36/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=8362089
 pageID: 8362089
 product: Cumulus Linux
@@ -23,7 +23,7 @@ You monitor system hardware in these ways, using:
 
   - watchdog
 
-## <span>Monitoring Hardware Using decode-syseeprom</span>
+## Monitoring Hardware Using decode-syseeprom</span>
 
 The `decode-syseeprom` command enables you to retrieve information about
 the switch's EEPROM. If the EEPROM is writable, you can set values on
@@ -51,7 +51,7 @@ For example:
     CRC-32               0xFE   4 0x96543BC5
     (checksum valid)
 
-### <span>Command Options</span>
+### Command Options</span>
 
 Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 
@@ -64,7 +64,7 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 | \-t TARGET   | Selects the target EEPROM (`board`, `psu2`, `psu1`) for the read or write operation; default is `board`.                                                                                                                                                                                                                                                                                                                                            |
 | \-e, –serial | Prints the device serial number.                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
-### <span>Related Commands</span>
+### Related Commands</span>
 
 You can also use the `dmidecode` command to retrieve hardware
 configuration information that’s been populated in the BIOS.
@@ -72,7 +72,7 @@ configuration information that’s been populated in the BIOS.
 You can use `apt-get` to install the `lshw` program on the switch, which
 also retrieves hardware configuration information.
 
-## <span>Monitoring Hardware Using sensors</span>
+## Monitoring Hardware Using sensors</span>
 
 The `sensors` command provides a method for monitoring the health of
 your switch hardware, such as power, temperature and fan speeds. This
@@ -109,7 +109,7 @@ number of sensors.
 
 {{%/notice%}}
 
-### <span>Command Options</span>
+### Command Options</span>
 
 Usage: `sensors [OPTION]... [CHIP]...`
 
@@ -138,12 +138,12 @@ printed. Example chip names include:
 
   - lm78-\*
 
-## <span id="src-8362089_MonitoringSystemHardware-snmp" class="confluence-anchor-link"></span><span>Monitoring Switch Hardware Using SNMP</span>
+## <span id="src-8362089_MonitoringSystemHardware-snmp" class="confluence-anchor-link"></span>Monitoring Switch Hardware Using SNMP</span>
 
 The Net-SNMP documentation is discussed
 [here](/version/cumulus-linux-36/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/).
 
-## <span id="src-8362089_MonitoringSystemHardware-smond" class="confluence-anchor-link"></span><span>Monitoring System Units Using smond</span>
+## <span id="src-8362089_MonitoringSystemHardware-smond" class="confluence-anchor-link"></span>Monitoring System Units Using smond</span>
 
 The `smond` daemon monitors system units like power supply and fan,
 updates their corresponding LEDs, and logs the change in the state.
@@ -190,7 +190,7 @@ Whereas the Penguin Arctica 3200C (Celestica Seastone) does not:
 
 {{%/notice%}}
 
-### <span>Command Options</span>
+### Command Options</span>
 
 Usage: `smonctl [OPTION]... [CHIP]...`
 
@@ -201,7 +201,7 @@ Usage: `smonctl [OPTION]... [CHIP]...`
 
 For more information, read `man smond` and `man smonctl`.
 
-## <span id="src-8362089_MonitoringSystemHardware-watchdog" class="confluence-anchor-link"></span><span>Keeping the Switch Alive Using the Hardware Watchdog</span>
+## <span id="src-8362089_MonitoringSystemHardware-watchdog" class="confluence-anchor-link"></span>Keeping the Switch Alive Using the Hardware Watchdog</span>
 
 Cumulus Linux includes a simplified version of the ` wd_keepalive(8)
  `daemon from the standard ` watchdog  `Debian package. `wd_keepalive`
@@ -230,7 +230,7 @@ You can modify the settings for the watchdog — like the timeout setting
 and scheduler priority — in its configuration file,
 `/etc/watchdog.conf`.
 
-## <span>Related Information</span>
+## Related Information</span>
 
   - [packages.debian.org/search?keywords=lshw](http://packages.debian.org/search?keywords=lshw)
 

@@ -3,7 +3,7 @@ title: switchd Log Message Reference
 author: Cumulus Networks
 weight: 231
 aliases:
- - /display/CL36/switchd-Log-Message-Reference
+ - /display/CL36/switchd+Log+Message+Reference
  - /pages/viewpage.action?pageId=8362124
 pageID: 8362124
 product: Cumulus Linux

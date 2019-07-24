@@ -3,7 +3,7 @@ title: Network Virtualization
 author: Cumulus Networks
 weight: 107
 aliases:
- - /display/CL25ESR/Network-Virtualization
+ - /display/CL25ESR/Network+Virtualization
  - /pages/viewpage.action?pageId=5116024
 pageID: 5116024
 product: Cumulus Linux
@@ -55,7 +55,7 @@ destination.
 
 {{%/notice%}}
 
-## <span>Commands</span>
+## Commands</span>
 
   - brctl
 
@@ -69,9 +69,9 @@ destination.
 
   - vtep-ctl
 
-## <span>Caveats/Errata</span>
+## Caveats/Errata</span>
 
-### <span>Cut-through Mode</span>
+### Cut-through Mode</span>
 
 Cut-through mode is disabled in Cumulus Linux by default. With
 cut-though mode enabled and link pause is asserted, Cumulus Linux
@@ -110,14 +110,14 @@ in `/etc/cumulus/datapath/traffic.conf`:
     cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
     cut_through_enable = false
 
-### <span>MTU Size for Virtual Network Interfaces</span>
+### MTU Size for Virtual Network Interfaces</span>
 
 The maximum transmission unit (MTU) size for a virtual network interface
 should by 50 bytes smaller than the MTU for the physical interfaces on
 the switch. For more information, read [Layer 1 and Switch Port
 Attributes](Layer-1-and-Switch-Port-Attributes.html#src-5116098_Layer1andSwitchPortAttributes-mtu_vxlan).
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [VXLAN IETF
     draft](http://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-06)

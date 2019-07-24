@@ -3,7 +3,7 @@ title: Configuring Hardware-enabled DDOS Protection
 author: Cumulus Networks
 weight: 287
 aliases:
- - /display/CL321/Configuring-Hardware-enabled-DDOS-Protection
+ - /display/CL321/Configuring+Hardware+enabled+DDOS+Protection
  - /pages/viewpage.action?pageId=5127006
 pageID: 5127006
 product: Cumulus Linux
@@ -60,7 +60,7 @@ switch with the above mentioned ASICs, as hardware-based DDOS protection
 is disabled by default. Although Cumulus recommends enabling all of the
 above criteria, they can be individually enabled if desired.
 
-## <span>Configure Persistent DDOS Protection</span>
+## Configure Persistent DDOS Protection</span>
 
 1.  Open the `/etc/cumulus/datapath/traffic.conf` file in a text editor.
 

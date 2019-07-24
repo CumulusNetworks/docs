@@ -3,7 +3,7 @@ title: SSH for Remote Access
 author: Cumulus Networks
 weight: 127
 aliases:
- - /display/RMP31/SSH-for-Remote-Access
+ - /display/RMP31/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=5122734
 pageID: 5122734
 product: Cumulus RMP
@@ -24,7 +24,7 @@ the account.
 
 {{%/notice%}}
 
-## <span>Access Using Passkey (Basic Setup)</span>
+## Access Using Passkey (Basic Setup)</span>
 
 Cumulus RMP uses the openSSH package to provide SSH functionality. The
 standard mechanisms of generating passwordless access just applies. The
@@ -69,13 +69,13 @@ RMP.
 
 {{%/notice%}}
 
-### <span>Completely Passwordless System</span>
+### Completely Passwordless System</span>
 
 When generating the passphrase and its associated keys, as in the first
 step above, do not enter a passphrase. Follow all the other
 instructions.
 
-## <span>Useful Links</span>
+## Useful Links</span>
 
   - [www.debian-administration.org/articles/152](http://www.debian-administration.org/articles/152)
 

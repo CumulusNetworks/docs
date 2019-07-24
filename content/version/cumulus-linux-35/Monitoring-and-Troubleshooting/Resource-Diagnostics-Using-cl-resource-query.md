@@ -3,7 +3,7 @@ title: Resource Diagnostics Using cl-resource-query
 author: Cumulus Networks
 weight: 205
 aliases:
- - /display/CL35/Resource-Diagnostics-Using-cl-resource-query
+ - /display/CL35/Resource+Diagnostics+Using+cl+resource+query
  - /pages/viewpage.action?pageId=8357375
 pageID: 8357375
 product: Cumulus Linux

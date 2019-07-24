@@ -3,7 +3,7 @@ title: Network Command Line Utility
 author: Cumulus Networks
 weight: 59
 aliases:
- - /display/RMP31/Network-Command-Line-Utility
+ - /display/RMP31/Network+Command+Line+Utility
  - /pages/viewpage.action?pageId=5122799
 pageID: 5122799
 product: Cumulus RMP
@@ -29,7 +29,7 @@ The Cumulus RMP 3.1 release of NCLU only supports `ifupdown2`.
 
 {{%/notice%}}
 
-## <span>Installation</span>
+## Installation</span>
 
 NCLU is an [early access
 feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878),
@@ -41,7 +41,7 @@ and not included in Cumulus RMP 3.1 by default. To install the package:
 2.  Install the NCLU package:  
     `sudo apt-get install nclu`
 
-## <span>Configuration</span>
+## Configuration</span>
 
 Configuration of the `net` utility is done in the `/etc/netd.conf` file.
 This file can be configured to allow different permission levels for
@@ -65,7 +65,7 @@ variable to “true”. The value is not case sensitive.
 
 {{%/notice%}}
 
-## <span>Getting Started</span>
+## Getting Started</span>
 
 NCLU uses the following workflow for staging and committing changes to
 Cumulus RMP 3.1:
@@ -158,7 +158,7 @@ Multiple interfaces can be configured at once:
 
 {{%/notice%}}
 
-### <span>Built-In Examples</span>
+### Built-In Examples</span>
 
 The NCLU has a couple of built in examples to guide users through basic
 configuration setup:

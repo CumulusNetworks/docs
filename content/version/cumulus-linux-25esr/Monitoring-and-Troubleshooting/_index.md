@@ -13,13 +13,12 @@ siteSlug: cumulus-linux-25esr
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 
-## Commands</span>
+## Commands
 
   - cl-support
-
   - fw\_setenv
 
-## Using the Serial Console</span>
+## Using the Serial Console
 
 The serial console can be a useful tool for debugging issues, especially
 when you find yourself rebooting the switch often or if you don’t have a
@@ -28,7 +27,7 @@ reliable network connection.
 The default serial console baud rate is 115200, which is the baud rate
 [ONIE](http://opencomputeproject.github.io/onie/) uses.
 
-### Configuring the Serial Console on PowerPC or ARM Switches</span>
+### Configuring the Serial Console on PowerPC or ARM Switches
 
 On PowerPC switches, the U-Boot environment variable `baudrate`
 identifies the baud rate of the serial console. To change the `baudrate`
@@ -43,24 +42,16 @@ You must reboot the switch for the `baudrate` change to take effect.
 The valid values for `baudrate` are:
 
   - 300
-
   - 600
-
   - 1200
-
   - 2400
-
   - 4800
-
   - 9600
-
   - 19200
-
   - 38400
-
   - 115200
 
-### Configuring the Serial Console on x86 Switches</span>
+### Configuring the Serial Console on x86 Switches
 
 On x86 switches, you configure serial console baud rate by editing
 `grub`.
@@ -76,21 +67,13 @@ before implementation.
 The valid values for the baud rate are:
 
   - 300
-
   - 600
-
   - 1200
-
   - 2400
-
   - 4800
-
   - 9600
-
   - 19200
-
   - 38400
-
   - 115200
 
 To change the serial console baud rate:
@@ -115,7 +98,7 @@ To change the serial console baud rate:
 
 4.  Reboot the switch.
 
-## Diagnostics Using cl-support</span>
+## Diagnostics Using cl-support
 
 You can use `cl-support` to generate a single export file that contains
 various details and the configuration from a switch. This is useful for
@@ -171,9 +154,7 @@ more information about `cl-support`, read [Understanding and Decoding
 the cl-support Output
 File](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/).
 
-<span id="src-5115962_MonitoringandTroubleshooting-syslog_server"></span>
-
-## Sending Log Files to a syslog Server</span>
+## Sending Log Files to a syslog Server
 
 All logging on Cumulus Linux is done with
 [rsyslog](http://www.rsyslog.com/). `rsyslog` provides both local
@@ -199,7 +180,7 @@ the rules in `/etc/rsyslog.d` and then dropped by the last line in
 
 {{%/notice%}}
 
-### Local Logging</span>
+### Local Logging
 
 Most logs within Cumulus Linux are sent through `rsyslog`, which then
 writes them to files in the `/var/log` directory. There are default
@@ -221,7 +202,7 @@ that do not use `rsyslog` write to their own log files within the
 [Troubleshooting Log
 Files](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-Log-Files).
 
-### Enabling Remote syslog</span>
+### Enabling Remote syslog
 
 If you need to send other log files — such as `switchd` logs — to a
 `syslog` server, do the following:
@@ -253,10 +234,10 @@ If you need to send other log files — such as `switchd` logs — to a
     
     {{%notice note%}}
     
-    For TCP-based syslog, use two @@ before the IP address:
+For TCP-based syslog, use two @@ before the IP address:
     *@@192.168.1.2:514*.
     
-    Running `syslog` over TCP places a burden on the switch to queue
+Running `syslog` over TCP places a burden on the switch to queue
     packets in the `syslog` buffer. This may cause detrimental effects
     if the remote `syslog` server becomes unavailable.
     
@@ -264,7 +245,7 @@ If you need to send other log files — such as `switchd` logs — to a
     
     {{%notice note%}}
     
-    The numbering of the files in `/etc/rsyslog.d/` dictates how the
+The numbering of the files in `/etc/rsyslog.d/` dictates how the
     rules are installed into `rsyslog.d`. If you want to remotely log
     only the messages in `/var/syslog`, and not those in
     `/var/log/clagd.log` or `/var/log/switchd.log`, for instance, then
@@ -298,14 +279,6 @@ In most cases, the settings to customize include:
 | $InputFileStateFile | A unique name for each file being watched. |
 | $InputFileTag       | A prefix to the log message on the server. |
 
-## Next Steps</span>
+## Next Steps
 
 The links below discuss more specific monitoring topics.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

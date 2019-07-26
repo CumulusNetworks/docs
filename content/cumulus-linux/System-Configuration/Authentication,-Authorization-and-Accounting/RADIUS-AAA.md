@@ -323,19 +323,6 @@ mapping file; this might be the first or second user that logged in.
 
 ## Related Information
 
-  - [TACACS+
-    client](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
-
-  - [Cumulus Networks RADIUS demo on
-    GitHub](https://github.com/CumulusNetworks/cldemo-radius)
-
-  - [Cumulus Network TACACS demo on
-    GitHub](https://github.com/CumulusNetworks/cldemo-tacacs)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [TACACS+ client](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
+  - [Cumulus Networks RADIUS demo on GitHub](https://github.com/CumulusNetworks/cldemo-radius)
+  - [Cumulus Network TACACS demo on GitHub](https://github.com/CumulusNetworks/cldemo-tacacs)

@@ -11,6 +11,7 @@ version: 1.0.0
 imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
 ---
+
 NetQ is comprised of two main install components: the NetQ Telemetry
 Server, and the `cumulus-netq` metapackage which gets installed on
 Cumulus Linux switches. Additionally, for host network visibility and
@@ -36,11 +37,11 @@ for this version.
 
 {{%/notice%}}
 
-## Install the NetQ Telemetry Server</span>
+## Install the NetQ Telemetry Server
 
 The NetQ Telemetry Server is a VMware ESXi 6.5 virtual machine,
 comprising a set of individual Docker containers that each contain a
-separate service for the ` redis  `database, the Service Console, the
+separate service for the `redis` database, the Service Console, the
 NetQ CLI and NetQ Notifier.
 
 {{%notice note%}}
@@ -49,9 +50,8 @@ Cumulus Networks recommends the telemetry server is installed on an
 out-of-band management network to ensure it can monitor in-band network
 issues without being affected itself. Ideally, you should run the
 telemetry server on a separate, powerful server for maximum usability
-and performance. For more information on system requirements, refer to
-the [How Far Back in Time Can You
-Travel](Performing-Network-Diagnostics.html#src-6488212_PerformingNetworkDiagnostics-matrix)
+and performance. For more information on system requirements, refer to the
+[How Far Back in Time Can You Travel](/version/cumulus-netq-10/Performing-Network-Diagnostics/#how-far-back-in-time-can-you-travel)
 section.
 
 {{%/notice%}}
@@ -68,16 +68,15 @@ NetQ containers will not overwrite the host containers and vice versa.
     *NetQ* from the **Product** menu on the
     [Downloads](https://cumulusnetworks.com/downloads/) page.
 
-2.  [Import the virtual
-    machine](https://docs.cumulusnetworks.com/display/VX/VMware+vSphere+-+ESXi+5.5)
+2.  [Import the virtual machine](/cumulus-vx/Getting-Started/VMware-vSphere-ESXi-5.5/)
     into your hypervisor.
 
 3.  Start the NetQ Telemetry Server. There are two default user accounts
     you can use to log in:
-    
+
       - The primary username is *admin*, and the default password is
         *CumulusNetQ\!*.
-    
+
       - The alternate username is *cumulus*, and its password is
         *CumulusLinux\!*.
 
@@ -98,7 +97,7 @@ server.
 
 {{%/notice%}}
 
-## Install the NetQ Agent</span>
+## Install the NetQ Agent
 
 In order to manage a node with NetQ Agent and send notifications with
 NetQ Notifier, you need to install an OS-specific metapackage on each
@@ -117,33 +116,33 @@ interface.
 Install the metapackage on each node to monitor, then configure the NetQ
 Agent on the node.
 
-### Installing on a Cumulus Linux Switch</span>
+### Installing on a Cumulus Linux Switch
 
   - Update the local `apt` repository, then install the metapackage on
     the switch:
-    
+
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install cumulus-netq
 
-### Installing on an Ubuntu Server</span>
+### Installing on an Ubuntu Server
 
   - Reference and update the local `apt` repository, then install the
     metapackage on the server:
-    
+
         root@ubuntu:~# wget -O- https://hostapps3.cumulusnetworks.com/setup/cumulus-host-ubuntu.pubkey | apt-key add -
         root@ubuntu:~# wget -O- https://hostapps3.cumulusnetworks.com/setup/cumulus-host-ubuntu-xenial.list > /etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list
         root@ubuntu:~# apt-get update ; apt-get install cumulus-netq
 
-### Installing on a Red Hat or CentOS Server</span>
+### Installing on a Red Hat or CentOS Server
 
   - Reference and update the local `yum` repository, then install the
     metapackage on the server:
-    
+
         root@rhel7:~# rpm --import https://hostapps3.cumulusnetworks.com/setup/cumulus-host-el.pubkey
         root@rhel7:~# wget -O- https://hostapps3.cumulusnetworks.com/setup/cumulus-host-el.repo > /etc/yum.repos.d/cumulus-host-el.repo
         root@rhel7:~# yum install cumulus-netq
 
-## <span id="src-6488202_GettingStartedwithNetQ-nodeconfig" class="confluence-anchor-link"></span>Configuring the NetQ Agent on a Node</span>
+## Configuring the NetQ Agent on a Node
 
 Once you install the NetQ packages and configure the NetQ Telemetry
 Server, you need to configure NetQ on each node (Cumulus Linux switch or
@@ -155,26 +154,26 @@ Linux host) to monitor that node on your network.
 
 2.  On the host, after you install the NetQ metapackage, restart
     `rsyslog` so logs are sent to the correct destination:
-    
+
         cumulus@switch:~$ sudo systemctl restart rsyslog
 
 3.  **CentOS, RHEL or Ubuntu hosts only:** Enable and restart the
     `netqd` service:
-    
+
         cumulus@server01:~$ sudo systemctl enable netqd ; sudo systemctl start netqd
 
 4.  Link the host to the telemetry server you configured above; in the
     following example, the IP address for the telemetry server host is
     *198.51.100.10*:
-    
+
         cumulus@switch:~$ netq add server 198.51.100.10
-    
+
     This command updated the configuration in the `/etc/netq/netq.yml`
     file. It also enables the NetQ CLI.
 
 5.  **Container hosts only:** Enable Docker by adding the following
     three lines to the `netq.yml` file on the container host:
-    
+
         cumulus@server01:~$ sudo vi /etc/netq/netq.yml
          
         ...
@@ -184,20 +183,20 @@ Linux host) to monitor that node on your network.
           poll_period: 15
 
 6.  Restart the `netq` services.
-    
+
         cumulus@switch:~$ netq agent restart
-    
+
     {{%notice note%}}
-    
+
     If you see the following error, it means you haven't added the
     telemetry server or the server wasn't configured:
-    
+
         cumulus@switch:~$ netq agent start
         Error: Please specify IP address of DB server
-    
+
     {{%/notice%}}
 
-### <span id="src-6488202_GettingStartedwithNetQ-vrf" class="confluence-anchor-link"></span>Configuring the Agent to Use a VRF</span>
+### Configuring the Agent to Use a VRF
 
 If you want the NetQ Agent to communicate with the telemetry server only
 via a VRF, including a management VRF, you need to specify the VRF name
@@ -207,7 +206,7 @@ server over it, configure the agent like this:
 
     cumulus@switch:~$ netq add server 198.51.100.10 vrf mgmt
 
-### <span id="src-6488202_GettingStartedwithNetQ-port" class="confluence-anchor-link"></span>Configuring the Agent to Communicate over a Specific Port</span>
+### Configuring the Agent to Communicate over a Specific Port
 
 By default, NetQ uses port 6379 for communication between the telemetry
 server and NetQ Agents. If you want the NetQ Agent to communicate with
@@ -216,7 +215,7 @@ number when configuring the NetQ Agent like this:
 
     cumulus@switch:~$ netq add server 198.51.100.10 port 7379
 
-## Configuring NetQ Notifier on the Telemetry Server</span>
+## Configuring NetQ Notifier on the Telemetry Server
 
 NetQ Notifier listens to events from the telemetry server database. When
 NetQ Notifier is running on the NetQ Telemetry Server, it sends out
@@ -258,26 +257,26 @@ To configure alerts and integrations on the NetQ Telemetry Server:
     editor.
 
 2.  Configure the following in the `/appliance/cfg/netq/netq.yml` file:
-    
+
       - Change the log level: If you want a more restrictive level than
         info.
-    
+
       - Configure application notifications: To customize any
         notifications, uncomment the relevant section under
         **netq-notifier Configurations** and make changes accordingly.
-    
+
       - Configure PagerDuty and Slack integrations. You can see where to
         input the information for these integrations in the [example
         `netq.yml` file](#src-6488202_GettingStartedwithNetQ-example)
         below.
-        
+
           - For PagerDuty, enter the API access key (also called the
             [authorization
             token](https://v2.developer.pagerduty.com/docs/authentication))
             and the
             [integration](https://v2.developer.pagerduty.com/docs/events-api-v2)
             key (also called the service\_key or routing\_key).
-        
+
           - For Slack, enter the webhook URL. To get the webhook URL, in
             the Slack dropdown menu, click **Apps & integrations**, then
             click **Manage** \> **Custom Integrations** \> **Incoming
@@ -287,16 +286,16 @@ To configure alerts and integrations on the NetQ Telemetry Server:
             then click **Add Incoming WebHook integration** the URL
             produced by Slack will look something like the one pictured
             below:  
-            
+
             {{% imgOld 0 %}}
-            
-              
+
+
             Copy the URL from the Webhook URL field into the
             `/appliance/cfg/netq/netq.yml` file under the **Slack
             Notifications** section. Uncomment the Slack, enable, and
             webhook lines while adding the webhook URL value provided by
             Slack.
-            
+
                 ## Slack Notifications
                 ##
                 ## netq-notifier sends notifications to Slack using Incoming Webhooks.
@@ -310,21 +309,21 @@ To configure alerts and integrations on the NetQ Telemetry Server:
                 slack:
                   enable: true
                   webhook: https://hooks.slack.com/services/sometext/moretext/evenmoretext
-    
+
     When you are finished editing the file, save and close it.
 
 3.  Stop then start the NetQ Notifier daemon to apply the new
     configuration:
-    
+
         cumulus@netq-appliance:~$ docker exec -it netq_netq-notifier_1 systemctl stop netq-notifier
         cumulus@netq-appliance:~$ docker exec -it netq_netq-notifier_1 systemctl start netq-notifier
 
-## <span id="src-6488202_GettingStartedwithNetQ-example" class="confluence-anchor-link"></span>Example /etc/netq/netq.yml Configuration</span>
+## Example /etc/netq/netq.yml Configuration
 
 In the following sample `/etc/netq/netq.yml` file, notice that the NetQ
 Telemetry Server is on a server with the IP address 198.51.100.10.
 
-    cumulus@netq-appliance:~$ cat /etc/netq/netq.yml 
+    cumulus@netq-appliance:~$ cat /etc/netq/netq.yml
     ## Netq configuration File.
     ## Configuration is also read from files in /etc/netq/config.d/ and have
     ## precedence over config in /etc/netq/netq.yml.
@@ -517,17 +516,3 @@ Telemetry Server is on a server with the IP address 198.51.100.10.
     #  enable: true
     #  exclude: []
     #  include: []
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

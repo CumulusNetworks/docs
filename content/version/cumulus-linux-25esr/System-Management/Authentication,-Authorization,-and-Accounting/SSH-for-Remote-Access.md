@@ -14,7 +14,7 @@ siteSlug: cumulus-linux-25esr
 You use [SSH](http://en.wikipedia.org/wiki/Secure_Shell) to securely
 access a Cumulus Linux switch remotely.
 
-## Access Using Passkey (Basic Setup)</span>
+## Access Using Passkey (Basic Setup)
 
 Cumulus Linux uses the openSSH package to provide SSH functionality. The
 standard mechanisms of generating passwordless access just applies. The
@@ -55,26 +55,18 @@ Next, append the public key in `~/.ssh/id_rsa.pub` into
 {{%notice tip%}}
 
 Remember, you cannot use the root account to SSH to a switch in Cumulus
-Linux unless you [set a
-password](/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/User-Accounts)
+Linux unless you 
+[set a password](/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/User-Accounts)
 for the account.
 
 {{%/notice%}}
 
-### Completely Passwordless System</span>
+### Completely Passwordless System
 
 When generating the passphrase and its associated keys, as in the first
 step above, do not enter a passphrase. Follow all the other
 instructions.
 
-## Useful Links</span>
+## Useful Links
 
   - <http://www.debian-administration.org/articles/152>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

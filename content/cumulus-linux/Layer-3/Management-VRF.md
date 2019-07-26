@@ -137,7 +137,7 @@ disabled in the default VRF are:
 When you run a service inside the management VRF, that service runs
 **only** on eth0; it no longer runs on any switch port. However, you can
 keep the service running in the default VRF with a wildcard for
-[agentAddress](Simple-Network-Management-Protocol-\(SNMP\)-Monitoring.html#src-8362608_safe-id-U2ltcGxlTmV0d29ya01hbmFnZW1lbnRQcm90b2NvbChTTk1QKU1vbml0b3JpbmctYWdlbnRBZGRyZXNz).
+[agentAddress](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/#configure-snmp-manually).
 This enables the service to run on **all** interfaces no matter which
 VRF, so you don't have to run a different process for each VRF.
 
@@ -149,10 +149,10 @@ packet is received. This `sysctl` is enabled for Cumulus Linux.
 To enable a service to run in the management VRF, do the following.
 These steps use the NTP service, but you can use any of the services
 listed above, except for `dhcrelay`, which is discussed
-[here](DHCP-Relays.html#src-8363036_DHCPRelays-multiple).
+[here](/cumulus-linux/Layer-1-and-Switch-Ports/DHCP-Relays/#configure-multiple-dhcp-relays).
 
-1.  Configure the management VRF as described in [the Enabling
-    Management VRF section above](#src-8362940_ManagementVRF-enablevrf).
+1.  Configure the management VRF as described in the
+    [Enabling Management VRF section](#enable-management-vrf) above.
 
 2.  If NTP is running, stop the service:
 
@@ -184,13 +184,15 @@ listed above, except for `dhcrelay`, which is discussed
 
 After you enable `ntp@mgmt`, you can verify that NTP peers are active:
 
-    cumulus@switch:~$ ntpq -pn
-         remote           refid      st t when poll reach   delay   offset  jitter
-    ==============================================================================
-    *38.229.71.1     204.9.54.119     2 u   42   64  377   31.275   -0.625   3.105
-    -104.131.53.252  209.51.161.238   2 u   47   64  377   16.381   -5.251   0.681
-    +45.79.10.228    200.98.196.212   2 u   44   64  377   42.998    0.115   0.585
-    +74.207.240.206  127.67.113.92    2 u   43   64  377   73.240   -1.623   0.320
+```
+cumulus@switch:~$ ntpq -pn
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
+*38.229.71.1     204.9.54.119     2 u   42   64  377   31.275   -0.625   3.105
+-104.131.53.252  209.51.161.238   2 u   47   64  377   16.381   -5.251   0.681
++45.79.10.228    200.98.196.212   2 u   44   64  377   42.998    0.115   0.585
++74.207.240.206  127.67.113.92    2 u   43   64  377   73.240   -1.623   0.320
+```
 
 ### Enable Polling with snmpd in a Management VRF
 
@@ -369,8 +371,8 @@ To get the route for any VRF, run the following command:
 
 ## mgmt Interface Class
 
-In `ifupdown2`, [interface
-classes](Interface-Configuration-and-Management.html#src-8363023_InterfaceConfigurationandManagement-classes)
+In `ifupdown2`,
+[interface classes](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#ifupdown2-interface-classes)
 are used to create a user-defined grouping for interfaces. The special
 class *mgmt* is available to separate the management interfaces of the
 switch from the data interfaces. This allows you to manage the data

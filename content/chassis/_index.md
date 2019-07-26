@@ -27,7 +27,6 @@ pertinent to this guide are:
     cards are in the middle of the chassis, flanked by two fabric cards
     on each side. Line card 1 is at the top of the image and line card 8
     is at the bottom.
-
   - 4 fabric cards, each with 2 Tomahawk ASICs, 2 Intel Atom C2538 4
     core 2.40GHz CPUs, and 32 100G fabric ports. Fabric cards are
     similar to spine switches in a Clos network, although the fabric
@@ -35,12 +34,9 @@ pertinent to this guide are:
     runs 2 instances of Cumulus Linux, one for each ASIC. The fabric
     cards flank the line cards in the image below. Fabric card 1 is the
     leftmost card and fabric card 4 is the rightmost card.
-
   - 16 fan modules, accessible from the rear.
-
   - All line cards, fabric cards and power supplies are accessible from
     the front.
-
   - All CPUs are located on their respective line or fabric cards. There
     are no chassis management modules (CMMs), system control modules
     (SCMs) or baseboard management controllers (BMCs).
@@ -53,12 +49,3 @@ scope of this guide.
 The chassis fits into a 21" rack that is 10 RU in height.
 
 {{% imgOld 0 %}}
-
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

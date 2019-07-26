@@ -42,7 +42,7 @@ To delete a static route, run:
 
 To view static routes, run:
 
-    cumulus@switch:~$ net show route static 
+    cumulus@switch:~$ net show route static
     RIB entry for static
     ====================
     Codes: K - kernel route, C - connected, S - static, R - RIP,
@@ -138,8 +138,7 @@ To display the routing table:
 
 ### Apply a Route Map for Route Updates
 
-To apply a [route
-map](http://www.nongnu.org/quagga/docs/docs-multi/Route-Map.html#Route-Map)
+To apply a [route map](http://www.nongnu.org/quagga/docs/docs-multi/Route-Map.html#Route-Map)
 to filter route updates from Zebra into the Linux kernel:
 
     cumulus@switch:$ net add routing protocol static route-map <route-map-name>
@@ -210,13 +209,13 @@ your network architecture and specify the profile name for the
 
     cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf | grep forwarding_table -B 4
     # Manage shared forwarding table allocations
-    # Valid profiles - 
+    # Valid profiles -
     # default, l2-heavy, v4-lpm-heavy, v6-lpm-heavy
     #
     forwarding_table.profile = default
 
-After you specify a different profile, [restart
-`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
+After you specify a different profile,
+[restart `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
 for the change to take effect. You can see the forwarding table profile
 when you run `cl-resource-query`.
 
@@ -238,8 +237,7 @@ For Broadcom ASICs, the maximum number of IP multicast entries is 8k.
 The following tables list the number of MAC addresses, layer 3 neighbors
 and LPM routes validated for each forwarding table profile for the
 various supported platforms. If you are not specifying any profiles as
-described above, the *default* values are the ones that the switch will
-use.
+described above, the *default* values are the ones that the switch will use.
 
 {{%notice tip%}}
 
@@ -304,21 +302,22 @@ that profile name in the `tcam_resource.profile` variable in the
 `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf`
 file.
 
-    cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf | grep -B3 "tcam_resource"
-    #TCAM resource forwarding profile
+```
+cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf | grep -B3 "tcam_resource"
+#TCAM resource forwarding profile
      
      
-        1. Valid profiles -
-        2. default, ipmc-heavy, acl-heavy, ipmc-max
-           tcam_resource.profile = default
+    1. Valid profiles -
+    2. default, ipmc-heavy, acl-heavy, ipmc-max
+       tcam_resource.profile = default
+```
 
-After you specify a different profile, [restart
-`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
+After you specify a different profile,
+[restart `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
 for the change to take effect.
 
-When [nonatomic
-updates](Netfilter-ACLs.html#src-8362563_Netfilter-ACLs-nonatomic) are
-enabled (that is, the `acl.non_atomic_update_mode` is set to *TRUE* in
+When [nonatomic updates](/cumulus-linux/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode)
+are enabled (that is, the `acl.non_atomic_update_mode` is set to *TRUE* in
 `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL
 entries for each profile are as follows:
 
@@ -329,9 +328,8 @@ entries for each profile are as follows:
 | acl-heavy  | 450            | 2000 (IPv6) or 3500 (IPv4) |
 | ipmc-max   | 13000          | 1000 (IPv6) or 2000 (IPv4) |
 
-When [nonatomic
-updates](Netfilter-ACLs.html#src-8362563_Netfilter-ACLs-nonatomic) are
-disabled (that is, the `acl.non_atomic_update_mode` is set to *FALSE* in
+When [nonatomic updates](/cumulus-linux/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode)
+are disabled (that is, the `acl.non_atomic_update_mode` is set to *FALSE* in
 `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL
 entries for each profile are as follows:
 
@@ -369,16 +367,16 @@ Running `ifup` a second time on eth0 successfully installs the route.
 There are two ways you can work around this issue.
 
   - Add a sleep 2 to the eth0 interface in `/etc/network/interfaces`:
-    
+
         cumulus@switch:~$ net add interface eth0 ipv6 address 2001:620:5ca1:160::45/64 post-up /bin/sleep 2s
         cumulus@switch:~$ net add interface eth0 post-up /sbin/ip route add default via 2001:620:5ca1:160::1 src 2001:620:5ca11:160::45 dev eth0
 
   - Exclude the `src` parameter to the `ip route add` that causes the
     need for the delay. If the `src` parameter is removed, the route is
     added correctly.
-    
+
         cumulus@switch:~$ net add interface eth0 post-up /sbin/ip route add default via 2001:620:5ca1:160::1 dev eth0
-    
+
         cumulus@switch:~$ ifdown eth0
         Stopping NTP server: ntpd.
         Starting NTP server: ntpd.
@@ -387,22 +385,12 @@ There are two ways you can work around this issue.
         Stopping NTP server: ntpd.
         Starting NTP server: ntpd.
         cumulus@switch:~$ ip -6 r s
-        2001:620:5ca1:160::/64 dev eth0  proto kernel  metric 256 
-        fe80::/64 dev eth0  proto kernel  metric 256 
-        default via 2001:620:5ca1:160::1 dev eth0  metric 1024 
+        2001:620:5ca1:160::/64 dev eth0  proto kernel  metric 256
+        fe80::/64 dev eth0  proto kernel  metric 256
+        default via 2001:620:5ca1:160::1 dev eth0  metric 1024
 
 ## Related Information
 
-  - [Linux IP - ip route
-    command](http://linux-ip.net/html/tools-ip-route.html)
+  - [Linux IP - ip route command](http://linux-ip.net/html/tools-ip-route.html)
 
-  - [FRRouting docs - static route
-    commands](https://frrouting.org/user-guide/zebra.html#static-route-commands)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [FRRouting docs - static route commands](https://frrouting.org/user-guide/zebra.html#static-route-commands)

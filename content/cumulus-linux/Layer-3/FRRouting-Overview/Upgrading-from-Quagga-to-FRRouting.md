@@ -158,7 +158,7 @@ This step stops the Quagga compatibility mode, causing routing to go
 
 Removing the `quagga-compat` package also removes `quagga.service`.
 
-    However, the `/etc/quagga` directory is not removed in this step, as
+However, the `/etc/quagga` directory is not removed in this step, as
     it is left in place for reference.
 
     {{%/notice%}}
@@ -212,11 +212,3 @@ this section to upgrade to FRR:
 
     cumulus@switch:~$ sudo systemctl reset-failed frr.service
     cumulus@switch:~$ sudo systemctl enable frr.service
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

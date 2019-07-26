@@ -19,19 +19,16 @@ Nutanix Prism and Nutanix AHV.
 
 In addition, you can augment the deployment with:
 
-  - [Cumulus on a
-    Stick](https://cumulusnetworks.com/cumulus-on-a-stick/) for [zero
-    touch
-    provisioning](/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP)
+  - [Cumulus on a Stick](https://cumulusnetworks.com/cumulus-on-a-stick/) for
+    [zero touch provisioning](/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP)
     Nutanix and Cumulus HCS without any user interaction or additional
     equipment.
 
-  - [Cumulus NetQ](#src-9012165) for network telemetry and unprecedented
+  - [Cumulus NetQ](/cumulus-netq/) for network telemetry and unprecedented
     real-time and historic visibility into dynamic changes in both the
     network and virtual machines.
 
-  - Out-of-band management and IPMI access using [Cumulus
-    RMP](/cumulus-rmp) or a
+  - Out-of-band management and IPMI access using [Cumulus RMP](/cumulus-rmp) or a
     generic Cumulus Linux switch, enabling the full provisioning of a
     zero-touch data and management network, eliminating any network
     deployment delays when standing up a Nutanix cluster.
@@ -53,8 +50,8 @@ Cumulus HCS has two major components:
     VMs in the cluster. When a new VM is discovered, the service
     automatically identifies the physical Nutanix server hosting the VM
     and discovers any VLANs required for the VM. The service then
-    automatically adds these VLANs to the default [VLAN-aware
-    bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
+    automatically adds these VLANs to the default
+    [VLAN-aware bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
     the MLAG peer link and the automatically created bond to the Nutanix
     node. When a VM is powered off, removed or moved, and the associated
     VLAN has no other VMs, the VLAN is automatically removed from the
@@ -62,8 +59,7 @@ Cumulus HCS has two major components:
 
 ## Prerequisites
 
-  - 2 [Cumulus Networks-compatible
-    switches](https://cumulusnetworks.com/hcl) running Cumulus Linux
+  - 2 [Cumulus Networks-compatible switches](https://cumulusnetworks.com/hcl) running Cumulus Linux
     3.7.3 or later
 
   - Nutanix AOS 5.5.8 or later
@@ -91,8 +87,8 @@ typical Nutanix deployment with the following configuration:
 
   - Connections to other infrastructure are on ports swp51 and above
 
-  - The eth0 management interface is configured for [management
-    VRF](/cumulus-linux/Layer-3/Management-VRF) via DHCP
+  - The eth0 management interface is configured for
+    [management VRF](/cumulus-linux/Layer-3/Management-VRF) via DHCP
 
   - For automatic configuration, the gateway IP addresses for all VMs,
     including the CVM, do not exist on the Cumulus Linux switches.
@@ -121,17 +117,16 @@ switches, which are named *leaf01* and *leaf02* in the example configuration abo
 The following steps describe how to use zero touch provisioning to install
 Cumulus Linux and fully configure Cumulus HCS and Nutanix on your network.
 
-To do this, you need a [Cumulus on a
-Stick](https://cumulusnetworks.com/cumulus-on-a-stick/) disk image and a
-USB stick with at least 1GB of storage.
+To do this, you need a
+[Cumulus on a Stick](https://cumulusnetworks.com/cumulus-on-a-stick/) disk image
+and a USB stick with at least 1GB of storage.
 
 1.  Insert the USB stick into your computer and copy the Cumulus on a
     Stick files onto it.
 
 2.  On the USB stick, open the
     `ztp_config.txt` file in a text editor and set your Nutanix username
-    and password and the server IP address, then save and close the
-    file.  
+    and password and the server IP address, then save and close the file.  
 
         # Fill in the parameters below to allow for ZTP to
         # automatically configure the switch for Nutanix
@@ -199,8 +194,7 @@ below to configure Cumulus Linux, Nutanix and Cumulus HCS.
     {{%notice note%}}
 
 In both configurations the `pvid` value of *1* indicates the native
-    VLAN ID. If you don't know the value for the native VLAN ID, use
-    *1*.
+    VLAN ID. If you don't know the value for the native VLAN ID, use *1*.
 
     {{%/notice%}}
 
@@ -233,8 +227,7 @@ In both configurations the `pvid` value of *1* indicates the native
 
     {{%notice tip%}}
 
-These settings are defined
-    [below](#src-9012165_CumulusHyperconvergedSolutionwithNutanix-chs_settings).
+These settings are defined [below](#cumulus-hcs-configuration-settings).
 
     {{%/notice%}}
 
@@ -344,8 +337,8 @@ both leaf01 and leaf02.
 {{%notice tip%}}
 
 In this example, all VLANs are allowed on the uplink ports. Configuring
-any set of VLANs is allowed. Be aware that [VLANs 3000-3999 are
-reserved](VLAN-aware-Bridge-Mode.html#src-8362673_VLAN-awareBridgeMode-vlan_range)
+any set of VLANs is allowed. Be aware that
+[VLANs 3000-3999 are reserved](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/#reserved-vlan-range)
 on Cumulus Linux. This example assumes the untagged or native VLAN is
 VLAN ID (`pvid`) *1*. Change the VLAN ID as needed.
 
@@ -359,13 +352,12 @@ you configured Cumulus HCS with ZTP or manually. ZTP does not add any
 gateway configuration.
 
 To provide redundant gateways for the dual-attached Nutanix servers,
-Cumulus Linux relies on [Virtual Router
-Redundancy](/cumulus-linux/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP)
+Cumulus Linux relies on
+[Virtual Router Redundancy](/cumulus-linux/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP)
 (VRR). VRR enables hosts to communicate with any redundant router
 without reconfiguration, running dynamic routing protocols, or running
-router redundancy protocols. This means that redundant routers will
-respond to [Address Resolution
-Protocol](/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP)
+router redundancy protocols. This means that redundant routers will respond to
+[Address Resolution Protocol](/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP)
 (ARP) requests from hosts. Routers are configured to respond in an
 identical manner, but if one fails, the other redundant routers will
 continue to respond, leaving the hosts with the impression that nothing

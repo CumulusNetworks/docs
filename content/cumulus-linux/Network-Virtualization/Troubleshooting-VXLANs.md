@@ -247,11 +247,3 @@ administrative state of a particular logical VNI interface:
         link/ether 46:c6:57:fc:1f:54 brd ff:ff:ff:ff:ff:ff
         vxlan id 10 remote 10.2.1.3 local 10.2.1.1 srcport 32768 61000 dstport 4789 ageing 1800 svcnode 10.2.1.3
         bridge_slave
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

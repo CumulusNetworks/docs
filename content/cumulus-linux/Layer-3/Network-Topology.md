@@ -17,11 +17,11 @@ are star, hub and spoke, leaf and spine, and broadcast.
 
 ## Clos Topologies
 
-In the vast majority of modern data centers, [Clos or fat tree
-topology](http://en.wikipedia.org/wiki/Clos_network) is very popular.
-This topology is shown in the figure below. It is also commonly referred
-to as leaf-spine topology. We shall use this topology throughout the
-routing protocol guide.
+In the vast majority of modern data centers, 
+[Clos or fat tree topology](http://en.wikipedia.org/wiki/Clos_network) 
+is very popular. This topology is shown in the figure below. It is also 
+commonly referred to as leaf-spine topology. We shall use this topology 
+throughout the routing protocol guide.
 
 {{% imgOld 0 %}}
 
@@ -69,8 +69,7 @@ only 240G of inter-rack bandwidth. The over-subscription ratio is 0.6
 This can lead to congestion in the network and hot spots. Instead, if
 network operators connected 32 servers per rack, then 32 ports are left
 to be connected to spine switches. Now, the network is said to be
-[rearrangably
-non-blocking](http://en.wikipedia.org/wiki/Clos_network#Blocking_characteristics).
+[rearrangably non-blocking](http://en.wikipedia.org/wiki/Clos_network#Blocking_characteristics).
 Now any server in a rack can talk to any other server in any other rack
 without necessarily blocking traffic between other servers.
 
@@ -121,11 +120,3 @@ destination (assuming that there is no link failure between the spine
 and the destination switch). Most routing protocols recognize that there
 are multiple equal-cost paths to a destination and enable any of them to
 be selected for a given traffic flow.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

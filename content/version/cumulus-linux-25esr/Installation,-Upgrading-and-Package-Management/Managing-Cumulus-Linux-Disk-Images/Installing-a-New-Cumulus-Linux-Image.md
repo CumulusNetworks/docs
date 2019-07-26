@@ -11,8 +11,6 @@ version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
-<details>
-
 Before you install Cumulus Linux, the switch can be in two different
 states:
 
@@ -20,27 +18,14 @@ states:
     [ONIE](http://www.onie.org/)) or you desire or require a clean
     installation. In this case, you can install Cumulus Linux in one of
     the following ways, using:
-    
-      - [DHCP/a Web server with DHCP
-        options](#src-5115997_InstallingaNewCumulusLinuxImage-dhcp_options)
-    
-      - [DHCP/a Web server without DHCP
-        options](#src-5115997_InstallingaNewCumulusLinuxImage-dhcp_noopts)
-    
-      - [A Web server with no
-        DHCP](#src-5115997_InstallingaNewCumulusLinuxImage-web_nodhcp)
-    
-      - [FTP or TFTP without a Web
-        server](#src-5115997_InstallingaNewCumulusLinuxImage-ftp)
-    
-      - [Local file
-        installation](#src-5115997_InstallingaNewCumulusLinuxImage-local)
-    
-      - [USB](#src-5115997_InstallingaNewCumulusLinuxImage-usb)
-
+      - [DHCP/a Web server with DHCP options](#installing-via-a-dhcp-web-server-method-with-dhcp-options)
+      - [DHCP/a Web server without DHCP options](#installing-via-a-dhcp-web-server-method-without-dhcp-options)
+      - [A Web server with no DHCP](#installing-via-a-web-server-with-no-dhcp)
+      - [FTP or TFTP without a Web server](#installing-via-ftp-or-tftp-without-a-web-server)
+      - [Local file installation](#installing-via-a-local-file)
+      - [USB](#installing-via-usb)
   - The switch already has Cumulus Linux installed on it, so you only
-    need to [upgrade
-    it](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
+    need to [upgrade it](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
 
 {{%notice tip%}}
 
@@ -50,7 +35,7 @@ systems (NOS) on bare metal switches.
 
 {{%/notice%}}
 
-## Understanding these Examples</span>
+## Understanding these Examples
 
   - This sections in this chapter are ordered from the most repeatable
     to the least repeatable methods. For instance, DHCP can scale to
@@ -65,7 +50,7 @@ systems (NOS) on bare metal switches.
   - In the examples below, \[PLATFORM\] can be any supported Cumulus
     Linux platform, such as *x86\_64*, *arm*, or *powerpc*.
 
-## <span id="src-5115997_InstallingaNewCumulusLinuxImage-dhcp_options" class="confluence-anchor-link"></span>Installing via a DHCP/Web Server Method with DHCP Options</span>
+## Installing via a DHCP/Web Server Method with DHCP Options
 
 Installing Cumulus Linux in this manner is as simple as setting up a
 DHCP/Web server on your laptop and connecting the eth0 management port
@@ -90,8 +75,7 @@ Once you connect the cable, the installation proceeds as follows:
 The most common method is for you to send DHCP option 114 with the
 entire URL to the Web server (this could be the same system). However,
 there are many other ways to use DHCP even if you don't have full
-control over DHCP. [See the ONIE user
-guide](https://opencomputeproject.github.io/onie/design-spec/discovery.html#partial-installer-urls)
+control over DHCP. [See the ONIE user guide](https://opencomputeproject.github.io/onie/design-spec/discovery.html#partial-installer-urls)
 for help.
 
 {{%/notice%}}
@@ -114,7 +98,7 @@ assignment):
 Don't have a Web server? There is a [free Apache
 example](https://www.apachefriends.org/index.html) you can utilize.
 
-## <span id="src-5115997_InstallingaNewCumulusLinuxImage-dhcp_noopts" class="confluence-anchor-link"></span> Installing via a DHCP/Web Server Method without DHCP Options</span>
+## Installing via a DHCP/Web Server Method without DHCP Options
 
 If you have a laptop on same network and the switch can pull DHCP from
 the corporate network, but you cannot modify DHCP options (maybe it's
@@ -127,7 +111,7 @@ controlled by another team), do the following:
     
         ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 
-## <span id="src-5115997_InstallingaNewCumulusLinuxImage-web_nodhcp" class="confluence-anchor-link"></span>Installing via a Web Server with no DHCP</span>
+## Installing via a Web Server with no DHCP
 
 Use the following method if your laptop is on the same network as the
 switch eth0 interface but no DHCP server is available.
@@ -157,7 +141,7 @@ port, you need to disable discovery mode or else ONIE may get confused.
     
         ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 
-## <span id="src-5115997_InstallingaNewCumulusLinuxImage-ftp" class="confluence-anchor-link"></span> Installing via FTP or TFTP without a Web Server</span>
+## Installing via FTP or TFTP without a Web Server
 
 1.  Set up DHCP or static addressing for eth0, as in the examples above.
 
@@ -173,7 +157,7 @@ port, you need to disable discovery mode or else ONIE may get confused.
         
         ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 
-## <span id="src-5115997_InstallingaNewCumulusLinuxImage-local" class="confluence-anchor-link"></span> Installing via a Local File</span>
+## Installing via a Local File
 
 1.  Set up DHCP or static addressing for eth0, as in the examples above.
 
@@ -192,7 +176,7 @@ port, you need to disable discovery mode or else ONIE may get confused.
     
         ONIE# onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
 
-## <span id="src-5115997_InstallingaNewCumulusLinuxImage-usb" class="confluence-anchor-link"></span>Installing via USB</span>
+## Installing via USB
 
 Following the steps below produces a clean installation of Cumulus
 Linux. This wipes out all pre-existing configuration files that may be
@@ -202,98 +186,87 @@ software installation.
 
 {{%notice note%}}
 
-Make sure to [back
-up](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
+Make sure to [back up](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
 any important configuration files that you may need to restore the
 configuration of your switch after the installation finishes.
 
 {{%/notice%}}
 
-### Preparing for USB Installation</span>
+### Preparing for USB Installation
 
 1.  Download the appropriate Cumulus Linux image for your x86, ARM or
     PowerPC platform from the [Cumulus Networks Downloads
     page](http://cumulusnetworks.com/downloads/).
 
-2.  
-    
+1.  Prepare your flash drive by formatting in one of the supported
+    formats: FAT32, vFAT or EXT2. 
     <details>
-    
-    Prepare your flash drive by formatting in one of the supported
-    formats: FAT32, vFAT or EXT2.
     
     <summary>Optional: Preparing a USB Drive inside Cumulus Linux
     </summary>
     
-    <table>
-    <colgroup>
-    <col style="width: 100%" />
-    </colgroup>
-    <tbody>
-    <tr class="odd">
-    <td><p>{{%notice warning%}}</p>
-    <p>It is possible that you could severely damage your system with the following utilities, so please use caution when performing the actions below!</p>
-    <p>{{%/notice%}}</p>
-    <ol>
-    <li><p>Insert your flash drive into the USB port on the switch running Cumulus Linux and log in to the switch.</p></li>
-    <li><p>Determine and note at which device your flash drive can be found by using output from <code>cat /proc/partitions</code> and <code>sudo fdisk -l [device]</code>. For example, <code>sudo fdisk -l /dev/sdb</code>.</p>
-    <p>{{%notice warning%}}</p>
-    <p>These instructions assume your USB drive is the <code>/dev/sdb</code> device, which is typical if the USB stick was inserted after the machine was already booted. However, if the USB stick was plugged in during the boot process, it is possible the device could be <code>/dev/sda</code>. Make sure to modify the commands below to use the proper device for your USB drive!</p>
-    <p>{{%/notice%}}</p></li>
-    <li><p>Create a new partition table on the device:</p>
-    <pre><code>sudo parted /dev/sdb mklabel msdos</code></pre>
-    <p>{{%notice note%}}</p>
-    <p>The <code>parted</code> utility should already be installed. However, if it is not, install it with: <code>sudo apt-get install parted</code></p>
-    <p>{{%/notice%}}</p></li>
-    <li><p>Create a new partition on the device:</p>
-    <pre><code>sudo parted /dev/sdb -a optimal mkpart primary 0% 100%</code></pre></li>
-    <li><p>Format the partition to your filesystem of choice using ONE of the examples below:</p>
-    <pre><code>sudo mkfs.ext2 /dev/sdb1
-    sudo mkfs.msdos -F 32 /dev/sdb1
-    sudo mkfs.vfat /dev/sdb1</code></pre>
-    <p>{{%notice note%}}</p>
-    <p>To use <code>mkfs.msdos</code> or <code>mkfs.vfat</code>, you need to install the <code>dosfstools</code> package from the <a href="Adding-and-Updating-Packages.html#src-5115986_AddingandUpdatingPackages-AddingPackagesfromAnotherRepository">Debian software repositories</a> (step 3 here shows you how to add repositories from Debian), as they are not included by default.</p>
-    <p>{{%/notice%}}</p></li>
-    <li><p>To continue installing Cumulus Linux, mount the USB drive in order to move files to it.</p>
-    <pre><code>sudo mkdir /mnt/usb
-    sudo mount /dev/sdb1 /mnt/usb</code></pre></li>
-    </ol></td>
-    </tr>
-    </tbody>
-    </table>
+    {{%notice warning%}}
+It is possible that you could severely damage your system with the following utilities, so please use caution when performing the actions below!
+    {{%/notice%}}
     
+    1. Insert your flash drive into the USB port on the switch running Cumulus Linux and log in to the switch.
+    1. Determine and note at which device your flash drive can be found by 
+       using output from `cat /proc/partitions` and `sudo fdisk -l [device]`. For example, `sudo fdisk -l /dev/sdb`.
+       {{%notice warning%}}
+  These instructions assume your USB drive is the `/dev/sdb` device, which is typical if the USB stick was inserted after the machine was already booted. However, if the USB stick was plugged in during the boot process, it is possible the device could be `/dev/sda`. Make sure to modify the commands below to use the proper device for your USB drive!
+       {{%/notice%}}
+    1. Create a new partition table on the device:
+       ```
+sudo parted /dev/sdb mklabel msdos
+       ```
+       {{%notice note%}}
+The `parted` utility should already be installed. However, if it is not, install it with `sudo apt-get install parted`.
+       {{%/notice%}}
+    1. Create a new partition on the device:
+       ```
+sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
+       ```
+    1. Format the partition to your filesystem of choice using ONE of the examples below:
+       ```
+    sudo mkfs.ext2 /dev/sdb1
+    sudo mkfs.msdos -F 32 /dev/sdb1
+    sudo mkfs.vfat /dev/sdb1
+       ```  
+       {{%notice note%}}
+To use `mkfs.msdos` or `mkfs.vfat`, you need to install the `dosfstools` package from the [Debian software repositories](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Adding-and-Updating-Packages/#adding-packages-from-another-repository)  (step 3 here shows you how to add repositories from Debian), as they are not included by default.
+       {{%/notice%}}
+    1. To continue installing Cumulus Linux, mount the USB drive in order to move files to it.
+    
+       ```
+    sudo mkdir /mnt/usb
+    sudo mount /dev/sdb1 /mnt/usb
+       ```
     </details>
-
-3.  Copy the image and license files over to the flash drive and rename
+1.  Copy the image and license files over to the flash drive and rename
     the image file to:
     
       - `onie-installer-x86_64`, if installing on an x86 platform
-    
       - `onie-installer-powerpc`, if installing on a PowerPC platform
-    
       - `onie-installer-arm`, if installing on an ARM platform
     
     {{%notice note%}}
-    
-    You can also use any of the [ONIE naming schemes mentioned
+You can also use any of the [ONIE naming schemes mentioned
     here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
-    
     {{%/notice%}}
     
     {{%notice warning%}}
-    
-    When using a Mac or Windows computer to rename the installation file
+When using a Mac or Windows computer to rename the installation file
     the file extension may still be present. Make sure to remove the
-    file extension otherwise ONIE will not be able to detect the file\!
-    
+    file extension otherwise ONIE will not be able to detect the file\!   
     {{%/notice%}}
 
-4.  Insert the USB stick into the switch, then continue with the
+1.  Insert the USB stick into the switch, then continue with the
     appropriate instructions below for your x86, ARM or PowerPC
     platform.
 
-### Instructions for x86 Platforms</span>
+### Instructions for x86 Platforms
 
+<details>
 <summary>Click to expand x86 instructions... </summary>
 
 1.  Prepare the switch for installation:
@@ -311,7 +284,7 @@ configuration of your switch after the installation finishes.
     
     {{%notice note%}}
     
-    SSH sessions to the switch get dropped after this step. To complete
+SSH sessions to the switch get dropped after this step. To complete
     the remaining instructions, connect to the console of the switch.
     Cumulus Linux switches display their boot process to the console, so
     you need to monitor the console specifically to complete the next
@@ -372,7 +345,7 @@ configuration of your switch after the installation finishes.
     
     {{%notice warning%}}
     
-    These instructions assume your USB drive is the `/dev/sdb` device,
+These instructions assume your USB drive is the `/dev/sdb` device,
     which is typical if the USB stick was inserted after the machine was
     already booted. However, if the USB stick was plugged in during the
     boot process, it is possible the device could be `/dev/sda`. Make
@@ -384,19 +357,19 @@ configuration of your switch after the installation finishes.
 7.  Create a mount point to mount the USB drive to:
     
     ``` 
-     sudo mkdir /mnt/mountpoint
+sudo mkdir /mnt/mountpoint
     ```
 
 8.  Mount the USB drive to the newly created mount point:
     
     ``` 
-     sudo mount /dev/sdb1 /mnt/mountpoint
+sudo mount /dev/sdb1 /mnt/mountpoint
     ```
 
 9.  Install your license file with the `cl-license` command:
     
     ``` 
-     sudo cl-license -i /mnt/mountpoint/license.txt
+sudo cl-license -i /mnt/mountpoint/license.txt
     ```
 
 10. Check that your license is installed with the `cl-license` command.
@@ -404,11 +377,13 @@ configuration of your switch after the installation finishes.
 11. Reboot the switch to utilize the new license.
     
     ``` 
-     sudo reboot
+sudo reboot
     ```
+</details>
 
-### Instructions for PowerPC and ARM Platforms</span>
+### Instructions for PowerPC and ARM Platforms
 
+<details>
 <summary>Click to expand PowerPC instructions... </summary>
 
 1.  Prepare the switch for installation:
@@ -426,7 +401,7 @@ configuration of your switch after the installation finishes.
     
     {{%notice note%}}
     
-    SSH sessions to the switch get dropped after this step. To complete
+SSH sessions to the switch get dropped after this step. To complete
     the remaining instructions, connect to the console of the switch.
     Cumulus Linux switches display their boot process to the console, so
     you need to monitor the console specifically to complete the next
@@ -510,7 +485,7 @@ configuration of your switch after the installation finishes.
     
     {{%notice warning%}}
     
-    These instructions assume your USB drive is the `/dev/sdb` device,
+These instructions assume your USB drive is the `/dev/sdb` device,
     which is typical if the USB stick was inserted after the machine was
     already booted. However, if the USB stick was plugged in during the
     boot process, it is possible the device could be `/dev/sda`. Make
@@ -522,19 +497,19 @@ configuration of your switch after the installation finishes.
 7.  Create a mount point to mount the USB drive to:
     
     ``` 
-     sudo mkdir /mnt/mountpoint
+sudo mkdir /mnt/mountpoint
     ```
 
 8.  Mount the USB drive to the newly created mount point:
     
     ``` 
-     sudo mount /dev/sdb1 /mnt/mountpoint
+sudo mount /dev/sdb1 /mnt/mountpoint
     ```
 
 9.  Install your license file with the `cl-license` command:
     
     ``` 
-     sudo cl-license -i /mnt/mountpoint/license.txt
+sudo cl-license -i /mnt/mountpoint/license.txt
     ```
 
 10. Check that your license is installed with the `cl-license` command.
@@ -542,21 +517,20 @@ configuration of your switch after the installation finishes.
 11. Reboot the switch to utilize the new license.
     
     ``` 
-     sudo reboot
+sudo reboot
     ```
+</details>
 
-## <span id="src-5115997_InstallingaNewCumulusLinuxImage-alreadyinstalled" class="confluence-anchor-link"></span>Installing a New Image when Cumulus Linux Is already Installed</span>
+## Installing a New Image when Cumulus Linux Is already Installed
 
 Follow these upgrade steps for both major and minor releases, where:
 
   - A major release upgrade is 2.X.X to 3.X.X (e.g. 1.5.1 to 2.5.0)
-
   - A minor release upgrade is X.2.X to X.3.X (e.g. 2.2.0 to 2.5.5)
 
-For more information, see [Upgrading Cumulus
-Linux](Upgrading-Cumulus-Linux.html#src-5116002_UpgradingCumulusLinux-binary_upgrade).
+For more information, see [Upgrading Cumulus Linux](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/#upgrading-via-binary-install-cl-img-install).
 
-### <span id="src-5115997_InstallingaNewCumulusLinuxImage-oniemode" class="confluence-anchor-link"></span>Entering ONIE Mode from Cumulus Linux</span>
+### Entering ONIE Mode from Cumulus Linux
 
 If Cumulus Linux is already installed on the switch, you can enter ONIE
 mode in one of two ways, using:
@@ -566,19 +540,8 @@ mode in one of two ways, using:
     
         cumulus@switch:~$ sudo cl-img-select -r
         cumulus@switch:~$ sudo reboot
-
   - ONIE Install Mode to attempt to automatically discover the image
     from a DHCP server:
     
         cumulus@switch:~$ sudo cl-img-select -i
         cumulus@switch:~$ sudo reboot
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

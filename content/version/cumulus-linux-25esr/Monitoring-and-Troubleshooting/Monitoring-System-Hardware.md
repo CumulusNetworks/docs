@@ -14,28 +14,20 @@ siteSlug: cumulus-linux-25esr
 You monitor system hardware in these ways, using:
 
   - decode-syseeprom
-
   - sensors
-
   - smond
-
   - [Net-SNMP](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/SNMP-Monitoring)
-
   - watchdog
 
-## Commands</span>
+## Commands
 
   - decode-syseeprom
-
   - dmidecode
-
   - lshw
-
   - sensors
-
   - smond
 
-## Monitoring Hardware Using decode-syseeprom</span>
+## Monitoring Hardware Using decode-syseeprom
 
 The `decode-syseeprom` command enables you to retrieve information about
 the switch's EEPROM. If the EEPROM is writable, you can set values on
@@ -63,20 +55,20 @@ For example:
     CRC-32               0xFE   4 0x96543BC5
     (checksum valid)
 
-### Command Options</span>
+### Command Options
 
 Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 
-| Option       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Option       | Description |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \-h, –help   | Displays the help message and exits.                                                                                                                                                                                                                                                                                                                                                                                                                |
-| \-a          | Prints the base MAC address for switch interfaces.                                                                                                                                                                                                                                                                                                                                                                                                  |
-| \-r          | Prints the number of MACs allocated for switch interfaces.                                                                                                                                                                                                                                                                                                                                                                                          |
+| \-h, –help   | Displays the help message and exits.|
+| \-a          | Prints the base MAC address for switch interfaces.|
+| \-r          | Prints the number of MACs allocated for switch interfaces.|
 | \-s          | Sets the EEPROM content if the EEPROM is writable. `args` can be supplied in command line in a comma separated list of the form `'<field>=<value>, ...'. ','` and `'='` are illegal characters in field names and values. Fields that are not specified will default to their current values. If `args` are supplied in the command line, they will be written without confirmation. If `args` is empty, the values will be prompted interactively. |
-| \-t TARGET   | Selects the target EEPROM (`board`, `psu2`, `psu1`) for the read or write operation; default is `board`.                                                                                                                                                                                                                                                                                                                                            |
-| \-e, –serial | Prints the device serial number.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| \-t TARGET   | Selects the target EEPROM (`board`, `psu2`, `psu1`) for the read or write operation; default is `board`.|
+| \-e, –serial | Prints the device serial number.|
 
-### Related Commands</span>
+### Related Commands
 
 You can also use the `dmidecode` command to retrieve hardware
 configuration information that’s been populated in the BIOS.
@@ -84,7 +76,7 @@ configuration information that’s been populated in the BIOS.
 You can use `apt-get` to install the `lshw` program on the switch, which
 also retrieves hardware configuration information.
 
-## Monitoring Hardware Using sensors</span>
+## Monitoring Hardware Using sensors
 
 The `sensors` command provides a method for monitoring the health of
 your switch hardware, such as power, temperature and fan speeds. This
@@ -121,7 +113,7 @@ number of sensors.
 
 {{%/notice%}}
 
-### Command Options</span>
+### Command Options
 
 Usage: `sensors [OPTION]... [CHIP]...`
 
@@ -137,27 +129,19 @@ If `[CHIP]` is not specified in the command, all chip info will be
 printed. Example chip names include:
 
   - lm78-i2c-0-2d \*-i2c-0-2d
-
   - lm78-i2c-0-\* \*-i2c-0-\*
-
   - lm78-i2c-\*-2d \*-i2c-\*-2d
-
   - lm78-i2c-\*-\* \*-i2c-\*-\*
-
   - lm78-isa-0290 \*-isa-0290
-
   - lm78-isa-\* \*-isa-\*
-
   - lm78-\*
 
-<span id="src-5115965_MonitoringSystemHardware-snmp"></span>
+## Monitoring Switch Hardware Using SNMP
 
-## Monitoring Switch Hardware Using SNMP</span>
+The Net-SNMP documentation has been moved to a new chapter, 
+[available here](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/SNMP-Monitoring).
 
-The Net-SNMP documentation has been moved to a new chapter, [available
-here](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/SNMP-Monitoring).
-
-## Monitoring System Units Using smond</span>
+## Monitoring System Units Using smond
 
 The `smond` daemon monitors system units like power supply and fan,
 updates their corresponding LEDs, and logs the change in the state.
@@ -166,7 +150,7 @@ Changes in system unit state are detected via the `cpld` registers.
 health of the system unit, determines the unit's health, and updates the
 system LEDs.
 
-Use ` smonctl  `to display sensor information for the various system
+Use `smonctl` to display sensor information for the various system
 units:
 
     cumulus@switch:~$ smonctl
@@ -185,7 +169,7 @@ units:
     Temp8     (Left side of the board                ):  OK
     Temp9     (Right side of the board               ):  OK
 
-### Command Options</span>
+### Command Options
 
 Usage: `smonctl [OPTION]... [CHIP]...`
 
@@ -196,9 +180,7 @@ Usage: `smonctl [OPTION]... [CHIP]...`
 
 For more information, read `man smond` and `man smonctl`.
 
-<span id="src-5115965_MonitoringSystemHardware-watchdog"></span>
-
-## Keeping the Switch Alive Using the Hardware Watchdog</span>
+## Keeping the Switch Alive Using the Hardware Watchdog
 
 Cumulus Linux includes a simplified version of the ` wd_keepalive(8)
  `daemon from the standard Debian package ` watchdog  `. `wd_keepalive`
@@ -230,30 +212,16 @@ You can modify the settings for the watchdog — like the timeout setting
 and scheduler priority — in its configuration file,
 `/etc/watchdog.conf`.
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/cumulus/switchd.conf
-
   - /etc/cumulus/sysledcontrol.conf
-
   - /etc/sensors.d/\<switch\>.conf - sensor configuration file (do
     **not** edit it\!)
-
   - /etc/watchdog.conf
 
-## Useful Links</span>
+## Useful Links
 
   - <http://packages.debian.org/search?keywords=lshw>
-
   - <http://lm-sensors.org>
-
-  - [Net-SNMP
-    tutorials](http://net-snmp.sourceforge.net/wiki/index.php/Tutorials)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Net-SNMP tutorials](http://net-snmp.sourceforge.net/wiki/index.php/Tutorials)

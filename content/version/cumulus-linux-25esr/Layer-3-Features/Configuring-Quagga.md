@@ -17,7 +17,7 @@ Before you run `quagga`, make sure all relevant daemons, such as
 `zebra`, are running. Make your changes in `/etc/quagga/daemons` then
 restart `quagga` with `service quagga restart`.
 
-## Configuration Files</span>
+## Configuration Files
 
 At startup, `quagga` reads a set of files to determine the startup
 configuration. The files and what they contain are specified below:
@@ -31,7 +31,7 @@ configuration. The files and what they contain are specified below:
 | ospf6d.conf | Configuration file for the OSPFv3 daemon.                                    |
 | bgpd.conf   | Configuration file for the BGP daemon.                                       |
 
-### Starting Quagga</span>
+### Starting Quagga
 
 Quagga does not start by default in Cumulus Linux 2.0 and later
 versions.
@@ -52,7 +52,7 @@ Then, start `quagga`:
 
     cumulus@switch1:~$ sudo service quagga start
 
-### Understanding Integrated Configurations</span>
+### Understanding Integrated Configurations
 
 By default in Cumulus Linux, `quagga` saves the configuration of all
 daemons in a single integrated configuration file, `Quagga.conf`.
@@ -108,7 +108,7 @@ The `daemons` file is not written using the `write mem` command.
 
 {{%/notice%}}
 
-### Restoring the Default Quagga Configuration</span>
+### Restoring the Default Quagga Configuration
 
 If you need to restore the Quagga configuration to the default running
 configuration, you need to delete the `Quagga.conf` file and restart the
@@ -137,14 +137,14 @@ above.
 
 {{%/notice%}}
 
-## Interface IP Addresses</span>
+## Interface IP Addresses
 
 Quagga inherits the IP addresses for the network interfaces from the
 `/etc/network/interfaces` file. This is the recommended way to define
-the addresses. For more information, see [Configuring IP
-Addresses](Configuring-and-Managing-Network-Interfaces.html#src-5116095_ConfiguringandManagingNetworkInterfaces-ip).
+the addresses. For more information, see 
+[Configuring IP Addresses](/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfaces/#configuring-ip-addresses).
 
-## Using the vtysh Modal CLI</span>
+## Using the vtysh Modal CLI
 
 Quagga provides a CLI – `vtysh` – for configuring and displaying the
 state of the protocols. It is invoked by running:
@@ -335,57 +335,27 @@ The current state of the configuration can be viewed via:
     !
     end
 
-<span id="src-5116108_ConfiguringQuagga-nonmodal"></span>
-
-## Using the Cumulus Linux Non-Modal CLI</span>
+## Using the Cumulus Linux Non-Modal CLI
 
 The `vtysh` modal CLI can be difficult to work with and even more
 difficult to script. As an alternative to this, Cumulus Linux contains a
 non-modal version of these commands, structured similar to the Linux
 `ip` command. The available commands are:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Command</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>cl-bgp</p></td>
-<td><p><a href="/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Border-Gateway-Protocol-BGP">BGP</a> commands. See <code>man cl-bgp </code>for details.</p></td>
-</tr>
-<tr class="even">
-<td><p>cl-ospf</p></td>
-<td><p><a href="/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol">OSPFv2</a> commands. For example:<br />
-<code>cumulus@switch:~$ sudo cl-ospf area 0.0.0.1 range 10.10.10.0/24</code></p></td>
-</tr>
-<tr class="odd">
-<td><p>cl-ospf6</p></td>
-<td><p><a href="/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3---Protocol">OSPFv3</a> commands.</p></td>
-</tr>
-<tr class="even">
-<td><p>cl-ra</p></td>
-<td><p>Route advertisement commands. See <code>man cl-ra</code> for details.</p></td>
-</tr>
-<tr class="odd">
-<td><p>cl-rctl</p></td>
-<td><p>Zebra and non-routing protocol-specific commands. See <code>man cl-rctl</code> for details.</p></td>
-</tr>
-</tbody>
-</table>
+|Command|Description|
+|--- |--- |
+|cl-bgp|BGP commands. See man cl-bgp for details.|
+|cl-ospf|OSPFv2 commands. For example:<br />```cumulus@switch:~$ sudo cl-ospf area 0.0.0.1 range 10.10.10.0/24```|
+|cl-ospf6|OSPFv3 commands.|
+|cl-ra|Route advertisement commands. See man cl-ra for details.|
+|cl-rctl|Zebra and non-routing protocol-specific commands. See man cl-rctl for details.|
 
-## Comparing vtysh and Cumulus Linux Commands</span>
+## Comparing vtysh and Cumulus Linux Commands
 
 This section describes how you can use the various Cumulus Linux CLI
 commands to configure Quagga, without using `vtysh`.
 
-### Displaying the Routing Table</span>
+### Displaying the Routing Table
 
 To display the routing table under Quagga, you would run:
 
@@ -395,7 +365,7 @@ To display the routing table with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-rctl route
 
-### Creating a New Neighbor</span>
+### Creating a New Neighbor
 
 To create a new neighbor under Quagga, you would run:
 
@@ -406,7 +376,7 @@ To create a new neighbor with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-bgp as 65002 neighbor add 14.0.0.22 remote-as 65007
 
-### Redistributing Routing Information</span>
+### Redistributing Routing Information
 
 To redistribute routing information from static route entries into RIP
 tables under Quagga, you would run:
@@ -419,7 +389,7 @@ tables with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-bgp as 65002 redistribute add static
 
-### Defining a Static Route</span>
+### Defining a Static Route
 
 To define a static route under Quagga, you would run:
 
@@ -429,7 +399,7 @@ To define a static route with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-rctl ip route add 175.0.0.0/28 interface br1 distance 25
 
-### Configuring an IPv6 Interface</span>
+### Configuring an IPv6 Interface
 
 To configure an IPv6 address under Quagga, you would run:
 
@@ -440,7 +410,7 @@ To configure an IPv6 address with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-rctl interface add swp3 ipv6 address 3002:2123:abcd:2120::41/64
 
-### Enabling PTM</span>
+### Enabling PTM
 
 To enable topology checking (PTM) under Quagga, you would run:
 
@@ -450,10 +420,10 @@ To enable topology checking (PTM) with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-rctl ptm-enable set
 
-### Configuring MTU in IPv6 Network Discovery</span>
+### Configuring MTU in IPv6 Network Discovery
 
 To configure
-[MTU](Layer-1-and-Switch-Port-Attributes.html#src-5116098_Layer1andSwitchPortAttributes-mtu)
+[MTU](/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#mtu)
 in IPv6 network discovery for an interface under Quagga, you would run:
 
     quagga(config)# int swp3
@@ -464,7 +434,7 @@ Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-ra interface swp3 set mtu 9000
 
-### Logging OSPF Adjacency Changes</span>
+### Logging OSPF Adjacency Changes
 
 To log adjacency of OSPF changes under Quagga, you would run:
 
@@ -477,7 +447,7 @@ To log adjacency changes of OSPF with the Cumulus Linux CLI, run:
     cumulus@switch:~$ sudo cl-ospf log-adjacency-changes set
     cumulus@switch:~$ sudo cl-ospf router-id set 3.0.0.21
 
-### Setting OSPF Interface Priority</span>
+### Setting OSPF Interface Priority
 
 To set the OSPF interface priority under Quagga, you would run:
 
@@ -488,7 +458,7 @@ To set the OSPF interface priority with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-ospf interface set swp3 priority 120
 
-### Configuring Timing for OSPF SPF Calculations</span>
+### Configuring Timing for OSPF SPF Calculations
 
 To configure timing for OSPF SPF calculations under Quagga, you would
 run:
@@ -501,7 +471,7 @@ CLI, run:
 
     cumulus@switch:~$ sudo cl-ospf6 timer add throttle spf 40 50 60
 
-### Configuring Hello Packet Intervals</span>
+### Configuring Hello Packet Intervals
 
 To configure the OSPF Hello packet interval in number of seconds for an
 interface under Quagga, you would run:
@@ -514,7 +484,7 @@ interface with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-ospf6 interface set swp4 hello-interval 60
 
-### Displaying OSPF Debugging Status</span>
+### Displaying OSPF Debugging Status
 
 To display OSPF debugging status under Quagga, you would run:
 
@@ -524,7 +494,7 @@ To display OSPF debugging status with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-ospf debug show
 
-### Displaying BGP Information</span>
+### Displaying BGP Information
 
 To display BGP information under Quagga, you would run:
 
@@ -534,18 +504,8 @@ To display BGP information with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-bgp summary
 
-## Useful Links</span>
+## Useful Links
 
   - <http://www.nongnu.org/quagga/docs/docs-info.html#BGP>
-
   - <http://www.nongnu.org/quagga/docs/docs-info.html#IPv6-Support>
-
   - <http://www.nongnu.org/quagga/docs/docs-info.html#Zebra>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

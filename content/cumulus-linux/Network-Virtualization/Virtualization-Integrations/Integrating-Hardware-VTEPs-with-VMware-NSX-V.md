@@ -413,11 +413,3 @@ controller, run the ` ovsdb-client dump Manager  `command:
     _uuid                                inactivity_probe is_connected max_backoff other_config status                                 target
     ------------------------------------ ---------------- ------------ ----------- ------------ -------------------------------------- -------------------
     e700ad21-8fd8-4f09-96dc-fa7cc6e498d8 30000            true         []          {}           {sec_since_connect=“68”, state=ACTIVE} “ssl:54.0.0.2:6632"
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

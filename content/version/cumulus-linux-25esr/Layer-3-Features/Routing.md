@@ -13,11 +13,11 @@ siteSlug: cumulus-linux-25esr
 ---
 This chapter discusses routing on switches running Cumulus Linux.
 
-## Commands</span>
+## Commands
 
   - ip route
 
-## Static Routing via ip route</span>
+## Static Routing via ip route
 
 The `ip route` command allows manipulating the kernel routing table
 directly from the Linux shell. See `man ip(8)` for details. `quagga`
@@ -90,7 +90,7 @@ To delete a static route (does not persist across reboots):
     198.51.100.10/24 dev swp4  proto kernel  scope link  src 198.51.100.11
     198.51.100.20/24 dev br0  proto kernel  scope link  src 198.51.100.21
 
-### Persistently Adding a Static Route</span>
+### Persistently Adding a Static Route
 
 A static route can be persistently added by adding `up ip route add ..`
 into `/etc/network/interfaces`. For example:
@@ -117,7 +117,7 @@ ifupdown](/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfac
 
 {{%/notice%}}
 
-## Static Routing via quagga</span>
+## Static Routing via quagga
 
 Static routes can also be managed via the `quagga` CLI. The routes are
 added to the `quagga` routing table, and then will be updated into the
@@ -199,7 +199,7 @@ To delete a static route (does not persist across reboot):
     C>* 127.0.0.0/8 is directly connected, lo
     switch#
 
-### Persistent Configuration</span>
+### Persistent Configuration
 
 From the quagga CLI, the running configuration can be saved so it
 persists between reboots:
@@ -208,7 +208,7 @@ persists between reboots:
     Configuration saved to /etc/quagga/zebra.conf
     switch# end
 
-## Supported Route Table Entries</span>
+## Supported Route Table Entries
 
 Cumulus Linux supports different numbers of route entries, depending
 upon your switch platform (Trident, Trident+, or Trident II; see the
@@ -223,44 +223,30 @@ Following are the number of route supported on Trident II switches with
 ALPM:
 
   - 32K IPv4 routes
-
   - 16K IPv6 routes
-
   - 32K total routes (both IPv4 and IPv6)
 
 Following are the number of route supported on Trident and Trident+
 switches:
 
   - 16K IPv4 routes
-
   - 8K IPv6 routes
-
   - 16K total routes (both IPv4 and IPv6)
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/network/interfaces
-
   - /etc/quagga/zebra.conf
 
-## Useful Links</span>
+## Useful Links
 
   - <http://linux-ip.net/html/tools-ip-route.html>
-
   - <http://www.nongnu.org/quagga/docs/docs-info.html#Static-Route-Commands>
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - Static routes added via `quagga` can be deleted via Linux shell.
     This operation, while possible, should be avoided. Routes added by
     `quagga` should only be deleted by `quagga`, otherwise `quagga`
     might not be able to clean up all its internal state completely and
     incorrect routing can occur as a result.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

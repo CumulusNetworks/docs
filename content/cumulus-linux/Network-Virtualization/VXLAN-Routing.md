@@ -148,16 +148,16 @@ In the example below, swp8 and swp9 are configured for loopback mode:
      
     ...
 
-After you save your changes to the `ports.conf` file, [restart
-`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
+After you save your changes to the `ports.conf` file,
+[restart `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
 for the changes to take effect.
 
 {{%notice note%}}
 
-VXLAN routing using internal loopback is supported only with [VLAN-aware
-bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode);
-you cannot use a bridge in [traditional
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode).
+VXLAN routing using internal loopback is supported only with
+[VLAN-aware bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode);
+you cannot use a bridge in
+[traditional mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode).
 
 {{%/notice%}}
 
@@ -259,8 +259,8 @@ following `switchd` flag:
     cumulus@exit01:mgmt-vrf:/root$ sudo nano /etc/cumulus/switchd.conf
     hal.bcm.per_vlan_router_mac_lookup = TRUE
 
-After you save your changes to the `switchd.conf` file, [restart
-`switchd`](Configuring-switchd.html#src-8362561_Configuringswitchd-restartswitchd)
+After you save your changes to the `switchd.conf` file,
+[restart `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
 for the change to take effect.
 
 {{%notice warning%}}
@@ -276,11 +276,3 @@ ASIC.
 
 There is no special configuration required for VXLAN routing on the
 Mellanox Spectrum platform.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -17,13 +17,12 @@ The *cumulus* account is a normal user and is in the group *sudo*.
 You can add more user accounts as needed. Like the *cumulus* account,
 these accounts must use `sudo` to execute privileged commands.
 
-## Commands</span>
+## Commands
 
   - sudo
-
   - visudo
 
-## Using sudo</span>
+## Using sudo
 
 `sudo` allows you to execute a command as superuser or another user as
 specified by the security policy. See `man sudo(8)` for details.
@@ -69,7 +68,7 @@ The example below shows how to use `sudo` as a non-privileged user
     3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master br0 state UP mode DEFAULT qlen 500
     link/ether 44:38:39:00:27:9f brd ff:ff:ff:ff:ff:ff
 
-## sudoers Examples</span>
+## sudoers Examples
 
 The following examples show how you grant as few privileges as necessary
 to a user or group of users to allow them to perform the required task.
@@ -79,222 +78,47 @@ with an %.
 When executed by an unprivileged user, the example commands below must
 be prefixed with `sudo.`
 
-<table>
-<thead>
-<tr class="header">
-<th><p>Category</p></th>
-<th><p>Privilege</p></th>
-<th><p>Example Command</p></th>
-<th><p>sudoers Entry</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Monitoring</p></td>
-<td><p>Switch port info</p></td>
-<td><pre><code>ethtool -m swp1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ethtool</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Monitoring</p></td>
-<td><p>System diagnostics</p></td>
-<td><pre><code>cl-support</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-support</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Monitoring</p></td>
-<td><p>Routing diagnostics</p></td>
-<td><pre><code>cl-resource-query</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-resource-query</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Image management</p></td>
-<td><p>Install images</p></td>
-<td><pre><code>cl-img-install http://lab/install.bin</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-img-install</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Image management</p></td>
-<td><p>Swapping slots</p></td>
-<td><pre><code>cl-img-select 1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-img-select</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Image management</p></td>
-<td><p>Clearing an overlay</p></td>
-<td><pre><code>cl-img-clear-overlay 1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-img-clear-overlay</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Package management</p></td>
-<td><p>Any apt-get command</p></td>
-<td><pre><code>apt-get update or apt-get install</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Package management</p></td>
-<td><p>Just apt-get update</p></td>
-<td><pre><code>apt-get update</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get update</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Package management</p></td>
-<td><p>Install packages</p></td>
-<td><pre><code>apt-get install mtr-tiny</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get install *</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Package management</p></td>
-<td><p>Upgrading</p></td>
-<td><pre><code>apt-get upgrade</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get upgrade</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Netfilter</p></td>
-<td><p>Install ACL policies</p></td>
-<td><pre><code>cl-acltool -i</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-acltool</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Netfilter</p></td>
-<td><p>List iptables rules</p></td>
-<td><pre><code>iptables -L</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/iptables</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>L1 + 2 features</p></td>
-<td><p>Any LLDP command</p></td>
-<td><pre><code>lldpcli show neighbors / configure</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>L1 + 2 features</p></td>
-<td><p>Just show neighbors</p></td>
-<td><pre><code>lldpcli show neighbors</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli show neighbours*</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Interfaces</p></td>
-<td><p>Modify any interface</p></td>
-<td><pre><code>ip link set dev swp1 {up|down}</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ip link set *</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Interfaces</p></td>
-<td><p>Up any interface</p></td>
-<td><pre><code>ifup swp1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ifup</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Interfaces</p></td>
-<td><p>Down any interface</p></td>
-<td><pre><code>ifdown swp1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ifdown</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Interfaces</p></td>
-<td><p>Up/down only swp2</p></td>
-<td><pre><code>ifup swp2 / ifdown swp2</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ifup swp2,/sbin/ifdown swp2</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Interfaces</p></td>
-<td><p>Any IP address chg</p></td>
-<td><pre><code>ip addr {add|del} 192.0.2.1/30 dev swp1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ip addr *</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Interfaces</p></td>
-<td><p>Only set IP address</p></td>
-<td><pre><code>ip addr add 192.0.2.1/30 dev swp1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/ip addr add *</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Ethernet bridging</p></td>
-<td><p>Any bridge command</p></td>
-<td><pre><code>brctl addbr br0 / brctl delif br0 swp1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/brctl</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Ethernet bridging</p></td>
-<td><p>Add bridges and ints</p></td>
-<td><pre><code>brctl addbr br0 / brctl addif br0 swp1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/brctl addbr *,/sbin/brctl addif *</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Spanning tree</p></td>
-<td><p>Set STP properties</p></td>
-<td><pre><code>mstpctl setmaxage br2 20</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/sbin/mstpctl</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Troubleshooting</p></td>
-<td><p>Restart switchd</p></td>
-<td><pre><code>service switchd restart</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/sbin/service switchd *</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Troubleshooting</p></td>
-<td><p>Restart any service</p></td>
-<td><pre><code>service switchd cron</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/sbin/service</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>Troubleshooting</p></td>
-<td><p>Packet capture</p></td>
-<td><pre><code>tcpdump</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/sbin/tcpdump</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>L3</p></td>
-<td><p>Add static routes</p></td>
-<td><pre><code>ip route add 10.2.0.0/16 via 10.0.0.1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip route add *</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>L3</p></td>
-<td><p>Delete static routes</p></td>
-<td><pre><code>ip route del 10.2.0.0/16 via 10.0.0.1</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip route del *</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>L3</p></td>
-<td><p>Any static route chg</p></td>
-<td><pre><code>ip route *</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip route *</code></pre></td>
-</tr>
-<tr class="even">
-<td><p>L3</p></td>
-<td><p>Any iproute command</p></td>
-<td><pre><code>ip *</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/bin/ip</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>L3</p></td>
-<td><p>Non-modal OSPF</p></td>
-<td><pre><code>cl-ospf area 0.0.0.1 range 10.0.0.0/24</code></pre></td>
-<td><pre><code>%noc ALL=(ALL) NOPASSWD:/usr/bin/cl-ospf</code></pre></td>
-</tr>
-</tbody>
-</table>
+|Category|Privilege|Example Command|sudoers Entry|
+|--- |--- |--- |--- |
+|Monitoring|Switch port info|`ethtool -m swp1`|`%noc ALL=(ALL) NOPASSWD:/sbin/ethtool`|
+|Monitoring|System diagnostics|`cl-support`|`%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-support`|
+|Monitoring|Routing diagnostics|`cl-resource-query`|`%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-resource-query`|
+|Image management|Install images|`cl-img-install http://lab/install.bin`|`%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-img-install`|
+|Image management|Swapping slots|`cl-img-select 1`|`%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-img-select`|
+|Image management|Clearing an overlay|`cl-img-clear-overlay 1`|`%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-img-clear-overlay`|
+|Package management|Any apt-get command|`apt-get update` or `apt-get install`|`%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get`|
+|Package management|Just apt-get update|`apt-get update`|`%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get update`|
+|Package management|Install packages|`apt-get install mtr-tiny`|`%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get install *`|
+|Package management|Upgrading|`apt-get upgrade`|`%noc ALL=(ALL) NOPASSWD:/usr/bin/apt-get upgrade`|
+|Netfilter|Install ACL policies|`cl-acltool -i`|`%noc ALL=(ALL) NOPASSWD:/usr/cumulus/bin/cl-acltool`|
+|Netfilter|List iptables rules|`iptables -L`|`%noc ALL=(ALL) NOPASSWD:/sbin/iptables`|
+|L1 + 2 features|Any LLDP command|`lldpcli show neighbors / configure`|`%noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli`|
+|L1 + 2 features|Just show neighbors|`lldpcli show neighbors`|`%noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli show neighbours*`|
+|Interfaces|Modify any interface|`ip link set dev swp1 {up|down}`|`%noc ALL=(ALL) NOPASSWD:/sbin/ip link set *`|
+|Interfaces|Up any interface|`ifup swp1`|`%noc ALL=(ALL) NOPASSWD:/sbin/ifup`|
+|Interfaces|Down any interface|`ifdown swp1`|`%noc ALL=(ALL) NOPASSWD:/sbin/ifdown`|
+|Interfaces|Up/down only swp2|`ifup swp2 / ifdown swp2`|`%noc ALL=(ALL) NOPASSWD:/sbin/ifup swp2,/sbin/ifdown swp2`|
+|Interfaces|Any IP address chg|`ip addr {add|del} 192.0.2.1/30 dev swp1`|`%noc ALL=(ALL) NOPASSWD:/sbin/ip addr *`|
+|Interfaces|Only set IP address|`ip addr add 192.0.2.1/30 dev swp1`|`%noc ALL=(ALL) NOPASSWD:/sbin/ip addr add *`|
+|Ethernet bridging|Any bridge command|`brctl addbr br0` / `brctl delif br0 swp1`|`%noc ALL=(ALL) NOPASSWD:/sbin/brctl`|
+|Ethernet bridging|Add bridges and ints|`brctl addbr br0` / `brctl addif br0 swp1`|`%noc ALL=(ALL) NOPASSWD:/sbin/brctl addbr *,/sbin/brctl addif *`|
+|Spanning tree|Set STP properties|`mstpctl setmaxage br2 20`|`%noc ALL=(ALL) NOPASSWD:/sbin/mstpctl`|
+|Troubleshooting|Restart switchd|`service switchd restart`|`%noc ALL=(ALL) NOPASSWD:/usr/sbin/service switchd *`|
+|Troubleshooting|Restart any service|`service switchd cron`|`%noc ALL=(ALL) NOPASSWD:/usr/sbin/service`|
+|Troubleshooting|Packet capture|`tcpdump`|`%noc ALL=(ALL) NOPASSWD:/usr/sbin/tcpdump`|
+|L3|Add static routes|`ip route add 10.2.0.0/16 via 10.0.0.1`|`%noc ALL=(ALL) NOPASSWD:/bin/ip route add *`|
+|L3|Delete static routes|`ip route del 10.2.0.0/16 via 10.0.0.1`|`%noc ALL=(ALL) NOPASSWD:/bin/ip route del *`|
+|L3|Any static route chg|`ip route *`|`%noc ALL=(ALL) NOPASSWD:/bin/ip route *`|
+|L3|Any iproute command|`ip *`|`%noc ALL=(ALL) NOPASSWD:/bin/ip`|
+|L3|Non-modal OSPF|`cl-ospf area 0.0.0.1 range 10.0.0.0/24`|`%noc ALL=(ALL) NOPASSWD:/usr/bin/cl-ospf`|
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/sudoers - default security policy
-
   - /etc/sudoers.d/ - default security policy
 
-## Useful Links</span>
+## Useful Links
 
   - [sudo](https://wiki.debian.org/sudo)
-
   - [Adding Yourself to
     sudoers](http://rubypond.com/blog/adding-yourself-to-the-sudoers-file)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

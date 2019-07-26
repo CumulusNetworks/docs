@@ -14,23 +14,17 @@ siteSlug: cumulus-linux-25esr
 Cumulus Linux contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.
 
-## Commands</span>
+## Commands
 
   - arp
-
   - cl-acltool
-
   - ip
-
   - mz
-
   - ping
-
   - tcpdump
-
   - traceroute
 
-## Checking Reachability Using ping</span>
+## Checking Reachability Using ping
 
 `ping` is used to check reachability of a host. `ping` also calculates
 the time it takes for packets to travel the round trip. See `man ping`
@@ -51,7 +45,7 @@ To test the connection to an IPv6 host:
     64 bytes from fe80::202:ff:fe00:2: icmp_seq=1 ttl=64 time=1.43 ms
     64 bytes from fe80::202:ff:fe00:2: icmp_seq=2 ttl=64 time=0.927 ms
 
-## Printing Route Trace Using traceroute</span>
+## Printing Route Trace Using traceroute
 
 `traceroute` tracks the route that packets take from an IP network on
 their way to a given host. See `man traceroute` for details.
@@ -69,7 +63,7 @@ To track the route to an IPv4 host:
     7  72.14.232.35 (72.14.232.35)  27.505 ms  22.925 ms  22.323 ms
     8  nuq04s19-in-f17.1e100.net (74.125.239.49)  23.544 ms  21.851 ms  22.604 ms
 
-## Manipulating the System ARP Cache</span>
+## Manipulating the System ARP Cache
 
 `arp` manipulates or displays the kernel’s IPv4 network neighbor cache.
 See `man arp` for details.
@@ -97,7 +91,7 @@ To add a static ARP cache entry:
     ? (11.0.3.2) at 00:02:00:00:00:01 [ether] on swp4
     ? (11.0.0.2) at 44:38:39:00:01:c1 [ether] on swp1
 
-## Generating Traffic Using mz</span>
+## Generating Traffic Using mz
 
 `mz` is a fast traffic generator. It can generate a large variety of
 packet types at high speed. See `man mz` for details.
@@ -134,7 +128,7 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
      TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
 
-## <span id="src-5115968_NetworkTroubleshooting-counter_acl" class="confluence-anchor-link"></span>Creating Counter ACL Rules</span>
+## Creating Counter ACL Rules
 
 In Linux, all ACL rules are always counted. To create an ACL rule for
 counting purposes only, set the rule action to ACCEPT. See the
@@ -179,7 +173,7 @@ to reinstall all the rules.
 
 {{%/notice%}}
 
-## <span id="src-5115968_NetworkTroubleshooting-span" class="confluence-anchor-link"></span>Configuring SPAN and ERSPAN</span>
+## Configuring SPAN and ERSPAN
 
 SPAN (Switched Port Analyzer) provides for the mirroring of all packets
 coming in from or going out of an interface (the *SPAN source*), and
@@ -208,9 +202,8 @@ packets may be discarded.
 
 {{%/notice%}}
 
-SPAN and ERSPAN are configured via `cl-acltool`, the [same utility for
-security ACL
-configuration](/version/cumulus-linux-25esr/System-Management/Netfilter-ACLs).
+SPAN and ERSPAN are configured via `cl-acltool`, the 
+[same utility for security ACL configuration](/version/cumulus-linux-25esr/System-Management/Netfilter-ACLs).
 The match criteria for SPAN and ERSPAN can only be an interface; more
 granular match terms are not supported. This SPAN source interface can
 be a port, a subinterface or a bond interface. Both ingress and egress
@@ -230,12 +223,11 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
 {{%/notice%}}
 
-### Configuring SPAN for Switch Ports</span>
+### Configuring SPAN for Switch Ports
 
 This section describes how to set up, install, verify and uninstall SPAN
 rules. In the examples that follow, you will span (mirror) switch port
-swp4 input traffic and swp4 output traffic to destination switch port
-swp19.
+swp4 input traffic and swp4 output traffic to destination switch port swp19.
 
 First, create a rules file in `/etc/cumulus/acl/policy.d/`:
 
@@ -330,7 +322,7 @@ Verify that the SPAN rules were installed:
     38025 7034K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19
     50832   55M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp19
 
-### Configuring SPAN for Bonds</span>
+### Configuring SPAN for Bonds
 
 This section describes how to configure SPAN for all packets going out
 of `bond0` locally to `bond1`.
@@ -367,7 +359,7 @@ Verify that the SPAN rules were installed:
     cumulus@switch:~$ sudo iptables -L -v | grep SPAN
        19  1938 SPAN       all  --  any    bond0   anywhere             anywhere             dport:bond1
 
-### Configuring ERSPAN</span>
+### Configuring ERSPAN
 
 This section describes how to configure ERSPAN for all packets coming in
 from `swp1` to 12.0.0.2:
@@ -414,7 +406,7 @@ frame** option.
 
 {{%/notice%}}
 
-### Removing SPAN Rules</span>
+### Removing SPAN Rules
 
 To remove your SPAN rules, run:
 
@@ -429,23 +421,21 @@ To verify that the SPAN rules were removed:
     cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
     cumulus@switch:~$
 
-## Monitoring Control Plane Traffic with tcpdump</span>
+## Monitoring Control Plane Traffic with tcpdump
 
 You can use `tcpdump` to monitor control plane traffic — traffic sent to
 and coming from the switch CPUs. `tcpdump` does **not** monitor data
 plane traffic; use `cl-acltool` instead (see above).
 
-For more information on tcpdump, read [the `tcpdump`
-documentation](http://www.tcpdump.org/#documentation) and the [`tcpdump`
-man page](http://www.tcpdump.org/manpages/tcpdump.1.html).
+For more information on tcpdump, read 
+[the `tcpdump` documentation](http://www.tcpdump.org/#documentation) 
+and the [`tcpdump` man page](http://www.tcpdump.org/manpages/tcpdump.1.html).
 
 The following example incorporates a few `tcpdump` options:
 
   - `-i bond0`, which captures packets from bond0 to the CPU and from
     the CPU to bond0
-
   - `host 169.254.0.2`, which filters for this IP address
-
   - `-c 10`, which captures 10 packets then stops
 
 <!-- end list -->
@@ -468,30 +458,18 @@ The following example incorporates a few `tcpdump` options:
     12 packets received by filter
     0 packets dropped by kernel
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/cumulus/acl/policy.conf
 
-## Useful Links</span>
+## Useful Links
 
   - [www.perihel.at/sec/mz/mzguide.html](http://www.perihel.at/sec/mz/mzguide.html)
-
   - [en.wikipedia.org/wiki/Ping](http://en.wikipedia.org/wiki/Ping)
-
   - [www.tcpdump.org](http://www.tcpdump.org)
-
   - [en.wikipedia.org/wiki/Traceroute](https://en.wikipedia.org/wiki/Traceroute)
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - SPAN rules cannot match outgoing subinterfaces.
-
   - ERSPAN rules must include `ttl` for versions 1.5.1 and earlier.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

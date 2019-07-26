@@ -21,7 +21,6 @@ Management VRF creates two routing tables within the Linux kernel:
 
   - *main*: This is the routing table for all the data plane switch
     ports.
-
   - *mgmt*: This is the routing table for eth0.
 
 Cumulus Linux only supports eth0 as the management interface. VLAN
@@ -43,7 +42,7 @@ otherwise. For example, when initiating an SSH connection, you can use
 `-b <loopback IP address>` to SSH to a device via the data plane
 network.
 
-## Enabling Management VRF</span>
+## Enabling Management VRF
 
 To enable management VRF, complete the following steps:
 
@@ -61,7 +60,7 @@ To enable management VRF, complete the following steps:
     
     {{%notice note%}}
     
-    Management VRF has hooks in the eth0 DHCP client to force the
+Management VRF has hooks in the eth0 DHCP client to force the
     correct mgmt table routes when the DHCP address is obtained. If you
     use static IP address assignment on eth0, you have to manually
     configure the routes before you execute this step. See the 'Using
@@ -75,22 +74,22 @@ To enable management VRF, complete the following steps:
     
     {{%notice note%}}
     
-    You can also bounce adjacency to the peer advertising the default
+You can also bounce adjacency to the peer advertising the default
     route to get the default route from the data plane network into the
     main routing table.
     
     {{%/notice%}}
 
-### Verifying Management VRF</span>
+### Verifying Management VRF
 
 To check the status of management VRF, run:
 
     cl-mgmtvrf --status
 
-This will display `cl-mgmtvrf is NOT enabled` or `cl-mgmtvrf is
-enabled`, depending upon whether management VRF is disabled or enabled.
+This will display `cl-mgmtvrf is NOT enabled` or 
+`cl-mgmtvrf is enabled`, depending upon whether management VRF is disabled or enabled.
 
-### Disabling Management VRF</span>
+### Disabling Management VRF
 
 To disable managment VRF, run:
 
@@ -104,7 +103,7 @@ main routing table.
 
 {{%/notice%}}
 
-## Using ping or traceroute</span>
+## Using ping or traceroute
 
 By default, issuing a `ping` or `traceroute` assumes the packet should
 be sent to the dataplane network (the main routing table). If you wish
@@ -124,7 +123,7 @@ support for the DNS server in the *main* routing table.
 
 {{%/notice%}}
 
-## OSPF and BGP</span>
+## OSPF and BGP
 
 In general, no changes are required for either BGP or OSPF. Quagga was
 updated in Cumulus Linux 2.5.3 to be aware of the management VRF and
@@ -133,7 +132,7 @@ includes BGP peering via loopback interfaces. BGP does routing lookups
 in the default table. However, one modification you may consider has to
 do with how your routes get redistributed.
 
-### Redistributing Routes in Management VRF</span>
+### Redistributing Routes in Management VRF
 
 The control that management VRF has over the local routing table does
 not extend to how the routes are redistributed when using routing
@@ -163,7 +162,7 @@ in this way (for both BGP and OSPF):
     !
     route-map redistribute-connected permit 1000
 
-## SNMP Traps Use eth0 Only</span>
+## SNMP Traps Use eth0 Only
 
 SNMP cannot currently use a switch port to send data. For any SNMP
 traps, this traffic gets sent out to eth0. Cumulus Networks will support
@@ -171,11 +170,11 @@ switch ports in the future.
 
 This restriction only applies to traps; SNMP polling is not affected.
 
-## SSH</span>
+## SSH
 
 If you SSH to the switch through a switch port, it works as expected. If
-you need to SSH from the device out a switch port, use `ssh -b
-<ip_address_of_swp_port>`. For example:
+you need to SSH from the device out a switch port, use 
+`ssh -b <ip_address_of_swp_port>`. For example:
 
     cumulus@leaf1$ ip addr show swp17
     19: swp17: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 500
@@ -186,7 +185,7 @@ you need to SSH from the device out a switch port, use `ssh -b
     
     cumulus@leaf1$ ssh -b 10.23.23.2 10.3.3.3
 
-## Viewing the Routing Tables</span>
+## Viewing the Routing Tables
 
 When you look at the routing table with `ip route show`, you are looking
 at the switch port (*main*) table. You can also see the dataplane
@@ -204,7 +203,7 @@ To look at information about eth0 (the management routing table), use
     10.23.23.0/24 dev swp17  proto kernel  scope link  src 10.23.23.2
     192.168.0.0/24 dev eth0  proto kernel  scope link  src 192.168.0.11
 
-### Viewing a Single Route</span>
+### Viewing a Single Route
 
 Note that if you use `ip route get` to return information about a single
 route, the command resolves over the *mgmt* table by default. To get
@@ -216,7 +215,7 @@ Or:
 
     sudo cl-rctl ip route show <addr> 
 
-## Using Static IP Addresses on eth0</span>
+## Using Static IP Addresses on eth0
 
 If you're using DHCP on your management network, the Management VRF
 feature has hooks in the eth0 DHCP client to automatically add the
@@ -258,12 +257,12 @@ can be ignored:
 
 {{%/notice%}}
 
-## Incompatibility with cl-ns-mgmt</span>
+## Incompatibility with cl-ns-mgmt
 
 {{%notice warning%}}
 
-If you are using the Cumulus Linux [management
-namespace](https://support.cumulusnetworks.com/hc/en-us/articles/202325278)
+If you are using the Cumulus Linux 
+[management namespace](https://support.cumulusnetworks.com/hc/en-us/articles/202325278)
 feature (via the `cl-ns-mgmt` utility), you cannot enable management
 VRF, as the two features are incompatible. Management VRF does not run
 if Cumulus Linux detects that you have management namespaces enabled,
@@ -271,11 +270,11 @@ and vice versa.
 
 {{%/notice%}}
 
-## Log Files</span>
+## Log Files
 
   - /var/log/cl-mgmtvrf.log
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - Unlike earlier versions of Cumulus Linux, with management VRF
     enabled, sFlow now sends and receives packets through switch ports
@@ -283,20 +282,16 @@ and vice versa.
     available out of the main table. To enable this, contact the
     [Cumulus Networks support
     team](https://support.cumulusnetworks.com/hc/en-us/requests/new).
-
   - If you are using an [MLAG
     configuration](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)
     when the eth0 management interface is enabled, you cannot specify a
     backup link (via `clagd-backup-ip`) over the switch ports.
-
   - Duplicate IP addresses are not supported i.e. you cannot have the
     same IP address in both the management network and the data network.
-
   - DHCP relay does not work with `cl-mgmtvrf` when the DHCP servers are
     on the management network. For more information, refer to the
     [knowledge base
     article](https://support.cumulusnetworks.com/hc/en-us/articles/214745028).
-
   - Cumulus Linux supports both DHCP and static DNS entries over
     management VRF through IP FIB rules. These rules are added to direct
     lookups to the DNS addresses out of the management VRF. However,
@@ -307,11 +302,3 @@ and vice versa.
     Because DNS lookups are forced out of the management interface using
     FIB rules, this could affect data plane ports if there are
     overlapping addresses.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

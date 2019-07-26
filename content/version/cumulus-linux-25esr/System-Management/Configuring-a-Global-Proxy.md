@@ -11,9 +11,8 @@ version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
-[Global HTTP and HTTPS
-proxies](https://wiki.archlinux.org/index.php/proxy_settings) are
-configured in the `/etc/profile.d/` directory of Cumulus Linux.
+[Global HTTP and HTTPS proxies](https://wiki.archlinux.org/index.php/proxy_settings) 
+are configured in the `/etc/profile.d/` directory of Cumulus Linux.
 
 1.  In a terminal, create a new file in the `/etc/profile.d/` directory.
     In the code example below, the file is called `proxy`, and is
@@ -46,16 +45,7 @@ proxy is set up correctly:
     
         cumulus@switch:~$ echo $http_proxy
         http://myproxy.domain.com:8080
-
   - HTTPS proxy:
     
         cumulus@switch:~$ echo $https_proxy
         https://myproxy.domain.com:8080
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

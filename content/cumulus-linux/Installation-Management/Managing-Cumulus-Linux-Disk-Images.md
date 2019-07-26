@@ -15,10 +15,9 @@ The Cumulus Linux operating system resides on a switch as a *disk
 image*. This section discusses how to manage the disk image.
 
 For information on installing a new Cumulus Linux disk image, refer to
-[Installing a New Cumulus Linux
-Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
-For information on upgrading Cumulus Linux, refer to [Upgrading Cumulus
-Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux).
+[Installing a New Cumulus Linux Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
+For information on upgrading Cumulus Linux, refer to 
+[Upgrading Cumulus Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux).
 
 ## Determine the Switch Platform
 
@@ -35,8 +34,8 @@ On an ARM platform, `uname -m` outputs *armv7l*:
     cumulus@ARMswitch$ uname -m
      armv7l
 
-You can also visit the HCL ([hardware compatibility
-list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
+You can also visit the HCL 
+([hardware compatibility list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
 to look at your hardware and determine the processor type.
 
 ## Reprovision the System (Restart the Installer)
@@ -176,11 +175,3 @@ For example, to verify the contents of an image file called
 
 [Open Network Install Environment (ONIE) Home
 Page](http://opencomputeproject.github.io/onie/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

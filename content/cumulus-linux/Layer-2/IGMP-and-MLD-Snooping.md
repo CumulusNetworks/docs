@@ -15,16 +15,14 @@ IGMP (Internet Group Management Protocol) and MLD (Multicast Listener
 Discovery) snooping are implemented in the bridge driver in the Cumulus
 Linux kernel and are enabled by default. IGMP snooping processes IGMP
 v1/v2/v3 reports received on a bridge port in a bridge to identify the
-hosts which would like to receive multicast traffic destined to that
-group.
+hosts which would like to receive multicast traffic destined to that group.
 
 {{%notice note%}}
 
 In Cumulus Linux 3.7.4 and later, IGMP and MLD snooping is supported
 over VXLAN bridges on Broadcom switches; however, this feature is *not*
-enabled by default. To enable IGMP and MLD over VXLAN, see [Configure
-IGMP/MLD Snooping over
-VXLAN](#configure-igmp-mld-snooping-over-vxlan).
+enabled by default. To enable IGMP and MLD over VXLAN, see 
+[Configure IGMP/MLD Snooping over VXLAN](#configure-igmp-mld-snooping-over-vxlan).
 
 {{%/notice%}}
 
@@ -51,20 +49,18 @@ ports interested in receiving multicast traffic destined to that group.
 Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN
 bridges on Broadcom switches, where VXLAN ports are set as router ports.
 
-To enable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge>
-mcsnoop yes` command:
+To enable IGMP/MLD snooping over VXLAN, run the 
+`net add bridge <bridge> mcsnoop yes` command:
 
     cumulus@switch:~$ net add bridge mybridge mcsnoop yes
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
 Cumulus Networks recommends that you also configure IGMP/MLD querier.
-See [Configure IGMP/MLD
-Querier](#configure-igmp-mld-querier),
-below.
+See [Configure IGMP/MLD Querier](#configure-igmp-mld-querier) below.
 
-To disable IGMP/MLD snooping over VXLAN, run the `net add bridge
-<bridge> mcsnoop no` command.
+To disable IGMP/MLD snooping over VXLAN, run the 
+`net add bridge <bridge> mcsnoop no` command.
 
 ## Configure IGMP/MLD Querier
 
@@ -79,8 +75,8 @@ address of the queries to be the bridge IP address, configure
 For an explanation of the relevant parameters, see the
 `ifupdown-addons-interfaces` man page.
 
-For a [VLAN-aware
-bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
+For a 
+[VLAN-aware bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
 use a configuration like the following:
 
     auto bridge.100
@@ -106,8 +102,8 @@ You can specify a range of VLANs as well. For example:
     vlan bridge.[1-200]
       bridge-igmp-querier-src 123.1.1.1
 
-For a bridge in [traditional
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/), use a
+For a bridge in 
+[traditional mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/), use a
 configuration like the following:
 
     auto br0
@@ -120,8 +116,7 @@ configuration like the following:
 
 ## Disable IGMP and MLD Snooping
 
-To disable
-IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
+To disable IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
 
 The example NCLU commands below create a VLAN-aware bridge interface for
 a VRR-enabled network:
@@ -144,8 +139,7 @@ example bridge in `/etc/network/interfaces`:
 
 ## Troubleshooting
 
-To show the IGMP/MLD snooping bridge state, run `brctl showstp
-<bridge>`:
+To show the IGMP/MLD snooping bridge state, run `brctl showstp <bridge>`:
 
     cumulus@switch:~$ sudo brctl showstp bridge
      bridge
@@ -208,21 +202,8 @@ command. To show router ports and group information use the `bridge -d
 ## Related Information
 
   - [tools.ietf.org/html/rfc4541](https://tools.ietf.org/html/rfc4541)
-
   - [en.wikipedia.org/wiki/IGMP\_snooping](http://en.wikipedia.org/wiki/IGMP_snooping)
-
   - [tools.ietf.org/rfc/rfc2236.txt](http://tools.ietf.org/rfc/rfc2236.txt)
-
   - [tools.ietf.org/html/rfc3376](http://tools.ietf.org/html/rfc3376)
-
   - [tools.ietf.org/search/rfc2710](http://tools.ietf.org/search/rfc2710)
-
   - [tools.ietf.org/html/rfc3810](http://tools.ietf.org/html/rfc3810)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

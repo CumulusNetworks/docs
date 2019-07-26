@@ -18,7 +18,6 @@ Cumulus Linux supports the following:
   - Open Shortest Path First
     ([v2](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF) and
     [v3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3))
-
   - [Border Gateway
     Protocol](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP)
 
@@ -45,22 +44,13 @@ the world (called EGP or Exterior Gateway Protocol) such as
 `zebra` is the daemon that resolves the routes provided by multiple
 protocols (including static routes specified by the user) and programs
 these routes in the Linux kernel via `netlink` (in Linux). `zebra` does
-more than this, of course. The [FRRouting
-documentation](https://frrouting.org/user-guide/zebra.html) defines
-`zebra` as the IP routing manager for FRRouting that "provides kernel
+more than this, of course. The 
+[FRRouting documentation](https://frrouting.org/user-guide/zebra.html) 
+defines `zebra` as the IP routing manager for FRRouting that "provides kernel
 routing table updates, interface lookups, and redistribution of routes
 between different routing protocols."
 
 ## Related Information
 
   - [frrouting.org](https://frrouting.org)
-
   - [GitHub](https://github.com/FRRouting/frr)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

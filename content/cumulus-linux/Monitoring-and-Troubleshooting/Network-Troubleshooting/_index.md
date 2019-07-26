@@ -292,35 +292,25 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
   - For Broadcom switches, Cumulus Linux supports a maximum of two SPAN
     destinations.
-
   - Because SPAN and ERSPAN are done in hardware, eth0 is not supported
     as a destination.
-
   - For Mellanox Spectrum switches, Cumulus Linux supports only a single
     SPAN destination in atomic mode or three SPAN destinations in
     non-atomic mode.
-
   - Multiple rules (SPAN sources) can point to the same SPAN
     destination, but a given SPAN source *cannot* specify two SPAN
     destinations.
-
   - To configure SPAN or ERSPAN on a Tomahawk or Trident3 switch, you
-    must enable [non-atomic update
-    mode](Netfilter-ACLs.html#src-8362563_Netfilter-ACLs-nonatomic-update-mode).
-
+    must enable
+    [non-atomic update mode](/cumulus-linux/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode).
   - Mellanox switches reject SPAN ACL rules for an output interface that
     is a subinterface.
-
   - Mirrored traffic is not guaranteed. If the MTP is congested,
     mirrored packets might be discarded.
-
   - Cut-through mode is not supported for ERSPAN in Cumulus Linux on
     switches using Broadcom Tomahawk, Trident II+ and Trident II ASICs.
-
   - On Broadcom switches, SPAN does not capture egress traffic.
-
   - Cumulus Linux does not support IPv6 ERSPAN destinations.
-
   - ERSPAN does not cause the kernel to send ARP requests to resolve the
     next hop for the ERSPAN destination. If an ARP entry for the
     destination/next hop does not already exist in the kernel, you need
@@ -483,8 +473,7 @@ from `swp1` to 12.0.0.2.
 
 **Cut-through Mode Support**
 
-[Cut-through
-mode](Buffer-and-Queue-Management.html#src-8363032_BufferandQueueManagement-cut_through_mode)
+[Cut-through mode](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-cut-through-mode-and-store-and-forward-switching)
 is **not** supported for ERSPAN in Cumulus Linux on switches using
 Broadcom Tomahawk, Trident II+ and Trident II ASICs.
 
@@ -550,13 +539,9 @@ Cumulus Linux supports selective spanning for `iptables` only.
 The following matching fields are supported:
 
   - IPv4 SIP/DIP
-
   - IP protocol
-
   - L4 (TCP/UDP) src/dst port
-
   - TCP flags
-
   - An ingress port/wildcard (swp+) can be specified in addition
 
 {{%notice note%}}
@@ -573,20 +558,16 @@ Exceeding this limit produces an error when you install the rules with
     DIP 20.0.1.2 to port swp1s1:
 
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j SPAN --dport swp1s2
-
   - To mirror icmp packets from all ports to swp1s2:
 
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -p icmp -j SPAN --dport swp1s2
-
   - To mirror forwarded UDP packets received from port swp1s0, towards
     DIP 20.0.1.2 and destination port 53:
 
         -A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j SPAN --dport swp1s2
-
   - To mirror all forwarded TCP packets with only SYN set:
 
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j SPAN --dport swp1s2
-
   - To mirror all forwarded TCP packets with only FIN set:
 
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j SPAN --dport swp1s2
@@ -597,20 +578,16 @@ Exceeding this limit produces an error when you install the rules with
     DIP 20.0.1.2:
 
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
-
   - To mirror ICMP packets from all ports:
 
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -p icmp -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
-
   - To mirror forwarded UDP packets received from port swp1s0, towards
     DIP 20.0.1.2 and destination port 53:
 
         -A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
-
   - To mirror all forwarded TCP packets with only SYN set:
 
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
-
   - To mirror all forwarded TCP packets with only FIN set:
 
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
@@ -644,9 +621,7 @@ The following example incorporates a few `tcpdump` options:
 
   - `-i bond0`, which captures packets from bond0 to the CPU and from
     the CPU to bond0
-
   - `host 169.254.0.2`, which filters for this IP address
-
   - `-c 10`, which captures 10 packets then stops
 
 <!-- end list -->
@@ -672,15 +647,5 @@ The following example incorporates a few `tcpdump` options:
 ## Related Information
 
   - [en.wikipedia.org/wiki/Ping](http://en.wikipedia.org/wiki/Ping)
-
   - [en.wikipedia.org/wiki/Traceroute](https://en.wikipedia.org/wiki/Traceroute)
-
   - [www.tcpdump.org](http://www.tcpdump.org)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

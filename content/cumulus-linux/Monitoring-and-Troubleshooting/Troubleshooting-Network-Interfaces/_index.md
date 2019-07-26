@@ -109,31 +109,33 @@ An easy way to debug and get details about template errors is to use the
 `mako-render` command on your interfaces template file or on
 `/etc/network/interfaces` itself.
 
-    cumulus@switch:~$ sudo mako-render /etc/network/interfaces
-    # This file describes the network interfaces available on your system
-    # and how to activate them. For more information, see interfaces(5).
+```
+cumulus@switch:~$ sudo mako-render /etc/network/interfaces
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
 
-    # The loopback network interface
-    auto lo
-    iface lo inet loopback
+# The loopback network interface
+auto lo
+iface lo inet loopback
 
-    # The primary network interface
-    auto eth0
-    iface eth0 inet dhcp
-    #auto eth1
-    #iface eth1 inet dhcp
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+#auto eth1
+#iface eth1 inet dhcp
 
-    # Include any platform-specific interface configuration
-    source /etc/network/interfaces.d/*.if
+# Include any platform-specific interface configuration
+source /etc/network/interfaces.d/*.if
 
-    # ssim2 added
-    auto swp45
-    iface swp45
+# ssim2 added
+auto swp45
+iface swp45
      
-    auto swp46
-    iface swp46
+auto swp46
+iface swp46
 
-    cumulus@switch:~$ sudo mako-render /etc/network/interfaces.d/<interfaces_stub_file>
+cumulus@switch:~$ sudo mako-render /etc/network/interfaces.d/<interfaces_stub_file>
+```
 
 ## ifdown Cannot Find an Interface that Exists
 
@@ -191,7 +193,7 @@ reload the configuration with `ifreload -a`, bond1 is still part of br0.
 ## MTU Set on a Logical Interface Fails with Error: "Numerical result out of range"
 
 This error occurs when the
-[MTU](Switch-Port-Attributes.html#src-8363026_SwitchPortAttributes-mtu)
+[MTU](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu)
 you are trying to set on an interface is higher than the MTU of the
 lower interface or dependent interface. Linux expects the upper
 interface to have an MTU less than or equal to the MTU on the lower
@@ -242,13 +244,5 @@ have a valid hardware address.
 Losing a large number of packets across an MLAG peerlink interface may
 not be a problem. Instead this could be occurring in order to prevent
 looping of BUM (broadcast, unknown unicast and multicast) packets. For
-more information, and how to detect these drops, read the [MLAG
-chapter](Multi-Chassis-Link-Aggregation-MLAG.html#src-8362677_Multi-ChassisLinkAggregation-MLAG-drops).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+more information, and how to detect these drops, read the
+[MLAG chapter](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#large-packet-drops-on-the-peer-link-interface).

@@ -41,33 +41,12 @@ This chapter outlines the configurations for both options.
 VXLAN active-active mode requires the following underlying technologies
 to work correctly.
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Technology</p></th>
-<th><p>More Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>MLAG</p></td>
-<td><p>Refer to the <a href="#src-8362725_VXLANActive-ActiveMode-configuring">MLAG chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
-</tr>
-<tr class="even">
-<td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/cumulus-linux/Layer-3/Open-Shortest-Path-First---OSPF">OSPF chapter</a> or the <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the BGP demonstration are provided below.</p></td>
-</tr>
-<tr class="odd">
-<td><p>STP</p></td>
-<td><p>You must enable <a href="#src-8362725_VXLANActive-ActiveMode-bpdu">BPDU filter and BPDU guard</a> in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.<br />
-Configurations for the demonstration are provided below.</p></td>
-</tr>
-</tbody>
-</table>
+
+|Technology|More Information|
+|--- |--- |
+|MLAG|Refer to the [MLAG chapter](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) for more detailed configuration information. Configurations for the demonstration are provided below.|
+|OSPF or BGP|Refer to the [OSPF chapter](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/) or the [BGP chapter](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/) for more detailed configuration information. Configurations for the BGP demonstration are provided below.|
+|STP|You must enable [BPDU filter](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-filter) and [BPDU guard](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard) in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN. Configurations for the demonstration are provided below.|
 
 ### Active-active VTEP Anycast IP Behavior
 
@@ -120,7 +99,6 @@ The consistency checks include:
 
   - The anycast virtual IP address for VXLAN termination must be the
     same on each pair of switches.
-
   - A VXLAN interface with the same VXLAN ID must be configured and
     administratively up on both switches.
 
@@ -969,8 +947,8 @@ that there is a `vxlan-id` mis-match on VXLAN10.
 
 Do not reuse the VLAN used for the peer link layer 3 subinterface for
 any other interface in the system. A high VLAN ID value is recommended.
-For more information on VLAN ID ranges, refer to the [VLAN-aware bridge
-chapter](VLAN-aware-Bridge-Mode.html#src-8362673_VLAN-awareBridgeMode-vlan_range).
+For more information on VLAN ID ranges, refer to the
+[VLAN-aware bridge chapter](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/#reserved-vlan-range).
 
 ### Bonds with Vagrant in Cumulus VX
 
@@ -1046,11 +1024,3 @@ mode can function correctly.
 
   - [Network virtualization chapter, Cumulus Linux user
     guide](/cumulus-linux/Network-Virtualization/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

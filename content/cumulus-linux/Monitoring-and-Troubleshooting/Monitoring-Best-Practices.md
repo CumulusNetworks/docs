@@ -132,8 +132,8 @@ cumulus@switch:~$ ledmgrd -j</code></pre></td>
 {{%notice note%}}
 
 Not all switch models include a sensor for monitoring power consumption
-and voltage. See [this
-note](Monitoring-System-Hardware.html#src-8362594_MonitoringSystemHardware-smond)
+and voltage. See
+[this note](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/#monitor-system-units-using-smond)
 for details.
 
 {{%/notice%}}

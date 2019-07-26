@@ -15,7 +15,7 @@ You use the Advanced Packaging Tool (APT) to manage additional
 applications (in the form of packages) and to install the latest
 updates.
 
-## Commands</span>
+## Commands
 
   - apt-get
 
@@ -23,7 +23,7 @@ updates.
 
   - dpkg
 
-## Updating the Package Cache</span>
+## Updating the Package Cache
 
 To work properly, APT relies on a local cache of the available packages.
 You must populate the cache initially, and then periodically update it
@@ -60,7 +60,7 @@ with `apt-get update`:
     Fetched 1,011 kB in 1s (797 kB/s)
     Reading package lists... Done
 
-## Listing Available Packages</span>
+## Listing Available Packages
 
 Once the cache is populated, use `apt-cache` to search the cache to find
 the packages you are interested in or to get information about an
@@ -81,7 +81,7 @@ sub-commands:
     rsyslog - reliable system and kernel logging daemon
     libwrap0 - Wietse Venema's TCP wrappers library
     netbase - Basic TCP/IP networking system
-    
+
     cumulus@switch:~$ apt-cache show tcpdump
     Package: tcpdump
     Status: install ok installed
@@ -115,7 +115,7 @@ will match on more packages than you would expect.
 
 {{%/notice%}}
 
-## Adding a Package</span>
+## Adding a Package
 
 In order to add a new package, first ensure the package is not already
 installed in the system:
@@ -151,9 +151,9 @@ For example, the following adds the package `tcpreplay` to the system:
     Unpacking tcpreplay (from .../tcpreplay_4.6.2-5+deb8u1_amd64.deb) ...
     Processing triggers for man-db ...
     Setting up tcpreplay (4.6.2-5+deb8u1) ...
-    cumulus@switch:~$ 
+    cumulus@switch:~$
 
-## Listing Installed Packages</span>
+## Listing Installed Packages
 
 The APT cache contains information about all the packages available on
 the repository. To see which packages are actually installed on your
@@ -170,9 +170,9 @@ system that have "tcp" in their package names:
     ii  tcpdump                       4.6.2-5+deb8u1      amd64               command-line network traffic analyzer
     cumulus@switch:~$
 
-## Upgrading to Newer Versions of Installed Packages</span>
+## Upgrading to Newer Versions of Installed Packages
 
-### Upgrading a Single Package</span>
+### Upgrading a Single Package
 
 A single package can be upgraded by simply installing that package again
 with `apt-get install`. You should perform an update first so that the
@@ -182,13 +182,13 @@ To see if a package needs to be upgraded, use `apt-cache show <pkgname>`
 to show the latest version number of the package. Use `dpkg -l
 <pkgname>` to show the version number of the installed package.
 
-### Upgrading All Packages</span>
+### Upgrading All Packages
 
 You can update all packages on the system by running `apt-get update`,
 then `apt-get upgrade`. This upgrades all installed versions with their
 latest versions but will not install any new packages.
 
-## Adding Packages from Another Repository</span>
+## Adding Packages from Another Repository
 
 As shipped, Cumulus Linux searches the Cumulus Linux repository for
 available packages. You can add additional repositories to search by
@@ -223,13 +223,13 @@ To install a new package, please complete the following steps:
 
 1.  First, ensure package is not already installed in the system. Use
     the `dpkg` command:
-    
+
         cumulus@switch:~$ dpkg -l | grep {name of package}
 
 2.  If the package is installed already, ensure it's the version you
     need. If it's an older version, then update the package from the
     Cumulus Linux repository:
-    
+
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install {name of package}
 
@@ -239,27 +239,27 @@ To install a new package, please complete the following steps:
     please edit and add the appropriate source to the file. For example,
     add the following if you wanted a package from the Debian repository
     that is **not** in the Cumulus Linux repository:
-    
+
         deb http://http.us.debian.org/debian jessie main
         deb http://security.debian.org/ jessie/updates main
-    
+
     Otherwise, the repository may be listed in `/etc/apt/sources.list`
     but is commented out, as can be the case with the early-access
     repository:
-    
+
         #deb http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus
-    
+
     To uncomment the repository, remove the \# at the start of the line,
     then save the file:
-    
+
         deb http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus
 
 4.  Run `apt-get update` then install the package:
-    
+
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install {name of package}
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/apt/apt.conf
 
@@ -267,7 +267,7 @@ To install a new package, please complete the following steps:
 
   - /etc/apt/sources.list
 
-## Useful Links</span>
+## Useful Links
 
   - [Debian GNU/Linux FAQ, Ch 8 Package management
     tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)

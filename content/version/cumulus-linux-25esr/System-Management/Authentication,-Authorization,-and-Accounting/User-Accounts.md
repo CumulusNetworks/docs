@@ -15,16 +15,8 @@ By default, Cumulus Linux has two user accounts: *cumulus* and *root*.
 
 The *cumulus* account:
 
-  - 
-    
-    <div id="src-5115902_indexterm-AB83E0A7C0601B9F50B50BB62804C969">
-    
-    Default password is *CumulusLinux\!*
-    
-    </div>
-
+  - Default password is *CumulusLinux\!*
   - Is a user account in the *sudo* group with sudo privileges
-
   - User can log in to the system via all the usual channels like
     console and
     [SSH](/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access)
@@ -32,9 +24,7 @@ The *cumulus* account:
 The *root* account:
 
   - Default password is disabled by default
-
   - Has the standard Linux root user access to everything on the switch
-
   - Disabled password prohibits login to the switch by SSH, telnet, FTP,
     and so forth
 
@@ -48,19 +38,11 @@ log in directly to the switch. The Cumulus Linux default root account
 behavior is consistent with Debian.
 
 You can add more user accounts as needed. Like the *cumulus* account,
-these accounts must use `sudo` to [execute privileged
-commands](/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges),
+these accounts must use `sudo` to 
+[execute privileged commands](/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges),
 so be sure to include them in the *sudo* group.
 
 To access the switch without any password requires booting into a single
-shell/user mode. [Here are the
-instructions](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery)
+shell/user mode.
+[Here are the instructions](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery)
 on how to do this using PowerPC and x86 switches.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

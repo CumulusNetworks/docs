@@ -105,16 +105,7 @@ You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
 
 ## Try OpenStack with Cumulus in the Cloud
 
-OpenStack Neutron is available as a preconfigured option with [Cumulus
-in the
-Cloud](https://cumulusnetworks.com/products/cumulus-in-the-cloud/). You
-just need to add the ML2 driver, as per the [instructions
-above](#src-8362989_OpenStackNeutronML2andCumulusLinux-install).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+OpenStack Neutron is available as a preconfigured option with
+[Cumulus in the Cloud](https://cumulusnetworks.com/products/cumulus-in-the-cloud/).
+You just need to add the ML2 driver, as per the
+[instructions above](#install-and-configure-the-cumulus-networks-modular-layer-2-mechanism-driver).

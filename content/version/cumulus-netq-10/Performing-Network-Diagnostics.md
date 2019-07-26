@@ -19,7 +19,7 @@ for analysis. This enables you to replay and analyze network-wide events
 for better visibility and to correlate patterns. This allows for
 root-cause analysis and optimization of network configs for the future.
 
-## Diagnosing an Event after It Occurs</span>
+## Diagnosing an Event after It Occurs
 
 NetQ provides a number of commands to enable you to diagnose past
 events.
@@ -40,7 +40,7 @@ For example, say you get an alert about a BGP session failure. You can
 quickly run `netq check bgp` to determine what sessions failed:
 
     cumulus@leaf01:~$ netq check bgp
-    Total Nodes: 25, Failed Nodes: 4, Total Sessions: 228 , Failed Sessions: 6, 
+    Total Nodes: 25, Failed Nodes: 4, Total Sessions: 228 , Failed Sessions: 6,
     Node        Neighbor    Peer ID     Reason    Time
     ----------  ----------  ----------  --------  -------
     exit01      swp7.2      spine02     Idle      53m ago
@@ -82,7 +82,7 @@ the list:
     leaf03           swp51(spine01)               default          64515      65000      Estd   5            Add      5h ago
     spine01          swp3(leaf03)                 default          65000      64515      Estd   2            Add      5h ago
 
-## <span id="src-6488212_PerformingNetworkDiagnostics-time_machine" class="confluence-anchor-link"></span>Using NetQ as a Time Machine</span>
+## Using NetQ as a Time Machine
 
 With NetQ, you can travel back to a specific point in time or a range of
 times to help you isolate errors and issues.
@@ -91,18 +91,11 @@ For example, if you think you had an issue with your sensors last night,
 you can check the sensors on all your nodes around the time you think
 the issue occurred:
 
-<div class="confbox panel">
-
-<div class="panel-content">
-
-``` 
+```
 cumulus@leaf01:~$ netq check sensors around 12h    
 Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0    
 ```
 
-</div>
-
-</div>
 
 Or you can specify a range of times using the `between` option. The
 units of time you can specify are second (*s*), minutes (*m*), hours
@@ -145,7 +138,7 @@ exit01, which has the IP address 27.0.0.1:
     spine02 -- spine02:swp3 -- exit01:swp6.4 -- exit01:swp3 -- exit01
                             -- spine02:swp7  -- spine02
 
-### <span id="src-6488212_PerformingNetworkDiagnostics-matrix" class="confluence-anchor-link"></span>How Far Back in Time Can You Travel?</span>
+### How Far Back in Time Can You Travel?
 
 The NetQ Telemetry Server stores an amount of data limited by a few
 factors:
@@ -178,12 +171,12 @@ The sizing numbers in this table rely on the following assumptions and
 definitions:
 
   - The types of configuration and operational data being recorded:
-    
+
       - Switches and hosts: Interfaces; MLAG; LLDP-enabled links;
         IPv4/v6 addresses, neighbors and routes; BGP sessions; link
         flaps per day; IPv4/v6 route flaps per day; BGP and MLAG session
         flaps.
-    
+
       - Containers: Exposed ports, networks, container flaps per day.
 
   - A small network has 20 racks with 40 leaf nodes, 10 spine nodes and
@@ -203,24 +196,10 @@ definitions:
     even further in time, in a near linear fashion. So doubling the
     memory should double the range.
 
-## Using trace in a VRF</span>
+## Using trace in a VRF
 
 The `netq trace` command works with VRFs as well:
 
     cumulus@leaf01:~$ netq trace 10.1.20.252 from spine01 vrf default around 5m
     spine01 -- spine01:swp1 -- leaf01:vlan20
             -- spine01:swp2 -- leaf02:vlan20
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

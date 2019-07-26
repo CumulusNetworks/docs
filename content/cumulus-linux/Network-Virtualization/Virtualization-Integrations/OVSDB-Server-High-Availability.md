@@ -81,9 +81,8 @@ dual-connected bonds are identified in the NSX controller by their
 `clag-id` (single-connected bonds or ports are identified by their usual
 interface names prepended with the name of the particular switch to
 which they belong). When you create the Gateway Service for the
-dual-connected bonds (described in [Configuring the Transport and
-Logical
-Layers](#src-8362860_OVSDBServerHighAvailability-active-config-transport-logical),
+dual-connected bonds (described in
+[Configuring the Transport and Logical Layers](#configure-the-transport-and-logical-layers),
 below), make sure to select the `clag-id` named interfaces instead of
 the underlying individual physical ports. All the logical network
 configurations are provisioned by the NSX controller.
@@ -280,11 +279,9 @@ vtep-bootstrap` or run the command `vtep-bootstrap --help`.
 
 After you finish configuring the NSX integration on both the MLAG
 primary and MLAG secondary switch, you need to configure the transport
-and logical layers from the NSX Manager. Refer to [Configuring the
-Transport and Logical Layers
-(NSX-MH)](Integrating-Hardware-VTEPs-with-VMware-NSX-MH.html#src-8362796_IntegratingHardwareVTEPswithVMwareNSX-MH-config-transport-logical)
-or [Configuring the Transport and Logical Layers
-(NSX-V](Integrating-Hardware-VTEPs-with-VMware-NSX-V.html#src-8362823_IntegratingHardwareVTEPswithVMwareNSX-V-V-config-transport-logical)).
+and logical layers from the NSX Manager. Refer to
+[Configuring the Transport and Logical Layers (NSX-MH)](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH/#configure-the-transport-and-logical-layers)
+or [Configuring the Transport and Logical Layers (NSX-V](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V/#configure-the-transport-and-logical-layers)).
 
 ## Troubleshooting
 
@@ -383,11 +380,3 @@ If you still encounter issues with high availability after you restart
 server.
 
     cumulus@switch:~$ sudo reboot
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

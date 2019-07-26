@@ -25,20 +25,18 @@ most relevant information to a network administrator.
 `netshow` can be used on any distribution of Linux, not just Cumulus
 Linux.
 
-## Installing netshow</span>
+## Installing netshow
 
 Starting with Cumulus Linux 2.5.5, `netshow` is included in the main
 repository for Cumulus Linux. However, it is not installed by default if
 you upgraded to this version using `apt-get dist-upgrade`. You install
 `netshow` in Cumulus Linux in one of two ways:
 
-  - By doing a [binary image
-    install](Managing-Cumulus-Linux-Disk-Images.html#src-5115988_ManagingCumulusLinuxDiskImages-new_image)
+  - By doing a [binary image install](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image/)
     of Cumulus Linux using `cl-img-install`
-
   - Install the `netshow` package using `apt-get install netshow`
 
-### Installing netshow on a Linux Server or in OpenStack</span>
+### Installing netshow on a Linux Server or in OpenStack
 
 To install `netshow` on a Linux server, run:
 
@@ -50,7 +48,7 @@ Debian and Red Hat packages will be available in the near future.
 
 {{%/notice%}}
 
-## Using netshow</span>
+## Using netshow
 
 Running `netshow` with no arguments displays all available command line
 arguments usable by `netshow`. (Running `netshow --help` gives you the
@@ -118,7 +116,7 @@ the networking industry, where most command troubleshooting tools are
 designed by developers and are most useful in the network application
 development process.
 
-## Showing Interfaces</span>
+## Showing Interfaces
 
 To show all available interfaces that are physically UP, run `netshow
 interface`:
@@ -199,7 +197,7 @@ system`:
     
     cumulus@leaf1$
 
-## Troubleshooting Example: OpenStack</span>
+## Troubleshooting Example: OpenStack
 
 Looking at an OpenStack Environment, here is the physical diagram:
 
@@ -240,22 +238,16 @@ OpenStack interface numbering is not the easiest read, but here
 `netshow` can quickly show you:
 
   - A list of all the interfaces in admin UP state and carrier UP state
-
   - 3 bridges
-
   - That STP is disabled for all the bridges
-
   - An uplink trunk interface with 3 VLANs configured on it
-
   - Many tap interfaces, most likely the virtual machines
 
 This output took about 5 seconds to get and another 1 minute to analyze.
 To get this same level of understanding using traditional tools such as:
 
   - ip link show
-
   - brctl show
-
   - ip addr show
 
 ... could take about 10 minutes. This is a significant improvement in
@@ -276,7 +268,7 @@ simplifies understanding basic network troubleshooting, making the Linux
 administrator more productive and improving time to resolution while
 investigating network problems.
 
-## Other Useful netshow Features</span>
+## Other Useful netshow Features
 
 `netshow` uses the [python
 network-docopt](https://pypi.python.org/pypi/network-docopt) package.
@@ -292,7 +284,7 @@ near future, if you run `netshow int tap123` and there is only one
 interface starting with `tap123`, `netshow` will autocomplete the
 command option with the full interface.
 
-## Contributions Welcome\!</span>
+## Contributions Welcome\!
 
 `netshow` is an open source project licensed under GPLv2. To contribute
 please contact Cumulus Networks through the [Cumulus Community
@@ -302,11 +294,3 @@ Home](https://github.com/CumulusNetworks/netshow-linux-lib/). You can
 find developer documentation at
 [netshow.readthedocs.org](http://netshow.readthedocs.org/). The
 documentation is still under development.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

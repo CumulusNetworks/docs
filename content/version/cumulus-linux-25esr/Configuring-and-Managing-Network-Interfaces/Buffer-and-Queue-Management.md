@@ -11,14 +11,11 @@ version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
-<details>
-
 Hardware datapath configuration manages packet buffering, queueing, and
 scheduling in hardware. There are two configuration input files:
 
   - `/etc/cumulus/datapath/traffic.conf`, which describes priority
     groups and assigns the scheduling algorithm and weights
-
   - `/etc/bcm.d/datapath/datapath.conf`, which assigns buffer space and
     egress queues
 
@@ -39,11 +36,8 @@ assigned to a priority group based on the CoS value.
 Priority groups include:
 
   - *Control*: Highest priority traffic
-
   - *Service*: Second-highest priority traffic
-
   - *Lossless*: Traffic protected by priority flow control
-
   - *Bulk*: All remaining traffic
 
 A lossless traffic group is protected from packet drops by configuring
@@ -59,20 +53,19 @@ packets with the same priority value are assigned to separate queues,
 which are assigned equal scheduling weights.
 
 Datapath configuration takes effect when you initialize `switchd`.
-Changes to the `traffic.conf` file require you to [restart
-`switchd`](Configuring-switchd.html#src-5115907_Configuringswitchd-restartswitchd)
-.
+Changes to the `traffic.conf` file require you to 
+[restart `switchd`](/version/cumulus-linux-25esr/System-Management/Configuring-switchd/#restarting-switchd).
 
-## Commands</span>
+## Commands
 
 If you modify the configuration in the
-`/etc/cumulus/datapath/traffic.conf` file, you must [restart
-`switchd`](Configuring-switchd.html#src-5115907_Configuringswitchd-restartswitchd)
+`/etc/cumulus/datapath/traffic.conf` file, you must 
+[restart `switchd`](/version/cumulus-linux-25esr/System-Management/Configuring-switchd/#restarting-switchd)
 for the changes to take effect:
 
     cumulus@switch:~$ sudo service switchd restart
 
-## Configuration Files</span>
+## Configuration Files
 
 The following configuration applies to 10G and 40G switches only ([any
 switch](http://cumulusnetworks.com/hcl/) on the Trident, Trident+, or
@@ -188,7 +181,7 @@ cut_through_enable = true
 #ecmp_max_paths = 0      
 ```
 
-## Configuring Traffic Marking through ACL Rules</span>
+## Configuring Traffic Marking through ACL Rules
 
 You can mark traffic for egress packets through `iptables` or
 `ip6tables` rule classifications. To enable these rules, you do one of
@@ -237,7 +230,7 @@ TCAM slices in the hardware.
 To put the rule in the mangle table, include `-t mangle`; to put the
 rule in the filter table, omit `-t mangle`.
 
-## Configuring Link Pause</span>
+## Configuring Link Pause
 
 The PAUSE frame is a flow control mechanism that halts the transmission
 of the transmitter for a specified period of time. A server or other
@@ -247,7 +240,6 @@ ports can be configured to execute link pause by:
 
   - Transmitting pause frames when its ingress buffers become congested
     (TX pause enable) and/or
-
   - Responding to received pause frames (RX pause enable).
 
 Just like configuring buffer and queue management link pause is
@@ -304,29 +296,17 @@ sequences of contiguous ports; you can see which ports are contiguous in
         swp7
         ...
 
-[Restart
-`switchd`](Configuring-switchd.html#src-5115907_Configuringswitchd-restartswitchd)
+[Restart `switchd`](/version/cumulus-linux-25esr/System-Management/Configuring-switchd/#restarting-switchd)
 to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo service switchd restart
 
-## Useful Links</span>
+## Useful Links
 
-  - [iptables-extensions man
-    page](http://ipset.netfilter.org/iptables-extensions.man.html)
+  - [iptables-extensions man page](http://ipset.netfilter.org/iptables-extensions.man.html)
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - You can configure Quality of Service (QoS) for 10G and 40G switches
     only; that is, any switch on the Trident, Trident+, or Trident II
     platform.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

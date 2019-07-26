@@ -11,56 +11,45 @@ version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
-<details>
 
-The Cumulus Linux operating system resides on a switch as a *disk
-image*. Switches running Cumulus Linux can be configured with 2 separate
-disk images. This section discusses how to manage them including
-installation and upgrading.
+The Cumulus Linux operating system resides on a switch as a *disk image*. Switches 
+running Cumulus Linux can be configured with 2 separate disk images. This section 
+discusses how to manage them including installation and upgrading.
 
-## Commands</span>
+## Commands
 
   - apt-get
-
   - cl-img-install
-
   - cl-img-select
-
   - cl-img-clear-overlay
-
   - cl-img-pkg
 
-## <span id="src-5115988_ManagingCumulusLinuxDiskImages-new_image" class="confluence-anchor-link"></span>Installing a New Cumulus Linux Image</span>
+## Installing a New Cumulus Linux Image
 
 For details, read the chapter, [Installing a New Cumulus Linux
 Image](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image).
 
-<span id="src-5115988_ManagingCumulusLinuxDiskImages-upgrade"></span>
-
-## Upgrading Cumulus Linux</span>
+## Upgrading Cumulus Linux
 
 There are two ways you can upgrade Cumulus Linux:
 
   - Perform a binary (full image) install of the new version, running
     `cl-img-install` on the switch
-
   - Upgrade only the changed packages, using `apt-get update` and
     `apt-get dist-upgrade`
 
 The entire upgrade process is described in [Upgrading Cumulus
 Linux](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux).
 
-## <span id="src-5115988_ManagingCumulusLinuxDiskImages-slots" class="confluence-anchor-link"></span>Understanding Image Slots</span>
+## Understanding Image Slots
 
 Cumulus Linux uses the concept of *image slots* to manage two separate
 Cumulus Linux images. The important terminology for the slots is as
 follows:
 
   - **Active image slot**: The currently running image slot.
-
   - **Primary image slot**: The image slot that is selected for the next
     boot. Often this is the same as the active image slot.
-
   - **Alternate image slot**: The inactive image slot, **not** selected
     for the next boot.
 
@@ -91,7 +80,7 @@ cat /etc/lsb-release.
 
 {{%/notice%}}
 
-### PowerPC vs x86 vs ARM Switches</span>
+### PowerPC vs x86 vs ARM Switches
 
 The characteristics of the image slots vary, based on whether your
 switch is on a PowerPC, ARM or x86 platform. You can easily determine
@@ -116,7 +105,7 @@ You can also visit the HCL ([hardware compatibility
 list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
 to look at your hardware to determine the processor type.
 
-### PowerPC Image Slots</span>
+### PowerPC Image Slots
 
 <summary>Read more about PowerPC image slots </summary>
 
@@ -130,7 +119,7 @@ Files you edit and create reside in the read-write user overlay. This
 also includes any additional software you install on top of Cumulus
 Linux. After an install, the user overlay is empty.
 
-#### PowerPC Image Slot Overlay Detailed Information</span>
+#### PowerPC Image Slot Overlay Detailed Information
 
 The root directory of an image slot on a PowerPC system is created using
 an [overlayfs](https://lwn.net/Articles/447650/) file system. The lower
@@ -165,8 +154,9 @@ The following table describes all the interesting mount points.
 | /mnt/persist   | ext2        | Contains the persistent user configuration applied to each image slot. |
 | /mnt/initramfs | tmpfs       | Contains the `initramfs` used at boot. Needed during shutdown.         |
 
-### x86 and ARM Image Slots</span>
+### x86 and ARM Image Slots
 
+<details>
 <summary>Read more about x86 image slots </summary>
 
 Unlike PowerPC-based switches, there is no overlay for an x86-based or
@@ -181,13 +171,12 @@ entities are created on the disk:
     *sysroot2*, and the `/mnt/persist` logical volume. The logical
     volumes represent the Cumulus Linux image slots, so sysroot1 is slot
     1 and sysroot2 is slot 2. `/mnt/persist` is where you store your
-    [persistent
-    configuration](Installing-a-New-Cumulus-Linux-Image.html#src-5115997_InstallingaNewCumulusLinuxImage-persistent_config).
-
+    [persistent configuration](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/#powerpc-image-slot-overlay-detailed-information).
   - A boot partition, shared by the logical volumes. Each volume mounts
     this partition as `/boot`.
+</details>
 
-#### Managing Slot Sizes</span>
+#### Managing Slot Sizes
 
 As space in a slot is used, you may need to increase the size of the
 root filesystem by increasing the size of the corresponding logical
@@ -247,7 +236,7 @@ expand the filesystem as needed.
         Performing an on-line resize of /dev/CUMULUS/SYSROOT# to 1381376 (4k) blocks.
         The filesystem on /dev/CUMULUS/SYSROOT# is now 1381376 blocks long. 
 
-#### Accessing the Alternate Image Slot on x86 and ARM Platforms</span>
+#### Accessing the Alternate Image Slot on x86 and ARM Platforms
 
 It may be useful to ****access the content of the alternate slot to
 retrieve the configuration or logs.
@@ -285,9 +274,7 @@ done.
         cumulus@switch$ cd /
         cumulus@switch$ sudo umount /mnt/alt/
 
-<span id="src-5115988_ManagingCumulusLinuxDiskImages-alt_slot"></span>
-
-## Reverting an Image to its Original Configuration (PowerPC Only)</span>
+## Reverting an Image to its Original Configuration (PowerPC Only)
 
 On PowerPC-based systems, you may want to clear out the read-write user
 overlay area. Perhaps something was misconfigured, or was deleted by
@@ -306,7 +293,7 @@ You must reboot the switch to complete the purge.
 
 {{%/notice%}}
 
-## Reprovisioning the System (Restart Installer)</span>
+## Reprovisioning the System (Restart Installer)
 
 You can reprovision the system, wiping out the contents of both image
 slots and `/mnt/persist`.
@@ -339,7 +326,7 @@ using `cl-img-select -c`:
 
 {{%/notice%}}
 
-## Uninstalling All Images and Removing the Configuration</span>
+## Uninstalling All Images and Removing the Configuration
 
 To remove all installed images and configurations, returning the switch
 to its factory defaults, use `cl-img-select -k`:
@@ -369,7 +356,7 @@ using `cl-img-select -c`:
 
 {{%/notice%}}
 
-## Booting into Rescue Mode</span>
+## Booting into Rescue Mode
 
 If your system becomes broken is some way, you may be able to correct
 things by booting into ONIE rescue mode. In rescue mode, the file
@@ -404,7 +391,7 @@ Cancelling pending rescue at next reboot...done.
 
 {{%/notice%}}
 
-## Inspecting Image File Contents</span>
+## Inspecting Image File Contents
 
 From a running system you can display the contents of a Cumulus Linux
 image file using `cl-img-pkg -d`:
@@ -454,17 +441,6 @@ You can also extract the image files to the current directory with the
     -rw-r--r-- 1 1063 3000   5391348 Jun 10 18:44 vmlinuz-initrd.tar.xz
     -rw-r--r-- 1 1063 3000        44 Jun 10 18:44 vmlinuz-initrd.tar.xz.sha1 
 
-## Useful Links</span>
+## Useful Links
 
-  - [Open Network Install Environment (ONIE) Home
-    Page](http://opencomputeproject.github.io/onie/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>
+  - [Open Network Install Environment (ONIE) Home Page](http://opencomputeproject.github.io/onie/)

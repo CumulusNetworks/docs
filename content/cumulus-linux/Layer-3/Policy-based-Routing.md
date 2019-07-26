@@ -79,8 +79,8 @@ For Tomahawk and Tomahawk+ platforms, you must configure the switch to
 operate in non-atomic mode, which offers better scaling as all TCAM
 resources are used to actively impact traffic. Add the line
 `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf`
-file. For more information, see [Nonatomic Update Mode vs. Atomic Update
-Mode](Netfilter-ACLs.html#src-8362563_Netfilter-ACLs-nonatomic).
+file. For more information, see
+[Nonatomic Update Mode and Atomic Update Mode](/cumulus-linux/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode).
 
 {{%/notice%}}
 
@@ -173,8 +173,7 @@ The configuration for the example above is:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-These commands produce the following snippet in the `/etc/frr/frr.conf`
-file.
+These commands produce the following snippet in the `/etc/frr/frr.conf` file.
 
     interface swp51
     pbr-policy map1
@@ -245,8 +244,7 @@ A new Linux routing table ID is used for each nexthop and nexthop group.
 ## Delete PBR Rules and Policies
 
 You can delete a PBR rule, a nexthop group, or a policy with the `net
-del` command.  
-The following commands provide examples.
+del` command. The following commands provide examples.
 
 {{%notice note%}}
 
@@ -285,11 +283,3 @@ interface is no longer receiving PBR traffic:
     cumulus@switch:~$ net del interface swp3 pbr-policy map1
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

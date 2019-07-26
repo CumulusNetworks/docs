@@ -622,21 +622,7 @@ sure to set the system clock on the switch.
 
 ## Related Information
 
-  - [Debian System Administrator’s Manual –
-    Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
-
+  - [Debian System Administrator’s Manual – Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
   - [www.ntp.org](http://www.ntp.org)
-
   - [en.wikipedia.org/wiki/Network\_Time\_Protocol](http://en.wikipedia.org/wiki/Network_Time_Protocol)
-
   - [wiki.debian.org/NTP](http://wiki.debian.org/NTP)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

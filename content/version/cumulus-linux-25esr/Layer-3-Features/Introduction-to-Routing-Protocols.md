@@ -14,7 +14,7 @@ siteSlug: cumulus-linux-25esr
 This chapter discusses the various routing protocols, and how to
 configure them.
 
-## Defining Routing Protocols</span>
+## Defining Routing Protocols
 
 A *routing protocol* dynamically computes reachability between various
 end points. This enables communication to work around link and node
@@ -36,25 +36,22 @@ this information to determine the routes to each end station. To scale
 the amount of information that needs to be exchanged, routes are
 computed on address prefixes rather than on every end point address.
 
-## Configuring Routing Protocols</span>
+## Configuring Routing Protocols
 
 A routing protocol needs to know three pieces of information, at a
 minimum:
 
   - Who am I (my identity)
-
   - To whom to disseminate information
-
   - What to disseminate
 
 Most routing protocols use the concept of a router ID to identify a
 node. Different routing protocols answer the last two questions
 differently.
 
-The way they answer these questions affects the network design and
-thereby configuration. For example, in a link-state protocol such as
-OSPF (see [Open Shortest Path First (OSPF)
-Protocol](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol))
+The way they answer these questions affects the network design and thereby 
+configuration. For example, in a link-state protocol such as OSPF (see 
+[Open Shortest Path First (OSPF) Protocol](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol))
 or IS-IS, complete local information (links and attached address
 prefixes) about a node is disseminated to every other node in the
 network. Since the state that a node has to keep grows rapidly in such a
@@ -68,7 +65,7 @@ Besides the two critical pieces of information mentioned above,
 protocols have other parameters that can be configured. These are
 usually specific to each protocol.
 
-## Protocol Tuning</span>
+## Protocol Tuning
 
 Most protocols provide certain tunable parameters that are specific to
 convergence during changes.
@@ -121,38 +118,6 @@ Usually, the default values initialized within each protocol are good
 enough for most networks. Cumulus Networks recommends you do not adjust
 these settings.
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/quagga/daemons
-
-<table class="confluenceTable">
-
-<colgroup>
-
-<col>
-
-<col>
-
-</colgroup>
-
-<thead class=" ">
-
-</thead>
-
-<tfoot class=" ">
-
-</tfoot>
-
-<tbody class=" ">
-
-</tbody>
-
-</table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

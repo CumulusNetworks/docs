@@ -17,33 +17,28 @@ provisioning across virtual and physical server infrastructures.
 
 {{% imgOld 0 %}}
 
-## Getting Started</span>
+## Getting Started
 
 Before you integrate VXLANs with NSX, make sure you have the following
 components:
 
   - A switch (L2 gateway) with a Trident II chipset running Cumulus
     Linux 2.0 or later;
-
   - OVSDB server (ovsdb-server), included in Cumulus Linux 2.0 and later
-
   - VTEPd (ovs-vtepd), included in Cumulus Linux 2.0 and later
 
 Integrating a VXLAN with NSX involves:
 
   - Bootstrapping the NSX Integration
-
   - Configuring the Transport Layer
-
   - Configuring the Logical Layer
-
   - Verifying the VXLAN Configuration
 
 Once you finish the integration, you can make the configuration
-persistent across upgrades (see [Persistent VXLAN Configuration in
-NSX](#src-5116025_IntegratingwithVMwareNSX-nsx_persist) below).
+persistent across upgrades (see 
+[Persistent VXLAN Configuration in NSX](#persistent-vxlan-configuration-in-nsx) below).
 
-### Caveats and Errata</span>
+### Caveats and Errata
 
   - As mentioned in [Network
     Virtualization](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/),
@@ -60,14 +55,14 @@ NSX](#src-5116025_IntegratingwithVMwareNSX-nsx_persist) below).
   - For more information about NSX, see the VMware NSX User Guide,
     version 4.0.0 or later.
 
-## Bootstrapping the NSX Integration</span>
+## Bootstrapping the NSX Integration
 
 Before you start configuring the gateway service and logical switches
 and ports that comprise the VXLAN, you need to complete some steps to
 bootstrap the process. You need to do the bootstrapping just once,
 before you begin the integration.
 
-### Enabling the openvswitch-vtep Package</span>
+### Enabling the openvswitch-vtep Package
 
 Before you start bootstrapping the integration, you need to enable the
 `openvswitch-vtep` package, as it is disabled by default in Cumulus
@@ -94,11 +89,10 @@ Linux.
         cumulus@switch$ sudo service openvswitch-vtep start
 
 Make sure to include this file in your persistent configuration (see
-[Persistent VXLAN Configuration in
-NSX](#src-5116025_IntegratingwithVMwareNSX-nsx_persist) below) so it’s
-available after you upgrade Cumulus Linux.
+[Persistent VXLAN Configuration in NSX](#persistent-vxlan-configuration-in-nsx) 
+below) so it's available after you upgrade Cumulus Linux.
 
-### Using the Bootstrapping Script</span>
+### Using the Bootstrapping Script
 
 A script is available so you can do the bootstrapping automatically. For
 information, read `man vtep-bootstrap`. The output of the script is
@@ -112,32 +106,26 @@ In the above example, the following information was passed to the
   - `--credentials-path /var/lib/openvswitch`: Is the path to where the
     certificate and key pairs for authenticating with the NSX controller
     are stored.
-
   - `vtep7`: is the ID for the VTEP.
-
   - `192.168.100.17`: is the IP address of the NSX controller.
-
   - `172.16.20.157`: is the datapath IP address of the VTEP.
-
   - `192.168.100.157`: is the IP address of the management interface on
     the switch.
 
 These IP addresses will be used throughout the rest of the examples
 below.
 
-### Manually Bootstrapping the NSX Integration</span>
+### Manually Bootstrapping the NSX Integration
 
 If you don’t use the script, then you must:
 
   - Initialize the OVS database instance
-
   - Generate a certificate and key pair for authentication by NSX
-
   - Configure a switch as a VTEP gateway
 
 These steps are described next.
 
-### Generating the Credentials Certificate</span>
+### Generating the Credentials Certificate
 
 First, in Cumulus Linux, you must generate a certificate that the NSX
 controller uses for authentication.
@@ -203,7 +191,7 @@ Once you finish generating the certificate, keep the terminal session
 active, as you need to paste the certificate into NSX Manager when you
 configure the VTEP gateway.
 
-### Configuring the Switch as a VTEP Gateway</span>
+### Configuring the Switch as a VTEP Gateway
 
 After you create a certificate, connect to NSX Manager in a browser to
 configure a Cumulus Linux switch as a VTEP gateway. In this example, the
@@ -268,7 +256,7 @@ connected to the switch, run this command:
     status              : {sec_since_connect="18223", sec_since_disconnect="18225", state=ACTIVE}
     target              : "ssl:192.168.100.17:6632"
 
-## Configuring the Transport Layer</span>
+## Configuring the Transport Layer
 
 After you finish bootstrapping the NSX integration, you need to
 configure the transport layer. For each host-facing switch port that is
@@ -305,13 +293,13 @@ The gateway service shows up as type *VTEP L2* in NSX.
 
 Next, you will configure the logical layer on NSX.
 
-## Configuring the Logical Layer</span>
+## Configuring the Logical Layer
 
 To complete the integration with NSX, you need to configure the logical
 layer, which requires defining a logical switch (the VXLAN instance) and
 all the logical ports needed.
 
-### Defining Logical Switches</span>
+### Defining Logical Switches
 
 To define the logical switch, do the following:
 
@@ -351,7 +339,7 @@ To define the logical switch, do the following:
     
     {{% imgOld 10 %}}
 
-### Defining Logical Switch Ports</span>
+### Defining Logical Switch Ports
 
 As the final step, define the logical switch ports. They can be virtual
 machine VIF interfaces from a registered OVS, or a VTEP gateway service
@@ -391,7 +379,7 @@ To define the logical switch ports, do the following:
     
     {{% imgOld 13 %}}
 
-## Verifying the VXLAN Configuration</span>
+## Verifying the VXLAN Configuration
 
 Once configured, you can verify the VXLAN configuration using these
 Cumulus Linux commands in a terminal connected to the switch:
@@ -411,28 +399,22 @@ or
     44:38:39:00:48:0e dev swp2s1.100 permanent
     44:38:39:00:48:0d dev swp2s0.100 permanent
 
-<span id="src-5116025_IntegratingwithVMwareNSX-nsx_persist"></span>
+## Persistent VXLAN Configuration in NSX
 
-## Persistent VXLAN Configuration in NSX</span>
-
-If you want your VXLAN configuration to persist across upgrades of
-Cumulus Linux (see [Making Configurations Persist across
-Upgrades](Managing-Cumulus-Linux-Disk-Images.html#src-5115988_ManagingCumulusLinuxDiskImages-persistent_config)),
+If you want your VXLAN configuration to 
+[persist across upgrades of Cumulus Linux](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/#upgrading-cumulus-linux-devices-strategies-and-processes),
 you need to include the following items in the persistent configuration.
 Use `scp` to copy the files to `/mnt/persist`:
 
   - `/usr/share/openvswitch/ovs-ctl-vtep`
-
   - Certificates and key pairs, as above
-
   - `/etc/default/openvswitch-vtep`
-
   - The `ovsdb` database file; the default is
     `/var/lib/openvswitch/conf.db`
     
     {{%notice note%}}
     
-    Copying the `ovsdb` database file is optional; the persistent
+Copying the `ovsdb` database file is optional; the persistent
     database file helps to speed up convergence on a system upgrade. NSX
     Manager pushes any configuration created or changed in NSX Manager
     when the connection with the VTEP is reestablished, which overwrites
@@ -440,7 +422,7 @@ Use `scp` to copy the files to `/mnt/persist`:
     
     {{%/notice%}}
 
-## Troubleshooting VXLANs in NSX</span>
+## Troubleshooting VXLANs in NSX
 
 Use `ovsdb-client dump` to troubleshoot issues on the switch. It
 verifies that the controller and switch handshake is successful. This
@@ -455,11 +437,3 @@ command works only for VXLANs integrated with NSX:
     other_config        : {}
     status              : {sec_since_connect="18223", sec_since_disconnect="18225", state=ACTIVE}
     target              : "ssl:192.168.100.17:6632"
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

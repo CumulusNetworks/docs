@@ -15,11 +15,9 @@ The only real unique entity for logging on Cumulus Linux compared to any
 other Linux distribution is `switchd.log`, which logs the HAL (hardware
 abstraction layer) from hardware like the Broadcom or Mellanox ASIC.
 
-[This guide on
-NixCraft](http://www.cyberciti.biz/faq/linux-log-files-location-and-how-do-i-view-logs-files/)
+[This guide on NixCraft](http://www.cyberciti.biz/faq/linux-log-files-location-and-how-do-i-view-logs-files/)
 is amazing for understanding how `/var/log` works. The green highlighted
-rows below are the most important logs and usually looked at first when
-debugging.
+rows below are the most important logs and usually looked at first when debugging.
 
 <table>
 <colgroup>
@@ -163,11 +161,3 @@ debugging.
 </tr>
 </tbody>
 </table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -81,7 +81,7 @@ By default in Cumulus Linux, FRRouting saves the configuration of all
 daemons in a single integrated configuration file, `frr.conf`.
 
 You can disable this mode by running the following command in the
-[`vtysh` FRRouting CLI](#src-8362919_ConfiguringFRRouting-vtysh):
+[`vtysh` FRRouting CLI](#frrouting-vtysh-modal-cli):
 
     cumulus@switch:~$ sudo vtysh
     switch# configure terminal
@@ -156,10 +156,10 @@ you should remove all the configuration files (such as `zebra.conf` or
 FRRouting inherits the IP addresses and any associated routing tables
 for the network interfaces from the `/etc/network/interfaces` file. This
 is the recommended way to define the addresses; do **not** create
-interfaces using FRRouting. For more information, see [Configuring IP
-Addresses](Interface-Configuration-and-Management.html#src-8363023_InterfaceConfigurationandManagement-ip)
-and [Virtual Routing and Forwarding -
-VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF).
+interfaces using FRRouting. For more information, see
+[Configuring IP Addresses](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#configure-ip-addresses)
+and
+[Virtual Routing and Forwarding - VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF).
 
 ## FRRouting vtysh Modal CLI
 
@@ -519,13 +519,4 @@ and restarting the FRR service.
 
   - [FRR IPv6 support](https://frrouting.org/user-guide/ipv6.html)
 
-  - [FRR Zebra
-    documentation](https://frrouting.org/user-guide/zebra.html)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [FRR Zebra documentation](https://frrouting.org/user-guide/zebra.html)

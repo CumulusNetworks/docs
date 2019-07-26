@@ -19,7 +19,7 @@ You monitor system hardware in these ways, using:
 
   - `sensors`
 
-  - [Net-SNMP](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/)
+  - [Net-SNMP](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP)
 
   - watchdog
 
@@ -81,7 +81,7 @@ Changes in system unit state are detected via the `cpld` registers.
 health of the system unit, determines the unit's health, and updates the
 system LEDs.
 
-Use ` smonctl  `to display sensor information for the various system
+Use `smonctl` to display sensor information for the various system
 units:
 
     cumulus@switch:~$ sudo smonctl
@@ -155,9 +155,8 @@ command executes [lm-sensors](https://en.wikipedia.org/wiki/Lm_sensors).
 
 Even though you can use the `sensors` command to monitor the health of
 your switch hardware, the `smond` daemon is the recommended method for
-monitoring hardware health. See [Monitor System Units Using
-smond](#src-8362594_MonitoringSystemHardware-MonitorSystemUnitsUsingsmond)
-above.
+monitoring hardware health. See
+[Monitor System Units Using smond](#monitor-system-units-using-smond) above.
 
 {{%/notice%}}
 
@@ -204,8 +203,8 @@ Usage: `sensors [OPTION]... [CHIP]...`
 | \-A, --no-adapter  | Do not show the adapter for each chip.                                                                                                                        |
 | \--bus-list        | Generate bus statements for `sensors.conf`.                                                                                                                   |
 
-If `[CHIP]` is not specified in the command, all chip info will be
-printed. Example chip names include:
+If `[CHIP]` is not specified in the command, all chip info will be printed.
+Example chip names include:
 
   - lm78-i2c-0-2d \*-i2c-0-2d
 
@@ -224,7 +223,7 @@ printed. Example chip names include:
 ## Monitor Switch Hardware Using SNMP
 
 The Net-SNMP documentation is discussed
-[here](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/).
+[here](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP).
 
 ## Keep the Switch Alive Using the Hardware Watchdog
 
@@ -263,11 +262,3 @@ and scheduler priority — in its configuration file,
 
   - [Net-SNMP
     tutorials](http://net-snmp.sourceforge.net/wiki/index.php/Tutorials)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

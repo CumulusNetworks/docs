@@ -31,13 +31,13 @@ is established on top of a layer 3 fabric by means of a simple service
 node coupled with traditional MAC address learning.
 
 To see an example of a full solution before reading the following
-background information, [read this
-chapter](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/LNV-Full-Example).
+background information,
+[read this chapter](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/LNV-Full-Example).
 
 {{%notice note%}}
 
-LNV is a lightweight controller option. [Contact Cumulus
-Networks](https://support.cumulusnetworks.com/hc/en-us/requests/new)
+LNV is a lightweight controller option.
+[Contact Cumulus Networks](https://support.cumulusnetworks.com/hc/en-us/requests/new)
 with your scale requirements so we can make sure this is the right fit
 for you. There are also other controller options that can work on
 Cumulus Linux.
@@ -104,7 +104,6 @@ Cumulus Linux has two ways of handling BUM (Broadcast Unknown-unicast
 and Multicast) traffic:
 
   - Head end replication
-
   - Service node replication
 
 Head end replication is enabled by default in Cumulus Linux.
@@ -187,19 +186,15 @@ You only specify this parameter when head end replication is
 
 ### Configuration Requirements
 
-  - The VXLAN has an associated **V**XLAN **N**etwork **I**dentifier
+  - The VXLAN has an associated **VXLAN Network Identifier**
     (VNI), also interchangeably called a VXLAN ID.
-
   - The VNI cannot be 0 or 16777215, as these two numbers are reserved
     values under Cumulus Linux.
-
   - The VXLAN link and physical interfaces are added to the bridge to
     create the association between the port, VLAN, and VXLAN instance.
-
   - Each bridge on the switch has only one VXLAN interface. Cumulus
     Linux does not support more than one VXLAN link in a bridge;
     however, a switch can have multiple bridges.
-
   - An SVI (Switch VLAN Interface) or layer 3 address on the bridge is
     not supported. For example, you cannot ping from the leaf1 SVI to
     the leaf2 SVI through the VXLAN tunnel; you need to use server1 and
@@ -216,20 +211,9 @@ apt-get install python-vxfld` to install the LNV package.
 The following images illustrate the configuration that is referenced
 throughout this chapter.
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>Physical Cabling Diagram</p>
-<p>{{% imgOld 1 %}}</p></td>
-<td><p>Network Virtualization Diagram</p>
-<p>{{% imgOld 2 %}}</p></td>
-</tr>
-</tbody>
-</table>
+| Physical Cabling Diagram | Network Virtualization Diagram |
+| ------------------------ | ------------------------------ |
+| {{% imgOld 1 %}} | {{% imgOld 2 %}} |
 
 {{%notice tip%}}
 
@@ -851,12 +835,10 @@ For the registration daemon:
 
 ## Configure the Registration Node
 
-The registration node was configured earlier in
-`/etc/network/interfaces` in the [VXLAN
-mapping](#src-8362706_LightweightNetworkVirtualizationOverview-mapping)
-section above; no additional configuration is typically needed. However,
-if you need to modify the registration node configuration, edit
-`/etc/vxrd.conf`.
+The registration node was configured earlier in `/etc/network/interfaces` in the
+[VXLAN mapping](#verify-the-vlan-to-vxlan-mapping) section above; no additional
+configuration is typically needed. However, if you need to modify the registration
+node configuration, edit `/etc/vxrd.conf`.
 <details>
 <summary>Configuring the registration node in /etc/vxrd.conf ...
 </summary>
@@ -975,7 +957,7 @@ multiple service nodes, use
 traffic to reach the topologically nearest service node instead of
 overwhelming a single service node.
 
-#### 
+####
 
 #### Enable the Service Node Daemon on Additional Spine Switches
 
@@ -1217,18 +1199,5 @@ the IP address.
 ## Related Information
 
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
-
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
-
-  - [Network virtualization chapter, Cumulus Linux user
-    guide](/cumulus-linux/Network-Virtualization/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>
+  - [Network virtualization section, Cumulus Linux user guide](/cumulus-linux/Network-Virtualization/)

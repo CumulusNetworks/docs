@@ -115,11 +115,3 @@ The interface configuration is stored in the
 `/etc/network/interfaces.d/chassismgmt.intf` file. See [Chassis Default
 Configurations](/version/chassis/Chassis-Default-Configurations) for the
 contents.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

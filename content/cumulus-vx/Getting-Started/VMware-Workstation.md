@@ -22,7 +22,7 @@ documentation](https://www.vmware.com/support/pubs/ws_pubs.html).
 
 {{%/notice%}}
 
-## Create a Cumulus VX VM with VMware Workstation</span>
+## Create a Cumulus VX VM with VMware Workstation
 
 {{%notice note%}}
 
@@ -41,12 +41,12 @@ Started](/cumulus-vx/Getting-Started/) page.
 
 3.  In the text box, edit the name of the VM to `CumulusVX-leaf1` and
     assign the directory location to save the imported VM.
-    
+
     {{%notice note%}}
-    
-    By default, the VM is saved in the `~\Documents\Virtual Machines\`
+
+By default, the VM is saved in the `~\Documents\Virtual Machines\`
     folder.
-    
+
     {{%/notice%}}
 
 4.  Click **Import** to start the import process. This might take a few
@@ -54,25 +54,21 @@ Started](/cumulus-vx/Getting-Started/) page.
 
 5.  Click **Edit virtual machine settings** and configure the network
     adapter settings:
-    
+
       - Network Adapter (1): NAT
-    
       - Network Adapter 2: Host-only (equivalent to Internal Network)
-    
       - Network Adapter 3: Host-only (equivalent to Internal Network)
-    
       - Network Adapter 4: Host-only (equivalent to Internal Network)
-        
+
         {{% imgOld 0 %}}
 
-## Next Steps</span>
+## Next Steps
 
 {{%notice note%}}
 
 This section assumes that you are configuring a two-leaf/two-spine
-network topology, that you have completed the steps in [Create a Cumulus
-VX VM with VMware
-Workstation](#src-5126698_VMwareWorkstation-CreateaCumulusVXVirtualMachinewithVMwareWorkstation)
+network topology, that you have completed the steps in
+[Create a Cumulus VX VM with VMware Workstation](#create-a-cumulus-vx-vm-with-vmware-workstation)
 above, and that you now have a VM called `CumulusVX-leaf1`.
 
 {{%/notice%}}
@@ -81,22 +77,12 @@ above, and that you now have a VM called `CumulusVX-leaf1`.
     to be created. Using the Snapshot Manager, clone the virtual machine
     (Ctrl + M) three times to create three additional VMs, replacing the
     name `CumulusVX-leaf1` with:
-    
+
       - `CumulusVX-leaf2`
-    
       - `CumulusVX-spine1`
-    
       - `CumulusVX-spine2`
 
 2.  After you have created all four VMs, follow the steps in [Create a
     Two-Leaf, Two-Spine
     Topology](/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology) to
     configure the network interfaces and routing.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

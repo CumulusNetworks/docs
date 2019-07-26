@@ -134,11 +134,3 @@ by FRRouting. These messages appear in `/var/log/frr/frr.log`.
 | Zebra    | HIGH     | 4043309096 | Failed to delete VNI                                           | Zebra attempted to delete a VNI entry and failed.                                                                                                                                  | Notify a developer.                                                                                                                                                                                       |
 | Zebra    | HIGH     | 4043309097 | Adding remote VTEP failed                                      | Zebra attempted to add a remote VTEP and failed.                                                                                                                                   | Notify a developer.                                                                                                                                                                                       |
 | Zebra    | HIGH     | 4043309098 | Adding VNI failed                                              | Zebra attempted to add a VNI hash to an interface and failed.                                                                                                                      | Notify a developer.                                                                                                                                                                                       |
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

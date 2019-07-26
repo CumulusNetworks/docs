@@ -350,9 +350,9 @@ This value can range from -35.0 to 10.0. The following example command
 sets the transmit power for L1 to 10.0 dBm.
 
 ```
-    cumulus@switch:~$ net add interface L1 power 10.0
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+cumulus@switch:~$ net add interface L1 power 10.0
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 This command creates the following configuration snippet in the `/etc/cumulus/transponders.ini`

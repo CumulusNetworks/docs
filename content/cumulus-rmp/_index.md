@@ -13,7 +13,7 @@ siteSlug: cumulus-rmp
 subsection: true
 ---
 
-## Introducing Cumulus RMP</span>
+## Introducing Cumulus RMP
 
 Cumulus RMP is a network operating system in a ready-to-deploy solution
 that enables out-of-band management for web-scale networks. It provides
@@ -23,31 +23,25 @@ which to build rack management applications.
 Cumulus RMP shares the same architecture, foundation, and user
 experience with Cumulus Linux. However, the feature set is customized to
 the needs of out-of-band management. For a comparison of the features
-supported in Cumulus RMP, [see below](#src-5122807_CumulusRMP-features).
+supported in Cumulus RMP, [see below](#cumulus-rmp-features-span).
 
 You can also find more information about Cumulus RMP
 [here](https://cumulusnetworks.com/products/cumulus-rack-management-platform/).
 
 {{% imgOld 0 %}}
 
-## What's New in Cumulus RMP</span>
+## What's New in Cumulus RMP
 
 Cumulus RMP 3.7.0 contains several bug fixes and the following new
 features:
 
-  - [RADIUS Change of Authorization (CoA) requests](/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/#span-radius-change-of-authorization-and-disconnect-requests-span)
-
-  - [RADIUS AAA local fallback authentication](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA/#span-local-fallback-authentication-span)
-
-  - [TACACS+ local fallback authentication](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus/#span-id-src-8362558-tacacsplus-fallback-auth-class-confluence-anchor-link-span-span-local-fallback-authentication-span)
-
+  - [RADIUS Change of Authorization (CoA) requests](/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/#radius-change-of-authorization-and-disconnect-requests)
+  - [RADIUS AAA local fallback authentication](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA/#local-fallback-authentication)
+  - [TACACS+ local fallback authentication](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus/#local-fallback-authentication)
   - New NCLU commands:
-
-      - [Show the version of a package](/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/#span-id-src-8362631-addingandupdatingpackages-versiondisplay-class-confluence-anchor-link-span-span-display-the-version-of-a-package-span)
-
-      - [Show the interface description (alias)](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#span-add-descriptions-to-interfaces-span)
+      - [Show the version of a package](/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/#display-the-version-of-a-package)
+      - [Show the interface description (alias)](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#add-descriptions-to-interfaces)
         for all interfaces on the switch
-
       - [Change bond mode to IEEE 802.3ad](/cumulus-linux/Layer-2/Bonding-Link-Aggregation/) link
         aggregation mode
 
@@ -77,7 +71,7 @@ For further information regarding bug fixes and known issues present in
 the 3.6.0 release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003646974-Cumulus-RMP-3-6-Release-Notes).
 
-## Cumulus RMP Features</span>
+## Cumulus RMP Features
 
 Cumulus RMP shares much of the same functionality as Cumulus Linux and
 comes preinstalled on your choice of [1G
@@ -130,14 +124,14 @@ For more information about each feature, follow the links below to the
 | [Zero-touch OS install & upgrade](/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP/)               | ✓               | ✓                 |
 | [Installation and package management](/cumulus-linux/Installation-Management/)                 | ✓               | ✓                 |
 | Full Linux extensibility                                                                    | ✓               | ✓                 |
-| Network virtualization (VXLAN, LNV, EVPN, etc.)                                             |                 | ✓                 |
+| Network virtualization (VXLAN, EVPN, etc.)                                             |                 | ✓                 |
 | [Monitoring & troubleshooting](/cumulus-linux/Monitoring-and-Troubleshooting/)                 | ✓               | ✓                 |
 | [AAA](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/)                                   | ✓               | ✓                 |
 | [ACLs](/cumulus-linux/System-Configuration/Netfilter-ACLs/)                                                       | ✓               | ✓                 |
 | QoS                                                                                         |                 | ✓                 |
 | [Orchestration](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/)                                       | ✓               | ✓                 |
 
-## Setting up a Cumulus RMP Switch</span>
+## Setting up a Cumulus RMP Switch
 
 The [quick start guide](/cumulus-rmp/Quick-Start-Guide) walks you
 through the steps necessary for getting your Cumulus RMP switch up and

@@ -29,9 +29,7 @@ mapping, and information for other services on the system.
 There are 3 common ways to configure LDAP authentication on Linux:
 
   - libnss-ldap
-
   - libnss-ldapd
-
   - libnss-sss
 
 This chapter describes using `libnss-ldapd` only. From internal testing,
@@ -41,8 +39,7 @@ configure, automate, and troubleshoot.
 ## Install libnss-ldapd
 
 The `libpam-ldapd` package depends on `nslcd`. To install
-`libnss-ldapd`, `libpam-ldapd`, and `ldap-utils`, run the following
-command:
+`libnss-ldapd`, `libpam-ldapd`, and `ldap-utils`, run the following command:
 
     cumulus@switch:~$ sudo apt-get install libnss-ldapd libpam-ldapd ldap-utils nslcd
 
@@ -147,8 +144,7 @@ options relate to security and how the queries are handled.
 
 After first editing the `/etc/nslcd.conf` file, and/or enabling LDAP in
 the `/etc/nsswitch.conf` file, you need to restart `netd` with the `sudo
-systemctl restart netd` command. Also, restart `netd` if you disable
-LDAP.
+systemctl restart netd` command. Also, restart `netd` if you disable LDAP.
 
 {{%/notice%}}
 
@@ -373,7 +369,6 @@ This section discusses common problems.
 
   - The FQDN of the LDAP server URI does not match the FQDN in the
     CA-signed server certificate exactly.
-
   - `nslcd` cannot read the SSL certificate and reports a *Permission
     denied* error in the debug during server connection negotiation.
     Check the permission on each directory in the path of the root SSL
@@ -387,7 +382,6 @@ This section discusses common problems.
 
         nscd --invalidate = passwd
         nscd --invalidate = group
-
   - The `nscd` package works with `nslcd` to cache name entries returned
     from the LDAP server. This might cause authentication failures. To
     work around these issues:
@@ -446,8 +440,8 @@ lack. Therefore, it can be more complicated to configure on the client
 and each version of AD is a little different in how it works with
 Linux-based LDAP clients. Some more advanced configuration examples,
 from testing LDAP clients on Cumulus Linux with Active Directory
-(AD/LDAP), are available in our [knowledge
-base](https://support.cumulusnetworks.com/hc/en-us/articles/204383797).
+(AD/LDAP), are available in our 
+[knowledge base](https://support.cumulusnetworks.com/hc/en-us/articles/204383797).
 
 ## LDAP Verification Tools
 
@@ -498,8 +492,7 @@ is on LDAP.
     netadmin:*:502:larry,moe,curly,shemp
 
 Running the command `getent passwd` or `getent group` without a specific
-request returns **all** local and LDAP entries for the *passwd* and
-*group* maps.
+request returns **all** local and LDAP entries for the *passwd* and *group* maps.
 
 ### LDAP search
 
@@ -510,6 +503,7 @@ has many options. The simplest uses anonymous bind to the host and
 specifies the search DN and the attribute to look up.
 
     cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser
+
 <details>
 <summary>Click to expand the command output ... </summary>
 
@@ -551,6 +545,7 @@ specifies the search DN and the attribute to look up.
     # numResponses: 2
     # numEntries: 1
 </details>
+
 ### LDAP Browsers
 
 There are several GUI LDAP clients available that help to work with LDAP
@@ -558,28 +553,11 @@ servers. These are free tools to help show the structure of the LDAP
 database graphically.
 
   - [Apache Directory Studio](http://directory.apache.org/studio/)
-
   - [LDAPManager](http://ldapmanager.sourceforge.net/)
 
 ## Related Information
 
-  - [Debian - configuring LDAP
-    authentication](https://wiki.debian.org/LDAP/NSS)
-
-  - [Debian - configuring PAM to use
-    LDAP](https://wiki.debian.org/LDAP/PAM)
-
-  - [GitHub - Arthur de Jong nslcd.conf
-    file](https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf)
-
+  - [Debian - configuring LDAP authentication](https://wiki.debian.org/LDAP/NSS)
+  - [Debian - configuring PAM to use LDAP](https://wiki.debian.org/LDAP/PAM)
+  - [GitHub - Arthur de Jong nslcd.conf file](https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf)
   - [Debian backports](http://backports.debian.org/Instructions/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

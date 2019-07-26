@@ -112,11 +112,3 @@ servers, custom scripts and other lightweight services to run well.
 However, VPN, NAT and encryption-type services are CPU-intensive and
 could lead to undesirable effects on critical applications. Use of any
 resource-intensive services should be avoided and is not supported.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

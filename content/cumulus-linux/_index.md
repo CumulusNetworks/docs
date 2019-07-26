@@ -51,7 +51,7 @@ open source. The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com/) page.
 
 ### Hardware Compatibility List
-x
+
 You can find the most up-to-date hardware compatibility list (HCL)
 [here](http://cumulusnetworks.com/hcl/). Use the HCL to confirm that
 your switch model is supported by Cumulus Networks. The HCL is updated

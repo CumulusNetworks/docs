@@ -297,7 +297,7 @@ Replace network bridge value (br0 in the above example) with the
         $ net commit
 </details>
 
-{{%notice note%}}
+{{%notice info%}}
 
 If you have changed the IP address of the NetQ Platform, you need to
 re-register this address with the Kubernetes containers before you can
@@ -317,10 +317,10 @@ continue.
 4.  Reset the Kubernetes service.  
     ` cumulus@netq-platform:~$ sudo systemctl restart cts-kubectl-config
      `  
-    ***Note***: Allow 15 minutes for the prompt to return.
+    **Note**: Allow 15 minutes for the prompt to return.
 
 5.  Reboot the VM.  
-    ***Note***: Allow 5-10 minutes for the VM to boot.
+    **Note**: Allow 5-10 minutes for the VM to boot.
 
 {{%/notice%}}
 
@@ -400,7 +400,7 @@ continue.
              
             cumulus@<netq-platform-hostname>:~$
 
-        {{%notice info%}}
+        {{%notice note%}}
 
 If any of the applications or services display status as DOWN after 30 minutes,
 open a [support ticket](https://cumulusnetworks.com/support/file-a-ticket/) and
@@ -435,9 +435,9 @@ used by both the NetQ Agent and the CLI.
 Instructions for installing the meta package on each node type are
 included here:
 
-  - [Install NetQ Agent on a Cumulus Linux Switch](#sinstall-netq-agent-on-a-cumulus-linux-switch)
-  - [Install NetQ Agent on an Ubuntu Server](#install-netq-on-an-ubuntu-server-optional)
-  - [Install NetQ Agent on a Red Hat or CentOS Server](#install-netq-on-a-red-hat-or-centos-server-optional)
+  - [Install NetQ Agent on a Cumulus Linux Switch](#install-netq-agent-on-a-cumulus-linux-switch)
+  - [Install NetQ Agent on an Ubuntu Server](#install-netq-on-an-ubuntu-server)
+  - [Install NetQ Agent on a Red Hat or CentOS Server](#install-netq-on-a-red-hat-or-centos-server)
 
 {{%notice note%}}
 
@@ -526,7 +526,7 @@ The switch or host must have access to the Internet to configure CLI
 Repeat these steps for each Cumulus switch, or use an automation tool to
 install NetQ Agent on multiple Cumulus Linux switches.
 
-### Install NetQ Agent on an Ubuntu Server (Optional)
+### Install NetQ Agent on an Ubuntu Server
 
 Before you install the NetQ Agent on an Ubuntu server, make sure the
 following packages are installed and running these minimum versions:
@@ -642,7 +642,7 @@ The switch or host must have access to the Internet to configure
 10. Repeat these steps for all of your hosts running Ubuntu, or use an
     automation tool to streamline the process.
 
-### Install NetQ Agent on a Red Hat or CentOS Server (Optional)
+### Install NetQ Agent on a Red Hat or CentOS Server
 
 Before you install the NetQ Agent on a Red Hat or CentOS server, make
 sure the following packages are installed and running these minimum

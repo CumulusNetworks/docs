@@ -435,9 +435,9 @@ used by both the NetQ Agent and the CLI.
 Instructions for installing the meta package on each node type are
 included here:
 
-  - [Install NetQ Agent on a Cumulus Linux Switch](#sinstall-netq-agent-on-a-cumulus-linux-switch)
-  - [Install NetQ Agent on an Ubuntu Server](#install-netq-on-an-ubuntu-server-optional)
-  - [Install NetQ Agent on a Red Hat or CentOS Server](#install-netq-on-a-red-hat-or-centos-server-optional)
+  - [Install NetQ Agent on a Cumulus Linux Switch](#install-netq-agent-on-a-cumulus-linux-switch)
+  - [Install NetQ Agent on an Ubuntu Server](#install-netq-on-an-ubuntu-server)
+  - [Install NetQ Agent on a Red Hat or CentOS Server](#install-netq-on-a-red-hat-or-centos-server)
 
 {{%notice note%}}
 
@@ -526,7 +526,7 @@ The switch or host must have access to the Internet to configure CLI
 Repeat these steps for each Cumulus switch, or use an automation tool to
 install NetQ Agent on multiple Cumulus Linux switches.
 
-### Install NetQ Agent on an Ubuntu Server (Optional)
+### Install NetQ Agent on an Ubuntu Server
 
 Before you install the NetQ Agent on an Ubuntu server, make sure the
 following packages are installed and running these minimum versions:
@@ -642,7 +642,7 @@ The switch or host must have access to the Internet to configure
 10. Repeat these steps for all of your hosts running Ubuntu, or use an
     automation tool to streamline the process.
 
-### Install NetQ Agent on a Red Hat or CentOS Server (Optional)
+### Install NetQ Agent on a Red Hat or CentOS Server
 
 Before you install the NetQ Agent on a Red Hat or CentOS server, make
 sure the following packages are installed and running these minimum

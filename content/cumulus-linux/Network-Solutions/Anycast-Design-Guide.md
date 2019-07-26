@@ -11,8 +11,7 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-Cumulus Networks' [Host Pack](/host-pack)
-provides the ability to run
+Cumulus Networks' [Host Pack](/host-pack) provides the ability to run
 [OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF) or
 [BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) directly on
 server hosts. This can enable a network architecture known as *anycast*,
@@ -21,8 +20,7 @@ extensions or load balancer appliances.
 
 Anycast is not a new protocol or protocol implementation and does not
 require any additional network configuration. Anycast leverages the
-[equal cost
-multipath](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP)
+[equal cost multipath](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP)
 (ECMP) capabilities inherent in layer 3 networks to provide stateless
 load sharing services.
 
@@ -109,8 +107,7 @@ impact of network changes or failures.
 
 ## Resilient Hashing
 
-[Resilient
-hashing](Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP.html#src-8362929_EqualCostMultipathLoadSharing-HardwareECMP-resilient_hashing)
+[Resilient hashing](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#resilient-hashing)
 provides a method to prevent failures from impacting the hash result of
 unrelated flows. However, resilient hashing does not prevent rehashing
 when new next hops are added.
@@ -246,11 +243,3 @@ services. However, the limitations inherent in network-based ECMP makes
 anycast challenging to integrate with some applications. An anycast
 architecture is best suited for stateless applications or applications
 that are able to share session state at the application layer.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

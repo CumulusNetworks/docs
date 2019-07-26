@@ -11,9 +11,9 @@ version: 3.7.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-You configure [global HTTP and HTTPS
-proxies](https://wiki.archlinux.org/index.php/proxy_settings) in the
-`/etc/profile.d/` directory of Cumulus Linux. To do so, set the
+You configure 
+[global HTTP and HTTPS proxies](https://wiki.archlinux.org/index.php/proxy_settings) 
+in the `/etc/profile.d/` directory of Cumulus Linux. To do so, set the
 `http_proxy` and `https_proxy` variables, which tells the switch the
 address of the proxy server to use to fetch URLs on the command line.
 This is useful for programs such as `apt`/`apt-get`, `curl` and `wget`,
@@ -69,7 +69,6 @@ proxy is set up correctly:
 
         cumulus@switch:~$ echo $http_proxy
         http://myproxy.domain.com:8080
-
   - HTTPS proxy:
 
         cumulus@switch:~$ echo $https_proxy
@@ -79,11 +78,3 @@ proxy is set up correctly:
 
   - [Setting up an apt package
     cache](https://support.cumulusnetworks.com/hc/en-us/articles/232058388-Setting-up-an-apt-Package-Cache)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -212,11 +212,3 @@ If you set the ports to 100M, the link lights for ports 1-46 are orange,
 while the lights for ports 47 and 48 are green.
 
 When all of the ports are set to 1G, all the link lights are green.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

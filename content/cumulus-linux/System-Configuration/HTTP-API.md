@@ -12,8 +12,7 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 Cumulus Linux implements an HTTP application programing interface to
-[OpenStack ML2
-driver](/cumulus-linux/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
+[OpenStack ML2 driver](/cumulus-linux/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
 and
 [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
 Rather than accessing Cumulus Linux using SSH, you can interact with the
@@ -66,7 +65,6 @@ Each service runs as a background daemon once started.
 There are two configuration files associated with the HTTP API services:
 
   - `/etc/nginx/sites-available/nginx-restapi.conf`
-
   - `/etc/nginx/sites-available/nginx-restapi-chassis.conf`
 
 The first configuration file is used for non-chassis hardware; the
@@ -119,8 +117,8 @@ All URLs must use HTTPS, rather than HTTP.
 
 {{%/notice%}}
 
-For more information on the listen directive, refer to the [NGINX
-documentation](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen).
+For more information on the listen directive, refer to the 
+[NGINX documentation](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen).
 
 {{%notice warning%}}
 
@@ -167,11 +165,8 @@ requests to a non-chassis host. The following settings are used for
 these examples:
 
   - Username: `user`
-
   - Password: `pw`
-
   - IP: `192.168.0.32`
-
   - Port: `8080`
 
 {{%notice note%}}
@@ -201,11 +196,3 @@ To run `net show counters` on the host as a remote procedure call:
 To add a bridge using ML2:
 
     cumulus@switch:~$ curl -X PUT -k -u user:pw https://192.168.0.32:8080/ml2/v1/bridge/"br1"/200
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

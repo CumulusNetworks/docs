@@ -23,15 +23,10 @@ against one or all cards in the chassis. The cl-chassis command provides
 options for:
 
   - Installing Cumulus Linux licenses
-
   - Installing a network operating system
-
   - Interacting with daemons
-
   - Restarting services
-
   - Rebooting the fabric and line cards
-
   - Generating the cl-support script when you need technical support
 
 The `cl-chassis` commands use a REST API on the back end.
@@ -69,11 +64,3 @@ Once you are logged into any fabric or line card in the chassis, you can
 use `ssh` and `scp` to connect to any other card without a password. SSH
 is managed by the `cumulus-chassis-ssh` service, which runs on port 722
 and detects host names listed in `/etc/hosts`.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -138,11 +138,3 @@ recommends you use `netshow` to help troubleshoot servers. To install
 Debian and Red Hat packages will be available in the near future.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

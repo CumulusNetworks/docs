@@ -22,11 +22,8 @@ Linux switch.
 You manage services in Cumulus Linux in the following ways:
 
   - Identify currently active or stopped services
-
   - Identify boot time state of a specific service
-
   - Disable or enable a specific service
-
   - Identify active listener ports
 
 ## systemd and the systemctl Command
@@ -561,13 +558,3 @@ The following table lists the most important services in Cumulus Linux.
 | lldpd        | Handles Tx/Rx of [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) information.                                                                                                                                                                                                                 | NO                                           |
 | smond        | Reads [platform sensors and fan information](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/) from pwmd.                                                                                                                                                                          | NO                                           |
 | pwmd         | Reads and sets fan speeds.                                                                                                                                                                                                                                                                                  | NO                                           |
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

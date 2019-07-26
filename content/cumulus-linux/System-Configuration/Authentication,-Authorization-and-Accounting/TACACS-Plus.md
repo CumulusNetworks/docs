@@ -88,8 +88,8 @@ the `systemctl restart auditd` command) or you must send a signal (with
 configuration to see the changed server list.
 
 You can also configure the IP address used as the source IP address when
-communicating with the TACACS+ server. See [TACACS Configuration
-Parameters](#src-8362558_TACACSPlus-TACACS_config_params) below for the
+communicating with the TACACS+ server. See
+[TACACS Configuration Parameters](#tacacs-configuration-parameters) below for the
 full list of TACACS+ parameters.
 
 Following is the complete list of the TACACS+ client configuration
@@ -693,11 +693,3 @@ users.
 
 Only use the `--remove-home` option when the `user_homedir=1`
 configuration command is in use.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

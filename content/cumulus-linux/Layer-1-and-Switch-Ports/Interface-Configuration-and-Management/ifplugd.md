@@ -98,11 +98,3 @@ The default shell for `ifplugd` is `dash` (`/bin/sh`), rather than
 `bash`, as it provides a faster and more nimble shell. However, it
 contains less features than `bash` (such as being unable to handle
 multiple uplinks).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

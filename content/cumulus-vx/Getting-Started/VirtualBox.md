@@ -22,14 +22,13 @@ documentation](https://www.virtualbox.org/wiki/Documentation).
 
 {{%/notice%}}
 
-## Create a Cumulus VX VM with VirtualBox</span>
+## Create a Cumulus VX VM with VirtualBox
 
 {{%notice note%}}
 
 This section assumes that you have downloaded the Cumulus VX disk image
-for VirtualBox and that VirtualBox is installed. For more download
-locations and steps, refer to the [Getting
-Started](/cumulus-vx/Getting-Started/) page.
+for VirtualBox and that VirtualBox is installed. For more download locations and
+steps, refer to the [Getting Started](/cumulus-vx/Getting-Started/) page.
 
 {{%/notice%}}
 
@@ -39,19 +38,17 @@ Started](/cumulus-vx/Getting-Started/) page.
     button, then click **Continue**.
 
 3.  Review the Appliance settings. Change the name of the VM to
-    `CumulusVX-leaf1`, then click **Import** to begin the import
-    process.  
-    
+    `CumulusVX-leaf1`, then click **Import** to begin the import process.  
+
     {{% imgOld 0 %}}
 
-## Next Steps</span>
+## Next Steps
 
 {{%notice note%}}
 
 This section assumes that you are configuring a two-leaf/two-spine
-network topology, that you have completed the steps in [Create a Cumulus
-VX VM with
-VirtualBox](#src-5126701_VirtualBox-CreateaCumulusVXVirtualMachinewithVirtualBox)
+network topology, that you have completed the steps in
+[Create a Cumulus VX VM with VirtualBox](#create-a-cumulus-vx-vm-with-virtualbox)
 above, and that you now have a VM called `CumulusVX-leaf1`.
 
 {{%/notice%}}
@@ -64,14 +61,13 @@ above, and that you now have a VM called `CumulusVX-leaf1`.
 3.  Select **Full Clone** and click **Clone**.
 
 4.  Repeat steps 1-3 for two additional VMs:
-    
+
       - `CumulusVX-spine1`
-    
+
       - `CumulusVX-spine2`
 
-5.  After you have created all four VMs, follow the steps in [Create a
-    Two-Leaf, Two-Spine
-    Topology](/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology) to
+5. After you have created all four VMs, follow the steps in
+   [Create a Two-Leaf, Two-Spine Topology](/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology) to
     configure the network interfaces and routing.
 
 {{%notice note%}}
@@ -80,22 +76,20 @@ You can also add a VM to one or more internal virtual networks in
 VirtualBox by cloning the VM. However, consider the following if you
 prefer to clone VMs:
 
-  - To set up configurations quickly across multiple nodes, configure
+- To set up configurations quickly across multiple nodes, configure
     the settings for the original VM, then clone it using **Machine \>
     Clone**. For example, if a management VM is being created for the
     new topology, set the `eth0` port to be on a virtual network that
     the management VM is on. When you clone the new VM, the port will be
     duplicated, creating an out-of-band (OOB) network.
-
-  - When you clone the VM, save the new VM on disk storage by referring
+- When you clone the VM, save the new VM on disk storage by referring
     to the original disk image, instead of copying it to the new VM.
-
-  - Always reset MAC addresses on the virtual NICs, unless a critical
+- Always reset MAC addresses on the virtual NICs, unless a critical
     reason not to exists.
 
 {{%/notice%}}
 
-## VirtualBox Caveats and Errata</span>
+## VirtualBox Caveats and Errata
 
 Consider the following caveats and expected behaviors when using Cumulus
 VX with VirtualBox:
@@ -121,7 +115,7 @@ VX with VirtualBox:
     which might not be up and active on your system when you import the
     image, causing the error message.
 
-### Network Interface Limitations</span>
+### Network Interface Limitations
 
 By default, the VirtualBox Manager only displays the first 8 virtual
 NICs, and you can only modify the first 4. However, if you plan on using
@@ -134,7 +128,7 @@ command to configure and use up to 36 virtual NICs:
 
 3.  On the **Motherboard** tab, in the **Chipset** list, select `ICH9`,
     then check **Enable I/O APIC**.  
-    
+
     {{% imgOld 1 %}}
 
 4.  Click **OK** to save the settings.

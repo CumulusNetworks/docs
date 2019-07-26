@@ -11,7 +11,6 @@ version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
-<details>
 
 `ifupdown` is the network interface manager for Cumulus Linux. Cumulus
 Linux 2.1 and later uses an updated version of this tool, `ifupdown2`.
@@ -26,39 +25,30 @@ want to know what is going on when bringing an interface down or up.
 
 {{%/notice%}}
 
-## Commands</span>
+## Commands
 
   - ifdown
-
   - ifquery
-
   - ifreload
-
   - ifup
-
   - mako-render
 
-## Man Pages</span>
+## Man Pages
 
 The following man pages have been updated for `ifupdown2`:
 
   - man ifdown(8)
-
   - man ifquery(8)
-
   - man ifreload
-
   - man ifup(8)
-
   - man ifupdown-addons-interfaces(5)
-
   - man interfaces(5)
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/network/interfaces
 
-## Basic Commands</span>
+## Basic Commands
 
 To bring up an interface or apply changes to an existing interface, run:
 
@@ -68,35 +58,33 @@ To bring down a single interface, run:
 
     cumulus@switch:~$ sudo ifdown <ifname>
 
-<summary>Runtime Configuration (Advanced) </summary>
+<details>
+<summary>Runtime Configuration (Advanced)</summary>
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>{{%notice warning%}}</p>
-<p>A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.</p>
-<p>{{%/notice%}}</p>
-<p>To administratively bring an interface up or down, run:</p>
-<pre><code>cumulus@switch:~$ sudo ip link set dev swp1 {up|down}</code></pre>
-<p>{{%notice note%}}</p>
-<p>If you specified <em>manual</em> as the address family, you must bring up that interface manually using <code>ifconfig</code>. For example, if you configured a bridge like this:</p>
-<pre><code>auto bridge01
-iface bridge01 inet manual</code></pre>
-<p>You can only bring it up by running <code>ifconfig bridge01 up</code>.</p>
-<p>{{%/notice%}}</p></td>
-</tr>
-</tbody>
-</table>
+To administratively bring an interface up or down, run:
+
+```
+cumulus@switch:~$ sudo ip link set dev swp1 {up|down}
+```
+
+{{%notice note%}}
+If you specified _manual_ as the address family, you must bring up that interface manually using `ifconfig`. For example, if you configured a bridge like this:
+
+```
+auto bridge01
+iface bridge01 inet manual
+```
+You can only bring it up by running `ifconfig bridge01 up`.
+{{%/notice%}}
+</details>
 
 {{%notice info%}}
-
 `ifdown` always deletes logical interfaces after bringing them down. Use
 the `--admin-state` option if you only want to administratively bring
 the interface up or down.
-
 {{%/notice%}}
 
 To see the link and administrative state, use the `ip link show`
@@ -107,10 +95,10 @@ command:
 
 In this example, swp1 is administratively UP and the physical link is UP
 (LOWER\_UP flag). More information on interface administrative state and
-physical state can be found in [this knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/202693826).
+physical state can be found in 
+[this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202693826).
 
-## Bringing All auto Interfaces Up or Down</span>
+## Bringing All auto Interfaces Up or Down
 
 You can easily bring up or down all interfaces marked `auto` in
 `/etc/network/interfaces`. Use the `-a` option. For further details, see
@@ -131,16 +119,13 @@ change):
 
     cumulus@switch:~$ sudo ifreload -a
 
-<span id="src-5116095_ConfiguringandManagingNetworkInterfaces-ip"></span>
-
-## ifupdown Behavior with Child Interfaces</span>
+## ifupdown Behavior with Child Interfaces
 
 By default, `ifupdown` recognizes and uses any interface present on the
 system — whether a VLAN, bond or physical interface — that is listed as
 a dependent of an interface. You are not required to list them in the
-`interfaces` file unless they need a specific configuration, for [MTU,
-link speed, and so
-forth](/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes).
+`interfaces` file unless they need a specific configuration, for 
+[MTU, link speed, and so forth](/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes).
 And if you need to delete a child interface, you should delete all
 references to that interface from the `interfaces` file.
 
@@ -222,7 +207,7 @@ For more information on the bridge in traditional mode vs the bridge in
 VLAN-aware mode, please read [this knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
 
-## ifupdown2 Interface Dependencies</span>
+## ifupdown2 Interface Dependencies
 
 `ifupdown2` understands interface dependency relationships. When `ifup`
 and `ifdown` are run with all interfaces, they always run with all
@@ -348,7 +333,7 @@ To print the dependency information of the entire `interfaces` file:
 
 {{% imgOld 1 %}}
 
-### ifup Handling of Upper (Parent) Interfaces</span>
+### ifup Handling of Upper (Parent) Interfaces
 
 When you run `ifup` on a logical interface (like a bridge, bond or VLAN
 interface), if the `ifup` resulted in the creation of the logical
@@ -400,7 +385,7 @@ then you cannot run `ifup swp1` since you did not specify it.
 
 {{%/notice%}}
 
-## Configuring IP Addresses</span>
+## Configuring IP Addresses
 
 In `/etc/network/interfaces`, list all IP addresses as shown below under
 the `iface` section (see `man interfaces` for more information):
@@ -457,7 +442,7 @@ To show the assigned address on an interface, use `ip addr show`:
         inet6 2001:DB8::1/126 scope global tentative
            valid_lft forever preferred_lft forever
 
-### Purging Existing IP Addresses on an Interface</span>
+### Purging Existing IP Addresses on an Interface
 
 By default, `ifupdown2` purges existing IP addresses on an interface. If
 you have other processes that manage IP addresses for an interface, you
@@ -477,14 +462,12 @@ addresses for an interface after you change an interface address and
 reload the configuration with `ifreload -a`. If this happens, you must
 shut down and restart the interface with `ifup` and `ifdown`, or
 manually delete superfluous addresses with `ip address delete
-specify.ip.address.here/mask dev DEVICE`. See also the [Caveats and
-Errata](#src-5116095_ConfiguringandManagingNetworkInterfaces-caveats)
-section below for some cautions about using multiple `iface` stanzas for
-the same interface.
+specify.ip.address.here/mask dev DEVICE`. See also the [Caveats and Errata](#caveats-and-errata-span) section below for some cautions about using multiple 
+`iface` stanzas for the same interface.
 
 {{%/notice%}}
 
-## Specifying User Commands</span>
+## Specifying User Commands
 
 You can specify additional user commands in the `interfaces` file. As
 shown in the example below, the interface stanzas in
@@ -504,7 +487,7 @@ For example, it wouldn't make sense to install some Debian package on
 `ifup` of swp1, even though that is technically possible. See `man
 interfaces` for more details.
 
-## Sourcing Interface File Snippets</span>
+## Sourcing Interface File Snippets
 
 Sourcing interface files helps organize and manage the `interfaces(5)`
 file. For example:
@@ -529,7 +512,7 @@ The contents of the sourced file used above are:
         address 2001:ded:beef:2::1/64
         bond-slaves swp25 swp26
 
-## Using Globs for Port Lists</span>
+## Using Globs for Port Lists
 
 Some modules support globs to define port lists (that is, a range of
 ports). You can use the `glob` keyword to specify bridge ports and bond
@@ -543,14 +526,12 @@ slaves:
     iface br1
         bridge-ports glob swp7-9.100  swp11.100 glob swp15-18.100
 
-## Using Templates</span>
+## Using Templates
 
-`ifupdown2` supports [Mako-style
-templates](http://www.makotemplates.org/). The Mako template engine is
-run over the `interfaces` file before parsing.
+`ifupdown2` supports [Mako-style templates](http://www.makotemplates.org/). The Mako 
+template engine is run over the `interfaces` file before parsing.
 
-Use the template to declare cookie-cutter bridges in the `interfaces`
-file:
+Use the template to declare cookie-cutter bridges in the `interfaces` file:
 
     %for v in [11,12]:
     auto vlan${v}
@@ -590,7 +571,7 @@ article](https://support.cumulusnetworks.com/hc/en-us/articles/202868023).
 
 {{%/notice%}}
 
-## Adding Descriptions to Interfaces</span>
+## Adding Descriptions to Interfaces
 
 You can add descriptions to the interfaces configured in
 `/etc/network/interfaces` by using the alias keyword. For example:
@@ -607,8 +588,7 @@ alias appears on the `alias` line:
         link/ether aa:aa:aa:aa:aa:bc brd ff:ff:ff:ff:ff:ff
         alias hypervisor_port_1
 
-Interface descriptions also appear in the [SNMP
-OID](Monitoring-System-Hardware.html#src-5115965_MonitoringSystemHardware-snmp)
+Interface descriptions also appear in the [SNMP OID](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/SNMP-Monitoring/#supported-mibs)
 [IF-MIB::ifAlias](http://www.net-snmp.org/docs/mibs/ifMIBObjects.html#ifAlias).
 
 {{%notice note%}}
@@ -617,9 +597,7 @@ Aliases are limited to 256 characters.
 
 {{%/notice%}}
 
-<span id="src-5116095_ConfiguringandManagingNetworkInterfaces-caveats"></span>
-
-## Caveats and Errata</span>
+## Caveats and Errata
 
 While `ifupdown2` supports the inclusion of multiple `iface` stanzas for
 the same interface, Cumulus Networks recommends you use a single `iface`
@@ -658,22 +636,9 @@ attributes are not specified in multiple `iface` stanzas.
 And, as stated in the note above, you cannot purge existing addresses on
 interfaces with multiple `iface` stanzas.
 
-## Useful Links</span>
+## Useful Links
 
   - <http://wiki.debian.org/NetworkConfiguration>
-
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding>
-
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge>
-
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

@@ -91,7 +91,7 @@ iface br-20 inet manual
 <li><p>Ability to use <a href="/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a> commands</p>
 <ul>
 <li><p>mstpctl-portadminedge</p></li>
-<li><p><a href="Spanning-Tree-and-Rapid-Spanning-Tree.html#src-8362689_SpanningTreeandRapidSpanningTree-bpdu">BPDU guard</a></p></li>
+<li><p><a href="/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard">BPDU guard</a></p></li>
 </ul></li>
 <li><p>Layer 2 reachability to all VMs</p></li>
 </ul>
@@ -509,7 +509,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="#src-8362991" class="unresolved">BGP</a> or <a href="/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF">OSPF</a>.</p></td>
+<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/" class="unresolved">BGP</a> or <a href="/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF">OSPF</a>.</p></td>
 <td><p><strong><strong>Benefits</strong></strong></p>
 <p>In addition to routing on a host:</p>
 <ul>
@@ -688,7 +688,7 @@ iface br-10
 </ul>
 <p><strong><strong>Caveats</strong></strong></p>
 <ul>
-<li><p>Needs MLAG (with the same caveats from the <a href="#src-8362991_DataCenterHosttoToRArchitecture-mlag">MLAG section</a> above) and <a href="/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a></p></li>
+<li><p>Needs MLAG (with the same caveats from the <a href="#mlag">MLAG section</a> above) and <a href="/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a></p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -731,11 +731,3 @@ iface br-10
 </tr>
 </tbody>
 </table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

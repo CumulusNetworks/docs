@@ -207,11 +207,3 @@ hardware statistics via `switchd`:
     counters available via `netdev` are sufficient to display the
     vlan/vxlan counters currently supported in the hardware (only rx/tx
     packets/bytes are supported currently).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

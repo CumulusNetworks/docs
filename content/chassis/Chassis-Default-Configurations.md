@@ -16,23 +16,18 @@ nodes in the chassis the first time you boot it after installing Cumulus
 Linux on the nodes. These following actions are also performed:
 
   - Enable Zebra and `bgpd` for FRR in the `/etc/frr/daemons` file.
-
   - Create the default FRR configuration in the `/etc/frr/frr.conf`
     file; iBGP is used. The default configuration uses the ASN
     *4242424242* to make it easy to recognize. The router ID is set to
     *42.42.42.\<slot number\>*. Line cards redistribute connected routes
     and fabric cards are route reflectors.
-
   - Enable and start the `cumulus-chassisd` service.
-
   - Edit the `/etc/hosts` file to add host names for the IPv4 and IPv6
     link local addresses that are assigned to the eth0.4088 interfaces
     of all CPUs in the chassis.
-
   - Enable and start the `cumulus-chassis-ssh` service. This service
     provides for SSH from one chassis card to another without a
     password.
-
   - Create the following two files in the `/etc/network/interfaces.d`
     directory, which are sourced by the `/etc/network/interfaces` file:
     
@@ -40,7 +35,6 @@ Linux on the nodes. These following actions are also performed:
         eth0.4088 interface and assigns it IPv4 and IPv6 link local
         addresses via a post-up script. This interface is used for
         intra-chassis communication.
-    
       - The second file — called `fabric.intf` — configures the fabric
         interfaces. It uses Mako templates to iterate over all of the
         fabric interfaces and set the interface properties. The
@@ -59,7 +53,6 @@ The chassis has a default routing configuration that uses
 configuration to suit your needs. The configuration includes:
 
   - Unnumbered iBGP
-
   - Redistribute connected routes on the line cards and route reflectors
 
 FRR can pass routes from one line card to another.
@@ -340,11 +333,3 @@ The Edgecore OMP-800 **fabric card** has no user configurable ports, so
 the `ports.conf` file has no content.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

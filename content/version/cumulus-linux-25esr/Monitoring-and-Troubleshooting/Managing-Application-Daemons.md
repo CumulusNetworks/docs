@@ -14,14 +14,11 @@ siteSlug: cumulus-linux-25esr
 You manage application daemons in Cumulus Linux in the following ways:
 
   - Identifying active listener ports
-
   - Identifying daemons currently active or stopped
-
   - Identifying boot time state of a specific daemon
-
   - Disabling or enabling a specific daemon
 
-## Identifying Active Listener Ports for IPv4 and IPv6</span>
+## Identifying Active Listener Ports for IPv4 and IPv6
 
 You can identify the active listener ports under both IPv4 and IPv6
 using the `lsof` command:
@@ -44,7 +41,7 @@ using the `lsof` command:
     ntpd 1882 104 21u IPv6 3966 0t0 UDP [fe80::7272:cfff:fe96:6639]:123
     sshd 2496 0 4u IPv6 5811 0t0 TCP *:22 (LISTEN)
 
-## Identifying Daemons Currently Active or Stopped</span>
+## Identifying Daemons Currently Active or Stopped
 
 To determine which daemons are currently active or stopped, use the
 `service --status-all` command, then pipe the results to `grep`, using
@@ -62,7 +59,7 @@ the - or + operators:
      [ - ] ptmd
      ...
 
-## Identifying Boot Time State of a Specific Daemon</span>
+## Identifying Boot Time State of a Specific Daemon
 
 The `ls` command can provide the boot time state of a daemon. A file
 link with a name starting with **S** identifies a boot-time-enabled
@@ -82,7 +79,7 @@ For example:
     lrwxrwxrwx 1 root root 15 Apr 4 2014 S01snmpd -> ../init.d/snmpd
     lrwxrwxrwx 1 root root 15 Apr 4 2014 K02snmpd -> ../init.d/snmpd
 
-## Disabling or Enabling a Specific Daemon</span>
+## Disabling or Enabling a Specific Daemon
 
 To enable or disable a specific daemon, run:
 
@@ -120,11 +117,3 @@ For example:
     lrwxrwxrwx 1 root root 15 Feb 13 17:35 S01snmpd -> ../init.d/snmpd
     lrwxrwxrwx 1 root root 15 Feb 13 17:35 S01snmpd -> ../init.d/snmpd
     lrwxrwxrwx 1 root root 15 Apr 4 2014 K02snmpd -> ../init.d/snmpd
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -11,8 +11,7 @@ version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
-Cumulus Linux supports these forms of [network
-virtualization](http://en.wikipedia.org/wiki/Network_virtualization):
+Cumulus Linux supports these forms of [network virtualization](http://en.wikipedia.org/wiki/Network_virtualization):
 
 VXLAN (Virtual Extensible LAN), is a standard overlay protocol that
 abstracts logical virtual networks from the physical network underneath.
@@ -55,23 +54,18 @@ destination.
 
 {{%/notice%}}
 
-## Commands</span>
+## Commands
 
   - brctl
-
   - bridge fdb
-
   - ip link
-
   - ovs-pki
-
   - ovsdb-client
-
   - vtep-ctl
 
-## Caveats/Errata</span>
+## Caveats/Errata
 
-### Cut-through Mode</span>
+### Cut-through Mode
 
 Cut-through mode is disabled in Cumulus Linux by default. With
 cut-though mode enabled and link pause is asserted, Cumulus Linux
@@ -110,24 +104,14 @@ in `/etc/cumulus/datapath/traffic.conf`:
     cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
     cut_through_enable = false
 
-### MTU Size for Virtual Network Interfaces</span>
+### MTU Size for Virtual Network Interfaces
 
 The maximum transmission unit (MTU) size for a virtual network interface
 should by 50 bytes smaller than the MTU for the physical interfaces on
-the switch. For more information, read [Layer 1 and Switch Port
-Attributes](Layer-1-and-Switch-Port-Attributes.html#src-5116098_Layer1andSwitchPortAttributes-mtu_vxlan).
+the switch. For more information, read 
+[Layer 1 and Switch Port Attributes](/version/cumulus-linux-25esr/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#configuring-mtu-for-a-vxlan-virtual-network-interface).
 
-## Useful Links</span>
+## Useful Links
 
-  - [VXLAN IETF
-    draft](http://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-06)
-
+  - [VXLAN IETF draft](http://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-06)
   - [ovsdb-server](http://openvswitch.org/support/dist-docs/ovsdb-server.1.html)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

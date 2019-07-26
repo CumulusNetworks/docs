@@ -55,19 +55,17 @@ majority of designs seen in the field.
 #### Virtual Appliance
 
 You can build out the reference topology in hardware or using Cumulus VX
-(the free Cumulus Networks virtual appliance). The [Cumulus Reference
-Topology using
-Vagrant](https://github.com/CumulusNetworks/cldemo-vagrant) is
-essentially the reference topology built out inside Vagrant with
+(the free Cumulus Networks virtual appliance). The 
+[Cumulus Reference Topology using Vagrant](https://github.com/CumulusNetworks/cldemo-vagrant) 
+is essentially the reference topology built out inside Vagrant with
 VirtualBox or KVM. The installation and setup instructions for bringing
 up the entire reference topology on a laptop or server are on the
-[cldemo-vagrant GitHub
-repo](https://github.com/CumulusNetworks/cldemo-vagrant).
+[cldemo-vagrant GitHub repo](https://github.com/CumulusNetworks/cldemo-vagrant).
 
 #### Hardware
 
-Any switch from the [hardware compatibility
-list](https://cumulusnetworks.com/support/linux-hardware-compatibility-list/)
+Any switch from the 
+[hardware compatibility list](https://cumulusnetworks.com/support/linux-hardware-compatibility-list/)
 is compatible with the topology as long as you follow the interface
 count from the table above. Of course, in your own production
 environment, you don't have to use exactly the same devices and cabling
@@ -75,15 +73,7 @@ as outlined above.
 
 ### Demos
 
-You can find an up to date list of all the demos in the [cldemo-vagrant
-GitHub
-repository](https://github.com/CumulusNetworks/cldemo-vagrant#available-demos),
+You can find an up to date list of all the demos in the 
+[cldemo-vagrant GitHub repository](https://github.com/CumulusNetworks/cldemo-vagrant#available-demos),
 which is available to anyone free of charge.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

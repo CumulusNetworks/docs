@@ -11,18 +11,16 @@ version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
-<details>
-
 This chapter discusses the various network interfaces on a switch
 running Cumulus Linux.
 
-## Commands</span>
+## Commands
 
   - ethtool
 
   - ip
 
-## Man Pages</span>
+## Man Pages
 
   - man ethtool
 
@@ -34,11 +32,11 @@ running Cumulus Linux.
 
   - man ip link
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/network/interfaces
 
-## Interface Types</span>
+## Interface Types
 
 Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
@@ -54,7 +52,7 @@ and logical devices:
   - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
     port channels)
 
-## Settings</span>
+## Settings
 
 You can set the MTU, speed, duplex and auto-negotiation settings under a
 physical or logical interface stanza:
@@ -71,7 +69,7 @@ To load the updated configuration, run the `ifreload -a` command:
 
     cumulus@switch:~$ sudo ifreload -a
 
-### Port Speed and Duplexing</span>
+### Port Speed and Duplexing
 
 Cumulus Linux supports both half- and
 [full-duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
@@ -99,31 +97,30 @@ defaults to half duplex.
 
 You can also configure these settings at run time, using `ethtool`.
 
+<details>
 <summary>Runtime Configuration (Advanced) </summary>
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>{{%notice warning%}}</p>
-<p>A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.</p>
-<p>{{%/notice%}}</p>
-<p>You can use <code>ethtool</code> to configure duplexing and the speed for your switch ports. You must specify both port speed and duplexing in the <code>ethtool</code> command; auto-negotiation is optional. The following examples use swp1.</p>
-<ul>
-<li><p>To set the port speed to 1G, run:</p>
-<pre><code>ethtool -s swp1 speed 1000 duplex full</code></pre></li>
-<li><p>To set the port speed to 10G, run:</p>
-<pre><code>ethtool -s swp1 speed 10000 duplex full</code></pre></li>
-<li><p>To enable duplexing, run:</p>
-<pre><code>ethtool -s swp1 speed 10000 duplex full|half</code></pre></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
 
-#### Port Speed Limitations</span>
+You can use `ethtool` to configure duplexing and the speed for your switch ports. You must specify both port speed and duplexing in the `ethtool` command; auto-negotiation is optional. The following examples use swp1.
+
+- To set the port speed to 1G, run:
+    ```
+    ethtool -s swp1 speed 1000 duplex full
+    ```
+- To set the port speed to 10G, run:
+    ```
+    ethtool -s swp1 speed 10000 duplex full
+    ```
+- To enable duplexing, run:
+    ```
+    ethtool -s swp1 speed 10000 duplex full|half
+    ```
+</details>
+
+#### Port Speed Limitations
 
 Ports can be configured to one speed less than their maximum speed.
 
@@ -135,7 +132,7 @@ Ports can be configured to one speed less than their maximum speed.
 
 \*Requires the port to be converted into a breakout port.
 
-### Auto-negotiation</span>
+### Auto-negotiation
 
 You can enable or disable
 [auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation) (that
@@ -152,27 +149,23 @@ interfaces.
     iface swp1
        link-autoneg off
 
-<summary>Runtime Configuration (Advanced) </summary>
+<details>
+<summary>Runtime Configuration (Advanced)</summary>
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>{{%notice warning%}}</p>
-<p>A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.</p>
-<p>{{%/notice%}}</p>
-<p>You can use <code>ethtool</code> to configure auto-negotiation for your switch ports. The following example use swp1:</p>
-<ul>
-<li><p>To enable or disable auto-negotiation, run:</p>
-<pre><code>ethtool -s swp1 speed 10000 duplex full autoneg on|off</code></pre></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
 
-### <span id="src-5116098_Layer1andSwitchPortAttributes-mtu" class="confluence-anchor-link"></span>MTU</span>
+You can use `ethtool` to configure auto-negotiation for your switch ports. The following example uses swp1. 
+
+To enable or disable auto-negotiation, run:
+
+```
+ethtool -s swp1 speed 10000 duplex full autoneg on|off
+```
+</details>
+
+### MTU
 
 Interface MTU applies to the management port, front panel port, bridge,
 VLAN subinterfaces and bonds.
@@ -181,25 +174,22 @@ VLAN subinterfaces and bonds.
     iface swp1
        mtu 9000
 
+<details>
 <summary>Runtime Configuration (Advanced) </summary>
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>{{%notice warning%}}</p>
-<p>A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.</p>
-<p>{{%/notice%}}</p>
-<p>To set swp1 to Jumbo Frame MTU=9000, use <code>ip link set</code>:</p>
-<pre><code>cumulus@switch:~$ sudo ip link set dev swp1 mtu 9000
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+To set swp1 to _Jumbo Frame MTU=9000_, use `ip link set`:
+
+```
+cumulus@switch:~$ sudo ip link set dev swp1 mtu 9000
 cumulus@switch:~$ ip link show dev swp1
 3: swp1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9000 qdisc pfifo_fast state UP mode DEFAULT qlen 500
     link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff</code></pre></td>
-</tr>
-</tbody>
-</table>
+```
+</details>
 
 {{%notice warning%}}
 
@@ -240,7 +230,7 @@ To show MTU, use `ip link show`:
     3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 
-#### <span id="src-5116098_Layer1andSwitchPortAttributes-mtu_vxlan" class="confluence-anchor-link"></span>Configuring MTU for a VXLAN Virtual Network Interface</span>
+#### Configuring MTU for a VXLAN Virtual Network Interface
 
 If you are working with
 [VXLANs](/display/CL25ESR/Network+Virtualization), the MTU for a virtual
@@ -252,17 +242,15 @@ much higher than the default 1500.
 Two common MTUs for physical interfaces are 9216 and 9000 bytes. The
 corresponding MTUs for the VNIs would be 9166 and 8950.
 
-## Configuring Breakout Ports</span>
+## Configuring Breakout Ports
 
 Cumulus Linux has the ability to:
 
-  - Break out 40G switch ports into four separate 10G ports for use with
-    a breakout cable.
-
-  - Combine (also called *aggregating* or *ganging*) four 10G switch
-    ports into one 40G port for use with a breakout cable ([not to be
-    confused with a
-    bond](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation)).
+- Break out 40G switch ports into four separate 10G ports for use with
+  a breakout cable.
+- Combine (also called *aggregating* or *ganging*) four 10G switch
+  ports into one 40G port for use with a breakout cable 
+  ([not to be confused with a bond](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation)).
 
 A typical DAC (directly-attached copper) 40G 1xQSFP to 10G 4xSFP+ looks
 like this:
@@ -271,11 +259,10 @@ like this:
 
 You configure breakout ports with the `/etc/cumulus/ports.conf` file.
 After you modify the configuration, restart `switchd` to push the new
-configuration (run `sudo service switchd restart`; [this interrupts
-network
-services](Configuring-switchd.html#src-5115907_Configuringswitchd-restartswitchd)).
+configuration (run `sudo service switchd restart`; 
+[this interrupts network services](/version/cumulus-linux-25esr/System-Management/Configuring-switchd/#restarting-switchd)).
 
-### Breaking out a 40G port into 4x10G Ports</span>
+### Breaking out a 40G port into 4x10G Ports
 
 {{%notice info%}}
 
@@ -308,14 +295,14 @@ In the following example, switch port 49 is changed to a breakout port:
     51=40G
     52=40G
 
-To load the change restart `switchd`:
+To load the change, restart `switchd`:
 
     cumulus@switch:~$ sudo service switchd restart
 
 Many services depend on `switchd`. It is highly recommended to restart
 Cumulus Linux if possible in this situation.
 
-### Combining Four 10G Ports into One 40G Port</span>
+### Combining Four 10G Ports into One 40G Port
 
 To gang (aggregate) four 10G ports into one 40G port for use with a
 breakout cable, you must edit `/etc/cumulus/ports.conf`.
@@ -371,13 +358,11 @@ Cumulus Linux if possible in this situation.
 
 {{%/notice%}}
 
-## Logical Switch Port Limitations</span>
+## Logical Switch Port Limitations
 
 40G switches with Trident II chipsets (check the *40G Portfolio* section
-of the
-[HCL](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
-can support a certain number of logical ports, depending upon the
-manufacturer.
+of the [HCL](https://cumulusnetworks.com/hcl)) can support a certain 
+number of logical ports, depending upon the manufacturer.
 
 Before you configure any logical/unganged ports on a switch, check the
 limitations listed in `/etc/cumulus/ports.conf`; this file is specific
@@ -414,9 +399,9 @@ limitation like this:
 
 The means the maximum number of ports for this Dell S6000 is 104.
 
-## Verification and Troubleshooting Commands</span>
+## Verification and Troubleshooting Commands
 
-### Statistics</span>
+### Statistics
 
 High-level interface statistics are available with the `ip -s link`
 command:
@@ -460,7 +445,7 @@ Low-level interface statistics are available with `ethtool`:
          SoftOutTxFifoFull: 0
          HwIfOutQLen: 0
 
-### Querying SFP Port Information</span>
+### Querying SFP Port Information
 
 You can verify SFP settings using `ethtool -m`. The following example
 shows the output for 1G and 10G modules:
@@ -476,22 +461,9 @@ shows the output for 1G and 10G modules:
                   RXPower : -3.2532dBm
                   TXPower : -2.0817dBm
 
-## Useful Links</span>
+## Useful Links
 
   - <http://wiki.debian.org/NetworkConfiguration>
-
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan>
-
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge>
-
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

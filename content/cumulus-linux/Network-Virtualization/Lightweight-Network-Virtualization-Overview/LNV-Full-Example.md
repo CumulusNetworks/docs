@@ -527,22 +527,11 @@ svcnode_peers = 10.2.1.3
 ## Related Information
 
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
-
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
-
   - [Detailed LNV Configuration
     Guide](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
-
   - [Cumulus Networks
     Training](http://cumulusnetworks.com/education/instructor-led-training/)
-
   - [Network virtualization chapter, Cumulus Linux user
     guide](/cumulus-linux/Network-Virtualization/)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -11,8 +11,6 @@ version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
-<details>
-
 IGMP (Internet Group Management Protocol) and MLD (Multicast Listener
 Discovery) snooping functionality is implemented in the bridge driver in
 the kernel. IGMP snooping processes IGMP v1/v2/v3 reports received on a
@@ -36,13 +34,12 @@ traffic destined to that group.
 
 {{% imgOld 0 %}}
 
-## Commands</span>
+## Commands
 
   - brctl
-
   - bridge
 
-## Creating a Bridge and Configuring IGMP/MLD Snooping</span>
+## Creating a Bridge and Configuring IGMP/MLD Snooping
 
 You need to set a number of parameters for IGMP and MLD snooping, but
 the setting to enable it is `bridge-mcsnoop 1`. The following
@@ -96,6 +93,7 @@ IP address for the querier in an SVI under the bridge.
     iface swp3
       bridge-access 100
 
+<details>
 <summary>Runtime Configuration (Advanced) </summary>
 
 {{%notice warning%}}
@@ -179,12 +177,13 @@ command:
      dev br0 port swp1 grp 234.1.1.1 temp
      dev br0 port swp2 grp ff1a::9 permanent
 
-<span id="src-5116087_IGMPandMLDSnooping-igmp_disable"></span>To disable
-IGMP and MLD snooping, use:
+To disable IGMP and MLD snooping, use:
 
     cumulus@switch:~$ sudo brctl setmcsnoop br0 0
 
-## Configuring IGMP/MLD Snooping Parameters</span>
+</details>
+
+## Configuring IGMP/MLD Snooping Parameters
 
 For an explanation of these parameters, see the `brctl` and
 `ifupdown-addons-interfaces` man pages:
@@ -201,7 +200,7 @@ For an explanation of these parameters, see the `brctl` and
     cumulus@switch:~$ sudo brctl setmcqri br0 10
     cumulus@switch:~$ sudo brctl setmsqi br0 31
 
-## Querier and Fast Leave Configuration</span>
+## Querier and Fast Leave Configuration
 
 If there is no multicast router in the VLAN, the IGMP/MLD snooping
 querier can be configured to generate query messages.
@@ -219,7 +218,7 @@ immediately:
 
     cumulus@switch:~$ sudo brctl setportmcfl br0 swp1 1
 
-## Static Group and Router Port Configuration</span>
+## Static Group and Router Port Configuration
 
 To configure static permanent multicast group on a port, use:
 
@@ -236,40 +235,23 @@ To configure a static router port, use:
 
     cumulus@switch:~$ sudo brctl setportmcrouter br0 swp3 2
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/network/interfaces
 
-## Man Pages</span>
+## Man Pages
 
   - brctl(8)
-
   - bridge(8)
-
   - ifupdown-addons-interfaces(5)
 
-## Useful Links</span>
+## Useful Links
 
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge#Snooping>
-
   - <https://tools.ietf.org/html/rfc4541>
-
   - <http://en.wikipedia.org/wiki/IGMP_snooping>
-
   - <http://tools.ietf.org/rfc/rfc2236.txt>
-
   - <http://tools.ietf.org/html/rfc3376>
-
   - <http://tools.ietf.org/search/rfc2710>
-
   - <http://tools.ietf.org/html/rfc3810>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

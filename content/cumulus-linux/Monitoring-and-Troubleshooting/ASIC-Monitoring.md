@@ -238,8 +238,8 @@ For example, to monitor packet drops due to buffer congestion:
 
 Certain settings in the procedure above (such as the histogram size,
 boundary size, and sampling time) only apply to the histogram monitor.
-All ASIC monitor settings are described in [ASIC Monitoring
-Settings](#src-8362627_ASICMonitoring-ASIC_Settings).
+All ASIC monitor settings are described in
+[ASIC Monitoring Settings](#asic-monitoring-settings).
 
 ## Configuration Examples
 
@@ -372,11 +372,10 @@ In the following example:
 
 {{%notice note%}}
 
-Certain actions require additional settings. For example, if the
-`snapshot` action is specified, a snapshot file is also required. If the
-`log` action is specified, a log threshold is also required. See
-[action\_list](#src-8362627_ASICMonitoring-action_setting) for
-additional settings required for each *action*.
+Certain actions require additional settings. For example, if the `snapshot` action
+is specified, a snapshot file is also required. If the `log` action is specified,
+a log threshold is also required. See [action\_list](#asic-monitoring-settings)
+for additional settings required for each *action*.
 
 {{%/notice%}}
 
@@ -542,13 +541,3 @@ In the following example, because the snapshot file count is set to 64, the firs
 </tr>
 </tbody>
 </table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

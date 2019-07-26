@@ -21,7 +21,6 @@ following reasons:
   - When there is a [core file dump](http://linux.die.net/man/5/core) of
     any application (not specific to Cumulus Linux, but something all
     Linux distributions support), located in `/var/support/core`.
-
   - After the first failure of one of several monitored services since
     the switch was rebooted or power cycled.
 
@@ -40,21 +39,11 @@ information, such as the `sudoers` file, use the `-s` option:
 For information on the directories included in the `cl-support` archive,
 see:
 
-  - [Troubleshooting the etc
-    Directory](/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory)
+  - [Troubleshooting the etc Directory](/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory)
     — In terms of the sheer number of files, `/etc` contains the largest
     number of files to send to Cumulus Networks. However, log files
     might be significantly larger in file size.
 
-  - [Troubleshooting Log
-    Files](/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files)
+  - [Troubleshooting Log Files](/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files)
     — This guide highlights the most important log files to inspect.
     Keep in mind, `cl-support` includes all of the log files.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

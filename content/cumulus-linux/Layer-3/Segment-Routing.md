@@ -576,11 +576,3 @@ well:
     cumulus@r1:~$ ip -f mpls route show 104
     104 via inet6 fe80::202:ff:fe00:c dev swp3  proto zebra
     cumulus@r1:~$
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

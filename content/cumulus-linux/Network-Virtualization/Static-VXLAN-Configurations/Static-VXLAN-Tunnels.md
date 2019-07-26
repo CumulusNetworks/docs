@@ -14,12 +14,11 @@ siteSlug: cumulus-linux
 In VXLAN-based networks, there are a range of complexities and
 challenges in determining the destination *virtual tunnel endpoints*
 (VTEPs) for any given VXLAN. At scale, various solutions, including
-[Lightweight Network
-Virtualization](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
-(LNV), controller-based options like [Midokura
-MidoNet](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
-or [VMware
-NSX](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+[Lightweight Network Virtualization](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+(LNV), controller-based options like 
+[Midokura MidoNet](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
+or 
+[VMware NSX](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
 and even new standards like
 [EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 are attempts to address these complexities, however do retain their own
@@ -313,11 +312,3 @@ supported.
     bridge-access 258
     bridge-learning off
     mtu 9000
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

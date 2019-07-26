@@ -297,7 +297,7 @@ Replace network bridge value (br0 in the above example) with the
         $ net commit
 </details>
 
-{{%notice note%}}
+{{%notice info%}}
 
 If you have changed the IP address of the NetQ Platform, you need to
 re-register this address with the Kubernetes containers before you can
@@ -317,10 +317,10 @@ continue.
 4.  Reset the Kubernetes service.  
     ` cumulus@netq-platform:~$ sudo systemctl restart cts-kubectl-config
      `  
-    ***Note***: Allow 15 minutes for the prompt to return.
+    **Note**: Allow 15 minutes for the prompt to return.
 
 5.  Reboot the VM.  
-    ***Note***: Allow 5-10 minutes for the VM to boot.
+    **Note**: Allow 5-10 minutes for the VM to boot.
 
 {{%/notice%}}
 
@@ -400,7 +400,7 @@ continue.
              
             cumulus@<netq-platform-hostname>:~$
 
-        {{%notice info%}}
+        {{%notice note%}}
 
 If any of the applications or services display status as DOWN after 30 minutes,
 open a [support ticket](https://cumulusnetworks.com/support/file-a-ticket/) and

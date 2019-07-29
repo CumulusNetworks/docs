@@ -4,6 +4,7 @@ title = "Cumulus Networks Documentation"
 theme = "netDocs"
 baseURL = "/"
 relURLs = true
+#googleAnalytics = "UA-40724538-3"
 
 #Book configuration
 disablePathToLower = true
@@ -80,7 +81,7 @@ showVisitedLinks = true
 
 [blackfriday]
 hrefTargetBlank = true
-
+fractions = false
 [taxonomies]
   tag = "tags"
   category = "categories"

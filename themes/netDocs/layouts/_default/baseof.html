@@ -83,10 +83,16 @@
       </li>
     </ul>
     <div class="search-container">
-      <div id="doc-search-box">
-        <input type="text" class="doc-search-input" placeholder="Search" value="">
-      <span>  <button type="submit"><img src="/icons/search_20x20.svg" alt=""></button></span>
-      </div>
+      <form action="/search" method="GET">
+        <div id="doc-search-box">
+          <input type="text" name="q" class="doc-search-input" placeholder="Search">
+          <span>
+            <button type="submit">
+              <img src="/icons/search_20x20.svg" alt="">
+            </button>
+          </span>
+        </div>
+      </form>
       <div id="dropdown" class="dropdown">
           <button class="btn" type="button" id="dropdownMenuButton">
             v{{.Page.Params.version}}

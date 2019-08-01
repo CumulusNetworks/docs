@@ -260,8 +260,9 @@ packets have the following format:
 
 {{%notice note%}}
 
-Mirrored traffic is not guaranteed. If the MTP is congested, mirrored
-packets might be discarded.
+ - Mirrored traffic is not guaranteed. If the MTP is congested, mirrored packets might be discarded.
+
+ - A SPAN/ERSPAN destination interface that is oversubscribed might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN/ERSPAN when the aggregate speeds of all source ports exceeds the destination port. Selective SPAN is recommended when possible to limit traffic in this scenario.
 
 {{%/notice%}}
 

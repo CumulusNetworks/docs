@@ -3,9 +3,9 @@ title: "Monitoring Interfaces and Transceivers Using ethtool — ethtool Counter
 author: Cumulus Networks
 weight: 459
 aliases:
- - "/display/DOCS/Monitoring+Interfaces+and+Transceivers+Using+ethtool+—+ethtool+Counter+Definitions"
- - "/display/DOCS/Monitoring+Interfaces+and+Transceivers+Using+ethtool+ethtool+Counter+Definitions"
- - /pages/viewpage.action?pageId=9018051
+ 
+- "/display/DOCS/Monitoring+Interfaces+and+Transceivers+Using+ethtool+ethtool+Counter+Definitions"
+- /pages/viewpage.action?pageId=9018051
 pageID: 9018051
 product: Cumulus Linux
 version: 3.7.7

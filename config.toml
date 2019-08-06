@@ -5,6 +5,7 @@ baseURL = "/"
 relURLs = true
 googleAnalytics = "UA-40724538-3"
 
+
 #Book configuration
 disablePathToLower = true
 ## bug in local server, will enable in production

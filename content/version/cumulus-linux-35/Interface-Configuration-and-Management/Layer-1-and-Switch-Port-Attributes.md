@@ -21,13 +21,9 @@ Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
 
   - lo, network loopback device
-
   - ethN, switch management port(s), for out of band management only
-
   - swpN, switch front panel ports
-
   - (optional) brN, bridges (IEEE 802.1Q VLANs)
-
   - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
     port channels)
 
@@ -36,16 +32,10 @@ and logical devices:
 Each physical network interface has a number of configurable settings:
 
   - [Auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation)
-
   - [Duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
-
-  - [Forward error
-    correction](https://en.wikipedia.org/wiki/Forward_error_correction)
-
+  - [Forward error correction](https://en.wikipedia.org/wiki/Forward_error_correction)
   - Link speed
-
-  - MTU, or [maximum transmission
-    unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
+  - MTU, or [maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
 
 Almost all of these settings are configured automatically for you,
 depending upon your switch ASIC, although you must always set MTU

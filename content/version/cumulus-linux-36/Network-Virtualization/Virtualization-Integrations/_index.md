@@ -13,11 +13,3 @@ siteSlug: cumulus-linux-36
 ---
 Cumulus Linux integrates with a number of VXLAN controller-based
 virtualization solutions.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

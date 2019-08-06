@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8363032
 pageID: 8363032
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
@@ -60,7 +60,7 @@ service.
 You can configure Quality of Service (QoS) for switches on the following
 platforms only:
 
-  - Broadcom Helix4, Tomahawk, Trident II, Trident II+ and Trident3
+  - Broadcom Tomahawk, Trident II, Trident II+ and Trident3
 
   - Mellanox Spectrum
 
@@ -387,12 +387,6 @@ standard](http://www.ieee802.org/1/pages/802.1bb.html), provides a
 link-level flow control mechanism that can be controlled independently
 for each Class of Service (CoS) with the intention to ensure no data
 frames are lost when congestion occurs in a bridged network.
-
-{{%notice note%}}
-
-PFC is not supported on switches with the Helix4 ASIC.
-
-{{%/notice%}}
 
 PFC is a layer 2 mechanism that prevents congestion by throttling packet
 transmission. When PFC is enabled for received packets on a set of

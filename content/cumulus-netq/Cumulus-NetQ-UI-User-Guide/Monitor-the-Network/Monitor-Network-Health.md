@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321072
 pageID: 12321072
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -485,15 +485,3 @@ include:
     supporting services).
   - Export the data for use in another analytics tool, by clicking
     **Export** and providing a name for the data file.
-
-
-
-
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

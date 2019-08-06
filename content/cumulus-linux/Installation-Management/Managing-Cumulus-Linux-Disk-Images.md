@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362634
 pageID: 8362634
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
@@ -16,7 +16,7 @@ image*. This section discusses how to manage the disk image.
 
 For information on installing a new Cumulus Linux disk image, refer to
 [Installing a New Cumulus Linux Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
-For information on upgrading Cumulus Linux, refer to 
+For information on upgrading Cumulus Linux, refer to
 [Upgrading Cumulus Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux).
 
 ## Determine the Switch Platform
@@ -34,7 +34,7 @@ On an ARM platform, `uname -m` outputs *armv7l*:
     cumulus@ARMswitch$ uname -m
      armv7l
 
-You can also visit the HCL 
+You can also visit the HCL
 ([hardware compatibility list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
 to look at your hardware and determine the processor type.
 
@@ -69,7 +69,13 @@ command:
 ## Uninstall All Images and Remove the Configuration
 
 To remove all installed images and configurations and return the switch
-to its factory defaults, run the `onie-select -k` command:
+to its factory defaults, run the `onie-select -k` command.
+
+{{%notice warning%}}
+
+The `onie-select -k` command takes a long time to run as it overwrites the entire NOS section of the flash. Only use this command if you want to erase all NOS data and take the switch out of service.
+
+{{%/notice%}}
 
     cumulus@switch:~$ sudo onie-select -k
     WARNING:

@@ -19,38 +19,18 @@ enhancements include:
     Quagga as the routing suite. The new configuration file
     `/etc/frr/frr.conf` replaces `/etc/quagga/Quagga.conf` and the
     `daemons` file is now located in `/etc/frr/daemons`.
-
   - Cumulus VX now includes ONIE with `onie-nos-install` support to show
     the installation steps.
-
-  - <span style="color: #212121;"> The VX image comes with a GRUB Menu
+  - The VX image comes with a GRUB Menu
     containing ONIE and CL. To simulate the install process on real
-    hardware, you can install Cumulus Linux binaries from ONIE. </span>
-
-  - <span style="color: #212121;"> Cumulus VX is a *platform*;
-    <span style="color: #212121;"> to report real-world data, </span>
-    you can run most of the same monitoring tools
-    <span style="color: #212121;"> (such as </span> `sensors`
-    <span style="color: #212121;"> , </span> `decode-syseeprom`
-    <span style="color: #212121;"> , </span> `smonctl`
-    <span style="color: #212121;"> , and </span> `platform-detect`
-    <span style="color: #212121;"> ) </span> on the VX that run on
-    hardware. </span>
-
-  - <span style="color: #212121;"> Cumulus VX now runs the same packages
+    hardware, you can install Cumulus Linux binaries from ONIE. 
+  - Cumulus VX is a *platform*; to report real-world data, you can run most 
+    of the same monitoring tools (such as `sensors`, `decode-syseeprom`, 
+    `smonctl`, and  `platform-detect`)  on the VX that run on hardware. 
+  - Cumulus VX now runs the same packages
     as Cumulus Linux, excluding packages that are specific to the
     networking ASIC. This is as close as you can get to software parity
-    with Cumulus Linux. </span>
-
-  - <span style="color: #212121;"> <span style="color: #212121;">
-    Cumulus VX is now released alongside Cumulus Linux; as a customer,
+    with Cumulus Linux. 
+  - Cumulus VX is now released alongside Cumulus Linux; as a customer,
     you can use VX images before you roll out newer Cumulus Linux
-    releases. </span> </span>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+    releases.

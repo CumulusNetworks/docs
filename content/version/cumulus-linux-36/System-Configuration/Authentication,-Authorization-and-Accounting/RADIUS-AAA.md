@@ -18,7 +18,7 @@ There is no need to create accounts or directories on the switch.
 Authentication is handled with PAM and includes login, `ssh`, `sudo` and
 `su`.
 
-## Installing the RADIUS Packages</span>
+## Installing the RADIUS Packages
 
 The RADIUS packages are not included in the base Cumulus Linux image;
 there is no RADIUS metapackage.
@@ -32,8 +32,8 @@ After installation is complete, either reboot the switch or run the
 `sudo systemctl restart netd` command.
 
 The `libpam-radius-auth` package supplied with the Cumulus Linux RADIUS
-client is a newer version than the one in [Debian
-Jessie](https://packages.debian.org/jessie/libpam-radius-auth). This
+client is a newer version than the one in 
+[Debian Jessie](https://packages.debian.org/jessie/libpam-radius-auth). This
 package has added support for IPv6, the `src_ip` option described below,
 as well as a number of bug fixes and minor features. The package also
 includes VRF support, provides man pages describing the PAM and RADIUS
@@ -55,7 +55,6 @@ During package installation:
     `/etc/nsswitch.conf` is modified to add the *mapuser* and *mapuid*
     plugins. If you remove or purge the packages, these files are
     modified to remove the configuration for these plugins.
-
   - The `radius_shell` package is added, which installs the
     `/sbin/radius_shell` and `setcap cap_setuid` program used as the
     login shell for RADIUS accounts. The package adjusts the `UID` when
@@ -64,17 +63,15 @@ During package installation:
     `/sbin//radius_shell`, and to ` /bin/shell  `if the package is
     removed. This package is required for privileged RADIUS users to be
     enabled. It is not required for regular RADIUS client use.
-
   - The `radius_user` account is added to the `netshow` group and the
     `radius_priv_user` account to the `netedit` and `sudo` **** groups.
     This change enables all RADUS logins to run NCLU `net show` commands
     and all privileged RADIUS users to also run ` net add,  ``net del`,
     and `net commit` commands, and to use `sudo`.
 
-## Configuring the RADIUS Client</span>
+## Configuring the RADIUS Client
 
-To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf`
-file:
+To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf` file:
 
 1.  Add the hostname or IP address of at least one RADIUS server (such
     as a [*freeradius*](http://freeradius.org/) server on Linux) and the
@@ -96,9 +93,8 @@ file:
     option, you must also specify the `timeout` option.
 
 4.  Set the `vrf-name` field. This is typically set to *mgmt* if you are
-    using a [management
-    VRF](/version/cumulus-linux-36/Layer-3/Management-VRF). You cannot
-    specify more than one VRF.
+    using a [management VRF](/version/cumulus-linux-36/Layer-3/Management-VRF). 
+    You cannot specify more than one VRF.
 
 The configuration file includes the `mapped_priv_user` field that sets
 the account used for privileged RADIUS users and the `priv-lvl` field
@@ -131,7 +127,7 @@ the `/usr/share/pam-configs/radius` file. After you edit the file, you
 must run the `pam-auth-update --package` command. PAM configuration
 keywords are described in the `pam_radius_auth (8)` man page.
 
-## Enabling Login without Local Accounts</span>
+## Enabling Login without Local Accounts
 
 Because LDAP is not commonly used with switches and adding accounts
 locally is cumbersome, Cumulus Linux includes a mapping capability with
@@ -172,7 +168,7 @@ A flat file mapping is done based on the session number assigned during
 login, which persists across `su` and `sudo`. The mapping is removed at
 logout.
 
-## Verifying RADIUS Client Configuration</span>
+## Verifying RADIUS Client Configuration
 
 To verify that the RADIUS client is configured correctly, log in as a
 non-privileged user and run a `net add interface` command.
@@ -206,7 +202,7 @@ privilege level 15) so is able to add interface swp1.
     +iface swp1
     ...
 
-## <span id="src-8362054_RADIUSAAA-remove" class="confluence-anchor-link"></span>Removing the RADIUS Client Packages</span>
+## Removing the RADIUS Client Packages
 
 Remove the RADIUS packages with the following command:
 
@@ -253,7 +249,7 @@ file, use that account name instead of *radius\_user*.
     cumulus@switch:~$ sudo deluser --remove-home radius_priv_user
     cumulus@switch:~$ sudo delgroup radius_users
 
-## Limitations</span>
+## Limitations
 
 If two or more RADIUS users are logged in simultaneously, a UID lookup
 only returns the user that logged in first. Any processes run by either
@@ -266,21 +262,8 @@ password file.
 The current algorithm returns the first name matching the UID from the
 mapping file; this might be the first or second user that logged in.
 
-## Related Information</span>
+## Related Information
 
-  - [TACACS+
-    client](/version/cumulus-linux-36/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
-
-  - [Cumulus Networks RADIUS demo on
-    GitHub](https://github.com/CumulusNetworks/cldemo-radius)
-
-  - [Cumulus Network TACACS demo on
-    GitHub](https://github.com/CumulusNetworks/cldemo-tacacs)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [TACACS+ client](/version/cumulus-linux-36/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
+  - [Cumulus Networks RADIUS demo on GitHub](https://github.com/CumulusNetworks/cldemo-radius)
+  - [Cumulus Network TACACS demo on GitHub](https://github.com/CumulusNetworks/cldemo-tacacs)

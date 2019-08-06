@@ -7,17 +7,56 @@ aliases:
  - /pages/viewpage.action?pageId=12321061
 pageID: 12321061
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
 At various points in time, you might want to change which network nodes
 are being monitored by NetQ or look more closely at a network node for
 troubleshooting purposes. Adding the NetQ Agent to a switch or host is
-described in [Install
-NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
-Disabling an Agent is described here and managing NetQ Agent logging is
-also presented.
+described in [Install NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ). Viewing the status of an Agent, disabling an Agent, and managing NetQ Agent logging are presented.
+
+## View NetQ Agent Status
+
+To view the health of your NetQ Agents, use the `netq show agents` command:
+
+```
+netq [<hostname>] show agents [fresh | dead | rotten | opta] [around <text-time>] [json]
+```
+You can view the status for a given switch, host or NetQ server. You can also filter by the status as well as view the status at a time in the past.
+
+To view the current status of all NetQ Agents:
+
+```
+cumulus@switch~:$ netq show agents
+Matching agents records:
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+exit-1            Fresh            yes      2.2.1-cl3u19~1564503011.e3b463d      1d:4h:35m:11s             1d:4h:14m:34s             1d:4h:14m:34s              Wed Jul 31 16:50:40 2019
+exit-2            Fresh            yes      2.2.1-cl3u19~1564503011.e3b463d      1d:4h:35m:11s             1d:4h:14m:30s             1d:4h:14m:30s              Wed Jul 31 16:51:07 2019
+firewall-1        Fresh            yes      2.2.1-ub16.04u19~1564494614.6fed81f  1d:4h:35m:11s             1d:4h:14m:24s             1d:4h:14m:24s              Wed Jul 31 16:51:13 2019
+firewall-2        Fresh            yes      2.2.1-rh7u19~1564496494.6fed81f      1d:4h:34m:35s             1d:4h:14m:18s             1d:4h:14m:18s              Wed Jul 31 16:51:06 2019
+hostd-11          Fresh            yes      2.2.1-ub16.04u19~1564494614.6fed81f  1d:4h:35m:6s              1d:4h:14m:6s              1d:4h:14m:6s               Wed Jul 31 16:51:16 2019
+hostd-12          Fresh            yes      2.2.1-rh7u19~1564496494.6fed81f      1d:4h:34m:40s             1d:4h:14m:2s              1d:4h:14m:2s               Wed Jul 31 16:51:40 2019
+...
+```
+
+To view NetQ Agents that are not communicating:
+
+```
+cumulus@switch~:$ netq show agents rotten
+No matching agents records found
+```
+
+To view NetQ Agent status on the NetQ Server or Appliance, run the following command from a node:
+
+```
+cumulus@leaf01~:$ netq show agents opta
+Matching agents records:
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+10-20-14-157      Fresh            yes      2.2.1-cl3u19~1564299612.73c7ab4      1d:5h:40m:41s             6m:34.417s                6m:34.417s                 Wed Jul 31 22:12:40 2019
+```
 
 ## Modify the Configuration of the NetQ Agent on a Node
 

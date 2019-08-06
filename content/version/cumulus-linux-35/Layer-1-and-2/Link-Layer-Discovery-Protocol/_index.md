@@ -11,8 +11,6 @@ version: '3.5'
 imgData: cumulus-linux-35
 siteSlug: cumulus-linux-35
 ---
-<details>
-
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery
 Protocol, or LLDP) standard. LLDP allows you to know which ports are
 neighbors of a given port. By default, `lldpd` runs as a daemon and is
@@ -30,7 +28,7 @@ by default into `/var/log/daemon.log` with an `lldpd` prefix.
 statistics and other running configuration information. See `man
 lldpcli(8)` for details.
 
-## Configuring LLDP</span>
+## Configuring LLDP
 
 You configure `lldpd` settings in `/etc/lldpd.conf` or `/etc/lldpd.d/`.
 
@@ -49,7 +47,7 @@ Here is an example persistent configuration:
     Aug  7 17:26:17 switch lldpcli[1711]: lldpd should resume operations
     Aug  7 17:26:32 switch lldpd[1805]: NET-SNMP version 5.4.3 AgentX subagent connected
 
-## Example lldpcli Commands</span>
+## Example lldpcli Commands
 
 To see all neighbors on all ports/interfaces:
 
@@ -234,6 +232,7 @@ To see the `lldpd` running configuration:
       Portid TLV Subtype for lldp frames: ifname
     --------------------------------------------------------------------
 
+<details>
 <summary>Runtime Configuration (Advanced) </summary>
 
 {{%notice warning%}}
@@ -260,8 +259,9 @@ The active interface list always overrides the inactive interface list.
 To reset any interface list to none:
 
     cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
+</details>
 
-## <span id="src-8357430_LinkLayerDiscoveryProtocol-snmp" class="confluence-anchor-link"></span>Enabling the SNMP Subagent in LLDP</span>
+## Enabling the SNMP Subagent in LLDP
 
 LLDP does not enable the SNMP subagent by default. You need to edit
 `/etc/default/lldpd` and enable the `-x` option.
@@ -273,23 +273,11 @@ LLDP does not enable the SNMP subagent by default. You need to edit
     # Enable CDP by default
     DAEMON_ARGS="-c"
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
 
-## Related Information</span>
+## Related Information
 
   - [GitHub - lldpd project](http://vincentbernat.github.io/lldpd/)
-
-  - [Wikipedia - Link Layer Discovery
-    Protocol](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>
+  - [Wikipedia - Link Layer Discovery Protocol](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)

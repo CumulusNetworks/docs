@@ -15,14 +15,9 @@ Before you run your virtual network under GNS3, make sure you have done
 the following:
 
   - Download and install [KVM](http://www.linux-kvm.org/page/Downloads).
-
-  - Download the the [Cumulus VX QCOW2
-    image](https://cumulusnetworks.com/cumulus-vx/download/).
-
+  - Download the the [Cumulus VX QCOW2 image](https://cumulusnetworks.com/cumulus-vx/download/).
   - Download and install
     [GNS3](https://community.gns3.com/login.jspa?referer=/community/software/download).
-
-<!-- end list -->
 
 1.  Start GNS3.
 
@@ -32,16 +27,12 @@ the following:
     earlier appears.
     
       - In the **Type** list, keep *Default*, then click **Next**.
-    
       - In the **Name** box, enter the name, then click **Next**.
-    
       - Select the path to the **Qemu binary** and **RAM** size, then
         click **Next**.
-    
       - Browse to select the **Disk image**, selecting the [qcow2
         image](https://cumulusnetworks.com/cumulus-vx/download/) you
         downloaded earlier.
-    
       - Click **Finish** to save the configuration and close the New
         QEMU VM template dialog.
 
@@ -54,23 +45,16 @@ the following:
     each VM's network settings, using the GNS3 interface:
     
       - Select a VM in the center pane, then click **Edit**.
-    
       - In the QEMU VM configuration dialog, click the **Network** tab.
-    
       - Increase the number of **Adapters** to *4*.
-    
       - Select the **Type** to be *Legacy paravirtualized*.
-    
-      - <span style="color: #222222;"> Check the **Use the legacy
-        networking mode** <span style="color: #222222;"> check box
-        </span> . </span>
-    
+      - Check the **Use the legacy networking mode** check box.
       - Click **Advanced Settings**. In the options field, enter:  
         `-net user,vlan=0,net=192.168.0.0/24,hostfwd=tcp::1401-:22`
         
         {{%notice note%}}
         
-        Each node needs a different port. You can do this by
+Each node needs a different port. You can do this by
         incrementing 1401 to 1402 for the second CL node.
         
         {{%/notice%}}
@@ -79,7 +63,7 @@ the following:
         
         {{%notice note%}}
         
-        This enables SSH to port 1401 (ssh -p 1401 cumulus@127.0.0.1).
+This enables SSH to port 1401 (ssh -p 1401 cumulus@127.0.0.1).
         
         {{%/notice%}}
     
@@ -133,33 +117,28 @@ Start all the VMs.
 You should be able to ping between the VMs, and between the virtual PCs
 as well.
 
-## Caveats</span>
+## Caveats
 
-  - Once you start the VMs, they run headless. You can SSH into a VM
-    as:  
+  - Once you start the VMs, they run headless. You can SSH into a VM as:  
     `ssh -p port-nr root@127.0.0.1`
-
   - `port-nr` is the one specified for this node in step 4 above.
-
   - It takes a couple of minutes for the VMs to spin up and be ready for
     SSH connections.
-
   - Console access does not work with GNS3 in this configuration. For a
     workaround, run QEMU/KVM from the command line; see below for
     details.
 
-## KVM/QEMU from the Command Line</span>
+## KVM/QEMU from the Command Line
 
 In order to use console access with GNS3 and QEMU/KVM VMs, you use the
-qemu binary that is bundled with GNS3. On OSX, this binary is located
-at:
+qemu binary that is bundled with GNS3. On OSX, this binary is located at:
 /Applications/GNS3.app/Contents/Resources/qemu/bin/qemu-system-x86\_64.
 
 When using the command line to access QEMU, start the two-leaf/two-spine
 topology by starting each VM manually.
 
-One each node is up, configure the [network interfaces](#src-5126603)
-and [routing](#src-5126603), then restart the VMs or their services, as
+One each node is up, configure the network interfaces and routing, 
+then restart the VMs or their services, as
 described earlier. Once this is done, every node should be able to
 communicate with each other.
 
@@ -211,11 +190,3 @@ To start Cumulus VX-leaf2:
       nic,vlan=1,macaddr=00:00:ab:e6:83:01,model=virtio -net udp,vlan=1,name=gns3-1,sport=10003,dport=10002,daddr=127.0.0.1 -net
       nic,vlan=2,macaddr=00:00:ab:e6:83:02,model=virtio -net udp,vlan=2,name=gns3-2,sport=10007,dport=10006,daddr=127.0.0.1 -net
       nic,vlan=3,macaddr=00:00:ab:e6:83:03,model=virtio &
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

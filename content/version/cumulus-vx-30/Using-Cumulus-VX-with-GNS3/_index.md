@@ -11,10 +11,9 @@ version: '3.0'
 imgData: cumulus-vx-30
 siteSlug: cumulus-vx-30
 ---
-You can use Cumulus VX within a [GNS3
-environment](https://community.gns3.com/login.jspa?referer=/community/software/download),
-running the VMs with either hypervisor,
-[KVM](http://www.linux-kvm.org/page/Downloads) or
+You can use Cumulus VX within a 
+[GNS3 environment](https://community.gns3.com/login.jspa?referer=/community/software/download),
+running the VMs with either hypervisor, [KVM](http://www.linux-kvm.org/page/Downloads) or
 [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
 The topology configured below applies to both hypervisors, and looks
@@ -30,10 +29,3 @@ root:xnu-2782.10.73\~1/RELEASE\_X86\_64 x86\_64.
 
 {{%/notice%}}
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

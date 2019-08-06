@@ -4,11 +4,10 @@ author: Cumulus Networks
 weight: 1
 aliases:
  - /display/NETQ/Cumulus+NetQ
- - /display/NETQ/
  - /pages/viewpage.action?pageId=12322014
 pageID: 12322014
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 subsection: true

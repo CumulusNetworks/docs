@@ -13,7 +13,7 @@ siteSlug: cumulus-linux-36
 ---
 You can use the `cl-resource-query` command to retrieve information
 about host entries, MAC entries, layer 2 and layer 3 routes, and
-[ECMP](Network-Topology.html#src-8362385_NetworkTopology-load_balancing)
+[ECMP](/version/cumulus-linux-36/Layer-3/Network-Topology/#load-balancing)
 routes that are in use. Because Cumulus Linux synchronizes routes
 between the kernel and the switching silicon, if the required resource
 pools in hardware fill up, new kernel routes can cause existing routes
@@ -35,7 +35,7 @@ To monitor the routes in Cumulus Linux hardware, use the
 `cl-resource-query` command. The results vary between switches running
 on different chipsets.
 
-The example below shows`  cl-resource-query ` results for a Broadcom
+The example below shows `cl-resource-query` results for a Broadcom
 Tomahawk switch:
 
     cumulus@switch:~$ sudo cl-resource-query
@@ -70,7 +70,7 @@ Tomahawk switch:
     Egress ACL ipv6 filter table:           0,   0% of maximum value      0 (allocated: 0)
     ACL L4 port range checkers:             2,   6% of maximum value     32
 
-The example below shows`  cl-resource-query ` results for a Broadcom
+The example below shows `cl-resource-query` results for a Broadcom
 Trident II switch:
 
     cumulus@switch:~$ sudo cl-resource-query
@@ -108,16 +108,7 @@ Trident II switch:
 {{%notice note%}}
 
 Ingress ACL and Egress ACL entries show the counts in single wide (*not*
-double-wide). For information about ACL entries, see [Estimating the
-Number of ACL
-Rules](/display/CL36/Netfilter+-+ACLs#Netfilter-ACLs-EstimatingtheNumberofRules).
+double-wide). For information about ACL entries, see 
+[Estimating the Number of ACL Rules](/version/cumulus-linux-36/System-Configuration/Netfilter-ACLs/#estimating-the-number-of-rules).
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

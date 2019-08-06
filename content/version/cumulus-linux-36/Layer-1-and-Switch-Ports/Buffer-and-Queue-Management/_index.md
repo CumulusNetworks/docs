@@ -11,14 +11,11 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
-<details>
-
 Hardware datapath configuration manages packet buffering, queueing and
 scheduling in hardware. There are two configuration input files:
 
   - `/etc/cumulus/datapath/traffic.conf`, which describes priority
     groups and assigns the scheduling algorithm and weights
-
   - `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf`,
     which assigns buffer space and egress queues
 
@@ -31,9 +28,7 @@ schedule packets based on COS or DSCP is a configurable option in the
 Priority groups include:
 
   - *Control*: Highest priority traffic
-
   - *Service*: Second-highest priority traffic
-
   - *Bulk*: All remaining traffic
 
 The scheduler is configured to use a hybrid scheduling algorithm. It
@@ -43,8 +38,8 @@ packets with the same priority value are assigned to separate queues,
 which are assigned equal scheduling weights.
 
 Datapath configuration takes effect when you initialize `switchd`.
-Changes to the `traffic.conf` file require you to [restart the
-`switchd`](Configuring-switchd.html#src-8362056_Configuringswitchd-restartswitchd)
+Changes to the `traffic.conf` file require you to 
+[restart the `switchd`](/version/cumulus-linux-36/System-Configuration/Configuring-switchd/#restarting-switchd)
 service.
 
 {{%notice note%}}
@@ -55,16 +50,16 @@ Spectrum platform only.
 
 {{%/notice%}}
 
-## Commands</span>
+## Commands
 
 If you modify the configuration in the
-`/etc/cumulus/datapath/traffic.conf` file, you must [restart
-`switchd`](Configuring-switchd.html#src-8362056_Configuringswitchd-restartswitchd)
+`/etc/cumulus/datapath/traffic.conf` file, you must 
+[restart `switchd`](/version/cumulus-linux-36/System-Configuration/Configuring-switchd/#restarting-switchd)
 for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## Example Configuration File</span>
+## Example Configuration File
 
 The following example `/etc/cumulus/datapath/traffic.conf` datapath
 configuration file applies to 10G, 40G, and 100G switches on Broadcom
@@ -80,20 +75,18 @@ Keep in mind the following about the configuration:
     assigned to a default internal switch priority. The configuration
     applies to every forwarding port unless a custom remark
     configuration is defined for that port (see below).
-
   - Regarding the default remark packet fields and mapping, each
     selected packet field should have a block of mapped values. Any
     internal switch priority value that is not specified in the
     configuration is assigned to a default packet field value. The
     configuration applies to every forwarding port unless a custom
     remark configuration is defined for that port (see below).
-
   - Per-port source packet fields and mapping apply to the designated
     set of ports.
-
   - Per-port remark packet fields and mapping apply to the designated
     set of ports.
 
+<details>
 <summary>Click to view sample traffic.conf file ... </summary>
 
     cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf
@@ -288,6 +281,7 @@ Keep in mind the following about the configuration:
     #         guide for more details
     #
     #forwarding_table.profile = default
+</details>
 
 {{%notice note%}}
 
@@ -314,7 +308,7 @@ ingress ports and one for the egress ports, as below:
 
 {{%/notice%}}
 
-## Configuring Traffic Marking through ACL Rules</span>
+## Configuring Traffic Marking through ACL Rules
 
 You can mark traffic for egress packets through `iptables` or
 `ip6tables` rule classifications. To enable these rules, you do one of
@@ -368,13 +362,13 @@ TCAM slices in the hardware.
 To put the rule in the mangle table, include `-t mangle`; to put the
 rule in the filter table, omit `-t mangle`.
 
-## <span id="src-8362498_BufferandQueueManagement-pfc" class="confluence-anchor-link"></span>Configuring Priority Flow Control</span>
+## Configuring Priority Flow Control
 
-*Priority flow control*, as defined in the [IEEE 802.1Qbb
-standard](http://www.ieee802.org/1/pages/802.1bb.html), provides a
-link-level flow control mechanism that can be controlled independently
-for each Class of Service (CoS) with the intention to ensure no data
-frames are lost when congestion occurs in a bridged network.
+*Priority flow control*, as defined in the 
+[IEEE 802.1Qbb standard](http://www.ieee802.org/1/pages/802.1bb.html), 
+provides a link-level flow control mechanism that can be controlled 
+independently for each Class of Service (CoS) with the intention to ensure 
+no data frames are lost when congestion occurs in a bridged network.
 
 {{%notice note%}}
 
@@ -441,27 +435,22 @@ control (PFC) requires configuring the following settings in
   - Specifying the name of the port group in `pfc.port_group_list` in
     brackets; for example, *pfc.port\_group\_list =
     \[pfc\_port\_group\]*.
-
   - Assigning a CoS value to the port group in
     `pfc.pfc_port_group.cos_list` setting. Note that *pfc\_port\_group*
     is the name of a port group you specified above and is used
     throughout the following settings.
-
   - Populating the port group with its member ports in
     `pfc.pfc_port_group.port_set`.
-
   - Setting a PFC buffer size in `pfc.pfc_port_group.port_buffer_bytes`.
     This is the maximum number of bytes allocated for storing bursts of
     packets, guaranteed at the ingress port. The default is *25000*
     bytes.
-
-  - Setting the xoff byte limit in `pfc.pfc_port_group.xoff_size`. This
+  - Setting the *xoff* byte limit in `pfc.pfc_port_group.xoff_size`. This
     is a threshold for the PFC buffer; when this limit is reached, an
     xoff transition is initiated, signaling the upstream port to stop
     sending traffic, during which time packets continue to arrive due to
     the latency of the communication. The default is *10000* bytes.
-
-  - Setting the xon delta limit in `pfc.pfc_port_group.xon_delta`. This
+  - Setting the *xon* delta limit in `pfc.pfc_port_group.xon_delta`. This
     is the number of bytes to subtract from the xoff limit, which
     results in a second threshold at which the egress port resumes
     sending traffic. After the xoff limit is reached and the upstream
@@ -469,13 +458,10 @@ control (PFC) requires configuring the following settings in
     buffer reaches 8000 bytes (assuming default xoff and xon settings),
     the egress port signals that it can start receiving traffic again.
     The default is *2000* bytes.
-
   - Enabling the egress port to signal the upstream port to stop sending
     traffic (`pfc.pfc_port_group.tx_enable`). The default is *true*.
-
   - Enabling the egress port to receive notifications and act on them
     (`pfc.pfc_port_group.rx_enable`). The default is *true*.
-
   - The switch priority value(s) are mapped to the specific ingress
     buffer for each targeted switch port. Cumulus Linux looks at either
     the 802.1p bits or the IP layer DSCP bits depending on which is
@@ -507,14 +493,13 @@ pfc.pfc_port_group.tx_enable = true
 pfc.pfc_port_group.rx_enable = true       
 ```
 
-### Understanding Port Groups</span>
+### Understanding Port Groups
 
 A *port group* refers to one or more sequences of contiguous ports.
 Multiple port groups can be defined by:
 
   - Adding a comma-separated list of port group names to the
     port\_group\_list.
-
   - Adding the port\_set, rx\_enable, and tx\_enable configuration lines
     for each port group.
 
@@ -523,11 +508,8 @@ sequences of contiguous ports; you can see which ports are contiguous in
 `/var/lib/cumulus/porttab`. The syntax supports:
 
   - A single port (swp1s0 or swp5)
-
   - A sequence of regular swp ports (swp2-swp5)
-
   - A sequence within a breakout swp port (swp6s0-swp6s3)
-
   - A sequence of regular and breakout ports, provided they are all in a
     contiguous range. For example:
     
@@ -543,13 +525,12 @@ sequences of contiguous ports; you can see which ports are contiguous in
         swp7
         ...
 
-[Restart
-`switchd`](Configuring-switchd.html#src-8362056_Configuringswitchd-restartswitchd)
+[Restart `switchd`](/version/cumulus-linux-36/System-Configuration/Configuring-switchd/#restarting-switchd)
 to allow the PFC configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-8362498_BufferandQueueManagement-pause" class="confluence-anchor-link"></span>Configuring Link Pause</span>
+## Configuring Link Pause
 
 The PAUSE frame is a flow control mechanism that halts the transmission
 of the transmitter for a specified period of time. A server or other
@@ -590,13 +571,12 @@ link_pause.pause_port_group.rx_enable = true
 link_pause.pause_port_group.tx_enable = true                   
 ```
 
-[Restart
-`switchd`](Configuring-switchd.html#src-8362056_Configuringswitchd-restartswitchd)
+[Restart `switchd`](/version/cumulus-linux-36/System-Configuration/Configuring-switchd/#restarting-switchd)
 to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-8362498_BufferandQueueManagement-cut_through_mode" class="confluence-anchor-link"></span>Configuring Cut-through Mode and Store and Forward Switching</span>
+## Configuring Cut-through Mode and Store and Forward Switching
 
 Cut-through mode is disabled in Cumulus Linux by default on switches
 with Broadcom ASICs. With cut-though mode enabled and link pause is
@@ -635,7 +615,7 @@ To enable store and forward switching, set `cut_through_enable` to
     cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
     cut_through_enable = false
 
-## <span id="src-8362498_BufferandQueueManagement-ecn" class="confluence-anchor-link"></span>Configuring Explicit Congestion Notification</span>
+## Configuring Explicit Congestion Notification
 
 *Explicit Congestion Notification* (ECN) is defined by
 [RFC 3168](https://tools.ietf.org/html/rfc3168). ECN gives a Cumulus
@@ -684,9 +664,10 @@ traffic is received. If the ECN bits are set, they remain set. The only
 way to overwrite ECN bits is to enable it — that is, set the ECN bits to
 *11*.
 
-ECN is supported on [Broadcom Tomahawk, Trident II+ and Trident II, and
-Mellanox Spectrum switches](https://cumulusnetworks.com/hcl) only.
+ECN is supported on 
+[Broadcom Tomahawk, Trident II+ and Trident II, and Mellanox Spectrum switches](https://cumulusnetworks.com/hcl) only.
 
+<details>
 <summary>Click to learn how to configure ECN ... </summary>
 
 ECN is disabled by default in Cumulus Linux. You can enable ECN for
@@ -696,12 +677,10 @@ configuring the following settings in
 
   - Specifying the name of the port group in `ecn.port_group_list` in
     brackets; for example, `ecn.port_group_list = [ecn_port_group]`.
-
   - Assigning a CoS value to the port group in
     `ecn.ecn_port_group.cos_list`. If the CoS value of a packet matches
     the value of this setting, then ECN is applied. Note that
     *ecn\_port\_group* is the name of a port group you specified above.
-
   - Populating the port group with its member ports
     (`ecn.ecn_port_group.port_set`), where *ecn\_port\_group* is the
     name of the port group you specified above. Congestion is measured
@@ -710,12 +689,11 @@ configuring the following settings in
     the queue may be marked to indicate that congestion was observed.
     Marking a packet involves setting the least 2 significant bits in
     the IP header DiffServ (ToS) field to *11*.
-
   - The switch priority value(s) are mapped to specific egress queues
     for the target switch ports.
-
   - The `ecn.ecn_port_group.probability` value indicates the probability
     of a packet being marked if congestion is experienced.
+</details> 
 
 The following configuration example shows ECN configured for ports swp1
 through swp4 and swp6:
@@ -734,23 +712,11 @@ through swp4 and swp6:
      ecn.ecn_port_group.max_threshold_bytes = 200000
      ecn.ecn_port_group.probability = 100
 
-[Restart
-`switchd`](Configuring-switchd.html#src-8362056_Configuringswitchd-restartswitchd)
+[Restart `switchd`](/version/cumulus-linux-36/System-Configuration/Configuring-switchd/#restarting-switchd)
 to allow the ECN configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## Related Information</span>
+## Related Information
 
-  - [iptables-extensions man
-    page](http://ipset.netfilter.org/iptables-extensions.man.html)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>
+  - [iptables-extensions man page](http://ipset.netfilter.org/iptables-extensions.man.html)

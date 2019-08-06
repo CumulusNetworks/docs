@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362991
 pageID: 8362991
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
@@ -585,7 +585,8 @@ iface lo inet loopback
 auto lo:1
 iface lo:1 inet static
   address 172.16.1.2/32
-  up ip route add 0.0.0.0/0 nexthop via 172.16.1.1 dev eth0 onlink nexthop via 172.16.1.1 dev eth1 onlink
+  up ip route add 0.0.0.0/0 nexthop via 172.16.1.1 dev eth0 onlink \
+    nexthop via 172.16.1.1 dev eth1 onlink
  
 auto eth1
 iface eth2 inet static
@@ -635,15 +636,13 @@ iface eth2 inet static
 </colgroup>
 <thead>
 <tr class="header">
-<th><p> </p></th>
-<th><p>Summary</p></th>
+<th colspan="2"><p>Summary</p></th>
 <th><p>More Information</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p> </p></td>
-<td><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
+<td colspan="2"><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <p><code>/etc/network/interfaces</code></p>

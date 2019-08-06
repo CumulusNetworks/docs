@@ -36,7 +36,7 @@ ports interested in receiving multicast traffic destined to that group.
 
 {{% imgOld 0 %}}
 
-## Configuring IGMP/MLD Querier</span>
+## Configuring IGMP/MLD Querier
 
 If no multicast router is sending queries to configure IGMP/MLD querier
 on the switch, you can add a configuration similar to the following in
@@ -49,8 +49,8 @@ address of the queries to be the bridge IP address, configure
 For an explanation of the relevant parameters, see the
 `ifupdown-addons-interfaces` man page.
 
-For a [VLAN-aware
-bridge](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
+For a 
+[VLAN-aware bridge](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
 use a configuration like the following:
 
     auto bridge.100
@@ -76,9 +76,8 @@ You can specify a range of VLANs as well. For example:
     vlan bridge.[1-200]
       bridge-igmp-querier-src 123.1.1.1
 
-For a bridge in [traditional
-mode](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/), use
-a configuration like the following:
+For a bridge in [traditional mode](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/), 
+use a configuration like the following:
 
     auto br0
     iface br0
@@ -88,10 +87,9 @@ a configuration like the following:
       bridge-mcquerier 1
       bridge-mcqifaddr 1
 
-## Disable IGMP and MLD Snooping</span>
+## Disable IGMP and MLD Snooping
 
-<span id="src-8362188_IGMPandMLDSnooping-igmp_disable"></span>To disable
-IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
+To disable IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
 
 {{%notice info%}}
 
@@ -118,7 +116,7 @@ example bridge in `/etc/network/interfaces`:
 
 {{%/notice%}}
 
-## Debugging IGMP/MLD Snooping</span>
+## Debugging IGMP/MLD Snooping
 
 To get the IGMP/MLD snooping bridge state, run `brctl showstp <bridge>`:
 
@@ -180,26 +178,12 @@ command. To display router ports and group information use the `bridge
      dev bridge port swp2 grp ff1a::9 permanent 0.00
      router ports on bridge: swp3
 
-## Related Information</span>
+## Related Information
 
   - [www.linuxfoundation.org/collaborate/workgroups/networking/bridge\#Snooping](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge#Snooping)
-
   - [tools.ietf.org/html/rfc4541](https://tools.ietf.org/html/rfc4541)
-
   - [en.wikipedia.org/wiki/IGMP\_snooping](http://en.wikipedia.org/wiki/IGMP_snooping)
-
   - [tools.ietf.org/rfc/rfc2236.txt](http://tools.ietf.org/rfc/rfc2236.txt)
-
   - [tools.ietf.org/html/rfc3376](http://tools.ietf.org/html/rfc3376)
-
   - [tools.ietf.org/search/rfc2710](http://tools.ietf.org/search/rfc2710)
-
   - [tools.ietf.org/html/rfc3810](http://tools.ietf.org/html/rfc3810)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

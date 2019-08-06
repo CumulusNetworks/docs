@@ -15,29 +15,18 @@ By default, Cumulus Linux has two user accounts: *cumulus* and *root*.
 
 The *cumulus* account:
 
-  - 
-    
-    <div id="src-8362048_indexterm-FB0CB7D8038361F075C5B390BFA41A31">
-    
-    Uses the default password *CumulusLinux\!*
-    
-    </div>
-
+  - Uses the default password *CumulusLinux\!*
   - Is a user account in the *sudo* group with sudo privileges.
-
   - Can log in to the system through all the usual channels, such as
     console and
     [SSH](/version/cumulus-linux-36/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access).
-
   - Along with the cumulus group, has both show and edit rights for
     [NCLU](/version/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility-NCLU/).
 
 The *root* account:
 
   - Has the default password disabled by default.
-
   - Has the standard Linux root user access to everything on the switch.
-
   - Disabled password prohibits login to the switch by SSH, telnet, FTP,
     and so on.
 
@@ -45,20 +34,18 @@ For optimal security, change the default password with the `passwd`
 command before you configure Cumulus Linux on the switch.
 
 You can add additional user accounts as needed. Like the *cumulus*
-account, these accounts must use `sudo` to [execute privileged
-commands](/version/cumulus-linux-36/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges);
+account, these accounts must use `sudo` to 
+[execute privileged commands](/version/cumulus-linux-36/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges);
 be sure to include them in the *sudo* group.
 
-To access the switch without a password, you need to [boot into a single
-shell/user
-mode](/version/cumulus-linux-36/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery).
+To access the switch without a password, you need to 
+[boot into a single shell/user mode](/version/cumulus-linux-36/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery).
 
 You can add and configure user accounts in Cumulus Linux with read-only
-or edit permissions for NCLU. For more information, see [Configuring
-User
-Accounts](/version/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility-NCLU/).
+or edit permissions for NCLU. For more information, see 
+[Configuring User Accounts](/version/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility-NCLU/).
 
-## Enabling Remote Access for the root User</span>
+## Enabling Remote Access for the root User
 
 The root user does not have a password and cannot log into a switch
 using SSH. This default account behavior is consistent with Debian. To
@@ -66,10 +53,9 @@ connect to a switch using the root account, you can do one of the
 following:
 
   - Generate an SSH key
-
   - Set a password
 
-### <span id="src-8362048_UserAccounts-ssh_key" class="confluence-anchor-link"></span>Generating an SSH Key for the root Account</span>
+### Generating an SSH Key for the root Account
 
 1.  In a terminal on your host system (not the switch), check to see if
     a key already exists:
@@ -100,7 +86,7 @@ following:
         cumulus@switch:~$ sudo mkdir -p /root/.ssh
         cumulus@switch:~$ echo <SSH public key string> | sudo tee -a /root/.ssh/authorized_keys
 
-### <span id="src-8362048_UserAccounts-root_passwd" class="confluence-anchor-link"></span>Setting the root User Password</span>
+### Setting the root User Password
 
 1.  Run the following command:
     
@@ -125,11 +111,3 @@ following:
 3.  Restart the `ssh` service:
     
         cumulus@switch:~$ sudo systemctl reload ssh.service
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

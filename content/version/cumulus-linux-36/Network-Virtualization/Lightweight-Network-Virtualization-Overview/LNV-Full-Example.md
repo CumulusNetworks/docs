@@ -14,23 +14,23 @@ siteSlug: cumulus-linux-36
 Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/version/cumulus-linux-36/Network-Virtualization/) without a
 central controller on bare metal switches. This a full example complete
-with diagram. Refer to the [Lightweight Network Virtualization
-chapter](/version/cumulus-linux-36/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
-for more detailed information. This full example uses the **recommended
-way** of deploying LNV, which is to use anycast to load balance the
-service nodes.
+with diagram. Refer to the 
+[Lightweight Network Virtualization chapter](/version/cumulus-linux-36/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+for more detailed information. This full example uses the 
+**recommended way** of deploying LNV, which is to use anycast to load 
+balance the service nodes.
 
 {{%notice note%}}
 
-LNV is a lightweight controller option. [Contact Cumulus
-Networks](http://cumulusnetworks.com/cumulus-linux/overview/#cl-howtoBuy)
+LNV is a lightweight controller option. 
+[Contact Cumulus Networks](http://cumulusnetworks.com/cumulus-linux/overview/#cl-howtoBuy)
 with your scale requirements so we can make sure this is the right fit
 for you. There are also other controller options that can work on
 Cumulus Linux.
 
 {{%/notice%}}
 
-## Example LNV Configuration</span>
+## Example LNV Configuration
 
 The following images illustrate the configuration:
 
@@ -60,13 +60,13 @@ Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/) .
 
 {{% imgOld 2 %}}
 
-Feeling Overwhelmed? Come join a [Cumulus Boot
-Camp](http://cumulusnetworks.com/education/instructor-led-training/) and
-get instructor-led training\!
+Feeling Overwhelmed? Come join a 
+[Cumulus Boot Camp](http://cumulusnetworks.com/education/instructor-led-training/) 
+and get instructor-led training\!
 
 {{%/notice%}}
 
-### Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing
 
 Here is the configuration for the IP addressing information used in this
 example:
@@ -248,13 +248,13 @@ iface br-30
 </tbody>
 </table>
 
-### FRRouting Configuration</span>
+### FRRouting Configuration
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
 [BGP](/version/cumulus-linux-36/Layer-3/Border-Gateway-Protocol-BGP)
 or
-[OSPF](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-OSPF-Protocol).
 In this example, OSPF is used to demonstrate full reachability.
 
 Here is the FRRouting configuration using OSPF:
@@ -376,7 +376,7 @@ router ospf
 </tbody>
 </table>
 
-### Host Configuration</span>
+### Host Configuration
 
 In this example, the servers are running Ubuntu 14.04. You must map a
 trunk from server1 and server2 to the respective switch. In Ubuntu, this
@@ -417,7 +417,7 @@ iface eth3.30 inet static
 </tbody>
 </table>
 
-### Service Node Configuration</span>
+### Service Node Configuration
 
 <table>
 <colgroup>
@@ -514,25 +514,10 @@ svcnode_peers = 10.2.1.3 10.2.1.4
 </tbody>
 </table>
 
-## Related Information</span>
+## Related Information
 
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
-
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
-
-  - [Detailed LNV Configuration
-    Guide](/version/cumulus-linux-36/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
-
-  - [Cumulus Networks
-    Training](http://cumulusnetworks.com/education/instructor-led-training/)
-
-  - [Network virtualization chapter, Cumulus Linux user
-    guide](/version/cumulus-linux-36/Network-Virtualization/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Detailed LNV Configuration Guide](/version/cumulus-linux-36/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+  - [Cumulus Networks Training](http://cumulusnetworks.com/education/instructor-led-training/)
+  - [Network virtualization chapter, Cumulus Linux user guide](/version/cumulus-linux-36/Network-Virtualization/)

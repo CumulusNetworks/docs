@@ -11,10 +11,4 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+This section describes how to configure the physical layer, including switch ports, DHCP relays and other interfaces.

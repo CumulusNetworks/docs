@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321680
 pageID: 12321680
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -1011,11 +1011,3 @@ To view the results:
     and so on.
 
 14. Export this data using the **Export** button or click {{% imgOld 74 %}} to return to the results list to view another trace in detail.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

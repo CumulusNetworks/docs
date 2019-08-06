@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321058
 pageID: 12321058
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -17,6 +17,7 @@ questions such as:
 
   - What switches do I have in the network?
   - What hardware and software are installed on my switches?
+  - How many transmit and receive packets have been dropped?
   - Are all switches licensed correctly?
   - Do all switches have NetQ agents running?
 
@@ -37,14 +38,14 @@ disk and memory information.
 To view the switch and host information with the CLI, use the following
 `netq show` commands:
 
-    netq [<hostname>] show inventory brief [json]
-    netq [<hostname>] show inventory asic [vendor <asic-vendor>|model <asic-model>|model-id <asic-model-id>] [json]
-    netq [<hostname>] show inventory board [vendor <board-vendor>|model <board-model>] [json]
-    netq [<hostname>] show inventory cpu [arch <cpu-arch>] [json]
-    netq [<hostname>] show inventory disk [name <disk-name>|transport <disk-transport>|vendor <disk-vendor>] [json]
-    netq [<hostname>] show inventory license [cumulus] [status ok | status missing] [around <text-time>] [json]
-    netq [<hostname>] show inventory memory [type <memory-type>|vendor <memory-vendor>] [json]
-    netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [json]
+    netq [<hostname>] show inventory brief [opta] [json]
+    netq [<hostname>] show inventory asic [vendor <asic-vendor>|model <asic-model>|model-id <asic-model-id>] [opta] [json]
+    netq [<hostname>] show inventory board [vendor <board-vendor>|model <board-model>] [opta] [json]
+    netq [<hostname>] show inventory cpu [arch <cpu-arch>] [opta] [json]
+    netq [<hostname>] show inventory disk [name <disk-name>|transport <disk-transport>|vendor <disk-vendor>] [opta] [json]
+    netq [<hostname>] show inventory license [cumulus] [status ok | status missing] [around <text-time>] [opta] [json]
+    netq [<hostname>] show inventory memory [type <memory-type>|vendor <memory-vendor>] [opta] [json]
+    netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [opta] [json]
      
     netq [<hostname>] show sensors all [around <text-time>] [json]
     netq [<hostname>] show sensors psu [<psu-name>] [around <text-time>] [json]
@@ -372,6 +373,33 @@ switch, as shown here for leaf01.
     ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
     leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
 
+### View a Summary of Physical Inventory for the NetQ or NetQ Cloud Appliance
+
+Using the `opta` option lets you view inventory information for the NetQ or NetQ Cloud Appliance(s) rather than all network nodes. This example give you a summary of the inventory on the device.
+
+```
+cumulus@spine-1:mgmt-vrf:~$ netq show inventory brief opta
+
+Matching inventory records:
+Hostname          Switch               OS              CPU      ASIC            Ports
+----------------- -------------------- --------------- -------- --------------- -----------------------------------
+10-20-14-158      VX                   CL              x86_64   VX              N/A
+
+```
+
+### View Memory for the NetQ or NetQ Cloud Appliance
+
+You can be specific about which inventory item you want to view for an appliance. This example shows the memory information for a NetQ Appliance, letting you verify you have sufficient memory.
+
+```
+cumulus@netq-appliance:~$ netq show inventory memory opta
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+netq-app          DIMM 0          RAM              64 GB      Unknown    QEMU                 Not Specified
+
+```
+
 ### View Fan Health for All Switches
 
 Fan, power supply unit, and temperature sensors are available to provide
@@ -543,6 +571,57 @@ events using the severity `level` option.
      
     cumulus@switch:~$ netq show events level critical type sensors
     No matching events records found
+
+## View Interface Statistics
+
+NetQ Agents collect performance statistics every 30 seconds for the
+physical interfaces on switches and hosts in your network. The NetQ
+Agent does not collect statistics for non-physical interfaces, such as
+bonds, bridges, and VXLANs. After enabling the feature, the NetQ Agent
+collects the following statistics:
+
+- **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs,
+        tx\_packets
+- **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
+        rx\_multicast, rx\_packets
+
+These can be viewed using the following NetQ CLI command:
+
+```
+netq [<hostname>] show interface-stats [errors | all] [<physical-port>] [around <text-time>] [json]
+```
+
+Use the `hostname` option to limit the output to a particular switch.
+Use the `errors` option to view only the transmit and receive errors
+found on the designated interfaces. Use the `physical-ports` option to
+limit the output to a particular port. Use the `around` option to view
+the data at a time in the past.
+
+In this example, we view the interface statistics for all switches and
+all of their physical interfaces.
+
+```
+cumulus@switch:~$ netq show interface-stats
+Matching proc_dev_stats records:
+Hostname          Interface                 Duration         RX Bytes             RX Drop              RX Errors            TX Bytes             TX Drop              TX Errors            Last Changed
+----------------- ------------------------- ---------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+edge01            eth0                      30               2278                 0                    16                   4007                 0                    0                    Mon Jun  3 23:03:14 2019
+edge01            lo                        30               864                  0                    0                    864                  0                    0                    Mon Jun  3 23:03:14 2019
+exit01            bridge                    60               336                  0                    0                    1176                 0                    0                    Mon Jun  3 23:02:27 2019
+exit01            eth0                      30               3424                 0                    0                    6965                 0                    0                    Mon Jun  3 23:02:58 2019
+exit01            mgmt                      30               2682                 0                    0                    7488                 0                    0                    Mon Jun  3 23:02:58 2019
+exit01            swp44                     30               2457                 0                    0                    2457                 0                    0                    Mon Jun  3 23:02:58 2019
+exit01            swp51                     30               2462                 0                    0                    1769                 0                    0                    Mon Jun  3 23:02:58 2019
+exit01            swp52                     30               2634                 0                    0                    2629                 0                    0                    Mon Jun  3 23:02:58 2019
+exit01            vlan4001                  50               336                  0                    0                    1176                 0                    0                    Mon Jun  3 23:02:27 2019
+exit01            vrf1                      60               1344                 0                    0                    0                    0                    0                    Mon Jun  3 23:02:27 2019
+exit01            vxlan4001                 50               336                  0                    0                    1368                 0                    0                    Mon Jun  3 23:02:27 2019
+exit02            bridge                    61               1008                 0                    0                    392                  0                    0                    Mon Jun  3 23:03:07 2019
+exit02            eth0                      20               2711                 0                    0                    4983                 0                    0                    Mon Jun  3 23:03:07 2019
+exit02            mgmt                      30               2162                 0                    0                    5506                 0                    0                    Mon Jun  3 23:03:07 2019
+exit02            swp44                     20               3040                 0                    0                    3824                 0                    0                    Mon Jun  3 23:03:07 2019
+...
+```
 
 ## Monitor Switch Software Information
 

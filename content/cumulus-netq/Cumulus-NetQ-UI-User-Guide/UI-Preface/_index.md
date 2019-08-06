@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321978
 pageID: 12321978
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -79,7 +79,7 @@ available:
   - [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
   - [Cumulus NetQ Cloud Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
 
-This Cumulus NetQ CLI User Guide is available in [PDF](/pdfs/Cumulus_NetQ_220_UI_User_Guide.pdf) for offline viewing
+This Cumulus NetQ CLI User Guide is available in [PDF](/pdfs/Cumulus_NetQ_220_UI_User_Guide.pdf) for offline viewing.
 
 ## Document Formatting
 
@@ -131,11 +131,3 @@ Advises that failure to take or avoid specific action can result in
 possible physical harm to yourself, hardware equipment, or facility
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -16,16 +16,13 @@ The solution described in this chapter requires four components:
   - **libvirt** provides an abstraction language to define and launch
     VMs, but is normally used just to launch single VMs. It uses XML to
     represent and define the VM.
-
   - **KVM** w orks exclusively with QEMU and p erforms hardware
     acceleration for x86 VMs with Intel and AMD CPUs. KVM and QEMU are
     hypervisors that emulate the VMs; t he pair is often called KVM/QEMU
     or just KVM.
-
   - **QEMU** is a machine emulator that can allow the host machine to
     emulate the CPU architecture of the guest machine. Because QEMU does
     not provide hardware acceleration, it works well with KVM.
-
   - **Vagrant** is an orchestration tool that makes it easier to manage
     groups of VMs by interconnecting them programmatically. Vagrant
     helps to tie all the components together and provides a
@@ -39,13 +36,9 @@ The solution described in this chapter requires four components:
 The following sections describe how to install `libvirt`, KVM/QEMU, and
 Vagrant on a Linux server.
 
-## Install libvirt</span>
+## Install libvirt
 
-1.  
-    
-    <details>
-    
-    Check the Linux version of the host. This guide is validated and
+1.  Check the Linux version of the host. This guide is validated and
     verified for Ubuntu 16.04 LTS starting from a clean install:
     
         user@ubuntubox:~$ lsb_release -a
@@ -66,6 +59,7 @@ Vagrant on a Linux server.
         user@ubuntubox:~$ sudo apt-get install libvirt-bin libvirt-dev qemu-utils qemu
         user@ubuntubox:~$ sudo /etc/init.d/libvirt-bin restart
     
+    <details>
     <summary>Click here if running Ubuntu 14.04... </summary>
     
     The version of `libvirt` which ships in Ubuntu 14.04 is too old to
@@ -100,9 +94,8 @@ Vagrant on a Linux server.
     
     {{%notice note%}}
     
-    <span style="color: #222222;"> `libvirt` versions 1.2.20 or higher
-    have native support for the UDP tunnels, which are used for the
-    point-to-point links in VM simulation. </span>
+`libvirt` versions 1.2.20 or higher have native support for the UDP tunnels, 
+    which are used for the point-to-point links in VM simulation. 
     
     {{%/notice%}}
 
@@ -114,7 +107,7 @@ Vagrant on a Linux server.
     
     {{%notice note%}}
     
-    To apply the new group to your existing user, log out and in again.
+To apply the new group to your existing user, log out and in again.
     
     {{%/notice%}}
 
@@ -128,7 +121,7 @@ Vagrant on a Linux server.
 After completing these steps, `libvirt` and KVM/QEMU are installed. The
 Linux server is now ready to run VMs.
 
-## Install Vagrant</span>
+## Install Vagrant
 
 You must install Vagrant **after** you install `libvirt`. Vagrant might
 not properly detect the necessary files if it is installed before
@@ -175,7 +168,7 @@ later is recommended.
     
     {{%notice note%}}
     
-    Vagrant plugin installation is unique to each user; make sure to
+Vagrant plugin installation is unique to each user; make sure to
     install plugins as the user who will run the simulations.
     
     {{%/notice%}}
@@ -186,7 +179,7 @@ later is recommended.
     
     {{%notice note%}}
     
-    Vagrant box image installation is unique to each user; make sure to
+Vagrant box image installation is unique to each user; make sure to
     install images as the user who will run the simulations.
     
     {{%/notice%}}
@@ -204,9 +197,7 @@ later is recommended.
         Current machine states:
                 default running (libvirt)
 
-7.  <span style="color: #222222;"> To show all running KVM/`libvirt`
-    VMs:  
-    </span>
+7.  To show all running KVM/`libvirt` VMs:  
     
         user@ubuntubox:~/testdir$ virsh list --all 
          
@@ -225,26 +216,22 @@ later is recommended.
 
 After completing these steps, Vagrant is now set up.
 
-## Create the Vagrantfile and Launch KVM Instances</span>
+## Create the Vagrantfile and Launch KVM Instances
 
-1.  
-    
-    <details>
-    
-    Create the desired Vagrantfile using the Cumulus [topology
+1.  Create the desired Vagrantfile using the Cumulus [topology
     converter](https://github.com/CumulusNetworks/topology_converter) or
     by downloading the Cumulus-created
     [cldemo-vagrant](https://github.com/CumulusNetworks/cldemo-vagrant)
     reference topology. The following steps use the cldemo-vagrant
     topology.
     
+    <details>
     <summary>If you plan on simulating Cumulus VX 2.5.x read this
     note... </summary>
     
     Make sure your Vagrantfiles do not attempt to set the hostname of
     the VM as that is not supported for older versions of Cumulus VX. If
-    you see a `device.vm.name` line as in the following example, remove
-    it:
+    you see a `device.vm.name` line as in the following example, remove it:
     
         user@ubuntubox:~$ sudo vi Vagrantfile
          
@@ -302,9 +289,8 @@ After completing these steps, Vagrant is now set up.
     
     {{%notice note%}}
     
-    All Vagrant commands performed against a simulation such as `vagrant
-    up` or `vagrant destroy` must be issued from the directory that
-    contains the Vagrantfile.
+All Vagrant commands performed against a simulation such as `vagrant up` or 
+    `vagrant destroy must be issued from the directory that contains the Vagrantfile.
     
     {{%/notice%}}
 
@@ -357,14 +343,3 @@ After completing these steps, Vagrant is now set up.
 9.  Destroy the simulation when finished.
     
         user@ubuntubox:~/cldemo-vagrant$ vagrant destroy -f
-
-<span style="color: #222222;">  
-</span>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

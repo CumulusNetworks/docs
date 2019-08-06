@@ -14,7 +14,7 @@ siteSlug: cumulus-linux-36
 Cumulus Linux contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.
 
-## Checking Reachability Using ping</span>
+## Checking Reachability Using ping
 
 `ping` is used to check reachability of a host. `ping` also calculates
 the time it takes for packets to travel the round trip. See `man ping`
@@ -59,7 +59,7 @@ packet.
 
 `-awk` substitutes human readable time format for unix time.
 
-## Printing Route Trace Using traceroute</span>
+## Printing Route Trace Using traceroute
 
 `traceroute` tracks the route that packets take from an IP network on
 their way to a given host. See `man traceroute` for details.
@@ -75,7 +75,7 @@ To track the route to an IPv4 host:
     7  72.14.232.35 (72.14.232.35)  27.505 ms  22.925 ms  22.323 ms
     8  nuq04s19-in-f17.1e100.net (74.125.239.49)  23.544 ms  21.851 ms  22.604 ms
 
-## Manipulating the System ARP Cache</span>
+## Manipulating the System ARP Cache
 
 `arp` manipulates or displays the kernel’s IPv4 network neighbor cache.
 See `man arp` for details.
@@ -108,7 +108,7 @@ you can disable dynamic ARP learning:
 
     cumulus@switch:~$ ip link set arp off dev INTERFACE
 
-## Generating Traffic Using mz</span>
+## Generating Traffic Using mz
 
 `mz` is a fast traffic generator. It can generate a large variety of
 packet types at high speed. See `man mz` for details.
@@ -145,7 +145,7 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
      TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
 
-## <span id="src-8362091_NetworkTroubleshooting-counter_acl" class="confluence-anchor-link"></span>Creating Counter ACL Rules</span>
+## Creating Counter ACL Rules
 
 In Linux, all ACL rules are always counted. To create an ACL rule for
 counting purposes only, set the rule action to ACCEPT. See the
@@ -190,7 +190,7 @@ to reinstall all the rules.
 
 {{%/notice%}}
 
-## <span id="src-8362091_NetworkTroubleshooting-span" class="confluence-anchor-link"></span>Configuring SPAN and ERSPAN</span>
+## Configuring SPAN and ERSPAN
 
 SPAN (Switched Port Analyzer) provides for the mirroring of all packets
 coming in from or going out of an interface (the *SPAN source*), and
@@ -219,12 +219,10 @@ packets may be discarded.
 
 {{%/notice%}}
 
-SPAN and ERSPAN are configured via `cl-acltool`, the [same utility for
-security ACL
-configuration](/version/cumulus-linux-36/System-Configuration/Netfilter-ACLs/).
+SPAN and ERSPAN are configured via `cl-acltool`, the 
+[same utility for security ACL configuration](/version/cumulus-linux-36/System-Configuration/Netfilter-ACLs/).
 The match criteria for SPAN and ERSPAN is usually an interface; for more
-granular match terms, use [selective
-spanning](#src-8362091_NetworkTroubleshooting-selective_spanning). The
+granular match terms, use [selective spanning](#selective-spanning). The
 SPAN source interface can be a port, a subinterface or a bond interface.
 Both ingress and egress traffic on interfaces can be matched.
 
@@ -242,35 +240,28 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
 {{%/notice%}}
 
-### Limitations for SPAN/ERSPAN</span>
+### Limitations for SPAN/ERSPAN
 
   - For Broadcom switches, Cumulus Linux supports a maximum of two SPAN
     destinations.
-
   - Because SPAN/ERSPAN is done in hardware, eth0 is not supported as a
     destination.
-
   - For Mellanox Spectrum switches, Cumulus Linux supports only a single
     SPAN destination in atomic mode or three SPAN destinations in
     non-atomic mode.
-
   - Multiple rules (SPAN sources) can point to the same SPAN
     destination, but a given SPAN source *cannot* specify two SPAN
     destinations.
-
   - To configure SPAN or ERSPAN on a Tomahawk switch, you must enable
     non-atomic update mode.
-
   - Mellanox switches reject SPAN ACL rules for an output interface that
     is a subinterface.
-
   - Mirrored traffic is not guaranteed. If the MTP is congested,
     mirrored packets might be discarded.
-
   - Cut-through mode is not supported for ERSPAN in Cumulus Linux on
     switches using Broadcom Tomahawk, Trident II+ and Trident II ASICs.
 
-### Configuring SPAN for Switch Ports</span>
+### Configuring SPAN for Switch Ports
 
 This section describes how to set up, install, verify and uninstall SPAN
 rules. In the examples that follow, you will span (mirror) switch port
@@ -368,7 +359,7 @@ Verify that the SPAN rules were installed:
     38025 7034K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19
     50832   55M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp19
 
-#### SPAN Sessions That Reference an Outgoing Interface</span>
+#### SPAN Sessions That Reference an Outgoing Interface
 
 SPAN sessions that reference an outgoing interface create the mirrored
 packets based on the ingress interface before the routing/switching
@@ -380,7 +371,7 @@ originally received on swp3.
 
     -A FORWARD --out-interface swp2 -j SPAN --dport swp1
 
-### Configuring SPAN for Bonds</span>
+### Configuring SPAN for Bonds
 
 This section describes how to configure SPAN for all packets going out
 of `bond0` locally to `bond1`.
@@ -417,7 +408,7 @@ Verify that the SPAN rules were installed:
     cumulus@switch:~$ sudo iptables -L -v | grep SPAN
        19  1938 SPAN       all  --  any    bond0   anywhere             anywhere             dport:bond1
 
-### Configuring ERSPAN</span>
+### Configuring ERSPAN
 
 This section describes how to configure ERSPAN for all packets coming in
 from `swp1` to 12.0.0.2.
@@ -426,8 +417,7 @@ from `swp1` to 12.0.0.2.
 
 **Cut-through Mode Support**
 
-[Cut-through
-mode](Buffer-and-Queue-Management.html#src-8362498_BufferandQueueManagement-cut_through_mode)
+[Cut-through mode](/version/cumulus-linux-36/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configuring-cut-through-mode-and-store-and-forward-switching)
 is **not** supported for ERSPAN in Cumulus Linux on switches using
 Broadcom Tomahawk, Trident II+ and Trident II ASICs.
 
@@ -478,7 +468,7 @@ frame** option.
 
 {{%/notice%}}
 
-### <span id="src-8362091_NetworkTroubleshooting-selective_spanning" class="confluence-anchor-link"></span>Selective Spanning</span>
+### Selective Spanning
 
 SPAN/ERSPAN traffic rules can be configured to limit the traffic that is
 spanned, to reduce the volume of copied data.
@@ -493,13 +483,9 @@ Cumulus Linux supports selective spanning for `iptables` only.
 The following matching fields are supported:
 
   - IPv4 SIP/DIP
-
   - IP protocol
-
   - L4 (TCP/UDP) src/dst port
-
   - TCP flags
-
   - An ingress port/wildcard (swp+) can be specified in addition
 
 {{%notice note%}}
@@ -510,7 +496,7 @@ Exceeding this limit produces an error when you install the rules with
 
 {{%/notice%}}
 
-#### SPAN Examples</span>
+#### SPAN Examples
 
   - To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
     DIP 20.0.1.2 to port swp1s1:
@@ -534,7 +520,7 @@ Exceeding this limit produces an error when you install the rules with
     
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j SPAN --dport swp1s2
 
-#### ERSPAN Examples</span>
+#### ERSPAN Examples
 
   - To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
     DIP 20.0.1.2:
@@ -558,7 +544,7 @@ Exceeding this limit produces an error when you install the rules with
     
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
 
-### Removing SPAN Rules</span>
+### Removing SPAN Rules
 
 To remove your SPAN rules, run:
 
@@ -573,7 +559,7 @@ To verify that the SPAN rules were removed:
     cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
     cumulus@switch:~$
 
-### Monitoring Control Plane Traffic with tcpdump</span>
+### Monitoring Control Plane Traffic with tcpdump
 
 You can use `tcpdump` to monitor control plane traffic — traffic sent to
 and coming from the switch CPUs. `tcpdump` does **not** monitor data
@@ -587,9 +573,7 @@ The following example incorporates a few `tcpdump` options:
 
   - `-i bond0`, which captures packets from bond0 to the CPU and from
     the CPU to bond0
-
   - `host 169.254.0.2`, which filters for this IP address
-
   - `-c 10`, which captures 10 packets then stops
 
 <!-- end list -->
@@ -612,20 +596,9 @@ The following example incorporates a few `tcpdump` options:
     12 packets received by filter
     0 packets dropped by kernel
 
-## Related Information</span>
+## Related Information
 
   - [www.perihel.at/sec/mz/mzguide.html](http://www.perihel.at/sec/mz/mzguide.html)
-
   - [en.wikipedia.org/wiki/Ping](http://en.wikipedia.org/wiki/Ping)
-
   - [www.tcpdump.org](http://www.tcpdump.org)
-
   - [en.wikipedia.org/wiki/Traceroute](https://en.wikipedia.org/wiki/Traceroute)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

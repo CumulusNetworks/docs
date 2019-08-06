@@ -1,13 +1,13 @@
 ---
 title: Cumulus NetQ CLI User Guide
 author: Cumulus Networks
-weight: 15
+weight: 19
 aliases:
  - /display/NETQ/Cumulus+NetQ+CLI+User+Guide
- - /pages/viewpage.action?pageId=12321041
-pageID: 12321041
+ - /pages/viewpage.action?pageId=10977536
+pageID: 10977536
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -18,5 +18,4 @@ your data center network infrastructure and operational health. This
 guide provides instructions and information about monitoring individual
 components of the network, the network as a whole, and the NetQ software
 itself using the NetQ command line interface (CLI). If you prefer to use
-a graphical interface, refer to the [Cumulus NetQ UI User
-Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/).
+a graphical interface, refer to the [Cumulus NetQ UI User Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/).

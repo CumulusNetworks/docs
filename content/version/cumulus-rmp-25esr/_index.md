@@ -1,13 +1,13 @@
 ---
 title: Cumulus RMP User Guide
 author: Cumulus Networks
-weight: 1
+weight: -25
 aliases:
  - /display/RMP25ESR/Cumulus+RMP+User+Guide
  - /pages/viewpage.action?pageId=5116301
 pageID: 5116301
 product: Cumulus RMP
-version: 2.5.12
+version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 subsection: true

@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362919
 pageID: 8362919
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
@@ -413,8 +413,8 @@ started, `vtysh` silently ignores those commands.
 {{%/notice%}}
 
 Alternately, if you do not want to use a modal CLI to configure
-FRRouting, you can use a suite of [Cumulus Linux-specific
-commands](/cumulus-linux/Layer-3/Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands)
+FRRouting, you can use a suite of 
+[Cumulus Linux-specific commands](/cumulus-linux/Layer-3/Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands)
 instead.
 
 ## Reload the FRRouting Configuration
@@ -451,23 +451,20 @@ supply the following information:
 
   - The current running configuration (run `net show configuration` and
     output the contents to a file)
-
   - The contents of `/etc/frr/frr.conf`
-
   - The contents of `/var/log/frr/frr-reload.log`
 
 ## FRR Logging
 
 By default, Cumulus Linux configures FFR with syslog severity level 6
-(informational). Log output is written to the `/var/log/frr/frr.log`
-file.
+(informational). Log output is written to the `/var/log/frr/frr.log` file.
 
 {{%notice note%}}
 
-To write debug messages to the log file, you must run the `log syslog
-debug` command to configure FRR with syslog severity 7 (debug);
-otherwise, when you issue a debug command such as, `debug bgp
-neighbor-events`, no output is sent to `/var/log/frr/frr.log`.  
+To write debug messages to the log file, you must run the 
+`log syslog debug` command to configure FRR with syslog severity 7 (debug);
+otherwise, when you issue a debug command such as, 
+`debug bgp neighbor-events`, no output is sent to `/var/log/frr/frr.log`.  
 However, when you manually define a log target with the `log file
 /var/log/frr/debug.log` command, FRR automatically defaults to severity
 7 (debug) logging and the output is logged to `/var/log/frr/frr.log`.
@@ -515,8 +512,6 @@ and restarting the FRR service.
 
 ## Related Information
 
-  - [FRR BGP documentation](https://frrouting.org/user-guide/bgp.html)
-
-  - [FRR IPv6 support](https://frrouting.org/user-guide/ipv6.html)
-
-  - [FRR Zebra documentation](https://frrouting.org/user-guide/zebra.html)
+  - [FRR BGP documentation](http://docs.frrouting.org/en/latest/bgp.html)
+  - [FRR IPv6 support](http://docs.frrouting.org/en/latest/ipv6.html)
+  - [FRR Zebra documentation](http://docs.frrouting.org/en/latest/zebra.html)

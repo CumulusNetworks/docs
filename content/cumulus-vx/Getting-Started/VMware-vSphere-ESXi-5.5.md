@@ -17,8 +17,8 @@ two-leaf/two-spine Cumulus VX topology with VMware vSphere.
 {{%notice note%}}
 
 These sections assume a basic level of VMware vSphere experience. For
-detailed instructions, refer to the [VMware vSphere
-documentation](https://pubs.vmware.com/vsphere-55/index.jsp).
+detailed instructions, refer to the 
+[VMware vSphere documentation](https://pubs.vmware.com/vsphere-55/index.jsp).
 
 {{%/notice%}}
 
@@ -40,8 +40,8 @@ vSphere client; however, the VM is configured to support ESXi 4.0 and higher.
 
 {{%/notice%}}
 
-1.  Download the VMware OVFtools utility from the [VMware downloads
-    page](https://my.vmware.com/web/vmware/details?productId=352&downloadGroup=OVFTOOL350)
+1.  Download the VMware OVFtools utility from the 
+    [VMware downloads page](https://my.vmware.com/web/vmware/details?productId=352&downloadGroup=OVFTOOL350)
     and install it on the client. You can view installation instructions
     on the VMware website.
 

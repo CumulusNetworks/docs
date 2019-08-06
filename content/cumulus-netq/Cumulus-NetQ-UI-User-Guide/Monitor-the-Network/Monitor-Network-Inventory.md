@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321095
 pageID: 12321095
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -302,11 +302,3 @@ click the **All Hosts** tab in the navigation panel.
 {{% imgOld 28 %}}
 
 To return to your workbench, click {{% imgOld 29 %}} in the top right corner of the card.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

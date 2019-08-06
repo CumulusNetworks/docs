@@ -5,10 +5,11 @@ weight: 181
 aliases:
  - /display/DOCS/Open+Shortest+Path+First+OSPF
  - /display/DOCS/Open+Shortest+Path+First+-+OSPF
+ - /display/DOCS/Open+Shortest+Path+First+-+OSPF+-+Protocol
  - /pages/viewpage.action?pageId=8362922
 pageID: 8362922
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---

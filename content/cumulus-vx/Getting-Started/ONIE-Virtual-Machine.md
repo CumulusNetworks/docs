@@ -11,9 +11,9 @@ version: '3.4'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---
-Cumulus VX images now include the GRUB boot loader and [Open Network
-Install Environment (ONIE)](http://onie.org/) preinstalled. You can
-install Cumulus Linux on switch hardware using a binary image. You can
+Cumulus VX images now include the GRUB boot loader and 
+[Open Network Install Environment (ONIE)](http://onie.org/) preinstalled. 
+You can install Cumulus Linux on switch hardware using a binary image. You can
 test this process by installing a Cumulus VX binary image with ONIE in a
 virtual environment.
 
@@ -25,10 +25,9 @@ Installation via ONIE is supported in Cumulus VX 3.x and later versions.
 
 {{%notice note%}}
 
-This section assumes that you have downloaded and installed a
-hypervisor, [downloaded the Cumulus VX binary
-image](https://cumulusnetworks.com/products/cumulus-vx/download/), and
-configured the VM.
+This section assumes that you have downloaded and installed a hypervisor, 
+[downloaded the Cumulus VX binary image](https://cumulusnetworks.com/products/cumulus-vx/download/), 
+and configured the VM.
 
 {{%/notice%}}
 
@@ -47,10 +46,8 @@ configured the VM.
 
         cumulus@switch:~$ onie-nos-install <URL to cumulus-linux-vx-amd64.bin>
 
-    Refer to [Installing a New Cumulus Linux
-    Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image/) or the
-    [ONIE Quick Start
-    Guide](https://github.com/opencomputeproject/onie/wiki/Quick-Start-Guide)
+    Refer to [Installing a New Cumulus Linux Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image/) or the
+    [ONIE Quick Start Guide](https://github.com/opencomputeproject/onie/wiki/Quick-Start-Guide)
     for specific instructions on various install methods.
 
 {{%notice note%}}
@@ -64,11 +61,3 @@ addressed in the future.
 
 After the installation process is complete, GRUB redirects you to the
 installed Cumulus VX instance.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

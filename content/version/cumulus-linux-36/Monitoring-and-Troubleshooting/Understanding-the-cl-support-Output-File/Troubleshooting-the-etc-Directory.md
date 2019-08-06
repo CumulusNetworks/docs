@@ -19,7 +19,7 @@ Files that `cl-support` deliberately excludes are:
 
 | File              | Description                                                                                                                                    |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| /etc/nologin      | ` nologin  `prevents unprivileged users from logging into the system.                                                                          |
+| /etc/nologin      | `nologin` prevents unprivileged users from logging into the system.                                                                          |
 | /etc/alternatives | `update-alternatives` creates, removes, maintains and displays information about the symbolic links comprising the Debian alternatives system. |
 
 This is the alphabetical of the output from running `ls -l` on the
@@ -217,11 +217,3 @@ troubleshooting problems.
 | wgetrc                    |
 | X11                       |
 | xdg                       |
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

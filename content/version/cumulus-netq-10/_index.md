@@ -1,13 +1,13 @@
 ---
 title: Cumulus NetQ
 author: Cumulus Networks
-weight: 1
+weight: -10
 aliases:
  - /display/NETQ10/Cumulus+NetQ
  - /pages/viewpage.action?pageId=6488198
 pageID: 6488198
 product: Cumulus NetQ
-version: 1.0.0
+version: '1.0'
 imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
 subsection: true

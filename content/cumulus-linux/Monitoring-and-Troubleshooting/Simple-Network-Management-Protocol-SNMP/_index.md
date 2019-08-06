@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 231
 aliases:
  - /display/DOCS/Simple+Network+Management+Protocol+(SNMP)+Monitoring
+ - /display/DOCS/SNMP+Monitoring
  - /pages/viewpage.action?pageId=8362608
 pageID: 8362608
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---

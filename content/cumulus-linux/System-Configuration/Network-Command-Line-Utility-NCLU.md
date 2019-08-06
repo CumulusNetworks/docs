@@ -5,10 +5,11 @@ weight: 63
 aliases:
  - /display/DOCS/Network+Command+Line+Utility+NCLU
  - /display/DOCS/Network+Command+Line+Utility+-+NCLU
+ - /display/DOCS/Network+Command+Line+Utility
  - /pages/viewpage.action?pageId=8362580
 pageID: 8362580
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---

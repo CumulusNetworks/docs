@@ -10,7 +10,7 @@ siteSlug: cumulus-netq-22
 
 The Cumulus NetQ documentation uses the following typographical and note conventions.
 
-# Typographical Conventions
+## Typographical Conventions
 
 Throughout the guide, text formatting is used to convey contextual information about the content.
 
@@ -21,7 +21,7 @@ Throughout the guide, text formatting is used to convey contextual information a
 | \[`Text within square brackets`\] | Optional command parameters; may be presented in mixed case or all caps text                                                              |
 | \<`Text within angle brackets`\> | Required command parameter values–variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text |
 
-# Note Conventions
+## Note Conventions
 
 Several note types are used throughout the document. The formatting of the note indicates its intent and
 urgency.

@@ -16,11 +16,11 @@ subsection: true
 ## What is Cumulus Linux?
 
 Cumulus Linux is the first full-featured Linux operating system for the
-networking industry. The [Debian
-Jessie](https://www.debian.org/releases/jessie/)-based,
-networking-focused distribution runs on hardware produced by a [broad
-partner ecosystem](http://cumulusnetworks.com/hcl/), ensuring unmatched
-customer choice regarding silicon, optics, cables, and systems.
+networking industry. The 
+[Debian Jessie](https://www.debian.org/releases/jessie/)-based,
+networking-focused distribution runs on hardware produced by a 
+[broad partner ecosystem](http://cumulusnetworks.com/hcl/), ensuring 
+unmatched customer choice regarding silicon, optics, cables, and systems.
 
 This user guide provides in-depth documentation on the Cumulus Linux
 installation process, system configuration and management, network
@@ -30,25 +30,26 @@ get you started.
 
 
 ### User Guide
-A link to download the Cumulus Linux 3.7.7 Documentation User Guide is [here](/Cumulus_Linux_3-7-7_User_Guide.pdf)
+A link to download the Cumulus Linux 3.7.7 Documentation User Guide is 
+[here](/Cumulus_Linux_3-7-7_User_Guide.pdf).
 
 
 ### What's New in this Release?
 
 For information on new features, bug fixes, and known issues present in
-this release, refer to the [product release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/360007793174-Cumulus-Linux-3-7-Release-Notes).
+this release, refer to the 
+[product release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360007793174-Cumulus-Linux-3-7-Release-Notes).
 
 ### Open Source Contributions
 
 To implement various Cumulus Linux features, Cumulus Networks has forked
 various software projects, like CFEngine, `Netdev` and some Puppet Labs
-packages. The forked code resides in the Cumulus Networks [GitHub
-repository](https://github.com/CumulusNetworks).
+packages. The forked code resides in the Cumulus Networks 
+[GitHub repository](https://github.com/CumulusNetworks).
 
 Cumulus Networks has also developed and released new applications as
-open source. The list of open source projects is on the [open source
-software](http://oss.cumulusnetworks.com/) page.
+open source. The list of open source projects is on the 
+[open source software](http://oss.cumulusnetworks.com/) page.
 
 ### Hardware Compatibility List
 

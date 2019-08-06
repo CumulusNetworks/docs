@@ -28,7 +28,7 @@ to the Notification function. Notification then stores, filters and
 sends messages to any configured notification applications. Filters are
 based on rules you create. You must have at least one rule per filter.
 
-{{<figure src="/images/netq/event-notif-arch.png">}}
+{{<figure src="/images/netq/event-notif-arch.png" width="700" >}}
 
 {{%notice note%}}
 
@@ -88,7 +88,7 @@ Messages have the following structure:
 
 For example:
 
-{{<figure src="/images/netq/event-msg-format.png">}}
+{{<figure src="/images/netq/event-msg-format.png" width="700" >}}
 
 To set up the integrations, you must configure NetQ with at least one
 channel. Optionally, you can define rules and filters to refine what
@@ -96,7 +96,7 @@ messages you want to view and where to send them. You can also configure
 a proxy server to receive, process, and forward the messages. This is
 accomplished using the NetQ CLI in the following order:
 
-{{<figure src="/images/netq/notif-config-wkflow.png">}}
+{{<figure src="/images/netq/notif-config-wkflow.png" width="700" >}}
 
 ### Notification Commands Overview
 
@@ -166,7 +166,7 @@ NetQ sends notifications to PagerDuty as PagerDuty events.
 
 For example:
 
-{{<figure src="/images/netq/NetQ-PagerDuty-ex-output.png">}}
+{{<figure src="/images/netq/NetQ-PagerDuty-ex-output.png" width="700" >}}
 
 To configure the NetQ notifier to send notifications to PagerDuty:
 

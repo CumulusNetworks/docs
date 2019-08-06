@@ -1,9 +1,10 @@
-# Cumulus Networks Documentation
+# Cumulus Networks Internal Documentation
 
-This the source repository for the Cumulus Networks Documentation, hosted at docs.cumulusnetworks.com.
-The site is built with the static site generator [Hugo](https://gohugo.io/documentation/)
+This repository houses the source for internal Cumulus Networks Documentation, hosted
+at qa-docs.cumulusnetworks.com. This version of the documentation contains sensitive
+and unreleased information, and is only accessible to Cumulus Employees and Partners
 
-## Installing the Internal Documentation Site
+## Installing the InternalTest Documentation Site
 The docs are built with the static site generator [Hugo](https://gohugo.io/documentation/)
 Hugo contains a local development server to build and view live changes to the repo. Hugo is
 a command line interface.
@@ -26,8 +27,10 @@ hugo will watch and rebuild the site with any changes to the source.
 
 ## Contributing
 
-This repository will contain the documentation hosted at docs.cumulusnetworks.com
-Commits to the master branch will build and deploy
+This repository will contain new development and content added to the docs, and will remain private.
+The master branch will sync with the public docs repository
+The develop branch will build and deploy to docs-qa.cumulusnetworks.com upon commit
+This branch will contain new features and content for review.
 
 If you would like to contribute to the site, please fork and submit a pull request
 
@@ -40,7 +43,7 @@ Hugo supports custom shortcodes, which are contained the Writing Guide section o
 
 ### Adding a section
 Sections in hugo are subdirectories of the /content folder. In order to add a section,
-create a subdirectory, i.e. 'MySection', then add a _index.md file. All first-level subdirectories from /content are default sections, but any nested sections must include _index.md.
+create a subdirectory, i.e. 'MySection', then add a \_index.md file. All first-level subdirectories from /content are default sections, but any nested sections must include \_index.md.
 
 ### Organization
 

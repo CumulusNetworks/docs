@@ -62,8 +62,8 @@ For example:
     cumulus-ztp-amd64
     cumulus-ztp
 
-You can also trigger the ZTP process manually by running the `ztp --run
-<URL>` command, where the URL is the path to the ZTP script.
+You can also trigger the ZTP process manually by running the 
+`ztp --run <URL>` command, where the URL is the path to the ZTP script.
 
 ## Zero Touch Provisioning Using USB (ZTP-USB)
 
@@ -85,9 +85,7 @@ USB stick **before** you power up the switch.
 At minimum, the script must:
 
   - Install the Cumulus Linux operating system and license.
-
   - Copy over a basic configuration to the switch.
-
   - Restart the switch or the relevant serves to get `switchd` up and
     running with that configuration.
 
@@ -97,14 +95,13 @@ Follow these steps to perform zero touch provisioning using USB:
     stick.
 
 2.  The `ztp` process searches the root filesystem of the newly mounted
-    device for filenames matching an [ONIE-style
-    waterfall](https://github.com/opencomputeproject/onie/wiki/Quick-Start-Guide#directly-connected-scenario)
+    device for filenames matching an 
+    [ONIE-style waterfall](https://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods)
     (see the patterns and examples above), looking for the most specific
     name first, and ending at the most generic.
 
 3.  The contents of the script are parsed to ensure it contains the
-    `CUMULUS-AUTOPROVISIONING` flag (see [example
-    scripts](#src-8362127_ZeroTouchProvisioning-ZTP-example_scripts)).
+    `CUMULUS-AUTOPROVISIONING` flag (see the [example script](#example-ztp-script)).
 
 {{%notice note%}}
 
@@ -138,13 +135,12 @@ The zero touch provisioning process over DHCP follows these steps:
     provisioning process starts.
 
 4.  The zero touch provisioning process requests the contents of the
-    script from the URL, sending additional [HTTP
-    headers](#src-8362127_ZeroTouchProvisioning-ZTP-http_headers)
+    script from the URL, sending additional 
+    [HTTP headers](#inspecting-http-headers)
     containing details about the switch.
 
 5.  The contents of the script are parsed to ensure it contains the
-    `CUMULUS-AUTOPROVISIONING` flag (see [example
-    scripts](#src-8362127_ZeroTouchProvisioning-ZTP-example_scripts)).
+    `CUMULUS-AUTOPROVISIONING` flag (see [example scripts](#example-ztp-script)).
 
 6.  If provisioning is necessary, the script executes locally on the
     switch with root privileges.
@@ -160,9 +156,7 @@ zero touch provisioning process over DHCP when eth0 is set to use DHCP
 and one of the following events occur:
 
   - The switch boots.
-
   - You plug a cable into or unplug a cable from the eth0 port.
-
   - You disconnect, then reconnect the switch power cord.
 
 You can also run the `ztp --run <URL>` command, where the `URL` is the
@@ -379,8 +373,8 @@ apt-get update -y`.
 
 ### Performing Ansible Provisioning Callbacks
 
-After initially configuring a node with ZTP, use [Provisioning
-Callbacks](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#provisioning-callbacks)
+After initially configuring a node with ZTP, use 
+[Provisioning Callbacks](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#provisioning-callbacks)
 to inform Ansible Tower or AWX that the node is ready for more detailed
 provisioning. The following example demonstrates how to use a
 provisioning callback:

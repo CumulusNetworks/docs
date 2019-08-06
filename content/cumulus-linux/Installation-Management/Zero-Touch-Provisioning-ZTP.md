@@ -34,9 +34,7 @@ ZTP in Cumulus Linux can occur automatically in one of the following
 ways, in this order:
 
   - Through a local file
-
   - Using a USB drive inserted into the switch (ZTP-USB)
-
   - Through DHCP
 
 Each method is discussed in greater detail below.
@@ -49,15 +47,10 @@ switch boots. ZTP searches for an install script that matches an
 looking for the most specific name first, and ending at the most
 generic:
 
-  - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' +
-    revision`
-
+  - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' + revision`
   - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model`
-
   - `'cumulus-ztp-' + vendor + '_' + model`
-
   - `'cumulus-ztp-' + architecture`
-
   - `'cumulus-ztp'`
 
 For example:
@@ -68,8 +61,8 @@ For example:
     cumulus-ztp-amd64
     cumulus-ztp
 
-You can also trigger the ZTP process manually by running the `ztp --run
-<URL>` command, where the URL is the path to the ZTP script.
+You can also trigger the ZTP process manually by running the 
+`ztp --run <URL>` command, where the URL is the path to the ZTP script.
 
 ## Zero Touch Provisioning Using a USB Drive (ZTP-USB)
 
@@ -91,9 +84,7 @@ USB drive **before** you power up the switch.
 At minimum, the script must:
 
   - Install the Cumulus Linux operating system and license.
-
   - Copy over a basic configuration to the switch.
-
   - Restart the switch or the relevant serves to get `switchd` up and
     running with that configuration.
 
@@ -103,8 +94,8 @@ Follow these steps to perform zero touch provisioning using a USB drive:
     drive.
 
 2.  The `ztp` process searches the root filesystem of the newly mounted
-    drive for filenames matching an [ONIE-style
-    waterfall](https://github.com/opencomputeproject/onie/wiki/Quick-Start-Guide#directly-connected-scenario)
+    drive for filenames matching an 
+    [ONIE-style waterfall](https://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods)
     (see the patterns and examples above), looking for the most specific
     name first, and ending at the most generic.
 
@@ -168,9 +159,7 @@ zero touch provisioning process over DHCP when eth0 is set to use DHCP
 and one of the following events occur:
 
   - The switch boots.
-
   - You plug a cable into or unplug a cable from the eth0 port.
-
   - You disconnect, then reconnect the switch power cord.
 
 You can also run the `ztp --run <URL>` command, where the `URL` is the
@@ -242,11 +231,8 @@ You can write the script in any language currently supported by Cumulus
 Linux, such as:
 
   - Perl
-
   - Python
-
   - Ruby
-
   - Shell
 
 The script must return an exit code of 0 upon success, as this triggers
@@ -295,8 +281,8 @@ and applies a configuration:
     # CUMULUS-AUTOPROVISIONING
     exit 0
 
-Several ZTP example scripts are available in the [Cumulus GitHub
-repository](https://github.com/CumulusNetworks/example-ztp-scripts).
+Several ZTP example scripts are available in the 
+[Cumulus GitHub repository](https://github.com/CumulusNetworks/example-ztp-scripts).
 
 ## Best Practices for ZTP Scripts
 
@@ -388,8 +374,8 @@ apt-get update -y`.
 
 ### Perform Ansible Provisioning Callbacks
 
-After initially configuring a node with ZTP, use [Provisioning
-Callbacks](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#provisioning-callbacks)
+After initially configuring a node with ZTP, use 
+[Provisioning Callbacks](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#provisioning-callbacks)
 to inform Ansible Tower or AWX that the node is ready for more detailed
 provisioning. The following example demonstrates how to use a
 provisioning callback:
@@ -651,13 +637,9 @@ for any script.
 ZTP checks for these manual configurations during bootup:
 
   - Password changes
-
   - Users and groups changes
-
   - Packages changes
-
   - Interfaces changes
-
   - The presence of an installed license
 
 When the switch is booted for the very first time, ZTP records the state
@@ -700,7 +682,6 @@ To see the current `ztp` state, use the `-s` option:
 
   - During the development of a provisioning script, the switch might
     need to be rebooted.
-
   - You can use the Cumulus Linux `onie-select -i` command to cause the
     switch to reprovision itself and install a network operating system
     again using ONIE.

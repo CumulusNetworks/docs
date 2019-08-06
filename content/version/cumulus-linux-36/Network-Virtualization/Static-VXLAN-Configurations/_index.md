@@ -11,10 +11,5 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
-<article id="html-search-results" class="ht-content" style="display: none;">
 
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+This section discusses static MAC bindings with VXLAN and static VXLAN tunnels.

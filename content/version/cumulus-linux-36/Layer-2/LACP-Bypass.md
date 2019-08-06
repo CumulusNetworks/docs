@@ -20,7 +20,7 @@ connected to a switch on a bond configured in 802.3ad mode. Once the
 pre-boot process finishes and the host is capable of running LACP, the
 normal 802.3ad link aggregation operation takes over.
 
-## Understanding the LACP Bypass All-active Mode</span>
+## Understanding the LACP Bypass All-active Mode
 
 When a bond has multiple slave interfaces, each bond slave interface
 operates as an active link while the bond is in bypass mode. This is
@@ -32,12 +32,11 @@ Keep in the mind the following caveats with all-active mode:
 
   - All-active mode is not supported on bonds that are not specified as
     bridge ports on the switch.
-
   - Spanning tree protocol (STP) does not run on the individual bond
     slave interfaces when the LACP bond is in all-active mode.
     Therefore, only use all-active mode on host-facing LACP bonds.
-    Cumulus Networks highly recommends you configure [STP BPDU
-    guard](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-8362181_SpanningTreeandRapidSpanningTree-bpdu)
+    Cumulus Networks highly recommends you configure 
+    [STP BPDU guard](/version/cumulus-linux-36/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard)
     along with all-active mode.
 
 {{%notice note%}}
@@ -45,24 +44,19 @@ Keep in the mind the following caveats with all-active mode:
 The following features are not supported:
 
   - priority mode
-
   - bond-lacp-bypass-period
-
   - bond-lacp-bypass-priority
-
   - bond-lacp-bypass-all-active
-
 {{%/notice%}}
 
-### LACP Bypass and MLAG Deployments</span>
+### LACP Bypass and MLAG Deployments
 
-In an [MLAG
-deployment](/version/cumulus-linux-36/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+In an [MLAG deployment](/version/cumulus-linux-36/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 where bond slaves of a host are connected to two switches and the bond
 is in all-active mode, all the slaves of bond are active on both the
 primary and secondary MLAG nodes.
 
-## Configuring LACP Bypass</span>
+## Configuring LACP Bypass
 
 To enable LACP bypass on the host-facing bond, set
 `bond-lacp-bypass-allow` to *yes*.
@@ -103,15 +97,14 @@ These commands create the following stanzas in
 
 {{%/notice%}}
 
-You can check the status of the configuration by running `net show
-interface <bond>` on the bond and its slave interfaces:
+You can check the status of the configuration by running 
+`net show interface <bond>` on the bond and its slave interfaces:
 
     cumulus@switch:~$ net show interface bond1
      
        Name   MAC               Speed   MTU   Mode
     -- ------ ----------------- ------- ----- ----------
     UP bond1  44:38:39:00:00:5b 1G      1500  Bond/Trunk
-     
      
     Bond Details
     ------------------ -------------------------
@@ -123,27 +116,22 @@ interface <bond>` on the bond and its slave interfaces:
     LACP Rate:         Fast Timeout
     LACP Bypass:       LACP Bypass Not Supported
      
-     
        Port       Speed     TX   RX   Err   Link Failures
     -- --------   ------- ---- ---- ----- ---------------
     UP swp51s2(P) 1G         0    0     0               0
     UP swp51s3(P) 1G         0    0     0               0
      
-     
     All VLANs on L2 Port
     ----------------------
     100-105
      
-     
     Untagged
     ----------
-    1
-     
+    1 
      
     Vlans in disabled State
     -------------------------
     100-105
-     
      
     LLDP
     --------   ---- ------------------
@@ -162,11 +150,11 @@ and its slave interfaces:
     cumulus@switch:~$ cat /sys/class/net/swp51/bonding_slave/ad_rx_bypass 
     1
 
-### Traditional Bridge Mode Configuration</span>
+### Traditional Bridge Mode Configuration
 
 The following configuration shows LACP bypass enabled for multiple
-active interfaces (all-active mode) with a bridge in [traditional bridge
-mode](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode):
+active interfaces (all-active mode) with a bridge in 
+[traditional bridge mode](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode):
 
     auto bond1
     iface bond1 
@@ -177,11 +165,3 @@ mode](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/Traditional-Brid
     iface br0
         bridge-ports bond1 bond2 bond3 bond4 peer5
         mstpctl-bpduguard bond1=yes
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

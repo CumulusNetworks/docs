@@ -1,13 +1,13 @@
 ---
 title: Cumulus Linux User Guide
 author: Cumulus Networks
-weight: 1
+weight: -25
 aliases:
  - /display/CL25ESR/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=5115887
 pageID: 5115887
 product: Cumulus Linux
-version: 2.5.12
+version: 2.5 ESR
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 subsection: true

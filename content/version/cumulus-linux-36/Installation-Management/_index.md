@@ -18,11 +18,3 @@ additional applications (using packages) if desired.
 
 Zero touch provisioning provides a way to quickly deploy and configure
 new switches in a large-scale environment.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

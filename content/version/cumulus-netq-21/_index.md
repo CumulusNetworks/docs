@@ -1,7 +1,7 @@
 ---
 title: Cumulus NetQ
 author: Cumulus Networks
-weight: 1
+weight: -21
 aliases:
  - /display/NETQ21/Cumulus+NetQ
  - /pages/viewpage.action?pageId=12322014

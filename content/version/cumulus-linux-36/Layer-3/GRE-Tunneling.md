@@ -11,14 +11,11 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
-<details>
-
 {{%notice warning%}}
 
 **Early Access Feature**
 
-GRE Tunneling is an [early access
-feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
+GRE Tunneling is an [early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
 in Cumulus Linux 3.6.
 
 {{%/notice%}}
@@ -43,14 +40,10 @@ subnets, and allow VPNs across wide area networks.
 
 {{%notice note%}}
 
-**Notes**
-
   - GRE Tunneling is supported for Mellanox (Spectrum ASIC) switches
     only.
-
   - Only static routes are supported as a destination for the tunnel
     interface.
-
   - IPv6 endpoints are not supported.
 
 {{%/notice%}}
@@ -62,11 +55,7 @@ the outer IPv4 header.
 
 {{% imgOld 0 %}}
 
-##  Contents</span>
-
-<summary>This chapter covers ... </summary>
-
-## Configuring GRE Tunneling</span>
+## Configuring GRE Tunneling
 
 To configure GRE tunneling, you create a GRE tunnel interface with
 routes for tunneling on both endpoints as follows:
@@ -83,16 +72,12 @@ routes for tunneling on both endpoints as follows:
     interface.
 
 The following configuration example shows the commands used to set up a
-bidirectional GRE tunnel between two endpoints: `Tunnel-R1` and
-`Tunnel-R2`.  
+bidirectional GRE tunnel between two endpoints: `Tunnel-R1` and `Tunnel-R2`. 
 The local tunnel endpoint for `Tunnel-R1` is 10.0.0.9 and the remote
-endpoint is 10.0.0.2.  
-The local tunnel endpoint for `Tunnel-R2` is 10.0.0.2 and the remote
-endpoint is 10.0.0.9.
+endpoint is 10.0.0.2. The local tunnel endpoint for `Tunnel-R2` is 10.0.0.2 
+and the remote endpoint is 10.0.0.9.
 
 {{% imgOld 1 %}}
-
-  
 
 **Tunnel-R1 commands:**
 
@@ -148,7 +133,7 @@ the following commands directly in the `/etc/network/interfaces` file.
 For more information about the `pre-up`, `post-up`, and `post-down`
 commands, run the `man interfaces` command.
 
-## Verifying GRE Tunnel Settings</span>
+## Verifying GRE Tunnel Settings
 
 Use the `ip tunnel show` command to check GRE tunnel settings:
 
@@ -156,7 +141,7 @@ Use the `ip tunnel show` command to check GRE tunnel settings:
     gre0: gre/ip remote any local any ttl inherit nopmtudisc
     Tunnel-R1: gre/ip remote 10.0.0.2 local 10.0.0.9 ttl 255
 
-## Deleting a GRE Tunnel Interface</span>
+## Deleting a GRE Tunnel Interface
 
 Use the `ip tunnel del` command to delete a GRE tunnel, remove the
 tunnel interface, and remove the routes configured with the tunnel
@@ -172,7 +157,7 @@ file instead of using the `ip tunnel del` command. Make sure you run the
 
 {{%/notice%}}
 
-## Changing GRE Tunnel Settings</span>
+## Changing GRE Tunnel Settings
 
 Use the `ip tunnel change` command to make changes to the GRE tunnel
 settings. The following example changes the remote underlay IP address
@@ -188,13 +173,3 @@ command. Make sure you run the `ifreload - a` command after you update
 the interfaces file.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

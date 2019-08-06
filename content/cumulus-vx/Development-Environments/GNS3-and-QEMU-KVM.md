@@ -14,8 +14,7 @@ siteSlug: cumulus-vx
 Before you run your virtual network under GNS3, make sure you:
 
   - Download and install [KVM](http://www.linux-kvm.org/page/Downloads).
-  - Download the the [Cumulus VX QCOW2
-    image](https://cumulusnetworks.com/cumulus-vx/download/).
+  - Download the the [Cumulus VX QCOW2 image](https://cumulusnetworks.com/cumulus-vx/download/).
   - Download and install
     [GNS3](https://community.gns3.com/login.jspa?referer=/community/software/download).
 
@@ -28,16 +27,12 @@ To run your virtual network under GNS3:
     The **VM list** shows the KVM VMs that you set up earlier.
 
       - In the **Type** list, keep *Default*, then click **Next**.
-
       - In the **Name** box, enter the name, then click **Next**.
-
       - Select the path to the **Qemu binary** and **RAM** size, then
         click **Next**.
-
       - Browse to select the **Disk image**, selecting the
         [qcow2 image](https://cumulusnetworks.com/cumulus-vx/download/) you
         downloaded earlier.
-
       - Click **Finish** to save the configuration and close the New
         QEMU VM template dialog.
 
@@ -50,15 +45,10 @@ To run your virtual network under GNS3:
     each VM, configure the network settings using the GNS3 interface:
 
       - Select a VM in the center pane, then click **Edit**.
-
       - In the QEMU VM configuration dialog, click the **Network** tab.
-
       - Increase the number of **Adapters** to *4*.
-
       - Select the **Type** to be *Legacy paravirtualized*.
-
       - Check the **Use the legacy networking mode** check box.
-
       - Click **Advanced Settings**. In the options field, enter:  
         `-net user,vlan=0,net=192.168.0.0/24,hostfwd=tcp::1401-:22`
 
@@ -89,16 +79,13 @@ This enables SSH to port 1401 (ssh -p 1401 cumulus@127.0.0.1).
       - Cumulus VX-spine1:  
         e1\<-\> e1 Cumulus VX-leaf1  
         e2\<-\>e1 Cumulus VX-leaf2
-
       - Cumulus VX-spine2:  
         e1\<-\>e2 Cumulus VX-leaf1  
         e2\<-\>e2 Cumulus VX-leaf2
-
       - Cumulus VX-leaf1:  
         e1\<-\>e1 Cumulus VX-spine1  
         e2\<-\>e1 Cumulus VX-spine2  
         e3\<-\>e0 PC1 (VPCS)
-
       - Cumulus VX-leaf2:  
         e1\<-\>e2 Cumulus VX-spine1  
         e2\<-\>e2 Cumulus VX-spine2  
@@ -126,15 +113,11 @@ You should be able to ping between the VMs and between the virtual PCs.
 
 ## Caveats
 
-  - After you start the VMs, they run headless. You can SSH into a VM
-    as:  
+  - After you start the VMs, they run headless. You can SSH into a VM as:  
     `ssh -p port-nr root@127.0.0.1`
-
   - `port-nr` is the one specified for this node in step 4 above.
-
   - It takes a couple of minutes for the VMs to spin up and be ready for
     SSH connections.
-
   - Console access does not work with GNS3 in this configuration. For a
     workaround, run QEMU/KVM from the command line; see below.
 

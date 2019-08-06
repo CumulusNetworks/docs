@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321050
 pageID: 12321050
 product: Cumulus NetQ
-version: 2.2.0
+version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -153,7 +153,7 @@ present.
     No matching vxlan records found
 
 You can filter the list of VXLANs to view only those associated with a
-particular VNI. This example shows the configured VXLANs for *VNI 24*.
+particular VNI. The VNI option lets you specify single VNI (100), a range of VNIs (10-100), or provide a comma-separated list (10,11,12). This example shows the configured VXLANs for *VNI 24*.
 
     cumulus@switch:~$ netq show vxlan vni 24
     Matching vxlan records:

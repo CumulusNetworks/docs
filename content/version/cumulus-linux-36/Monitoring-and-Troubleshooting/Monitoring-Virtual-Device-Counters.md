@@ -13,23 +13,22 @@ siteSlug: cumulus-linux-36
 ---
 Cumulus Linux gathers statistics for VXLANs and VLANs using virtual
 device counters. These counters are supported on Tomahawk, Trident II+
-and Trident II-based platforms only; see the [Cumulus Networks
-HCL](http://cumulusnetworks.com/hcl/) for a list of supported platforms.
+and Trident II-based platforms only; see the 
+[Cumulus Networks HCL](http://cumulusnetworks.com/hcl/) for a list of 
+supported platforms.
 
 You can retrieve the data from these counters using tools like `ip -s
 link show`, `ifconfig`, `/proc/net/dev`, or `netstat -i`.
 
-## Sample VXLAN Statistics</span>
+## Sample VXLAN Statistics
 
 VXLAN statistics are available as follows:
 
   - Aggregate statistics are available per VNI; this includes access and
     network statistics.
-
   - Network statistics are available for each VNI and displayed against
     the VXLAN device. This is independent of the VTEP used, so this is a
     summary of the VNI statistics across all tunnels.
-
   - Access statistics are available per VLAN subinterface.
 
 First, get interface information regarding the VXLAN bridge:
@@ -72,9 +71,9 @@ To get network statistics, run:
         TX: bytes  packets  errors  dropped carrier collsns
         0          0        0       9       0       0
 
-## Sample VLAN Statistics</span>
+## Sample VLAN Statistics
 
-### For VLANs Using the non-VLAN-aware Bridge Driver</span>
+### For VLANs Using the non-VLAN-aware Bridge Driver
 
 In this case, each bridge is a single L2 broadcast domain and is
 associated with an internal VLAN. This internal VLAN's counters are
@@ -92,10 +91,10 @@ displayed as bridge netdev stats.
         TX: bytes  packets  errors  dropped carrier collsns
         18198262   178443   0       0       0       0
 
-### For VLANs Using the VLAN-aware Bridge Driver</span>
+### For VLANs Using the VLAN-aware Bridge Driver
 
-For a bridge using the [VLAN-aware
-driver](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
+For a bridge using the 
+[VLAN-aware driver](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
 the bridge is a just a container and each VLAN (VID/PVID) in the bridge
 is an independent L2 broadcast domain. As there is no netdev available
 to display these VLAN statistics, the `switchd` nodes are used instead:
@@ -120,19 +119,17 @@ to display these VLAN statistics, the `switchd` nodes are used instead:
     Total Out Octets                : 387
     Total Out Packets               : 3
 
-## Configuring the Counters in switchd</span>
+## Configuring the Counters in switchd
 
 These counters are enabled by default. To configure them, use `cl-cfg`
-and configure them as you would any other [`switchd`
-parameter](/version/cumulus-linux-36/System-Configuration/Configuring-switchd).
+and configure them as you would any other 
+[`switchd` parameter](/version/cumulus-linux-36/System-Configuration/Configuring-switchd).
 The `switchd` parameters are as follows:
 
   - `stats.vlan.aggregate`, which controls the statistics available for
     each VLAN. Its value defaults to *BRIEF*.
-
   - `stats.vxlan.aggregate`, which controls the statistics available for
     each VNI (access and network). Its value defaults to *DETAIL*.
-
   - `stats.vxlan.member`, which controls the statistics available for
     each local/access port in a VXLAN bridge. Its value defaults to
     *BRIEF*.
@@ -140,10 +137,8 @@ The `switchd` parameters are as follows:
 The values for each parameter can be one of the following:
 
   - NONE: This disables the counter.
-
   - BRIEF: This provides tx/rx packet/byte counters for the associated
     parameter.
-
   - DETAIL: This provides additional feature-specific counters. In the
     case of `stats.vxlan.aggregate`, DETAIL provides access vs. network
     statistics. For the other types, DETAIL has the same effect as
@@ -157,7 +152,7 @@ changed; previously allocated counters remain as is.
 
 {{%/notice%}}
 
-### Configuring the Poll Interval</span>
+### Configuring the Poll Interval
 
 The virtual device counters are polled periodically. This can be CPU
 intensive, so the interval is configurable in `switchd`, with a default
@@ -166,7 +161,7 @@ of 2 seconds.
     # Virtual devices hw-stat poll interval (in seconds)
     #stats.vdev_hw_poll_interval = 2
 
-### Configuring Internal VLAN Statistics</span>
+### Configuring Internal VLAN Statistics
 
 For debugging purposes, you may need to access packet statistics
 associated with internal VLAN IDs. These statistics are hidden by
@@ -174,7 +169,7 @@ default, but can be configured in `switchd`:
 
     #stats.vlan.show_internal_vlans = FALSE
 
-### Clearing Statistics</span>
+### Clearing Statistics
 
 Since `ethtool` is not supported for virtual devices, you cannot clear
 the statistics cache maintained by the kernel. You can clear the
@@ -184,12 +179,11 @@ hardware statistics via `switchd`:
     cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan 
     cumulus@switch:~$
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - Currently the CPU port is internally added as a member of all VLANs.
     Because of this, packets sent to the CPU are counted against the
     corresponding VLAN's tx packets/bytes. There is no workaround.
-
   - When checking the virtual counters for the bridge, the TX count is
     the number of packets destined to the CPU before any hardware
     policers take effect. For example, if 500 broadcast packets are sent
@@ -199,16 +193,7 @@ hardware statistics via `switchd`:
     too high. The TX counter for the bridge should be equal to
     500\*(number of ports in the bridge - incoming port + CPU port) or
     just 500 \* number of ports in the bridge.
-
   - You cannot use `ethtool -S` for virtual devices. This is because the
     counters available via `netdev` are sufficient to display the
     vlan/vxlan counters currently supported in the hardware (only rx/tx
     packets/bytes are supported currently).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

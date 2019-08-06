@@ -11,7 +11,7 @@ version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-Cumulus Networks' [Host Pack](/host-pack) provides the ability to run
+[FRRouting](https://frrouting.org/) provides the ability to run
 [OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF) or
 [BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) directly on
 server hosts. This can enable a network architecture known as *anycast*,

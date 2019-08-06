@@ -1,14 +1,14 @@
 ---
 title: Cumulus Linux User Guide
 author: Cumulus Networks
-weight: 1
+weight: -37
 aliases:
  - /display/DOCS/
  - /display/DOCS/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=8362527
 pageID: 8362527
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 subsection: true

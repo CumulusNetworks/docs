@@ -17,8 +17,8 @@ two-leaf/two-spine Cumulus VX topology with VMware Fusion.
 {{%notice note%}}
 
 These sections assume a basic level of VMware Fusion experience. For
-detailed instructions, refer to the [VMware Fusion
-documentation](https://www.vmware.com/support/pubs/fusion_pubs.html).
+detailed instructions, refer to the 
+[VMware Fusion documentation](https://www.vmware.com/support/pubs/fusion_pubs.html).
 
 {{%/notice%}}
 

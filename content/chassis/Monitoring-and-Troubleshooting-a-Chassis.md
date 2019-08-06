@@ -12,8 +12,8 @@ imgData: chassis
 siteSlug: chassis
 ---
 
-Typically you use [standard methods](/chassis/Monitoring-and-Troubleshooting-a-Chassis/)
-to monitor and troubleshoot the chassis. However, some commands work a little
+Typically you use standard methods to monitor and troubleshoot the chassis. 
+However, some commands work a little
 differently and there are some chassis-specific commands you can
 utilize. Those differences are discussed in this chapter.
 
@@ -72,7 +72,8 @@ BMC.
 
 ### Example sensors Output
 
-Here is the complete output, which is about 1200 lines long:
+<details>
+<summary>Here is the complete output, which is about 1200 lines long:</summary>
 
     cumulus@omp-800-fc402:~$ sensors
     coretemp-isa-0000
@@ -1252,6 +1253,7 @@ Here is the complete output, which is about 1200 lines long:
                            (high = +90.0°C, hyst = +90.0°C)
                            (crit = +95.0°C, hyst = +95.0°C)
     cumulus@omp-800-fc402:~$
+</details>
 
 ### About the bmcd Service
 

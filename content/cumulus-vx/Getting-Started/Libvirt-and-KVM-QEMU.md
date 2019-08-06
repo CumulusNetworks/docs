@@ -128,24 +128,16 @@ After you follow the steps below, the interfaces will be connected as
 follows:
 
   - leaf1:swp1---\>spine1:swp1
-
   - leaf1:swp2---\>spine2:swp1
-
   - leaf2:swp1---\>spine1:swp2
-
   - leaf2:swp2---\>spine2:swp2
-
-<!-- end list -->
 
 1.  Copy the `qcow2` image onto a Linux server four times to create the
     four VMs, then name them as follows:
 
       - leaf1.qcow2
-
       - leaf2.qcow2
-
       - spine1.qcow2
-
       - spine2.qcow2
 
 2.  Power on `leaf1.qcow2` and configure it as follows:
@@ -242,7 +234,7 @@ If you intend to bridge the switch ports in the VM, place each
 
 This section assumes that you are configuring a two-leaf/two-spine
 network topology, that you have completed the steps in
-[Create a Cumulus VX Virtual Machine with VMware vSphere - ESXi 5.5](/cumulus-vx/Getting-Started/VMware-vSphere-ESXi-5.5/#create-a-cumulus-vx-vm-with-vmware-vsphere-esxi-5-5-span)
+[Create a Cumulus VX Virtual Machine with VMware vSphere - ESXi 5.5](/cumulus-vx/Getting-Started/VMware-vSphere-ESXi-5.5/#create-a-cumulus-vx-vm-with-vmware-vsphere-esxi-5-5)
 above, and that you now have a VM called `CumulusVX-leaf1`.
 
 {{%/notice%}}

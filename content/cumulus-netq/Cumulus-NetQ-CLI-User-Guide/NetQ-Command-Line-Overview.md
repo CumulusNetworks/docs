@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321059
 pageID: 12321059
 product: Cumulus NetQ
-version: 2.2.1
+version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
@@ -261,19 +261,19 @@ agents` command.
     Matching agents records:
     Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-    edge01            Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:2h:48m:43s             2d:2h:48m:36s             2d:2h:48m:36s              Sun Apr 21 16:00:50 2019
-    exit01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:1s              2d:2h:47m:53s             2d:2h:47m:53s              Sun Apr 21 16:00:52 2019
-    exit02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:7s              2d:2h:47m:58s             2d:2h:47m:58s              Sun Apr 21 16:01:19 2019
-    leaf01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:47m:59s             2d:2h:47m:51s             2d:2h:47m:51s              Sun Apr 21 16:00:59 2019
-    leaf02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:9s              2d:2h:48m:0s              2d:2h:48m:0s               Sun Apr 21 16:01:43 2019
-    leaf03            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:8s              2d:2h:47m:59s             2d:2h:47m:59s              Sun Apr 21 16:01:23 2019
-    leaf04            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:10s             2d:2h:48m:2s              2d:2h:48m:2s               Sun Apr 21 16:01:27 2019
-    server01          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:2h:46m:6s              2d:2h:45m:58s             2d:2h:45m:58s              Sun Apr 21 16:00:43 2019
-    server02          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Apr 21 16:00:46 2019
-    server03          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Apr 21 16:00:52 2019
-    server04          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Apr 21 16:00:43 2019
-    spine01           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:11s             2d:2h:48m:3s              2d:2h:48m:3s               Sun Apr 21 16:01:33 2019
-    spine02           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:48m:5s              2d:2h:47m:57s             2d:2h:47m:57s              Sun Apr 21 16:01:12 2019
+    edge01            Fresh            yes      2.2.1-ub16.04u15~1555612152.6e34b56  2d:2h:48m:43s             2d:2h:48m:36s             2d:2h:48m:36s              Sun Jul 21 16:00:50 2019
+    exit01            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:1s              2d:2h:47m:53s             2d:2h:47m:53s              Sun Apr 21 16:00:52 2019
+    exit02            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:7s              2d:2h:47m:58s             2d:2h:47m:58s              Sun Jul 21 16:01:19 2019
+    leaf01            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:47m:59s             2d:2h:47m:51s             2d:2h:47m:51s              Sun Jul 21 16:00:59 2019
+    leaf02            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:9s              2d:2h:48m:0s              2d:2h:48m:0s               Sun Jul 21 16:01:43 2019
+    leaf03            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:8s              2d:2h:47m:59s             2d:2h:47m:59s              Sun Jul 21 16:01:23 2019
+    leaf04            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:10s             2d:2h:48m:2s              2d:2h:48m:2s               Sun Jul 21 16:01:27 2019
+    server01          Fresh            yes      2.2.1-ub16.04u15~1555612152.6e34b56  2d:2h:46m:6s              2d:2h:45m:58s             2d:2h:45m:58s              Sun Jul 21 16:00:43 2019
+    server02          Fresh            yes      2.2.1-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Jul 21 16:00:46 2019
+    server03          Fresh            yes      2.2.1-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Jul 21 16:00:52 2019
+    server04          Fresh            yes      2.2.1-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Jul 21 16:00:43 2019
+    spine01           Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:11s             2d:2h:48m:3s              2d:2h:48m:3s               Sun Jul 21 16:01:33 2019
+    spine02           Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:5s              2d:2h:47m:57s             2d:2h:47m:57s              Sun Jul 21 16:01:12 2019
 
     cumulus@switch:~$ netq show agents json
     {
@@ -283,7 +283,7 @@ agents` command.
                 "lastChanged":1555862450.0,
                 "reinitializeTime":1555689453.0,
                 "hostname":"edge01",
-                "version":"2.1.0-ub16.04u15~1555612152.6e34b56",
+                "version":"2.2.1-ub16.04u15~1555612152.6e34b56",
                 "sysUptime":1555689446.0,
                 "ntpSync":"yes",
                 "agentUptime":1555689453.0
@@ -293,7 +293,7 @@ agents` command.
                 "lastChanged":1555862452.0,
                 "reinitializeTime":1555689496.0,
                 "hostname":"exit01",
-                "version":"2.1.0-cl3u15~1555612272.6e34b56",
+                "version":"2.2.1-cl3u15~1555612272.6e34b56",
                 "sysUptime":1555689488.0,
                 "ntpSync":"yes",
                 "agentUptime":1555689496.0
@@ -303,7 +303,7 @@ agents` command.
                 "lastChanged":1555862479.0,
                 "reinitializeTime":1555689491.0,
                 "hostname":"exit02",
-                "version":"2.1.0-cl3u15~1555612272.6e34b56",
+                "version":"2.2.1-cl3u15~1555612272.6e34b56",
                 "sysUptime":1555689482.0,
                 "ntpSync":"yes",
                 "agentUptime":1555689491.0
@@ -314,7 +314,7 @@ agents` command.
     Matching agents records:
     Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-    leaf01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:2h:49m:59s             2d:2h:49m:51s             2d:2h:49m:51s              Sun Apr 21 16:00:59 2019
+    leaf01            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:49m:59s             2d:2h:49m:51s             2d:2h:49m:51s              Sun Jul 21 16:00:59 2019
 
 ### Configuration Commands
 
@@ -355,7 +355,7 @@ This example shows how to start monitoring with Kubernetes.
 
     cumulus@switch:~$ netq config add agent kubernetes-monitor poll-period 15
 
-This example show how to view the NetQ Agent configuration.
+This example shows how to view the NetQ Agent configuration.
 
     cumulus@switch:~$ netq config show agent
     netq-agent             value      default
@@ -518,22 +518,106 @@ A summary of those changes is provided here.
 The following table summarizes the new commands available with this
 release.
 
-| Command                                                                                                                    | Summary                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `netq install opta interface <text-opta-ifname> tarball <text-tarball-name> key <text-opta-key> [file <text-config-file>]` | Installs NetQ software onto NetQ Cloud Appliance.                                |
-| `netq upgrade opta interface <text-opta-ifname> key <text-opta-key>`                                                       | Upgrades the NetQ software on the NetQ Cloud Appliance.                         |
-| `netq [<hostname>] show interface-stats [errors\|all] [<physical-port>] [around <text-time>] [json]`                     | This is an early access feature that displays a variety of interface statistics. |
+<table>
+<colgroup>
+<col style="width: 42.5%" />
+<col style="width: 42.5%" />
+<col style="width: 15%" />
+</colgroup>
+  <tbody>
+  <tr>
+      <th>Command</th>
+      <th>Summary</th>
+      <th>Version</th>
+    </tr>
+    <tr>
+      <td>
+        netq install opta interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt; key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;]
+      </td>
+      <td>Installs NetQ v2.2.0 software onto the NetQ Cloud Appliance.</td>
+      <td>2.2.0</td>
+    </tr>
+    <tr>
+      <td>netq install opta interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt; config-key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;][force]</td>
+      <td>Installs NetQ v2.2.1 software onto the NetQ Cloud Appliance. The <em>force</em> option was also added.</td>
+      <td>2.2.1</td>
+    </tr>
+    <tr>
+      <td>netq upgrade opta interface &lt;text-opta-ifname&gt; key &lt;text-opta-key&gt;     </td>
+      <td>Upgrades the NetQ software on the NetQ Cloud Appliance.</td>
+      <td>2.2.0</td>
+    </tr>
+    <tr>
+      <td>netq upgrade opta tarball &lt;text-tarball-name&gt;</td>
+      <td>Upgrades the NetQ software on the NetQ Cloud Appliance.</td>
+      <td>2.2.1</td>
+    </tr>
+    <tr>
+      <td>netq update opta config-key &lt;text-opta-key&gt;</td>
+      <td>Overwrites the existing config-key on the NetQ Cloud Appliance.</td>
+      <td>2.2.1</td>
+    </tr>
+    <tr>
+      <td>netq [&lt;hostname&gt;] show interface-stats [errors|all] [&lt;physical-port&gt;] [around &lt;text-time&gt;] [json]</td>
+      <td>Displays a variety of NetQ server or appliance interface statistics.</td>
+      <td>2.2.0 EA, 2.2.1 GA</td>
+    </tr>
+   </tbody>
+</table>
 
 ### Modified Commands
 
 The following table summarizes the commands that have been changed with
 this release.
 
-| Updated Command                                                                                                                                                                             | Old Command                                                                | What Changed                                                                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `netq check evpn [mac-consistency] [around <text-time>] [json]`                                                                                                                             | `netq [<hostname>] show evpn [vni <text-vni>] [around <text-time>] [json]` | Added *mac-consistency* option that includes a check to verify if the MAC associated with each end of the EVPN connection is the same. Removed *hostname* and *vni* options. |
-| `netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key>] [premise <text-premise-name>] [port <text-gateway-port>] [vrf <text-vrf-name>]` | `netq config add cli server`                                               | This adds the CLI daemon to the switch or host where this command is run. When using a NetQ Cloud Appliance, the access-key, secret-key, and port are required.              |
-| `netq config show cli premises [json]`                                                                                                                                                      | `netq config show cli [json]`                                              | Displays configuration settings for the CLI for all cloud premises.                                                                                                          |
+<table>
+ <colgroup>
+  <col style="width: 30%" />
+  <col style="width: 30%" />
+  <col style="width: 30%" />
+  <col style="width: 10%" />
+ </colgroup>
+ <thead>
+ <tr class="header">
+ <th>Updated Command</th>
+ <th>Old Command</th>
+ <th>What Changed</th>
+ <th>Version</th>
+ </tr>
+ </thead>
+ <tbody>
+    <tr>
+      <td>netq check evpn [mac-consistency] [around &lt;text-time&gt;] [json]</td>
+      <td>netq [&lt;hostname&gt;] show evpn [vni &lt;text-vni&gt;] [around &lt;text-time&gt;] [json]</td>
+      <td>Added <em>mac-consistency</em> option that includes a check to verify if the MAC associated with each end of the EVPN connection is the same. Removed <em>hostname</em> and <em>vni</em> options.</td>
+      <td>2.2.0</td>
+    </tr>
+    <tr>
+      <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [premise &lt;text-premise-name&gt;] [port &lt;text-gateway-port&gt;] [vrf &lt;text-vrf-name&gt;]</td>
+      <td>netq config add cli server</td>
+      <td>adds the CLI daemon to the switch or host where this command is run. When using a NetQ Cloud Appliance, the access-key, secret-key, and port are required. Only NetQ v2.2.1 supports the <em>cli-keys-file</em> option.</td>
+      <td>2.2.0, 2.2.1</td>
+    </tr>
+    <tr>
+      <td>netq config show cli premises [json]</td>
+      <td>netq config show cli [json]</td>
+      <td>Displays configuration settings for the CLI for all cloud premises.</td>
+      <td>2.2.0</td>
+    </tr>
+    <tr>
+      <td>netq [&lt;hostname&gt;] show agents [fresh|dead|rotten|opta] [around &lt;text-time&gt;] [json]</td>
+      <td>netq [&lt;hostname&gt;] show agents [fresh|dead|rotten] [around &lt;text-time&gt;] [json]</td>
+      <td>The <em>opta</em> option has been added to only view the information about the NetQ Agent on the NetQ or NetQ Cloud Appliance.</td>
+      <td>2.2.1</td>
+    </tr>
+    <tr>
+      <td>netq [&lt;hostname&gt;] show inventory [asic|board|brief|cpu|disk|license|memory|os] [&lt;options-specific-to-inventory-item&gt;] [opta] [json]</td>
+      <td>netq [&lt;hostname&gt;] show inventory [asic|board|brief|cpu|disk|license|memory|os] [&lt;options-specific-to-inventory-item&gt;] [json]</td>
+      <td>Added `opta` option to show only the selected inventory information for the NetQ or NetQ Cloud Appliance.</td>
+      <td>2.2.1</td>
+    </tr>
+   </tbody>
+</table>
 
 ### Deprecated Commands
 

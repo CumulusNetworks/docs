@@ -11,12 +11,9 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
-<details>
+Setting the time zone, date and time requires root privileges; use `sudo`.
 
-Setting the time zone, date and time requires root privileges; use
-`sudo`.
-
-## Setting the Time Zone</span>
+## Setting the Time Zone
 
 To see the current time zone, list the contents of `/etc/timezone`:
 
@@ -31,7 +28,7 @@ Use the following command to apply the new time zone immediately.
 
     cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
 
-### Alternative: Use the Guided Wizard to Find and Apply a Time Zone</span>
+### Alternative: Use the Guided Wizard to Find and Apply a Time Zone
 
 To set the time zone, run `dpkg-reconfigure tzdata` as root:
 
@@ -65,10 +62,10 @@ example selects the US/Pacific time zone:
     Local time is now:      Mon Jun 17 09:27:45 PDT 2013.
     Universal Time is now:  Mon Jun 17 16:27:45 UTC 2013.
 
-For more info see the Debian [System Administrator’s Manual –
-Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
+For more info see the Debian 
+[System Administrator’s Manual – Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
-## Setting the Date and Time</span>
+## Setting the Date and Time
 
 The switch contains a battery backed hardware clock that maintains the
 time while the switch is powered off and in between reboots. When the
@@ -111,7 +108,7 @@ Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.ht
 specifically the section [Setting and showing hardware
 clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
 
-## Setting Time Using NTP and NCLU</span>
+## Setting Time Using NTP and NCLU
 
 The `ntpd` daemon running on the switch implements the NTP protocol. It
 synchronizes the system time with time servers listed in
@@ -176,7 +173,7 @@ To remove one or more NTP servers:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## Specifying the NTP Source Interface</span>
+## Specifying the NTP Source Interface
 
 You can change the source interface that NTP uses if you want to use an
 interface other than eth0, which is the default.
@@ -195,7 +192,7 @@ These commands create the following configuration snippet in the
      
     ...
 
-## NTP Default Configuration</span>
+## NTP Default Configuration
 
 The default NTP configuration comprises the following servers, which are
 listed in the `/etc/ntpd.conf` file:
@@ -203,21 +200,19 @@ listed in the `/etc/ntpd.conf` file:
   - server
     [0.cumulusnetworks.pool.ntp.org](http://0.cumulusnetworks.pool.ntp.org)
     iburst
-
   - server
     [1.cumulusnetworks.pool.ntp.org](http://1.cumulusnetworks.pool.ntp.org)
     iburst
-
   - server
     [2.cumulusnetworks.pool.ntp.org](http://2.cumulusnetworks.pool.ntp.org)
     iburst
-
   - server
     [3.cumulusnetworks.pool.ntp.org](http://3.cumulusnetworks.pool.ntp.org)
     iburst
 
 The contents of the `/etc/ntpd.conf` file are listed below.
 
+<details>
 <summary>Default ntpd.conf file ... </summary>
 
     # /etc/ntp.conf, configuration for ntpd; see ntp.conf(5) for help
@@ -278,8 +273,9 @@ The contents of the `/etc/ntpd.conf` file are listed below.
      
     # Specify interfaces, don't listen on switch ports
     interface listen eth0
+</details>
 
-## <span id="src-8362040_SettingDateandTime-PTP" class="confluence-anchor-link"></span>Precision Time Protocol (PTP) Boundary Clock</span>
+## Precision Time Protocol (PTP) Boundary Clock
 
 With the growth of low latency and high performance applications,
 precision timing has become increasingly important. Precision Time
@@ -306,22 +302,17 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the
 
   - Cumulus Linux currently supports PTP on the Mellanox Spectrum ASIC
     only.
-
   - If you do not perform a binary (full image) install of Cumulus Linux
     3.6, you need to install the `linuxptp` package with the `apt-get
     install linuxptp` command.
-
   - PTP is supported in boundary clock mode only (the switch provides
     timing to downstream servers; it is a slave to a higher-level clock
     and a master to downstream clocks).
-
   - The switch uses hardware time stamping to capture timestamps from an
     Ethernet frame at the physical layer. This allows PTP to account for
     delays in message transfer and greatly improves the accuracy of time
     synchronization.
-
   - Only IPv4/UDP PTP packets are supported.
-
   - Only a single PTP domain per network is supported. A PTP domain is a
     network or a portion of a network within which all the clocks are
     synchronized.
@@ -337,9 +328,7 @@ receive the time.
 
 {{% imgOld 0 %}}
 
-  
-
-### Enabling the PTP Boundary Clock on the Switch</span>
+### Enabling the PTP Boundary Clock on the Switch
 
 To enable the PTP boundary clock on the switch:
 
@@ -352,7 +341,7 @@ To enable the PTP boundary clock on the switch:
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
-### Configuring the PTP Boundary Clock</span>
+### Configuring the PTP Boundary Clock
 
 To configure a boundary clock:
 
@@ -415,7 +404,7 @@ To configure a boundary clock:
     
         cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
 
-### Example Configuration</span>
+### Example Configuration
 
 In the following example, the boundary clock on the switch receives time
 from Master 1 (the grandmaster) on PTP slave port swp3s0, sets its clock
@@ -423,8 +412,6 @@ and passes the time down through PTP master ports swp3s1, swp3s2, and
 swp3s3 to the hosts that receive the time.
 
 {{% imgOld 1 %}}
-
-<span style="color: #36424a;"> </span>
 
 The configuration for the above example is shown below. The example
 assumes that you have already configured the layer 3 routed interfaces
@@ -441,7 +428,7 @@ assumes that you have already configured the layer 3 routed interfaces
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-### Verifying PTP Boundary Clock Configuration</span>
+### Verifying PTP Boundary Clock Configuration
 
 To view a summary of the PTP configuration on the switch, run the `net
 show configuration ptp` command:
@@ -487,10 +474,9 @@ show configuration ptp` command:
       swp15s1
     ...
 
-### Viewing PTP Status Information</span>
+### Viewing PTP Status Information
 
-To view PTP status information, run the `net show ptp parent_data_set`
-command:
+To view PTP status information, run the `net show ptp parent_data_set` command:
 
     cumulus@switch:~$ net show ptp parent_data_set
     parent_data_set
@@ -540,7 +526,7 @@ TIME_STATUS_NP'` command:
             gmPresent                  true
             gmIdentity                 000200.fffe.000005
 
-### Deleting PTP Boundary Clock Configuration</span>
+### Deleting PTP Boundary Clock Configuration
 
 To delete PTP configuration, delete the PTP master and slave interfaces.
 The following example commands delete the PTP interfaces `swp3s0`,
@@ -552,7 +538,7 @@ The following example commands delete the PTP interfaces `swp3s0`,
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## Using NTP in a DHCP Environment</span>
+## Using NTP in a DHCP Environment
 
 If you use DHCP and want to specify your NTP servers, you must specify
 an alternate configuration file for NTP.
@@ -593,7 +579,7 @@ not appear in the `ntp` command line — for example:
 
     cumulus@switch:~$ /usr/sbin/ntpd -n -u ntp:ntp -g -c /run/ntp.conf.dhcp
 
-— then it is likely that a mistake was made. In this case, correct the
+... then it is likely that a mistake was made. In this case, correct the
 mistake and rerun the three commands above to verify.
 
 {{%notice note%}}
@@ -604,25 +590,10 @@ configuration file.
 
 {{%/notice%}}
 
-## Related Information</span>
+## Related Information
 
-  - [Debian System Administrator’s Manual –
-    Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
-
+  - [Debian System Administrator’s Manual – Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
   - [www.ntp.org](http://www.ntp.org)
-
   - [en.wikipedia.org/wiki/Network\_Time\_Protocol](http://en.wikipedia.org/wiki/Network_Time_Protocol)
-
   - [wiki.debian.org/NTP](http://wiki.debian.org/NTP)
-
   - [en.wikipedia.org/wiki/Precision\_Time\_Protocol](https://en.wikipedia.org/wiki/Precision_Time_Protocol)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

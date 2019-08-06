@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>{{ .Page.Title }} | {{ .Site.Title -}}</title>
+  {{$prodVersion := print .Page.Params.product " " .Page.Params.version }}
+  <title>{{ .Page.Title }} | {{ $prodVersion | default .Site.Title -}}</title>
 
   <!-- Fonts for the theme -->
   <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
@@ -75,9 +75,9 @@
               Products
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="">Cumulus RMP</a>
-              <a class="dropdown-item" href="">Cumulus Chassis</a>
-              <a class="dropdown-item" href="">Cumulus Host Pack</a>
+              <a class="dropdown-item" href="/cumulus-rmp">Cumulus RMP</a>
+              <a class="dropdown-item" href="/chassis">Cumulus Chassis</a>
+              <a class="dropdown-item" href="/host-pack">Cumulus Host Pack</a>
             </div>
         </div>
       </li>
@@ -153,13 +153,6 @@
 
 
       {{ end }}
-      <script src="https://utteranc.es/client.js"
-        repo="CumulusNetworks/docs"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-      </script>
 
     </div>
     <!-- branch to list.html or single.html -->

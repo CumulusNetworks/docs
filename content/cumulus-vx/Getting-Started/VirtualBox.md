@@ -17,8 +17,8 @@ two-leaf/two-spine Cumulus VX topology with VirtualBox.
 {{%notice note%}}
 
 These sections assume a basic level of VirtualBox experience. For
-detailed instructions, refer to the [VirtualBox
-documentation](https://www.virtualbox.org/wiki/Documentation).
+detailed instructions, refer to the 
+[VirtualBox documentation](https://www.virtualbox.org/wiki/Documentation).
 
 {{%/notice%}}
 
@@ -63,12 +63,11 @@ above, and that you now have a VM called `CumulusVX-leaf1`.
 4.  Repeat steps 1-3 for two additional VMs:
 
       - `CumulusVX-spine1`
-
       - `CumulusVX-spine2`
 
 5. After you have created all four VMs, follow the steps in
-   [Create a Two-Leaf, Two-Spine Topology](/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology) to
-    configure the network interfaces and routing.
+   [Create a Two-Leaf, Two-Spine Topology](/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology) 
+   to configure the network interfaces and routing.
 
 {{%notice note%}}
 
@@ -77,15 +76,15 @@ VirtualBox by cloning the VM. However, consider the following if you
 prefer to clone VMs:
 
 - To set up configurations quickly across multiple nodes, configure
-    the settings for the original VM, then clone it using **Machine \>
-    Clone**. For example, if a management VM is being created for the
-    new topology, set the `eth0` port to be on a virtual network that
-    the management VM is on. When you clone the new VM, the port will be
-    duplicated, creating an out-of-band (OOB) network.
+  the settings for the original VM, then clone it using 
+  **Machine \> Clone**. For example, if a management VM is being created 
+  for the new topology, set the `eth0` port to be on a virtual network that
+  the management VM is on. When you clone the new VM, the port will be
+  duplicated, creating an out-of-band (OOB) network.
 - When you clone the VM, save the new VM on disk storage by referring
-    to the original disk image, instead of copying it to the new VM.
+  to the original disk image, instead of copying it to the new VM.
 - Always reset MAC addresses on the virtual NICs, unless a critical
-    reason not to exists.
+  reason not to exists.
 
 {{%/notice%}}
 
@@ -98,12 +97,10 @@ VX with VirtualBox:
     in VirtualBox when the OS type `other` or `unknown` is selected;
     while the VM works, the exported appliance does not import
     correctly.
-
   - Make sure to enable hardware virtualization in the host OS BIOS
     before starting the VM if you are using VirtualBox as the
     hypervisor, as some operating systems might not enable it by
     default.
-
   - An error message might appear when booting a VirtualBox OVA image
     for the first time stating that the interfaces file must be
     modified. If this occurs, click **OK** and continue booting. This is
@@ -135,8 +132,7 @@ command to configure and use up to 36 virtual NICs:
 
 {{%notice tip%}}
 
-Alternately, use the `VBoxManage modifyvm` command to update these
-settings:
+Alternately, use the `VBoxManage modifyvm` command to update these settings:
 
     user@localhost:~$ VBoxManage modifyvm cumulus-vx-2.5.3-vbox --ioapic on
     user@localhost:~$ VBoxManage modifyvm cumulus-vx-2.5.3-vbox --chipset ich9
@@ -144,7 +140,7 @@ settings:
 {{%/notice%}}
 
 After you configure the chipset and enable the I/O APIC, use the
-` VBoxManage showvminfo  `command to verify that the 36 virtual NICs are
+`VBoxManage showvminfo` command to verify that the 36 virtual NICs are
 available:
 
     user@localhost:~$ VBoxManage showvminfo cumulus-vx-2.5.3-vbox | grep "\(NIC\|IOAPIC\|Chipset\)"
@@ -190,16 +186,7 @@ available:
 The above output shows that `NIC 1` corresponds to the `eth0` management
 interface, while `NICs 2-36` correspond to the `swp1-35` switch port
 interfaces. You can configure the interfaces with the `VBoxManage
-modifyvm` commands. See the [VirtualBox networking
-documentation](https://www.virtualbox.org/manual/ch06.html) and
-[VBoxManage command
-reference](https://www.virtualbox.org/manual/ch08.html#idp104314528) for
-more information on configuring virtual NICs.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+modifyvm` commands. See the 
+[VirtualBox networking documentation](https://www.virtualbox.org/manual/ch06.html) and
+[VBoxManage command reference](https://www.virtualbox.org/manual/ch08.html#idp104314528) 
+for more information on configuring virtual NICs.

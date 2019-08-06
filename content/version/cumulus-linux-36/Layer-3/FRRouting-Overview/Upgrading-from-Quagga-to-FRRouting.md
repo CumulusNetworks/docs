@@ -126,7 +126,7 @@ To complete the transition to FRR:
     
     {{%notice warning%}}
     
-    The `vtysh.conf` file should not be moved, as it is unlikely any
+The `vtysh.conf` file should not be moved, as it is unlikely any
     configuration is in the file. However, if there is necessary
     configuration in place, copy the contents into
     `/etc/frr/vtysh.conf`.
@@ -147,7 +147,7 @@ To complete the transition to FRR:
     
     {{%notice warning%}}
     
-    This step stops the Quagga compatibility mode, causing routing to go
+This step stops the Quagga compatibility mode, causing routing to go
     down.
     
     {{%/notice%}}
@@ -156,9 +156,9 @@ To complete the transition to FRR:
     
     {{%notice note%}}
     
-    Removing the `quagga-compat` package also removes `quagga.service`.
+Removing the `quagga-compat` package also removes `quagga.service`.
     
-    However, the `/etc/quagga` directory is not removed in this step, as
+However, the `/etc/quagga` directory is not removed in this step, as
     it is left in place for reference.
     
     {{%/notice%}}
@@ -169,17 +169,17 @@ To complete the transition to FRR:
     
     {{%notice warning%}}
     
-    This step deletes all Quagga configuration files. Please ensure you
+This step deletes all Quagga configuration files. Please ensure you
     back up your configuration.
     
     {{%/notice%}}
     
     {{%notice warning%}}
     
-    Cumulus Networks does not recommend reinstalling the `quagga` and
-    `quagga-compat` packages once they have been removed. While they can
-    be reinstalled to continue migration iterations, limited testing has
-    taken place, and configuration issues may occur.
+Cumulus Networks does not recommend reinstalling the `quagga` and
+`quagga-compat` packages once they have been removed. While they can
+be reinstalled to continue migration iterations, limited testing has
+taken place, and configuration issues may occur.
     
     {{%/notice%}}
 
@@ -188,7 +188,7 @@ To complete the transition to FRR:
         cumulus@switch:~$ sudo systemctl start frr.service
         cumulus@switch:~$ sudo systemctl -l status frr.service
 
-## Troubleshooting</span>
+## Troubleshooting
 
 If the `systemctl -l status frr` output shows an issue, edit the
 configuration files to correct it, and repeat the process. If issues
@@ -212,11 +212,3 @@ this section to upgrade to FRR:
 
     cumulus@switch:~$ sudo systemctl reset-failed frr.service
     cumulus@switch:~$ sudo systemctl enable frr.service
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

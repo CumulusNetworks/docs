@@ -15,7 +15,7 @@ Cumulus Linux utilizes the open source Net-SNMP agent `snmpd`, v5.7.3,
 which provides support for most of the common industry-wide MIBs,
 including interface counters and TCP/UDP IP stack data.
 
-## Introduction to SNMP (Simple Network Management Protocol)</span>
+## Introduction to SNMP (Simple Network Management Protocol)
 
 SNMP is an IETF standards-based network management architecture and
 protocol that traces its roots back to Carnegie-Mellon University in
@@ -26,11 +26,11 @@ University of Liverpool as well as later in Denmark. In late 2000, the
 project name changed to `net-snmp` and became a fully-fledged
 collaborative open source project. The version used by Cumulus Networks
 is base on the latest `net-snmp` 5.7.3 branch with added custom MIBs and
-pass through and pass persist scripts ([see
-below](#src-8357390_SNMPMonitoring-passpersist) for more information on
+pass through and pass persist scripts 
+([see below](#about-pass-persist-scripts) for more information on
 pass persist scripts).
 
-## Configuring Ports for SNMP to Listen for Requests</span>
+## Configuring Ports for SNMP to Listen for Requests
 
 For security reasons, the default port binding for `snmpd` is the
 loopback local address; consequently by default, the SNMP service does
@@ -45,7 +45,7 @@ before enabling and starting `snmpd`. The default configuration has no
 access community strings defined so `snmpd` will not respond to any SNMP
 requests until this is added.
 
-## Quick Start Guide</span>
+## Quick Start Guide
 
 The SNMP daemon, `snmpd`, uses the configuration file
 `/etc/snmp/snmpd.conf` for almost all of its configuration. The syntax
@@ -130,7 +130,7 @@ monitor   -o fileName -o fileErrorMsg  &quot;fileTable&quot; fileErrorFlag != 0<
 </tbody>
 </table>
 
-## Starting the SNMP Daemon</span>
+## Starting the SNMP Daemon
 
 The following procedure is the recommended process to start `snmpd` and
 monitor it using `systemctl`.
@@ -161,7 +161,7 @@ To start the SNMP daemon:
 Once the service is started, SNMP can be used to manage various
 components on the Cumulus Linux switch.
 
-## Configuring SNMP</span>
+## Configuring SNMP
 
 Cumulus Linux ships with a production usable default `snmpd.conf` file
 included.This section covers a few basic configuration options in
@@ -188,7 +188,7 @@ v2c environments or the `snmpd` daemon will not respond to any requests.
 
 {{%/notice%}}
 
-### Configuring SNMP with NCLU</span>
+### Configuring SNMP with NCLU
 
 The table below highlights the structure of NCLU commands available for
 configuring SNMP. An example command set can be found below the table.
@@ -259,8 +259,8 @@ configuring SNMP. An example command set can be found below the table.
 
 This table covers system setting configuration commands for SNMPv2-MIB:
 
-| Command                                        | Summary                                                                                                                       |
-| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Command | Summary |
+| ------- | ------- |
 | `net add snmp-server system-location [string]` | Sets the system physical location for the node in the SNMPv2-MIB system table.                                                |
 | `net add snmp-server system-contact [string]`  | Sets the identification of the contact person for this managed node, together with information on how to contact this person. |
 | `net add snmp-server system-name [string]`     | Sets an administratively-assigned name for the managed node. By convention, this is the node's fully-qualified domain name.   |
@@ -277,7 +277,7 @@ host IP address, and create four types of SNMP traps:
     cumulus@switch:~$ net add snmp-server trap-cpu-load-average one-minute 7.45 five-minute 5.14
     cumulus@switch:~$ net add snmp-server trap-snmp-auth-failures
 
-### Configuring SNMP Manually</span>
+### Configuring SNMP Manually
 
 There are times when you need to manually edit the SNMP configuration;
 for example, there may not be the necessary option in NCLU. In cases
@@ -293,7 +293,7 @@ configuration option, it will not overwrite such an option.
 Make sure you do not delete the `snmpd.conf` file as this can cause
 issues with the package manager the next time you update Cumulus Linux.
 
-### Configuring SNMP with Management VRF</span>
+### Configuring SNMP with Management VRF
 
 When you configure [Management VRF](/display/CL35/Management+VRF), you
 need to be aware of the interface IP addresses on which SNMP is
@@ -377,7 +377,7 @@ shows how to stop `snmpd` and restart it in the management VRF.
     cumulus@switch:mgmt-vrf:~$ ps aux | grep snmpd
     snmp     30880  0.4  0.3  57176 12276 ?        Ss   20:05   0:00 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
 
-### <span id="src-8357390_SNMPMonitoring-agentAddress" class="confluence-anchor-link"></span>Configuring the agentAddress</span>
+### Configuring the agentAddress
 
 As mentioned earlier, you need to configure the transport protocol, IP
 address and port where SNMP listens. In Cumulus Linux, the transport
@@ -392,7 +392,7 @@ settings, do the following:
     
     {{%notice note%}}
     
-    You can only specify one agentAddress line. If you want to listen on
+You can only specify one agentAddress line. If you want to listen on
     multiple IP addresses, use comma-separated addresses, like this:
     
         agentAddress  10.10.10.10,44.44.44.44,127.0.0.1
@@ -403,7 +403,7 @@ settings, do the following:
     
         cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-### Setting up the Custom Cumulus Networks MIBs</span>
+### Setting up the Custom Cumulus Networks MIBs
 
 No changes are required in the `/etc/snmp/snmpd.conf` file on the
 switch, in order to support the custom Cumulus Networks MIBs. The
@@ -419,12 +419,10 @@ However, several files need to be copied to the server, in order for the
 custom Cumulus MIB to be recognized on the destination NMS server.
 
   - `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt`
-
   - `/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt`
-
   - `/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt`
 
-### <span id="src-8357390_SNMPMonitoring-public_community" class="confluence-anchor-link"></span>Setting the Community String</span>
+### Setting the Community String
 
 The `snmpd` authentication for versions 1 and 2 is disabled by default
 in Cumulus Linux. This password (called a community string) can be
@@ -481,7 +479,7 @@ To enable read-only querying by a client:
     
         cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-### <span id="src-8357390_SNMPMonitoring-frr" class="confluence-anchor-link"></span>Enabling SNMP Support for FRRouting</span>
+### Enabling SNMP Support for FRRouting
 
 As of Cumulus Linux 3.3.1, SNMP is now supported for
 [FRRouting](/version/cumulus-linux-35/Layer-3/FRRouting-Overview/). To
@@ -489,9 +487,7 @@ enable SNMP support for FRRouting, you need to:
 
   - Configure [AgentX](http://www.net-snmp.org/docs/README.agentx.html)
     (ASX) access in FRRouting
-
   - Create an SNMP-specific `frr.conf` file
-
   - Restart the SNMP and FRRouting services
 
 Enabling FRRouting includes support for BGP. However, if you plan on
@@ -530,8 +526,7 @@ To enable SNMP support for FRRouting, do the following:
     
     {{%notice note%}}
     
-    The rocommunity password is defined
-    [above](#src-8357390_SNMPMonitoring-public_community).
+The rocommunity password is defined [above](#setting-the-community-string).
     
     {{%/notice%}}
 
@@ -540,10 +535,8 @@ To enable SNMP support for FRRouting, do the following:
     
       - For the BGP4 MIB, uncomment the `view systemonly included
         .1.3.6.1.2.1.15` line below.
-    
       - For the OSPF MIB, uncomment the `view systemonly included
         .1.3.6.1.2.1.14` line below.
-    
       - For the OSPFV3 MIB, uncomment the `view systemonly included
         .1.3.6.1.2.1.191` line below.
     
@@ -586,7 +579,7 @@ first from the switch itself with:
 
     cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost .1.3.6.1.2.1.14
 
-### Enabling the .1.3.6.1.2.1 Range</span>
+### Enabling the .1.3.6.1.2.1 Range
 
 Some MIBs, including storage information, are not included by default in
 `snmpd.conf` in Cumulus Linux. This results in some default views on
@@ -638,7 +631,7 @@ To enable the .1.3.6.1.2.1 range:
     
         cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-### Configuring SNMPv3</span>
+### Configuring SNMPv3
 
 SNMPv3 is often used to enable authentication and encryption, as
 community strings in versions 1 and 2c are sent in plaintext. SNMPv3
@@ -737,7 +730,7 @@ creating cleartext passwords is the following:
     
     {{%notice note%}}
     
-    The minimum password length is 8 characters and the arguments `-a`
+The minimum password length is 8 characters and the arguments `-a`
     and `-x` to `net-snmp-config` have different meanings than they do
     for `snmpwalk`.
     
@@ -773,7 +766,7 @@ above.)
     snmpwalk -v 3 -u userMD5withDES -l authPriv -a MD5 -x DES -A md5authpass -X desprivpass localhost 1.3.6.1.2.1.1.1
     snmpwalk -v 3 -u userSHAwithAES -l authPriv -a SHA -x AES -A shaauthpass -X aesprivpass localhost 1.3.6.1.2.1.1.1
 
-## snmpwalk a Switch from Another Linux Device</span>
+## snmpwalk a Switch from Another Linux Device
 
 One of the most important ways to troubleshoot is to `snmpwalk` the
 switch from another Linux device that can reach the Cumulus Linux
@@ -804,7 +797,7 @@ network is used.
     
     {{%notice note%}}
     
-    Enabling monitoring for traps with **defaultMonitors** and
+Enabling monitoring for traps with **defaultMonitors** and
     **monitor** (when referring to OIDs by name) require MIBs to be
     installed on the switch.
     
@@ -855,7 +848,7 @@ Any information gathered here should verify that `snmpd` is running
 correctly on the Cumulus Linux side, reducing locations where a problem
 may reside.
 
-### Troubleshooting Tips Table for snmpwalks</span>
+### Troubleshooting Tips Table for snmpwalks
 
 <table>
 <colgroup>
@@ -893,25 +886,23 @@ Is there an <code>iptables</code> rule blocking? Is the <code>snmpwalk</code> be
 </tbody>
 </table>
 
-## SNMP Traps</span>
+## SNMP Traps
 
-### Generating Event Notification Traps</span>
+### Generating Event Notification Traps
 
 The Net-SNMP agent provides a method to generate SNMP trap events via
 the Distributed Management (DisMan) Event MIB for various system events,
 including:
 
   - Link up/down.
-
   - Exceeding the temperature sensor threshold, CPU load or memory
     threshold.
-
   - Other SNMP MIBs.
 
 Iin order to enable specific types of traps, you need to create the
 following configurations in `/etc/snmp/snmpd.conf`.
 
-#### Defining Access Credentials</span>
+#### Defining Access Credentials
 
 An SNMPv3 username is required to authorize the DisMan service even
 though you are not configuring SNMPv3 here. The example `snmpd.conf`
@@ -942,7 +933,7 @@ should be used, not with actually setting this user up.
 
 {{%/notice%}}
 
-#### Defining Trap Receivers</span>
+#### Defining Trap Receivers
 
 The following configuration defines the trap receiver IP address where
 SNMPv2 traps are sent:
@@ -974,7 +965,7 @@ Once configured, restart the `snmpd` service to apply the changes.
 
     cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-#### SNMP Version 3 Trap and Inform Messages</span>
+#### SNMP Version 3 Trap and Inform Messages
 
 You can configure SNMPv3 trap and inform messages with the ` trapsess
  `configuration command. Inform messages are traps that are acknowledged
@@ -982,7 +973,8 @@ by the receiving trap daemon. You configure inform messages with the`
 -Ci  `parameter. You must specify the EngineID of the receiving trap
 server with the `-e` field.
 
-    trapsess -Ci -e 0x80ccff112233445566778899 -v3 -l authPriv  -u trapuser1 -a MD5 -A trapuser1password -x DES -X trapuser1encryption 192.168.1.1
+    trapsess -Ci -e 0x80ccff112233445566778899 -v3 -l authPriv  -u \
+      trapuser1 -a MD5 -A trapuser1password -x DES -X trapuser1encryption 192.168.1.1
 
 The SNMP trap receiving daemon must have usernames, authentication
 passwords, and encryption passwords created with its own EngineID. You
@@ -1003,7 +995,7 @@ apply the changes:
 
     cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-#### Sourcing Traps from a Different Source IP Address</span>
+#### Sourcing Traps from a Different Source IP Address
 
 When client SNMP programs (such as `snmpget`, `snmpwalk` or `snmptrap`)
 are run from the command line, or when `snmpd` is configured to send a
@@ -1021,12 +1013,12 @@ bind to this address.
 For more information, read the the `snmp.conf` man page:
 
     clientaddr [<transport-specifier>:]<transport-address>
-                  specifies the source address to be used by command-line applica‐
-                  tions when sending SNMP requests. See snmpcmd(1) for more infor‐
-                  mation about the format of addresses.
-                  This value is also used by snmpd when generating notifications.
+      specifies the source address to be used by command-line applica‐
+      tions when sending SNMP requests. See snmpcmd(1) for more infor‐
+      mation about the format of addresses.
+      This value is also used by snmpd when generating notifications.
 
-#### Monitoring Fans, Power Supplies and Transformers</span>
+#### Monitoring Fans, Power Supplies and Transformers
 
 The usual behavior of an SNMP agent (`snmpd`) is to wait for incoming
 SNMP requests and respond to them. If no requests are received, an agent
@@ -1040,85 +1032,90 @@ way:
 
     monitor [OPTIONS] NAME EXPRESSION
      
-                  defines  a  MIB  object to monitor.  If the EXPRESSION condition holds then 
-                  this will trigger the corresponding event, and either send a notification or
-                  apply a SET assignment (or both).  Note that the event will only be triggered once,
-                  when the expression first matches.  This monitor entry will not fire again until the
-                  monitored condition first becomes false, and then matches again.  NAME is an administrative
-                  name for this expression, and is used for indexing the mteTriggerTable (and related tables).
-                  Note also that such monitors use an internal SNMPv3 request to retrieve the values
-                  being monitored (even  if  normal  agent  queries  typically  use SNMPv1 or SNMPv2c).
-                  See the iquerySecName token described above.
+      defines  a  MIB  object to monitor.  If the EXPRESSION condition holds then 
+      this will trigger the corresponding event, and either send a notification or
+      apply a SET assignment (or both).  Note that the event will only be triggered once,
+      when the expression first matches.  This monitor entry will not fire again until the
+      monitored condition first becomes false, and then matches again.  NAME is an administrative
+      name for this expression, and is used for indexing the mteTriggerTable (and related tables).
+      Note also that such monitors use an internal SNMPv3 request to retrieve the values
+      being monitored (even  if  normal  agent  queries  typically  use SNMPv1 or SNMPv2c).
+      See the iquerySecName token described above.
      
-           EXPRESSION
-                  There are three types of monitor expression supported by the Event MIB - existence, boolean and threshold tests.
+    EXPRESSION
+      There are three types of monitor expression supported by the Event MIB - existence, 
+      boolean and threshold tests.
      
-                  OID | ! OID | != OID
+    OID | ! OID | != OID
      
-                         defines  an  existence(0)  monitor  test.  A bare OID specifies a present(0) test,
-                         which will fire when (an instance of) the monitored OID is created.  An expression
-                         of the form ! OID specifies an absent(1) test, which will fire when the monitored
-                         OID is delected.  An expression of the form != OID specifies a changed(2) test,
-                         which will fire whenever the monitored value(s) change.  Note that there must be
-                         whitespace before the OID token.
+      defines  an  existence(0)  monitor  test.  A bare OID specifies a present(0) test,
+      which will fire when (an instance of) the monitored OID is created.  An expression
+      of the form ! OID specifies an absent(1) test, which will fire when the monitored
+      OID is delected.  An expression of the form != OID specifies a changed(2) test,
+      which will fire whenever the monitored value(s) change.  Note that there must be
+      whitespace before the OID token.
      
-                  OID OP VALUE
+    OID OP VALUE
      
-                         defines a boolean(1) monitor test.  OP should be one of the defined comparison operators
-                         (!=, ==, <, <=, >, >=) and VALUE should be an integer value to compare against.  Note that
-                         there must be whitespace around the OP token.  A comparison such as OID !=0 will not be
-                         handled correctly.
+      defines a boolean(1) monitor test.  OP should be one of the defined comparison operators
+      (!=, ==, <, <=, >, >=) and VALUE should be an integer value to compare against.  Note that
+      there must be whitespace around the OP token.  A comparison such as OID !=0 will not be
+      handled correctly.
      
-                  OID MIN MAX [DMIN DMAX]
+    OID MIN MAX [DMIN DMAX]
      
-                         defines a threshold(2) monitor test.  MIN and MAX are integer values, specifying
-                         lower and upper thresholds.  If the value of the monitored OID falls below the lower
-                         threshold (MIN) or rises above the upper threshold (MAX), then the monitor entry will
-                         trigger the corresponding event.
+      defines a threshold(2) monitor test.  MIN and MAX are integer values, specifying
+      lower and upper thresholds.  If the value of the monitored OID falls below the lower
+      threshold (MIN) or rises above the upper threshold (MAX), then the monitor entry will
+      trigger the corresponding event.
      
-                         Note that the rising threshold event will only be re-armed when the monitored value
-                         falls below the lower threshold (MIN).  Similarly, the falling threshold event will
-                         be re-armed by the upper threshold (MAX).
+      Note that the rising threshold event will only be re-armed when the monitored value
+      falls below the lower threshold (MIN).  Similarly, the falling threshold event will
+      be re-armed by the upper threshold (MAX).
      
-                         The optional parameters DMIN and DMAX configure a pair of similar threshold tests,
-                         but working with the delta differences between successive sample values.
+      The optional parameters DMIN and DMAX configure a pair of similar threshold tests,
+      but working with the delta differences between successive sample values.
      
-           OPTIONS
+    OPTIONS
      
-                  There are various options to control the behaviour of the monitored expression.  These include:
-                  -D     indicates that the expression should be evaluated using delta differences between sample
-                         values (rather than the values themselves).
-                  -d OID  or  -di OID
-                         specifies a discontinuity marker for validating delta differences.  A -di object instance
-                         will be used exactly as given.  A -d object will have the instance subidentifiers from
-                         the corresponding (wildcarded) expression object appended.  If the -I flag is specified,
-                         then there is no difference between these two options. This option also implies -D.
-                  -e EVENT
-                         specifies the event to be invoked when this monitor entry is triggered.  If this option
-                         is not given, the monitor entry will generate one of the standard notifications defined
-                         in the DISMAN-EVENT-MIB.
-                  -I     indicates that the monitored expression should be applied to the specified OID as a
-                         single instance.  By default, the OID will be treated as a wildcarded object, and the
-                         monitor expanded to cover all matching instances.
-                  -i OID or -o OID
-                         define additional varbinds to be added to the notification payload when this monitor
-                         trigger fires.  For a wildcarded expression, the suffix of the matched instance will be
-                         added to any OIDs specified using -o, while OIDs specified using -i will be treated
-                         as exact instances.  If the -I flag is specified,  then  there  is  no difference between
-                         these two options.
-                         See strictDisman for details of the ordering of notification payloads.
-                  -r FREQUENCY
-                         monitors the given expression every FREQUENCY, where FREQUENCY is in seconds or optionally
-                         suffixed by one of s (for seconds), m (for minutes), h (for hours), d (for days),
-                         or w (for weeks).  By default, the expression will be evaluated every 600s (10 minutes).
-                  -S     indicates that the monitor expression should not be evaluated when the agent first starts up.
-                         The first evaluation will be done once the first repeat interval has expired.
-                  -s     indicates that the monitor expression should be evaluated when the agent first starts up.
-                         This is the default behaviour.
-                         Note:  Notifications triggered by this initial evaluation will be sent before the coldStart trap.
-                  -u SECNAME
-                         specifies a security name to use for scanning the local host, instead of the default
-                         iquerySecName.  Once again, this user must be explicitly created and given suitable access rights.
+      There are various options to control the behaviour of the monitored expression.  These include:
+      -D    indicates that the expression should be evaluated using delta differences between sample
+            values (rather than the values themselves).
+      -d OID  or  -di OID
+            specifies a discontinuity marker for validating delta differences.  A -di object instance
+            will be used exactly as given.  A -d object will have the instance subidentifiers from
+            the corresponding (wildcarded) expression object appended.  If the -I flag is specified,
+            then there is no difference between these two options. This option also implies -D.
+      -e EVENT
+            specifies the event to be invoked when this monitor entry is triggered.  If this option
+            is not given, the monitor entry will generate one of the standard notifications defined
+            in the DISMAN-EVENT-MIB.
+      -I    indicates that the monitored expression should be applied to the specified OID as a
+            single instance.  By default, the OID will be treated as a wildcarded object, and the
+            monitor expanded to cover all matching instances.
+      -i OID or -o OID
+            define additional varbinds to be added to the notification payload when this monitor
+            trigger fires.  For a wildcarded expression, the suffix of the matched instance will be
+            added to any OIDs specified using -o, while OIDs specified using -i will be treated
+            as exact instances.  If the -I flag is specified,  then  there  is  no difference between
+            these two options.
+            See strictDisman for details of the ordering of notification payloads.
+      -r FREQUENCY
+            monitors the given expression every FREQUENCY, where FREQUENCY is in seconds or 
+            optionally suffixed by one of s (for seconds), m (for minutes), h (for hours), 
+            d (for days), or w (for weeks).  By default, the expression will be evaluated 
+            every 600s (10 minutes).
+      -S    indicates that the monitor expression should not be evaluated when the agent 
+            first starts up.
+            The first evaluation will be done once the first repeat interval has expired.
+      -s    indicates that the monitor expression should be evaluated when the agent first starts up.
+            This is the default behaviour.
+            Note: Notifications triggered by this initial evaluation will be sent before 
+            the coldStart trap.
+      -u SECNAME
+            specifies a security name to use for scanning the local host, instead of the default
+            iquerySecName.  Once again, this user must be explicitly created and given 
+            suitable access rights.
 
 `snmpd` can be configured to monitor the operational status of an Entity
 MIB or Entity-Sensor MIB. The operational status, given as a value of
@@ -1143,14 +1140,14 @@ and adjusting the values:
     
     {{%notice note%}}
     
-    The OID name can be used if the `snmp-mibs-downloader` package is
+The OID name can be used if the `snmp-mibs-downloader` package is
     installed.
     
     {{%/notice%}}
     
     {{%notice note%}}
     
-    The `entPhySensorOperStatus` integer can be found by walking the
+The `entPhySensorOperStatus` integer can be found by walking the
     `entPhysicalName` table.
     
     {{%/notice%}}
@@ -1177,7 +1174,7 @@ and adjusting the values:
         iso.3.6.1.2.1.47.1.1.1.1.7.110000001 = STRING: "PSU1"
         iso.3.6.1.2.1.47.1.1.1.1.7.110000002 = STRING: "PSU2"
 
-#### Enabling MIB to OID Translation</span>
+#### Enabling MIB to OID Translation
 
 MIB names can be used instead of OIDs, by installing the
 `snmp-mibs-downloader`, to download SNMP MIBs to the switch prior to
@@ -1221,7 +1218,7 @@ enabling traps. This greatly improves the readability of the
     
         #deb http://ftp.us.debian.org/debian/ jessie main non-free
 
-#### Configuring Link Up/Down Notifications</span>
+#### Configuring Link Up/Down Notifications
 
 The `linkUpDownNotifications` directive is used to configure link
 up/down notifications when the operational status of the link changes.
@@ -1237,7 +1234,7 @@ for details.
 
 {{%/notice%}}
 
-#### Configuring Temperature Notifications</span>
+#### Configuring Temperature Notifications
 
 Temperature sensor information for each available sensor is maintained
 in the the lmSensors MIB. Each platform may contain a different number
@@ -1278,7 +1275,7 @@ used to monitor only temperature sensor three at five minute intervals.
 
     monitor -I -r 300 lmTemSensor3 -o lmTempSensorsDevice.3 lmTempSensorsValue.3 > 68000
 
-#### Configuring Free Memory Notifications</span>
+#### Configuring Free Memory Notifications
 
 You can monitor free memory using the following directives. The example
 below generates a trap when free memory drops below 1,000,000KB. The
@@ -1286,7 +1283,7 @@ free memory trap also includes the amount of total real memory:
 
     monitor MemFreeTotal -o memTotalReal memTotalFree <  1000000
 
-#### Configuring Processor Load Notifications</span>
+#### Configuring Processor Load Notifications
 
 To monitor CPU load for 1, 5 or 15 minute intervals, use the `load`
 directive in conjunction with the `monitor` directive. The following
@@ -1295,7 +1292,7 @@ example will generate a trap when the 1 minute interval reaches 12%, the
 
     load 12 10 5
 
-#### Configuring Disk Utilization Notifications</span>
+#### Configuring Disk Utilization Notifications
 
 To monitor disk utilization for all disks, use the `includeAllDisks`
 directive in conjunction with the `monitor` directive. The example code
@@ -1304,14 +1301,14 @@ below generates a trap when a disk is 99% full:
     includeAllDisks 1%
     monitor -r 60 -o dskPath -o DiskErrMsg "dskTable" diskErrorFlag !=0
 
-#### Configuring Authentication Notifications</span>
+#### Configuring Authentication Notifications
 
 To generate authentication failure traps, use the `authtrapenable`
 directive:
 
     authtrapenable 1
 
-### snmptrapd.conf</span>
+### snmptrapd.conf
 
 To **receive** SNMP traps, the Net-SNMP trap daemon can be used on the
 switch. The configuration file, `/etc/snmp/snmptrapd.conf`, is used to
@@ -1369,7 +1366,7 @@ about specific configuration options within the file, look at the
     # defines the actions and the community string 
     authCommunity log,execute,net public
 
-## <span id="src-8357390_SNMPMonitoring-supported_mibs" class="confluence-anchor-link"></span>Supported MIBs</span>
+## Supported MIBs
 
 Below are the MIBs supported by Cumulus Linux, as well as suggested uses
 for them. The overall Cumulus Linux MIB is defined in
@@ -1392,9 +1389,8 @@ for them. The overall Cumulus Linux MIB is defined in
 <td><p>The dot1dBasePortEntry and dot1dBasePortIfIndex tables in the BRIDGE-MIB and dot1qBase, dot1qFdbEntry, dot1qTpFdbEntry, dot1qTpFdbStatus, and the dot1qVlanStaticName tables in the Q-BRIDGE-MIB tables. You must uncomment the <code>bridge_pp.py pass_persist</code> script in <code>/etc/snmp/snmpd.conf</code>.</p></td>
 </tr>
 <tr class="even">
-<td><p>BGP4, OSPF, OSPFV3, RIPv2</p>
-<span id="src-8357390_SNMPMonitoring-bgp4"></span></td>
-<td><p>FRRouting SNMP support may be enabled to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-4273). To enable this support, see the <a href="#src-8357390_SNMPMonitoring-frr">FRRouting section</a> above.</p></td>
+<td><p>BGP4, OSPF, OSPFV3, RIPv2</p></td>
+<td><p>FRRouting SNMP support may be enabled to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-4273). To enable this support, see the <a href="#enabling-snmp-support-for-frrouting">FRRouting section</a> above.</p></td>
 </tr>
 <tr class="odd">
 <td><p>CUMULUS-COUNTERS-MIB</p></td>
@@ -1437,7 +1433,7 @@ pass_persist .1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py</code></pr
 <p>{{%notice note%}}</p>
 <p>The IF-MIB cache is disabled by default. To enable the counter to reflect traffic statistics, remove the <code>-y</code> option from the <code>SNMPDOPTS</code> line in the <code>/etc/default/snmpd</code> file. The example below first shows the original line, commented out, then the modified line without the <code>-y</code> option:</p>
 <pre><code>cumulus@switch:~$ cat /etc/default/snmpd
-# SNMPDOPTS=&#39;-y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid&#39;
+\# SNMPDOPTS=&#39;-y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid&#39;
 SNMPDOPTS=&#39;-LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid&#39;</code></pre>
 <p>{{%/notice%}}</p></td>
 </tr>
@@ -1455,7 +1451,7 @@ SNMPDOPTS=&#39;-LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pi
 </tr>
 <tr class="odd">
 <td><p><a href="http://www.mibdepot.com/cgi-bin/getmib3.cgi?i=1&amp;n=LLDP-MIB&amp;r=cisco&amp;f=LLDP-MIB-V1SMI.my&amp;v=v1&amp;t=tree" class="external-link">LLDP</a></p></td>
-<td><p>L2 neighbor info from <code>lldpd</code> (note, you need to <a href="Link-Layer-Discovery-Protocol.html#src-8357430_LinkLayerDiscoveryProtocol-snmp">enable the SNMP subagent</a> in LLDP). <code>lldpd</code> needs to be started with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
+<td><p>L2 neighbor info from <code>lldpd</code> (note, you need to <a href="/version/cumulus-linux-35/Layer-1-and-2/Link-Layer-Discovery-Protocol/#enabling-the-snmp-subagent-in-lldp">enable the SNMP subagent</a> in LLDP). <code>lldpd</code> needs to be started with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
 </tr>
 <tr class="even">
 <td><p><a href="http://support.ipmonitor.com/mibs_byoidtree.aspx?oid=.1.3.6.1.4.1.2021.13.16" class="external-link">LM-SENSORS MIB</a></p></td>
@@ -1527,30 +1523,21 @@ Cumulus Linux.
 
 {{%/notice%}}
 
-## <span id="src-8357390_SNMPMonitoring-passpersist" class="confluence-anchor-link"></span>About Pass Persist Scripts</span>
+## About Pass Persist Scripts
 
-The pass persist scripts in Cumulus Linux use the [pass\_persist
-extension](http://net-snmp.sourceforge.net/wiki/index.php/Tut:Extending_snmpd_using_shell_scripts#Pass_persist)
+The pass persist scripts in Cumulus Linux use the 
+[pass\_persist extension](http://net-snmp.sourceforge.net/wiki/index.php/Tut:Extending_snmpd_using_shell_scripts#Pass_persist)
 to Net-SNMP. The scripts are stored in `/usr/share/snmp` and include:
 
   - bgp4\_pp.py
-
   - bridge\_pp.py
-
   - cl\_drop\_cntrs\_pp.py
-
   - cl\_poe\_pp.py
-
   - entity\_pp.py
-
   - entity\_sensor\_pp.py
-
   - ieee8023\_lag\_pp.py
-
   - resq\_pp.py
-
   - snmpifAlias\_pp.py
-
   - sysDescr\_pass.py
 
 All the scripts are enabled by default in Cumulus Linux, except for the
@@ -1559,12 +1546,10 @@ All the scripts are enabled by default in Cumulus Linux, except for the
   - `bgp4_pp.py` is now handled by
     [FRRouting](/version/cumulus-linux-35/Layer-3/FRRouting-Overview/)
     instead of Quagga, so monitoring has changed accordingly.
-
   - `cl_poe_pp.py` is disabled by default as only some platforms that
-    Cumulus Linux supports are capable of doing [Power over
-    Ethernet](/version/cumulus-linux-35/System-Configuration/Power-over-Ethernet-PoE).
-
-## Troubleshooting</span>
+    Cumulus Linux supports are capable of doing 
+    [Power over Ethernet](/version/cumulus-linux-35/System-Configuration/Power-over-Ethernet-PoE).
+## Troubleshooting
 
 The following commands can be used to troubleshoot potential SNMP
 issues:
@@ -1604,11 +1589,3 @@ issues:
     net add snmp-server trap-link-up check-frequency 10
     net add snmp-server trap-snmp-auth-failures
     ...
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

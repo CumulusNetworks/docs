@@ -11,9 +11,9 @@ version: '3.0'
 imgData: cumulus-vx-30
 siteSlug: cumulus-vx-30
 ---
-Once you install the hypervisor and [download the qcow2
-image](https://cumulusnetworks.com/cumulus-vx/download/), you will clone
-it a few times to create a two-leaf/two-spine virtual network using
+Once you install the hypervisor and 
+[download the qcow2 image](https://cumulusnetworks.com/cumulus-vx/download/), 
+you will clone it a few times to create a two-leaf/two-spine virtual network using
 [QEMU](http://wiki.qemu.org/Main_Page)/[KVM](http://www.linux-kvm.org/page/Downloads)
 on a Linux server:
 
@@ -29,22 +29,16 @@ x86\_64 GNU/Linux with 3.2.0-4-amd64 \#1 SMP processors.
 The interfaces are connected as follows:
 
   - leaf1:swp1---\> spine1:swp1
-
   - leaf1:swp2---\>spine2:swp1
-
   - leaf2:swp1---\>spine1:swp2
-
   - leaf2:swp2---\>spine2:swp2
 
 Copy the `qcow2` file you downloaded earlier onto a Linux server four
 times, and name them as follows:
 
   - leaf1.qcow2
-
   - leaf2.qcow2
-
   - spine1.qcow2
-
   - spine2.qcow2
 
 Power on leaf1 and configure it as follows:
@@ -64,7 +58,7 @@ Power on leaf1 and configure it as follows:
 
 Power on leaf2 and configure it as follows:
 
-``` Code
+``` 
 sudo /usr/bin/kvm   -curses                             \
                  -name leaf2                       \
                  -pidfile leaf2.pid                \
@@ -109,20 +103,19 @@ Power on spine2 and configure it as follows:
                     -device virtio-net-pci,mac=00:02:00:00:00:08,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
                     spine2.qcow2
 
-## Configuring Network Interfaces and Quagga</span>
+## Configuring Network Interfaces and Quagga
 
 The next step is to configure the 2 leaf/2 spine topology. This includes
 setting up the network interfaces, and Quagga, and assumes the previous
 sections have been completed.
 
-### Configuring leaf1 VM</span>
+### Configuring leaf1 VM
 
 To configure leaf1:
 
 1.  Log into the VM using the following credentials:
 
       - username: cumulus
-
       - password: CumulusLinux\!
 
 2.  Configure the interfaces:
@@ -194,7 +187,7 @@ To configure leaf1:
 
         root@leaf1:~$ service quagga restart
 
-### Configuring leaf2, spine1, and spine2 VMs</span>
+### Configuring leaf2, spine1, and spine2 VMs
 
 The configuration steps for `leaf2`, `spine1`, and `spine2` are the same
 as those listed above for `leaf1`, however the file configurations are
@@ -331,7 +324,7 @@ continuing.
 
 {{%/notice%}}
 
-## Testing the Connections</span>
+## Testing the Connections
 
 Once the VMs have been restarted, you can ping across VMs to test:
 
@@ -356,7 +349,7 @@ as needed, like `-enable-kvm`, `-serial` or `-monitor`.
 
 {{%/notice%}}
 
-## Bridging Switch Port Interfaces</span>
+## Bridging Switch Port Interfaces
 
 If you intend to bridge the switch ports in the VM, you should place
 each switch port in the bridge in its own virtual network on the host.
@@ -364,9 +357,9 @@ Otherwise, you may see this error:
 
     br0: recevied package on swp1 with own address as source address
 
-## Using CumulusVX with Libvirt and QEMU/KVM</span>
+## Using CumulusVX with Libvirt and QEMU/KVM
 
-### Using Libvirt</span>
+### Using Libvirt
 
 1.  Confirm `libvert` and `qemu` are installed correctly:
 
@@ -432,7 +425,7 @@ Otherwise, you may see this error:
     virsh pool-autostart NAMEvirsh pool-build NAMEvirsh pool-start NAME    
     ```
 
-### Launch the Vagrant Instance</span>
+### Launch the Vagrant Instance
 
 1.  Create the appropriate VagrantFile. This can be done using topology
     converter.
@@ -536,7 +529,7 @@ Otherwise, you may see this error:
         ==> oob: Configuring and enabling network interfaces...
           ==> oob: Running provisioner: shell...
 
-## Further Information</span>
+## Further Information
 
 For the next steps regarding configuring Cumulus VX, check out these
 community articles, and the rest of the Cumulus Documentation:

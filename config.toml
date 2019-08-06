@@ -1,7 +1,7 @@
 languageCode = "en-us"
 title = "Cumulus Networks Documentation"
 theme = "netDocs"
-baseURL = "/"
+baseURL = ""
 relURLs = true
 googleAnalytics = "UA-40724538-3"
 

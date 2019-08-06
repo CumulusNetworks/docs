@@ -14,11 +14,8 @@ siteSlug: cumulus-vx
 Before you run your virtual network under GNS3, make sure you:
 
   - Download and install [VirtualBox](https://www.virtualbox.org).
-
-  - Download the [VirtualBox OVA
-    image](https://cumulusnetworks.com/cumulus-vx/download/) and import
+  - Download the [VirtualBox OVA image](https://cumulusnetworks.com/cumulus-vx/download/) and import
     all the VMs that you want to run in GNS3 into VirtualBox.
-
   - Download and install
     [GNS3](https://community.gns3.com/login.jspa?referer=/community/software/download).
 
@@ -122,11 +119,3 @@ the VPCS. For example:
 Start all the VMs.
 
 You should be able to ping between the VMs and between the virtual PCs.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

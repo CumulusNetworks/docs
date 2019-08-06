@@ -20,7 +20,7 @@ physical fiber, they do not interact with each other, similar to VLANs
 on a trunk. Each wavelength can transport very high speeds over very
 long distances.
 
-## Understanding the Voyager Platform</span>
+## Understanding the Voyager Platform
 
 The Voyager platform has 16 ports on the front of the switch:
 
@@ -30,7 +30,6 @@ The Voyager platform has 16 ports on the front of the switch:
     configuration and the `/etc/network/interfaces` file defines the
     other port parameters. When not broken out they are named swp1 thru
     swp12.
-
   - Four **duplex LC ports** labeled L1 thru L4. L1 and L2 connect to
     AC400 module 2. L3 and L4 connect to AC400 module 1. Each AC400
     module connects to four Tomahawk ASIC ports.
@@ -41,7 +40,7 @@ The `fc` designations on the Tomahawk stand for Falcon Core. Each AC400
 module has four 100G interfaces connected to the Tomahawk and two
 interfaces connected to the front of the box.
 
-### Inside the AC400</span>
+### Inside the AC400
 
 The way in which the client ports are mapped to the network ports in an
 AC400 depends on the modulation format and coupling mode. Cumulus Linux
@@ -56,13 +55,11 @@ AC400 module.
 | 16-QAM               | QPSK                 | Independent         |
 | 8-QAM                | 8-QAM                | Coupled             |
 
-QPSK—[Quadrature phase shift
-keying](https://www.allaboutcircuits.com/technical-articles/quadrature-phase-shift-keying-qpsk-modulation/).
+QPSK—[Quadrature phase shift keying](https://www.allaboutcircuits.com/technical-articles/quadrature-phase-shift-keying-qpsk-modulation/).
 When a network interface is using QPSK modulation, it carries 100Gbps
 and is therefore connected to only one client interface.
 
-16-QAM—[Quadrature amplitude
-modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
+16-QAM—[Quadrature amplitude modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
 with 4 bits per symbol. When a network interface is using 16-QAM
 modulation, it carries 200Gbps and is therefore connected to two client
 interfaces. Each of the two client interfaces carried on a network
@@ -70,8 +67,7 @@ interface is called a tributary. The AC400 adds extra information so
 that these tributaries can be sorted out at the far end and delivered to
 the appropriate client interface.
 
-8-QAM—[Quadrature amplitude
-modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
+8-QAM—[Quadrature amplitude modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
 with 3 bits per symbol. When a network interface is using 8-QAM
 modulation, it carries 150Gbps. In this case, the two network interfaces
 in an AC400 module must be coupled, so that the total bandwidth carried
@@ -80,39 +76,19 @@ this modulation format. However, unlike other modulation formats that
 use independent mode, the coupled mode means that data from each client
 interface is carried on both of the network interfaces.
 
-### Client to Network Connection</span>
+### Client to Network Connection
 
 For each of the five supported modulation configurations, the client
 interface to network interface connections are as follows:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>{{% imgOld 1 %}}</p></td>
-<td><p>In this configuration, two client interfaces, 0 and 2, are mapped to the two network interfaces. Client interfaces 1 and 3 are not used.</p></td>
-</tr>
-<tr class="even">
-<td><p>{{% imgOld 2 %}}</p></td>
-<td><p>In this configuration, two client interfaces are mapped to each network interface. Each network interface, therefore, has two tributaries.</p></td>
-</tr>
-<tr class="odd">
-<td><p>{{% imgOld 3 %}}</p>
-<p>{{% imgOld 4 %}}</p></td>
-<td><p>These configurations are combinations of the previous two.</p>
-<p>The network interface configured for QPSK connects to one client interface and the network interface configured for 16-QAM connects to two client interfaces.</p></td>
-</tr>
-<tr class="even">
-<td><p>{{% imgOld 5 %}}</p></td>
-<td><p>This configuration uses three client interfaces, for a total of 300Gbps; 150Gbps on each network interface. Because the network interfaces are coupled, they cannot be connected to different far-end systems. Each network interface carries three tributaries.</p></td>
-</tr>
-</tbody>
-</table>
+|||
+|--- |--- |
+|{{% imgOld 1 %}}|In this configuration, two client interfaces, 0 and 2, are mapped to the two network interfaces. Client interfaces 1 and 3 are not used.|
+|{{% imgOld 2 %}}|In this configuration, two client interfaces are mapped to each network interface. Each network interface, therefore, has two tributaries.|
+|{{% imgOld 3 %}}<br />{{% imgOld 4 %}}|These configurations are combinations of the previous two.<br />The network interface configured for QPSK connects to one client interface and the network interface configured for 16-QAM connects to two client interfaces.|
+|{{% imgOld 5 %}}|This configuration uses three client interfaces, for a total of 300Gbps; 150Gbps on each network interface. Because the network interfaces are coupled, they cannot be connected to different far-end systems. Each network interface carries three tributaries.|
 
-## Configuring the Voyager Ports</span>
+## Configuring the Voyager Ports
 
 To configure the five modulation and coupling configurations described
 above, edit the `/etc/cumulus/ports.conf` file. The ports do not exist
@@ -122,59 +98,18 @@ The file has lines for the 12 QSPF28 ports. The four DWDM Line ports are
 labeled labeled **L1** thru **L4**. To program the AC400 modulation and
 coupling into the five configurations, configure these ports as follows:
 
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>ports.conf</p></th>
-<th><p>L1 Modulation</p></th>
-<th><p>L2 Modulation</p></th>
-<th><p>Independent/Coupled</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>L1=1x<br />
-L2=1x</p></td>
-<td><p>QPSK</p></td>
-<td><p>QPSK</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="even">
-<td><p>L1=1x<br />
-L2=2x</p></td>
-<td><p>QPSK</p></td>
-<td><p>16-QAM</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="odd">
-<td><p>L1=2x<br />
-L2=1x</p></td>
-<td><p>16-QAM</p></td>
-<td><p>QPSK</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="even">
-<td><p>L1=2x<br />
-L2=2x</p></td>
-<td><p>16-QAM</p></td>
-<td><p>16-QAM</p></td>
-<td><p>Independent</p></td>
-</tr>
-<tr class="odd">
-<td><p>L1=3/2<br />
-L2=3/2</p></td>
-<td><p>8-QAM</p></td>
-<td><p>8-QAM</p></td>
-<td><p>Coupled</p></td>
-</tr>
-</tbody>
-</table>
+|ports.conf|L1 Modulation|L2 Modulation|Independent/Coupled|
+|--- |--- |--- |--- |
+|L1=1x
+L2=1x|QPSK|QPSK|Independent|
+|L1=1x
+L2=2x|QPSK|16-QAM|Independent|
+|L1=2x
+L2=1x|16-QAM|QPSK|Independent|
+|L1=2x
+L2=2x|16-QAM|16-QAM|Independent|
+|L1=3/2
+L2=3/2|8-QAM|8-QAM|Coupled|
 
 The following example `/etc/cumulus/ports.conf` file shows configuration
 for all of the modes.
@@ -196,7 +131,7 @@ for all of the modes.
     L3=3/2  # Creates swpL3s0, swpL3s1, and swpL3s2
     L4=3/2  # Creates no "swpL4" ports since L4 is ganged with L3
 
-## Configuring the Transponder Modules</span>
+## Configuring the Transponder Modules
 
 The Voyager platform contains two AC400 transponder modules, which you
 configure with NCLU commands.
@@ -210,13 +145,12 @@ system; L1, L2, L3, or L4.
 Using NCLU commands is the preferred way to configure the transponder
 modules. However, as an alternative, you can edit the
 `/etc/cumulus/transponders.ini` file to make configuration changes. See
-[Editing the transponder.ini
-file](#src-8362514_FacebookVoyagerOpticalInterfaces-edit_transponders.ini)
+[Editing the transponder.ini file](#editing-the-transponders-ini-file)
 below.
 
 {{%/notice%}}
 
-### Setting the Transponder State</span>
+### Setting the Transponder State
 
 Each transponder module has a state, which is set to `ready` by default.
 The available transponder states are listed below.
@@ -259,7 +193,7 @@ specified.
 
 {{%/notice%}}
 
-### Disabling the Transmitter</span>
+### Disabling the Transmitter
 
 You can disable or enable the transmitter of an individual network
 interface.
@@ -300,23 +234,22 @@ This command creates the following configuration snippet in the
     TxEnable = true
     ...
 
-### Changing the Grid Spacing</span>
+### Changing the Grid Spacing
 
 You can set grid spacing between two adjacent channels (the distance
 between channel frequencies) to 12.5GHz or 50GHz. The default spacing is
 50 GHz.
 
-To change the grid spacing, run the `n``et add interface <trans-port>
-grid-spacing (12.5|50)` command. The following command sets the grid
-spacing on L2 to 12.5GHz:
+To change the grid spacing, run the 
+`net add interface <trans-port> grid-spacing (12.5|50)` command. The 
+following command sets the grid spacing on L2 to 12.5GHz:
 
     cumulus@switch:~$ net add interface L2 grid-spacing 12.5
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<span style="color: #36424a;"> </span> This command creates the
-following configuration snippet in the `/etc/cumulus/transponders.ini`
-file:
+This command creates the following configuration snippet in the 
+`/etc/cumulus/transponders.ini` file:
 
     cumulus@switch:~$ cat /etc/cumulus/transponders.ini
     ...
@@ -326,10 +259,10 @@ file:
     TxGridSpacing = 12.5ghz
     ...
 
-### Setting the Channel Frequency </span>
+### Setting the Channel Frequency 
 
-To set the frequency used by the network interface, run the `net add
-interface <trans-port> frequency <trans-frequency>` command.
+To set the frequency used by the network interface, run the 
+`net add interface <trans-port> frequency <trans-frequency>` command.
 
 `<trans-frequency>` is a floating point number in THz. The transponders
 support 100 channels, from 191.15 THz to 196.10 THz. Tab-completion is
@@ -381,10 +314,9 @@ completion:
 
 To see a complete list of the frequencies, channels, and wavelengths,
 run the `net show transponder frequency-map` command (described in
-[Displaying Available
-Frequencies](#src-8362514_FacebookVoyagerOpticalInterfaces-display_channel_freq)).
+[Displaying Available Channel Frequencies](#displaying-available-channel-frequencies)).
 
-### Setting the Transmit Power</span>
+### Setting the Transmit Power
 
 To set the amount of transmit power for a network interface, run the
 `net add interface <trans-port> power <trans-dBm>` command.
@@ -397,9 +329,8 @@ sets the transmit power for L1 to 10.0 dBm.
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<span style="color: #36424a;"> </span> This command creates the
-following configuration snippet in the `/etc/cumulus/transponders.ini`
-file:
+This command creates the following configuration snippet in the 
+`/etc/cumulus/transponders.ini` file:
 
     cumulus@switch:~$ cat /etc/cumulus/transponders.ini
     ...
@@ -411,7 +342,7 @@ file:
     OutputPower = 10.0
     ...
 
-### Changing the Modulation</span>
+### Changing the Modulation
 
 To change the modulation technique used on a network interface, run the
 `net add interface <trans-port> modulation (16-qam|8-qam|pm-qpsk)`
@@ -447,12 +378,12 @@ pm-qpsk. Attempting to change the modulation from pm-qpsk while
 15%\_ac100 FEC is configured is not allowed. First change the FEC mode
 to something other than 15%\_ac100 and then the modulation.
 
-### Setting the Differential Encoding</span>
+### Setting the Differential Encoding
 
 To select non-differential encoding on the network interface, run the
 `net add interface <trans-port> non-differential` command. To revert to
-differential encoding (the default), run the `net del interface
-<trans-port> non-differential` command. The following example command
+differential encoding (the default), run the 
+`net del interface <trans-port> non-differential` command. The following example command
 selects non-differential encoding for L1:
 
     cumulus@switch:~$ net add interface L1 non-differential
@@ -500,7 +431,7 @@ This command creates the following configuration snippet in the
     DifferentialEncoding = true
     ...
 
-### Changing Forward Error Correction</span>
+### Changing Forward Error Correction
 
 To select Forward Error Correction (FEC) mode, run the `net add
 interface <trans-port> fec (15%|15%_ac100|25%)` command. The available
@@ -530,7 +461,7 @@ This command creates the following configuration snippet in the
     FecMode = 15%
     ...
 
-### Displaying the Transponder Status</span>
+### Displaying the Transponder Status
 
 To display the current status of the transponder module, run the `net
 show transponder` command. The first two lines of command output
@@ -575,8 +506,7 @@ the system.
 
 To display only the status of a particular module, use the `module
 <trans-module>` option, which specifies the transponder module number.
-The following example command displays the status of transponder module
-1:
+The following example command displays the status of transponder module 1:
 
 ``` 
 cumulus@switch:~$ net show transponder module 1
@@ -653,7 +583,7 @@ format:
                     },
     ...
 
-### <span id="src-8362514_FacebookVoyagerOpticalInterfaces-display_channel_freq" class="confluence-anchor-link"></span>Displaying Available Channel Frequencies</span>
+### Displaying Available Channel Frequencies
 
 To display a map of available channel frequencies, numbers, and
 wavelengths, run the `net show transponder frequency-map [json]`
@@ -710,7 +640,7 @@ frequencies, numbers, and wavelengths in JSON format.
         ],
     ...
 
-### Displaying the Current Transponder Configuration</span>
+### Displaying the Current Transponder Configuration
 
 To display the current configuration state of the transponders, run the
 following command:
@@ -773,12 +703,11 @@ following command:
             15
     ...
 
-### <span id="src-8362514_FacebookVoyagerOpticalInterfaces-edit_transponders.ini" class="confluence-anchor-link"></span>Editing the transponders.ini File</span>
+### Editing the transponders.ini File
 
 As an alternative to using NCLU commands to configure the transponder
-modules (described above), you can edit the
-`/etc/cumulus/transponders.ini` file, then [Initiate a hardware
-update](https://docs.cumulusnetworks.com/display/CL36DRAFT/Configuring+Facebook+Voyager+Optical+Interfaces#ConfiguringFacebookVoyagerOpticalInterfaces-InitiatingaHardwareUpdate).
+modules (described above), you can edit the `/etc/cumulus/transponders.ini` 
+file, then  [initiate a hardware update](#initiating-a-hardware-update).
 
 {{%notice note%}}
 
@@ -1017,14 +946,11 @@ Here is an example `/etc/cumulus/transponders.ini` file:
 The file contains four configuration groups:
 
   - The Modules group
-
   - The module groups
-
   - The network interface groups
-
   - The client interface groups
 
-#### Modules Group</span>
+#### Modules Group
 
 The **Modules** **group** identifies the names of the other groups in
 the file. This is the *root* group from which all other groups are
@@ -1042,13 +968,12 @@ these two groups.
     [Modules]
     Names=AC400_1,AC400_2
 
-#### Module Groups</span>
+#### Module Groups
 
-The **module groups** are i <span style="color: #222222;"> ndividual
-groups for each of the predefined modules and </span> define the
-attributes of the transponders in the system. The name of a module group
-is defined in the values of the `Names` key in the Modules group (shown
-above).
+The **module groups** are individual groups for each of the predefined 
+modules and define the attributes of the transponders in the system. The 
+name of a module group is defined in the values of the `Names` key in 
+the Modules group (shown above).
 
 The following table describes the key-value pairs in the module groups.
 
@@ -1124,7 +1049,7 @@ file. The operational status of the module is `ready`.
     HostInterfaces=Client0,Client1,Client2,Client3
     OperStatus=ready
 
-#### Network Interface Groups</span>
+#### Network Interface Groups
 
 The network interface groups define the attributes of the network
 interfaces on the module. The name of a network interface group is
@@ -1803,7 +1728,7 @@ mappings of the client interfaces is left unchanged.
     TxTributaryIndependent=0,1
     TxTributaryCoupled=0,1,2,15
 
-#### Client Interface Groups</span>
+#### Client Interface Groups
 
 The client interface groups define the attributes of the client
 interfaces on the module. The name of a client interface group is
@@ -1823,322 +1748,213 @@ of these attributes do not typically need to be changed.
 {{%/notice%}}
 
 <table class="confluenceTable">
-
 <thead class=" ">
-
 <tr>
-
-<td class="confluenceTh" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Key
-
 </td>
-
-<td class="confluenceTh" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Value Type
-
 </td>
-
-<td class="confluenceTh" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Description
-
 </td>
-
 </tr>
-
 </thead>
-
 <tfoot class=" ">
-
 </tfoot>
-
 <tbody class=" ">
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `Location`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-3
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 The location or index of the client interface within a module. The
 Voyager AC400 modules each have four network interfaces that are
 connected to the Tomahawk ASIC as follows:
 
-<div class="tablewrap">
-
-| Module Location | Network Interface Location | Tomahawk Falcon Core |
-| --------------- | -------------------------- | -------------------- |
-| 1               | 0                          | fc11                 |
-| 1               | 1                          | fc12                 |
-| 1               | 2                          | fc10                 |
-| 1               | 3                          | fc9                  |
-| 2               | 0                          | fc19                 |
-| 2               | 1                          | fc18                 |
-| 2               | 2                          | fc17                 |
-| 2               | 3                          | fc16                 |
-
-</div>
-
-</td>
-
+<table>
+<thead>
+<tr class="header">
+<th>Module Location</th>
+<th>Network Interface Location</th>
+<th>Tomahawk Falcon Core</th>
 </tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>fc11</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>fc12</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>fc10</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>3</td>
+<td>fc9</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0</td>
+<td>fc19</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1</td>
+<td>fc18</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>2</td>
+<td>fc17</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>3</td>
+<td>fc16</td>
+</tr>
+</tbody>
+</table>
 
+</td>
+</tr>
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `Rate`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 String: `otu4` or `100ge`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 The rate at which the client interface operates. Because the client
 interfaces on Voyager are always connected to a Tomahawk ASIC, always
 set this value to `100ge`.
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `Enable`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Boolean: `true` or `false`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Enables (`true`) or disables (`false`) the client interface.
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `FecDecoder`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Boolean: `true` or `false`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Enables (`true`) or disables (`false`) FEC decoding for data received
 from the Tomahawk switching ASIC.
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `FecEncoder`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Boolean: `true` or `false`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Enables (`true`) or disables (`false`) FEC encoding for data sent to the
 Tomahawk switching ASIC.
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `DeserialLfCtleGain`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-8
-
 </td>
-
-<td class="confluenceTd" rowspan="8" colspan="1">
-
+<td rowspan="8" colspan="1">
 These attributes configure the SERDES of the client interface. The
 values for these attributes have been carefully determined by hardware
 engineers; do not change them.
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `DeserialCtleGain`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-20
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `DeserialDfeCoeff`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-63
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `SerialTap0Gain`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-7
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `SerialTap0Delay`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-7
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `SerialTap1Gain`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-7
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `SerialTap2Gain`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-15
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `SerialTap2Delay`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-7
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `RxTributaryIndependent`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-1
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Defines which network interface maps to this client interface when
 `NetworkMode` for the client interface is set to `independent`. The
 integer is the `Location` value of the network interface.
@@ -2146,27 +1962,16 @@ integer is the `Location` value of the network interface.
 **Note**: Cumulus Networks STRONGLY recommends that you do not change
 this value. The Tomahawk switching ASIC should be configured to steer
 data from the appropriate network interface, not this attribute.
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 `RxTributaryCoupled`
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Integer: 0-1
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td rowspan="1" colspan="1">
 Defines which network interface maps to this client interface when
 `NetworkMode` for the client interface is set to `coupled`. The integer
 is the `Location` value of the network interface.
@@ -2174,13 +1979,9 @@ is the `Location` value of the network interface.
 **Note**: Cumulus Networks STRONGLY recommends that you do not change
 this value. The Tomahawk switching ASIC should be configured to steer
 data from the appropriate network interface, not this attribute.
-
 </td>
-
 </tr>
-
 </tbody>
-
 </table>
 
 The following example shows a sample configuration for a client
@@ -2203,7 +2004,7 @@ interface group.
     RxTributaryIndependent=0
     RxTributaryCoupled=0
 
-### Initiating a Hardware Update</span>
+### Initiating a Hardware Update
 
 After making a change to the `transponders.ini` file, you must program
 the change into the hardware by issuing a `systemd reload` command:
@@ -2240,11 +2041,3 @@ messages.
     2018-04-24T18:18:49.965701+00:00 cumulus voyager_tai_adapter[5793]: Setting FecEncoder (268435459) to false, was true
     ...
     2018-04-24T18:21:24.164981+00:00 cumulus voyager_tai_adapter[5793]: Config has been reloaded
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

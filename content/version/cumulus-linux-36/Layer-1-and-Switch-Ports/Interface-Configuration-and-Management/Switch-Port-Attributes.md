@@ -15,7 +15,7 @@ This chapter discusses the various network interfaces on a switch
 running Cumulus Linux, how to configure various interface-level settings
 (if needed) and some troubleshooting commands.
 
-## Interface Types</span>
+## Interface Types
 
 Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
@@ -31,7 +31,7 @@ and logical devices:
   - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
     port channels)
 
-## Interface Settings</span>
+## Interface Settings
 
 Each physical network interface has a number of configurable settings:
 
@@ -61,7 +61,7 @@ unsupported error gets returned.
 
 {{%/notice%}}
 
-### Differences between Broadcom-based and Mellanox-based Switches</span>
+### Differences between Broadcom-based and Mellanox-based Switches
 
 On a Broadcom-based switch, all you need to do is enable
 auto-negotiation. Once enabled, Cumulus Linux automatically configures
@@ -69,15 +69,14 @@ the link speed, duplex mode and [forward error
 correction](https://en.wikipedia.org/wiki/Forward_error_correction)
 (FEC, if the cable or optic requires it) for every switch port, based on
 the port type and cable or optic used on the port, as listed in the
-[table below](#src-8362492_SwitchPortAttributes-settings).
+[table below](#interface-configuration-recommendations).
 
 Ports are always automatically configured on a Mellanox-based switch,
-with one exception — you only need to configure is
-[MTU](#src-8362492_SwitchPortAttributes-mtu). You don't even need to
-enable auto-negotation, as the Mellanox firmware configures everything
-for you.
+with one exception — you only need to configure is [MTU](#mtu). You 
+don't even need to enable auto-negotation, as the Mellanox firmware 
+configures everything for you.
 
-### <span id="src-8362492_SwitchPortAttributes-autoneg_enable" class="confluence-anchor-link"></span>Enabling Auto-negotiation</span>
+### Enabling Auto-negotiation
 
 To configure auto-negotiation for a Broadcom-based switch, set
 `link-autoneg` to *on* for all the switch ports. For example, to enable
@@ -88,14 +87,14 @@ auto-negotiation for swp1 through swp52:
     cumulus@switch:~$ net commit
 
 Any time you enable auto-negotiation, Cumulus Linux restores the default
-configuration settings specified in the [table
-below](#src-8362492_SwitchPortAttributes-sett).
+configuration settings specified in the 
+[table below](#interface-configuration-recommendations).
 
 By default on a Broadcom-based switch, auto-negotiation is disabled —
 except on 10G and 1000BASE-T switch ports, where it's required for links
 to work at all. And for RJ-45 SFP adapters, you need to manually
-configure the settings as described in the [default settings table
-below](#src-8362492_SwitchPortAttributes-sett).
+configure the settings as described in the 
+[default settings table below](#interface-configuration-recommendations).
 
 If you disable it later or never enable it, then you have to configure
 the duplex, FEC and link speed settings manually using
@@ -111,13 +110,10 @@ You should keep auto-negotiation enabled at all times. If you do decide
 to disable it, keep in mind the following:
 
   - You must manually set link speed, duplex, pause and FEC.
-
   - Disabling auto-negotiation on a copper cable of any kind prevents
     the port from optimizing the link through link training.
-
   - Disabling auto-negotiation on a 1G optical cable prevents detection
     of single fiber breaks.
-
   - You cannot disable auto-negotiation for 1GT or 10GT cables.
 
 However, 10/100/1000BASE-T RJ-45 SFP adapters do not work with
@@ -129,12 +125,12 @@ link-duplex=full|half).
 
 Depending upon the connector used for a port, enabling auto-negotiation
 also enables forward error correction (FEC), if the cable requires it
-(see the [table below](#src-8362492_SwitchPortAttributes-setting)). FEC
+(see the [table below](#interface-configuration-recommendations)). FEC
 always adjusts for the speed of the cable. However, you **cannot**
 disable FEC separately using
 [NCLU](/version/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility-NCLU/).
 
-### Port Speed and Duplexing</span>
+### Port Speed and Duplexing
 
 Cumulus Linux supports both half- and
 [full-duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
@@ -166,7 +162,7 @@ snippet:
 
 {{%/notice%}}
 
-#### Port Speed Limitations</span>
+#### Port Speed Limitations
 
 Ports can be configured to one speed less than their maximum speed.
 
@@ -177,8 +173,8 @@ Ports can be configured to one speed less than their maximum speed.
 | 40G              | 10G\*                                                   |
 | 100G             | 50G & 40G (with or without breakout port), 25G\*, 10G\* |
 
-\*Requires the port to be converted into a breakout port. [See
-below](#src-8362492_SwitchPortAttributes-breakout).
+\*Requires the port to be converted into a breakout port. 
+[See below](#configuring-breakout-ports).
 
 {{%notice note%}}
 
@@ -187,7 +183,7 @@ within the same port group with the same link speed.
 
 {{%/notice%}}
 
-### <span id="src-8362492_SwitchPortAttributes-mtu" class="confluence-anchor-link"></span>MTU</span>
+### MTU
 
 Interface MTU ([maximum transmission
 unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) applies
@@ -211,7 +207,7 @@ for both the management interface (eth0) and the data plane ports.
 
 {{%/notice%}}
 
-#### MTU for a Bridge</span>
+#### MTU for a Bridge
 
 The MTU setting is the lowest MTU setting of any interface that is a
 member of that bridge (that is, every interface specified in
@@ -249,10 +245,8 @@ or their lower interface; for example, swp1.100 inherits its MTU setting
 from swp1. Hence, specifying an MTU on swp1 ensures that swp1.100
 inherits swp1's MTU setting.
 
-<span id="src-8362492_SwitchPortAttributes-mtu_vxlan"></span>If you are
-working with
-[VXLANs](/version/cumulus-linux-36/Network-Virtualization/), the MTU for
-a virtual network interface (VNI) must be 50 bytes smaller than the MTU
+If you are working with [VXLANs](/version/cumulus-linux-36/Network-Virtualization/), 
+the MTU for a virtual network interface (VNI) must be 50 bytes smaller than the MTU
 of the physical interfaces on the switch, as those 50 bytes are required
 for various headers and other data. You should also consider setting the
 MTU much higher than the default 1500.
@@ -278,23 +272,13 @@ These commands create the following code snippet:
     iface swp1
        mtu 9000
 
-<div class="confbox admonition admonition-warning">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice info%}}
+{{%notice warning%}}
 
 You must take care to ensure there are no MTU mismatches in the
 conversation path. MTU mismatches will result in dropped or truncated
 packets, degrading or blocking network performance.
 
 {{%/notice%}}
-
-</div>
-
-</div>
 
 {{%/notice%}}
 
@@ -318,7 +302,7 @@ To view the MTU setting, use `net show interface <interface>`:
     --  ------  -----------------  -------  -----  ---------
     UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
 
-#### Bringing Down an Interface for a Bridge Member</span>
+#### Bringing Down an Interface for a Bridge Member
 
 When you bring down an interface for a bridge member, the MTU for the
 interface and the MTU for the bridge are both set to the default value
@@ -341,7 +325,7 @@ example:
         mtu 9192
         post-down /sbin/ip link set dev swp3 mtu 9192
 
-#### Setting a Policy for Global System MTU</span>
+#### Setting a Policy for Global System MTU
 
 For a global policy to set MTU, create a policy document (called
 `mtu.json` here) like the following:
@@ -370,7 +354,7 @@ attributes in `/var/lib/ifupdown2/policy.d/`.
 
 {{%/notice%}}
 
-### FEC</span>
+### FEC
 
 Forward Error Correction (FEC) is an encoding and decoding layer that
 enables the switch to detect and correct bit errors introduced over the
@@ -393,7 +377,6 @@ There are two FEC types:
   - Reed Solomon (**RS**), IEEE 802.3 Clause 108 (CL108) on individual
     25G channels and Clause 91 on 100G (4channels). This is the highest
     FEC algorithm, providing the best bit-error correction.
-
   - Base-R (**BaseR**), Fire Code (FC), IEEE 802.3 Clause 74 (CL74).
     Base-R provides less protection from bit errors than RS FEC but adds
     less latency.
@@ -404,7 +387,6 @@ There are additional FEC options for Cumulus Linux configuration:
     DAC, FEC can be negotiated with the remote end. However, optical
     modules do not have auto-negotiation capability; if the device
     chooses a preferred mode, it might not match the remote end.
-
   - No FEC (no error correction is done). This is the current default on
     a Broadcom switch.
 
@@ -422,18 +404,15 @@ Tomahawk+ and Maverick switches do not have this limitation.
 
 {{%/notice%}}
 
-**  
-**For **25G DAC, 4x25G Breakouts DAC and 100G DAC cables**, the IEEE
+**For 25G DAC, 4x25G Breakouts DAC and 100G DAC cables**, the IEEE
 802.3by specification creates 3 classes:
 
   - CA-25G-L (long cables - achievable cable length of at least 5m) dB
     loss less or equal to 22.48. Requires RS FEC and expects BER of 10-5
     or better with RS FEC enabled.
-
   - CA-25G-S (short cables - achievable cable length of at least 3m) dB
     loss less or equal to 16.48. Requires Base-R FEC and expects BER of
     10-8 or better with Base-R FEC enabled.
-
   - CA-25G-N (no FEC - achievable cable length of at least 3m) dB loss
     less or equal to 12.98. Does not require FEC. Expects BER 10-12 or
     better with no FEC.
@@ -445,8 +424,8 @@ if they comply to the dB loss and BER requirements.
 If a cable is manufactured to CA-25G-S classification and FEC is not
 enabled, the BER might be unacceptable in a production network. It is
 important to set the FEC according to the cable class (or better) to
-have acceptable bit error rates. See [Determining Cable
-Class](#src-8362492_SwitchPortAttributes-cable_class) below.
+have acceptable bit error rates. See 
+[Determining Cable Class](#determining-cable-class) below.
 
 You can check bit errors using `cl-netstat` (`RX_ERR` column) or
 `ethtool -S` (`HwIfInErrors` counter) after a large amount of traffic
@@ -459,7 +438,7 @@ For **25G, 4x25G Breakout, and 100G Fiber modules and AOCs**, there is
 no classification of 25G cable types for dB loss, BER, or Length. FEC is
 recommended but might not be required if the BER is low enough.
 
-#### <span id="src-8362492_SwitchPortAttributes-cable_class" class="confluence-anchor-link"></span>Determining Cable Class</span>
+#### Determining Cable Class
 
 You can determine the cable class from the Extended Specification
 Compliance Code field (SFP28: 0Ah, byte 35, QSFP28: Page 0, byte 192) in
@@ -491,9 +470,7 @@ For the **SFP28 DAC**, run the following command:
 The values at location 0x0024 are:
 
   - 0x0b : CA-L (long cable - RS FEC required)
-
   - 0x0c : CA-S (short cable - BaseR or better FEC required)
-
   - 0x0d : CA-N (no FEC required)
 
 For the **QSFP28 DAC**, run the following command:
@@ -504,9 +481,7 @@ For the **QSFP28 DAC**, run the following command:
 The values at 0x00c0 are:
 
   - 0x0b : CA-L (long cable - RS FEC required) or 100G CR4
-
   - 0x0c : CA-S (short cable - BaseR or better FEC required)
-
   - 0x0d : CA-N (no FEC required)
 
 **Cable Class Examples**
@@ -528,7 +503,7 @@ Compliance Code : 25GBASE-CR CA-S
 When in doubt, consult the manufacturer directly to determine the cable
 classification.
 
-#### How Does Cumulus Linux use FEC?</span>
+#### How Does Cumulus Linux use FEC?
 
 The Mellanox switch enables FEC automatically first. The port firmware
 tries a pre-set list of link configuration combinations to attempt to
@@ -544,7 +519,7 @@ FEC settings with the remote peer.
 The following sections describe how to display the current FEC
 configuration, and enable and disable FEC on a Broadcom switch.
 
-#### Displaying the Current FEC Mode</span>
+#### Displaying the Current FEC Mode
 
 To display the FEC mode currently enabled on a Broadcom switch, run the
 following command:
@@ -561,7 +536,7 @@ the remote FEC setting when the link is up.
 
 {{%/notice%}}
 
-#### Enabling FEC</span>
+#### Enabling FEC
 
 To enable **Reed Solomon (RS) FEC** on a link, run the following NCLU
 commands:
@@ -587,7 +562,7 @@ To review the FEC setting on the link, run the following command:
     FEC parameters for swp23:
     FEC encodings : BaseR
 
-#### Enabling FEC with Auto-negotiation</span>
+#### Enabling FEC with Auto-negotiation
 
 FEC with auto-negotiation is supported on DACs only.
 
@@ -611,7 +586,7 @@ command:
     FEC parameters for swp12:
     FEC encodings : RS
 
-#### Disabling FEC</span>
+#### Disabling FEC
 
 To disable FEC on a link, run the following NCLU commands:
 
@@ -624,7 +599,7 @@ To review the FEC setting on the link, run the following command:
     FEC parameters for swp23:
     FEC encodings : None
 
-### <span id="src-8362492_SwitchPortAttributes-settings" class="confluence-anchor-link"></span>Interface Configuration Recommendations</span>
+### Interface Configuration Recommendations
 
 The default configuration for each type of interface is described in the
 following table. Except as noted below, the settings for both sides of
@@ -886,7 +861,7 @@ iface swp1
 </tbody>
 </table>
 
-### Creating a Default Policy for Various Interface Settings</span>
+### Creating a Default Policy for Various Interface Settings
 
 Instead of configuring these settings for each individual interface, you
 can specify a policy for all interfaces on a switch, or tailor custom
@@ -921,17 +896,14 @@ settings for each interface. Create a file in
         }
     }
 
-## <span id="src-8362492_SwitchPortAttributes-breakout" class="confluence-anchor-link"></span>Configuring Breakout Ports</span>
+## Configuring Breakout Ports
 
 Cumulus Linux has the ability to:
 
   - Break out 100G switch ports into the following with breakout cables:
-    
       - 2x50G, 4x25G, 4x10G
-
   - Break out 40G switch ports into four separate 10G ports for use with
     breakout cables.
-
   - Combine (also called *aggregating* or *ganging*) four 10G switch
     ports into one 40G port for use with a breakout cable ([not to be
     confused with a
@@ -968,8 +940,7 @@ named as follows:
 
 {{%notice note%}}
 
-On [Dell switches with Maverick
-ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=Dell&ASIC=Broadcom%20Maverick),
+On [Dell switches with Maverick ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=Dell&ASIC=Broadcom%20Maverick),
 you configure breakout ports on the 100G uplink ports by manually
 editing the `/etc/cumulus/ports.conf` file. You need to specify either
 *4x10* or *4x25* for the port speed. For example, on a Dell S4148F-ON
@@ -1036,8 +1007,8 @@ update:
 {{%notice note%}}
 
 When you commit your change configuring the breakout ports, `switchd`
-restarts to apply the changes. The restart [interrupts network
-services](Configuring-switchd.html#src-8362056_Configuringswitchd-restartswitchd).
+restarts to apply the changes. The restart 
+[interrupts network services](/version/cumulus-linux-36/System-Configuration/Configuring-switchd/#configuring-switchd-parameters).
 
 {{%/notice%}}
 
@@ -1120,12 +1091,6 @@ For switches with ports that support 100G speeds, you can break out any
 40G ports or two 50G ports. Keep in mind that you cannot have more than
 128 total logical ports on a Broadcom switch.
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
 {{%notice info%}}
 
 The Mellanox SN2700, SN2700B, SN2410, and SN2410B switches both have a
@@ -1133,7 +1098,6 @@ limit of 64 logical ports in total. However, if you want to break out to
 4x25G or 4x10G, you must configure the logical ports as follows:
 
   - You can only break out odd-numbered ports into 4 logical ports.
-
   - You must disable the next even-numbered port.
 
 These restrictions do not apply to a 2x50G breakout configuration.
@@ -1155,21 +1119,16 @@ mode.
 
 {{%/notice%}}
 
-</div>
-
-</div>
-
 {{%/notice%}}
 
 {{%notice tip%}}
 
 Here is an example showing how to configure breakout cables for the
-[Mellanox Spectrum
-SN2700](https://community.mellanox.com/docs/DOC-2685).
+[Mellanox Spectrum SN2700](https://community.mellanox.com/docs/DOC-2685).
 
 {{%/notice%}}
 
-### Removing a Breakout Port</span>
+### Removing a Breakout Port
 
 To remove a breakout port, you need to do the following:
 
@@ -1197,17 +1156,15 @@ To remove a breakout port, you need to do the following:
         ...
          
 
-3.  [Restart
-    `switchd`](Configuring-switchd.html#src-8362056_Configuringswitchd-restartswitchd).
+3.  [Restart `switchd`](/version/cumulus-linux-36/System-Configuration/Configuring-switchd/#configuring-switchd-parameters).
 
-### Combining Four 10G Ports into One 40G Port</span>
+### Combining Four 10G Ports into One 40G Port
 
 You can *gang* (aggregate) four 10G ports into one 40G port for use with
 a breakout cable, provided you follow these requirements:
 
   - You must gang four 10G ports in sequential order. For example, you
     cannot gang swp1, swp10, swp20 and swp40 together.
-
   - The ports must be in increments of four, with the starting port
     being swp1 (or swp5, swp9, or so forth); so you cannot gang swp2,
     swp3, swp4 and swp5 together.
@@ -1229,16 +1186,14 @@ These commands create the following configuration snippet in the
     4=40G/4
     5=10G
 
-## Logical Switch Port Limitations</span>
+## Logical Switch Port Limitations
 
 100G and 40G switches can support a certain number of logical ports,
 depending upon the manufacturer; these include:
 
   - Mellanox SN2700 and SN2700B switches
-
   - Switches with Broadcom Tomahawk, Trident II and Trident II+ chipsets
-    (check the
-    [HCL](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
+    (check the [HCL](https://cumulusnetworks.com/hcl))
 
 Before you configure any logical/unganged ports on a switch, check the
 limitations listed in `/etc/cumulus/ports.conf`; this file is specific
@@ -1276,9 +1231,9 @@ The means the maximum number of ports for this Dell S6000 is 104.
 
 Mellanox SN2700 and SN2700B switches have a limit of 64 logical ports in
 total. However, the logical ports must be configured in a specific way.
-See [the note](#src-8362492_SwitchPortAttributes-breakout) above.
+See [the note](#configuring-breakout-ports) above.
 
-## <span id="src-8362492_SwitchPortAttributes-ethtool" class="confluence-anchor-link"></span>Using ethtool to Configure Interfaces</span>
+## Using ethtool to Configure Interfaces
 
 The Cumulus Linux `ethtool` command is an alternative for configuring
 interfaces as well as viewing and troubleshooting them.
@@ -1295,9 +1250,9 @@ To view the FEC setting on an interface, run:
     Auto-negotiation: off
     FEC encodings : RS
 
-## Verification and Troubleshooting Commands</span>
+## Verification and Troubleshooting Commands
 
-### Statistics</span>
+### Statistics
 
 High-level interface statistics are available with the `net show
 interface` command:
@@ -1357,7 +1312,7 @@ Low-level interface statistics are available with `ethtool`:
          SoftOutTxFifoFull: 0
          HwIfOutQLen: 0
 
-### Querying SFP Port Information</span>
+### Querying SFP Port Information
 
 You can verify SFP settings using ` ethtool -m  `. The following example
 shows the output for 1G and 10G modules:
@@ -1373,18 +1328,18 @@ shows the output for 1G and 10G modules:
                   RXPower : -3.2532dBm
                   TXPower : -2.0817dBm
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-### Timeout Error on Quanta LY8 and LY9 Switches</span>
+### Timeout Error on Quanta LY8 and LY9 Switches
 
 On Quanta T5048-LY8 and T3048-LY9 switches, an "Operation timed out"
 error occurs while removing and reinserting QSFP module.
 
 The QSFPx2 module cannot be removed while the switch is powered on, as
 it is not hot-swappable. However, if this occurs, you can get the link
-to come up; however, this involves [restarting
-`switchd`](Configuring-switchd.html#src-8362056_Configuringswitchd-restartswitchd)
-, which disrupts your network.
+to come up; however, this involves 
+[restarting `switchd`](/version/cumulus-linux-36/System-Configuration/Configuring-switchd/#configuring-switchd-parameters), 
+which disrupts your network.
 
 On the T3048-LY9, run the following commands:
 
@@ -1398,20 +1353,18 @@ On the T5048-LY8, run the following commands:
     cumulus@switch:~$ sudo echo 0 > qsfpd_power_enable/value
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-### swp33 and swp34 Disabled on Some Switches</span>
+### swp33 and swp34 Disabled on Some Switches
 
 The front SFP+ ports (swp33 and swp34) are disabled in Cumulus Linux on
 the following switches:
 
   - Dell Z9100-ON
-
   - Penguin Arctica 3200-series switches (the 3200C, 3200XL and 3200XLP)
-
   - Supermicro SSE-C3632S
 
 These ports appear as disabled in the `/etc/cumulus/ports.conf` file.
 
-### ethtool Shows Incorrect Port Speed on 100G Mellanox Switches</span>
+### ethtool Shows Incorrect Port Speed on 100G Mellanox Switches
 
 After setting interface speed to 40G by editing the `ports.conf` file on
 a Mellanox switch, `ethtool` still shows the speed as 100G.
@@ -1432,24 +1385,9 @@ Or using `ethtool`:
 
     cumulus@switch:~$ sudo ethtool -s swp1 speed 40000 
 
-## Related Information</span>
+## Related Information
 
-  - [Debian - Network
-    Configuration](http://wiki.debian.org/NetworkConfiguration)
-
-  - [Linux Foundation -
-    VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-
-  - [Linux Foundation -
-    Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
-
-  - [Linux Foundation -
-    Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Debian - Network Configuration](http://wiki.debian.org/NetworkConfiguration)
+  - [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
+  - [Linux Foundation - Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
+  - [Linux Foundation - Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)

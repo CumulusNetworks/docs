@@ -24,7 +24,7 @@ configuration at `/etc/default/switchd`.
 
 {{%/notice%}}
 
-## The switchd File System</span>
+## The switchd File System
 
 `switchd` also exports a file system, mounted on `/cumulus/switchd`,
 that presents all the `switchd` configuration options as a series of
@@ -96,7 +96,7 @@ a switch with one switch port configured:
     |           `-- max_total
     `-- version
 
-## Configuring switchd Parameters</span>
+## Configuring switchd Parameters
 
 You can use `cl-cfg` to configure many `switchd` parameters at runtime
 (like ACLs, interfaces, and route table utilization), which minimizes
@@ -128,7 +128,7 @@ though you cannot update the `switchd` configuration with it.
 
 {{%/notice%}}
 
-## <span id="src-8362056_Configuringswitchd-restartswitchd" class="confluence-anchor-link"></span>Restarting switchd</span>
+## Restarting switchd
 
 Whenever you modify any `switchd` hardware configuration file (typically
 changing any `*.conf` file that requires making a change to the
@@ -151,11 +151,3 @@ Restarting `switchd` causes all network ports to reset in addition to
 resetting the switch hardware configuration.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

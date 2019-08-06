@@ -23,19 +23,18 @@ The plugin supports configuration caching. The cached configuration is
 replayed back to the Cumulus Linux switch from Cumulus ML2 mechanism
 driver when a switch or process restart is detected.
 
-In order to deploy [OpenStack
-ML2](https://wiki.openstack.org/wiki/Neutron/ML2) in a network with
+In order to deploy 
+[OpenStack ML2](https://wiki.openstack.org/wiki/Neutron/ML2) in a network with
 Cumulus Linux switches, you need the following:
 
   - A REST API, which is installed in Cumulus Linux.
-
   - The Cumulus Networks Modular Layer 2 (ML2) mechanism driver for
     OpenStack, which you install on the OpenStack Neutron controller
     node. It's available as a Python package from upstream.
 
 {{% imgOld 0 %}}
 
-## Configuring the REST API</span>
+## Configuring the REST API
 
 1.  Configure the relevant settings in `/etc/restapi.conf`:
     
@@ -56,7 +55,7 @@ Cumulus Linux switches, you need the following:
 Additional REST API calls have been added to support the configuration
 of bridge using the bridge name instead of network ID.
 
-## Installing and Configuring the Cumulus Networks Modular Layer 2 Mechanism Driver</span>
+## Installing and Configuring the Cumulus Networks Modular Layer 2 Mechanism Driver
 
 You need to install the Cumulus Networks ML2 mechanism driver on your
 Neutron host, which is available upstream:
@@ -83,37 +82,23 @@ You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
 
   - `switches` — The list of Cumulus Linux switches connected to the
     Neutron host. Specify a list of IP addresses.
-
   - `scheme` — The scheme (for example, HTTP) for the base URL for the
     ML2 API.
-
   - `protocol_port` — The protocol port for the bast URL for the ML2
     API. The default value is *8000*.
-
   - `sync_time` — A periodic time interval for polling the Cumulus Linux
     switch. The default value is *30* seconds.
-
   - `spf_enable` — Enables/disables SPF for the bridge. The default
     value is *False*.
-
-  - `new_bridge` — Enables/disables [VLAN-aware bridge
-    mode](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+  - `new_bridge` — Enables/disables 
+    [VLAN-aware bridge mode](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
     for the bridge configuration. The default value is *False*, so a
     traditional mode bridge is created.
 
-## Demo</span>
+## Demo
 
 A demo involving OpenStack with Cumulus Linux is available in the
-[Cumulus Networks knowledge
-base](https://support.cumulusnetworks.com/hc/en-us/articles/226174767).
+[Cumulus Networks knowledge base](https://support.cumulusnetworks.com/hc/en-us/articles/226174767).
 It demonstrates dynamic provisioning of VLANs using a virtual simulation
 of two Cumulus VX leaf switches and two CentOS 7 (RDO Project) servers;
 collectively they comprise an OpenStack environment.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

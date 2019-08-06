@@ -8,7 +8,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362976
 pageID: 8362976
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
@@ -110,6 +110,7 @@ Cumulus Networks chose the value used.
 </tr>
 <tr class="even">
 <td><p>arp_ignore</p></td>
+<!-- 4.0B4 default is 2 -->
 <td><p>1</p></td>
 <td><p>INT</p></td>
 <td><p><em>Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:</em></p>
@@ -122,6 +123,7 @@ Cumulus Networks chose the value used.
 <p>The maximum value from <em>conf/{all,interface}/arp_ignore</em> is used when the ARP request is received on the {interface}.</p>
 <p>The default Debian <code>arp_ignore</code> parameter allows the device to reply to an ARP request for any IP address on any interface. While this matches the expectation that an IP address belongs to the device, not an interface, it can cause some unexpected and undesirable behavior on a router.</p>
 <p>For example, if the <code>arp_ignore</code> parameter were set to <em>0</em> and an ARP request is received on one interface for the IP address residing on a different interface, the switch responds with an ARP reply even if the interface of the target address is down. This can cause a loss of traffic due to incorrect understanding about the reachability of next-hops, and also makes troubleshooting extremely challenging for some failure conditions.</p>
+<!-- 4.0B4 remove next paragraph - default is 2 -->
 <p>In Cumulus Linux, the <code>arp_ignore</code> value is set to <em>1</em> so that it only replies to ARP requests on the interface that contains the target IP address. This acts much more like a traditional router and provides simplicity in troubleshooting and operation.</p></td>
 </tr>
 <tr class="odd">

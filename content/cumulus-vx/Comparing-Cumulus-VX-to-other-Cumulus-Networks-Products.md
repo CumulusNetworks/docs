@@ -23,26 +23,18 @@ available.
 The following table outlines the similarities and differences between
 Cumulus VX and other Cumulus Networks operating systems:
 
-| Feature or Functionality                             | Cumulus VX                                                                                                                                                                                   |
-| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Installation and Upgrade                             | New images available with every GA release.                                                                                                                                                  |
-| Hardware acceleration                                | Datapath forwarding is dependent on the choice of hypervisor and VM resources.                                                                                                               |
-| Hardware management                                  | None                                                                                                                                                                                         |
-| Hardware limitations                                 | None. Dependent on hypervisor and VM resources. Certain features such as route-table-size might accommodate more routes than are supported in hardware (32K routes), given available memory. |
-| Production-ready                                     | No                                                                                                                                                                                           |
-| Linux extensibility                                  | Yes                                                                                                                                                                                          |
-| Layer 2 features                                     | Yes; hypervisor/topology manager dependent.                                                                                                                                                  |
-| Layer 3 features                                     | Yes                                                                                                                                                                                          |
-| Network virtualization                               | Yes (software forwarding)                                                                                                                                                                    |
-| OS management (ZTP, ifupdown2, third party packages) | Yes                                                                                                                                                                                          |
-| Automation, monitoring, troubleshooting              | Yes                                                                                                                                                                                          |
-| Security                                             | Yes                                                                                                                                                                                          |
-| QoS                                                  | Yes                                                                                                                                                                                          |
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+| Feature or Functionality       | Cumulus VX |
+| ------------------------ | -------------------------------- |
+| Installation and Upgrade                             | New images available with every GA release.       |
+| Hardware acceleration                                | Datapath forwarding is dependent on the choice of hypervisor and VM resources.   |
+| Hardware management       | None  |
+| Hardware limitations             | None. Dependent on hypervisor and VM resources. Certain features such as route-table-size might accommodate more routes than are supported in hardware (32K routes), given available memory. |
+| Production-ready                 | No |
+| Linux extensibility                  | Yes |
+| Layer 2 features                                     | Yes; hypervisor/topology manager dependent.      |
+| Layer 3 features                                     | Yes                                             |
+| Network virtualization                               | Yes (software forwarding)                       |
+| OS management (ZTP, ifupdown2, third party packages) | Yes                                             |
+| Automation, monitoring, troubleshooting              | Yes                                             |
+| Security                                             | Yes                                             |
+| QoS                                                  | Yes                                             |

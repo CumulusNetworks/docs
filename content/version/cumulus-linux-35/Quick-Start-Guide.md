@@ -29,12 +29,6 @@ Windows, you should use a Linux environment like
 [Cygwin](http://www.cygwin.com/) as your command line tool for
 interacting with Cumulus Linux.
 
-<div class="confbox admonition admonition-tip">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
 {{%notice info%}}
 
 If you're a networking engineer but are unfamiliar with Linux concepts,
@@ -48,13 +42,9 @@ Linux in general and some Cumulus Linux-specific concepts in particular.
 
 {{%/notice%}}
 
-</div>
-
-</div>
-
 {{%/notice%}}
 
-### Installation</span>
+### Installation
 
 To install Cumulus Linux, you use
 [ONIE](https://github.com/opencomputeproject/onie/wiki) (Open Network
@@ -131,7 +121,7 @@ After installing Cumulus Linux, you are ready to:
   - Configure Cumulus Linux. This quick start guide provides
     instructions on configuring switch ports and a loopback interface.
 
-#### <span id="src-8357328_QuickStartGuide-upgrading-cumulus-linux" class="confluence-anchor-link"></span>Upgrade to the Latest Version</span>
+#### Upgrade to the Latest Version
 
 If you are running a Cumulus Linux version earlier than 3.0.0, you must
 perform a complete install, as [described
@@ -141,7 +131,7 @@ Cumulus
 Linux](Managing-Cumulus-Linux-Disk-Images.html#src-8357414_ManagingCumulusLinuxDiskImages-upgrade)
 for considerations before start the process.
 
-### Getting Started</span>
+### Getting Started
 
 When bringing up Cumulus Linux for the first time, the management port
 makes a DHCPv4 request. To determine the IP address of the switch, you
@@ -149,7 +139,7 @@ can cross reference the MAC address of the switch with your DHCP server.
 The MAC address should be located on the side of the switch or on the
 box in which the unit was shipped.
 
-#### Login Credentials</span>
+#### Login Credentials
 
 The default installation includes one system account, *root*, with full
 system privileges, and one user account, *cumulus*, with `sudo`
@@ -176,7 +166,7 @@ change the system configuration require this elevated level of access.
 For more information about sudo, read [Using sudo to Delegate
 Privileges](/version/cumulus-linux-35/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
 
-#### Serial Console Management</span>
+#### Serial Console Management
 
 Users are encouraged to perform management and configuration over the
 network, [either in band or out of
@@ -187,7 +177,7 @@ prefer the convenience of network-based management.
 Typically, switches ship from the manufacturer with a mating DB9 serial
 cable. Switches with ONIE are always set to a 115200 baud rate.
 
-#### Wired Ethernet Management</span>
+#### Wired Ethernet Management
 
 Switches supported in Cumulus Linux always contain at least one
 dedicated Ethernet management port, which is named eth0. This interface
@@ -218,7 +208,7 @@ file:
 
 {{%/notice%}}
 
-#### Configuring the Hostname and Timezone</span>
+#### Configuring the Hostname and Timezone
 
 To change the hostname, run `net add hostname`, which modifies both the
 ` /etc/hostname  `and `/etc/hosts` files with the desired hostname.
@@ -261,7 +251,7 @@ required.
 
 {{%/notice%}}
 
-#### Verifying the System Time</span>
+#### Verifying the System Time
 
 Before you install the license, verify that the switch's date and time
 are correct. You must [correct the
@@ -273,7 +263,7 @@ one after you restart `switchd`:
 > Warning: Unit file of switchd.service changed on disk, 'systemctl
 > daemon-reload' recommended.
 
-#### Installing the License</span>
+#### Installing the License
 
 Cumulus Linux is licensed on a per-instance basis. Each network system
 is fully operational, enabling any capability to be utilized on the
@@ -325,14 +315,14 @@ described above.
 
 {{%/notice%}}
 
-### Configuring Breakout Ports with Splitter Cables</span>
+### Configuring Breakout Ports with Splitter Cables
 
 If you are using 4x10G DAC or AOC cables, or want to break out 100G or
 40G switch ports, configure the breakout ports. For more details, see
 [Layer 1 and Switch Port
 Attributes](Layer-1-and-Switch-Port-Attributes.html#src-8357670_Layer1andSwitchPortAttributes-breakout).
 
-### Testing Cable Connectivity</span>
+### Testing Cable Connectivity
 
 By default, all data plane ports (every Ethernet port except the
 management interface, eth0) are disabled.
@@ -379,15 +369,15 @@ modes:
     ADMDN  rename13                  0M       1500   NotConfigured
     ADMDN  vagrant                   0M       1500   NotConfigured
 
-### Configuring Switch Ports</span>
+### Configuring Switch Ports
 
-#### Layer 2 Port Configuration</span>
+#### Layer 2 Port Configuration
 
 Cumulus Linux does not put all ports into a bridge by default. To create
 a bridge and configure one or more front panel ports as members of the
 bridge, use the following examples as guides.
 
-##### Examples</span>
+##### Examples
 
 {{%notice info%}}
 
@@ -445,7 +435,7 @@ bridge](https://support.cumulusnetworks.com/hc/en-us/articles/203508477).
 
 {{%/notice%}}
 
-#### Layer 3 Port Configuration</span>
+#### Layer 3 Port Configuration
 
 The NCLU can also be used to configure a front panel port or bridge
 interface as a layer 3 port.
@@ -499,7 +489,7 @@ To view the changes in the kernel use the `ip addr show` command:
            valid_lft forever preferred_lft forever
     ...
 
-### Configuring a Loopback Interface</span>
+### Configuring a Loopback Interface
 
 Cumulus Linux has a loopback preconfigured in `/etc/network/interfaces`.
 When the switch boots up, it has a loopback interface, called *lo*,

@@ -15,7 +15,7 @@ This chapter discusses the various network interfaces on a switch
 running Cumulus Linux, how to configure various interface-level settings
 (if needed) and some troubleshooting commands.
 
-## Interface Types</span>
+## Interface Types
 
 Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
@@ -31,7 +31,7 @@ and logical devices:
   - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
     port channels)
 
-## Interface Settings</span>
+## Interface Settings
 
 Each physical network interface has a number of configurable settings:
 
@@ -59,7 +59,7 @@ unsupported error gets returned.
 
 {{%/notice%}}
 
-### Differences between Broadcom-based and Mellanox-based Switches</span>
+### Differences between Broadcom-based and Mellanox-based Switches
 
 On a Broadcom-based switch, all you need to do is enable
 auto-negotiation. Once enabled, Cumulus Linux automatically configures
@@ -75,7 +75,7 @@ with one exception — you only need to configure is
 need to enable auto-negotation, as the Mellanox firmware configures
 everything for you.
 
-### <span id="src-8357670_Layer1andSwitchPortAttributes-autoneg_enable" class="confluence-anchor-link"></span>Enabling Auto-negotiation</span>
+### Enabling Auto-negotiation
 
 To configure auto-negotiation for a Broadcom-based switch, set
 `link-autoneg` to *on* for all the switch ports. For example, to enable
@@ -133,7 +133,7 @@ adjusts for the speed of the cable. However, you **cannot** disable FEC
 separately using
 [NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/).
 
-### <span id="src-8357670_Layer1andSwitchPortAttributes-settings" class="confluence-anchor-link"></span>Default Interface Configuration Settings</span>
+### Default Interface Configuration Settings
 
 The default configuration for each type of interface is described in the
 following table. Except as noted below, the settings for both sides of
@@ -395,7 +395,7 @@ iface swp1
 </tbody>
 </table>
 
-### Port Speed and Duplexing</span>
+### Port Speed and Duplexing
 
 Cumulus Linux supports both half- and
 [full-duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
@@ -427,7 +427,7 @@ snippet:
 
 {{%/notice%}}
 
-#### Port Speed Limitations</span>
+#### Port Speed Limitations
 
 Ports can be configured to one speed less than their maximum speed.
 
@@ -441,7 +441,7 @@ Ports can be configured to one speed less than their maximum speed.
 \*Requires the port to be converted into a breakout port. [See
 below](#src-8357670_Layer1andSwitchPortAttributes-breakout).
 
-### <span id="src-8357670_Layer1andSwitchPortAttributes-mtu" class="confluence-anchor-link"></span>MTU</span>
+### MTU
 
 Interface MTU ([maximum transmission
 unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) applies
@@ -465,7 +465,7 @@ for both the management interface (eth0) and the data plane ports.
 
 {{%/notice%}}
 
-#### MTU for a Bridge</span>
+#### MTU for a Bridge
 
 The MTU setting is the lowest MTU setting of any interface that is a
 member of that bridge (that is, every interface specified in
@@ -503,8 +503,7 @@ or their lower interface; for example, swp1.100 inherits its MTU setting
 from swp1. Hence, specifying an MTU on swp1 ensures that swp1.100
 inherits swp1's MTU setting.
 
-<span id="src-8357670_Layer1andSwitchPortAttributes-mtu_vxlan"></span>If
-you are working with
+If you are working with
 [VXLANs](/version/cumulus-linux-35/Network-Virtualization/), the MTU for
 a virtual network interface (VNI) must be 50 bytes smaller than the MTU
 of the physical interfaces on the switch, as those 50 bytes are required
@@ -532,12 +531,6 @@ These commands create the following code snippet:
     iface swp1
        mtu 9000
 
-<div class="confbox admonition admonition-warning">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
 {{%notice info%}}
 
 You must take care to ensure there are no MTU mismatches in the
@@ -545,10 +538,6 @@ conversation path. MTU mismatches will result in dropped or truncated
 packets, degrading or blocking network performance.
 
 {{%/notice%}}
-
-</div>
-
-</div>
 
 {{%/notice%}}
 
@@ -572,7 +561,7 @@ To view the MTU setting, use `net show interface <interface>`:
     --  ------  -----------------  -------  -----  ---------
     UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
 
-### Setting a Policy for Global System MTU</span>
+### Setting a Policy for Global System MTU
 
 For a global policy to set MTU, create a policy document (called
 `mtu.json` here) like the following:
@@ -601,7 +590,7 @@ attributes in `/var/lib/ifupdown2/policy.d/`.
 
 {{%/notice%}}
 
-### Creating a Default Policy for Various Interface Settings</span>
+### Creating a Default Policy for Various Interface Settings
 
 Instead of configuring these settings for each individual interface, you
 can specify a policy for all interfaces on a switch, or tailor custom
@@ -631,7 +620,7 @@ settings for each interface. Create a file in
         }
     }
 
-## <span id="src-8357670_Layer1andSwitchPortAttributes-breakout" class="confluence-anchor-link"></span>Configuring Breakout Ports</span>
+## Configuring Breakout Ports
 
 Cumulus Linux has the ability to:
 
@@ -831,12 +820,6 @@ options: four 10G ports, four 25G ports or two 50G ports. Keep in mind
 that you cannot have more than 128 total logical ports on a Broadcom
 switch.
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
 {{%notice info%}}
 
 The Mellanox SN2700, SN2700B, SN2410, and SN2410B switches both have a
@@ -844,7 +827,6 @@ limit of 64 logical ports in total. However, if you want to break out to
 4x25G or 4x10G, you must configure the logical ports as follows:
 
   - You can only break out odd-numbered ports into 4 logical ports.
-
   - You must disable the next even-numbered port.
 
 These restrictions do not apply to a 2x50G breakout configuration.
@@ -866,10 +848,6 @@ mode.
 
 {{%/notice%}}
 
-</div>
-
-</div>
-
 {{%/notice%}}
 
 {{%notice tip%}}
@@ -880,7 +858,7 @@ SN2700](https://community.mellanox.com/docs/DOC-2685).
 
 {{%/notice%}}
 
-### Removing a Breakout Port</span>
+### Removing a Breakout Port
 
 To remove a breakout port, run `net add interface swp# breakout 1x`.
 Continuing with the previous example:
@@ -889,7 +867,7 @@ Continuing with the previous example:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-### Combining Four 10G Ports into One 40G Port</span>
+### Combining Four 10G Ports into One 40G Port
 
 You can *gang* (aggregate) four 10G ports into one 40G port for use with
 a breakout cable, provided you follow these requirements:
@@ -918,7 +896,7 @@ These commands create the following configuration snippet in the
     4=40G/4
     5=10G
 
-## Logical Switch Port Limitations</span>
+## Logical Switch Port Limitations
 
 100G and 40G switches can support a certain number of logical ports,
 depending upon the manufacturer; these include:
@@ -968,7 +946,7 @@ total. However, the logical ports must be configured in a specific way.
 See [the note](#src-8357670_Layer1andSwitchPortAttributes-breakout)
 above.
 
-## <span id="src-8357670_Layer1andSwitchPortAttributes-ethtool" class="confluence-anchor-link"></span>Using ethtool to Configure Interfaces</span>
+## Using ethtool to Configure Interfaces
 
 The Cumulus Linux `ethtool` command is an alternative for configuring
 interfaces as well as viewing and troubleshooting them.
@@ -985,9 +963,9 @@ To view the FEC setting on an interface, run:
     Auto-negotiation: off
     FEC encodings : RS
 
-## Verification and Troubleshooting Commands</span>
+## Verification and Troubleshooting Commands
 
-### Statistics</span>
+### Statistics
 
 High-level interface statistics are available with the `net show
 interface` command:
@@ -1047,7 +1025,7 @@ Low-level interface statistics are available with `ethtool`:
          SoftOutTxFifoFull: 0
          HwIfOutQLen: 0
 
-### Querying SFP Port Information</span>
+### Querying SFP Port Information
 
 You can verify SFP settings using ` ethtool -m  `. The following example
 shows the output for 1G and 10G modules:
@@ -1063,9 +1041,9 @@ shows the output for 1G and 10G modules:
                   RXPower : -3.2532dBm
                   TXPower : -2.0817dBm
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-### Timeout Error on Quanta LY8 and LY9 Switches</span>
+### Timeout Error on Quanta LY8 and LY9 Switches
 
 On Quanta T5048-LY8 and T3048-LY9 switches, an "Operation timed out"
 error occurs while removing and reinserting QSFP module.
@@ -1088,7 +1066,7 @@ On the T5048-LY8, run the following commands:
     cumulus@switch:~$ sudo echo 0 > qsfpd_power_enable/value
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-### swp33 and swp34 Disabled on Some Switches</span>
+### swp33 and swp34 Disabled on Some Switches
 
 The front SFP+ ports (swp33 and swp34) are disabled in Cumulus Linux on
 the following switches:
@@ -1101,7 +1079,7 @@ the following switches:
 
 These ports appear as disabled in the `/etc/cumulus/ports.conf` file.
 
-### ethtool Shows Incorrect Port Speed on 100G Mellanox Switches</span>
+### ethtool Shows Incorrect Port Speed on 100G Mellanox Switches
 
 After setting interface speed to 40G by editing the `ports.conf` file on
 a Mellanox switch, `ethtool` still shows the speed as 100G.
@@ -1122,7 +1100,7 @@ Or using `ethtool`:
 
     cumulus@switch:~$ sudo ethtool -s swp1 speed 40000 
 
-## Related Information</span>
+## Related Information
 
   - [Debian - Network
     Configuration](http://wiki.debian.org/NetworkConfiguration)

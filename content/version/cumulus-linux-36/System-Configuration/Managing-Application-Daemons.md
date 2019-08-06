@@ -11,20 +11,15 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
-<details>
-
 You manage application daemons (services) in Cumulus Linux in the
 following ways:
 
   - Identifying active listener ports
-
   - Identifying daemons currently active or stopped
-
   - Identifying boot time state of a specific daemon
-
   - Disabling or enabling a specific daemon
 
-## Using systemd and the systemctl Command</span>
+## Using systemd and the systemctl Command
 
 In general, you manage services using `systemd` via the `systemctl`
 command. You use it with any service on the switch to
@@ -44,39 +39,32 @@ written **after** the systemctl subcommand, not before it.
 
 {{%/notice%}}
 
-### Understanding the systemctl Subcommands</span>
+### Understanding the systemctl Subcommands
 
 `systemctl` has a number of subcommands that perform a specific
 operation on a given daemon.
 
   - **status**: Returns the status of the specified daemon.
-
   - **start**: Starts the daemon.
-
   - **stop**: Stops the daemon.
-
   - **restart**: Stops, then starts the daemon, all the while
     maintaining state. So if there are dependent services or services
     that mark the restarted service as *Required*, the other services
     also get restarted. For example, running `systemctl restart
     frr.service` restarts any of the routing protocol daemons that are
     enabled and running, such as `bgpd` or `ospfd`.
-
   - **reload**: Reloads a daemon's configuration.
-
   - **enable**: Enables the daemon to start when the system boots, but
     does not start it unless you use the `systemctl start
     SERVICENAME.service` command or reboot the switch.
-
   - **disable**: Disables the daemon, but does not stop it unless you
     use the `systemctl stop SERVICENAME.service` command or reboot the
     switch. A disabled daemon can still be started or stopped.
-
   - **reenable**: Disables, then enables a daemon. You might need to do
     this so that any new *Wants* or *WantedBy* lines create the symlinks
     necessary for ordering. This has no side effects on other daemons.
 
-### Ensuring a Service Starts after Multiple Restarts</span>
+### Ensuring a Service Starts after Multiple Restarts
 
 By default, `systemd` is configured to try to restart a particular
 service only a certain number of times within a given interval before
@@ -102,14 +90,14 @@ you know you are going to restart frequently (multiple times within the
 StartLimitInterval), you can run the same command before you issue the
 restart request. This also applies to stop followed by start.
 
-### Keeping systemd Services from Hanging after Starting</span>
+### Keeping systemd Services from Hanging after Starting
 
 If you start, restart or reload any `systemd` service that could be
 started from another `systemd` service, you must use the `--no-block`
 option with `systemctl`. Otherwise, that service or even the switch
 itself may hang after starting or restarting.
 
-## Identifying Active Listener Ports for IPv4 and IPv6</span>
+## Identifying Active Listener Ports for IPv4 and IPv6
 
 You can identify the active listener ports under both IPv4 and IPv6
 using the `netstat` command:
@@ -138,7 +126,7 @@ using the `netstat` command:
     udp6       0      0 :::4784                 :::*                                909/ptmd        
     udp6       0      0 :::3784                 :::*                                909/ptmd
 
-## Identifying Daemons Currently Active or Stopped</span>
+## Identifying Daemons Currently Active or Stopped
 
 To determine which daemons are currently active or stopped, run
 `cl-service-summary`:
@@ -171,6 +159,7 @@ To determine which daemons are currently active or stopped, run
 You can also run `systemctl list-unit-files --type service` to list all
 services on the switch and see which ones are enabled:
 
+<details>
 <summary>Click here to see output of this command ... </summary>
 
     cumulus@switch:~$ systemctl list-unit-files --type service
@@ -369,7 +358,9 @@ services on the switch and see which ones are enabled:
     191 unit files listed.
     lines 147-194/194 (END)
 
-## Identifying Essential Services</span>
+</details>
+
+## Identifying Essential Services
 
 If you need to know which services are required to run when the switch
 boots, run:
@@ -378,48 +369,20 @@ boots, run:
 
 To see which services are needed for networking, run:
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>cumulus@switch:~$ sudo systemctl list-dependencies --after network.target
-network.target</code></pre>
-<p><span style="color: #5cdd49;"> <strong>●</strong> </span> <code>├─networking.service</code><br />
-<span style="color: #5cdd49;"> <strong>●</strong> </span> <code>├─switchd.service</code><br />
-<span style="color: #5cdd49;"> <strong>●</strong> </span> <code>├─wd_keepalive.service</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>└─network-pre.target</code></p></td>
-</tr>
-</tbody>
-</table>
+<pre>cumulus@switch:~$ sudo systemctl list-dependencies --after network.target
+network.target
+<span style="color: #5cdd49;"> <strong>●</strong> </span> ├─networking.service
+<span style="color: #5cdd49;"> <strong>●</strong> </span> ├─switchd.service
+<span style="color: #5cdd49;"> <strong>●</strong> </span> ├─wd_keepalive.service
+<span style="color: #6a0900;"> <strong>●</strong> </span> └─network-pre.target</pre>
 
 To identify the services needed for a multi-user environment, run:
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>cumulus@leaf01:~$ sudo systemctl list-dependencies --before multi-user.target
-multi-user.target</code></pre>
-<p><span style="color: #6a0900;"> <strong>●</strong> </span> <code>├─bootlog.service</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>├─systemd-readahead-done.service</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>├─systemd-readahead-done.timer</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>├─systemd-update-utmp-runlevel.service</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>└─graphical.target</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>└─systemd-update-utmp-runlevel.service</code></p></td>
-</tr>
-</tbody>
-</table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>
+<pre>cumulus@leaf01:~$ sudo systemctl list-dependencies --before multi-user.target
+multi-user.target
+<span style="color: #6a0900;"> <strong>●</strong> </span> ├─bootlog.service
+<span style="color: #6a0900;"> <strong>●</strong> </span> ├─systemd-readahead-done.service
+<span style="color: #6a0900;"> <strong>●</strong> </span> ├─systemd-readahead-done.timer
+<span style="color: #6a0900;"> <strong>●</strong> </span> ├─systemd-update-utmp-runlevel.service
+<span style="color: #6a0900;"> <strong>●</strong> </span> └─graphical.target
+<span style="color: #6a0900;"> <strong>●</strong> </span> └─systemd-update-utmp-runlevel.service</pre>

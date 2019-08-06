@@ -23,7 +23,7 @@ guide](https://www.vagrantup.com/intro/getting-started/index.html).
 
 {{%/notice%}}
 
-## Configure the Vagrant Environment</span>
+## Configure the Vagrant Environment
 
 {{%notice note%}}
 
@@ -51,7 +51,7 @@ To set up the Vagrant environment:
     
     {{%notice note%}}
     
-    Vagrant downloads and installs the latest Cumulus VX VirtualBox
+Vagrant downloads and installs the latest Cumulus VX VirtualBox
     image.
     
     {{%/notice%}}
@@ -73,12 +73,11 @@ To set up the Vagrant environment:
 
 Cumulus Networks provides several preconfigured demos to run with
 Vagrant using Ansible to configure the VMs. To run these demos, download
-and install [Ansible 1.7 or
-newer](https://pypi.python.org/pypi/ansible).
+and install [Ansible 1.7 or newer](https://pypi.python.org/pypi/ansible).
 
 {{%/notice%}}
 
-## Configure a Cumulus VX VM with Vagrant</span>
+## Configure a Cumulus VX VM with Vagrant
 
 1.  In a terminal, create a folder to contain the Vagrant environment,
     then change directories into that folder.
@@ -103,7 +102,7 @@ newer](https://pypi.python.org/pypi/ansible).
     
     {{%notice note%}}
     
-    Cumulus VX 3.y.z images require at least 512MB to be fully
+Cumulus VX 3.y.z images require at least 512MB to be fully
     functional. The default Vagrant memory size is 512MB. If performance
     issues exist, increase the amount of memory by setting the
     `v.memory` variable in the `Vagrantfile` to *512* or more. You can
@@ -159,12 +158,11 @@ For more information on configuring VMs with Vagrant, see
 [docs.vagrantup.com/v2/](https://docs.vagrantup.com/v2/).
 
 You can explore the various demos available as part of the
-cldemo-vagrant family of repositories located here:
-<https://github.com/CumulusNetworks/cldemo-vagrant#available-demos>.
+cldemo-vagrant family of repositories located [here](https://github.com/CumulusNetworks/cldemo-vagrant#available-demos).
 
-## Additional Configuration Options</span>
+## Additional Configuration Options
 
-### Add Switch Port Interfaces to a Cumulus VX VM</span>
+### Add Switch Port Interfaces to a Cumulus VX VM
 
 By default Vagrant only configures the first network interface (eth0)
 for its own use. You must configure additional network interfaces, such
@@ -192,7 +190,7 @@ For more information on creating and using private networks, see
 and
 [docs.vagrantup.com/v2/virtualbox/networking.html](https://docs.vagrantup.com/v2/virtualbox/networking.html).
 
-### Create Multiple Cumulus VX VMs</span>
+### Create Multiple Cumulus VX VMs
 
 Vagrant can create and configure multiple VMs with a single command. For
 example, you can use Vagrant to create multiple Cumulus VX VMs and then
@@ -231,73 +229,25 @@ VM and configure the interfaces as you want; the interfaces will pass
 traffic between themselves as if they are two physical switches
 connected together by four cables.
 
-## Limitations</span>
+## Limitations
 
 At this time, there are some limitations to using Vagrant with Cumulus
 VX:
 
   - VirtualBox can only support a maximum of 36 network interfaces.
-
   - The first network interface (eth0) is always managed by Vagrant and
     must be connected to a NAT network.
 
-## Test Configuration</span>
+## Test Configuration
 
 Cumulus VX for Vagrant has been tested in the following environments:
 
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Host OS</p></th>
-<th><p>Vagrant Version(s)</p></th>
-<th><p>VirtualBox Version(s)</p></th>
-<th><p>Notes</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>OS X 10.10</p></td>
-<td><p>1.7.3<br />
-1.7.4</p></td>
-<td><p>4.3<br />
-5.0</p></td>
-<td><p> </p></td>
-</tr>
-<tr class="even">
-<td><p>Ubuntu 14.04</p></td>
-<td><p>1.7.4</p></td>
-<td><p>4.3</p></td>
-<td><p> </p></td>
-</tr>
-<tr class="odd">
-<td><p>Ubuntu 16.04</p></td>
-<td><p>1.8.5<br />
-1.8.6<br />
-1.8.7<br />
-1.9.1</p></td>
-<td><p>5.0.26</p></td>
-<td><p> </p></td>
-</tr>
-<tr class="even">
-<td><p>Windows 7</p></td>
-<td><p>1.7.3</p></td>
-<td><p>5.0</p></td>
-<td><p>While both VirtualBox and Vagrant are fully supported on Windows hosts, Vagrant provisioning with Ansible is not.<br />
-Cumulus VX demos that use Ansible do not work on Windows.</p></td>
-</tr>
-</tbody>
-</table>
+|Host OS|Vagrant Version(s)|VirtualBox Version(s)|Notes|
+|--- |--- |--- |--- |
+|OS X 10.10|1.7.3
+1.7.4|4.3
+5.0||
+|Ubuntu 14.04|1.7.4|4.3||
+|Ubuntu 16.04|1.8.5<br />1.8.6<br />1.8.7<br />1.9.1|5.0.26||
+|Windows 7|1.7.3|5.0|While both VirtualBox and Vagrant are fully supported on Windows hosts, Vagrant provisioning with Ansible is not.<br />Cumulus VX demos that use Ansible do not work on Windows.|
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

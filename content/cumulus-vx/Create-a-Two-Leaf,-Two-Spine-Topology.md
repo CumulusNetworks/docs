@@ -16,24 +16,22 @@ FRRouting for a two-leaf/two-spine Cumulus VX network topology:
 
   - Two spine VMs that represent two spine (aggregation layer) switches
     on the network.
-
   - Two leaf VMs that represent two leaf (access layer) switches on the
-    network.  
-      
+    network.   
     
-    {{% imgOld 0 %}}
+{{% imgOld 0 %}}
 
 {{%notice note%}}
 
 These instructions assume that you have installed the relevant images
 and hypervisors, created four VMs with appropriate names, and that the
-VMs are running. Refer to the [Getting
-Started](/cumulus-vx/Getting-Started/) chapter of this guide for more
+VMs are running. Refer to the 
+[Getting Started](/cumulus-vx/Getting-Started/) chapter of this guide for more
 information on setting up the VMs.
 
 {{%/notice%}}
 
-## Configure CumulusVX-leaf1</span>
+## Configure CumulusVX-leaf1
 
 You can configure each of the VMs using the Network Command Line Utility
 (NCLU) or by editing the `/etc/network/interfaces` and
@@ -45,8 +43,8 @@ The following configuration uses unnumbered IP addressing, where you use
 the same /32 IPv4 address on multiple ports. OSPF unnumbered doesn't
 have an equivalent to RFC-5549, so you need to use an IPv4 address to
 bring up the adjacent OSPF neighbors, allowing you to reuse the same IP
-address. You can see some example [unnumbered OSPF
-configurations](https://support.cumulusnetworks.com/hc/en-us/articles/202796476-OSPF-Unnumbered-Sample-Configurations)
+address. You can see some example 
+[unnumbered OSPF configurations](https://support.cumulusnetworks.com/hc/en-us/articles/202796476-OSPF-Unnumbered-Sample-Configurations)
 in the knowledge base.
 
 {{%/notice%}}
@@ -56,7 +54,6 @@ To configure CumulusVX-leaf1:
 1.  Log into the CumulusVX-leaf1 VM using the default credentials:
     
       - username: cumulus
-    
       - password: CumulusLinux\!
 
 2.  As the sudo user, edit the `/etc/frr/daemons` file in a text editor.
@@ -86,7 +83,7 @@ To configure CumulusVX-leaf1:
     
     {{%notice note%}}
     
-    To edit the configuration files directly as the sudo user, copy the
+To edit the configuration files directly as the sudo user, copy the
     configurations below.
     
     {{%/notice%}}
@@ -135,7 +132,7 @@ To configure CumulusVX-leaf1:
     
         cumulus@switch:~$ sudo systemctl restart frr.service
 
-## Configure the Remaining VMs</span>
+## Configure the Remaining VMs
 
 The configuration steps for CumulusVX-leaf2, CumulusVX-spine1, and
 CumulusVX-spine2 are the same as
@@ -300,7 +297,7 @@ continuing.
 
 {{%/notice%}}
 
-## Create Point-to-Point Connections Between VMs</span>
+## Create Point-to-Point Connections Between VMs
 
 To use the two-leaf/two-spine Cumulus VX network topology you configured
 above, you need to configure the network adapter settings for each VM to
@@ -364,7 +361,7 @@ Make sure that the VM is powered off.
 |                  | swp2 | Adapter 3            | Internal                | Intnet-4 |
 |                  | swp3 | Adapter 4 (disabled) |                         |          |
 
-## Test the Network Topology Connections</span>
+## Test the Network Topology Connections
 
 After you restart the VMs, ping across VMs to test the connections:
 
@@ -381,11 +378,3 @@ After you restart the VMs, ping across VMs to test the connections:
       - Ping CumulusVX-spine2:
         
             cumulus@CumulusVX-leaf1:~$ ping 10.2.1.4
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

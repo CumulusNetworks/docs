@@ -11,15 +11,12 @@ version: '3.0'
 imgData: cumulus-vx-30
 siteSlug: cumulus-vx-30
 ---
-## Requirements</span>
+## Requirements
 
-  - Cumulus VX requires [Vagrant 1.7 or
-    newer](https://www.vagrantup.com/downloads.html)
+  - Cumulus VX requires [Vagrant 1.7 or newer](https://www.vagrantup.com/downloads.html)
+  - Understand these [VirtualBox considerations](Using-Cumulus-VX-with-VirtualBox.html#src-5126581_UsingCumulusVXwithVirtualBox-reqs)
 
-  - Understand these [VirtualBox
-    considerations](Using-Cumulus-VX-with-VirtualBox.html#src-5126581_UsingCumulusVXwithVirtualBox-reqs)
-
-## Setting Up the Vagrant Environment</span>
+## Setting Up the Vagrant Environment
 
 You can use Cumulus VX within a Vagrant environment, running the VMs
 with VirtualBox. To get started you need to download some software as
@@ -56,7 +53,7 @@ repository](https://github.com/CumulusNetworks/cumulus-vx-vagrant).
     newer](https://pypi.python.org/pypi/ansible), which Vagrant uses to
     configure the virtual machines.
 
-## Configuring a Cumulus VX Virtual Machine with Vagrant</span>
+## Configuring a Cumulus VX Virtual Machine with Vagrant
 
 Vagrant uses a configuration file (`Vagrantfile`) to create and
 configure one or more virtual machines. Create a `Vagrantfile` with the
@@ -96,7 +93,7 @@ machine:
     ==> default: Mounting shared folders...
         default: /vagrant => /Users/cumulus/vx-example
 
-### Logging in to the VM</span>
+### Logging in to the VM
 
 Once you create the virtual machine, log in to it using:
 
@@ -115,7 +112,7 @@ running:
 You can find all the documentation for configuring virtual machines with
 Vagrant at [docs.vagrantup.com/v2/](https://docs.vagrantup.com/v2/).
 
-### Adding Switch Port Interfaces to a Cumulus VX Virtual Machine</span>
+### Adding Switch Port Interfaces to a Cumulus VX Virtual Machine
 
 By default Vagrant only configures the first network interface (eth0)
 for its own use. Additional network interfaces, such as the Cumulus
@@ -143,7 +140,7 @@ You can find more information on creating and using private networks at
 and
 [docs.vagrantup.com/v2/virtualbox/networking.html](https://docs.vagrantup.com/v2/virtualbox/networking.html).
 
-### Creating Multiple Cumulus VX Virtual Machines</span>
+### Creating Multiple Cumulus VX Virtual Machines
 
 Vagrant can create and configure multiple virtual machines with a single
 command. For example, you can use Vagrant to create multiple Cumulus VX
@@ -184,19 +181,17 @@ log in to each virtual machine and configure the interfaces as you wish,
 and the interfaces will pass traffic between themselves as though they
 were two physical switches connected together by four cables.
 
-## Limitations</span>
+## Limitations
 
 At this time, there are some limitations to using Vagrant with Cumulus
 VX:
 
   - You cannot run KVM virtual machines under Vagrant.
-
   - VirtualBox can only support a maximum of 36 network interfaces.
-
   - The first network interface (eth0) is always managed by Vagrant and
     must be connected to a NAT network.
 
-## Test Configuration</span>
+## Test Configuration
 
 Cumulus VX for Vagrant has been tested in the following environments:
 
@@ -240,7 +235,7 @@ Cumulus VX demos that use Ansible will not work on Windows.</p></td>
 </tbody>
 </table>
 
-## Preconfigured Cumulus VX Examples</span>
+## Preconfigured Cumulus VX Examples
 
 Cumulus Networks makes it easy to build a two-leaf/two-spine topology
 within a Vagrant environment, requiring very little programming
@@ -288,7 +283,7 @@ iface peer16.4000 inet static
 </tbody>
 </table>
 
-### Getting the Demos from GitHub</span>
+### Getting the Demos from GitHub
 
 The demos are stored on GitHub, so you can just run `git clone` to get
 them all:
@@ -303,7 +298,7 @@ them all:
     $ ls
     CumulusVX-2.5.3-4eb681f3df86c478.box cumulus-vx-vagrant
 
-### Modifying the Demos</span>
+### Modifying the Demos
 
 You can modify the two leaf/two spine topology by changing the
 `numSpines` and `numLeaves` variables in `properties.yml`:
@@ -324,7 +319,7 @@ You can modify the MLAG demo by changing the variables in the
     :racksPerPod:  2
     :podsPerDC:    1
 
-### About the OSPF Unnumbered Interfaces Configuration</span>
+### About the OSPF Unnumbered Interfaces Configuration
 
 For the OSPF unnumbered configuration, the basic idea is to assign *the
 same* IP address for each network node. Assign the IP address first to
@@ -332,25 +327,16 @@ the loopback interface, then assign that same IP address to every other
 network interface except the management interface, eth0, as it is on a
 separate network and requires its own IP address.
 
-### About the BGP Unnumbered Interfaces Configuration</span>
+### About the BGP Unnumbered Interfaces Configuration
 
 Cumulus Networks introduced the ability to configure BGP using interface
 names instead of the IP address of the remote peer. The remote peer's
 IPv6 link-local address is then determined using IPv6 router
 advertisement, which is then used to set up a BGP session based on this
-address. Finally, IPv4 and IPv6 addresses are exchanged over this
-session.
+address. Finally, IPv4 and IPv6 addresses are exchanged over this session.
 
 To advertise IPv4 prefixes over an IPv6 session, Cumulus VX uses
 Extended Next-Hop Encoding (RFC-5549). Cumulus VX also enables the
 ability to specify whether the session is an iBGP or eBGP session,
 without specifying the remote node's ASN. Both of these simplifications
 lead to a phenomenal simplification in configuring BGP.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

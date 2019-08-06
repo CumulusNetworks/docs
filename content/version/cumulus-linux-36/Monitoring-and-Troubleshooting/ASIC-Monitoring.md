@@ -11,17 +11,13 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
-<details>
-
 Cumulus Linux provides an ASIC monitoring tool that collects and
 distributes data about the state of the ASIC. The monitoring tool polls
 for data at specific intervals and takes certain actions so that you can
 quickly identify and respond to problems, such as:
 
   - Microbursts that result in longer packet latency
-
   - Packet buffer congestion that might lead to packet drops
-
   - Network problems with a particular switch, port, or traffic class
 
 {{%notice note%}}
@@ -30,26 +26,19 @@ ASIC monitoring is currently supported on Mellanox switches only.
 
 {{%/notice%}}
 
-<span style="color: #36424a;"> Contents </span>
-
-<summary>(Click to expand) </summary>
-
-## What Type of Statistics Can You Collect?</span>
+## What Type of Statistics Can You Collect?
 
 You can collect the following type of statistics with the ASIC
 monitoring tool:
 
   - A fine-grained history of queue lengths using histograms maintained
     by the ASIC
-
   - Packet counts per port, priority and size
-
   - Dropped packet, pause frame, and ECN-marked packet counts
-
   - Buffer congestion occupancy per port, priority and buffer pool, and
     at input and output ports
 
-### Collecting Queue Lengths in Histograms</span>
+### Collecting Queue Lengths in Histograms
 
 The Mellanox Spectrum ASIC provides a mechanism to measure and report
 egress queue lengths in histograms (a graphical representation of data,
@@ -72,31 +61,18 @@ For example, consider the following histogram queue length ranges, in
 bytes:
 
   - Min = 960
-
   - Histogram size = 12288
-
   - Max = 13248
-
   - Range size = 1536
-
   - Bin 0: 0:959
-
   - Bin 1: 960:2495
-
   - Bin 2: 2496:4031
-
   - Bin 3: 4032:5567
-
   - Bin 4: 5568:7103
-
   - Bin 5: 7104:8639
-
   - Bin 6: 8640:10175
-
   - Bin 7: 10176:11711
-
   - Bin 8: 11712:13247
-
   - Bin 9: 13248:\*
 
 The following illustration demonstrates a histogram showing how many
@@ -106,7 +82,7 @@ bytes 125 times within one second.
 
 {{% imgOld 0 %}}
 
-## Configuring ASIC Monitoring</span>
+## Configuring ASIC Monitoring
 
 The ASIC monitoring tool is managed by the `asic-monitor` service,
 (which is managed by `systemd`). The `asic-monitor` service reads the
@@ -133,9 +109,7 @@ write the results to a snapshot file. When the size of the queue reaches
 
 To monitor queue lengths using a histogram:
 
-1.  <span style="color: #333333;"> Open the </span>
-    ` /etc/cumulus/datapath/monitor.conf  `
-    <span style="color: #333333;"> file in a text editor. </span>
+1.  Open the `/etc/cumulus/datapath/monitor.conf` file in a text editor. 
     
         cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
 
@@ -217,7 +191,7 @@ To monitor queue lengths using a histogram:
     
     {{%notice note%}}
     
-    Restarting the `asic-monitor` service does not disrupt traffic or
+Restarting the `asic-monitor` service does not disrupt traffic or
     require you to restart `switchd`. The service is enabled by default
     when you boot the switch and restarts when you restart `switchd`.
     
@@ -225,9 +199,9 @@ To monitor queue lengths using a histogram:
     
     {{%notice note%}}
     
-    **Important**
+**Important**
     
-    Overhead is involved in collecting the data, which uses both the CPU
+Overhead is involved in collecting the data, which uses both the CPU
     and SDK process and can affect execution of `switchd`. Snapshots and
     logs can occupy a lot of disk space if you do not limit their
     number.
@@ -246,30 +220,25 @@ For example, to monitor packet drops due to buffer congestion:
 
 Certain settings in the procedure above (such as the histogram size,
 boundary size, and sampling time) only apply to the histogram monitor.
-All ASIC monitor settings are described in [ASIC Monitoring
-Settings](#src-8362122_ASICMonitoring-ASIC_Settings).
+All ASIC monitor settings are described in 
+[ASIC Monitoring Settings](#asic-monitoring-settings).
 
-## Configuration Examples</span>
+## Configuration Examples
 
 Several configuration examples are provided below.
 
-### Queue Length Histograms</span>
+### Queue Length Histograms
 
 In the following example:
 
   - Queue length histograms are collected every second for swp1 through
     swp50.
-
   - The results are written to the `/var/lib/cumulus/histogram_stats`
     snapshot file.
-
   - The size of the histogram is set to 12288 bytes, the minimum
     boundary to 960 bytes, and the sampling time to 1024 nanoseconds.
-
   - A threshold is set so that when the size of the queue reaches 500
     bytes, the system sends a message to the `/var/log/syslog` file.
-
-<!-- end list -->
 
     monitor.port_group_list                               = [histogram_pg]
     monitor.histogram_pg.port_set                         = swp1-swp50
@@ -285,17 +254,14 @@ In the following example:
     monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
     monitor.histogram_pg.histogram.sample_time_ns         = 1024
 
-### Packet Drops Due to Errors</span>
+### Packet Drops Due to Errors
 
 In the following example:
 
   - Packet drops on swp1 through swp50 are collected every two seconds.
-
   - If the number of packet drops is greater than 100, the results are
     written to the `/var/lib/cumulus/discard_stats snapshot` file and
     the system sends a message to the `/var/log/syslog` file.
-
-<!-- end list -->
 
     monitor.port_group_list                            = [discards_pg]
     monitor.discards_pg.port_set                       = swp1-swp50
@@ -308,7 +274,7 @@ In the following example:
     monitor.discards_pg.snapshot.file                  = /var/lib/cumulus/discard_stats
     monitor.discards_pg.snapshot.file_count            = 16
 
-### Queue Length (Histogram) with Collect Actions</span>
+### Queue Length (Histogram) with Collect Actions
 
 A collect action triggers the collection of additional information. You
 can daisy chain multiple monitors (port groups) into a single collect
@@ -318,25 +284,19 @@ In the following example:
 
   - Queue length histograms are collected for swp1 through swp50 every
     second.
-
   - The results are written to the `/var/lib/cumulus/histogram_stats`
     snapshot file.
-
   - When the queue length reaches 500 bytes, the system sends a message
     to the `/var/log/syslog` file and collects additional data; buffer
     occupancy and all packets per port.
-
   - Buffer occupancy data is written to the
     `/var/lib/cumulus/buffer_stats` snapshot file and all packets per
     port data is written to the `/var/lib/cumulus/all_packet_stats`
     snapshot file.
-
   - In addition, packet drops on swp1 through swp50 are collected every
     two seconds. If the number of packet drops is greater than 100, the
     results are written to the `/var/lib/cumulus/discard_stats` snapshot
     file and a message is sent to the `/var/log/syslog` file.
-
-<!-- end list -->
 
     monitor.port_group_list                               = [histogram_pg,discards_pg]
      
@@ -383,12 +343,12 @@ In the following example:
 Certain actions require additional settings. For example, if the
 `snapshot` action is specified, a snapshot file is also required. If the
 `log` action is specified, a log threshold is also required. See
-[action\_list](#src-8362122_ASICMonitoring-action_setting) for
-additional settings required for each *action*.
+[action\_list](#asic-monitoring-settings) for additional settings required 
+for each *action*.
 
 {{%/notice%}}
 
-## <span id="src-8362122_ASICMonitoring-snapshotExample" class="confluence-anchor-link"></span>Example Snapshot File </span>
+## Example Snapshot File 
 
 A snapshot action writes a snapshot of the current state of the ASIC to
 a file. Because parsing the file and finding the information can be
@@ -397,7 +357,7 @@ the file. The following example shows a snapshot of queue lengths.
 
     {"timestamp_info": {"start_datetime": "2017-03-16 21:36:40.775026", "end_datetime": "2017-03-16 21:36:40.775848"}, "buffer_info": null, "packet_info": null, "histogram_info": {"swp2": {"0": 55531}, "swp32": {"0": 48668}, "swp1": {"0": 64578}}}
 
-## Example Log Message</span>
+## Example Log Message
 
 A log action writes out the ASIC state to the `/var/log/syslog` file. In
 the following example, when the size of the queue reaches 500 bytes, the
@@ -405,7 +365,7 @@ system sends this message to the `/var/log/syslog` file:
 
     2018-02-26T20:14:41.560840+00:00 cumulus asic-monitor-module INFO:  2018-02-26 20:14:41.559967: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg.
 
-## <span id="src-8362122_ASICMonitoring-ASIC_Settings" class="confluence-anchor-link"></span>ASIC Monitoring Settings</span>
+## ASIC Monitoring Settings
 
 The following table provides descriptions of the ASIC monitor settings.
 
@@ -472,7 +432,7 @@ The following table provides descriptions of the ASIC monitor settings.
 </tr>
 <tr class="odd">
 <td><p><code>&lt;port_group_name&gt;.action_list</code></p></td>
-<td><p><span id="src-8362122_ASICMonitoring-action_setting"></span>Specifies one or more actions that occur when data is collected:</p>
+<td><p>Specifies one or more actions that occur when data is collected:</p>
 <ul>
 <li><p><code>snapshot</code> writes a snapshot of the data collection results to a file. If you specify this action, you must also specify a snapshot file (described below). You can also specify a threshold that initiates the snapshot action, but this is not required. For example:<br />
 <code>monitor.histogram_pg.action_list = [snapshot]</code><br />
@@ -550,13 +510,3 @@ In the following example, because the snapshot file count is set to 64, the firs
 </tr>
 </tbody>
 </table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

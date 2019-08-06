@@ -8,7 +8,7 @@ title: "Cumulus Networks Documentation Home"
 
 [Cumulus Linux 3.7](/cumulus-linux/)
 
-[Cumulus NetQ 2.1](/cumulus-netq/)
+[Cumulus NetQ 2.2](/cumulus-netq/)
 
 [Cumulus VX](/cumulus-vx/)
 
@@ -21,17 +21,17 @@ title: "Cumulus Networks Documentation Home"
 
 [Cumulus Linux 3.5](/version/cumulus-linux-35/)
 
-[Cumulus Linux 3.4.3](/version/cumulus-linux-343/)
+[Cumulus Linux 3.4](/version/cumulus-linux-343/)
 
-[Cumulus Linux 3.3.2](/version/cumulus-linux-332/)
+[Cumulus Linux 3.3](/version/cumulus-linux-332/)
 
-[Cumulus Linux 3.3.0](/version/cumulus-linux-330/)
+[Cumulus Linux 3.3](/version/cumulus-linux-330/)
 
-[Cumulus Linux 3.2.1](/version/cumulus-linux-321/)
+[Cumulus Linux 3.2](/version/cumulus-linux-321/)
 
-[Cumulus Linux 3.1.2](/version/cumulus-linux-312/)
+[Cumulus Linux 3.1](/version/cumulus-linux-312/)
 
-[Cumulus Linux 3.0.1](/version/cumulus-linux-301/)
+[Cumulus Linux 3.0](/version/cumulus-linux-301/)
 
 [Cumulus Linux 2.5.12 ESR](/version/cumulus-linux-2512-esr/)
 

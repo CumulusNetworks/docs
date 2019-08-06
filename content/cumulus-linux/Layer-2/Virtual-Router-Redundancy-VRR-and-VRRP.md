@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362691
 pageID: 8362691
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
@@ -172,15 +172,10 @@ To create an
 [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 configuration that incorporates VRR, use a configuration like the following:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p><strong>leaf01 Configuration</strong></p>
-<pre><code>cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21/24
+### leaf01 Configuration
+
+```
+cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21/24
 cumulus@leaf01:~$ net add bond server01 bond slaves swp1
 cumulus@leaf01:~$ net add bond server01 clag id 1
 cumulus@leaf01:~$ net add bond server01 mtu 9216
@@ -202,9 +197,13 @@ cumulus@leaf01:~$ net add vlan 300 ip address-virtual 44:38:39:FF:00:03 10.0.3.1
 cumulus@leaf01:~$ net add vlan 400 ip address 10.0.4.2/24
 cumulus@leaf01:~$ net add vlan 400 ip address-virtual 44:38:39:FF:00:04 10.0.4.1/24
 cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit</code></pre>
-<p>These commands create the following configuration in <code>/etc/network/interfaces</code>:</p>
-<pre><code>auto eth0
+cumulus@leaf01:~$ net commit
+```
+
+These commands create the following configuration in `/etc/network/interfaces`:
+
+```
+auto eth0
 iface eth0
     address 192.168.0.21/24
 
@@ -259,9 +258,13 @@ iface vlan400
     address 10.0.4.2/24
     address-virtual 44:38:39:FF:00:04 10.0.4.1/24
     vlan-id 400
-    vlan-raw-device bridge</code></pre></td>
-<td><p><strong>leaf02 Configuration</strong></p>
-<pre><code>cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22/24
+    vlan-raw-device bridge
+```
+
+### leaf02 Configuration
+
+```
+cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22/24
 cumulus@leaf02:~$ net add bond server01 bond slaves swp1
 cumulus@leaf02:~$ net add bond server01 clag id 1
 cumulus@leaf02:~$ net add bond server01 mtu 9216
@@ -283,9 +286,13 @@ cumulus@leaf02:~$ net add vlan 300 ip address-virtual 44:38:39:FF:00:03 10.0.3.1
 cumulus@leaf02:~$ net add vlan 400 ip address 10.0.4.3/24
 cumulus@leaf02:~$ net add vlan 400 ip address-virtual 44:38:39:FF:00:04 10.0.4.1/24
 cumulus@leaf02:~$ net pending
-cumulus@leaf02:~$ net commit</code></pre>
-<p>These commands create the following configuration in <code>/etc/network/interfaces</code>:</p>
-<pre><code>auto eth0
+cumulus@leaf02:~$ net commit
+```
+
+These commands create the following configuration in `/etc/network/interfaces`:
+
+```
+auto eth0
 iface eth0
     address 192.168.0.22/24
 
@@ -340,12 +347,15 @@ iface vlan400
     address 10.0.4.3/24
     address-virtual 44:38:39:FF:00:04 10.0.4.1/24
     vlan-id 400
-    vlan-raw-device bridge</code></pre></td>
-</tr>
-<tr class="even">
-<td><p><strong>server01 Configuration</strong></p>
-<p>Create a configuration like the following on an Ubuntu host:</p>
-<pre><code>auto eth0
+    vlan-raw-device bridge
+```
+
+### server01 Configuration
+
+Create a configuration like the following on an Ubuntu host:
+
+```
+auto eth0
 iface eth0 inet dhcp
  
 auto eth1
@@ -381,10 +391,15 @@ auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
  
-# modprobe bonding</code></pre></td>
-<td><p><strong>server02 Configuration</strong></p>
-<p>Create a configuration like the following on an Ubuntu host:</p>
-<pre><code>auto eth0
+# modprobe bonding
+```
+
+### server02 Configuration
+
+Create a configuration like the following on an Ubuntu host:
+
+```
+auto eth0
 iface eth0 inet dhcp
  
 auto eth1
@@ -420,10 +435,8 @@ auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
  
-# modprobe bonding</code></pre></td>
-</tr>
-</tbody>
-</table>
+# modprobe bonding
+```
 
 ## VRRP
 

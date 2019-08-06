@@ -17,8 +17,8 @@ two-leaf/two-spine Cumulus VX topology with VMware Workstation.
 {{%notice note%}}
 
 These sections assume a basic level of VMware Workstation experience.
-For detailed instructions, refer to the [VMware Workstation
-documentation](https://www.vmware.com/support/pubs/ws_pubs.html).
+For detailed instructions, refer to the 
+[VMware Workstation documentation](https://www.vmware.com/support/pubs/ws_pubs.html).
 
 {{%/notice%}}
 
@@ -28,8 +28,8 @@ documentation](https://www.vmware.com/support/pubs/ws_pubs.html).
 
 This section assumes that you have downloaded the Cumulus VX disk image
 for VMware hypervisors and that VMware Workstation is installed. For
-more download locations and steps, refer to the [Getting
-Started](/cumulus-vx/Getting-Started/) page.
+more download locations and steps, refer to the 
+[Getting Started](/cumulus-vx/Getting-Started/) page.
 
 {{%/notice%}}
 

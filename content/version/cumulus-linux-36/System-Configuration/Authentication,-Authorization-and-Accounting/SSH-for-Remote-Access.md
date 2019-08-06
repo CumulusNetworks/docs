@@ -16,16 +16,16 @@ securely with the `ssh-keygen` component of the Secure Shell (SSH)
 protocol. Cumulus Linux uses the OpenSSH package to provide this
 functionality. This section describes how to generate an SSH key pair.
 
-## Generating an SSH Key Pair</span>
+## Generating an SSH Key Pair
 
 1.  To generate the SSH key pair, run the `ssh-keygen` command and
     follow the prompts:
     
     {{%notice info%}}
     
-    **Configure a Passwordless System**
+**Configure a Passwordless System**
     
-    To configure a completely passwordless system, do not enter a
+To configure a completely passwordless system, do not enter a
     passphrase when prompted in the following step.
     
     {{%/notice%}}
@@ -67,7 +67,7 @@ functionality. This section describes how to generate an SSH key pair.
     
     {{%notice warning%}}
     
-    `ssh-copy-id` does not work if the username on the remote switch is
+`ssh-copy-id` does not work if the username on the remote switch is
     different from the username on the local switch. To work around this
     issue, use the `scp` command instead:
     
@@ -94,18 +94,7 @@ functionality. This section describes how to generate an SSH key pair.
         basis.
         Last login: Thu Sep 29 16:56:54 2016
 
-## Related Information</span>
+## Related Information
 
-  - [Debian Documentation - Password-less logins with
-    OpenSSH](https://debian-administration.org/article/152/Password-less_logins_with_OpenSSH)
-
-  - [Wikipedia - Secure Shell
-    (SSH)](http://en.wikipedia.org/wiki/Secure_Shell)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Debian Documentation - Password-less logins with OpenSSH](https://debian-administration.org/article/152/Password-less_logins_with_OpenSSH)
+  - [Wikipedia - Secure Shell (SSH)](http://en.wikipedia.org/wiki/Secure_Shell)

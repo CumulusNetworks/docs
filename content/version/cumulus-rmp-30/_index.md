@@ -1,13 +1,13 @@
 ---
 title: Cumulus RMP User Guide
 author: Cumulus Networks
-weight: 1
+weight: -30
 aliases:
  - /display/RMP30/Cumulus+RMP+User+Guide
  - /pages/viewpage.action?pageId=5118664
 pageID: 5118664
 product: Cumulus RMP
-version: 3.0.1
+version: '3.0'
 imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
 subsection: true

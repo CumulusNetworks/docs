@@ -1,13 +1,13 @@
 ---
 title: Cumulus Linux User Guide
 author: Cumulus Networks
-weight: 1
+weight: -33
 aliases:
  - /display/CL332/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=5868850
 pageID: 5868850
 product: Cumulus Linux
-version: 3.3.2
+version: 3.3
 imgData: cumulus-linux-332
 siteSlug: cumulus-linux-332
 subsection: true

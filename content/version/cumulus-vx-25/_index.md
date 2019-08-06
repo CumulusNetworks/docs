@@ -1,13 +1,13 @@
 ---
 title: Cumulus VX Getting Started Guide
 author: Cumulus Networks
-weight: 1
+weight: -25
 aliases:
  - /display/VX25/Cumulus+VX+Getting+Started+Guide
  - /pages/viewpage.action?pageId=5115387
 pageID: 5115387
 product: Cumulus VX
-version: '2.5'
+version: 2.5 ESR
 imgData: cumulus-vx-25
 siteSlug: cumulus-vx-25
 subsection: true

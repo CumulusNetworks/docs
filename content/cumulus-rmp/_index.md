@@ -1,7 +1,7 @@
 ---
 title: Cumulus RMP
 author: Cumulus Networks
-weight: 1
+weight: -37
 aliases:
  - /display/RMP/Cumulus-RMP
  - /pages/viewpage.action?pageId=5122807

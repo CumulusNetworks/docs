@@ -27,7 +27,6 @@ to network services:
 
   - The `apt-get upgrade` command might result in services being
     restarted or stopped as part of the upgrade process.
-
   - The `apt-get install` command might disrupt core services by
     changing core service dependency packages.
 
@@ -45,7 +44,7 @@ services to restart.
 
 {{%/notice%}}
 
-## Updating the Package Cache</span>
+## Updating the Package Cache
 
 To work properly, APT relies on a local cache of the available packages.
 You must populate the cache initially, and then periodically update it
@@ -91,7 +90,7 @@ upgrade your distribution.
 
 {{%/notice%}}
 
-## Listing Available Packages</span>
+## Listing Available Packages
 
 After the cache is populated, use the `apt-cache` command to search the
 cache to find the packages in which you are interested or to get
@@ -144,7 +143,7 @@ on more packages than you might expect.
 
 {{%/notice%}}
 
-## Adding a Package</span>
+## Adding a Package
 
 To add a new package, first ensure the package is not already installed
 on the system:
@@ -182,7 +181,7 @@ For example, the following adds the package `tcpreplay` to the system:
     Setting up tcpreplay (4.6.2-5+deb8u1) ...
     cumulus@switch:~$ 
 
-## Listing Installed Packages</span>
+## Listing Installed Packages
 
 The APT cache contains information about all the packages available on
 the repository. To see which packages are actually installed on your
@@ -199,9 +198,9 @@ the system that contain `tcp`:
     ii  tcpdump                       4.6.2-5+deb8u1      amd64               command-line network traffic analyzer
     cumulus@switch:~$
 
-## Upgrading to Newer Versions of Installed Packages</span>
+## Upgrading to Newer Versions of Installed Packages
 
-### Upgrading a Single Package</span>
+### Upgrading a Single Package
 
 You can upgrade a single package by running `apt-get install`. Perform
 an update first so that the APT cache is populated with the latest
@@ -211,13 +210,13 @@ To see if a package needs to be upgraded, run the `apt-cache show
 <pkgname>` command to show the latest version number of the package. Use
 `dpkg -l <pkgname>` to show the version number of the installed package.
 
-### Upgrading All Packages</span>
+### Upgrading All Packages
 
 You can update all packages on the system by running `apt-get update`,
 then `apt-get upgrade`. This upgrades all installed versions with their
 latest versions but does not install any new packages.
 
-## Adding Packages from Another Repository</span>
+## Adding Packages from Another Repository
 
 As shipped, Cumulus Linux searches the Cumulus Linux repository for
 available packages. You can add additional repositories to search by
@@ -312,7 +311,7 @@ To install a new package, complete the following steps:
         cumulus@switch:~$ sudo -E apt-get install {name of package}
         cumulus@switch:~$ sudo -E apt-get upgrade
 
-## Cumulus Supplemental Repository</span>
+## Cumulus Supplemental Repository
 
 Cumulus Networks provides a *Supplemental Repository* that contains
 third party applications commonly installed on switches.
@@ -325,42 +324,26 @@ Below is a non-exhaustive list of some of the packages present in the
 repository:
 
   - `htop` lets you view CPU, memory, and process information.
-
   - `scamper` is an ECMP traceroute utility.
-
   - `mtr` is an ECMP traceroute utility.
-
   - `dhcpdump` is similar to TCPdump but focused only on DHCP traffic.
-
   - `vim` is a text editor.
-
   - `fping` provides a list of targets through textfile to check
     reachability.
-
   - `scapy` is a custom packet generator for testing.
-
   - `bwm-ng` is a real-time bandwidth monitor.
-
   - `iftop` is a real-time traffic monitor.
-
   - `tshark` is a CLI version of wireshark.
-
   - `nmap` is a network scanning utility.
-
   - `minicom` is a USB/Serial console utility that turns your switch
     into a terminal server (useful for out of band management switches
     to provide a console on the dataplane switches in the rack).
-
   - `apt-cacher-ng` caches packages for mirroring purposes.
-
   - `iptraf` is a ncurses-based traffic visualization utility.
-
   - `swatch` monitors system activity. It reads a configuration file
     that contains patterns for which to search and actions to perform
     when each pattern is found.
-
   - `dos2unix` converts line endings from Windows to Unix.
-
   - `fail2ban` monitors log files (such as `/var/log/auth.log` and
     `/var/log/apache/access.log`) and temporarily or persistently bans
     the login of failure-prone IP addresses by updating existing
@@ -386,17 +369,7 @@ To enable the Supplemental Repository:
     
         cumulus@leaf01:~$ sudo apt-get install htop
 
-## Related Information</span>
+## Related Information
 
-  - [Debian GNU/Linux FAQ, Ch 8 Package management
-    tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)
-
+  - [Debian GNU/Linux FAQ, Ch 8 Package management tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)
   - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

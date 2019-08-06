@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362594
 pageID: 8362594
 product: Cumulus Linux
-version: 3.7.7
+version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
@@ -55,14 +55,17 @@ For example:
 
 Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 
-| Option       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \-h, –help   | Displays the help message and exits.                                                                                                                                                                                                                                                                                                                                                                                                                |
-| \-a          | Prints the base MAC address for switch interfaces.                                                                                                                                                                                                                                                                                                                                                                                                  |
-| \-r          | Prints the number of MACs allocated for switch interfaces.                                                                                                                                                                                                                                                                                                                                                                                          |
-| \-s          | Sets the EEPROM content if the EEPROM is writable. `args` can be supplied in command line in a comma separated list of the form `'<field>=<value>, ...'. ','` and `'='` are illegal characters in field names and values. Fields that are not specified will default to their current values. If `args` are supplied in the command line, they will be written without confirmation. If `args` is empty, the values will be prompted interactively. |
-| \-t TARGET   | Selects the target EEPROM (`board`, `psu2`, `psu1`) for the read or write operation; default is `board`.                                                                                                                                                                                                                                                                                                                                            |
-| \-e, –serial | Prints the device serial number.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|Option|Description|
+|--- |--- |
+|-h|Displays the help message and exits.|
+|-a|Prints the base MAC address for switch interfaces.|
+|-r|Prints the number of MACs allocated for switch interfaces.|
+|-s|Sets the EEPROM content if the EEPROM is writable. args can be supplied in command line in a comma separated list of the form \<field>=\<value>, .... Illegal characters in field names and values include the comma (,) and equals sign (=). Fields that are not specified default to their current values. If args are supplied in the command line, they will be written without confirmation. If args is empty, the values will be prompted interactively.|
+|-j, --json|Displays JSON output.|
+|-t TARGET|Prints the target EEPROM (board, psu2, psu1) information. **Note**: Some systems that use a BMC to manage sensors (such as the Dell Z9264, Facebook Voyager, and Facebook Wedge-100) do not provide the PSU EEPROM contents. This is because the BMC connects to the PSUs via I2C and the main CPU of the switch has no direct access.|
+|--serial|Prints the device serial number.|
+|-m|Prints the base MAC address for management interfaces.|
+|--init|Clears and initializes the board EEPROM cache|
 
 ### Related Commands
 

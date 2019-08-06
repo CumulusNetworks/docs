@@ -3,15 +3,16 @@
 This the source repository for the Cumulus Networks Documentation, hosted at docs.cumulusnetworks.com.
 The site is built with the static site generator [Hugo](https://gohugo.io/documentation/)
 
-## Installing the Internal Documentation Site
+## Installing the Documentation and Running the Local Server
 The docs are built with the static site generator [Hugo](https://gohugo.io/documentation/)
 Hugo contains a local development server to build and view live changes to the repo. Hugo is
 a command line interface.
 
 In order to build and view the live site:
 
-1. Install Hugo
-    - https://gohugo.io/getting-started/installing/
+1. Install Hugo version 0.55.6
+
+    - https://github.com/gohugoio/hugo/releases/tag/v0.55.6
 
 2. Verify Hugo is installed with `hugo version` This site supports hugo version 0.55.6
 

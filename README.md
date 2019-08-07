@@ -25,7 +25,7 @@ In order to build and view the live site:
 6. The site will be available at http://localhost:1313,
 hugo will watch and rebuild the site with any changes to the source.
 
-## Contributing
+## Contributing to the Documentation
 
 This repository will contain the documentation hosted at docs.cumulusnetworks.com
 Commits to the master branch will build and deploy

@@ -42,8 +42,7 @@ to look at your hardware and determine the processor type.
 
 Reprovisioning the system deletes all system data from the switch.
 
-To initiate the provisioning and installation process, run the
-`onie-select -i` command:
+To stage an ONIE installer from the network (where ONIE automatically locates the installer), run the `onie-select -i` command. A reboot is required for the reinstall to begin.
 
     cumulus@switch:~$ sudo onie-select -i
     WARNING:
@@ -54,17 +53,24 @@ To initiate the provisioning and installation process, run the
     Enabling install at next reboot...done.
     Reboot required to take effect.
 
-{{%notice note%}}
-
-A reboot is required for the reinstall to begin.
-
-{{%/notice%}}
-
-To cancel a pending reinstall operation, run the `onie-select -c`
-command:
+To cancel a pending reinstall operation, run the `onie-select -c` command:
 
     cumulus@switch:~$ sudo onie-select -c
     Cancelling pending install at next reboot...done.
+
+To stage an installer located in a specific location, run the `onie-`**`install`**` -i` command. You can specify a local, absolute or relative path, an HTTP or HTTPS server, SCP or FTP server. You can also stage a Zero Touch Provisioning (ZTP) script along with the installer. The `onie-install` command is typically used with the `-a` option to activate installation. If you do not specify the `-a` option, a reboot is required for the reinstall to begin.
+
+The following example stages the installer located at `http://203.0.113.10/image-installer` together with the ZTP script located at `http://203.0.113.10/ztp-script` and activates installation and ZTP:
+
+    cumulus@switch:~$ sudo onie-install -i http://203.0.113.10/image-installer
+    cumulus@switch:~$ sudo onie-install -z http://203.0.113.10/ztp-script
+    cumulus@switch:~$ sudo onie-install -a
+
+You can also specify these options together in the same command. For example:
+
+    cumulus@switch:~$ sudo onie-install -i http://203.0.113.10/image-installer -z http://203.0.113.10/ztp-script -a
+
+To see more `onie-install` options, run `man onie-install`.
 
 ## Uninstall All Images and Remove the Configuration
 

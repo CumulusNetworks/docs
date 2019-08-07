@@ -19,19 +19,9 @@ devices.
 The NetQ Agent is supported on the following Linux hosts:
 
   - CentOS 7
-
   - Red Hat Enterprise Linux 7.1
-
   - Ubuntu 16.04
 
 You need to install the OS-specific NetQ metapack on every host you want
-to monitor with NetQ. For more information, see the [Host Pack user
-guide](https://docs.cumulusnetworks.com/display/HOSTPACK/Monitoring+Linux+Hosts+with+NetQ).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+to monitor with NetQ. For more information, see the 
+[latest NetQ documentation](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Software-on-Your-Server/).

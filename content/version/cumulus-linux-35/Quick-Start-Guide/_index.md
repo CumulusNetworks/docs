@@ -32,13 +32,13 @@ interacting with Cumulus Linux.
 {{%notice info%}}
 
 If you're a networking engineer but are unfamiliar with Linux concepts,
-refer to [this reference
-guide](https://support.cumulusnetworks.com/hc/en-us/articles/201787636)
+refer to [this reference guide](https://support.cumulusnetworks.com/hc/en-us/articles/201787636)
 for examples of the Cumulus Linux CLI and configuration options, and
 their equivalent Cisco Nexus 3000 NX-OS commands and settings for
-comparison. You can also [watch a series of short
-videos](http://cumulusnetworks.com/technical-videos/) introducing you to
-Linux in general and some Cumulus Linux-specific concepts in particular.
+comparison. You can also 
+[watch a series of short videos](http://cumulusnetworks.com/technical-videos/) 
+introducing you to Linux in general and some Cumulus Linux-specific concepts 
+in particular.
 
 {{%/notice%}}
 
@@ -47,18 +47,17 @@ Linux in general and some Cumulus Linux-specific concepts in particular.
 ### Installation
 
 To install Cumulus Linux, you use
-[ONIE](https://github.com/opencomputeproject/onie/wiki) (Open Network
-Install Environment), an extension to the traditional U-Boot software
-that allows for automatic discovery of a network installer image. This
-facilitates the ecosystem model of procuring switches, with a user's own
+[ONIE](https://opencomputeproject.github.io/onie/user-guide/index.html) 
+(Open Network Install Environment), an extension to the traditional U-Boot 
+software that allows for automatic discovery of a network installer image. 
+This facilitates the ecosystem model of procuring switches, with a user's own
 choice of operating system loaded, such as Cumulus Linux.
 
 {{%notice note%}}
 
 If Cumulus Linux 3.0.0 or later is already installed on your switch, and
-you need to upgrade the software only, you can skip to [Upgrading
-Cumulus Linux](#src-8357328_QuickStartGuide-upgrading-cumulus-linux)
-below.
+you need to upgrade the software only, you can skip to 
+[Upgrading Cumulus Linux](#upgrade-to-the-latest-version) below.
 
 {{%/notice%}}
 
@@ -90,18 +89,13 @@ should not need a console cable. A fresh install via ONIE using a local
 web server should generally complete in less than 10 minutes.
 
 You have more options for installing Cumulus Linux with ONIE. Read
-[Installing a New Cumulus Linux
-Image](/version/cumulus-linux-35/Installation-Management/Installing-a-New-Cumulus-Linux-Image)
+[Installing a New Cumulus Linux Image](/version/cumulus-linux-35/Installation-Management/Installing-a-New-Cumulus-Linux-Image)
 to install Cumulus Linux using ONIE in the following ways:
 
   - DHCP/web server with and without DHCP options
-
   - Web server without DHCP
-
   - FTP or TFTP without a web server
-
   - Local file
-
   - USB
 
 {{%/notice%}}
@@ -109,26 +103,22 @@ to install Cumulus Linux using ONIE in the following ways:
 ONIE supports many other discovery mechanisms using USB (copy the
 installer to the root of the drive), DHCPv6 and DHCPv4, and image copy
 methods including HTTP, FTP, and TFTP. For more information on these
-discovery methods, refer to the [ONIE
-documentation](https://github.com/opencomputeproject/onie/wiki/Design-Spec-SW-Image-Discovery).
+discovery methods, refer to the 
+[ONIE documentation](https://opencomputeproject.github.io/onie/design-spec/discovery.html).
 
 After installing Cumulus Linux, you are ready to:
 
   - Log in to Cumulus Linux on the switch.
-
   - Install the Cumulus Linux license.
-
   - Configure Cumulus Linux. This quick start guide provides
     instructions on configuring switch ports and a loopback interface.
 
 #### Upgrade to the Latest Version
 
 If you are running a Cumulus Linux version earlier than 3.0.0, you must
-perform a complete install, as [described
-above](#src-8357328_QuickStartGuide-install). If you already have
-Cumulus Linux 3.0.0 or later installed on your switch, read [Upgrading
-Cumulus
-Linux](Managing-Cumulus-Linux-Disk-Images.html#src-8357414_ManagingCumulusLinuxDiskImages-upgrade)
+perform a complete install, as [described above](#installation). If you 
+already have Cumulus Linux 3.0.0 or later installed on your switch, read 
+[Upgrading Cumulus Linux](/version/cumulus-linux-35/Installation-Management/Upgrading-Cumulus-Linux/)
 for considerations before start the process.
 
 ### Getting Started
@@ -163,14 +153,13 @@ All accounts except `root` are permitted remote SSH login; `sudo` may be
 used to grant a non-root account root-level access. Commands which
 change the system configuration require this elevated level of access.
 
-For more information about sudo, read [Using sudo to Delegate
-Privileges](/version/cumulus-linux-35/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
+For more information about sudo, read 
+[Using sudo to Delegate Privileges](/version/cumulus-linux-35/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
 
 #### Serial Console Management
 
-Users are encouraged to perform management and configuration over the
-network, [either in band or out of
-band](Upgrading-Cumulus-Linux.html#src-8357427_UpgradingCumulusLinux-outofband).
+Users are encouraged to perform management and configuration over the network, 
+[either in band or out of band](/version/cumulus-linux-35/Installation-Management/Upgrading-Cumulus-Linux/#out-of-band-management-is-worth-the-investment).
 Use of the serial console is fully supported; however, many customers
 prefer the convenience of network-based management.
 
@@ -254,8 +243,8 @@ required.
 #### Verifying the System Time
 
 Before you install the license, verify that the switch's date and time
-are correct. You must [correct the
-time](/version/cumulus-linux-35/System-Configuration/Setting-Date-and-Time)
+are correct. You must 
+[correct the time](/version/cumulus-linux-35/System-Configuration/Setting-Date-and-Time)
 if it is wrong, as the wrong date may have other impacts on the switch
 like an inability to synchronize with Puppet or return errors like this
 one after you restart `switchd`:
@@ -319,8 +308,7 @@ described above.
 
 If you are using 4x10G DAC or AOC cables, or want to break out 100G or
 40G switch ports, configure the breakout ports. For more details, see
-[Layer 1 and Switch Port
-Attributes](Layer-1-and-Switch-Port-Attributes.html#src-8357670_Layer1andSwitchPortAttributes-breakout).
+[Layer 1 and Switch Port Attributes](/version/cumulus-linux-35/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/#configuring-breakout-ports).
 
 ### Testing Cable Connectivity
 
@@ -537,11 +525,3 @@ This creates the following snippet in `/etc/network/interfaces`:
     iface lo inet loopback
         address 10.1.1.1/32
         address 172.16.2.1/24
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 203
 aliases:
  - /display/CL35/Single+User+Mode+++Boot+Recovery
+ - /display/CL35/Single+User+Mode+-+Boot+Recovery
+ - /display/CL35/Single+User+Mode+Boot+Recovery
  - /pages/viewpage.action?pageId=8357388
 pageID: 8357388
 product: Cumulus Linux
@@ -59,11 +61,3 @@ below.
         cumulus@switch:~$ sudo btrfs filesystem sync /etc
         cumulus@switch:~$ sudo reboot -f
         Restarting the system. 
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

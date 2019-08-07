@@ -15,11 +15,11 @@ Ethernet bridges provide a means for hosts to communicate through layer
 2, by connecting all of the physical and logical interfaces in the
 system into a single layer 2 domain. The bridge is a logical interface
 with a MAC address and an
-[MTU](Layer-1-and-Switch-Port-Attributes.html#src-8357670_Layer1andSwitchPortAttributes-mtu)
+[MTU](/version/cumulus-linux-35/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/#mtu)
 (maximum transmission unit). The bridge MTU is the minimum MTU among all
 its members. By default, the bridge's MAC address is copied from eth0.
 The bridge can also be assigned an IP address, as discussed
-[below](#src-8357437_EthernetBridging-VLANs-svi).
+[below](#configuring-an-svi-switch-vlan-interface).
 
 {{%notice note%}}
 
@@ -66,18 +66,18 @@ VLAN-aware bridge on a given switch.
 
 {{%/notice%}}
 
-## Creating a VLAN-aware Bridge</span>
+## Creating a VLAN-aware Bridge
 
 To learn about VLAN-aware bridges and how to configure them, read
 [VLAN-aware Bridge Mode for Large-scale Layer 2
 Environments](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
 
-## Creating a Traditional Mode Bridge</span>
+## Creating a Traditional Mode Bridge
 
 To create a traditional mode bridge, see [Traditional Mode
 Bridges](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges).
 
-## Configuring Bridge MAC Addresses</span>
+## Configuring Bridge MAC Addresses
 
 The MAC address for a frame is learned when the frame enters the bridge
 via an interface. The MAC address is recorded in the bridge table, and
@@ -96,18 +96,16 @@ The following example output shows a MAC address table for the bridge:
     untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
     untagged  bridge    swp1         44:38:39:00:00:04                permanent           20 days, 01:14:03
 
-### <span id="src-8357437_EthernetBridging-VLANs-mac_ageing" class="confluence-anchor-link"></span>MAC Address Ageing</span>
+### MAC Address Ageing
 
 By default, Cumulus Linux stores MAC addresses in the Ethernet switching
 table for 1800 seconds (30 minutes). You can change this setting using
 NCLU.
 
-The `bridge-ageing` option is in the [NCLU
-blacklist](Network-Command-Line-Utility-NCLU.html#src-8357362_NetworkCommandLineUtility-NCLU-conf),
+The `bridge-ageing` option is in the [NCLU blacklist](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/#advanced-configuration),
 as it's not frequently used. To configure this setting, you need to
 remove the `bridge-ageing` keyword from the `ifupdown_blacklist` in
-`/etc/netd.conf`. [Restart the `netd`
-service](Network-Command-Line-Utility-NCLU.html#src-8357362_NetworkCommandLineUtility-NCLU-restart)
+`/etc/netd.conf`. [Restart the `netd` service](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/#restarting-the-netd-service)
 after you edit the file.
 
 Now you can change the setting using NCLU. For example, to change the
@@ -130,7 +128,7 @@ These commands create the following configuration in the
      
     ...
 
-## <span id="src-8357437_EthernetBridging-VLANs-svi" class="confluence-anchor-link"></span>Configuring an SVI (Switch VLAN Interface)</span>
+## Configuring an SVI (Switch VLAN Interface)
 
 Bridges can be included as part of a routing topology after being
 assigned an IP address. This enables hosts within the bridge to
@@ -191,7 +189,7 @@ configuration:
     iface bridge.10
         address 10.100.100.1/24
 
-### Keeping the SVI in an UP State</span>
+### Keeping the SVI in an UP State
 
 When a switch is initially configured, all southbound bridge ports may
 be down, which means that, by default, the SVI is also down. However,
@@ -271,7 +269,7 @@ remain up:
     35: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
         link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - A bridge cannot contain multiple subinterfaces of the **same** port.
     Attempting this configuration results in an error.
@@ -281,7 +279,7 @@ remain up:
     normal interface in a VLAN-aware bridge, the bridge will be flapped
     when the traditional bridge's bond subinterface is brought down.
 
-## Related Information</span>
+## Related Information
 
   - [Linux Foundation -
     Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)

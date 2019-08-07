@@ -12,19 +12,8 @@ imgData: cumulus-netq-110
 siteSlug: cumulus-netq-110
 ---
 The NetQ Agent monitors Docker and Mesos Universal Container Runtime
-containers the same way it monitors [physical
-servers](/version/cumulus-netq-110/Monitoring-Linux-Hosts-with-NetQ).
+containers the same way it monitors 
+[physical servers](/version/cumulus-netq-110/Monitoring-Linux-Hosts-with-NetQ).
 There is no special implementation. The NetQ Agent pulls Docker data
 from the container as it would pull data from a Cumulus Linux switch or
 Linux host.
-
-For more information, see the [Host Pack user
-guide](https://docs.cumulusnetworks.com/display/HOSTPACK/Monitoring+Container+Environments+with+NetQ).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

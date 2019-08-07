@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 243
 aliases:
  - /display/CL35/RDMA+over+Converged+Ethernet+++RoCE
+ - /display/CL35/RDMA+over+Converged+Ethernet+-+RoCE
+ - /display/CL35/RDMA+over+Converged+Ethernet+RoCE
  - /pages/viewpage.action?pageId=8357798
 pageID: 8357798
 product: Cumulus Linux
@@ -27,17 +29,16 @@ There are two versions of RoCE, which run at separate layers of the
 stack:
 
   - RoCEv1, which runs at the link layer and cannot be run over a routed
-    network. Therefore, it requires the link layer [priority flow
-    control](Buffer-and-Queue-Management.html#src-8357678_BufferandQueueManagement-pfc)
+    network. Therefore, it requires the link layer 
+    [priority flow control](/version/cumulus-linux-35/Interface-Configuration-and-Management/Buffer-and-Queue-Management/#configuring-priority-flow-control)
     (PFC) to be enabled.
-
   - RoCEv2, which runs over layer 3. Since it's a routed solution,
-    Cumulus Networks recommends you use [explicit congestion
-    notification](Buffer-and-Queue-Management.html#src-8357678_BufferandQueueManagement-ecn)
+    Cumulus Networks recommends you use 
+    [explicit congestion notification](/version/cumulus-linux-35/Interface-Configuration-and-Management/Buffer-and-Queue-Management/#configuring-explicit-congestion-notification)
     (ECN) with RoCEv2 since ECN bits are communicated end-to-end across
     a routed network.
 
-## Enabling RDMA over Converged Ethernet with PFC</span>
+## Enabling RDMA over Converged Ethernet with PFC
 
 RoCEv1 uses the Infiniband (IB) Protocol over converged Ethernet. The IB
 global route header rides directly on top of the Ethernet header. The
@@ -45,9 +46,9 @@ lossless Ethernet layer handles congestion hop by hop.
 
 To learn the Cumulus Linux settings you need to configure to support
 RoCEv1, see the example configuration in the
-[PFC](Buffer-and-Queue-Management.html#src-8357678_BufferandQueueManagement-pfc)
-section of the [Buffer and Queue
-Management](/version/cumulus-linux-35/Interface-Configuration-and-Management/Buffer-and-Queue-Management/)
+[PFC](/version/cumulus-linux-35/Interface-Configuration-and-Management/Buffer-and-Queue-Management/#configuring-priority-flow-control)
+section of the 
+[Buffer and Queue Management](/version/cumulus-linux-35/Interface-Configuration-and-Management/Buffer-and-Queue-Management/)
 chapter.
 
 {{%notice tip%}}
@@ -92,15 +93,14 @@ file.
 
 {{%notice note%}}
 
-While [link
-pause](Buffer-and-Queue-Management.html#src-8357678_BufferandQueueManagement-pause)
+While [link pause](/version/cumulus-linux-35/Interface-Configuration-and-Management/Buffer-and-Queue-Management/#configuring-link-pause)
 is another way to provide lossless ethernet, PFC is the preferred
 method. PFC allows more granular control by pausing the traffic flow for
 a given CoS group, rather than the entire link.
 
 {{%/notice%}}
 
-## Enabling RDMA over Converged Ethernet with ECN</span>
+## Enabling RDMA over Converged Ethernet with ECN
 
 RoCEv2 requires flow control for lossless Ethernet. RoCEv2 uses the
 Infiniband (IB) Transport Protocol over UDP. The IB transport protocol
@@ -113,9 +113,8 @@ notification packet directed to the source of the packet.
 
 To learn the Cumulus Linux settings you need to configure to support
 RoCEv2, see the example configuration in the
-[ECN](Buffer-and-Queue-Management.html#src-8357678_BufferandQueueManagement-ecn)
-section of the [Buffer and Queue
-Management](/version/cumulus-linux-35/Interface-Configuration-and-Management/Buffer-and-Queue-Management/)
+[ECN](/version/cumulus-linux-35/Interface-Configuration-and-Management/Buffer-and-Queue-Management/#configuring-explicit-congestion-notification)
+section of the [Buffer and Queue Management](/version/cumulus-linux-35/Interface-Configuration-and-Management/Buffer-and-Queue-Management/)
 chapter.
 
 {{%notice tip%}}
@@ -156,24 +155,11 @@ packet to **not** be ECT-capable.
 
 {{%/notice%}}
 
-## Related Information</span>
+## Related Information
 
-  - [RoCE
-    introduction](http://www.roceinitiative.org/roce-introduction/) —
+  - [RoCE introduction](http://www.roceinitiative.org/roce-introduction/) —
     roceinitiative.org
-
-  - [RoCEv2 congestion
-    management](https://community.mellanox.com/docs/DOC-2321) —
+  - [RoCEv2 congestion management](https://community.mellanox.com/docs/DOC-2321) —
     community.mellanox.com
-
-  - [Configuring RoCE over a DSCP-based lossless
-    network](https://community.mellanox.com/docs/DOC-2884) with a
+  - [Configuring RoCE over a DSCP-based lossless network](https://community.mellanox.com/docs/DOC-2884) with a
     Mellanox Spectrum switch
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -233,7 +233,8 @@ body {
     display: inline-block;
     font-size: 15px;
     line-height: 30px;
-    font-weight: 400;
+    font-weight: 400
+    background-color: white;
 
     &:after {
       content: '';
@@ -400,6 +401,7 @@ body {
         font-weight: 400;
         letter-spacing: -0.1px;
         line-height: 30px;
+        background-color: white;
       }
 
       &.active {

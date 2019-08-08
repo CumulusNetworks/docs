@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 59
 aliases:
  - /display/VX/Vagrant-and-VirtualBox
+ - /display/VX/Vagrant+and+VirtualBox
  - /pages/viewpage.action?pageId=5126719
 pageID: 5126719
 product: Cumulus VX
-version: '3.4'
+version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---

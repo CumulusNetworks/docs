@@ -69,13 +69,11 @@ VLAN-aware bridge on a given switch.
 ## Creating a VLAN-aware Bridge
 
 To learn about VLAN-aware bridges and how to configure them, read
-[VLAN-aware Bridge Mode for Large-scale Layer 2
-Environments](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
+[VLAN-aware Bridge Mode for Large-scale Layer 2 Environments](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
 
 ## Creating a Traditional Mode Bridge
 
-To create a traditional mode bridge, see [Traditional Mode
-Bridges](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges).
+To create a traditional mode bridge, see [Traditional Mode Bridges](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges).
 
 ## Configuring Bridge MAC Addresses
 
@@ -273,7 +271,6 @@ remain up:
 
   - A bridge cannot contain multiple subinterfaces of the **same** port.
     Attempting this configuration results in an error.
-
   - In environments where both VLAN-aware and traditional bridges are in
     use, if a traditional bridge has a subinterface of a bond that is a
     normal interface in a VLAN-aware bridge, the bridge will be flapped
@@ -281,22 +278,7 @@ remain up:
 
 ## Related Information
 
-  - [Linux Foundation -
-    Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
-
-  - [Linux Foundation -
-    VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-
-  - [Linux Journal - Linux as an Ethernet
-    Bridge](http://www.linuxjournal.com/article/8172)
-
-  - [Comparing Traditional Bridge Mode to VLAN-aware Bridge
-    Mode](https://support.cumulusnetworks.com/hc/en-us/articles/204909397)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Linux Foundation - Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
+  - [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
+  - [Linux Journal - Linux as an Ethernet Bridge](http://www.linuxjournal.com/article/8172)
+  - [Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode](https://support.cumulusnetworks.com/hc/en-us/articles/204909397)

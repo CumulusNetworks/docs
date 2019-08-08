@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 13
 aliases:
  - /display/VX/Comparing-Cumulus-VX-to-other-Cumulus-Networks-Products
+ - /display/VX/Comparing+Cumulus+VX+to+other+Cumulus+Networks+Products
  - /pages/viewpage.action?pageId=5126709
 pageID: 5126709
 product: Cumulus VX
-version: '3.4'
+version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---

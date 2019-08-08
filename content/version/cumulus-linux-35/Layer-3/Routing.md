@@ -13,7 +13,7 @@ siteSlug: cumulus-linux-35
 ---
 This chapter discusses routing on switches running Cumulus Linux.
 
-## Managing Static Routes</span>
+## Managing Static Routes
 
 You manage static routes using
 [NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/)
@@ -50,7 +50,7 @@ To view static routes, run:
            > - selected route, * - FIB route
     S>* 203.0.113.0/24 [1/0] via 198.51.100.2, swp3
 
-### Static Multicast Routes</span>
+### Static Multicast Routes
 
 Static mroutes are also managed with NCLU, or with the `ip route`
 command. To add an mroute:
@@ -80,7 +80,7 @@ To view mroutes, open the FRRouting CLI, and run the following command:
       Known via "static", distance 1, metric 0, best
       * directly connected, swp31s0
 
-### Static Routing via ip route</span>
+### Static Routing via ip route
 
 A static route can also be created by adding ` post-up ip route add
  `command to a switch port configuration. For example:
@@ -136,7 +136,7 @@ To display the routing table:
     198.51.100.10/24 dev swp4  proto kernel  scope link  src 198.51.100.11
     198.51.100.20/24 dev br0  proto kernel  scope link  src 198.51.100.21
 
-### Applying a Route Map for Route Updates</span>
+### Applying a Route Map for Route Updates
 
 To apply a [route
 map](http://www.nongnu.org/quagga/docs/docs-multi/Route-Map.html#Route-Map)
@@ -144,7 +144,7 @@ to filter route updates from Zebra into the Linux kernel:
 
     cumulus@switch:$ net add ip protocol static route-map <route-map-name>
 
-## Configuring a Gateway or Default Route</span>
+## Configuring a Gateway or Default Route
 
 On each switch, it's a good idea to create a *gateway* or *default
 route* for traffic destined outside the switch's subnet, or local
@@ -160,7 +160,7 @@ gateway, which is another switch with the IP address 10.1.0.1.
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## Supported Route Table Entries</span>
+## Supported Route Table Entries
 
 Cumulus Linux — via `switchd` — advertises the maximum number of route
 table entries that are supported on a given switch architecture,
@@ -194,7 +194,7 @@ You can use
 [`cl-resource-query`](/version/cumulus-linux-35/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query)
 to determine the current table sizes on a given switch.
 
-### <span id="src-8357708_Routing-uft" class="confluence-anchor-link"></span>Forwarding Table Profiles</span>
+### Forwarding Table Profiles
 
 Mellanox Spectrum and some Broadcom ASICs provide the ability to
 configure the allocation of forwarding table resources and mechanisms.
@@ -215,8 +215,8 @@ your network architecture and specify the profile name for the
     #
     forwarding_table.profile = default
 
-After you specify a different profile, [restart
-`switchd`](Configuring-switchd.html#src-8357343_Configuringswitchd-restartswitchd)
+After you specify a different profile, 
+[restart `switchd`](/version/cumulus-linux-35/System-Configuration/Configuring-switchd/#restarting-switchd)
 for the change to take effect. You can see the forwarding table profile
 when you run `cl-resource-query`.
 
@@ -233,7 +233,7 @@ For Broadcom ASICs, the maximum number of IP multicast entries is 8k.
 
 {{%/notice%}}
 
-### <span id="src-8357708_Routing-tcam" class="confluence-anchor-link"></span>TCAM Resource Profiles for Mellanox Switches</span>
+### TCAM Resource Profiles for Mellanox Switches
 
 The Mellanox Spectrum ASIC provides the ability to configure the TCAM
 resource allocation, which is shared between IP multicast forwarding
@@ -252,12 +252,11 @@ file.
         2. default, ipmc-heavy, acl-heavy, ipmc-max
            tcam_resource.profile = default
 
-After you specify a different profile, [restart
-`switchd`](/display/CL35/Configuring+switchd#Configuringswitchd-restartswitchd)
+After you specify a different profile, 
+[restart `switchd`](/version/cumulus-linux-35/System-Configuration/Configuring-switchd/#restarting-switchd)
 for the change to take effect.
 
-When [nonatomic
-updates](Netfilter-ACLs.html#src-8357345_Netfilter-ACLs-nonatomic) are
+When [nonatomic updates](/version/cumulus-linux-35/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-vs-atomic-update-mode) are
 enabled (that is, the `acl.non_atomic_update_mode` is set to *TRUE* in
 `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL
 entries for each profile are as follows:
@@ -269,8 +268,7 @@ entries for each profile are as follows:
 | acl-heavy  | 450            | 4000 (IPv6) or 8000 (IPv4) |
 | ipmc-max   | 13000          | 160 (IPv6) or 400 (IPv4)   |
 
-When [nonatomic
-updates](Netfilter-ACLs.html#src-8357345_Netfilter-ACLs-nonatomic) are
+When [nonatomic updates](/version/cumulus-linux-35/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-vs-atomic-update-mode) are
 disabled (that is, the `acl.non_atomic_update_mode` is set to *FALSE* in
 `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL
 entries for each profile are as follows:
@@ -282,7 +280,7 @@ entries for each profile are as follows:
 | acl-heavy  | 450            | 2000 (IPv6) or 4000 (IPv4) |
 | ipmc-max   | 13000          | 80 (IPv6) or 200 (IPv4)    |
 
-### Number of Supported Route Entries, by Platform</span>
+### Number of Supported Route Entries, by Platform
 
 The following tables list the number of MAC addresses, layer 3 neighbors
 and LPM routes validated for each forwarding table profile for the
@@ -298,7 +296,7 @@ manufacturers' specifications provided about these chipsets.
 
 {{%/notice%}}
 
-#### Mellanox Spectrum Switches</span>
+#### Mellanox Spectrum Switches
 
 | Profile        | MAC Addresses | L3 Neighbors              | Longest Prefix Match (LPM)     |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
@@ -309,7 +307,7 @@ manufacturers' specifications provided about these chipsets.
 | v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
 | v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4) and 64k (IPv6-long)  |
 
-#### Broadcom Tomahawk Switches</span>
+#### Broadcom Tomahawk Switches
 
 | Profile                    | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)     |
 | -------------------------- | ------------- | ------------ | ------------------------------ |
@@ -317,7 +315,7 @@ manufacturers' specifications provided about these chipsets.
 | l2-heavy                   | 72k           | 72k          | 8k (IPv4) or 2k (IPv6-long)    |
 | v4-lpm-heavy, v6-lpm-heavy | 8k            | 8k           | 128k (IPv4) or 20k (IPv6-long) |
 
-#### Broadcom Trident II/Trident II+ Switches</span>
+#### Broadcom Trident II/Trident II+ Switches
 
 | Profile                    | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)     |
 | -------------------------- | ------------- | ------------ | ------------------------------ |
@@ -325,7 +323,7 @@ manufacturers' specifications provided about these chipsets.
 | l2-heavy                   | 160k          | 96k          | 8k (IPv4) or 2k (IPv6-long)    |
 | v4-lpm-heavy, v6-lpm-heavy | 32k           | 16k          | 128k (IPv4) or 20k (IPv6-long) |
 
-#### Broadcom Helix4 Switches</span>
+#### Broadcom Helix4 Switches
 
 Note that Helix4 switches do not have profiles
 
@@ -342,9 +340,9 @@ entry takes up twice the space of an IPv4 entry.
 
 {{%/notice%}}
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-### Don't Delete Routes via Linux Shell</span>
+### Don't Delete Routes via Linux Shell
 
 Static routes added via FRRouting can be deleted via Linux shell. This
 operation, while possible, should be avoided. Routes added by FRRouting
@@ -352,7 +350,7 @@ should only be deleted by FRRouting, otherwise FRRouting might not be
 able to clean up all its internal state completely and incorrect routing
 can occur as a result.
 
-### Adding IPv6 Default Route with src Address on eth0 Fails without Adding Delay</span>
+### Adding IPv6 Default Route with src Address on eth0 Fails without Adding Delay
 
 Attempting to install an IPv6 default route on eth0 with a source
 address fails at reboot or when running `ifup` on eth0.
@@ -391,7 +389,7 @@ There are two ways you can work around this issue.
         fe80::/64 dev eth0  proto kernel  metric 256 
         default via 2001:620:5ca1:160::1 dev eth0  metric 1024 
 
-## Related Information</span>
+## Related Information
 
   - [Linux IP - ip route
     command](http://linux-ip.net/html/tools-ip-route.html)

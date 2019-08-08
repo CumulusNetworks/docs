@@ -108,11 +108,3 @@ switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 </tr>
 </tbody>
 </table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

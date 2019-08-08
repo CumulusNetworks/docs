@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 65
 aliases:
  - /display/VX/GNS3-and-QEMU-KVM
+ - /display/VX/GNS3+and+QEMU+KVM
  - /pages/viewpage.action?pageId=5126717
 pageID: 5126717
 product: Cumulus VX
-version: '3.4'
+version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---

@@ -611,12 +611,9 @@ settings for each interface. Create a file in
 Cumulus Linux has the ability to:
 
   - Break out 100G switch ports into the following with breakout cables:
-    
       - 2x50G, 4x25G, 4x10G
-
   - Break out 40G switch ports into four separate 10G ports for use with
     breakout cables.
-
   - Combine (also called *aggregating* or *ganging*) four 10G switch
     ports into one 40G port for use with a breakout cable ([not to be
     confused with a
@@ -632,8 +629,7 @@ out then set the link speed:
 
 {{%notice note%}}
 
-On [Dell switches with Maverick
-ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=Dell&ASIC=Broadcom%20Maverick),
+On [Dell switches with Maverick ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=Dell&ASIC=Broadcom%20Maverick),
 you configure breakout ports on the 100G uplink ports by manually
 editing the `/etc/cumulus/ports.conf` file. You need to specify either
 *4x10* or *4x25* for the port speed. For example, on a Dell S4148F-ON
@@ -839,8 +835,7 @@ mode.
 {{%notice tip%}}
 
 Here is an example showing how to configure breakout cables for the
-[Mellanox Spectrum
-SN2700](https://community.mellanox.com/docs/DOC-2685).
+[Mellanox Spectrum SN2700](https://community.mellanox.com/docs/DOC-2685).
 
 {{%/notice%}}
 

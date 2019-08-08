@@ -24,8 +24,7 @@ VRR is not supported on physical interfaces or virtual subinterfaces.
 
 The diagram below illustrates a basic VRR-enabled network configuration.
 The network includes several hosts, and two routers running Cumulus
-Linux configured with [Multi-chassis Link
-Aggregation](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG)
+Linux configured with [Multi-chassis Link Aggregation](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG)
 (MLAG):
 
 {{% imgOld 0 %}}
@@ -64,28 +63,12 @@ prevent MAC address conflicts with other interfaces in the same bridged
 network. The reserved range is `00:00:5E:00:01:00` to
 `00:00:5E:00:01:ff`.
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
 {{%notice info%}}
 
 Cumulus Networks recommends using MAC addresses from the reserved range
 when configuring VRR.
 
 {{%/notice%}}
-
-</div>
-
-</div>
-
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
 
 {{%notice info%}}
 
@@ -94,15 +77,11 @@ Router Redundancy Protocol (VRRP), as they serve similar purposes.
 
 {{%/notice%}}
 
-</div>
-
-</div>
-
 {{%/notice%}}
 
-## Configuring a VRR-enabled Network</span>
+## Configuring a VRR-enabled Network
 
-### Configuring the Routers</span>
+### Configuring the Routers
 
 The routers implement the layer 2 network interconnecting the hosts and
 the redundant routers. To configure the routers, add a bridge with the
@@ -112,7 +91,7 @@ following interfaces to each router:
     
     {{%notice note%}}
     
-    For networks using MLAG, use bond interfaces. Otherwise, use switch
+For networks using MLAG, use bond interfaces. Otherwise, use switch
     port interfaces.
     
     {{%/notice%}}
@@ -121,7 +100,7 @@ following interfaces to each router:
     
     {{%notice note%}}
     
-    Multiple inter-peer links are typically bonded interfaces, in order
+Multiple inter-peer links are typically bonded interfaces, in order
     to accomodate higher bandwidth between the routers, and to offer
     link redundancy.
     
@@ -129,14 +108,14 @@ following interfaces to each router:
     
     {{%notice note%}}
     
-    The VLAN interface must have unique IP addresses for both the
+The VLAN interface must have unique IP addresses for both the
     physical (the `address` option below) and virtual (the
     `address-virtual` option below) interfaces, as the unique address is
     used when the switch initiates an ARP request.
     
     {{%/notice%}}
 
-{{%notice info has%}}
+{{%notice info%}}
 
 **Example VRR Configuration**
 
@@ -169,7 +148,7 @@ snippet:
 
 {{%/notice%}}
 
-### Configuring the Hosts</span>
+### Configuring the Hosts
 
 Each host should have two network interfaces. The routers configure the
 interfaces as bonds running LACP; the hosts should also configure its
@@ -181,7 +160,7 @@ router; this default gateway address never changes.
 Configure the links between the hosts and the routers in *active-active*
 mode for First Hop Redundancy Protocol.
 
-## Example VRR Configuration with MLAG</span>
+## Example VRR Configuration with MLAG
 
 To create an
 [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG)
@@ -440,11 +419,3 @@ iface uplink:400 inet static
 </tr>
 </tbody>
 </table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

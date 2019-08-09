@@ -583,9 +583,19 @@ example, to enable unicast and multicast storm control at 400 packets
 per second (pps) and 3000 pps, respectively, for swp1, run the
 following:
 
-    cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
+    cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/broadcast'
     cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
-     
+    cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
+When configured as shown above, these changes will take effect immediately.
+To make the changes apply persistently on the system it is necessary
+to modify `/etc/cumulus/switchd.conf` as shown below:
+
+    # Storm Control setting on a port, in pps, 0 means disable
+    interface.swp1.storm_control.broadcast = 400
+    interface.swp1.storm_control.multicast = 3000
+    interface.swp1.storm_control.unknown_unicast = 3000
+Save the changes to the file and when switchd is next restarted the
+changes will be persistent.
 
 ### Spanning Tree Parameter List
 

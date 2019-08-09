@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 1
 aliases:
  - /display/CHASSIS/Chassis-User-Guide
+ - /display/CHASSIS/Chassis+User+Guide
  - /pages/viewpage.action?pageId=6488345
 pageID: 6488345
 product: Cumulus Chassis

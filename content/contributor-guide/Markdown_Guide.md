@@ -5,13 +5,18 @@ weight: 15
 siteSlug: contributor-guide
 ---
 
-## Second Level Header
+This guide is a rehash of what you can find in the original
+[Markdown documentation](https://daringfireball.net/projects/markdown/syntax).
 
-### Third Level Header
+## Heading Styles
 
-#### Fourth Level Header
+Here are the heading styles
 
-##### Fifth Level Header
+## Second Level Header (always start with a second level header)
+
+### Third Level Header (always put after a second level header)
+
+#### Fourth Level Header (use this level sparingly; consider reorganizing the content if possible)
 
 The template adds the title in a level-one header by default, start all content
 with level two headers.
@@ -19,62 +24,75 @@ with level two headers.
 ## Numbered and Bulleted Lists
 
 - The - character signifies a bulleted list
-- Round Bullets are enabled by default
-- The _*_ character may also be used, we will use - by default
+- Round bullets are enabled by default
+- The * character may also be used; Cumulus Networks uses - by default
   - Nested lists are supported
   - They will render with a,b,c
     - Only second level nesting currently supported
   - As in paragraphs, you can continue to add text onto the next line in
-  markdown
+    Markdown
 - A new line followed by a - signifies a new list item
 
 1. Numbered lists are supported as well
 2. Very simple and self explanatory
-  1. Nested lists also supported
-  2. Will display as 1,2,3,
+   1. Nested lists also supported
+   2. Will display as 1,2,3,
 3. Nested ul (bulleted list) will display differently
-  - Bullets
-  - Are Displayed
+   - Bullets
+   - Are Displayed
 
 ## Inline Styling
 
-Use two asterisks to bold any text
+Use two asterisks to bold the enclosed text:
 
 **This text will be bold (strong) in the rendered html**
 
-Use one to italicize any text
+Use one asterisk to italicize the enclosed text:
 
 *This text will be italicized in the rendered text*
 
-Underscores may also be used in the place of asterisks, however the Cumulus
-Standard will be the **
+You can use underscores instead of asterisks. However, the Cumulus Networks
+standard is to use asterisks.
 
-The ~ character can be used for strike throughs
+You can use the tilde (~) character to strike through the text:
 
-~~This text will have a strikethrough~~
-
+~~This text has a strikethrough~~
 
 ### Code Blocks and Syntax
 
-Use three backticks to signify a code block
+Use three backticks before and after the enclosed text to signify a code block. 
+Use this for code blocks containing multiple lines of code.
 
+    ```
+    Formatter.prototype.removeSideandTopBar = function(){
+    $ = this.$
+    $("div[id = 'ht-loader']").remove()
+    $('#ht-headerbar').remove()
+    $('#ht-sidebar').remove()
+    $('#ht-breadcrumb').remove()
+    $('#ht-sidebar-dragbar').remove()
+    $("div[class = 'section section-1']").has('p.expand-control-text').remove()
+    }
+    ```
+
+Alternately, you can indent code samples with 4 spaces to begin a code block:
 
 ```
-Formatter.prototype.removeSideandTopBar = function(){
-$ = this.$
-$("div[id = 'ht-loader']").remove()
-$('#ht-headerbar').remove()
-$('#ht-sidebar').remove()
-$('#ht-breadcrumb').remove()
-$('#ht-sidebar-dragbar').remove()
-$("div[class = 'section section-1']").has('p.expand-control-text').remove()
-}
+    Formatter.prototype.removeSideandTopBar = function(){
+    $ = this.$
+    $("div[id = 'ht-loader']").remove()
+    $('#ht-headerbar').remove()
+    $('#ht-sidebar').remove()
+    $('#ht-breadcrumb').remove()
+    $('#ht-sidebar-dragbar').remove()
+    $("div[class = 'section section-1']").has('p.expand-control-text').remove()
+    }
 ```
 
-inline code can be added with single backticks
+Inline code can be added with single backticks. For example:
 
-**Example** Run `git checkout -b dev` to add a new branch
+> Run `git checkout -b dev` to add a new branch
 
-#### Syntax Highlight
+#### Syntax Highlighting
 
-To be continuted...
+Coming soon!

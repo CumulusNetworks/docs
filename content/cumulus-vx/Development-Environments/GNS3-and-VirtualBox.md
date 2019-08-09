@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 63
 aliases:
  - /display/VX/GNS3-and-VirtualBox
+  - /display/VX/GNS3+and+VirtualBox
  - /pages/viewpage.action?pageId=5126714
 pageID: 5126714
 product: Cumulus VX
-version: '3.4'
+version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---

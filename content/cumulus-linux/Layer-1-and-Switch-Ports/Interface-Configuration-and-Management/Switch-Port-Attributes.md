@@ -15,29 +15,20 @@ Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
 
   - lo, network loopback device
-
   - ethN, switch management port(s), for out of band management only
-
   - swpN, switch front panel ports
-
   - (optional) brN, bridges (IEEE 802.1Q VLANs)
-
   - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
     port channels)
 
 Each physical network interface has a number of configurable settings:
 
   - [Auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation)
-
   - [Duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
-
   - [FEC](https://en.wikipedia.org/wiki/Forward_error_correction)
     (Forward error correction)
-
   - Link speed
-
-  - MTU, or [maximum transmission
-    unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
+  - MTU, or [maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
 
 Most of these settings are configured automatically for you, depending
 upon your switch ASIC, although you must always set MTU manually.
@@ -58,9 +49,9 @@ enable auto-negotiation on each port. When enabled, Cumulus Linux
 automatically configures the best link parameter settings based on the
 module type (speed, duplex, auto-negotiation, and FEC where supported).
 To understand the default configuration for the various port and cable
-types, see the [table below](#interface-configuration-recommendations-for-broadcom-platforms). If you need to
-troubleshoot further to bring the link up, follow the sections below to
-set the specific link parameters.
+types, see the [table below](#interface-configuration-recommendations-for-broadcom-platforms).  
+If you need to troubleshoot further to bring the link up, follow the 
+sections below to set the specific link parameters.
 
 ## Auto-negotiation
 
@@ -73,8 +64,8 @@ auto-negotiation for swp1 through swp52:
     cumulus@switch:~$ net commit
 
 Any time you enable auto-negotiation, Cumulus Linux restores the default
-configuration settings specified in the [table
-below](#interface-configuration-recommendations-for-broadcom-platforms).
+configuration settings specified in the 
+[table below](#interface-configuration-recommendations-for-broadcom-platforms).
 
 By default on a Broadcom-based switch, auto-negotiation is disabled —
 except on 10G and 1000BASE-T fixed copper switch ports, where it is
@@ -98,10 +89,8 @@ If you do decide to disable auto-negotiation, be aware of the following:
 
   - You must manually set any non-default link speed, duplex, pause, and
     FEC.
-
   - Disabling auto-negotiation on a 1G optical cable prevents detection
     of single fiber breaks.
-
   - You cannot disable auto-negotiation on 1GT or 10GT fixed copper
     switch ports.
 
@@ -160,16 +149,15 @@ snippet:
 **Platform Limitations**
 
   - On Lenovo NE2572O switches, swp1 thru swp8 only support 25G speed.
-
   - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
     you must edit the `/etc/cumulus/ports.conf` file and configure the
     four ports in the same core to be 10G. See [Caveats and Errata](#caveats-and-errata) below.
 
 ## MTU
 
-Interface MTU ([maximum transmission
-unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) applies
-to traffic traversing the management port, front panel/switch ports,
+Interface MTU 
+([maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) 
+applies to traffic traversing the management port, front panel/switch ports,
 bridge, VLAN subinterfaces and bonds — in other words, both physical and
 logical interfaces.
 
@@ -296,8 +284,7 @@ that need to run at a lower MTU.
 
 {{%/notice%}}
 
-To view the MTU setting, run the ` net show interface <interface>
- `command:
+To view the MTU setting, run the  `net show interface <interface>` command:
 
     cumulus@switch:~$ net show interface swp1
         Name    MAC                Speed      MTU  Mode
@@ -328,9 +315,8 @@ example:
 
 ## FEC
 
-[Forward Error Correction
-(FEC)](https://en.wikipedia.org/wiki/Forward_error_correction) is an
-encoding and decoding layer that enables the switch to detect and
+[Forward Error Correction (FEC)](https://en.wikipedia.org/wiki/Forward_error_correction) 
+is an encoding and decoding layer that enables the switch to detect and
 correct bit errors introduced over the cable between two interfaces.
 Because 25G transmission speeds can introduce a higher than acceptable
 bit error rate (BER) on a link, FEC is required or recommended for 25G,
@@ -347,24 +333,22 @@ retransmission latency.
 
 There are two FEC types:
 
-  - Reed Solomon (**RS**), IEEE 802.3 Clause 108 (CL108) on individual
-    25G channels and Clause 91 on 100G (4channels). This is the highest
-    FEC algorithm, providing the best bit-error correction.
-
-  - Base-R (**BaseR**), Fire Code (FC), IEEE 802.3 Clause 74 (CL74).
-    Base-R provides less protection from bit errors than RS FEC but adds
-    less latency.
+- Reed Solomon (**RS**), IEEE 802.3 Clause 108 (CL108) on individual
+  25G channels and Clause 91 on 100G (4channels). This is the highest
+  FEC algorithm, providing the best bit-error correction.
+- Base-R (**BaseR**), Fire Code (FC), IEEE 802.3 Clause 74 (CL74).
+  Base-R provides less protection from bit errors than RS FEC but adds
+  less latency.
 
 There are additional FEC options for Cumulus Linux configuration:
 
-  - Auto FEC instructs the hardware to select the best FEC. For copper
-    DAC, FEC can be negotiated with the remote end. However, optical
-    modules do not have auto-negotiation capability; if the device
-    chooses a preferred mode, it might not match the remote end. This is
-    the current default on a Mellanox switch.
-
-  - No FEC (no error correction is done). This is the current default on
-    a Broadcom switch.
+- Auto FEC instructs the hardware to select the best FEC. For copper
+  DAC, FEC can be negotiated with the remote end. However, optical
+  modules do not have auto-negotiation capability; if the device
+  chooses a preferred mode, it might not match the remote end. This is
+  the current default on a Mellanox switch.
+- No FEC (no error correction is done). This is the current default on
+  a Broadcom switch.
 
 {{%notice note%}}
 
@@ -391,17 +375,15 @@ directly editing the `/etc/network/interfaces` file.
 For **25G DAC, 4x25G Breakouts DAC and 100G DAC cables**, the IEEE
 802.3by specification creates 3 classes:
 
-  - CA-25G-L (long cables - achievable cable length of at least 5m) dB
-    loss less or equal to 22.48. Requires RS FEC and expects BER of 10-5
-    or better with RS FEC enabled.
-
-  - CA-25G-S (short cables - achievable cable length of at least 3m) dB
-    loss less or equal to 16.48. Requires Base-R FEC and expects BER of
-    10-8 or better with Base-R FEC enabled.
-
-  - CA-25G-N (no FEC - achievable cable length of at least 3m) dB loss
-    less or equal to 12.98. Does not require FEC. Expects BER 10-12 or
-    better with no FEC.
+- CA-25G-L (long cables - achievable cable length of at least 5m) dB
+  loss less or equal to 22.48. Requires RS FEC and expects BER of 10-5
+  or better with RS FEC enabled.
+- CA-25G-S (short cables - achievable cable length of at least 3m) dB
+  loss less or equal to 16.48. Requires Base-R FEC and expects BER of
+  10-8 or better with Base-R FEC enabled.
+- CA-25G-N (no FEC - achievable cable length of at least 3m) dB loss
+  less or equal to 12.98. Does not require FEC. Expects BER 10-12 or
+  better with no FEC.
 
 The IEEE classification is based on various dB loss measurements and
 minimum achievable cable length. You can build longer and shorter cables
@@ -410,8 +392,9 @@ if they comply to the dB loss and BER requirements.
 If a cable is manufactured to CA-25G-S classification and FEC is not
 enabled, the BER might be unacceptable in a production network. It is
 important to set the FEC according to the cable class (or better) to
-have acceptable bit error rates. See [Determining Cable
-Class](#determine-cable-class-of-100g-and-25g-dacs) below.
+have acceptable bit error rates. See 
+[Determining Cable Class](#determine-cable-class-of-100g-and-25g-dacs) 
+below.
 
 You can check bit errors using `cl-netstat` (`RX_ERR` column) or
 `ethtool -S` (`HwIfInErrors` counter) after a large amount of traffic
@@ -455,11 +438,9 @@ For the **SFP28 DAC**, run the following command:
 
 The values at location 0x0024 are:
 
-  - 0x0b : CA-L (long cable - RS FEC required)
-
-  - 0x0c : CA-S (short cable - BaseR or better FEC required)
-
-  - 0x0d : CA-N (no FEC required)
+- 0x0b : CA-L (long cable - RS FEC required)
+- 0x0c : CA-S (short cable - BaseR or better FEC required)
+- 0x0d : CA-N (no FEC required)
 
 For the **QSFP28 DAC**, run the following command:
 
@@ -468,11 +449,9 @@ For the **QSFP28 DAC**, run the following command:
 
 The values at 0x00c0 are:
 
-  - 0x0b : CA-L (long cable - RS FEC required) or 100G CR4
-
-  - 0x0c : CA-S (short cable - BaseR or better FEC required)
-
-  - 0x0d : CA-N (no FEC required)
+- 0x0b : CA-L (long cable - RS FEC required) or 100G CR4
+- 0x0c : CA-S (short cable - BaseR or better FEC required)
+- 0x0d : CA-N (no FEC required)
 
 In each example below, the *Compliance* field is derived using the
 method described above and is not visible in the `ethool -m` output.
@@ -492,7 +471,7 @@ method described above and is not visible in the `ethool -m` output.
 When in doubt, consult the manufacturer directly to determine the cable
 classification.
 
-### How Does Cumulus Linux use FEC?
+### How Cumulus Linux Uses FEC
 
 This depends upon the make of the switch you are using.
 
@@ -626,13 +605,6 @@ recommended settings as show below on this switch in this case.
 {{%/notice%}}
 
 <table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th><p>Speed/Type</p></th>
@@ -643,249 +615,249 @@ recommended settings as show below on this switch in this case.
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>100BASE-T<br />
 (RJ-45 SFP Module)</p></td>
 <td><p>Off</p></td>
 <td><p>N/A (does not apply at this speed)</p></td>
-<td><pre><code>$ net add interface swp1 link speed 100
-$ net add interface swp1 link autoneg off</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 100
+$ net add interface swp1 link autoneg off</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg off
-  link-speed 100</code></pre></td>
+  link-speed 100</pre></td>
 <td><ul>
 <li><p>The module has two sets of electronics — the port side, which communicates to the switch ASIC, and the RJ-45 adapter side.</p></li>
 <li><p>Auto-negotiation is always used on the RJ-45 adapter side of the link by the PHY built into the module. This is independent of the switch setting. Set <code>link-autoneg</code> to off.</p></li>
 <li><p>Auto-negotiation needs to be enabled on the server side in this scenario.</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>100BASE-T on a 1G fixed copper port</p></td>
 <td><p>On</p></td>
 <td><p>N/A</p></td>
-<td><pre><code>$ net add interface swp1 link speed 100
-$ net add interface swp1 link autoneg on</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 100
+$ net add interface swp1 link autoneg on</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg on
-  link-speed 100</code></pre></td>
+  link-speed 100</pre></td>
 <td><ul>
 <li><p>10M or 100M speeds are possible with auto-negotiation OFF on both sides. Testing on an Edgecore AS4610-54P revealed the ASIC reporting auto-negotiation as ON.</p></li>
 <li><p>Power over Ethernet may require auto-negotiation to be ON.</p></li>
 </ul></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>1000BASE-T<br />
 (RJ-45 SFP Module)</p></td>
 <td><p>Off</p></td>
 <td><p>N/A</p></td>
-<td><pre><code>$ net add interface swp1 link speed 1000
-$ net add interface swp1 link autoneg off</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 1000
+$ net add interface swp1 link autoneg off</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg off
-  link-speed 1000</code></pre></td>
+  link-speed 1000</pre></td>
 <td><ul>
 <li><p>The module has two sets of electronics — the port side, which communicates to the switch ASIC, and the RJ-45 side.</p></li>
 <li><p>Auto-negotiation is always used on the RJ-45 side of the link by the PHY built into the module. This is independent of the switch setting. Set <code>link-autoneg</code> to off.</p></li>
 <li><p>Auto-negotiation needs to be enabled on the server side.</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>1000BASE-T on a 1G fixed copper port</p></td>
 <td><p>On</p></td>
 <td><p>N/A</p></td>
-<td><pre><code>$ net add interface swp1 link speed 1000
-$ net add interface swp1 link autoneg on</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 1000
+$ net add interface swp1 link autoneg on</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg on
-  link-speed 1000</code></pre></td>
+  link-speed 1000</pre></td>
 <td><p> </p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>1000BASE-T on a 10G fixed copper port</p></td>
 <td><p>On</p></td>
 <td><p>N/A</p></td>
-<td><pre><code>$ net add interface swp1 link speed 1000
-$ net add interface swp1 link autoneg on</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 1000
+$ net add interface swp1 link autoneg on</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg on
-  link-speed 1000</code></pre></td>
+  link-speed 1000</pre></td>
 <td><p> </p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>1000BASE-SX,<br />
 1000BASE-LX,<br />
 (1G Fiber)</p></td>
 <td><p>Recommended On</p></td>
 <td><p>N/A</p></td>
-<td><pre><code>$ net add interface swp1 link speed 1000
-$ net add interface swp1 link autoneg on</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 1000
+$ net add interface swp1 link autoneg on</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg on
-  link-speed 1000</code></pre></td>
+  link-speed 1000</pre></td>
 <td><ul>
 <li><p>Without auto-negotiation, the link stays up when there is a single fiber break.</p></li>
 </ul>
 <p>See the limitation discussed in 10G and 1G SFPs Inserted in a 25G Port, below</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>10GBASE-T<br />
 (RJ-45 SFP Module)</p></td>
 <td><p>Off</p></td>
 <td><p>N/A</p></td>
-<td><pre><code>$ net add interface swp1 link speed 10000
-$ net add interface swp1 link autoneg off</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 10000
+$ net add interface swp1 link autoneg off</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg off
-  link-speed 10000</code></pre></td>
+  link-speed 10000</pre></td>
 <td><ul>
 <li><p>The module has two sets of electronics — the port side, which communicates to the switch ASIC and the RJ-45 side.</p></li>
 <li><p>Auto-negotiation is always used on the RJ-45 side of the link by the PHY built into the module. This is independent of the switch setting. Set link-autoneg to off.</p></li>
 <li><p>Auto-negotiation needs to be enabled on the server side.</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>10GBASE-T fixed copper port</p></td>
 <td><p>On</p></td>
 <td><p>N/A</p></td>
-<td><pre><code>$ net add interface swp1 link speed 10000
-$ net add interface swp1 link autoneg on</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 10000
+$ net add interface swp1 link autoneg on</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg on
-  link-speed 10000</code></pre></td>
+  link-speed 10000</pre></td>
 <td><p> </p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>10GBASE-CR,<br />
 10GBASE-LR,<br />
 10GBASE-SR,<br />
 10G AOC</p></td>
 <td><p>Off</p></td>
 <td><p>N/A</p></td>
-<td><pre><code>$ net add interface swp1 link speed 10000
-$ net add interface swp1 link autoneg off</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 10000
+$ net add interface swp1 link autoneg off</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg off
-  link-speed 10000</code></pre></td>
+  link-speed 10000</pre></td>
 <td><p> </p></td>
 </tr>
-<tr class="even">
+<tr>
+<td><p>25GBASE-CR</p></td>
+<td><p>On</p></td>
+<td><p>auto-negotiated*</p></td>
+<td><pre>$ net add interface swp1 link speed 25000
+$ net add interface swp1 link autoneg on</pre>
+<pre>auto swp1
+iface swp1
+  link-autoneg on
+  link-speed 25000</pre></td>
+<td><p> </p></td>
+</tr>
+<tr>
+<td><p>25GBASE-SR</p></td>
+<td><p>Off</p></td>
+<td><p>RS*</p></td>
+<td><pre>$ net add interface swp1 link speed 25000
+$ net add interface swp1 link autoneg off
+$ net add interface swp1 link fec baser</pre>
+<pre>auto swp1
+iface swp1
+  link-autoneg off
+  link-speed 25000
+  link-fec baser</pre></td>
+<td><ul>
+<li><p>Tomahawk cannot do RS on a single channel, only BASE-R/FC/FireCode/Type74, which violates the 802.3by specification for 25G.</p></li>
+</ul></td>
+</tr>
+<tr>
+<td><p>25GBASE-LR</p></td>
+<td><p>Off</p></td>
+<td><p>None stated</p></td>
+<td><pre>$ net add interface swp1 link speed 25000
+$ net add interface swp1 link autoneg off
+$ net add interface swp1 link fec off</pre>
+<pre>auto swp1
+iface swp1
+  link-autoneg off
+  link-speed 25000
+  link-fec off</pre></td>
+<td><p> </p></td>
+</tr>
+<tr>
 <td><p>40GBASE-CR4</p></td>
 <td><p>Recommended On</p></td>
 <td><p>Disable it</p></td>
-<td><pre><code>$ net add interface swp1 link speed 40000
-$ net add interface swp1 link autoneg on</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 40000
+$ net add interface swp1 link autoneg on</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg on
-  link-speed 40000</code></pre></td>
+  link-speed 40000</pre></td>
 <td><ul>
 <li><p>40G standards mandate auto-negotiation should be enabled for DAC connections.</p></li>
 </ul></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>40GBASE-SR4,<br />
 40GBASE-LR4,<br />
 40G AOC</p></td>
 <td><p>Off</p></td>
 <td><p>Disable it</p></td>
-<td><pre><code>$ net add interface swp1 link speed 40000
-$ net add interface swp1 link autoneg off</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 40000
+$ net add interface swp1 link autoneg off</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg off
-  link-speed 40000</code></pre></td>
+  link-speed 40000</pre></td>
 <td><p> </p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>100GBASE-CR4</p></td>
 <td><p>On</p></td>
 <td><p>auto-negotiated</p></td>
-<td><pre><code>$ net add interface swp1 link speed 100000
-$ net add interface swp1 link autoneg on</code></pre>
-<pre><code>auto swp1
+<td><pre>$ net add interface swp1 link speed 100000
+$ net add interface swp1 link autoneg on</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg on
-  link-speed 100000</code></pre></td>
+  link-speed 100000</pre></td>
 <td><p> </p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>100GBASE-SR4,<br />
 100G AOC</p></td>
 <td><p>Off</p></td>
 <td><p>RS</p></td>
-<td><pre><code>$ net add interface swp1 link speed 100000
+<td><pre>$ net add interface swp1 link speed 100000
 $ net add interface swp1 link autoneg off
-$ net add interface swp1 link fec rs</code></pre>
-<pre><code>auto swp1
+$ net add interface swp1 link fec rs</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg off
   link-speed 100000
-  link-fec rs</code></pre></td>
+  link-fec rs</pre></td>
 <td><p> </p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>100GBASE-LR4</p></td>
 <td><p>Off</p></td>
 <td><p>None stated</p></td>
-<td><pre><code>$ net add interface swp1 link speed 100000
+<td><pre>$ net add interface swp1 link speed 100000
 $ net add interface swp1 link autoneg off
-$ net add interface swp1 link fec off</code></pre>
-<pre><code>auto swp1
+$ net add interface swp1 link fec off</pre>
+<pre>auto swp1
 iface swp1
   link-autoneg off
   link-speed 100000
-  link-fec off</code></pre></td>
-<td><p> </p></td>
-</tr>
-<tr class="odd">
-<td><p>25GBASE-CR</p></td>
-<td><p>On</p></td>
-<td><p>auto-negotiated*</p></td>
-<td><pre><code>$ net add interface swp1 link speed 25000
-$ net add interface swp1 link autoneg on</code></pre>
-<pre><code>auto swp1
-iface swp1
-  link-autoneg on
-  link-speed 25000</code></pre></td>
-<td><p> </p></td>
-</tr>
-<tr class="even">
-<td><p>25GBASE-SR</p></td>
-<td><p>Off</p></td>
-<td><p>RS*</p></td>
-<td><pre><code>$ net add interface swp1 link speed 25000
-$ net add interface swp1 link autoneg off
-$ net add interface swp1 link fec baser</code></pre>
-<pre><code>auto swp1
-iface swp1
-  link-autoneg off
-  link-speed 25000
-  link-fec baser</code></pre></td>
-<td><ul>
-<li><p>Tomahawk cannot do RS on a single channel, only BASE-R/FC/FireCode/Type74, which violates the 802.3by specification for 25G.</p></li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td><p>25GBASE-LR</p></td>
-<td><p>Off</p></td>
-<td><p>None stated</p></td>
-<td><pre><code>$ net add interface swp1 link speed 25000
-$ net add interface swp1 link autoneg off
-$ net add interface swp1 link fec off</code></pre>
-<pre><code>auto swp1
-iface swp1
-  link-autoneg off
-  link-speed 25000
-  link-fec off</code></pre></td>
+  link-fec off</pre></td>
 <td><p> </p></td>
 </tr>
 </tbody>

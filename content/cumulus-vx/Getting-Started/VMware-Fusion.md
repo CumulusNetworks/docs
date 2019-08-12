@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 39
 aliases:
  - /display/VX/VMware-Fusion
+ - /display/VX/VMware+Fusion
  - /pages/viewpage.action?pageId=5126696
 pageID: 5126696
 product: Cumulus VX
-version: '3.4'
+version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---

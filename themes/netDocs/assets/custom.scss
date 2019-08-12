@@ -835,6 +835,23 @@ div.notices.tip>*:first-child:after {
   padding-right: 15px;
 }
 
+h2 {
+  a {
+    &.anchor-link {
+      opacity: 0;
+      padding-left: 9px;
+      transition: opacity 200ms ease-in-out;
+    }
+  }
+  &:hover {
+    a {
+      &.anchor-link {
+        opacity: 1;  
+      }
+    }
+  }
+}
+
 footer {
   background-color: black;
   position: relative;

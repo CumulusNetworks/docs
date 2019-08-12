@@ -310,16 +310,16 @@ file, use that account name instead of *radius\_user*.
 
 ## Limitations
 
-If two or more RADIUS users are logged in simultaneously, a UID lookup
+- If two or more RADIUS users are logged in simultaneously, a UID lookup
 only returns the user that logged in first. Any processes run by either
 user get attributed to both, and all files created by either user get
 attributed to the first name matched. This is similar to adding two
 local users to the password file with the same UID and GID, and is an
 inherent limitation of using the UID for the fixed user from the
-password file.
-
-The current algorithm returns the first name matching the UID from the
+password file. The current algorithm returns the first name matching the UID from the
 mapping file; this might be the first or second user that logged in.
+
+- When you have both the TACACS+ and the RADIUS AAA client installed, RADIUS login is not attempted. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.
 
 ## Related Information
 

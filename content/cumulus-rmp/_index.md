@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: -37
 aliases:
  - /display/RMP/Cumulus-RMP
+ - /display/RMP/Cumulus+RMP
  - /pages/viewpage.action?pageId=5122807
 pageID: 5122807
 product: Cumulus RMP

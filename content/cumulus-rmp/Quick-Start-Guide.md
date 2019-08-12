@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 11
 aliases:
  - /display/RMP/Quick-Start-Guide
+ - /display/RMP/Quick+Start+Guide
  - /pages/viewpage.action?pageId=5122816
 pageID: 5122816
 product: Cumulus RMP

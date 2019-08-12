@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 17
 aliases:
  - /display/VX/Getting-Started
+ - /display/VX/Getting+Started
  - /pages/viewpage.action?pageId=5126687
 pageID: 5126687
 product: Cumulus VX
-version: '3.4'
+version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---

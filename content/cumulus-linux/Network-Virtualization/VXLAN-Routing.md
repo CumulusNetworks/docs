@@ -163,6 +163,12 @@ you cannot use a bridge in
 
 ## VXLAN Routing Data Plane and Broadcom Trident II Platforms
 
+{{%notice warning%}}
+
+As of Cumulus Linux 3.7, the external hyperloop workaround for RIOT on Trident II switches has been deprecated. Support for this feature will be removed in Cumulus Linux 4.0. Cumulus Networks recommends you use native VXLAN routing platforms and [EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN) for network virtualization.
+
+{{%/notice%}}
+
 The Trident II ASIC does not support RIOT natively or VXLAN routing
 using internal loopback. To achieve VXLAN routing in a deployment using
 Trident II switches, use an external gateway. For routing without an

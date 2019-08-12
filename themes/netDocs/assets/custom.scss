@@ -27,11 +27,11 @@ body {
   img {
     max-width: 100%;
   }
-  
+
   .mb-6 {
     margin-bottom: 35px;
   }
-  
+
   .home-banner {
     background-size: cover;
     background-position: center;
@@ -47,7 +47,7 @@ body {
       line-height: 96px;
     }
   }
-  
+
   section {
     padding: 73px 0 120px;
     h3 {
@@ -57,7 +57,7 @@ body {
       line-height: 34px;
       margin-bottom: 15px;
     }
-  
+
     p {
       &.small {
         color: #75828c;
@@ -81,7 +81,7 @@ body {
       }
     }
   }
-  
+
   .bg-athens-gray-white {
     background: #f2f2f6;
     background: linear-gradient(-180deg, rgb(242, 242, 246) 0%, rgb(255, 255, 255) 100%);
@@ -233,7 +233,7 @@ body {
     display: inline-block;
     font-size: 15px;
     line-height: 30px;
-    font-weight: 400
+    font-weight: 400;
     background-color: white;
 
     &:after {
@@ -846,7 +846,7 @@ h2 {
   &:hover {
     a {
       &.anchor-link {
-        opacity: 1;  
+        opacity: 1;
       }
     }
   }

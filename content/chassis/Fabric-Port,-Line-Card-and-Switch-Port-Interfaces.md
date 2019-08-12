@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 13
 aliases:
  - '/display/CHASSIS/Fabric-Port,-Line-Card-and-Switch-Port-Interfaces'
+ - '/display/CHASSIS/Fabric+Port,+Line+Card+and+Switch+Port+Interfaces'
  - /pages/viewpage.action?pageId=7766298
 pageID: 7766298
 product: Cumulus Chassis

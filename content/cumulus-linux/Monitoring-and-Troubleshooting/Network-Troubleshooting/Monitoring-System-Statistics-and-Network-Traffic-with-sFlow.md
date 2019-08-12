@@ -24,6 +24,8 @@ automatically when the switch boots up.
 
 {{%notice note%}}
 
+The `hsflowd` service does not sample interfaces that are up but not configured.
+
 If you intend to run this service within a
 [VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
 including the [management VRF](/cumulus-linux/Layer-3/Management-VRF), follow
@@ -36,9 +38,9 @@ for configuring the service.
 
 To configure `hsflowd` to send to the designated collectors, either:
 
-  - Use DNS service discovery (DNS-SD)
+- Use DNS service discovery (DNS-SD)
 
-  - Manually configure the `/etc/hsflowd.conf` file
+- Manually configure the `/etc/hsflowd.conf` file
 
 ### Configure sFlow via DNS-SD
 
@@ -82,7 +84,9 @@ The maximum samples per second delivered from the hardware is limited to
 
 Start the sFlow daemon:
 
-    cumulus@switch:~$ sudo systemctl start hsflowd.service
+```
+cumulus@switch:~$ sudo systemctl start hsflowd.service
+```
 
 No additional configuration is required in `/etc/hsflowd.conf`.
 
@@ -136,6 +140,6 @@ For information on configuring various sFlow visualization tools, read this
 
 ## Related Information
 
-  - [sFlow Collectors](http://www.sflow.org/products/collectors.php)
+- [sFlow Collectors](http://www.sflow.org/products/collectors.php)
 
-  - [sFlow Wikipedia page](http://en.wikipedia.org/wiki/SFlow)
+- [sFlow Wikipedia page](http://en.wikipedia.org/wiki/SFlow)

@@ -11,15 +11,14 @@ version: '3.5'
 imgData: cumulus-linux-35
 siteSlug: cumulus-linux-35
 ---
-<details>
-
 The Cumulus Linux default ACL configuration is split into three parts,
-as outlined in the [netfilter ACL
-documentation](/display/CL35/Netfilter+-+ACLs): IP tables, IPv6 tables,
+as outlined in the 
+[netfilter ACL documentation](/version/cumulus-linux-35/System-Configuration/Netfilter-ACLs/): IP tables, IPv6 tables,
 and EB tables. The sections below cover the default configurations for
 each part, while the default file can be seen by clicking the Default
 ACL Configuration link:
 
+<details>
 <summary>Default ACL Configuration </summary>
 
     cumulus@switch:~$ sudo cl-acltool -L all
@@ -195,8 +194,9 @@ ACL Configuration link:
     Bridge chain: FORWARD, entries: 0, policy: ACCEPT
      
     Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
+</details>
 
-## IP Tables</span>
+## IP Tables
 
 <table>
 <colgroup>
@@ -310,7 +310,7 @@ bits.
 
 {{%/notice%}}
 
-## IPv6 Tables</span>
+## IPv6 Tables
 
 <table>
 <colgroup>
@@ -441,7 +441,7 @@ bits.
 
 {{%/notice%}}
 
-## EB Tables</span>
+## EB Tables
 
 <table>
 <colgroup>
@@ -499,13 +499,3 @@ Set class is internal to the switch. It does not set any precedence
 bits.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

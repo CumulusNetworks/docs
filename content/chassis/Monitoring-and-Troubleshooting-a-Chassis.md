@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 17
 aliases:
  - /display/CHASSIS/Monitoring-and-Troubleshooting-a-Chassis
+ - /display/CHASSIS/Monitoring+and+Troubleshooting+a+Chassis
  - /pages/viewpage.action?pageId=7113871
 pageID: 7113871
 product: Cumulus Chassis

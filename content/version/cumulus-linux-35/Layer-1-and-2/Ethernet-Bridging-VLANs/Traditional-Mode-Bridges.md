@@ -71,7 +71,6 @@ file. To create a traditional mode bridge:
     The name of the bridge must be:
     
       - Compliant with Linux interface naming conventions.
-    
       - Unique within the switch.
     
     {{%/notice%}}

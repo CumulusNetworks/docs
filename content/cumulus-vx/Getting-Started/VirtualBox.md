@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=5126701
 pageID: 5126701
 product: Cumulus VX
-version: '3.4'
+version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---

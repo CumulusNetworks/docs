@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 37
 aliases:
  - /display/VX/VMware-vSphere-ESXi-5.5
+ - /display/VX/VMware+vSphere+ESXi+5.5
  - /pages/viewpage.action?pageId=5126689
 pageID: 5126689
 product: Cumulus VX
-version: '3.4'
+version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---

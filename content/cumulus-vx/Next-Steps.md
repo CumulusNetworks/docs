@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 23
 aliases:
  - /display/VX/Next-Steps
+ - /display/VX/Next+Steps
  - /pages/viewpage.action?pageId=5126707
 pageID: 5126707
 product: Cumulus VX
-version: '3.4'
+version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---

@@ -693,3 +693,7 @@ users.
 
 Only use the `--remove-home` option when the `user_homedir=1`
 configuration command is in use.
+
+### When Both TACACS+ and RADIUS AAA Clients are Installed
+
+When you have both the TACACS+ and the RADIUS AAA client installed, RADIUS login is not attempted. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.

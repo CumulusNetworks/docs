@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 189
 aliases:
  - /display/CL35/Protocol+Independent+Multicast+++PIM
+ - /display/CL35/Protocol+Independent+Multicast+-+PIM
+ - /display/CL35/Protocol+Independent+Multicast+PIM
  - /pages/viewpage.action?pageId=8357695
 pageID: 8357695
 product: Cumulus Linux
@@ -11,8 +13,6 @@ version: '3.5'
 imgData: cumulus-linux-35
 siteSlug: cumulus-linux-35
 ---
-<details>
-
 Protocol Independent Multicast (PIM) is a multicast control plane
 protocol, that advertises multicast sources and receivers over a routed
 layer 3 network. Layer 3 multicast relies on PIM to advertise
@@ -29,7 +29,7 @@ Cumulus Linux only supports PIM Sparse Mode.
 
 {{%/notice%}}
 
-## PIM Overview</span>
+## PIM Overview
 
 {{% imgOld 0 %}}
 
@@ -95,7 +95,7 @@ Cumulus Linux only supports PIM Sparse Mode.
 </tbody>
 </table>
 
-### PIM Messages</span>
+### PIM Messages
 
 <table>
 <colgroup>
@@ -165,7 +165,7 @@ Cumulus Linux only supports PIM Sparse Mode.
 </tbody>
 </table>
 
-### PIM Neighbors</span>
+### PIM Neighbors
 
 When PIM is configured on an interface, `PIM Hello` messages are sent to
 the link local multicast group 224.0.0.13. Any other router configured
@@ -179,7 +179,7 @@ exchanged between PIM endpoints.
 
 {{%/notice%}}
 
-## PIM Sparse Mode (PIM-SM)</span>
+## PIM Sparse Mode (PIM-SM)
 
 PIM Sparse Mode (PIM-SM) is a "pull" multicast distribution method. This
 means that multicast traffic is only sent through the network if
@@ -221,13 +221,13 @@ supported.
 
 {{%/notice%}}
 
-### Any-source Multicast Routing</span>
+### Any-source Multicast Routing
 
 Multicast routing behaves differently depending on whether the source is
 sending before receivers request the multicast stream, or if a receiver
 tries to join a stream before there are any sources.
 
-#### Receiver Joins First</span>
+#### Receiver Joins First
 
 When a receiver joins a group, an IGMP membership join message is sent
 to the IGMPv3 multicast group, 224.0.0.22. The PIM multicast router for
@@ -265,7 +265,7 @@ will then begin the PIM register process.
 
 {{%/notice%}}
 
-##### PIM Register Process</span>
+##### PIM Register Process
 
 When a first hop router (FHR) receives a multicast data packet from a
 source, the FHR does not know if there are any interested multicast
@@ -290,7 +290,7 @@ a PIM register stop to the FHR to end the register process.
 
 {{% imgOld 5 %}}
 
-##### PIM SPT Switchover</span>
+##### PIM SPT Switchover
 
 When the LHR receives the first multicast packet, in order to
 efficiently forward traffic through the network, it will send a PIM
@@ -334,7 +334,7 @@ command:
 In the example above, *235.0.0.0* has been configured for SPT
 switchover, identified by *pimreg*.
 
-#### Sender Starts Before Receivers Join</span>
+#### Sender Starts Before Receivers Join
 
 As previously mentioned, a multicast sender can send multicast data
 without any additional IGMP or PIM signaling. When the FHR receives the
@@ -359,7 +359,7 @@ is not sourced from the interface towards the RP.
 
 {{%/notice%}}
 
-### PIM Null-Register</span>
+### PIM Null-Register
 
 In order to notify the RP that multicast traffic is still flowing when
 the RP has no receiver, or if the RP is not on the SPT tree, the FHR
@@ -372,7 +372,7 @@ After receiving a PIM Null-Register, the RP immediately sends a PIM
 register stop to acknowledge the reception of the PIM null register
 message.
 
-### PIM and ECMP</span>
+### PIM and ECMP
 
 PIM uses the RPF procedure to choose an upstream interface in order to
 build a forwarding state. If equal-cost multipaths (ECMP) are
@@ -417,7 +417,7 @@ nexthop is selected for a specific source/group:
     6.0.0.10        swp31s0        169.254.0.9 
     6.0.0.10        swp31s1        169.254.0.25 
 
-## Configuring PIM</span>
+## Configuring PIM
 
 To configure PIM using NCLU:
 
@@ -427,7 +427,7 @@ To configure PIM using NCLU:
     
     {{%notice note%}}
     
-    PIM must be enabled on all interfaces facing multicast sources or
+PIM must be enabled on all interfaces facing multicast sources or
     multicast receivers, as well as on the interface where the RP
     address is configured.
     
@@ -442,7 +442,7 @@ To configure PIM using NCLU:
     
     {{%notice note%}}
     
-    IGMP must be configured on all interfaces where multicast receivers
+IGMP must be configured on all interfaces where multicast receivers
     exist.
     
     {{%/notice%}}
@@ -453,7 +453,7 @@ To configure PIM using NCLU:
     
     {{%notice note%}}
     
-    Unless you are using PIM SSM, each PIM-SM enabled device must
+Unless you are using PIM SSM, each PIM-SM enabled device must
     configure a static RP to a group mapping, and all PIM-SM enabled
     devices must have the same RP to group mapping configuration.
     
@@ -474,7 +474,7 @@ To configure PIM using NCLU:
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
 
-### Configuring PIM Using FRRouting</span>
+### Configuring PIM Using FRRouting
 
 PIM is included in the FRRouting package. For proper PIM operation, PIM
 depends on Zebra. PIM relies on unicast routing to be configured and
@@ -509,7 +509,7 @@ To configure PIM on a switch using FRR:
     
     {{%notice note%}}
     
-    PIM must be enabled on all interfaces facing multicast sources or
+PIM must be enabled on all interfaces facing multicast sources or
     multicast receivers, as well as on the interface where the RP
     address is configured.
     
@@ -527,8 +527,7 @@ To configure PIM on a switch using FRR:
     
     {{%notice note%}}
     
-    IGMP must be configured on all interfaces where multicast receivers
-    exist.
+IGMP must be configured on all interfaces where multicast receivers exist.
     
     {{%/notice%}}
 
@@ -539,19 +538,20 @@ To configure PIM on a switch using FRR:
     
     {{%notice note%}}
     
-    Each PIM-SM enabled device must configure a static RP to a group
+Each PIM-SM enabled device must configure a static RP to a group
     mapping, and all PIM-SM enabled devices must have the same RP to
     group mapping configuration.
     
-    IP PIM RP group ranges can overlap. Cumulus Linux performs a longest
+IP PIM RP group ranges can overlap. Cumulus Linux performs a longest
     prefix match (LPM) to determine the RP. For example:
     
         cumulus(config)# ip pim rp 10.0.0.13 224.10.0.0/16
     
     {{%/notice%}}
 
-### Example Configurations</span>
+### Example Configurations
 
+<details>
 <summary>Complete Multicast Network Configuration Example </summary>
 
 The following is example configuration:
@@ -662,8 +662,9 @@ The following is example configuration:
     line vty
     !
     end
+</details>
 
-## Source Specific Multicast Mode (SSM)</span>
+## Source Specific Multicast Mode (SSM)
 
 The source-specific multicast method uses prefix-lists to configure a
 receiver to only allow traffic to a multicast address from a single
@@ -713,7 +714,7 @@ To view the existing prefix-lists, use the `net show ip` command:
         seq 5 permit 232.0.0.0/8 ge 32
         seq 10 permit 238.0.0.0/8 ge 32
 
-## IP Multicast Boundaries</span>
+## IP Multicast Boundaries
 
 Multicast boundaries enable network administrators to limit the
 distribution of multicast traffic by setting boundaries with the goal of
@@ -734,7 +735,7 @@ To configure the boundary, use NCLU:
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
 
-## <span id="src-8357695_ProtocolIndependentMulticast-PIM-msdp" class="confluence-anchor-link"></span>Multicast Source Discovery Protocol (MSDP)</span>
+## Multicast Source Discovery Protocol (MSDP)
 
 The Multicast Source Discovery Protocol (MSDP) can be used to connect
 multiple PIM-SM multicast domains together, using the PIM-SM RPs. By
@@ -783,7 +784,7 @@ MSDP:
     
     {{%notice note%}}
     
-    The mesh group should include all RPs in the domain as members, with
+The mesh group should include all RPs in the domain as members, with
     a unique address as the source. This configuration results in MSDP
     peerings between all RPs.
     
@@ -820,17 +821,17 @@ hello source by setting the source:
 
 {{%/notice%}}
 
-## Verifying PIM</span>
+## Verifying PIM
 
 {{%notice note%}}
 
-The following outputs are based on the [Cumulus Reference
-Topology](https://github.com/CumulusNetworks/cldemo-vagrant) with
-cldemo-pim.
+The following outputs are based on the 
+[Cumulus Reference Topology](https://github.com/CumulusNetworks/cldemo-vagrant) 
+with `cldemo-pim`.
 
 {{%/notice%}}
 
-### Source Starts First</span>
+### Source Starts First
 
 On the FHR, an mroute is built, but the upstream state is "Prune". The
 FHR flag is set on the interface receiving multicast.
@@ -923,7 +924,7 @@ transitions from "none" to the RPF interface of the RP:
     *                239.1.1.1        lo     swp1
     172.16.5.105     239.1.1.1        swp30  swp1
 
-### Receiver Joins First</span>
+### Receiver Joins First
 
 On the LHR attached to the receiver:
 
@@ -973,7 +974,7 @@ On the RP:
     Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
     swp1      *               239.2.2.2       no         yes   no         yes         yes
 
-## PIM in a VRF</span>
+## PIM in a VRF
 
 [VRFs](/version/cumulus-linux-35/Layer-3/Virtual-Routing-and-Forwarding-VRF)
 divide the routing table on a per-tenant basis, ultimately providing for
@@ -1094,7 +1095,7 @@ In FRR, you can use show commands to display VRF information:
                                     IGMP              swp31s1    1    00:01:14
                                     IGMP              br0.100    1    00:01:15
 
-## BFD for PIM Neighbors</span>
+## BFD for PIM Neighbors
 
 You can use [bidirectional forward
 detection](/version/cumulus-linux-35/Layer-3/Bidirectional-Forwarding-Detection-BFD)
@@ -1105,9 +1106,9 @@ configure an interface, include the `pim bfd` option:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## Troubleshooting PIM</span>
+## Troubleshooting PIM
 
-### FHR Stuck in Registering Process</span>
+### FHR Stuck in Registering Process
 
 When a multicast source starts, the FHR sends unicast PIM register
 messages from the RPF interface towards the source. After the PIM
@@ -1168,7 +1169,7 @@ To troubleshoot the issue:
         cumulus@fhr:~$ sudo tail -f /var/log/frr/frr.log
         2016/10/19 23:59:38 PIM: Recv PIM REGSTOP packet from 10.0.0.21 to 172.16.5.1 on swp51: ttl=255 pim_version=2 pim_msg_size=18 checksum=5a39
 
-### No \*,G Is Built on LHR</span>
+### No \*,G Is Built on LHR
 
 The most common reason for a \*,G to not be built on a LHR is for both
 PIM **and** IGMP to not be enabled on an interface facing a receiver.
@@ -1188,7 +1189,7 @@ that IGMPv3 joins are being sent by the receiver:
     listening on br0, link-type EN10MB (Ethernet), capture size 262144 bytes
     00:03:55.789744 IP 172.16.1.101 > igmp.mcast.net: igmp v3 report, 1 group record(s)
 
-### No mroute Created on FHR</span>
+### No mroute Created on FHR
 
 To troubleshoot this issue:
 
@@ -1221,7 +1222,7 @@ To troubleshoot this issue:
         RP address       group/prefix-list   OIF         I am RP
         10.0.0.21        224.0.0.0/4         swp51       no
 
-### No S,G on RP for an Active Group</span>
+### No S,G on RP for an Active Group
 
 An RP does not build an mroute when there are no active receivers for a
 multicast group, even though the mroute was created on the FHR:
@@ -1244,7 +1245,7 @@ This is expected behavior. The active source can be seen on the RP with
     cumulus@rp01:~$ net show mroute
     Source          Group           Proto  Input      Output     TTL  Uptime
 
-### No mroute Entry Present in Hardware</span>
+### No mroute Entry Present in Hardware
 
 Please verify that the hardware IP multicast entry is the maximum value
 already, using the `cl-resource-query` command:
@@ -1252,10 +1253,10 @@ already, using the `cl-resource-query` command:
     cumulus@switch:~$ cl-resource-query  | grep Mcast
        Total Mcast Routes:         450,   0% of maximum value    450
 
-For Mellanox chipsets, please refer to [TCAM Resource Profiles for
-Mellanox Switches](Routing.html#src-8357708_Routing-tcam).
+For Mellanox chipsets, please refer to 
+[TCAM Resource Profiles for Mellanox Switches](/version/cumulus-linux-35/Layer-3/Routing/#tcam-resource-profiles-for-mellanox-switches).
 
-### Verify MSDP Session State</span>
+### Verify MSDP Session State
 
 Run the following commands to verify the state of MSDP sessions:
 
@@ -1271,7 +1272,7 @@ Run the following commands to verify the state of MSDP sessions:
     100.1.1.2              100.1.1.1  established  00:07:21       0
     100.1.1.3              100.1.1.1  established  00:07:21       0
 
-### View the Active Sources</span>
+### View the Active Sources
 
 Review the active sources learned locally (via PIM registers) and from
 MSDP peers:
@@ -1281,25 +1282,13 @@ MSDP peers:
     44.1.11.2              239.1.1.1        100.1.1.1      n    n  00:00:40
     44.1.11.2              239.1.1.2        100.1.1.1      n    n  00:00:25
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - Cumulus Linux only supports *PIM sparse mode* (PIM-SM), *any-source
     multicast* (PIM-SM ASM) and *source-specific multicast* (SSM).
     *Dense mode* and *bidirectional multicast* are not supported.
-
   - Non-native forwarding (register decapsulation) is not supported.
     Initial packet loss is expected while the PIM \*,G tree is built
     from the rendezvous point to the FHR to trigger native forwarding.
-
   - Cumulus Linux does not currently build an S,G mroute when forwarding
     over an \*,G tree.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

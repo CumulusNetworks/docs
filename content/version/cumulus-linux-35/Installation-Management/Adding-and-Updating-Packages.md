@@ -207,8 +207,8 @@ with `apt-get install`. You should perform an update first so that the
 APT cache is populated with the latest information about the packages.
 
 To see if a package needs to be upgraded, use `apt-cache show <pkgname>`
-to show the latest version number of the package. Use `dpkg -l
-<pkgname>` to show the version number of the installed package.
+to show the latest version number of the package. Use 
+`dpkg -l <pkgname>` to show the version number of the installed package.
 
 ### Upgrading All Packages
 

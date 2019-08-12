@@ -11,7 +11,7 @@ version: '3.6'
 imgData: cumulus-linux-36
 siteSlug: cumulus-linux-36
 ---
-Cumulus Networks' [Host Pack](/host-pack/) provides the ability to run
+[FRRouting](https://frrouting.org/) provides the ability to run
 [OSPF](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-OSPF-Protocol)
 or
 [BGP](/version/cumulus-linux-36/Layer-3/Border-Gateway-Protocol-BGP)

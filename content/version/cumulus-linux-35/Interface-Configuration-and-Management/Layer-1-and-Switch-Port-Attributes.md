@@ -21,13 +21,9 @@ Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
 
   - lo, network loopback device
-
   - ethN, switch management port(s), for out of band management only
-
   - swpN, switch front panel ports
-
   - (optional) brN, bridges (IEEE 802.1Q VLANs)
-
   - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
     port channels)
 
@@ -36,16 +32,10 @@ and logical devices:
 Each physical network interface has a number of configurable settings:
 
   - [Auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation)
-
   - [Duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
-
-  - [Forward error
-    correction](https://en.wikipedia.org/wiki/Forward_error_correction)
-
+  - [Forward error correction](https://en.wikipedia.org/wiki/Forward_error_correction)
   - Link speed
-
-  - MTU, or [maximum transmission
-    unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
+  - MTU, or [maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
 
 Almost all of these settings are configured automatically for you,
 depending upon your switch ASIC, although you must always set MTU
@@ -67,13 +57,12 @@ the link speed, duplex mode and [forward error
 correction](https://en.wikipedia.org/wiki/Forward_error_correction)
 (FEC, if the cable or optic requires it) for every switch port, based on
 the port type and cable or optic used on the port, as listed in the
-[table below](#src-8357670_Layer1andSwitchPortAttributes-settings).
+[table below](#default-interface-configuration-settings).
 
 Ports are always automatically configured on a Mellanox-based switch,
-with one exception — you only need to configure is
-[MTU](#src-8357670_Layer1andSwitchPortAttributes-mtu). You don't even
-need to enable auto-negotation, as the Mellanox firmware configures
-everything for you.
+with one exception — you only need to configure is [MTU](#mtu). You 
+don't even need to enable auto-negotation, as the Mellanox firmware 
+configures everything for you.
 
 ### Enabling Auto-negotiation
 
@@ -86,14 +75,14 @@ auto-negotiation for swp1 through swp52:
     cumulus@switch:~$ net commit
 
 Any time you enable auto-negotiation, Cumulus Linux restores the default
-configuration settings specified in the [table
-below](#src-8357670_Layer1andSwitchPortAttributes-sett).
+configuration settings specified in the 
+[table below](#default-interface-configuration-settings).
 
 By default on a Broadcom-based switch, auto-negotiation is disabled —
 except on 10G and 1000BASE-T switch ports, where it's required for links
 to work at all. And for RJ-45 SFP adapters, you need to manually
-configure the settings as described in the [default settings table
-below](#src-8357670_Layer1andSwitchPortAttributes-sett).
+configure the settings as described in the 
+[default settings table below](#default-interface-configuration-settings).
 
 If you disable it later or never enable it, then you have to configure
 the duplex, FEC and link speed settings manually using
@@ -109,13 +98,10 @@ You should keep auto-negotiation enabled at all times. If you do decide
 to disable it, keep in mind the following:
 
   - You must manually set link speed, duplex, pause and FEC.
-
   - Disabling auto-negotiation on a copper cable of any kind prevents
     the port from optimizing the link through link training.
-
   - Disabling auto-negotiation on a 1G optical cable prevents detection
     of single fiber breaks.
-
   - You cannot disable auto-negotiation for 1GT or 10GT cables.
 
 However, 10/100/1000BASE-T RJ-45 SFP adapters do not work with
@@ -127,8 +113,8 @@ link-duplex=full|half).
 
 Depending upon the connector used for a port, enabling auto-negotiation
 also enables forward error correction (FEC), if the cable requires it
-(see the [table
-below](#src-8357670_Layer1andSwitchPortAttributes-setting)). FEC always
+(see the 
+[table below](#default-interface-configuration-settings)). FEC always
 adjusts for the speed of the cable. However, you **cannot** disable FEC
 separately using
 [NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/).
@@ -438,14 +424,14 @@ Ports can be configured to one speed less than their maximum speed.
 | 40G              | 10G\*                                                   |
 | 100G             | 50G & 40G (with or without breakout port), 25G\*, 10G\* |
 
-\*Requires the port to be converted into a breakout port. [See
-below](#src-8357670_Layer1andSwitchPortAttributes-breakout).
+\*Requires the port to be converted into a breakout port. 
+[See below](#configuring-breakout-ports).
 
 ### MTU
 
-Interface MTU ([maximum transmission
-unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) applies
-to traffic traversing the management port, front panel/switch ports,
+Interface MTU 
+([maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) 
+applies to traffic traversing the management port, front panel/switch ports,
 bridge, VLAN subinterfaces and bonds — in other words, both physical and
 logical interfaces.
 
@@ -625,12 +611,9 @@ settings for each interface. Create a file in
 Cumulus Linux has the ability to:
 
   - Break out 100G switch ports into the following with breakout cables:
-    
       - 2x50G, 4x25G, 4x10G
-
   - Break out 40G switch ports into four separate 10G ports for use with
     breakout cables.
-
   - Combine (also called *aggregating* or *ganging*) four 10G switch
     ports into one 40G port for use with a breakout cable ([not to be
     confused with a
@@ -646,8 +629,7 @@ out then set the link speed:
 
 {{%notice note%}}
 
-On [Dell switches with Maverick
-ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=Dell&ASIC=Broadcom%20Maverick),
+On [Dell switches with Maverick ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=Dell&ASIC=Broadcom%20Maverick),
 you configure breakout ports on the 100G uplink ports by manually
 editing the `/etc/cumulus/ports.conf` file. You need to specify either
 *4x10* or *4x25* for the port speed. For example, on a Dell S4148F-ON
@@ -735,8 +717,8 @@ named as follows:
 {{%notice note%}}
 
 When you commit your change configuring the breakout ports, `switchd`
-restarts to apply the changes. The restart [interrupts network
-services](Configuring-switchd.html#src-8357343_Configuringswitchd-restartswitchd).
+restarts to apply the changes. The restart 
+[interrupts network services](/version/cumulus-linux-35/System-Configuration/Configuring-switchd/#restarting-switchd).
 
 {{%/notice%}}
 
@@ -746,8 +728,8 @@ The breakout port configuration is stored in the
 {{%notice info%}}
 
 `/etc/cumulus/ports.conf` varies across different hardware platforms.
-Check the current list of supported platforms on [the hardware
-compatibility list](http://www.cumulusnetworks.com/hcl).
+Check the current list of supported platforms on 
+[the hardware compatibility list](https://www.cumulusnetworks.com/hcl).
 
 A snippet from the `/etc/cumulus/ports.conf` on a Dell S6000 switch
 (with a Trident II+ ASIC) where swp3 is broken out as above looks like
@@ -853,8 +835,7 @@ mode.
 {{%notice tip%}}
 
 Here is an example showing how to configure breakout cables for the
-[Mellanox Spectrum
-SN2700](https://community.mellanox.com/docs/DOC-2685).
+[Mellanox Spectrum SN2700](https://community.mellanox.com/docs/DOC-2685).
 
 {{%/notice%}}
 
@@ -902,10 +883,8 @@ These commands create the following configuration snippet in the
 depending upon the manufacturer; these include:
 
   - Mellanox SN2700 and SN2700B switches
-
   - Switches with Broadcom Tomahawk, Trident II and Trident II+ chipsets
-    (check the
-    [HCL](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
+    (check the [HCL](https://cumulusnetworks.com/hcl))
 
 Before you configure any logical/unganged ports on a switch, check the
 limitations listed in `/etc/cumulus/ports.conf`; this file is specific
@@ -943,8 +922,7 @@ The means the maximum number of ports for this Dell S6000 is 104.
 
 Mellanox SN2700 and SN2700B switches have a limit of 64 logical ports in
 total. However, the logical ports must be configured in a specific way.
-See [the note](#src-8357670_Layer1andSwitchPortAttributes-breakout)
-above.
+See [the note](#configuring-breakout-ports) above.
 
 ## Using ethtool to Configure Interfaces
 
@@ -1050,9 +1028,9 @@ error occurs while removing and reinserting QSFP module.
 
 The QSFPx2 module cannot be removed while the switch is powered on, as
 it is not hot-swappable. However, if this occurs, you can get the link
-to come up; however, this involves [restarting
-`switchd`](Configuring-switchd.html#src-8357343_Configuringswitchd-restartswitchd)
-, which disrupts your network.
+to come up; however, this involves 
+[restarting `switchd`](/version/cumulus-linux-35/System-Configuration/Configuring-switchd/#restarting-switchd), 
+which disrupts your network.
 
 On the T3048-LY9, run the following commands:
 
@@ -1072,9 +1050,7 @@ The front SFP+ ports (swp33 and swp34) are disabled in Cumulus Linux on
 the following switches:
 
   - Dell Z9100-ON
-
   - Penguin Arctica 3200-series switches (the 3200C, 3200XL and 3200XLP)
-
   - Supermicro SSE-C3632S
 
 These ports appear as disabled in the `/etc/cumulus/ports.conf` file.
@@ -1102,22 +1078,7 @@ Or using `ethtool`:
 
 ## Related Information
 
-  - [Debian - Network
-    Configuration](http://wiki.debian.org/NetworkConfiguration)
-
-  - [Linux Foundation -
-    VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-
-  - [Linux Foundation -
-    Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
-
-  - [Linux Foundation -
-    Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Debian - Network Configuration](http://wiki.debian.org/NetworkConfiguration)
+  - [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
+  - [Linux Foundation - Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
+  - [Linux Foundation - Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)

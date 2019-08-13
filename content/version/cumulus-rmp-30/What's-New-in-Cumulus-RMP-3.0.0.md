@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 11
 aliases:
  - /display/RMP30/What's+New+in+Cumulus+RMP+3.0.0
+ - /display/RMP30/Whats+New+in+Cumulus+RMP+3.0.0
  - /pages/viewpage.action?pageId=5118741
 pageID: 5118741
 product: Cumulus RMP

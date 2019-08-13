@@ -55,7 +55,7 @@ In addition, you can use Cumulus VX with the following development environments:
 
 ## Documentation
 
-- [What's New in Cumulus VX](/cumulus-vx/What's-New-in-Cumulus-VX)
+- [What's New in Cumulus VX](/cumulus-vx/Whats-New-in-Cumulus-VX/)
 - [Cumulus VX Support Policy](/cumulus-vx/Cumulus-VX-Support-Policy)
 - [Comparing Cumulus VX to other Cumulus Networks Products](/cumulus-vx/Comparing-Cumulus-VX-to-other-Cumulus-Networks-Products)
 - [Getting Started](/cumulus-vx/Getting-Started/)

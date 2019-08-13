@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 1
 aliases:
  - /display/NETQ/Cumulus+NetQ
+ - /display/NETQ/
  - /pages/viewpage.action?pageId=12322014
 pageID: 12322014
 product: Cumulus NetQ

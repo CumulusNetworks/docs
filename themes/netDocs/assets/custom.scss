@@ -27,11 +27,11 @@ body {
   img {
     max-width: 100%;
   }
-  
+
   .mb-6 {
     margin-bottom: 35px;
   }
-  
+
   .home-banner {
     background-size: cover;
     background-position: center;
@@ -47,7 +47,7 @@ body {
       line-height: 96px;
     }
   }
-  
+
   section {
     padding: 73px 0 120px;
     h3 {
@@ -57,7 +57,7 @@ body {
       line-height: 34px;
       margin-bottom: 15px;
     }
-  
+
     p {
       &.small {
         color: #75828c;
@@ -81,7 +81,7 @@ body {
       }
     }
   }
-  
+
   .bg-athens-gray-white {
     background: #f2f2f6;
     background: linear-gradient(-180deg, rgb(242, 242, 246) 0%, rgb(255, 255, 255) 100%);
@@ -234,6 +234,7 @@ body {
     font-size: 15px;
     line-height: 30px;
     font-weight: 400;
+    background-color: white;
 
     &:after {
       content: '';
@@ -400,6 +401,7 @@ body {
         font-weight: 400;
         letter-spacing: -0.1px;
         line-height: 30px;
+        background-color: white;
       }
 
       &.active {
@@ -831,6 +833,23 @@ div.notices.tip>*:first-child:after {
 .book-toc nav a {
   font-size: .764rem;
   padding-right: 15px;
+}
+
+h2 {
+  a {
+    &.anchor-link {
+      opacity: 0;
+      padding-left: 9px;
+      transition: opacity 200ms ease-in-out;
+    }
+  }
+  &:hover {
+    a {
+      &.anchor-link {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 footer {

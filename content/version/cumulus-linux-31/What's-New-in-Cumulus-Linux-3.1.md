@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 11
 aliases:
  - /display/CL31/What's+New+in+Cumulus+Linux+3.1
+ - /display/CL31/Whats+New+in+Cumulus+Linux+3.1
  - /pages/viewpage.action?pageId=5122208
 pageID: 5122208
 product: Cumulus Linux

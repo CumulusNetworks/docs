@@ -40,7 +40,7 @@ documentation.
     Linux 3.0.1](https://support.cumulusnetworks.com/hc/en-us/articles/222822047)
 
   - [What's New in Cumulus Linux
-    3.0.1](/version/cumulus-linux-30/What's-New-in-Cumulus-Linux-3.0.1)
+    3.0.1](/version/cumulus-linux-30/Whats-New-in-Cumulus-Linux-3.0.1)
 
   - [Quick Start Guide](/version/cumulus-linux-30/Quick-Start-Guide)
 

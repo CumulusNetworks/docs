@@ -68,7 +68,7 @@ The small LLDP Service card displays:
 
 The medium LLDP Service card displays:
 
-{{% imgOld 4 %}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -104,15 +104,17 @@ The medium LLDP Service card displays:
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Total number and distribution of switches and hosts with LLDP enabled during the designated time period</p></td>
+<td><p>Distribution of switches and hosts with the LLDP service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running LLDP last week or last month might be more or less than the number of nodes running LLDP currently.</p></td>
 </tr>
 <tr class="odd">
-<td><p>Total Alarms chart</p></td>
-<td><p>Total number and distribution of LLDP-related alarms received during the designated time period</p></td>
+<td><p>Total Open Alarms chart</p></td>
+<td><p>Distribution of LLDP-related alarms received during the designated time period, and the total number of current LLDP-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Sessions chart</p></td>
-<td><p>Total number and distribution of LLDP sessions running during the designated time period</p></td>
+<td><p>Distribution of LLDP sessions running during the designated time period, and the total number of sessions running on the network currently.</p></td>
 </tr>
 </tbody>
 </table>
@@ -157,15 +159,16 @@ The *Sessions Summary* tab which displays:
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Total number and distribution of switches and hosts with LLDP enabled during the designated time period</p></td>
+<td><p>Distribution of switches and hosts with the LLDP service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running LLDP last week or last month might be more or less than the number of nodes running LLDP currently.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Total Sessions chart</p></td>
-<td><p>Total number and distribution of LLDP sessions running during the designated time period</p></td>
+<td><p>Distribution of LLDP sessions running during the designated time period, and the total number of sessions running on the network currently</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Sessions with No Nbr chart</p></td>
-<td><p>Total number and distribution of LLDP sessions missing neighbor information during the designated time period</p></td>
+<td><p>Distribution of LLDP sessions missing neighbor information during the designated time period, and the total number of session missing neighbors in the network currently</p></td>
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
@@ -181,7 +184,7 @@ The *Sessions Summary* tab which displays:
 
 The *Alarms* tab which displays:
 
-{{% imgOld 12 %}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -200,8 +203,8 @@ The *Alarms* tab which displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 13 %}}</p></td>
-<td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in header)</p></td>
+<td><p>Indicates data is all alarms for all LLDP sessions</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
@@ -212,12 +215,13 @@ The *Alarms* tab which displays:
 <td><p>Total number of switches with the LLDP service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 15 %}}</p></td>
+<td><p>{{% imgOld 15 %}} (in summary bar)</p></td>
 <td><p>Total number of LLDP-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Alarms chart</p></td>
-<td><p>Total number and distribution of LLDP-related alarms received during the designated time period</p></td>
+<td><p>Distribution of LLDP-related alarms received during the designated time period, and the total number of current LLDP-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
@@ -396,10 +400,10 @@ investigating either the service or particular devices.
 
 To view the distribution, open the medium LLDP Service card.
 
-{{% imgOld 21 %}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
 
-In this example, we see that twelve nodes are running the LLDP protocol,
-that there are 70 sessions established, and that no LLDP-related alarms
+In this example, we see that 13 nodes are running the LLDP protocol,
+that there are 52 sessions established, and that no LLDP-related alarms
 have occurred in the last 24 hours.
 
 ### View the Distribution of Missing Neighbors
@@ -516,7 +520,7 @@ To view switches with most LLDP alarms:
     with the most BGP alarms at the top. Scroll down to view those with
     the fewest alarms.
 
-    {{% imgOld 32 %}}
+    {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -620,8 +624,7 @@ your data center network, refer to [Link Layer Discovery Protocol](/cumulus-linu
 {{%notice note%}}
 
 To access the single session cards, you must open the full screen LLDP
-Service (all sessions) card and click on a session. Close the full
-screen card to view the medium single session card.
+Service card, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
 
 {{%/notice%}}
 

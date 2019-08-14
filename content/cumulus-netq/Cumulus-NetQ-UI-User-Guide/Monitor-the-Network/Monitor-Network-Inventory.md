@@ -169,6 +169,83 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 
 {{% imgOld 14 %}}
 
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>Inventory | Devices | Switches</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p>Closes full screen card and returns to workbench</p></td>
+</tr>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Time period does not apply to the Inventory cards. This is always Default Time.</p></td>
+</tr>
+<tr class="even">
+<td><p>Results</p></td>
+<td><p>Number of results found for the selected tab</p></td>
+</tr>
+<tr class="odd">
+<td><p>All Switches and All Hosts tabs</p></td>
+<td><p>Displays all monitored switches and hosts in your network. By default, the device list is sorted by <strong>hostname</strong>. These tabs provide the following additional data about each device:</p>
+<ul>
+<li><p><strong>Agent</strong></p>
+<ul>
+<li><p>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</p></li>
+<li><p>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</p></li>
+</ul></li>
+<li><p><strong>ASIC</strong></p>
+<ul>
+<li><p>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</p></li>
+<li><p>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</p></li>
+<li><p>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</p></li>
+<li><p>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</p></li>
+<li><p>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</p></li>
+</ul></li>
+<li><p><strong>CPU</strong></p>
+<ul>
+<li><p>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</p></li>
+<li><p>Max Freq: Highest rated frequency for CPU. Example values include 2.40 GHz and 1.74 GHz.</p></li>
+<li><p>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</p></li>
+<li><p>Nos: Number of cores. Example values include 2, 4, and 8.</p></li>
+</ul></li>
+<li><p><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</p></li>
+<li><p><strong>License State</strong>: Indicator of validity. Values include ok and bad.</p></li>
+<li><p><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</p></li>
+<li><p><strong>OS</strong></p>
+<ul>
+<li><p>Vendor: Operating System manufacturer. Values include Cumulus Networks, RedHat, Ubuntu, and CentOS.</p></li>
+<li><p>Version: Software version number of the OS. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</p></li>
+<li><p>Version Id: Identifier of the OS version. For Cumulus, this is the same as the <em>Version</em> (3.7.x).</p></li>
+</ul></li>
+<li><p><strong>Platform</strong></p>
+<ul>
+<li><p>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</p></li>
+<li><p>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</p></li>
+<li><p>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON. </span></p></li>
+<li><p>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</p></li>
+<li><p>Revision: Release version of the platform</p></li>
+<li><p>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</p></li>
+<li><p>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</p></li>
+</ul></li>
+<li><p><strong>Time:</strong> Date and time the data was collected from device.</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
 ## View the Number of Each Device Type in Your Network
 
 You can view the number of switches and

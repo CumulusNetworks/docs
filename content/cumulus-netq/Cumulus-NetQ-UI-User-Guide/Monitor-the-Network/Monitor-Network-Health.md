@@ -129,7 +129,7 @@ The large Network Health card contains two tabs.
 
 The *System Health* tab displays:
 
-{{% imgOld 4 %}}
+{{< figure src="/images/netq/ntwk-hlth-large-sys-hlth.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -179,15 +179,15 @@ The *System Health* tab displays:
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Show All Devices</p></td>
-<td><p>Opens full screen Network Health card with a listing of all events</p></td>
+<td><p>Show All Validations</p></td>
+<td><p>Opens full screen Network Health card with a listing of validations performed by network service and protocol</p></td>
 </tr>
 </tbody>
 </table>
 
 The *Network Services Health* tab displays:
 
-{{% imgOld 6 %}}
+{{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -237,8 +237,8 @@ The *Network Services Health* tab displays:
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Show All Devices</p></td>
-<td><p>Opens full screen Network Health card with a listing of all events</p></td>
+<td><p>Show All Validations</p></td>
+<td><p>Opens full screen Network Health card with a listing of validations performed by network service and protocol</p></td>
 </tr>
 </tbody>
 </table>
@@ -342,7 +342,7 @@ To view information about each system component:
 1.  Open the large Network Health card.
 2.  Hover over the card and click {{% imgOld 13 %}}.
 
-    {{% imgOld 14 %}}
+    {{< figure src="/images/netq/ntwk-hlth-large-sys-hlth.png" width="500" >}}
 
     The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
@@ -381,10 +381,9 @@ You can focus the data in the table on the right, by unselecting one or
 more services. Click the checkbox next to the service you want to remove
 from the data. In this example, we have unchecked Licenses.
 
-{{% imgOld 16 %}}
+{{< figure src="/images/netq/filter-sys-hlth-in-tbl.png" width="500" >}}
 
-This grays out the associated chart and temporarily removes the data
-related to that service from the table.
+This removes the checkbox next to the associated chart and grays out the title of the chart, temporarily removing the data related to that service from the table. Add it back by hovering over the chart and clicking the checkbox that appears.
 
 ## View Network Services Health
 
@@ -401,9 +400,9 @@ To view information about each network protocol or service:
 1.  Open the large Network Health card.
 2.  Hover over the card and click {{% imgOld 17 %}}.
 
-    {{% imgOld 18 %}}
+    {{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth.png" width="500" >}}
 
-    The health of each protocol or service is represented on the left side
+The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
 and a percentage of successful results. The right side of the card
 provides a listing of devices running the services.
@@ -452,10 +451,9 @@ more services. Click the checkbox next to the service you want to
 remove. In this example, we are removed NTP and LNV and are in the
 process of removing OSPF.
 
-{{% imgOld 20 %}}
+{{< figure src="/images/netq/filter-ntwk-hlth-in-tbl.png" width="500" >}}
 
-This grays out the charts and temporarily removes the data related to
-that service from the table.
+This grays out the chart title and removes the associated checkbox, temporarily removing the data related to that service from the table.
 
 ## View All Network Protocol and Service Validation Results
 

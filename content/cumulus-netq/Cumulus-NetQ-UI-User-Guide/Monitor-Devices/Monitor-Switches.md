@@ -18,8 +18,7 @@ Being able to monitor switch component inventory aids in upgrade,
 compliance, and other planning tasks. Viewing individual switch health
 helps isolate performance issues.
 
-For network-wide monitoring, refer to [Monitor the
-Network](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/).
+For network-wide monitoring, refer to [Monitor the Network](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/).
 
 ## Monitor Switch Performance
 
@@ -80,7 +79,7 @@ The small Switch card displays:
 <li><p><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</p></li>
 <li><p><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</p></li>
 </ul>
-<p>{{% imgOld 2 %}}</p></td>
+<p>{{< figure src="/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
 </tr>
 </tbody>
 </table>
@@ -126,7 +125,7 @@ The large Switch card contains two tabs:
 
 The *Attributes* tab displays:
 
-{{% imgOld 6 %}}
+{{< figure src="/images/netq/dev-switch-large-attributes-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -161,38 +160,42 @@ The *Attributes* tab displays:
 <td><p>MAC address used for management of this switch</p></td>
 </tr>
 <tr class="even">
+<td><p>Agent State</p></td>
+<td><p>Operational state of the NetQ Agent on this switch; Fresh or Rotten</p></td>
+</tr>
+<tr class="odd">
 <td><p>Platform Vendor</p></td>
 <td><p>Manufacturer of this switch box. Cumulus Networks is identified as the vendor for a switch in the Cumulus in the Cloud (CITC) environment, as seen here.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>Platform Model</p></td>
 <td><p>Manufacturer model of this switch. VX is identified as the model for a switch in CITC environment, as seen here.</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>ASIC Vendor</p></td>
 <td><p>Manufacturer of the ASIC installed on the motherboard</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>ASIC Model</p></td>
 <td><p>Manufacturer model of the ASIC installed on the motherboard</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>OS</p></td>
 <td><p>Operating system running on the switch. CL indicates a Cumulus Linux license.</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>OS Version</p></td>
 <td><p>Version of the OS running on the switch</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>NetQ Agent Version</p></td>
 <td><p>Version of the NetQ Agent running on the switch</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>License State</p></td>
 <td><p>Indicates whether the license is valid (<em>ok</em>) or invalid/missing (<em>bad</em>)</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>Total Interfaces</p></td>
 <td><p>Total number of interfaces on this switch, and the number of those that are up and down.</p></td>
 </tr>
@@ -233,7 +236,7 @@ The *Utilization* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Filter</p></td>
-<td><p>Click to open filter field. Begin typing to view only charts that match the filter.</p></td>
+<td><p>Click to open filter field. Begin typing to view only charts that match the entered criteria.</p></td>
 </tr>
 </tbody>
 </table>
@@ -241,7 +244,7 @@ The *Utilization* tab displays:
 The full screen Switch card provides tabs for all IP addresses, all MAC
 addresses, and all interfaces.
 
-{{% imgOld 10 %}}
+{{< figure src="/images/netq/dev-switch-fullscr-ipaddr-tab.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -338,18 +341,18 @@ status and summary performance score and trend.
 
 To view the summary:
 
-1.  Click {{% imgOld 13 %}}, and select Devices|Switch. A dialog box opens.
+1.  Click {{% imgOld 13 %}}, and select Device|Switches. A dialog box opens.
 
-    {{% imgOld 14 %}}
+    {{< figure src="/images/netq/dev-switch-open-switch-card.png" width="250" >}}
 
 2.  Begin typing the hostname of the device you are interested in.
     Select it from the suggested matches when it appears.
 
-    {{% imgOld 15 %}}
+    {{< figure src="/images/netq/dev-switch-type-dev-name.png" width="250" >}}
 
 3.  Select the size of the card, *L1*, to open the small size card.
 
-    {{% imgOld 16 %}}
+    {{< figure src="/images/netq/dev-switch-choose-card-size.png" width="250" >}}
 
 4.  Click **Add**, or **Cancel** to exit the process.
 
@@ -388,7 +391,7 @@ of the card.
 For a quick look at the key attributes of a particular switch, open the
 large Switch card. Attributes are displayed as the default tab.
 
-{{% imgOld 19 %}}
+{{< figure src="/images/netq/dev-switch-large-attributes-tab.png" width="500" >}}
 
 In this example, the items of interest might be the five interfaces that
 are down and what version of OS and NetQ Agent the switch is running.
@@ -499,10 +502,10 @@ The small Switch Inventory card displays:
 
 {{% imgOld 28 %}}
 
-| Item              | Description                                                                                  |
-| ----------------- | -------------------------------------------------------------------------------------------- |
-| {{% imgOld 29 %}} | Indicates data is for switch inventory                                                       |
-| Count             | Total number of switches in the network inventory                                            |
+| Item              | Description  |
+| ----------------- | ------------ |
+| {{% imgOld 29 %}} | Indicates data is for switch inventory |
+| Count             | Total number of switches in the network inventory |
 | Chart             | Distribution of overall health status during the designated time period; fresh versus rotten |
 
 The medium Switch Inventory card displays:
@@ -704,7 +707,7 @@ The *Software* tab displays:
 The full screen Switch Inventory card provides tabs for all components,
 ASIC, platform, CPU, memory, disk, and OS components.
 
-{{% imgOld 40 %}}
+{{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}
 
 There are a multitude of ways to view and analyze the available data
 within this workflow. A few examples are provided here.
@@ -794,12 +797,9 @@ To view which vendors and platforms have bad or missing licenses, open the large
 To view *which* switches have invalid or missing licenses, either:
 
   - hover over the large Switch Inventory card and click {{% imgOld 48 %}} to open the **Platform Details** tab. Above the Licenses State or the Vendor chart, click **Show All**.
-  - open the full screen Switch Inventory card.
-
-Then sort the **All Switches** tab data table by the **License State**
-column to locate the switches with bad or missing licenses.
-
-{{% imgOld 49 %}}
+      {{< figure src="/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
+  - open the full screen Switch Inventory card. Then sort the **All Switches** tab data table by the **License State** column to locate the switches with bad or missing licenses.
+      {{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab-license-highlight.png" width="700" >}}
 
 ### View the Most Commonly Deployed ASIC
 
@@ -894,7 +894,7 @@ provides the information you need, open the full screen Switch Inventory
 card. Select the component tab of interest and filter and sort as
 desired. Export the data to a third-party tool, by clicking **Export**.
 
-{{% imgOld 60 %}}
+{{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

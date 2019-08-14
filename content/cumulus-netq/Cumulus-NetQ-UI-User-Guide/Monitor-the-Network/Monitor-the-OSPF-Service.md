@@ -105,15 +105,17 @@ The medium OSPF Service card displays:
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Total number and distribution of switches and hosts with the OSPF service enabled during the designated time period</p></td>
+<td><p>Distribution of switches and hosts with the OSPF service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running OSPF last week or last month might be more or less than the number of nodes running OSPF currently.</p></td>
 </tr>
 <tr class="odd">
-<td><p>Total Alarms chart</p></td>
-<td><p>Total number and distribution of OSPF-related alarms received during the designated time period</p></td>
+<td><p>Total Sessions Not Established chart</p></td>
+<td><p>Distribution of switches and hosts with unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of unestablished session last week or last month might be more of less than the number of nodes with unestablished sessions currently.</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Sessions chart</p></td>
-<td><p>Total number and distribution of OSPF sessions during the designated time period</p></td>
+<td><p>Distribution of OSPF sessions during the designated time period, and the total number of sessions running on the network currently.</p></td>
 </tr>
 </tbody>
 </table>
@@ -158,15 +160,17 @@ The *Sessions Summary* tab displays:
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Total number and distribution of switches and hosts with the OSPF service enabled</p></td>
+<td><p>Distribution of switches and hosts with the OSPF service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running OSPF last week or last month might be more or less than the number of nodes running OSPF currently.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Total Sessions chart</p></td>
-<td><p>Total number and distribution of OSPF sessions during the designated time period</p></td>
+<td><p>Distribution of OSPF sessions during the designated time period, and the total number of sessions running on the network currently.</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Nodes Not Est. chart</p></td>
-<td><p>Total number and distribution of switches and hosts with unestablished OSPF sessions during the designated time period</p></td>
+<td><p>Distribution of switches and hosts with unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of unestablished session last week or last month might be more of less than the number of nodes with unestablished sessions currently.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
@@ -201,8 +205,8 @@ The *Alarms* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 13 %}}</p></td>
-<td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in header)</p></td>
+<td><p>Indicates data is all alarms for all OSPF sessions</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
@@ -213,12 +217,13 @@ The *Alarms* tab displays:
 <td><p>Total number of switches and hosts with the OSPF service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 15 %}}</p></td>
+<td><p>{{% imgOld 15 %}} (in summary bar)</p></td>
 <td><p>Total number of OSPF-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Alarms chart</p></td>
-<td><p>Total number and distribution of OSPF-related alarms received during the designated time period</p></td>
+<td><p>Distribution of OSPF-related alarms received during the designated time period, and the total number of current OSPF-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
@@ -571,9 +576,7 @@ or [Open Shortest Path First v3 - OSPFv3](/cumulus-linux/Layer-3/Open-Shortest-P
 {{%notice note%}}
 
 To access the single session cards, you must open the full screen OSPF
-Service (all sessions) card, click the All Sessions tab, and
-double-click on a session. The full screen card automatically closes so
-you can view the medium single session card.
+Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
 
 {{%/notice%}}
 
@@ -710,109 +713,40 @@ The *Session Summary* tab displays:
 {{% imgOld 49 %}}
 
 <table class="confluenceTable">
-
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 80%" />
 </colgroup>
-
 <thead class=" ">
-
 <tr>
-
-<td class="confluenceTh" rowspan="1" colspan="1">
-
-Item
-
-</td>
-
-<td class="confluenceTh" rowspan="1" colspan="1">
-
-Description
-
-</td>
-
+<td class="confluenceTh" rowspan="1" colspan="1">Item</td>
+<td class="confluenceTh" rowspan="1" colspan="1">Description</td>
 </tr>
-
 </thead>
-
-<tfoot class=" ">
-
-</tfoot>
-
+<tfoot class=" "></tfoot>
 <tbody class=" ">
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Time period
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Range of time in which the displayed data was collected; applies to all
-card sizes
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Time period</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
-
 <tr>
-
 <td class="confluenceTd" rowspan="1" colspan="1">
 
 {{% imgOld 50 %}}
 
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Indicates data is for a single session of a Network Service or Protocol
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Indicates data is for a single session of a Network Service or Protocol</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Title
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Session Summary (Network Services | OSPF Session)
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Title</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Session Summary (Network Services | OSPF Session)</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="2" colspan="1">
-
-Summary bar
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Hostnames of the two devices in a session. Arrow points in the direction
-of the session.
-
-</td>
-
+<td class="confluenceTd" rowspan="2" colspan="1">Summary bar</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Hostnames of the two devices in a session. Arrow points in the direction of the session.</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current state of OSPF.
+<td class="confluenceTd" rowspan="1" colspan="1">Current state of OSPF.
 
 {{% imgOld 51 %}}
 
@@ -823,87 +757,27 @@ Full or
 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.
 
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Session State Changes Chart
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Heat map of the state of the given session over the given time period.
-The status is sampled at a rate consistent with the time period. For
-example, for a 24 hour period, a status is collected every hour. Refer
-to <a href="#granularity-of-data-shown-based-on-time">Granularity of Data Shown Based on Time Period</a>.
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Session State Changes Chart</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Heat map of the state of the given session over the given time period. The status is sampled at a rate consistent with the time period. For example, for a 24 hour period, a status is collected every hour. Refer to <a href="#granularity-of-data-shown-based-on-time">Granularity of Data Shown Based on Time Period</a>.</td>
 </tr>
-
 <tr>
+<td class="confluenceTd" rowspan="1" colspan="1">Alarm Count Chart</td>
 
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Alarm Count Chart
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Distribution and count of OSPF alarm events over the given time period
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Distribution and count of OSPF alarm events over the given time period</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Info Count Chart
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Distribution and count of OSPF info events over the given time period
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Info Count Chart</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Distribution and count of OSPF info events over the given time period</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Ifname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Name of the interface on the host device where the session resides
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Ifname</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Name of the interface on the host device where the session resides</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-State
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current state of OSPF.
+<td class="confluenceTd" rowspan="1" colspan="1">State</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Current state of OSPF.
 
 {{% imgOld 53 %}}
 
@@ -914,233 +788,70 @@ Full or
 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.
 
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Is Unnumbered
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Indicates if the session is part of an unnumbered OSPF configuration
-(true) or part of a numbered OSPF configuration (false)
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Is Unnumbered</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Indicates if the session is part of an unnumbered OSPF configuration (true) or part of a numbered OSPF configuration (false)</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Nbr Count
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Number of routers in the OSPF configuration
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Nbr Count</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Number of routers in the OSPF configuration</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Is Passive
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Indicates if the host is in a passive state (true) or active state
-(false).
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Is Passive</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Indicates if the host is in a passive state (true) or active state (false).</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Peer ID
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-IP address of router with access to the peer device
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Peer ID</td>
+<td class="confluenceTd" rowspan="1" colspan="1">IP address of router with access to the peer device</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Is IPv6
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Indicates if the IP address of the host device is IPv6 (true) or IPv4
-(false)
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Is IPv6</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Indicates if the IP address of the host device is IPv6 (true) or IPv4 (false)</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-If Up
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Indicates if the interface on the host is up (true) or down (false)
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">If Up</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Indicates if the interface on the host is up (true) or down (false)</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Nbr Adj Count
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Number of adjacent routers for this host
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Nbr Adj Count</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Number of adjacent routers for this host</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-MTU
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Maximum transmission unit (MTU) on shortest path between the host and
-peer
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">MTU</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Maximum transmission unit (MTU) on shortest path between the host and peer</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Peer Address
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-IP address of the peer device
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Peer Address</td>
+<td class="confluenceTd" rowspan="1" colspan="1">IP address of the peer device</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Area
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Routing domain of the host device
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Area</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Routing domain of the host device</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network Type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Architectural design of the network. Values include Point-to-Point and
-Broadcast.
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Network Type</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Architectural design of the network. Values include Point-to-Point and Broadcast.</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Cost
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Shortest path through the network between the host and peer devices
-
-</td>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Cost</td>
+<td class="confluenceTd" rowspan="1" colspan="1">Shortest path through the network between the host and peer devices</td>
 </tr>
-
 <tr>
-
+<td class="confluenceTd" rowspan="1" colspan="1">Dead Time</td>
 <td class="confluenceTd" rowspan="1" colspan="1">
-
-Dead Time
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
 Countdown timer, starting at 40 seconds, that is constantly reset as
 messages are heard from the neighbor. If the dead time gets to zero, the
 neighbor is presumed dead, the adjacency is torn down, and the link
-removed from SPF calculations in the OSPF database.
-
-</td>
-
+removed from SPF calculations in the OSPF database.</td>
 </tr>
-
 </tbody>
-
 </table>
 
 The *Configuration File Evolution* tab displays:
 
 {{% imgOld 55 %}}
-
+<p> </p>
 {{% imgOld 56 %}}
 
 <table>
@@ -1182,8 +893,8 @@ The *Configuration File Evolution* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Configuration File</p></td>
-<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown. When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
-<p><strong>Note</strong>: If no configuration file changes have been made, the card shows no results at all.</p></td>
+<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown.</p>
+<p> When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p></td>
 </tr>
 </tbody>
 </table>

@@ -22,8 +22,7 @@ are described separately here.
 With NetQ, you can monitor the number of nodes running the EVPN service,
 view switches with the sessions, total number of VNIs, and alarms
 triggered by the EVPN service. For an overview and how to configure EVPN
-in your data center network, refer to [Ethernet Virtual Private Network
-- EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
+in your data center network, refer to [Ethernet Virtual Private Network-EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
 
 ### EVPN Service Card Workflow Summary
 
@@ -104,15 +103,17 @@ The medium EVPN Service card displays:
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Total number and distribution of switches and hosts with the EVPN service enabled during the designated time period</p></td>
+<td><p>Distribution of switches and hosts with the EVPN service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running EVPN last week or last month might be more or less than the number of nodes running EVPN currently.</p></td>
 </tr>
 <tr class="odd">
-<td><p>Total Alarms chart</p></td>
-<td><p>Total number and distribution of EVPN-related alarms received during the designated time period</p></td>
+<td><p>Total Open Alarms chart</p></td>
+<td><p>Distribution of EVPN-related alarms received during the designated time period, and the total number of current EVPN-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Sessions chart</p></td>
-<td><p>Total number and distribution of EVPN sessions network-wide during the designated time period</p></td>
+<td><p>Distribution of EVPN sessions during the designated time period, and the total number of sessions running on the network currently.</p></td>
 </tr>
 </tbody>
 </table>
@@ -157,15 +158,16 @@ The *Sessions Summary* tab which displays:
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Total number and distribution of switches and hosts with the EVPN service enabled during the designated time period</p></td>
+<td><p>Distribution of switches and hosts with the EVPN service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running EVPN last week or last month might be more or less than the number of nodes running EVPN currently.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Total Sessions chart</p></td>
-<td><p>Total number and distribution of EVPN sessions network-wide during the designated time period</p></td>
+<td><p>Distribution of EVPN sessions during the designated time period, and the total number of sessions running on the network currently.</p></td>
 </tr>
 <tr class="even">
 <td><p>Total L3 VNIs chart</p></td>
-<td><p>Total number and distribution of layer 3 VXLAN Network Identifiers network-wide</p></td>
+<td><p>Distribution of layer 3 VXLAN Network Identifiers during this time period, and the total number of VNIs in the network currently.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
@@ -182,7 +184,7 @@ The *Sessions Summary* tab which displays:
 
 The *Alarms* tab which displays:
 
-{{% imgOld 12 %}}
+{{< figure src="/images/netq/ntwk-svcs-allevpn-large-alarms-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -218,7 +220,8 @@ The *Alarms* tab which displays:
 </tr>
 <tr class="even">
 <td><p>Total Alarms chart</p></td>
-<td><p>Total number and distribution of EVPN-related alarms received during the designated time period</p></td>
+<td><p>Distribution of EVPN-related alarms received during the designated time period, and the total number of current BGP-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
@@ -619,8 +622,7 @@ and how to configure EVPN in your data center network, refer to
 {{%notice note%}}
 
 To access the single session cards, you must open the full screen EVPN
-Service (all sessions) card and click on a session. Close the full
-screen card to view the medium single session card.
+Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
 
 {{%/notice%}}
 
@@ -656,7 +658,7 @@ The small EVPN Session card displays:
 </tr>
 <tr class="even">
 <td><p>Current VNI Nodes</p></td>
-<td><p>Total number of devices participating in the EVPN session during the designated time period</p></td>
+<td><p>Total number of VNI nodes participating in the EVPN session currently</p></td>
 </tr>
 </tbody>
 </table>
@@ -691,7 +693,7 @@ The medium EVPN Session card displays:
 </tr>
 <tr class="even">
 <td><p>Summary bar</p></td>
-<td><p>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI devices participating in the EVPN session during the designated time period</p></td>
+<td><p>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI nodes participating in the EVPN session currently</p></td>
 </tr>
 <tr class="odd">
 <td><p>VTEP Count Over Time chart</p></td>
@@ -740,19 +742,19 @@ The *Session Summary* tab displays:
 </tr>
 <tr class="even">
 <td><p>Summary bar</p></td>
-<td><p>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI devices participating in the EVPN session during the designated time period</p></td>
+<td><p>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI devices participating in the EVPN session currently</p></td>
 </tr>
 <tr class="odd">
 <td><p>VTEP Count Over Time chart</p></td>
-<td><p>Distribution of VTEP counts during the designated time period</p></td>
+<td><p>Distribution of VTEPs during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Alarm Count chart</p></td>
-<td><p>Distribution of alarm event counts during the designated time period</p></td>
+<td><p>Distribution of alarms during the designated time period</p></td>
 </tr>
 <tr class="odd">
 <td><p>Info Count chart</p></td>
-<td><p>Distribution of info event counts during the designated time period</p></td>
+<td><p>Distribution of info events during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Table</p></td>
@@ -791,7 +793,7 @@ The *Configuration File Evolution* tab displays:
 </tr>
 <tr class="even">
 <td><p>{{% imgOld 53 %}}</p></td>
-<td><p>VTEP count</p></td>
+<td><p>VTEP count (currently)</p></td>
 </tr>
 <tr class="odd">
 <td><p>Timestamps</p></td>
@@ -799,8 +801,9 @@ The *Configuration File Evolution* tab displays:
 </tr>
 <tr class="even">
 <td><p>Configuration File</p></td>
-<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown. When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
-<p><strong>Note</strong>: If no configuration file changes have been made, the card shows no results at all.</p></td>
+<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown.</p>
+<p>When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
+<p><strong>Note</strong>: If no configuration file changes have been made, only the original file date is shown.</p></td>
 </tr>
 </tbody>
 </table>

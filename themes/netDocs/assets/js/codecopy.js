@@ -1,25 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
   function addCopyButtons(clipboard) {
     document.querySelectorAll('pre > code').forEach(function (codeBlock) {
-      var button = document.createElement('button');
-      button.className = 'copy-code-button';
-      button.type = 'button';
-      button.innerText = 'Copy';
+      var div = document.createElement('div');
+      var tooltip  = document.getElementsByClassName('copy-code-img');
+      div.className = 'copy-code-img';
+      div.type = 'button';
+      div.innerHTML = "<img src=\"https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg\" width=\"20\" height=\"20\">";
 
-      button.addEventListener('click', function () {
+      div.addEventListener('click', function () {
         clipboard.writeText(codeBlock.innerText).then(function () {
-            button.blur();
-            button.innerText = 'Copied';
+            div.blur();
+            // div.innerText = 'Copied to clipboard';
+            $(tooltip).attr('aria-label', 'Copied to clipboard!').addClass('tooltip');
             setTimeout(function () {
-                button.innerText = 'Copy';
+                $(tooltip).removeAttr('aria-label', 'Copied to clipboard!').removeClass('tooltip');
             }, 2000);
         }, function (error) {
-            button.innerText = 'Error';
+            div.innerText = 'Error';
         });
     });
 
       var pre = codeBlock.parentNode;
-      pre.insertAdjacentElement('afterbegin', button);
+      pre.insertAdjacentElement('afterbegin', div);
     });
   }
 
@@ -37,4 +39,3 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(script);
   }
 });
-

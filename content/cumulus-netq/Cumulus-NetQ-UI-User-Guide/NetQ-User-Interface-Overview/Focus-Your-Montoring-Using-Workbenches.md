@@ -24,7 +24,7 @@ Both types of workbenches display a set of cards. Both types of workbenches can 
 
 In this release, only one default workbench is available, the *Cumulus Workbench*, to get you started. It contains Device Inventory, Switch Inventory, Alarm and Info Events, and Network Health cards, giving you a high-level view of how your network is operating.
 
-{{< figure src="" width="700" >}}
+{{< figure src="/images/netq/cumulus-wb-default.png" width="700" >}}
 
 On initial login, the Cumulus Workbench is opened. On subsequent logins, the last workbench you had displayed is opened.
 
@@ -33,13 +33,9 @@ On initial login, the Cumulus Workbench is opened. On subsequent logins, the las
 You can create and save as many workbenches as suit your needs. For example, create a workbench that:
 
 - shows all of the selected cards for the past week and one that shows all of the selected cards for the past 24 hours
-
 - only has data about your virtual overlays; EVPN plus events cards
-
 - has selected switches that you are troubleshooting
-
 - focused on application or user account management
-
 - etc.
 
 ### Create a Workbench

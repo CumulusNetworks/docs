@@ -42,8 +42,8 @@ and operating correctly.
 
 For example, if the NetQ Agent learns that an interface has gone down, a
 new BGP neighbor has been configured, or a container has moved, it
-provides that information to the <span style="color: #36424a;"> NetQ
-Platform  . That information can then be used to notify users of
+provides that information to the NetQ
+Platform. That information can then be used to notify users of
 the operational state change through various channels. By default, data
 is logged in the database, but you can use the CLI (`netq show events`)
 or configure the Event Service in NetQ to send the information to a

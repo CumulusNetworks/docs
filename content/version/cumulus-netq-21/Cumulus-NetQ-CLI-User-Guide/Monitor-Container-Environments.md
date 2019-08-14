@@ -38,9 +38,7 @@ their:
 NetQ helps answer questions such as:
 
   - Where is this container located?
-
   - Open ports? What image is being used?
-
   - Which containers are part of this service? How are they connected?
 
 ## Use NetQ with Kubernetes Clusters
@@ -55,13 +53,10 @@ The NetQ Kubernetes integration enables network administrators to:
 
   - Identify and locate pods, deployment, replica-set and services
     deployed within the network using IP, name, label, and so forth.
-
   - Track network connectivity of all pods of a service, deployment and
     replica set.
-
   - Locate what pods have been deployed adjacent to a top of rack (ToR)
     switch.
-
   - Check what pod, services, replica set or deployment can be impacted
     by a specific ToR switch.
 
@@ -202,7 +197,7 @@ that have been made in the last hour.
     server12:3.0.0.69        default          Healthy              Healthy          server12                                 Add      Fri Feb  8 01:50:50 2019
 
 
-### View Kubernetes Pod Information 
+### View Kubernetes Pod Information
 
 You can show configuration and status of the pods in a cluster,
 including the names, labels, addresses, associated cluster and
@@ -621,8 +616,7 @@ To see the impact of a given Kubernetes service, run:
 
 ### View Kubernetes Cluster Configuration in the Past
 
-You can use the ["time machine"
-features](/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues)
+You can use the ["time machine" features](/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/#use-netq-as-a-time-machine)
 of NetQ on a Kubernetes cluster, using the `around` keyword to go back
 in time to check the network status and identify any changes that
 occurred on the network.

@@ -32,7 +32,7 @@ card workflow.
 
 The small Alarms card displays:
 
-{{% imgOld 0 %}}
+{{< figure src="/images/netq/events-alarms-small.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -71,18 +71,18 @@ The small Alarms card displays:
 <li><p><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</p></li>
 <li><p><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</p></li>
 </ul>
-<p>{{% imgOld 2 %}}</p></td>
+<p>{{< figure src="/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
 </tr>
 <tr class="odd">
 <td><p>Chart</p></td>
-<td><p>Distribution of all alarms received during the designated time period</p></td>
+<td><p>Distribution alarms received during the designated time period and a total count of all alarms present in the system</p></td>
 </tr>
 </tbody>
 </table>
 
 The medium Alarms card displays:
 
-{{% imgOld 3 %}}
+{{< figure src="/images/netq/events-alarms-medium.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -132,7 +132,7 @@ The large Alarms card has one tab.
 
 The *System, Trace and Interfaces* tab displays:
 
-{{% imgOld 5 %}}
+{{< figure src="/images/netq/events-alarms-large-systrcif-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -156,8 +156,8 @@ The *System, Trace and Interfaces* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Alarm Distribution</p></td>
-<td><p>Chart: Distribution of all alarms received from each category (services, NetQ Agents, Cumulus Linux licenses, sensors, ports, links, MTU, LLDP and configuration changes) during the designated time period</p>
-<p>Count: Total number of alarms received from each category during the designated time period</p></td>
+<td><p><strong>Chart</strong>: Distribution of all alarms received from each category (services, NetQ Agents, Cumulus Linux licenses, sensors, ports, links, MTU, LLDP and configuration changes) during the designated time period</p>
+<p><strong>Count</strong>: Total number of alarms received from each category during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Table</p></td>
@@ -176,7 +176,7 @@ The *System, Trace and Interfaces* tab displays:
 
 The full screen Alarms card provides tabs for all events.
 
-{{% imgOld 7 %}}
+{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -211,8 +211,8 @@ The full screen Alarms card provides tabs for all events.
 <td><p>Displays all events (both alarms and info) received in the time period. By default, the requests list is sorted by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:</p>
 <ul>
 <li><p><strong>Source</strong>: Hostname of the given event</p></li>
-<li><p><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</p></li>
 <li><p><strong>Message</strong>: Text describing the alarm or info event that occurred</p></li>
+<li><p><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</p></li>
 <li><p><strong>Severity</strong>: Importance of the event–critical, warning, info, or debug</p></li>
 </ul></td>
 </tr>
@@ -235,13 +235,11 @@ of those alarms.
 
 To view the summary, open the small Alarms card.
 
-{{% imgOld 10 %}}
+{{< figure src="/images/netq/events-alarms-small.png" width="200" >}}
 
-In this example, there are a small number of alarms (3), the number of
-alarms is increasing, and there are more alarms right now than the
-average number of alarms during this time period. This would indicate a
-need to investigate further. Note that with such a small number of
-alarms, the rating may be a bit skewed.
+In this example, there are a small number of alarms (0), the number of
+alarms is steady (no arrow), and there are fewer alarms right now than the
+average number of alarms during this time period. This would indicate no further investigation is needed. Note that with such a small number of alarms, the rating may be a bit skewed.
 
 ### View the Distribution of Alarms
 
@@ -253,7 +251,7 @@ services. You can also view the trend of alarms in each source category.
 To view the alarm distribution, open the medium Alarms card. Scroll down
 to view all of the charts.
 
-{{% imgOld 11 %}}
+{{< figure src="/images/netq/events-alarms-medium.png" width="200" >}}
 
 ### Monitor System and Interface Alarm Details
 
@@ -347,7 +345,7 @@ opening the full screen Alarm Events card.
 
 OR
 
-{{% imgOld 20 %}}
+{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab.png" width="700" >}}
 
 To return to your workbench, click {{% imgOld 21 %}} in the top right corner of the card.
 
@@ -642,16 +640,13 @@ To return to your workbench, click {{% imgOld 39 %}} in the top right corner of 
 
 ## Events Reference
 
-The following table lists all event messages organized by type, by
-default. Click the column header to sort the list by that
-characteristic. Click {{% imgOld 40 %}} in any column header to toggle the sort order between A-Z and Z-A.
+The following table lists all event messages organized by type.
 
 {{%notice note%}}
 
 The messages can be viewed through third-party notification
 applications. For details about configuring notifications using the NetQ
-CLI, refer to [Integrate with Third-party Software and
-Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware).
+CLI, refer to [Integrate NetQ with Notification Applications](/cumulus-netq/Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications).
 
 {{%/notice%}}
 
@@ -681,118 +676,6 @@ Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party
 <td><p>Agent state changed to rotten</p></td>
 </tr>
 <tr class="even">
-<td><p>bgp</p></td>
-<td><p>BGP Session state changed</p></td>
-<td><p>Critical</p></td>
-<td><p>BGP session with peer @peer @neighbor vrf @vrf state changed from @old_state to @new_state</p></td>
-<td><p>BGP session with peer leaf03 leaf04 vrf mgmt state changed from Established to Failed</p></td>
-</tr>
-<tr class="odd">
-<td><p>cable</p></td>
-<td><p>Link speed is not the same on both ends of the link</p></td>
-<td><p>Critical</p></td>
-<td><p>@ifname speed @speed, mismatched with peer @peer @peer_if speed @peer_speed</p></td>
-<td><p>swp2 speed 10, mismatched with peer server02 swp8 speed 40</p></td>
-</tr>
-<tr class="even">
-<td><p>clag</p></td>
-<td><p>CLAG remote peer state changed from up to down</p></td>
-<td><p>Critical</p></td>
-<td><p>Peer state changed to down</p></td>
-<td><p>Peer state changed to down</p></td>
-</tr>
-<tr class="odd">
-<td><p>configdiff</p></td>
-<td><p>Configuration file deleted on a device</p></td>
-<td><p>Critical</p></td>
-<td><p>@hostname config file @type was deleted</p></td>
-<td><p>spine03 config file /etc/frr/frr.conf was deleted</p></td>
-</tr>
-<tr class="even">
-<td><p>evpn</p></td>
-<td><p>A VNI was configured and moved from the up state to the down state</p></td>
-<td><p>Critical</p></td>
-<td><p>VNI @vni state changed from up to down</p></td>
-<td><p>VNI 36 state changed from up to down</p></td>
-</tr>
-<tr class="odd">
-<td><p>license</p></td>
-<td><p>License state is missing or invalid</p></td>
-<td><p>Critical</p></td>
-<td><p>License check failed, name @lic_name state @state</p></td>
-<td><p>License check failed, name agent.lic state invalid</p></td>
-</tr>
-<tr class="even">
-<td><p>license</p></td>
-<td><p>License state is missing or invalid on a particular device</p></td>
-<td><p>Critical</p></td>
-<td><p>License check failed on @hostname</p></td>
-<td><p>License check failed on leaf03</p></td>
-</tr>
-<tr class="odd">
-<td><p>link</p></td>
-<td><p>Link operational state changed from up to down</p></td>
-<td><p>Critical</p></td>
-<td><p>HostName @hostname changed state from @old_state to @new_state Interface:@ifname</p></td>
-<td><p>HostName leaf01 changed state from up to down Interface:swp34</p></td>
-</tr>
-<tr class="even">
-<td><p>lnv</p></td>
-<td><p>VXLAN registration daemon, vxrd, is not running</p></td>
-<td><p>Critical</p></td>
-<td><p>vxrd service not running</p></td>
-<td><p>vxrd service not running</p></td>
-</tr>
-<tr class="odd">
-<td><p>ntp</p></td>
-<td><p>NTP sync state changed from in sync to not in sync</p></td>
-<td><p>Critical</p></td>
-<td><p>Sync state changed from @old_state to @new_state for @hostname</p></td>
-<td><p>Sync state changed from in sync to not sync for leaf06</p></td>
-</tr>
-<tr class="even">
-<td><p>ptm</p></td>
-<td><p>Physical interface cabling does not match configuration specified in <em>topology.dot</em> file</p></td>
-<td><p>Critical</p></td>
-<td><p>PTM cable status failed</p></td>
-<td><p>PTM cable status failed</p></td>
-</tr>
-<tr class="odd">
-<td><p>sensor</p></td>
-<td><p>A fan or power supply unit sensor has changed state</p></td>
-<td><p>Critical</p></td>
-<td><p>Sensor @sensor state changed from @old_s_state to @new_s_state</p></td>
-<td><p>Sensor fan state changed from up to down</p></td>
-</tr>
-<tr class="even">
-<td><p>sensor</p></td>
-<td><p>A temperature sensor has crossed the maximum threshold for that sensor</p></td>
-<td><p>Critical</p></td>
-<td><p>Sensor @sensor max value @new_s_max exceeds threshold @new_s_crit</p></td>
-<td><p>Sensor temp max value 110 exceeds the threshold 95</p></td>
-</tr>
-<tr class="odd">
-<td><p>sensor</p></td>
-<td><p>A temperature sensor has crossed the minimum threshold for that sensor</p></td>
-<td><p>Critical</p></td>
-<td><p>Sensor @sensor min value @new_s_lcrit fall behind threshold @new_s_min</p></td>
-<td><p>Sensor psu min value 10 fell below threshold 25</p></td>
-</tr>
-<tr class="even">
-<td><p>services</p></td>
-<td><p>A service status changed from down to up</p></td>
-<td><p>Critical</p></td>
-<td><p>Service @name status changed from @old_status to @new_status</p></td>
-<td><p>Service bgp status changed from down to up</p></td>
-</tr>
-<tr class="odd">
-<td><p>services</p></td>
-<td><p>A service status changed from up to down</p></td>
-<td><p>Critical</p></td>
-<td><p>Service @name status changed from @old_status to @new_status</p></td>
-<td><p>Service lldp status changed from up to down</p></td>
-</tr>
-<tr class="even">
 <td><p>agent</p></td>
 <td><p>NetQ Agent state changed to Fresh</p></td>
 <td><p>Info</p></td>
@@ -801,24 +684,38 @@ Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party
 </tr>
 <tr class="odd">
 <td><p>bgp</p></td>
+<td><p>BGP Session state changed</p></td>
+<td><p>Critical</p></td>
+<td><p>BGP session with peer @peer @neighbor vrf @vrf state changed from @old_state to @new_state</p></td>
+<td><p>BGP session with peer leaf03 leaf04 vrf mgmt state changed from Established to Failed</p></td>
+</tr>
+<tr class="even">
+<td><p>bgp</p></td>
 <td><p>BGP Session state changed from Failed to Established</p></td>
 <td><p>Info</p></td>
 <td><p>BGP session with peer @peer @peerhost @neighbor vrf @vrf session state changed from Failed to Established</p></td>
 <td><p>BGP session with peer swp5 spine02 spine03 vrf default session state changed from Failed to Established</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>bgp</p></td>
-<td><p>BGP Session state changed from down to up</p></td>
+<td><p>BGP Session state changed from Established to Failed</p></td>
 <td><p>Info</p></td>
-<td><p>BGP session with peer @peer @neighbor vrf @vrf state changed from down to up</p></td>
+<td><p>BGP session with peer @peer @neighbor vrf @vrf state changed from established to failed</p></td>
 <td><p>BGP session with peer leaf03 leaf04 vrf mgmt state changed from down to up</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>bgp</p></td>
 <td><p>The reset time for a BGP session changed</p></td>
 <td><p>Info</p></td>
 <td><p>BGP session with peer @peer @neighbor vrf @vrf reset time changed from @old_last_reset_time to @new_last_reset_time</p></td>
 <td><p>BGP session with peer spine03 swp9 vrf vrf2 reset time changed from 1559427694 to 1559837484</p></td>
+</tr>
+<tr class="odd">
+<td><p>cable</p></td>
+<td><p>Link speed is not the same on both ends of the link</p></td>
+<td><p>Critical</p></td>
+<td><p>@ifname speed @speed, mismatched with peer @peer @peer_if speed @peer_speed</p></td>
+<td><p>swp2 speed 10, mismatched with peer server02 swp8 speed 40</p></td>
 </tr>
 <tr class="even">
 <td><p>cable</p></td>
@@ -879,66 +776,108 @@ Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party
 </tr>
 <tr class="even">
 <td><p>clag</p></td>
+<td><p>CLAG remote peer state changed from up to down</p></td>
+<td><p>Critical</p></td>
+<td><p>Peer state changed to down</p></td>
+<td><p>Peer state changed to down</p></td>
+</tr>
+<tr class="odd">
+<td><p>clag</p></td>
 <td><p>CLAG remote peer state changed from down to up</p></td>
 <td><p>Info</p></td>
 <td><p>Peer state changed to up</p></td>
 <td><p>Peer state changed to up</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>clag</p></td>
 <td><p>Local CLAG host state changed from down to up</p></td>
 <td><p>Info</p></td>
 <td><p>Clag state changed from down to up</p></td>
 <td><p>Clag state changed from down to up</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>clag</p></td>
 <td><p>CLAG bond in Conflicted state was updated with new bonds</p></td>
 <td><p>Info</p></td>
 <td><p>Clag conflicted bond changed from @old_conflicted_bonds to @new_conflicted_bonds</p></td>
 <td><p>Clag conflicted bond changed from swp7 swp8 to @swp9 swp10</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>clag</p></td>
 <td><p>CLAG bond changed state from protodown to up state</p></td>
 <td><p>Info</p></td>
 <td><p>Clag conflicted bond changed from @old_state_protodownbond to @new_state_protodownbond</p></td>
 <td><p>Clag conflicted bond changed from protodown to up</p></td>
 </tr>
-<tr class="even">
-<td><p>configdiff</p></td>
-<td><p>Configuration file has been modified</p></td>
-<td><p>Info</p></td>
-<td><p>@hostname config file @type was modified</p></td>
-<td><p>spine03 config file /etc/frr/frr.conf was modified</p></td>
-</tr>
 <tr class="odd">
+<td><p>configdiff</p></td>
+<td><p>Configuration file deleted on a device</p></td>
+<td><p>Critical</p></td>
+<td><p>@hostname config file @type was deleted</p></td>
+<td><p>spine03 config file /etc/frr/frr.conf was deleted</p></td>
+</tr>
+<tr class="even">
 <td><p>configdiff</p></td>
 <td><p>Configuration file has been created</p></td>
 <td><p>Info</p></td>
 <td><p>@hostname config file @type was created</p></td>
 <td><p>leaf12 config file /etc/lldp.d/README.conf was created</p></td>
 </tr>
+<tr class="odd">
+<td><p>configdiff</p></td>
+<td><p>Configuration file has been modified</p></td>
+<td><p>Info</p></td>
+<td><p>@hostname config file @type was modified</p></td>
+<td><p>spine03 config file /etc/frr/frr.conf was modified</p></td>
+</tr>
 <tr class="even">
+<td><p>evpn</p></td>
+<td><p>A VNI was configured and moved from the up state to the down state</p></td>
+<td><p>Critical</p></td>
+<td><p>VNI @vni state changed from up to down</p></td>
+<td><p>VNI 36 state changed from up to down</p></td>
+</tr>
+<tr class="odd">
 <td><p>evpn</p></td>
 <td><p>A VNI was configured and moved from the down state to the up state</p></td>
 <td><p>Info</p></td>
 <td><p>VNI @vni state changed from down to up</p></td>
 <td><p>VNI 36 state changed from down to up</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>evpn</p></td>
 <td><p>The kernel state changed on a VNI</p></td>
 <td><p>Info</p></td>
 <td><p>VNI @vni kernel state changed from @old_in_kernel_state to @new_in_kernel_state</p></td>
 <td><p>VNI 3 kernel state changed from down to up</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>evpn</p></td>
 <td><p>A VNI state changed from not advertising all VNIs to advertising all VNIs</p></td>
 <td><p>Info</p></td>
 <td><p>VNI @vni vni state changed from @old_adv_all_vni_state to @new_adv_all_vni_state</p></td>
 <td><p>VNI 11 vni state changed from false to true</p></td>
+</tr>
+<tr class="even">
+<td><p>license</p></td>
+<td><p>License state is missing or invalid</p></td>
+<td><p>Critical</p></td>
+<td><p>License check failed, name @lic_name state @state</p></td>
+<td><p>License check failed, name agent.lic state invalid</p></td>
+</tr>
+<tr class="odd">
+<td><p>license</p></td>
+<td><p>License state is missing or invalid on a particular device</p></td>
+<td><p>Critical</p></td>
+<td><p>License check failed on @hostname</p></td>
+<td><p>License check failed on leaf03</p></td>
+</tr>
+<tr class="even">
+<td><p>link</p></td>
+<td><p>Link operational state changed from up to down</p></td>
+<td><p>Critical</p></td>
+<td><p>HostName @hostname changed state from @old_state to @new_state Interface:@ifname</p></td>
+<td><p>HostName leaf01 changed state from up to down Interface:swp34</p></td>
 </tr>
 <tr class="odd">
 <td><p>link</p></td>
@@ -969,6 +908,20 @@ Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party
 <td><p>LLDP Session with host leaf03 and swp2 leaf07 changed to exit01</p></td>
 </tr>
 <tr class="odd">
+<td><p>lnv</p></td>
+<td><p>VXLAN registration daemon, vxrd, is not running</p></td>
+<td><p>Critical</p></td>
+<td><p>vxrd service not running</p></td>
+<td><p>vxrd service not running</p></td>
+</tr>
+<tr class="even">
+<td><p>ntp</p></td>
+<td><p>NTP sync state changed from in sync to not in sync</p></td>
+<td><p>Critical</p></td>
+<td><p>Sync state changed from @old_state to @new_state for @hostname</p></td>
+<td><p>Sync state changed from in sync to not sync for leaf06</p></td>
+</tr>
+<tr class="odd">
 <td><p>ntp</p></td>
 <td><p>NTP sync state changed from not in sync to in sync</p></td>
 <td><p>Info</p></td>
@@ -976,13 +929,64 @@ Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party
 <td><p>Sync state changed from not sync to in sync for leaf06</p></td>
 </tr>
 <tr class="even">
+<td><p>ospf</p></td>
+<td><p>OSPF session state on a given interface changed from Full to a down state</p></td>
+<td><p>Critical</p></td>
+<td><p>OSPF session @ifname with @peer_address changed from Full to @down_state</p></td>
+<td><p>OSPF session swp7 with 27.0.0.18 state changed from Full to Fail</p>
+<p>OSPF session swp7 with 27.0.0.18 state changed from Full to ExStart</p></td>
+</tr><tr class="odd">
+<td><p>ospf</p></td>
+<td><p>OSPF session state on a given interface changed from a down state to full</p></td>
+<td><p>Info</p></td>
+<td><p>OSPF session @ifname with @peer_address changed from @down_state to Full</p></td>
+<td><p>OSPF session swp7 with 27.0.0.18 state changed from Down to Full</p>
+<p>OSPF session swp7 with 27.0.0.18 state changed from Init to Full</p>
+<p>OSPF session swp7 with 27.0.0.18 state changed from Fail to Full</p></td>
+</tr>
+<tr class="even">
+<td><p>ptm</p></td>
+<td><p>Physical interface cabling does not match configuration specified in <em>topology.dot</em> file</p></td>
+<td><p>Critical</p></td>
+<td><p>PTM cable status failed</p></td>
+<td><p>PTM cable status failed</p></td>
+</tr>
+<tr class="odd">
 <td><p>ptm</p></td>
 <td><p>Physical interface cabling matches configuration specified in <em>topology.dot</em> file</p></td>
 <td><p>Critical</p></td>
 <td><p>PTM cable status passed</p></td>
 <td><p>PTM cable status passed</p></td>
 </tr>
+<tr class="even">
+<td><p>runningconfigdiff</p></td>
+<td><p>A fan or power supply unit sensor has changed state</p></td>
+<td><p>Info</p></td>
+<td><p>@commandname config result was modified</p></td>
+<td><p>@commandname config result was modified</p></td>
+</tr>
 <tr class="odd">
+<td><p>sensor</p></td>
+<td><p>A fan or power supply unit sensor has changed state</p></td>
+<td><p>Critical</p></td>
+<td><p>Sensor @sensor state changed from @old_s_state to @new_s_state</p></td>
+<td><p>Sensor fan state changed from up to down</p></td>
+</tr>
+<tr class="even">
+<td><p>sensor</p></td>
+<td><p>A temperature sensor has crossed the maximum threshold for that sensor</p></td>
+<td><p>Critical</p></td>
+<td><p>Sensor @sensor max value @new_s_max exceeds threshold @new_s_crit</p></td>
+<td><p>Sensor temp max value 110 exceeds the threshold 95</p></td>
+</tr>
+<tr class="odd">
+<td><p>sensor</p></td>
+<td><p>A temperature sensor has crossed the minimum threshold for that sensor</p></td>
+<td><p>Critical</p></td>
+<td><p>Sensor @sensor min value @new_s_lcrit fall behind threshold @new_s_min</p></td>
+<td><p>Sensor psu min value 10 fell below threshold 25</p></td>
+</tr>
+<tr class="even">
 <td><p>sensor</p></td>
 <td><p>A temperature, fan, or power supply sensor state changed</p></td>
 <td><p>Info</p></td>
@@ -991,7 +995,7 @@ Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party
 <p>Sensor fan state changed from absent to ok</p>
 <p>Sensor psu state changed from bad to ok</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>sensor</p></td>
 <td><p>A fan or power supply sensor state changed</p></td>
 <td><p>Info</p></td>
@@ -999,7 +1003,21 @@ Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party
 <td><p>Sensor fan state changed from down to up</p>
 <p>Sensor psu state changed from down to up</p></td>
 </tr>
+<tr class="even">
+<td><p>services</p></td>
+<td><p>A service status changed from down to up</p></td>
+<td><p>Critical</p></td>
+<td><p>Service @name status changed from @old_status to @new_status</p></td>
+<td><p>Service bgp status changed from down to up</p></td>
+</tr>
 <tr class="odd">
+<td><p>services</p></td>
+<td><p>A service status changed from up to down</p></td>
+<td><p>Critical</p></td>
+<td><p>Service @name status changed from @old_status to @new_status</p></td>
+<td><p>Service lldp status changed from up to down</p></td>
+</tr>
+<tr class="even">
 <td><p>services</p></td>
 <td><p>A service changed state from inactive to active</p></td>
 <td><p>Info</p></td>

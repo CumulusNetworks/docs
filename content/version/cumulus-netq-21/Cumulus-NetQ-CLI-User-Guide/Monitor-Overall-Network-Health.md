@@ -22,7 +22,7 @@ identify and resolve them. You can also see when changes have occurred
 to the network, devices, and interfaces by viewing their operation,
 configuration, and status at an earlier point in time.
 
-## Validate Network Health </span>
+## Validate Network Health
 
 NetQ `check` commands validate the various elements of your network
 fabric, looking for inconsistencies in configuration across your fabric,
@@ -30,24 +30,24 @@ connectivity faults, missing configuration, and so forth, and then and
 display the results for your assessment. They can be run from any node
 in the network.
 
-### Validate the Network Fabric</span>
+### Validate the Network Fabric
 
 You can validate the following network fabric elements:
 
-    cumulus@leaf01:mgmt-vrf:~$ netq check 
-        agents : Netq agent
-        bgp : BGP info
-        clag : Cumulus Multi-chassis LAG
-        evpn : EVPN
-        interfaces : network interface port
-        license : License information
-        lnv : Lightweight Network Virtualization info
-        mtu : Link MTU
-        ntp : NTP
-        ospf : OSPF info
-        sensors : Temperature/Fan/PSU sensors
-        vlan : VLAN
-        vxlan : VXLAN data path
+    cumulus@leaf01:mgmt-vrf:~$ netq check
+       agents : Netq agent
+       bgp : BGP info
+       clag : Cumulus Multi-chassis LAG
+       evpn : EVPN
+       interfaces : network interface port
+       license : License information
+       lnv : Lightweight Network Virtualization info
+       mtu : Link MTU
+       ntp : NTP
+       ospf : OSPF info
+       sensors : Temperature/Fan/PSU sensors
+       vlan : VLAN
+       vxlan : VXLAN data path
 
 For example, to determine the status of BGP running on your network:
 
@@ -120,7 +120,7 @@ additional options available for each of the check commands. For
 example, validate BGP operation for nodes communicating over a
 particular VRF:
 
-``` 
+```
 cumulus@switch:~$ netq check bgp vrf DataVrf1081
 Total Nodes: 25, Failed Nodes: 1, Total Sessions: 52 , Failed Sessions: 1
 Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
@@ -142,14 +142,12 @@ to have occurred about 10 minutes ago, you could run:
     Checked Nodes: 15, Checked Links: 138, Failed Nodes: 0, Failed Links: 0
     No VLAN or PVID Mismatch found
 
-### Validate Device Status and Configuration</span>
+### Validate Device Status and Configuration
 
 You can validate the following device elements:
 
   - NTP
-
   - Sensors
-
   - License
 
 It is always important to have your devices in time synchronization to
@@ -181,7 +179,7 @@ point for maintenance. For example, if you had a temporary HVAC failure
 and you are concerned that some of your nodes are beginning to overheat,
 you can run:
 
-    cumulus@switch:~$ netq check sensors 
+    cumulus@switch:~$ netq check sensors
     Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0
 
 You can also check for any nodes that have invalid licenses without
@@ -201,7 +199,7 @@ checked.
 
 {{%/notice%}}
 
-### Validate Interface Status and Configuration</span>
+### Validate Interface Status and Configuration
 
 As with other `netq check` commands, you can validate the proper
 operation of your interfaces across the network:
@@ -225,13 +223,13 @@ When failures are seen, additional information is provided to start your
 investigation. In this example, some reconfiguration is required for
 auto-negotiation with peer interfaces.
 
-## View Network Details</span>
+## View Network Details
 
 The `netq show` commands display a wide variety of content about the
 network and its various elements. You can show content for the
 following:
 
-    cumulus@switch:~$ netq show 
+    cumulus@switch:~$ netq show
         agents        :  Netq agent
         bgp           :  BGP info
         clag          :  Cumulus Multi-chassis LAG
@@ -259,7 +257,7 @@ is running as expected. The Agent sends a heartbeat every 30 seconds,
 and if three consecutive heartbeats are missed, its status changes to
 *Rotten*.
 
-    cumulus@switch:~$ netq show agents 
+    cumulus@switch:~$ netq show agents
     Matching agents records:
     Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------

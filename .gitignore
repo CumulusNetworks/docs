@@ -37,4 +37,4 @@ Thumbs.db
 
 # Hugo generated files #
 ######################
-resources/_gen/assets/*
+resources/_gen/assets/

@@ -24,7 +24,7 @@ The NetQ Management workbench is accessed from the main menu and from
 the header of an open workbench. For the user or users responsible for
 maintaining the application, this is a good place to start each day.
 
-To open the workbench, click {{% imgOld 0 %}}, and select **Management** under the **Admin** column.
+To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>, and select **Management** under the **Admin** column.
 
 {{% imgOld 1 %}}
 

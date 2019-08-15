@@ -507,6 +507,17 @@ body {
   }
 }
 
+.gsc-search-button-v2 {
+  border-color: #00ad69 !important;
+  background: linear-gradient(-225deg, rgb(0, 173, 105) 0%, rgb(75, 192, 91) 100%) !important;
+  outline: none !important;
+  cursor: pointer !important;
+  height: 31px;
+  &:hover {
+    border-color: #00ad69 !important;  
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .burger-menu {
     display: block;

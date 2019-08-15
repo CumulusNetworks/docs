@@ -36,15 +36,29 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 324px;
+    min-height: 1px;
     padding-top: 112px;
     text-align: center;
+    @media #{$md-up} {
+      min-height: 324px;  
+    }
+    .container {
+      display: none;
+      @media #{$md-up} {
+        display: block;
+      } 
+    }
+
     h1 {
       color: white;
-      font-size: 80px;
+      font-size: 40px;
       font-weight: 300;
       letter-spacing: -3.56px;
-      line-height: 96px;
+      line-height: 58px;
+      @media #{$md-up} {
+        font-size: 80px;
+        line-height: 96px;
+      }
     }
   }
 

@@ -96,7 +96,7 @@ To change a user name:
 2.  Click the **User Accounts** tab.
 3.  Hover over the account you want to change, and click the checkbox
     next to it.
-4.  In the Edit menu that appears at the bottom of the window, click <img src="/https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+4.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
 5.  Modify the first and/or last name as needed.
 6.  Enter your admin password.
 
@@ -115,7 +115,7 @@ To change a password:
 2.  Click the **User Accounts** tab.
 3.  Hover over the account you want to change, and click the checkbox
     next to it.
-4.  In the Edit menu that appears at the bottom of the window, click click <img src="/https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+4.  In the Edit menu that appears at the bottom of the window, click click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
 5.  Click **Reset Password**.
 6.  Enter your admin password.
 
@@ -140,7 +140,7 @@ To change access permissions:
 2.  Click the **User Accounts** tab.
 3.  Hover over the account you want to change, and click the checkbox
     next to it.
-4.  In the Edit menu that appears at the bottom of the window, click <img src="/https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+4.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
 5.  Select the appropriate user type from the dropdown list.
 
     {{% imgOld 10 %}}

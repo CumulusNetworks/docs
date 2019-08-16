@@ -36,11 +36,19 @@ To configure the display settings:
 
     {{% imgOld 46 %}}
 
+<<<<<<< HEAD
 4.  In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> to select your choice of theme. This figure shows the light theme. Switch back and forth as desired.
 
     {{% imgOld 48 %}}
 
 5.  In the **Time Zone** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> to change the time zone from the default.  
+=======
+4.  In the **Theme** field, click {{% imgOld 47 %}} to select your choice of theme. This figure shows the light theme. Switch back and forth as desired.
+
+    {{% imgOld 48 %}}
+
+5.  In the **Time Zone** field, click {{% imgOld 49 %}} to change the time zone from the default.  
+>>>>>>> release/1.2.6
     By default, the time zone is set to the user's local time zone. If a
     time zone has not been selected, NetQ defaults to the current local
     time zone where NetQ is installed. All time values are based on this
@@ -97,7 +105,11 @@ To configure the display settings:
     The four options include the date displayed in words or abbreviated
     with numbers, and either a 12- or 24-hour time representation.
 
+<<<<<<< HEAD
 7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+=======
+7.  Return to your workbench by clicking {{% imgOld 52 %}} and selecting a workbench from the NetQ list.
+>>>>>>> release/1.2.6
 
 ## Change Your Password
 
@@ -124,7 +136,11 @@ To change your password:
 
 7.  Click **Save** to change to the new password, or click **Cancel** to
     discard your changes.
+<<<<<<< HEAD
 8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+=======
+8.  Return to your workbench by clicking {{% imgOld 57 %}} and selecting a workbench from the NetQ list.
+>>>>>>> release/1.2.6
 
 ## Manage Your Workbenches
 
@@ -165,11 +181,27 @@ To manage your workbenches:
 
     {{% imgOld 60 %}}
 
+<<<<<<< HEAD
 4.  To specify a favorite workbench, click and drag <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg", height="18", width="18"/> next to the left of the desired workbench name.
+=======
+4.  To specify a favorite workbench, click and drag {{% imgOld 61 %}} next to the left of the desired workbench name.
+>>>>>>> release/1.2.6
 5.  To search and/or sort the workbench list by name, access type, and
     cards present on the workbench, click the relevant header and begin
     typing your search criteria.
 6.  To delete a workbench, hover over the workbench name to view the
     **Delete** button. As an administrator, you can delete both private
     and public workbenches.
+<<<<<<< HEAD
 7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+=======
+7.  Return to your workbench by clicking {{% imgOld 62 %}} and selecting a workbench from the NetQ list.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+>>>>>>> release/1.2.6

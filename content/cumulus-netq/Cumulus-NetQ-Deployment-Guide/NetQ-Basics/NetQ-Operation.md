@@ -22,7 +22,7 @@ switch has software associated with the hardware platform, the operating
 system, and communications. For data centers, the software on a Cumulus
 Linux network switch would be similar to the diagram shown here.
 
-{{% imgOld 5 %}}
+{{< figure src="/images/netq/netq-agent-operation-diag.png" width="550" >}}
 
 The NetQ Agent interacts with the various
 components and software on switches and hosts and provides the gathered
@@ -42,7 +42,12 @@ and operating correctly.
 
 For example, if the NetQ Agent learns that an interface has gone down, a
 new BGP neighbor has been configured, or a container has moved, it
+<<<<<<< HEAD
 provides that information to the NetQ Platform. That information can then be used to notify users of
+=======
+provides that information to the NetQ
+Platform. That information can then be used to notify users of
+>>>>>>> release/1.2.6
 the operational state change through various channels. By default, data
 is logged in the database, but you can use the CLI (`netq show events`)
 or configure the Event Service in NetQ to send the information to a

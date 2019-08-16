@@ -215,7 +215,11 @@ The *Alarms* tab which displays:
 <td><p>Total number of switches with the LLDP service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
+<<<<<<< HEAD
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in summary bar)</p></td>
+=======
+<td><p>{{% imgOld 15 %}} (in summary bar)</p></td>
+>>>>>>> release/1.2.6
 <td><p>Total number of LLDP-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">

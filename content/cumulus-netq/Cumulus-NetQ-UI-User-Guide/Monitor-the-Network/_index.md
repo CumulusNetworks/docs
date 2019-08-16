@@ -11,5 +11,17 @@ version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
+<<<<<<< HEAD
 The core capabilities of Cumulus NetQ enable you to monitor your network by viewing performance and configuration data about your individual network devices and the entire fabric network-wide. The topics contained in this section describe monitoring tasks that
 apply across the entire network. For device-specific monitoring refer to [Monitor Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Devices).
+=======
+The core capabilities of Cumulus NetQ enable you to monitor your network by viewing performance and configuration data about your individual network devices and the entire fabric network-wide. The topics include here describe monitoring tasks that apply across the entire network. For device-specific monitoring refer to [Monitor Devices](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Devices).
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+>>>>>>> release/1.2.6

@@ -102,7 +102,7 @@ The medium Trace Request card displays:
 
 The large Trace Request card displays:
 
-{{% imgOld 4 %}}
+{{< figure src="/images/netq/trace-request-large.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -273,7 +273,7 @@ To create the trace request:
 4.  In the **VRF** field, enter the identifier for the VRF interface you
     want to use.
 
-    {{% imgOld 12 %}}
+    {{< figure src="/images/netq/trace-request-large-l3vrf-ex.png" width="500" >}}
 
     In this example, we are starting our trace at *leaf01* and ending it
     at *10.1.3.103* using VRF *vrf1.*
@@ -293,8 +293,6 @@ To create a layer 2 trace request:
 
 1.  Open the large Trace Request card.
 
-    {{% imgOld 13 %}}
-
 2.  In the **Source** field, enter the hostname or IP address of the
     device where you want to start the trace.
 3.  In the **Destination** field, enter the MAC address for where you
@@ -302,7 +300,7 @@ To create a layer 2 trace request:
 4.  In the **VLAN ID** field, enter the identifier for the VLAN you want
     to use.
 
-    {{% imgOld 14 %}}
+    {{< figure src="/images/netq/trace-request-large-l2vlan-ex.png" width="500" >}}
 
     In this example, we are starting our trace at *leaf01* and ending it
     at *00:03:00:33:33:01* using VLAN *13.*
@@ -331,13 +329,12 @@ To schedule a trace:
 
     {{< figure src="/images/netq/trace-request-large-l2vlan-ex.png" width="500" >}}
 
-5.  Click **Timeframe** under **Schedule** to specify how often you want
+5.  Select a timeframe under **Schedule** to specify how often you want
     to run the trace.
 
     {{% imgOld 16 %}}
 
-6.  Click **Date/Time** to specify the day you want the trace to run for
-    the first time.
+6.  Accept the default starting time and skip to step 10, or click **Date/Time** to specify the day you want the trace to run for the first time.
 
     {{% imgOld 17 %}}
 
@@ -372,7 +369,11 @@ To run a scheduled trace now:
 
     {{% imgOld 21 %}}
 
+<<<<<<< HEAD
     {{< figure src="/images/netq/trace-request-large-selection.png" width="500" >}}
+=======
+    {{< figure src="/images/netq/trace-request-large-l3vrf-ex.png" width="500" >}}
+>>>>>>> release/1.2.6
 
 2.  Select the scheduled trace from the **Select Trace** or **New Trace
     Request** list. **Note**: In the medium and large cards, the trace
@@ -615,7 +616,13 @@ number of hops or other failures, viewing the results on the large card
 would provide additional information.
 
 {{% imgOld 40 %}}
+<<<<<<< HEAD
 <p> </p>
+=======
+
+<p> </p>
+
+>>>>>>> release/1.2.6
 {{% imgOld 41 %}}
 
 In our example, we can verify that every path option had four hops since
@@ -757,7 +764,11 @@ The large Scheduled Trace Results card contains two tabs:
 
 The *Results* tab displays:
 
+<<<<<<< HEAD
 {{< figure src="/images/netq/sch-trace-result-large-sum-tab.png" width="500" >}}
+=======
+{{< figure src="/images/netq/sched-trace-result-large-sum-tab.png" width="500" >}}
+>>>>>>> release/1.2.6
 
 <table>
 <colgroup>
@@ -787,9 +798,15 @@ The *Results* tab displays:
 <td><p>Summary</p></td>
 <td><p>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
+<<<<<<< HEAD
 <li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/21-Date-Calendar/calendar-refresh.svg", height="18", width="18"/> Number of trace runs completed in the designated time period</p></li>
 <li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg", height="18", width="18"/> Number of runs with warnings</p></li>
 <li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/> Number of runs with errors</p></li>
+=======
+<li><p>{{% imgOld 58 %}} Number of trace runs completed in the designated time period</p></li>
+<li><p>{{% imgOld 59 %}} Number of runs with warnings in the designated time period</p></li>
+<li><p>{{% imgOld 60 %}} Number of runs with errors in the designated time period</p></li>
+>>>>>>> release/1.2.6
 </ul></td>
 </tr>
 <tr class="odd">
@@ -995,8 +1012,13 @@ To view the results:
 9.  View the available paths for each run, by selecting **Paths** in the
     filter above the table.
 10. You can view the configuration of the request that produced the
+<<<<<<< HEAD
     results shown on this card workflow, by hovering over the card and
     clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/>. If you want to change the configuration, click **Edit** to open
+=======
+    results shown on this card workflow by hovering over the card and
+    clicking {{% imgOld 72 %}}. If you want to change the configuration, click **Edit** to open
+>>>>>>> release/1.2.6
     the large Trace Request card, pre-populated with the current
     configuration. Follow the instructions in [Create a Scheduled Trace Request](#create-a-trace-to-run-on-a-regular-basis-scheduled-trace) to
     make your changes in the same way you created a new scheduled trace.

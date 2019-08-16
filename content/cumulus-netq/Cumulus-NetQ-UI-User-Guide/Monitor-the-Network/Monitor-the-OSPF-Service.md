@@ -110,7 +110,11 @@ The medium OSPF Service card displays:
 </tr>
 <tr class="odd">
 <td><p>Total Sessions Not Established chart</p></td>
+<<<<<<< HEAD
 <td><p>Distribution of unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
+=======
+<td><p>Distribution of switches and hosts with unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
+>>>>>>> release/1.2.6
 <p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of unestablished session last week or last month might be more of less than the number of nodes with unestablished sessions currently.</p></td>
 </tr>
 <tr class="even">
@@ -168,8 +172,13 @@ The *Sessions Summary* tab displays:
 <td><p>Distribution of OSPF sessions during the designated time period, and the total number of sessions running on the network currently.</p></td>
 </tr>
 <tr class="even">
+<<<<<<< HEAD
 <td><p>Total Sessions Not Established chart</p></td>
 <td><p>Distribution of unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
+=======
+<td><p>Total Nodes Not Est. chart</p></td>
+<td><p>Distribution of switches and hosts with unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
+>>>>>>> release/1.2.6
 <p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of unestablished session last week or last month might be more of less than the number of nodes with unestablished sessions currently.</p></td>
 </tr>
 <tr class="odd">
@@ -217,7 +226,11 @@ The *Alarms* tab displays:
 <td><p>Total number of switches and hosts with the OSPF service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
+<<<<<<< HEAD
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in summary bar)</p></td>
+=======
+<td><p>{{% imgOld 15 %}} (in summary bar)</p></td>
+>>>>>>> release/1.2.6
 <td><p>Total number of OSPF-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -730,7 +743,15 @@ The *Session Summary* tab displays:
 <td class="confluenceTd" rowspan="1" colspan="1">Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr>
+<<<<<<< HEAD
 <td class="confluenceTd" rowspan="1" colspan="1"><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+=======
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+{{% imgOld 50 %}}
+
+</td>
+>>>>>>> release/1.2.6
 <td class="confluenceTd" rowspan="1" colspan="1">Indicates data is for a single session of a Network Service or Protocol</td>
 </tr>
 <tr>
@@ -742,7 +763,21 @@ The *Session Summary* tab displays:
 <td class="confluenceTd" rowspan="1" colspan="1">Hostnames of the two devices in a session. Arrow points in the direction of the session.</td>
 </tr>
 <tr>
+<<<<<<< HEAD
 <td class="confluenceTd" rowspan="1" colspan="1">Current state of OSPF. <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+=======
+<td class="confluenceTd" rowspan="1" colspan="1">Current state of OSPF.
+
+{{% imgOld 51 %}}
+
+Full or
+
+{{% imgOld 52 %}}
+
+2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.
+
+</td>
+>>>>>>> release/1.2.6
 </tr>
 <tr>
 <td class="confluenceTd" rowspan="1" colspan="1">Session State Changes Chart</td>
@@ -763,7 +798,21 @@ The *Session Summary* tab displays:
 </tr>
 <tr>
 <td class="confluenceTd" rowspan="1" colspan="1">State</td>
+<<<<<<< HEAD
 <td class="confluenceTd" rowspan="1" colspan="1">Current state of OSPF. <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+=======
+<td class="confluenceTd" rowspan="1" colspan="1">Current state of OSPF.
+
+{{% imgOld 53 %}}
+
+Full or
+
+{{% imgOld 54 %}}
+
+2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.
+
+</td>
+>>>>>>> release/1.2.6
 </tr>
 <tr>
 <td class="confluenceTd" rowspan="1" colspan="1">Is Unnumbered</td>

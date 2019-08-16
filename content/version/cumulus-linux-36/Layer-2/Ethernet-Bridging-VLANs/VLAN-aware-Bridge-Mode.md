@@ -85,7 +85,8 @@ The following attributes are useful for configuring VLAN-aware bridges:
     VLANs associated with this bridge.
   - `bridge-access`: Declares the physical switch port as an *access
     port*. Access ports ignore all tagged packets; put all untagged
-    packets into the `bridge-pvid`.
+    packets into the VLAN specified for this attribute. See the example
+    [below](#untagged-access-ports).
   - `bridge-allow-untagged`: When set to *no*, it drops any untagged
     frames for a given switch port.
 

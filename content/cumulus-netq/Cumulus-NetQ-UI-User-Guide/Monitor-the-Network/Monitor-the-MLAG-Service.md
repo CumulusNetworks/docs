@@ -51,7 +51,7 @@ The small CLAG Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>{{% imgOld 1 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -59,11 +59,11 @@ The small CLAG Service card displays:
 <td><p>CLAG: All CLAG Sessions, or the CLAG Service</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 2 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
 <td><p>Total number of switches with the CLAG service enabled during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 3 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
 <td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="odd">
@@ -94,7 +94,7 @@ The medium CLAG Service card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 5 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -102,32 +102,34 @@ The medium CLAG Service card displays:
 <td><p>Network Services | All CLAG Sessions</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 6 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
 <td><p>Total number of switches with the CLAG service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 7 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
 <td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 8 %}}</p></td>
-<td><p>Total number of sessions with an inactive backup IP address</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/11-Pins-Style%20Two/style-two-pin-off-map.svg", height="18", width="18"/></p></td>
+<td><p>Total number of sessions with an inactive backup IP address during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 9 %}}</p></td>
-<td><p>Total number of bonds with only a single connection</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/27-Link-Unlink/link-broken-1.svg", height="18", width="18"/></p></td>
+<td><p>Total number of bonds with only a single connection during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Total number and distribution of switches with CLAG service enabled during the designated time period</p></td>
+<td><p>Distribution of switches and hosts with the CLAG service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running CLAG last week or last month might be more or less than the number of nodes running CLAG currently.</p></td>
 </tr>
 <tr class="odd">
-<td><p>Total Alarms chart</p></td>
-<td><p>Total number and distribution of CLAG-related alarms received during the designated time period</p></td>
+<td><p>Total Open Alarms chart</p></td>
+<td><p>Distribution of CLAG-related alarms received during the designated time period, and the total number of current CLAG-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Sessions chart</p></td>
-<td><p>Total number and distribution of CLAG sessions network-wide during the designated time period</p></td>
+<td><p>Distribution of CLAG sessions running during the designated time period, and the total number of sessions running on the network currently</p></td>
 </tr>
 </tbody>
 </table>
@@ -155,7 +157,7 @@ The *All CLAG Sessions Summary* tab which displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 11 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -163,29 +165,82 @@ The *All CLAG Sessions Summary* tab which displays:
 <td><p>All CLAG Sessions Summary</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 12 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
 <td><p>Total number of switches with the CLAG service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 13 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
 <td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Total number and distribution of switches with CLAG service enabled during the designated time period</p></td>
+<td><p>Distribution of switches and hosts with the CLAG service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running CLAG last week or last month might be more or less than the number of nodes running CLAG currently.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Total Sessions chart</p></td>
-<td><p>Total number and distribution of CLAG sessions network-wide during the designated time period</p></td>
+<td><p>Distribution of CLAG sessions running during the designated time period, and the total number of sessions running on the network currently</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Sessions with Inactive-backup-ip chart</p></td>
-<td><p>Total number and distribution of sessions without an active backup IP defined</p></td>
+<td><p>Distribution of sessions without an active backup IP defined during the designated time period, and the total number of these sessions running on the network currently</p></td>
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
 <td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
 <p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of unestablished session count—devices with the largest number of unestablished sessions are listed first</p></td>
+</tr>
+<tr class="even">
+<td><p>Show All Sessions</p></td>
+<td><p>Link to view all CLAG sessions in the full screen card</p></td>
+</tr>
+</tbody>
+</table>
+
+The *All CLAG Alarms* tab which displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-clag-large-alarms-tab.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in header)</p></td>
+<td><p>Indicates alarm data for all CLAG sessions</p></td>
+</tr>
+<tr class="odd">
+<td><p>Title</p></td>
+<td><p>Network Services | All CLAG Alarms (visible when you hover over card)</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
+<td><p>Total number of switches with the CLAG service enabled during the designated time period</p></td>
+</tr>
+<tr class="odd">
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in summary bar)</p></td>
+<td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
+</tr>
+<tr class="even">
+<td><p>Total Alarms chart</p></td>
+<td><p>Distribution of CLAG-related alarms received during the designated time period, and the total number of current CLAG-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Table/Filter options</p></td>
+<td><p>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of alarm count—devices with the largest number of sessions are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
@@ -216,12 +271,12 @@ sessions, and all alarms.
 <td><p>Network Services | CLAG</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 15 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 16 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -315,7 +370,7 @@ sessions, and all alarms.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 17 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -340,7 +395,7 @@ protocol over a period of time, as it gives you insight into the amount
 of traffic associated with and breadth of use of the protocol. It is
 also useful to compare the number of nodes running CLAG with the alarms
 present at the same time to determine if there is any correlation
-between the issues and the ability to establish an CLAG session.
+between the issues and the ability to establish a CLAG session.
 
 To view these distributions, open the medium CLAG Service card.
 
@@ -373,7 +428,7 @@ To compare this data with the same data at a previous time:
 1.  Open another large CLAG Service card.
 2.  Move the new card next to the original card if needed.
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking {{% imgOld 21 %}}.
+    the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
@@ -441,7 +496,7 @@ information about possible causes for the alarms.
 To view switches with most CLAG alarms:
 
 1.  Open the large CLAG Service card.
-2.  Hover over the header and click {{% imgOld 28 %}}.
+2.  Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/>.
 3.  Select **Events by Most Active Device** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
@@ -549,7 +604,7 @@ in your data center network, refer to
 {{%notice note%}}
 
 To access the single session cards, you must open the full screen CLAG
-Service (all sessions) card and double-click on a session.
+Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
 
 {{%/notice%}}
 
@@ -600,7 +655,7 @@ The small CLAG Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>{{% imgOld 41 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -612,15 +667,15 @@ The small CLAG Session card displays:
 <td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session.</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 42 %}}, {{% imgOld 43 %}}</p></td>
-<td><p>Indication of host role, primary {{% imgOld 44 %}} or secondary {{% imgOld 45 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
+<td><p>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
 </tr>
 </tbody>
 </table>
 
 The medium CLAG Session card displays:
 
-{{% imgOld 46 %}}
+{{< figure src="/images/netq/ntwk-svcs-single-session-clag-medium.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -635,11 +690,11 @@ The medium CLAG Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Time period</p></td>
+<td><p>Time period (in header)</p></td>
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 47 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -647,15 +702,15 @@ The medium CLAG Session card displays:
 <td><p>Network Services | CLAG Session</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 48 %}}</p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click on {{% imgOld 49 %}} to open associated device card.</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open associated device card.</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 50 %}}, {{% imgOld 51 %}}</p></td>
-<td><p>Indication of host role, primary {{% imgOld 52 %}} or secondary {{% imgOld 53 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
+<td><p>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
 </tr>
 <tr class="even">
-<td><p>Time period</p></td>
+<td><p>Time period (above chart)</p></td>
 <td><p>Range of time for data displayed in peer status chart</p></td>
 </tr>
 <tr class="odd">
@@ -704,7 +759,7 @@ The *Session Summary* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 55 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -712,12 +767,12 @@ The *Session Summary* tab displays:
 <td><p>(Network Services | CLAG Session) Session Summary</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 56 %}}</p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click on {{% imgOld 57 %}} to open associated device card.</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open associated device card.</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 58 %}}, {{% imgOld 59 %}}</p></td>
-<td><p>Indication of host role, primary {{% imgOld 60 %}} or secondary {{% imgOld 61 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
+<td><p>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
 </tr>
 <tr class="even">
 <td><p>Alarm Count Chart</p></td>
@@ -787,8 +842,8 @@ The *Configuration File Evolution* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 63 %}}</p></td>
-<td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/></p></td>
+<td><p>Indicates configuration file information for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
@@ -798,9 +853,13 @@ The *Configuration File Evolution* tab displays:
 <td><p>{{% imgOld 64 %}}</p></td>
 <td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on {{% imgOld 65 %}} to open associated device card.</td>
 </tr>
+<tr class="even">
+<td><p><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open associated device card.</p></td>
+</tr>
 <tr class="odd">
-<td><p>{{% imgOld 66 %}}, {{% imgOld 67 %}}</p></td>
-<td><p>Indication of host role, primary {{% imgOld 68 %}} or secondary {{% imgOld 69 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
+<td><p>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
 </tr>
 <tr class="even">
 <td><p>Timestamps</p></td>
@@ -808,8 +867,9 @@ The *Configuration File Evolution* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Configuration File</p></td>
-<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown. When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
-<p><strong>Note</strong>: If no configuration file changes have been made, the card shows no results at all.</p></td>
+<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown.</p>
+<p>When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -836,12 +896,12 @@ and all events.
 <td><p>Network Services | CLAG</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 71 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 72 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -889,8 +949,7 @@ and all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td>
-<p>{{% imgOld 73 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -960,7 +1019,7 @@ causes for alarms or sessions losing their connections.
 To view the configuration file changes:
 
 1.  Open the large CLAG Session card.
-2.  Hover over the card and click {{% imgOld 78 %}} to open the **Configuration File Evolution** tab.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/> to open the **Configuration File Evolution** tab.
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
 

@@ -110,11 +110,19 @@ The medium CLAG Service card displays:
 <td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
+<<<<<<< HEAD
 <td><p><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/11-Pins-Style%20Two/style-two-pin-off-map.svg", height="18", width="18"/></p></td>
 <td><p>Total number of sessions with an inactive backup IP address during the designated time period</p></td>
 </tr>
 <tr class="odd">
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/27-Link-Unlink/link-broken-1.svg", height="18", width="18"/></p></td>
+=======
+<td><p>{{% imgOld 8 %}}</p></td>
+<td><p>Total number of sessions with an inactive backup IP address during the designated time period</p></td>
+</tr>
+<tr class="odd">
+<td><p>{{% imgOld 9 %}}</p></td>
+>>>>>>> release/1.2.6
 <td><p>Total number of bonds with only a single connection during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -218,7 +226,11 @@ The *All CLAG Alarms* tab which displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
+<<<<<<< HEAD
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in header)</p></td>
+=======
+<td><p>{{% imgOld 13 %}} (in header)</p></td>
+>>>>>>> release/1.2.6
 <td><p>Indicates alarm data for all CLAG sessions</p></td>
 </tr>
 <tr class="odd">

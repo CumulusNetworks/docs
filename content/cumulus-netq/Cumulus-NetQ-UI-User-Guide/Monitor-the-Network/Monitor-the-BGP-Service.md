@@ -58,21 +58,24 @@ The small BGP Service card displays:
 <td><p>Total number of switches and hosts with the BGP service enabled during the designated time period</p></td>
 </tr>
 <tr class="even">
+<<<<<<< HEAD
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
 <td><p>Total number of BGP-related alarms received during the designated time period</p></td>
+=======
+<td><p>{{% imgOld 4 %}}</p></td>
+<td><p>Total number of new BGP-related alarms received during the designated time period</p></td>
+>>>>>>> release/1.2.6
 </tr>
 <tr class="odd">
 <td><p>Chart</p></td>
-<td><p>Distribution of BGP-related alarms received during the designated time period</p></td>
+<td><p>Distribution of new BGP-related alarms received during the designated time period</p></td>
 </tr>
 </tbody>
 </table>
 
 The medium BGP Service card displays:
 
-{{% imgOld 5 %}}
-
-{{% imgOld 6 %}}
+{{< figure src="/images/netq/ntwk-svcs-bgp-medium.png" width="150" >}}
 
 <table>
 <colgroup>
@@ -103,8 +106,13 @@ The medium BGP Service card displays:
 <td><p>Total number of switches and hosts with the BGP service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
+<<<<<<< HEAD
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
 <td><p>Total number of BGP-related alarms received during the designated time period</p></td>
+=======
+<td><p>{{% imgOld 9 %}}</p></td>
+<td><p>Total number of new BGP-related alarms received during the designated time period</p></td>
+>>>>>>> release/1.2.6
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
@@ -129,6 +137,11 @@ The large BGP service card contains two tabs.
 The *Sessions Summary* tab displays:  
 
 {{% imgOld 10 %}}
+<<<<<<< HEAD
+=======
+<p> </p>
+{{% imgOld 11 %}}
+>>>>>>> release/1.2.6
 
 <table>
 <colgroup>
@@ -206,7 +219,11 @@ The *Alarms* tab displays:
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in header)</p></td>
+<<<<<<< HEAD
 <td><p>Indicates data is for all alarms for all BGP sessions</p></td>
+=======
+<td><p>Indicates data is all alarms for all BGP sessions</p></td>
+>>>>>>> release/1.2.6
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
@@ -217,7 +234,11 @@ The *Alarms* tab displays:
 <td><p>Total number of switches and hosts with the BGP service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
+<<<<<<< HEAD
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in summary bar)</p></td>
+=======
+<td><p>{{% imgOld 18 %}} (in summary bar)</p></td>
+>>>>>>> release/1.2.6
 <td><p>Total number of BGP-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -276,7 +297,7 @@ sessions, and all alarms.
 <li><p><strong>Agent</strong></p>
 <ul>
 <li><p>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</p></li>
-<li><p>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</p></li>
+<li><p>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.2.0.</p></li>
 </ul></li>
 <li><p><strong>ASIC</strong></p>
 <ul>
@@ -350,10 +371,10 @@ sessions, and all alarms.
 <td><p>All Alarms tab</p></td>
 <td><p>Displays all BGP events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:</p>
 <ul>
-<li><p><strong>Message</strong>: Text description of a BGP-related event. Example: BGP session with peer tor-1 swp7 vrf default state changed from failed to Established</p></li>
 <li><p><strong>Source</strong>: Hostname of network device that generated the event</p></li>
-<li><p><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</p></li>
+<li><p><strong>Message</strong>: Text description of a BGP-related event. Example: BGP session with peer tor-1 swp7 vrf default state changed from failed to Established</p></li>
 <li><p><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>bgp</em> in this card workflow.</p></li>
+<li><p><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</p></li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -449,7 +470,7 @@ To view switches with the most unestablished BGP sessions:
     with the most unestablished BGP sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
 
-    {{% imgOld 29 %}}
+    {{< figure src="/images/netq/ntwk-svcs-allbgp-large-unestab-sessions.png" width="500" >}}
 
 Where to go next depends on what data you see, but a couple of options
 include:
@@ -537,10 +558,13 @@ To view all BGP events:
 Where to go next depends on what data you see, but a couple of options
 include:
 
+  - Sort the list by message to see how many devices have had the same issue.
   - Open one of the other full screen tabs in this flow to focus on
     devices or sessions.
   - Export the data for use in another analytics tool, by clicking
     **Export** and providing a name for the data file.
+
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
 ### View Details for All Devices Running BGP
 
@@ -552,7 +576,7 @@ click the **All Switches** tab.
 
 {{% imgOld 38 %}}
 
-To return to your workbench, click {{% imgOld 39 %}} in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
 ### View Details for All BGP Sessions
 
@@ -564,7 +588,7 @@ click the **All Sessions** tab.
 
 {{% imgOld 40 %}}
 
-To return to your workbench, click {{% imgOld 41 %}} in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
 ### Take Actions on Data Displayed in Results List
 
@@ -605,9 +629,7 @@ in your data center network, refer to
 {{%notice note%}}
 
 To access the single session cards, you must open the full screen BGP
-Service (all sessions) card, click the All Sessions tab, and
-double-click on a session. The full screen card automatically closes so
-you can view the medium single session card.
+Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
 
 {{%/notice%}}
 
@@ -764,7 +786,15 @@ The *Session Summary* tab displays:
 <td class="confluenceTd" rowspan="1" colspan="1">Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr>
+<<<<<<< HEAD
 <td class="confluenceTd" rowspan="1" colspan="1"><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+=======
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+{{% imgOld 54 %}}
+
+</td>
+>>>>>>> release/1.2.6
 <td class="confluenceTd" rowspan="1" colspan="1">Indicates data is for a single session of a Network Service or Protocol</td>
 </tr>
 <tr>
@@ -776,7 +806,19 @@ The *Session Summary* tab displays:
 <td class="confluenceTd" rowspan="1" colspan="1">Hostnames of the two devices in a session. Arrow points in the direction of the session.</td>
 </tr>
 <tr>
+<<<<<<< HEAD
 <td class="confluenceTd" rowspan="1" colspan="1">Current status of the session—either established <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, or not established <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/></td>
+=======
+<td class="confluenceTd" rowspan="1" colspan="1">Current status of the session—either established
+
+{{% imgOld 55 %}}
+
+, or not established
+
+{{% imgOld 56 %}}
+
+</td>
+>>>>>>> release/1.2.6
 </tr>
 <tr>
 <td class="confluenceTd" rowspan="1" colspan="1">Session State Changes Chart</td>
@@ -865,8 +907,9 @@ The *Configuration File Evolution* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Configuration File</p></td>
-<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown. When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
-<p><strong>Note</strong>: If no configuration file changes have been made, the card shows no results at all.</p></td>
+<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown.</p>
+<p>When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
+<p><strong>Note</strong>: If no configuration file changes have been made, only the original file date is shown.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1044,7 +1087,7 @@ click the **All BGP Sessions** tab.
 
 {{% imgOld 75 %}}
 
-To return to your workbench, click {{% imgOld 76 %}} in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
 ### View All Events
 
@@ -1056,4 +1099,16 @@ the **All Events** tab.
 
 {{% imgOld 77 %}}
 
+<<<<<<< HEAD
 To return to your workbench, click {{% imgOld 78 %}} in the top right corner.
+=======
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>
+>>>>>>> release/1.2.6

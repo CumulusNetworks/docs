@@ -37,57 +37,25 @@ three heartbeats in a row were not sent, then you can investigate the
 rotten node. In the example below, the NetQ Agent on server01 is rotten,
 so you know where to start looking for problems:
 
-<div class="confbox panel">
-
-<div class="panel-content">
-
-    cumulus@switch:$ netq check agents     
-    Checked nodes: 12,    
-         
-    Rotten nodes: 1    
-    netq@446c0319c06a:/$ netq show agents 
-    Node      Status    Sys Uptime    Agent Uptime
-    --------  --------  ------------  --------------
-    exit01        
-    Fresh    
-         8h ago        4h ago
-    exit02        
-    Fresh    
-         8h ago        4h ago
-    leaf01        
-    Fresh    
-         8h ago        4h ago
-    leaf02        
-    Fresh    
-         8h ago        4h ago
-    leaf03        
-    Fresh    
-         8h ago        4h ago
-    leaf04        
-    Fresh    
-         8h ago        4h ago
-    server01      
-    Rotten    
-        4h ago        4h ago
-    server02      
-    Fresh    
-         4h ago        4h ago
-    server03      
-    Fresh    
-         4h ago        4h ago
-    server04      
-    Fresh    
-         4h ago        4h ago
-    spine01       
-    Fresh    
-         8h ago        4h ago
-    spine02       
-    Fresh    
-         8h ago        4h ago
-
-</div>
-
-</div>
+```
+cumulus@switch:$ netq check agents
+Checked nodes: 12, Rotten nodes: 1
+netq@446c0319c06a:/$ netq show agents
+Node      Status    Sys Uptime    Agent Uptime
+--------  --------  ------------  --------------
+exit01    Fresh     8h ago        4h ago
+exit02    Fresh     8h ago        4h ago
+leaf01    Fresh     8h ago        4h ago
+leaf02    Fresh     8h ago        4h ago
+leaf03    Fresh     8h ago        4h ago
+leaf04    Fresh     8h ago        4h ago
+server01  Rotten    4h ago        4h ago
+server02  Fresh     4h ago        4h ago
+server03  Fresh     4h ago        4h ago
+server04  Fresh     4h ago        4h ago
+spine01   Fresh     8h ago        4h ago
+spine02   Fresh     8h ago        4h ago
+```
 
 ## Generate a Support File</span>
 

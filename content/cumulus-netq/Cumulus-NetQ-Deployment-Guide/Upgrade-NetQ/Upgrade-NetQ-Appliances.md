@@ -241,6 +241,58 @@ Now that the core software is updated, you must update the CLI.
 
     <details><summary><span style="color:teal">On-premises</span></summary>
 
+<<<<<<< HEAD
+     ```
+     cumulus@<netq-platform-hostname>:~$ netq show opta-health
+        Application                    Status    Health    Kafka Stream    Git Hash    Timestamp
+        -----------------------------  --------  --------  --------------  ----------  ------------------------
+        netq-app-macfdb                UP        true      up              14b42e6     Mon Jun  3 20:20:35 2019
+        netq-app-interface             UP        true                      0fe11c6     Mon Jun  3 20:20:34 2019
+        netq-app-vlan                  UP        true                      4daed85     Mon Jun  3 20:20:35 2019
+        netq-app-sensors               UP        true      up              f37272c     Mon Jun  3 20:20:34 2019
+        netq-app-topology              UP        true                      3f4a887     Mon Jun  3 20:20:34 2019
+        kafka-broker                   UP                                              Mon Jun  3 20:20:35 2019
+        netq-app-mstpinfo              UP        true      up              ef5565d     Mon Jun  3 20:20:35 2019
+        netq-app-address               UP        true      up              7e0d03d     Mon Jun  3 20:20:35 2019
+        netq-gui                       UP                                              Mon Jun  3 20:20:35 2019
+        netq-app-kube                  UP        true      up              fbcaa9d     Mon Jun  3 20:20:34 2019
+        netq-app-link                  UP        true      up              6c2b21a     Mon Jun  3 20:20:35 2019
+        netq-app-ptm                   UP        true      up              7162771     Mon Jun  3 20:20:34 2019
+        netq-opta                      UP        true                                  Mon Jun  3 20:20:34 2019
+        netq-app-clagsession           UP        true      up              356dda9     Mon Jun  3 20:20:34 2019
+        netq-endpoint-gateway          UP        true                      295e9ed     Mon Jun  3 20:20:34 2019
+        netq-app-ospf                  UP        true      up              e0e2ab0     Mon Jun  3 20:20:34 2019
+        netq-app-lldp                  UP        true      up              90582de     Mon Jun  3 20:20:35 2019
+        netq-app-inventory             UP        true      up              bbf9938     Mon Jun  3 20:20:34 2019
+        netq-app-tracecheck-scheduler  UP        true                      5484c68     Mon Jun  3 20:20:34 2019
+        netq-app-infra                 UP        true      up              13f9e7c     Mon Jun  3 20:20:34 2019
+        kafka-connect                  UP                                              Mon Jun  3 20:20:35 2019
+        netq-app-search                UP        true      up              e47aaba     Mon Jun  3 20:20:34 2019
+        netq-app-procdevstats          UP        true      up              b8e280e     Mon Jun  3 20:20:34 2019
+        netq-app-vxlan                 UP        true      up              123c577     Mon Jun  3 20:20:34 2019
+        zookeeper                      UP                                              Mon Jun  3 20:20:35 2019
+        netq-app-resource-util         UP        true      up              41dfb07     Mon Jun  3 20:20:34 2019
+        netq-app-evpn                  UP        true      up              05a4003     Mon Jun  3 20:20:34 2019
+        netq-api-gateway               UP        true                      c40231a     Mon Jun  3 20:20:34 2019
+        netq-app-port                  UP        true      up              4592b70     Mon Jun  3 20:20:35 2019
+        netq-app-macs                  UP        true                      dd6cd96     Mon Jun  3 20:20:35 2019
+        netq-app-notifier              UP        true      up              da57b69     Mon Jun  3 20:20:35 2019
+        netq-app-events                UP        true      up              8f7b4d9     Mon Jun  3 20:20:34 2019
+        netq-app-services              UP        true      up              5094f4a     Mon Jun  3 20:20:34 2019
+        cassandra                      UP                                              Mon Jun  3 20:20:35 2019
+        netq-app-configdiff            UP        true      up              3be2ef1     Mon Jun  3 20:20:34 2019
+        netq-app-neighbor              UP        true      up              9ebe479     Mon Jun  3 20:20:35 2019
+        netq-app-bgp                   UP        true      up              e68f7a8     Mon Jun  3 20:20:35 2019
+        schema-registry                UP                                              Mon Jun  3 20:20:35 2019
+        netq-app-lnv                   UP        true      up              a9ca80a     Mon Jun  3 20:20:34 2019
+        netq-app-healthdashboard       UP        true                      eea044c     Mon Jun  3 20:20:34 2019
+        netq-app-ntp                   UP        true      up              651c86f     Mon Jun  3 20:20:35 2019
+        netq-app-customermgmt          UP        true                      7250354     Mon Jun  3 20:20:34 2019
+        netq-app-node                  UP        true      up              f676c9a     Mon Jun  3 20:20:34 2019
+        netq-app-route                 UP        true      up              6e31f98     Mon Jun  3 20:20:35 2019
+     ```
+    {{%notice note%}}
+=======
       ```
       cumulus@<netq-platform-hostname>:~$ netq show opta-health
       Application                    Status    Health    Kafka Stream    Git Hash    Timestamp
@@ -291,6 +343,7 @@ Now that the core software is updated, you must update the CLI.
       netq-app-route                 UP        true      up              6e31f98     Mon Jun  3 20:20:35 2019
       ```
       {{%notice note%}}
+>>>>>>> release/1.2.6
 
 If any of the applications or services display Status as DOWN after 30 minutes, open a [support ticket](https://cumulusnetworks.com/support/file-a-ticket/) and  attach the output of the `opta-support` command.
 
@@ -299,18 +352,31 @@ If any of the applications or services display Status as DOWN after 30 minutes, 
       </details>
       <details><summary><span style="color:teal">In-cloud</span></summary>
 
+<<<<<<< HEAD
+     ```
+     cumulus@<netq-platform-hostname>:~$ netq show opta-health
+     OPTA is healthy
+     ```         
+
+     {{%notice note%}}
+=======
       ```
       cumulus@<netq-platform-hostname>:~$ netq show opta-health
       OPTA is healthy
       ```         
 
       {{%notice note%}}
+>>>>>>> release/1.2.6
 
 If the results do not indicate the server is healthy after 30 minutes, open a [support ticket](https://cumulusnetworks.com/support/file-a-ticket/) and attach the output of the `opta-support` command.
 
       {{%/notice%}}
 
+<<<<<<< HEAD
+     </details>
+=======
       </details>
+>>>>>>> release/1.2.6
 
 3.  Verify that NTP is configured and running. NTP operation is critical
     to proper operation of NetQ. Refer to [Setting Date and

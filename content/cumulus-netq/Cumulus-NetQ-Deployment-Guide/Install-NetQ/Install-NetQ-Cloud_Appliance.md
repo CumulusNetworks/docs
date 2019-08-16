@@ -35,7 +35,8 @@ If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over
 1. On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list box.
 
 2. Click *2.2* from the **Version** list box, and then select *2.2.x* from the submenu.
-   **Note**: You must choose 2.2.x. Earlier versions do not support this appliance.
+
+      **Note**: You must choose 2.2.x. Earlier versions do not support this appliance.
 
       {{< figure src="/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
 
@@ -44,7 +45,8 @@ If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over
       {{< figure src="/images/netq/NetQ-Cloud-Appl-SW-Dwnld-v2.png" width="250" >}}
 
 4. Click **Upgrade** to download the installer bundle.
-   **Note**: The download option only provides the OS which is pre-installed on the appliance.
+
+      **Note**: The download option only provides the OS which is pre-installed on the appliance.
 
 ## Log In and Configure the Appliance
 
@@ -189,11 +191,11 @@ The CLI communicates through the API gateway in the NetQ Cloud. To access and co
 
 To configure CLI access:
 
-1. In your Internet browser, enter netq.cumulusnetworks.com into the address field to open the NetQ UI login page.
+1. In your Internet browser, enter **netq.cumulusnetworks.com** into the address field to open the NetQ UI login page.
 
 2. Enter your username and password.
 
-3. From the Main Menu, select *Management* in the **Admin column**.
+3. From the Main Menu, select *Management* in the **Admin** column.
 
       {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
@@ -215,8 +217,18 @@ secret-key: <user-secret-key-value-here>
       {{%/notice%}}
 
 7. Run the following command using your generated keys:
+   - In NetQ 2.2.x, run the following commands. Replace the key values with your generated keys.
    ```
    cumulus@netq-appliance:~$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
+   Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
+   Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
+
+   cumulus@netq-appliance:~$ netq config restart cli
+   Restarting NetQ CLI... Success!
+   ```
+   - In NetQ 2.2.1, if you have created a *credentials.yml* file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
+   ```
+   cumulus@netq-appliance:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
    Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 

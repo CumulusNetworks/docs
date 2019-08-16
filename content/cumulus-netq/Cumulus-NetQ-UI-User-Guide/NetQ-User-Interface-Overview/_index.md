@@ -13,13 +13,21 @@ siteSlug: cumulus-netq-22
 ---
 The NetQ 2.2 graphical user interface (UI) enables you to access NetQ capabilities through a web browser as opposed to through a terminal window using the Command Line Interface (CLI). Visual representations of the health of the network, inventory, and system events make it easy to both find faults and misconfigurations, and to fix them.
 
+<<<<<<< HEAD
+The UI is accessible in both on-premises and in-cloud deployments. It is supported on Google Chrome. Other popular
+browsers may be used, but have not been tested and may have some
+presentation issues.
+=======
 The UI is accessible in both on-site and in-cloud deployments. It is supported on Google Chrome. Other popular browsers may be used, but have not been tested and may have some presentation issues.
+>>>>>>> release/1.2.6
 
 {{%notice tip%}}
 
 Before you get started, you should refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374) for this version.
 
 {{%/notice%}}
+<<<<<<< HEAD
+=======
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 
@@ -28,3 +36,4 @@ Before you get started, you should refer to the [release notes](https://support.
 <footer id="ht-footer">
 
 </footer>
+>>>>>>> release/1.2.6

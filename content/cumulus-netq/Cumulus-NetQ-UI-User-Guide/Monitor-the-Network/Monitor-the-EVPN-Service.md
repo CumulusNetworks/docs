@@ -22,8 +22,7 @@ are described separately here.
 With NetQ, you can monitor the number of nodes running the EVPN service,
 view switches with the sessions, total number of VNIs, and alarms
 triggered by the EVPN service. For an overview and how to configure EVPN
-in your data center network, refer to [Ethernet Virtual Private Network
-- EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
+in your data center network, refer to [Ethernet Virtual Private Network-EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
 
 ### EVPN Service Card Workflow Summary
 
@@ -44,7 +43,7 @@ The small EVPN Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>{{% imgOld 1 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -52,11 +51,11 @@ The small EVPN Service card displays:
 <td><p>EVPN: All EVPN Sessions, or the EVPN Service</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 2 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
 <td><p>Total number of switches and hosts with the EVPN service enabled during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 3 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
 <td><p>Total number of EVPN-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="odd">
@@ -87,7 +86,7 @@ The medium EVPN Service card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 5 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -95,24 +94,26 @@ The medium EVPN Service card displays:
 <td><p>Network Services | All EVPN Sessions</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 6 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
 <td><p>Total number of switches and hosts with the EVPN service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 7 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
 <td><p>Total number of EVPN-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Total number and distribution of switches and hosts with the EVPN service enabled during the designated time period</p></td>
+<td><p>Distribution of switches and hosts with the EVPN service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running EVPN last week or last month might be more or less than the number of nodes running EVPN currently.</p></td>
 </tr>
 <tr class="odd">
-<td><p>Total Alarms chart</p></td>
-<td><p>Total number and distribution of EVPN-related alarms received during the designated time period</p></td>
+<td><p>Total Open Alarms chart</p></td>
+<td><p>Distribution of EVPN-related alarms received during the designated time period, and the total number of current EVPN-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Sessions chart</p></td>
-<td><p>Total number and distribution of EVPN sessions network-wide during the designated time period</p></td>
+<td><p>Distribution of EVPN sessions during the designated time period, and the total number of sessions running on the network currently.</p></td>
 </tr>
 </tbody>
 </table>
@@ -140,7 +141,7 @@ The *Sessions Summary* tab which displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 9 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -148,24 +149,25 @@ The *Sessions Summary* tab which displays:
 <td><p>Sessions Summary (visible when you hover over card)</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 10 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
 <td><p>Total number of switches and hosts with the EVPN service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 11 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
 <td><p>Total number of EVPN-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Total number and distribution of switches and hosts with the EVPN service enabled during the designated time period</p></td>
+<td><p>Distribution of switches and hosts with the EVPN service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running EVPN last week or last month might be more or less than the number of nodes running EVPN currently.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Total Sessions chart</p></td>
-<td><p>Total number and distribution of EVPN sessions network-wide during the designated time period</p></td>
+<td><p>Distribution of EVPN sessions during the designated time period, and the total number of sessions running on the network currently.</p></td>
 </tr>
 <tr class="even">
 <td><p>Total L3 VNIs chart</p></td>
-<td><p>Total number and distribution of layer 3 VXLAN Network Identifiers network-wide</p></td>
+<td><p>Distribution of layer 3 VXLAN Network Identifiers during this time period, and the total number of VNIs in the network currently.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
@@ -182,7 +184,7 @@ The *Sessions Summary* tab which displays:
 
 The *Alarms* tab which displays:
 
-{{% imgOld 12 %}}
+{{< figure src="/images/netq/ntwk-svcs-allevpn-large-alarms-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -201,24 +203,25 @@ The *Alarms* tab which displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 13 %}}</p></td>
-<td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in header)</p></td>
+<td><p>Indicates data is for all alarms for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
 <td><p>Alarms (visible when you hover over card)</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 14 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
 <td><p>Total number of switches and hosts with the EVPN service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 15 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in summary bar)</p></td>
 <td><p>Total number of EVPN-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Alarms chart</p></td>
-<td><p>Total number and distribution of EVPN-related alarms received during the designated time period</p></td>
+<td><p>Distribution of EVPN-related alarms received during the designated time period, and the total number of current BGP-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
@@ -253,12 +256,12 @@ sessions, all alarms.
 <td><p>Network Services | EVPN</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 17 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 18 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -343,7 +346,7 @@ sessions, all alarms.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 19 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -411,7 +414,7 @@ To compare this data with the same data at a previous time:
 1.  Open another large EVPN Service card.
 2.  Move the new card next to the original card if needed.
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking {{% imgOld 24 %}}.
+    the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
@@ -449,7 +452,7 @@ To compare this data with the same data at a previous time:
 1.  Open another large EVPN Service card.
 2.  Move the new card next to the original card if needed.
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking {{% imgOld 28 %}}.
+    the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
@@ -487,7 +490,7 @@ To compare this data with the same data at a previous time:
 1.  Open another large EVPN Service card.
 2.  Move the new card next to the original card if needed.
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking {{% imgOld 32 %}}.
+    the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
@@ -512,7 +515,7 @@ information about possible causes for the alarms.
 To view switches with the most EVPN alarms:
 
 1.  Open the large EVPN Service card.
-2.  Hover over the header and click {{% imgOld 35 %}}.
+2.  Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/>.
 3.  Select **Events by Most Active Device** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
@@ -619,8 +622,7 @@ and how to configure EVPN in your data center network, refer to
 {{%notice note%}}
 
 To access the single session cards, you must open the full screen EVPN
-Service (all sessions) card and click on a session. Close the full
-screen card to view the medium single session card.
+Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
 
 {{%/notice%}}
 
@@ -643,7 +645,7 @@ The small EVPN Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>{{% imgOld 46 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
 <td><p>Indicates data is for an EVPN session</p></td>
 </tr>
 <tr class="even">
@@ -656,7 +658,7 @@ The small EVPN Session card displays:
 </tr>
 <tr class="even">
 <td><p>Current VNI Nodes</p></td>
-<td><p>Total number of devices participating in the EVPN session during the designated time period</p></td>
+<td><p>Total number of VNI nodes participating in the EVPN session currently</p></td>
 </tr>
 </tbody>
 </table>
@@ -682,7 +684,7 @@ The medium EVPN Session card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 48 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
 <td><p>Indicates data is for an EVPN session</p></td>
 </tr>
 <tr class="odd">
@@ -691,7 +693,7 @@ The medium EVPN Session card displays:
 </tr>
 <tr class="even">
 <td><p>Summary bar</p></td>
-<td><p>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI devices participating in the EVPN session during the designated time period</p></td>
+<td><p>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI nodes participating in the EVPN session currently</p></td>
 </tr>
 <tr class="odd">
 <td><p>VTEP Count Over Time chart</p></td>
@@ -731,7 +733,7 @@ The *Session Summary* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 50 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
 <td><p>Indicates data is for an EVPN session</p></td>
 </tr>
 <tr class="odd">
@@ -740,19 +742,19 @@ The *Session Summary* tab displays:
 </tr>
 <tr class="even">
 <td><p>Summary bar</p></td>
-<td><p>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI devices participating in the EVPN session during the designated time period</p></td>
+<td><p>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI devices participating in the EVPN session currently</p></td>
 </tr>
 <tr class="odd">
 <td><p>VTEP Count Over Time chart</p></td>
-<td><p>Distribution of VTEP counts during the designated time period</p></td>
+<td><p>Distribution of VTEPs during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Alarm Count chart</p></td>
-<td><p>Distribution of alarm event counts during the designated time period</p></td>
+<td><p>Distribution of alarms during the designated time period</p></td>
 </tr>
 <tr class="odd">
 <td><p>Info Count chart</p></td>
-<td><p>Distribution of info event counts during the designated time period</p></td>
+<td><p>Distribution of info events during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Table</p></td>
@@ -782,8 +784,8 @@ The *Configuration File Evolution* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 52 %}}</p></td>
-<td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/></p></td>
+<td><p>Indicates configuration file information for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
@@ -791,7 +793,7 @@ The *Configuration File Evolution* tab displays:
 </tr>
 <tr class="even">
 <td><p>{{% imgOld 53 %}}</p></td>
-<td><p>VTEP count</p></td>
+<td><p>VTEP count (currently)</p></td>
 </tr>
 <tr class="odd">
 <td><p>Timestamps</p></td>
@@ -799,8 +801,9 @@ The *Configuration File Evolution* tab displays:
 </tr>
 <tr class="even">
 <td><p>Configuration File</p></td>
-<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown. When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
-<p><strong>Note</strong>: If no configuration file changes have been made, the card shows no results at all.</p></td>
+<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown.</p>
+<p>When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
+<p><strong>Note</strong>: If no configuration file changes have been made, only the original file date is shown.</p></td>
 </tr>
 </tbody>
 </table>
@@ -827,12 +830,12 @@ and all events.
 <td><p>Network Services | EVPN</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 55 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 56 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -871,7 +874,7 @@ and all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 57 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>

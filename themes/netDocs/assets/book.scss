@@ -189,7 +189,9 @@ ul.pagination {
   padding: $padding-16;
   top: inherit;
   right :0;
-
+  nav ul li ul {
+    margin-left: 1.5em;
+  }
   @media #{$lg-up} {
     display: block;
   }

@@ -55,4 +55,19 @@ $(document).ready(function() {
   		e.preventDefault();
   	});
   });
+
+	document.querySelectorAll('#m-doc-search-box a').forEach(node => {	
+		node.addEventListener('click', function(e) {
+	  	e.preventDefault();
+		document.getElementById('m-doc-search-box').classList.toggle('searchOpen');
+	  });
+	});
+
+	document.addEventListener('keypress', function(e) {
+	    if(e.which == 13 && $(".m-doc-search-input").is(":focus") && $(".m-doc-search-input").val().length ) {
+	    	window.location.href = "/search/?q="+$(".m-doc-search-input").val().trim();
+	    }
+	});
+
+
 });

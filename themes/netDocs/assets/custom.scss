@@ -507,6 +507,74 @@ body {
   }
 }
 
+#mobile-product-nav {
+  background: white;
+  border: 1px solid rgb(224, 228, 236);
+  box-shadow: 0px 2px 10px 0px rgba(175, 184, 197, 0.2);
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  position: relative;
+
+  .search-container {
+    .screen-layout {
+      svg {
+        width: 20px;
+        height: 20px;
+
+        a {
+          stroke {
+            color: black;
+          }
+        }
+      }
+    }
+  }
+
+  #doc-search-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    span {
+      display: table-cell;
+      vertical-align: top;
+
+      button {
+        border: 0;
+        width: 39px;
+        height: 43px;
+
+        &:focus {
+          outline: 0;
+        }
+      }
+    }
+  }
+  .doc-search-input {
+    display: none;
+    background: white;
+    border-left: 1px solid black;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+    color: rgb(54, 66, 74);
+    font-size: .88rem;
+    font-weight: 400;
+    line-height: 25px;
+    position: relative;
+    padding: 10px;
+    height: 25px;
+
+    &::-moz-placeholder { color: rgb(54, 66, 74); opacity: 1;}
+    &:-ms-input-placeholder { color: rgb(54, 66, 74); }
+    &::-webkit-input-placeholder  {color: rgb(54, 66, 74); }
+
+    &:focus {
+      outline: 0;
+    }
+  } 
+}
+
 .gsc-search-button-v2 {
   border-color: #00ad69 !important;
   background: linear-gradient(-225deg, rgb(0, 173, 105) 0%, rgb(75, 192, 91) 100%) !important;

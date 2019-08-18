@@ -1,19 +1,63 @@
 $(document).ready(function() {
+
+	function addCopyLink(clipboard) {
+
+		let markdown = document.querySelector(".markdown");
+		let heading = markdown.querySelectorAll("h2");
+
+		heading.forEach(function (elem) {
+
+	  	var anchor = elem.id;
+	  	var anchorLink = window.location.href + '#' + anchor;
+
+		  // Test if h2 has id
+		  if (anchor.length > 0) {
+
+	      var span = document.createElement('span');
+		  	span.className = ('clipboard');
+		  	span.setAttribute('data-clipboard-text', anchorLink);
+		  	span.innerHTML = "<img src=\"https://icons.cumulusnetworks.com/01-Interface-Essential/27-Link-Unlink/hyperlink-circle.svg\" width=\"13\" height=\"13\">";
+
+			  	// Append the html link to the current h2
+				elem.append(span);
+
+				span.addEventListener('click', function () {
+	        clipboard.writeText(span.getAttribute('data-clipboard-txt')).then(function () {
+	            span.blur();
+	            span.setAttribute('aria-label', 'Copied to clipboard!');
+	            span.classList.add('tooltip');
+	            setTimeout(function () {
+	                span.removeAttribute('aria-label');
+	                span.classList.remove('tooltip');
+	            }, 2000);
+	        }, function (error) {
+	            span.blur();
+	            span.setAttribute('aria-label', 'Error');
+	            span.classList.add('tooltip');
+	            setTimeout(function () {
+	                span.removeAttribute('aria-label');
+	                span.classList.remove('tooltip');
+	            }, 2000);
+	        });
+	    	});
+		  }
+		});
+	}
+
+	if (navigator && navigator.clipboard) {
+    addCopyLink(navigator.clipboard);
+  } else {
+    var script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js';
+    script.integrity = 'sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=';
+    script.crossOrigin = 'anonymous';
+    script.onload = function() {
+        addCopyLink(clipboard);
+    };
   
-  document.querySelectorAll('h2').forEach(node => {
-		// Create var with id
-		var anchor = node.id;
-		// Test if h2 has id
-		if (anchor.length > 0) {
-			// Create html link with class name and image       
-			var a = document.createElement('a');
-			a.className = ('anchor-link');
-	  	a.innerHTML = "<img src=\"https://icons.cumulusnetworks.com/01-Interface-Essential/27-Link-Unlink/hyperlink-circle.svg\" width=\"13\" height=\"13\">";
-	  	a.href = "#" + anchor;
-	  	// Append the html link to the current h2
-			node.append(a);
-    }
-	});
+    document.body.appendChild(script);
+  }
+  
 
   // find all the svg elements under the div with class screen-layout and add the Click Event Listener to them
   // PS: do not add the EventListener to the a tag, since it causes the div to get the class of 'active'

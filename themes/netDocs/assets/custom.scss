@@ -981,11 +981,38 @@ div.notices.tip>*:first-child:after {
 }
 
 h2 {
-  a {
+  span {
+    position: relative;
     &.anchor-link {
       opacity: 0;
       padding-left: 9px;
       transition: opacity 200ms ease-in-out;
+    }
+    &.tooltip:before {
+      content: attr(aria-label);
+      position: absolute;
+      display: inline-block;
+      padding: 0 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      white-space: nowrap;
+      right: 30px;
+      top: 3px;
+    }
+    &.tooltip:after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;
+      border-bottom: 8px solid #000;
+      border-color: transparent;
+      border-left-color: #000;
+      border-width: 7px;
+      margin-top: 50%;
     }
   }
   &:hover {

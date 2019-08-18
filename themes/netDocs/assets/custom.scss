@@ -458,6 +458,19 @@ body {
         left: auto;
       }
     }
+    
+    .screen-layout {
+      svg {
+        width: 20px;
+        height: 20px;
+
+        a {
+          stroke {
+            color: black;
+          }
+        }
+      }
+    }
   }
 
   #doc-search-box {
@@ -583,6 +596,36 @@ body {
   height: 31px;
   &:hover {
     border-color: #00ad69 !important;  
+  }
+}
+
+main {
+  &.hide-both {
+    aside {
+      display: none;
+    }
+  }
+
+  &.hide-left {
+    aside {
+      &.book-menu {
+        display: none;
+      }
+    }
+  }
+
+  &.hide-right {
+    aside {
+      &.book-toc {
+        display: none;
+      }
+    }
+  }
+
+  &.default {
+    aside {
+      display: block;
+    }
   }
 }
 

@@ -39,7 +39,7 @@ The small Network Health card displays:
 <tbody>
 <tr class="odd">
 <td>
-<p>{{% imgOld 1 %}}</p></td>
+<p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="even">
@@ -95,7 +95,7 @@ trend of the:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 3 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="odd">
@@ -129,7 +129,7 @@ The large Network Health card contains two tabs.
 
 The *System Health* tab displays:
 
-{{< figure src="/images/netq/ntwk-hlth-large-sys-hlth.png" width="500" >}}
+{{% imgOld 4 %}}
 
 <table>
 <colgroup>
@@ -148,7 +148,7 @@ The *System Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 5 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="odd">
@@ -179,15 +179,15 @@ The *System Health* tab displays:
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Show All Validations</p></td>
-<td><p>Opens full screen Network Health card with a listing of validations performed by network service and protocol</p></td>
+<td><p>Show All Devices</p></td>
+<td><p>Opens full screen Network Health card with a listing of all events</p></td>
 </tr>
 </tbody>
 </table>
 
 The *Network Services Health* tab displays:
 
-{{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth.png" width="500" >}}
+{{% imgOld 6 %}}
 
 <table>
 <colgroup>
@@ -206,7 +206,7 @@ The *Network Services Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 7 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="odd">
@@ -237,8 +237,8 @@ The *Network Services Health* tab displays:
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Show All Validations</p></td>
-<td><p>Opens full screen Network Health card with a listing of validations performed by network service and protocol</p></td>
+<td><p>Show All Devices</p></td>
+<td><p>Opens full screen Network Health card with a listing of all events</p></td>
 </tr>
 </tbody>
 </table>
@@ -264,7 +264,7 @@ The full screen Network Health card displays all events in the network.
 <td><p>Network Health</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 9 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -291,7 +291,7 @@ The full screen Network Health card displays all events in the network.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 10 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -340,9 +340,9 @@ information about each component from the large Network Health card.
 To view information about each system component:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click {{% imgOld 13 %}}.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/laptop-heart.svg", height="18", width="18"/>.
 
-    {{< figure src="/images/netq/ntwk-hlth-large-sys-hlth.png" width="500" >}}
+    {{% imgOld 14 %}}
 
     The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
@@ -381,9 +381,10 @@ You can focus the data in the table on the right, by unselecting one or
 more services. Click the checkbox next to the service you want to remove
 from the data. In this example, we have unchecked Licenses.
 
-{{< figure src="/images/netq/filter-sys-hlth-in-tbl.png" width="500" >}}
+{{% imgOld 16 %}}
 
-This removes the checkbox next to the associated chart and grays out the title of the chart, temporarily removing the data related to that service from the table. Add it back by hovering over the chart and clicking the checkbox that appears.
+This grays out the associated chart and temporarily removes the data
+related to that service from the table.
 
 ## View Network Services Health
 
@@ -398,11 +399,11 @@ card.
 To view information about each network protocol or service:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click {{% imgOld 17 %}}.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/>.
 
-    {{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth.png" width="500" >}}
+    {{% imgOld 18 %}}
 
-The health of each protocol or service is represented on the left side
+    The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
 and a percentage of successful results. The right side of the card
 provides a listing of devices running the services.
@@ -451,9 +452,10 @@ more services. Click the checkbox next to the service you want to
 remove. In this example, we are removed NTP and LNV and are in the
 process of removing OSPF.
 
-{{< figure src="/images/netq/filter-ntwk-hlth-in-tbl.png" width="500" >}}
+{{% imgOld 20 %}}
 
-This grays out the chart title and removes the associated checkbox, temporarily removing the data related to that service from the table.
+This grays out the charts and temporarily removes the data related to
+that service from the table.
 
 ## View All Network Protocol and Service Validation Results
 

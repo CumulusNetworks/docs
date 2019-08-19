@@ -365,7 +365,7 @@ If any of the applications or services display Status as DOWN after 30 minutes, 
       {{%/notice%}}
 
       </details>
-      <details><summary><span style="color:teal">In-cloud</span></summary>
+         <details><summary><span style="color:teal">In-cloud</span></summary>
 
       ```
       cumulus@<netq-platform-hostname>:~$ netq show opta-health

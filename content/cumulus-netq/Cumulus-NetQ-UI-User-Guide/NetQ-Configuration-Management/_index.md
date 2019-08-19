@@ -22,7 +22,7 @@ workspaces. This information is covered separately. Refer to
 
 The NetQ Management workbench is accessed from the main menu. For the user(s) responsible for maintaining the application, this is a good place to start each day.
 
-To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>, and select **Management** under the **Admin** column.
+To open the workbench, click {{% imgOld 0 %}}, and select **Management** under the **Admin** column.
 
 {{% imgOld 1 %}}
 
@@ -85,15 +85,9 @@ To change a user name:
 1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
 2.  Hover over the account you want to change, and click the checkbox
     next to it.
-<<<<<<< HEAD
-4.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
-5.  Modify the first and/or last name as needed.
-6.  Enter your admin password.
-=======
 3.  In the Edit menu that appears at the bottom of the window, click {{% imgOld 5 %}}.
 4.  Modify the first and/or last name as needed.
 5.  Enter your admin password.
->>>>>>> release/1.2.6
 
     {{< figure src="/images/netq/edit-user-modal-221.png" width="250" >}}
 
@@ -109,7 +103,7 @@ To change a password:
 1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
 3.  Hover over the account you want to change, and click the checkbox
     next to it.
-4.  In the Edit menu that appears at the bottom of the window, click click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+4.  In the Edit menu that appears at the bottom of the window, click {{% imgOld 7 %}}.
 5.  Click **Reset Password**.
 6.  Enter your admin password.
 
@@ -134,7 +128,7 @@ To change access permissions:
 2.  Click the **User Accounts** tab.
 3.  Hover over the account you want to change, and click the checkbox
     next to it.
-4.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+4.  In the Edit menu that appears at the bottom of the window, click {{% imgOld 9 %}}.
 5.  Select the appropriate user type from the dropdown list.
 
     {{< figure src="/images/netq/change-user-permissions-221.png" width="250" >}}

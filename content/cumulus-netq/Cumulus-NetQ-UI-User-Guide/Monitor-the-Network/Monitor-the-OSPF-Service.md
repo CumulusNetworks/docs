@@ -45,7 +45,7 @@ The small OSPF Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -53,11 +53,11 @@ The small OSPF Service card displays:
 <td><p>OSPF: All OSPF Sessions, or the OSPF Service</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 2 %}}</p></td>
 <td><p>Total number of switches and hosts with the OSPF service enabled during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 3 %}}</p></td>
 <td><p>Total number of OSPF-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="odd">
@@ -88,7 +88,7 @@ The medium OSPF Service card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -96,11 +96,11 @@ The medium OSPF Service card displays:
 <td><p>Network Services | All OSPF Sessions</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 6 %}}</p></td>
 <td><p>Total number of switches and hosts with the OSPF service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 7 %}}</p></td>
 <td><p>Total number of OSPF-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -110,11 +110,7 @@ The medium OSPF Service card displays:
 </tr>
 <tr class="odd">
 <td><p>Total Sessions Not Established chart</p></td>
-<<<<<<< HEAD
-<td><p>Distribution of unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
-=======
 <td><p>Distribution of switches and hosts with unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
->>>>>>> release/1.2.6
 <p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of unestablished session last week or last month might be more of less than the number of nodes with unestablished sessions currently.</p></td>
 </tr>
 <tr class="even">
@@ -147,7 +143,7 @@ The *Sessions Summary* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -155,11 +151,11 @@ The *Sessions Summary* tab displays:
 <td><p>Sessions Summary (visible when you hover over card)</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 10 %}}</p></td>
 <td><p>Total number of switches and hosts with the OSPF service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 11 %}}</p></td>
 <td><p>Total number of OSPF-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -172,13 +168,8 @@ The *Sessions Summary* tab displays:
 <td><p>Distribution of OSPF sessions during the designated time period, and the total number of sessions running on the network currently.</p></td>
 </tr>
 <tr class="even">
-<<<<<<< HEAD
-<td><p>Total Sessions Not Established chart</p></td>
-<td><p>Distribution of unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
-=======
 <td><p>Total Nodes Not Est. chart</p></td>
 <td><p>Distribution of switches and hosts with unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
->>>>>>> release/1.2.6
 <p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of unestablished session last week or last month might be more of less than the number of nodes with unestablished sessions currently.</p></td>
 </tr>
 <tr class="odd">
@@ -222,15 +213,11 @@ The *Alarms* tab displays:
 <td><p>Alarms (visible when you hover over card)</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 14 %}}</p></td>
 <td><p>Total number of switches and hosts with the OSPF service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<<<<<<< HEAD
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in summary bar)</p></td>
-=======
 <td><p>{{% imgOld 15 %}} (in summary bar)</p></td>
->>>>>>> release/1.2.6
 <td><p>Total number of OSPF-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -271,12 +258,12 @@ sessions, and all alarms.
 <td><p>Network Services | OSPF</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p>{{% imgOld 17 %}}</p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 18 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -361,7 +348,7 @@ sessions, and all alarms.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 19 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -416,7 +403,7 @@ To compare this data with the same data at a previous time:
 1.  Open another large OSPF Service card.
 2.  Move the new card next to the original card if needed.
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
+    the card and clicking {{% imgOld 23 %}}.
 4.  Select the time period that you want to compare with the original
     time. We chose *Past Week* for this example.  
 
@@ -483,7 +470,7 @@ OSPF session.
 To view switches with the most OSPF alarms:
 
 1.  Open the large OSPF Service card.
-2.  Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/>.
+2.  Hover over the header and click {{% imgOld 28 %}}.
 3.  Select **Switches with Most Alarms** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
@@ -640,7 +627,7 @@ The small OSPF Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
+<td><p>{{% imgOld 38 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -652,9 +639,9 @@ The small OSPF Session card displays:
 <td><p>Hostnames of the two devices in a session. Arrow points from the host to the peer.</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 39 %}}, {{% imgOld 40 %}}</p></td>
 <td><p>Current state of OSPF.</p>
-<p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+<p>{{% imgOld 41 %}} Full or {{% imgOld 42 %}} 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
 </tr>
 </tbody>
 </table>
@@ -680,7 +667,7 @@ The medium OSPF Session card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
+<td><p>{{% imgOld 44 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -692,9 +679,9 @@ The medium OSPF Session card displays:
 <td><p>Hostnames of the two devices in a session. Arrow points in the direction of the session.</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 45 %}}, {{% imgOld 46 %}}</p></td>
 <td><p>Current state of OSPF.</p>
-<p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+<p>{{% imgOld 47 %}} Full or {{% imgOld 48 %}} 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
 </tr>
 <tr class="even">
 <td><p>Time period for chart</p></td>
@@ -743,15 +730,11 @@ The *Session Summary* tab displays:
 <td class="confluenceTd" rowspan="1" colspan="1">Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr>
-<<<<<<< HEAD
-<td class="confluenceTd" rowspan="1" colspan="1"><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
-=======
 <td class="confluenceTd" rowspan="1" colspan="1">
 
 {{% imgOld 50 %}}
 
 </td>
->>>>>>> release/1.2.6
 <td class="confluenceTd" rowspan="1" colspan="1">Indicates data is for a single session of a Network Service or Protocol</td>
 </tr>
 <tr>
@@ -763,9 +746,6 @@ The *Session Summary* tab displays:
 <td class="confluenceTd" rowspan="1" colspan="1">Hostnames of the two devices in a session. Arrow points in the direction of the session.</td>
 </tr>
 <tr>
-<<<<<<< HEAD
-<td class="confluenceTd" rowspan="1" colspan="1">Current state of OSPF. <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
-=======
 <td class="confluenceTd" rowspan="1" colspan="1">Current state of OSPF.
 
 {{% imgOld 51 %}}
@@ -777,7 +757,6 @@ Full or
 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.
 
 </td>
->>>>>>> release/1.2.6
 </tr>
 <tr>
 <td class="confluenceTd" rowspan="1" colspan="1">Session State Changes Chart</td>
@@ -798,9 +777,6 @@ Full or
 </tr>
 <tr>
 <td class="confluenceTd" rowspan="1" colspan="1">State</td>
-<<<<<<< HEAD
-<td class="confluenceTd" rowspan="1" colspan="1">Current state of OSPF. <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
-=======
 <td class="confluenceTd" rowspan="1" colspan="1">Current state of OSPF.
 
 {{% imgOld 53 %}}
@@ -812,7 +788,6 @@ Full or
 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.
 
 </td>
->>>>>>> release/1.2.6
 </tr>
 <tr>
 <td class="confluenceTd" rowspan="1" colspan="1">Is Unnumbered</td>
@@ -896,21 +871,21 @@ The *Configuration File Evolution* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/></p></td>
-<td><p>Indicates configuration file information for a single session of a Network Service or Protocol</p></td>
+<td><p>{{% imgOld 57 %}}</p></td>
+<td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
 <td><p>(Network Services | OSPF Session) Configuration File Evolution</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open associated device card.</p></td>
+<td><p>{{% imgOld 58 %}}</p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on {{% imgOld 59 %}} to open associated device card.</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 60 %}}, {{% imgOld 61 %}}</p></td>
 <td><p>Current state of OSPF.</p>
-<p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+<p>{{% imgOld 62 %}} Full or {{% imgOld 63 %}} 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</p></td>
 </tr>
 <tr class="even">
 <td><p>Timestamps</p></td>
@@ -942,20 +917,12 @@ and all events.
 </thead>
 <tbody>
 <tr class="odd">
+<td><p>Time period</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+</tr>
+<tr class="even">
 <td><p>Title</p></td>
 <td><p>Network Services | OSPF</p></td>
-</tr>
-<tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
-<td><p>Closes full screen card and returns to workbench</p></td>
-</tr>
-<tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
-</tr>
-<tr class="even">
-<td><p>Results</p></td>
-<td><p>Number of results found for the selected tab</p></td>
 </tr>
 <tr class="odd">
 <td><p>All OSPF Sessions tab</p></td>
@@ -990,7 +957,7 @@ and all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 65 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -1063,7 +1030,7 @@ causes for alarms or sessions losing their connections.
 To view the configuration file changes:
 
 1.  Open the large OSPF Session card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/> to open the **Configuration File Evolution** tab.
+2.  Hover over the card and click {{% imgOld 70 %}} to open the **Configuration File Evolution** tab.
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
 

@@ -64,4 +64,4 @@ improvements:
     NetQ Cloud Appliance
   - Added support for multiple data centers
 
-For further information regarding new features, improvements, bug fixes, and known issues present in this release, refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360017779214).
+For further information regarding new features, improvements, bug fixes, and known issues present in this release, refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).

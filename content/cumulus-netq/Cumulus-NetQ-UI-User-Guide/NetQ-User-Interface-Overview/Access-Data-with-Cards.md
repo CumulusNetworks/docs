@@ -43,11 +43,7 @@ content items may be present. Some examples include a Devices Inventory
 card, a Switch Inventory card, an Alarm Events card, an Info Events
 card, and a Network Health card, as shown here:
 
-<<<<<<< HEAD
-{{< figure src="/images/netq/cumulus-wb-default-small-cards-only.png" width="700" >}}
-=======
 {{% imgOld 12 %}}
->>>>>>> release/1.2.6
 
 ### Medium Cards
 
@@ -60,11 +56,7 @@ Devices Inventory card, a Switch Inventory card, an Alarm Events card,
 an Info Events card, and a Network Health card, as shown here. Compare
 these with their related small- and large-sized cards.
 
-<<<<<<< HEAD
-{{< figure src="/images/netq/cumulus-wb-default-med-cards-only.png" width="700" >}}
-=======
 {{% imgOld 13 %}}
->>>>>>> release/1.2.6
 
 ### Large Cards
 
@@ -78,11 +70,7 @@ examples include a Devices Inventory card, an Alarm Events card, and a
 Network Health card, as shown here. Compare these with their related
 small- and medium-sized cards.
 
-<<<<<<< HEAD
-{{< figure src="/images/netq/sample-of-large-cards.png" width="500" >}}
-=======
 {{% imgOld 14 %}}
->>>>>>> release/1.2.6
 
 ### Full-Screen Cards
 
@@ -93,15 +81,9 @@ full-screen card. Most full-screen cards display data in a grid, or
 table; however, some contain visualizations. Some examples include All
 Events card and All Switches card, as shown here.
 
-<<<<<<< HEAD
-{{< figure src="/images/netq/events-alarms-fullscr.png" width="700" >}}
-
-{{< figure src="/images/netq/inventory-devices-switches-fullscr-allswitch-tab.png" width="700" >}}
-=======
 {{% imgOld 15 %}}
 
 {{% imgOld 16 %}}
->>>>>>> release/1.2.6
 
 ### Card Size Summary
 
@@ -153,19 +135,11 @@ several ways.
 
 ### Sort Data by Column
 
-<<<<<<< HEAD
-Hover over a column header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.
-
-### Choose Columns to Display
-
-1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/> at the top right of the card.
-=======
 Hover over a column header and click {{% imgOld 17 %}}.
 
 ### Choose Columns to Display
 
 1.  Click {{% imgOld 18 %}} at the top right of the card.
->>>>>>> release/1.2.6
 2.  Click **Change Columns** from the **Display Settings**.
 3.  Click the checkbox next to each column name to toggle on/off the
     columns you would like displayed. Columns listed under **Active**
@@ -179,19 +153,11 @@ When you have a large number of possible columns for display, you
 
     {{%/notice%}}
 
-<<<<<<< HEAD
-4.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> to close the selection box and view the updated data grid.
-
-### Change Order of Columns
-
-1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/> and then click **Change Columns**.
-=======
 4.  Click {{% imgOld 19 %}} to close the selection box and view the updated data grid.
 
 ### Change Order of Columns
 
 1.  Click {{% imgOld 20 %}} and then click **Change Columns**.
->>>>>>> release/1.2.6
 2.  Hover over a column name.
 
     {{%notice tip%}}
@@ -206,11 +172,7 @@ You use the **Quick Filter** to find the column when you have a large
 
     {{% imgOld 21 %}}
 
-<<<<<<< HEAD
-5.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> to close the selection box and view the updated data grid.
-=======
 5.  Click {{% imgOld 22 %}} to close the selection box and view the updated data grid.
->>>>>>> release/1.2.6
 
 ### Take Actions on Items
 
@@ -298,11 +260,7 @@ existing issues.
 To change the time period for a card:
 
 1.  Hover over any card.
-<<<<<<< HEAD
-2.  Click <img src="/https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/> in the header.
-=======
 2.  Click {{% imgOld 27 %}} in the header.
->>>>>>> release/1.2.6
 3.  Select a time period from the dropdown list.
 
     {{% imgOld 28 %}}
@@ -386,11 +344,7 @@ another location as described above.
 To remove a card:
 
 1.  Hover over the card you want to remove.
-<<<<<<< HEAD
-2.  Click <img src="/https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg", height="18", width="18"/> (*More Actions* menu).
-=======
 2.  Click {{% imgOld 37 %}} (*More Actions* menu).
->>>>>>> release/1.2.6
 3.  Click **Remove**.
 
     {{% imgOld 38 %}}
@@ -440,11 +394,7 @@ need to scroll down to see the card you have just added.
 
 To open the card workflow through an existing workbench:
 
-<<<<<<< HEAD
-1.  Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> in the workbench task bar.
-=======
 1.  Click {{% imgOld 39 %}} in the workbench task bar.
->>>>>>> release/1.2.6
 
 2.  Select the relevant workbench.
 
@@ -462,11 +412,7 @@ To open the card workflow from a prior search:
 
 To access the card workflow by adding the card:
 
-<<<<<<< HEAD
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="14", width="14"/> in the workbench task bar.
-=======
 1.  Click {{% imgOld 41 %}} in the workbench task bar.
->>>>>>> release/1.2.6
 2.  Select the relevant card.
 
     The card appears on the current workbench, at the bottom.

@@ -42,12 +42,8 @@ and operating correctly.
 
 For example, if the NetQ Agent learns that an interface has gone down, a
 new BGP neighbor has been configured, or a container has moved, it
-<<<<<<< HEAD
-provides that information to the NetQ Platform. That information can then be used to notify users of
-=======
 provides that information to the NetQ
 Platform. That information can then be used to notify users of
->>>>>>> release/1.2.6
 the operational state change through various channels. By default, data
 is logged in the database, but you can use the CLI (`netq show events`)
 or configure the Event Service in NetQ to send the information to a
@@ -521,6 +517,7 @@ default.
 Log files are stored in `/var/logs/` by
 default.
 
-Refer to [Investigate NetQ Issues](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Investigate-NetQ-Issues)
+Refer to [Investigate NetQ
+Issues](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Investigate-NetQ-Issues)
 for a complete listing of configuration files and logs for use in issue
 resolution.

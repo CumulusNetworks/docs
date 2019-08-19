@@ -61,7 +61,7 @@
       </div>
     </div>
   </header>
-  <div id="product-nav" class="flex">
+  <div id="product-nav" class="flex" style="display:none;">
       <!-- generates subnav memu from config.toml -->
     {{ $currentProduct := .Params.product}}
     <ul>
@@ -82,6 +82,12 @@
       </li>
     </ul>
     <div class="search-container">
+      <div class="screen-layout">
+        <a class="default active" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-3</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="7.5" y1="6.497" x2="7.5" y2="22.497"/><line class="a" x1="15.5" y1="6.513" x2="15.5" y2="22.497"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>        
+        <a class="sb-right" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-6</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="15.5" y1="6.497" x2="15.5" y2="22.497"/></svg></a>
+        <a class="sb-left" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-1</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="7.5" y1="6.539" x2="7.5" y2="22.497"/></svg></a>
+        <a class="no-sb" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-top</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>
+      </div>
       <form action="/search/" method="GET">
         <div id="doc-search-box">
           <input type="text" name="q" class="doc-search-input" placeholder="Search">
@@ -111,7 +117,63 @@
       </div>
     </div>
   </div>
-  <main class="flex container">
+
+  <!--  Mobile nav -->
+  <div id="mobile-product-nav">
+    <div class="flex justify-between">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Cumulus Linux 
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/cumulus-netq/">Cumulus NetQ</a>
+          <a class="dropdown-item" href="/cumulus-vx/">Cumulus VX</a>
+          <a class="dropdown-item" href="#">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Products 
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/cumulus-rmp">Cumulus RMP</a>
+              <a class="dropdown-item" href="/chassis">Cumulus Chassis</a>
+            </div>
+          </a>
+        </div>
+      </div> <!-- product dropdown -->
+      <div id="dropdown" class="dropdown">
+        <button class="btn" type="button" id="dropdownMenuButton">
+          v{{.Page.Params.version}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          {{range where .Site.Sections "Params.product" $currentProduct}}
+          <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{.Params.version}}</a>
+          {{ end }}
+          {{range where .Site.Pages "Section" "version"}}
+           {{ if eq .Params.product $currentProduct }}
+           {{ if .Params.subsection}}
+          <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{.Params.version}}</a>
+          {{ end }}
+          {{ end }}
+          {{ end }}
+        </div>
+      </div> <!-- version dropdown -->
+    </div>  <!-- first 2 divs -->
+    
+    <div class="flex justify-between search-container">
+      <div class="screen-layout"> 
+        <a class="no-sb" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-top</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>      
+        <a class="sb-right" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-6</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="15.5" y1="6.497" x2="15.5" y2="22.497"/></svg></a>
+        <a class="sb-left" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-1</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="7.5" y1="6.539" x2="7.5" y2="22.497"/></svg></a>
+      </div>
+      <div id="m-doc-search-box">
+        <input type="search" name="search" class="m-doc-search-input" placeholder="Search">
+        <a href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>search-1</title><circle class="a" cx="10.5" cy="10.5" r="10"/><line class="a" x1="23.5" y1="23.5" x2="17.571" y2="17.571"/></svg>
+        </a>
+      </div>
+    </div> <!-- search-container -->
+  </div> <!-- mobile product nav -->
+
+  <main class="flex container default">
     <aside class="book-menu fixed">
 
       <nav role="navigation">

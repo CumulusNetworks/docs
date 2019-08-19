@@ -19,12 +19,3 @@ Cumulus NetQ 2.0.x, 2.1.x, and 2.2.0 can be upgraded to the newest NetQ 2.2.x re
 - If you are upgrading the NetQ Appliance or the NetQ Cloud Appliance, please follow the instructions in [Upgrade Your NetQ or NetQ Cloud Appliance](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Appliances).
 
 - If you are installing Cumulus NetQ software for the first time or are upgrading from NetQ 1.4.x, please follow the instructions in [Install NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/)
-
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

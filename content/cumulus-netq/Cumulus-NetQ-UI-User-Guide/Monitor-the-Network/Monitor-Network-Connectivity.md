@@ -43,7 +43,7 @@ The small Trace Request card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/06-Trip/trip-pins.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates a trace request</p></td>
 </tr>
 <tr class="even">
@@ -74,7 +74,7 @@ The medium Trace Request card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/06-Trip/trip-pins.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 3 %}}</p></td>
 <td><p>Indicates a trace request</p></td>
 </tr>
 <tr class="even">
@@ -117,7 +117,7 @@ The large Trace Request card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/06-Trip/trip-pins.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates a trace request</p></td>
 </tr>
 <tr class="even">
@@ -188,12 +188,12 @@ The full screen Trace Request card displays:
 <td><p>Trace Request</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p>{{% imgOld 7 %}}</p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 8 %}}</td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -216,7 +216,7 @@ The full screen Trace Request card displays:
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -327,7 +327,7 @@ To schedule a trace:
     address (layer 3) of the device where you want to end the trace.
 4.  Optionally, enter a VLAN ID (layer 2) or VRF interface (layer 3).
 
-    {{< figure src="/images/netq/trace-request-large-l2vlan-ex.png" width="500" >}}
+    {{% imgOld 15 %}}
 
 5.  Select a timeframe under **Schedule** to specify how often you want
     to run the trace.
@@ -348,7 +348,7 @@ To schedule a trace:
 11. Provide a name for the trace. **Note**: This name must be unique
     for a given user.
 
-    {{< figure src="/images/netq/save-trace-name-modal.png" width="250" >}}
+    {{% imgOld 19 %}}
 
 12. Click **Save**. You can now run this trace on demand by selecting it
     from the dropdown list, or wait for it to run on its defined
@@ -369,11 +369,7 @@ To run a scheduled trace now:
 
     {{% imgOld 21 %}}
 
-<<<<<<< HEAD
-    {{< figure src="/images/netq/trace-request-large-selection.png" width="500" >}}
-=======
     {{< figure src="/images/netq/trace-request-large-l3vrf-ex.png" width="500" >}}
->>>>>>> release/1.2.6
 
 2.  Select the scheduled trace from the **Select Trace** or **New Trace
     Request** list. **Note**: In the medium and large cards, the trace
@@ -408,7 +404,7 @@ displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/06-Business-Products/13-Data-Files/data-file-bars-search.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 24 %}}</p></td>
 <td><p>Indicates an on-demand trace result</p></td>
 </tr>
 <tr class="even">
@@ -416,7 +412,7 @@ displays:
 <td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 25 %}}, {{% imgOld 26 %}}</p></td>
 <td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
 </tr>
 </tbody>
@@ -439,7 +435,7 @@ The medium On-demand Trace Results card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/06-Business-Products/13-Data-Files/data-file-bars-search.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 28 %}}</p></td>
 <td><p>Indicates an on-demand trace result</p></td>
 </tr>
 <tr class="even">
@@ -451,7 +447,7 @@ The medium On-demand Trace Results card displays:
 <td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 29 %}}, {{% imgOld 30 %}}</p></td>
 <td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
 </tr>
 <tr class="odd">
@@ -490,7 +486,7 @@ The large On-demand Trace Results card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/06-Business-Products/13-Data-Files/data-file-bars-search.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 32 %}}</p></td>
 <td><p>Indicates an on-demand trace result</p></td>
 </tr>
 <tr class="even">
@@ -498,7 +494,7 @@ The large On-demand Trace Results card displays:
 <td><p>On-demand Trace Result</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 33 %}}, {{% imgOld 34 %}}</p></td>
 <td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
 </tr>
 <tr class="even">
@@ -560,18 +556,6 @@ The full screen On-demand Trace Results card displays:
 <td><p>On-demand Trace Results</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
-<td><p>Closes full screen card and returns to workbench</p></td>
-</tr>
-<tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
-</tr>
-<tr class="even">
-<td><p>Results</p></td>
-<td><p>Number of results found for the selected tab</p></td>
-</tr>
-<tr class="even">
 <td><p>Trace Results tab</p></td>
 <td><p>Provides detailed path information, sorted by the <strong>Resolution Time</strong> (date and time results completed), including:</p>
 <ul>
@@ -589,7 +573,7 @@ The full screen On-demand Trace Results card displays:
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 36 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -616,13 +600,9 @@ number of hops or other failures, viewing the results on the large card
 would provide additional information.
 
 {{% imgOld 40 %}}
-<<<<<<< HEAD
-<p> </p>
-=======
 
 <p> </p>
 
->>>>>>> release/1.2.6
 {{% imgOld 41 %}}
 
 In our example, we can verify that every path option had four hops since
@@ -681,7 +661,7 @@ displayed on the Scheduled Trace Results cards.
 
 The small Scheduled Trace Results card displays:
 
-{{< figure src="/images/netq/sch-trace-result-small.png" width="200" >}}
+{{% imgOld 46 %}}
 
 <table>
 <colgroup>
@@ -696,7 +676,7 @@ The small Scheduled Trace Results card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 47 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
 <tr class="even">
@@ -707,9 +687,9 @@ The small Scheduled Trace Results card displays:
 <td><p>Results</p></td>
 <td><p>Summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
-<li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/21-Date-Calendar/calendar-refresh.svg", height="18", width="18"/> Number of trace runs completed in the designated time period</p></li>
-<li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg", height="18", width="18"/> Number of runs with warnings</p></li>
-<li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/> Number of runs with errors</p></li>
+<li><p>{{% imgOld 48 %}} Number of trace runs completed in the designated time period</p></li>
+<li><p>{{% imgOld 49 %}} Number of runs with warnings</p></li>
+<li><p>{{% imgOld 50 %}} Number of runs with errors</p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -717,7 +697,7 @@ The small Scheduled Trace Results card displays:
 
 The medium Scheduled Trace Results card displays:
 
-{{< figure src="/images/netq/sch-trace-result-medium.png" width="200" >}}
+{{% imgOld 51 %}}
 
 <table>
 <colgroup>
@@ -736,7 +716,7 @@ The medium Scheduled Trace Results card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 52 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
 <tr class="odd">
@@ -747,9 +727,9 @@ The medium Scheduled Trace Results card displays:
 <td><p>Summary</p></td>
 <td><p>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
-<li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/21-Date-Calendar/calendar-refresh.svg", height="18", width="18"/> Number of trace runs completed in the designated time period</p></li>
-<li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg", height="18", width="18"/> Number of runs with warnings</p></li>
-<li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/> Number of runs with errors</p></li>
+<li><p>{{% imgOld 53 %}} Number of trace runs completed in the designated time period</p></li>
+<li><p>{{% imgOld 54 %}} Number of runs with warnings</p></li>
+<li><p>{{% imgOld 55 %}} Number of runs with errors</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -764,11 +744,7 @@ The large Scheduled Trace Results card contains two tabs:
 
 The *Results* tab displays:
 
-<<<<<<< HEAD
-{{< figure src="/images/netq/sch-trace-result-large-sum-tab.png" width="500" >}}
-=======
 {{< figure src="/images/netq/sched-trace-result-large-sum-tab.png" width="500" >}}
->>>>>>> release/1.2.6
 
 <table>
 <colgroup>
@@ -787,7 +763,7 @@ The *Results* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 57 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
 <tr class="odd">
@@ -798,15 +774,9 @@ The *Results* tab displays:
 <td><p>Summary</p></td>
 <td><p>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
-<<<<<<< HEAD
-<li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/21-Date-Calendar/calendar-refresh.svg", height="18", width="18"/> Number of trace runs completed in the designated time period</p></li>
-<li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg", height="18", width="18"/> Number of runs with warnings</p></li>
-<li><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/> Number of runs with errors</p></li>
-=======
 <li><p>{{% imgOld 58 %}} Number of trace runs completed in the designated time period</p></li>
 <li><p>{{% imgOld 59 %}} Number of runs with warnings in the designated time period</p></li>
 <li><p>{{% imgOld 60 %}} Number of runs with errors in the designated time period</p></li>
->>>>>>> release/1.2.6
 </ul></td>
 </tr>
 <tr class="odd">
@@ -825,7 +795,7 @@ The *Results* tab displays:
 
 The *Configuration* tab displays:
 
-{{< figure src="/images/netq/sch-trace-result-large-config-tab.png" width="500" >}}
+{{% imgOld 61 %}}
 
 <table>
 <colgroup>
@@ -844,8 +814,8 @@ The *Configuration* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
-<td><p>Indicates a scheduled trace configuration</p></td>
+<td><p>{{% imgOld 62 %}}</p></td>
+<td><p>Indicates a scheduled trace result</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
@@ -907,12 +877,12 @@ The full screen Scheduled Trace Results card displays:
 <td><p>Scheduled Trace Results</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p>{{% imgOld 64 %}}</p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 65 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -938,7 +908,7 @@ The full screen Scheduled Trace Results card displays:
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td>{{% imgOld 66 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -987,9 +957,9 @@ To view the results:
 2.  Select the scheduled trace you want to view results for by clicking
     in the first column of the result and clicking the check box.
 
-3.  On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> (Open Cards). This opens the medium Scheduled Trace Results card(s) for the selected items.
+3.  On the Edit Menu that appears at the bottom of the window, click {{% imgOld 69 %}} (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items.
 
-    {{< figure src="/images/netq/sch-trace-result-medium.png" width="200" >}}
+    {{% imgOld 70 %}}
 
 4.  Note the distribution of results. Are there many failures? Are they
     concentrated together in time? Has the trace begun passing again?
@@ -997,7 +967,7 @@ To view the results:
     percentage of the total results that represents for a given region.
 6.  Switch to the large Scheduled Trace Result card.
 
-    {{< figure src="/images/netq/sch-trace-result-large-sum-tab.png" width="500" >}}
+    {{% imgOld 71 %}}
 
 7.  If there are a large number of warnings or failures, view the
     associated messages by selecting **Failures** or **Warning** in the
@@ -1012,13 +982,8 @@ To view the results:
 9.  View the available paths for each run, by selecting **Paths** in the
     filter above the table.
 10. You can view the configuration of the request that produced the
-<<<<<<< HEAD
-    results shown on this card workflow, by hovering over the card and
-    clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/>. If you want to change the configuration, click **Edit** to open
-=======
     results shown on this card workflow by hovering over the card and
     clicking {{% imgOld 72 %}}. If you want to change the configuration, click **Edit** to open
->>>>>>> release/1.2.6
     the large Trace Request card, pre-populated with the current
     configuration. Follow the instructions in [Create a Scheduled Trace Request](#create-a-trace-to-run-on-a-regular-basis-scheduled-trace) to
     make your changes in the same way you created a new scheduled trace.
@@ -1044,4 +1009,4 @@ To view the results:
     over its default VRF interface. It exits tor-1 through switch port 5
     and so on.
 
-14. Export this data using the **Export** button or click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> to return to the results list to view another trace in detail.
+14. Export this data using the **Export** button or click {{% imgOld 74 %}} to return to the results list to view another trace in detail.

@@ -285,9 +285,11 @@ continue.
 
 1.  Reset all Kubernetes administrative settings. Run the command twice
     to make sure all directories and files have been reset.
+
     ```
     cumulus@netq-platform:~$ sudo kubeadm reset -f
     ```  
+
 2.  Remove the Kubernetes configuration.
 
     ```
@@ -305,10 +307,10 @@ continue.
     ```
     cumulus@netq-platform:~$ sudo systemctl restart cts-kubectl-config
     ```  
-    **Note**: Allow 15 minutes for the prompt to return.
+    *Note*: Allow 15 minutes for the prompt to return.
 
 5.  Reboot the VM.  
-    **Note**: Allow 5-10 minutes for the VM to boot.
+    *Note*: Allow 5-10 minutes for the VM to boot.
 
 {{%/notice%}}
 
@@ -508,7 +510,7 @@ To configure CLI access:
 
 2. Enter your username and password.
 
-3. From the Main Menu, select *Management* in the **Admin** column.
+3. From the Main Menu, select *Management* in the **Admin column**.
 
       {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
 

@@ -18,7 +18,7 @@ There are two types of workbenches:
 - **Default**: Provided by Cumulus Networks for use as they exist; changes made to these workbenches *cannot* be saved
 - **Custom**: Created by application users when default workbenches need some adjustments to better meet your needs or a completely different collection of cards is wanted; changes made to these workbenches *can* be saved
 
-Both types of workbenches display a set of cards. Both types of workbenches can be public (available for viewing by all users) or private (only viewable by you).
+Both types of workbenches display a set of cards. Both types of workbenches are created on a per user basis (private) and are only viewable that user.
 
 ## Default Workbenches
 

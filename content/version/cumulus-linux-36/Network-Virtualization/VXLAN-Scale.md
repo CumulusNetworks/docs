@@ -19,7 +19,7 @@ design.
 
 {{%notice note%}}
 
-While this limitation does apply to Trident II+ or Maverick ASICs,
+While this limitation does not apply to Trident II+ or Maverick ASICs,
 Cumulus Linux supports the same number of VXLANs on these ASICs as it
 does for Trident II or Tomahawk ASICs.
 

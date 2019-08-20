@@ -16,10 +16,9 @@ may want to configure some of the additional capabilities that NetQ
 offers. This topic describes how to install, setup, and configure these
 capabilities.
 
-## Activate Early Access Features</span>
+## Activate Early Access Features
 
-NetQ contains [early
-access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined)
+NetQ contains [early access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined)
 features that provide advanced access to new functionality before it
 becomes generally available. The telemetry-based early access features
 are bundled into the `netq-apps` package (installed automatically with
@@ -35,7 +34,7 @@ For example, to activate a feature:
 1.  Log on to any switch or server running NetQ.
 
 2.  Activate the early access feature set.
-    
+
         cumulus@switch:~$ netq config add experimental
 
 3.  Try out the features and provide feedback to your sales
@@ -49,19 +48,19 @@ installed automatically, but not enabled.
 To enable the IPM application:
 
 1.  Log on to the NetQ Telemetry Server.
-    
+
         <machine-name>:~<username>$ ssh cumulus@<telemetry-server-name-or-ip-address>
         cumulus@ts:~$
 
 2.  Open required ports.
 
 3.  Enable and start the IPM application (named *tips-appliance*).
-    
+
         cumulus@ts:~$ sudo systemctl enable tips-appliance  
         Created symlink from /etc/systemd/system/multi-user.target.wants/tips-appliance.service to /lib/systemd/system/tips-appliance.service.
          
         cumulus@ts:~$ sudo systemctl start tips-appliance
-    
+
     Once the IPM application is running, the IPM Command Line Interface,
     *TIPCTL*, is available. TIPCTL is the user interface used to
     activate, configure, and monitor the IPM application and services.
@@ -72,7 +71,7 @@ To enable the IPM application:
     Provisioning Management User
     Guide](/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/).
 
-## <span id="src-10453429_ConfigureOptionalNetQCapabilities-IntegrateNotification" class="confluence-anchor-link"></span>Integrate NetQ with an Event Notification Application</span>
+## Integrate NetQ with an Event Notification Application
 
 By default, alert messages are sent to `rsyslog`; however, other
 third-party tools may be configured to receive the alert messages . Once
@@ -86,13 +85,13 @@ these applications with or without filtering the events sent. To set up
 the integrations, you must configure the NetQ Notifier component on the
 Telemetry Server.
 
-### NetQ Notifier</span>
+### NetQ Notifier
 
 NetQ Notifier is responsible for delivering alerts to users through
 mediums such as Slack and syslog, informing users of network events.
-NetQ Notifier <span style="color: #ff0000;"> listens for events on the
+NetQ Notifier listens for events on the
 public subscription channel and writes them to
-`/var/log/netq-notifier.log` </span> . As events occur, NetQ Notifier
+`/var/log/netq-notifier.log`. As events occur, NetQ Notifier
 sends alert messages to `rsyslog`. NetQ Agents communicate directly with
 NetQ Notifier. Note that if you are running the TS in [HA
 mode](#src-10453429_ConfigureOptionalNetQCapabilities-HAConfig), then
@@ -105,27 +104,16 @@ instances (master and slaves).
 Notifications can be generated for the following types of events:
 
   - BGP session state
-
   - Fan
-
   - License
-
   - Link
-
   - LNV session state
-
   - MLAG session state
-
   - NTP
-
   - OS
-
   - Port
-
   - PSU (power supply unit)
-
   - Services
-
   - Temperature
 
 The NetQ Notifier is preconfigured to monitor for *all* events and
@@ -158,7 +146,7 @@ netq-notifier`). You configure NetQ Notifier using the NetQ Notifier
 CLI, or by manually editing the ` /etc/netq/netq.yml  `configuration
 file.
 
-#### Log Message Format</span>
+#### Log Message Format
 
 Messages have the following structure:
 
@@ -179,13 +167,13 @@ For example:
 
 {{% imgOld 1 %}}
 
-#### Default Output</span>
+#### Default Output
 
 Using `rsyslog`, a standard mechanism to capture log files in Linux,
 NetQ Notifier sends alerts and events to the
 `/var/log/netq-notifier.log`.
 
-### NetQ Notifier CLI Overview</span>
+### NetQ Notifier CLI Overview
 
 The NetQ Notifier Command Line Interface (CLI) is used to filter and
 send notifications to third-party tools based on severity, service,
@@ -229,19 +217,19 @@ The command syntax is:
 
 The options are described in the following sections where they are used.
 
-### <span id="src-10453429_ConfigureOptionalNetQCapabilities-NotifierLog" class="confluence-anchor-link"></span>Configure NetQ Notifier Logging</span>
+### Configure NetQ Notifier Logging
 
 The logging level used by the NetQ Notifier determines what types of
 messages are published and what messages are suppressed. Five levels of
 logging are available, as shown in this table.
 
-| Logging Level | Description                                                                                                                                                                        |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| debug         | <span style="color: #ff0000;"> Sends notifications for all debugging-related, informational, warning, error, <span style="color: #000000;"> and critical </span> messages. </span> |
-| info          | <span style="color: #ff0000;"> Sends notifications for critical, informational, warning, and error messages (default). </span>                                                     |
-| warning       | <span style="color: #ff0000;"> Sends notifications for critical, warning, and error messages. </span>                                                                              |
-| error         | <span style="color: #ff0000;"> Sends notifications for critical and errors messages. </span>                                                                                       |
-| critical      | Sends notifications for critical messages.                                                                                                                                         |
+| Logging Level | Description  |
+| ------------- | ------------ |
+| debug         | Sends notifications for all debugging-related, informational, warning, error, and critical messages. |
+| info          | Sends notifications for critical, informational, warning, and error messages (default).  |
+| warning       | Sends notifications for critical, warning, and error messages. |
+| error         | Sends notifications for critical and errors messages. |
+| critical      | Sends notifications for critical messages. |
 
 You can view the messages in the NetQ Notifier log, as shown here, or
 use the notification applications for easier viewing.
@@ -269,37 +257,36 @@ use the notification applications for easier viewing.
 **Example: Configure debug-level logging**
 
 1.  Set the logging level to *debug.*
-    
+
         cumulus@ts:~$ netq config ts add notifier loglevel debug
 
 2.  Restart the NetQ Agent.
-    
+
         cumulus@ts:~$ netq config ts restart notifier
         Restarting netq-notifier... Success!
 
 3.  Verify connection to Telemetry Server.
-    
+
         cumulus@ts:~$ netq config ts show server
         Server            Role       Master                             Replicas                           Status           Last Changed
         ----------------- ---------- ---------------------------------- ---------------------------------- ---------------- ----------------
         192.168.1.254     master     192.168.1.254                      -                                  ok               -
 
-<span style="color: #222222;"> **Example: Configure warning-level
-logging** </span>
+**Example: Configure warning-level logging**
 
-    cumulus@switch:~$ netq config ts add notifier loglevel warning 
-    cumulus@switch:~$ netq config ts restart notifier 
+    cumulus@switch:~$ netq config ts add notifier loglevel warning
+    cumulus@switch:~$ netq config ts restart notifier
     cumulus@switch:~$ netq config ts show server
 
 **Example: Disable NetQ Notifier Logging**
 
-<span style="color: #222222;"> If you have set the logging level to
+If you have set the logging level to
 *debug* for troubleshooting, it is recommended that you either change
 the logging level to a less heavy mode or completely disable agent
-logging altogether when you are finished troubleshooting. </span>
+logging altogether when you are finished troubleshooting.
 
-<span style="color: #222222;"> To change the logging level, run the
-following command and restart the agent service: </span>
+To change the logging level, run the
+following command and restart the agent service:
 
     cumulus@switch:~$ netq config ts add notifier loglevel <LOG_LEVEL> 
     cumulus@switch:~$ netq config ts restart notifier
@@ -309,7 +296,7 @@ To disable all logging:
     cumulus@switch:~$ netq config ts del notifier loglevel 
     cumulus@switch:~$ netq config ts restart notifier
 
-### <span id="src-10453429_ConfigureOptionalNetQCapabilities-PDcli" class="confluence-anchor-link"></span>Configure PagerDuty Using NetQ Notifier CLI</span>
+### Configure PagerDuty Using NetQ Notifier CLI
 
 NetQ Notifier sends notifications to PagerDuty as PagerDuty events.
 
@@ -337,25 +324,25 @@ To configure NetQ Notifier to send notifications to PagerDuty:
 
 1.  Configure the following options using the ` netq  ``config ts add
     notifier integration` command:
-    
+
     | Option              | Description                                                                                                                                                        |
     | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
     | INTEGRATION\_TYPE   | The third-party notification system; use *pagerduty* in this case and provide a name for the integration.                                                          |
     | api-access-key      | The required API access key is also called the [authorization token](https://v2.developer.pagerduty.com/docs/authentication).                                      |
     | api-integration-key | The [integration](https://v2.developer.pagerduty.com/docs/events-api-v2) key is also called the service\_key or routing\_key. The default is an empty string (""). |
     | severity            | The log level to set, which can be one of *info*, *warning*, *error*, *critical* or *debug*. The severity defaults to *info*.                                      |
-    
+
 
 2.  Restart the NetQ Notifier service  
     For example:
-    
+
         cumulus@ts:~$ netq config ts add notifier integration pagerduty pager-duty-test api-access-key 1234567890 api-integration-key 9876543210
         cumulus@ts:~$ netq config ts restart notifier
-    
+
     These commands create a new notifier-integration configuration in
     the `/etc/netq/netq.yml` file.
-    
-        cumulus@ts:~$ cat /etc/netq/netq.yml 
+
+        cumulus@ts:~$ cat /etc/netq/netq.yml
         backend:
           port: 6379
           role: master
@@ -372,7 +359,7 @@ To configure NetQ Notifier to send notifications to PagerDuty:
           severity: info
           type: pagerduty
 
-### Configure Slack Using NetQ Notifier CLI</span>
+### Configure Slack Using NetQ Notifier CLI
 
 NetQ Notifier sends notifications to Slack as incoming webhooks for a
 Slack channel you configure.
@@ -385,30 +372,30 @@ To configure NetQ Notifier to send notifications to Slack:
 
 1.  If needed, create one or more Slack channels on which to receive the
     notifications.
-    
+
     1.  Click + next to **Channels**.
-    
+
     2.  Enter a name for the channel, and click **Create Channel**.
 
 2.  Create an incoming WebHook.
-    
+
     1.  Select **Customize Slack** from the Slack dropdown menu.
-    
+
     2.  Click **Workspaces** in the top right corner, and select the
         workspace where the channel is located.
-    
+
     3.  Click **Add Applications**, and select **Incoming WebHooks**.
-    
+
     4.  Click **Add Configuration** and enter the name of the channel
         you created (where you want to post notifications).
-    
+
     5.  Click **Add Incoming WebHooks integration**.
-    
+
     6.  Save WebHook URL in a text file for use in next step.
 
 3.  Configure the following options in the ` netq  ``config ts add
     notifier integration` command:
-    
+
     <table>
     <colgroup>
     <col style="width: 50%" />
@@ -444,14 +431,14 @@ To configure NetQ Notifier to send notifications to Slack:
 
 4.  Restart the NetQ Notifier service.  
     For example:
-    
+
         cumulus@ts:~$ netq config ts add notifier integration slack slack-test webhook https://hooks.slack.com/services/text/moretext/evenmoretext severity warning tag @ts-warning
         cumulus@ts:~$ netq config ts restart notifier
-    
+
     These commands create a new notifier-integration configuration in
     the `/etc/netq/netq.yml` file.
-    
-        cumulus@redis-1:~$ cat /etc/netq/netq.yml 
+
+        cumulus@redis-1:~$ cat /etc/netq/netq.yml
         backend:
           port: 6379
           role: master
@@ -468,7 +455,7 @@ To configure NetQ Notifier to send notifications to Slack:
           type: slack
           webhook: https://hooks.slack.com/services/text/moretext/evenmoretext
 
-### <span id="src-10453429_ConfigureOptionalNetQCapabilities-PDman" class="confluence-anchor-link"></span>Configure PagerDuty Manually</span>
+### Configure PagerDuty Manually
 
 If you prefer to edit the `netq.yml` file directly, rather than use the
 NetQ Notifier CLI, you can do so.
@@ -480,48 +467,48 @@ Server:
 
 2.  Optionally, change the logging level, if you want a more restrictive
     level than *info* by adding the following two lines to the file:
-    
+
         ...
-        netq-notifier: 
+        netq-notifier:
           log_level: warning
         ...
 
 3.  Configure PagerDuty: Input the information for this integration into
     the notifier-integrations stanza, using the syntax shown in the
     example:
-    
+
     1.  Add the notifier-integrations stanza.
-    
+
     2.  Add a name, such as *notifier-pagerduty or netq-notifier*. Note:
         no spaces are allowed in the name. Use a dash instead if you
         want to separate words as shown here.
-    
+
     3.  Add the type of *pagerduty*.
-    
+
     4.  Add the message severity level, *debug*, *info*, *warning*,
         *error*, or *critical*.
-    
+
     5.  Add the API access key (also called the [authorization
         token](https://v2.developer.pagerduty.com/docs/authentication))
         and the
         [integration](https://v2.developer.pagerduty.com/docs/events-api-v2)
         key (also called the service\_key or routing\_key).
-        
-            notifier-integrations: 
-              - name: notifier-pagerduty 
-                type: pagerduty 
+
+            notifier-integrations:
+              - name: notifier-pagerduty
+                type: pagerduty
                 severity: WARNING (does this need to be in all caps?)
-                api_access_key: <API Key> 
+                api_access_key: <API Key>
                 api_integration_key: <API Integration Key>
 
 4.  When you are finished editing the file, save and close it.
 
 5.  Stop then start the NetQ Notifier daemon to apply the new
     configuration.
-    
+
         cumulus@ts:~$ sudo systemctl restart netq-notifier
 
-### Configure Slack Manually</span>
+### Configure Slack Manually
 
 If you prefer to edit the `netq.yml` file directly, rather than using
 the NetQ Notifier CLI, you can do so.
@@ -532,41 +519,41 @@ To configure alerts and Slack integrations on the NetQ Telemetry Server:
 
 2.  Optionally, change the logging level, if you want a more restrictive
     level than *info* by adding the following two lines to the file.
-    
+
         ...
-        netq-notifier: 
+        netq-notifier:
           log_level: warning
         ...
 
 3.  Configure Slack: Input the information for this integration into the
     notifier-integrations stanza, using the syntax shown in the example.
-    
+
     1.  Add the the notifier-integrations stanza.
-    
+
     2.  Add a name, such as *notifier-slack-channel-1* or
         *netq-notifier*. Note: no spaces are allowed in the name. Use a
         dash instead if you want to separate words as shown here.
-    
+
     3.  Add the type of *slack*.
-    
+
     4.  Add the webhook URL. To obtain this:
-        
+
         1.  In the desired Slack channel, locate the initial message
             indicating the addition of the integration, click
             **incoming-webhook** link, click **Settings**.
-            
+
             {{% imgOld 4 %}}
-        
+
         2.  The URL produced by Slack looks similar to the one shown
             here:
-            
+
             {{% imgOld 5 %}}
-    
+
     5.  Add the message severity level, *debug*, *info*, *warning*, or
         *error*.
-    
+
     6.  Optionally add a tag, such as *@netqts-sys* or *@ts-info*.
-        
+
             notifier-integrations:
               - name: notifier-slack-channel-1
                 type: slack
@@ -578,18 +565,18 @@ To configure alerts and Slack integrations on the NetQ Telemetry Server:
 
 5.  Stop then start the NetQ Notifier daemon to apply the new
     configuration.
-    
+
         cumulus@netq-appliance:~$ sudo systemctl restart netq-notifier
-    
+
     {{%notice tip%}}
-    
-    If your webhook does not immediately send a message to your channel,
-    look for errors in syntax. Check the log file located at
-    `/var/log/netq-notifier.log`.
-    
+
+If your webhook does not immediately send a message to your channel,
+ look for errors in syntax. Check the log file located at
+ `/var/log/netq-notifier.log`.
+
     {{%/notice%}}
 
-### View Integrations</span>
+### View Integrations
 
 You can view configured integrations using the `netq config ts show
 notifier` command. Include the `json` option to display JSON-formatted
@@ -614,7 +601,7 @@ For example:
     default        output       ALL
                    rule
 
-### <span id="src-10453429_ConfigureOptionalNetQCapabilities-elk" class="confluence-anchor-link"></span>Export Notifications to ELK</span>
+### Export Notifications to ELK
 
 NetQ Notifier integrates with ELK/Logstash using plugins to handle
 `rsyslog` inputs.
@@ -630,21 +617,20 @@ To configure NetQ Notifier to send data to ELK through Logstash:
     adding the following to the logstash configuration file.  
     In this example, the Logstash instance is on a host with the IP
     address 192.168.50.30, using port 51414.
-    
-        # rsyslog - logstash configuration 
+
+        # rsyslog - logstash configuration
         sed -i '/$netq_notifier_log/a if $programname == "netq-notifier" then @@192.168.50.30:51414' /etc/rsyslog.d\
         /50-netq-notifier.conf
 
 2.  Restart `rsyslog`.
-    
+
         root@ts:~# systemctl restart rsyslog
 
 3.  On the server running the Logstash instance at the address specified
     earlier, create a file in `/etc/logstash/conf.d/` called
     `notifier_logstash.conf`. Then add the following definition, using
-    the <span style="color: #ff0000;"> </span> port you specified
-    earlier.
-    
+    the port you specified earlier.
+
         root@ts:~# vi /etc/logstash/conf.d/notifier_logstash.conf
          
         input {
@@ -660,13 +646,13 @@ To configure NetQ Notifier to send data to ELK through Logstash:
         }
 
 4.  Restart Logstash.
-    
+
         root@logstash_host:~# systemctl restart logstash
 
 NetQ Notifier logs now appear in `/tmp/logstash_notifier.log` on the
 Logstash host.
 
-### <span id="src-10453429_ConfigureOptionalNetQCapabilities-splunk" class="confluence-anchor-link"></span>Export Notifications to Splunk</span>
+### Export Notifications to Splunk
 
 NetQ integrates with Splunk using plugins to handle `rsyslog` inputs.
 
@@ -681,13 +667,13 @@ To configure NetQ Notifier to send data to Splunk for display:
     following to the Splunk configuration file.  
     In this example, Splunk is installed on a host with the IP address
     192.168.50.30, using port 51414.
-    
-        # rsyslog - splunk configuration 
+
+        # rsyslog - splunk configuration
         sed -i ‘/$netq_notifier_log/a if $programname == “netq-notifier” then @@192.168.50.30:51415’ /etc/rsyslog.d\
         /50-netq-notifier.conf
 
 2.  Restart `rsyslog`.
-    
+
         root@ts:~# systemctl restart rsyslog
 
 3.  Open Splunk in a browser, choose **Add Data** \> **monitor** \>
@@ -698,7 +684,7 @@ To configure NetQ Notifier to send data to Splunk for display:
 
 NetQ Notifier messages now appear in Splunk.
 
-## <span id="src-10453429_ConfigureOptionalNetQCapabilities-NotifierFilters" class="confluence-anchor-link"></span>Create NetQ Notifier Filters</span>
+## Create NetQ Notifier Filters
 
 You can limit or direct log messages sent by NetQ Notifier using
 filters. Filters are created based on rules you define. Each filter
@@ -730,7 +716,7 @@ you capture the events you want and drop the events you do not want.
 Optionally, you can use a *before* or *after* keyword to ensure one rule
 is processed before or after another.
 
-{{%notice info%}}
+{{%notice note%}}
 
 Filter names may contain spaces, but must be enclosed with single quotes
 in commands. It is easier to use dashes in place of spaces or mixed case
@@ -743,7 +729,7 @@ Filter names are also case sensitive.
 You must restart the NetQ Notifier service after configuring filters so
 they can take effect; run the `netq config ts restart notifier` command.
 
-### <span id="src-10453429_ConfigureOptionalNetQCapabilities-FilterRule" class="confluence-anchor-link"></span>Build Filter Rules </span>
+### Build Filter Rules
 
 Each rule is comprised of a single key-value pair. Creating multiple
 rules for a given filter can provide a very defined filter. There is a
@@ -752,8 +738,8 @@ and *vary according to your deployment*.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -789,7 +775,7 @@ and *vary according to your deployment*.
 <ul>
 <li><p>hostname: server02, leaf*, exit01, spine0*</p></li>
 <li><p>s_name: fan*</p></li>
-<li><p>s_desc: 'fan 1, tray*' <span style="color: #ff0000;"> </span></p></li>
+<li><p>s_desc: 'fan 1, tray*'</p></li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -799,8 +785,8 @@ and *vary according to your deployment*.
 </tr>
 <tr class="odd">
 <td><p>License</p></td>
-<td><p>Regular expression identifying a hostname or license name <span style="color: #ff0000;"> </span></p>
-<p>Examples: <span style="color: #ff0000;"> </span></p>
+<td><p>Regular expression identifying a hostname or license name</p>
+<p>Examples:</p>
 <ul>
 <li><p>hostname: server02, leaf*, exit01, spine0*</p></li>
 <li><p>name: Cumulus Linux, Ubuntu, CentOS</p></li>
@@ -864,26 +850,26 @@ and *vary according to your deployment*.
 <ul>
 <li><p>hostname: server02, leaf*, exit01, spine0*</p></li>
 <li><p>s_name: psu1temp*, temp*</p></li>
-<li><p>s_desc: <span style="color: #222222;"> 'board sensor near fan' </span></p></li>
+<li><p>s_desc: 'board sensor near fan'</p></li>
 </ul></td>
 </tr>
 </tbody>
 </table>
 
-{{%notice info%}}
+{{%notice note%}}
 
 Rules are case sensitive. Use Tab completion to view the command options
 syntax.
 
 {{%/notice%}}
 
-### Specify Output Location</span>
+### Specify Output Location
 
 The filter results may be output to a defined integration (integration
 name), to syslog (*default*), to all integrations and syslog (*all*), or
 not at all (*None*).
 
-### Example: Create a Filter for Events from Selected Switches</span>
+### Example: Create a Filter for Events from Selected Switches
 
 In this example, we created a NetQ Notifier integration with an existing
 Slack channel called *slack-channel-leaf-alerts*. We then created a
@@ -891,10 +877,10 @@ filter called *leaf-filter* for any notifications that mention switches
 named *leaf-0\**. The result is that any log messages mentioning one of
 those host names is filtered to the *slack-channel-leaf-alerts* channel.
 
-    cumulus@ts:~$ netq config ts add notifier integration slack slack-channel-leaf-alerts webhook https://hooks.slack.com/services/text/moretext/evenmoretext severity info 
+    cumulus@ts:~$ netq config ts add notifier integration slack slack-channel-leaf-alerts webhook https://hooks.slack.com/services/text/moretext/evenmoretext severity info
     cumulus@ts:~$ netq config ts add notifier filter leaf-filter rule hostname leaf-0* output slack-channel-leaf-alerts
-    cumulus@ts:~$ netq config ts restart notifier 
-    cumulus@ts:~$ netq config ts show notifier 
+    cumulus@ts:~$ netq config ts restart notifier
+    cumulus@ts:~$ netq config ts show notifier
     Integration Name           Attribute    Value
     -------------------------  -----------  -----------------------------------------------------------
     slack-channel-leaf-alerts  type         slack
@@ -909,7 +895,7 @@ those host names is filtered to the *slack-channel-leaf-alerts* channel.
     default        output       ALL
                    rule
 
-### Example: Verify NetQ Notifier Status</span>
+### Example: Verify NetQ Notifier Status
 
 In this example, we are looking to see whether the NetQ Notifier is up
 and running. If it were not, we would want to restart it.
@@ -917,7 +903,7 @@ and running. If it were not, we would want to restart it.
     cumulus@ts:/$ netq config ts status notifier
     netq-notifier... Running
 
-### Example: Add Multiple Rules to a Filter</span>
+### Example: Add Multiple Rules to a Filter
 
 In this example, we created a filter with three rules to drop
 notifications from a particular link.
@@ -925,7 +911,7 @@ notifications from a particular link.
     cumulus@ts:~$ netq config ts add notifier filter leaf01-swp1-drop rule type Link output None
     cumulus@ts:~$ netq config ts add notifier filter leaf01-swp1-drop rule hostname leaf01 output None
     cumulus@ts:~$ netq config ts add notifier filter leaf01-swp1-drop rule ifname swp1 output None
-    cumulus@ts:~$ netq config ts restart notifier 
+    cumulus@ts:~$ netq config ts restart notifier
     cumulus@ts:!$ netq config ts show notifier
     Integration Name           Attribute    Value
     -------------------------  -----------  -----------------------------------------------------------
@@ -937,11 +923,11 @@ notifications from a particular link.
                       rule         type: Link
                                    hostname: leaf01
                                    ifname: swp1
-                      
+
     default        output       ALL
                    rule
 
-### Example: Place One Filter Before or After Another Filter</span>
+### Example: Place One Filter Before or After Another Filter
 
 In this example, we created a filter, *interface-filter*, that is
 processed after *bgp-filter* (an existing filter) and sent the
@@ -951,7 +937,7 @@ Note that you must restart the Notifier for this configuration change to
 take effect. Verify the configuration using the `show` command.
 
     cumulus@ts:~$ netq config ts add notifier filter interface-filter after bgp-filter rule Port swp* output slack-channel-if-alerts
-    cumulus@ts:~$ netq config ts restart notifier 
+    cumulus@ts:~$ netq config ts restart notifier
     cumulus@ts:!$ netq config ts show notifier
     Integration Name           Attribute    Value
     -------------------------  -----------  -----------------------------------------------------------
@@ -1000,7 +986,7 @@ following integrations and filters:
     ...
     cumulus@ts:~$ netq config ts restart notifier
 
-### Example: Create a Filter to Drop Notifications from a Given Interface</span>
+### Example: Create a Filter to Drop Notifications from a Given Interface
 
 In this example, we created a filter, *ifswp21drop*, that drops
 notifications for events from interface *swp21*. Make sure to capitalize
@@ -1009,7 +995,7 @@ configuration change to take effect.
 
     cumulus@ts:~$ netq config ts add notifier filter ifswp1drop rule Port swp21
     cumulus@ts:~$ netq config ts add notifier filter ifswp1drop output None
-    cumulus@ts:~$ netq config ts restart notifier 
+    cumulus@ts:~$ netq config ts restart notifier
 
 or
 
@@ -1024,7 +1010,7 @@ or
     ...
     cumulus@ts:~$ netq config ts restart notifier
 
-### Example: Create a Filter to Send BGP Session State Notifications to Slack</span>
+### Example: Create a Filter to Send BGP Session State Notifications to Slack
 
 In this example, we created a filter, *BGPslackchannel*, to send BGP
 session state notifications to an existing Slack channel,
@@ -1051,7 +1037,7 @@ or
        output:
          - slack-channel-catchall
 
-### Example: Create a Filter to Drop All Temperature-Related Event Notifications</span>
+### Example: Create a Filter to Drop All Temperature-Related Event Notifications
 
 In this example, we created a filter, tempDrop, to drop all temperature
 related event notifications. Note: capitalization is important with
@@ -1062,7 +1048,7 @@ Restart the Notifier for this configuration change to take effect.
     cumulus@ts:~$ netq config ts add notifier filter tempDrop output None
     cumulus@ts:~$ netq config ts restart notifier
 
-### Example: Create a Filter for License Validation Event Notifications</span>
+### Example: Create a Filter for License Validation Event Notifications
 
 In this example, we created a filter, license-valid, to notify persons
 with access to a PagerDuty messages on the pager-duty-license channel
@@ -1091,7 +1077,7 @@ take effect.
     default         output      ALL
                     rule
 
-## <span id="src-10453429_ConfigureOptionalNetQCapabilities-HAConfig" class="confluence-anchor-link"></span>Configure High Availability Mode</span>
+## Configure High Availability Mode
 
 NetQ supports high availability — that is, the ability to continue
 functioning even in the absence of a single failure of a Telemetry
@@ -1109,7 +1095,7 @@ sentinel runs on port 26379.
 
 HA mode is optional.
 
-### Configure HA Mode</span>
+### Configure HA Mode
 
 Perform the following steps to configure HA Mode:
 
@@ -1117,16 +1103,16 @@ Perform the following steps to configure HA Mode:
 
 1.  Install the Telemetry Server image on three separate physical hosts
     to form a database cluster.
-    
+
     1.  Use the instructions for installing the TS here.
-        
+
         {{%notice note%}}
-        
-        For proper operation of the HA mode you must specify the IP
-        addresses for the Telemetry Servers. You cannot use DNS names.
-        
+
+For proper operation of the HA mode you must specify the IP
+addresses for the Telemetry Servers. You cannot use DNS names.
+
         {{%/notice%}}
-    
+
     2.  Note the IP address of each instance.
 
 2.  Enable HA Mode  
@@ -1140,34 +1126,34 @@ Perform the following steps to configure HA Mode:
     On each Telemetry Server, specify the IP address of the master and
     both replicas, and then restart the netq-notifier service. Wait at
     least 30 seconds between each instance of the command.
-    
+
         cumulus@ts01:~$ netq config ts add server 10.0.0.5 10.0.0.6 10.0.0.7
         cumulus@ts01:~$ sudo systemctl restart netq-notifier.service
-    
+
         cumulus@ts02:~$ netq config ts add server 10.0.0.5 10.0.0.6 10.0.0.7
         cumulus@ts02:~$ sudo systemctl restart netq-notifier.service
-    
+
         cumulus@ts03:~$ netq config ts add server 10.0.0.5 10.0.0.6 10.0.0.7
         cumulus@ts03:~$ sudo systemctl restart netq-notifier.service
 
 3.  Verify that HA mode is configured on the three Telemetry Servers.  
     Each server should indicate that ts01 (using IP address 10.0.0.5) is
     the master.
-    
+
         cumulus@ts01:~$ netq config ts show server
         Server    Role     Master    Replicas            Status    Last Changed
         --------  -------  --------  ------------------  --------  --------------
         10.0.0.5  master   10.0.0.5  10.0.0.7, 10.0.0.6  ok        55s
         10.0.0.6  replica  10.0.0.5  -                   ok        55s
         10.0.0.7  replica  10.0.0.5  -                   ok        55s
-    
-        cumulus@ts02:~$ netq config ts show server 
-        Server    Role     Master    Replicas            Status    Last Changed 
-        --------  -------  --------  ------------------  --------  -------------- 
-        10.0.0.5  master   10.0.0.5  10.0.0.7, 10.0.0.6  ok        55s 
-        10.0.0.6  replica  10.0.0.5  -                   ok        55s 
+
+        cumulus@ts02:~$ netq config ts show server
+        Server    Role     Master    Replicas            Status    Last Changed
+        --------  -------  --------  ------------------  --------  --------------
+        10.0.0.5  master   10.0.0.5  10.0.0.7, 10.0.0.6  ok        55s
+        10.0.0.6  replica  10.0.0.5  -                   ok        55s
         10.0.0.7  replica  10.0.0.5  -                   ok        55s
-    
+
         cumulus@ts03:~$ netq config ts show server
         Server    Role     Master    Replicas            Status    Last Changed
         --------  -------  --------  ------------------  --------  --------------
@@ -1177,16 +1163,16 @@ Perform the following steps to configure HA Mode:
 
 4.  Update the NetQ Agent on each switch and server node you are
     monitoring to point to the HA cluster, and restart the NetQ Agent.
-    
+
         cumulus@switch:~$ netq config add server 10.0.0.5 10.0.0.6 10.0.0.7
         Restarting netqd... Success!
         cumulus@switch:~$ netq config restart agent
         Restarting netq-agent... Success!
-    
+
     You could automate this step to update all of the agents on your
     monitored nodes.
 
-### Check Database Cluster Status </span>
+### Check Database Cluster Status
 
 Run the following `show` command from one of the Telemetry Servers.
 
@@ -1197,13 +1183,13 @@ cluster by specifying that server's IP address.
 
     cumulus@ts01:~$ netq config ts show server 10.0.0.7
 
-### Restart HA Mode Services</span>
+### Restart HA Mode Services
 
 You can restart the `netq-appliance` service using:
 
     cumulus@ts01:~$ sudo systemctl restart netq-appliance.service
 
-### Change the Master Telemetry Server</span>
+### Change the Master Telemetry Server
 
 You can change which Telemetry Server you want to be the master simply
 by changing the order in which you specify them with the `netq config ts
@@ -1240,7 +1226,7 @@ Verify that *ts02* is the new master:
     10.0.0.6  master   10.0.0.6  10.0.0.7, 10.0.0.5  ok        28s
     10.0.0.7  replica  10.0.0.6  -                   ok        28s
 
-### Replace a Replica with a New Server</span>
+### Replace a Replica with a New Server
 
 If you need to replace a Telemetry Server with a different physical
 system, follow the instructions include in this topic.
@@ -1271,23 +1257,23 @@ In our example, you want to replace ts03 with ts04 (10.0.0.8):
 
 2.  Log in to the Telemetry Server you are replacing (ts03) and power it
     down:
-    
+
         cumulus@ts03:~$ sudo shutdown
 
 3.  Execute the following NetQ command on every Telemetry Server to
     create a cluster with the new Telemetry Server. Wait at least 30
     seconds between each instance of the command.
-    
+
         cumulus@ts01:~$ netq config ts add server 10.0.0.5 10.0.0.6 10.0.0.8
-    
+
         cumulus@ts02:~$ netq config ts add server 10.0.0.5 10.0.0.6 10.0.0.8
-    
+
         cumulus@ts04:~$ netq config ts add server 10.0.0.5 10.0.0.6 10.0.0.8
 
 4.  Verify the HA status on one of the Telemetry Servers. The status
     should be the same on all the three Telemetry Servers indicating
     that ts01 (10.0.0.5) is the master.
-    
+
         cumulus@ts01:~$ netq config ts show server
         Server    Role     Master    Replicas            Status    Last Changed
         --------  -------  --------  ------------------  --------  --------------
@@ -1297,47 +1283,39 @@ In our example, you want to replace ts03 with ts04 (10.0.0.8):
 
 5.  Update the agent on each switch and server node to point to the new
     HA cluster, and restart the NetQ Agent on each node:
-    
+
         cumulus@switch:~$ netq config add server 10.0.0.5 10.0.0.6 10.0.0.8
         Restarting netqd... Success!
         cumulus@switch:~$ netq config restart agent
         Restarting netq-agent... Success!
 
-### Reset the Database Cluster</span>
+### Reset the Database Cluster
 
 You can force a reset of the Redis HA cluster using:
 
     cumulus@netq-ts:~$ netq config ts reset-cluster
 
-### Troubleshoot HA Mode</span>
+### Troubleshoot HA Mode
 
-#### Relevant Services and Configuration Files</span>
+#### Relevant Services and Configuration Files
 
 The following `systemd` services are involved in HA mode:
 
   - cts-auth.service: The Telemetry Server-side service that manages the
     configuration.
-
   - cts-auth.socket: The Telemetry Server-side authorization shim socket
     for the service console.
-
   - cts-backup.service: Runs a cron job to back up the Redis database.
-
   - cts-backup.timer: The timer for the backup service, with a minimum
     interval of 5 minutes.
-
   - netqd.service: The service for the Telemetry Server CLI for use
     locally on the server.
-
   - netq-appliance.service: Starts and stops all Telemetry Server
     services **except** for the `ts-gui` service.
-
   - netq-gui.service: Starts and stops Telemetry Server `ts-gui`
     service.
-
   - netq-influxdb.service: The service that manages the HA mode
     InfluxDB.
-
   - netq-notifier.service: Starts and stops the NetQ Notifier service.
 
 The following configuration files are in the `/etc/cts/run/redis`
@@ -1345,7 +1323,6 @@ directory:
 
   - redis\_6379.conf: Contains the runtime Redis database configuration
     and state.
-
   - snt1.conf: Contains the runtime Redis sentinel configuration and
     state.
 
@@ -1361,19 +1338,14 @@ The NetQ Notifier log is:
 Logging configurations are in:
 
   - /etc/rsyslog.d
-
   - /etc/logrotate.d
 
 The following log files are in the `/var/log/cts` directory:
 
   - cts-backup.log
-
   - cts-docker-compose.log
-
   - cts-dockerd.log
-
   - cts-redis.log
-
   - cts-sentinel.log
 
 The `/etc/cts/environment` file sets key environment variables that
@@ -1383,7 +1355,7 @@ control the behavior of the NetQ Telemetry Server.
     90 allocates that specified percent of the VM's memory to REDIS. The
     default value is 60. You can check the currrent allocation with the
     following command:
-    
+
         vagrant@netq-1:~$ /usr/sbin/netq-adjust-mem --show
         Current maxmemory 2442384998 is 0.60 of 4070641664 available.
 
@@ -1391,7 +1363,7 @@ For more information about the log files, see the [Investigate NetQ
 Issues](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Investigate-NetQ-Issues)
 topic.
 
-#### One Replica Must Be Available Always</span>
+#### One Replica Must Be Available Always
 
 While HA mode is enabled, if both the replica servers go down, the
 master database stops accepting writes. This causes the NetQ agents to
@@ -1402,7 +1374,7 @@ Please refer to the section "Example 2: basic setup with three boxes" on
 the [Redis Sentinel page](https://redis.io/topics/sentinel) for more
 details.
 
-## Integrate with a Hardware Chassis</span>
+## Integrate with a Hardware Chassis
 
 NetQ can run within a [Facebook Backpack
 chassis](https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/),
@@ -1431,7 +1403,7 @@ chassis:
     keyword to *true*, then restart the NetQ Agent with `netq config
     agent restart`. Configuring NetQ in this way prevents any
     duplication of data in the NetQ database.
-    
+
         cumulus@chassis-lc101:~$ sudo nano /etc/netq/netq.yml
          
         ...
@@ -1439,7 +1411,7 @@ chassis:
           send_chassis_sensor_data: true
         ...
 
-## Extending NetQ with Custom Services Using curl</span>
+## Extending NetQ with Custom Services Using curl
 
 You can extend NetQ to monitor parameters beyond what it monitors by
 default. For example, you can create a service that runs a series of
@@ -1454,20 +1426,20 @@ capability regarding `netq show services`.
 
 2.  Create the custom service. In the example below, the new service is
     called *web*. You need to specify:
-    
+
       - The *period* in seconds.
-    
+
       - The *key* that identifies the name of the service.
-    
+
       - The command will *run* always. If you do not specify *always*
         here, you must enable the service manually using `systemctl`.
-    
+
       - The *command* to run. In this case we are using `curl` to ping a
         web server.
-    
+
     <!-- end list -->
-    
-        cumulus@leaf01:~$ sudo vi /etc/netq/config.d/netq-agent-commands.yml 
+
+        cumulus@leaf01:~$ sudo vi /etc/netq/config.d/netq-agent-commands.yml
          
         user-commands:
           - service: 'misc'
@@ -1492,18 +1464,18 @@ capability regarding `netq show services`.
                 command: ['/usr/bin/curl https://cumulusnetworks.com/ -o /dev/null']
 
 3.  After you save and close the file, restart the NetQ agent:
-    
+
         cumulus@leaf01:~$ netq config agent restart
 
 4.  You can verify the command is running by checking the
     `/var/run/netq-agent-running.json` file:
-    
+
         cumulus@leaf01:~$ cat /var/run/netq-agent-running.json
         {"commands": [{"service": "smond", "always": false, "period": 30, "callback": {}, "command": "/usr/sbin/smonctl -j", "key": "smonctl-json"}, {"service": "misc", "always": false, "period": 30, "callback": {}, "command": "/usr/sbin/switchd -lic", "key": "cl-license"}, {"service": "misc", "always": false, "period": 30, "callback": {}, "command": null, "key": "ports"}, {"service": "misc", "always": false, "period": 60, "callback": null, "command": "/bin/cat /etc/network/interfaces", "key": "config-interfaces"}, {"service": "misc", "always": false, "period": 60, "callback": null, "command": "/bin/cat /etc/ntp.conf", "key": "config-ntp"}, {"service": "lldpd", "always": false, "period": 30, "callback": {}, "command": "/usr/sbin/lldpctl -f json", "key": "lldp-neighbor-json"}, {"service": "mstpd", "always": false, "period": 15, "callback": {}, "command": "/sbin/mstpctl showall json", "key": "mstpctl-bridge-json"}], "backend": {"server": "10.0.0.165"}}
 
 5.  And you can see the service is running on the host when you run
     `netq show services`:
-    
+
         cumulus@leaf01:~$ netq show services web
 
 <article id="html-search-results" class="ht-content" style="display: none;">

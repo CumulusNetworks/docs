@@ -23,38 +23,18 @@ switches and you are ready to add these NetQ capabilities.
 
 This guide is organized into the following topics:
 
-  - [Deployment
-    Preface](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Preface)
-
-  - [Install
-    NetQ](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
-
-  - [Configure Optional NetQ
-    Capabilities](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities)
-
-  - [Maintain
-    NetQ](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Maintain-NetQ)
-
-  - [Deployment
-    Appendices](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Appendices)
+  - [Deployment Preface](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Preface)
+  - [Install NetQ](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
+  - [Configure Optional NetQ Capabilities](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities)
+  - [Maintain NetQ](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Maintain-NetQ)
+  - [Deployment Appendices](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Deployment-Appendices)
 
 Information about monitoring and troubleshooting your network using NetQ
 is contained in the associated user guide.
 
 {{%notice tip%}}
 
-Before you get started, you should review the [release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274)
+Before you get started, you should review the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274)
 for this version.
 
 {{%/notice%}}
-
-This guide is organized into the following topics:
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

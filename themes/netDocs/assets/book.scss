@@ -56,6 +56,7 @@ a {
 
 img {
   vertical-align: middle;
+  max-width: 100%;
 }
 
 //Menu Styles and Expand/Collapse
@@ -345,6 +346,15 @@ aside nav,
 
     .markdown {
       opacity: 0.25;
+    }
+  }
+
+  .markdown {
+    p {
+      word-break: break-word;
+      code {
+        word-break: break-word;
+      }
     }
   }
 }

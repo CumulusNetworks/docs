@@ -18,17 +18,13 @@ The summary of steps required to do this is a follows:
 
   - The extensions must be written in [Python](https://www.python.org)
     or [Cython](http://cython.org).
-
   - The commands need to be added must use `network doctopt`.
-
   - The .py file (or the compiled .so if using Cython) is now copied to
     /usr/lib/python2.7/dist-packages/netq\_apps/modules/addons.
-
   - Enable the add-ons with the `netq config add addons` command
-
   - Check that your command works by typing `netq <TAB>`
 
-{{%notice info%}}
+{{%notice note%}}
 
 NetQL is an [early access
 feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
@@ -36,7 +32,7 @@ in Cumulus NetQ 1.3 and later.
 
 {{%/notice%}}
 
-## Sample File with Custom Command</span>
+## Sample File with Custom Command
 
 To help you get started, here is the Hello World of NetQ command
 extension:
@@ -51,7 +47,7 @@ extension:
     import json
     from netq_apps.modules import NetqModule, RC_SUCCESS, RC_FAIL
     app = NetqModule()
-    
+
     @app.route('hello')
     def cli_hello_world(cli, netq):
         '''My very own hello'''
@@ -64,7 +60,7 @@ extension:
 
 Let's break down each part of the code.
 
-### Command Specification With Help</span>
+### Command Specification With Help
 
 The lines at the start of the file within the triple quotes (''')
 constitute what is called the *docstring* of the file or module.
@@ -79,7 +75,7 @@ command follows the following structure:
 
 For example, here is the sample for `show vlan`:
 
-    netq [<hostname>] show vlan [<1-4096>] [around <text-time>] [json] 
+    netq [<hostname>] show vlan [<1-4096>] [around <text-time>] [json]
 
 The *\<hostname\>* option is used to filter results to just the
 specified host; hostname can also be a regular expression. The
@@ -95,24 +91,17 @@ greeting, modify the usage to be:
 before passing them to your code. Some common ones are:
 
   - **\<hostname\>**: A host known to NetQ
-
   - **\<remote-interface\>**: An interface on the specified host known
     to NetQ
-
   - **\<text\>**: Any free text, but has to be a single word or
     delimited within quotes
-
   - **\<ip\>**, **\<ip/prefixlen\>**: IPv4 or IPv6 address, with prefix
     length in the second case
-
   - **\<ipv4\>**, **\<ipv4/prefixlen\>**: IPv4 address, with prefix
     length in the second case
-
   - **\<ipv6\>**, **\<ipv6/prefixlen\>**: IPv6 address, with prefix
     length in the second case
-
   - **\<wildcard\>**: All the remaining text
-
   - Valid number range: Such as **\<1-4096\>** to limit the allowed
     range
 
@@ -128,7 +117,7 @@ object *hello* has the help text "Hello world experimental". This text
 is displayed when the user types `netq <TAB>`, as shown in the following
 example:
 
-    cumulus@switch:~$ netq 
+    cumulus@switch:~$ netq
     <hostname> : Type first char of netq host for dynamic completion
     check : Perform fabric-wide checks
     config : Configuration
@@ -147,7 +136,7 @@ a module loaded previously.
 
 {{%/notice%}}
 
-### Associating the Command with the Function</span>
+### Associating the Command with the Function
 
 After configuring the command, you need to associate or *bind* that
 command with the function to be called when a user runs the command.
@@ -178,7 +167,7 @@ Keep in mind the following when matching the command to the function:
     longer command strings bound to a function either silently fail or a
     shorter string version is matched.
 
-### Using the cli and netq Parameters</span>
+### Using the cli and netq Parameters
 
 The function that is called to execute a command expects to received two
 parameters, *cli* and *netq*, in the order shown in the example above.
@@ -200,13 +189,13 @@ example, as shown in `netq show macs [vlan <1-4096>]`, then the value of
 the VLAN to search for a MAC address can be found using
 `cli.get('<1-4096>')`, not via `cli.get('vlan')`.
 
-### Return Values</span>
+### Return Values
 
 The function returns either *RC\_SUCCESS* if successful or *RC\_FAIL* if
 not. The code snippet shows how to import these values from the standard
 NetQ libraries.
 
-## Query the NetQ Database</span>
+## Query the NetQ Database
 
 While the code snippet above was sufficient to illustrate the general
 skeleton, if you want to extend the commands, you typically will want to
@@ -266,12 +255,12 @@ via `show ip routes`. The code to do so is shown below.
 Much of this code is similar to the hello world example, but the new
 items are discussed below.
 
-### The Imports</span>
+### The Imports
 
 There are two additional imports, one for *netq\_show* and the other for
 *Route*.
 
-#### netq\_show</span>
+#### netq\_show
 
 *netq\_show* is the decorator that takes care of wrapping the output in
 a format native to NetQ. For example, it generates the JSON for you
@@ -286,7 +275,7 @@ generated from the dictionary key, as are the JSON keys.
 By wrapping the code with the *netq\_show*, all these display
 complexities are covered for you.
 
-#### Route</span>
+#### Route
 
 *Route* is the database object that holds all the pertinent information
 about a route. Its contents are defined in the
@@ -294,7 +283,7 @@ about a route. Its contents are defined in the
 There are other database objects defined in the file, but this example
 only involves the *Route* object.
 
-### The Function Handler</span>
+### The Function Handler
 
 The function that satisfies the command `show myroutes` is
 *cli\_show\_myroutes*, and because of the decorator, takes an additional
@@ -303,7 +292,7 @@ main NetQ command module and the specific modules, such as this one.
 This particular case uses the *context* to update the column sizes to be
 used in the display.
 
-### The Query Functions</span>
+### The Query Functions
 
 The meat of the code is the query. Objects are queried using the model
 of *\<object\>.query.\<query function\>. T*his particular example uses
@@ -324,10 +313,8 @@ The other useful query functions are:
 
   - `query.get()`: which returns just the first element matching the
     parameters specified.
-
   - `query.latest()`: which returns the latest element matching the
     parameters specified, and does not take any time parameters.
-
   - `query.count()`: which returns a count of the matching elements
     instead of the elements themselves.
 
@@ -337,7 +324,7 @@ iteration. `query.get()` and `query.latest()` both return a single
 object of the type the query is on while `query.count()` returns an
 integer.
 
-## Debugging</span>
+## Debugging
 
 Inevitably when writing code, coding errors need to be debugged and the
 fixes tried again. When a module doesn't load or returns an error, it is
@@ -349,7 +336,7 @@ required nodes.
 To reload the modules after making fixes, run the command `netq config
 reload parser`.
 
-## Caveats</span>
+## Caveats
 
 This feature is an early access feature, and must be treated as such.
 There may be obscure failures which will require Cumulus Networks
@@ -359,11 +346,3 @@ modules may get overwritten when you install the new package. One of the
 next releases of NetQ should provide the ability to store these modules
 under `/usr/local/lib`, to keep them from being affected by package
 management.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -17,30 +17,24 @@ peers. NetQ provides the ability to:
 
   - Manage physical inventory: view the performance and status of
     various components of a switch or host server
-
   - Validate configurations: verify the configuration of network peers
     and ports
 
 It helps answer questions such as:
 
   - Are any individual or bonded links down?
-
   - Are any links flapping?
-
   - Is there a link mismatch anywhere in my network?
-
   - Which interface ports are empty?
-
   - Which transceivers are installed?
-
   - What is the peer for a given port?
 
 NetQ uses [LLDP](/display/NETQ141/Link+Layer+Discovery+Protocol) (Link
 Layer Discovery Protocol) to collect port information. NetQ can also
-identify peer ports connected to DACs ( Direct Attached Cables) and AOCs
+identify peer ports connected to DACs (Direct Attached Cables) and AOCs
 (Active Optical Cables) without using LLDP, even if the link is not UP.
 
-## Monitor Physical Layer Inventory</span>
+## Monitor Physical Layer Inventory
 
 Keeping track of the various physical layer components in your switches
 and servers ensures you have a fully functioning network and provides
@@ -52,12 +46,10 @@ information, you can, among other things:
 
   - determine which ports are empty versus which ones have cables
     plugged in and thereby validate expected connectivity
-
   - audit transceiver and cable components used by vendor, giving you
     insights for estimated replacement costs, repair costs, overall
     costs, and so forth to improve your maintenance and purchasing
     processes
-
   - identify changes in your physical layer, and when they occurred
 
 The `netq show interfaces physical` command is used to obtain the
@@ -66,19 +58,15 @@ information from the devices. Its syntax is:
     netq [<hostname>] show interfaces physical [<physical-port>] [empty|plugged] [peer] [vendor <module-vendor> | model <module-model>| module] [around <text-time>] [json]
     netq [<hostname>] show interfaces physical [<physical-port>] [empty|plugged] [vendor <module-vendor> | model <module-model> | module] changes [between <text-time> and <text-endtime>] [json]
 
-{{%notice info%}}
+{{%notice note%}}
 
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
   - d: day(s)
-
   - h: hour(s)
-
   - m: minute(s)
-
   - s: second(s)
-
   - now
 
 For time ranges, the `<text-time>` is the most recent time and the
@@ -87,7 +75,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### View Detailed Cable Information for All Devices</span>
+### View Detailed Cable Information for All Devices
 
 You can view what cables are connected to each interface port for all
 devices, including the module type, vendor, part number and performance
@@ -95,7 +83,7 @@ characteristics. You can also view the cable information for a given
 device by adding a hostname to the `show` command. This example shows
 cable information and status for all interface ports on all devices.
 
-    cumulus@switch:~$ netq show interfaces physical 
+    cumulus@switch:~$ netq show interfaces physical
     Matching cables records:
     Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
     ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
@@ -126,7 +114,7 @@ cable information and status for all interface ports on all devices.
     oob-mgmt-server   swp1                      up         1G         off     RJ45      n/a                  n/a              15d:22h:21m:4s
     oob-mgmt-server   swp2                      up         1G         off     RJ45      n/a                  n/a              15d:22h:21m:4s
 
-### View Detailed Module Information for a Given Device</span>
+### View Detailed Module Information for a Given Device
 
 You can view detailed information about the transceiver modules on each
 interface port, including serial number, transceiver type, connector and
@@ -135,15 +123,15 @@ given device by adding a hostname to the `show` command. This example
 shows the detailed module information for the interface ports on leaf02
 switch.
 
-    cumulus@switch:~$ netq leaf02 show interfaces physical module 
+    cumulus@switch:~$ netq leaf02 show interfaces physical module
     Matching cables records are:
     Hostname          Interface                 Module    Vendor               Part No          Serial No                 Transceiver      Connector        Length Last Changed
      
     ----------------- ------------------------- --------- -------------------- ---------------- ------------------------- ---------------- ---------------- ------ -------------------------
     leaf02            swp1                      RJ45      n/a                  n/a              n/a                       n/a              n/a              n/a    15d:22h:49m:25s
     leaf02            swp2                      SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     15d:22h:36m:25s
-                                                                                                                          er Passive,Twin 
-                                                                                                                          Axial Pair (TW) 
+                                                                                                                          er Passive,Twin
+                                                                                                                          Axial Pair (TW)
     leaf02            swp47                     QSFP+     CISCO                AFBR-7IER05Z-CS1 AVE1823402U               n/a              n/a              5m     15d:21h:49m:25s
     leaf02            swp48                     QSFP28    TE Connectivity      2231368-1        15250052                  100G Base-CR4 or n/a              3m     15d:22h:49m:25s
                                                                                                                           25G Base-CR CA-L
@@ -155,16 +143,16 @@ switch.
                                                                                                                           50um (M5),Multim                  300m  
                                                                                                                           ode,            
                                                                                                                           62.5um (M6),Shor
-                                                                                                                          twave laser w/o 
+                                                                                                                          twave laser w/o
                                                                                                                           OFC (SN),interme
                                                                                                                           diate distance (
                                                                                                                           I)              
     leaf02            swp51                     SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     15d:22h:49m:25s
-                                                                                                                          er Passive,Twin 
-                                                                                                                          Axial Pair (TW) 
+                                                                                                                          er Passive,Twin
+                                                                                                                          Axial Pair (TW)
     leaf02            swp52                     SFP       FINISAR CORP.        FCLF8522P2BTL    PTN1VH2                   1000Base-T       RJ45             100m   15d:22h:49m:25s
 
-### View Ports without Cables Connected for a Given Device</span>
+### View Ports without Cables Connected for a Given Device
 
 Checking for empty ports enables you to compare expected versus actual
 deployment. This can be very helpful during deployment or during
@@ -172,14 +160,14 @@ upgrades. You can also view the cable information for a given device by
 adding a hostname to the `show` command. This example shows the ports
 that are empty on leaf01 switch.
 
-    cumulus@switch:~$ netq leaf01 show interfaces physical empty 
+    cumulus@switch:~$ netq leaf01 show interfaces physical empty
     Matching cables records are:
     Hostname         Interface State Speed      AutoNeg Module    Vendor           Part No          Last Changed
     ---------------- --------- ----- ---------- ------- --------- ---------------- ---------------- --------------
     Leaf01           swp49     down  Unknown    on      empty     n/a                  n/a              1d:0h:16m:34s
     Leaf01           swp52     down  Unknown    on      empty     n/a                  n/a              1d:0h:16m:34s
 
-### View Ports with Cables Connected for a Given Device</span>
+### View Ports with Cables Connected for a Given Device
 
 In a similar manner as checking for empty ports, you can check for ports
 that have cables connected, enabling you to compare expected versus
@@ -189,7 +177,7 @@ keyword, you can view which interface ports had cables connected at a
 previous time. This example shows the ports of *st1-11* switch that have
 attached cables.
 
-    cumulus@switch:~$ netq st1-11 show interfaces physical plugged 
+    cumulus@switch:~$ netq st1-11 show interfaces physical plugged
     Matching cables records:
     Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
     ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
@@ -212,7 +200,7 @@ attached cables.
     st1-l1            swp52                     up         40G        off     QSFP+     Amphenol             603020003        4h:31m:26s
     st1-l1            swp54                     down       40G        off     QSFP+     Amphenol             624410002        4h:31m:27s
 
-### View Components from a Given Vendor</span>
+### View Components from a Given Vendor
 
 By filtering for a specific cable vendor, you can collect information
 such as how many ports use components from that vendor and when they
@@ -229,7 +217,7 @@ using components by an *OEM* vendor.
     st1-l1            swp37                     down       10G        off     SFP       OEM                  SFP-H10GB-CU1M   4h:31m:39s
     st1-l1            swp38                     down       10G        off     SFP       OEM                  SFP-H10GB-CU1M   4h:31m:36s
 
-### View All Devices Using a Given Component</span>
+### View All Devices Using a Given Component
 
 You can view all of the devices with ports using a particular component.
 This could be helpful when you need to change out a particular component
@@ -237,21 +225,21 @@ for possible failure issues, upgrades, or cost reasons. This example
 first determines which models (part numbers) exist on all of the devices
 and then those devices with a part number of QSFP-H40G-CU1M installed.
 
-    cumulus@switch:~$ netq show interfaces physical model 
+    cumulus@switch:~$ netq show interfaces physical model
         2231368-1         :  2231368-1
         624400001         :  624400001
         QSFP-H40G-CU1M    :  QSFP-H40G-CU1M
         QSFP-H40G-CU1MUS  :  QSFP-H40G-CU1MUS
         n/a               :  n/a
      
-    cumulus@switch:~$ netq show interfaces physical model QSFP-H40G-CU1M 
+    cumulus@switch:~$ netq show interfaces physical model QSFP-H40G-CU1M
     Matching cables records:
     Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
     ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
     leaf01            swp50                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   15d:22h:22m:5s
     leaf02            swp52                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   15d:22h:22m:0s
 
-### View Changes to Physical Components</span>
+### View Changes to Physical Components
 
 Because components are often changed, NetQ enables you to determine
 what, if any, changes have been made to the physical components on your
@@ -308,10 +296,10 @@ scenarios for all devices in the network.
     leaf01            swp52                     down       1G         off     SFP       CISCO-AGILENT        QFBR-5766LP      15d:22h:21m:59s
     ...
      
-    cumulus@switch:~$ netq show interfaces physical changes between 0s and 5h 
+    cumulus@switch:~$ netq show interfaces physical changes between 0s and 5h
     No matching cables records found
 
-## Validate Physical Layer Configuration</span>
+## Validate Physical Layer Configuration
 
 Beyond knowing what physical components are deployed, it is valuable to
 know that they are configured and operating correctly. NetQ enables you
@@ -322,13 +310,13 @@ NetQ checks peer connections using LLDP. For DACs and AOCs, NetQ
 determines the peers using their serial numbers in the port EEPROMs,
 even if the link is not UP.
 
-### Confirm Peer Connections</span>
+### Confirm Peer Connections
 
 You can validate peer connections for all devices in your network or for
 a specific device or port. This example shows the peer hosts and their
 status for leaf03 switch.
 
-``` 
+```
 cumulus@switch:~$ netq leaf03 show interfaces physical peer
 Matching cables records:
 Hostname          Interface                 Peer Hostname     Peer Interface            State      Message
@@ -345,7 +333,7 @@ leaf03            swp52                                                         
 
 This example shows the peer data for a specific interface port.
 
-``` 
+```
 cumulus@switch:~$ netq leaf01 show interfaces physical swp47 peer
 Matching cables records:
 Hostname          Interface                 Peer Hostname     Peer Interface            State      Message
@@ -353,17 +341,14 @@ Hostname          Interface                 Peer Hostname     Peer Interface    
 leaf01            swp47                     leaf02            swp47                     up   
 ```
 
-### Discover Misconfigurations</span>
+### Discover Misconfigurations
 
 You can verify that the following configurations are the same on both
 sides of a peer interface:
 
   - Admin state
-
   - Operational state
-
   - Link speed
-
   - Auto-negotiation setting
 
 The `netq check interfaces` command is used to determine if any of the
@@ -397,8 +382,8 @@ If the misconfiguration was due to a mismatch in the administrative
 state, the message would have been *Admin state mismatch (up, down)* or
 *Admin state mismatch (down, up)*.
 
-``` 
-cumulus@switch:~$ netq check interfaces 
+```
+cumulus@switch:~$ netq check interfaces
 Checked Nodes: 18, Failed Nodes: 8
 Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
  
@@ -474,14 +459,14 @@ Auto-negotiation is *off* on the leafs, but *on* on the servers.
     server03          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)         
     server04          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)         
 
-### Identify Flapping Links</span>
+### Identify Flapping Links
 
 You can also determine whether a link is flapping using the `netq check
 interfaces` and `netq show interfaces physical peer` commands. If a link
 is flapping, NetQ indicates this in a message:
 
-``` 
-cumulus@switch:~$ netq check interfaces 
+```
+cumulus@switch:~$ netq check interfaces
 Checked Nodes: 18, Failed Nodes: 8
 Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
  
@@ -492,14 +477,3 @@ Hostname          Interface                 Peer Hostname     Peer Interface    
 leaf02            -                         -                 -                         -          Link flapped 11 times in last 5
                                                                                                    mins                    
 ```
-
-<span style="color: #ff0000;">  
-</span>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

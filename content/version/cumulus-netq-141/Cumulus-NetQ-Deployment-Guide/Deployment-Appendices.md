@@ -11,12 +11,12 @@ version: 1.4.1
 imgData: cumulus-netq-141
 siteSlug: cumulus-netq-141
 ---
-<details>
+
 
 This topic contains additional reference material that may be useful
 when deploying the Cumulus NetQ software.
 
-## <span id="src-10453427_DeploymentAppendices-example" class="confluence-anchor-link"></span>Example NetQ Switch Configuration File</span>
+## Example NetQ Switch Configuration File
 
 The following sample `netq.yml` file is located in /etc/netq/ on the
 NetQ Telemetry Server. Note that `netq.yml` looks different on a switch
@@ -31,22 +31,22 @@ YML files in the `/etc/netq` directory overrides the configuration in
 
 {{%/notice%}}
 
-<summary>Example /etc/netq/netq.yml configuration file </summary>
+<details><summary><span style="color:teal">Example /etc/netq/netq.yml configuration file</span></summary>
 
-    cumulus@netq-appliance:~$ cat /etc/netq/netq.yml 
+    cumulus@netq-appliance:~$ cat /etc/netq/netq.yml
     ## Netq configuration File.
     ## Configuration is also read from files in /etc/netq/config.d/ and have
     ## precedence over config in /etc/netq/netq.yml.
-     
+
     ## ----- Common configurations -----
-     
+
     ## Backend Configuration for all netq agents and apps on this host.
     ##
     #backend:
-    #  server: 
+    #  server:
     #  port: 6379
     ## ----- netq-agent configurations -----
-     
+
     ## Netq Agent Configuration
     ##
     ## log_level: Could be debug, info, warning or error. Default is info.
@@ -69,7 +69,7 @@ YML files in the `/etc/netq` directory overrides the configuration in
     #netqd:
     #  log_level: info
     ## ----- netq-notifier configurations -----
-     
+
     ## Netq Notifier configuration
     ##
     ## log_level: Could be debug, info, warning or error. Default is info.
@@ -215,7 +215,7 @@ YML files in the `/etc/netq` directory overrides the configuration in
     # notifier-filters:
     # - name: leaf drop
     #   rule:
-    #     hostname: "leaf-.*"
+    #     hostname: "leaf-.\*"
     #   output:
     #     - None
     # - name: default
@@ -280,22 +280,19 @@ YML files in the `/etc/netq` directory overrides the configuration in
         output:
           - ALL
 
-## <span id="src-10453427_DeploymentAppendices-PlaybkInstallNetq" class="confluence-anchor-link"></span>Example Ansible Playbook to Install NetQ on All Cumulus Switches</span>
+</details>
+
+## Example Ansible Playbook to Install NetQ on All Cumulus Switches
 
 The following example installs NetQ on all of your Cumulus switches,
 including:
 
   - Setting the Management IP address
-
   - Verifying a sufficient Cumulus Linux release is installed
-
   - Applying the latest NetQ software package from the Cumulus
     repository
-
   - Setting the NetQ Agent to communicate over the management VRF
-
   - Restarting `rsyslog`
-
   - Restarting the NetQ Agent
 
 This performs all of the required installation and configuration to get
@@ -309,6 +306,8 @@ To run the playbook in your environment, you must replace the
 `netq_server` IP address with your Telemetry Server IP address.
 
 {{%/notice%}}
+
+<details><summary><span style="color:teal">Example Ansible Playbook</span></summary>
 
     - hosts: all
       gather_facts: false
@@ -358,13 +357,4 @@ To run the playbook in your environment, you must replace the
           command: netq config restart agent
           tags:
             - netq_setup
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
 </details>

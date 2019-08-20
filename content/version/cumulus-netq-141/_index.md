@@ -27,8 +27,7 @@ interface to make this happen. With NetQ, network operations changes
 from a manual, reactive, box-by-box approach to an automated, informed
 and agile one.
 
-<span style="color: #353744;"> </span> <span style="color: #353744;">
-The system uses a three-pronged approach to validating networks: </span>
+The system uses a three-pronged approach to validating networks:
 
   - **Preventative Validation**: NetQ easily validates potential network
     configuration changes in a virtualized environment or lab using
@@ -58,28 +57,23 @@ from a tedious box-by-box installation process to a consistent and
 predictable one.
 
 This documentation is current as of October 3, 2018 for version 1.4.0.
-Please visit the [Cumulus Networks Web
-site](http://docs.cumulusnetworks.com) for the most up to date
+Please visit the [Cumulus Networks Web site](http://docs.cumulusnetworks.com) for the most up to date
 documentation.
 
-## Cumulus NetQ Components</span>
+## Cumulus NetQ Components
 
 NetQ contains the following applications and key components:
 
   - Telemetry
-    
+
       - NetQ Switch Agents (data collector)
-    
       - NetQ Host Agents (data collector)
-    
       - NetQ Telemetry Server (storage and processing)
 
   - Image and Provisioning Management
-    
+
       - ONIE (Open Network Install Environment)
-    
       - DHCP (Dynamic Host Control Protocol) server
-    
       - ZTP (Zero-Touch Provisioning)
 
   - Various User Interfaces
@@ -89,12 +83,12 @@ NetQ contains the following applications and key components:
 NetQ interfaces with Cumulus Linux and Cumulus Routing on the Host
 products.
 
-## Telemetry Components</span>
+## Telemetry Components
 
 Each of the Telemetry components used to gather, store and process data
 about the network state are described here.
 
-### NetQ Agents</span>
+### NetQ Agents
 
 NetQ Agents are back-end Python software installed on every monitored
 *node* in the network — including Cumulus® Linux® switches, Linux
@@ -102,55 +96,44 @@ bare-metal hosts and virtual machines, and Docker containers. The NetQ
 Agents push network data every 15 seconds and event information
 immediately to the NetQ Telemetry Server.
 
-#### Switch Agents</span>
+#### Switch Agents
 
 The NetQ Agents running on Cumulus Linux switches gather the following
 network data via [Netlink](https://tools.ietf.org/html/rfc3549):
 
   - Interfaces
-
   - IP addresses (v4 and v6)
-
   - IP routes (v4 and v6)
-
   - Links
-
   - Bridge FDB (forwarding database)
-
   - Neighbors (IPv4 and IPv6)
 
 for the following protocols:
 
   - Bridging protocols: LLDP, STP, MLAG
-
   - Routing protocols: BGP, OSPF
+  - Network virtualization: LNV, VXLAN, EVPN
 
-  - Network virtualization: LNV, VXLAN, <span style="color: #ff0000;">
-    EVPN </span>
+The NetQ Agent is supported on Cumulus Linux 3.3.0 and later.
 
-<span style="color: #353744;"> The NetQ Agent is supported on </span>
-<span style="color: #353744;"> Cumulus Linux 3.3.0 and later. </span>
-
-#### Host Agents</span>
+#### Host Agents
 
 The NetQ Agents running on hosts gather the same information as that for
 switches, plus the following network data:
 
   - NAT (network address translation) changes
-
   - Network IP and MAC addresses
-
   - Container IP and MAC addresses
 
-<span style="color: #353744;"> The NetQ Agent obtains container
+The NetQ Agent obtains container
 information by listening to the Docker Swarm or Kubernetes orchestration
-tools. </span>
+tools.
 
-<span style="color: #353744;"> The NetQ Agent is supported on hosts
-running </span> Ubuntu 16.04, Red Hat® Enterprise Linux 7, and CentOS 7
+The NetQ Agent is supported on hosts
+running Ubuntu 16.04, Red Hat® Enterprise Linux 7, and CentOS 7
 Operating Systems.
 
-### NetQ Telemetry Server</span>
+### NetQ Telemetry Server
 
 The NetQ Telemetry Server provides the validation and notification
 capabilities of NetQ. It hosts a database/key-value store, NetQ
@@ -158,51 +141,42 @@ Notifier, Analysis Engine, and Trace Engine.
 
   - The database contains all network state and event information
     received from NetQ Agents
-
   - NetQ Notifier responds to events pushed by the NetQ Agents, sending
     alerts to `rsyslog`, or to a third-party notification application
     (Slack, PagerDuty, Splunk, or ELK Logstash)
-
   - The Analysis Engine validates service network-wide and displays
     details on the services
-
   - The Trace Engine tracks faults across available paths between two
     switches or servers in the network
 
-### NetQ Telemetry User Interfaces</span>
+### NetQ Telemetry User Interfaces
 
-<span style="color: #353744;"> NetQ telemetry functionality is available
-through several user interfaces: </span>
+NetQ telemetry functionality is available
+through several user interfaces:
 
-  - <span style="color: #353744;"> NetQ Command Line Interface (CLI)
-    provides access to network telemetry data </span>
-
-  - <span style="color: #353744;"> NetQ [Service
-    Console](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/NetQ-Service-Console)
+  - NetQ Command Line Interface (CLI)
+    provides access to network telemetry data
+  - NetQ [Service Console](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/NetQ-Service-Console)
     provides a browser-based window for accessing the NetQ CLI from
-    anywhere. </span>
+    anywhere.
+  - NetQL provides direct access to the
+    data base using a custom query language
 
-  - <span style="color: #353744;"> NetQL provides direct access to the
-    data base using a custom query language </span>
-
-<span style="color: #353744;"> All of these interfaces query the
+All of these interfaces query the
 Telemetry Server database for network state and event information.
-</span>
 
-## Data Center Network Deployments</span>
+## Data Center Network Deployments
 
 There are three key deployment types that are commonly deployed for
 network management in the data center:
 
   - Out-of-Band Management
-
   - Inband Management
-
   - High Availability
 
 A summary of each type is provided here.
 
-### Out-of-Band Management Deployment</span>
+### Out-of-Band Management Deployment
 
 Cumulus Networks recommends deploying NetQ on an out-of-band (OOB)
 management network to separate network management traffic from standard
@@ -212,25 +186,19 @@ management network overlaid on top, where NetQ is deployed.
 
 The physical *network* hardware includes:
 
-  - <span style="color: #ff0000;"> **Spine** switches: where data is
+  - **Spine** switches: where data is
     aggregated and distributed ; also known as an aggregation switch,
-    end-of-row (EOR) switch or distribution switch </span>
-
+    end-of-row (EOR) switch or distribution switch
   - **Leaf** switches: where servers connect to the network; also known
     as a Top of Rack (TOR) or access switch
-
-  - <span style="color: #ff0000;"> **Server** hosts: where applications
-    are hosted and data served to the user through the network </span>
-
-  - <span style="color: #ff0000;"> **Exit** switch: where connections to
+  - **Server** hosts: where applications
+    are hosted and data served to the user through the network
+  - **Exit** switch: where connections to
     outside the data center occur ; also known as
-    <span style="color: #000000;"> Border Leaf or Service Leaf </span>
-    </span>
-
+    Border Leaf or Service Leaf
   - **Edge** server (optional): where the firewall is the demarcation
     point, peering may occur through the exit switch layer to Internet
     (PE) devices
-
   - **Internet** device (PE): where provider edge (PE) equipment
     communicates at layer 3 with the network fabric
 
@@ -245,15 +213,14 @@ connected to Exit 01.
 
 {{% imgOld 1 %}}
 
-  
-<span class="caption">Data Center Network Example</span>
+
+Data Center Network Example
 
 The physical *management* hardware includes:
 
   - OOB Mgmt Switch: aggregation switch that connects to all of the
     network devices through communications with the NetQ Agent on each
     node
-
   - NetQ Telemetry Server: hosts the telemetry software, database and
     user interfaces (refer to description above).
 
@@ -262,7 +229,7 @@ through a virtual network overlay, shown with purple lines.
 
 {{% imgOld 2 %}}
 
-### Inband Management Deployment</span>
+### Inband Management Deployment
 
 While not the preferred deployment method, you might choose to implement
 NetQ within your data network. In this scenario, there is no overlay and
@@ -275,7 +242,7 @@ have access to the Telemetry Server for troubleshooting.
 
 {{% imgOld 3 %}}
 
-### High Availability Deployment</span>
+### High Availability Deployment
 
 NetQ supports a high availability deployment for users who prefer a
 solution in which the collected data and processing provided by the
@@ -290,32 +257,32 @@ NetQ.
 
 {{% imgOld 4 %}}
 
-## Telemetry Operation</span>
+## Telemetry Operation
 
 In any of the above deployments, NetQ offers preventative management and
 proactive monitoring capabilities in the form of integration with
 automation scripts and notification applications. It also provides
 multiple interfaces for diagnosing the network performance and
-configuration. <span style="color: #36424a;"> </span>
+configuration.
 
 {{% imgOld 5 %}}
 
-### The NetQ Agent</span>
+### The NetQ Agent
 
-<span style="color: #36424a;"> From a software perspective, a network
+From a software perspective, a network
 switch has software associated with the hardware platform, the operating
 system, and communications. For data centers, the software on a Linux
-network switch would be similar to the diagram shown here. </span>
+network switch would be similar to the diagram shown here.
 
 {{% imgOld 6 %}}
 
-<span style="color: #36424a;"> The NetQ Agent interacts with the various
+The NetQ Agent interacts with the various
 components and software on switches and hosts and provides the gathered
 information to the NetQ Telemetry Server (TS). You can view the data
 using the NetQ CLI or Service Console. NetQL (an early access feature)
-enables you to query the data in a more customized fashion. </span>
+enables you to query the data in a more customized fashion.
 
-<span style="color: #36424a;"> The NetQ Agent p </span> olls the user
+The NetQ Agent polls the user
 space for information about the performance of the various routing
 protocols and services that are running on the switch. Cumulus Networks
 supports BGP and OSPF Free Range Routing (FRR) protocols as well as
@@ -363,20 +330,16 @@ Chassis are also supported with four or eight line cards (a switch on a
 circuit board), where each line card has its own NetQ Agent to provide
 the same level of information as if it were a standalone switch.
 
-### The Telemetry Server</span>
+### The Telemetry Server
 
 Once the collected data is sent to and stored in the NetQ Telemetry
 Server database, you can:
 
   - Validate configurations, identifying misconfigurations in your
     current network, in the past, or prior to deployment,
-
   - Monitor communication paths throughout the network,
-
   - Notify users of issues and management information,
-
   - Anticipate impact of connectivity changes,
-
   - and so forth.
 
 **Validate Configurations**
@@ -397,18 +360,18 @@ device, looking for potential causes. Check and Show commands are
 available for numerous components and services as shown in the following
 table.
 
-| Component or Service | Check                                                                                                                                                                                                                      | Show                                                                                                                                                                                                                       | Component or Service | Check                                                                                                                                                                                                                      | Show                                                                                                                                                                                                                       |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Agents               | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | LLDP                 |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| BGP                  | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | LNV                  | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| CLAG (MLAG)          | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | MACs                 |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| Docker               |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | MTU                  | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| EVPN                 | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | NTP                  | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| Interfaces           | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | OSPF                 | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| Inventory            |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | Sensors              | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| IPv4/v6              |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | Services             |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| Kubernetes           |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | VLAN                 | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| License              | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | VXLAN                | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
+| Component or Service | Check | Show | Component or Service | Check | Show |
+| -------------------- | :-----: | :----: | ---------------- | :---: | :---: |
+| Agents               | X | X | LLDP |   | X |
+| BGP                  | X | X | LNV  | X | X |
+| CLAG (MLAG)          | X | X | MACs |   | X |
+| Docker               |   | X | MTU  | X | X |
+| EVPN                 | X | X | NTP  | X | X |
+| Interfaces           | X | X | OSPF | X | X |
+| Inventory            |   | X | Sensors | X | X |
+| IPv4/v6              |   | X | Services |   | X |
+| Kubernetes           |   | X | VLAN | X | X |
+| License              | X | X | VXLAN | X | X |
 
 **Monitor Communication Paths**
 
@@ -532,7 +495,7 @@ switch *leaf04* interface *swp2* has gone down.
 
 {{% imgOld 8 %}}
 
-### Timestamps in NetQ</span>
+### Timestamps in NetQ
 
 Every event or entry in the NetQ database is stored with a timestamp of
 when the event was captured by the NetQ Agent on the switch or server.
@@ -561,16 +524,13 @@ used to determine when the event actually happened in conjunction with
 the timestamp.
 
 When retrieving the timestamp, JSON output always returns the time in
-microseconds that have passed since the epoch time (
-<span style="color: #6a6a6a;"> January 1, 1970 </span>
-<span style="color: #545454;"> at 00:00:00 GMT) </span> . Non-JSON
+microseconds that have passed since the epoch time (January 1, 1970 at 00:00:00 GMT). Non-JSON
 output displays how far in the past the event occurred. The closer the
 event is to the present, the more granular is the time shown. For
 example, if an event happened less than an hour ago, NetQ displays the
 information with a timestamp with microseconds of granularity. However,
 the farther you are from the event, this granularity is coarser. This
 example shows timestamps with different time granularity.
-<span style="color: #36424a;"> </span>
 
     cumulus@switch:~$ netq show agents
     Matching agents records:
@@ -594,7 +554,7 @@ time is once again relative to the start time of the Agent.
 
 {{%/notice%}}
 
-### Exporting NetQ Data</span>
+### Exporting NetQ Data
 
 Data from the NetQ Telemetry Server can be exported in a number of ways.
 First, you can use the `json` option to output check and show commands
@@ -603,65 +563,59 @@ to JSON format for parsing in other applications.
 For example, you can check the state of BGP on your network with `netq
 check bgp`:
 
-    cumulus@leaf01:~$ netq check bgp 
+    cumulus@leaf01:~$ netq check bgp
     Total Nodes: 25, Failed Nodes: 2, Total Sessions: 228 , Failed Sessions: 2,
-    Node       Peer Name  Peer Hostname Reason       Time 
-    ---------- ---------- ------------- ------------ ------- 
-    exit01     swp6.2     spine01       Rotten Agent 15h ago 
+    Node       Peer Name  Peer Hostname Reason       Time
+    ---------- ---------- ------------- ------------ -------
+    exit01     swp6.2     spine01       Rotten Agent 15h ago
     spine01    swp3.2     exit01        Idle         15h ago
 
 When you show the output in JSON format, this same command looks like
-this: <span style="color: #353744;"> </span>
+this:
 
-    cumulus@leaf01:~$ netq check bgp json 
+    cumulus@leaf01:~$ netq check bgp json
     {
         "failedNodes": [
             {
-                "node": "exit-1", 
-                "reason": "Idle", 
-                "peerId": "firewall-1", 
-                "neighbor": "swp6.2", 
+                "node": "exit-1",
+                "reason": "Idle",
+                "peerId": "firewall-1",
+                "neighbor": "swp6.2",
                 "time": "15h ago"
-            }, 
+            },
             {
-                "node": "firewall-1", 
-                "reason": "Idle", 
-                "peerId": "exit-1", 
-                "neighbor": "swp3.2", 
+                "node": "firewall-1",
+                "reason": "Idle",
+                "peerId": "exit-1",
+                "neighbor": "swp3.2",
                 "time": "15h ago"
             }
-        ], 
+        ],
         "summary": {
-            "checkedNodeCount": 25, 
-            "failedSessionCount": 2, 
-            "failedNodeCount": 2, 
+            "checkedNodeCount": 25,
+            "failedSessionCount": 2,
+            "failedNodeCount": 2,
             "totalSessionCount": 228
         }
     }
 
-### Telemetry File Locations</span>
+### Telemetry File Locations
 
-<span style="color: #353744;"> The primary configuration file for all
-Cumulus NetQ tools, </span> `netq.yml` <span style="color: #353744;"> ,
-resides in </span> `/etc/netq` <span style="color: #353744;"> by
-default. </span>
+The primary configuration file for all Cumulus NetQ tools, `netq.yml`,
+resides in `/etc/netq` by default.
 
-<span style="color: #353744;"> Log files are stored in `/var/logs/cts`
-by default. </span>
+Log files are stored in `/var/logs/cts` by default.
 
-<span style="color: #353744;"> Refer to [Investigate NetQ
-Issues](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Investigate-NetQ-Issues)
-for a complete listing of configuration files and logs for use in issue
-resolution. </span>
+Refer to [Investigate NetQ Issues](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Investigate-NetQ-Issues) for a complete listing of configuration files and logs for use in issue resolution.
 
-## Image and Provisioning Management Components</span>
+## Image and Provisioning Management Components
 
 The NetQ Telemetry Server hosts the Image and Provisioning Management
 (IPM) components, including a DHCP server, ONIE installation manager,
 and ZTP provisioning manager. Each of the IPM components used to manage
 images and configuration are described here.
 
-### DHCP Server </span>
+### DHCP Server
 
 The DHCP server uses the Dynamic Host Configuration Protocol to
 dynamically assign IP addresses to network devices and to provide a
@@ -670,11 +624,11 @@ to use the embedded server for all of your DHCP services or integrate
 with your own. For more detail about how DHCP works, refer to the
 [RFC 2131](https://tools.ietf.org/html/rfc2131) standard.
 
-### Network Installation Manager</span>
+### Network Installation Manager
 
-<span style="color: #ff0000;"> The Network Install manager uses ONIE
-(Open Network Install Environment) <span style="color: #000000;"> to
-store and distribute </span> network operating system (NOS) images. ONIE
+The Network Install manager uses ONIE
+(Open Network Install Environment) to
+store and distribute network operating system (NOS) images. ONIE
 combines a boot loader and a small operating system for network switches
 that provides an environment for automated provisioning. ONIE utilizes
 the CPU complex of the switch, including the CPU SoC, DRAM, boot flash,
@@ -682,11 +636,11 @@ and mass storage, and creates an environment for installation. On
 initial boot of a server, ONIE configures the network management
 interface and locates and executes the Cumulus Networks OS installation
 program. For more detail about the ONIE standard, refer to
-[ONIE](https://opencomputeproject.github.io/onie/index.html). </span>
+[ONIE](https://opencomputeproject.github.io/onie/index.html).
 
-### Provisioning Manager </span>
+### Provisioning Manager
 
-<span style="color: #000000;"> The Provisioning manager uses </span> ZTP
+The Provisioning manager uses ZTP
 (Zero Touch Provisioning) to store and distribute provisioning scripts.
 ZTP provides a provisioning framework that allows for a one-time,
 user-provided script to be executed. On the first boot of a Cumulus
@@ -698,18 +652,17 @@ designated location. For more detail about how ZTP works and tips for
 writing your own scripts, refer to
 [ZTP](/display/NETQ141/Zero+Touch+Provisioning+-+ZTP).
 
-### Command Line Interface</span>
+### Command Line Interface
 
 IPM provides a command line interface, TIPCTL, for NOS image management
 and ZTP script management. While initial boot and configuration is
 handled automatically, IPM enables the network administrators and
-operators to manage <span style="color: #000000;"> network </span>
-<span style="color: #000000;"> switch </span> software over the entire
-lifecycle of <span style="color: #000000;"> these devices </span> .
+operators to manage network switch software over the entire
+lifecycle of these devices.
 
-## Image and Provisioning Management Operation</span>
+## Image and Provisioning Management Operation
 
-<span style="color: #ff0000;"> IPM installs and provisions bare metal
+IPM installs and provisions bare metal
 servers to quickly transform them into Cumulus Linux switches. On the
 initial boot of a white box switch, IPM automatically loads the switch
 with the Cumulus Linux OS and provisions it with the network information
@@ -719,33 +672,25 @@ the switch hardware during an initial bring up. The *DHCP* *server*
 listens to port 67 for DHCP client messages and sends messages to client
 port 68. The *tips-traffic* *service* uses port 9300 on the Telemetry
 Server for requests. Objects shown in purple are components of IPM.
-</span>
 
 {{% imgOld 9 %}}
-
-  
 
 After the switch is configured, subsequent configuration and upgrades
 are performed using the IPM CLI.
 
-### IPM File Locations</span>
+### IPM File Locations
 
-<span style="color: #353744;"> Log files are stored in `/var/logs/tips`
-by default. </span>
+Log files are stored in `/var/logs/tips` by default.
 
-<span style="color: #353744;"> Network Operating System (NOS) images are
-stored in </span> <span style="color: #222222;">
-`/var/tips/www/onie/images/` by default. </span>
+Network Operating System (NOS) images are stored in `/var/tips/www/onie/images/` by default.
 
-<span style="color: #222222;"> Provisioning scripts are stored in
-`/var/tips/www/ztp/scripts/` by default. </span>
+Provisioning scripts are stored in `/var/tips/www/ztp/scripts/` by default.
 
-## NetQ Virtual</span>
+## NetQ Virtual
 
 You can try out NetQ in two different virtual environments. These
 environments enable you to try out NetQ on your own, or to test/validate
 updates to your network before deploying them into production. They are:
-<span style="color: #36424a;"> </span>
 
   - [Cumulus in the
     Cloud](https://cumulusnetworks.com/products/cumulus-in-the-cloud/),
@@ -769,43 +714,20 @@ they can push it to their production network.
 
 {{% imgOld 10 %}}
 
-## Available Documentation</span>
+## Available Documentation
 
-<span style="color: #36424a;"> <span style="color: #353744;"> A number
+A number
 of user documents are available. These documents provide the information
 you need to proactively monitor your Linux-based network fabric using
 Cumulus NetQ. They assume that you have already installed Cumulus Linux
-and NetQ. </span> <span style="color: #353744;"> You may start anywhere
+and NetQ. You may start anywhere
 in the documentation or read it from start to finish depending on your
 role and familiarity with the NetQ software and Linux networking.
-</span> </span> <span style="color: #353744;"> </span>
 
-<span style="color: #353744;"> The following NetQ documents are
-available: </span>
+The following NetQ documents are available:
 
-  - [Cumulus NetQ Deployment
-    Guide](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/)
-    <span style="color: #353744;"> </span>
-
-  - <span style="color: #353744;"> [Cumulus NetQ Telemetry User
-    Guide](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/)
-    </span>
-
-  - <span style="color: #353744;"> [Cumulus NetQ Image and Provisioning
-    Management User
-    Guide](/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/)
-    </span>
-
-  - [Cumulus NetQ Release
-    Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274)
-
-  - [Cumulus NetQ Data
-    Sheet](https://cumulusnetworks.com/learn/web-scale-networking-resources/product-collateral/netq-data-sheet/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Cumulus NetQ Deployment Guide](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/)
+  - [Cumulus NetQ Telemetry User Guide](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/)
+  - [Cumulus NetQ Image and Provisioning Management User Guide](/version/cumulus-netq-141/Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/)
+  - [Cumulus NetQ Release Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274)
+  - [Cumulus NetQ Data Sheet](https://cumulusnetworks.com/learn/web-scale-networking-resources/product-collateral/netq-data-sheet/)

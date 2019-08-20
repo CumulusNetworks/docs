@@ -446,11 +446,3 @@ To add a card deck:
 
 1.  Click {{% imgOld 43 %}} in the workbench task bar.
 2.  Select the deck you want to add to your workbench.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

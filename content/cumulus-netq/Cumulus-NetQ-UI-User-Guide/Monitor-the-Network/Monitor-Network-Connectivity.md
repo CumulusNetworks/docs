@@ -102,7 +102,7 @@ The medium Trace Request card displays:
 
 The large Trace Request card displays:
 
-{{% imgOld 4 %}}
+{{< figure src="/images/netq/trace-request-large.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -273,7 +273,7 @@ To create the trace request:
 4.  In the **VRF** field, enter the identifier for the VRF interface you
     want to use.
 
-    {{% imgOld 12 %}}
+    {{< figure src="/images/netq/trace-request-large-l3vrf-ex.png" width="500" >}}
 
     In this example, we are starting our trace at *leaf01* and ending it
     at *10.1.3.103* using VRF *vrf1.*
@@ -293,8 +293,6 @@ To create a layer 2 trace request:
 
 1.  Open the large Trace Request card.
 
-    {{% imgOld 13 %}}
-
 2.  In the **Source** field, enter the hostname or IP address of the
     device where you want to start the trace.
 3.  In the **Destination** field, enter the MAC address for where you
@@ -302,7 +300,7 @@ To create a layer 2 trace request:
 4.  In the **VLAN ID** field, enter the identifier for the VLAN you want
     to use.
 
-    {{% imgOld 14 %}}
+    {{< figure src="/images/netq/trace-request-large-l2vlan-ex.png" width="500" >}}
 
     In this example, we are starting our trace at *leaf01* and ending it
     at *00:03:00:33:33:01* using VLAN *13.*
@@ -331,13 +329,12 @@ To schedule a trace:
 
     {{< figure src="/images/netq/trace-request-large-l2vlan-ex.png" width="500" >}}
 
-5.  Click **Timeframe** under **Schedule** to specify how often you want
+5.  Select a timeframe under **Schedule** to specify how often you want
     to run the trace.
 
     {{% imgOld 16 %}}
 
-6.  Click **Date/Time** to specify the day you want the trace to run for
-    the first time.
+6.  Accept the default starting time and skip to step 10, or click **Date/Time** to specify the day you want the trace to run for the first time.
 
     {{% imgOld 17 %}}
 

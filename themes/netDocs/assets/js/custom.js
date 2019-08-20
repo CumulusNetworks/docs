@@ -22,9 +22,9 @@ $(document).ready(function() {
 				elem.append(span);
 
 				span.addEventListener('click', function () {
-	        clipboard.writeText(span.getAttribute('data-clipboard-txt')).then(function () {
+	        clipboard.writeText(span.getAttribute('data-clipboard-text')).then(function () {
 	            span.blur();
-	            span.setAttribute('aria-label', 'Copied to clipboard!');
+	            span.setAttribute('aria-label', 'Link copied to clipboard!');
 	            span.classList.add('tooltip');
 	            setTimeout(function () {
 	                span.removeAttribute('aria-label');

@@ -3,7 +3,7 @@ $(document).ready(function() {
 	function addCopyLink(clipboard) {
 
 		let markdown = document.querySelector(".markdown");
-		let heading = markdown.querySelectorAll("h2");
+		let heading = markdown.querySelectorAll("h2, h3, h4");
 
 		heading.forEach(function (elem) {
 

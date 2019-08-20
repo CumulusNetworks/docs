@@ -61,21 +61,29 @@ $(document).ready(function() {
 
   // find all the svg elements under the div with class screen-layout and add the Click Event Listener to them
   // PS: do not add the EventListener to the a tag, since it causes the div to get the class of 'active'
-  document.querySelectorAll('.screen-layout svg').forEach(node => {
+  document.querySelectorAll('.screen-layout:not([style*="display:none"]):not([style*="display: none"]) svg').forEach(node => {
+  // document.querySelectorAll('.screen-layout svg').forEach(node => {
   	// so when the svg element is clicked
   	// 1. get all the a tags under screen-layout
   	// 2. if the a tag contains the 'active' class, remove it
   	// 3. set the class of the event target (svg element) parentnode (a tag) to 'active' if it does not already have it 
   	//														(i.e. when selecting the same layout)
   	node.addEventListener('click', function(e) {
-  		var anchors = document.querySelector('.screen-layout').getElementsByTagName('a');
-  		for (i = 0; i < anchors.length; i++) {
+  		// var anchors = document.querySelector('.screen-layout').getElementsByTagName('a');
+  		// for (i = 0; i < anchors.length; i++) {
   			// console.log('anchor.classList=' + anchors[i].classList);
-  			if (anchors[i].classList.contains('active')){
-  				anchors[i].classList.remove('active');
-  				// console.log('removed active: ' + anchors[i].classList);
-  			}
-  		};
+  			// if (anchors[i].classList.contains('active')){
+  			// 	anchors[i].classList.remove('active');
+  			// 	console.log('removed active: ' + anchors[i].classList);
+  			// }
+  		// };
+      document.querySelectorAll('.screen-layout a').forEach(anchor => {;
+        // console.log('anchor.classList=' + anchor.classList);
+        if (anchor.classList.contains('active')){
+          anchor.classList.remove('active')
+          // console.log('removed active ' + anchor.classList);
+        }
+      });
   		if (!e.target.parentNode.classList.contains('active')){
   			e.target.parentNode.classList.add('active');
   			// console.log('add active: ' + e.target.parentNode.classList);  			
@@ -112,6 +120,5 @@ $(document).ready(function() {
 	    	window.location.href = "/search/?q="+$(".m-doc-search-input").val().trim();
 	    }
 	});
-
 
 });

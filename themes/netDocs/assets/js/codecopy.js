@@ -14,7 +14,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 $(div).removeAttr('aria-label', 'Copied to clipboard!').removeClass('tooltip');
             }, 2000);
         }, function (error) {
+            div.blur();
             div.innerText = 'Error';
+            setTimeout(function () {
+              div.innerText = '';
+              div.innerHTML = "<img src=\"https://icons.cumulusnetworks.com/01-Interface-Essential/29-Copy-Paste/copy-paste-1.svg\" width=\"20\" height=\"20\">";
+            }, 2000);
         });
     });
 

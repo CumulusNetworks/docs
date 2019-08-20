@@ -1186,18 +1186,13 @@ div.notices.tip>*:first-child:after {
   padding-left: 3.5rem;
 }
 
-h2 {
+h2, h3, h4 {
   span {
     position: relative;
     &.clipboard {
       opacity: 0;
       padding-left: 9px;
       transition: opacity 200ms ease-in-out;
-
-      &:hover {
-        opacity: 1;
-        cursor: pointer;
-      }
     }
     &.tooltip:before {
       content: attr(aria-label);
@@ -1211,6 +1206,7 @@ h2 {
       font-family: monospace,monospace;
       white-space: nowrap;
       left: 30px;
+      line-height: 2rem;
     }
     &.tooltip:after {
       content: '';
@@ -1225,6 +1221,14 @@ h2 {
       border-width: 7px;
       margin-top: 50%;
       line-height: 0;
+    }
+  }
+  &:hover {
+    span {
+      &.clipboard {
+        opacity: 1;
+        cursor: pointer; 
+      }  
     }
   }
 }

@@ -100,6 +100,13 @@ div.notices.note {
     background-color: #E7F2FA;
     border: 3px solid #6AB0DE;
     border-radius:5px;
+
+    ul,
+    ol {
+      color: $cn-limited-spruce;
+      font-size: .882rem;
+      padding: 0;
+    }
 }
 
 div.notices.note > *:first-child:before{

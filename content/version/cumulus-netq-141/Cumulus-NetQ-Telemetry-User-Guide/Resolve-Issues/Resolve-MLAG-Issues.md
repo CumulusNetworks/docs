@@ -18,26 +18,17 @@ message that indicates the current MLAG state.
 NetQ can monitor many aspects of an MLAG configuration, including:
 
   - Verifying the current state of all nodes
-
   - Verifying the dual connectivity state
-
   - Checking that the peer link is part of the bridge
-
   - Verifying whether MLAG bonds are not bridge members
-
   - Verifying whether the VXLAN interface is not a bridge member
-
   - Checking for remote-side service failures caused by `systemctl`
-
   - Checking for VLAN-VNI mapping mismatches
-
   - Checking for layer 3 MTU mismatches on peerlink subinterfaces
-
   - Checking for VXLAN active-active address inconsistencies
-
   - Verifying that STP priorities are the same across both peers
 
-## Scenario: All Nodes Are Up</span>
+## Scenario: All Nodes Are Up
 
 When the MLAG configuration is running smoothly, NetQ Notifier sends out
 a message that all nodes are up:
@@ -78,7 +69,7 @@ the state:
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
@@ -86,16 +77,16 @@ the state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            vx-38            -       -                    - 
-    vx-33            vx-33            -       -                    - 
-    hostbond4        hostbond4        1       -                    - 
-    hostbond5        hostbond5        2       -                    - 
-    vx-37            vx-37            -       -                    - 
-    vx-36            vx-36            -       -                    - 
-    vx-35            vx-35            -       -                    - 
+    vx-38            vx-38            -       -                    -
+    vx-33            vx-33            -       -                    -
+    hostbond4        hostbond4        1       -                    -
+    hostbond5        hostbond5        2       -                    -
+    vx-37            vx-37            -       -                    -
+    vx-36            vx-36            -       -                    -
+    vx-35            vx-35            -       -                    -
     vx-34            vx-34            -       -                    -
 
-## Scenario: Dual-connected Bond Is Down</span>
+## Scenario: Dual-connected Bond Is Down
 
 When dual connectivity is lost in an MLAG configuration, you receive
 messages from NetQ Notifier similar to the following:
@@ -130,8 +121,8 @@ You can retrieve the output in JSON format for export to another tool:
     { "node": "mlx-2700-03", "reason": "Link Down: hostbond5" }
     ,
     { "node": "torc-11", "reason": "Singly Attached Bonds: hostbond5" }
-    ], 
-    "failedNodes": [], 
+    ],
+    "failedNodes": [],
     "summary":
     { "checkedNodeCount": 6, "failedNodeCount": 0, "warningNodeCount": 2 }
     }
@@ -159,7 +150,7 @@ the state:
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
@@ -167,16 +158,16 @@ the state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            vx-38            -       -                    - 
-    vx-33            vx-33            -       -                    - 
-    hostbond4        hostbond4        1       -                    - 
-    hostbond5        -                2       -                    - 
-    vx-37            vx-37            -       -                    - 
-    vx-36            vx-36            -       -                    - 
-    vx-35            vx-35            -       -                    - 
-    vx-34            vx-34            -       -                    - 
+    vx-38            vx-38            -       -                    -
+    vx-33            vx-33            -       -                    -
+    hostbond4        hostbond4        1       -                    -
+    hostbond5        -                2       -                    -
+    vx-37            vx-37            -       -                    -
+    vx-36            vx-36            -       -                    -
+    vx-35            vx-35            -       -                    -
+    vx-34            vx-34            -       -                    -
 
-## Scenario: VXLAN Active-active Device or Interface Is Down</span>
+## Scenario: VXLAN Active-active Device or Interface Is Down
 
 When a VXLAN active-active device or interface in an MLAG configuration
 is down, log messages also include VXLAN and LNV checks.
@@ -198,11 +189,11 @@ To begin your investigation, show the status of the `clagd` service:
 Checking the MLAG status provides the reason for the failure:
 
     cumulus@switch:~$ netq check clag
-    Checked Nodes: 6, Warning Nodes: 2, Failed Nodes: 2 
+    Checked Nodes: 6, Warning Nodes: 2, Failed Nodes: 2
     Node             Reason
     ---------------- --------------------------------------------------------------------------
-    mlx-2700-03      Protodown Bonds: vx-37:vxlan-single 
-    torc-11          Protodown Bonds: vx-37:vxlan-single 
+    mlx-2700-03      Protodown Bonds: vx-37:vxlan-single
+    torc-11          Protodown Bonds: vx-37:vxlan-single
 
 You can retrieve the output in JSON format for export to another tool:
 
@@ -212,7 +203,7 @@ You can retrieve the output in JSON format for export to another tool:
     { "node": "mlx-2700-03", "reason": "Protodown Bonds: vx-37:vxlan-single" }
     ,
     { "node": "torc-11", "reason": "Protodown Bonds: vx-37:vxlan-single" }
-    ], 
+    ],
     "summary":
     { "checkedNodeCount": 6, "failedNodeCount": 2, "warningNodeCount": 2 }
     }
@@ -239,7 +230,7 @@ the state:
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
@@ -247,16 +238,16 @@ the state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            vx-38            -       -                    - 
-    vx-33            vx-33            -       -                    - 
-    hostbond4        hostbond4        1       -                    - 
-    hostbond5        hostbond5        2       -                    - 
-    vx-37            -                -       -                    vxlan-single 
-    vx-36            vx-36            -       -                    - 
-    vx-35            vx-35            -       -                    - 
-    vx-34            vx-34            -       -                    - 
+    vx-38            vx-38            -       -                    -
+    vx-33            vx-33            -       -                    -
+    hostbond4        hostbond4        1       -                    -
+    hostbond5        hostbond5        2       -                    -
+    vx-37            -                -       -                    vxlan-single
+    vx-36            vx-36            -       -                    -
+    vx-35            vx-35            -       -                    -
+    vx-34            vx-34            -       -                    -
 
-## Scenario: Remote-side clagd Stopped by systemctl Command</span>
+## Scenario: Remote-side clagd Stopped by systemctl Command
 
 In the event the `clagd` service is stopped via the `systemctl` command,
 NetQ Notifier sends messages similar to the following:
@@ -286,11 +277,11 @@ Showing the MLAG state reveals which nodes are down:
 Checking the MLAG status provides the reason for the failure:
 
     cumulus@switch:~$ netq check clag
-    Checked Nodes: 6, Warning Nodes: 1, Failed Nodes: 2 
+    Checked Nodes: 6, Warning Nodes: 1, Failed Nodes: 2
     Node             Reason
     ---------------- --------------------------------------------------------------------------
-    mlx-2700-03      Peer Connectivity failed 
-    torc-11          Peer Connectivity failed 
+    mlx-2700-03      Peer Connectivity failed
+    torc-11          Peer Connectivity failed
 
 You can retrieve the output in JSON format for export to another tool:
 
@@ -300,7 +291,7 @@ You can retrieve the output in JSON format for export to another tool:
     { "node": "mlx-2700-03", "reason": "Peer Connectivity failed" }
     ,
     { "node": "torc-11", "reason": "Peer Connectivity failed" }
-    ], 
+    ],
     "summary":
     { "checkedNodeCount": 6, "failedNodeCount": 2, "warningNodeCount": 1 }
     }
@@ -312,7 +303,7 @@ the state:
      
     The peer is not alive
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 primary
-    Peer Interface and IP: peerlink-3.4094 169.254.0.9 
+    Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (inactive)
     System MAC: 44:38:39:ff:ff:01
@@ -320,10 +311,10 @@ the state:
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
-    vx-38            -                -       -                    - 
-    vx-33            -                -       -                    - 
-    hostbond4        -                1       -                    - 
-    hostbond5        -                2       -                    - 
+    vx-38            -                -       -                    -
+    vx-33            -                -       -                    -
+    hostbond4        -                1       -                    -
+    hostbond5        -                2       -                    -
     vx-37            -                -       -                    -
     vx-36            -                -       -                    -
     vx-35            -                -       -                    -

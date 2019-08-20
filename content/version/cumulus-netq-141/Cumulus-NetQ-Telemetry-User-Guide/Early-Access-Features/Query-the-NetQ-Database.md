@@ -18,28 +18,26 @@ without having to write your own custom code. NetQL directly queries the
 NetQ database for data that isn't exposed via the check, show and trace
 commands.
 
-{{%notice info%}}
+{{%notice note%}}
 
-NetQL is an [early access
-feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
+NetQL is an [early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
 in Cumulus NetQ 1.3 and later.
 
 {{%/notice%}}
 
-## Commands</span>
+## Commands
 
   - netq query
-
   - netq config add|del experimental
 
-## Enable NetQL</span>
+## Enable NetQL
 
 Since NetQL is an early access feature, you must enable the experimental
 option of the NetQ CLI:
 
     cumulus@switch:~$ netq config add experimental
 
-## Usage</span>
+## Usage
 
 NetQL is a generic structured query language modeled on SQL. The general
 command syntax is:
@@ -76,7 +74,7 @@ The following is a real-world example:
 The keywords are not case sensitive, so you can use *SELECT*, *Select*
 or *select*. The all caps usage is for easier parsing of the queries.
 
-## Tables and Fields</span>
+## Tables and Fields
 
 One example field is *hostname*, which is present in every table.
 Example tables include Route, Link and BgpSession.
@@ -141,7 +139,7 @@ An example query on a single table is:
 
 NetQL displays the values of the specified fields in tabular output.
 
-## Conditions</span>
+## Conditions
 
 Conditions select what data is presented. An example of a condition is
 *hostname="leaf01"*. Use double quotes ("") for the specific values you
@@ -176,7 +174,7 @@ An example conditional query is:
     leaf02      swp3.2       spine01          655563  655435      Established
     leaf02      swp3.3       spine01          655563  655435      Established
 
-## Group Results</span>
+## Group Results
 
 When you want to see not only the value of a field, but also the
 aggregated output such as a count or sum, you must specify on which
@@ -196,9 +194,9 @@ for each host, the query is:
     leaf03                     13
     leaf04                     13
     leaf05                     13
-    leaf06                     13 
+    leaf06                     13
 
-## Order Results</span>
+## Order Results
 
 You can specify which columns you want the output sorted on using the
 "ORDER BY" clause of the query. The general format of the ORDER BY
@@ -282,24 +280,20 @@ list of each ASN:
     --------------------------------------------------------------------------------------------------------
     set([655435L, 655559L, 655560L, 655561L, 655562L, 655563L, 655564L, 655536L, 655537L, 655538L, 655539L])
 
-## Regular Expressions</span>
+## Regular Expressions
 
 You can use any regular expression that Redis supports. They include,
 but are not limited to, the following examples:
 
   - h?llo matches hello, hallo and hxllo
-
   - h\*llo matches hllo and heeeello
-
   - h\[ae\]llo matches hello and hallo, but not hillo
-
   - h\[^e\]llo matches hallo, hbllo, ... but not hello
-
   - h\[a-b\]llo matches hallo and hbllo
 
 For example:
 
-    cumulus@switch:~$ netq query 'SELECT hostname, peer_name, peer_hostname, asn, peer_asn, state FROM BgpSession WHERE hostname="*1" AND peer_name="swp[34]"'
+    cumulus@switch:~$ netq query 'SELECT hostname, peer_name, peer_hostname, asn, peer_asn, state FROM BgpSession WHERE hostname="\*1" AND peer_name="swp[34]"'
     hostname    peer_name    peer_hostname    asn     peer_asn    state
     ----------  -----------  ---------------  ------  ----------  -----------
     exit01      swp3         spine01          655536  655435      Established
@@ -311,7 +305,7 @@ For example:
     leaf01      swp3         spine01          655559  655435      Established
     leaf01      swp4         spine02          655559  655435      Established
 
-## JSON Output</span>
+## JSON Output
 
 Any command's output can be returned in JSON format by ending the
 command with the optional `json` keyword, as follows:
@@ -343,7 +337,7 @@ Here's the output without JSON:
                                 u'ipv6',    u'ipv6',
                                 u'evpn']    u'evpn']
 
-## Recommended Tables and Fields</span>
+## Recommended Tables and Fields
 
 The following tables and fields are supported as part of Early Access.
 
@@ -351,17 +345,17 @@ There are key fields and value fields for each table. You can get a list
 of the key and value fields by running the `netq show query fields`
 command. For example:
 
-``` 
+```
 cumulus@hostd-11:~$ netq query show fields Temp
 Table        Key Fields                               Value Fields
 ------------ ---------------------------------------- ----------------------------------------------------------
-Temp         hostname, s_name, s_desc                 timestamp, s_state, s_prev_state, s_input, s_msg, s_crit, 
+Temp         hostname, s_name, s_desc                 timestamp, s_state, s_prev_state, s_input, s_msg, s_crit,
                                                       s_min, s_max, s_lcrit                                                             
 ```
 
-| Table              | Key Fields                                                                                   | Value Field                                                                                                                                                                                                                                                                                       |
-| ------------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ASIC               | hostname, vendor, model, model\_id, core\_bw, ports                                          | timestamp                                                                                                                                                                                                                                                                                         |
+| Table | Key Fields | Value Field |
+| ----- | ---------- | ----------- |
+| ASIC  | hostname, vendor, model, model\_id, core\_bw, ports | timestamp |
 | Address            | hostname, ifname, prefix, mask, is\_ipv6, vrf                                                | timestamp, active, deleted                                                                                                                                                                                                                                                                        |
 | BgpSession         | hostname, peer\_name, asn, vrf                                                               | state, peer\_router\_id, peer\_asn, peer\_hostname, reason, ipv4\_pfx\_rcvd, ipv6\_pfx\_rcvd, evpn\_pfx\_rcvd, timestamp, last\_reset\_time, conn\_estd, conn\_dropped, upd8\_rx, vrfid, upd8\_tx, up\_time, tx\_families, objid, rx\_families, active, deleted                                   |
 | Board              | hostname, vendor, model, base\_mac, part\_number, mfg\_date, serial\_number, label\_revision | timestamp                                                                                                                                                                                                                                                                                         |
@@ -397,11 +391,3 @@ Temp         hostname, s_name, s_desc                 timestamp, s_state, s_prev
 | Services           | hostname, name, vrf                                                                          | is\_enabled, is\_active, status, is\_monitored, start\_time, pid, timestamp, active, deleted                                                                                                                                                                                                      |
 | Temp               | hostname, s\_name, s\_desc                                                                   | timestamp, s\_state, s\_prev\_state, s\_input, s\_msg, s\_crit, s\_max, s\_min, s\_lcrit                                                                                                                                                                                                          |
 | VxlanRemoteDest    | hostname, vni, rdst                                                                          | vni, rdst, active, deleted, timestamp                                                                                                                                                                                                                                                             |
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

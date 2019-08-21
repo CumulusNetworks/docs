@@ -76,35 +76,40 @@
                 Products
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/cumulus-rmp">Cumulus RMP</a>
-                <a class="dropdown-item" href="/chassis">Cumulus Chassis</a>
+                  {{range .Site.Menus.dropnav}}
+                <a class="dropdown-item" href={{.URL}}>{{.Title}}</a>
+                  {{ end }}
               </div>
           </div>
         </li>
       </ul>
-      <div class="productMenu-dropdown"> 
+      <div class="productMenu-dropdown">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="siteMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Cumulus Linux 
+            Cumulus Linux
           </button>
           <ul class="dropdown-menu" aria-lablledby="siteMenuButton">
-            <li><a class="dropdown-item" href="/cumulus-linux/">Cumulus Linux</a></li>
-            <li><a class="dropdown-item" href="/cumulus-netq/">Cumulus NetQ</a></li>
-            <li><a class="dropdown-item" href="/cumulus-vx/">Cumulus VX</a></li>
+            {{ range .Site.Menus.subnav}}
+              <li{{ with eq $currentProduct .Title }} class = "dropdown-item" {{ end }}><a href = {{.URL}} >
+                {{.Title}} </a> </li>
+            {{ end }}
             <li>
               <a href="#" class="dropdown-item dropdown-toggle" id="productsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
               <ul class="dropdown-menu multi-level" aria-lablledby="productsDropdown" style="display:none;">
-                <li><a class="dropdown-item" href="/cumulus-rmp">Cumulus RMP</a></li>
-                <li><a class="dropdown-item" href="/chassis">Cumulus Chassis</a></li>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {{range .Site.Menus.dropnav}}
+                <li><a class="dropdown-item" href={{.URL}}>{{.Title}}</a>
+                    {{ end }}
+                </div>
               </ul>
             </li>
           </ul>
-        </div> 
+        </div>
       </div> <!-- productMenu-dropdown -->
     </div>
     <div class="search-container">
       <div class="screen-layout">
-        <a class="default active" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-3</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="7.5" y1="6.497" x2="7.5" y2="22.497"/><line class="a" x1="15.5" y1="6.513" x2="15.5" y2="22.497"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>        
+        <a class="default active" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-3</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="7.5" y1="6.497" x2="7.5" y2="22.497"/><line class="a" x1="15.5" y1="6.513" x2="15.5" y2="22.497"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>
         <a class="sb-right" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-6</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="15.5" y1="6.497" x2="15.5" y2="22.497"/></svg></a>
         <a class="sb-left" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-1</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="7.5" y1="6.539" x2="7.5" y2="22.497"/></svg></a>
         <a class="no-sb" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-top</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>
@@ -143,24 +148,26 @@
   <div id="mobile-product-nav">
     <div class="m-top-nav">
       <div class="flex justify-between align-center">
-        <div class="product-dropdown"> 
+        <div class="product-dropdown">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Cumulus Linux 
+              Cumulus Linux
             </button>
             <ul class="dropdown-menu" aria-lablledby="siteMenuButton">
-              <li><a class="dropdown-item" href="/cumulus-linux/">Cumulus Linux</a></li>
-              <li><a class="dropdown-item" href="/cumulus-netq/">Cumulus NetQ</a></li>
-              <li><a class="dropdown-item" href="/cumulus-vx/">Cumulus VX</a></li>
+              {{ range .Site.Menus.subnav}}
+                <li{{ with eq $currentProduct .Title }} class = "dropdown-item" {{ end }}><a href = {{.URL}} >
+                  {{.Title}} </a> </li>
+              {{ end }}
               <li>
                 <a href="#" class="dropdown-item dropdown-toggle" id="productsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
                 <ul class="dropdown-menu multi-level" aria-lablledby="productsDropdown" style="display:none;">
-                  <li><a class="dropdown-item" href="/cumulus-rmp">Cumulus RMP</a></li>
-                  <li><a class="dropdown-item" href="/chassis">Cumulus Chassis</a></li>
+                  {{range .Site.Menus.dropnav}}
+              <li><a class="dropdown-item" href={{.URL}}>{{.Title}}</a></li>
+                  {{ end }}
                 </ul>
               </li>
             </ul>
-          </div> <!-- product dropdown -->  
+          </div> <!-- product dropdown -->
         </div>
         <div class="version-dropdown">
           <div id="dropdown" class="dropdown">
@@ -180,15 +187,15 @@
               {{ end }}
             </div>
           </div> <!-- version dropdown -->
-        </div>  
         </div>
-        
-        
+        </div>
+
+
     </div>  <!-- first 2 divs -->
-    
+
     <div class="m-bottom-nav flex justify-between search-container">
       <div class="screen-layout">
-        <a class="no-sb active" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-top</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>      
+        <a class="no-sb active" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-top</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>
         <a class="sb-right" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-6</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="15.5" y1="6.497" x2="15.5" y2="22.497"/></svg></a>
         <a class="sb-left" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-1</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="7.5" y1="6.539" x2="7.5" y2="22.497"/></svg></a>
       </div>

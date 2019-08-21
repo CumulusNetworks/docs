@@ -231,6 +231,14 @@ $block-border-radius: 0.15rem;
   table {
     border-spacing: 0;
     border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    display: block;
+    overflow: scroll;
+
+    p {
+      word-break: unset;
+    }
 
     tr th, tr td {
       :header{

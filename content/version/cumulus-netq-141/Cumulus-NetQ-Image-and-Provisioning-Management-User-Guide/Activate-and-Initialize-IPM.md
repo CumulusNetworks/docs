@@ -16,7 +16,7 @@ on the NetQ Telemetry Server when NetQ is installed. However, there are
 a few simple steps needed to activate and configure the application for
 your environment. These are described in this topic.
 
-## Activation and Initialization Task Flow</span>
+## Activation and Initialization Task Flow
 
 The following steps are required to fully activate and perform the
 initial configuration needed to run the IPM application.
@@ -30,7 +30,7 @@ leases) or add and map additional ONIE and ZTP scripts, you can do so.
 Please refer to the corresponding topics for instructions for these
 tasks.
 
-## Open VM Network Ports</span>
+## Open VM Network Ports
 
 The primary IPM services are located in Docker containers. They are
 configured to run in network *host mode*, meaning the internal ports
@@ -42,22 +42,21 @@ services, you must open the following ports in the VM where the IPM
 services are run:
 
   - Ports 67 and 68: DHCP (Dynamic Host Control Protocol)
-
   - Port 9300: ZTP (Zero-Touch Provisioning) and ONIE (Open Network
     Installation Environment)
 
-{{%notice info%}}
+{{%notice note%}}
 
-**Note**: It may also be necessary to configure external firewalls and
+It may also be necessary to configure external firewalls and
 the substrate the image runs on, such as the QEMU, VirtualBox, or VMware
 hypervisors.
 
 {{%/notice%}}
 
-<span style="color: #ff0000;"> How to configure these ports is outside
-the scope of this document. </span>
+How to configure these ports is outside
+the scope of this document.
 
-## Start the Image and Provisioning Management Application</span>
+## Start the Image and Provisioning Management Application
 
 The application is activated in a similar manner as most UNIX services,
 using the `systemctrl` command to start the application service.
@@ -74,13 +73,13 @@ To start the IPM application and all of its services:
 
 4.  Verify the application is running using the `status` option of the
     command.
-    
+
         <machine-name>:~<username>$ ssh cumulus@<telemetry-server-name-or-ip-address>   
         cumulus@ts:~$ sudo systemctl start tips-appliance
          
         cumulus@ts:~$ sudo systemctl enable tips-appliance  
         Created symlink from /etc/systemd/system/multi-user.target.wants/tips-appliance.service to /lib/systemd/system/tips-appliance.service.
-         
+
         cumulus@oob-mgmt-server:~$ sudo systemctl status tips-appliance
         ● tips-appliance.service - tips Backend
            Loaded: loaded (/lib/systemd/system/tips-appliance.service; enabled)
@@ -93,7 +92,7 @@ Once the IPM application is running, the IPM Command Line Interface,
 *TIPCTL*, is available. TIPCTL is the key user interface used to
 activate, configure, and monitor the IPM application and services.
 
-## Perform Initial Configuration</span>
+## Perform Initial Configuration
 
 The next step in setting up IPM is to use TIPCTL to configure key
 application and service parameters. Configuration is performed using the
@@ -109,13 +108,12 @@ Running the configuration setup sequence:
   - Configures the KEA service with the network interface to bind to and
     the IP address to use to serve up the default-url and the
     cumulus-provision-url
-
   - Causes the KEA service to create either one or two subnet pools
     based on the designated IP address of the server (if it is in the
     middle of the address range, two pools are created, each excluding
     the server IP address)
 
-### Use Prompt Mode</span>
+### Use Prompt Mode
 
 To perform the initial configuration in prompt mode:
 
@@ -128,7 +126,7 @@ To perform the initial configuration in prompt mode:
     configuration and returns you to the command line prompt.
 
 3.  Confirm the status of the IPM application.
-    
+
         cumulus@ts:~$ tipctl config setup
         [?] Select local network configuration: eth0:10.255.0.92
          > eth0:10.255.0.92
@@ -139,20 +137,20 @@ To perform the initial configuration in prompt mode:
          
         cumulus@ts:~$ tipctl config verify
         The TIPS application is running as expected. 
-    
+
     If the application is not running as expected, the output indicates
     the problem. For example:  
-    
-        cumulus@ts:~$ tipctl config verify 
-        Status      Service 
-        ----------  --------- 
+
+        cumulus@ts:~$ tipctl config verify
+        Status      Service
+        ----------  ---------
         restarting  DHCP missing     
          
-        DB Status   Issue 
-        --------    -------------------------- 
+        DB Status   Issue
+        --------    --------------------------
         error       Cannot connect to backend.
 
-### Use Command Line Mode</span>
+### Use Command Line Mode
 
 To perform the initial configuration in traditional command line mode:
 
@@ -160,7 +158,7 @@ To perform the initial configuration in traditional command line mode:
     listen.
 
 2.  Confirm the status of the IPM application.
-    
+
         cumulus@ts:~$ tipctl config setup --interface eth1
         Using eth1 192.168.0.254 to finish the configuration
          
@@ -169,11 +167,3 @@ To perform the initial configuration in traditional command line mode:
          
         cumulus@ts:~$ tipscl config verify
         The TIPS application is running as expected.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

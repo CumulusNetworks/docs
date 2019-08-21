@@ -26,32 +26,13 @@ configuration and activation to enable the software.
 NetQ IPM is supported on:
 
   - Cumulus Linux version 3.6.2 and later.
-
   - Cumulus Linux version 3.6.1 if static mapping is used between a MAC
     address and a Network Operating System or provisioning script.
 
-{{%notice info%}}
+{{%notice note%}}
 
-**Early Access Feature**
-
-The NetQ IPM application is introduced as an early access feature with
+NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined) features that provide advanced access to new functionality before it
+becomes generally available. The NetQ IPM application is introduced as an early access feature with
 version 1.4.0.
 
 {{%/notice%}}
-
-<span style="color: #353744;"> </span>
-
-<span style="color: #353744;"> This guide is organized </span>
-<span style="color: #36424a;"> into several topics as follows: </span>
-
-<span style="color: #36424a;"> </span>
-
-<span style="color: #36424a;"> </span>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

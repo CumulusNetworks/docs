@@ -1056,11 +1056,3 @@ the **All Events** tab.
 {{% imgOld 76 %}}
 
 To return to your workbench, click {{% imgOld 77 %}} in the top right corner.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

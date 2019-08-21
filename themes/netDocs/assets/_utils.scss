@@ -35,12 +35,6 @@
   display: none;
 }
 
-.table-responsive {
-  display: block;
-  width: 100%;
-  overflow-x: auto; 
-}
-
 .mobile-center {
   text-align: center;
   @media #{$md-up} {

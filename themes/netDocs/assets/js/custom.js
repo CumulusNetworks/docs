@@ -8,7 +8,7 @@ $(document).ready(function() {
 		heading.forEach(function (elem) {
 
 	  	var anchor = elem.id;
-	  	var anchorLink = window.location.href + '#' + anchor;
+      var anchorLink = location.href.replace(location.hash,"") + '#' + anchor;
 
 		  // Test if h2 has id
 		  if (anchor.length > 0) {
@@ -18,10 +18,13 @@ $(document).ready(function() {
 		  	span.setAttribute('data-clipboard-text', anchorLink);
 		  	span.innerHTML = "<img src=\"https://icons.cumulusnetworks.com/01-Interface-Essential/27-Link-Unlink/hyperlink-circle.svg\" width=\"13\" height=\"13\">";
 
-			  	// Append the html link to the current h2
+			  // Append the html link to the current h2
 				elem.append(span);
 
-				span.addEventListener('click', function () {
+				span.addEventListener('click', function (e) {
+
+          var historyState = {};
+
 	        clipboard.writeText(span.getAttribute('data-clipboard-text')).then(function () {
 	            span.blur();
 	            span.setAttribute('aria-label', 'Link copied to clipboard!');
@@ -39,6 +42,10 @@ $(document).ready(function() {
 	                span.classList.remove('tooltip');
 	            }, 2000);
 	        });
+
+          var url = span.getAttribute('data-clipboard-text');
+          history.pushState(null, null, url);
+
 	    	});
 		  }
 		});

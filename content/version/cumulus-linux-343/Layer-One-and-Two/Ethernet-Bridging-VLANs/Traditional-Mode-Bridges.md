@@ -11,28 +11,28 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-Cumulus Networks recommends you use a [VLAN-aware
-bridge](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+Cumulus Networks recommends you use a 
+[VLAN-aware bridge](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 on your switch. You use traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.
 
-## Creating a Traditional Mode Bridge</span>
+## Creating a Traditional Mode Bridge
 
 You configure traditional mode bridges in `/etc/network/interfaces`
 file. To create a traditional mode bridge:
 
-1.  Open the `/etc/network/interfaces` file in a text editor.
+1. Open the `/etc/network/interfaces` file in a text editor.
 
-2.  Add a new stanza to create the bridge, and save the file. The
+2. Add a new stanza to create the bridge, and save the file. The
     example below creates a bridge with STP enabled and the MAC address
     ageing timer configured to a lower value than the default:
-    
+
         auto my_bridge
         iface my_bridge
             bridge-ports bond0 swp5 swp6
             bridge-ageing 150
             bridge-stp on
-    
+
     <table>
     <colgroup>
     <col style="width: 33%" />
@@ -65,27 +65,26 @@ file. To create a traditional mode bridge:
     </tr>
     </tbody>
     </table>
-    
+
     {{%notice note%}}
-    
-    The name of the bridge must be:
-    
-      - Compliant with Linux interface naming conventions.
-    
-      - Unique within the switch.
-    
-    {{%/notice%}}
-    
-    {{%notice warning%}}
-    
-    Do not try to bridge the management port, eth0, with any switch
-    ports (like swp0, swp1, and so forth). For example, if you created a
-    bridge with eth0 and swp1, it will **not** work.
-    
+
+The name of the bridge must be:
+
+- Compliant with Linux interface naming conventions.
+- Unique within the switch.
+
     {{%/notice%}}
 
-3.  Reload the network configuration using the `ifreload` command:
-    
+    {{%notice warning%}}
+
+Do not try to bridge the management port, eth0, with any switch
+    ports (like swp0, swp1, and so forth). For example, if you created a
+    bridge with eth0 and swp1, it will **not** work.
+
+    {{%/notice%}}
+
+3. Reload the network configuration using the `ifreload` command:
+
         cumulus@switch:~$ sudo ifreload -a
 
 {{%notice info%}}
@@ -93,13 +92,7 @@ file. To create a traditional mode bridge:
 You can configure multiple bridges, in order to logically divide a
 switch into multiple layer 2 domains. This allows for hosts to
 communicate with other hosts in the same domain, while separating them
-fro hosts in other domains.
-
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
+from hosts in other domains.
 
 {{%notice info%}}
 
@@ -107,21 +100,15 @@ You can create only one VLAN-aware bridge on a switch.
 
 {{%/notice%}}
 
-</div>
-
-</div>
-
 The diagram below shows a multiple bridge configuration, where host-1
 and host-2 are connected to bridge-A, while host-3 and host-4 are
 connected to bridge-B. This means that:
 
-  - host-1 and host-2 can communicate with each other.
+- host-1 and host-2 can communicate with each other.
+- host-3 and host-4 can communicate with each other.
+- host-1 and host-2 cannot communicate with host-3 and host-4.
 
-  - host-3 and host-4 can communicate with each other.
-
-  - host-1 and host-2 cannot communicate with host-3 and host-4.
-
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/multiple-bridges.png" >}}
 
 This example configuration looks like this in the
 `/etc/network/interfaces` file:
@@ -138,7 +125,7 @@ This example configuration looks like this in the
 
 {{%/notice%}}
 
-## <span id="src-7112426_TraditionalModeBridges-VLAN_tagging" class="confluence-anchor-link"></span>Using Trunks in Traditional Bridge Mode</span>
+## Using Trunks in Traditional Bridge Mode
 
 The [IEEE standard](http://www.ieee802.org/1/pages/802.1Q.html) for
 trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within
@@ -151,19 +138,15 @@ of native, non-native, tagged or untagged has generated confusion due to
 mixed terminology and vendor-specific implementations. Some
 clarification is in order:
 
-  - A *trunk port* is a switch port configured to send and receive
+- A *trunk port* is a switch port configured to send and receive
     802.1Q tagged frames.
-
-  - A switch sending an untagged (bare Ethernet) frame on a trunk port
+- A switch sending an untagged (bare Ethernet) frame on a trunk port
     is sending from the native VLAN defined on the trunk port.
-
-  - A switch sending a tagged frame on a trunk port is sending to the
+- A switch sending a tagged frame on a trunk port is sending to the
     VLAN identified by the 802.1Q tag.
-
-  - A switch receiving an untagged (bare Ethernet) frame on a trunk port
+- A switch receiving an untagged (bare Ethernet) frame on a trunk port
     places that frame in the native VLAN defined on the trunk port.
-
-  - A switch receiving a tagged frame on a trunk port places that frame
+- A switch receiving a tagged frame on a trunk port places that frame
     in the VLAN identified by the 802.1Q tag.
 
 A bridge in traditional mode has no concept of trunks, just tagged or
@@ -181,7 +164,7 @@ native VLAN, thus merging those two VLANs and their spanning tree state.
 
 {{%/notice%}}
 
-### Trunk Example</span>
+### Trunk Example
 
 {{% imgOld 1 %}}
 
@@ -193,18 +176,17 @@ To create the above example, add the following configuration to the
      bridge-ports swp1.100 swp2.100
      bridge-stp on
      
-     
     auto br-VLAN200
     iface br-VLAN200
      bridge-ports swp1.200 swp2.200
      bridge-stp on
 
-### VLAN Tagging Examples</span>
+### VLAN Tagging Examples
 
-You can find more examples of VLAN tagging in [this
-chapter](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-Tagging).
+You can find more examples of VLAN tagging in 
+[this chapter](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-### <span id="src-7112426_TraditionalModeBridges-arp" class="confluence-anchor-link"></span>Configuring ARP Timers</span>
+### Configuring ARP Timers
 
 Cumulus Linux does not often interact directly with end systems as much
 as end systems interact with one another. Thus, after a successful
@@ -220,13 +202,4 @@ the hardware forwarding.
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). You can
 change this setting by following the procedures outlined in this
-[knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+[knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).

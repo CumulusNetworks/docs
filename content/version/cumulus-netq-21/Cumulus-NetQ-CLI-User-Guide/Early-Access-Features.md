@@ -11,10 +11,7 @@ version: '2.1'
 imgData: cumulus-netq-21
 siteSlug: cumulus-netq-21
 ---
-<details>
-
-NetQ has [early
-access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined)
+NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined)
 features that provide advanced access to new functionality before it
 becomes generally available. The ability to view physical interface
 statistics collected by the NetQ Agent is the only early access feature
@@ -23,19 +20,15 @@ available in NetQ 2.2.x.
 This feature is bundled into the `netq-apps` package; there is no
 specific EA package like there typically is with Cumulus Linux.
 
-<span style="color: #36424a;"> Contents </span>
-
-<summary>This topic describes how to... </summary>
-
-## Enable Early Access Features</span>
+## Enable Early Access Features
 
 You enable early access features by running the ` netq config add
-experimental  `command on any node running NetQ.
+experimental` command on any node running NetQ.
 
     cumulus@switch:~$ netq config add experimental
     Experimental config added
 
-## View Interface Statistics</span>
+## View Interface Statistics
 
 NetQ Agents collect performance statistics every 30 seconds for the
 physical interfaces on switches and hosts in your network. The NetQ
@@ -45,7 +38,6 @@ collects the following statistics:
 
   - **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs,
     tx\_packets
-
   - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
     rx\_multicast, rx\_packets
 
@@ -83,10 +75,10 @@ all of their physical interfaces.
     exit02            swp44                     20               3040                 0                    0                    3824                 0                    0                    Mon Jun  3 23:03:07 2019
     ...
 
-## Disable Early Access Features</span>
+## Disable Early Access Features
 
-You disable the early access features by running the `netq config del`
-`experimental` command on any node running NetQ.
+You disable the early access features by running the `netq config del
+experimental` command on any node running NetQ.
 
     cumulus@switch:~$ netq config del experimental
     Experimental config deleted

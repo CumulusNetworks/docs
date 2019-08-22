@@ -40,25 +40,25 @@ bridge configuration on the switch, including adding the switch ports
 that are members of the bridge. You can choose to add one or more of the
 following elements to the configuration:
 
-  - You can add an IP address to provide IP access to the bridge
+- You can add an IP address to provide IP access to the bridge
     interface.
-  - You can use glob syntax to specify a range of interfaces.
-  - You can set two STP attributes on the bridge ports: *portautoedge*
+- You can use glob syntax to specify a range of interfaces.
+- You can set two STP attributes on the bridge ports: *portautoedge*
     and *portrestrole*.
-    
-    {{%notice note%}}
-    
-The **** *portautoedge* attribute defaults to *yes*; to use a
+
+{{%notice note%}}
+
+The *portautoedge* attribute defaults to *yes*; to use a
     setting other than the default, you must set this attribute to *no*.
-    
-    The *portrestrrole* attribute defaults to *no*, but to use a setting
+
+The *portrestrrole* attribute defaults to *no*, but to use a setting
     other than the default, you must specify this attribute **without**
     setting an option.
-    
-    The defaults for these attributes do not appear in the NCLU
+
+The defaults for these attributes do not appear in the NCLU
     configuration.
-    
-    {{%/notice%}}
+
+{{%/notice%}}
 
 To configure a traditional mode bridge using NCLU, do the following:
 
@@ -113,9 +113,9 @@ Verify the configuration by running `net show config commands`:
 To create a traditional mode bridge manually, you need to hand edit the
 `/etc/network/interfaces` file:
 
-1.  Open the `/etc/network/interfaces` file in a text editor.
+1. Open the `/etc/network/interfaces` file in a text editor.
 
-2.  Add a new stanza to create the bridge, and save the file. The
+2. Add a new stanza to create the bridge, and save the file. The
     example below creates a bridge with STP enabled and the MAC address
     ageing timer configured to a lower value than the default:
     
@@ -135,8 +135,8 @@ To create a traditional mode bridge manually, you need to hand edit the
     
 The name of the bridge must be:
     
-  - Compliant with Linux interface naming conventions.    
-  - Unique within the switch.
+- Compliant with Linux interface naming conventions.    
+- Unique within the switch.
     
     {{%/notice%}}
     
@@ -148,7 +148,7 @@ Do not try to bridge the management port, eth0, with any switch
     
     {{%/notice%}}
 
-3.  Reload the network configuration using the `ifreload` command:
+3. Reload the network configuration using the `ifreload` command:
     
         cumulus@switch:~$ sudo ifreload -a
 
@@ -169,11 +169,11 @@ The diagram below shows a multiple bridge configuration, where host-1
 and host-2 are connected to bridge-A, while host-3 and host-4 are
 connected to bridge-B. This means that:
 
-  - host-1 and host-2 can communicate with each other.
-  - host-3 and host-4 can communicate with each other.
-  - host-1 and host-2 cannot communicate with host-3 and host-4.
+- host-1 and host-2 can communicate with each other.
+- host-3 and host-4 can communicate with each other.
+- host-1 and host-2 cannot communicate with host-3 and host-4.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/multiple-bridges.png" >}}
 
 This example configuration looks like this in the
 `/etc/network/interfaces` file:

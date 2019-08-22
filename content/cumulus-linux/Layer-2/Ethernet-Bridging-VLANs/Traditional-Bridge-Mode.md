@@ -11,8 +11,8 @@ version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-Cumulus Networks recommends you use a [VLAN-aware
-bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+Cumulus Networks recommends you use a 
+[VLAN-aware bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 on your switch. You use traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.
 
@@ -40,12 +40,10 @@ bridge configuration on the switch, including adding the switch ports
 that are members of the bridge. You can choose to add one or more of the
 following elements to the configuration:
 
-  - You can add an IP address to provide IP access to the bridge
+- You can add an IP address to provide IP access to the bridge
     interface.
-
-  - You can use glob syntax to specify a range of interfaces.
-
-  - You can set two STP attributes on the bridge ports: *portautoedge*
+- You can use glob syntax to specify a range of interfaces.
+- You can set two STP attributes on the bridge ports: *portautoedge*
     and *portrestrole*.
 
     {{%notice note%}}
@@ -54,7 +52,8 @@ The *portautoedge* attribute defaults to *yes*; to use a
     setting other than the default, you must set this attribute to *no*. The *portrestrrole* attribute defaults to *no*, but to use a setting
     other than the default, you must specify this attribute **without**
     setting an option.
-    The defaults for these attributes do not appear in the NCLU
+    
+The defaults for these attributes do not appear in the NCLU
     configuration.
 
     {{%/notice%}}
@@ -88,7 +87,7 @@ These commands create the following configuration snippet in the
      
     auto swp4
     iface swp4
-     
+    
     ...
     auto my_bridge_A
     iface my_bridge_A
@@ -112,9 +111,9 @@ Verify the configuration by running `net show config commands`:
 To create a traditional mode bridge manually, you need to hand edit the
 `/etc/network/interfaces` file:
 
-1.  Open the `/etc/network/interfaces` file in a text editor.
+1. Open the `/etc/network/interfaces` file in a text editor.
 
-2.  Add a new stanza to create the bridge, and save the file. The
+2. Add a new stanza to create the bridge, and save the file. The
     example below creates a bridge with STP enabled and the MAC address
     ageing timer configured to a lower value than the default:
 
@@ -171,7 +170,7 @@ Do not try to bridge the management port, eth0, with any switch
 
     {{%/notice%}}
 
-3.  Reload the network configuration using the `ifreload` command:
+3. Reload the network configuration using the `ifreload` command:
 
         cumulus@switch:~$ sudo ifreload -a
 
@@ -186,13 +185,11 @@ The diagram below shows a multiple bridge configuration, where host-1
 and host-2 are connected to bridge-A, while host-3 and host-4 are
 connected to bridge-B. This means that:
 
-  - host-1 and host-2 can communicate with each other.
+- host-1 and host-2 can communicate with each other.
+- host-3 and host-4 can communicate with each other.
+- host-1 and host-2 cannot communicate with host-3 and host-4.
 
-  - host-3 and host-4 can communicate with each other.
-
-  - host-1 and host-2 cannot communicate with host-3 and host-4.
-
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/multiple-bridges.png" >}}
 
 This example configuration looks like this in the
 `/etc/network/interfaces` file:
@@ -222,19 +219,15 @@ of native, non-native, tagged or untagged has generated confusion due to
 mixed terminology and vendor-specific implementations. Some
 clarification is in order:
 
-  - A *trunk port* is a switch port configured to send and receive
+- A *trunk port* is a switch port configured to send and receive
     802.1Q tagged frames.
-
-  - A switch sending an untagged (bare Ethernet) frame on a trunk port
+- A switch sending an untagged (bare Ethernet) frame on a trunk port
     is sending from the native VLAN defined on the trunk port.
-
-  - A switch sending a tagged frame on a trunk port is sending to the
+- A switch sending a tagged frame on a trunk port is sending to the
     VLAN identified by the 802.1Q tag.
-
-  - A switch receiving an untagged (bare Ethernet) frame on a trunk port
+- A switch receiving an untagged (bare Ethernet) frame on a trunk port
     places that frame in the native VLAN defined on the trunk port.
-
-  - A switch receiving a tagged frame on a trunk port places that frame
+- A switch receiving a tagged frame on a trunk port places that frame
     in the VLAN identified by the 802.1Q tag.
 
 A bridge in traditional mode has no concept of trunks, just tagged or
@@ -271,8 +264,8 @@ To create the above example, add the following configuration to the
 
 ### VLAN Tagging Examples
 
-You can find more examples of VLAN tagging in [the VLAN tagging
-chapter](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging).
+You can find more examples of VLAN tagging in 
+[the VLAN tagging chapter](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
 ### Configure ARP Timers
 
@@ -290,8 +283,7 @@ the hardware forwarding.
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). You can
 change this setting by following the procedures outlined in this
-[knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
+[knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
 
 ## Caveats
 
@@ -299,5 +291,6 @@ On Broadcom switches, when two VLAN subinterfaces are bridged to each
 other in a traditional mode bridge, `switchd` does not assign an
 internal resource ID to the subinterface, which is expected for each
 VLAN subinterface.  
+
 To work around this issue, add a VXLAN on the bridge so that it does not
 require a real tunnel IP address.

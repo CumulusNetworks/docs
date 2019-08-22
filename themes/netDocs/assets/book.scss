@@ -56,6 +56,7 @@ a {
 
 img {
   vertical-align: middle;
+  max-width: 100%;
 }
 
 //Menu Styles and Expand/Collapse
@@ -184,15 +185,14 @@ ul.pagination {
   flex: 0 0 $toc-width;
   font-size: $font-size-12;
   background-color: $white ;
-  display: none;
+  display: block;
   width: $toc-width;
   padding: $padding-16;
   top: inherit;
   right :0;
-
-  @media #{$lg-up} {
-    display: block;
-  }
+  // @media #{$lg-up} {
+  //   display: block;
+  // }
 
   nav {
     width: $toc-width;
@@ -315,16 +315,16 @@ aside nav,
   will-change: transform, margin-left;
 }
 
-@media screen and (max-width: $sm-breakpoint) {
-  .book-toc {
-    display: none;
-  }
-}
+// @media screen and (max-width: $sm-breakpoint) {
+//   .book-toc {
+//     display: none;
+//   }
+// }
 
 @media screen and (max-width: $md-breakpoint) {
-  .book-menu {
-    margin-left: -$menu-width;
-  }
+  // .book-menu {
+  //   margin-left: -$menu-width;
+  // }
 
   .book-header {
     display: flex;
@@ -343,6 +343,15 @@ aside nav,
 
     .markdown {
       opacity: 0.25;
+    }
+  }
+
+  .markdown {
+    p {
+      word-break: break-word;
+      code {
+        word-break: break-word;
+      }
     }
   }
 }

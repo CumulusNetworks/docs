@@ -16,7 +16,7 @@ Chef, or Puppet; depending on the outcome of the automation tests, the
 script can either continue the deployment, or roll back the changes
 until the issues are addressed.
 
-## Run NetQ Commands in Automation Scripts</span>
+## Run NetQ Commands in Automation Scripts
 
 Using NetQ for preventative care of your network pairs well with
 automation scripts and playbooks to prevent errors on your network
@@ -47,15 +47,3 @@ Later, it can check IP addresses to verify the connections:
            register: command_outputs
            delegate_to: localhost
            run_once: true
-
-<span style="color: #ff0000;">  
-  
-</span>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

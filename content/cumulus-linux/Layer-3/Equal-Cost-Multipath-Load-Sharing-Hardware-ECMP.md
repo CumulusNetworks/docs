@@ -35,7 +35,6 @@ For routes to be considered equal they must:
   - Originate from the same routing protocol. Routes from different
     sources are not considered equal. For example, a static route and an
     OSPF route are not considered for ECMP load sharing.
-
   - Have equal cost. If two routes from the same protocol are unequal,
     only the best route is installed in the routing table.
 
@@ -57,17 +56,12 @@ Cumulus Linux hashes on the following
 fields:
 
   - IP protocol
-
-  - Ingress interface
-
   - Source IPv4 or IPv6 address
-
   - Destination IPv4 or IPv6 address
 
 For TCP/UDP frames, Cumulus Linux also hashes on:
 
   - Source port
-
   - Destination port
 
 {{% imgOld 0 %}}

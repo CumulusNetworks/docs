@@ -17,7 +17,7 @@
 
 .justify-between {
   justify-content: space-between;
-} bvc
+}
 
 .align-center {
   align-items: center;
@@ -33,6 +33,13 @@
 
 .hide {
   display: none;
+}
+
+.mobile-center {
+  text-align: center;
+  @media #{$md-up} {
+    text-align: left;
+  }
 }
 
 @mixin fixed {

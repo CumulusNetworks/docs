@@ -155,7 +155,7 @@
         </div>
       </div>
     </section>
-    <section class="pt-5 pb-5">
+    <section class="pt-5 pb-5 mobile-center">
         <div class="container">
           <div class="row">
             <div class="col-12 text-center">
@@ -163,14 +163,14 @@
                 <span>Additional Products</span>
               </h3>
             </div>
-            <div class="col-6 col-lg-4">
+            <div class="col-sm-12 col-md-6 col-lg-4">
               <h3>Cumulus RMP</h3>
               <ul>
                 <li><a href="/cumulus-rmp">Overview</a></li>
                 <li><a href="/cumulus-rmp/Quick-Start-Guide/">Quick start guide</a></li>
               </ul>
             </div>
-            <div class="col-6 col-lg-4">
+            <div class="col-sm-12 col-md-6 col-lg-4">
               <h3>Chassis</h3>
               <ul>
                 <li><a href="/chassis">Overview</a></li>
@@ -303,7 +303,7 @@
         </div>
       </div>
     </footer>
-    <div class="footer-bottom">
+    <div class="footer-bottom mobile-center">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -354,6 +354,12 @@
            var s = document.getElementsByTagName('script')[0];
            s.parentNode.insertBefore(gd, s);
        })();
+   </script>
+
+   <script>
+    window.onload = function(){
+      document.getElementById('gsc-i-id1').placeholder = 'Search the docs. For better results, include your version number in your query.';
+    };
    </script>
 
 </body>

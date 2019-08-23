@@ -37,7 +37,9 @@
     let headings = {};
     let tocNav = document.querySelector('.book-toc');
 
-    tocNav.querySelector('.book-toc nav a:first-of-type').setAttribute('class','active');
+    if (tocNav != null && tocNav.length > 0) {
+      tocNav.querySelector('.book-toc nav a:first-of-type').setAttribute('class','active');
+    }
     
     Array.prototype.forEach.call(heading, function(e) {
       headings[e.id] = e.offsetTop

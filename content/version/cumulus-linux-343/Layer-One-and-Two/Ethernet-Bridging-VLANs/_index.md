@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 119
 aliases:
  - /display/CL34/Ethernet+Bridging+++VLANs
+ - /display/CL34/Ethernet+Bridging+-+VLANs
+ - /display/CL34/Ethernet+Bridging+VLANs
  - /pages/viewpage.action?pageId=7112411
 pageID: 7112411
 product: Cumulus Linux
@@ -15,14 +17,14 @@ Ethernet bridges provide a means for hosts to communicate through layer
 2, by connecting all of the physical and logical interfaces in the
 system into a single layer 2 domain. The bridge is a logical interface
 with a MAC address and an
-[MTU](Layer-1-and-Switch-Port-Attributes.html#src-7112615_Layer1andSwitchPortAttributes-mtu)
+[MTU](/version/cumulus-linux-343/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/#mtu)
 (maximum transmission unit). The bridge MTU is the minimum MTU among all
 its members. The bridge's MAC address is inherited from the first
 interface that is added to the bridge as a member. The bridge MAC
 address remains unchanged until the member interface is removed from the
 bridge, at which point the bridge will inherit from the next member
 interface, if any. The bridge can also be assigned an IP address, as
-discussed [below](#src-7112411_EthernetBridging-VLANs-svi).
+discussed [below](#configuring-an-svi-switch-vlan-interface).
 
 {{%notice note%}}
 
@@ -35,8 +37,8 @@ interfaces that traverse an 802.1Q VLAN trunk.
 
 {{%notice tip%}}
 
-Cumulus Networks recommends using *[VLAN-aware
-mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
+Cumulus Networks recommends using 
+*[VLAN-aware mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
 bridges, rather than *traditional mode* bridges. The bridge driver in
 Cumulus Linux is capable of VLAN filtering, which allows for
 configurations that are similar to incumbent network devices. While
@@ -49,9 +51,8 @@ mode.
 
 {{%notice info%}}
 
-For a comparison of traditional and VLAN-aware modes, read [this
-knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
+For a comparison of traditional and VLAN-aware modes, read 
+[this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
 
 {{%/notice%}}
 
@@ -69,18 +70,16 @@ VLAN-aware bridge on a given switch.
 
 {{%/notice%}}
 
-## Creating a VLAN-aware Bridge</span>
+## Creating a VLAN-aware Bridge
 
 To learn about VLAN-aware bridges and how to configure them, read
-[VLAN-aware Bridge Mode for Large-scale Layer 2
-Environments](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
+[VLAN-aware Bridge Mode for Large-scale Layer 2 Environments](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
 
-## Creating a Traditional Mode Bridge</span>
+## Creating a Traditional Mode Bridge
 
-To create a traditional mode bridge, see [Traditional Mode
-Bridges](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges).
+To create a traditional mode bridge, see [Traditional Mode Bridges](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges).
 
-## Configuring Bridge MAC Addresses</span>
+## Configuring Bridge MAC Addresses
 
 The MAC address for a frame is learned when the frame enters the bridge
 via an interface. The MAC address is recorded in the bridge table, and
@@ -99,18 +98,18 @@ The following example output shows a MAC address table for the bridge:
     untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
     untagged  bridge    swp1         44:38:39:00:00:04                permanent           20 days, 01:14:03
 
-### <span id="src-7112411_EthernetBridging-VLANs-mac_ageing" class="confluence-anchor-link"></span>MAC Address Ageing</span>
+### MAC Address Ageing
 
 By default, Cumulus Linux stores MAC addresses in the Ethernet switching
 table for 1800 seconds (30 minutes). You can change this setting using
 NCLU.
 
-The `bridge-ageing` option is in the [NCLU
-blacklist](Network-Command-Line-Utility-NCLU.html#src-7112338_NetworkCommandLineUtility-NCLU-conf),
+The `bridge-ageing` option is in the 
+[NCLU blacklist](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU/#advanced-configuration),
 as it's not frequently used. To configure this setting, you need to
 remove the `bridge-ageing` keyword from the `ifupdown_blacklist` in
-`/etc/netd.conf`. [Restart the `netd`
-service](Network-Command-Line-Utility-NCLU.html#src-7112338_NetworkCommandLineUtility-NCLU-restart)
+`/etc/netd.conf`. 
+[Restart the `netd` service](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU/#restarting-the-netd-service)
 after you edit the file.
 
 Now you can change the setting using NCLU. For example, to change the
@@ -133,7 +132,7 @@ These commands create the following configuration in the
      
     ...
 
-## <span id="src-7112411_EthernetBridging-VLANs-svi" class="confluence-anchor-link"></span>Configuring an SVI (Switch VLAN Interface)</span>
+## Configuring an SVI (Switch VLAN Interface)
 
 Bridges can be included as part of a routing topology after being
 assigned an IP address. This enables hosts within the bridge to
@@ -194,7 +193,7 @@ configuration:
     iface bridge.10
         address 10.100.100.1/24
 
-### Keeping the SVI in an UP State</span>
+### Keeping the SVI in an UP State
 
 When a switch is initially configured, all southbound bridge ports may
 be down, which means that, by default, the SVI is also down. However,
@@ -232,10 +231,10 @@ With this configuration, when swp3 is down, the SVI is also down:
 
 Now add the dummy interface to your network configuration:
 
-1.  Create a dummy interface, and add it to the bridge configuration.
+1. Create a dummy interface, and add it to the bridge configuration.
     You do this by editing the `/etc/network/interfaces` file and adding
     the dummy interface stanza before the bridge stanza:
-    
+
         cumulus@switch:~$ sudo nano /etc/network/interfaces
         ...
          
@@ -247,9 +246,9 @@ Now add the dummy interface to your network configuration:
         iface bridge
         ...
 
-2.  Continue editing the `interfaces` file. Add the dummy interface to
+2. Continue editing the `interfaces` file. Add the dummy interface to
     the `bridge-ports` line in the bridge configuration:
-    
+
         auto bridge
         iface bridge
             bridge-vlan-aware yes
@@ -257,8 +256,8 @@ Now add the dummy interface to your network configuration:
             bridge-vids 100
             bridge-pvid 1
 
-3.  Save and exit the file, then reload the configuration:
-    
+3. Save and exit the file, then reload the configuration:
+
         cumulus@switch:~$ sudo ifreload -a
 
 Now, even when swp3 is down, both the dummy interface and the bridge
@@ -274,34 +273,18 @@ remain up:
     35: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
         link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-  - A bridge cannot contain multiple subinterfaces of the **same** port.
+- A bridge cannot contain multiple subinterfaces of the **same** port.
     Attempting this configuration results in an error.
-
-  - In environments where both VLAN-aware and traditional bridges are in
+- In environments where both VLAN-aware and traditional bridges are in
     use, if a traditional bridge has a subinterface of a bond that is a
     normal interface in a VLAN-aware bridge, the bridge will be flapped
     when the traditional bridge's bond subinterface is brought down.
 
-## Related Information</span>
+## Related Information
 
-  - [Linux Foundation -
-    Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
-
-  - [Linux Foundation -
-    VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-
-  - [Linux Journal - Linux as an Ethernet
-    Bridge](http://www.linuxjournal.com/article/8172)
-
-  - [Comparing Traditional Bridge Mode to VLAN-aware Bridge
-    Mode](https://support.cumulusnetworks.com/hc/en-us/articles/204909397)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- [Linux Foundation - Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
+- [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
+- [Linux Journal - Linux as an Ethernet Bridge](http://www.linuxjournal.com/article/8172)
+- [Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode](https://support.cumulusnetworks.com/hc/en-us/articles/204909397)

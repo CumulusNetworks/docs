@@ -25,20 +25,18 @@ The primary snapshot components are:
 
   - [btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page) — an
     underlying file system in Cumulus Linux, which supports snapshots.
-
   - [snapper](http://snapper.io/documentation.html) — a userspace
     utility to create and manage snapshots on demand as well as taking
     snapshots automatically before and after running `apt-get
     upgrade|install|remove|dist-upgrade`. You can use `snapper` to roll
     back to earlier snapshots, view existing snapshots, or delete one or
     more snapshots.
-
   - [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU)
     — takes snapshots automatically before and after committing network
     configurations. You can use NCLU to roll back to earlier snapshots,
     view existing snapshots, or delete one or more snapshots.
 
-## Installing the Snapshot Package</span>
+## Installing the Snapshot Package
 
 If you're upgrading from a version of Cumulus Linux earlier than version
 3.2, you need to install the `cumulus-snapshot` package before you can
@@ -48,27 +46,25 @@ use snapshots.
     cumulus@switch:~$ sudo -E apt-get install cumulus-snapshot
     cumulus@switch:~$ sudo -E apt-get upgrade
 
-## Taking and Managing Snapshots</span>
+## Taking and Managing Snapshots
 
 As described above, snapshots are taken automatically:
 
   - Before and after you update your switch configuration by running
     `net commit`, via NCLU.
-
-  - Before and after you update Cumulus Linux by running `apt-get
-    upgrade|install|remove|dist-upgrade`, via `snapper`.
+  - Before and after you update Cumulus Linux by running 
+    `apt-get upgrade|install|remove|dist-upgrade`, via `snapper`.
 
 You can also take snapshots as needed using the `snapper` utility. Run:
 
     cumulus@switch:~$ sudo snapper create -d SNAPSHOT_NAME
 
-For more information about using `snapper`, run `snapper --help` or `man
-snapper(8)`.
+For more information about using `snapper`, run `snapper --help` or 
+`man snapper(8)`.
 
-### Viewing Available Snapshots</span>
+### Viewing Available Snapshots
 
-You can use both NCLU and `snapper` to view available snapshots on the
-switch.
+You can use both NCLU and `snapper` to view available snapshots on the switch.
 
     cumulus@switch:~$ net show commit history 
       #  Date                             Description
@@ -103,7 +99,7 @@ pre    | 31 |       | Fri 02 Dec 2016 12:18:08 AM UTC | root | number  | nclu pr
 post   | 32 | 31    | Fri 02 Dec 2016 12:18:10 AM UTC | root | number  | nclu post 'ACL' (user cumulus)         |            
 ```
 
-### Viewing Differences between Snapshots</span>
+### Viewing Differences between Snapshots
 
 To see a line by line comparison of changes between two snapshots, run:
 
@@ -151,7 +147,7 @@ files only, run:
     c..... /etc/cumulus/acl/policy.d/50_nclu_acl.rules
     c..... /var/lib/cumulus/nclu/nclu_acl.conf
 
-### Deleting Snapshots</span>
+### Deleting Snapshots
 
 You can remove one or more snapshots using both NCLU and snapper.
 
@@ -209,7 +205,7 @@ and running `apt-get upgrade|install|remove|dist-upgrade`. Edit
 
     APT_SNAPSHOT_ENABLE=no
 
-## Rolling Back to Earlier Snapshots</span>
+## Rolling Back to Earlier Snapshots
 
 If you need to restore Cumulus Linux to an earlier state, you can roll
 back to an older snapshot.
@@ -240,7 +236,7 @@ You can also copy the file directly from the snapshot directory:
 
 {{%/notice%}}
 
-## Configuring Automatic Time-based Snapshots</span>
+## Configuring Automatic Time-based Snapshots
 
 You can configure Cumulus Linux to take hourly snapshots. You need to
 enable `TIMELINE_CREATE` in the snapper configuration:
@@ -271,9 +267,9 @@ enable `TIMELINE_CREATE` in the snapper configuration:
     TIMELINE_LIMIT_YEARLY  | 5    
     TIMELINE_MIN_AGE       | 1800 
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-### root Partition Mounted Multiple Times</span>
+### root Partition Mounted Multiple Times
 
 You may notice that the root partition gets mounted multiple times. This
 is due to the way the `btrfs` file system handles subvolumes, mounting
@@ -284,22 +280,14 @@ snapshots are subvolumes, not all subvolumes are snapshots.
 Cumulus Linux excludes a number of directories when it takes a snapshot
 of the root file system (and from any rollbacks):
 
-| Directory                                                        | Reason                                                                                                                                                                                                |
-| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| /home                                                            | Excluded to avoid user data loss on rollbacks.                                                                                                                                                        |
-| /var/log, /var/support                                           | Log file and Cumulus support location. Excluded from snapshots to allow post-rollback analysis.                                                                                                       |
-| /tmp, /var/tmp                                                   | No need to rollback temporary files.                                                                                                                                                                  |
-| /opt, /var/opt                                                   | Third-party software usually are installed in /opt. Exclude /opt to avoid re-installing these applications after rollbacks.                                                                           |
-| /srv                                                             | Contains data for HTTP and FTP servers. Excluded this directory to avoid server data loss on rollbacks.                                                                                               |
-| /usr/local                                                       | This directory is used when installing locally built software. Exclude this directory to avoid re-installing these software after rollbacks.                                                          |
-| /var/spool                                                       | Exclude this directory to avoid loss of mail after a rollback.                                                                                                                                        |
+| Directory     | Reason          |
+| ------------- | --------------- |
+| /home                    | Excluded to avoid user data loss on rollbacks. |
+| /var/log, /var/support  | Log file and Cumulus support location. Excluded from snapshots to allow post-rollback analysis.               |
+| /tmp, /var/tmp            | No need to rollback temporary files.   |
+| /opt, /var/opt            | Third-party software usually are installed in /opt. Exclude /opt to avoid re-installing these applications after rollbacks.    |
+| /srv   | Contains data for HTTP and FTP servers. Excluded this directory to avoid server data loss on rollbacks.       |
+| /usr/local    | This directory is used when installing locally built software. Exclude this directory to avoid re-installing these software after rollbacks.    |
+| /var/spool                 | Exclude this directory to avoid loss of mail after a rollback.    |
 | /var/lib/libvirt/images                                          | This is the default directory for libvirt VM images. Exclude from the snapshot. Additionally disable Copy-On-Write (COW) for this subvolume as COW and VM image I/O access patterns do not play nice. |
-| /boot/grub/i386-pc, /boot/grub/x86\_64-efi, /boot/grub/arm-uboot | The GRUB kernel modules must stay in sync with the GRUB kernel installed in the master boot record or UEFI system partition.                                                                          |
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+| /boot/grub/i386-pc, /boot/grub/x86\_64-efi, /boot/grub/arm-uboot | The GRUB kernel modules must stay in sync with the GRUB kernel installed in the master boot record or UEFI system partition.               |

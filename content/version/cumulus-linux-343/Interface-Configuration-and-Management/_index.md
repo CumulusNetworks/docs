@@ -11,13 +11,11 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-<details>
-
 `ifupdown` is the network interface manager for Cumulus Linux. Cumulus
 Linux 2.1 and later uses an updated version of this tool, `ifupdown2`.
 
-For more information on network interfaces, see [Layer 1 and Switch Port
-Attributes](/version/cumulus-linux-343/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes).
+For more information on network interfaces, see 
+[Layer 1 and Switch Port Attributes](/version/cumulus-linux-343/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes).
 
 {{%notice info%}}
 
@@ -26,7 +24,7 @@ want to know what is going on when bringing an interface down or up.
 
 {{%/notice%}}
 
-## Basic Commands</span>
+## Basic Commands
 
 To bring up an interface or apply changes to an existing interface, run:
 
@@ -56,7 +54,7 @@ In this example, swp1 is administratively UP and the physical link is UP
 physical state can be found in [this knowledge base
 article](https://support.cumulusnetworks.com/hc/en-us/articles/202693826).
 
-### Using NCLU to Set the Admin State of an Interface</span>
+### Using NCLU to Set the Admin State of an Interface
 
 You can use
 [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU)
@@ -73,7 +71,7 @@ These commands create the following configuration in the
     iface swp1
         link-down yes
 
-## <span id="src-7112612_InterfaceConfigurationandManagement-classes" class="confluence-anchor-link"></span>ifupdown2 Interface Classes</span>
+## ifupdown2 Interface Classes
 
 `ifupdown2` provides for the grouping of interfaces into separate
 classes, where a class is simply a user-defined label used to group
@@ -136,7 +134,7 @@ interface described above, run:
 
     cumulus@switch:~$ sudo ifreload --allow=mgmt 
 
-### Bringing All auto Interfaces Up or Down</span>
+### Bringing All auto Interfaces Up or Down
 
 You can easily bring up or down all interfaces marked with the common
 `auto` class in `/etc/network/interfaces`. Use the `-a` option. For
@@ -158,7 +156,7 @@ change):
 
     cumulus@switch:~$ sudo ifreload -a
 
-## Configuring a Loopback Interface</span>
+## Configuring a Loopback Interface
 
 Cumulus Linux has a loopback preconfigured in `/etc/network/interfaces`.
 When the switch boots up, it has a loopback interface, called *lo*,
@@ -171,7 +169,7 @@ The loopback interface *lo* must always be specified in
 
 {{%/notice%}}
 
-## <span id="src-7112612_InterfaceConfigurationandManagement-ip" class="confluence-anchor-link"></span>ifupdown Behavior with Child Interfaces</span>
+## ifupdown Behavior with Child Interfaces
 
 By default, `ifupdown` recognizes and uses any interface present on the
 system — whether a VLAN, bond or physical interface — that is listed as
@@ -219,6 +217,7 @@ iface bridge
 </tbody>
 </table>
 
+<details>
 <summary>Bridge in Traditional Mode - Example </summary>
 
 For this example, swp1.100 and swp2.100 below do not need an entry in
@@ -257,10 +256,11 @@ iface br-100
 </table>
 
 For more information on the bridge in traditional mode vs the bridge in
-VLAN-aware mode, please read [this knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
+VLAN-aware mode, please read 
+[this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
+</details>
 
-## ifupdown2 Interface Dependencies</span>
+## ifupdown2 Interface Dependencies
 
 `ifupdown2` understands interface dependency relationships. When `ifup`
 and `ifdown` are run with all interfaces, they always run with all
@@ -386,7 +386,7 @@ To print the dependency information of the entire `interfaces` file:
 
 {{% imgOld 1 %}}
 
-### ifup Handling of Upper (Parent) Interfaces</span>
+### ifup Handling of Upper (Parent) Interfaces
 
 When you run `ifup` on a logical interface (like a bridge, bond or VLAN
 interface), if the `ifup` resulted in the creation of the logical
@@ -438,7 +438,7 @@ then you cannot run `ifup swp1` since you did not specify it.
 
 {{%/notice%}}
 
-## <span id="src-7112612_InterfaceConfigurationandManagement-ip" class="confluence-anchor-link"></span>Configuring IP Addresses</span>
+## Configuring IP Addresses
 
 IP addresses are configured with the `net add interface` command.
 
@@ -455,21 +455,11 @@ addresses, and one IPv6 address.
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
 {{%notice info%}}
 
 You can specify both IPv4 and IPv6 addresses for the same interface.
 
 {{%/notice%}}
-
-</div>
-
-</div>
 
 These commands create the following code snippet:
 
@@ -478,12 +468,6 @@ These commands create the following code snippet:
         address 12.0.0.1/30
         address 12.0.0.2/30
         address 2001:DB8::1/126
-
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
 
 {{%notice info%}}
 
@@ -494,10 +478,6 @@ specifically when you are creating DHCP or loopback interfaces.
     iface lo inet loopback
 
 {{%/notice%}}
-
-</div>
-
-</div>
 
 {{%/notice%}}
 
@@ -511,7 +491,7 @@ To show the assigned address on an interface, use `ip addr show`:
         inet6 2001:DB8::1/126 scope global tentative
            valid_lft forever preferred_lft forever
 
-### Specifying IP Address Scope </span>
+### Specifying IP Address Scope
 
 `ifupdown2` does not honor the configured IP address scope setting in
 `/etc/network/interfaces`, treating all addresses as global. It does not
@@ -565,7 +545,7 @@ Now it has the correct scope:
     inet6 fe80::76e6:e2ff:fef5:6286/64 scope link 
     valid_lft forever preferred_lft forever
 
-### Purging Existing IP Addresses on an Interface</span>
+### Purging Existing IP Addresses on an Interface
 
 By default, `ifupdown2` purges existing IP addresses on an interface. If
 you have other processes that manage IP addresses for an interface, you
@@ -590,15 +570,14 @@ is not supported. Doing so can result in the configuration of multiple
 addresses for an interface after you change an interface address and
 reload the configuration with `ifreload -a`. If this happens, you must
 shut down and restart the interface with `ifup` and `ifdown`, or
-manually delete superfluous addresses with `ip address delete
-specify.ip.address.here/mask dev DEVICE`. See also the [Caveats and
-Errata](#src-7112612_InterfaceConfigurationandManagement-caveats)
-section below for some cautions about using multiple `iface` stanzas for
-the same interface.
+manually delete superfluous addresses with
+`ip address delete specify.ip.address.here/mask dev DEVICE`. See also the
+[Caveats and Errata](#caveats-and-errata) section below for some cautions
+about using multiple `iface` stanzas for the same interface.
 
 {{%/notice%}}
 
-## Specifying User Commands</span>
+## Specifying User Commands
 
 You can specify additional user commands in the `interfaces` file. As
 shown in the example below, the interface stanzas in
@@ -654,7 +633,7 @@ This command creates the following configuration in the
 
 {{%/notice%}}
 
-## Sourcing Interface File Snippets</span>
+## Sourcing Interface File Snippets
 
 Sourcing interface files helps organize and manage the `interfaces`
 file. For example:
@@ -679,18 +658,16 @@ The contents of the sourced file used above are:
         address 2001:ded:beef:2::1/64
         bond-slaves swp25 swp26
 
-## Using Globs for Port Lists</span>
+## Using Globs for Port Lists
 
 NCLU supports globs to define port lists (that is, a range of ports).
-The `glob` keyword is implied when you specify bridge ports and bond
-slaves:
+The `glob` keyword is implied when you specify bridge ports and bond slaves:
 
     cumulus@switch:~$ net add bridge bridge ports swp1-4,6,10-12
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-These commands produce the following snippet in the
-`/etc/network/interfaces` file:
+These commands produce the following snippet in the `/etc/network/interfaces` file:
 
     ...
      
@@ -718,11 +695,10 @@ These commands produce the following snippet in the
     auto swp12
     iface swp12
 
-## Using Templates</span>
+## Using Templates
 
-`ifupdown2` supports [Mako-style
-templates](http://www.makotemplates.org/). The Mako template engine is
-run over the `interfaces` file before parsing.
+`ifupdown2` supports [Mako-style templates](http://www.makotemplates.org/).
+The Mako template engine is run over the `interfaces` file before parsing.
 
 Use the template to declare cookie-cutter bridges in the `interfaces`
 file:
@@ -759,13 +735,12 @@ You can test your template and confirm it evaluates correctly by running
 
 {{%notice tip%}}
 
-For more examples of configuring Mako templates, read this [knowledge
-base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/202868023).
+For more examples of configuring Mako templates, read this 
+[knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202868023).
 
 {{%/notice%}}
 
-### Commenting out Mako Templates</span>
+### Commenting out Mako Templates
 
 To comment out content in Mako templates, use double hash marks (\#\#).
 For example:
@@ -776,7 +751,7 @@ For example:
     ## % endfor
     ##
 
-## Adding Descriptions to Interfaces</span>
+## Adding Descriptions to Interfaces
 
 You can add descriptions to the interfaces configured in
 `/etc/network/interfaces` by using the *alias* keyword.
@@ -807,8 +782,8 @@ the **Name** column after the actual interface name:
     --  ------------------------  -----------------  -------  -----  ---------
     UP  swp1 (hypervisor_port_1)  44:38:39:00:00:04  1G        1500  Access/L2
 
-Interface descriptions also appear in the [SNMP
-OID](Monitoring-System-Hardware.html#src-7112351_MonitoringSystemHardware-snmp)
+Interface descriptions also appear in the 
+[SNMP OID](/version/cumulus-linux-343/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/#monitoring-switch-hardware-using-snmp)
 [IF-MIB::ifAlias](http://www.net-snmp.org/docs/mibs/ifMIBObjects.html#ifAlias).
 
 {{%notice note%}}
@@ -817,7 +792,7 @@ Aliases are limited to 256 characters.
 
 {{%/notice%}}
 
-## <span id="src-7112612_InterfaceConfigurationandManagement-caveats" class="confluence-anchor-link"></span>Caveats and Errata</span>
+## Caveats and Errata
 
 While `ifupdown2` supports the inclusion of multiple `iface` stanzas for
 the same interface, Cumulus Networks recommends you use a single `iface`
@@ -856,38 +831,15 @@ attributes are not specified in multiple `iface` stanzas.
 And, as stated in the note above, you cannot purge existing addresses on
 interfaces with multiple `iface` stanzas.
 
-## Related Information</span>
+## Related Information
 
-  - [Debian - Network
-    Configuration](http://wiki.debian.org/NetworkConfiguration)
-
-  - [Linux Foundation -
-    Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
-
-  - [Linux Foundation -
-    Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
-
-  - [Linux Foundation -
-    VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-
+  - [Debian - Network Configuration](http://wiki.debian.org/NetworkConfiguration)
+  - [Linux Foundation - Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
+  - [Linux Foundation - Bridges](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
+  - [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
   - man ifdown(8)
-
   - man ifquery(8)
-
   - man ifreload
-
   - man ifup(8)
-
   - man ifupdown-addons-interfaces(5)
-
   - man interfaces(5)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

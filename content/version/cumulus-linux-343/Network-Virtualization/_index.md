@@ -11,8 +11,8 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-Cumulus Linux supports these forms of [network
-virtualization](http://en.wikipedia.org/wiki/Network_virtualization):
+Cumulus Linux supports these forms of 
+[network virtualization](http://en.wikipedia.org/wiki/Network_virtualization):
 
 *VXLAN* (Virtual Extensible LAN) is a standard overlay protocol that
 abstracts logical virtual networks from the physical network underneath.
@@ -37,15 +37,15 @@ with the hash based on L2-L4 information from the original frame. The
 UDP destination port is the standard port 4789.
 
 Cumulus Linux includes the native Linux VXLAN kernel support and
-integrates with controller-based overlay solutions like [VMware
-NSX](/version/cumulus-linux-343/Network-Virtualization/Integrating-with-VMware-NSX)
-and [Midokura
-MidoNet](/version/cumulus-linux-343/Network-Virtualization/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack).
+integrates with controller-based overlay solutions like 
+[VMware NSX](/version/cumulus-linux-343/Network-Virtualization/Integrating-with-VMware-NSX)
+and
+[Midokura MidoNet](/version/cumulus-linux-343/Network-Virtualization/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack).
 
-VXLAN is supported only on switches in the [Cumulus Linux
-HCL](http://cumulusnetworks.com/support/hcl/) using the Broadcom
-Tomahawk, Trident II+ and Trident II chipsets as well as the Mellanox
-Spectrum chipset.
+VXLAN is supported only on switches in the 
+[Cumulus Linux HCL](https://cumulusnetworks.com/support/hcl/) using the 
+Broadcom Tomahawk, Trident II+ and Trident II chipsets as well as the 
+Mellanox Spectrum chipset.
 
 {{%notice note%}}
 
@@ -59,12 +59,11 @@ destination.
 
 {{%/notice%}}
 
-## Caveats/Errata</span>
+## Caveats/Errata
 
-### Cut-through Mode and Store & Forward Switching</span>
+### Cut-through Mode and Store & Forward Switching
 
-[Cut-through
-mode](Buffer-and-Queue-Management.html#src-7112623_BufferandQueueManagement-cut_through_mode)
+[Cut-through mode](/version/cumulus-linux-343/Interface-Configuration-and-Management/Buffer-and-Queue-Management/#configuring-cut-through-mode-and-store-and-forward-switching)
 is **not** supported for VXLANs in Cumulus Linux on switches using
 Broadcom Tomahawk, Trident II+ and Trident II ASICs. Store and forward
 switching **is** supported on these ASICs however.
@@ -73,25 +72,14 @@ Cut-through mode **is** supported for VXLANs in Cumulus Linux on
 switches using Mellanox Spectrum ASICs. However, store and forward
 switching is **not** supported on Spectrum.
 
-### MTU Size for Virtual Network Interfaces</span>
+### MTU Size for Virtual Network Interfaces
 
 The maximum transmission unit (MTU) size for a virtual network interface
 should by 50 bytes smaller than the MTU for the physical interfaces on
-the switch. For more information on setting MTU, read [Layer 1 and
-Switch Port
-Attributes](Layer-1-and-Switch-Port-Attributes.html#src-7112615_Layer1andSwitchPortAttributes-mtu_vxlan).
+the switch. For more information on setting MTU, read 
+[Layer 1 and Switch Port Attributes](/version/cumulus-linux-343/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/#mtu-for-a-bridge).
 
-## Useful Links</span>
+## Useful Links
 
-  - [VXLAN IETF
-    draft](http://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-06)
-
-  - [ovsdb-server](http://openvswitch.org/support/dist-docs/ovsdb-server.1.html)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- [VXLAN IETF draft](http://tools.ietf.org/html/draft-mahalingam-dutt-dcops-vxlan-06)
+- [ovsdb-server](http://openvswitch.org/support/dist-docs/ovsdb-server.1.html)

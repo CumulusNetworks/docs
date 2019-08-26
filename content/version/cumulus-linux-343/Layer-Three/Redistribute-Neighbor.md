@@ -11,8 +11,6 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-<details>
-
 *Redistribute neighbor* provides a mechanism for IP subnets to span
 racks without forcing the end hosts to run a routing protocol.
 
@@ -37,69 +35,55 @@ contains all the layer 3 information that's needed. This is where
 redistribute neighbor comes in, as it is a mechanism of formatting and
 syncing this table into the routing protocol.
 
-## Availability</span>
+## Availability
 
 Redistribute neighbor is distributed as `python-rdnbrd`.
 
-## Target Use Cases and Best Practices</span>
+## Target Use Cases and Best Practices
 
 Redistribute neighbor was created with these use cases in mind:
 
-  - Virtualized clusters
-
-  - Hosts with service IP addresses that migrate between racks
-
-  - Hosts that are dual connected to two leaf nodes without using
-    proprietary protocols such as
-    [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
-
-  - Anycast services needing dynamic advertisement from multiple hosts
+- Virtualized clusters
+- Hosts with service IP addresses that migrate between racks
+- Hosts that are dual connected to two leaf nodes without using
+  proprietary protocols such as
+  [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
+- Anycast services needing dynamic advertisement from multiple hosts
 
 Cumulus Networks recommends following these guidelines with redistribute
 neighbor:
 
-  - Use a single logical connection from each host to each leaf.
-
-  - A host can connect to one or more leafs. Each leaf advertises the
+- Use a single logical connection from each host to each leaf.
+- A host can connect to one or more leafs. Each leaf advertises the
     /32 it sees in its neighbor table.
-
-  - A host-bound bridge/VLAN should be local to each switch only.
-
-  - Leaf switches with redistribute neighbor enabled should be directly
+- A host-bound bridge/VLAN should be local to each switch only.
+- Leaf switches with redistribute neighbor enabled should be directly
     connected to the hosts.
-
-  - IP addressing must be non-overlapping, as the host IPs are directly
+- IP addressing must be non-overlapping, as the host IPs are directly
     advertised into the routed fabric.
-
-  - Run redistribute neighbor on Linux-based hosts primarily; other host
+- Run redistribute neighbor on Linux-based hosts primarily; other host
     operating systems may work, but Cumulus Networks has not actively
     tested any at this stage.
 
-## How It Works</span>
+## How It Works
 
 Redistribute neighbor works as follows:
 
-1.  The leaf/ToR switches learn about connected hosts when the host
+1. The leaf/ToR switches learn about connected hosts when the host
     sends an ARP request or ARP reply.
-
-2.  An entry for the host is added to the kernel neighbor table of each
+2. An entry for the host is added to the kernel neighbor table of each
     leaf switch.
-
-3.  The redistribute neighbor daemon, `rdnbrd`, monitors the kernel
+3. The redistribute neighbor daemon, `rdnbrd`, monitors the kernel
     neighbor table and creates a /32 route for each neighbor entry. This
     /32 route is created in kernel table 10.
-
-4.  FRRouting is configured to import routes from kernel table 10.
-
-5.  A route-map is used to control which routes from table 10 are
+4. FRRouting is configured to import routes from kernel table 10.
+5. A route-map is used to control which routes from table 10 are
     imported.
-
-6.  In FRRouting these routes are imported as *table* routes.
-
-7.  BGP, OSPF and so forth are then configured to redistribute the table
+6. In FRRouting these routes are imported as *table* routes.
+7. BGP, OSPF and so forth are then configured to redistribute the table
     10 routes.
 
-## Configuration Steps</span>
+## Configuration Steps
 
 The following configuration steps are based on the [reference
 topology](https://github.com/cumulusnetworks/cldemo-vagrant) set forth
@@ -107,24 +91,24 @@ by Cumulus Networks. Here is a diagram of the topology:
 
 {{% imgOld 0 %}}
 
-### Configuring the Leaf(s)</span>
+### Configuring the Leaf(s)
 
 The following steps demonstrate how to configure leaf01, but the same
 steps can be applied to any of the leafs.
 
-1.  Configure the host facing ports, using the same IP address on both
-    host-facing interfaces as well as a /32 prefix. In this case, swp1
-    and swp2 are configured as they are the ports facing server01 and
-    server02:
-    
+1. Configure the host facing ports, using the same IP address on both
+   host-facing interfaces as well as a /32 prefix. In this case, swp1
+   and swp2 are configured as they are the ports facing server01 and
+   server02:
+
         cumulus@leaf01:~$ net add loopback lo ip address 10.0.0.11/32
         cumulus@leaf01:~$ net add interface swp1-2 ip address 10.0.0.11/32
         cumulus@leaf01:~$ net pending 
         cumulus@leaf01:~$ net commit
-    
-    The commands produce the following configuration in the
-    `/etc/network/interfaces` file:
-    
+
+   The commands produce the following configuration in the
+   `/etc/network/interfaces` file:
+
         auto lo
         iface lo inet loopback
           address 10.0.0.11/32
@@ -137,41 +121,42 @@ steps can be applied to any of the leafs.
         iface swp2
           address 10.0.0.11/32
 
-2.  Enable the daemon so it starts at bootup:
-    
+2. Enable the daemon so it starts at bootup:
+
         cumulus@leaf01:~$ sudo systemctl enable rdnbrd.service
 
-3.  Start the daemon:
-    
+3. Start the daemon:
+
         cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
 
-4.  Configure routing:
-    
-    1.  Define a route-map that matches on the host-facing interfaces:
-        
+4. Configure routing:
+
+    1. Define a route-map that matches on the host-facing interfaces:
+
             cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 10 match interface swp1
             cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 20 match interface swp2
-    
-    2.  Import routing table 10 and apply the route-map:
-        
+
+    2. Import routing table 10 and apply the route-map:
+
             cumulus@leaf01:~$ net add routing import-table 10 route-map REDIST_NEIGHBOR
-    
-    3.  Redistribute the imported *table* routes in into the appropriate
-        routing protocol.  
-        **BGP:**
-        
+
+    3. Redistribute the imported *table* routes in into the appropriate
+       routing protocol.  
+       **BGP:**
+
             cumulus@leaf01:~$ net add bgp autonomous-system 65001
             cumulus@leaf01:~$ net add bgp ipv4 unicast redistribute table 10
-        
-        **OSPF:**
-        
+
+       **OSPF:**
+
             cumulus@leaf01:~$ net add ospf redistribute table 10
-    
-    4.  Save the configuration by committing your changes.
-        
+
+    4. Save the configuration by committing your changes.
+
             cumulus@leaf01:~$ net pending
             cumulus@leaf01:~$ net commit
 
+<details>
 <summary>Click here to expand the contents of /etc/frr/frr.conf
 </summary>
 
@@ -204,8 +189,9 @@ This configuration uses OSPF as the routing protocol.
     !
     line vty
     !
+</details>
 
-### Configuring the Host(s)</span>
+### Configuring the Host(s)
 
 There are a few possible host configurations that range in complexity.
 This document only covers the basic use case: dual-connected Linux hosts
@@ -214,7 +200,7 @@ with static IP addresses assigned.
 Additional host configurations will be covered in future separate
 knowledge base articles.
 
-#### Configuring a Dual-connected Host</span>
+#### Configuring a Dual-connected Host
 
 Configure a host with the same /32 IP address on its loopback (lo) and
 uplinks (in this example, eth1 and eth2). This is done so both leaf
@@ -232,15 +218,13 @@ Configure the loopback and physical interfaces. Referring back to the
 topology diagram, server01 is connected to leaf01 via eth1 and to leaf02
 via eth2. You should note:
 
-  - The loopback IP is assigned to lo, eth1 and eth2.
-
-  - The post-up ARPing is used to force the host to ARP as soon as its
+- The loopback IP is assigned to lo, eth1 and eth2.
+- The post-up ARPing is used to force the host to ARP as soon as its
     interface comes up. This allows the leaf to learn about the host as
     soon as possible.
-
-  - The post-up `ip route replace` is used to install a default route
+- The post-up `ip route replace` is used to install a default route
     via one or both leaf nodes if both swp1 and swp2 are up.
-    
+
         user@server01:$ cat /etc/network/interfaces
         # The loopback network interface
         auto lo
@@ -262,7 +246,7 @@ via eth2. You should note:
           post-up for i in {1..3}; do arping -q -c 1 -w 0 -i eth2 10.0.0.12; sleep 1; done
           post-up ip route add 0.0.0.0/0 nexthop via 10.0.0.11 dev eth1 onlink nexthop via 10.0.0.12 dev eth2 onlink || true
 
-#### Installing ifplugd</span>
+#### Installing ifplugd
 
 Additionally, install and use
 [ifplugd](/version/cumulus-linux-343/Layer-One-and-Two/Virtual-Router-Redundancy-VRR/ifplugd).
@@ -281,12 +265,12 @@ connect to the leaves.
     ARGS="-q -f -u10 -d10 -w -I"
     SUSPEND_ACTION="stop"
 
-For full instructions on installing `ifplugd` on Ubuntu, [follow this
-guide](https://support.cumulusnetworks.com/hc/en-us/articles/204473717).
+For full instructions on installing `ifplugd` on Ubuntu, 
+[follow this guide](https://support.cumulusnetworks.com/hc/en-us/articles/204473717).
 
-## Known Limitations</span>
+## Known Limitations
 
-### TCAM Route Scale</span>
+### TCAM Route Scale
 
 This feature adds each ARP entry as a /32 host route into the routing
 table of all switches within a summarization domain. Take care to keep
@@ -297,47 +281,47 @@ limits of your chosen hardware platforms. If in doubt, contact Cumulus
 Networks support or your Cumulus Networks CSE; they will be happy to
 help.
 
-### Possible Uneven Traffic Distribution</span>
+### Possible Uneven Traffic Distribution
 
 Linux uses *source* L3 addresses only to do load balancing on most older
 distributions.
 
-### Silent Hosts Never Receive Traffic</span>
+### Silent Hosts Never Receive Traffic
 
 Freshly provisioned hosts that have never sent traffic may not ARP for
 their default gateways. The post-up ARPing in `/etc/network/interfaces`
 on the host should take care of this. If the host does not ARP, then
 `rdnbrd` on the leaf cannot learn about the host.
 
-### Support for IPv4 Only</span>
+### Support for IPv4 Only
 
 This release of redistribute neighbor supports IPv4 only.
 
-### VRFs Are not Supported</span>
+### VRFs Are not Supported
 
 This release of redistribute neighbor does not support
 [VRFs](/version/cumulus-linux-343/Layer-Three/Virtual-Routing-and-Forwarding-VRF).
 
-## Troubleshooting</span>
+## Troubleshooting
 
-  - **How do I determine if `rdnbrd` (the redistribute neighbor daemon)
-    is running?**
-    
-    Use `systemd` to check:
-    
-        cumulus@leaf01$ systemctl status rdnbrd.service 
-        * rdnbrd.service - Cumulus Linux Redistribute Neighbor Service
-         Loaded: loaded (/lib/systemd/system/rdnbrd.service; enabled)
-         Active: active (running) since Wed 2016-05-04 18:29:03 UTC; 1h 13min ago
-         Main PID: 1501 (python)
-         CGroup: /system.slice/rdnbrd.service
-         `-1501 /usr/bin/python /usr/sbin/rdnbrd -d
+- **How do I determine if `rdnbrd` (the redistribute neighbor daemon)
+  is running?**
 
-  - **How do I change rdnbrd's default configuration?**
-    
-    By editing `/etc/rdnbrd.conf` then running `systemctl restart
-    rdnbrd.service`:
-    
+  Use `systemd` to check:
+
+      cumulus@leaf01$ systemctl status rdnbrd.service 
+      * rdnbrd.service - Cumulus Linux Redistribute Neighbor Service
+       Loaded: loaded (/lib/systemd/system/rdnbrd.service; enabled)
+       Active: active (running) since Wed 2016-05-04 18:29:03 UTC; 1h 13min ago
+       Main PID: 1501 (python)
+       CGroup: /system.slice/rdnbrd.service
+       `-1501 /usr/bin/python /usr/sbin/rdnbrd -d
+
+- **How do I change rdnbrd's default configuration?**
+
+  By editing `/etc/rdnbrd.conf` then running
+  `systemctl restart rdnbrd.service`:
+
         cumulus@leaf01$ cat /etc/rdnbrd.conf 
         # syslog logging level CRITICAL, ERROR, WARNING, INFO, or DEBUG
         loglevel = INFO
@@ -366,14 +350,14 @@ This release of redistribute neighbor does not support
         unicast_arp_requests = True
         cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
 
-  - **What is table 10? Why was table 10 chosen?**  
-    The Linux kernel supports multiple routing tables and has the
-    ability to utilize 0 through 255 as table IDs. However, tables 0,
-    253, 254 and 255 are reserved, and 1 is usually the first one
-    utilized, so `rdnbrd` only allows you to specify 2-252. The number
-    10 was chosen for no particular reason. Feel free to set it to any
-    value between 2-252. You can see all the tables specified here:
-    
+- **What is table 10? Why was table 10 chosen?**  
+  The Linux kernel supports multiple routing tables and has the
+  ability to utilize 0 through 255 as table IDs. However, tables 0,
+  253, 254 and 255 are reserved, and 1 is usually the first one
+  utilized, so `rdnbrd` only allows you to specify 2-252. The number
+  10 was chosen for no particular reason. Feel free to set it to any
+  value between 2-252. You can see all the tables specified here:
+
         cumulus@switch$ cat /etc/iproute2/rt_tables
         #
         # reserved values
@@ -386,17 +370,16 @@ This release of redistribute neighbor does not support
         # local
         #
         #1  inr.ruhep
-    
-    Read more information on [Linux route
-    tables](http://linux-ip.net/html/routing-tables.html), or you can
-    read the [Ubuntu man pages for ip
-    route](http://manpages.ubuntu.com/manpages/quantal/man8/ip-route.8.html).
 
-  - **How do I determine that the /32 redistribute neighbor routes are
-    being advertised to my neighbor?**
-    
-    For BGP, check the advertised routes to the neighbor.
-    
+  Read more information on 
+  [Linux route tables](http://linux-ip.net/html/routing-tables.html), or you 
+  can read the 
+  [Ubuntu man pages for ip route](http://manpages.ubuntu.com/manpages/quantal/man8/ip-route.8.html).
+
+- **How do I determine that the /32 redistribute neighbor routes are being advertised to my neighbor?**
+
+  For BGP, check the advertised routes to the neighbor.
+
         cumulus@leaf01:~$ sudo vtysh
         Hello, this is Quagga (version 0.99.23.1+cl3u2).
         Copyright 1996-2005 Kunihiro Ishiguro, et al.
@@ -414,28 +397,27 @@ This release of redistribute neighbor does not support
          
         Total number of prefixes 4
 
-### Verification</span>
+### Verification
 
 The following workflow can be used to verify that the kernel routing
 table is being correctly populated, and that routes are being correctly
 imported/advertised:
 
-1.  Verify that ARP neighbour entries are being populated into the
-    Kernel routing table 10.
-    
-        cumulus@switch:~$ ip route show table 10
-        10.0.1.101 dev swp1 scope link
-    
-    If these routes are not being generated, verify the following:
-    
-      - That the `rdnbrd` daemon is running
-    
-      - Check `/etc/rdnbrd.conf` to verify the correct table number is
-        used
+1. Verify that ARP neighbour entries are being populated into the
+   Kernel routing table 10.
 
-2.  Verify that routes are being imported into FRRouting from the kernel
+   ```
+   cumulus@switch:~$ ip route show table 10
+   10.0.1.101 dev swp1 scope link
+   ```
+   If these routes are not being generated, verify the following:
+
+   - That the `rdnbrd` daemon is running
+   - Check `/etc/rdnbrd.conf` to verify the correct table number is used
+
+2. Verify that routes are being imported into FRRouting from the kernel
     routing table 10.
-    
+
         cumulus@switch:~$ sudo vtysh
         Hello, this is Quagga (version 0.99.23.1+cl3u2).
         Copyright 1996-2005 Kunihiro Ishiguro, et al.
@@ -445,30 +427,19 @@ imported/advertised:
                O - OSPF, I - IS-IS, B - BGP, A - Babel, T - Table,
                > - selected route, * - FIB route
          T[10]>* 10.0.1.101/32 [19/0] is directly connected, swp1, 01:25:29
-    
-    Both the \> and \* should be present so that table 10 routes are
-    installed as preferred into the routing table. If the routes are not
-    being installed, verify the following:
-    
-      - The imported distance of the locally imported kernel routes
-        using the `ip import 10 distance X` command, where X is **not**
-        less than the adminstrative distance of the routing protocol. If
-        the distance is too low, routes learned from the protocol may
-        overwrite the locally imported routes.
-    
-      - The routes are in the kernel routing table.
 
-3.  Confirm that routes are in the BGP/OSPF database and being
+   Both the \> and \* should be present so that table 10 routes are
+   installed as preferred into the routing table. If the routes are not
+   being installed, verify the following:
+
+   - The imported distance of the locally imported kernel routes
+     using the `ip import 10 distance X` command, where X is **not**
+     less than the adminstrative distance of the routing protocol. If
+     the distance is too low, routes learned from the protocol may
+     overwrite the locally imported routes.
+   - The routes are in the kernel routing table.
+
+3. Confirm that routes are in the BGP/OSPF database and being
     advertised.
-    
+
         switch# show ip bgp
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

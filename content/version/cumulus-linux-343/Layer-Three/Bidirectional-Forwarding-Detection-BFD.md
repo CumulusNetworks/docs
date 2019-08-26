@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 187
 aliases:
  - /display/CL34/Bidirectional+Forwarding+Detection+++BFD
+ - /display/CL34/Bidirectional+Forwarding+Detection+-+BFD
+ - /display/CL34/Bidirectional+Forwarding+Detection+BFD
  - /pages/viewpage.action?pageId=7112677
 pageID: 7112677
 product: Cumulus Linux
@@ -24,18 +26,17 @@ Cumulus Linux does not support demand mode in BFD.
 
 {{%/notice%}}
 
-## Using BFD Multihop Routed Paths</span>
+## Using BFD Multihop Routed Paths
 
 BFD multihop sessions are built over arbitrary paths between two
 systems, which results in some complexity that does not exist for single
 hop sessions. Here are some best practices for using multihop paths:
 
-  - **Spoofing:** To avoid spoofing with multihop paths, configure
+- **Spoofing:** To avoid spoofing with multihop paths, configure
     `max_hop_cnt` (maximum hop count*)* for each peer, which limits the
     number of hops for a BFD session. All BFD packets exceeding the max
     hop count will be dropped.
-
-  - **Demultiplexing:** Since multihop BFD sessions can take arbitrary
+- **Demultiplexing:** Since multihop BFD sessions can take arbitrary
     paths, demultiplex the initial BFD packet based on the
     source/destination IP address pair. Use FRRouting, which monitors
     connectivity to the peer, to determine the source/destination IP
@@ -44,32 +45,27 @@ hop sessions. Here are some best practices for using multihop paths:
 Multihop BFD sessions are supported for both IPv4 and IPv6 peers. See
 below for more details.
 
-## BFD Parameters</span>
+## BFD Parameters
 
 You can configure the following BFD parameters for both IPv4 and IPv6
 sessions:
 
-  - The required minimum interval between the received BFD control
-    packets.
+- The required minimum interval between the received BFD control packets.
+- The minimum interval for transmitting BFD control packets.
+- The detection time multiplier.
 
-  - The minimum interval for transmitting BFD control packets.
+## Configuring BFD
 
-  - The detection time multiplier.
-
-## Configuring BFD</span>
-
-You configure BFD one of two ways: by specifying the configuration in
-the [PTM `topology.dot`
-file](/version/cumulus-linux-343/Layer-One-and-Two/Prescriptive-Topology-Manager-PTM),
+You configure BFD one of two ways: by specifying the configuration in the 
+[PTM `topology.dot` file](/version/cumulus-linux-343/Layer-One-and-Two/Prescriptive-Topology-Manager-PTM),
 or using
 [FRRouting](/version/cumulus-linux-343/Layer-Three/FRRouting-Overview/).
 However, the topology file has some limitations:
 
-  - The `topology.dot` file supports creating BFD IPv4 and IPv6 single
+- The `topology.dot` file supports creating BFD IPv4 and IPv6 single
     hop sessions only; you cannot specify IPv4 or IPv6 multihop sessions
     in the topology file.
-
-  - The topology file supports BFD sessions for only link-local IPv6
+- The topology file supports BFD sessions for only link-local IPv6
     peers; BFD sessions for global IPv6 peers discovered on the link
     will not be created.
 
@@ -109,13 +105,13 @@ table before BFD can start sending control packets.
 
 {{%/notice%}}
 
-## BFD in BGP</span>
+## BFD in BGP
 
 For FRRouting when using **BGP**, neighbors are registered and
 de-registered with
 [PTM](/version/cumulus-linux-343/Layer-One-and-Two/Prescriptive-Topology-Manager-PTM)
-dynamically when you enable BFD in BGP using `net add bgp neighbor
-<neighbor|IP|interface> bfd`. For example:
+dynamically when you enable BFD in BGP using 
+`net add bgp neighbor <neighbor|IP|interface> bfd`. For example:
 
 Configuration of BFD for a peergroup or individual neighbors is
 performed in the same way.
@@ -137,8 +133,8 @@ family configuration in the `/etc/frr/frr.conf` file:
 The configuration above configures the default BFD values of intervals:
 3, minimum RX interval: 300ms, minimum TX interval: 300ms.
 
-To see neighbor information in BGP, including BFD status, run `net show
-bgp neighbor <interface>`.
+To see neighbor information in BGP, including BFD status, run 
+`net show bgp neighbor <interface>`.
 
     cumulus@spine01:~$ net show bgp neighbor swp1
      ...
@@ -155,7 +151,7 @@ parameters can be configured for each BGP neighbor. For example:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## BFD in OSPF</span>
+## BFD in OSPF
 
 For FRRouting using **OSFP**, neighbors are registered and de-registered
 dynamically with
@@ -177,7 +173,7 @@ These commands create the following configuration snippet in the
      ipv6 ospf6 bfd 5 500 500
     end
 
-## OSPF Show Commands</span>
+## OSPF Show Commands
 
 The BFD lines at the end of each code block shows the corresponding IPv6
 or IPv4 OSPF interface or neighbor information.
@@ -253,7 +249,7 @@ or IPv4 OSPF interface or neighbor information.
           Detect Mul: 5, Min Rx interval: 500, Min Tx interval: 500
           Status: Down, Last update: 0:00:01:29
 
-## Scripts</span>
+## Scripts
 
 `ptmd` executes scripts at `/etc/ptm.d/bfd-sess-down` and
 ` /etc/ptm.d/bfd-sess-up  `for when BFD sessions go down or up, running
@@ -262,7 +258,7 @@ when a BFD session goes up.
 
 You should modify these default scripts as needed.
 
-## Echo Function</span>
+## Echo Function
 
 Cumulus Linux supports the *echo function* for IPv4 single hops only,
 and with the asynchronous operating mode only (Cumulus Linux does not
@@ -286,7 +282,7 @@ are sent out at this required minimum echo Rx interval. This indicates
 to the peer that the local system can loop back the echo packets. Echo
 packets are transmitted if the peer supports receiving echo packets.
 
-### About the Echo Packet</span>
+### About the Echo Packet
 
 BFD echo packets are encapsulated into UDP packets over destination and
 source UDP port number 3785. The BFD echo packet format is
@@ -294,94 +290,51 @@ vendor-specific and has not been defined in the RFC. BFD echo packets
 that originate from Cumulus Linux are 8 bytes long and have the
 following format:
 
-<table class="confluenceTable">
-
-<thead class=" ">
-
-</thead>
-
-<tfoot class=" ">
-
-</tfoot>
-
-<tbody class=" ">
-
+<table>
+<tbody>
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td>
 0
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td>
 1
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td>
 2
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td>
 3
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td>
 Version
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
+<td>
 Length
-
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="2">
-
+<td  colspan="2">
 Reserved
-
 </td>
-
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="4">
-
+<td rowspan="1" colspan="4">
 My Discriminator
-
 </td>
-
 </tr>
-
 </tbody>
-
 </table>
 
 Where:
 
-  - **Version** is the version of the BFD echo packet.
-
-  - **Length** is the length of the BFD echo packet.
-
-  - **My Discriminator** is a non-zero value that uniquely identifies a
+- **Version** is the version of the BFD echo packet.
+- **Length** is the length of the BFD echo packet.
+- **My Discriminator** is a non-zero value that uniquely identifies a
     BFD session on the transmitting side. When the originating node
     receives the packet after being looped back by the receiving system,
     this value uniquely identifies the BFD session.
 
-### Transmitting and Receiving Echo Packets</span>
+### Transmitting and Receiving Echo Packets
 
 BFD echo packets are transmitted for a BFD session only when the peer
 has advertised a non-zero value for the required minimum echo Rx
@@ -393,34 +346,23 @@ BFD echo packets are looped back to the originating node for a BFD
 session only if locally the `echoMinRx` and `echoSupport` are configured
 to a non-zero values.
 
-### Using Echo Function Parameters</span>
+### Using Echo Function Parameters
 
 You configure the echo function by setting the following parameters in
 the topology file at the global, template and port level:
 
-  - **echoSupport:** Enables and disables echo mode. Set to 1 to enable
+- **echoSupport:** Enables and disables echo mode. Set to 1 to enable
     the echo function. It defaults to 0 (disable).
-
-  - **echoMinRx:** The minimum interval between echo packets the local
+- **echoMinRx:** The minimum interval between echo packets the local
     system is capable of receiving. This is advertised in the BFD
     control packet. When the echo function is enabled, it defaults to
     50. If you disable the echo function, this parameter is
     automatically set to 0, which indicates the port or the node cannot
     process or receive echo packets.
-
-  - **slowMinTx:** The minimum interval between transmitting BFD control
+- **slowMinTx:** The minimum interval between transmitting BFD control
     packets when the echo packets are being exchanged.
 
-## Troubleshooting BFD</span>
+## Troubleshooting BFD
 
 To troubleshoot BFD, use `ptmctl -b`. For more information, see
-[Prescriptive Topology Manager -
-PTM](/version/cumulus-linux-343/Layer-One-and-Two/Prescriptive-Topology-Manager-PTM).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+[Prescriptive Topology Manager - PTM](/version/cumulus-linux-343/Layer-One-and-Two/Prescriptive-Topology-Manager-PTM).

@@ -11,10 +11,9 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-You can use `cl-resource-query` to retrieve information about host
-entries, MAC entries, L2 and L3 routes, and ECMPs (equal-cost multi-path
-routes, see [Load
-Balancing](Network-Topology.html#src-7112654_NetworkTopology-load_balancing))
+You can use `cl-resource-query` to retrieve information about host entries,
+MAC entries, L2 and L3 routes, and ECMPs (equal-cost multi-path routes, see
+[Load Balancing](/version/cumulus-linux-343/Layer-Three/Network-Topology/#load-balancing))
 that are in use. This is especially useful because Cumulus Linux syncs
 routes between the kernel and the switching silicon. If the required
 resource pools in hardware fill up, new kernel routes can cause existing
@@ -78,11 +77,3 @@ command. Results vary between switches running on different chipsets.
     Total Routes:              31,   0% of maximum value  32768
     ECMP nexthops:              0,   0% of maximum value  16346
     MAC entries:               12,   0% of maximum value  32768
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

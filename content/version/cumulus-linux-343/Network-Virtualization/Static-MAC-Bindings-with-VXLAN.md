@@ -13,7 +13,7 @@ siteSlug: cumulus-linux-343
 ---
 Cumulus Linux includes native Linux VXLAN kernel support.
 
-## Requirements</span>
+## Requirements
 
 A VXLAN configuration requires a switch with a Broadcom Tomahawk,
 Trident II+ or Trident II chipset running Cumulus Linux 2.0 or later, or
@@ -21,13 +21,12 @@ a Mellanox Spectrum chipset running Cumulus Linux 3.2.0 or later.
 
 For a basic VXLAN configuration, you should ensure that:
 
-  - The VXLAN has a network identifier (VNI); do not use 0 or 16777215
-    as the VNI ID, as they are reserved values under Cumulus Linux.
+- The VXLAN has a network identifier (VNI); do not use 0 or 16777215
+  as the VNI ID, as they are reserved values under Cumulus Linux.
+- The VXLAN link and local interfaces are added to bridge to create
+  the association between port, VLAN and VXLAN instance.
 
-  - The VXLAN link and local interfaces are added to bridge to create
-    the association between port, VLAN and VXLAN instance.
-
-## Example VXLAN Configuration</span>
+## Example VXLAN Configuration
 
 Consider the following example:
 
@@ -36,16 +35,15 @@ Consider the following example:
 {{%notice warning%}}
 
 Preconfiguring remote MAC addresses does not scale. A better solution is
-to use the Cumulus Networks [Lightweight Network
-Virtualization](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722663)
-feature, or a controller-based option like [Midokura MidoNet and
-OpenStack](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722662)
-or [VMware
-NSX](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722660).
+to use the Cumulus Networks 
+[Lightweight Network Virtualization](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
+feature, or a controller-based option like 
+[Midokura MidoNet and OpenStack](/version/cumulus-linux-343/Network-Virtualization/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/)
+or [VMware NSX](/version/cumulus-linux-343/Network-Virtualization/Integrating-with-VMware-NSX/).
 
 {{%/notice%}}
 
-## Configuring the Static MAC Bindings VXLAN</span>
+## Configuring the Static MAC Bindings VXLAN
 
 To configure the example illustrated above, first create the following
 configuration on switch1:
@@ -103,12 +101,12 @@ These commands create the following configuration in the
         post-up bridge fdb add 00:00:10:00:00:0A dev vtep1000 dst 172.10.1.1 vni 1000
         post-up bridge fdb add 00:00:10:00:00:0B dev vtep1000 dst 172.10.1.1 vni 1000
 
-## Troubleshooting VXLANs in Cumulus Linux</span>
+## Troubleshooting VXLANs in Cumulus Linux
 
 Use the following commands to troubleshoot issues on the switch:
 
-  - `brctl show`: Verifies the VXLAN configuration in a bridge:
-    
+- `brctl show`: Verifies the VXLAN configuration in a bridge:
+
         cumulus@switch:~$ brctl show
         bridge name bridge id           STP enabled   interfaces
         bridge      8000.2a179a8cc471   yes           swp1
@@ -116,8 +114,8 @@ Use the following commands to troubleshoot issues on the switch:
                                                       vni-10
                                                       vni-2000
 
-  - `bridge fdb show`: Displays the list of MAC addresses in an FDB:
-    
+- `bridge fdb show`: Displays the list of MAC addresses in an FDB:
+
         cumulus@switch1:~$ bridge fdb show
         44:38:39:00:00:18 dev swp1 master bridge permanent
         44:38:39:00:00:1c dev swp2 master bridge permanent
@@ -126,17 +124,11 @@ Use the following commands to troubleshoot issues on the switch:
         00:00:10:00:00:0c dev vni-10 dst 172.20.1.1 self permanent
 
   - `ip -d link show`: Displays information about the VXLAN link:
-    
+
+        ```
         cumulus@switch1:~$ ip –d link show vni-10
         15: vni-10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default 
             link/ether 9a:e8:ef:a1:9d:6f brd ff:ff:ff:ff:ff:ff promiscuity 1 
             vxlan id 10 remote 10.2.1.3 local 10.2.1.1 srcport 0 0 dstport 4789 ageing 1800 
-            bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8004 port_no 0x4 designated_port 32772 designated_cost 0 designated_bridge 8000.2a:17:9a:8c:c4:71 designated_root 8000.2a:17:9a:8c:c4:71 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on addrgenmode eui64 
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+            bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8004 port_no 0x4 designated_port 32772 designated_cost 0 designated_bridge 8000.2a:17:9a:8c:c4:71 designated_root 8000.2a:17:9a:8c:c4:71 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on addrgenmode eui64
+        ```

@@ -18,13 +18,12 @@ The following sections describe various ways you can troubleshoot
 
 The `/etc/default/networking` file contains two settings for logging:
 
-  - To get `ifupdown2` logs when the switch boots (stored in `syslog`)
-
-  - To enable logging when you run `systemctl [start|stop|reload]
+- To get `ifupdown2` logs when the switch boots (stored in `syslog`)
+- To enable logging when you run `systemctl [start|stop|reload]
     networking.service`
 
 This file also contains an option for excluding interfaces when you boot
-the switch or run ` systemctl start|stop|reload networking.service  `.
+the switch or run `systemctl start|stop|reload networking.service`.
 You can exclude any interface specified in `/etc/network/interfaces`.
 These interfaces do not come up when you boot the switch or
 start/stop/reload the networking service.

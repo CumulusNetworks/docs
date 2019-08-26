@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 75
 aliases:
  - /display/CL34/Power+over+Ethernet+++PoE
+ - /display/CL34/Power+over+Ethernet+-+PoE
+ - /display/CL34/Power+over+Ethernet+PoE
  - /pages/viewpage.action?pageId=7112334
 pageID: 7112334
 product: Cumulus Linux
@@ -11,8 +13,6 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-<details>
-
 Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain
 Cumulus Linux switches can supply power from Ethernet switch ports to
 enabled devices over the Ethernet cables that connect them. Power over
@@ -23,25 +23,22 @@ The [currently supported platform](http://cumulusnetworks.com/hcl/) is
 the Edge-Core AS4610-54P, which supports PoE and PoE+ and configuration
 over Ethernet layer 2 LLDP for power negotiation.
 
-## How It Works</span>
+## How It Works
 
 PoE functionality is provided by the `cumulus-poe` package. When a
 powered device is connected to the switch via an Ethernet cable:
 
-  - If the available power is greater than the power required by the
+- If the available power is greater than the power required by the
     connected device, power is supplied to the switch port, and the
     device powers on
-
-  - If available power is less than the power required by the connected
+- If available power is less than the power required by the connected
     device and the switch port's priority is less than the port priority
     set on all powered ports, power is **not** supplied to the port
-
-  - If available power is less than the power required by the connected
+- If available power is less than the power required by the connected
     device and the switch port's priority is greater than the priority
     of a currently powered port, power is removed from lower priority
     port(s) and power is supplied to the port
-
-  - If the total consumed power exceeds the configured power limit of
+- If the total consumed power exceeds the configured power limit of
     the power source, low priority ports are turned off. In the case of
     a tie, the port with the lower port number gets priority
 
@@ -55,32 +52,31 @@ Power is available as follows:
 
 The AS4610-54P has an LED on the front panel to indicate PoE status:
 
-  - Green: The `poed` daemon is running and no errors are detected
+- Green: The `poed` daemon is running and no errors are detected
+- Yellow: One or more errors are detected or the `poed` daemon is not
+  running
 
-  - Yellow: One or more errors are detected or the `poed` daemon is not
-    running
-
-### About Link State and PoE State</span>
+### About Link State and PoE State
 
 Link state and PoE state are completely independent of each other. When
 a link is brought down on a particular port using `ip link <port> down`,
 power on that port is not turned off; however, LLDP negotiation is not
 possible.
 
-## Configuring PoE</span>
+## Configuring PoE
 
-You use the `poectl` command utility to configure PoE on a [switch that
-supports](http://cumulusnetworks.com/hcl/) the feature. You can:
+You use the `poectl` command utility to configure PoE on a 
+[switch that supports](http://cumulusnetworks.com/hcl/) the feature. You can:
 
-  - Enable or disable PoE for a given switch port
-
-  - Set a switch port's PoE priority to one of three values: *low*,
-    *high* or *critical*
+- Enable or disable PoE for a given switch port
+- Set a switch port's PoE priority to one of three values: *low*,
+  *high* or *critical*
 
 The PoE configuration resides in `/etc/cumulus/poe.conf`. The file lists
 all the switch ports, whether PoE is enabled for those ports and the
 priority for each port.
 
+<details>
 <summary>Sample poe.conf file ... </summary>
 
     [enable]
@@ -182,6 +178,7 @@ priority for each port.
     swp46 = low
     swp47 = low
     swp48 = low
+</details>
 
 By default, PoE and PoE+ are enabled on all Ethernet/1G switch ports,
 and these ports are set with a low priority. Switch ports can have low,
@@ -208,30 +205,24 @@ To display PoE information for a set of switch ports, run `poectl -i
     swp11   searching              n/a           low      IEEE802.3at   none        0.0 V      0 mA    0.0 W 
     swp12   connected              n/a           low      IEEE802.3at   2          53.5 V     25 mA    1.4 W 
     swp13   connected              51.0 W        low      IEEE802.3at   4          53.6 V     72 mA    3.8 W 
-     
 
 The **Status** can be one of the following:
 
-  - **searching:** PoE is enabled but no device has been detected.
-
-  - **disabled:** The PoE port has been configured as disabled.
-
-  - **connected:** A powered device is connected and receiving power.
-
-  - **power-denied:** There is insufficient PoE power available to
+- **searching:** PoE is enabled but no device has been detected.
+- **disabled:** The PoE port has been configured as disabled.
+- **connected:** A powered device is connected and receiving power.
+- **power-denied:** There is insufficient PoE power available to
     enable the connected device.
 
 The **Allocated** column displays how much PoE power has been allocated
 to the port, which can be one of the following:
 
-  - **n/a:** No device is connected or the connected device does not
-    support LLDP negotiation.
-
-  - **negotiating:** An LLDP-capable device is connected and is
-    negotiating for PoE power.
-
-  - **XX.X W:** An LLDP-capable device has negotiated for XX.X watts of
-    power (for example, 51.0 watts for swp13 above).
+- **n/a:** No device is connected or the connected device does not
+  support LLDP negotiation.
+- **negotiating:** An LLDP-capable device is connected and is
+  negotiating for PoE power.
+- **XX.X W:** An LLDP-capable device has negotiated for XX.X watts of
+  power (for example, 51.0 watts for swp13 above).
 
 To see all the PoE information for a switch, run `poectl -s`:
 
@@ -246,7 +237,7 @@ To see all the PoE information for a switch, run `poectl -s`:
 The set commands (priority, enable, disable) either succeed silently or
 display an error message if the command fails.
 
-### <span id="src-7112334_PoweroverEthernet-PoE-args" class="confluence-anchor-link"></span>poectl Arguments</span>
+### poectl Arguments
 
 The `poectl` command takes the following arguments:
 
@@ -317,25 +308,21 @@ The `poectl` command takes the following arguments:
 </tbody>
 </table>
 
-## Troubleshooting PoE and PoE+</span>
+## Troubleshooting PoE and PoE+
 
 You can troubleshoot PoE and PoE+ using the following utilities and
 files:
 
-  - `poectl -s`, as described above.
-
-  - The Cumulus Linux `cl-support` script, which includes PoE-related
-    output from `poed.conf`, `syslog`, `poectl --diag-info` and
-    `lldpctl`.`  `
-
-  - `lldpcli show neighbors ports <swp> protocol lldp hidden details`
-
-  - `tcpdump -v -v -i <swp> ether proto 0x88cc`
-
-  - The contents of the PoE/PoE+ `/etc/lldpd.d/poed.conf` configuration
+- `poectl -s`, as described above.
+- The Cumulus Linux `cl-support` script, which includes PoE-related
+  output from `poed.conf`, `syslog`, `poectl --diag-info` and
+  `lldpctl`.
+- `lldpcli show neighbors ports <swp> protocol lldp hidden details`
+- `tcpdump -v -v -i <swp> ether proto 0x88cc`
+- The contents of the PoE/PoE+ `/etc/lldpd.d/poed.conf` configuration
     file, as described above.
 
-### Verify the Link Is Up</span>
+### Verify the Link Is Up
 
 LLDP requires network connectivity, so verify that the link is up.
 
@@ -344,7 +331,7 @@ LLDP requires network connectivity, so verify that the link is up.
     --  ------  -----------------  -------  -----  ---------
     UP  swp20   44:38:39:00:00:04  1G        1500  Access/L2
 
-### View LLDP Information Using lldpcli</span>
+### View LLDP Information Using lldpcli
 
 You can run `lldpcli` to view the LLDP information that has been
 received on a switch port. For example:
@@ -384,7 +371,7 @@ received on a switch port. For example:
         TLV:          OUI: 00,01,42, SubType: 1, Len: 1 0D
     -------------------------------------------------------------------------------
 
-### View LLDP Information Using tcpdump</span>
+### View LLDP Information Using tcpdump
 
 You can use `tcpdump` to view the LLDP frames being transmitted and
 received. For example:
@@ -444,24 +431,11 @@ received. For example:
           0x0000:  0001 4201 01
         End TLV (0), length 0
 
-### Logging poed Events in syslog</span>
+### Logging poed Events in syslog
 
 The `poed` service logs the following events to `syslog`:
 
-  - When a switch provides power to a powered device
-
-  - When a device that was receiving power is removed
-
-  - When the power available to the switch changes
-
-  - Errors
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>
+- When a switch provides power to a powered device
+- When a device that was receiving power is removed
+- When the power available to the switch changes
+- Errors

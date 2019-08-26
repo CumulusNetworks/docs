@@ -15,8 +15,7 @@ The Cumulus Linux bridge driver supports two configuration modes, one
 that is VLAN-aware, and one that follows a more traditional Linux bridge
 model.
 
-For [traditional Linux
-bridges](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges),
+For [traditional Linux bridges](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges),
 the kernel supports VLANs in the form of VLAN subinterfaces. Enabling
 bridging on multiple VLANs means configuring a bridge for each VLAN and,
 for each member port on a bridge, creating one or more VLAN
@@ -26,9 +25,8 @@ management, when the number of ports times the number of VLANs becomes
 large.
 
 The VLAN-aware mode in Cumulus Linux implements a configuration model
-for large-scale L2 environments, with **one single** **instance** of
-[Spanning
-Tree](/version/cumulus-linux-343/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree).
+for large-scale L2 environments, with **one single instance** of
+[Spanning Tree](/version/cumulus-linux-343/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree).
 Each physical bridge member port is configured with the list of allowed
 VLANs as well as its port VLAN ID (either PVID or native VLAN — see
 below). MAC address learning, filtering and forwarding are *VLAN-aware*.
@@ -44,7 +42,7 @@ VLAN-aware bridge on a given switch.
 
 {{%/notice%}}
 
-## Configuring a VLAN-aware Bridge</span>
+## Configuring a VLAN-aware Bridge
 
 VLAN-aware bridges can be configured with the Network Command Line
 Utility
@@ -85,21 +83,17 @@ iface bridge
 
 The following attributes are useful for configuring VLAN-aware bridges:
 
-  - `bridge-vlan-aware`: Is automatically set to *yes* to indicate that
+- `bridge-vlan-aware`: Is automatically set to *yes* to indicate that
     the bridge is in VLAN-aware mode.
-
-  - `bridge-pvid`: A PVID is the bridge's *Primary VLAN Identifer*. The
+- `bridge-pvid`: A PVID is the bridge's *Primary VLAN Identifer*. The
     PVID defaults to 1; specifying the PVID identifies that VLAN as the
     native VLAN.
-
-  - `bridge-vids`: A VID is the *VLAN Identifier*, which declares the
+- `bridge-vids`: A VID is the *VLAN Identifier*, which declares the
     VLANs associated with this bridge.
-
-  - `bridge-access`: Declares the physical switch port as an *access
+- `bridge-access`: Declares the physical switch port as an *access
     port*. Access ports ignore all tagged packets; put all untagged
     packets into the `bridge-pvid`.
-
-  - `bridge-allow-untagged`: When set to *no*, it drops any untagged
+- `bridge-allow-untagged`: When set to *no*, it drops any untagged
     frames for a given switch port.
 
 {{%notice tip%}}
@@ -125,33 +119,30 @@ users for readability.
 The following configurations are identical to each other and the
 configuration above:
 
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>auto bridge
+```
+auto bridge
 iface bridge
     bridge-ports swp1 swp2
     bridge-vids 1 100 200
-    bridge-vlan-aware yes</code></pre></td>
-<td><pre><code>auto bridge
+    bridge-vlan-aware yes
+```
+
+```
+auto bridge
 iface bridge
     bridge-ports swp1 swp2
     bridge-pvid 1
     bridge-vids 1 100 200
-    bridge-vlan-aware yes</code></pre></td>
-<td><pre><code>auto bridge
+    bridge-vlan-aware yes
+```
+
+```
+auto bridge
 iface bridge
     bridge-ports swp1 swp2
     bridge-vids 100 200
-    bridge-vlan-aware yes</code></pre></td>
-</tr>
-</tbody>
-</table>
+    bridge-vlan-aware yes|
+```
 
 {{%/notice%}}
 
@@ -164,13 +155,12 @@ the management interface.
 
 {{%/notice%}}
 
-## Example Configurations</span>
+## Example Configurations
 
-### VLAN Filtering/VLAN Pruning</span>
+### VLAN Filtering/VLAN Pruning
 
-By default, the bridge port inherits the bridge VIDs. A port's
-configuration can override the bridge VIDs, by using the `bridge-vids`
-attribute:
+By default, the bridge port inherits the bridge VIDs. A port's configuration
+can override the bridge VIDs, by using the `bridge-vids` attribute:
 
 <table>
 <colgroup>
@@ -203,7 +193,7 @@ iface swp3
 </tbody>
 </table>
 
-### Untagged/Access Ports</span>
+### Untagged/Access Ports
 
 Access ports ignore all tagged packets. In the configuration below, swp1
 and swp2 are configured as access ports, while all untagged traffic goes
@@ -246,7 +236,7 @@ iface swp2
 </tbody>
 </table>
 
-### Dropping Untagged Frames</span>
+### Dropping Untagged Frames
 
 With VLAN-aware bridge mode, a switch port can be configured to drop any
 untagged frames. To do this, add `bridge-allow-untagged no` to the
@@ -297,7 +287,7 @@ When you check VLAN membership for that port, it shows that there is
                     200
     bridge           10
 
-### <span id="src-7112421_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-svi" class="confluence-anchor-link"></span>VLAN Layer 3 Addressing — Switch Virtual Interfaces and Other VLAN Attributes </span>
+### VLAN Layer 3 Addressing — Switch Virtual Interfaces and Other VLAN Attributes
 
 When configuring the VLAN attributes for the bridge, specify the
 attributes for each VLAN interface, each of which is named
@@ -341,7 +331,7 @@ You can specify a range of VLANs as well. For example:
 
     cumulus@switch:~$ net add vlan 1-200
 
-### <span id="src-7112421_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-arp" class="confluence-anchor-link"></span>Configuring ARP Timers</span>
+### Configuring ARP Timers
 
 Cumulus Linux does not often interact directly with end systems as much
 as end systems interact with one another. Thus, after a successful
@@ -357,10 +347,9 @@ the hardware forwarding.
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). You can
 change this setting by following the procedures outlined in this
-[knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
+[knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
 
-### <span id="src-7112421_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-glob" class="confluence-anchor-link"></span>Configuring Multiple Ports in a Range</span>
+### Configuring Multiple Ports in a Range
 
 The `bridge-ports` attribute takes a range of numbers. The "swp1-52" in
 the example below indicates that swp1 through swp52 are part of the
@@ -380,7 +369,7 @@ These commands create the following configuration in the
           bridge-vids 310 700 707 712 850 910
           bridge-vlan-aware yes
 
-### Access Ports and Pruned VLANs</span>
+### Access Ports and Pruned VLANs
 
 The following example configuration contains an access port and switch
 port that are *pruned*; they only sends and receive traffic tagged
@@ -432,7 +421,7 @@ all the defined VLANs.
      
     ...
 
-### Large Bond Set Configuration</span>
+### Large Bond Set Configuration
 
 The configuration below demonstrates a VLAN-aware bridge with a large
 set of bonds. The bond configurations are generated from a
@@ -517,7 +506,7 @@ set of bonds. The bond configurations are generated from a
      
     ...
 
-### VXLANs with VLAN-aware Bridges</span>
+### VXLANs with VLAN-aware Bridges
 
 Cumulus Linux supports using VXLANs with VLAN-aware bridge
 configuration. This provides improved scalability, as multiple VXLANs
@@ -561,7 +550,7 @@ The current tested scale limit for Cumulus Linux 3.2 is 512 VNIs.
      
     ...
 
-### Configuring a Static MAC Address Entry</span>
+### Configuring a Static MAC Address Entry
 
 You can add a static MAC address entry to the layer 2 table for an
 interface within the VLAN-aware bridge by running a command similar to
@@ -579,9 +568,9 @@ the following:
     44:38:39:00:00:7c dev bridge vlan 500 master bridge permanent
     12:12:12:12:12:12 dev bridge master bridge permanent
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-### Spanning Tree Protocol (STP)</span>
+### Spanning Tree Protocol (STP)
 
 VLAN-aware mode supports a single instance of STP across all VLANs, as
 STP is enabled on a per-bridge basis. A common practice when using a
@@ -592,13 +581,13 @@ switch in the spanning tree instance.
 
 Cumulus Linux supports Rapid Spanning Tree Protocol (RSTP).
 
-### IGMP Snooping</span>
+### IGMP Snooping
 
 IGMP snooping and group membership are supported on a per-VLAN basis,
 though the IGMP snooping configuration (including enable/disable and
 mrouter ports) are defined on a per-bridge port basis.
 
-### <span id="src-7112421_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-vlan_range" class="confluence-anchor-link"></span>Reserved VLAN Range</span>
+### Reserved VLAN Range
 
 For hardware data plane internal operations, the switching silicon
 requires VLANs for every physical port, Linux bridge, and layer 3
@@ -610,40 +599,32 @@ minimum size of the range is 300 VLANs.
 
 To configure the reserved range:
 
-1.  Open `/etc/cumulus/switchd.conf` in a text editor.
+1. Open `/etc/cumulus/switchd.conf` in a text editor.
 
-2.  Uncomment the following line, specify a new range, and save the
+2. Uncomment the following line, specify a new range, and save the
     file:
-    
+
         resv_vlan_range
 
-3.  Restart `switchd` to implement the change:
-    
+3. Restart `switchd` to implement the change:
+
         cumulus@switch:~$ sudo systemctl restart switchd.service
-    
+
     {{%notice note%}}
-    
-    While restarting `switchd`, all running ports will flap, and
-    forwarding will be interrupted.
-    
+
+While restarting `switchd`, all running ports will flap, and
+forwarding will be interrupted.
+
     {{%/notice%}}
 
-### VLAN Translation</span>
+### VLAN Translation
 
 A bridge in VLAN-aware mode cannot have VLAN translation enabled for it.
 Only traditional mode bridges can utilize VLAN translation.
 
-### Converting Bridges between Supported Modes</span>
+### Converting Bridges between Supported Modes
 
 Traditional mode bridges cannot be automatically converted to/from a
 VLAN-aware bridge. The original configuration must be deleted, and all
 member switch ports must be brought down, then a new bridge can be
 created.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

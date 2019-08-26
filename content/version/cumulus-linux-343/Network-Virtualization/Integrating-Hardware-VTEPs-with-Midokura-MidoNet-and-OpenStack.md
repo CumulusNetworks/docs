@@ -11,8 +11,6 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-<details>
-
 Cumulus Linux seamlessly integrates with the MidoNet OpenStack
 infrastructure, where the switches provide the VTEP gateway for
 terminating VXLAN tunnels from within MidoNet. MidoNet connects to the
@@ -23,39 +21,33 @@ between virtual and physical server infrastructures.
 
 {{% imgOld 0 %}}
 
-## Getting Started</span>
+## Getting Started
 
 Before you create VXLANs with MidoNet, make sure you have the following
 components:
 
-  - A switch (L2 gateway) with a Tomahawk, Trident II+ or Trident II
-    chipset running Cumulus Linux 2.0 and later
-
-  - OVSDB server (`ovsdb-server`), included in Cumulus Linux 2.0 and
-    later
-
-  - VTEPd (`ovs-vtepd`), included in Cumulus Linux 2.0 and later
+- A switch (L2 gateway) with a Tomahawk, Trident II+ or Trident II
+  chipset running Cumulus Linux 2.0 and later
+- OVSDB server (`ovsdb-server`), included in Cumulus Linux 2.0 and
+  later
+- VTEPd (`ovs-vtepd`), included in Cumulus Linux 2.0 and later
 
 Integrating a VXLAN with MidoNet involves:
 
-  - Preparing for the MidoNet integration
+- Preparing for the MidoNet integration
+- Bootstrapping the OVS and VTEP
+- Configuring the MidoNet VTEP binding
+- Verifying the VXLAN configuration
 
-  - Bootstrapping the OVS and VTEP
+### Caveats and Errata
 
-  - Configuring the MidoNet VTEP binding
+- There is no support for VXLAN routing in the Tomahawk, Trident II+
+  and Trident II chipsets; use a loopback interface or external
+  router.
+- For more information about MidoNet, see the MidoNet Operations
+  Guide, version 1.8 or later.
 
-  - Verifying the VXLAN configuration
-
-### Caveats and Errata</span>
-
-  - There is no support for VXLAN routing in the Tomahawk, Trident II+
-    and Trident II chipsets; use a loopback interface or external
-    router.
-
-  - For more information about MidoNet, see the MidoNet Operations
-    Guide, version 1.8 or later.
-
-### Preparing for the MidoNet Integration</span>
+### Preparing for the MidoNet Integration
 
 Before you start configuring the MidoNet tunnel zones, VTEP binding and
 connecting virtual ports to the VXLAN, you need to complete the
@@ -64,37 +56,36 @@ tunnels. This creates the VTEP gateway and initializes the OVS database
 server. You only need to do the bootstrapping once, before you begin the
 MidoNet integration.
 
-#### Enabling the openvswitch-vtep Package</span>
+#### Enabling the openvswitch-vtep Package
 
 Before you start bootstrapping the integration, you need to enable the
 `openvswitch-vtep` package, since it is disabled by default in Cumulus
 Linux.
 
-1.  Edit the `/etc/default/openvswitch-vtep` file, changing the `START`
-    option from *no* to *yes*. This simple `sed` command does this, and
-    creates a backup as well:
-    
+1. Edit the `/etc/default/openvswitch-vtep` file, changing the `START`
+   option from *no* to *yes*. This simple `sed` command does this, and
+   creates a backup as well:
+
         cumulus@switch:~$ sudo sed -i.bak s/START=no/START=yes/g /etc/default/openvswitch-vtep
 
-2.  Start the daemon:
-    
+2. Start the daemon:
+
         cumulus@switch:~$ sudo systemctl start openvswitch-vtep.service
 
-### Bootstrapping the OVSDB Server and VTEP</span>
+### Bootstrapping the OVSDB Server and VTEP
 
-#### Automating with the Bootstrap Script</span>
+#### Automating with the Bootstrap Script
 
 The `vtep-bootstrap` script is available so you can do the bootstrapping
 automatically. For information, read `man vtep-bootstrap`. This script
 requires three parameters, in this order:
 
-  - Switch name: The name of the switch that is the VTEP gateway.
+- Switch name: The name of the switch that is the VTEP gateway.
+- Tunnel IP address: The datapath IP address of the VTEP.
+- Management IP address: The IP address of the switch's management
+  interface.
 
-  - Tunnel IP address: The datapath IP address of the VTEP.
-
-  - Management IP address: The IP address of the switch's management
-    interface.
-
+<details>
 <summary>For example, click here ... </summary>
 
     cumulus@switch:~$ sudo vtep-bootstrap sw11 10.111.1.1 10.50.20.21 --no_encryption
@@ -113,6 +104,7 @@ requires three parameters, in this order:
     Killing ovsdb-server (28146).
     Starting ovsdb-server.
     Starting ovs-vtepd.).
+</details>
 
 {{%notice note%}}
 
@@ -126,7 +118,7 @@ inconsequential error messages:
 
 {{%/notice%}}
 
-#### Manually Bootstrapping</span>
+#### Manually Bootstrapping
 
 If you don't use the bootstrap script, then you must initialize the OVS
 database instance manually, and create the VTEP.
@@ -134,27 +126,27 @@ database instance manually, and create the VTEP.
 Perform the following commands in order (see the automated bootstrapping
 example above for values):
 
-1.  Define the switch in OVSDB:
-    
+1. Define the switch in OVSDB:
+
         cumulus@switch:~$ sudo vtep-ctl add-ps <switch_name>
 
-2.  Define the VTEP tunnel IP address:
-    
+2. Define the VTEP tunnel IP address:
+
         cumulus@switch:~$ sudo vtep-ctl set Physical_switch <switch_name> tunnel_ips=<tunnel_ip>
 
-3.  Define the management interface IP address:
-    
+3. Define the management interface IP address:
+
         cumulus@switch:~$ sudo vtep-ctl set Physical_switch <switch_name> management_ips=<management_ip>
 
-4.  Restart the OVSDB server and `vtepd`:
-    
+4. Restart the OVSDB server and `vtepd`:
+
         cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
 
 At this point, the switch is ready to connect to MidoNet. The rest of
 the configuration is performed in the MidoNet Manager GUI, or using the
 MidoNet API.
 
-### Configuring MidoNet VTEP and Port Bindings</span>
+### Configuring MidoNet VTEP and Port Bindings
 
 This part of the configuration sets up MidoNet and OpenStack to connect
 the virtualization environment to the Cumulus Linux switch. The
@@ -163,22 +155,21 @@ while the Open Virtual Switch (OVS) client on the OpenStack controller
 node communicates MAC address information between the `midonet-agent`
 and the Cumulus Linux OVS database (OVSDB) server.
 
-#### Using the MidoNet Manager GUI</span>
+#### Using the MidoNet Manager GUI
 
-##### Creating a Tunnel Zone</span>
+##### Creating a Tunnel Zone
 
-1.  Click **Tunnel Zones** in the menu on the left side.
+1. Click **Tunnel Zones** in the menu on the left side.
 
-2.  Click **Add**.
+2. Click **Add**.
 
-3.  Give the tunnel zone a **Name** and select "**VTEP**" for the
-    **Type**.
+3. Give the tunnel zone a **Name** and select "**VTEP**" for the **Type**.
 
-4.  Click **Save**.
-    
+4. Click **Save**.
+
     {{% imgOld 1 %}}
 
-##### Adding Hosts to a Tunnel Zone</span>
+##### Adding Hosts to a Tunnel Zone
 
 Once the tunnel zone is created, click the name of the tunnel zone to
 view the hosts table.
@@ -193,39 +184,39 @@ Cumulus Linux switch tunnel IP.
 
 Next, add a host entry to the tunnel zone:
 
-1.  Click **Add**.
+1. Click **Add**.
 
-2.  Select a host from the **Host** list.
+2. Select a host from the **Host** list.
 
-3.  Provide the tunnel source **IP Address** to use on the selected
+3. Provide the tunnel source **IP Address** to use on the selected
     host.
 
-4.  Click **Save**.
-    
+4. Click **Save**.
+
     {{% imgOld 3 %}}
 
 The host list now displays the new entry:
 
 {{% imgOld 4 %}}
 
-##### Creating the VTEP</span>
+##### Creating the VTEP
 
-1.  Click the **Vteps** menu on the left side.
+1. Click the **Vteps** menu on the left side.
 
-2.  Click **Add**.
+2. Click **Add**.
 
-3.  Fill out the fields using the same information you used earlier on
-    the switch for the bootstrap procedure:  
-    \- **Management IP** is typically the eth0 address of the switch.
-    This tells the OVS-client to connect to the OVSDB-server on the
-    Cumulus Linux switch.  
-    \- **Management Port** **Number** is the PTCP port you configured in
-    the `ovs-ctl-vtep` script earlier (the example uses 6632).  
-    \- **Tunnel Zone** is the name of the zone you created in the
-    previous procedure.
+3. Fill out the fields using the same information you used earlier on
+   the switch for the bootstrap procedure:  
+   \- **Management IP** is typically the eth0 address of the switch.
+   This tells the OVS-client to connect to the OVSDB-server on the
+   Cumulus Linux switch.  
+   \- **Management Port** **Number** is the PTCP port you configured in
+   the `ovs-ctl-vtep` script earlier (the example uses 6632).  
+   \- **Tunnel Zone** is the name of the zone you created in the
+   previous procedure.
 
-4.  Click **Save**.
-    
+4. Click **Save**.
+
     {{% imgOld 5 %}}
 
 The new VTEP appears in the list below. MidoNet then initiates a
@@ -236,23 +227,23 @@ address, which you specified during the bootstrapping process.
 
 {{% imgOld 6 %}}
 
-##### Binding Ports to the VTEP</span>
+##### Binding Ports to the VTEP
 
 Now that connectivity is established to the switch, you need to add a
 physical port binding to the VTEP on the Cumulus Linux switch:
 
-1.  Click **Add**.
+1. Click **Add**.
 
-2.  In the **Port Name** list, select the port on the Cumulus Linux
+2. In the **Port Name** list, select the port on the Cumulus Linux
     switch that you are using to connect to the VXLAN segment.
 
-3.  Specify the **VLAN ID** (enter 0 for untagged).
+3. Specify the **VLAN ID** (enter 0 for untagged).
 
-4.  In the **Bridge** list, select the MidoNet bridge that the instances
+4. In the **Bridge** list, select the MidoNet bridge that the instances
     (VMs) are using in OpenStack.
 
-5.  Click **Save**.
-    
+5. Click **Save**.
+
     {{% imgOld 7 %}}
 
 You should see the port binding displayed in the binding table under the
@@ -267,7 +258,7 @@ hosts connected to the bound port on the Cumulus switch. The
 Troubleshooting section below demonstrates the verification of the VXLAN
 data and control planes.
 
-#### Using the MidoNet CLI</span>
+#### Using the MidoNet CLI
 
 To get started with the MidoNet CLI, you can access the CLI prompt on
 the OpenStack Controller:
@@ -279,25 +270,23 @@ Now from the MidoNet CLI, the commands explained in this section perform
 the same operations depicted in the previous section with the MidoNet
 Manager GUI.
 
-1.  Create a tunnel zone with a name and type *vtep*:
-    
+1. Create a tunnel zone with a name and type *vtep*:
+
         midonet> tunnel-zone create name sw12 type vtep
         tzone1
 
-2.  The tunnel zone is a construct used to define the VXLAN source
+2. The tunnel zone is a construct used to define the VXLAN source
     address used for the tunnel. This host's address is used for the
     source of the VXLAN encapsulation, and traffic will transit into the
     routing domain from this point. Thus, the host must have layer 3
     reachability to the Cumulus Linux switch tunnel IP.
-    
+
       - First, get the list of available hosts connected to the Neutron
         network and the MidoNet bridge.
-    
       - Next, get a listing of all the interfaces.
-    
       - Finally, add a host entry to the tunnel zone ID returned in the
         previous step, and specify which interface address to use.
-        
+
             midonet> list host
             host host0 name os-compute1 alive true
             host host1 name os-network alive true 
@@ -311,52 +300,52 @@ Manager GUI.
             iface eth0 host_id host0 status 3 addresses [u'10.50.21.182', u'fe80:0:0:0:5054:ff:feef:c5dc'] mac 52:54:00:ef:c5:dc mtu 1500 type Physical endpoint PHYSICAL
             midonet> tunnel-zone tzone0 add member host host0 address 10.111.0.182
             zone tzone0 host host0 address 10.111.0.182
-    
+
     Repeat this procedure for each OpenStack host connected to the
     Neutron network and the MidoNet bridge.
 
-3.  Create a VTEP and assign it to the tunnel zone ID returned in the
+3. Create a VTEP and assign it to the tunnel zone ID returned in the
     previous step. The management IP address (the destination address
     for the VXLAN/remote VTEP) and the port must be the same ones you
     configured in the `vtep-bootstrap` script or the manual
     bootstrapping:
-    
+
         midonet> vtep add management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0
         name sw12 description sw12 management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0 connection-state CONNECTED
-    
+
     In this step, MidoNet initiates a connection between the OpenStack
     Controller and the Cumulus Linux switch. If the OVS client is
     successfully connected to the OVSDB server, the returned values
     should show the name and description matching the `switch-name`
     parameter specified in the bootstrap process.
-    
+
     {{%notice note%}}
-    
-    Verify the connection-state as CONNECTED, otherwise if ERROR is
-    returned, you must debug. Typically this only fails if the
-    `management-ip` and/or `management-port` settings are wrong.
-    
+
+Verify the connection-state as CONNECTED, otherwise if ERROR is
+returned, you must debug. Typically this only fails if the
+`management-ip` and/or `management-port` settings are wrong.
+
     {{%/notice%}}
 
-4.  The VTEP binding uses the information provided to MidoNet from the
+4. The VTEP binding uses the information provided to MidoNet from the
     OVSDB server, providing a list of ports that the hardware VTEP can
     use for layer 2 attachment. This binding virtually connects the
     physical interface to the overlay switch, and joins it to the
     Neutron bridged network.
-    
+
     First, get the UUID of the Neutron network behind the MidoNet
     bridge:
-    
+
         midonet> list bridge
         bridge bridge0 name internal state up
         bridge bridge1 name internal2 state up
         midonet> show bridge bridge1 id
         6c9826da-6655-4fe3-a826-4dcba6477d2d
-    
+
     Next, create the VTEP binding, using the UUID and the switch port
     being bound to the VTEP on the remote end. If there is no VLAN ID,
     set `vlan` to 0:
-    
+
         midonet> vtep name sw12 binding add network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d physical-port swp11s0 vlan 0
         management-ip 10.50.20.22 physical-port swp11s0 vlan 0 network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d
 
@@ -365,17 +354,17 @@ should be operational. From the openstack instance (VM), you should be
 able to ping a physical server connected to the port bound to the
 hardware switch VTEP.
 
-## Troubleshooting MidoNet and Cumulus VTEPs</span>
+## Troubleshooting MidoNet and Cumulus VTEPs
 
 As with any complex system, there is a control plane and data plane.
 
-### Troubleshooting the Control Plane</span>
+### Troubleshooting the Control Plane
 
 In this solution, the control plane consists of the connection between
 the OpenStack Controller, and each Cumulus Linux switch running the
 `ovsdb-server` and `vtepd` daemons.
 
-#### Verifying VTEP and OVSDB Services</span>
+#### Verifying VTEP and OVSDB Services
 
 First, it is important that the OVSDB server and `ovs-vtep` daemon are
 running. Verify this is the case:
@@ -384,7 +373,7 @@ running. Verify this is the case:
     ovsdb-server is running with pid 17440
     ovs-vtepd is running with pid 17444
 
-#### Verifying OVSDB-server Connections</span>
+#### Verifying OVSDB-server Connections
 
 From the OpenStack Controller host, verify that it can connect to the
 `ovsdb-server`. Telnet to the switch IP address on port 6632:
@@ -407,7 +396,7 @@ up port 6632. Redo the bootstrapping procedures above.
     1 packets transmitted, 1 received, 0% packet loss, time 0ms
     rtt min/avg/max/mdev = 0.315/0.315/0.315/0.000 ms
 
-#### Verifying the VXLAN Bridge and VTEP Interfaces</span>
+#### Verifying the VXLAN Bridge and VTEP Interfaces
 
 After creating the VTEP in MidoNet and adding an interface binding, you
 should see **br-vxln** and **vxln** interfaces on the switch. You can
@@ -441,7 +430,7 @@ bridging table, as well as the OVSDB.
     b6:71:33:3b:a7:83 dev vxln10004 vlan 0 master br-vxln10004 permanent
     64:ae:0c:32:f1:41 dev swp11s0 vlan 0 master br-vxln10004
 
-### Datapath Troubleshooting</span>
+### Datapath Troubleshooting
 
 If you have verified the control plane is correct, and you still cannot
 get data between the OpenStack instances and the physical nodes on the
@@ -453,7 +442,7 @@ OpenStack instances can ping the tenant router address but cannot ping
 the physical device connected to the switch (or vice versa), then
 something is wrong in the data plane.
 
-#### Verifying IP Reachability</span>
+#### Verifying IP Reachability
 
 First, there must be IP reachability between the encapsulating node, and
 the address you bootstrapped as the tunnel IP on the switch. Verify the
@@ -467,7 +456,7 @@ routing design, and fix the layer 3 problem first.
     1 packets transmitted, 1 received, 0% packet loss, time 0ms
     rtt min/avg/max/mdev = 0.649/0.649/0.649/0.000 ms
 
-#### MidoNet VXLAN Encapsulation</span>
+#### MidoNet VXLAN Encapsulation
 
 If the instance (VM) cannot ping the physical server, or the reply is
 not returning, look at the packets on the OpenStack node. Initiate a
@@ -503,9 +492,9 @@ is working.
      0x0070: 0000 0000 0000 0000 0000 0000 0000 0000 ................
      0x0080: 0000 0000 0000 ......
 
-### Inspecting the OVSDB</span>
+### Inspecting the OVSDB
 
-#### Using VTEP-CTL</span>
+#### Using VTEP-CTL
 
 These commands show you the information installed in the OVSDB. This
 database is structured using the *physical switch* ID, with one or more
@@ -513,17 +502,17 @@ database is structured using the *physical switch* ID, with one or more
 the physical switch, and MidoNet creates the logical switch after the
 control session is established.
 
-##### Listing the Physical Switch</span>
+##### Listing the Physical Switch
 
     cumulus@switch12:~$ vtep-ctl list-ps
     sw12
 
-##### Listing the Logical Switch</span>
+##### Listing the Logical Switch
 
     cumulus@switch12:~$ vtep-ctl list-ls
     mn-6c9826da-6655-4fe3-a826-4dcba6477d2d
 
-##### Listing Local or Remote MAC Addresses</span>
+##### Listing Local or Remote MAC Addresses
 
 These commands show the MAC addresses learned from the connected port
 bound to the logical switch, or the MAC addresses advertised from
@@ -542,12 +531,13 @@ flooding of unknown unicast, and important for learning.
     mcast-mac-remote
       unknown-dst -> vxlan_over_ipv4/10.111.0.182oh 
 
-#### Getting Open Vswitch Database (OVSDB) Data</span>
+#### Getting Open Vswitch Database (OVSDB) Data
 
 The `ovsdb-client dump` command is large, but shows all of the
 information and tables that are used in communication between the OVS
 client and server.
 
+<details>
 <summary>Click to expand the output ... </summary>
 
     cumulus@switch12:~$ ovsdb-client dump
@@ -650,13 +640,4 @@ client and server.
     MAC _uuid ipaddr locator logical_switch 
     ------------------- ------------------------------------ ------ ------------------------------------ ------------------------------------
     "fa:16:3e:14:04:2e" 65605488-9ee5-4c8e-93e5-7b1cc15cfcc7 "" 2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb 44d162dc-0372-4749-a802-5b153c7120ec
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
 </details>

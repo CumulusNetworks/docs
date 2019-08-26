@@ -128,18 +128,10 @@ These commands create the following configuration in the
         pre-up bridge fdb add 00:00:00:00:00:55 dev swp5 master static vlan 500
         pre-up bridge fdb add 00:00:00:00:00:66 dev swp6 master static vlan 600
 
-## Interactions with EVPN</span>
+## Interactions with EVPN
 
 If you are using
 [EVPN](/version/cumulus-linux-343/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN),
 local static MAC addresses added to the local FDB are exported as static
 MAC addresses to remote switches. Remote MAC addresses are added as MAC
 addresses to the remote FDB.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

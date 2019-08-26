@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 149
 aliases:
  - /display/CL34/Ethernet+Virtual+Private+Network+++EVPN
+ - /display/CL34/Ethernet+Virtual+Private+Network+-+EVPN
+ - /display/CL34/Ethernet+Virtual+Private+Network+EVPN
  - /pages/viewpage.action?pageId=7112514
 pageID: 7112514
 product: Cumulus Linux
@@ -15,31 +17,23 @@ Ethernet Virtual Private Network (EVPN) provides a control plane for
 [VXLANs](/version/cumulus-linux-343/Network-Virtualization/) in Cumulus
 Linux, with the following functionality:
 
-  - VNI membership exchange between VTEPs using EVPN type-3 (Inclusive
-    multicast Ethernet tag) routes.
-
-  - Exchange of host MAC and IP addresses using EVPN type-2 (MAC/IP
-    advertisement) routes.
-
-  - Support for host/VM mobility (MAC and IP moves) through exchange of
-    the MAC Mobility Extended community.
-
-  - Support for dual-attached hosts via [VXLAN active-active
-    mode](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode);
-    note that MAC synchronization between the peer switches is done
-    using
-    [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG).
-
-  - Support for ARP/ND suppression, which provides VTEPs with the
-    ability to suppress ARP flooding over VXLAN tunnels.
-
-  - Support for static ("sticky") MAC addresses and their exchange via
-    EVPN.
-
-  - Support for distributed asymmetric routing between different
-    subnets.
-
-  - Support for Layer-3 multi-tenancy.
+- VNI membership exchange between VTEPs using EVPN type-3 (Inclusive
+  multicast Ethernet tag) routes.
+- Exchange of host MAC and IP addresses using EVPN type-2 (MAC/IP
+  advertisement) routes.
+- Support for host/VM mobility (MAC and IP moves) through exchange of
+  the MAC Mobility Extended community.
+- Support for dual-attached hosts via 
+  [VXLAN active-active mode](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode);
+  note that MAC synchronization between the peer switches is done using
+  [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG).
+- Support for ARP/ND suppression, which provides VTEPs with the
+  ability to suppress ARP flooding over VXLAN tunnels.
+- Support for static ("sticky") MAC addresses and their exchange via
+  EVPN.
+- Support for distributed asymmetric routing between different
+  subnets.
+- Support for Layer-3 multi-tenancy.
 
 You can provision and manage EVPN using
 [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU).
@@ -49,13 +43,13 @@ You can provision and manage EVPN using
 For Cumulus Linux 3.4 and later releases, the routing control plane
 (including EVPN) is installed as part of the Free Range Routing (FRR)
 package, rather than the Quagga package. For more information regarding
-FRR, refer to the [FRR Overview](/display/CL34/FRRouting+Overview).
+FRR, refer to the [FRR Overview](/version/cumulus-linux-343/Layer-Three/FRRouting-Overview/).
 
 {{%/notice%}}
 
-## Configuring EVPN</span>
+## Configuring EVPN
 
-### Enabling EVPN between BGP Neighbors</span>
+### Enabling EVPN between BGP Neighbors
 
 You enable EVPN between
 [BGP](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol-BGP)
@@ -97,10 +91,9 @@ These commands create the following configuration snippet in
 
 The above configuration does not result in BGP knowing about the local
 VNIs defined on the system and advertising them to peers. This requires
-additional configuration, [as described
-below](#src-7112514_EthernetVirtualPrivateNetwork-EVPN-allvnis).
+additional configuration, [as described below](#advertising-all-vnis).
 
-### <span id="src-7112514_EthernetVirtualPrivateNetwork-EVPN-allvnis" class="confluence-anchor-link"></span>Advertising All VNIs</span>
+### Advertising All VNIs
 
 A single configuration variable enables the BGP control plane for all
 VNIs configured on the switch. Set the variable `advertise-all-vni` to
@@ -181,11 +174,11 @@ route is locally known.
 
 {{%/notice%}}
 
-### Advertising the Default Gateway</span>
+### Advertising the Default Gateway
 
 The `advertise-default-gw` NCLU command is typically used for
-centralized [VXLAN
-routing](/version/cumulus-linux-343/Network-Virtualization/VXLAN-Routing)
+centralized 
+[VXLAN routing](/version/cumulus-linux-343/Network-Virtualization/VXLAN-Routing)
 with EVPN. For example, if you had a pair of border leafs and the
 default gateway was only on those leafs, you would add this command on
 the border leafs to advertise the MAC/IP for the gateway. This command
@@ -213,7 +206,7 @@ These commands create the following configuration snippet in
        advertise-default-gw
       exit-address-family
 
-### Enabling EVPN with User-defined RDs and RTs</span>
+### Enabling EVPN with User-defined RDs and RTs
 
 EVPN also supports manual configuration of RDs and RTs, if you don't
 want them derived automatically. To manually define RDs and RTs, use the
@@ -273,10 +266,10 @@ These commands create the following configuration snippet in the
         route-target import 65000:500
         route-target export 65000:500
 
-### Enabling EVPN in an iBGP Environment with an OSPF Underlay</span>
+### Enabling EVPN in an iBGP Environment with an OSPF Underlay
 
 EVPN can be deployed with an
-[OSPF](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol)
+[OSPF](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol)
 or static route underlay if needed. This is a more complex configuration
 than using eBGP. In this case, iBGP advertises EVPN routes directly
 between VTEPs, and the spines are unaware of EVPN or BGP.
@@ -335,7 +328,7 @@ These commands create the following configuration snippet in
         Ospf router-id 10.1.1.1
         Passive-interface lo
 
-### Disabling Data Plane MAC Learning over VXLAN Tunnels</span>
+### Disabling Data Plane MAC Learning over VXLAN Tunnels
 
 When EVPN is provisioned, data plane MAC learning should be disabled for
 VxLAN interfaces to avoid race conditions between control plane learning
@@ -361,8 +354,8 @@ These commands create the following code snippet in the
 
 {{%notice tip%}}
 
-For a bridge in [traditional
-mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges),
+For a bridge in 
+[traditional mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file in a text editor:
 
@@ -373,7 +366,7 @@ file in a text editor:
 
 {{%/notice%}}
 
-## <span id="src-7112514_EthernetVirtualPrivateNetwork-EVPN-arp" class="confluence-anchor-link"></span>ARP and ND Suppression</span>
+## ARP and ND Suppression
 
 ARP suppression in an EVPN context refers to the ability of a VTEP to
 suppress ARP flooding over VXLAN tunnels as much as possible. Instead, a
@@ -451,8 +444,8 @@ These commands create the following configuration in the
 
 {{%notice warning%}}
 
-ARP suppression does not interoperate with [VXLAN active-active
-mode](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode)
+ARP suppression does not interoperate with 
+[VXLAN active-active mode](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode/)
 in an optimal manner, because the neighbor entries are not synced by a
 control plane. Thus, ARPs may not be suppressed sometimes. This has no
 impact on forwarding.
@@ -594,7 +587,7 @@ For bridge information, use `net show bridge macs`:
     untagged  bridge    vxlan10300   c6:8f:a6:7c:9b:bd                permanent                 00:16:44
     untagged  bridge    vxlan10400   fa:e1:44:86:93:99                permanent                 00:16:44
 
-## Inter-subnet Routing</span>
+## Inter-subnet Routing
 
 EVPN in Cumulus Linux 3.4 supports routing between different subnets
 (VLANs) through distributed asymmetric routing. In distributed
@@ -619,8 +612,8 @@ No additional configuration is required to support inter-subnet routing.
 
 {{%notice note%}}
 
-When configuring [VXLAN
-routing](/version/cumulus-linux-343/Network-Virtualization/VXLAN-Routing),
+When configuring 
+[VXLAN routing](/version/cumulus-linux-343/Network-Virtualization/VXLAN-Routing),
 Cumulus Networks recommends enabling ARP suppression on all VXLAN
 interfaces. Otherwise, when a locally attached host ARPs for the
 gateway, it will receive multiple responses, one from each anycast
@@ -628,7 +621,7 @@ gateway.
 
 {{%/notice%}}
 
-## Layer-3 Multi-tenancy</span>
+## Layer-3 Multi-tenancy
 
 Cumulus Linux 3.4 also provides support for Layer-3 Multi-tenancy. A
 Virtual Routing and Forwarding (VRF) instance is provisioned for each
@@ -637,7 +630,7 @@ corresponding SVI is attached to the VRF). Inter-subnet routing for the
 tenant occurs within the contex of the tenant's VRF, and is separate
 from the routing for other tenants.
 
-## Static (Sticky) MAC Addresses</span>
+## Static (Sticky) MAC Addresses
 
 MAC addresses that are intended to be pinned to a particular VTEP can be
 provisioned on the VTEP as a static bridge FDB entry. EVPN picks up
@@ -661,8 +654,7 @@ These commands create the following configuration in the
 
 {{%notice tip%}}
 
-For a bridge in [traditional
-mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges),
+For a bridge in [traditional mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file in a text editor:
 
@@ -674,28 +666,25 @@ file in a text editor:
 
 {{%/notice%}}
 
-## Handling BUM Traffic</span>
+## Handling BUM Traffic
 
-With EVPN, the only method of handling BUM traffic is [Head End
-Replication
-(HER)](Lightweight-Network-Virtualization---LNV-Overview.html#src-7112485_LightweightNetworkVirtualization-LNVOverview-head-end).
-HER is enabled by default, as it is when [Lightweight Network
-Virtualization
-(LNV)](/display/CL34/Lightweight+Network+Virtualization+-+LNV+Overview)
+With EVPN, the only method of handling BUM traffic is 
+[Head End Replication (HER)](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/#head-end-replication).
+HER is enabled by default, as it is when 
+[Lightweight Network Virtualization (LNV)](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 is used.
 
-## Example Configuration</span>
+## Example Configuration
 
-The following configurations are used throughout this chapter. You can
-find the flat-file configurations for the network devices in the Cumulus
-Networks [GitHub
-repository](https://github.com/CumulusNetworks/cldemo-evpn/tree/master/config).
+The following configurations are used throughout this chapter. You can find
+the flat-file configurations for the network devices in the Cumulus Networks
+[GitHub repository](https://github.com/CumulusNetworks/cldemo-evpn/tree/master/config).
 Only a subset is shown here for brevity (not shown are configurations
 for leaf03, leaf04, server03, server04). Here is the topology diagram:
 
-{{% imgOld 0 %}}
+{{< figure src="http://raw.githubusercontent.com/CumulusNetworks/cldemo-evpn/master/images/evpn.png" width="600" >}}
 
-### leaf01 and leaf02 Configurations</span>
+### leaf01 and leaf02 Configurations
 
 <table>
 <colgroup>
@@ -894,7 +883,7 @@ end</code></pre>
 </tbody>
 </table>
 
-### spine01 and spine02 Configurations</span>
+### spine01 and spine02 Configurations
 
 <table>
 <colgroup>
@@ -1063,7 +1052,7 @@ end</code></pre>
 </tbody>
 </table>
 
-### server01 and server02 Configurations</span>
+### server01 and server02 Configurations
 
 <table>
 <colgroup>
@@ -1110,11 +1099,10 @@ iface eth2.200
 </tbody>
 </table>
 
-## EVPN and VXLAN Active-Active Mode</span>
+## EVPN and VXLAN Active-Active Mode
 
-There is no specific configuration to enable EVPN to work with [VXLAN
-active-active
-mode](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode).
+There is no specific configuration to enable EVPN to work with 
+[VXLAN active-active mode](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode/).
 Both switches in the
 [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
 pair establish EVPN peering with other EVPN speakers (for example, with
@@ -1124,26 +1112,23 @@ information with the shared anycast IP address.
 
 The active-active configuration should include the following:
 
-  - The `clagd-vxlan-anycast-ip` parameter must be under the [loopback
-    stanza](LNV-VXLAN-Active-Active-Mode.html#src-7112504_LNVVXLANActive-ActiveMode-anycast)
-    on both peers
-
-  - The anycast address should be advertised to the routed fabric from
-    both peers
-
-  - The
-    [VNIs](LNV-VXLAN-Active-Active-Mode.html#src-7112504_LNVVXLANActive-ActiveMode-example)
-    must be configured identically on both peers
-
-  - The
-    [peerlink](LNV-VXLAN-Active-Active-Mode.html#src-7112504_LNVVXLANActive-ActiveMode-example)
-    must be to the bridge
+- The `clagd-vxlan-anycast-ip` parameter must be under the 
+  [loopback stanza](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode/#active-active-vtep-anycast-ip-behavior)
+  on both peers
+- The anycast address should be advertised to the routed fabric from
+  both peers
+- The
+  [VNIs](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode/#example-vxlan-active-active-configuration)
+  must be configured identically on both peers
+- The
+  [peerlink](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode/#example-vxlan-active-active-configuration)
+  must be to the bridge
 
 MLAG syncs information between the two switches in the MLAG pair, EVPN
 does not synchronize. Therefore, Cumulus Networks recommends you do not
 configure EVPN peering between the MLAG switches over the peerlink.
 
-### Example Active-active Configuration</span>
+### Example Active-active Configuration
 
 The following configurations demonstrate a dual-attached
 ([MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG))
@@ -1153,9 +1138,9 @@ repository](https://github.com/CumulusNetworks/cldemo-evpn/). Only a
 subset is shown here for brevity (not shown are configurations for
 leaf03, leaf04, server02, server04). Here is the topology diagram:
 
-{{% imgOld 1 %}}
+{{< figure src="http://raw.githubusercontent.com/CumulusNetworks/cldemo-evpn/master/images/mlag.png" width="600" >}}
 
-#### leaf01 and leaf02 Configurations</span>
+#### leaf01 and leaf02 Configurations
 
 <table>
 <colgroup>
@@ -1402,7 +1387,7 @@ end</code></pre>
 </tbody>
 </table>
 
-#### spine01 and spine02 Configurations</span>
+#### spine01 and spine02 Configurations
 
 <table>
 <colgroup>
@@ -1565,7 +1550,7 @@ end</code></pre>
 </tbody>
 </table>
 
-#### server01 and server03 Configurations</span>
+#### server01 and server03 Configurations
 
 <table>
 <colgroup>
@@ -1612,7 +1597,7 @@ iface bond0.200
 </tbody>
 </table>
 
-## Testing Connectivity between Servers</span>
+## Testing Connectivity between Servers
 
 SSH to server01 and ping the VLAN1 IP address on server02:
 
@@ -1634,34 +1619,27 @@ connectivity across the L3 fabric:
 | VLAN100 | 172.16.100.101 | 172.16.100.102 | 172.16.100.103 | 172.16.100.104 |
 | VLAN200 | 172.16.200.101 | 172.16.200.102 | 172.16.200.103 | 172.16.200.104 |
 
-## Cumulus Linux Output Commands</span>
+## Cumulus Linux Output Commands
 
 You can use various `iproute2` commands to examine links, VLAN mappings
 and displaying bridge FDB data:
 
-  - ip \[-d\] link show
-
-  - bridge link show
-
-  - bridge vlan show
-
-  - bridge \[-s\] fdb show
+- ip \[-d\] link show
+- bridge link show
+- bridge vlan show
+- bridge \[-s\] fdb show
 
 For example, the output from the following `bridge fdb show` command
 reveals information relevant only for a VTEP.
 
-  - 3 remote VTEPs (10.0.0.5, 10.0.0.6 and 80.80.80.2) for each of the 2
+- 3 remote VTEPs (10.0.0.5, 10.0.0.6 and 80.80.80.2) for each of the 2
     VNIs.
-
-  - MAC address 00:02:00:00:00:03 is a local MAC learned over a bond
+- MAC address 00:02:00:00:00:03 is a local MAC learned over a bond
     interface while MAC address 00:02:00:00:00:08 is a remote MAC from
     VTEP 80.80.80.2 for VNI 10100 (vtep100).
+- The entries with MAC “00:00:00:00:00:00” are for BUM traffic replication.
 
-  - The entries with MAC “00:00:00:00:00:00” are for BUM traffic
-    replication.
-
-<!-- end list -->
-
+    ```
     cumulus@switch:~$ bridge fdb show
     00:02:00:00:00:0f dev swp3 master bridge permanent
     00:02:00:00:00:01 dev swp3 vlan 1 master bridge 
@@ -1678,11 +1656,12 @@ reveals information relevant only for a VTEP.
     00:00:00:00:00:00 dev vtep200 dst 10.0.0.6 self permanent
     00:00:00:00:00:00 dev vtep200 dst 80.80.80.2 self permanent
     00:02:00:00:00:10 dev bond0 master bridge permanent
-    02:02:00:00:00:03 dev bond0 vlan 1 master bridge 
-    02:02:00:00:00:02 dev bond0 vlan 1 master bridge 
-    00:02:00:00:00:03 dev bond0 vlan 100 master bridge 
+    02:02:00:00:00:03 dev bond0 vlan 1 master bridge
+    02:02:00:00:00:02 dev bond0 vlan 1 master bridge
+    00:02:00:00:00:03 dev bond0 vlan 100 master bridge
+    ```
 
-## BGP Output Commands</span>
+## BGP Output Commands
 
 The following commands are not unique to EVPN but help troubleshoot
 connectivity and route propagation. You can display the L3 fabric by
@@ -1754,16 +1733,16 @@ participating in BGP by running the `net show bgp` command:
     =====================
     No BGP prefixes displayed, 0 exist
 
-## EVPN Output Commands</span>
+## EVPN Output Commands
 
 The following commands are unique to EVPN address-families and VXLAN.
 Note that just because two network nodes are BGP peers does not mean
 they are EVPN address-family peers or are exchanging VXLAN information.
 
-### Displaying EVPN address-family Peers</span>
+### Displaying EVPN address-family Peers
 
 The network device participating in BGP EVPN address-family can be shown
-using the ` net show bgp evpn summary  `command:
+using the `net show bgp evpn summary` command:
 
     cumulus@leaf01:~$ net show bgp evpn summary 
     BGP router identifier 110.0.0.1, local AS number 65001 vrf-id 0
@@ -1776,7 +1755,7 @@ using the ` net show bgp evpn summary  `command:
     s2(swp49s1)     4      65100      25      31        0    0    0 00:43:25           18
     Total number of neighbors 2
 
-### Displaying VNIs or EVPN VXLANs</span>
+### Displaying VNIs or EVPN VXLANs
 
 You can display the configured VNIs on a network device participating in
 BGP EVPN by running the `show bgp evpn vni` command. This command works
@@ -1824,7 +1803,7 @@ the EVPN section is shown):
      
     ...
 
-### Examining Local and Remote MAC Addresses for a VNI in FRR</span>
+### Examining Local and Remote MAC Addresses for a VNI in FRR
 
 You can examine all local and remote MAC addresses for a VNI by running
 `net show evpn mac vni <vni>`.
@@ -1841,8 +1820,8 @@ You can examine all local and remote MAC addresses for a VNI by running
     00:02:00:00:00:07 remote 110.0.0.4            
     00:02:00:00:00:08 remote 110.0.0.4 
 
-You can examine MAC addresses across VNIs using `net show evpn mac vni
-all`:
+You can examine MAC addresses across VNIs using 
+`net show evpn mac vni all`:
 
 ``` 
 cumulus@leaf01:~$ net show evpn mac vni all
@@ -1884,7 +1863,7 @@ MAC address. This command only works when run on a VTEP:
     MAC: 00:02:00:00:00:01
      Intf: swp49s2(53) VLAN: 100 ARP ref: 0
 
-### Displaying the Global BGP EVPN Routing Table</span>
+### Displaying the Global BGP EVPN Routing Table
 
 Run the `net show bgp evpn route` command to display all EVPN routes at
 the same time:
@@ -1938,7 +1917,7 @@ the same time:
      
     Displayed 29 prefixes (47 paths)
 
-The output ` *> [3]:[0]:[32]:[110.0.0.2]  `(the last line above) is
+The output `*> [3]:[0]:[32]:[110.0.0.2]` (the last line above) is
 explained as follows:
 
 | Output    | Explanation                         |
@@ -1948,29 +1927,22 @@ explained as follows:
 | \[32\]    | IP address length of 32 bits        |
 | 110.0.0.2 | IPv4 address originating this route |
 
-### Displaying EVPN Type-2 (MAC/IP) Routes</span>
+### Displaying EVPN Type-2 (MAC/IP) Routes
 
 To display only EVPN type-2 (MAC/IP) routes, run `show bgp evpn route
 type macip`. The output displays the EVPN route-type fields followed by
 type-specific fields:
 
-  - Type 2 route: \[type\]:\[ESI\]:\[ET\]:\[MAC length\]:\[MAC\]
-
-  - Type 2 route with ARP suppression: \[type\]:\[ESI\]:\[ET\]:\[MAC
-    length\]:\[MAC\]:\[IP length\]:\[IP\]
-    
-      - The Ethernet Segment Id (ESI) and Ethernet Tag (ET) are always
-        0.
-
+- Type 2 route: \[type\]:\[ESI\]:\[ET\]:\[MAC length\]:\[MAC\]
+- Type 2 route with ARP suppression: \[type\]:\[ESI\]:\[ET\]:\[MAC
+  length\]:\[MAC\]:\[IP length\]:\[IP\]
+  - The Ethernet Segment Id (ESI) and Ethernet Tag (ET) are always 0.
   - Type 3 route: \[type\]:\[ET\]:\[Originating Router IP\]
-    
-      - The Ethernet Tag (ET) is always 0.
-    
-      - The "Originating Router IP" is the VTEP local IP for the
-        corresponding VNI.
+  - The Ethernet Tag (ET) is always 0.
+  - The "Originating Router IP" is the VTEP local IP for the
+    corresponding VNI.
 
-<!-- end list -->
-
+    ```
     cumulus@leaf01:~$ net show bgp evpn route type macip 
     BGP table version is 0, local router ID is 110.0.0.1
     Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
@@ -2007,12 +1979,13 @@ type-specific fields:
                         110.0.0.2                              0 65100 65002 i
     *> [2]:[0]:[0]:[48]:[00:02:00:00:00:04]:[32]:[50.1.1.22]
                         110.0.0.2                              0 65100 65002 i
-     
-    ... ## output truncated
-     
-    Displayed 21 prefixes (33 paths) (of requested type)
 
-### Displaying a Specific EVPN Route</span>
+    ... ## output truncated
+
+    Displayed 21 prefixes (33 paths) (of requested type)
+    ```
+
+### Displaying a Specific EVPN Route
 
 To drill down on a specific route for more information, run the `net
 show bgp evpn route rd <VTEP:VXLAN>` command. The following example
@@ -2092,23 +2065,21 @@ VNI (10100).
 
 {{%notice note%}}
 
-  - Though the local VNI is included in the type-2 route, the receiver
+- Though the local VNI is included in the type-2 route, the receiver
     does not use it. It uses the received RT to match the route to an
     appropriate local VNI and then assumes the remote VTEP uses the same
     VNI value — that is, global VNIs are in use.
-
-  - If MAC mobility extended community is exchanged, it gets shown in
+- If MAC mobility extended community is exchanged, it gets shown in
     the above output.
-
-  - If the remote MAC is dual attached, the next hop for the EVPN route
-    is the anycast IP address of the remote
-    [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
-    pair (when MLAG is active). You can see this in the above example,
-    where 110.0.0.2 is actually the anycast IP of the MLAG pair.
+- If the remote MAC is dual attached, the next hop for the EVPN route
+  is the anycast IP address of the remote
+  [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
+  pair (when MLAG is active). You can see this in the above example,
+  where 110.0.0.2 is actually the anycast IP of the MLAG pair.
 
 {{%/notice%}}
 
-### Displaying the per-VNI EVPN Routing Table</span>
+### Displaying the per-VNI EVPN Routing Table
 
 Received EVPN routes are maintained in the global EVPN routing table
 (described above), even if there are no appropriate local VNIs to
@@ -2146,7 +2117,7 @@ routing table can be examined using `net show bgp evpn route vni <vni>`:
      
     Displayed 24 prefixes (45 paths)
 
-### Displaying a Specific MAC or Remote VTEP</span>
+### Displaying a Specific MAC or Remote VTEP
 
 You can examine a specific MAC or IP (remote VTEP):
 
@@ -2175,8 +2146,8 @@ You can examine a specific MAC or IP (remote VTEP):
      
     Displayed 2 paths for requested prefix
 
-To display the VNI routing table for all VNIs, run `net show bgp evpn
-route vni all`:
+To display the VNI routing table for all VNIs, run 
+`net show bgp evpn route vni all`:
 
     cumulus@leaf01:~$ net show bgp evpn route vni all
      
@@ -2270,7 +2241,7 @@ route vni all`:
      
     Displayed 21 prefixes (36 paths)
 
-### Examining MAC Moves</span>
+### Examining MAC Moves
 
 The first time a MAC moves from behind one VTEP to behind another, BGP
 associates a MAC Mobility (MM) extended community attribute of sequence
@@ -2294,7 +2265,7 @@ below shows the type-2 route for a MAC that has moved three times:
      
     Displayed 1 paths for requested prefix
 
-### Examining Sticky MAC Addresses</span>
+### Examining Sticky MAC Addresses
 
 You can identify static or "sticky" MACs in FRR by the presence of
 "MM:0, sticky MAC" in the Extended Community line of the output from
@@ -2314,44 +2285,32 @@ You can identify static or "sticky" MACs in FRR by the presence of
      
     Displayed 1 paths for requested prefix
 
-## Troubleshooting EVPN</span>
+## Troubleshooting EVPN
 
 The primary way to troubleshoot EVPN is by enabling FRR debug logs. The
 relevant debug options are:
 
-  - `debug zebra vxlan` — which traces VNI addition and deletion (local
+- `debug zebra vxlan` — which traces VNI addition and deletion (local
     and remote) as well as MAC and neighbor addition and deletion (local
     and remote).
-
-  - `debug zebra kernel` — which traces actual netlink messages
+- `debug zebra kernel` — which traces actual netlink messages
     exchanged with the kernel, which includes everything, not just EVPN.
-
-  - `debug bgp updates` — which traces BGP update exchanges, including
+- `debug bgp updates` — which traces BGP update exchanges, including
     all updates. Output is extended to show EVPN specific information.
-
-  - `debug bgp zebra` — which traces interactions between BGP and zebra
+- `debug bgp zebra` — which traces interactions between BGP and zebra
     for EVPN (and other) routes.
 
-## Caveats</span>
+## Caveats
 
 The following caveat applies to EVPN in this version of Cumulus Linux:
 
-  - EVPN in Cumulus Linux does not support the ability to only announce
-    certain VNIs. It supports either all locally defined VNIs (using the
-    configuration specified above) or none of them. Provisioning options
-    to advertise only specific VNIs will be introduced in a future
-    release.
-
-  - ARP suppression does not interoperate with [VXLAN active-active
-    mode](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode)
-    in an optimal manner, because the neighbor entries are not synced by
-    a control plane. Thus, ARPs may not be suppressed sometimes. This
-    has no impact on forwarding.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- EVPN in Cumulus Linux does not support the ability to only announce
+  certain VNIs. It supports either all locally defined VNIs (using the
+  configuration specified above) or none of them. Provisioning options
+  to advertise only specific VNIs will be introduced in a future
+  release.
+- ARP suppression does not interoperate with 
+  [VXLAN active-active mode](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode/)
+  in an optimal manner, because the neighbor entries are not synced by
+  a control plane. Thus, ARPs may not be suppressed sometimes. This
+  has no impact on forwarding.

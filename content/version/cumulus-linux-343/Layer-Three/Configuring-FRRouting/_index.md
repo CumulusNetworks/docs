@@ -15,7 +15,7 @@ This section provides an overview of configuring FRRouting, the routing
 software package that provides a suite of routing protocols so you can
 configure routing on your switch.
 
-## Configuring FRRouting</span>
+## Configuring FRRouting
 
 FRRouting does not start by default in Cumulus Linux. Before you run
 FRRouting, make sure all you have enabled relevant daemons that you
@@ -32,7 +32,7 @@ The `zebra` daemon must always be enabled. The others you can enable
 according to how you plan to route your network — using
 [BGP](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol-BGP)
 for example, instead of
-[OSPF](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol).
 
 Before you start FRRouting, you need to enable the corresponding
 daemons. Edit the `/etc/frr/daemons` file and set to *yes* each daemon
@@ -49,7 +49,7 @@ you are enabling. For example, to enable BGP, set both `zebra` and
     babeld=no
     pimd=no
 
-### Enabling and Starting FRRouting</span>
+### Enabling and Starting FRRouting
 
 Once you enable the appropriate daemons, then you need to enable and
 start the FRRouting service.
@@ -70,18 +70,18 @@ restarted. For example, running `systemctl restart frr.service` restarts
 any of the routing protocol daemons that are enabled and running.
 
 For more information on the `systemctl` command and changing the state
-of daemons, read [Managing Application
-Daemons](/version/cumulus-linux-343/System-Configuration/Managing-Application-Daemons).
+of daemons, read 
+[Managing Application Daemons](/version/cumulus-linux-343/System-Configuration/Managing-Application-Daemons).
 
 {{%/notice%}}
 
-### <span id="src-7112658_ConfiguringFRRouting-integrated_cfg" class="confluence-anchor-link"></span>Understanding Integrated Configurations</span>
+### Understanding Integrated Configurations
 
 By default in Cumulus Linux, FRRouting saves the configuration of all
 daemons in a single integrated configuration file, `frr.conf`.
 
 You can disable this mode by running the following command in the
-[`vtysh` FRRouting CLI](#src-7112658_ConfiguringFRRouting-vtysh):
+[`vtysh` FRRouting CLI](#using-the-frrouting-vtysh-modal-cli):
 
     cumulus@switch:~$ sudo vtysh
     switch# configure terminal
@@ -120,7 +120,7 @@ this:
     Configuration saved to /etc/frr/bgpd.conf
     [OK]
 
-### Restoring the Default Configuration</span>
+### Restoring the Default Configuration
 
 If you need to restore the FRRouting configuration to the default
 running configuration, you need to delete the `frr.conf` file and
@@ -128,19 +128,19 @@ restart the `frr` service. You should back up `frr.conf` (or any
 configuration files you may remove, see the note below) before
 proceeding.
 
-1.  Confirm `service integrated-vtysh-config` is enabled:
-    
-    ``` 
-    cumulus@switch:~$ net show configuration | grep integrated
-              service integrated-vtysh-config  
-    ```
+1. Confirm `service integrated-vtysh-config` is enabled:
 
-2.  Remove `/etc/frr/frr.conf`:
-    
+  ``` 
+  cumulus@switch:~$ net show configuration | grep integrated
+            service integrated-vtysh-config  
+  ```
+
+2. Remove `/etc/frr/frr.conf`:
+
         cumulus@switch:~$ sudo rm /etc/frr/frr.conf
 
-3.  Restart FRRouting:
-    
+3. Restart FRRouting:
+
         cumulus@switch:~$ sudo systemctl restart frr.service
 
 {{%notice note%}}
@@ -151,17 +151,16 @@ you should remove all the configuration files (such as `zebra.conf` or
 
 {{%/notice%}}
 
-## Interface IP Addresses and VRFs</span>
+## Interface IP Addresses and VRFs
 
 FRRouting inherits the IP addresses and any associated routing tables
 for the network interfaces from the `/etc/network/interfaces` file. This
 is the recommended way to define the addresses; do **not** create
-interfaces using FRRouting. For more information, see [Configuring IP
-Addresses](Interface-Configuration-and-Management.html#src-7112612_InterfaceConfigurationandManagement-ip)
-and [Virtual Routing and Forwarding -
-VRF](/version/cumulus-linux-343/Layer-Three/Virtual-Routing-and-Forwarding-VRF).
+interfaces using FRRouting. For more information, see 
+[Configuring IP Addresses](/version/cumulus-linux-343/Interface-Configuration-and-Management/#configuring-ip-addresses)
+and [Virtual Routing and Forwarding - VRF](/version/cumulus-linux-343/Layer-Three/Virtual-Routing-and-Forwarding-VRF).
 
-## <span id="src-7112658_ConfiguringFRRouting-vtysh" class="confluence-anchor-link"></span>Using the FRRouting vtysh Modal CLI</span>
+## Using the FRRouting vtysh Modal CLI
 
 FRRouting provides a CLI – `vtysh` – for configuring and displaying the
 state of the protocols. It is invoked by running:
@@ -413,11 +412,11 @@ started, `vtysh` silently ignores those commands.
 {{%/notice%}}
 
 Alternately, if you do not want to use a modal CLI to configure
-FRRouting, you can use a suite of [Cumulus Linux-specific
-commands](/version/cumulus-linux-343/Layer-Three/Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands)
+FRRouting, you can use a suite of 
+[Cumulus Linux-specific commands](/version/cumulus-linux-343/Layer-Three/Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands)
 instead.
 
-## Reloading the FRRouting Configuration</span>
+## Reloading the FRRouting Configuration
 
 If you make a change to your routing configuration, you need to reload
 FRRouting so your changes take place. *FRRouting reload* enables you to
@@ -445,33 +444,19 @@ in `/etc/frr/frr.conf`:
 
     cumulus@switch:~$ net show configuration
 
-### Debugging</span>
+### Debugging
 
-If the running configuration is not what you expected, please [submit a
-support
-request](https://support.cumulusnetworks.com/hc/en-us/requests/new) and
-supply the following information:
+If the running configuration is not what you expected, please 
+[submit a support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) 
+and supply the following information:
 
-  - The current running configuration (run `net show configuration` and
+- The current running configuration (run `net show configuration` and
     output the contents to a file)
+- The contents of `/etc/frr/frr.conf`
+- The contents of `/var/log/frr/frr-reload.log`
 
-  - The contents of `/etc/frr/frr.conf`
+## Related Information
 
-  - The contents of `/var/log/frr/frr-reload.log`
-
-## Related Information</span>
-
-  - [frrouting.org/user-guide/BGP.html\#BGP](https://frrouting.org/user-guide/BGP.html#BGP)
-
-  - [frrouting.org/user-guide/IPv6-Support.html\#IPv6-Support](https://frrouting.org/user-guide/IPv6-Support.html#IPv6-Support)
-
-  - [frrouting.org/user-guide/Zebra.html\#Zeb](https://frrouting.org/user-guide/Zebra.html#Zebra)
-    [frrouting.org/user-guide/Zebra.html\#Zebra](https://frrouting.org/user-guide/Zebra.html#Zebra)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- [frrouting.org/user-guide/BGP.html\#BGP](https://frrouting.org/user-guide/BGP.html#BGP)
+- [frrouting.org/user-guide/IPv6-Support.html\#IPv6-Support](https://frrouting.org/user-guide/IPv6-Support.html#IPv6-Support)
+- [frrouting.org/user-guide/Zebra.html\#Zebra](https://frrouting.org/user-guide/Zebra.html#Zebra)

@@ -17,9 +17,9 @@ script replicates the /`etc` directory.
 
 Files that `cl-support` deliberately excludes are:
 
-| File              | Description                                                                                                                                    |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| /etc/nologin      | ` nologin  `prevents unprivileged users from logging into the system.                                                                          |
+| File              | Description |
+| ----------------- | ----------- |
+| /etc/nologin      | `nologin` prevents unprivileged users from logging into the system.                                                                          |
 | /etc/alternatives | `update-alternatives` creates, removes, maintains and displays information about the symbolic links comprising the Debian alternatives system. |
 
 This is the alphabetical of the output from running `ls -l` on the
@@ -27,7 +27,7 @@ This is the alphabetical of the output from running `ls -l` on the
 highlighted rows are the ones Cumulus Networks finds most important when
 troubleshooting problems.
 
-| **File**                  |
+| File               |
 | ------------------------- |
 | acpi                      |
 | adduser.conf              |
@@ -217,11 +217,3 @@ troubleshooting problems.
 | wgetrc                    |
 | X11                       |
 | xdg                       |
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

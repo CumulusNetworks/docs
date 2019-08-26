@@ -22,15 +22,14 @@ mappings in hardware before we hit hash collisions. There is also an
 upper limit of around 3000 VLANs you can configure before you hit the
 reserved range (3000-3999 by default). When you hear a Cumulus Linux
 employee say "around" or use a soft number its because the math is
-unique per customer environment. A internal VLAN is consumed p
-<span style="color: #222222;"> er L3 Port , per Sub Interface , per
-Traditional Bridge and 1 is used for a bridge in vlan-aware mode.. This
-means we have a configurable </span>
+unique per customer environment. A internal VLAN is consumed per L3 port, 
+per subinterface, per traditional bridge and 1 is used for a bridge in 
+VLAN-aware mode. This means we have a configurable: 
 
-<span style="color: #222222;"> (Total Configurable 802.1q VLANs) -
+(Total Configurable 802.1q VLANs) -
 (Reserved VLANS) - (Physical or Logical Interfaces) =  
 4094-999-eth0-loopback = **3093** by default (without any other
-configuration) </span>
+configuration)
 
 The math equation for configurable VXLANs looks like the following:
 
@@ -80,11 +79,3 @@ The equation now looks like this:
 18 \* X = 11943
 
 663 = VXLANS (still configurable) for a total of **863**
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

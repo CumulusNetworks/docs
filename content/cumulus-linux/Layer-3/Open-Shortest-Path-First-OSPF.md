@@ -6,6 +6,7 @@ aliases:
  - /display/DOCS/Open+Shortest+Path+First+OSPF
  - /display/DOCS/Open+Shortest+Path+First+-+OSPF
  - /display/DOCS/Open+Shortest+Path+First+-+OSPF+-+Protocol
+ - /display/DOCS/Open+Shortest+Path+First+++OSPF+++Protocol
  - /pages/viewpage.action?pageId=8362922
 pageID: 8362922
 product: Cumulus Linux
@@ -44,9 +45,9 @@ IPv4. For IPv6 commands, refer to
 
 An increase in the number of nodes affects:
 
-  - Memory footprint to hold the entire network topology
-  - Flooding performance
-  - SPF computation efficiency
+- Memory footprint to hold the entire network topology
+- Flooding performance
+- SPF computation efficiency
 
 The OSPF protocol advocates hierarchy as a *divide and conquer* approach
 to achieve high scale. You can divide the topology into areas, resulting
@@ -59,13 +60,13 @@ divide the leaf-spine topology into the following areas:
 
 {{%notice note%}}
 
-  - Routers R3, R4, R5, R6 are *area border routers* (ABRs). These
+- Routers R3, R4, R5, R6 are *area border routers* (ABRs). These
     routers have links to multiple areas and perform a set of
     specialized tasks, such as SPF computation per area and
     summarization of routes across areas.
-  - Most of the LSAs have an area-level flooding scope. These include
+- Most of the LSAs have an area-level flooding scope. These include
     router LSA, network LSA, and summary LSA.
-  - Where ABRs do not connect to multiple non-zero areas, you can use
+- Where ABRs do not connect to multiple non-zero areas, you can use
     the same area address.
 
 {{%/notice%}}
@@ -74,9 +75,9 @@ divide the leaf-spine topology into the following areas:
 
 To configure OSPF, you need to:
 
-  - Enable the OSPF daemon
-  - Configure OSPF
-  - Define custom OSPF parameters on the interfaces
+- Enable the OSPF daemon
+- Configure OSPF
+- Define custom OSPF parameters on the interfaces
 
 ### Enable the OSPF and Zebra Daemons
 
@@ -91,9 +92,9 @@ then start the FRRouting service:
 
 Before you configure OSPF, you need to identify:
 
-  - Which router has the router ID
-  - With which device the router communicates
-  - What information to advertise (the prefix reachability)
+- Which router has the router ID
+- With which device the router communicates
+- What information to advertise (the prefix reachability)
 
 To configure OSPF, specify the router ID, an IP subnet prefix, and an
 area address. All the interfaces on the router whose IP address matches
@@ -161,10 +162,10 @@ The OSPF configuration is saved in the `/etc/frr/frr.conf` file.
 OSPF uses the following timers to prevent consecutive SPFs from
 overburdening the CPU:
 
-  - 0 ms from initial event until SPF runs
-  - 50 ms between consecutive SPF runs (the number doubles with each
-    SPF, until it reaches the value of C)
-  - 5000 ms maximum between SPFs
+- 0 ms from initial event until SPF runs
+- 50 ms between consecutive SPF runs (the number doubles with each
+  SPF, until it reaches the value of C)
+- 5000 ms maximum between SPFs
 
 ### Configure MD5 Authentication for OSPF Neighbors
 
@@ -173,17 +174,14 @@ favor of MD5 hash authentication.
 
 To configure MD5 authentication:
 
-1.  Create a key and a key ID for MD5 with the `net add interface
-    <interface> ospf message-digest-key <KEYID> md5 <KEY>` command.  
-    `KEYID` is a value between 1 and 255 that represents the key used to
-    create the message digest. This value must be consistent across all
-    routers on a link.  
-    `KEY` is a value that has an upper range of 16 characters (longer
-    strings are truncated) and represents the actual message digest key
-    that is associated with the given `KEYID`.  
-    The following example command creates key ID *1* with the message
-    digest key *__thisisthekey:  
-    __*
+1. Create a key and a key ID for MD5 with the 
+   `net add interface <interface> ospf message-digest-key <KEYID> md5 <KEY>`
+   command. `KEYID` is a value between 1 and 255 that represents the key
+   used to create the message digest. This value must be consistent across all
+   routers on a link. `KEY` is a value that has an upper range of 16 characters 
+   (longer strings are truncated) and represents the actual message digest key
+   that is associated with the given `KEYID`. The following example command creates 
+   key ID *1* with the message digest key *thisisthekey*:
 
         cumulus@switch:~$ net add interface swp1 ospf message-digest-key 1 md5 thisisthekey
 
@@ -195,15 +193,15 @@ command.
 
     {{%/notice%}}
 
-2.  Enable authorization with the 
-    `net add interface <interface> ospf authentication message-digest` command.
+2. Enable authorization with the 
+   `net add interface <interface> ospf authentication message-digest` command.
 
         cumulus@switch:~$ net add interface swp1 ospf authentication message-digest
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
 
-    These commands creates the following configuration in the
-    `/etc/frr/frr.conf` file:
+   These commands creates the following configuration in the
+   `/etc/frr/frr.conf` file:
 
         cumulus@switch:~$ sudo cat /etc/frr/frr.conf 
         ...
@@ -275,7 +273,7 @@ redistributed into OSPF from another protocol. They have an AS-wide
 flooding scope. In many cases, external link states make up a large
 percentage of the LSDB.
 
-*Stub **areas* alleviate this scaling problem. A stub area is an area
+*Stub areas* alleviate this scaling problem. A stub area is an area
 that does not receive external route advertisements.
 
 To configure a stub area:
@@ -307,11 +305,9 @@ The `ospfd` daemon can have multiple independent processes.
 
 {{%notice note%}}
 
-  - Multiple `ospfd` processes are only supported in the default VRF.
-
-  - You can run multiple `ospfd` instances with OSPFv2 only.
-
-  - FRRouting supports up to five instances and the instance ID must be
+- Multiple `ospfd` processes are only supported in the default VRF.
+- You can run multiple `ospfd` instances with OSPFv2 only.
+- FRRouting supports up to five instances and the instance ID must be
     a value between 1 and 65535.
 
 {{%/notice%}}
@@ -625,7 +621,7 @@ To enable OSPF on an unnumbered interface:
 
 ## Apply a Route Map for Route Updates
 
-To apply a [route map](https://frrouting.org/user-guide/routemap.html)
+To apply a [route map](http://docs.frrouting.org/en/latest/routemap.html)
 to filter route updates from Zebra into the Linux kernel:
 
     cumulus@switch:$ net add routing protocol ospf route-map <route-map-name>
@@ -641,13 +637,10 @@ next hops to reach a destination attached to R9.
 
 Topology changes usually occur due to one of four events:
 
-1.  Maintenance of a router node
-
-2.  Maintenance of a link
-
-3.  Failure of a router node
-
-4.  Failure of a link
+1. Maintenance of a router node
+2. Maintenance of a link
+3. Failure of a router node
+4. Failure of a link
 
 For the maintenance events, operators typically raise the OSPF
 administrative weight of the link(s) to ensure that all traffic is
@@ -680,12 +673,12 @@ depends on layer 1 failure detection capabilities and at the worst case
 
 ## Troubleshooting
 
-  - To debug neighbor states, run the `net show ospf neighbor` command.
-  - To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto
-    ospf` command.
-  - To verify that the LSDB is synchronized across all routers in the
+- To debug neighbor states, run the `net show ospf neighbor` command.
+- To capture OSPF packets, run the 
+  `sudo tcpdump -v -i swp1 ip proto ospf` command.
+- To verify that the LSDB is synchronized across all routers in the
     network, run the `net show ospf database` command.
-  - To debug why an OSPF route is not being forwarded correctly, run the
+- To debug why an OSPF route is not being forwarded correctly, run the
     `net show route ospf` command. This command shows the outcome of the
     SPF computation downloaded to the forwarding table.
 
@@ -694,14 +687,14 @@ lists all of the OSPF debug options.
 
 ## Related Information
 
-  - [Bidirectional forwarding detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
+- [Bidirectional forwarding detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
     (BFD) and OSPF
-  - [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)
-  - [FRR OSPFv2](https://frrouting.org/user-guide/ospfd.html)
-  - Perlman, Radia (1999). Interconnections: Bridges, Routers, Switches,
+- [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)
+- [FRR OSPFv2](https://frrouting.org/user-guide/ospfd.html)
+- Perlman, Radia (1999). Interconnections: Bridges, Routers, Switches,
     and Internetworking Protocols (2 ed.). Addison-Wesley.
-  - Moy, John T. OSPF: Anatomy of an Internet Routing Protocol.
+- Moy, John T. OSPF: Anatomy of an Internet Routing Protocol.
     Addison-Wesley.
-  - [RFC 2328 OSPFv2](https://tools.ietf.org/html/rfc2328)
-  - [RFC 3101 OSPFv2 Not-So-Stubby Area
+- [RFC 2328 OSPFv2](https://tools.ietf.org/html/rfc2328)
+- [RFC 3101 OSPFv2 Not-So-Stubby Area
     (NSSA)](https://tools.ietf.org/html/rfc3101)

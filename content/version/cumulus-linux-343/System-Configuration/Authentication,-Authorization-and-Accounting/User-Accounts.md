@@ -15,56 +15,42 @@ By default, Cumulus Linux has two user accounts: *cumulus* and *root*.
 
 The *cumulus* account:
 
-  - 
-    
-    <div id="src-7112310_indexterm-8E7917EC81585AF3F099DF2670DB5499">
-    
-    Default password is *CumulusLinux\!*
-    
-    </div>
-
-  - Is a user account in the *sudo* group with sudo privileges
-
-  - User can log in to the system via all the usual channels like
-    console and
-    [SSH](/version/cumulus-linux-343/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access)
-
-  - Along with the cumulus group, has both show and edit rights for
-    [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU)
+- Default password is *CumulusLinux\!*
+- Is a user account in the *sudo* group with sudo privileges
+- User can log in to the system via all the usual channels like console and
+  [SSH](/version/cumulus-linux-343/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access)
+- Along with the cumulus group, has both show and edit rights for
+  [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU)
 
 The *root* account:
 
-  - Default password is disabled by default
-
-  - Has the standard Linux root user access to everything on the switch
-
-  - Disabled password prohibits login to the switch by SSH, telnet, FTP,
-    and so forth
+- Default password is disabled by default
+- Has the standard Linux root user access to everything on the switch
+- Disabled password prohibits login to the switch by SSH, telnet, FTP,
+  and so forth
 
 For best security, you should change the default password (using the
 `passwd` command) before you configure Cumulus Linux on the switch.
 
 You can add more user accounts as needed. Like the *cumulus* account,
-these accounts must use `sudo` to [execute privileged
-commands](/version/cumulus-linux-343/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges),
+these accounts must use `sudo` to 
+[execute privileged commands](/version/cumulus-linux-343/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges),
 so be sure to include them in the *sudo* group.
 
-To access the switch without any password requires [booting into a
-single shell/user
-mode](/version/cumulus-linux-343/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery).
+To access the switch without any password requires 
+[booting into a single shell/user mode](/version/cumulus-linux-343/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery).
 
-## Enabling Remote Access for the root User</span>
+## Enabling Remote Access for the root User
 
 As mentioned above, the root user does not have a password set for it,
 and it cannot log in to a switch via SSH. This default account behavior
 is consistent with Debian. In order to connect to a switch using the
 root account, you can do one of two things for the account:
 
-  - Generate an SSH key
+- Generate an SSH key
+- Set a password
 
-  - Set a password
-
-### <span id="src-7112310_UserAccounts-ssh_key" class="confluence-anchor-link"></span>Generating an SSH Key for the root Account</span>
+### Generating an SSH Key for the root Account
 
 1.  First, in a terminal on your host system (not the switch), check to
     see if a key already exists:
@@ -95,7 +81,7 @@ root account, you can do one of two things for the account:
         cumulus@switch:~$ sudo mkdir -p /root/.ssh
         cumulus@switch:~$ echo <SSH public key string> | sudo tee -a /root/.ssh/authorized_keys
 
-### <span id="src-7112310_UserAccounts-root_passwd" class="confluence-anchor-link"></span>Setting the root User Password</span>
+### Setting the root User Password
 
 1.  Run:
     
@@ -120,11 +106,3 @@ root account, you can do one of two things for the account:
 3.  Restart the `ssh` service:
     
         cumulus@switch:~$ sudo systemctl reload ssh.service
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

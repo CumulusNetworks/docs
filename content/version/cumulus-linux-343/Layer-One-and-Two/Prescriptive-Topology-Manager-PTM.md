@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 115
 aliases:
  - /display/CL34/Prescriptive+Topology+Manager+++PTM
+ - /display/CL34/Prescriptive+Topology+Manager+-+PTM
+ - /display/CL34/Prescriptive+Topology+Manager+PTM
  - /pages/viewpage.action?pageId=7112407
 pageID: 7112407
 product: Cumulus Linux
@@ -27,38 +29,30 @@ PTM runs as a daemon, named `ptmd`.
 
 For more information, see `man ptmd(8)`.
 
-## Supported Features</span>
+## Supported Features
 
-  - Topology verification using LLDP. `ptmd` creates a client connection
+- Topology verification using LLDP. `ptmd` creates a client connection
     to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship
     between the nodes/ports in the network and compares them against the
     prescribed topology specified in the `topology.dot` file.
-
-  - Only physical interfaces, like swp1 or eth0, are currently
+- Only physical interfaces, like swp1 or eth0, are currently
     supported. Cumulus Linux does not support specifying virtual
     interfaces like bonds or subinterfaces like eth0.200 in the topology
     file.
-
-  - Forwarding path failure detection using [Bidirectional Forwarding
-    Detection](http://tools.ietf.org/html/rfc5880) (BFD); however,
-    demand mode is not supported. For more information on how BFD
-    operates in Cumulus Linux, read the [Bidirectional Forwarding
-    Detection -
-    BFD](/version/cumulus-linux-343/Layer-Three/Bidirectional-Forwarding-Detection-BFD)
-    chapter and read `man ptmd(8)`.
-
-  - Integration with FRRouting (PTM to FRRouting notification).
-
-  - Client management: `ptmd` creates an abstract named socket
+- Forwarding path failure detection using 
+  [Bidirectional Forwarding Detection](http://tools.ietf.org/html/rfc5880) 
+  (BFD); however, demand mode is not supported. For more information on how BFD
+  operates in Cumulus Linux, read the 
+  [Bidirectional Forwarding Detection - BFD](/version/cumulus-linux-343/Layer-Three/Bidirectional-Forwarding-Detection-BFD)
+  chapter and read `man ptmd(8)`.
+- Integration with FRRouting (PTM to FRRouting notification).
+- Client management: `ptmd` creates an abstract named socket
     `/var/run/ptmd.socket` on startup. Other applications can connect to
     this socket to receive notifications and send commands.
+- Event notifications: see Scripts below.
+- User configuration via a `topology.dot` file; [see below](#configuring-ptm).
 
-  - Event notifications: see Scripts below.
-
-  - User configuration via a `topology.dot` file; [see
-    below](#src-7112407_PrescriptiveTopologyManager-PTM-configuring).
-
-## <span id="src-7112407_PrescriptiveTopologyManager-PTM-configuring" class="confluence-anchor-link"></span>Configuring PTM</span>
+## Configuring PTM
 
 `ptmd` verifies the physical network topology against a DOT-specified
 network graph file, `/etc/ptm.d/topology.dot`.
@@ -87,7 +81,7 @@ information.
 
 {{%/notice%}}
 
-## <span id="src-7112407_PrescriptiveTopologyManager-PTM-example" class="confluence-anchor-link"></span>Basic Topology Example</span>
+## Basic Topology Example
 
 This is a basic example DOT file and its corresponding topology diagram.
 You should use the same `topology.dot` file on all switches, and don't
@@ -107,24 +101,22 @@ pushing/pulling the same exact file on each device\!
 
 {{% imgOld 0 %}}
 
-## <span id="src-7112407_PrescriptiveTopologyManager-PTM-advanced" class="confluence-anchor-link"></span>ptmd Scripts</span>
+## ptmd Scripts
 
 `ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and
-` /etc/ptm.d/if-topo-fail  `for each interface that goes through a
-change, running `if-topo-pass` when an LLDP or BFD check passes and
-running `if-topo-fails` when the check fails. The scripts receive an
-argument string that is the result of the `ptmctl` command, described in
-the [`ptmd` commands section
-below](#src-7112407_PrescriptiveTopologyManager-PTM-ptmd_commands).
+`/etc/ptm.d/if-topo-fail` for each interface that goes through a
+change, running `if-topo-pass` when an LLDP or BFD check passes and running `if-topo-fails` when the check fails. The scripts receive an argument 
+string that is the result of the `ptmctl` command, described in the 
+[`ptmd` commands section below](#using-ptmctl-commands).
 
 You should modify these default scripts as needed.
 
-## Configuration Parameters</span>
+## Configuration Parameters
 
 You can configure `ptmd` parameters in the topology file. The parameters
 are classified as host-only, global, per-port/node and templates.
 
-### Host-only Parameters</span>
+### Host-only Parameters
 
 *Host-only parameters* apply to the entire host on which PTM is running.
 You can include the `hostnametype` host-only parameter, which specifies
@@ -164,7 +156,7 @@ running on:
              "cumulus":"swp46" -- "switch05.cumulusnetworks.com":"swp22"
     }
 
-### Global Parameters</span>
+### Global Parameters
 
 *Global parameters* apply to every port listed in the topology file.
 There are two global parameters: LLDP and BFD. LLDP is enabled by
@@ -179,7 +171,7 @@ is a per-port override configured. For example:
              "cumulus":"swp46" -- "qct-ly2-04":"swp22"
     }
 
-### Per-port Parameters</span>
+### Per-port Parameters
 
 *Per-port parameters* provide finer-grained control at the port level.
 These parameters override any global or compiled defaults. For example:
@@ -191,16 +183,15 @@ These parameters override any global or compiled defaults. For example:
              "cumulus":"swp46" -- "qct-ly2-04":"swp22"
     }
 
-### Templates</span>
+### Templates
 
 *Templates* provide flexibility in choosing different parameter
 combinations and applying them to a given port. A template instructs
 `ptmd` to reference a named parameter string instead of a default one.
 There are two parameter strings `ptmd` supports:
 
-  - `bfdtmpl`, which specifies a custom parameter tuple for BFD.
-
-  - `lldptmpl`, which specifies a custom parameter tuple for LLDP.
+- `bfdtmpl`, which specifies a custom parameter tuple for BFD.
+- `lldptmpl`, which specifies a custom parameter tuple for LLDP.
 
 For example:
 
@@ -219,28 +210,22 @@ For example:
 In this template, LLDP1 and LLDP2 are templates for LLDP parameters
 while BFD1 and BFD2 are templates for BFD parameters.
 
-### Supported BFD and LLDP Parameters</span>
+### Supported BFD and LLDP Parameters
 
 `ptmd` supports the following BFD parameters:
 
-  - `upMinTx`: the minimum transmit interval, which defaults to *300ms*,
+- `upMinTx`: the minimum transmit interval, which defaults to *300ms*,
     specified in milliseconds.
-
-  - `requiredMinRx`: the minimum interval between received BFD packets,
+- `requiredMinRx`: the minimum interval between received BFD packets,
     which defaults to *300ms*, specified in milliseconds.
-
-  - `detectMult`: the detect multiplier, which defaults to *3*, and can
+- `detectMult`: the detect multiplier, which defaults to *3*, and can
     be any non-zero value.
-
-  - `afi`: the address family to be supported for the edge. The address
-    family must be one of the following:
-    
-      - *v4*: BFD sessions will be built for only IPv4 connected peer.
-        This is the default value.
-    
-      - *v6*: BFD sessions will be built for only IPv6 connected peer.
-    
-      - *both*: BFD sessions will be built for both IPv4 and IPv6
+- `afi`: the address family to be supported for the edge. The address
+  family must be one of the following:
+  - *v4*: BFD sessions will be built for only IPv4 connected peer.
+    This is the default value.  
+  - *v6*: BFD sessions will be built for only IPv6 connected peer.
+  - *both*: BFD sessions will be built for both IPv4 and IPv6
         connected peers.
 
 The following is an example of a topology with BFD applied at the port
@@ -253,15 +238,14 @@ level:
 
 `ptmd` supports the following LLDP parameters:
 
-  - `match_type`, which defaults to the interface name (`ifname`), but
-    can accept a port description (`portdescr`) instead if you want
-    `lldpd` to compare the topology against the port description instead
-    of the interface name. You can set this parameter globally or at the
-    per-port level.
-
-  - `match_hostname`, which defaults to the host name (`hostname`), but
-    enables PTM to match the topology using the fully-qualified domain
-    name (`fqdn`) supplied by LLDP.
+- `match_type`, which defaults to the interface name (`ifname`), but
+  can accept a port description (`portdescr`) instead if you want
+  `lldpd` to compare the topology against the port description instead
+  of the interface name. You can set this parameter globally or at the
+  per-port level.
+- `match_hostname`, which defaults to the host name (`hostname`), but
+  enables PTM to match the topology using the fully-qualified domain
+  name (`fqdn`) supplied by LLDP.
 
 The following is an example of a topology with LLDP applied at the port
 level:
@@ -285,17 +269,17 @@ hostname only, like *cumulus-3* below, and ignore the rest of the URL:
 
 {{%/notice%}}
 
-## <span id="src-7112407_PrescriptiveTopologyManager-PTM-bfd" class="confluence-anchor-link"></span>Bidirectional Forwarding Detection (BFD)</span>
+## Bidirectional Forwarding Detection (BFD)
 
 BFD provides low overhead and rapid detection of failures in the paths
 between two network devices. It provides a unified mechanism for link
 detection over all media and protocol layers. Use BFD to detect failures
 for IPv4 and IPv6 single or multihop paths between any two network
 devices, including unidirectional path failure detection. For
-information about configuring BFD using PTM, see the [BFD
-chapter](/version/cumulus-linux-343/Layer-Three/Bidirectional-Forwarding-Detection-BFD).
+information about configuring BFD using PTM, see the 
+[BFD chapter](/version/cumulus-linux-343/Layer-Three/Bidirectional-Forwarding-Detection-BFD).
 
-## <span id="src-7112407_PrescriptiveTopologyManager-PTM-frr" class="confluence-anchor-link"></span>Checking Link State with FRRouting</span>
+## Checking Link State with FRRouting
 
 The FRRouting routing suite enables additional checks to ensure that
 routing adjacencies are formed only on links that have connectivity
@@ -341,7 +325,7 @@ this flag. To check the per-interface `ptm-status`:
       flags: <UP,BROADCAST,RUNNING,MULTICAST>
       HWaddr: c4:54:44:bd:01:41
 
-## <span id="src-7112407_PrescriptiveTopologyManager-PTM-ptmd_commands" class="confluence-anchor-link"></span>Using ptmd Service Commands</span>
+## Using ptmd Service Commands
 
 PTM sends client notifications in CSV format.
 
@@ -359,7 +343,7 @@ service.
 `cumulus@switch:~$ sudo systemctl status ptmd.service`: Retrieves the
 current running state of `ptmd`.
 
-## Using ptmctl Commands</span>
+## Using ptmctl Commands
 
 `ptmctl` is a client of `ptmd`; it retrieves the operational state of
 the ports configured on the switch and information about BFD sessions
@@ -367,7 +351,7 @@ from `ptmd`. `ptmctl` parses the CSV notifications sent by `ptmd`.
 
 See `man ptmctl` for more information.
 
-### ptmctl Examples</span>
+### ptmctl Examples
 
 The examples below contain the following keywords in the output of the
 cbl status column, which are described here:
@@ -484,7 +468,7 @@ tx_timeout  rx_timeout  hop_cnt
 0           0           N/A      501      533      0        0       
 ```
 
-### ptmctl Error Outputs</span>
+### ptmctl Error Outputs
 
 If there are errors in the topology file or there isn’t a session, PTM
 will return appropriate outputs. Typical error strings are:
@@ -529,38 +513,25 @@ graph from working correctly.
 
 {{%/notice%}}
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-  - Prior to version 2.1, Cumulus Linux stored the `ptmd` configuration
+- Prior to version 2.1, Cumulus Linux stored the `ptmd` configuration
     files in `/etc/cumulus/ptm.d`. When you upgrade to version 2.1 or
     later, all the existing `ptmd` files are copied from their original
     location to `/etc/ptm.d` with a `dpkg-old` extension, except for
     `topology.dot`, which gets copied to `/etc/ptm.d`.
-    
+
     If you customized the `if-topo-pass` and `if-topo-fail` scripts,
     they are also copied to `dpkg-old`, and you must modify them so they
     can parse the CSV output correctly.
-    
+
     Sample `if-topo-pass` and `if-topo-fail` scripts are available in
     `/etc/ptm.d`. A sample `topology.dot` file is available in
     `/usr/share/doc/ptmd/examples`.
 
-## Related Information</span>
+## Related Information
 
-  - [Bidirectional Forwarding Detection
-    (BFD)](http://tools.ietf.org/html/rfc5880)
-
-  - [Graphviz](http://www.graphviz.org)
-
-  - [LLDP on
-    Wikipedia](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
-
-  - [PTMd GitHub repo](https://github.com/CumulusNetworks/ptm)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- [Bidirectional Forwarding Detection (BFD)](http://tools.ietf.org/html/rfc5880)
+- [Graphviz](http://www.graphviz.org)
+- [LLDP on Wikipedia](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
+- [PTMd GitHub repo](https://github.com/CumulusNetworks/ptm)

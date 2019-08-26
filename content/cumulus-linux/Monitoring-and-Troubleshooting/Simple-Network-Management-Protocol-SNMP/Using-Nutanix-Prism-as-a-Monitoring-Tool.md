@@ -69,11 +69,7 @@ take special steps within Cumulus Linux before you can configure Prism.
 
     {{% imgOld 0 %}}
 
-2.  Click on the gear icon
-
-    {{% imgOld 1 %}}
-
-    in the top right corner of the dashboard, and select NetworkSwitch:
+2.  Click on the gear icon {{% imgOld 1 %}} in the top right corner of the dashboard, and select NetworkSwitch:
 
     {{% imgOld 2 %}}
 

@@ -11,46 +11,37 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-`ifplugd` is an Ethernet link-state monitoring daemon, that can execute
+`ifplugd` is an Ethernet link-state monitoring daemon that can execute
 user-specified scripts to configure an Ethernet device when a cable is
 plugged in, or automatically unconfigure it when a cable is removed.
 
 Follow the steps below to install and configure the `ifplugd` daemon.
 
-## Install ifplugd</span>
+## Install ifplugd
 
-1.  Update the switch before installing the daemon:
-    
+1. Update the switch before installing the daemon:
+
         cumulus@switch:~$ sudo -E apt-get update
 
-2.  Install the `ifplugd` package:
-    
+2. Install the `ifplugd` package:
+
         cumulus@switch:~$ sudo -E apt-get install ifplugd
 
-## Configure ifplugd</span>
+## Configure ifplugd
 
 Once `ifplugd` is installed, two configuration files must be edited to
 set up `ifplugd`:
 
-  - `/etc/default/ifplugd`
+- `/etc/default/ifplugd`
+- `/etc/ifplugd/action.d/ifupdown`
 
-  - `/etc/ifplugd/action.d/ifupdown`
-
-{{%notice info has%}}
-
-**Example ifplugd Configuration**
+## Example ifplugd Configuration
 
 The example `ifplugd` configuration below show that `ifplugd` has been
 configured to bring down all uplinks when the peerbond goes down in an
 MLAG environment.
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
-{{%notice info has%}}
+{{%notice info%}}
 
 `ifplugd` is configured on both both the primary and secondary
 [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
@@ -58,15 +49,11 @@ switches in this example.
 
 {{%/notice%}}
 
-</div>
+1. Open `/etc/default/ifplugd` in a text editor.
 
-</div>
-
-1.  Open `/etc/default/ifplugd` in a text editor.
-
-2.  Configure the file as appropriate, and add the peerbond name, before
+2. Configure the file as appropriate, and add the peerbond name, before
     saving:
-    
+
     ``` 
         INTERFACES="peerbond"
         HOTPLUG_INTERFACES=""
@@ -74,10 +61,10 @@ switches in this example.
         SUSPEND_ACTION="stop"
     ```
 
-3.  Open `/etc/ifplugd/action.d/ifupdown` in a text editor.
+3. Open `/etc/ifplugd/action.d/ifupdown` in a text editor.
 
-4.  Configure the script, and save the file.
-    
+4. Configure the script, and save the file.
+
         #!/bin/sh
         set -e
         case "$2" in
@@ -107,23 +94,13 @@ switches in this example.
             ;;
         esac
 
-5.  Restart `ifplugd` to implement the changes:
-    
+5. Restart `ifplugd` to implement the changes:
+
         cumulus@switch:$ sudo systemctl restart ifplugd.service
 
-{{%/notice%}}
-
-## Caveats and Errata</span>
+## Caveats and Errata
 
 The default shell for `ifplugd` is `dash` (`/bin/sh`), rather than
 `bash`, as it provides a faster and more nimble shell. However, it
 contains less features than `bash` (such as being unable to handle
 multiple uplinks).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

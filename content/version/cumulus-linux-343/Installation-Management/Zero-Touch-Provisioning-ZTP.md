@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 51
 aliases:
  - /display/CL34/Zero+Touch+Provisioning+++ZTP
+ - /display/CL34/Zero+Touch+Provisioning+-+ZTP
+ - /display/CL34/Zero+Touch+Provisioning+ZTP
  - /pages/viewpage.action?pageId=7112386
 pageID: 7112386
 product: Cumulus Linux
@@ -32,15 +34,13 @@ script on a device.
 ZTP in Cumulus Linux can occur automatically in one of the following
 ways, in this order:
 
-  - Via a local file
-
-  - Using a USB drive inserted into the switch (ZTP-USB)
-
-  - Via DHCP
+- Via a local file
+- Using a USB drive inserted into the switch (ZTP-USB)
+- Via DHCP
 
 Each method is discussed in greater detail below.
 
-## Zero Touch Provisioning Using a Local File</span>
+## Zero Touch Provisioning Using a Local File
 
 ZTP only looks once for a ZTP script on the local file system when the
 switch boots. ZTP searches for an install script that matches an
@@ -48,16 +48,11 @@ switch boots. ZTP searches for an install script that matches an
 looking for the most specific name first, and ending at the most
 generic:
 
-  - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' +
-    revision`
-
-  - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model`
-
-  - `'cumulus-ztp-' + vendor + '_' + model`
-
-  - `'cumulus-ztp-' + architecture`
-
-  - `'cumulus-ztp'`
+- `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' + revision`
+- `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model`
+- `'cumulus-ztp-' + vendor + '_' + model`
+- `'cumulus-ztp-' + architecture`
+- `'cumulus-ztp'`
 
 For example:
 
@@ -67,10 +62,10 @@ For example:
     cumulus-ztp-amd64
     cumulus-ztp
 
-You can also trigger the ZTP process manually by running the `ztp --run
-<URL>` command, where the URL is the path to the ZTP script.
+You can also trigger the ZTP process manually by running the
+`ztp --run <URL>` command, where the URL is the path to the ZTP script.
 
-## Zero Touch Provisioning Using USB (ZTP-USB)</span>
+## Zero Touch Provisioning Using USB (ZTP-USB)
 
 {{%notice note%}}
 
@@ -90,9 +85,7 @@ USB stick **before** you power up the switch.
 At minimum, the script should:
 
   - Install the Cumulus Linux operating system and license.
-
   - Copy over a basic configuration to the switch.
-
   - Restart the switch or the relevant serves to get `switchd` up and
     running with that configuration.
 
@@ -108,8 +101,7 @@ Follow these steps to perform zero touch provisioning using USB:
     name first, and ending at the most generic.
 
 3.  The script's contents are parsed to ensure it contains the
-    `CUMULUS-AUTOPROVISIONING` flag (see [example
-    scripts](#src-7112386_ZeroTouchProvisioning-ZTP-example_scripts)).
+    `CUMULUS-AUTOPROVISIONING` flag (see the [example script](#example-ztp-script)).
 
 {{%notice note%}}
 
@@ -120,7 +112,7 @@ partition.
 
 {{%/notice%}}
 
-## Zero Touch Provisioning over DHCP</span>
+## Zero Touch Provisioning over DHCP
 
 If the `ztp` process did not discover a local/ONIE script or applicable
 USB drive, it checks DHCP every 10 seconds for up to 5 minutes for the
@@ -143,13 +135,11 @@ The zero touch provisioning process over DHCP follows these steps:
     provisioning process itself will start.
 
 4.  The zero touch provisioning process requests the contents of the
-    script from the URL, sending additional [HTTP
-    headers](#src-7112386_ZeroTouchProvisioning-ZTP-http_headers)
+    script from the URL, sending additional [HTTP headers](#example-ztp-script)
     containing details about the switch.
 
 5.  The script's contents are parsed to ensure it contains the
-    `CUMULUS-AUTOPROVISIONING` flag (see [example
-    scripts](#src-7112386_ZeroTouchProvisioning-ZTP-example_scripts)).
+    `CUMULUS-AUTOPROVISIONING` flag (see the [example script](#example-ztp-script)).
 
 6.  If provisioning is necessary, then the script executes locally on
     the switch with root privileges.
@@ -158,22 +148,20 @@ The zero touch provisioning process over DHCP follows these steps:
     provisioning state is marked as complete in the autoprovisioning
     configuration file.
 
-### Triggering ZTP over DHCP</span>
+### Triggering ZTP over DHCP
 
 If provisioning has not already occurred, it is possible to trigger the
 zero touch provisioning process over DHCP when eth0 is set to use DHCP
 and one of the following events occur:
 
   - Booting the switch
-
   - Plugging a cable into or unplugging it from the eth0 port
-
   - Disconnecting then reconnecting the switch's power cord
 
 You can also run the `ztp --run <URL>` command, where the URL is the
 path to the ZTP script.
 
-### Configuring The DCHP Server</span>
+### Configuring The DCHP Server
 
 During the DHCP process over eth0, Cumulus Linux will request DHCP
 option 239. This option is used to specify the custom provisioning
@@ -198,7 +186,7 @@ Additionally, the hostname of the switch can be specified via the
      host dc1-tor-sw1 { hardware ethernet 44:38:39:00:1a:6b; fixed-address 192.168.0.101; option host-name "dc1-tor-sw1"; }
     }
 
-### <span id="src-7112386_ZeroTouchProvisioning-ZTP-http_headers" class="confluence-anchor-link"></span>Detailed Look at HTTP Headers</span>
+### Detailed Look at HTTP Headers
 
 The following HTTP headers are sent in the request to the webserver to
 retrieve the provisioning script:
@@ -216,7 +204,7 @@ retrieve the provisioning script:
     CUMULUS-PROV-COUNT                                  0
     CUMULUS-PROV-MAX                                    32
 
-## Writing ZTP Scripts </span>
+## Writing ZTP Scripts 
 
 {{%notice note%}}
 
@@ -237,19 +225,16 @@ in a comment or remark and does not needed to be echoed or written to
 The script can be written in any language currently supported by Cumulus
 Linux, such as:
 
-  - Perl
-
-  - Python
-
-  - Ruby
-
-  - Shell
+- Perl
+- Python
+- Ruby
+- Shell
 
 The script must return an exit code of 0 upon success, as this triggers
 the autoprovisioning process to be marked as complete in the
 autoprovisioning configuration file.
 
-### <span id="src-7112386_ZeroTouchProvisioning-ZTP-example_scripts" class="confluence-anchor-link"></span>Example ZTP Script</span>
+### Example ZTP Script
 
 The following script install Cumulus Linux and its license from USB and
 applies a configuration:
@@ -294,10 +279,10 @@ applies a configuration:
     # CUMULUS-AUTOPROVISIONING
     exit 0
 
-Several ZTP example scripts are available in the [Cumulus GitHub
-repository](https://github.com/CumulusNetworks/example-ztp-scripts).
+Several ZTP example scripts are available in the 
+[Cumulus GitHub repository](https://github.com/CumulusNetworks/example-ztp-scripts).
 
-## Testing and Debugging ZTP Scripts</span>
+## Testing and Debugging ZTP Scripts
 
 There are a few commands you can use to test and debug your ZTP scripts.
 
@@ -425,7 +410,7 @@ as above.
     Method     ZTP Manual                     
     URL        http://192.0.2.1/demo.sh
 
-## Manually Using the ztp Command</span>
+## Manually Using the ztp Command
 
 To enable zero touch provisioning, use the `-e` option:
 
@@ -440,15 +425,11 @@ trying to look for any script.
 
 ZTP checks for these manual configurations during bootup:
 
-  - Password changes
-
-  - Users and groups changes
-
-  - Packages changes
-
-  - Interfaces changes
-
-  - The presence of an installed license
+- Password changes
+- Users and groups changes
+- Packages changes
+- Interfaces changes
+- The presence of an installed license
 
 When the switch is booted for the very first time, ZTP records the state
 of some important files that are most likely going to be modified after
@@ -484,19 +465,10 @@ To see the current `ztp` state, use the `-s` option:
     Method Switch manually configured  
     URL None
 
-## Notes</span>
+## Notes
 
-  - During the development of a provisioning script, the switch may need
+- During the development of a provisioning script, the switch may need
     to be rebooted.
-
-  - You can use the Cumulus Linux `onie-select -i` command to cause the
+- You can use the Cumulus Linux `onie-select -i` command to cause the
     switch to reprovision itself and install a network operating system
     again using ONIE.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

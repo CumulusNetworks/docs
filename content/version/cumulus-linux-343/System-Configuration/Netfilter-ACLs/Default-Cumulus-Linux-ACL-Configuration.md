@@ -11,15 +11,13 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-<details>
-
 The Cumulus Linux default ACL configuration is split into three parts,
-as outlined in the [netfilter ACL
-documentation](/display/CL34/Netfilter+-+ACLs): IP tables, IPv6 tables,
-and EB tables. The sections below cover the default configurations for
-each part, while the default file can be seen by clicking the Default
-ACL Configuration link:
+as outlined in the [netfilter ACL documentation](/version/cumulus-linux-343/System-Configuration/Netfilter-ACLs/): 
+IP tables, IPv6 tables, and EB tables. The sections below cover the 
+default configurations for each part, while the default file can be seen 
+by clicking the Default ACL Configuration link here:
 
+<details>
 <summary>Default ACL Configuration </summary>
 
     cumulus@switch:~$ sudo cl-acltool -L all
@@ -71,36 +69,24 @@ ACL Configuration link:
         0     0 DROP       all  --  swp+   any     loopback/8           anywhere            
         0     0 DROP       all  --  swp+   any     base-address.mcast.net/8  anywhere            
         0     0 DROP       all  --  swp+   any     255.255.255.255      anywhere            
-     
     Chain OUTPUT (policy ACCEPT 107 packets, 12590 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
-     
     TABLE mangle :
     Chain PREROUTING (policy ACCEPT 172 packets, 17871 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
     Chain INPUT (policy ACCEPT 172 packets, 17871 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
     Chain OUTPUT (policy ACCEPT 111 packets, 18134 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
     Chain POSTROUTING (policy ACCEPT 111 packets, 18134 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
-     
     TABLE raw :
     Chain PREROUTING (policy ACCEPT 173 packets, 17923 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
     Chain OUTPUT (policy ACCEPT 112 packets, 18978 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
-     
     --------------------------------
     Listing rules of type ip6tables:
     --------------------------------
@@ -138,36 +124,24 @@ ACL Configuration link:
         0     0 DROP       all      swp+   any     ::/128               anywhere            
         0     0 DROP       all      swp+   any     ::ffff:0.0.0.0/96    anywhere            
         0     0 DROP       all      swp+   any     localhost/128        anywhere            
-     
     Chain OUTPUT (policy ACCEPT 5 packets, 408 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
-     
     TABLE mangle :
     Chain PREROUTING (policy ACCEPT 7 packets, 718 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
     Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
     Chain POSTROUTING (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
-     
     TABLE raw :
     Chain PREROUTING (policy ACCEPT 7 packets, 718 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
     Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
-     
-     
     -------------------------------
     Listing rules of type ebtables:
     -------------------------------
@@ -195,8 +169,9 @@ ACL Configuration link:
     Bridge chain: FORWARD, entries: 0, policy: ACCEPT
      
     Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
+</details>
 
-## IP Tables</span>
+## IP Tables
 
 <table>
 <colgroup>
@@ -310,7 +285,7 @@ bits.
 
 {{%/notice%}}
 
-## IPv6 Tables</span>
+## IPv6 Tables
 
 <table>
 <colgroup>
@@ -441,7 +416,7 @@ bits.
 
 {{%/notice%}}
 
-## EB Tables</span>
+## EB Tables
 
 <table>
 <colgroup>
@@ -499,13 +474,3 @@ Set class is internal to the switch. It does not set any precedence
 bits.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

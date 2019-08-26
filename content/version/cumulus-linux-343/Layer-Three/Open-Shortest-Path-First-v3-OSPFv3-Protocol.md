@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 183
 aliases:
  - /display/CL34/Open+Shortest+Path+First+v3+++OSPFv3+++Protocol
+ - /display/CL34/Open+Shortest+Path+First+v3+-+OSPFv3+-+Protocol
+ - /display/CL34/Open+Shortest+Path+First+v3+OSPFv3+Protocol
  - /pages/viewpage.action?pageId=7112663
 pageID: 7112663
 product: Cumulus Linux
@@ -12,8 +14,8 @@ imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
 OSPFv3 is a revised version of OSPFv2 to support the IPv6 address
-family. Refer to [Open Shortest Path First (OSPF)
-Protocol](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol)
+family. Refer to 
+[Open Shortest Path First (OSPF) Protocol](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol)
 for a discussion on the basic concepts, which remain the same between
 the two versions.
 
@@ -34,50 +36,45 @@ not support it yet.
 
 {{%/notice%}}
 
-## Configuring OSPFv3</span>
+## Configuring OSPFv3
 
 Configuring OSPFv3 involves the following tasks:
 
-1.  Enabling the `zebra` and `ospf6` daemons, as described in
-    [Configuring
-    FRRouting](/version/cumulus-linux-343/Layer-Three/Configuring-FRRouting/)
-    then start the FRRouting service:
-    
+1. Enabling the `zebra` and `ospf6` daemons, as described in
+   [Configuring FRRouting](/version/cumulus-linux-343/Layer-Three/Configuring-FRRouting/)
+   then start the FRRouting service:
+
         cumulus@switch:~$ sudo systemctl enable frr.service
         cumulus@switch:~$ sudo systemctl start frr.service
 
-2.  Enabling OSPF6 and map interfaces to areas:
-    
+2. Enabling OSPF6 and map interfaces to areas:
+
         cumulus@switch:~$ net add ospf6 router-id 0.0.0.1
         cumulus@switch:~$ net add ospf6 interface swp1 area 0.0.0.0
         cumulus@switch:~$ net add ospf6 interface swp2 area 0.0.0.1
 
-3.  Defining (custom) OSPF6 parameters on the interfaces, such as:
-    
-    1.  Network type (such as point-to-point, broadcast)
-    
-    2.  Timer tuning (for example, hello interval)
-    
-    <!-- end list -->
-    
+3. Defining (custom) OSPF6 parameters on the interfaces, such as:
+
+   1. Network type (such as point-to-point, broadcast)
+
+   2. Timer tuning (for example, hello interval)
+
         cumulus@switch:~$ net add interface swp1 ospf6 network point-to-point
         cumulus@switch:~$ net add interface swp1 ospf6 hello-interval 5
 
 The OSPFv3 configuration is saved in `/etc/frr/ospf6d.conf`.
 
-## Unnumbered Interfaces</span>
+## Unnumbered Interfaces
 
 Unlike OSPFv2, OSPFv3 intrinsically supports unnumbered interfaces.
 Forwarding to the next hop router is done entirely using IPv6 link local
 addresses. Therefore, you are not required to configure any global IPv6
 address to interfaces between routers.
 
-## Debugging OSPF</span>
+## Debugging OSPF
 
-See [Debugging
-OSPF](Open-Shortest-Path-First-OSPF---Protocol.html#src-7112661_OpenShortestPathFirst-OSPF-Protocol-ospf_debug)
-for OSPFv2 for the troubleshooting discussion. The equivalent commands
-are:
+See [Debugging OSPF](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol/#debugging-ospf)
+for OSPFv2 for the troubleshooting discussion. The equivalent commands are:
 
     cumulus@switch:~$ net show ospf6 neighbor [detail|drchoice]
     cumulus@switch:~$ net show ospf6 database [adv-router|detail|dump|internal|linkstate-id|self-originated]
@@ -86,20 +83,9 @@ are:
 Another helpful command is `net show ospf6 spf tree`. It dumps the node
 topology as computed by SPF to help visualize the network view.
 
-## Related Information</span>
+## Related Information
 
-  - [Bidirectional forwarding
-    detection](/version/cumulus-linux-343/Layer-Three/Bidirectional-Forwarding-Detection-BFD)
+- [Bidirectional forwarding detection](/version/cumulus-linux-343/Layer-Three/Bidirectional-Forwarding-Detection-BFD)
     (BFD) and OSPF
-
-  - [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)
-
-  - [frrouting.org/user-guide/OSPFv3.html\#OSPFv3](https://frrouting.org/user-guide/OSPFv3.html#OSPFv3)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)
+- [frrouting.org/user-guide/OSPFv3.html\#OSPFv3](https://frrouting.org/user-guide/OSPFv3.html#OSPFv3)

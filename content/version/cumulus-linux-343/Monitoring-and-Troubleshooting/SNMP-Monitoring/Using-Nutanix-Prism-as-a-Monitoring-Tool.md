@@ -15,7 +15,7 @@ Nutanix Prism is a graphical user interface (GUI) for managing
 infrastructure and virtual environments. In order to use it, you need to
 take special steps within Cumulus Linux before you can configure Prism.
 
-## Configuring Cumulus Linux</span>
+## Configuring Cumulus Linux
 
 1.  SSH to the Cumulus Linux switch that needs to be configured,
     replacing `[switch]` below as appropriate:
@@ -61,18 +61,14 @@ take special steps within Cumulus Linux before you can configure Prism.
         cumulus@switch:~$ sudo systemctl restart snmpd.service
         Restarting network management services: snmpd.
 
-## Configuring Nutanix </span>
+## Configuring Nutanix 
 
 1.  Log into the Nutanix Prism. Nutanix defaults to the Home menu,
     referred to as the Dashboard:
     
     {{% imgOld 0 %}}
 
-2.  Click on the gear icon
-    
-    {{% imgOld 1 %}}
-    
-    in the top right corner of the dashboard, and select NetworkSwitch:
+2.  Click on the gear icon {{% imgOld 1 %}} in the top right corner of the dashboard, and select NetworkSwitch:
     
     {{% imgOld 2 %}}
 
@@ -95,8 +91,8 @@ take special steps within Cumulus Linux before you can configure Prism.
 
     {{%notice note%}}
     
-    The rest of the values were not touched for this demonstration. They
-    are usually used with SNMP v3.
+The rest of the values were not touched for this demonstration. They
+are usually used with SNMP v3.
     
     {{%/notice%}}
 
@@ -124,32 +120,22 @@ Nutanix hosts are visible.
 
 {{%/notice%}}
 
-## Switch Information Displayed on Nutanix Prism</span>
+## Switch Information Displayed on Nutanix Prism
 
   - Physical Interface (e.g. swp1, swp2). This will only display swp
     interfaces connected to Nutanix hosts by default.
-
   - Switch ID - Unique identifier that Nutanix keeps track of each port
     ID (see below)
-
   - Index - interface index, in the above demonstration swp49 maps to
     Index 52 because there is a loopback and two ethernet interface
     before the swp starts.
-
   - MTU of interface
-
   - MAC Address of Interface
-
   - Unicast RX Packets (Received)
-
   - Unicast TX Packets (Transmitted)
-
   - Error RX Packets (Received)
-
   - Error TX Packets (Transmitted)
-
   - Discard RX Packets (Received)
-
   - Discard TX Packets (Transmitted)
 
 The Nutanix appliance will use Switch IDs that can also be viewed on the
@@ -169,7 +155,7 @@ CLI, login using the default username **nutanix**, and the password
         Switch Vendor Name        : Unknown
         Port Ids                  : 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:52, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:53, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:54, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:55
 
-## Troubleshooting a Nutanix Node</span>
+## Troubleshooting a Nutanix Node
 
 To help visualize the following diagram is provided:
 
@@ -182,13 +168,12 @@ To help visualize the following diagram is provided:
 | Node C (Red)    | vmnic2        | swp51              |
 | Node D (Yellow) | vmnic2        | swp52              |
 
-## Enabling LLDP/CDP on VMware ESXi (Hypervisor on Nutanix)</span>
+## Enabling LLDP/CDP on VMware ESXi (Hypervisor on Nutanix)
 
 1.  Follow the directions on one of the following websites to enable
     CDP:
     
       - [kb.vmware.com/selfservice/microsites/search.do?language=en\_US\&cmd=displayKC\&externalId=1003885](http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1003885)
-    
       - [wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/](http://wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/)
         
         For example, switch CDP on:
@@ -235,7 +220,7 @@ To help visualize the following diagram is provided:
             PortDescr:    vmnic2
         -------------------------------------------------------------------------------
 
-3.  Use ` net show  `to look at `lldp` information:
+3.  Use `net show` to look at `lldp` information:
     
         cumulus@switch:~$ net show lldp
          
@@ -246,7 +231,7 @@ To help visualize the following diagram is provided:
         swp51         1G       NotConfigured  ====  swp1               spine01
         swp52         1G       NotConfigured  ====  swp1               spine02
 
-### Enabling LLDP/CDP on Nutanix Acropolis (Hypervisor on Nutanix Acropolis)</span>
+### Enabling LLDP/CDP on Nutanix Acropolis (Hypervisor on Nutanix Acropolis)
 
 [Nutanix Acropolis](http://www.nutanix.com/products/acropolis/) is an
 alternate hypervisor that Nutanix supports. Acropolis Hypervisor uses
@@ -255,7 +240,7 @@ daemons to operating just like Cumulus Linux. LLDP should be enabled for
 each interface on the host. Refer to
 <https://community.mellanox.com/docs/DOC-1522> for setup instructions.
 
-## Troubleshooting Connections without LLDP or CDP</span>
+## Troubleshooting Connections without LLDP or CDP
 
 1.  Find the MAC address information in the Prism GUI, located in:
     **Hardware** \> **Table** \> **Host** \> **Host NICs**
@@ -324,11 +309,3 @@ each interface on the host. Refer to
             PortID:       ifname vmnic2
             PortDescr:    vmnic2
         -------------------------------------------------------------------------------
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

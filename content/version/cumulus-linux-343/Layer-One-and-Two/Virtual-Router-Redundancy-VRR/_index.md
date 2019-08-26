@@ -21,8 +21,7 @@ respond, leaving the hosts with the impression that nothing has changed.
 
 The diagram below illustrates a basic VRR-enabled network configuration.
 The network includes several hosts, and two routers running Cumulus
-Linux configured with [Multi-chassis Link
-Aggregation](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
+Linux configured with [Multi-chassis Link Aggregation](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
 (MLAG):
 
 {{% imgOld 0 %}}
@@ -61,28 +60,12 @@ prevent MAC address conflicts with other interfaces in the same bridged
 network. The reserved range is `00:00:5E:00:01:00` to
 `00:00:5E:00:01:ff`.
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
 {{%notice info%}}
 
 Cumulus Networks recommends using MAC addresses from the reserved range
 when configuring VRR.
 
 {{%/notice%}}
-
-</div>
-
-</div>
-
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
 
 {{%notice info%}}
 
@@ -91,49 +74,45 @@ Router Redundancy Protocol (VRRP), as they serve similar purposes.
 
 {{%/notice%}}
 
-</div>
-
-</div>
-
 {{%/notice%}}
 
-## Configuring a VRR-enabled Network</span>
+## Configuring a VRR-enabled Network
 
-### Configuring the Routers</span>
+### Configuring the Routers
 
 The routers implement the layer 2 network interconnecting the hosts and
 the redundant routers. To configure the routers, add a bridge with the
 following interfaces to each router:
 
-  - One bond interface or switch port interface to each host.
-    
+- One bond interface or switch port interface to each host.
+
     {{%notice note%}}
-    
-    For networks using MLAG, use bond interfaces. Otherwise, use switch
-    port interfaces.
-    
+
+For networks using MLAG, use bond interfaces. Otherwise, use switch
+port interfaces.
+
     {{%/notice%}}
 
-  - One or more interfaces to each peer router.
-    
+- One or more interfaces to each peer router.
+
     {{%notice note%}}
-    
-    Multiple inter-peer links are typically bonded interfaces, in order
-    to accomodate higher bandwidth between the routers, and to offer
-    link redundancy.
-    
+
+Multiple inter-peer links are typically bonded interfaces, in order to
+accomodate higher bandwidth between the routers, and to offer link
+redundancy.
+
     {{%/notice%}}
     
     {{%notice note%}}
-    
-    The VLAN interface must have unique IP addresses for both the
-    physical (the `address` option below) and virtual (the
-    `address-virtual` option below) interfaces, as the unique address is
-    used when the switch initiates an ARP request.
-    
+
+The VLAN interface must have unique IP addresses for both the
+physical (the `address` option below) and virtual (the
+`address-virtual` option below) interfaces, as the unique address is
+used when the switch initiates an ARP request.
+
     {{%/notice%}}
 
-{{%notice info has%}}
+{{%notice info%}}
 
 **Example VRR Configuration**
 
@@ -166,7 +145,7 @@ snippet:
 
 {{%/notice%}}
 
-### Configuring the Hosts</span>
+### Configuring the Hosts
 
 Each host should have two network interfaces. The routers configure the
 interfaces as bonds running LACP; the hosts should also configure its
@@ -178,22 +157,17 @@ router; this default gateway address never changes.
 Configure the links between the hosts and the routers in *active-active*
 mode for First Hop Redundancy Protocol.
 
-## Example VRR Configuration with MLAG</span>
+## Example VRR Configuration with MLAG
 
 To create an
 [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
 configuration that incorporates VRR, use a configuration like the
 following:
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p><strong>leaf01 Configuration</strong></p>
-<pre><code>cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21
+### leaf01 Configuration
+
+```
+cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21
 cumulus@switch:~$ net add bond server01 bond slaves swp1-2
 cumulus@switch:~$ net add bond server01 clag id 1
 cumulus@switch:~$ net add bond server01 mtu 9216
@@ -215,9 +189,14 @@ cumulus@switch:~$ net add vlan 300 ip address-virtual 44:38:39:FF:00:03 10.0.3.1
 cumulus@switch:~$ net add vlan 400 ip address 10.0.4.2/24
 cumulus@switch:~$ net add vlan 400 ip address-virtual 44:38:39:FF:00:04 10.0.4.1/24
 cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit</code></pre>
-<p>These commands create the following configuration in <code>/etc/network/interfaces</code>:</p>
-<pre><code>auto eth0
+cumulus@switch:~$ net commit
+```
+
+<details>
+<summary>These commands create the following configuration in `/etc/network/interfaces`:</summary>
+
+```
+auto eth0
 iface eth0
     address 192.168.0.21
  
@@ -272,9 +251,14 @@ iface vlan400
     address 10.0.4.2/24
     address-virtual 44:38:39:FF:00:04 10.0.4.1/24
     vlan-id 400
-    vlan-raw-device bridge</code></pre></td>
-<td><p><strong>leaf02 Configuration</strong></p>
-<pre><code>cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.22
+    vlan-raw-device bridge
+```
+</details>
+
+### leaf02 Configuration
+
+```
+cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.22
 cumulus@switch:~$ net add bond server01 bond slaves swp1-2
 cumulus@switch:~$ net add bond server01 clag id 1
 cumulus@switch:~$ net add bond server01 mtu 9216
@@ -296,9 +280,14 @@ cumulus@switch:~$ net add vlan 300 ip address-virtual 44:38:39:FF:00:03 10.0.3.1
 cumulus@switch:~$ net add vlan 400 ip address 10.0.4.3/24
 cumulus@switch:~$ net add vlan 400 ip address-virtual 44:38:39:FF:00:04 10.0.4.1/24
 cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit</code></pre>
-<p>These commands create the following configuration in <code>/etc/network/interfaces</code>:</p>
-<pre><code>auto eth0
+cumulus@switch:~$ net commit
+```
+
+<details>
+<summary>These commands create the following configuration in `/etc/network/interfaces`:</summary>
+
+```
+auto eth0
 iface eth0
     address 192.168.0.22
  
@@ -353,12 +342,16 @@ iface vlan400
     address 10.0.4.3/24
     address-virtual 44:38:39:FF:00:04 10.0.4.1/24
     vlan-id 400
-    vlan-raw-device bridge</code></pre></td>
-</tr>
-<tr class="even">
-<td><p><strong>server01 Configuration</strong></p>
-<p>Create a configuration like the following on an Ubuntu host:</p>
-<pre><code>auto eth0
+    vlan-raw-device bridge
+```
+</details>
+
+### server01 Configuration
+
+Create a configuration like the following on an Ubuntu host:
+
+```
+auto eth0
 iface eth0 inet dhcp
  
 auto eth1
@@ -394,10 +387,15 @@ auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
  
-# modprobe bonding</code></pre></td>
-<td><p><strong>server02 Configuration</strong></p>
-<p>Create a configuration like the following on an Ubuntu host:</p>
-<pre><code>auto eth0
+# modprobe bonding
+```
+
+### server02 Configuration
+
+Create a configuration like the following on an Ubuntu host:
+
+```
+auto eth0
 iface eth0 inet dhcp
  
 auto eth1
@@ -433,15 +431,5 @@ auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
  
-# modprobe bonding</code></pre></td>
-</tr>
-</tbody>
-</table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+# modprobe bonding
+```

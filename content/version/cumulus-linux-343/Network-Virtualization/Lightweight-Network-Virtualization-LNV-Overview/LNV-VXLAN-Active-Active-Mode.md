@@ -12,11 +12,11 @@ imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
 *LNV active-active mode* allows a pair of
-[MLAG](/display/CL34/Multi-Chassis+Link+Aggregation+-+MLAG) switches to
+[MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG/) switches to
 act as a single VTEP, providing active-active VXLAN termination for bare
 metal as well as virtualized workloads.
 
-## Terminology and Definitions</span>
+## Terminology and Definitions
 
 <table>
 <colgroup>
@@ -81,7 +81,7 @@ metal as well as virtualized workloads.
 </tbody>
 </table>
 
-## Configuring LNV Active-Active Mode</span>
+## Configuring LNV Active-Active Mode
 
 LNV requires the following underlying technologies to work correctly.
 
@@ -99,7 +99,7 @@ LNV requires the following underlying technologies to work correctly.
 <tbody>
 <tr class="odd">
 <td><p>MLAG</p></td>
-<td><p>Refer to the <a href="#src-7112504_LNVVXLANActive-ActiveMode-configuring">MLAG chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG/">MLAG chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
@@ -111,13 +111,13 @@ LNV requires the following underlying technologies to work correctly.
 </tr>
 <tr class="even">
 <td><p>STP</p></td>
-<td><p><a href="#src-7112504_LNVVXLANActive-ActiveMode-bpdu">BPDU filter and BPDU guard</a> should be enabled in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.<br />
+<td><p><a href="/version/cumulus-linux-343/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard">BPDU filter and BPDU guard</a> should be enabled in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.<br />
 Configurations for the demonstration are provided below.</p></td>
 </tr>
 </tbody>
 </table>
 
-### active-active VTEP Anycast IP Behavior</span>
+### active-active VTEP Anycast IP Behavior
 
 Each individual switch within an MLAG pair should be provisioned with a
 virtual IP address in the form of an anycast IP address for VXLAN
@@ -127,24 +127,28 @@ address that you configure as a `clagd` parameter
 dynamically adds and removes this address as the loopback interface
 address as follows:
 
-|   |                                                                                                                                                                                                                                                          |
-| - | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1 | When the switches boot up, ` ifupdown2  `places all VXLAN interfaces in a [PROTO\_DOWN state](#src-7112504_LNVVXLANActive-ActiveMode-proto_down). The configured anycast addresses are not configured yet.                                               |
-| 2 | MLAG peering takes place, and a successful VXLAN interface consistency check between the switches occurs.                                                                                                                                                |
-| 3 | `clagd` (the daemon responsible for MLAG) adds the anycast address to the loopback interface. It then changes the local IP address of the VXLAN interface from a unique address to the anycast virtual IP address and puts the interface in an UP state. |
+1. When the switches boot up, `ifupdown2` places all VXLAN interfaces in a
+   [PROTO\_DOWN state](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG/#peer-link-interfaces-and-the-protodown-state).
+   The configured anycast addresses are not configured yet.
+2. MLAG peering takes place, and a successful VXLAN interface consistency check
+   between the switches occurs.
+3. `clagd` (the daemon responsible for MLAG) adds the anycast address to the loopback
+   interface. It then changes the local IP address of the VXLAN interface from a
+   unique address to the anycast virtual IP address and puts the interface in an UP
+   state.
 
-### Failure Scenario Behaviors</span>
+### Failure Scenario Behaviors
 
-| Scenario                                                                                 | Behavior                                                                                                                                                                                                                                                                                                                                                                            |
-| ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The peer link goes down.                                                                 | The primary MLAG switch continues to keep all VXLAN interfaces up with the anycast IP address while the secondary switch brings down all VXLAN interfaces and places them in a PROTO\_DOWN state. The secondary MLAG switch removes the anycast IP address from the loopback interface and changes the local IP address of the VXLAN interface to the configured unique IP address. |
-| One of the switches goes down.                                                           | The other operational switch continues to use the anycast IP address.                                                                                                                                                                                                                                                                                                               |
-| `clagd` is stopped.                                                                      | All VXLAN interfaces are put in a PROTO\_DOWN state. The anycast IP address is removed from the loopback interface and the local IP addresses of the VXLAN interfaces are changed from the anycast IP address to unique non-virtual IP addresses.                                                                                                                                   |
-| MLAG peering could not be established between the switches.                              | `clagd` brings up all the VXLAN interfaces after the reload timer expires with the configured anycast IP address. This allows the VXLAN interface to be up and running on both switches even though peering is not established.                                                                                                                                                     |
-| When the peer link goes down but the peer switch is up (i.e. the backup link is active). | All VXLAN interfaces are put into a PROTO\_DOWN state on the secondary switch.                                                                                                                                                                                                                                                                                                      |
-| A configuration mismatch between the MLAG switches                                       | The VXLAN interface is placed into a PROTO\_DOWN state on the secondary switch.                                                                                                                                                                                                                                                                                                     |
+| Scenario       | Behavior  |
+| -------------- | --------- |
+| The peer link goes down.  | The primary MLAG switch continues to keep all VXLAN interfaces up with the anycast IP address while the secondary switch brings down all VXLAN interfaces and places them in a PROTO\_DOWN state. The secondary MLAG switch removes the anycast IP address from the loopback interface and changes the local IP address of the VXLAN interface to the configured unique IP address. |
+| One of the switches goes down.  | The other operational switch continues to use the anycast IP address.              |
+| `clagd` is stopped.             | All VXLAN interfaces are put in a PROTO\_DOWN state. The anycast IP address is removed from the loopback interface and the local IP addresses of the VXLAN interfaces are changed from the anycast IP address to unique non-virtual IP addresses.     |
+| MLAG peering could not be established between the switches. | `clagd` brings up all the VXLAN interfaces after the reload timer expires with the configured anycast IP address. This allows the VXLAN interface to be up and running on both switches even though peering is not established.   |
+| When the peer link goes down but the peer switch is up (i.e. the backup link is active). | All VXLAN interfaces are put into a PROTO\_DOWN state on the secondary switch.   |
+| A configuration mismatch between the MLAG switches | The VXLAN interface is placed into a PROTO\_DOWN state on the secondary switch.    |
 
-### Checking VXLAN Interface Configuration Consistency</span>
+### Checking VXLAN Interface Configuration Consistency
 
 The LNV active-active configuration for a given VXLAN interface has to
 be consistent between the MLAG switches for correct traffic behavior.
@@ -153,16 +157,15 @@ up the VXLAN interfaces.
 
 The consistency checks include:
 
-  - The anycast virtual IP address for VXLAN termination must be the
-    same on each pair of switches.
-
-  - A VXLAN interface with the same VXLAN ID must be configured and
-    administratively up on both switches.
+- The anycast virtual IP address for VXLAN termination must be the
+  same on each pair of switches.
+- A VXLAN interface with the same VXLAN ID must be configured and
+  administratively up on both switches.
 
 You can use the `clagctl` command to check if any VXLAN switches are in
 a PROTO\_DOWN state.
 
-### Configuring the Anycast IP Address</span>
+### Configuring the Anycast IP Address
 
 With MLAG peering, both switches use an anycast IP address for VXLAN
 encapsulation and decapsulation. This allows remote VTEPs to learn the
@@ -191,36 +194,15 @@ loopback interface can be configured as shown below.
       vxrd-svcnode-ip 10.10.10.10
       clagd-vxlan-anycast-ip 10.10.10.20
 
-#### Explanation of Variables</span>
+#### Explanation of Variables
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Variable</p></th>
-<th><p>Explanation</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><pre><code>vxrd-src-ip</code></pre></td>
-<td><p>The unique IP address for the <code>vxrd</code> to bind to.</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>vxrd-svcnode-ip</code></pre></td>
-<td><p>The service node anycast IP address in the topology. In this demonstration, this is an anycast IP address being shared by both spine switches.</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>clagd-vxlan-anycast-ip</code></pre></td>
-<td><p>The anycast address for the MLAG pair to share and bind to when MLAG is up and running.</p></td>
-</tr>
-</tbody>
-</table>
+| Variable | Explanation |
+| -------- | ----------- |
+| `vxrd-src-ip` | The unique IP address for the vxrd to bind to. |
+| `vxrd-svcnode-ip` | The service node anycast IP address in the topology. In this demonstration, this is an anycast IP address being shared by both spine switches. |
+| `clagd-vxlan-anycast-ip` | The anycast address for the MLAG pair to share and bind to when MLAG is up and running. |
 
-## <span id="src-7112504_LNVVXLANActive-ActiveMode-example" class="confluence-anchor-link"></span>Example VXLAN Active-Active Configuration</span>
+## Example VXLAN Active-Active Configuration
 
 {{% imgOld 1 %}}
 
@@ -228,13 +210,13 @@ Note the configuration of the local IP address in the VXLAN interfaces
 below. They are configured with individual IP addresses, which `clagd`
 changes to anycast upon MLAG peering.
 
-### FRRouting Configuration</span>
+### FRRouting Configuration
 
 The layer 3 fabric can be configured using BGP or OSPF. The following
 example uses BGP Unnumbered. The MLAG switch configuration for the
 topology above is shown below.
 
-### Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing
 
 The IP address configuration for this example:
 
@@ -328,7 +310,7 @@ iface peerlink
   bond-lacp-rate 1
   bond-min-links 1
   bond-xmit-hash-policy layer3+4
-      
+
 auto peerlink.4094
 iface peerlink.4094
   address 169.254.1.1/30
@@ -349,7 +331,7 @@ iface bond0
     bond-min-links 1
     bond-mode 802.3ad
     bond-xmit-hash-policy layer3+4
-    bond-lacp-rate 1       
+    bond-lacp-rate 1
  
 # bridges / vlan that contain peerlink and downlinks for L2 connectivity
  
@@ -685,7 +667,7 @@ iface swp52    </code></pre></td>
 </tbody>
 </table>
 
-### FRRouting OSPF Configuration</span>
+### FRRouting OSPF Configuration
 
 The service nodes and registration nodes must all be routable between
 each other. The L3 fabric on Cumulus Linux can either be BGP or OSPF. In
@@ -968,7 +950,7 @@ ip as-path access-list dc-leaf-out permit ^$
 </tbody>
 </table>
 
-### Host Configuration</span>
+### Host Configuration
 
 In this example, the servers are running Ubuntu 14.04. A layer2 bond
 must be mapped from server01 and server03 to the respective switch. In
@@ -1057,42 +1039,41 @@ iface bond0.20 inet static
 </tbody>
 </table>
 
-### Enable the Registration Daemon</span>
+### Enable the Registration Daemon
 
 The registration daemon (`vxrd`) must be enabled on each ToR switch
 acting as a VTEP, that is participating in LNV. The daemon is installed
 by default.
 
-1.  Open the `/etc/default/vxrd` configuration file in a text editor.
+1. Open the `/etc/default/vxrd` configuration file in a text editor.
+2. Enable the daemon, then save the file.
 
-2.  Enable the daemon, then save the file.
-    
         START=yes
 
-3.  Restart the `vxrd` daemon.
-    
+3. Restart the `vxrd` daemon.
+
         cumulus@leaf:~$ sudo systemctl restart vxrd.service
 
-### Configuring a VTEP</span>
+### Configuring a VTEP
 
 The registration node was configured earlier in
 `/etc/network/interfaces`; no additional configuration is typically
 needed. Alternatively, the configuration can be done in
 `/etc/vxrd.conf`, which has additional configuration knobs available.
 
-### Enable the Service Node Daemon</span>
+### Enable the Service Node Daemon
 
-1.  Open the `/etc/default/vxsnd` configuration file in a text editor.
+1. Open the `/etc/default/vxsnd` configuration file in a text editor.
 
-2.  Enable the daemon, then save the file:
-    
+2. Enable the daemon, then save the file:
+
         START=yes
 
-3.  Restart the daemon.
-    
+3. Restart the daemon.
+
         cumulus@spine:~$ sudo systemctl restart vxsnd.service
 
-### Configuring the Service Node</span>
+### Configuring the Service Node
 
 To configure the service node daemon, edit the `/etc/vxsnd.conf`
 configuration file:
@@ -1234,9 +1215,9 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 </tbody>
 </table>
 
-## Considerations for Virtual Topologies Using Cumulus VX</span>
+## Considerations for Virtual Topologies Using Cumulus VX
 
-### Node ID</span>
+### Node ID
 
 `vxrd` requires a unique `node_id` for each individual switch. This
 `node_id` is based off of the first interface's MAC address; when using
@@ -1272,11 +1253,11 @@ To verify the `node_id` that gets configured by your switch, use the
 
 To set the `node_id` manually:
 
-1.  Open `/etc/vxrd.conf` in a text editor.
+1. Open `/etc/vxrd.conf` in a text editor.
 
-2.  Set the `node_id` value within the `common` section, then save the
+2. Set the `node_id` value within the `common` section, then save the
     file:
-    
+ 
         [common]
         node_id = 13
 
@@ -1287,7 +1268,7 @@ correctly.
 
 {{%/notice%}}
 
-### Bonds with Vagrant</span>
+### Bonds with Vagrant
 
 Bonds (or LACP Etherchannels) fail to work in a Vagrant setup unless the
 link is set to promiscuous mode. This is a limitation on virtual
@@ -1304,9 +1285,9 @@ topologies only, and is not needed on real hardware.
       post-up ip link set $IFACE promisc on
 
 For more information on using Cumulus VX and Vagrant, refer to the
-[Cumulus VX documentation](https://docs.cumulusnetworks.com/display/VX).
+[Cumulus VX documentation](/cumulus-vx).
 
-## Troubleshooting with LNV Active-Active</span>
+## Troubleshooting with LNV Active-Active
 
 In addition to the [troubleshooting for single-attached
 LNV](/display/CL34/Lightweight+Network+Virtualization+-+LNV#LightweightNetworkVirtualization-LNV-VerificationandTroubleshooting),
@@ -1381,26 +1362,15 @@ indicating that there is a `vxlan-id` mis-match on VXLAN10
               vxlan1   vxlan1             -         -                      -
              vxlan10   -                  -         -                      vxlan-single
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-  - The VLAN used for the peer link layer 3 subinterface should not be
-    reused for any other interface in the system. A high VLAN ID value
-    is recommended. For more information on VLAN ID ranges, refer to
-    [the section above](#src-7112504_LNVVXLANActive-ActiveMode-range).
+- The VLAN used for the peer link layer 3 subinterface should not be
+  reused for any other interface in the system. A high VLAN ID value
+  is recommended.
+- Active-active mode only works with LNV in this release. Integration
+  with controller-based VXLANs such as VMware NSX and Midokura MidoNet
+  will be supported in the future.
 
-  - Active-active mode only works with LNV in this release. Integration
-    with controller-based VXLANs such as VMware NSX and Midokura MidoNet
-    will be supported in the future.
+## Related Information
 
-## Related Information</span>
-
-  - [Network virtualization chapter, Cumulus Linux user
-    guide](/version/cumulus-linux-343/Network-Virtualization/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- [Network virtualization chapter, Cumulus Linux user guide](/version/cumulus-linux-343/Network-Virtualization/)

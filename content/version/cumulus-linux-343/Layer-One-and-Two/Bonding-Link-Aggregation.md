@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 117
 aliases:
  - /display/CL34/Bonding+++Link+Aggregation
+ - /display/CL34/Bonding+-+Link+Aggregation
+ - /display/CL34/Bonding+Link+Aggregation
  - /pages/viewpage.action?pageId=7112409
 pageID: 7112409
 product: Cumulus Linux
@@ -15,12 +17,11 @@ Linux bonding provides a method for aggregating multiple network
 interfaces (*slaves*) into a single logical bonded interface (*bond*).
 Cumulus Linux supports two bonding modes:
 
-  - The IEEE 802.3ad link aggregation mode, which allows one or more
+- The IEEE 802.3ad *link aggregation mode*, which allows one or more
     links to be aggregated together to form a *link aggregation group*
     (LAG), such that a media access control (MAC) client can treat the
     link aggregation group as if it were a single link.
-
-  - The balance-xor mode, where the bonding of slave interfaces are
+- The *balance-xor* mode, where the bonding of slave interfaces are
     static and all slave interfaces are active for load balancing and
     fault tolerance purposes. This is useful for
     [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
@@ -28,18 +29,16 @@ Cumulus Linux supports two bonding modes:
 
 The benefits of link aggregation include:
 
-  - Linear scaling of bandwidth as links are added to LAG
-
-  - Load balancing
-
-  - Failover protection
+- Linear scaling of bandwidth as links are added to LAG
+- Load balancing
+- Failover protection
 
 Cumulus Linux uses version 1 of the LAG control protocol (LACP).
 
 To temporarily bring up a bond even when there is no LACP partner, use
 [LACP Bypass](/version/cumulus-linux-343/Layer-One-and-Two/LACP-Bypass).
 
-## Hash Distribution</span>
+## Hash Distribution
 
 Egress traffic through a bond is distributed to a slave based on a
 packet hash calculation, providing load balancing over the slaves; many
@@ -50,10 +49,9 @@ hashes to the same slave.
 The hash calculation uses packet header data to pick which slave to
 transmit the packet to:
 
-  - For IP traffic, IP header source and destination fields are used in
+- For IP traffic, IP header source and destination fields are used in
     the calculation.
-
-  - For IP + TCP/UDP traffic, source and destination ports are included
+- For IP + TCP/UDP traffic, source and destination ports are included
     in the hash calculation.
 
 {{%notice note%}}
@@ -63,7 +61,7 @@ over available slaves.
 
 {{%/notice%}}
 
-## Creating a Bond</span>
+## Creating a Bond
 
 Bonds can be created and configured using the Network Command Line
 Utility
@@ -74,7 +72,7 @@ Follow the steps below to create a new bond:
 
 2.  Add a bond using the `net add bond` command, replacing `[bond-name]`
     with the name of the bond, and `[slaves]` with the list of slaves:
-    
+
         cumulus@switch:~$ net add bond [bond-name] bond slaves [slaves]
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
@@ -83,13 +81,12 @@ Follow the steps below to create a new bond:
 
 The name of the bond must be:
 
-  - Compliant with Linux interface naming conventions.
-
-  - Unique within the switch.
+- Compliant with Linux interface naming conventions.
+- Unique within the switch.
 
 {{%/notice%}}
 
-### Configuration Options</span>
+### Configuration Options
 
 The configuration options, and their default values, are listed in the
 table below.
@@ -120,7 +117,7 @@ configuration values, refer to the Related Information section below.
 <tr class="odd">
 <td><p><code>bond mode</code></p></td>
 <td><p>The defined bonding mode.</p>
-<p>Cumulus Linux supports IEEE 802.3ad link aggregation mode and balance-xor mode. You should use balance-xor mode only if you cannot use LACP for some reason. <a href="#src-7112409_Bonding-LinkAggregation-balance_xor">See below</a> for more information.</p></td>
+<p>Cumulus Linux supports IEEE 802.3ad link aggregation mode and balance-xor mode. You should use balance-xor mode only if you cannot use LACP for some reason. <a href="#enabling-balance-xor-mode">See below</a> for more information.</p></td>
 <td><p><code>802.3ad</code></p></td>
 </tr>
 <tr class="even">
@@ -179,7 +176,7 @@ configuration values, refer to the Related Information section below.
 </tbody>
 </table>
 
-### <span id="src-7112409_Bonding-LinkAggregation-balance_xor" class="confluence-anchor-link"></span>Enabling balance-xor Mode</span>
+### Enabling balance-xor Mode
 
 When you enable *balance-xor mode*, the bonding of slave interfaces are
 static and all slave interfaces are active for load balancing and fault
@@ -257,16 +254,12 @@ To view the bond, use
       inet6 fe80::202:ff:fe00:12/64
       Interface Type Other
 
-## Example Configuration: Bonding 4 Slaves</span>
+## Example Configuration: Bonding 4 Slaves
 
 In the following example, the front panel port interfaces swp1-swp4 are
 slaves in bond0, while swp5 and swp6 are not part of bond0.
 
 {{% imgOld 0 %}}
-
-{{%notice info%}}
-
-**Example Bond Configuration**
 
 The following commands create a bond with four slaves:
 
@@ -283,22 +276,10 @@ file:
         address 10.0.0.1/30
         bond-slaves swp1 swp2 swp3 swp4
 
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
-
 {{%notice info%}}
 
 If you are intending that the bond become part of a bridge, you don't
 need to specify an IP address.
-
-{{%/notice%}}
-
-</div>
-
-</div>
 
 {{%/notice%}}
 
@@ -336,32 +317,17 @@ address traffic to the bond.
 
 {{%/notice%}}
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-  - An interface cannot belong to multiple bonds.
-
-  - A bond can have subinterfaces, but not the other way around.
-
-  - A bond cannot enslave VLAN subinterfaces.
-
-  - Slave ports within a bond should all be set to the same
+- An interface cannot belong to multiple bonds.
+- A bond can have subinterfaces, but not the other way around.
+- A bond cannot enslave VLAN subinterfaces.
+- Slave ports within a bond should all be set to the same
     speed/duplex, and should match the link partner’s slave ports.
 
-## Related Information</span>
+## Related Information
 
-  - [Linux Foundation -
-    Bonding](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
-
-  - [802.3ad](http://www.ieee802.org/3/ad/) ([Accessible
+- [Linux Foundation - Bonding](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
+- [802.3ad](http://www.ieee802.org/3/ad/) ([Accessible
     writeup](http://cs.uccs.edu/%7Escold/doc/linkage%20aggregation.pdf))
-
-  - [Wikipedia - Link
-    aggregation](http://en.wikipedia.org/wiki/Link_aggregation)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- [Wikipedia - Link aggregation](http://en.wikipedia.org/wiki/Link_aggregation)

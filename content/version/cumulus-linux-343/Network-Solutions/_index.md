@@ -11,10 +11,4 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-<article id="html-search-results" class="ht-content" style="display: none;">
 
-</article>
-
-<footer id="ht-footer">
-
-</footer>

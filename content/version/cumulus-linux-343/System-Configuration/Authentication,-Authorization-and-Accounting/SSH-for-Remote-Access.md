@@ -16,17 +16,17 @@ Linux switch with the ssh-keygen component of the Secure Shell (SSH)
 protocol. Cumulus Linux uses the OpenSSH package to provide this
 functionality. The section below covers how to generate a SSH key pair.
 
-## Generate an SSH Key Pair</span>
+## Generate an SSH Key Pair
 
 1.  Run the `ssh-keygen` command, and follow the prompts, to generate
     the key pair:
     
     {{%notice info%}}
-    
-    **Configure a Passwordless System**
-    
-    To configure a completely passwordless system, do not enter a
-    passphrase when prompted in the following step.
+
+**Configure a Passwordless System**
+
+To configure a completely passwordless system, do not enter a
+passphrase when prompted in the following step.
     
     {{%/notice%}}
     
@@ -67,9 +67,9 @@ functionality. The section below covers how to generate a SSH key pair.
     
     {{%notice warning%}}
     
-    `ssh-copy-id` will not work if the username on the remote switch is
-    different to the local switch. To work around this issue, use the
-    `scp` command instead:
+`ssh-copy-id` will not work if the username on the remote switch is
+different to the local switch. To work around this issue, use the
+`scp` command instead:
     
         cumulus@leaf01:~$ scp .ssh/id_rsa.pub cumulus@leaf02:.ssh/authorized_keys
         Enter passphrase for key '/home/cumulus/.ssh/id_rsa':
@@ -94,18 +94,7 @@ functionality. The section below covers how to generate a SSH key pair.
         basis.
         Last login: Thu Sep 29 16:56:54 2016
 
-## Related Information</span>
+## Related Information
 
-  - [Debian Documentation - Password-less logins with
-    OpenSSH](http://www.debian-administration.org/articles/152)
-
-  - [Wikipedia - Secure Shell
-    (SSH)](http://en.wikipedia.org/wiki/Secure_Shell)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- [Debian Documentation - Password-less logins with OpenSSH](http://www.debian-administration.org/articles/152)
+- [Wikipedia - Secure Shell (SSH)](http://en.wikipedia.org/wiki/Secure_Shell)

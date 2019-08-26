@@ -39,18 +39,17 @@ cannot run in tandem.
 
 {{%/notice%}}
 
-1.  Run the following commands to begin the upgrade process:
-    
+1. Run the following commands to begin the upgrade process:
+
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get upgrade
-    
+
     {{%notice note%}}
-    
-    At the end of the `apt-get upgrade` process, the output will show
-    details of the upgrade process, in regards to the Quagga -\> FRR
-    switchover.
-    
-        Unpacking quagga-compat (1.0.0+cl3u15-1) ...                                                                                                                                                                                                                                                                                                                                                                                    [476/476]
+
+At the end of the `apt-get upgrade` process, the output will show details 
+of the upgrade process, in regards to the Quagga -\> FRR switchover.
+
+        Unpacking quagga-compat (1.0.0+cl3u15-1) ...                          [476/476]
         Selecting previously unselected package frr.
         Preparing to unpack .../frr_3.1+cl3u1_amd64.deb ...
         Unpacking frr (3.1+cl3u1) ...
@@ -122,51 +121,47 @@ been removed.
 
 To complete the transition to FRR:
 
-1.  Migrate all `/etc/quagga/*` files to `/etc/frr/*`.
-    
+1. Migrate all `/etc/quagga/*` files to `/etc/frr/*`.
+
     {{%notice warning%}}
-    
-    The `vtysh.conf` file should not be moved, as it is unlikely any
-    configuration is in the file. However, if there is necessary
-    configuration in place, copy the contents into
-    `/etc/frr/vtysh.conf`.
-    
+
+The `vtysh.conf` file should not be moved, as it is unlikely any
+configuration is in the file. However, if there is necessary
+configuration in place, copy the contents into `/etc/frr/vtysh.conf`.
+
     {{%/notice%}}
 
-2.  Merge the current `Quagga.conf` file with the new `frr.conf` file.
-    Keep the default configuration for `frr.conf` in place, and add the
-    additional configuration sections from `Quagga.conf`.
+2. Merge the current `Quagga.conf` file with the new `frr.conf` file.
+   Keep the default configuration for `frr.conf` in place, and add the
+   additional configuration sections from `Quagga.conf`.
 
-3.  Enable the daemons needed for your installation in
-    `/etc/frr/daemons`.
+3. Enable the daemons needed for your installation in `/etc/frr/daemons`.
 
-4.  Manually update the log file locations to `/var/log/frr` or
-    `syslog`.
+4. Manually update the log file locations to `/var/log/frr` or `syslog`.
 
-5.  Remove the compatibility package:
-    
+5. Remove the compatibility package:
+
     {{%notice warning%}}
-    
-    This step stops the Quagga compatibility mode, causing routing to go
-    down.
-    
+
+This step stops the Quagga compatibility mode, causing routing to go down.
+
     {{%/notice%}}
     
         cumulus@switch:~$ sudo apt-get remove quagga quagga-compat
     
     {{%notice note%}}
-    
-    The `/etc/quagga` directory is not removed in this step, as it is
-    left in place for reference.
-    
+
+The `/etc/quagga` directory is not removed in this step, as it is
+left in place for reference.
+
     {{%/notice%}}
 
-6.  Start FRR without Quagga compatibility mode:
-    
+6. Start FRR without Quagga compatibility mode:
+
         cumulus@switch:~$ sudo systemctl start frr
         cumulus@switch:~$ sudo systemctl -l status frr
 
-## Troubleshooting</span>
+## Troubleshooting
 
 If the `systemctl -l status frr` output shows an issue, edit the
 configuration files to correct it, and repeat the process. If issues
@@ -191,7 +186,7 @@ this section to upgrade to FRR:
     cumulus@switch:~$ sudo systemctl reset-failed frr
     cumulus@switch:~$ sudo systemctl enable frr
 
-## Removing Quagga</span>
+## Removing Quagga
 
 Once the FRR migration is complete, and you are satisfied that the
 configuration is performing the same with FRR as Quagga, remove the
@@ -213,11 +208,3 @@ reinstalled to continue migration iterations, limited testing has taken
 place, and configuration issues may occur.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -14,7 +14,7 @@
 {{ define "toc" }}
 
 {{ $showToC := default (default true .Site.Params.BookShowToC) .Params.bookshowtoc }}
-  {{ if and ($showToC) (.Page.TableOfContents) }}
+  {{ if or ($showToC) (.Page.TableOfContents) }}
 
     {{ partial "docs/toc" . }}
 

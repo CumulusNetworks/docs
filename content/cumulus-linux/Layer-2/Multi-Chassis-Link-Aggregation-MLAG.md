@@ -444,43 +444,25 @@ performance. The relevant timers are:
   become active. This provides `clagd` with sufficient time to determine
   whether the peer switch is coming up or if it is permanently unreachable.
   The default is *300* seconds.
-- `--peerTimeout <PEERTIMEOUT>`: The amount of time `clagd` waits without 
+- `--peerTimeout <SECONDS>`: The number of seconds `clagd` waits without
   receiving any data from the peer switch before it determines that the peer
-  is no longer active. If this parameter is not specified, `clagd` uses 
-  3 times the last `lacpPoll` value received from the peer. If no `lacpPoll` 
+  is no longer active. If this parameter is not specified, `clagd` uses
+  3 times the last `lacpPoll` value received from the peer. If no `lacpPoll`
   value was received from the peer, then the default is 3 times the
   currently specified `lacpPoll` value.
 - `--initDelay <SECONDS>`: The number of seconds `clagd` delays the bring up
   of MLAG bonds and anycast IP addresses. The default is *180* seconds.
 - `--sendTimeout <SECONDS>`: The number of seconds `clagd` waits until the
   sending socket times out. If it takes longer than the `sendTimeout` value
-  to send data to the peer, `clagd` generates an exception. The default is 
+  to send data to the peer, `clagd` generates an exception. The default is
   *30* seconds.
 
-To set a timer, run `sudo clagctl PARAM` then restart `clagd`:
+To set a timer, use NCLU. For example, to set the `peerTimeout` to 900 seconds:
 
 ```
-cumulus@switch:~$ clagctl params | grep peer
-peerIp = linklocal
-peerIf = peerlink.4094
-peerConnect = 1
-peerLinkPoll = 1
-peerPort = 5342
-peerTimeout = 20
-cmdLine = /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:FF:00:01 --priority 1000 --backupIp 192.168.0.12
-peerlinkLearnEnable = False
-cumulus@leaf01:~$ sudo clagctl peertimeout 30
-cumulus@leaf01:~$ sudo systemctl restart clagd
-cumulus@leaf01:~$ clagctl params | grep peer
-peerIp = linklocal
-peerIf = peerlink.4094
-peerConnect = 1
-peerLinkPoll = 1
-peerPort = 5342
-peerTimeout = 30
-cmdLine = /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:FF:00:01 --priority 1000 --backupIp 192.168.0.12
-peerlinkLearnEnable = False
-cumulus@switch:~$ 
+cumulus@switch:~$ net add interface peerlink.4094 clag args --peerTimeout 900
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 You can run `clagctl params` to see the settings for all of the `clagd`
@@ -488,8 +470,8 @@ parameters.
 
 ```
 cumulus@switch:~$ clagctl params
-clagVersion = 1.4.0
-clagDataVersion = 1.4.0
+clagVersion = 1.3.0
+clagDataVersion = 1.3.0
 clagCmdVersion = 1.1.0
 peerIp = linklocal
 peerIf = peerlink.4094
@@ -502,7 +484,7 @@ peerLinkPoll = 1
 switchdReadyTimeout = 120
 reloadTimer = 300
 periodicRun = 4
-priority = 1000
+priority = 2048
 quiet = False
 debug = 0x0
 verbose = False
@@ -516,7 +498,6 @@ sendBufSize = 65536
 forceDynamic = False
 dormantDisable = False
 redirectEnable = False
-redirect2Enable = True
 backupIp = 192.168.0.12
 backupVrf = None
 backupPort = 5342

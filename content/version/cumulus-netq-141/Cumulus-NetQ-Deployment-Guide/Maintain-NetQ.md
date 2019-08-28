@@ -18,17 +18,17 @@ nodes, notification integrations, and NetQ Agents for example. You might
 also need to restore NetQ to a prior version or upgrade to a new
 version.
 
-## Manage the Telemetry Server</span>
+## Manage the Telemetry Server
 
-<span style="color: #36424a;"> Because the Telemetry Server (TS)
+Because the Telemetry Server (TS)
 contains the configurations for event notification integrations and NetQ
 Notifier filters, you might need to modify these configurations at some
 point in the life cycle of your deployment. Adding new integrations and
 filters are described in [Configure Optional NetQ
 Capabilities](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities).
-Removing them is described here. </span>
+Removing them is described here.
 
-### Remove an Event Notification Integration</span>
+### Remove an Event Notification Integration
 
 You can delete an event notification integration using the `netq config
 ts del notifier integration INTEGRATION` command. You can verify it has
@@ -38,7 +38,7 @@ For example, to remove a Slack integration and verify it is no longer in
 the configuration:
 
     cumulus@ts:~$ netq config ts del notifier integration slack-test
-    cumulus@ts:~$ netq config ts restart notifier 
+    cumulus@ts:~$ netq config ts restart notifier
     cumulus@ts:~$ netq config ts show notifier integration
     Integration Name    Attribute    Value
     ------------------  -----------  -----------------------------------------------------------
@@ -52,16 +52,16 @@ the configuration:
     default        output       ALL
                    rule
 
-### Delete a NetQ Notifier Filter</span>
+### Delete a NetQ Notifier Filter
 
 To delete a filter, use the following command, then restart the Notifier
 service:
 
     cumulus@ts:~$ netq config ts del notifier filter <filter-name>
-    cumulus@ts:~$ netq config ts restart notifier 
+    cumulus@ts:~$ netq config ts restart notifier
     cumulus@ts:~$ netq config ts show notifier integration
 
-## Manage the NetQ Agents</span>
+## Manage the NetQ Agents
 
 At various points in time, you might want to change which network nodes
 are being monitored by NetQ or look more closely at a network node for
@@ -71,15 +71,13 @@ NetQ](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
 Removing or simply decommissioning an Agent is described here. Managing
 NetQ Agent logging is also presented in this section.
 
-### <span id="src-10453451_MaintainNetQ-decom" class="confluence-anchor-link"></span>Remove NetQ Agent from a Node</span>
+### Remove NetQ Agent from a Node
 
 You can decommission NetQ Agent on a given node. You might need to do
 this when you:
 
   - RMA the switch or host being monitored
-
   - Change the hostname of the switch or host being monitored
-
   - Move the switch or host being monitored from one data center to
     another
 
@@ -97,7 +95,7 @@ on that node and then run the following command on the TS:
      
     cumulus@ts:~$ netq ts decommission [hostname] purge
 
-### Disable NetQ Agent on a Node</span>
+### Disable NetQ Agent on a Node
 
 You can temporarily disable NetQ Agent on a node. Disabling the agent
 maintains the activity history in the NetQ database.
@@ -107,22 +105,22 @@ node:
 
     cumulus@switch:~$ netq config stop agent
 
-### <span id="src-10453451_MaintainNetQ-AgentLog" class="confluence-anchor-link"></span>Configure Logging for a NetQ Agent</span>
+### Configure Logging for a NetQ Agent
 
 The logging level used for a NetQ Agent determines what types of events
 are logged about the NetQ Agent on the switch or host.
 
-<span style="color: #222222;"> First, you need to decide what level of
+First, you need to decide what level of
 logging you want to configure. You can configure the logging level to be
 the same for every NetQ Agent, or selectively increase or decrease the
-logging level for a NetQ Agent on a problematic node. </span>
+logging level for a NetQ Agent on a problematic node.
 
-| Logging Level | Description                                                                                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| debug         | <span style="color: #ff0000;"> Sends notifications for all debugging-related, informational, warning, and error messages. </span>                           |
-| info          | <span style="color: #ff0000;"> <span style="color: #000000;"> Sends notifications for </span> informational, warning, and error messages (default). </span> |
-| warning       | <span style="color: #ff0000;"> <span style="color: #000000;"> Sends notifications for </span> warning and error messages. </span>                           |
-| error         | <span style="color: #ff0000;"> <span style="color: #000000;"> Sends notifications for </span> errors messages. </span>                                      |
+| Logging Level | Description  |
+| ------------- | ------------ |
+| debug         | Sends notifications for all debugging-related, informational, warning, and error messages.  |
+| info          | Sends notifications for informational, warning, and error messages (default). |
+| warning       | Sends notifications for warning and error messages.                            |
+| error         | Sends notifications for errors messages.                                      |
 
 You can view the NetQ Agent log directly. Messages have the following
 structure:
@@ -154,36 +152,36 @@ logging.
 **Example: Configure debug-level logging**
 
 1.  Set the logging level to *debug.*
-    
+
         cumulus@switch:~$ netq config add agent loglevel debug
 
 2.  Restart the NetQ Agent.
-    
+
         cumulus@switch:~$ netq config restart agent
 
 3.  Verify connection to Telemetry Server.
-    
+
         cumulus@switch:~$ netq config show server
         Server            Port       VRF             Status
         ----------------- ---------- --------------- ----------------
         192.168.0.254     6379       default         ok
 
-<span style="color: #222222;"> **Example: Configure warning-level
-logging** </span>
+**Example: Configure warning-level
+logging**
 
-    cumulus@switch:~$ netq config add agent loglevel warning 
-    cumulus@switch:~$ netq config restart agent 
+    cumulus@switch:~$ netq config add agent loglevel warning
+    cumulus@switch:~$ netq config restart agent
     cumulus@switch:~$ netq config show server
 
 **Example: Disable Agent Logging**
 
-<span style="color: #222222;"> If you have set the logging level to
+If you have set the logging level to
 *debug* for troubleshooting, it is recommended that you either change
 the logging level to a less heavy mode or completely disable agent
-logging altogether when you are finished troubleshooting. </span>
+logging altogether when you are finished troubleshooting.
 
-<span style="color: #222222;"> To change the logging level, run the
-following command and restart the agent service: </span>
+To change the logging level, run the
+following command and restart the agent service:
 
     cumulus@switch:~$ netq config add agent loglevel <LOG_LEVEL> 
     cumulus@switch:~$ netq config restart agent
@@ -193,7 +191,7 @@ To disable all logging:
     cumulus@switch:~$ netq config del agent loglevel 
     cumulus@switch:~$ netq config restart agent
 
-## <span id="src-10453451_MaintainNetQ-Backup" class="confluence-anchor-link"></span>Restore NetQ from Backup Files</span>
+## Restore NetQ from Backup Files
 
 NetQ automatically takes snapshots of the NetQ Telemetry Server at five
 minute intervals. These snapshots can be used to restore to a previous
@@ -214,60 +212,55 @@ There are several use-cases in which restoring from a snapshot may be
 warranted. These include:
 
   - Upgrading the physical server to increase available resources.
-
   - Migrating from one physical server to another.
-
   - NetQ Telemetry Server becomes unavailable.
 
-### Backup Locations</span>
+### Backup Locations
 
 Backup snapshots can be found in two file locations on the NetQ
 Telemetry Server:
 
   - `/var/log/backup`: The latest, or master, snapshot.
-
   - `/var/backup`: Directory of previous snapshots.
 
-### Restore NetQ from a Snapshot</span>
+### Restore NetQ from a Snapshot
 
 To restore the NetQ Telemetry Server from a snapshot:
 
 1.  Extract the GZip snapshot you wish to restore into a file called
     `appendonly.aof`. The example command below uses the master
     snapshot:
-    
+
         root@cumulus:~# gzip -d < /var/backup/appendonly.aof_master_2017-06-06_054601.gz > appendonly.aof
-    
+
     The snapshot filename has several parts:
-    
+
       - `appendonly.aof`: The base file name.
-    
       - `_master_`: Defines this file as the current master snapshot.
-    
       - `2017-06-06_054601`: The date and time the snapshot was taken.
 
 2.  Shutdown the NetQ stack:
-    
+
         root@cumulus:~# sudo systemctl stop netq-appliance
 
 3.  Copy the extracted `appendonly.aof` file into the data directory:
-    
+
         root@cumulus:~# cp appendonly.aof /mnt/data/redis/master/appendonly.aof
 
 4.  Use the `grep` command to confirm the Redis configuration is still
     set correctly:
-    
-        root@cumulus:~# grep appendonly /etc/cts/redis/*conf
+
+        root@cumulus:~# grep appendonly /etc/cts/redis/\*conf
         /etc/cts/redis/redis.conf:appendonly yes
         /etc/cts/redis/redis.conf:appendfilename "appendonly.aof"
-        root@cumulus:~# grep 'save ""' /etc/cts/redis/*conf
+        root@cumulus:~# grep 'save ""' /etc/cts/redis/\*conf
         /etc/cts/redis/redis.conf:save ""
 
 5.  Restart the NetQ Stack:
-    
+
         root@cumulus:~# sudo systemctl start netq-appliance
 
-## Upgrade NetQ</span>
+## Upgrade NetQ
 
 This section covers the process for upgrading NetQ. The upgrade process
 involves upgrading each of the NetQ components (the NetQ Telemetry
@@ -294,12 +287,10 @@ Server.
 Before upgrading NetQ, consider the following:
 
   - The minimum supported Cumulus Linux version for NetQ 1.4.0 is 3.3.2.
-
   - You must upgrade your NetQ Agents as well as the Telemetry Server.
-
   - You can upgrade to NetQ 1.4.0 without upgrading Cumulus Linux.
 
-### Upgrade the NetQ Telemetry Server</span>
+### Upgrade the NetQ Telemetry Server
 
 The first step in upgrading NetQ is to update your Telemetry Server (or
 servers if you are running in HA mode). If you are installing a *new*
@@ -313,25 +304,25 @@ topic.
 
 2.  Shut down the connectivity from the Agents to the current NetQ
     Telemetry Server.
-    
-    {{%notice warning%}}
-    
-    This step is required to ensure Agents don't attempt to communicate
-    with the Telemetry Server during the maintenance window.
-    
+
+    {{%notice note%}}
+
+This step is required to ensure Agents don't attempt to communicate
+with the Telemetry Server during the maintenance window.
+
     {{%/notice%}}
-    
+
     On each server or host currently running a NetQ Agent:
-    
+
     1.  Run `netq config stop agent`.
-    
+
     2.  Run `netq del agent`.
 
 3.  Shut down the current NetQ Telemetry Server.
-    
+
     1.  Open your hypervisor management tool, such as Virtual Machine
         Manager or VirtualBox.
-    
+
     2.  Stop the Telemetry Server VM and remove it.
 
 4.  Install the new NetQ Telemetry Server, using instructions in the
@@ -342,17 +333,17 @@ topic.
 5.  Restore the data to the new NetQ Telemetry Server. For instructions,
     refer to [Restore NetQ from Backup
     Files](#src-10453451_MaintainNetQ-Backup).
-    
-    {{%notice info%}}
-    
-    This step can be skipped if there is no desire to retain the
-    previous data. NetQ agents re-populate with the current data once
-    they connect to the new NetQ Telemetry Server.
-    
+
+    {{%notice note%}}
+
+This step can be skipped if there is no desire to retain the
+previous data. NetQ agents re-populate with the current data once
+they connect to the new NetQ Telemetry Server.
+
     {{%/notice%}}
 
 6.  Validate that the Telemetry Server is up and running.
-    
+
         cumulus@ts:~$ sudo systemctl status netq-appliance.service
         \u25cf netq-appliance.service - NETQ Backend
           Loaded: loaded (/lib/systemd/system/netq-appliance.service; enabled)
@@ -376,47 +367,47 @@ current version of NetQ as well.
 
 {{%/notice%}}
 
-### Upgrade the NetQ Agents</span>
+### Upgrade the NetQ Agents
 
 The second step in the NetQ upgrade process is to upgrade the NetQ
 Agents on each monitored node. Follow the steps for the relevant OS
 below to upgrade the NetQ Agents:
 
-#### Cumulus Linux</span>
+#### Cumulus Linux
 
 To upgrade the NetQ Agent on a Cumulus Linux switch, do the following:
 
 1.  Open the `/etc/apt/sources.list` file in a text editor.
 
 2.  Add the following line, and save the file:
-    
+
         cumulus@switch:~$ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-1.4
 
 3.  Install the `cumulus-netq` metapack and its components:
-    
+
         cumulus@switch:~$ sudo apt-get update && sudo apt-get install cumulus-netq
 
-#### Ubuntu 16.04</span>
+#### Ubuntu 16.04
 
 To upgrade the NetQ Agent on an Ubuntu host, do the following:
 
 1.  Use the `wget` tool to retrieve the public key:
-    
+
         root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-host-ubuntu.pubkey | apt-key add
 
 2.  Open the `/etc/apt/sources.list` file in a text editor.
 
 3.  Add the following line, and save the file:
-    
+
         root@ubuntu:~# deb https://apps3.cumulusnetworks.com/repos/deb xenial netq-1.4
 
 4.  Install the `cumulus-netq` metapack and its components:
-    
+
         root@ubuntu:~# sudo apt-get update && sudo apt-get install cumulus-netq
-    
+
     When you see the following prompt, type *N* to keep your current
     NetQ configuration in place:
-    
+
         Configuration file '/etc/netq/netq.yml'
          ==> File on system created by you or by a script.
          ==> File also in package provided by package maintainer.
@@ -426,18 +417,18 @@ To upgrade the NetQ Agent on an Ubuntu host, do the following:
               D     : show the differences between the versions
               Z     : start a shell to examine the situation
 
-#### Red Hat Enterprise Linux 7 / CentOS 7</span>
+#### Red Hat Enterprise Linux 7 / CentOS 7
 
 To upgrade the NetQ Agent on a Red Hat or CentOS host, do the following:
 
 1.  Import the public key:
-    
+
         root@rhel7:~# rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-host-el.pubkey
 
 2.  Open `/etc/yum.repos.d/cumulus-host-el.repo` in a text editor.
 
 3.  Define the repository source, and save the file:
-    
+
         [cumulus-arch]
         name=Cumulus Packages for RHEL
         baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/$releasever/netq-1.4/$basearch
@@ -457,10 +448,10 @@ To upgrade the NetQ Agent on a Red Hat or CentOS host, do the following:
         enabled=1
 
 4.  Install the `cumulus-netq` metapack and its components:
-    
+
         root@rhel7:~# yum install cumulus-netq
 
-### Connect the NetQ Telemetry Server to the Network</span>
+### Connect the NetQ Telemetry Server to the Network
 
 1.  Once the NetQ Telemetry Server and NetQ agents have been upgraded,
     connect the NetQ Telemetry Server to the network. For more
@@ -469,7 +460,7 @@ To upgrade the NetQ Agent on a Red Hat or CentOS host, do the following:
     topic.
 
 2.  Verify the NetQ Agents are OK, and running NetQ 1.4.
-    
+
         cumulus@ts:~$ netq show agents
         Matching agents records:
         Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed

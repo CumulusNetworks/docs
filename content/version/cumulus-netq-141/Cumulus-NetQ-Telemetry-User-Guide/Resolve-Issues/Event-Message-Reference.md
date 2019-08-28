@@ -14,19 +14,13 @@ siteSlug: cumulus-netq-141
 NetQ presents messages at four levels of severity: Critical, Warning,
 Info, and Debug. Recommended actions suggest NetQ CLI commands and NCLU
 commands for further investigation. The following table lists event
-messages organized by message type and then severity, by default. Click
-the column header to sort the list by that characteristic. Click
+messages organized by message type and then severity.
 
-{{% imgOld 0 %}}
-
-in the column header to toggle the sort order between A-Z and Z-A.
-
-{{%notice info%}}
+{{%notice note%}}
 
 The messages can be viewed in syslog or through third-party notification
 applications using the NetQ Notifier. For details about configuring NetQ
-Notifier, refer to the [Deployment Guide, Configure Optional NetQ
-Capabilities](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities).
+Notifier, refer to the [Configure Optional NetQ Capabilities](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities).
 
 {{%/notice%}}
 

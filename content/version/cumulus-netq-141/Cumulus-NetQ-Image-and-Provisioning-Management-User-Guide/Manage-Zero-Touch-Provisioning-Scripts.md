@@ -18,14 +18,14 @@ needed to add them to your data center network automatically during the
 first boot of a switch. After that, you can have more than one script
 and assign each to selected switches.
 
-{{%notice info%}}
+{{%notice note%}}
 
 To take advantage of the ZTP script management feature, you must be
 running Cumulus Linux 3.6.2 or later.
 
 {{%/notice%}}
 
-## Command Overview</span>
+## Command Overview
 
 IPM enables you to map and remove mapping of scripts to switches, and
 view the available ZTP scripts. The command syntax is:
@@ -39,11 +39,10 @@ view the available ZTP scripts. The command syntax is:
     tipctl show repo ztp
 
 The *-h* option is a short cut for the *--help* option.
-<span style="color: #000000;"> The </span> *--with-date*
-<span style="color: #000000;"> option lists the timestamp when the last
-mapping occurred. </span>
+The *--with-date* option lists the timestamp when the last
+mapping occurred.
 
-## Import Custom Scripts</span>
+## Import Custom Scripts
 
 While IPM is preconfigured to use the default script, *ztp-default.sh*,
 you can import additional scripts to manage automatic provisioning and
@@ -67,7 +66,7 @@ it has been imported correctly.
     <username>@<ts>:~$ cp /<path>/<ztp-script-name> /var/tips/www/ztp/scripts/<ztp-script-name>
     <username>@<ts>:~$ tipctl show ztp all
 
-## View Stored Scripts</span>
+## View Stored Scripts
 
 You can view all of the scripts loaded into IPM using the `tipctl show
 ztp` command. You can filter the results by MAC address and script name.
@@ -100,18 +99,18 @@ This example show the scripts included in the ZTP repository.
 
     cumulus@ts:~$ tipctl show repo ztp
     ZTP Script
-    ------------ 
-    demo_ztp.sh 
+    ------------
+    demo_ztp.sh
     ns_ztp.sh
 
-## Map Scripts to Switches</span>
+## Map Scripts to Switches
 
 Once you have all of the ZTP scripts needed loaded into IPM, you can
 then map the scripts to the various switches in your network using the
 `tipctl add ztp` command. When you upgrade or apply patches, you can
 remove an existing switch mapping and map the new script.
 
-### Add a Script Mapping</span>
+### Add a Script Mapping
 
 This example shows how to map a switch with MAC address of
 *A0:00:00:00:00:32* to the ZTP script named *ztp-servers* and map a
@@ -129,7 +128,7 @@ or by the script name instead.
     ztp_mac    a0:00:00:00:00:32 ztp-servers.sh
     ztp_mac    a0:00:00:00:00:14 ztp-leafs.sh
 
-### Remove Script Mappings</span>
+### Remove Script Mappings
 
 You can remove all mappings to a ZTP script or the mapping to a
 particular switch.This example shows how to remove the mapping of the
@@ -146,7 +145,7 @@ the switch with MAC address of *A0:00:00:00:00:14*.
     cumulus@ts:~$ tipctl del script mac a0:00:00:00:00:14
     cumulus@ts:~$ tipctl show script mac a0:00:00:00:00:14
 
-## Remove Scripts from Repository</span>
+## Remove Scripts from Repository
 
 If you are no longer using a particular ZTP script, you can remove it
 from your local repository to simplify your management processes and
@@ -159,7 +158,7 @@ has been deleted.
     cumulus@<ts>:~/var/tips/www/ztp/scripts/$ rm <script-filename> 
     cumulus@<ts>:~/var/tips/www/ztp/scripts/$ ls
 
-## Example Script</span>
+## Example Script
 
 The following is a sample of the kinds of tasks you might perform in an
 provisioning script.
@@ -210,11 +209,3 @@ provisioning script.
      
     # CUMULUS-AUTOPROVISIONING
     exit 0
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

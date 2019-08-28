@@ -23,14 +23,14 @@ resolve.
 
 The NetQ command line interface only runs on switches and server hosts
 implemented with Intel x86 or ARM-based architectures.
-<span style="color: #353744;"> If you are unsure what architecture your
+If you are unsure what architecture your
 switch or server employs, check the Cumulus [Hardware Compatibility
 List](https://cumulusnetworks.com/products/hardware-compatibility-list/)
-and verify the value in the **Platforms** tab \> **CPU** column. </span>
+and verify the value in the **Platforms** tab \> **CPU** column.
 
 {{%/notice%}}
 
-## CLI Access</span>
+## CLI Access
 
 When NetQ is installed, the CLI is also installed and enabled (refer to
 the [Install
@@ -39,21 +39,19 @@ topic). Simply log in to any network node to access the command line. If
 you want to run the CLI on the Telemetry Server (TS), Cumulus Networks
 recommends using netq-shell. While most other Linux commands can work
 from this shell, Cumulus Networks recommends you only run `netq`
-commands here. <span style="color: #353744;"> </span>
+commands here.  
 
-<span style="color: #353744;"> To access the CLI from a switch or
-server: </span>
+To access the CLI from a switch or server:
 
-1.  <span style="color: #353744;"> Log in to device. This example uses a
+1.  Log in to device. This example uses a
     username of *Cumulus* and a hostname of *switch*.  
-    </span>
-    
+
+
         <computer>:~Cumulus$ ssh switch
 
-2.  <span style="color: #353744;"> <span style="color: #353744;"> Enter
-    your password, if required, to reach the command prompt. For
-    example: </span> </span>
-    
+2.  Enter your password, if required, to reach the command prompt. For
+    example:  
+
         Enter passphrase for key '/Users/<username>/.ssh/id_rsa': 
         Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
          * Documentation:  https://help.ubuntu.com
@@ -62,42 +60,33 @@ server: </span>
         Last login: Thu Aug 16 06:28:12 2018 from 10.50.11.103
         <username>@<hostname>:~$ 
 
-3.  <span style="color: #353744;"> Run commands. For example:  
-    </span>
-    
+3.  Run commands. For example:  
+
         <username>@<hostname>:~$netq show agents
         <username>@<hostname>:~$netq check bgp
 
-<span style="color: #353744;"> <span style="color: #353744;">
-<span style="color: #353744;"> To access the CLI from a Telemetry
-Server: </span> <span style="color: #353744;"> </span> </span> </span>
+To access the CLI from a Telemetry Server:   
 
-1.  <span style="color: #353744;"> <span style="color: #353744;"> Log in
-    to TS. <span style="color: #353744;"> This example uses a username
-    of </span> *Cumulus* <span style="color: #353744;"> and a TS with a
-    hostname of </span> *ts* <span style="color: #353744;"> . </span>  
-    </span> </span>
-    
+1.  Log in to TS. This example uses a username of *Cumulus* and a TS with a
+    hostname of *ts*.
+
         <computer>:~Cumulus$ ssh ts
 
-2.  <span style="color: #353744;"> <span style="color: #353744;"> Run
-    netq-shell.  
-    </span> </span>
-    
+2.  Run netq-shell.  
+
         cumulus@ts:~$ netq-shell
         Welcome to Cumulus (R) Linux (R)
          
         For support and online technical documentation, visit
         http://www.cumulusnetworks.com/support
          
-        The registered trademark Linux (R) is used pursuant to a sublicense from LMI, the exclusive licensee of Linux Torvalds, owner of the mark on a worldwide basis. 
+        The registered trademark Linux (R) is used pursuant to a sublicense from LMI, the exclusive licensee of Linux Torvalds, owner of the mark on a worldwide basis.
          
         TIP: Type `netq` to access NetQ CLI.
         cumulus@ts:~$
 
-3.  <span style="color: #353744;"> <span style="color: #353744;"> Run
-    commands. For example: </span> </span>
-    
+3.  Run commands. For example:
+
         Cumulus@ts:~$ netq show agent
         Matching agents records:
         Hostname    Status    Ntp Sync    Version                             Sys Uptime    Agent Uptime    Reinitialize Time    Last Changed
@@ -115,48 +104,37 @@ Server: </span> <span style="color: #353744;"> </span> </span> </span>
         Cumulus@ts:~$ netq check agents
         Checked nodes: 12, Rotten nodes: 0
 
-## Command Line Basics</span>
+## Command Line Basics
 
-<span style="color: #353744;"> This section describes the core structure
-and behavior of the NetQ CLI. It includes the following: </span>
+This section describes the core structure
+and behavior of the NetQ CLI. It includes the following:
 
-  - <span style="color: #353744;"> [Command Line
-    Structure](#src-10453454_NetQCommandLineOverview-ComStruct) </span>
-
-  - <span style="color: #353744;"> [Command
-    Syntax](#src-10453454_NetQCommandLineOverview-ComSyntax) </span>
-
+  - [Command Line Structure](#src-10453454_NetQCommandLineOverview-ComStruct)
+  - [Command Syntax](#src-10453454_NetQCommandLineOverview-ComSyntax)
   - [Command Output](#src-10453454_NetQCommandLineOverview-ComOut)
-
   - [Command Prompts](#src-10453454_NetQCommandLineOverview-ComPrompt)
-    <span style="color: #353744;"> </span>
-
-  - <span style="color: #353744;"> [Command
-    Completion](#src-10453454_NetQCommandLineOverview-ComComp) </span>
-
-  - <span style="color: #353744;"> [Command
-    Help](#src-10453454_NetQCommandLineOverview-ComHelp) </span>
-
+  - [Command Completion](#src-10453454_NetQCommandLineOverview-ComComp)
+  - [Command Help](#src-10453454_NetQCommandLineOverview-ComHelp)
   - [Command History](#src-10453454_NetQCommandLineOverview-ComHist)
 
-### Command Line Structure</span>
+### Command Line Structure
 
-<span style="color: #353744;"> The Cumulus NetQ command line has a flat
+The Cumulus NetQ command line has a flat
 structure as opposed to a modal structure. This means that all commands
 can be run from the primary prompt instead of only in a specific mode.
-</span> <span style="color: #353744;"> For example, some command lines
+ For example, some command lines
 require the administrator to switch between a configuration mode and an
 operation mode. Configuration commands can only be run in the
 configuration mode and operational commands can only be run in operation
 mode. This structure requires the administrator to switch between modes
 to run commands which can be tedious and time consuming. Cumulus NetQ
 command line enables the administrator to run all of its commands at the
-same level. </span>
+same level.
 
-### Command Syntax</span>
+### Command Syntax
 
-<span style="color: #353744;"> NetQ CLI commands all begin with `netq`.
-</span> Their basic syntax is as follows:
+NetQ CLI commands all begin with `netq`.
+ Their basic syntax is as follows:
 
     netq [<hostname>] (check|show) <object> <options>
     netq trace <options>
@@ -170,11 +148,10 @@ same level. </span>
 | Angle brackets \< \>  | Variable value for a keyword or option; required, enter according to your deployment nomenclature |
 | Pipe |                | Separates keyword options, also separates value options; enter one keyword and zero or one value  |
 
-<span style="color: #353744;"> For example, in the </span> `netq check`
-<span style="color: #353744;"> command: </span>
+For example, in the `netq check` command:
 
-  - <span style="color: #353744;"> \[\<hostname\>\] is an optional
-    parameter with a variable value named *hostname* </span>
+  - \[\<hostname\>\] is an optional
+    parameter with a variable value named *hostname*
 
   - \<object\> represents a number of possible key words, such as
     *agents, bgp, clag,* and so forth
@@ -185,15 +162,13 @@ same level. </span>
 Thus some valid commands are:
 
   - `netq check agents json`
-
   - `netq show bgp`
-
   - `netq agent restart`
 
-### Command Output</span>
+### Command Output
 
-<span style="color: #353744;"> The command output presents results in
-color for many commands. </span> Results with errors are shown in
+The command output presents results in
+color for many commands.  Results with errors are shown in
 <span style="color: #ff0000;"> red </span> , and warnings are shown in
 <span style="color: #ffcc00;"> yellow </span> . Results without errors
 or warnings are shown in either black or <span style="color: #00ff00;">
@@ -204,20 +179,18 @@ output with only black text, run the `netq config del color` command.
 You can view output with colors again by running `netq config add
 color`.
 
-<span style="color: #353744;"> All check and show commands are run with
+All check and show commands are run with
 a default timeframe of now to one hour ago, unless you specify an
-approximate time ( </span> `around` <span style="color: #353744;">
-keyword) or a range ( </span> `between` <span style="color: #353744;">
-keyword). For example, running `netq check bgp` shows the status of BGP
+approximate time (`around` keyword) or a range (`between` keyword). For example, running `netq check bgp` shows the status of BGP
 over the last hour. Running `netq show bgp around 3h` shows the status
 of BGP three hours ago. Running `netq show bgp changes between now
 and 3h` shows changes that have been made to BGP configuration in the
-past three hours. </span>
+past three hours.
 
-### Command Prompts</span>
+### Command Prompts
 
-<span style="color: #353744;"> NetQ code examples use the following
-prompts: </span>
+NetQ code examples use the following
+prompts:
 
 | Prompt              | Description                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------------- |
@@ -231,13 +204,13 @@ NetQ. Refer to the [Install
 NetQ](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 topic for details.
 
-### Command Completion</span>
+### Command Completion
 
-<span style="color: #353744;"> <span style="color: #353744;"> As you
+As you
 enter commands, you can get help with the valid keywords or options
-using </span> the Tab key. For example, using Tab completion with `netq
+using the Tab key. For example, using Tab completion with `netq
 check` displays the possible objects for the command, and returns you to
-the command prompt to complete the command. </span>
+the command prompt to complete the command.
 
     cumulus@switch:~$ netq check <<press Tab>>
         agents      :  Netq agent
@@ -255,15 +228,15 @@ the command prompt to complete the command. </span>
         vxlan       :  VXLAN data path
     cumulus@oob-mgmt-server:~$ netq check 
 
-### Command Help</span>
+### Command Help
 
-<span style="color: #353744;"> As you enter commands, you can get help
+As you enter commands, you can get help
 with command syntax by entering *help* at various points within a
 command entry. For example, to find out what options are available for a
-BGP check, enter *h* </span> <span style="color: #353744;"> *elp* after
+BGP check, enter *help* after
 entering a portion of the `netq check` command. In this example, you can
 see that there are two possible commands related to BGP checks and the
-display shows the options available for each. </span>
+display shows the options available for each.
 
     cumulus@ts:~$ netq check bgp help
     Commands:
@@ -277,7 +250,7 @@ To see an exhaustive list of commands, run:
 
     cumulus@switch:~$ netq help list verbose
 
-### <span id="src-10453454_NetQCommandLineOverview-ComHist" class="confluence-anchor-link"></span>Command History</span>
+### Command History
 
 The CLI stores commands issued within a session, which enables you to
 review and rerun commands that have already been run. At the command
@@ -287,109 +260,70 @@ found a given command, you can run the command by pressing **Enter**,
 just as you would if you had entered it manually. Optionally you can
 modify the command before you run it.
 
-## Command Categories</span>
+## Command Categories
 
-<span style="color: #353744;"> While the CLI has a flat structure, the
+While the CLI has a flat structure, the
 commands can be conceptually grouped into four functional categories:
-</span>
 
-  - <span style="color: #353744;"> [Check and Show
-    Commands](#src-10453454_NetQCommandLineOverview-ChkShCmds) </span>
 
-  - <span style="color: #353744;"> [Agent and Notifier
-    Commands](#src-10453454_NetQCommandLineOverview-AgentNotifCmds)
-    </span>
+  - [Check and Show Commands](#src-10453454_NetQCommandLineOverview-ChkShCmds)
+  - [Agent and Notifier Commands](#src-10453454_NetQCommandLineOverview-AgentNotifCmds)
+  - [Trace Command](#src-10453454_NetQCommandLineOverview-TraceCmd)
+  - [Resolve Command](#src-10453454_NetQCommandLineOverview-ResolveCmd)
 
-  - <span style="color: #353744;"> [Trace
-    Command](#src-10453454_NetQCommandLineOverview-TraceCmd) </span>
+### Check and Show Commands
 
-  - <span style="color: #353744;"> [Resolve
-    Command](#src-10453454_NetQCommandLineOverview-ResolveCmd) </span>
-
-### Check and Show Commands</span>
-
-<span style="color: #353744;"> The `check` and `show` commands enable
+The `check` and `show` commands enable
 the network administrator to view the current and historical state of
 the network by manually monitoring for errors and misconfigurations in
 the network. Check commands run validation checks against various
 components and configured protocols and services to determine the
 network is operating as expected. Show commands present details about
 the current or historical configuration and status of the various
-component, protocol or service. </span>
+component, protocol or service.
 
-<span style="color: #353744;"> Validation checks can be performed for
-the following: </span>
+Validation checks can be performed for
+the following:
 
   - agents: NetQ Agents operation on all switches and hosts
-
   - bgp: BGP (Border Gateway Protocol) operation across the network
     fabric
-
   - clag: Cumulus Multi-chassis LAG (link aggregation) operation
-
   - evpn: EVPN (Ethernet Virtual Private Network) operation
-
   - interfaces: network interface port operation
-
   - license: License status
-
   - lnv: Lightweight Network Virtualization operation
-
   - mtu: Link MTU (maximun transmission unit) consistency across fabric
-
   - ntp: NTP (Network Time Protocol) operation
-
   - ospf: OSPF (Open Shortest Path First) operation
-
   - sensors: Temperature/Fan/PSU sensor operation
-
   - vlan: VLAN (Virtual Local Area Network) operation
-
   - vxlan: VXLAN (Virtual Extensible LAN) data path operation
 
-<span style="color: #353744;"> The configuration and status can be shown
-for the following: </span>
+The configuration and status can be shown
+for the following:
 
   - agents: NetQ Agents status on switches and hosts
-
   - bgp: BGP status across the network fabric
-
   - change: For a given component, protocol or service, lists changes
     over time frame
-
   - clag: CLAG status
-
   - docker: Docker Swarm, container and network status
-
   - evpn: EVPN status
-
   - interfaces: network interface port status
-
   - inventory: hardware component information
-
   - ip: IPv4 status
-
   - ipv6: IPv6 status
-
   - kubernetes: Kubernetes cluster, daemon, pod, node, service and
     replication status
-
   - lldp: LLDP status
-
   - lnv: Lightweight Network Virtualization status
-
   - macs: MAC table or address information
-
   - ntp: NTP status
-
   - ospf: OSPF status
-
   - sensors: Temperature/Fan/PSU sensor status
-
   - services: System services status
-
   - vlan: VLAN status
-
   - vxlan: VXLAN data path status
 
 The commands take the form of `netq [<hostname>] (check|show) <object>
@@ -436,26 +370,24 @@ This example shows all three cases for the `netq show agents` command.
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
     spine01           Fresh            yes      1.3.0-cl3u9~1522970647.b08ca60       7d:22h:48m:47s            7d:17h:48m:39s            13h:59m:10s                34.242092s
 
-### Agent and Notifier Commands</span>
+### Agent and Notifier Commands
 
-<span style="color: #353744;"> The agent and notifier commands
-<span style="color: #353744;"> enable the network administrator to
+The agent and notifier commands enable the network administrator to
 configure individual NetQ Agents and the NetQ Notifier on the TS. Refer
 to the [Cumulus NetQ Primer](/version/cumulus-netq-141/) and [Configure
 Optional NetQ
 Capabilities](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Configure-Optional-NetQ-Capabilities)
-topics for details about these NetQ components. </span> </span>
+topics for details about these NetQ components.
 
-<span style="color: #353744;"> <span style="color: #353744;"> The agent
+The agent
 configuration commands enable you to add and remove agents from switches
 and hosts, start and stop agent operations, add and remove docker and
 kubernetes container monitoring, add or remove sensors, debug the agent,
 and add or remove FRR (Free Range Routing). Commands apply to one agent
 at a time, and are run from the switch or host where the NetQ Agent
-resides. </span> </span>
+resides.
 
-<span style="color: #353744;"> <span style="color: #353744;"> The agent
-configuration commands include: </span> </span>
+The agent configuration commands include:
 
     netq config (start|stop|status|restart) agent
     netq config add agent docker-monitor [poll-period <text-duration-period>]
@@ -468,23 +400,21 @@ configuration commands include: </span> </span>
     netq config del agent (loglevel|frr-monitor)
     netq config show agent [kubernetes-monitor|docker-monitor|loglevel|stats|sensors|frr-monitor] [json]
 
-<span style="color: #353744;"> The notifier configuration commands
-enable you to <span style="color: #353744;"> start and stop the NetQ
-Notifier, </span> add and remove notification application integrations,
+The notifier configuration commands
+enable you to start and stop the NetQ
+Notifier, add and remove notification application integrations,
 debug the notifier operation, and view its configuration. The commands
 must be run on the Telemetry Server where the NetQ Notifier resides.
-</span>
 
-<span style="color: #353744;"> The notifier configuration commands
-include: </span>
+The notifier configuration commands include:
 
-    netq config ts add notifier integration slack <text-integration-name> webhook <text-webhook-url> 
+    netq config ts add notifier integration slack <text-integration-name> webhook <text-webhook-url>
         [severity info | severity warning | severity error | severity debug | severity info] [tag <text-slack-tag>]
-    netq config ts add notifier integration pagerduty <text-integration-name> api-access-key <text-api-access-key> api-integration-key 
+    netq config ts add notifier integration pagerduty <text-integration-name> api-access-key <text-api-access-key> api-integration-key
         <text-api-integration-key> [severity info | severity warning | severity error | severity debug | severity info]
-    netq config ts add notifier integration pagerduty <text-integration-name> api-integration-key <text-api-integration-key> 
+    netq config ts add notifier integration pagerduty <text-integration-name> api-integration-key <text-api-integration-key>
         api-access-key <text-api-access-key> [severity info | severity warning | severity error | severity debug | severity info]
-    netq config ts add notifier filter <text-filter-name> [before <text-filter-name-anchor> | after <text-filter-name-anchor>] 
+    netq config ts add notifier filter <text-filter-name> [before <text-filter-name-anchor> | after <text-filter-name-anchor>]
         [rule <text-rule-key> <text-rule-value>] [output <text-integration-name-anchor>]
     netq config ts add notifier loglevel [debug|info|warning|error]
     netq config ts del notifier loglevel
@@ -493,15 +423,14 @@ include: </span>
     netq config ts (start|stop|status|restart) notifier
     netq config ts show notifier [json]
 
-<span style="color: #353744;">  
 Notice that the `netq config ts add notifier integration pagerduty` is
 presented twice here because the `api-access-key` and the
 `api-integration-key` are not order dependent. Either can be entered
-first. The rest of the syntax is the same. </span>
+first. The rest of the syntax is the same.
 
-### Trace Command</span>
+### Trace Command
 
-<span style="color: #353744;"> The `trace` command enables the network
+The `trace` command enables the network
 administrator to view the available paths between two nodes on the
 network currently and at a time in the past. You can base the trace on
 MAC or IP addresses, perform the trace in only one direction or both,
@@ -513,15 +442,14 @@ paths. Detail output is useful for traces with higher hop counts where
 the pretty output wraps lines, making it harder to interpret the
 results. The detail output displays a table with a row for each path.
 The trace command also has a detailed usage example for reference.
-</span>
 
-<span style="color: #353744;"> The trace command syntax is: </span>
+The trace command syntax is:
 
     netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [bidir] [json|detail|pretty] [debug]
     netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [bidir] [json|detail|pretty] [debug] 
 
-<span style="color: #353744;"> **Example**: Running a trace based on the
-destination IP address, in *pretty* output </span> with a small number
+**Example**: Running a trace based on the
+destination IP address, in *pretty* output with a small number
 of resulting paths
 
     cumulus@switch:~# netq trace 192.168.0.11 from Leaf04 pretty
@@ -533,9 +461,9 @@ of resulting paths
      Leaf04 uplink-2 -- downlink-5 Spine02 downlink-1 -- uplink-2 Leaf01 <uplink-2>
             uplink-1 -- downlink-5 Spine01 downlink-1 -- uplink-1 Leaf01 <uplink-2>
 
-<span style="color: #353744;"> **Example**: Running a trace based on the
+**Example**: Running a trace based on the
 destination MAC address, in *pretty* output with a larger number of
-resulting paths </span>
+resulting paths
 
     cumulus@switch:mgmt-vrf:~# netq trace A0:00:00:00:00:11 vlan 1001 from Server03 detail
     Number of Paths: 6
@@ -550,8 +478,7 @@ resulting paths </span>
                                                            swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
                                                            swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
 
-<span style="color: #353744;"> **  
-Example**: View the detailed usage example for the trace command </span>
+**Example**: View the detailed usage example for the trace command
 
     cumulus@switch:~$ netq example trace
      
@@ -571,133 +498,47 @@ Example**: View the detailed usage example for the trace command </span>
      
     ...
 
-### Resolve Command</span>
+### Resolve Command
 
-<span style="color: #353744;"> <span style="color: #353744;"> The
+The
 `resolve` command enables the network administrator to view Cumulus
-Linux command results with </span> </span> more contextual information
+Linux command results with more contextual information
 and colored highlights. By piping the commands through netq resolve, the
 output shows hostnames and interfaces in <span style="color: #00ff00;">
-green </span> , for example.
+green </span>, for example.
 
 To show routes installed by the kernel, you would run the `ip route show
 proto kernel` command:
 
     cumulus@leaf01:~$ ip route show proto kernel
-    3.0.2.128/26 dev VlanA-1.103  scope link  src 3.0.2.131 
-    3.0.2.128/26 dev VlanA-1-103-v0  scope link  src 3.0.2.129 
-    3.0.2.192/26 dev VlanA-1.104  scope link  src 3.0.2.195 
-    3.0.2.192/26 dev VlanA-1-104-v0  scope link  src 3.0.2.193 
-    3.0.3.0/26 dev VlanA-1.105  scope link  src 3.0.3.3 
-    3.0.3.0/26 dev VlanA-1-105-v0  scope link  src 3.0.3.1 
-    3.0.3.64/26 dev VlanA-1.106  scope link  src 3.0.3.67 
-    3.0.3.64/26 dev VlanA-1-106-v0  scope link  src 3.0.3.65 
-    169.254.0.8/30 dev peerlink-1.4094  scope link  src 169.254.0.10 
+    3.0.2.128/26 dev VlanA-1.103  scope link  src 3.0.2.131
+    3.0.2.128/26 dev VlanA-1-103-v0  scope link  src 3.0.2.129
+    3.0.2.192/26 dev VlanA-1.104  scope link  src 3.0.2.195
+    3.0.2.192/26 dev VlanA-1-104-v0  scope link  src 3.0.2.193
+    3.0.3.0/26 dev VlanA-1.105  scope link  src 3.0.3.3
+    3.0.3.0/26 dev VlanA-1-105-v0  scope link  src 3.0.3.1
+    3.0.3.64/26 dev VlanA-1.106  scope link  src 3.0.3.67
+    3.0.3.64/26 dev VlanA-1-106-v0  scope link  src 3.0.3.65
+    169.254.0.8/30 dev peerlink-1.4094  scope link  src 169.254.0.10
     192.168.0.0/24 dev eth0  scope link  src 192.168.0.15
 
 You can enhance the output to display the node names and interfaces by
 piping the output through `netq resolve` so the output looks like this:
 
     cumulus@leaf01:~$ ip route show proto kernel | netq resolve
-    10.0.0.0/22 (    
-    multiple:    
-    ) dev eth0  scope link  src 10.0.0.165 (    
-    cel-smallxp-13    
-    :    
-    eth0    
-    ) 
-    3.0.2.128/26 (     
-    server02    
-     :     
-    torbond1.103    
-     ) dev VlanA-1.103  scope link  src 3.0.2.131 (     
-    leaf02    
-     :     
-    VlanA-1.103    
-     )  
-    3.0.2.128/26 (     
-    server02    
-     :     
-    torbond1.103    
-     ) dev VlanA-1-103-v0  scope link  src 3.0.2.129 (     
-    leaf02    
-     :     
-    VlanA-1-103-v0    
-     )  
-    3.0.2.192/26 (     
-    leaf02    
-     :     
-    VlanA-1-104-v0    
-     ) dev VlanA-1.104  scope link  src 3.0.2.195 (     
-    leaf02    
-     :     
-    VlanA-1.104    
-     )  
-    3.0.2.192/26 (     
-    leaf02    
-     :     
-    VlanA-1-104-v0    
-     ) dev VlanA-1-104-v0  scope link  src 3.0.2.193 (     
-    leaf02    
-     :     
-    VlanA-1-104-v0    
-     )  
-    3.0.3.0/26 (     
-    server01    
-     :     
-    torbond1.105    
-     ) dev VlanA-1.105  scope link  src 3.0.3.3 (     
-    leaf02    
-     :     
-    VlanA-1.105    
-     )  
-    3.0.3.0/26 (     
-    server01    
-     :     
-    torbond1.105    
-     ) dev VlanA-1-105-v0  scope link  src 3.0.3.1 (     
-    leaf02    
-     :     
-    VlanA-1-105-v0    
-     )  
-    3.0.3.64/26 (     
-    server02    
-     :     
-    torbond1.106    
-     ) dev VlanA-1.106  scope link  src 3.0.3.67 (     
-    leaf02    
-     :     
-    VlanA-1.106    
-     )  
-    3.0.3.64/26 (     
-    server02    
-     :     
-    torbond1.106    
-     ) dev VlanA-1-106-v0  scope link  src 3.0.3.65 (     
-    leaf01    
-     :     
-    VlanA-1-106-v0    
-     )  
-    169.254.0.8/30 (     
-    leaf02    
-     :     
-    peerlink-1.4094    
-     ) dev peerlink-1.4094  scope link  src 169.254.0.10 (     
-    leaf02    
-     :     
-    peerlink-1.4094    
-     )  
-    192.168.0.0/24 (     
-    server02    
-     :     
-    eth0    
-     ) dev eth0  scope link  src 192.168.0.15 (     
-    leaf01    
-     :     
-    eth0    
-     )
+    10.0.0.0/22 (multiple:) dev eth0  scope link  src 10.0.0.165 (cel-smallxp-13:eth0)
+    3.0.2.128/26 (server02:torbond1.103) dev VlanA-1.103  scope link  src 3.0.2.131 (leaf02:VlanA-1.103)  
+    3.0.2.128/26 (server02:torbond1.103) dev VlanA-1-103-v0  scope link  src 3.0.2.129 (leaf02:VlanA-1-103-v0)  
+    3.0.2.192/26 (leaf02:VlanA-1-104-v0) dev VlanA-1.104  scope link  src 3.0.2.195 (leaf02:VlanA-1.104)  
+    3.0.2.192/26 (leaf02:VlanA-1-104-v0) dev VlanA-1-104-v0  scope link  src 3.0.2.193 (leaf02:VlanA-1-104-v0)  
+    3.0.3.0/26 (server01:torbond1.105) dev VlanA-1.105  scope link  src 3.0.3.3 (leaf02:VlanA-1.105)  
+    3.0.3.0/26 (server01:torbond1.105) dev VlanA-1-105-v0  scope link  src 3.0.3.1 (leaf02:VlanA-1-105-v0)  
+    3.0.3.64/26 (server02:torbond1.106) dev VlanA-1.106  scope link  src 3.0.3.67 (leaf02:VlanA-1.106)  
+    3.0.3.64/26 (server02:torbond1.106) dev VlanA-1-106-v0  scope link  src 3.0.3.65 (leaf01:VlanA-1-106-v0)  
+    169.254.0.8/30 (leaf02:peerlink-1.4094) dev peerlink-1.4094  scope link  src 169.254.0.10 (leaf02:peerlink-1.4094)  
+    192.168.0.0/24 (server02:eth0) dev eth0  scope link  src 192.168.0.15 (leaf01:eth0)
 
-## Detailed Usage Examples </span>
+## Detailed Usage Examples
 
 Additional help is available to understand key commands using the
 examples provided with NetQ. Each example includes details about a
@@ -705,7 +546,6 @@ command's usage and operation, as well as specific examples to help you
 monitor and manage your network, and solve issues you may find.
 
 Run any of the example commands to view its detailed information:
-<span style="color: #353744;"> </span>
 
     netq example check bgp
     netq example check clag
@@ -744,39 +584,84 @@ Run any of the example commands to view its detailed information:
      
     ...
 
-## Command Changes</span>
+## Command Changes
 
 A number of commands have changed in this release to accommodate the
 addition of new keywords and options or to simplify their syntax.
 Additionally, new commands have been added and others have been removed.
 A summary of those changes is provided here.
 
-### New Commands</span>
+### New Commands
 
-The following table summarizes the new commands available with this
-release.
+The following table summarizes the new commands available with this release.
 
-|   | Command                                                                                                          | Summary                                                                                                                                                         |
-| - | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1 | netq config (add|del) color                                                                                      | Add or remove color from CLI output. Default displays colored output.                                                                                           |
-| 2 | netq config (status|restart) cli                                                                                 | Show whether the CLI daemon is running, or restart the CLI daemon if it is not running                                                                          |
-| 3 | netq \[\<hostname\>\] show agents changes \[between \<text-time\> and \<text-endtime\>\] \[json\]                | Show NetQ Agent configuration or status changes within the specified timeframe. When the timeframe is not specified, the default is 1 hour.                     |
-| 4 | netq \[\<hostname\>\] show docker swarm cluster \[node-name \<cluster-node\>\] \[around \<text-time\>\] \[json\] | Show Docker Swarm container clusters at an earlier point in time                                                                                                |
-| 5 | netq \<hostname\> show docker swarm cluster changes \[between \<text-time\> and \<text-endtime\>\] \[json\]      | Show Docker Swarm container cluster configuration or status changes within the specified timeframe. When the timeframe is not specified, the default is 1 hour. |
-| 6 | netq config add agent frr-monitor \[\<text-frr-docker-name\>\]                                                   | Add Free Range Routing (FRR) monitoring to the switch or host server                                                                                            |
-| 7 | netq config ts del notifier integration (slack|pagerduty) \<text-integration-name-anchor\>                       | Remove an event notification integration using its anchor name                                                                                                  |
-| 8 | netq config ts del notifier filter \<text-filter-name-anchor\>                                                   | Remove an event filter using its anchor name                                                                                                                    |
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 47%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p> </p></th>
+<th><p>Command</p></th>
+<th><p>Summary</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>1</p></td>
+<td><p>netq config (add|del) color</p></td>
+<td><p>Add or remove color from CLI output. Default displays colored output.</p></td>
+</tr>
+<tr class="even">
+<td><p>2</p></td>
+<td><p>netq config (status|restart) cli</p></td>
+<td><p>Show whether the CLI daemon is running, or restart the CLI daemon if it is not running</p></td>
+</tr>
+<tr class="odd">
+<td><p>3</p></td>
+<td><p>netq [&lt;hostname&gt;] show agents changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]</p></td>
+<td><p>Show NetQ Agent configuration or status changes within the specified timeframe. When the timeframe is not specified, the default is 1 hour.</p></td>
+</tr>
+<tr class="even">
+<td><p>4</p></td>
+<td><p>netq [&lt;hostname&gt;] show docker swarm cluster [node-name &lt;cluster-node&gt;] [around &lt;text-time&gt;] [json]</p></td>
+<td><p>Show Docker Swarm container clusters at an earlier point in time</p></td>
+</tr>
+<tr class="odd">
+<td><p>5</p></td>
+<td><p>netq [&lt;hostname&gt;] show docker swarm cluster changes [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]</p></td>
+<td><p>Show Docker Swarm container cluster configuration or status changes within the specified timeframe. When the timeframe is not specified, the default is 1 hour. </p></td>
+</tr>
+<tr class="even">
+<td><p>6</p></td>
+<td><p>netq config add agent frr-monitor [&lt;text-frr-docker-name&gt;]</p></td>
+<td><p>Add Free Range Routing (FRR) monitoring to the switch or host server</p></td>
+</tr>
+<tr class="odd">
+<td><p>7</p></td>
+<td><p>netq config ts del notifier integration (slack|pagerduty) &lt;text-integration-name-anchor&gt;</p></td>
+<td><p>Remove an event notification integration using its anchor name</p></td>
+</tr>
+<tr class="even">
+<td><p>6</p></td>
+<td><p>netq config ts del notifier filter &lt;text-filter-name-anchor&gt;</p></td>
+<td><p>Remove an event filter using its anchor name</p></td>
+</tr>
+</tbody>
+</table>
 
-### Modified Commands</span>
+### Modified Commands
 
 The following table summarizes the commands that have been changed with
 this release.
 
 <table>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 6%" />
+<col style="width: 47%" />
+<col style="width: 47%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -840,19 +725,11 @@ this release.
 </tbody>
 </table>
 
-### Deprecated commands</span>
+### Deprecated commands
 
 The following table summarizes the commands that have been removed and a
 recommended alternative, if appropriate.
 
-|   | Command                                        | Alternative Command                   |
-| - | ---------------------------------------------- | ------------------------------------- |
+|     | Command                                        | Alternative Command                   |
+| --- | ---------------------------------------------- | ------------------------------------- |
 | 1 | netq config ts show notifier loglevel \[json\] | netq config ts show notifier \[json\] |
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

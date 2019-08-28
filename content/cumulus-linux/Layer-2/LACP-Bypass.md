@@ -30,23 +30,30 @@ needs to be active.
 
 Keep in the mind the following caveats with all-active mode:
 
-  - All-active mode is not supported on bonds that are not specified as
-    bridge ports on the switch.
-  - Spanning tree protocol (STP) does not run on the individual bond
-    slave interfaces when the LACP bond is in all-active mode.
-    Therefore, only use all-active mode on host-facing LACP bonds.
-    Cumulus Networks highly recommends you configure [STP BPDU
-    guard](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard)
-    along with all-active mode.
+- All-active mode is not supported on bonds that are not specified as
+  bridge ports on the switch. To work around this limitation, do one of
+  the following:
+
+  - Configure the layer 3 interface on the physical link instead of using a bond
+  - Configure the LACP bond on the switch port so that the AS has neighbor LACP
+    information
+  - Configure the bond interface as balanced-xor mode instead of LACP
+
+- Spanning tree protocol (STP) does not run on the individual bond
+  slave interfaces when the LACP bond is in all-active mode.
+  Therefore, only use all-active mode on host-facing LACP bonds.
+  Cumulus Networks highly recommends you configure 
+  [STP BPDU guard](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard)
+  along with all-active mode.
 
 {{%notice note%}}
 
 The following features are not supported:
 
-  - priority mode
-  - bond-lacp-bypass-period
-  - bond-lacp-bypass-priority
-  - bond-lacp-bypass-all-active
+- priority mode
+- bond-lacp-bypass-period
+- bond-lacp-bypass-priority
+- bond-lacp-bypass-all-active
 
 {{%/notice%}}
 
@@ -61,14 +68,8 @@ primary and secondary MLAG nodes.
 
 ## Configure LACP Bypass
 
-To enable LACP bypass on the host-facing bond, set
-`bond-lacp-bypass-allow` to *yes*.
-
-{{%notice info has%}}
-
-**Example VLAN-aware Bridge Mode Configuration**
-
-The following commands create a VLAN-aware bridge with LACP bypass
+To enable LACP bypass on the host-facing bond, configure `bond-lacp-bypass-allow`
+using NCLU. The following commands create a VLAN-aware bridge with LACP bypass
 enabled:
 
     cumulus@switch:~$ net add bond bond1 bond slaves swp51s2,swp51s3
@@ -98,10 +99,8 @@ These commands create the following stanzas in
         bridge-vids 100-105
         bridge-vlan-aware yes
 
-{{%/notice%}}
-
-You can check the status of the configuration by running `net show
-interface <bond>` on the bond and its slave interfaces:
+You can check the status of the configuration by running
+`net show interface <bond>` on the bond and its slave interfaces:
 
     cumulus@switch:~$ net show interface bond1
      
@@ -154,8 +153,8 @@ and its slave interfaces:
     1
 
 The following configuration shows LACP bypass enabled for multiple
-active interfaces (all-active mode) with a bridge in [traditional bridge
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode):
+active interfaces (all-active mode) with a bridge in 
+[traditional bridge mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode):
 
     auto bond1
     iface bond1

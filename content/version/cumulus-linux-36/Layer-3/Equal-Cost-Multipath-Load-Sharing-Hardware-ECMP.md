@@ -56,7 +56,6 @@ to determine which path a packet follows.
 Cumulus Linux hashes on the following fields:
 
   - IP protocol
-  - Ingress interface
   - Source IPv4 or IPv6 address
   - Destination IPv4 or IPv6 address
 

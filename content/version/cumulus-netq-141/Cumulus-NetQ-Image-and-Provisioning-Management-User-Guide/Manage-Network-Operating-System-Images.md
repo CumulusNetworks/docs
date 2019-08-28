@@ -18,7 +18,7 @@ operating system and a default ONIE script. You can add additional NOS
 images, add images, map switches to particular images, as well as view
 the available images and their mappings.
 
-<span style="color: #36424a;"> Command Overview </span>
+## Command Overview
 
 IPM enables you to add, delete, and view all of the DHCP configurations.
 The command syntax is:
@@ -28,15 +28,14 @@ The command syntax is:
     tipctl del nos [-h|--help] nos NOS 
     tipctl reset nos [-h|--help]
     tipctl show nos all [--with-date|-h|--help]
-    tipctl show nos mac [--with-date|-h|--help] MAC 
+    tipctl show nos mac [--with-date|-h|--help] MAC
     tipctl show nos nos [--with-date|-h|--help] NOS
 
-<span style="color: #000000;"> The </span> *-h*
-<span style="color: #000000;"> option is a short cut for the *--help*
-option. </span> The *--with-date* option lists the timestamp when the
+The *-h* option is a short cut for the *--help*
+option. The *--with-date* option lists the timestamp when the
 last mapping occurred.
 
-## Import NOS Images</span>
+## Import NOS Images
 
 While IPM is preconfigured to use the latest Cumulus Linux NOS, you can
 add prior NOS images to manage switches installed with earlier releases.
@@ -55,7 +54,7 @@ This example shows the import of a NOS image.
     <username>@<ts>:~$ tips-easy --images <path>/<image-filename>
     <username>@<ts>:~$ tipctl show nos
 
-## View Stored Images</span>
+## View Stored Images
 
 You can view all of the images stored in IPM using the `tipctl show nos`
 command. You can filter the results by MAC address and NOS image.
@@ -85,7 +84,7 @@ NOS of *cumulus-rmp-3.6.1-bcm-amd64.bin*.
     ---------- ----------------- -------------------------------
     onie_mac   00:11:22:33:44:55 cumulus-rmp-3.6.1-bcm-amd64.bin
 
-## Apply Images</span>
+## Apply Images
 
 Once you have all of the NOS images loaded into IPM, you can then map
 the images to the various switches in your network using the `tipctl add
@@ -104,20 +103,20 @@ and then verify the mapping.
 If you want to add a NOS to multiple switches, create an automation
 script that runs the `add nos` command.
 
-## Manage Images </span>
+## Manage Images
 
 IPM enables you to manage your local image repository, including
 mapping, deleting, and viewing images. Mapping images was covered above.
 Viewing and deleting images are described here.
 
-### View Images in Repository</span>
+### View Images in Repository
 
 You can view the NOS image repository located in the
 */var/tips/www/onie/images/* directory on the Telemetry Server.
 
 This example shows how to view the contents of the NOS repository.
 
-    cumulus@ts:~$ tipctl show repo nos 
+    cumulus@ts:~$ tipctl show repo nos
     NOS
     -------------------------------------------------------------------
     cumulus-linux-3.6.1-bcm-armel.bin
@@ -134,7 +133,7 @@ This example shows how to view the contents of the NOS repository.
     cumulus-linux-3.6.1-vx-amd64.qcow2
     cumulus-linux-bcm-amd64.bin
 
-### Remove Image Mappings</span>
+### Remove Image Mappings
 
 You can remove all mappings to a NOS image or the mapping to a
 particular switch.This example shows how to remove the mapping of a NOS
@@ -150,7 +149,7 @@ switch with a MAC address of A0:00:00:00:00:12.
     cumulus@ts:~$ tipctl del nos mac a0:00:00:00:00:12
     cumulus@ts:~$ tipctl show nos mac a0:00:00:00:00:12
 
-### Delete Images from Repository</span>
+### Delete Images from Repository
 
 If you are no longer using a particular NOS, you can remove it from your
 local repository to simplify your management processes and prevent

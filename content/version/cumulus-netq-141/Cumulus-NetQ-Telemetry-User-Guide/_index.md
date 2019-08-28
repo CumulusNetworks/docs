@@ -18,13 +18,3 @@ your data center network infrastructure and operational health. This
 guide provides instructions and information about monitoring both
 individual components of the network, the network as a whole, and the
 NetQ software itself using the NetQ command line interface (CLI).
-
-This guide is organized into the following topics:
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

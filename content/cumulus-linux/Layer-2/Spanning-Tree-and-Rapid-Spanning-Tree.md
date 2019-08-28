@@ -758,7 +758,7 @@ The source code for `mstpd`/`mstpctl` was written by [Vitalii
 Demianets](mailto:vitas%40nppfactor.kiev.ua) and is hosted at the URL
 below.
 
-  - [Sourceforge - mstpd project](https://github.com/mstpd/mstpd)
+  - [Github - mstpd project](https://github.com/mstpd/mstpd)
 
   - [Wikipedia - Spanning Tree
     Protocol](http://en.wikipedia.org/wiki/Spanning_Tree_Protocol)

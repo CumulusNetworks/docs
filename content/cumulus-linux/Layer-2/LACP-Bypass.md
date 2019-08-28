@@ -37,7 +37,7 @@ Keep in the mind the following caveats with all-active mode:
   - Configure the layer 3 interface on the physical link instead of using a bond
   - Configure the LACP bond on the switch port so that the AS has neighbor LACP
     information
-  - Configure the bond interface as balanced-xor mode instead of LACP
+  - Configure the bond interface as [balance-xor](../Bonding-Link-Aggregation/#enable-balance-xor-mode) mode instead of LACP
 
 - Spanning tree protocol (STP) does not run on the individual bond
   slave interfaces when the LACP bond is in all-active mode.

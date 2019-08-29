@@ -5,12 +5,6 @@
 {{ end }}
 
 {{ define "main" }}
-<div class= "notices info" id = "info" >
-    <p>This documentation is for an older version of the software. If you are
-    using the current version of Cumulus Linux, this content may not be up
-    to date. The current version of the documentation is available
-    <a href = {{ (index (where .Site.Sections "Params.product" .Page.Params.product) 0 ).RelPermalink}}>here</a>.</p>
-  </div>
 <article class="markdown">
 <h1>  {{- .Page.Title -}} </h1>
   {{- .Content -}}

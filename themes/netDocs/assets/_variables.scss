@@ -1,5 +1,5 @@
 //Cumulus gotham font import
-@import url("https://static.cumulusnetworks.com/static/fonts/gotham/732873/332B09D260389E648.css");
+@import url("https://cloud.typography.com/7905356/6161172/css/fonts.css");
 
 $padding-1: 1px;
 $padding-4: 0.25rem;
@@ -75,9 +75,8 @@ $md-breakpoint: $sm-breakpoint + $toc-width;
 
 $body-max-width: $container-max-width - $menu-width - $toc-width;
 
-$sm-up: 'only screen and (min-width: 576px)'; 
+$sm-up: 'only screen and (min-width: 576px)';
 $md-up: 'only screen and (min-width: 768px)';
 $lg-up: 'only screen and (min-width: 992px)';
-$xl-up: 'only screen and (min-width: 1200px)'; 
+$xl-up: 'only screen and (min-width: 1200px)';
 $xxl-up: 'only screen and (min-width: 1600px)';
-

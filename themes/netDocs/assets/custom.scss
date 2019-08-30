@@ -952,6 +952,14 @@ aside nav ul .expand li>a {
   padding: 4rem 2.7rem;
 }
 
+div.notices {
+
+  li {
+    color: $cn-limited-spruce;
+    font-size: .882rem;
+  }
+}
+
 div.notices.info {
   background-color: rgba(255, 200, 46, 0.3);
   border: 1px solid #ffc82e;

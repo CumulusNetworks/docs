@@ -13,9 +13,9 @@ siteSlug: cumulus-netq-22
 
 Installing NetQ software can be accomplished in one of three ways:
 
-- Deploy the software on your own switch that is running Cumulus Linux version 3.3.2 or later (on-premises or in-cloud deployments)
+- Deploy the software on your own switch that is running Cumulus Linux version 3.3.2 or later (on-premises or cloud deployments)
 - Purchase and deploy the Cumulus NetQ Appliance (for on-premises deployments)
-- Purchase and deploy the Cumulus NetQ Cloud Appliance (for in-cloud deployments)
+- Purchase and deploy the Cumulus NetQ Cloud Appliance (for cloud deployments)
 
 In all cases you must also load the NetQ Agent software onto the switches and hosts you want to monitor.
 

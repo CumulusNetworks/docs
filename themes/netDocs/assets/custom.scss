@@ -827,6 +827,7 @@ main {
         display: none;
       }
       &.book-menu {
+        display: block;
         flex: 1;
         @media #{$sm-up} {
           flex: 0 0 15.53rem;

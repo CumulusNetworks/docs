@@ -790,6 +790,11 @@ body {
 }
 
 main {
+
+  aside {
+    display: none;
+  }
+
   &.hide-both {
     aside {
       display: none;

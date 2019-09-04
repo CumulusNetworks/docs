@@ -1116,6 +1116,12 @@ file:
     vrf turtle
       vni 104001 prefix-routes-only
 
+{{%notice note%}}
+
+There is no command to delete the `prefix-routes-only` option. The `net del vrf <vrf> vni <vni> prefix-routes-only` command deletes the VNI.
+
+{{%/notice%}}
+
 ### Control Which RIB Routes Are Injected into EVPN
 
 By default, when announcing IP prefixes in the BGP RIB as EVPN type-5

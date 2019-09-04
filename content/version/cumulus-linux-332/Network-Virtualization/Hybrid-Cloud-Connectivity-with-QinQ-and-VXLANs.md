@@ -15,19 +15,16 @@ siteSlug: cumulus-linux-332
 
 **Early Access Feature**
 
-QinQ is an [early access
-feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
+QinQ is an [early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
 in Cumulus Linux. Before you can install QinQ, you must enable the Early
 Access repository. For more information about the Cumulus Linux
-repository, read [this knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/217422127).
+repository, read [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/217422127).
 
 {{%/notice%}}
 
-*QinQ* is an amendment to the [IEEE 802.1Q
-specification](http://www.ieee802.org/1/pages/802.1Q.html) that provides
-the capability for multiple [VLAN
-tags](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-Tagging)
+*QinQ* is an amendment to the [IEEE 802.1Q specification](http://www.ieee802.org/1/pages/802.1Q.html) 
+that provides the capability for multiple 
+[VLAN tags](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-Tagging)
 to be inserted into a single Ethernet frame.
 
 The primary use case for QinQ with VXLAN is where a service provider who
@@ -41,11 +38,10 @@ In Cumulus Linux, you map QinQ packets to VXLANs through:
 
   - *Single tag translation*, where you map a customer to a VNI and
     preserve the service as an inner VLAN inside a VXLAN packet.
-
   - *Double tag translation*, where you map a customer and service to a
     VNI.
 
-## Installing the QinQ Metapackage</span>
+## Installing the QinQ Metapackage
 
 To install the QinQ metapackage on a switch:
 
@@ -65,17 +61,17 @@ To install the QinQ metapackage on a switch:
         cumulus@switch:~$ sudo -E apt-get upgrade
     
     {{%notice info%}}
-    
-    Installing one of the two packages pulls in the other package, but
-    both packages are listed here for sake of completeness.
-    
+
+Installing one of the two packages pulls in the other package, but
+both packages are listed here for sake of completeness.
+
     {{%/notice%}}
 
 If you need to remove the QinQ packages, read the [early access
 feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
 article.
 
-## Configuring Single Tag Translation</span>
+## Configuring Single Tag Translation
 
 Single tag translation adheres to traditional QinQ service model. The
 customer-facing interface is a QinQ access port with the outer S-tag
@@ -84,8 +80,8 @@ VXLAN VNI. The inner C-tag, which represents the service, is transparent
 to the provider. The public cloud handoff interface is a QinQ trunk
 where packets on the wire carry both the S-tag and the C-tag.
 
-Single tag translation leverages [VLAN-aware Linux
-bridge](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+Single tag translation leverages 
+[VLAN-aware Linux bridge](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 mode with the use of the 802.1ad VLAN protocol (the only supported
 protocol at the time of writing). Hence, it is more scalable.
 
@@ -103,14 +99,12 @@ All edges need to support QinQ with VXLANs to correctly interoperate.
 
 {{%/notice%}}
 
-### Configuring the Public Cloud-facing Switch</span>
+### Configuring the Public Cloud-facing Switch
 
 For the switch facing the public cloud:
 
   - Configure the bridge with `vlan_protocol` set to *802.1ad*.
-
   - The VNI maps back to S-tag (customer).
-
   - A trunk port connected to the public cloud is the QinQ trunk, and
     packets are double tagged, where the S-tag is for the customer and
     the C-tag is for the service.
@@ -152,15 +146,13 @@ These commands create the following configuration in the
         bridge-vlan-aware yes
         bridge-vlan-protocol 802.1ad
 
-### Configuring the Customer-facing Edge Switch</span>
+### Configuring the Customer-facing Edge Switch
 
 For the switch facing the customer:
 
   - Configure the bridge with `vlan_protocol` set to *802.1ad*.
-
   - The customer interface is the QinQ access port, the PVID is the
     S-tag (customer) and is mapped to a VNI.
-
   - The service VLAN tags (C-tags) are preserved during VXLAN
     encapsulation.
 
@@ -208,7 +200,7 @@ These commands create the following configuration in the
         bridge-vlan-aware yes
         bridge-vlan-protocol 802.1ad
 
-### Viewing the Configuration</span>
+### Viewing the Configuration
 
 In the output below, customer A is on VLAN 100 (S-TAG) and customer B is
 on VLAN 200 (S-TAG).
@@ -249,7 +241,7 @@ bridge` and look for *vlan\_protocol 802.1ad* in the output:
         link/ether 06:a2:ae:de:e3:43 brd ff:ff:ff:ff:ff:ff promiscuity 0 
         bridge forward_delay 1500 hello_time 200 max_age 2000 ageing_time 30000 stp_state 2 priority 32768 vlan_filtering 1 vlan_protocol 802.1ad bridge_id 8000.6:a2:ae:de:e3:43 designated_root 8000.6:a2:ae:de:e3:43 root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00 tcn_timer    0.00 topology_change_timer    0.00 gc_timer   64.29 vlan_default_pvid 1 vlan_stats_enabled 1 group_fwd_mask 0 group_address 01:80:c2:00:00:08 mcast_snooping 0 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0 mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2 mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500 mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 mcast_stats_enabled 1 mcast_igmp_version 2 mcast_mld_version 1 nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0 addrgenmode eui64 
 
-## Configuring Double Tag Translation</span>
+## Configuring Double Tag Translation
 
 Double tag translation involves a bridge with double-tagged member
 interfaces, where a combination of the C-tag and S-tag map to a VNI. You
@@ -280,17 +272,17 @@ as swp3.100 in the example below.
 
 {{%notice note%}}
 
-Double tag translation only works with bridges in [traditional
-mode](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges)
+Double tag translation only works with bridges in 
+[traditional mode](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges)
 (not VLAN-aware). As such, you cannot use NCLU to configure it.
 
 {{%/notice%}}
 
 An example configuration could look like the following:
 
-{{% imgOld 1 %}}
+{{< figure src="../qinq-double-tagged-no-vxlan.png" width="600" >}}
 
-### Configuring the Switch</span>
+### Configuring the Switch
 
 To configure the switch for double tag translation using the above
 example, edit the `/etc/network/interfaces` file in a text editor and
@@ -345,33 +337,27 @@ configuration would look something like this:
 
 {{%/notice%}}
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
-### EA Feature Limitations</span>
+### EA Feature Limitations
 
   - QinQ is available only on Broadcom Tomahawk, Trident II+ and Trident
     II switches; support for Mellanox switches will be available in a
     future release.
-
   - `iptables` match on double-tagged interfaces is not supported.
-
   - Single-tagged translation supports only [VLAN-aware bridge
     mode](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
-    with the bridge’s VLAN 802.1ad protocol.
-
+    with the bridge's VLAN 802.1ad protocol.
   - No layer 2 protocol (STP BPDU, LLDP) tunneling support.
-
   - No
     [MLAG](/version/cumulus-linux-332/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
     support for double-tagged translation.
-
   - MLAG support for single-tagged translation should work, but has not
     been tested for this EA release.
-
   - Mixing 802.1Q and 802.1ad subinterfaces on the same switch port is
     not supported.
 
-### Long Interface Names</span>
+### Long Interface Names
 
 The Linux kernel limits interface names to 15 characters in length. For
 QinQ interfaces, this limit can be reached fairly easily.
@@ -407,11 +393,3 @@ There isn't a way to create this configuration using
 at this time.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

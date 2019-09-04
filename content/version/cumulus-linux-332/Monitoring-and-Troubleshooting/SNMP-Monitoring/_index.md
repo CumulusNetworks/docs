@@ -15,7 +15,7 @@ Cumulus Linux utilizes the open source Net-SNMP agent `snmpd`, v5.7.3,
 which provides support for most of the common industry-wide MIBs,
 including interface counters and TCP/UDP IP stack data.
 
-## Introduction to SNMP (Simple Network Management Protocol)</span>
+## Introduction to SNMP (Simple Network Management Protocol)
 
 SNMP is an IETF standards-based network management architecture and
 protocol that traces its roots back to Carnegie-Mellon University in
@@ -28,7 +28,7 @@ collaborative open source project. The version used by Cumulus Networks
 is base on the latest `net-snmp` 5.7.3 branch with added custom MIBs and
 pass through and pass persist scripts.
 
-## Configuring Ports for SNMP to Listen for Requests</span>
+## Configuring Ports for SNMP to Listen for Requests
 
 For security reasons, the default port binding for `snmpd` is the
 loopback local address; consequently by default, the SNMP service does
@@ -43,7 +43,7 @@ before enabling and starting `snmpd`. The default configuration has no
 access community strings defined so `snmpd` will not respond to any SNMP
 requests until this is added.
 
-## Quick Start Guide</span>
+## Quick Start Guide
 
 The SNMP daemon, `snmpd`, uses the configuration file
 `/etc/snmp/snmpd.conf` for almost all of its configuration. The syntax
@@ -128,7 +128,7 @@ monitor   -o fileName -o fileErrorMsg  &quot;fileTable&quot; fileErrorFlag != 0<
 </tbody>
 </table>
 
-## Starting the SNMP Daemon</span>
+## Starting the SNMP Daemon
 
 The following procedure is the recommended process to start `snmpd` and
 monitor it using `systemctl`.
@@ -159,7 +159,7 @@ To start the SNMP daemon:
 Once the service is started, SNMP can be used to manage various
 components on the Cumulus Linux switch.
 
-## Configuring SNMP</span>
+## Configuring SNMP
 
 Cumulus Linux ships with a production usable default `snmpd.conf` file
 included. This section covers a few basic configuration options in
@@ -180,7 +180,7 @@ v2c environments or the `snmpd` daemon will not respond to any requests.
 
 {{%/notice%}}
 
-### Configuring the agentAddress</span>
+### Configuring the agentAddress
 
 As mentioned earlier, you need to configure the transport protocol, IP
 address and port where SNMP listens. In Cumulus Linux, the transport
@@ -194,11 +194,11 @@ settings, do the following:
         agentAddress udp:127.0.0.1:161
     
     {{%notice note%}}
-    
-    You can only specify one agentAddress line. If you want to listen on
-    multiple IP addresses, use comma-separated addresses, like this:
-    
-        agentAddress  10.10.10.10,44.44.44.44,127.0.0.1
+
+You can only specify one agentAddress line. If you want to listen on
+multiple IP addresses, use comma-separated addresses, like this:
+
+    agentAddress  10.10.10.10,44.44.44.44,127.0.0.1
     
     {{%/notice%}}
 
@@ -206,7 +206,7 @@ settings, do the following:
     
         cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-### Setting up the Custom Cumulus Networks MIBs</span>
+### Setting up the Custom Cumulus Networks MIBs
 
 No changes are required in the `/etc/snmp/snmpd.conf` file on the
 switch, in order to support the custom Cumulus Networks MIBs. The
@@ -222,12 +222,10 @@ However, several files need to be copied to the server, in order for the
 custom Cumulus MIB to be recognized on the destination NMS server.
 
   - `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt`
-
   - `/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt`
-
   - `/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt`
 
-### <span id="src-5868926_SNMPMonitoring-public_community" class="confluence-anchor-link"></span>Setting the Community String</span>
+### Setting the Community String
 
 The `snmpd` authentication for versions 1 and 2 is disabled by default
 in Cumulus Linux. This password (called a community string) can be
@@ -284,7 +282,7 @@ To enable read-only querying by a client:
     
         cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-### <span id="src-5868926_SNMPMonitoring-quagga" class="confluence-anchor-link"></span>Enabling SNMP Support for Quagga</span>
+### Enabling SNMP Support for Quagga
 
 As of Cumulus Linux 3.3.1, SNMP is now supported for
 [Quagga](/version/cumulus-linux-332/Layer-Three/Quagga-Overview). To
@@ -326,10 +324,9 @@ To enable SNMP support for Quagga, do the following:
         agentXPerms 777 777 
     
     {{%notice note%}}
-    
-    The rocommunity password is defined
-    [above](#src-5868926_SNMPMonitoring-public_community).
-    
+
+The rocommunity password is defined [above](#setting-the-community-string).
+
     {{%/notice%}}
 
 3.  Optionally, you need to uncomment parts of `snmpd.conf` if you
@@ -383,7 +380,7 @@ first from the switch itself with:
 
     cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost .1.3.6.1.2.1.14
 
-### Enabling the .1.3.6.1.2.1 Range</span>
+### Enabling the .1.3.6.1.2.1 Range
 
 Some MIBs, including storage information, are not included by default in
 `snmpd.conf` in Cumulus Linux. This results in some default views on
@@ -435,7 +432,7 @@ To enable the .1.3.6.1.2.1 range:
     
         cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-### Configuring SNMPv3</span>
+### Configuring SNMPv3
 
 Since community strings in versions 1 and 2c are sent in the clear,
 SNMPv3 is often used to enable authentication and encryption. SNMPv3 was
@@ -515,11 +512,11 @@ creating cleartext passwords is the following:
     and DES, and the next with SHA and AES.
     
     {{%notice note%}}
-    
-    The minimum password length is 8 characters and the arguments `-a`
-    and `-x` to `net-snmp-config` have different meanings than they do
-    for `snmpwalk`.
-    
+
+The minimum password length is 8 characters and the arguments `-a`
+and `-x` to `net-snmp-config` have different meanings than they do
+for `snmpwalk`.
+
     {{%/notice%}}
     
         cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a md5authpass -x desprivpass -A MD5 -X DES userMD5withDES 
@@ -552,7 +549,7 @@ above.)
     snmpwalk -v 3 -u userMD5withDES -l authPriv -a MD5 -x DES -A md5authpass -X desprivpass localhost 1.3.6.1.2.1.1.1
     snmpwalk -v 3 -u userSHAwithAES -l authPriv -a SHA -x AES -A shaauthpass -X aesprivpass localhost 1.3.6.1.2.1.1.1
 
-## snmpwalk a Switch from Another Linux Device</span>
+## snmpwalk a Switch from Another Linux Device
 
 One of the most important ways to troubleshoot is to `snmpwalk` the
 switch from another Linux device that can reach the Cumulus Linux
@@ -582,11 +579,11 @@ network is used.
     as the SNMP agent (`snmpd`) can benefit from having MIBs installed.
     
     {{%notice note%}}
-    
-    Enabling monitoring for traps with **defaultMonitors** and
-    **monitor** (when referring to OIDs by name) require MIBs to be
-    installed on the switch.
-    
+
+Enabling monitoring for traps with **defaultMonitors** and
+**monitor** (when referring to OIDs by name) require MIBs to be
+installed on the switch.
+
     {{%/notice%}}
     
     Install the `snmp` and `snmp-mibs-downloader` packages:
@@ -634,7 +631,7 @@ Any information gathered here should verify that `snmpd` is running
 correctly on the Cumulus Linux side, reducing locations where a problem
 may reside.
 
-### Troubleshooting Tips Table for snmpwalks</span>
+### Troubleshooting Tips Table for snmpwalks
 
 <table>
 <colgroup>
@@ -672,9 +669,9 @@ Is there an <code>iptables</code> rule blocking? Is the <code>snmpwalk</code> be
 </tbody>
 </table>
 
-## SNMP Traps</span>
+## SNMP Traps
 
-### Generating Event Notification Traps</span>
+### Generating Event Notification Traps
 
 The Net-SNMP agent provides a method to generate SNMP trap events via
 the Distributed Management (DisMan) Event MIB for various system events,
@@ -690,7 +687,7 @@ including:
 Iin order to enable specific types of traps, you need to create the
 following configurations in `/etc/snmp/snmpd.conf`.
 
-#### Defining Access Credentials</span>
+#### Defining Access Credentials
 
 An SNMPv3 username is required to authorize the DisMan service even
 though you are not configuring SNMPv3 here. The example `snmpd.conf`
@@ -721,7 +718,7 @@ should be used, not with actually setting this user up.
 
 {{%/notice%}}
 
-#### Defining Trap Receivers</span>
+#### Defining Trap Receivers
 
 The following configuration defines the trap receiver IP address where
 SNMPv2 traps are sent:
@@ -753,7 +750,7 @@ Once configured, restart the `snmpd` service to apply the changes.
 
     cumulus@switch:~$ sudo systemctl restart snmpd.service
 
-#### Sourcing Traps from a Different Source IP Address</span>
+#### Sourcing Traps from a Different Source IP Address
 
 When client SNMP programs (such as `snmpget`, `snmpwalk` or `snmptrap`)
 are run from the command line, or when `snmpd` is configured to send a
@@ -776,7 +773,7 @@ For more information, read the the `snmp.conf` man page:
                   mation about the format of addresses.
                   This value is also used by snmpd when generating notifications.
 
-#### Monitoring Fans, Power Supplies and Transformers</span>
+#### Monitoring Fans, Power Supplies and Transformers
 
 The usual behavior of an SNMP agent (`snmpd`) is to wait for incoming
 SNMP requests and respond to them. If no requests are received, an agent
@@ -892,17 +889,16 @@ and adjusting the values:
         monitor  -r 10  -o entPhysicalName  "Sensor Status Failure"  entPhySensorOperStatus > 1
     
     {{%notice note%}}
-    
-    The OID name can be used if the `snmp-mibs-download` package is
-    installed.
-    
+
+The OID name can be used if the `snmp-mibs-download` package is installed.
+
     {{%/notice%}}
     
     {{%notice note%}}
-    
-    The `entPhySensorOperStatus` integer can be found by walking the
-    `entPhysicalName` table.
-    
+
+The `entPhySensorOperStatus` integer can be found by walking the
+`entPhysicalName` table.
+
     {{%/notice%}}
 
   - To get all sensor information, run `snmpwalk` on the entPhysicalName
@@ -927,7 +923,7 @@ and adjusting the values:
         iso.3.6.1.2.1.47.1.1.1.1.7.110000001 = STRING: "PSU1"
         iso.3.6.1.2.1.47.1.1.1.1.7.110000002 = STRING: "PSU2"
 
-#### Enabling MIB to OID Translation</span>
+#### Enabling MIB to OID Translation
 
 MIB names can be used instead of OIDs, by installing the
 `snmp-mibs-downloader`, to download SNMP MIBs to the switch prior to
@@ -971,7 +967,7 @@ enabling traps. This greatly improves the readability of the
     
         #deb http://ftp.us.debian.org/debian/ jessie main non-free
 
-#### Configuring Link Up/Down Notifications</span>
+#### Configuring Link Up/Down Notifications
 
 The `linkUpDownNotifications` directive is used to configure link
 up/down notifications when the operational status of the link changes.
@@ -987,7 +983,7 @@ for details.
 
 {{%/notice%}}
 
-#### Configuring Temperature Notifications</span>
+#### Configuring Temperature Notifications
 
 Temperature sensor information for each available sensor is maintained
 in the the lmSensors MIB. Each platform may contain a different number
@@ -1028,7 +1024,7 @@ used to monitor only temperature sensor three at five minute intervals.
 
     monitor -I -r 300 lmTemSensor3 -o lmTempSensorsDevice.3 lmTempSensorsValue.3 > 68000
 
-#### Configuring Free Memory Notifications</span>
+#### Configuring Free Memory Notifications
 
 You can monitor free memory using the following directives. The example
 below generates a trap when free memory drops below 1,000,000KB. The
@@ -1036,7 +1032,7 @@ free memory trap also includes the amount of total real memory:
 
     monitor MemFreeTotal -o memTotalReal memTotalFree <  1000000
 
-#### Configuring Processor Load Notifications</span>
+#### Configuring Processor Load Notifications
 
 To monitor CPU load for 1, 5 or 15 minute intervals, use the `load`
 directive in conjunction with the `monitor` directive. The following
@@ -1045,7 +1041,7 @@ example will generate a trap when the 1 minute interval reaches 12%, the
 
     load 12 10 5
 
-#### Configuring Disk Utilization Notifications</span>
+#### Configuring Disk Utilization Notifications
 
 To monitor disk utilization for all disks, use the `includeAllDisks`
 directive in conjunction with the `monitor` directive. The example code
@@ -1054,14 +1050,14 @@ below generates a trap when a disk is 99% full:
     includeAllDisks 1%
     monitor -r 60 -o dskPath -o DiskErrMsg "dskTable" diskErrorFlag !=0
 
-#### Configuring Authentication Notifications</span>
+#### Configuring Authentication Notifications
 
 To generate authentication failure traps, use the `authtrapenable`
 directive:
 
     authtrapenable 1
 
-### snmptrapd.conf</span>
+### snmptrapd.conf
 
 To **receive** SNMP traps, the Net-SNMP trap daemon can be used on the
 switch. The configuration file, `/etc/snmp/snmptrapd.conf`, is used to
@@ -1119,7 +1115,7 @@ about specific configuration options within the file, look at the
     # defines the actions and the community string 
     authCommunity log,execute,net public
 
-## <span id="src-5868926_SNMPMonitoring-supported_mibs" class="confluence-anchor-link"></span>Supported MIBs</span>
+## Supported MIBs
 
 Below are the MIBs supported by Cumulus Linux, as well as suggested uses
 for them. The overall Cumulus Linux MIB is defined in
@@ -1142,9 +1138,8 @@ for them. The overall Cumulus Linux MIB is defined in
 <td><p>The dot1dBasePortEntry and dot1dBasePortIfIndex tables in the BRIDGE-MIB and dot1qBase, dot1qFdbEntry, dot1qTpFdbEntry, dot1qTpFdbStatus, and the dot1qVlanStaticName tables in the Q-BRIDGE-MIB tables. You must uncomment the <code>bridge_pp.py pass_persist</code> script in <code>/etc/snmp/snmpd.conf</code>.</p></td>
 </tr>
 <tr class="even">
-<td><p>BGP4, OSPF, OSPFV3, RIPv2</p>
-<span id="src-5868926_SNMPMonitoring-bgp4"></span></td>
-<td><p>Quagga SNMP support may be enabled to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-4273). To enable this support, see the <a href="#src-5868926_SNMPMonitoring-quagga">Quagga section</a> above.</p></td>
+<td><p>BGP4, OSPF, OSPFV3, RIPv2</p></td>
+<td><p>Quagga SNMP support may be enabled to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-4273). To enable this support, see the <a href="#enabling-snmp-support-for-quagga">Quagga section</a> above.</p></td>
 </tr>
 <tr class="odd">
 <td><p>CUMULUS-COUNTERS-MIB</p></td>
@@ -1187,7 +1182,7 @@ pass_persist .1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py</code></pr
 <p>{{%notice note%}}</p>
 <p>The IF-MIB cache is disabled by default. To enable the counter to reflect traffic statistics, remove the <code>-y</code> option from the <code>SNMPDOPTS</code> line in the <code>/etc/default/snmpd</code> file. The example below first shows the original line, commented out, then the modified line without the <code>-y</code> option:</p>
 <pre><code>cumulus@switch:~$ cat /etc/default/snmpd
-# SNMPDOPTS=&#39;-y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid&#39;
+\# SNMPDOPTS=&#39;-y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid&#39;
 SNMPDOPTS=&#39;-LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid&#39;</code></pre>
 <p>{{%/notice%}}</p></td>
 </tr>
@@ -1205,7 +1200,7 @@ SNMPDOPTS=&#39;-LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pi
 </tr>
 <tr class="odd">
 <td><p><a href="http://www.mibdepot.com/cgi-bin/getmib3.cgi?i=1&amp;n=LLDP-MIB&amp;r=cisco&amp;f=LLDP-MIB-V1SMI.my&amp;v=v1&amp;t=tree" class="external-link">LLDP</a></p></td>
-<td><p>L2 neighbor info from <code>lldpd</code> (note, you need to <a href="Link-Layer-Discovery-Protocol.html#src-5868965_LinkLayerDiscoveryProtocol-snmp">enable the SNMP subagent</a> in LLDP). <code>lldpd</code> needs to be started with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
+<td><p>L2 neighbor info from <code>lldpd</code> (note, you need to <a href="/version/cumulus-linux-332/Layer-One-and-Two/Link-Layer-Discovery-Protocol/#enabling-the-snmp-subagent-in-lldp">enable the SNMP subagent</a> in LLDP). <code>lldpd</code> needs to be started with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
 </tr>
 <tr class="even">
 <td><p><a href="http://support.ipmonitor.com/mibs_byoidtree.aspx?oid=.1.3.6.1.4.1.2021.13.16" class="external-link">LM-SENSORS MIB</a></p></td>
@@ -1276,11 +1271,3 @@ The ENTITY MIB does not currently show the chassis information in
 Cumulus Linux.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

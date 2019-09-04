@@ -23,15 +23,15 @@ decapsulated will already have passed the portion of the ASIC capable of
 reading the IP address lookup (for example, VXLAN lookup happens before
 IP address lookup). As of Cumulus Linux 3.2.1 even ASICs that are
 capable of VXLAN routing (such as the Broadcom Trident II+ or Mellanox
-Spectrum) also require a hyperloop. Please contact your [sales
-team](mailto:sales@cumulusnetworks.com) if there is any confusion. Refer
-to the [Cumulus Networks Hardware Compatibility
-List](https://cumulusnetworks.com/hcl) to determine which ASIC is
-running on the switch.
+Spectrum) also require a hyperloop. Please contact your 
+[sales team](mailto:sales@cumulusnetworks.com) if there is any confusion. 
+Refer to the 
+[Cumulus Networks Hardware Compatibility List](https://cumulusnetworks.com/hcl) 
+to determine which ASIC is running on the switch.
 
 **This limitation will not exist in future ASICs.** For example, the
-Trident II+ has the [RIOT (Routing In/Out of
-Tunnels)](https://www.broadcom.com/press/release.php?id=s907324)
+Trident II+ has the 
+[RIOT (Routing In/Out of Tunnels)](https://www.broadcom.com/press/release.php?id=s907324)
 feature.
 
 {{%notice warning%}}
@@ -41,24 +41,19 @@ hyperloop instead.
 
 {{%/notice%}}
 
-## <span id="src-5869109_VXLANHyperloop-reqs" class="confluence-anchor-link"></span>Requirements</span>
+## Requirements
 
   - VXLAN hyperloop only works on an ASIC capable of encapsulating and
     decapsulating VXLAN traffic, which includes:
     
       - Broadcom Tomahawk
-    
       - Broadcom Trident II
-    
       - Broadcom Trident II+
-    
       - Mellanox Spectrum
 
   - VXLAN hyperloop is supported on Cumulus Linux 3.2.1 and later. Make
-    sure to [upgrade to the latest
-    version](/version/cumulus-linux-332/Installation-Management/Upgrading-Cumulus-Linux)
+    sure to [upgrade to the latest version](/version/cumulus-linux-332/Installation-Management/Upgrading-Cumulus-Linux)
     of Cumulus Linux.
-
   - If you are using
     [EVPN](/version/cumulus-linux-332/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN),
     you must be running Quagga version eau8. Use a `dpkg -l` to check
@@ -72,12 +67,11 @@ hyperloop instead.
         +++-========================-=================-=================-=====================================================
         ii  quagga                   1.0.0+cl3eau8     amd64             BGP/OSPF/RIP routing daemon
     
-    If you are not running the right version of Quagga for EVPN, [follow
-    these
-    directions](/version/cumulus-linux-332/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
+    If you are not running the right version of Quagga for EVPN, 
+    [follow these directions](/version/cumulus-linux-332/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
     to upgrade.
 
-## Hyperloop Use Cases</span>
+## Hyperloop Use Cases
 
 Without native VXLAN routing support, external gateways, firewalls or
 routers are attached to a VTEP do the routing, as in the diagram below.
@@ -101,7 +95,6 @@ With integrated VXLAN routing and bridging using a hyperloop:
   - You can avoid having to use external gateways/routers. A hyperloop
     gives you the ability to do integrated VXLAN routing on a non-RIOT
     (VXLAN routing) ASIC.
-
   - If applications are hosted on the switch and need layer 3
     connectivity, then a hyperloop can be used to provide reachability
     for this application as well.
@@ -111,19 +104,15 @@ You should **not** use a hyperloop under these circumstances:
   - If the external firewall is used for routing and security (as shown
     above), then there is no need for an external loopback as the
     firewall takes care of routing across subnets.
-
   - If bandwidth for the traffic to be routed is so large that you
     cannot provision such high bandwidth using a hyperloop, then you
     should have dedicated gateways connected to exit leafs instead.
-
   - If north-south routing involves edge router functionality, then that
     functionality cannot be provided by leaf switches; rather, it
     requires dedicated edge gateways to achieve the same result, like
     NAT.
 
-### <span id="src-5869109_VXLANHyperloop-hyperloop" class="confluence-anchor-link"></span>Exiting a VXLAN with a Hyperloop</span>
-
-### </span>
+### Exiting a VXLAN with a Hyperloop
 
 This limitation means a physical cable must be attached from one port on
 leaf1 to another port on leaf1. One port is a layer 3 port while the
@@ -190,11 +179,11 @@ following on exit01:
         vxlan-local-tunnelip 10.0.0.11
         bridge-access 200
 
-### Packet Flow Diagram</span>
+### Packet Flow Diagram
 
 {{% imgOld 1 %}}
 
-### Trident II and Tomahawk switchd Flag</span>
+### Trident II and Tomahawk switchd Flag
 
 In order for the Broadcom Trident II and Tomahawk ASICs to be able to
 have a hyperloop work correctly, you must configure the following
@@ -223,13 +212,12 @@ on this specific ASIC type.
 
 {{%/notice%}}
 
-## VXLAN Hyperloop Troubleshooting Matrix</span>
+## VXLAN Hyperloop Troubleshooting Matrix
 
 Before you follow these troubleshooting steps, make sure your switch
-meets the [requirements specified
-above](#src-5869109_VXLANHyperloop-reqs).
+meets the [requirements specified above](#requirements).
 
-### Are HER (Head End Replication) entries being programmed into the bridge fdb table?</span>
+### Are HER (Head End Replication) entries being programmed into the bridge fdb table?
 
 Check for 00:00:00:00:00:00 entries for each VXLAN using `bridge fdb
 show`:
@@ -279,33 +267,29 @@ or use
 If you are not getting HER entries, there are some steps you can try:
 
   - Make sure you are using
-    [LNV](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
+    [LNV](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
     **OR** EVPN. You cannot use both at the same time.
-
   - Make sure you are not trying to use any VNI/VXLAN values over 65535.
     For example, VXLAN 70000 is not supported in Cumulus Linux 3.3.
-
   - Make sure you are not using the reserved VLAN range; by default it
     is 3000-3999. This range is stored in the `resv_vlan_range` variable
     in the `/etc/cumulus/switchd.conf` file.
 
-### If you are using an MLAG VTEP (dual attached), is it set up correctly?</span>
+### If you are using an MLAG VTEP (dual attached), is it set up correctly?
 
 Check the outputs. Often, when VXLAN is considered to be non-working,
 it's actually due to an incorrect setup on the server OS, whether it's
 Ubuntu, Microsoft Windows or RHEL.  
-  
 
 {{% imgOld 2 %}}
 
-### Can you ping from host to host on the same VXLAN?</span>
+### Can you ping from host to host on the same VXLAN?
 
 For example, in the following network diagram, can server01 ping to
 server03 on any of the VLANs (VLAN1, VLAN100, VLAN200)?  
 
 {{% imgOld 3 %}}
 
-  
 If you can't even ping from server to server this is not a VXLAN gateway
 problem, but a problem with the network itself. This must be fixed prior
 to making a VXLAN gateway, with or without a hyperloop.
@@ -317,7 +301,7 @@ connectivity on the same VXLAN.
 
 {{%/notice%}}
 
-### Is the SVI on a physical interface or on a traditional bridge? </span>
+### Is the SVI on a physical interface or on a traditional bridge? 
 
 {{%notice warning%}}
 
@@ -326,7 +310,7 @@ a traditional bridge. Please follow the configuration guidelines above.
 
 {{%/notice%}}
 
-### Is the port plugged in where it is supposed to be plugged in?</span>
+### Is the port plugged in where it is supposed to be plugged in?
 
 Use `lldpctl` or `net show lldp` to see what ports are hooked up:
 
@@ -345,16 +329,7 @@ Use `lldpctl` or `net show lldp` to see what ports are hooked up:
 Notice above that swp53 and swp54 are a loopback cable (hyperloop) where
 it is connected to itself.
 
-### Is the VRR MAC address unique per subnet?</span>
+### Is the VRR MAC address unique per subnet?
 
-Make sure that [VRR is configured
-correctly](/version/cumulus-linux-332/Layer-One-and-Two/Virtual-Router-Redundancy-VRR/)
+Make sure that [VRR is configured correctly](/version/cumulus-linux-332/Layer-One-and-Two/Virtual-Router-Redundancy-VRR/)
 and that each MAC address is unique per VLAN.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -64,7 +64,38 @@ $(document).ready(function() {
   
     document.body.appendChild(script);
   }
-  
+	
+	// set local storage value to cache default layout on load
+	if(window.localStorage.layout) {
+		var mainTag = document.querySelector('main');
+
+		document.querySelectorAll('.screen-layout a').forEach(anchor => {
+			if (anchor.classList.contains('active')){
+				anchor.classList.remove('active')
+			}
+			if(anchor.classList.contains(window.localStorage.trigger)) {
+				anchor.classList.add('active')
+			}
+		});
+		mainTag.classList.add(window.localStorage.layout)
+	}else {
+		var mainTag = document.querySelector('main');
+
+		window.localStorage.setItem("trigger", "default");
+
+		document.querySelectorAll('.screen-layout a').forEach(anchor => {
+			if (anchor.classList.contains('active')){
+				anchor.classList.remove('active')
+			}
+			if(anchor.classList.contains(window.localStorage.trigger)) {
+				anchor.classList.add('active')
+			}
+		});
+
+		window.localStorage.setItem("layout", "default");
+		mainTag.classList.add(window.localStorage.layout)
+	}
+	
 
   // find all the svg elements under the div with class screen-layout and add the Click Event Listener to them
   // PS: do not add the EventListener to the a tag, since it causes the div to get the class of 'active'
@@ -75,7 +106,7 @@ $(document).ready(function() {
   	// 3. set the class of the event target (svg element) parentnode (a tag) to 'active' if it does not already have it 
   	//														(i.e. when selecting the same layout)
   	node.addEventListener('click', function(e) {
-      document.querySelectorAll('.screen-layout a').forEach(anchor => {;
+      document.querySelectorAll('.screen-layout a').forEach(anchor => {
         if (anchor.classList.contains('active')){
           anchor.classList.remove('active')
         }
@@ -91,12 +122,20 @@ $(document).ready(function() {
   			}
   		});
   		if (e.target.parentNode.classList.contains('sb-right')) {
+				window.localStorage.setItem('trigger','sb-right');
+				window.localStorage.setItem('layout','hide-left');
   			mainTag.classList.add('hide-left');
   		} else if (e.target.parentNode.classList.contains('sb-left')) {
+				window.localStorage.setItem('trigger','sb-left');
+				window.localStorage.setItem('layout','hide-right');
   			mainTag.classList.add('hide-right');
   		} else if (e.target.parentNode.classList.contains('no-sb')) {
+				window.localStorage.setItem('trigger','no-sb');
+				window.localStorage.setItem('layout','hide-both');
   			mainTag.classList.add('hide-both');
   		} else {
+				window.localStorage.setItem('trigger','default');
+				window.localStorage.setItem('layout','default');
   			mainTag.classList.add('default');
   		}
   		e.preventDefault();

@@ -32,30 +32,45 @@
   },false);
 
   document.addEventListener('DOMContentLoaded', function () {
-    let markdown = document.querySelector(".markdown");
-    let heading = markdown.querySelectorAll("h1, h2, h3, h4");
-    let headings = {};
-    let tocNav = document.querySelector('.book-toc');
+    var heading = document.querySelectorAll(".markdown h1, h2, h3, h4");
+    var headings = {};
+    var i = 0;
 
-    if (tocNav != null && tocNav.length > 0) {
-      tocNav.querySelector('.book-toc nav a:first-of-type').setAttribute('class','active');
-    }
-    
     Array.prototype.forEach.call(heading, function(e) {
-      headings[e.id] = e.offsetTop
+      headings[e.id] = e.offsetTop;
     });
+    
+    if( document.querySelector('.book-toc') ) {
+      document.querySelector('.book-toc #TableOfContents a:first-of-type').setAttribute('class', 'active');
+    }
 
     window.onscroll = function() {
-      let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
-      let i = 0;
+      var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    
       for (i in headings) {
-        if (headings[i] <= scrollPosition - 230 && headings[i] !== 0) {
-          tocNav.querySelectorAll('a').forEach(node => {
-            node.setAttribute('class', '');
-          })
-          tocNav.querySelector('.book-toc nav a[href="#'+i+'"]').setAttribute('class','active');
+        if (headings[i] <= scrollPosition) {
+          // you're at the bottom of the page
+          if ((window.innerHeight + scrollPosition) >= document.body.offsetHeight) {
+            var group = [];
+            var links =  document.querySelectorAll('.book-toc #TableOfContents a');
+
+            links.forEach(link => {
+              group.push(link);
+            })
+
+            document.querySelector('.book-toc #TableOfContents .active').setAttribute('class', ' ');
+            group[group.length - 1].setAttribute('class', 'active')
+           
+          }else {
+            document.querySelector('.book-toc #TableOfContents .active').setAttribute('class', ' ');
+            document.querySelector('.book-toc #TableOfContents a[href*="#'+i+'"]').setAttribute('class', 'active')
+          }
+
         }
       }
     };
+
   });
 })()
+
+

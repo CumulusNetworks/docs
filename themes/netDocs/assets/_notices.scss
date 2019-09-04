@@ -25,10 +25,6 @@ div.notices > *:first-child:after {
   font-family: $cumulus-font-family;
   font-size: initial;
   font-weight: bold;
-
-
-
-
 }
 
 //Warning Notice Block
@@ -50,12 +46,8 @@ div.notices.warning > *:first-child:before{
   top: 5px;
   left: 5px;
   right: 10px;
-
   height: 20px;
   width: 20px;
-
-
-
 }
 div.notices.warning > *:first-child:after{
   position: absolute;
@@ -80,9 +72,6 @@ div.notices.tip > *:first-child:before{
   top: 5px;
   left: 5px;
   right: 10px;
-
-
-
 }
 div.notices.tip > *:first-child:after{
   position: absolute;
@@ -105,7 +94,6 @@ div.notices.note {
     ol {
       color: $cn-limited-spruce;
       font-size: .882rem;
-      padding: 0;
     }
 }
 
@@ -116,7 +104,6 @@ div.notices.note > *:first-child:before{
   top: 5px;
   left: 5px;
   right: 10px;
-
 }
 div.notices.note > *:first-child:after{
   position: absolute;
@@ -134,7 +121,6 @@ div.notices.info {
     background-color: #FFF2DB;
     border: 3px solid #F0B37E;
     border-radius:5px;
-
 }
 
 div.notices.info > *:first-child:before{
@@ -144,8 +130,6 @@ div.notices.info > *:first-child:before{
   top: 5px;
   left: 5px;
   right: 10px;
-
-
 }
 div.notices.info > *:first-child:after{
   position: absolute;

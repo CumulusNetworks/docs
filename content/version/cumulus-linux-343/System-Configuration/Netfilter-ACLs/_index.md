@@ -455,10 +455,10 @@ entry is one of the following:
         -A FORWARD --in-interface swp1s0,swp1s1 --out-interface swp1s2,swp1s3 -p icmp -j ACCEPT
 
 - An entry with multiple L4 port ranges is split into one rule for
-  each range (listed after `--dports` below). For example, this entry
+  each range (listed after `--dport` below). For example, this entry
   splits into two rules:
 
-        -A FORWARD --in-interface swp+ -p tcp -m multiport --dports 1050:1051,1055:1056 -j ACCEPT
+        -A FORWARD --in-interface swp+ -p tcp -m multiport --dport 1050:1051,1055:1056 -j ACCEPT
 
     {{%notice note%}}
 

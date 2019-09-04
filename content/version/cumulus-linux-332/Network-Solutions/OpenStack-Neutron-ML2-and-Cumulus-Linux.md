@@ -15,12 +15,12 @@ siteSlug: cumulus-linux-332
 
 **Early Access Feature**
 
-The REST API component is an [early access
-feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
+The REST API component is an 
+[early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
 in Cumulus Linux 3.3. Before you can install the API, you must enable
 the Early Access repository. For more information about the Cumulus
-Linux repository, read [this knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/217422127).
+Linux repository, read 
+[this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/217422127).
 
 {{%/notice%}}
 
@@ -36,22 +36,21 @@ The plugin supports configuration caching. The cached configuration is
 replayed back to the Cumulus Linux switch from Cumulus ML2 mechanism
 driver when a switch or process restart is detected.
 
-In order to deploy [OpenStack
-ML2](https://wiki.openstack.org/wiki/Neutron/ML2) in a network with
+In order to deploy 
+[OpenStack ML2](https://wiki.openstack.org/wiki/Neutron/ML2) in a network with
 Cumulus Linux switches, you need to install two packages:
 
   - A REST API, which you install on your Cumulus Linux switches. It is
     in the Cumulus Linux [early
     access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
     repository.
-
   - The Cumulus Networks Modular Layer 2 (ML2) mechanism driver for
     OpenStack, which you install on the OpenStack Neutron controller
     node. It's available as a Python package from upstream.
 
 {{% imgOld 0 %}}
 
-## Installing and Configuring the REST API</span>
+## Installing and Configuring the REST API
 
 To install the `python-falcon` and `python-cumulus-restapi` packages,
 follow these instructions:
@@ -88,7 +87,7 @@ follow these instructions:
 Additional REST API calls have been added to support the configuration
 of bridge using the bridge name instead of network ID.
 
-## Installing and Configuring the Cumulus Networks Modular Layer 2 Mechanism Driver</span>
+## Installing and Configuring the Cumulus Networks Modular Layer 2 Mechanism Driver
 
 You need to install the Cumulus Networks ML2 mechanism driver on your
 Neutron host, which is available upstream:
@@ -116,25 +115,20 @@ You configure them in the
 
   - `switches` — The list of Cumulus Linux switches connected to the
     Neutron host. Specify a list of IP addresses.
-
   - `scheme` — The scheme (for example, HTTP) for the base URL for the
     ML2 API.
-
   - `protocol_port` — The protocol port for the bast URL for the ML2
     API. The default value is *8000*.
-
   - `sync_time` — A periodic time interval for polling the Cumulus Linux
     switch. The default value is *30* seconds.
-
   - `spf_enable` — Enables/disables SPF for the bridge. The default
     value is *False*.
-
   - `new_bridge` — Enables/disables [VLAN-aware bridge
     mode](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
     for the bridge configuration. The default value is *False*, so a
     traditional mode bridge is created.
 
-## Demo</span>
+## Demo
 
 A demo involving OpenStack with Cumulus Linux is available in the
 [Cumulus Networks knowledge
@@ -142,11 +136,3 @@ base](https://support.cumulusnetworks.com/hc/en-us/articles/226174767).
 It demonstrates dynamic provisioning of VLANs using a virtual simulation
 of two Cumulus VX leaf switches and two CentOS 7 (RDO Project) servers;
 collectively they comprise an OpenStack environment.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

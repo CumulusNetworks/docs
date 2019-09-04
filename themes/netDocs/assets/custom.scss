@@ -790,6 +790,11 @@ body {
 }
 
 main {
+
+  aside {
+    display: none;
+  }
+
   &.hide-both {
     aside {
       display: none;
@@ -822,6 +827,7 @@ main {
         display: none;
       }
       &.book-menu {
+        display: block;
         flex: 1;
         @media #{$sm-up} {
           flex: 0 0 15.53rem;
@@ -1130,10 +1136,12 @@ div.notices.tip>*:first-child:after {
 
 .book-toc {
   padding: 0;
+  position: relative;
   >.toc {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
-    height: 100vh;
+    // height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
   }

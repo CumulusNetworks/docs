@@ -18,42 +18,35 @@ traffic is based on the inner header or the overlay tenant IP address.
 Features in the early access release of VXLAN routing include:
 
   - Centralized and asymmetric routing
-
   - [VRF](/version/cumulus-linux-332/Layer-Three/Virtual-Routing-and-Forwarding-VRF)
     support for overlay networks
-
   - Anycast routing
 
 {{%notice warning%}}
 
-VXLAN routing is an [early access
-feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
+VXLAN routing is an [early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
 in Cumulus Linux. Before you can install the VXLAN routing packages, you
 must enable the Early Access repository. For more information about the
-Cumulus Linux repository, read [this knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/217422127).
+Cumulus Linux repository, read [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/217422127).
 
 VXLAN routing works on Broadcom Trident II+ switches only.
 
 Because it is an EA feature, it has these limitations:
 
   - Overlay ECMP
-
   - EVPN control plane to exchange topology and routes
-
   - Symmetric routing
 
 {{%/notice%}}
 
-## Installing the VXLAN Routing Package</span>
+## Installing the VXLAN Routing Package
 
-To install the VXLAN routing package on a Cumulus Linux switch, [follow
-these
-steps](https://support.cumulusnetworks.com/hc/en-us/articles/202933878),
+To install the VXLAN routing package on a Cumulus Linux switch, 
+[follow these steps](https://support.cumulusnetworks.com/hc/en-us/articles/202933878),
 using *cumulus-vxlan-routing* as the `EA_PACKAGENAME` in step 3. This
 article also has steps for removing the package.
 
-## Configuring VXLAN Routing</span>
+## Configuring VXLAN Routing
 
 1.  Configure VXLAN routing between two overlay subnets.:
     
@@ -137,17 +130,14 @@ These commands create the following configuration in the
         vxlan-id 11001
         vxlan-local-tunnelip 27.0.0.15
 
-## Viewing VXLAN Routing Information</span>
+## Viewing VXLAN Routing Information
 
 You can use the following commands to display VXLAN routing-related
 information:
 
   - ip link show dev \<DEVICE\>
-
   - ip route
-
   - ip neighbor
-
   - bridge fdb show
 
 To get basic information about a VXLAN, use `ip link show`:
@@ -161,7 +151,6 @@ To view the routing table, use `ip route`:
     cumulus@switch:~$ ip route
     45.0.0.0/26 dev vlan1000 proto kernel  scope link  src 45.0.0.16 
     45.0.0.64/26 dev vlan1001  proto kernel  scope link  src 45.0.0.80
-     
 
 To view the neighbor table, run `ip neighbor`:
 
@@ -177,11 +166,3 @@ To view the forwarding database, use `bridge fdb show`:
     ba:08:bc:60:b2:15 dev VNI-11001 master bridge permanent
     00:00:5e:00:01:01 dev bridge vlan 1001 master bridge permanent
     00:00:5e:00:01:01 dev bridge vlan 1000 master bridge permanent
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

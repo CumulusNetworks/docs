@@ -14,12 +14,9 @@ siteSlug: cumulus-linux-332
 In VXLAN-based networks, there are a range of complexities and
 challenges in determining the destination *virtual tunnel endpoints*
 (VTEPs) for any given VXLAN. At scale, various solutions, including
-[Lightweight Network
-Virtualization](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
-(LNV), controller-based options like [Midokura
-MidoNet](/version/cumulus-linux-332/Network-Virtualization/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
-or [VMware
-NSX](/version/cumulus-linux-332/Network-Virtualization/Integrating-with-VMware-NSX)
+[Lightweight Network Virtualization](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
+(LNV), controller-based options like [Midokura MidoNet](/version/cumulus-linux-332/Network-Virtualization/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
+or [VMware NSX](/version/cumulus-linux-332/Network-Virtualization/Integrating-with-VMware-NSX)
 and even new standards like
 [EVPN](/version/cumulus-linux-332/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 are attempts to address these complexities, however do retain their own
@@ -33,7 +30,7 @@ configuration, since you are simply mapping which VTEPs are in a
 particular VNI, so you can avoid the tedious process of defining
 connections to every VLAN on every other VTEP on every other rack.
 
-## Requirements</span>
+## Requirements
 
 While they should be interoperable with other vendors, Cumulus Networks
 supports static VXLAN tunnels only on switches in the [Cumulus Linux
@@ -45,36 +42,31 @@ For a basic VXLAN configuration, you should ensure that:
 
   - The VXLAN has a network identifier (VNI); do not use 0 or 16777215
     as the VNI ID, as they are reserved values under Cumulus Linux.
-
   - The VXLAN link and local interfaces are added to bridge to create
     the association between port, VLAN and VXLAN instance.
-
   - Each bridge on the switch has only one VXLAN interface. Cumulus
     Linux does not support more than one VXLAN link in a bridge.
-
   - The VXLAN registration daemon (`vxrd`) is not running. Static VXLAN
     tunnels do not interoperate with LNV or EVPN. If vxrd is running,
     stop it with:
     
         cumulus@switch:~ sudo systemctl stop vxrd.service
 
-## Example Configuration</span>
+## Example Configuration
 
 The following topology is used in this chapter. Each IP address
 corresponds to the switch's loopback address:
 
 {{% imgOld 0 %}}
 
-## Configuring Static VXLAN Tunnels</span>
+## Configuring Static VXLAN Tunnels
 
 To configure static VXLAN tunnels, for each leaf you need to do the
 following:
 
   - Specify an IP address for the loopback
-
   - Create a VXLAN interface, using the loopback address for the local
     tunnel IP address
-
   - Create the tunnels by configuring the remote IP address to each
     other leaf switch's loopback address
 
@@ -273,7 +265,7 @@ iface vni-10
 </tbody>
 </table>
 
-## Verifying the Configuration</span>
+## Verifying the Configuration
 
 Once you configure all the leaf switches, check for replication entries:
 
@@ -281,11 +273,3 @@ Once you configure all the leaf switches, check for replication entries:
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.14 self permanent
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.12 self permanent
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.13 self permanent
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

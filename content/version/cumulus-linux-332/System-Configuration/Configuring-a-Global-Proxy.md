@@ -11,9 +11,9 @@ version: 3.3.2
 imgData: cumulus-linux-332
 siteSlug: cumulus-linux-332
 ---
-You configure [global HTTP and HTTPS
-proxies](https://wiki.archlinux.org/index.php/proxy_settings) in the
-`/etc/profile.d/` directory of Cumulus Linux. To do so, set the
+You configure 
+[global HTTP and HTTPS proxies](https://wiki.archlinux.org/index.php/proxy_settings) 
+in the `/etc/profile.d/` directory of Cumulus Linux. To do so, set the
 `http_proxy` and `https_proxy` variables, which tells the switch the
 address of the proxy server to use to fetch URLs on the command line.
 This is useful for programs such as `apt`/`apt-get`, `curl` and `wget`,
@@ -47,20 +47,19 @@ which can all use this proxy.
         Acquire::https::Proxy "https://myproxy.domain.com:8080";
     
     {{%notice note%}}
-    
-    If only an HTTPS proxy is available, make sure to change the repo3
-    sources identified in /etc/apt/sources.list to use HTTPS instead of
-    the default values configured with HTTP.
-    
+
+If only an HTTPS proxy is available, make sure to change the repo3
+sources identified in /etc/apt/sources.list to use HTTPS instead of
+the default values configured with HTTP.
+
     {{%/notice%}}
     
     {{%notice note%}}
-    
-    When configuring a proxy to work with Apt-Cacher-NG the default port
-    used by apt-cacher-ng is 3142. For more information on configuring a
-    package cache see this [support
-    article](https://support.cumulusnetworks.com/hc/en-us/articles/232058388-Setting-up-an-apt-Package-Cache).
-    
+
+When configuring a proxy to work with Apt-Cacher-NG the default port
+used by apt-cacher-ng is 3142. For more information on configuring a
+package cache see this [support article](https://support.cumulusnetworks.com/hc/en-us/articles/232058388-Setting-up-an-apt-Package-Cache).
+
     {{%/notice%}}
 
 4.  Add the proxy addresses to `/etc/wgetrc`; you may have to uncomment
@@ -92,15 +91,7 @@ proxy is set up correctly:
         cumulus@switch:~$ echo $https_proxy
         https://myproxy.domain.com:8080
 
-## Related Information</span>
+## Related Information
 
   - [Setting up an apt package
     cache](https://support.cumulusnetworks.com/hc/en-us/articles/232058388-Setting-up-an-apt-Package-Cache)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

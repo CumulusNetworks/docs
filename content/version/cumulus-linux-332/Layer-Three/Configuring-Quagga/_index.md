@@ -16,7 +16,7 @@ Cumulus Networks-enhanced version of the Quagga routing software package
 that provides a suite of routing protocols so you can configure routing
 on your switch.
 
-## Configuring Cumulus Quagga</span>
+## Configuring Cumulus Quagga
 
 Cumulus Quagga does not start by default in Cumulus Linux. Before you
 run Cumulus Quagga, make sure all you have enabled relevant daemons that
@@ -33,7 +33,7 @@ The `zebra` daemon must always be enabled. The others you can enable
 according to how you plan to route your network — using
 [BGP](/version/cumulus-linux-332/Layer-Three/Border-Gateway-Protocol-BGP)
 for example, instead of
-[OSPF](/version/cumulus-linux-332/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-332/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol).
 
 Before you start Cumulus Quagga, you need to enable the corresponding
 daemons. Edit the `/etc/quagga/daemons` file and set to *yes* each
@@ -50,7 +50,7 @@ and `bgpd` to *yes*:
     babeld=no
     pimd=no
 
-### Enabling and Starting Cumulus Quagga</span>
+### Enabling and Starting Cumulus Quagga
 
 Once you enable the appropriate daemons, then you need to enable and
 start the Cumulus Quagga service.
@@ -72,18 +72,18 @@ restarts any of the routing protocol daemons that are enabled and
 running.
 
 For more information on the `systemctl` command and changing the state
-of daemons, read [Managing Application
-Daemons](/version/cumulus-linux-332/System-Configuration/Managing-Application-Daemons).
+of daemons, read 
+[Managing Application Daemons](/version/cumulus-linux-332/System-Configuration/Managing-Application-Daemons).
 
 {{%/notice%}}
 
-### <span id="src-5869213_ConfiguringQuagga-integrated_cfg" class="confluence-anchor-link"></span>Understanding Integrated Configurations</span>
+### Understanding Integrated Configurations
 
 By default in Cumulus Linux, Quagga saves the configuration of all
 daemons in a single integrated configuration file, `Quagga.conf`.
 
 You can disable this mode by running the following command in the
-[`vtysh` Quagga CLI](#src-5869213_ConfiguringQuagga-vtysh):
+[`vtysh` Quagga CLI](#using-the-quagga-vtysh-modal-cli):
 
     cumulus@switch:~$ sudo vtysh
     switch# configure terminal
@@ -122,7 +122,7 @@ this:
     Configuration saved to /etc/quagga/bgpd.conf
     [OK]
 
-### Restoring the Default Configuration</span>
+### Restoring the Default Configuration
 
 If you need to restore the Quagga configuration to the default running
 configuration, you need to delete the `Quagga.conf` file and restart the
@@ -152,17 +152,17 @@ you should remove all the configuration files (such as `zebra.conf` or
 
 {{%/notice%}}
 
-## Interface IP Addresses and VRFs</span>
+## Interface IP Addresses and VRFs
 
 Quagga inherits the IP addresses and any associated routing tables for
 the network interfaces from the `/etc/network/interfaces` file. This is
 the recommended way to define the addresses; do **not** create
-interfaces using Quagga. For more information, see [Configuring IP
-Addresses](Interface-Configuration-and-Management.html#src-5869168_InterfaceConfigurationandManagement-ip)
-and [Virtual Routing and Forwarding -
-VRF](/version/cumulus-linux-332/Layer-Three/Virtual-Routing-and-Forwarding-VRF).
+interfaces using Quagga. For more information, see 
+[Configuring IP Addresses](/version/cumulus-linux-332/Interface-Configuration-and-Management/#configuring-ip-addresses)
+and
+[Virtual Routing and Forwarding - VRF](/version/cumulus-linux-332/Layer-Three/Virtual-Routing-and-Forwarding-VRF).
 
-## <span id="src-5869213_ConfiguringQuagga-vtysh" class="confluence-anchor-link"></span>Using the Quagga vtysh Modal CLI</span>
+## Using the Quagga vtysh Modal CLI
 
 Quagga provides a CLI – `vtysh` – for configuring and displaying the
 state of the protocols. It is invoked by running:
@@ -414,11 +414,11 @@ started, `vtysh` silently ignores those commands.
 {{%/notice%}}
 
 Alternately, if you do not want to use a modal CLI to configure Quagga,
-you can use a suite of [Cumulus Linux-specific
-commands](/version/cumulus-linux-332/Layer-Three/Configuring-Quagga/Comparing-NCLU-and-vtysh-Commands)
+you can use a suite of 
+[Cumulus Linux-specific commands](/version/cumulus-linux-332/Layer-Three/Configuring-Quagga/Comparing-NCLU-and-vtysh-Commands)
 instead.
 
-## Reloading the Quagga Configuration</span>
+## Reloading the Quagga Configuration
 
 If you make a change to your routing configuration, you need to reload
 Quagga so your changes take place. *Quagga reload* enables you to apply
@@ -446,32 +446,19 @@ in `/etc/quagga/Quagga.conf`:
 
     cumulus@switch:~$ net show configuration
 
-### Debugging</span>
+### Debugging
 
-If the running configuration is not what you expected, please [submit a
-support
-request](https://support.cumulusnetworks.com/hc/en-us/requests/new) and
-supply the following information:
+If the running configuration is not what you expected, please 
+[submit a support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) 
+and supply the following information:
 
   - The current running configuration (run `net show configuration` and
     output the contents to a file)
-
   - The contents of `/etc/quagga/Quagga.conf`
-
   - The contents of `/var/log/quagga/quagga-reload.log`
 
-## Related Information</span>
+## Related Information
 
   - [www.nongnu.org/quagga/docs/docs-info.html\#BGP](http://www.nongnu.org/quagga/docs/docs-info.html#BGP)
-
   - [www.nongnu.org/quagga/docs/docs-info.html\#IPv6-Support](http://www.nongnu.org/quagga/docs/docs-info.html#IPv6-Support)
-
   - [www.nongnu.org/quagga/docs/docs-info.html\#Zebra](http://www.nongnu.org/quagga/docs/docs-info.html#Zebra)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

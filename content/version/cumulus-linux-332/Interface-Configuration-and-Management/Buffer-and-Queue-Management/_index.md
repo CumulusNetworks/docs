@@ -11,14 +11,11 @@ version: 3.3.2
 imgData: cumulus-linux-332
 siteSlug: cumulus-linux-332
 ---
-<details>
-
 Hardware datapath configuration manages packet buffering, queueing and
 scheduling in hardware. There are two configuration input files:
 
   - `/etc/cumulus/datapath/traffic.conf`, which describes priority
     groups and assigns the scheduling algorithm and weights
-
   - `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf`,
     which assigns buffer space and egress queues
 
@@ -40,9 +37,7 @@ schedule packets based on COS or DSCP is a configurable option in the
 Priority groups include:
 
   - *Control*: Highest priority traffic
-
   - *Service*: Second-highest priority traffic
-
   - *Bulk*: All remaining traffic
 
 The scheduler is configured to use a hybrid scheduling algorithm. It
@@ -52,28 +47,29 @@ packets with the same priority value are assigned to separate queues,
 which are assigned equal scheduling weights.
 
 Datapath configuration takes effect when you initialize `switchd`.
-Changes to the `traffic.conf` file require you to [restart the
-`switchd`](Configuring-switchd.html#src-5868885_Configuringswitchd-restartswitchd)
+Changes to the `traffic.conf` file require you to 
+[restart the `switchd`](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
 service.
 
-## Commands</span>
+## Commands
 
-If you modify the configuration in the
-`/etc/cumulus/datapath/traffic.conf` file, you must [restart
-`switchd`](Configuring-switchd.html#src-5868885_Configuringswitchd-restartswitchd)
+If you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file, 
+you must
+[restart `switchd`](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
 for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## Configuration Files</span>
+## Configuration Files
 
 The following configuration applies to 10G, 40G, and 100G switches on
 Tomahawk, Trident II+ or Trident II
-[platforms](http://cumulusnetworks.com/hcl/) only.
+[platforms](https://cumulusnetworks.com/hcl/) only.
 
   - `/etc/cumulus/datapath/traffic.conf`: The datapath configuration
     file.
 
+<details>
 <summary>Click to view sample traffic.conf file ... </summary>
 
     cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf
@@ -204,8 +200,9 @@ Tomahawk, Trident II+ or Trident II
     #         guide for more details
     #
     #forwarding_table.profile = default
+</details>
 
-## Configuring Traffic Marking through ACL Rules</span>
+## Configuring Traffic Marking through ACL Rules
 
 You can mark traffic for egress packets through `iptables` or
 `ip6tables` rule classifications. To enable these rules, you do one of
@@ -259,7 +256,7 @@ TCAM slices in the hardware.
 To put the rule in the mangle table, include `-t mangle`; to put the
 rule in the filter table, omit `-t mangle`.
 
-## <span id="src-5869179_BufferandQueueManagement-pfc" class="confluence-anchor-link"></span>Configuring Priority Flow Control</span>
+## Configuring Priority Flow Control
 
 *Priority flow control*, as defined in the [IEEE 802.1Qbb
 standard](http://www.ieee802.org/1/pages/802.1bb.html), provides a
@@ -392,7 +389,7 @@ pfc.pfc_port_group.tx_enable = true
 pfc.pfc_port_group.rx_enable = true       
 ```
 
-### Understanding Port Groups</span>
+### Understanding Port Groups
 
 A *port group* refers to one or more sequences of contiguous ports.
 Multiple port groups can be defined by:
@@ -428,13 +425,12 @@ sequences of contiguous ports; you can see which ports are contiguous in
         swp7
         ...
 
-[Restart
-`switchd`](Configuring-switchd.html#src-5868885_Configuringswitchd-restartswitchd)
+[Restart `switchd`](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
 to allow the PFC configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-5869179_BufferandQueueManagement-pause" class="confluence-anchor-link"></span>Configuring Link Pause</span>
+## Configuring Link Pause
 
 The PAUSE frame is a flow control mechanism that halts the transmission
 of the transmitter for a specified period of time. A server or other
@@ -475,13 +471,12 @@ link_pause.pause_port_group.rx_enable = true
 link_pause.pause_port_group.tx_enable = true                   
 ```
 
-[Restart
-`switchd`](Configuring-switchd.html#src-5868885_Configuringswitchd-restartswitchd)
+[Restart `switchd`](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
 to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
-## <span id="src-5869179_BufferandQueueManagement-cut_through_mode" class="confluence-anchor-link"></span>Configuring Cut-through Mode and Store and Forward Switching</span>
+## Configuring Cut-through Mode and Store and Forward Switching
 
 Cut-through mode is disabled in Cumulus Linux by default on switches
 with Broadcom ASICs. With cut-though mode enabled and link pause is
@@ -520,7 +515,7 @@ To enable store and forward switching, set `cut_through_enable` to
     cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
     cut_through_enable = false
 
-## <span id="src-5869179_BufferandQueueManagement-ecn" class="confluence-anchor-link"></span>Configuring Explicit Congestion Notification</span>
+## Configuring Explicit Congestion Notification
 
 *Explicit Congestion Notification* (ECN) is defined by
 [RFC 3168](https://tools.ietf.org/html/rfc3168). ECN gives a Cumulus
@@ -572,6 +567,7 @@ way to overwrite ECN bits is to enable it — that is, set the ECN bits to
 ECN is supported on [Broadcom Tomahawk, Trident II+ and Trident II, and
 Mellanox Spectrum switches](https://cumulusnetworks.com/hcl) only.
 
+<details>
 <summary>Click to learn how to configure ECN ... </summary>
 
 ECN is disabled by default in Cumulus Linux. You can enable ECN for
@@ -618,29 +614,19 @@ through swp4 and swp6:
      ecn.ecn_port_group.max_threshold_bytes = 200000
      ecn.ecn_port_group.probability = 100
 
-[Restart
-`switchd`](Configuring-switchd.html#src-5868885_Configuringswitchd-restartswitchd)
+[Restart `switchd`](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
 to allow the ECN configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
+</details>
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - You can configure Quality of Service (QoS) for 10G, 40G, and 100G
     switches on the Broadcom Tomahawk, Trident II+ or Trident II
     platforms and Mellanox Spectrum platform only.
 
-## Related Information</span>
+## Related Information
 
   - [iptables-extensions man
     page](http://ipset.netfilter.org/iptables-extensions.man.html)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

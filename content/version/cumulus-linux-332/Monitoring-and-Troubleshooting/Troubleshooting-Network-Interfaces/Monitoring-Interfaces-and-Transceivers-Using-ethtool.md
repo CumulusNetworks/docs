@@ -18,7 +18,7 @@ prints the current settings of the network device. See `man ethtool(8)`
 for details. Not all options are currently supported on switch port
 interfaces.
 
-## Monitoring Interface Status Using ethtool</span>
+## Monitoring Interface Status Using ethtool
 
 To check the status of an interface using `ethtool`:
 
@@ -72,7 +72,7 @@ To query interface statistics:
             SoftOutTxFifoFull: 0
             HwIfOutQLen: 0
 
-### Viewing and Clearing Interface Counters</span>
+### Viewing and Clearing Interface Counters
 
 Interface counters contain information about an interface. You can view
 this information when you run `cl-netstat`, `ifconfig`, or `cat
@@ -135,7 +135,7 @@ information:
 </tbody>
 </table>
 
-## Monitoring Switch Port SFP/QSFP Hardware Information Using ethtool</span>
+## Monitoring Switch Port SFP/QSFP Hardware Information Using ethtool
 
 To see hardware capabilities and measurement information on the SFP or
 QSFP module installed in a particular port, use the `ethtool -m`
@@ -224,11 +224,3 @@ and alarm threshold settings.
             Laser rx power low alarm threshold        : 0.0100 mW / -20.00 dBm
             Laser rx power high warning threshold     : 1.0000 mW / 0.00 dBm
             Laser rx power low warning threshold      : 0.0200 mW / -16.99 dBm
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

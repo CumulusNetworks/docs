@@ -86,7 +86,7 @@ This flow chart shows the required steps to install and setup
 NetQ to start validating your network, and the optional steps of
 integrating with event notification applications and monitoring hosts.
 
-{{<figure src="/images/netq/install-wkflow-cust-hw.png">}}
+{{<figure src="/images/netq/install-wkflow-on-prem-cust-hw-222.png">}}
 
 ## Install the NetQ Platform
 
@@ -557,7 +557,7 @@ Whether using the NetQ Appliance or your own hardware, the NetQ Agent
 must be installed on each node you want to monitor. The node can be a:
 
   - Switch running Cumulus Linux version 3.3.2 or later
-  - Server running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7
+  - Server running Red Hat RHEL 7.1, Ubuntu 16.04, Ubuntu 18.04 (NetQ 2.2.2 and later) or CentOS 7
   - Linux virtual machine running any of the above Linux operating
     systems
 

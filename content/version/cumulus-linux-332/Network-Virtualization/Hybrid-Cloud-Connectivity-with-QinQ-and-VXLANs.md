@@ -280,7 +280,7 @@ Double tag translation only works with bridges in
 
 An example configuration could look like the following:
 
-{{< figure src="../qinq-double-tagged-no-vxlan.png" width="600" >}}
+{{% imgOld 1 %}}
 
 ### Configuring the Switch
 
@@ -333,7 +333,7 @@ configuration would look something like this:
         bridge-ports swp3.10  swp4  swp5.100.10
         bridge-vlan-aware no
 
-{{% imgOld 2 %}}
+{{< figure src="/images/cumulus-linux/qinq-double-tagged-no-vxlan.png" width="600" >}}
 
 {{%/notice%}}
 

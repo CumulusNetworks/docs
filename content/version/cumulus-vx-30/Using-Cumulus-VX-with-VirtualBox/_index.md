@@ -47,7 +47,7 @@ assignments.
 
 {{%/notice%}}
 
-## Using a Single Switch Configuration</span>
+## Using a Single Switch Configuration
 
 On its own, the Cumulus VX virtual machine is a standalone virtualized
 instance of a network switch. Once you download and import it into your
@@ -69,27 +69,27 @@ The virtual NIC to VM device mappings are as follows:
 Once you install the VM, you can reconfigure how the NICs are used
 depending on what sort of connectivity you need.
 
-<span id="src-5126581_UsingCumulusVXwithVirtualBox-reqs"></span>
+<span id="src-5126581_UsingCumulusVXwithVirtualBox-reqs">
 
-## VirtualBox-specific Considerations</span>
+## VirtualBox-specific Considerations
 
 Keep in mind the following expected behaviors regarding VirtualBox and
 the VM.
 
-### Exporting VirtualBox Configurations</span>
+### Exporting VirtualBox Configurations
 
 If you want to export your setup, you **must** select an OS type.
 However, there appears to be a bug in VirtualBox when the VM has an OS
 type of *other* or *unknown*. The VM works; however, the exported
 appliance will not import correctly.
 
-### Enabling Hardware Virtualization in the BIOS</span>
+### Enabling Hardware Virtualization in the BIOS
 
 If you are using VirtualBox as your hypervisor, make sure you enable
 hardware virtualization in the host OS BIOS before starting the VM, as
 some operating systems may not do so by default.
 
-### Interfaces Error when Booting</span>
+### Interfaces Error when Booting
 
 If you see an error message when you boot a VirtualBox OVA image for the
 first time, saying you must modify the interfaces file, you can click
@@ -101,7 +101,7 @@ Ethernet port would be en1. The OVA requests the first interface, which
 may not actually be up and active on your system when you import the
 image. This is expected VirtualBox behavior.
 
-### Network Interface Limitations</span>
+### Network Interface Limitations
 
 By default, the VirtualBox Manager only displays the first 8 virtual
 NICs, and you can modify only the first 4. However, if you plan on using
@@ -182,11 +182,3 @@ documentation](https://www.virtualbox.org/manual/ch06.html) and
 [VBoxManage command
 reference](https://www.virtualbox.org/manual/ch08.html#idp104314528) for
 more information on configuring virtual NICs.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

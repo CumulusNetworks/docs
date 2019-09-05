@@ -28,7 +28,7 @@ to the Notification function. Notification then stores, filters and
 sends messages to any configured notification applications. Filters are
 based on rules you create. You must have at least one rule per filter.
 
-{{<figure src="/images/netq/event-notif-arch.png">}}
+{{<figure src="/images/netq/event-notif-arch.png" width="700" >}}
 
 {{%notice note%}}
 
@@ -49,7 +49,7 @@ events:
       - EVPN status and session state
       - LLDP status
       - LNV status and session state \*
-      - OSFP status and session state \*
+      - OSFP status and session state
       - VLAN status and session state \*
       - VXLAN status and session state \*
   - Interfaces
@@ -88,7 +88,7 @@ Messages have the following structure:
 
 For example:
 
-{{<figure src="/images/netq/event-msg-format.png">}}
+{{<figure src="/images/netq/event-msg-format.png" width="700" >}}
 
 To set up the integrations, you must configure NetQ with at least one
 channel. Optionally, you can define rules and filters to refine what
@@ -96,7 +96,7 @@ messages you want to view and where to send them. You can also configure
 a proxy server to receive, process, and forward the messages. This is
 accomplished using the NetQ CLI in the following order:
 
-{{<figure src="/images/netq/notif-config-wkflow.png">}}
+{{<figure src="/images/netq/notif-config-wkflow.png" width="700" >}}
 
 ### Notification Commands Overview
 
@@ -166,7 +166,7 @@ NetQ sends notifications to PagerDuty as PagerDuty events.
 
 For example:
 
-{{<figure src="/images/netq/NetQ-PagerDuty-ex-output.png">}}
+{{<figure src="/images/netq/NetQ-PagerDuty-ex-output.png" width="700" >}}
 
 To configure the NetQ notifier to send notifications to PagerDuty:
 
@@ -2855,45 +2855,3 @@ removed:
     critTemp        5          critical         pd-netq-events   switchLeaf
                                                                  04
                                                                  overTemp
-
-## Integrate with a Hardware Chassis
-
-NetQ can run within a [Facebook Backpack
-chassis](https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/),
-[Cumulus Express CX-10256-S
-chassis](https://cumulusnetworks.com/products/cumulus-express/getting-started/cx10256s-omp800/)
-or [Edgecore OMP-800
-chassis](https://cumulusnetworks.com/products/cumulus-express/getting-started/cx10256s-omp800/).
-
-Keep the following issues in mind if you intend to use NetQ with a
-chassis:
-
-  - You must assign a unique hostname to every node that runs the NetQ
-    Agent. By default, all the fabric cards in the chassis have the same
-    hostname.
-  - The NetQ Agent must be installed on every line card.
-  - No information is returned about the ASIC when you run `netq show
-    inventory asic`. This is a known issue.
-  - Since the chassis sensor information is shared, every line card and
-    fabric card can report the same sensor data. By default, sensor data
-    is disabled on a chassis to avoid this duplication . To enable
-    sensor data on a line card, edit `/etc/netq/netq.yml` or
-    `/etc/netq/config.d/user.yml` and set the `send_chassis_sensor_data`
-    keyword to *true*, then restart the NetQ Agent with `netq config
-    agent restart`. Configuring NetQ in this way prevents any
-    duplication of data in the NetQ database.
-
-        cumulus@chassis:~$ sudo nano /etc/netq/netq.yml
-         
-        ...
-        netq-agent:
-          send_chassis_sensor_data: true
-        ...
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

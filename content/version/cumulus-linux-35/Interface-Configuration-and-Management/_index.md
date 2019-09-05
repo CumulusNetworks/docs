@@ -184,9 +184,8 @@ The loopback interface *lo* must always be specified in
 By default, `ifupdown` recognizes and uses any interface present on the
 system — whether a VLAN, bond or physical interface — that is listed as
 a dependent of an interface. You are not required to list them in the
-`interfaces` file unless they need a specific configuration, for [MTU,
-link speed, and so
-forth](/version/cumulus-linux-35/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes).
+`interfaces` file unless they need a specific configuration, for 
+[MTU, link speed, and so forth](/version/cumulus-linux-35/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes).
 And if you need to delete a child interface, you should delete all
 references to that interface from the `interfaces` file.
 

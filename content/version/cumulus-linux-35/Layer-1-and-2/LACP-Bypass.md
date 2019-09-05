@@ -32,7 +32,6 @@ Keep in the mind the following caveats with all-active mode:
 
   - All-active mode is not supported on bonds that are not specified as
     bridge ports on the switch.
-
   - Spanning tree protocol (STP) does not run on the individual bond
     slave interfaces when the LACP bond is in all-active mode.
     Therefore, only use all-active mode on host-facing LACP bonds.
@@ -109,7 +108,6 @@ You can check the status of the configuration by running
     -- ------ ----------------- ------- ----- ----------
     UP bond1  44:38:39:00:00:5b 1G      1500  Bond/Trunk
      
-     
     Bond Details
     ------------------ -------------------------
     Bond Mode:         LACP
@@ -120,27 +118,22 @@ You can check the status of the configuration by running
     LACP Rate:         Fast Timeout
     LACP Bypass:       LACP Bypass Not Supported
      
-     
        Port       Speed     TX   RX   Err   Link Failures
     -- --------   ------- ---- ---- ----- ---------------
     UP swp51s2(P) 1G         0    0     0               0
     UP swp51s3(P) 1G         0    0     0               0
      
-     
     All VLANs on L2 Port
     ----------------------
     100-105
-     
      
     Untagged
     ----------
     1
      
-     
     Vlans in disabled State
     -------------------------
     100-105
-     
      
     LLDP
     --------   ---- ------------------

@@ -11,12 +11,11 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-The [network command line
-utility](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU)
+The [network command line utility](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU)
 (NCLU) can quickly return a lot of information about your network
 configuration.
 
-## Using net show Commands</span>
+## Using net show Commands
 
 Running `net show` and pressing TAB displays all available command line
 arguments usable by `net`. The output looks like this:
@@ -46,10 +45,10 @@ arguments usable by `net`. The output looks like this:
         system         :  System information
         version        :  Version number
 
-## Showing Interfaces</span>
+## Showing Interfaces
 
-To show all available interfaces that are physically UP, run `net show
-interface`:
+To show all available interfaces that are physically UP, run 
+`net show interface`:
 
     cumulus@switch:~$ net show interface
      
@@ -94,8 +93,8 @@ state:
     UP     red      N/A      65536  NotConfigured
     ADMDN  vagrant  0M       1500   NotConfigured
 
-You can get information about the switch itself by running `net show
-system`:
+You can get information about the switch itself by running 
+`net show system`:
 
     cumulus@switch:~$ net show system
      
@@ -112,7 +111,7 @@ system`:
     CPU: (x86_64) Intel Atom C2558 2.40GHz
     Uptime: 8 days, 0:45:29
 
-## Other Useful Features</span>
+## Other Useful Features
 
 NCLU uses the [python
 network-docopt](https://pypi.python.org/pypi/network-docopt) package.
@@ -123,7 +122,7 @@ and running the complete option. For example:
 `net show int` runs `netshow interface`  
 `net show sys` runs `netshow system`
 
-## Installing netshow on a Linux Server</span>
+## Installing netshow on a Linux Server
 
 `netshow` is a tool developed by Cumulus Networks for troubleshooting
 networks. In Cumulus Linux, it's been replaced by NCLU. However, NCLU is
@@ -138,11 +137,3 @@ recommends you use `netshow` to help troubleshoot servers. To install
 Debian and Red Hat packages will be available in the near future.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -15,15 +15,11 @@ This chapter discusses the various architectures and strategies
 available from the top of rack (ToR) switches all the way down to the
 server hosts.
 
-## Layer 2 - Architecture</span>
+## Layer 2 - Architecture
 
-### Traditional Spanning Tree - Single Attached</span>
+### Traditional Spanning Tree - Single Attached
 
-****
-
-**{{% imgOld 0 %}}**
-
-****
+{{% imgOld 0 %}}
 
 <table>
 <colgroup>
@@ -91,7 +87,7 @@ iface br-20 inet manual
 <li><p>Ability to use <a href="/version/cumulus-linux-343/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a> commands</p>
 <ul>
 <li><p>mstpctl-portadminedge</p></li>
-<li><p><a href="Spanning-Tree-and-Rapid-Spanning-Tree.html#src-7112441_SpanningTreeandRapidSpanningTree-bpdu">BPDU guard</a></p></li>
+<li><p><a href="/version/cumulus-linux-343/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard">BPDU guard</a></p></li>
 </ul></li>
 <li><p>Layer 2 reachability to all VMs</p></li>
 </ul>
@@ -127,12 +123,13 @@ iface br-20 inet manual
 </ul>
 <p><strong><br />
 </strong></p></td>
-<td><details>
+<td>
 <ul>
 <li><p>ToR layer (recommended)</p></li>
 <li><p>Spine layer</p></li>
 <li><p>Core/edge/exit</p></li>
 </ul>
+<details>
 <summary>More Info... </summary>
 <p>VRR can be configured on a pair of switches at any level in the network. However, the higher up the network you configure it, the larger the L2 domain becomes. The benefit here is L2 reachability. The drawback is the L2 domain is more difficult to troubleshoot, does not scale as well, and the pair of switches running VRR needs to carry the entire MAC address table of everything below it in the network. Minimizing the L2 domain as much as possible is recommended by Cumulus Professional Services. <a href="https://docs.google.com/presentation/d/1l1d_6iUF7RTUHTSAmGuLwm3WCUXTNdFjndCLLxzBSOU/edit?usp=sharing" class="external-link">Please see this presentation for more information</a>.</p>
 </details></td>
@@ -140,13 +137,9 @@ iface br-20 inet manual
 </tbody>
 </table>
 
-### <span id="src-7112714_DataCenterHosttoToRArchitecture-mlag" class="confluence-anchor-link"></span>MLAG</span>
+### MLAG
 
-****
-
-**{{% imgOld 1 %}}**
-
-****
+{{% imgOld 1 %}}
 
 <table>
 <colgroup>
@@ -161,7 +154,7 @@ iface br-20 inet manual
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><a href="/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
+<td><p><a href="/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <pre><code>auto bridge
@@ -253,9 +246,9 @@ iface vm-br10 inet manual
 </tbody>
 </table>
 
-## Layer 3 Architecture</span>
+## Layer 3 Architecture
 
-### Single-attached Hosts</span>
+### Single-attached Hosts
 
 {{% imgOld 2 %}}
 
@@ -338,7 +331,7 @@ iface eth1 inet static
 </tbody>
 </table>
 
-### Redistribute Neighbor</span>
+### Redistribute Neighbor
 
 {{% imgOld 3 %}}
 
@@ -387,13 +380,9 @@ iface eth1 inet static
 </tbody>
 </table>
 
-### Routing on the Host</span>
+### Routing on the Host
 
-****
-
-**{{% imgOld 4 %}}**
-
-****
+{{% imgOld 4 %}}
 
 <table>
 <colgroup>
@@ -408,7 +397,7 @@ iface eth1 inet static
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Routing on the host means there is a routing application (such as <a href="/version/cumulus-linux-343/Layer-Three/FRRouting-Overview/">FRRouting</a><a href="/display/CL34/Quagga+Overview">) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</a></p></td>
+<td><p>Routing on the host means there is a routing application (such as <a href="/version/cumulus-linux-343/Layer-Three/FRRouting-Overview/">FRRouting</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</a></p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>No requirement for MLAG</p></li>
@@ -442,7 +431,7 @@ iface eth1 inet static
 </tbody>
 </table>
 
-### Routing on the VM</span>
+### Routing on the VM
 
 {{% imgOld 5 %}}
 
@@ -494,7 +483,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </tbody>
 </table>
 
-### Virtual Router</span>
+### Virtual Router
 
 {{% imgOld 6 %}}
 
@@ -511,7 +500,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="#src-7112714" class="unresolved">BGP</a> or <a href="/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol">OSPF</a>.</p></td>
+<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol-BGP/" class="unresolved">BGP</a> or <a href="/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol">OSPF</a>.</p></td>
 <td><p><strong><strong>Benefits</strong></strong></p>
 <p>In addition to routing on a host:</p>
 <ul>
@@ -542,7 +531,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </tbody>
 </table>
 
-### Anycast with Manual Redistribution</span>
+### Anycast with Manual Redistribution
 
 {{% imgOld 7 %}}
 
@@ -624,9 +613,9 @@ iface eth2 inet static
 </tbody>
 </table>
 
-## Network Virtualization</span>
+## Network Virtualization
 
-### LNV with MLAG</span>
+### LNV with MLAG
 
 {{% imgOld 8 %}}
 
@@ -646,7 +635,7 @@ iface eth2 inet static
 <tbody>
 <tr class="odd">
 <td><p> </p></td>
-<td><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
+<td><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <p><code>/etc/network/interfaces</code></p>
@@ -691,7 +680,7 @@ iface br-10
 </ul>
 <p><strong><strong>Caveats</strong></strong></p>
 <ul>
-<li><p>Needs MLAG (with the same caveats from the <a href="#src-7112714_DataCenterHosttoToRArchitecture-mlag">MLAG section</a> above) and <a href="/version/cumulus-linux-343/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a></p></li>
+<li><p>Needs MLAG (with the same caveats from the <a href="#mlag">MLAG section</a> above) and <a href="/version/cumulus-linux-343/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a></p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -729,16 +718,8 @@ iface br-10
 <td><p> </p></td>
 <td><p> </p></td>
 <td><ul>
-<li><p><a href="/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
+<li><p><a href="/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
 </ul></td>
 </tr>
 </tbody>
 </table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -11,8 +11,6 @@ version: '3.5'
 imgData: cumulus-linux-35
 siteSlug: cumulus-linux-35
 ---
-<details>
-
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name
 Service Switch (NSS) for user authentication.
 
@@ -26,21 +24,19 @@ and authorization of a user actions.
 NSS enables PAM to use LDAP for providing user authentication, group
 mapping and information for other services on the system.
 
-## Configuring LDAP Authentication</span>
+## Configuring LDAP Authentication
 
 There are 3 common ways of configuring LDAP authentication on Linux:
 
   - libnss-ldap
-
   - libnss-ldapd
-
   - libnss-sss
 
 This chapter covers using `libnss-ldapd` only. From internal testing,
 this library worked best with Cumulus Linux and was the easiest to
 configure, automate and troubleshoot.
 
-## Installing libnss-ldapd</span>
+## Installing libnss-ldapd
 
 The `libpam-ldapd` package depends on `nslcd`, so to install
 `libnss-ldapd`, `libpam-ldapd` and `ldap-utils`, you must run:
@@ -84,7 +80,7 @@ out of the system.
 
 {{%/notice%}}
 
-## Configuring nslcd.conf</span>
+## Configuring nslcd.conf
 
 You need to update the main configuration file (`/etc/nslcd.conf`) after
 installation to accommodate the expected LDAP server settings. The
@@ -92,7 +88,7 @@ installation to accommodate the expected LDAP server settings. The
 the available configuration options. Some of the more important options
 are related to security and how the queries are handled.
 
-### Connection</span>
+### Connection
 
 The LDAP client starts a session by connecting to the LDAP server, by
 default, on TCP and UDP port 389, or on port 636 for LDAPS. Depending on
@@ -125,7 +121,7 @@ server and what credentials are created for the client device.
     binddn cn=CLswitch,ou=infra,dc=example,dc=com
     bindpw CuMuLuS
 
-### Search Function</span>
+### Search Function
 
 When an LDAP client requests information about a resource, it must
 connect and bind to the server. Then it performs one or more resource
@@ -142,7 +138,7 @@ common *maps* (*passwd* and *group*).
     base passwd ou=people,dc=example,dc=com
     base group ou=groups,dc=example,dc=com
 
-### Search Filters</span>
+### Search Filters
 
 It is also common to use search filters to specify criteria used when
 searching for objects within the directory. This is used to limit the
@@ -151,7 +147,7 @@ search scope when authenticating users. The default filters applied are:
     filter passwd (objectClass=posixAccount)
     filter group (objectClass=posixGroup) 
 
-### Attribute Mapping</span>
+### Attribute Mapping
 
 The *map* configuration allows for overriding the attributes pushed from
 LDAP. To override an attribute for a given *map*\*, specify the
@@ -168,14 +164,83 @@ in the manpage for `nslcd.conf` (such as *passwd* or *group*).
 
 {{%/notice%}}
 
-### Example Configuration</span>
+### Example Configuration
 
-Here is an [example
-configuration ](attachments_8357339_1_nslcd.conf)using Cumulus Linux.
+<details>
+<summary>Here is an example configuration using Cumulus Linux ...</summary>
 
-## Troubleshooting</span>
+    # /etc/nslcd.conf
+    # nslcd configuration file. See nslcd.conf(5)
+    # for details.
+     
+    # The user and group nslcd should run as.
+    uid nslcd
+    gid nslcd
+     
+    # The location at which the LDAP server(s) should be reachable.
+    uri ldaps://myadserver.rtp.example.test
+     
+    # The search base that will be used for all queries.
+    base ou=support,dc=rtp,dc=example,dc=test
+     
+    # The LDAP protocol version to use.
+    #ldap_version 3
+     
+    # The DN to bind with for normal lookups.
+    # defconf-set-selections doesn't seem to set this. so have to manually set this.
+    binddn CN=cumulus admin,CN=Users,DC=rtp,DC=example,DC=test
+    bindpw 1Q2w3e4r!
+     
+    # The DN used for password modifications by root.
+    #rootpwmoddn cn=admin,dc=example,dc=com
+     
+    # SSL options
+    #ssl off (default)
+    # Not good does not prevent man in the middle attacks
+    #tls_reqcert demand(default)
+    tls_cacertfile /etc/ssl/certs/rtp-example-ca.crt
+     
+    # The search scope.
+    #scope sub
+     
+    # Add nested group support
+    # Supported in nslcd 0.9 and higher.
+    # default wheezy install of nslcd supports on 0.8. wheezy-backports has 0.9
+    nss_nested_groups yes
+     
+    # Mappings for Active Directory
+    # (replace the SIDs in the objectSid mappings with the value for your domain)
+    # "dsquery * -filter (samaccountname=testuser1) -attr ObjectSID" where cn == 'testuser1'
+    pagesize 1000
+    referrals off
+    idle_timelimit 1000
+     
+    # Do not allow uids lower than 100 to login (aka Administrator)
+    # not needed as pam already has this support
+    # nss_min_uid 1000
+     
+    # This filter says to get all users who are part of the cumuluslnxadm group. Supports nested groups.
+    # Example, mary is part of the snrnetworkadm group which is part of cumuluslnxadm group
+    # Ref: http://msdn.microsoft.com/en-us/library/aa746475%28VS.85%29.aspx (LDAP_MATCHING_RULE_IN_CHAIN)
+    filter passwd (&(Objectclass=user)(!(objectClass=computer))(memberOf:1.2.840.113556.1.4.1941:=cn=cumuluslnxadm,ou=groups,ou=support,dc=rtp,dc=example,dc=test))
+    map    passwd uid           sAMAccountName
+    map    passwd uidNumber     objectSid:S-1-5-21-1391733952-3059161487-1245441232
+    map    passwd gidNumber     objectSid:S-1-5-21-1391733952-3059161487-1245441232
+    map    passwd homeDirectory "/home/$sAMAccountName"
+    map    passwd gecos         displayName
+    map    passwd loginShell    "/bin/bash"
+     
+    # Filter for any AD group or user in the baseDN. the reason for filtering for the
+    # user to make sure group listing for user files don't say '<user> <gid>'. instead will say '<user> <user>'
+    # So for cosmetic reasons..nothing more.
+    filter group (&(|(objectClass=group)(Objectclass=user))(!(objectClass=computer)))
+    map    group gidNumber     objectSid:S-1-5-21-1391733952-3059161487-1245441232
+    map    group cn            sAMAccountName
+</details>
 
-### Using nslcd Debug Mode</span>
+## Troubleshooting
+
+### Using nslcd Debug Mode
 
 When setting up LDAP authentication for the first time, Cumulus Networks
 recommends you turn off this service using `systemctl stop
@@ -236,9 +301,9 @@ debug output indicates that user *myuser* exists:
 Notice how the `<passwd="myuser">` shows that the specific *myuser* user
 was queried.
 
-### Common Problems</span>
+### Common Problems
 
-#### SSL/TLS</span>
+#### SSL/TLS
 
   - The FQDN of the LDAP server URI does not match the FQDN in the
     CA-signed server certificate exactly.
@@ -249,7 +314,7 @@ was queried.
     the root SSL certificate. Ensure that it is readable by the `nslcd`
     user.
 
-#### NSCD</span>
+#### NSCD
 
   - If the `nscd cache` daemon is also enabled and you make some changes
     to the user from LDAP, you may want to clear the cache using the
@@ -272,7 +337,7 @@ was queried.
     
     3.  Try the authentication again.
 
-#### LDAP</span>
+#### LDAP
 
   - The search filter returns wrong results. Check for typos in the
     search filter. Use `ldapsearch` to test your filter.
@@ -291,7 +356,7 @@ was queried.
         # /etc/nsswitch.conf
         passwd:         ldap compat
 
-## Configuring LDAP Authorization</span>
+## Configuring LDAP Authorization
 
 Linux uses the *sudo* command to allow non-administrator users — like
 the default *cumulus* user account — to perform privileged operations.
@@ -308,7 +373,7 @@ usage description. Here's an illustration of this in `/etc/sudoers`:
     %sudo ALL=(ALL:ALL) ALL
     %netadmin ALL=(ALL:ALL) ALL
 
-## Active Directory Configuration</span>
+## Active Directory Configuration
 
 Active Directory (AD) is a fully featured LDAP-based NIS server created
 by Microsoft. It offers unique features that classic OpenLDAP servers
@@ -319,7 +384,7 @@ from testing LDAP clients on Cumulus Linux with Active Directory
 (AD/LDAP), are available in our [knowledge
 base](https://support.cumulusnetworks.com/hc/en-us/articles/204383797).
 
-## LDAP Verification Tools</span>
+## LDAP Verification Tools
 
 Typically, password and group information is retrieved from LDAP and
 cached by the LDAP client daemon. To test the LDAP interaction, these
@@ -327,7 +392,7 @@ command line tools can be used to trigger an LDAP query from the device.
 This helps to create the best filters and verify the information sent
 back from the LDAP server.
 
-### Identifying a User with the id Command</span>
+### Identifying a User with the id Command
 
 The `id` command performs a username lookup by following the lookup
 information sources in NSS for the *passwd* service. This simply returns
@@ -341,7 +406,7 @@ passwd map configured with the sources `compat ldap`:
     cumulus@switch:~$ id myuser 
     uid=1230(myuser) gid=3000(Development) groups=3000(Development),500(Employees),27(sudo)
 
-### Using getent</span>
+### Using getent
 
 The `getent` command retrieves all records found via NSS for a given
 map. It can also get a specific entry under that map. Tests can be done
@@ -372,7 +437,7 @@ Running the command `getent passwd` or `getent group` without a specific
 request, returns **all** local and LDAP entries for the *passwd* and
 *group* maps, respectively.
 
-### Using LDAP search</span>
+### Using LDAP search
 
 The `ldapsearch` command performs LDAP operations directly on the LDAP
 server. This does not interact with NSS. This command helps display what
@@ -382,6 +447,7 @@ specifies the search DN and what attribute to lookup.
 
     cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser
 
+<details>
 <summary>Click to expand the command output ... </summary>
 
     # extended LDIF
@@ -421,36 +487,20 @@ specifies the search DN and what attribute to lookup.
           
     # numResponses: 2
     # numEntries: 1
+</details>
 
-### LDAP Browsers</span>
+### LDAP Browsers
 
 There are some GUI LDAP clients that help to work with LDAP servers.
 These are free tools to help graphically show the structure of the LDAP
 database.
 
   - [Apache Directory Studio](http://directory.apache.org/studio/)
-
   - [LDAPManager](http://ldapmanager.sourceforge.net/)
 
-## Related Information</span>
+## Related Information
 
-  - [Debian - configuring LDAP
-    authentication](https://wiki.debian.org/LDAP/NSS)
-
-  - [Debian - configuring PAM to use
-    LDAP](https://wiki.debian.org/LDAP/PAM)
-
-  - [GitHub - Arthur de Jong nslcd.conf
-    file](https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf)
-
+  - [Debian - configuring LDAP authentication](https://wiki.debian.org/LDAP/NSS)
+  - [Debian - configuring PAM to use LDAP](https://wiki.debian.org/LDAP/PAM)
+  - [GitHub - Arthur de Jong nslcd.conf file](https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf)
   - [Debian backports](http://backports.debian.org/Instructions/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

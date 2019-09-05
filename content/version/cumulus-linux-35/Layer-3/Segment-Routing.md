@@ -28,12 +28,11 @@ for tenant isolation.
 {{%notice note%}}
 
 Segment routing is an early access feature in Cumulus Linux 3.4.1 and is
-supported only on [Mellanox
-switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=mellanox).
+supported only on [Mellanox switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=mellanox).
 
 {{%/notice%}}
 
-## Features</span>
+## Features
 
 Segment routing is MPLS for the data plane **only**. In this EA release,
 Cumulus Linux does not impose the labels, the host does. The MTUs should
@@ -46,19 +45,16 @@ Segment routing supports the following features:
     An ingress LER first adds an MPLS label to an IP packet. An egress
     LER removes the outermost MPLS label (also called "popping" the
     label).
-
   - MPLS label switch router (LSR) functionality with ECMP. The LSR
     receives a packet with a label and forwards it based on that label.
-
   - [FRRouting](/version/cumulus-linux-35/Layer-3/FRRouting-Overview/)
     support for MPLS transit label switched paths (LSPs) and labeled
     routes (LER), both static routes and routes using BGP
     labeled-unicast (LU).
-
   - FRR support for BGP/MPLS segment routing based on
     [draft-ietf-idr-bgp-prefix-sid-06](https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-prefix-sid/).
 
-## Example Configuration</span>
+## Example Configuration
 
 Consider the following topology. Typically, host1 sends traffic to host2
 via r1, r2 and r3. However, you can use segment routing to route traffic
@@ -93,7 +89,7 @@ an IP packet, and route it as usual.
 Switches r1 through r5 announce their loopbacks (the 10.1.1.\* addresses
 above) in BGP with a *label-index*.
 
-## Configuring Segment Routing</span>
+## Configuring Segment Routing
 
 To configure the segment routing example above, use the `label-index`
 option in
@@ -134,7 +130,7 @@ plus the label-index.
     !
     mpls label global-block 100 200
 
-## Viewing the Configuration</span>
+## Viewing the Configuration
 
 You can see the label-index when you show the BGP configuration on a
 router.
@@ -207,11 +203,3 @@ well:
     cumulus@r1:~$ ip -f mpls route show 104
     104 via inet6 fe80::202:ff:fe00:c dev swp3  proto zebra 
     cumulus@r1:~$ 
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

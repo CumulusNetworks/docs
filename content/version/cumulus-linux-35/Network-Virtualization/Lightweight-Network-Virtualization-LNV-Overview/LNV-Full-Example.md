@@ -15,7 +15,7 @@ Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/version/cumulus-linux-35/Network-Virtualization/) without a
 central controller on bare metal switches. This a full example complete
 with diagram. Please reference the [Lightweight Network Virtualization
-chapter](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
+chapter](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 for more detailed information. This full example uses the **recommended
 way** of deploying LNV, which is to use Anycast to load balance the
 service nodes.
@@ -30,7 +30,7 @@ Cumulus Linux.
 
 {{%/notice%}}
 
-## Example LNV Configuration</span>
+## Example LNV Configuration
 
 The following images illustrate the configuration:
 
@@ -66,7 +66,7 @@ get instructor-led training\!
 
 {{%/notice%}}
 
-### Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing
 
 Here is the configuration for the IP addressing information used in this
 example:
@@ -248,13 +248,13 @@ iface br-30
 </tbody>
 </table>
 
-### FRRouting Configuration</span>
+### FRRouting Configuration
 
 The service nodes and registration nodes must all be routable between
 each other. The L3 fabric on Cumulus Linux can either be
 [BGP](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol-BGP)
 or
-[OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-OSPF-Protocol).
 In this example, OSPF is used to demonstrate full reachability.
 
 Here is the FRRouting configuration using OSPF:
@@ -376,7 +376,7 @@ router ospf
 </tbody>
 </table>
 
-### Host Configuration</span>
+### Host Configuration
 
 In this example, the servers are running Ubuntu 14.04. A trunk must be
 mapped from server1 and server2 to the respective switch. In Ubuntu this
@@ -417,7 +417,7 @@ iface eth3.30 inet static
 </tbody>
 </table>
 
-### Service Node Configuration</span>
+### Service Node Configuration
 
 <table>
 <colgroup>
@@ -514,25 +514,10 @@ svcnode_peers = 10.2.1.3
 </tbody>
 </table>
 
-## Related Information</span>
+## Related Information
 
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
-
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
-
-  - [Detailed LNV Configuration
-    Guide](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
-
-  - [Cumulus Networks
-    Training](http://cumulusnetworks.com/education/instructor-led-training/)
-
-  - [Network virtualization chapter, Cumulus Linux user
-    guide](/version/cumulus-linux-35/Network-Virtualization/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Detailed LNV Configuration Guide](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
+  - [Cumulus Networks Training](http://cumulusnetworks.com/education/instructor-led-training/)
+  - [Network virtualization chapter, Cumulus Linux user guide](/version/cumulus-linux-35/Network-Virtualization/)

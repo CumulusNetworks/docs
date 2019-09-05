@@ -14,21 +14,21 @@ siteSlug: cumulus-linux
 Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
 
-  - lo, network loopback device
-  - ethN, switch management port(s), for out of band management only
-  - swpN, switch front panel ports
-  - (optional) brN, bridges (IEEE 802.1Q VLANs)
-  - (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
-    port channels)
+- lo, network loopback device
+- ethN, switch management port(s), for out of band management only
+- swpN, switch front panel ports
+- (optional) brN, bridges (IEEE 802.1Q VLANs)
+- (optional) bondN, bonds (IEEE 802.3ad link aggregation trunks, or
+  port channels)
 
 Each physical network interface has a number of configurable settings:
 
-  - [Auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation)
-  - [Duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
-  - [FEC](https://en.wikipedia.org/wiki/Forward_error_correction)
-    (Forward error correction)
-  - Link speed
-  - MTU, or [maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
+- [Auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation)
+- [Duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
+- [FEC](https://en.wikipedia.org/wiki/Forward_error_correction)
+  (Forward error correction)
+- Link speed
+- MTU, or [maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
 
 Most of these settings are configured automatically for you, depending
 upon your switch ASIC, although you must always set MTU manually.
@@ -87,12 +87,11 @@ to its capabilities.
 
 If you do decide to disable auto-negotiation, be aware of the following:
 
-  - You must manually set any non-default link speed, duplex, pause, and
-    FEC.
-  - Disabling auto-negotiation on a 1G optical cable prevents detection
-    of single fiber breaks.
-  - You cannot disable auto-negotiation on 1GT or 10GT fixed copper
-    switch ports.
+- You must manually set any non-default link speed, duplex, pause, and FEC.
+- Disabling auto-negotiation on a 1G optical cable prevents detection
+  of single fiber breaks.
+- You cannot disable auto-negotiation on 1GT or 10GT fixed copper
+  switch ports.
 
 For 1000BASE-T RJ-45 SFP adapters, auto-negotiation is automatically
 done on the SFP PHY, so enabling auto-negotiation on the port settings
@@ -129,8 +128,7 @@ You can configure ports to one speed less than their maximum speed.
 | 100G             | 50G\* & 40G (with or without breakout port), 25G\*, 10G\* |
 
 \*Requires the port to be converted into a breakout port. See
-[Configuring Breakout Ports](#breakout-ports)
-below.
+[Breakout Ports](#breakout-ports) below.
 
 The following NCLU commands configure the port speed for the swp1
 interface:
@@ -139,7 +137,7 @@ interface:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-The above commands create the following ` /etc/network/interfaces  `code
+The above commands create the following `/etc/network/interfaces` code
 snippet:
 
     auto swp1
@@ -148,8 +146,8 @@ snippet:
 
 **Platform Limitations**
 
-  - On Lenovo NE2572O switches, swp1 thru swp8 only support 25G speed.
-  - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
+- On Lenovo NE2572O switches, swp1 thru swp8 only support 25G speed.
+- For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
     you must edit the `/etc/cumulus/ports.conf` file and configure the
     four ports in the same core to be 10G. See [Caveats and Errata](#caveats-and-errata) below.
 
@@ -228,7 +226,7 @@ interfaces (bond1 to bond 4, and peer5), to 9000 at minimum.
 **Use MTU 9216 for a bridge**
 
 Two common MTUs for jumbo frames are 9216 and 9000 bytes. The
-corresponding MTUs for the VNIs would be 9166 and 8950.
+corresponding MTUs for the VNIs would be 9166 and 8950. 
 
 {{%/notice%}}
 
@@ -244,7 +242,7 @@ from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100
 inherits the MTU setting for swp1.
 
 If you are
-working with [VXLANs](/cumulus-linux/Network-Virtualization/), the MTU
+working with [VXLANs](../../../Network-Virtualization/), the MTU
 for a virtual network interface (VNI) must be 50 bytes smaller than the
 MTU of the physical interfaces on the switch, as those 50 bytes are
 required for various headers and other data. Also, consider setting the
@@ -253,7 +251,7 @@ MTU much higher than the default 1500.
 In general, the policy file specified above handles default MTU settings
 for all interfaces on the switch. If you need to configure a different
 MTU setting for a subset of interfaces, use
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
+[NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU).
 
 The following commands configure an MTU minimum value of 9000 on swp1:
 
@@ -284,7 +282,7 @@ that need to run at a lower MTU.
 
 {{%/notice%}}
 
-To view the MTU setting, run the  `net show interface <interface>` command:
+To view the MTU setting, run the `net show interface <interface>` command:
 
     cumulus@switch:~$ net show interface swp1
         Name    MAC                Speed      MTU  Mode
@@ -913,17 +911,13 @@ remain at 1500.
 
 Cumulus Linux has the ability to:
 
-  - Break out 100G switch ports into the following with breakout cables:
-
-      - 2x50G, 2x40G, 4x25G, 4x10G
-
-  - Break out 40G switch ports into four separate 10G ports for use with
-    breakout cables.
-
-  - Combine (also called *aggregating* or *ganging*) four 10G switch
-    ports into one 40G port for use with a breakout cable ([not to be
-    confused with a
-    bond](/cumulus-linux/Layer-2/Bonding-Link-Aggregation)).
+- Break out 100G switch ports into the following with breakout cables:
+  - 2x50G, 2x40G, 4x25G, 4x10G
+- Break out 40G switch ports into four separate 10G ports for use with
+  breakout cables.
+- Combine (also called *aggregating* or *ganging*) four 10G switch
+  ports into one 40G port for use with a breakout cable 
+  ([not to be confused with a bond](../../../Layer-2/Bonding-Link-Aggregation)).
 
 To configure a 4x25G breakout port, first configure the port to break
 out then set the link speed:
@@ -971,8 +965,8 @@ reconfigure the ports and create four interfaces in the
 {{%notice note%}}
 
 When you commit your change configuring the breakout ports, `switchd`
-restarts to apply the changes. The restart [interrupts network
-services](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd).
+restarts to apply the changes. The restart 
+[interrupts network services](../../../System-Configuration/Configuring-switchd/#restart-switchd).
 
 {{%/notice%}}
 
@@ -981,9 +975,9 @@ The breakout port configuration is stored in the
 
 {{%notice info%}}
 
-The`  /etc/cumulus/ports.conf ` file varies across different hardware
-platforms. Check the current list of supported platforms on [the
-hardware compatibility list](http://www.cumulusnetworks.com/hcl).
+The `/etc/cumulus/ports.conf` file varies across different hardware
+platforms. Check the current list of supported platforms on 
+[the hardware compatibility list](http://www.cumulusnetworks.com/hcl).
 
 A snippet from the `/etc/cumulus/ports.conf` file on a Dell S6000 switch
 (with a Trident II+ ASIC) where swp6 is broken out looks like this:
@@ -1066,8 +1060,8 @@ the 100G ports using the following NCLU commands:
 
 To remove a breakout port, you need to do the following:
 
-1.  Remove the breakout port interfaces using NCLU, then commit the
-    change. Continuing with the original example:
+1. Remove the breakout port interfaces using NCLU, then commit the
+   change. Continuing with the original example:
 
         cumulus@switch:~$ net del interface swp3s0
         cumulus@switch:~$ net del interface swp3s1
@@ -1076,8 +1070,8 @@ To remove a breakout port, you need to do the following:
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
 
-2.  Manually edit the `/etc/cumulus/ports.conf` file to configure the
-    interface for the original speed, then save your changes:
+2. Manually edit the `/etc/cumulus/ports.conf` file to configure the
+   interface for the original speed, then save your changes:
 
         cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
          
@@ -1088,22 +1082,19 @@ To remove a breakout port, you need to do the following:
         4=100G
          
         ...
-         
 
-3.  [Restart
-    `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd).
+3. [Restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
 
 ### Combine Four 10G Ports into One 40G Port
 
 You can *gang* (aggregate) four 10G ports into one 40G port for use with
 a breakout cable, provided you follow these requirements:
 
-  - You must gang four 10G ports in sequential order. For example, you
-    cannot gang swp1, swp10, swp20 and swp40 together.
-
-  - The ports must be in increments of four, with the starting port
-    being swp1 (or swp5, swp9, or so forth); so you cannot gang swp2,
-    swp3, swp4 and swp5 together.
+- You must gang four 10G ports in sequential order. For example, you
+  cannot gang swp1, swp10, swp20 and swp40 together.
+- The ports must be in increments of four, with the starting port
+  being swp1 (or swp5, swp9, or so forth); so you cannot gang swp2,
+  swp3, swp4 and swp5 together.
 
 For example, to gang swp1 through swp4 into a 40G port, run:
 
@@ -1127,11 +1118,10 @@ These commands create the following configuration snippet in the
 100G and 40G switches can support a certain number of logical ports,
 depending upon the manufacturer; these include:
 
-  - Mellanox SN2700, SN2700B, SN2410 and SN2410B switches
-
-  - Switches with Broadcom Tomahawk, Trident II, Trident II+ and
-    Trident3 chipsets (check the
-    [HCL](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
+- Mellanox SN2700, SN2700B, SN2410 and SN2410B switches
+- Switches with Broadcom Tomahawk, Trident II, Trident II+ and Trident3
+  chipsets (check the
+  [HCL](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
 
 You *cannot* have more than 128 total logical ports on a Broadcom
 switch.
@@ -1139,9 +1129,9 @@ switch.
 The Mellanox SN2700, SN2700B, SN2410 and SN2410B switches all have a
 limit of 64 logical ports in total.
 
-Before you configure any logical/unganged
-ports on a switch, check the limitations listed in `/etc/cumulus/ports.conf`; this file is
-specific to each manufacturer.
+Before you configure any logical/unganged ports on a switch, check the
+limitations listed in `/etc/cumulus/ports.conf`; this file is specific to
+each manufacturer.
 
 For example, the Dell S6000 `ports.conf` file indicates the logical port
 limitation like this:
@@ -1179,9 +1169,8 @@ The Mellanox SN2700, SN2700B, SN2410 and SN2410B switches all have a
 limit of 64 logical ports in total. However, if you want to break out to
 4x25G or 4x10G, you must configure the logical ports as follows:
 
-  - You can only break out odd-numbered ports into 4 logical ports.
-
-  - You must disable the next even-numbered port.
+- You can only break out odd-numbered ports into 4 logical ports.
+- You must disable the next even-numbered port.
 
 These restrictions do not apply to a 2x50G breakout configuration.
 
@@ -1201,8 +1190,7 @@ There is no limitation on any port if interfaces are configured in 2x50G
 mode.
 
 Here is an example showing how to configure breakout cables for the
-[Mellanox Spectrum
-SN2700](https://community.mellanox.com/docs/DOC-2685).
+[Mellanox Spectrum SN2700](https://community.mellanox.com/docs/DOC-2685).
 
 ## Configure Interfaces with ethtool
 
@@ -1287,8 +1275,8 @@ Low-level interface statistics are available with `ethtool`:
 
 ### Query SFP Port Information
 
-You can verify SFP settings using [`ethtool
--m`](/cumulus-linux/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool).
+You can verify SFP settings using 
+[`ethtool -m`](../../../Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool).
 The following example shows the vendor, type and power output for the
 swp4 interface.
 
@@ -1311,17 +1299,14 @@ When configuring port speed or break outs in the
 command to reload the configuration after restarting `switchd` in the
 following cases:
 
-  - If you configure, or configure then remove, the port speed in the
-    `/etc/cumulus/ports.conf` file and you also set or remove the speed
-    on the same physical port or breakouts of that port in the
-    `/etc/network/interfaces` file since the last time you restarted
-    `switchd`.
-
-<!-- end list -->
-
-  - If you break out a switch port or remove a break out port and the
-    port speed is set in both the `/etc/cumulus/ports.conf` file and the
-    `/etc/network/interfaces` file.
+- If you configure, or configure then remove, the port speed in the
+  `/etc/cumulus/ports.conf` file and you also set or remove the speed
+  on the same physical port or breakouts of that port in the
+  `/etc/network/interfaces` file since the last time you restarted
+  `switchd`.
+- If you break out a switch port or remove a break out port and the
+  port speed is set in both the `/etc/cumulus/ports.conf` file and the
+  `/etc/network/interfaces` file.
 
 ### 10G and 1G SFPs Inserted in a 25G Port
 
@@ -1331,10 +1316,10 @@ four 25G ports are controlled by a single core; therefore, each core
 must run at the same clock speed. The four ports must be in sequential
 order; for example, swp1, swp2, swp3, and swp4.
 
-1.  Edit the `/etc/cumulus/ports.conf` file and configure the four ports
-    to be 10G. 1G SFPs are clocked at 10G speeds; therefore, for 1G
-    SFPs, the `/etc/cumulus/ports.conf` file entry must also specify
-    10G. Currently, you cannot use NCLU commands for this step.
+1. Edit the `/etc/cumulus/ports.conf` file and configure the four ports
+   to be 10G. 1G SFPs are clocked at 10G speeds; therefore, for 1G
+   SFPs, the `/etc/cumulus/ports.conf` file entry must also specify
+   10G. Currently, you cannot use NCLU commands for this step.
 
         ...
         # SFP28 ports
@@ -1351,10 +1336,9 @@ order; for example, swp1, swp2, swp3, and swp4.
         9=25G
         ...
 
-2.  [Restart
-    `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd).
+2. [Restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
 
-3.  If you want to set the speed of any SFPs to 1G, set the port speed
+3. If you want to set the speed of any SFPs to 1G, set the port speed
     to 1000 Mbps using NCLU commands; this is *not* necessary for 10G
     SFPs. You don't need to set the port speed to 1G for all four ports.
     For example, if you intend only for swp5 and swp6 to use 1G SFPs, do
@@ -1384,8 +1368,8 @@ error occurs while removing and reinserting QSFP module.
 
 You cannot remove the QSFPx2 module while the switch is powered on, as
 it is not hot-swappable. However, if an *Operation timed out* error
-occurs, you can get the link to come up by [restarting
-`switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
+occurs, you can get the link to come up by
+[restarting `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd)
 however, this disrupts your network.
 
 On the T3048-LY9, run the following commands:
@@ -1405,11 +1389,9 @@ On the T5048-LY8, run the following commands:
 The front SFP+ ports (swp33 and swp34) are disabled in Cumulus Linux on
 the following switches:
 
-  - Dell Z9100-ON
-
-  - Penguin Arctica 3200-series switches (the 3200C, 3200XL and 3200XLP)
-
-  - Supermicro SSE-C3632S
+- Dell Z9100-ON
+- Penguin Arctica 3200-series switches (the 3200C, 3200XL and 3200XLP)
+- Supermicro SSE-C3632S
 
 These ports appear as disabled in the `/etc/cumulus/ports.conf` file.
 
@@ -1485,29 +1467,18 @@ come up. These ports are set to 25G by default, but can also be set to
 10G. The port groups on this switch are as follows, where each row is a
 port group:
 
-  - 1 2 3 6\*
-
-  - 4 5 7\* 9
-
-  - 8 10 11\* 12
-
-  - 13 14 15 18\*
-
-  - 16 17 19\* 21
-
-  - 20 22 23\* 24
-
-  - 25 26 27 30\*
-
-  - 28 29 31\* 33
-
-  - 32 34 35\* 36
-
-  - 37 38 39 42\*
-
-  - 40\* 41 43 45
-
-  - 44\* 46 47 48
+- 1 2 3 6\*
+- 4 5 7\* 9
+- 8 10 11\* 12
+- 13 14 15 18\*
+- 16 17 19\* 21
+- 20 22 23\* 24
+- 25 26 27 30\*
+- 28 29 31\* 33
+- 32 34 35\* 36
+- 37 38 39 42\*
+- 40\* 41 43 45
+- 44\* 46 47 48
 
 For example, if you configure port 19 for 10G, you must also configure
 ports 16, 17 and 21 for 10G.
@@ -1534,7 +1505,7 @@ This is a known issue where `ethtool` does not update after restarting
 `switchd`, so it continues to display the outdated port speed.
 
 To correctly set the port speed, use
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
+[NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU)
 or `ethtool` to set the speed instead of manually editing the
 `ports.conf` file.
 
@@ -1556,11 +1527,6 @@ second to come down.
 
 ## Related Information
 
-  - [Debian - Network
-    Configuration](http://wiki.debian.org/NetworkConfiguration)
-
-  - [Linux Foundation -
-    VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-
-  - [Linux Foundation -
-    Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
+- [Debian - Network Configuration](http://wiki.debian.org/NetworkConfiguration)
+- [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
+- [Linux Foundation - Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)

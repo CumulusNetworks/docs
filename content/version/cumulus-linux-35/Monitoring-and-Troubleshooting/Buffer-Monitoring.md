@@ -17,10 +17,8 @@ and their utilization is vital for proper traffic management on a
 network. It is quite useful for:
 
   - Identifying microbursts that result in longer packet latency
-
   - Giving early warning signs of packet buffer congestion that could
     lead to packet drops
-
   - Quickly identifying a network problem with a particular switch, port
     or traffic class
 
@@ -32,10 +30,8 @@ The monitoring involves a set of configurable triggers, that, when
 triggered can lead to any or all of the following three actions:
 
   - **Log actions**, which involves writing to `syslog`
-
   - **Snapshot actions**, which involves writing to a file detailing the
     current state
-
   - **Collect actions**, where the switch can collect more information
 
 The monitoring is managed by the `asic-monitor` service, which is in
@@ -47,7 +43,7 @@ Buffer monitoring is supported on Mellanox switches only.
 
 {{%/notice%}}
 
-## Understanding Histograms</span>
+## Understanding Histograms
 
 The Mellanox Spectrum ASIC provides a mechanism to measure and report
 egress queue lengths in *histograms*. You can configure the ASIC to
@@ -76,37 +72,24 @@ For example, consider the following histogram queue length ranges, in
 bytes:
 
   - Min = 960
-
   - Histogram size = 12288
-
   - Max = 13248
-
   - Range size = 1536
-
   - Bin 0: 0:959
-
   - Bin 1: 960:2495
-
   - Bin 2: 2496:4031
-
   - Bin 3: 4032:5567
-
   - Bin 4: 5568:7103
-
   - Bin 5: 7104:8639
-
   - Bin 6: 8640:10175
-
   - Bin 7: 10176:11711
-
   - Bin 8: 11712:13247
-
   - Bin 9: 13248:\*
 
 When using the snapshot action, all of this information is captured in
 the file specified by the *monitor.histogram\_pg.snapshot.file* setting.
 
-## Configuring Buffer Monitoring</span>
+## Configuring Buffer Monitoring
 
 The `asic-monitor` tool has a number of settings you need to configure
 before you can start monitoring. They're described in the following
@@ -173,7 +156,7 @@ table:
 </tr>
 <tr class="odd">
 <td><p>monitor.histogram_pg.snapshot.file_count</p></td>
-<td><p>The number of snapshots that can be created before the first snapshot file is overwritten. While more snapshots can provide you with more data, they can occupy a lot of disk space on the switch. See <a href="#src-8357408_BufferMonitoring-caveats">Caveats and Errata</a> below.</p></td>
+<td><p>The number of snapshots that can be created before the first snapshot file is overwritten. While more snapshots can provide you with more data, they can occupy a lot of disk space on the switch. See <a href="#caveats-and-errata">Caveats and Errata</a> below.</p></td>
 </tr>
 <tr class="even">
 <td><p>monitor.histogram_pg.histogram.minimum_bytes_boundary</p></td>
@@ -230,7 +213,7 @@ There is no default configuration. Here is a sample configuration:
     monitor.histogram_pg.collect.queue_bytes = 500                              
     monitor.histogram_pg.collect.port_group_list = [buffers_pg,all_packet_pg]
 
-## Restarting the asic-monitor Service</span>
+## Restarting the asic-monitor Service
 
 After you modify the configuration in the `monitor.conf` file, you need
 to restart the `asic-monitor` service. This does not disrupt traffic,
@@ -242,7 +225,7 @@ take effect.
 The service is enabled by default when you boot the switch and is
 restarted whenever you restart `switchd`.
 
-## Understanding Triggers</span>
+## Understanding Triggers
 
 During state collection, the monitoring service may respond to a
 threshold being crossed, which triggers a monitoring action.
@@ -255,15 +238,13 @@ When a monitoring statistic meets a configured threshold, it can trigger
 an action. Triggers can include:
 
   - Queue length, as measured by a histogram
-
   - Packet drops due to packet buffer congestion
-
   - Packet drops due to errors
 
 If no trigger is configured for a monitoring action, the action happens
 unconditionally and always occurs.
 
-## Understanding Monitoring Actions</span>
+## Understanding Monitoring Actions
 
 Monitoring actions are responses to triggers issued by the
 `asic-monitor` service.
@@ -292,17 +273,9 @@ snapshot has taken, the original snapshot file —
 `/var/lib/cumulus/snapshot_0` — is overwritten and the files are
 overwritten in sequence..
 
-## <span id="src-8357408_BufferMonitoring-caveats" class="confluence-anchor-link"></span>Caveats and Errata</span>
+## Caveats and Errata
 
 Keep in mind that a lot of overhead is involved in collecting this data,
 hitting the CPU and SDK process, which can affect execution of
 `switchd`. Snapshots and logging can occupy a lot of disk space if
 you’re not limiting the number of files to copy.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

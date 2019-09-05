@@ -226,7 +226,8 @@ the manpage for `nslcd.conf` (such as *passwd* or *group*).
 
 ### Example Configuration
 
-Here is an example configuration using Cumulus Linux.
+<details>
+<summary>Here is an example configuration using Cumulus Linux ...</summary>
 
     # /etc/nslcd.conf
     # nslcd configuration file. See nslcd.conf(5)
@@ -295,6 +296,7 @@ Here is an example configuration using Cumulus Linux.
     filter group (&(|(objectClass=group)(Objectclass=user))(!(objectClass=computer)))
     map    group gidNumber     objectSid:S-1-5-21-1391733952-3059161487-1245441232
     map    group cn            sAMAccountName
+</details>
 
 ## Troubleshooting
 

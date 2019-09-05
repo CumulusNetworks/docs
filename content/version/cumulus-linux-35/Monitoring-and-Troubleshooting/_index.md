@@ -11,11 +11,9 @@ version: '3.5'
 imgData: cumulus-linux-35
 siteSlug: cumulus-linux-35
 ---
-<details>
-
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 
-## Using the Serial Console</span>
+## Using the Serial Console
 
 The serial console can be a useful tool for debugging issues, especially
 when you find yourself rebooting the switch often or if you don’t have a
@@ -24,7 +22,7 @@ reliable network connection.
 The default serial console baud rate is 115200, which is the baud rate
 [ONIE](http://opencomputeproject.github.io/onie/) uses.
 
-### Configuring the Serial Console on ARM Switches</span>
+### Configuring the Serial Console on ARM Switches
 
 On ARM switches, the U-Boot environment variable `baudrate` identifies
 the baud rate of the serial console. To change the `baudrate` variable,
@@ -39,24 +37,16 @@ You must reboot the switch for the `baudrate` change to take effect.
 The valid values for `baudrate` are:
 
   - 300
-
   - 600
-
   - 1200
-
   - 2400
-
   - 4800
-
   - 9600
-
   - 19200
-
   - 38400
-
   - 115200
 
-### Configuring the Serial Console on x86 Switches</span>
+### Configuring the Serial Console on x86 Switches
 
 On x86 switches, you configure serial console baud rate by editing
 `grub`.
@@ -72,21 +62,13 @@ before implementation.
 The valid values for the baud rate are:
 
   - 300
-
   - 600
-
   - 1200
-
   - 2400
-
   - 4800
-
   - 9600
-
   - 19200
-
   - 38400
-
   - 115200
 
 To change the serial console baud rate:
@@ -106,12 +88,12 @@ To change the serial console baud rate:
 
 3.  If you plan on accessing your switch's BIOS over the serial console,
     you need to update the baud rate in the switch BIOS. For more
-    information, see [this knowledge base
-    article](https://support.cumulusnetworks.com/hc/en-us/articles/203884473).
+    information, see 
+    [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/203884473).
 
 4.  Reboot the switch.
 
-## Getting General System Information</span>
+## Getting General System Information
 
 Two commands are helpful for getting general information about the
 switch and the version of Cumulus Linux you are running. These are
@@ -146,13 +128,13 @@ system:
      
     Uptime: 4 days, 20:53:49
 
-## Diagnostics Using cl-support</span>
+## Diagnostics Using cl-support
 
 You can use `cl-support` to generate a single export file that contains
 various details and the configuration from a switch. This is useful for
 remote debugging and troubleshooting. For more information about
-`cl-support`, read [Understanding the cl-support Output
-File](/version/cumulus-linux-35/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/).
+`cl-support`, read 
+[Understanding the cl-support Output File](/version/cumulus-linux-35/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/).
 
 You should run `cl-support` before you submit a support request to
 Cumulus Networks as this file helps in the investigation of issues.
@@ -171,9 +153,9 @@ Cumulus Networks as this file helps in the investigation of issues.
     -e MODULES: Enable modules. Comma separated module list (run with -e help for module names)
     -d MODULES: Disable modules. Comma separated module list (run with -d help for module names)
 
-## <span id="src-8357374_MonitoringandTroubleshooting-syslog_server" class="confluence-anchor-link"></span>Sending Log Files to a syslog Server</span>
+## Sending Log Files to a syslog Server
 
-### Using NCLU</span>
+### Using NCLU
 
 The remote syslog server can be configured on the switch using the
 following configuration:
@@ -190,13 +172,13 @@ This creates a file called `/etc/rsyslog.d/11-remotesyslog.conf` in the
 {{%notice note%}}
 
 NCLU cannot configure a remote syslog if management VRF is enabled on
-the switch. To do so, please refer to the section [Writing to syslog
-with Management VRF
-Enabled](#src-8357374_MonitoringandTroubleshooting-mgmtvrf) below.
+the switch. To do so, please refer to the section
+[Writing to syslog with Management VRF Enabled](#writing-to-syslog-with-management-vrf-enabled)
+below.
 
 {{%/notice%}}
 
-### Logging Technical Details</span>
+### Logging Technical Details
 
 Logging on Cumulus Linux is done with
 [rsyslog](http://www.rsyslog.com/). `rsyslog` provides both local
@@ -221,15 +203,15 @@ by the last line in `/etc/rsyslog.d/99-syslog.conf`.
 
 {{%/notice%}}
 
-### Local Logging</span>
+### Local Logging
 
 Most logs within Cumulus Linux are sent through `rsyslog`, which then
 writes them to files in the `/var/log` directory. There are default
 rules in the `/etc/rsyslog.d/` directory that define where the logs are
 written:
 
-| Rule              | Purpose                                                                                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rule              | Purpose          |
+| ----------------- | ---------------- |
 | 10-rules.conf     | Sets defaults for log messages, include log format and log rate limits.                                                                                       |
 | 15-crit.conf      | Logs crit, alert or emerg log messages to `/var/log/crit.log` to ensure they are not rotated away rapidly.                                                    |
 | 20-clagd.conf     | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG).                      |
@@ -247,7 +229,7 @@ that do not use `rsyslog` write to their own log files within the
 [Troubleshooting Log
 Files](/version/cumulus-linux-35/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files).
 
-### Enabling Remote syslog</span>
+### Enabling Remote syslog
 
 If you need to send other log files — such as `switchd` logs — to a
 `syslog` server, do the following:
@@ -269,41 +251,40 @@ If you need to send other log files — such as `switchd` logs — to a
     the IP address of the `syslog` server, and *514* is the UDP port.
     
     {{%notice note%}}
-    
-    For TCP-based syslog, use two @@ before the IP address:
-    *@@192.168.1.2:514*.
-    
-    Running `syslog` over TCP places a burden on the switch to queue
-    packets in the `syslog` buffer. This may cause detrimental effects
-    if the remote `syslog` server becomes unavailable.
-    
+
+For TCP-based syslog, use two @@ before the IP address: *@@192.168.1.2:514*.
+
+Running `syslog` over TCP places a burden on the switch to queue
+packets in the `syslog` buffer. This may cause detrimental effects
+if the remote `syslog` server becomes unavailable.
+
     {{%/notice%}}
     
     {{%notice note%}}
-    
-    The numbering of the files in `/etc/rsyslog.d/` dictates how the
-    rules are installed into `rsyslog.d`. If you want to remotely log
-    only the messages in `/var/syslog`, and not those in
-    `/var/log/clagd.log` or `/var/log/switchd.log`, for instance, then
-    name the file `98-remotesyslog.conf`, since it's lower than the
-    `/var/syslog` file `99-syslog.conf` only.
-    
+
+The numbering of the files in `/etc/rsyslog.d/` dictates how the
+rules are installed into `rsyslog.d`. If you want to remotely log
+only the messages in `/var/syslog`, and not those in
+`/var/log/clagd.log` or `/var/log/switchd.log`, for instance, then
+name the file `98-remotesyslog.conf`, since it's lower than the
+`/var/syslog` file `99-syslog.conf` only.
+
     {{%/notice%}}
     
     {{%notice note%}}
-    
-    Do not use the `imfile` module with any file written by `rsyslogd`.
-    
+
+Do not use the `imfile` module with any file written by `rsyslogd`.
+
     {{%/notice%}}
 
 2.  Restart `rsyslog`.
     
         cumulus@switch:~$ sudo systemctl restart rsyslog.service
 
-### <span id="src-8357374_MonitoringandTroubleshooting-mgmtvrf" class="confluence-anchor-link"></span>Writing to syslog with Management VRF Enabled</span>
+### Writing to syslog with Management VRF Enabled
 
-You can write to syslog with [management
-VRF](/version/cumulus-linux-35/Layer-3/Management-VRF) enabled by
+You can write to syslog with 
+[management VRF](/version/cumulus-linux-35/Layer-3/Management-VRF) enabled by
 applying the following configuration; this configuration is commented
 out in the `/etc/rsyslog.d/11-remotesyslog.conf` file:
 
@@ -311,7 +292,7 @@ out in the `/etc/rsyslog.d/11-remotesyslog.conf` file:
     ## Copy all messages to the remote syslog server at 192.168.0.254 port 514
     action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp")
 
-For each syslog server, configure a unique ` action  `line. For example,
+For each syslog server, configure a unique `action` line. For example,
 to configure two syslog servers at 192.168.0.254 and 10.0.0.1:
 
     cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
@@ -319,18 +300,19 @@ to configure two syslog servers at 192.168.0.254 and 10.0.0.1:
     action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp")
     action(type="omfwd" Target="10.0.0.1" Device="mgmt" Port="514" Protocol="udp")
 
-### Rate-limiting syslog Messages</span>
+### Rate-limiting syslog Messages
 
 If you want to limit the number of `syslog` messages that can be written
 to the `syslog` file from individual processes, add the following
 configuration to `/etc/rsyslog.conf`. Adjust the interval and burst
 values to rate-limit messages to the appropriate levels required by your
-environment. For more information, read the [rsyslog
-documentation](http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html).
+environment. For more information, read the 
+[rsyslog documentation](http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html).
 
     module(load="imuxsock"
           SysSock.RateLimit.Interval="2" SysSock.RateLimit.Burst="50")
 
+<details>
 <summary>The following test script shows an example of rate-limit output
 in Cumulus Linux ... </summary>
 
@@ -361,8 +343,9 @@ in Cumulus Linux ... </summary>
     2017-02-22T19:59:50.057936+00:00 leaf1 syslog.py[22830]: Message Number:48
     2017-02-22T19:59:50.058125+00:00 leaf1 syslog.py[22830]: Message Number:49
     2017-02-22T19:59:50.058324+00:00 leaf1 rsyslogd-2177: imuxsock[pid 22830]: begin to drop messages due to rate-limiting
+</details>
 
-### Harmless syslog Error: Failed to reset devices.list</span>
+### Harmless syslog Error: Failed to reset devices.list
 
 The following message gets logged to `/var/log/syslog` when you run
 `systemctl daemon-reload` and during system boot:
@@ -378,11 +361,11 @@ The `systemctl daemon-reload` command is often issued when Debian
 packages are installed, so the message may be seen multiple times when
 upgrading packages.
 
-### Syslog Troubleshooting Tips</span>
+### Syslog Troubleshooting Tips
 
 You can use the following commands to troubleshoot `syslog` issues.
 
-#### Verifying that rsyslog is Running</span>
+#### Verifying that rsyslog is Running
 
 To verify that the `rsyslog` service is running, use the `sudo systemctl
 status rsyslog.service` command:
@@ -399,7 +382,7 @@ status rsyslog.service` command:
      
     Dec 09 00:48:58 leaf01 systemd[1]: Started System Logging Service.
 
-#### Verifying your rsyslog Configuration.</span>
+#### Verifying your rsyslog Configuration
 
 After making manual changes to any files in the `/etc/rsyslog.d`
 directory, use the `sudo rsyslogd -N1` command to identify any errors in
@@ -418,7 +401,7 @@ management VRF:
     rsyslogd: error during parsing file /etc/rsyslog.d/15-crit.conf, on or before line 3: invalid character '$' in object definition - is there an invalid escape sequence somewhere? [try http://www.rsyslog.com/e/2207 ]
     rsyslogd: error during parsing file /etc/rsyslog.d/15-crit.conf, on or before line 3: syntax error on token 'crit_log' [try http://www.rsyslog.com/e/2207 ]
 
-After correcting the invalid syntax, issuing the ` sudo  ``rsyslogd -N1`
+After correcting the invalid syntax, issuing the `sudo  rsyslogd -N1`
 command produces the following output.
 
     cumulus@leaf01:mgmt-vrf:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
@@ -427,7 +410,7 @@ command produces the following output.
     rsyslogd: version 8.4.2, config validation run (level 1), master config /etc/rsyslog.conf
     rsyslogd: End of config validation run. Bye.
 
-#### Using tcpdump</span>
+#### Using tcpdump
 
 If a syslog server is not accessible to validate that `syslog` messages
 are being exported, you can use `tcpdump`.
@@ -462,17 +445,3 @@ To see the contents of the `syslog` file, use the `tcpdump -X` option:
     0x0060: 6d75 6c75 7320 3b20 5553 4552 3d72 6f6f mulus.;.USER=roo
     0x0070: 7420 3b20 434f 4d4d 414e 443d 2f62 696e t.;.COMMAND=/bin
     0x0080: 2f64 6174 65 /date
-
-## Next Steps</span>
-
-The links below discuss more specific monitoring topics.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

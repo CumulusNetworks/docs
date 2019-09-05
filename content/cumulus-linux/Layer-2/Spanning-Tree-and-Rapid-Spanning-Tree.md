@@ -583,9 +583,22 @@ example, to enable unicast and multicast storm control at 400 packets
 per second (pps) and 3000 pps, respectively, for swp1, run the
 following:
 
-    cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
+    cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/broadcast'
     cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
-     
+    cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
+
+The configuration above takes effect immediately, but does not persist if you
+reboot the switch. To make the changes apply persistently, edit the
+`/etc/cumulus/switchd.conf` file in a text editor as shown below:
+
+    # Storm Control setting on a port, in pps, 0 means disable
+    interface.swp1.storm_control.broadcast = 400
+    interface.swp1.storm_control.multicast = 3000
+    interface.swp1.storm_control.unknown_unicast = 3000
+
+Save the file then 
+[restart `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
+to make the changes persist across reboots.
 
 ### Spanning Tree Parameter List
 
@@ -745,7 +758,7 @@ The source code for `mstpd`/`mstpctl` was written by [Vitalii
 Demianets](mailto:vitas%40nppfactor.kiev.ua) and is hosted at the URL
 below.
 
-  - [Sourceforge - mstpd project](https://github.com/mstpd/mstpd)
+  - [Github - mstpd project](https://github.com/mstpd/mstpd)
 
   - [Wikipedia - Spanning Tree
     Protocol](http://en.wikipedia.org/wiki/Spanning_Tree_Protocol)

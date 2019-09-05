@@ -22,111 +22,123 @@ Inside the box that was shipped to you, you'll find:
 
 If you're looking for hardware specifications (including LED layouts and FRUs like the power supply or fans and accessories like included cables) or safety and environmental information, check out the appliance's [user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf).
 
-## Install and Configure the Appliance
+## Install Workflow
+
+Install and set up your NetQ Appliance and switch and host Agents using the following steps:
+
+{{< figure src="/images/netq/install-flow-nqcldappl-cloud-nq222.png" width="600" >}}
+
+## Install the Appliance
 
 After you unbox the appliance, mount it in the rack and connect it to power following the procedures described in your appliance's [user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf). Connect the Ethernet cable to the 10G management port (eth0), then power on the appliance.
 
-{{< figure src="/images/netq/netq-cloud-appl-port-connections.png" >}}
+{{< figure src="/images/netq/netq-cloud-appl-port-connections.png" width="700" >}}
 
 If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over the network. If DHCP isn't enabled, then you configure the appliance using the console cable provided.
 
-## Download the NetQ Cloud Software
+## Configure the Password, Hostname, and IP Address
 
-1. On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list box.
+Change the password and specify the hostname and IP address for the appliance before installing the NetQ software.
 
-2. Click *2.2* from the **Version** list box, and then select *2.2.x* from the submenu.
-   **Note**: You must choose 2.2.x. Earlier versions do not support this appliance.
-
-      {{< figure src="/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
-
-3. Select *Appliance (Cloud)* from the **Hypervisor/Platform** list box.
-
-      {{< figure src="/images/netq/NetQ-Cloud-Appl-SW-Dwnld-v2.png" width="250" >}}
-
-4. Click **Upgrade** to download the installer bundle.
-   **Note**: The download option only provides the OS which is pre-installed on the appliance.
-
-## Log In and Configure the Appliance
-
-1. Power on the appliance and log in using the default credentials:
+1. Log in to the appliance using the default login credentials:
 
    - **Username**: *cumulus*
    - **Password**: *CumulusLinux!*
 
+
 2. Change your password for the cumulus account using the `passwd` command.
 
-   ```
-   cumulus@netq-appliance:~$ passwd
-   ```
+```
+cumulus@netq-appliance:~$ passwd
+```
 
-3. The appliance's default hostname is *cumulus*. You can change it using the Cumulus Linux Network Command Line Utility (NCLU):
+3. The appliance's default hostname is *cumulus*. You can easily change it using the Cumulus Linux Network Command Line Utility (NCLU):
 
-   ```
-   cumulus@netq-appliance:~$ net add hostname NEW_HOSTNAME
-   ```
+```
+cumulus@netq-appliance:~$ net add hostname NEW_HOSTNAME
+```
 
-4. Copy the downloaded package (*NetQ-2.2.x-opta.tgz*) into the */mnt/installables/* directory.
+4. Identify the IP address.
+   The appliance contains at least one dedicated Ethernet management port, named eth0, for out-of-band management. This is where NetQ Agents should send the telemetry data collected from your monitored switches and hosts. By default, eth0 uses DHCPv4 to get its IP address. You can view the address assigned using NCLU:
+
+```
+cumulus@netq-appliance:~$ net show interface eth0
+    Name  MAC                Speed  MTU   Mode
+--  ----  -----------------  -----  ----  ----
+UP  eth0  fc:1f:6b:81:2b:62  1G     1500  Mgmt
+
+IP Details
+-------------------------  ---------------
+IP:                        192.0.2.42/24
+IP Neighbor(ARP) Entries:  4
+```
+
+      If instead, you want to set a static IP address, use the following NCLU command, substituting with your desired IP address:
+
+```
+cumulus@netq-appliance:~$ net add interface eth0 address 192.0.2.42/24
+```
+
+      Review and commit your changes:
+
+```
+cumulus@netq-appliance:~$ net pending
+cumulus@netq-appliance:~$ net commit
+```
+
+## Download and Install the NetQ Cloud Software
+
+Be sure to use the correct instructions as they have changed for the NetQ 2.2.2 release.
+
+<details>
+<summary>NetQ 2.2.2</summary>
+
+1. Download and install the tarball file.
+
+   The config-key was provided to you by Cumulus Networks via an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) to have it sent to you again.
+
+   **Note**: Be sure to replace the interface and key values with values appropriate for your configuration. This example uses eth0 and a sample key.
+
+```
+cumulus@netq-appliance:~$ netq install opta interface eth0 tarball download config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+```
+
+</details>
+<details>
+<summary>NetQ 2.2.0 or 2.2.1</summary>
+
+1. On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list box.
+
+2. Click *2.2* from the **Version** list box, and then select *2.2.x* from the submenu.
+
+      **Note**: You must choose 2.2.x. Earlier versions do not support this appliance.
+
+      {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="600" >}}
+
+3. Select *Appliance (Cloud)* from the **Hypervisor/Platform** list box.
+
+      {{< figure src="/images/netq/NetQ-Cloud-Appl-SW-Dwnld-222.png" width="250" >}}
+
+4. Click **Upgrade** to download the installer bundle.
+
+      **Note**: The download option only provides the OS which is pre-installed on the appliance.
+
+
+5. Copy the downloaded package (*NetQ-2.2.x-opta.tgz*) into the */mnt/installables/* directory.
 
       **Note**: The name of the package needs to be replaced with the exact version you have downloaded. Instead of 2.2.x, you would enter 2.2.1 for example.
 
       ```
       cumulus@netq-appliance:~$ sudo cp /home/usr/dir/NetQ-2.2.x-opta.tgz /mnt/installables/
       ```
-5. Identify the IP address and interface where NetQ Agents should send the telemetry data collected from your monitored switches and hosts.
 
-   - If you are using a dynamic address (DHCP), you can view the IP address assigned to the appliance using the Cumulus Linux Network Command Line Utility (NCLU):
+6. Install the software using the interface you defined above and your config-key.
 
-      ```
-      cumulus@netq-appliance:~$ net show interface eth0
-      Name  MAC                Speed  MTU   Mode
-      --  ----  -----------------  -----  ----  ----
-      UP  eth0  fc:1f:6b:81:2b:62  1G     1500  Mgmt
+      The config-key was provided to you by Cumulus Networks via an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) to have it sent to you again.
 
-      IP Details
-      -------------------------  ---------------
-      IP:                        192.0.2.42/24
-      IP Neighbor(ARP) Entries:  4
-      ...
-      ```
-   - If you want to use a static IP address and interface, use the following NCLU command:
+      **Note**: Be sure to replace the interface and key values with values appropriate for your configuration. These examples use eth0 and a sample key.
 
-      ```
-      cumulus@netq-appliance:~$ net add interface eth0 address 192.0.2.42/24</pre>
-      ```
-
-         **Note**: The example here uses eth0 as the interface, but you could use eth1 instead.
-
-6. Review and commit your changes:
-
-   ```
-   cumulus@netq-appliance:~$ net pending
-   cumulus@netq-appliance:~$ net commit
-   ```
-
-## Install the NetQ software
-
-1. Install the software using the interface you defined in the previous step and your config-key. The config-key was provided to you by Cumulus Networks via an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new).
-
-      **Note**: In the following examples, be sure to replace the interface and key values with values appropriate for your configuration. These examples use eth0 and a sample key.
-
-      <details><summary><span style="color:teal">NetQ v2.2.0</span></summary>
-
-      ```
-      cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.0-opta.tgz key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
-      opta-installer: Resetting OPTA
-      opta-installer: Checking for installer directory
-      opta-installer: Checking minimum RAM requirements
-      opta-installer: Checking for minimum CPU requirements
-      opta-installer: Checking for Python 2.7
-      opta-installer: Checking for Kubernetes v1.11.5
-      opta-installer: Checking for Docker /usr/bin/docker
-      ...
-      Successfully installed the opta
-      ```
-
-      </details>
-
-      <details><summary><span style="color:teal">NetQ v2.2.1</span></summary>
+      <details><summary>NetQ v2.2.1</span></summary>
 
       ```
       cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.1-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
@@ -143,27 +155,23 @@ If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over
 
       </details>
 
-      {{%notice note%}}
+      <details><summary>NetQ v2.2.0</span></summary>
 
-You can optionally override selected default installation parameters using the `file <text-config-file>` option. By default, the data directory is `/mnt`, the Kubernetes pods are assigned to network addresses in the 10.244.0.0/16 range, the node name is *cumulus.netq*, and the scratch directory is `/tmp`. The override file must be in YAML format and written as shown in this example:
+      ```
+      cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.0-opta.tgz key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+      opta-installer: Resetting OPTA
+      opta-installer: Checking for installer directory
+      opta-installer: Checking minimum RAM requirements
+      opta-installer: Checking for minimum CPU requirements
+      opta-installer: Checking for Python 2.7
+      opta-installer: Checking for Kubernetes v1.11.5
+      opta-installer: Checking for Docker /usr/bin/docker
+      ...
+      Successfully installed the opta
+      ```
 
-   ```
-   data-dir: /usr/share
-   pod-network-dir: 10.1.1.0/16
-   node-name: company-name.netq
-   scratch-dir: /tmp/netq
-   ```
-
-The `text-config-file` value is then the full path to the YAML file; for example `/home/username/overwrite-default.yml`.
-
-      {{%/notice%}}
-
-2. Verify all applications and services are operating properly.
-
-   ```
-   cumulus@<netq-appliance-hostname>:~$ netq show opta-health
-   OPTA is healthy
-   ```
+      </details>
+</details>
 
 {{%notice info%}}
 
@@ -171,29 +179,67 @@ If you changed the IP address or interface of the appliance to something other t
 
 If you changed the IP address, but kept the interface the same (for example, eth0), re-run the `netq install opta interface` command using your config-key:
 
+   *For NetQ 2.2.1 or 2.2.2*
+
+```
+cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+```
+   *For NetQ 2.2.0*
+
 ```
 cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.x-opta.tgz key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
 ```
 
 If you changed the interface (for example, eth0 to eth1), run the `netq install opta interface` command with the new interface and your config-key:
 
+   *For NetQ 2.2.1 or 2.2.2*
+
+```
+cumulus@netq-appliance:~$ netq install opta interface eth1 tarball NetQ-2.2.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+```
+
+   *For NetQ 2.2.0*
+
 ```
 cumulus@netq-appliance:~$ netq install opta interface eth1 tarball NetQ-2.2.x-opta.tgz key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
 ```
 
 {{%/notice%}}
+{{%notice note%}}
 
-### Configure CLI Access
+You can optionally override selected default installation parameters using the `file <text-config-file>` option. By default, the data directory is `/mnt`, the Kubernetes pods are assigned to network addresses in the 10.244.0.0/16 range, the node name is *cumulus.netq*, and the scratch directory is `/tmp`. The override file must be in YAML format and written as shown in this example:
+
+```
+data-dir: /usr/share
+pod-network-dir: 10.1.1.0/16
+node-name: company-name.netq
+scratch-dir: /tmp/netq
+```
+
+The `text-config-file` value is then the full path to the YAML file; for example `/home/username/overwrite-default.yml`.
+
+{{%/notice%}}
+
+### Verify Cloud Installation
+
+Now that your appliance is installed and configured, you can verify that all applications and services are operating properly.
+
+   ```
+   cumulus@<netq-appliance-hostname>:~$ netq show opta-health
+   OPTA is healthy
+   ```
+
+## Configure CLI Access on Appliance
 
 The CLI communicates through the API gateway in the NetQ Cloud. To access and configure the CLI on your NetQ Cloud server you will need your username and password to access the NetQ UI to generate an access-key and secret-key. Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
 
 To configure CLI access:
 
-1. In your Internet browser, enter netq.cumulusnetworks.com into the address field to open the NetQ UI login page.
+1. In your Internet browser, enter **netq.cumulusnetworks.com** into the address field to open the NetQ UI login page.
 
 2. Enter your username and password.
 
-3. From the Main Menu, select *Management* in the **Admin column**.
+3. From the Main Menu, select *Management* in the **Admin** column.
 
       {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
@@ -207,7 +253,8 @@ To configure CLI access:
       {{%notice info%}}
 The secret key is only shown once. If you don't copy these, you will need to regenerate them and reconfigure CLI access.
 
-In version 2.2.1, you can save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can store this file wherever you like, give it a name, such as, *credentials.yml*, and make sure it has the following format:
+In version 2.2.1 and later, you can save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can store this file wherever you like, give it a name, such as, *credentials.yml*, and make sure it has the following format:
+
 ```
 access-key: <user-access-key-value-here>
 secret-key: <user-secret-key-value-here>
@@ -215,6 +262,7 @@ secret-key: <user-secret-key-value-here>
       {{%/notice%}}
 
 7. Run the following command using your generated keys:
+   - In NetQ 2.2.x, run the following commands. Replace the key values with your generated keys.
    ```
    cumulus@netq-appliance:~$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
@@ -223,19 +271,24 @@ secret-key: <user-secret-key-value-here>
    cumulus@netq-appliance:~$ netq config restart cli
    Restarting NetQ CLI... Success!
    ```
-With your NetQ cloud server now set up and configured, you are ready to install the NetQ Agent on each switch and host you want to monitor with NetQ. Follow the instructions in [Install the NetQ Agent](#install-the-netq-agent) for details.
+   - In NetQ 2.2.1 and later, if you have created a *credentials.yml* file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
+   ```
+   cumulus@netq-appliance:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
+   Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
+   Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-## Intelligent Platform Management Interface - IPMI
+   cumulus@netq-appliance:~$ netq config restart cli
+   Restarting NetQ CLI... Success!
+   ```
 
-The NetQ Appliance comes with Intelligent Platform Management Interface (IPMI). IPMI provides remote access to multiple users at different locations for networking. It also allows a system administrator to monitor system health and manage computer events remotely. For details, please read the [Supermicro IPMI user guide](https://www.supermicro.com/manuals/other/IPMI_Users_Guide.pdf).
-
-## Install the NetQ Agent
+## Install and Configure the NetQ Agent and CLI Access
 
 Whether using the NetQ Appliance or your own hardware, the NetQ Agent
 must be installed on each node you want to monitor. The node can be a:
 
   - Switch running Cumulus Linux version 3.3.2 or later
-  - Server running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7
+  - Servers running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7 (Cumulus NetQ 2.2.1 and earlier)
+  - Servers running Red Hat RHEL 7.1, Ubuntu 16.04, Ubuntu 18.04, or CentOS 7 (Cumulus NetQ 2.2.2 and later)
   - Linux virtual machine running any of the above Linux operating
     systems
 
@@ -249,8 +302,8 @@ Instructions for installing the meta package on each node type are
 included here:
 
   - [Install NetQ Agent on a Cumulus Linux Switch](#install-netq-agent-on-a-cumulus-linux-switch)
-  - [Install NetQ Agent on an Ubuntu Server](#install-netq-on-an-ubuntu-server)
-  - [Install NetQ Agent on a Red Hat or CentOS Server](#install-netq-on-a-red-hat-or-centos-server)
+  - [Install NetQ Agent on an Ubuntu Server](#install-netq-agent-on-an-ubuntu-server)
+  - [Install NetQ Agent on a Red Hat or CentOS Server](#install-netq-agent-on-a-red-hat-or-centos-server)
 
 {{%notice note%}}
 
@@ -321,31 +374,36 @@ If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-th
 
 6.  Optionally, configure the switch or host to run the NetQ CLI.
 
-      {{%notice info%}}
-
-The switch or host must have access to the Internet to configure CLI
-access.
-
-      {{%/notice%}}
+    *For switches* **with** *Internet access:*
 
       - In NetQ 2.2.x, run the following commands. Replace the key values with your generated keys.
       ```
-      cumulus@netq-appliance:~$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
+      cumulus@switch:~$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
       Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
       Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-      cumulus@netq-appliance:~$ netq config restart cli
+      cumulus@switch:~$ netq config restart cli
       Restarting NetQ CLI... Success!
       ```
-      - In NetQ 2.2.1, if you have created a *credentials.yml* file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
+      - In NetQ 2.2.1 and later, if you have created a *credentials.yml* file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
       ```
-      cumulus@netq-appliance:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
+      cumulus@switch:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
       Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
       Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-      cumulus@netq-appliance:~$ netq config restart cli
+      cumulus@switch:~$ netq config restart cli
       Restarting NetQ CLI... Success!
       ```
+    *For switches* **without** *Internet access:*
+
+      A CLI proxy is part of the NetQ Cloud Appliance with NetQ 2.2.2 and later. If your switches and hosts do not have access to the Internet, you can use the proxy on the NetQ Cloud Appliance to manage CLI access on your nodes. To make use of the proxy, you must point each switch or host to the NetQ Cloud Appliance. Run the following commands, using the IP address of your NetQ Cloud Appliance:
+```
+cumulus@nswitch:~$ netq config add cli server <netq-cloud-appliance-ip-addr>
+Updated cli server <netq-cloud-appliance-ip-addr> vrf default port 443. Please restart netqd (netq config restart cli)
+
+cumulus@switch:~$ netq config restart cli
+Restarting NetQ CLI... Success!
+```
 
 7. Repeat these steps for each Cumulus switch, or use an automation tool to
 install NetQ Agent on multiple Cumulus Linux switches.
@@ -381,18 +439,33 @@ To install the NetQ Agent on an Ubuntu server:
 
         root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
 
-2.  Create the file
-    `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add
-    the following lines:
+2.  Add the Ubuntu repository:
 
-        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-        ...
-        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-        ...
+      <details><summary>Ubuntu 16.04</summary>
+      Create the file
+      `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add
+      the following line:
+
+          root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+          ...
+          deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+          ...
+      </details>
+
+      <details><summary>Ubuntu 18.04</summary>
+      Create the file
+      `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
+      the following line:
+
+          root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+          ...
+          deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+          ...
+      </details>
 
     {{%notice note%}}
 
-The use of `netq-latest` in this example means that a `get` to the
+The use of `netq-latest` in these example means that a `get` to the
     repository always retrieves the latest version of NetQ, even in the
     case where a major version update has been made. If you want to keep
     the repository on a specific version — such as `netq-2.2` — use that
@@ -451,12 +524,7 @@ If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-th
 
 9.  Optionally, configure the switch or host to run the NetQ CLI.
 
-      {{%notice info%}}
-
-The switch or host must have access to the Internet to configure CLI
-access.
-
-      {{%/notice%}}
+    *For hosts* **with** *Internet access:*
 
       - In NetQ 2.2.x, run the following commands. Replace the key values with your generated keys.
 
@@ -468,7 +536,7 @@ access.
          root@ubuntu:~$ netq config restart cli
          Restarting NetQ CLI... Success!
          ```
-      - In NetQ 2.2.1, if you have created a *credentials.yml* file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
+      - In NetQ 2.2.1 and later, if you have created a *credentials.yml* file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
 
          ```
          root@ubuntu:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
@@ -478,6 +546,17 @@ access.
          root@ubuntu:~$ netq config restart cli
          Restarting NetQ CLI... Success!
          ```
+    *For hosts* **without** *Internet access:*
+
+       A CLI proxy is part of the NetQ Cloud Appliance with NetQ 2.2.2 and later. If your hosts do not have access to the Internet, you can use the proxy on the NetQ Cloud Appliance to manage CLI access on your nodes. To make use of the proxy, you must point each switch or host to the NetQ Cloud Appliance. Run the following commands, using the IP address of your NetQ Cloud Appliance:
+
+```
+root@ubuntu:~$ netq config add cli server <netq-cloud-appliance-ip-addr>
+Updated cli server <netq-cloud-appliance-ip-addr> vrf default port 443. Please restart netqd (netq config restart cli)
+
+root@ubuntu:~$ netq config restart cli
+Restarting NetQ CLI... Success!
+```
 
 10. Repeat these steps for all of your hosts running Ubuntu, or use an
     automation tool to streamline the process.
@@ -582,33 +661,41 @@ If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-th
 
 9.  Optionally, configure the switch or host to run the NetQ CLI.
 
-      {{%notice info%}}
-
-The switch or host must have access to the Internet to configure CLI
-access.
-
-      {{%/notice%}}
+    *For hosts* **with** *Internet access:*
 
       - In NetQ 2.2.x, run the following commands. Replace the key values with your generated keys.
 
          ```
-         root@ubuntu:~$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
+         root@rhel7:~$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
          Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
          Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-         root@ubuntu:~$ netq config restart cli
+         root@rhel7:~$ netq config restart cli
          Restarting NetQ CLI... Success!
          ```
-      - In NetQ 2.2.1, if you have created a *credentials.yml* file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
+      - In NetQ 2.2.1 and later, if you have created a *credentials.yml* file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
 
          ```
-         root@ubuntu:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
+         root@rhel7:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
          Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
          Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-         root@ubuntu:~$ netq config restart cli
+         root@rhel7:~$ netq config restart cli
          Restarting NetQ CLI... Success!
          ```
+
+      *For hosts* **without** *Internet access:*
+
+      A CLI proxy is part of the NetQ Cloud Appliance with NetQ 2.2.2 and later. If your hosts do not have access to the Internet, you can use the proxy on the NetQ Cloud Appliance to manage CLI access on your nodes. To make use of the proxy, you must point each switch or host to the NetQ Cloud Appliance. Run the following commands, using the IP address of your NetQ Cloud Appliance:
+
+```
+root@rhel7:~$ netq config add cli server <netq-cloud-appliance-ip-addr>
+Updated cli server <netq-cloud-appliance-ip-addr> vrf default port 443. Please restart netqd (netq config restart cli)
+
+root@rhel7:~$ netq config restart cli
+Restarting NetQ CLI... Success!
+```
+
 10. Repeat these steps for all of your hosts running Ubuntu, or use an
     automation tool to streamline the process.
 
@@ -654,6 +741,10 @@ number when configuring the NetQ Agent like this:
 You then restart the agent:
 
     cumulus@leaf01:~$ netq config restart agent
+
+## Intelligent Platform Management Interface - IPMI
+
+The NetQ Appliance comes with Intelligent Platform Management Interface (IPMI). IPMI provides remote access to multiple users at different locations for networking. It also allows a system administrator to monitor system health and manage computer events remotely. For details, please read the [Supermicro IPMI user guide](https://www.supermicro.com/manuals/other/IPMI_Users_Guide.pdf).
 
 ## Integrate with Event Notification Tools
 

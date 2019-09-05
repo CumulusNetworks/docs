@@ -15,35 +15,34 @@ The default DHCP configuration uses the eth0 interface on which to
 listen and uses an address pool of 10.255.0.0/24. A default directory is
 provided for the ONIE installer script and the default ZTP script.
 Domain name, NTP, and web servers have assigned IP addresses. No
-reservations are configured. While not required, you may want to s
-<span style="color: #000000;"> pecify a DHCP address pool more
+reservations are configured. While not required, you may want to specify a DHCP address pool more
 well-suited for your environment or set up reservations for interfaces
-that require unchanging IP addresses. </span>
+that require unchanging IP addresses.
 
-## Command Overview</span>
+## Command Overview
 
 IPM enables you to add, delete, and view all of the DHCP configurations.
 The command syntax is:
 
     tipctl add dhcp load [--dry-run|--mac <TEXT>|--hostname <TEXT>|--ip <TEXT>|--with-column|--without-column] [-h|--help]
-    tipctl add dhcp pool [-h|--help] START_IP END_IP 
+    tipctl add dhcp pool [-h|--help] START_IP END_IP
     tipctl add dhcp reservation [-h|--help] MAC IP [HOSTNAME]
      
     tipctl del dhcp pool [-h|--help]
-    tipctl del dhcp reservation [-h|--help] MAC 
+    tipctl del dhcp reservation [-h|--help] MAC
      
     tipctl show dhcp config [-h|--help]
-    tipctl show dhcp leases [MAC] [-h|--help] 
+    tipctl show dhcp leases [MAC] [-h|--help]
     tipctl show dhcp reservations [MAC] [-h|--help]
 
 The *-h* option provides help information for the command.
 
-## View the Current DHCP Configuration</span>
+## View the Current DHCP Configuration
 
-<span style="color: #000000;"> You can view the current configuration of
+You can view the current configuration of
 the DHCP server using the `tipctl show dhcp` command. This example shows
 the parameters configured by default on initial start up. Your settings
-should reflect the IP addressing scheme of your network. </span>
+should reflect the IP addressing scheme of your network.
 
     cumulus@ts:~$ tipctl show dhcp config
     Config                 Setting
@@ -58,12 +57,12 @@ should reflect the IP addressing scheme of your network. </span>
     ntp-servers            10.255.0.92
     www-server             10.255.0.92
 
-## Configure DHCP Address Pool</span>
+## Configure DHCP Address Pool
 
 You can configure a pool that uses a single contiguous address space.
 You can also change or remove a configured address pool.
 
-### Configure an Address Pool</span>
+### Configure an Address Pool
 
 Only one DHCP address pool can be defined, and it must be contained
 within a contiguous address space. The only exception to this is if you
@@ -104,7 +103,7 @@ Then it shows the updated configuration with the newly created pool,
     cumulus@ts:~$ tipctl config verify
     The TIPS application is running as expected.
 
-### Modify an Address Pool</span>
+### Modify an Address Pool
 
 You might want to change the range of addresses available to the DHCP
 server due to network changes or current address reservations. For
@@ -145,7 +144,7 @@ Then it shows the updated configuration with the newly modified pool,
     cumulus@ts:~$ tipctl config verify
     The TIPS application is running as expected.
 
-### Remove an Address Pool</span>
+### Remove an Address Pool
 
 You might want to remove the designated address pool altogether if you
 are using a separate DHCP server or server pool in your network.
@@ -180,9 +179,9 @@ properly.
     cumulus@ts:~$ tipctl config verify
     The TIPS application is running as expected.
 
-## Configure DHCP Reservations</span>
+## Configure DHCP Reservations
 
-<span style="color: #000000;"> DHCP reservations are used when you have
+DHCP reservations are used when you have
 a switch that requires the same IP address every time you want to reach
 it. Creating a reservation avoids having to look up the address for the
 switch each time there is a need to talk to it and simplifies the
@@ -190,18 +189,17 @@ assignment because it is handled where the routing decision is made
 rather than at the individual switches. Essentially, a DHCP reservation
 provides a permanent lease of the address to a particular switch. The
 reservation itself maps an IP address to the MAC address of the switch.
-</span>
 
-<span style="color: #000000;"> IPM enables you to add, delete, and view
+IPM enables you to add, delete, and view
 DHCP reservations. Adding reservations can be performed one at a time or
-import many from a file. </span>
+import many from a file.
 
-### Add Reservations Manually</span>
+### Add Reservations Manually
 
-<span style="color: #000000;"> You can add DHCP reservations one at a
-time using the `tipctl add dhcp reservation` command. </span>
+You can add DHCP reservations one at a
+time using the `tipctl add dhcp reservation` command.
 
-<span style="color: #000000;"> To add a reservation: </span>
+To add a reservation:
 
 1.  Use the `tipctl add dhcp reservation` command and specify the MAC
     address of the switch you want mapped and the IP address to use when
@@ -221,14 +219,14 @@ The example then reviews the configuration change.
     -----------------  ------------  ----------
     A0:00:00:00:00:21  192.168.0.21  spine01
 
-### Import Reservations from a File</span>
+### Import Reservations from a File
 
-<span style="color: #000000;"> If you have a number of switches that you
+If you have a number of switches that you
 want to specify DHCP reservations for, then importing the mapping
 information using a comma separated values (.csv) file format might be
 preferred. This is accomplished by piping the .csv file through the
 standard input (stdin) method using the `tipctl add dhcp load` command.
-There are several options for the import: </span>
+There are several options for the import:
 
 | Option         | Description/Usage                                                                                                                                                                                                                                               |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -239,29 +237,24 @@ There are several options for the import: </span>
 | with-column    | Causes command to calculate MAC, hostname, and IP values using the text specifying the column name. This is applied when the first row of the file contains header text instead of values. Either this option or the *without-column* option must be specified. |
 | without-column | Causes command to calculate MAC, hostname, and IP values using a numeric offset. Either this option or the *with-column* option must be specified.                                                                                                              |
 
-<span style="color: #000000;">  
-To import reservations: </span>
+To import reservations:
 
-1.  <span style="color: #000000;"> Use the `tipctl add dhcp load`
+1.  Use the `tipctl add dhcp load`
     command and specify the name of the column or an offset to the
     column in the file that contains the MAC address of the switch.
-    </span>
 
-2.  <span style="color: #000000;"> Optionally, specify a hostname to
-    </span>
+2.  Optionally, specify a hostname.
 
-3.  <span style="color: #000000;"> Optionally, specify an IP address to
-    </span>
+3.  Optionally, specify an IP address.
 
-4.  <span style="color: #000000;"> Specify method to calculate the MAC,
-    hostname, and IP address value locations. </span>
+4.  Specify method to calculate the MAC,
+    hostname, and IP address value locations.
 
-5.  <span style="color: #000000;"> View the configuration change.
-    </span>
+5.  View the configuration change.
 
-<span style="color: #000000;"> A simple .csv file format might contain a
+A simple .csv file format might contain a
 row for each switch with the MAC address listed first, hostname listed
-second, and IP address listed. For example: </span>
+second, and IP address listed. For example:
 
 <table>
 <colgroup>
@@ -277,9 +270,9 @@ second, and IP address listed. For example: </span>
 </tbody>
 </table>
 
-<span style="color: #000000;"> This example shows how to import the
+This example shows how to import the
 above sample file. We have named the file *reservations.csv* and have
-used column names to identify the locations of the data. </span>
+used column names to identify the locations of the data.
 
     cumulus@ts:~$ tipctl add dhcp load < <path/reservations.csv> --mac MACaddr --hostname Hostname --ip IPaddr --with-column 
     cumulus@ts:~$ tipctl show dhcp reservations
@@ -303,12 +296,12 @@ numeric offset to identify the locations of the data.
 If the `dhcp load` command was not successful, when you run the `show`
 command, a *No DHCP reservations* message appears.
 
-### Remove a Reservation</span>
+### Remove a Reservation
 
-<span style="color: #000000;"> You can remove a DHCP reservation at any
+You can remove a DHCP reservation at any
 time using the `tipctl` `del dhcp` command with the *reservation*
 keyword. This example shows how to remove the reservation for the switch
-with a MAC address of *A0:00:00:00:00:22*. </span>
+with a MAC address of *A0:00:00:00:00:22*.
 
     cumulus@ts:~$ tipctl del dhcp reservation a0:00:00:00:00:22 
     cumulus@ts:~$ tipctl show dhcp reservations
@@ -316,16 +309,16 @@ with a MAC address of *A0:00:00:00:00:22*. </span>
     -----------------  ------------  ----------
     A0:00:00:00:00:21  192.168.0.21  spine01
 
-## View Leases</span>
+## View Leases
 
-<span style="color: #000000;"> It can be useful to view the leases
+It can be useful to view the leases
 currently being used by the DHCP server when you are troubleshooting.
 You might need to determine why certain clients are not able to
 connect–all of your leases are in use–or confirm whether a switch has
-the expected address. </span>
+the expected address.
 
-<span style="color: #000000;"> To view leases, use the `tipctl show
-leases` command. </span>
+To view leases, use the `tipctl show
+leases` command.
 
     cumulus@switch:~$ tipctl show dhcp leases
     mac               ip         ttl   expire              hostname
@@ -334,14 +327,3 @@ leases` command. </span>
     EC:0D:9A:AB:39:B4 89.0.0.152 3600  2018-09-26 22:20:58 sw2
     00:E0:EC:36:20:F0 89.0.0.153 3600  2018-09-26 22:22:56 sw3
     00:30:AB:F2:D7:A5 89.0.0.154 3600  2018-09-26 22:24:49 sw4
-
-<span style="color: #000000;">  
-</span>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

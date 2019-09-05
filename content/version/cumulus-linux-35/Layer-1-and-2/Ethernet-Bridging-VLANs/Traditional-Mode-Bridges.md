@@ -21,18 +21,18 @@ more than one bridge on the switch or if you need to use PVSTP+.
 You configure traditional mode bridges in `/etc/network/interfaces`
 file. To create a traditional mode bridge:
 
-1.  Open the `/etc/network/interfaces` file in a text editor.
+1. Open the `/etc/network/interfaces` file in a text editor.
 
-2.  Add a new stanza to create the bridge, and save the file. The
+2. Add a new stanza to create the bridge, and save the file. The
     example below creates a bridge with STP enabled and the MAC address
     ageing timer configured to a lower value than the default:
-    
+
         auto my_bridge
         iface my_bridge
             bridge-ports bond0 swp5 swp6
             bridge-ageing 150
             bridge-stp on
-    
+
     <table>
     <colgroup>
     <col style="width: 33%" />
@@ -67,20 +67,19 @@ file. To create a traditional mode bridge:
     </table>
     
     {{%notice note%}}
-    
-    The name of the bridge must be:
-    
-      - Compliant with Linux interface naming conventions.
-    
-      - Unique within the switch.
-    
+
+The name of the bridge must be:
+
+- Compliant with Linux interface naming conventions.
+- Unique within the switch.
+
     {{%/notice%}}
     
     {{%notice warning%}}
     
-    Do not try to bridge the management port, eth0, with any switch
-    ports (like swp0, swp1, and so forth). For example, if you created a
-    bridge with eth0 and swp1, it will **not** work.
+Do not try to bridge the management port, eth0, with any switch ports (like swp0,
+swp1, and so forth). For example, if you created a bridge with eth0 and swp1, it
+will **not** work.
     
     {{%/notice%}}
 
@@ -105,11 +104,11 @@ The diagram below shows a multiple bridge configuration, where host-1
 and host-2 are connected to bridge-A, while host-3 and host-4 are
 connected to bridge-B. This means that:
 
-  - host-1 and host-2 can communicate with each other.
-  - host-3 and host-4 can communicate with each other.
-  - host-1 and host-2 cannot communicate with host-3 and host-4.
+- host-1 and host-2 can communicate with each other.
+- host-3 and host-4 can communicate with each other.
+- host-1 and host-2 cannot communicate with host-3 and host-4.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/multiple-bridges.png" >}}
 
 This example configuration looks like this in the
 `/etc/network/interfaces` file:
@@ -139,15 +138,15 @@ of native, non-native, tagged or untagged has generated confusion due to
 mixed terminology and vendor-specific implementations. Some
 clarification is in order:
 
-  - A *trunk port* is a switch port configured to send and receive
+- A *trunk port* is a switch port configured to send and receive
     802.1Q tagged frames.
-  - A switch sending an untagged (bare Ethernet) frame on a trunk port
+- A switch sending an untagged (bare Ethernet) frame on a trunk port
     is sending from the native VLAN defined on the trunk port.
-  - A switch sending a tagged frame on a trunk port is sending to the
+- A switch sending a tagged frame on a trunk port is sending to the
     VLAN identified by the 802.1Q tag.
-  - A switch receiving an untagged (bare Ethernet) frame on a trunk port
+- A switch receiving an untagged (bare Ethernet) frame on a trunk port
     places that frame in the native VLAN defined on the trunk port.
-  - A switch receiving a tagged frame on a trunk port places that frame
+- A switch receiving a tagged frame on a trunk port places that frame
     in the VLAN identified by the 802.1Q tag.
 
 A bridge in traditional mode has no concept of trunks, just tagged or

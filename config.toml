@@ -31,6 +31,18 @@ noChmod = true
     url = "/cumulus-vx/"
     weight = 30
 
+  [[menu.dropnav]]
+    identifier = "cumulus-rmp"
+    title = "Cumulus RMP"
+    url = "/cumulus-rmp/"
+    weight = 10
+
+  [[menu.dropnav]]
+    identifier = "chassis"
+    title = "Cumulus Chassis"
+    url = "/chassis/"
+    weight = 20
+
 
 
 

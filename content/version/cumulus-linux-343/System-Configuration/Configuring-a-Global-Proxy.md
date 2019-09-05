@@ -11,9 +11,9 @@ version: 3.4.3
 imgData: cumulus-linux-343
 siteSlug: cumulus-linux-343
 ---
-You configure [global HTTP and HTTPS
-proxies](https://wiki.archlinux.org/index.php/proxy_settings) in the
-`/etc/profile.d/` directory of Cumulus Linux. To do so, set the
+You configure 
+[global HTTP and HTTPS proxies](https://wiki.archlinux.org/index.php/proxy_settings) 
+in the `/etc/profile.d/` directory of Cumulus Linux. To do so, set the
 `http_proxy` and `https_proxy` variables, which tells the switch the
 address of the proxy server to use to fetch URLs on the command line.
 This is useful for programs such as `apt`/`apt-get`, `curl` and `wget`,
@@ -59,31 +59,22 @@ which can all use this proxy.
 
 5.  Run the `source` command, to execute the file in the current
     environment:
-    
+
         cumulus@switch:~$ source /etc/profile.d/proxy.sh
 
 The proxy is now configured. The `echo` command can be used to confirm a
 proxy is set up correctly:
 
-  - HTTP proxy:
-    
+- HTTP proxy:
+
         cumulus@switch:~$ echo $http_proxy
         http://myproxy.domain.com:8080
 
-  - HTTPS proxy:
-    
+- HTTPS proxy:
+
         cumulus@switch:~$ echo $https_proxy
         https://myproxy.domain.com:8080
 
-## Related Information</span>
+## Related Information
 
-  - [Setting up an apt package
-    cache](https://support.cumulusnetworks.com/hc/en-us/articles/232058388-Setting-up-an-apt-Package-Cache)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- [Setting up an apt package cache](https://support.cumulusnetworks.com/hc/en-us/articles/232058388-Setting-up-an-apt-Package-Cache)

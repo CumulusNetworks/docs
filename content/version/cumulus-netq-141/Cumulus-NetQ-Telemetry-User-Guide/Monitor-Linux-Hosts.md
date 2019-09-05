@@ -19,36 +19,26 @@ devices.
 The NetQ Agent is supported on the following Linux hosts:
 
   - CentOS 7
-
   - Red Hat Enterprise Linux 7.1
-
   - Ubuntu 16.04
 
-You need to [install the OS-specific NetQ
-metapack](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
-on every host you want to monitor with NetQ.
+You need to [install the OS-specific NetQ metapack](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/Install-NetQ) on every host you want to monitor with NetQ.
 
 The NetQ Agent monitors the following on Linux hosts:
 
   - netlink
-
   - Layer 2: LLDP and VLAN-aware bridge
-
   - Layer 3: IPv4, IPv6
-
   - Routing on the Host: BGP, OSPF
-
   - systemctl for services
-
-  - Docker containers — refer to the [Monitor Container
-    Environments](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Container-Environments)
+  - Docker containers — refer to the [Monitor Container Environments](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Container-Environments)
     topic
 
 Using NetQ on a Linux host is the same as using it on a Cumulus Linux
 switch. For example, if you want to check LLDP neighbor information
 about a given host, run:
 
-    cumulus@switch:~$ netq server01 show lldp 
+    cumulus@switch:~$ netq server01 show lldp
     Matching lldp records:
     Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
     ----------------- ------------------------- ----------------- ------------------------- -------------------------
@@ -82,11 +72,3 @@ To get the routing table for a server:
     yes    default         10.1.3.101/32                  server01          uplink                              3d:23h:31m:8s
     yes    default         192.168.0.0/24                 server01          eth0                                3d:23h:31m:8s
     yes    default         192.168.0.31/32                server01          eth0                                3d:23h:31m:8s
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

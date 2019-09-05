@@ -22,7 +22,7 @@ identify and resolve them. You can also see when changes have occurred
 to the network, devices, and interfaces by viewing their operation,
 configuration, and status at earlier points in time.
 
-## Validate Network Health </span>
+## Validate Network Health
 
 NetQ `check` commands validate the various elements of your network
 fabric, looking for inconsistencies in configuration across your fabric,
@@ -31,16 +31,13 @@ display the results for your assessment. They can be run from any node
 in the network. Most check commands can be run for a specific device or
 for the entire network fabric.
 
-### Validate the Network Fabric</span>
+### Validate the Network Fabric
 
 You can validate the following network fabric elements:
 
   - BGP and OSPF routing protocols
-
   - VLAN, VXLAN, CLAG, and EVPN virtual constructs
-
   - MTU setting
-
   - NetQ Agents
 
 For example, to determine the status of BGP running on your network:
@@ -118,14 +115,12 @@ to have occurred about 10 minutes ago, you could run:
     Checked Nodes: 15, Checked Links: 138, Failed Nodes: 0, Failed Links: 0
     No VLAN or PVID Mismatch found
 
-### Validate Device Status and Configuration</span>
+### Validate Device Status and Configuration
 
 You can validate the following device elements:
 
   - NTP
-
   - Sensors
-
   - License
 
 It is always important to have your devices in time synchronization to
@@ -157,7 +152,7 @@ point for maintenance. For example, if you had a temporary HVAC failure
 and you are concerned that some of your nodes are beginning to overheat,
 you can run:
 
-    cumulus@switch:~$ netq check sensors 
+    cumulus@switch:~$ netq check sensors
     Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0
 
 You can also check for any nodes that have invalid licenses without
@@ -177,7 +172,7 @@ checked.
 
 {{%/notice%}}
 
-### Validate Interface Status and Configuration</span>
+### Validate Interface Status and Configuration
 
 As with other netq check commands, you can validate the proper operation
 of your interfaces across the network:
@@ -200,13 +195,13 @@ When failures are seen, additional information is provided to start your
 investigation. In this example, some reconfiguration is required for
 auto-negotiation with peer interfaces.
 
-## View Network Details</span>
+## View Network Details
 
 The `netq show` commands display a wide variety of content about the
 network and its various elements. You can show content for the
 following:
 
-    cumulus@switch:~$ netq show 
+    cumulus@switch:~$ netq show
         agents      :  Netq agent
         bgp         :  BGP info
         changes     :  How this infomation has changed with time (default '1h')
@@ -234,7 +229,7 @@ is running as expected. The Agent sends a heartbeat every 30 seconds,
 and if three consecutive heartbeats are missed, its status changes to
 *Rotten*.
 
-    cumulus@leaf01:~$ netq show agents 
+    cumulus@leaf01:~$ netq show agents
      
     Node             Status    Sys Uptime    Agent Uptime
     ---------------  --------  ------------  --------------
@@ -331,11 +326,3 @@ View the status of the hardware sensors:
     internet          fan2            fan tray 1, fan 2                   ok                                             5d:1h:13m:12s
     internet          fan3            fan tray 2, fan 1                   ok                                             5d:1h:13m:12s
     ...
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

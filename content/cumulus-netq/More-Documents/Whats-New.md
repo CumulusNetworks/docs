@@ -16,16 +16,29 @@ also been added to the NetQ UI.
 
 **Cumulus NetQ 2.2.1** includes the following new features and improvements:
 
-*For on-site and in-cloud solutions*
+*For on-premises and in-cloud solutions*
 
-  - Graphical User Interface (UI)
-  - Command Line Interface (CLI)
-  - Application Programming Interface (API)
-  - Documentation
+- Command Line Interface (CLI)
+   - Upgraded [Interface Statistics](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Switch-Hardware-and-Software/#view-interface-statistics) from an early access feature to a generally available feature
+   - Added ability to view [NetQ Agent status and inventory for NetQ server/appliance](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Manage-Netq-Agents)
+- Graphical User Interface (UI)
+   - Added ability to save user workbenches
+   - Added OSPF events
+- Reorganized documentation
+   - Modified installation and upgrade procedures in Deployment Guide
+   - Created Integration Guide to collect all integration options together
+   - Created More Documents topic to contain generic information about Cumulus Networks documents and this NetQ release
+   - Format fixes
 
-*For in-cloud solution only*
+*For on-premises solutions only*
 
-  - UI: Topology view
+- Added NetQ data backup and restore procedure.
+
+*For in-cloud solutions only*
+
+- Command Line Interface (CLI)
+   - Modified installation and upgrade commands
+   - Added ability to store and retrieve authentication keys from a file
 
 **Cumulus NetQ 2.2.0** includes the following new features and
 improvements:
@@ -51,4 +64,4 @@ improvements:
     NetQ Cloud Appliance
   - Added support for multiple data centers
 
-For further information regarding new features, improvements, bug fixes, and known issues present in this release, refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360017779214).
+For further information regarding new features, improvements, bug fixes, and known issues present in this release, refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).

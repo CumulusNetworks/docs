@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 47
 aliases:
  - /display/VX/ONIE-Virtual-Machine
+ - /display/VX/ONIE+Virtual+Machine
  - /pages/viewpage.action?pageId=5126699
 pageID: 5126699
 product: Cumulus VX
-version: '3.4'
+version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---

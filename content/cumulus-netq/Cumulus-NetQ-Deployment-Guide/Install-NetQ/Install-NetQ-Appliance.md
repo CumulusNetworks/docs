@@ -22,34 +22,49 @@ Inside the box that was shipped to you, you'll find:
 
 If you're looking for hardware specifications (including LED layouts and FRUs like the power supply or fans and accessories like included cables) or safety and environmental information, check out the [user manual](https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf) and [quick reference guide](https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf).
 
-## Install and Configure the Appliance
+## Install Workflow
 
-After you unbox the appliance, mount it in the rack and connect it to power following the procedures described in your appliance's user manual. Connect the Ethernet cable to the 1G management port (eth0), then power on the appliance.
+Install and set up your NetQ Appliance and switch and host Agents using the following steps:
 
-   {{< figure src="/images/netq/netq-appliance-port-connections.png" >}}
+{{< figure src="/images/netq/install-flow-nqappl-on-prem-nq222.png" width="600" >}}
 
-If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over the network. If DHCP isn't enabled, then you configure the appliance using the console cable provided.
+## Install the Appliance
 
-When you power on the appliance, you must log in using the default login credentials:
+After you unbox the appliance:
 
-- **Username**: *cumulus*
-- **Password**: *CumulusLinux!*
+1. Mount the appliance in the rack
+2. Connect it to power following the procedures described in your appliance's user manual.
+3. Connect the Ethernet cable to the 1G management port (eth0).
+4. Power on the appliance.
+
+   {{< figure src="/images/netq/netq-appliance-port-connections.png" width="700" >}}
+
+If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over the network. If DHCP is not enabled, then you configure the appliance using the console cable provided.
 
 ## Configure the Password, Hostname and IP Address
 
-You should change your password for the cumulus account soon after you log in using the `passwd` command.
+Change the password and specify the hostname and IP address for the appliance before installing the NetQ software.
+
+1. Log in to the appliance using the default login credentials:
+
+   - **Username**: *cumulus*
+   - **Password**: *CumulusLinux!*
+
+
+2. Change your password for the cumulus account using the `passwd` command.
 
 ```
 cumulus@netq-appliance:~$ passwd
 ```
 
-The appliance's default hostname is *cumulus*. You can quickly change it using the Cumulus Linux Network Command Line Utility (NCLU):
+3. The appliance's default hostname is *cumulus*. You can easily change it using the Cumulus Linux Network Command Line Utility (NCLU):
 
 ```
 cumulus@netq-appliance:~$ net add hostname NEW_HOSTNAME
 ```
 
-The appliance contains at least one dedicated Ethernet management port, named eth0, for out-of-band management. This is where NetQ Agents should send the telemetry data collected from your monitored switches and hosts. By default, eth0 uses DHCPv4 to get its IP address. You can view the address assigned using NCLU:
+4. Identify the IP address.
+   The appliance contains at least one dedicated Ethernet management port, named eth0, for out-of-band management. This is where NetQ Agents should send the telemetry data collected from your monitored switches and hosts. By default, eth0 uses DHCPv4 to get its IP address. You can view the address assigned using NCLU:
 
 ```
 cumulus@netq-appliance:~$ net show interface eth0
@@ -63,13 +78,13 @@ IP:                        192.0.2.42/24
 IP Neighbor(ARP) Entries:  4
 ```
 
-If instead, you want to set a static IP address, use the following NCLU command, substituting with your desired IP address:
+      If instead, you want to set a static IP address, use the following NCLU command, substituting with your desired IP address:
 
 ```
 cumulus@netq-appliance:~$ net add interface eth0 address 192.0.2.42/24
 ```
 
-Review and commit your changes:
+      Review and commit your changes:
 
 ```
 cumulus@netq-appliance:~$ net pending
@@ -78,7 +93,7 @@ cumulus@netq-appliance:~$ net commit
 
 {{%notice info%}}
 
-If you have changed the IP address of the NetQ Appliance, you need to
+If you have changed the IP address or hostname of the NetQ Appliance, you need to
 re-register this address with the Kubernetes containers before you can
 continue.
 
@@ -105,24 +120,18 @@ continue.
     ```  
     **Note**: Allow 15 minutes for the prompt to return.
 
-5.  Reboot the VM.  
-    **Note**: Allow 5-10 minutes for the VM to boot.
-
 {{%/notice%}}
 
 With your NetQ cloud server now set up and configured, you are ready to install the NetQ Agent on each switch and host you want to monitor with NetQ. Follow the instructions in [Install the NetQ Agent](#install-the-netq-agent) for details.
 
-## Intelligent Platform Management Interface - IPMI
+## Install and Configure NetQ Agents and CLI
 
-The NetQ Appliance comes with Intelligent Platform Management Interface (IPMI). IPMI provides remote access to multiple users at different locations for networking. It also allows a system administrator to monitor system health and manage computer events remotely. For details, please read the [Supermicro IPMI user guide](https://www.supermicro.com/manuals/other/IPMI_Users_Guide.pdf).
+The NetQ Agent must be installed on each node you want to monitor. Configuring access to the CLI on each node is optional. Nodes can be:
 
-## Install the NetQ Agent
-
-The NetQ Agent must be installed on each node you want to monitor. The node can be a:
-
-  - Switch running Cumulus Linux version 3.3.2 or later
-  - Server running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7
-  - Linux virtual machine running any of the above Linux operating
+  - switches running Cumulus Linux version 3.3.2 or later
+  - Servers running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7 (Cumulus NetQ 2.2.1 and earlier)
+  - Servers running Red Hat RHEL 7.1, Ubuntu 16.04, Ubuntu 18.04, or CentOS 7 (Cumulus NetQ 2.2.2 and later)
+  - Linux virtual machines running any of the above Linux operating
     systems
 
 To install the NetQ Agent you need to install the OS-specific meta
@@ -135,8 +144,8 @@ Instructions for installing the meta package on each node type are
 included here:
 
   - [Install NetQ Agent on a Cumulus Linux Switch](#install-netq-agent-on-a-cumulus-linux-switch)
-  - [Install NetQ Agent on an Ubuntu Server](#install-netq-on-an-ubuntu-server)
-  - [Install NetQ Agent on a Red Hat or CentOS Server](#install-netq-on-a-red-hat-or-centos-server)
+  - [Install NetQ Agent on an Ubuntu Server](#install-netq-agent-on-an-ubuntu-server)
+  - [Install NetQ Agent on a Red Hat or CentOS Server](#install-netq-agent-on-a-red-hat-or-centos-server)
 
 {{%notice note%}}
 
@@ -152,11 +161,12 @@ A simple process installs the NetQ Agent on a Cumulus switch.
 
 1.  Edit the `/etc/apt/sources.list` file to add the repository for
     Cumulus NetQ.
+
     **Note**: NetQ has a separate repository from Cumulus Linux.
 
         cumulus@switch:~$ sudo nano /etc/apt/sources.list
         ...
-        deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.1
+        deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.2
         ...
 
     {{%notice tip%}}
@@ -211,7 +221,7 @@ If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-th
    ```
 
 7. Repeat these steps for each Cumulus switch, or use an automation tool to
-install NetQ Agent on multiple Cumulus Linux switches.
+install NetQ Agent and configure the CLI on multiple Cumulus Linux switches.
 
 ### Install NetQ Agent on an Ubuntu Server
 
@@ -242,14 +252,29 @@ To install the NetQ Agent on an Ubuntu server:
 
         root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
 
-2.  Create the file
+2.  Add the Ubuntu repository:
+
+    <details><summary>Ubuntu 16.04</summary>
+    Create the file
     `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add
-    the following lines:
+    the following line:
 
         root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
         ...
         deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
         ...
+    </details>
+
+    <details><summary>Ubuntu 18.04</summary>
+    Create the file
+    `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
+    the following line:
+
+        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+        ...
+        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+        ...
+    </details>
 
     {{%notice note%}}
 
@@ -466,6 +491,10 @@ number when configuring the NetQ Agent like this:
 You then restart the agent:
 
     cumulus@leaf01:~$ netq config restart agent
+
+## Intelligent Platform Management Interface - IPMI
+
+The NetQ Appliance comes with Intelligent Platform Management Interface (IPMI). IPMI provides remote access to multiple users at different locations for networking. It also allows a system administrator to monitor system health and manage computer events remotely. For details, please read the [Supermicro IPMI user guide](https://www.supermicro.com/manuals/other/IPMI_Users_Guide.pdf).
 
 ## Integrate with Event Notification Tools
 

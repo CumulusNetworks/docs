@@ -4,6 +4,12 @@ author: Cumulus Networks
 weight: 95
 aliases:
  - /display/DOCS/DHCP+Relays
+ - /display/CL31/Configuring+DHCP+Relays+and+Servers
+ - /display/CL36/DHCP+Relays
+ - /display/CL35/Configuring+DHCP+Relays
+ - /display/CL34/Configuring+DHCP+Relays
+ - /display/CL33/Configuring+DHCP+Relays
+ - /display/CL321/Configuring+DHCP+Relays
  - /pages/viewpage.action?pageId=8363036
 pageID: 8363036
 product: Cumulus Linux

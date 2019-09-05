@@ -13,15 +13,11 @@ siteSlug: cumulus-linux
 ---
 You monitor system hardware in these ways, using:
 
-  - `decode-syseeprom`
-
-  - `smond``  `
-
-  - `sensors`
-
-  - [Net-SNMP](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP)
-
-  - watchdog
+- `decode-syseeprom`
+- `smond`
+- `sensors`
+- [Net-SNMP](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP)
+- watchdog
 
 ## Retrieve Hardware Information Using decode-syseeprom
 
@@ -51,7 +47,7 @@ For example:
     CRC-32               0xFE   4 0x96543BC5
     (checksum valid)
 
-### Command Options
+### decode-syseeprom Command Options
 
 Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 
@@ -198,30 +194,24 @@ The following table shows the `sensors` command options.
 
 Usage: `sensors [OPTION]... [CHIP]...`
 
-| Option             | Description                                                                                                                                                   |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Option      | Description  |
+| ----------- | ------------ |
 | \-c, --config-file | Specify a config file; use `-` after `-c` to read the config file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
-| \-s, --set         | Executes set statements in the config file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers.               |
-| \-f, --fahrenheit  | Show temperatures in degrees Fahrenheit.                                                                                                                      |
-| \-A, --no-adapter  | Do not show the adapter for each chip.                                                                                                                        |
-| \--bus-list        | Generate bus statements for `sensors.conf`.                                                                                                                   |
+| \-s, --set         | Executes set statements in the config file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers.   |
+| \-f, --fahrenheit  | Show temperatures in degrees Fahrenheit.  |
+| \-A, --no-adapter  | Do not show the adapter for each chip.    |
+| \--bus-list        | Generate bus statements for `sensors.conf`.|
 
 If `[CHIP]` is not specified in the command, all chip info will be printed.
 Example chip names include:
 
-  - lm78-i2c-0-2d \*-i2c-0-2d
-
-  - lm78-i2c-0-\* \*-i2c-0-\*
-
-  - lm78-i2c-\*-2d \*-i2c-\*-2d
-
-  - lm78-i2c-\*-\* \*-i2c-\*-\*
-
-  - lm78-isa-0290 \*-isa-0290
-
-  - lm78-isa-\* \*-isa-\*
-
-  - lm78-\*
+- lm78-i2c-0-2d \*-i2c-0-2d
+- lm78-i2c-0-\* \*-i2c-0-\*
+- lm78-i2c-\*-2d \*-i2c-\*-2d
+- lm78-i2c-\*-\* \*-i2c-\*-\*
+- lm78-isa-0290 \*-isa-0290
+- lm78-isa-\* \*-isa-\*
+- lm78-\*
 
 ## Monitor Switch Hardware Using SNMP
 
@@ -230,8 +220,8 @@ The Net-SNMP documentation is discussed
 
 ## Keep the Switch Alive Using the Hardware Watchdog
 
-Cumulus Linux includes a simplified version of the ` wd_keepalive(8)
- `daemon from the standard ` watchdog  `Debian package. `wd_keepalive`
+Cumulus Linux includes a simplified version of the ` wd_keepalive(8)` 
+daemon from the standard `watchdog` Debian package. `wd_keepalive`
 writes to a file called `/dev/watchdog` periodically to keep the switch
 from resetting, at least once per minute. Each write delays the reboot
 time by another minute. After one minute of inactivity where
@@ -259,9 +249,6 @@ and scheduler priority — in its configuration file,
 
 ## Related Information
 
-  - [packages.debian.org/search?keywords=lshw](http://packages.debian.org/search?keywords=lshw)
-
-  - [lm-sensors.org](https://en.wikipedia.org/wiki/Lm_sensors)
-
-  - [Net-SNMP
-    tutorials](http://net-snmp.sourceforge.net/wiki/index.php/Tutorials)
+- [packages.debian.org/search?keywords=lshw](http://packages.debian.org/search?keywords=lshw)
+- [lm-sensors.org](https://en.wikipedia.org/wiki/Lm_sensors)
+- [Net-SNMP tutorials](http://net-snmp.sourceforge.net/wiki/index.php/Tutorials)

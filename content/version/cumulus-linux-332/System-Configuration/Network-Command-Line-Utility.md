@@ -11,9 +11,6 @@ version: 3.3.2
 imgData: cumulus-linux-332
 siteSlug: cumulus-linux-332
 ---
-<span class="error">The license could not be verified: License
-Certificate has expired\!</span>
-
 The Network Command Line Utility, or NCLU, is a command line interface
 for Cumulus Networks products, implemented in Cumulus Linux and VX 3.1
 and later releases, with the goal of simplifying the networking
@@ -27,11 +24,9 @@ than traditional command line interfaces by:
 
   - Embedding help, examples and automatic command checking with
     suggestions in case you’ve entered a typo
-
   - Running directly from and integrating with bash, while being
     interoperable with the regular way of accessing underlying
     configuration files and automation
-
   - Automatically configuring dependent features so you don’t have to
 
 {{% imgOld 0 %}}
@@ -44,13 +39,13 @@ monitoring and troubleshooting functionality for these features.
 configured with `net`, in addition to running show and clear commands
 related to `ifupdown2` and Quagga.
 
-## What's New and Different in NCLU in Version 3.3?</span>
+## What's New and Different in NCLU in Version 3.3?
 
 A number of commands have been added, updated, or removed from NCLU in
-the new release. Read more about [what's
-changed](https://support.cumulusnetworks.com/hc/en-us/articles/115005751268).
+the new release. Read more about 
+[what's changed](https://support.cumulusnetworks.com/hc/en-us/articles/115005751268).
 
-## Installing NCLU</span>
+## Installing NCLU
 
 If you upgraded Cumulus Linux from a version earlier than 3.2 instead of
 performing a full binary install, you need to install the `nclu` package
@@ -71,7 +66,7 @@ the following message when it is manually installed:
 
 {{%/notice%}}
 
-## Getting Started</span>
+## Getting Started
 
 NCLU uses the following workflow for staging and committing changes to
 Cumulus Linux:
@@ -99,31 +94,26 @@ using:
     commit history` and `net show bgp` to view the complete network
     configuration, a history of commits using NCLU and BGP status,
     respectively.
-
   - `net clear`: A way to clear `net show` counters, BGP and OSPF
     neighbor content, and more.
-
   - `net rollback`: Provides a mechanism to revert back to an earlier
     configuration.
-
   - `net commit confirm`: Requires the user to press *Enter* in order to
     commit changes via NCLU. If you run `net commit confirm` but do not
     press *Enter* within 10 seconds, the commit is automatically
     reverted and nothing changes.
-
   - `net del all`: Deletes all configurations and stops the IEEE 802.1X
     service.
-    
+
     {{%notice note%}}
-    
-    This command does not remove [management
-    VRF](/version/cumulus-linux-332/Layer-Three/Management-VRF)
-    configurations, as NCLU does not interact with eth0 interfaces and
-    management VRF at all.
-    
+
+This command does not remove [management VRF](/version/cumulus-linux-332/Layer-Three/Management-VRF)
+configurations, as NCLU does not interact with eth0 interfaces and
+management VRF at all.
+
     {{%/notice%}}
 
-### Tab Completion, Verification and Inline Help</span>
+### Tab Completion, Verification and Inline Help
 
 NCLU provides a number of features to assist users. In addition to tab
 completion and partial keyword commands identification, verification
@@ -221,7 +211,7 @@ Multiple interfaces can be configured at once:
 
 {{%/notice%}}
 
-### <span id="src-5868900_NetworkCommandLineUtility-questionmark" class="confluence-anchor-link"></span>Adding ? (Question Mark) Ability to NCLU</span>
+### Adding ? (Question Mark) Ability to NCLU
 
 While tab completion is enabled by default, you can also configure NCLU
 to use the **?** (question mark character) to look at available
@@ -264,7 +254,7 @@ terminal. This is normal, expected behavior.
 
 {{%/notice%}}
 
-### Built-In Examples</span>
+### Built-In Examples
 
 The NCLU has a number of built in examples to guide users through basic
 configuration setup:
@@ -330,7 +320,7 @@ configuration setup:
     switch1# net show interface
     switch1# net show bridge macs
 
-## Adding More NCLU Users or Groups</span>
+## Adding More NCLU Users or Groups
 
 If you've created custom users or groups on your Cumulus Linux switches,
 you can configure those users to be able to run NCLU commands.
@@ -362,19 +352,19 @@ the `groups_with_edit` and `groups_with_show` lines in the file.
 {{%notice warning%}}
 
 Take care to which groups you want to give the `groups_with_edit`
-permission. For example, you wouldn't want to give it to the [*tacacs*
-group](TACACS-Plus.html#src-5868883_TACACSPlus-nclu).
+permission. For example, you wouldn't want to give it to the 
+[*tacacs* group](/version/cumulus-linux-332/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus/#configuring-nclu-for-tacacs-users).
 
 {{%/notice%}}
 
-## <span id="src-5868900_NetworkCommandLineUtility-restart" class="confluence-anchor-link"></span>Restarting the netd Service</span>
+## Restarting the netd Service
 
 Whenever you modify `netd.conf`, you must restart the `netd` service for
 the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart netd.service
 
-## <span id="src-5868900_NetworkCommandLineUtility-backuptofile" class="confluence-anchor-link"></span>Backing up the Configuration to a Single File</span>
+## Backing up the Configuration to a Single File
 
 You can easily back up your NCLU configuration to a file by outputting
 the results of `net show configuration commands` to a file, then
@@ -393,7 +383,7 @@ configuration by running:
 
     cumulus@leaf01:~$ source leaf01.txt
 
-## <span id="src-5868900_NetworkCommandLineUtility-conf" class="confluence-anchor-link"></span>Advanced Configuration</span>
+## Advanced Configuration
 
 NCLU needs no initial configuration; it's ready to go in Cumulus Linux.
 However, if you need to modify its configuration, you must manually
@@ -402,15 +392,15 @@ different permission levels for users to edit configurations and run
 show commands. It also contains a blacklist that hides less frequently
 used terms from the tabbed autocomplete.
 
-| Configuration Variable | Default Setting                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Description                                                                             |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| show\_linux\_command   | False                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | When true, displays the Linux command running in the background.                        |
-| enable\_ifupdown2      | True                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Enables `net` wrapping of `ifupdown2` commands.                                         |
-| enable\_quagga         | True                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Enables `net` wrapping of Quagga commands.                                              |
-| users\_with\_edit      | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Sets the Linux users with root edit privileges.                                         |
-| groups\_with\_edit     | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Sets the Linux groups with root edit privileges.                                        |
-| users\_with\_show      | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Controls which users are allowed to run `show` commands.                                |
-| groups\_with\_show     | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Controls which groups are allowed to run `show` commands.                               |
+| Configuration Variable | Default Setting           | Description |
+| ---------------------- | ------------------------- | --------------------------- |
+| show\_linux\_command   | False                     | When true, displays the Linux command running in the background.                        |
+| enable\_ifupdown2      | True                      | Enables `net` wrapping of `ifupdown2` commands.                                         |
+| enable\_quagga         | True                      | Enables `net` wrapping of Quagga commands.                                              |
+| users\_with\_edit      | root, cumulus             | Sets the Linux users with root edit privileges.                                         |
+| groups\_with\_edit     | root, cumulus             | Sets the Linux groups with root edit privileges.                                        |
+| users\_with\_show      | root, cumulus             | Controls which users are allowed to run `show` commands.                                |
+| groups\_with\_show     | root, cumulus             | Controls which groups are allowed to run `show` commands.                               |
 | ifupdown\_blacklist    | address-purge, bond-ad-actor-sys-prio, bond-ad-actor-system, bond-mode, bond-num-grat-arp, bond-num-unsol-na, bond-use-carrier, bond-xmit-hash-policy, bridge-bridgeprio, bridge-fd, bridge-hashel, bridge-hashmax, bridge-hello, bridge-maxage, bridge-maxwait, bridge-mclmc, bridge-mclmi, bridge-mcmi, bridge-mcqi, bridge-mcqpi, bridge-mcqri, bridge-mcrouter, bridge-mcsqc, bridge-mcsqi, bridge-pathcosts, bridge-port-pvids, bridge-port-vids, bridge-portprios, bridge-stp, bridge-waitport, broadcast, hwaddress, link-type, mstpctl-ageing, mstpctl-fdelay, mstpctl-forcevers, mstpctl-hello, mstpctl-maxage, mstpctl-maxhops, mstpctl-portp2p, mstpctl-portpathcost, mstpctl-portrestrrole, mstpctl-portrestrtcn, mstpctl-treeportcost, mstpctl-treeportprio, mstpctl-txholdcount, netmask, preferred-lifetime, scope, vxlan-ageing, vxlan-learning, up, down, bridge-ageing, bridge-gcint, bridge-mcqifaddr, bridge-mcqv4src | Hides corner case command options from tab complete, to simplify and streamline output. |
 
 {{%notice info%}}
@@ -422,11 +412,3 @@ output is directed. To only use `stdout`, set the NCLU\_TAB\_STDOUT
 environment variable to *true*. The value is not case sensitive.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

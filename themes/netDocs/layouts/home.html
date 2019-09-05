@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="_aQtTNCQV_p0LR-NhEG3g24jdKxjr9Op3R0ygIrP1Z0" />
   <title>{{ .Site.Title -}}</title>
 
   <!-- Fonts for the theme -->
@@ -148,13 +149,13 @@
               <button type="submit">Search</button> -->
 
               <script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
-              <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl="/search"></div>
+              <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl="/search/"></div>
             <!-- </div> -->
           </div>
         </div>
       </div>
     </section>
-    <section class="pt-5 pb-5">
+    <section class="pt-5 pb-5 mobile-center">
         <div class="container">
           <div class="row">
             <div class="col-12 text-center">
@@ -162,22 +163,14 @@
                 <span>Additional Products</span>
               </h3>
             </div>
-            <div class="col-6 col-lg-4">
-              <h3>Host Pack</h3>
-              <ul>
-                <li><a href="/host-pack">Overview</a></li>
-                <li><a href="/host-pack/Installing-FRRouting-on-the-Host/">Install FRRouting on the host</a></li>
-                <li><a href="/host-pack/Configuring-FRRouting-on-the-Host/">Configure FRRouting on the host</a></li>
-              </ul>
-            </div>
-            <div class="col-6 col-lg-4">
+            <div class="col-sm-12 col-md-6 col-lg-4">
               <h3>Cumulus RMP</h3>
               <ul>
                 <li><a href="/cumulus-rmp">Overview</a></li>
                 <li><a href="/cumulus-rmp/Quick-Start-Guide/">Quick start guide</a></li>
               </ul>
             </div>
-            <div class="col-6 col-lg-4">
+            <div class="col-sm-12 col-md-6 col-lg-4">
               <h3>Chassis</h3>
               <ul>
                 <li><a href="/chassis">Overview</a></li>
@@ -288,7 +281,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="//slack.cumulusnetworks.com/" target="_blank">
+                  <a href="//www.instagram.com/cumulusnetworks/" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                       <defs>
                           <style>
@@ -310,7 +303,7 @@
         </div>
       </div>
     </footer>
-    <div class="footer-bottom">
+    <div class="footer-bottom mobile-center">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -325,6 +318,54 @@
     </div>
 
   {{ template "_internal/google_analytics_async.html" . }}
+  <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('628-LMQ-951');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = '//munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+  </script>
+  <script>
+       window._6si = window._6si || [];
+       window._6si.push(['enableEventTracking', true]);
+       window._6si.push(['setToken', '520947e1dc042c7896ad79e98cc7702e']);
+       window._6si.push(['setEndpoint', 'b.6sc.co']);
+
+       (function() {
+           var gd = document.createElement('script');
+           gd.type = 'text/javascript';
+           gd.async = true;
+           gd.src = '//j.6sc.co/6si.min.js';
+           var s = document.getElementsByTagName('script')[0];
+           s.parentNode.insertBefore(gd, s);
+       })();
+   </script>
+
+   <script>
+    window.onload = function(){
+      document.getElementById('gsc-i-id1').placeholder = 'Search the docs. For better results, include your version number in your query.';
+    };
+   </script>
+
+  <script>
+    (function(w,d,s){var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='//embeddable-widgets-usw2.insided.com/cumulusnetworks-en.insided-conversational.js';f.parentNode.insertBefore(j,f);})(window,document,'script');
+  </script>
+
 </body>
 
 </html>

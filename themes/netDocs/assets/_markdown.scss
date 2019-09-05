@@ -48,6 +48,10 @@ $block-border-radius: 0.15rem;
     text-transform: uppercase;
   }
 
+  summary {
+    color: $cn-jade;
+  }
+
   p {
     margin: 0 0 1.1rem;
 
@@ -168,16 +172,43 @@ $block-border-radius: 0.15rem;
     border-radius: $block-border-radius;
   }
 
-  .copy-code-button {
+  .copy-code-img {
     border: 0;
-    background: transparent;
     cursor: pointer;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 5px;
 
     &:focus {
       outline: 0;
+    }
+
+    &.tooltip:before {
+      content: attr(aria-label);
+      position: absolute;
+      display: inline-block;
+      padding: 0 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      white-space: nowrap;
+      right: 30px;
+      top: 3px;
+    }
+    &.tooltip:after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;
+      border-bottom: 8px solid #000;
+      border-color: transparent;
+      border-left-color: #000;
+      border-width: 7px;
+      margin-top: 50%;
+      line-height: 0;
     }
   }
 
@@ -204,13 +235,21 @@ $block-border-radius: 0.15rem;
   table {
     border-spacing: 0;
     border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    display: block;
+    overflow: scroll;
+
+    p {
+      word-break: unset;
+    }
 
     tr th, tr td {
       :header{
         background: $gray-200;
       }
       padding: $padding-8 $padding-16;
-      line-height: 1;
+      line-height: 1.5;
       border: 1px solid $gray-200;
     }
 
@@ -225,7 +264,17 @@ $block-border-radius: 0.15rem;
   }
 
   .notices p code {
-    background: transparent;
     color: inherit;
   }
 }
+
+  .notices pre {
+      padding: $padding-16;
+      position: relative;
+      background: $code-block-background;
+      border: 1px solid #b5bdc9;
+      border-radius: 0;
+      font-size: $font-size-14;
+      margin: 1.99rem 0;
+      overflow-x: auto;
+  }

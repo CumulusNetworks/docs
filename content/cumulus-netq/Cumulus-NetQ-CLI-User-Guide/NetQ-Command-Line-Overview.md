@@ -611,8 +611,8 @@ this release.
       <td>2.2.1</td>
     </tr>
     <tr>
-      <td>netq [&lt;hostname&gt;] show inventory [asic|board|brief|cpu|disk|license|memory|os] [&lt;options-specific-to-inventory-item&gt;] [opta] [json]</td>
-      <td>netq [&lt;hostname&gt;] show inventory [asic|board|brief|cpu|disk|license|memory|os] [&lt;options-specific-to-inventory-item&gt;] [json]</td>
+      <td>netq [&lt;hostname&gt;] show inventory [asic|board|brief|cpu|disk| license|memory|os] [&lt;options-specific-to-inventory-item&gt;] [opta] [json]</td>
+      <td>netq [&lt;hostname&gt;] show inventory [asic|board|brief|cpu|disk| license|memory|os] [&lt;options-specific-to-inventory-item&gt;] [json]</td>
       <td>Added `opta` option to show only the selected inventory information for the NetQ or NetQ Cloud Appliance.</td>
       <td>2.2.1</td>
     </tr>

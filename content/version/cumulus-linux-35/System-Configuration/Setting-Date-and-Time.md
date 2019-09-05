@@ -11,12 +11,10 @@ version: '3.5'
 imgData: cumulus-linux-35
 siteSlug: cumulus-linux-35
 ---
-<details>
-
 Setting the time zone, date and time requires root privileges; use
 `sudo`.
 
-## Setting the Time Zone</span>
+## Setting the Time Zone
 
 To see the current time zone, list the contents of `/etc/timezone`:
 
@@ -31,7 +29,7 @@ Use the following command to apply the new time zone immediately.
 
     cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
 
-### Alternative: Use the Guided Wizard to Find and Apply a Time Zone</span>
+### Alternative: Use the Guided Wizard to Find and Apply a Time Zone
 
 To set the time zone, run `dpkg-reconfigure tzdata` as root:
 
@@ -68,7 +66,7 @@ example selects the US/Pacific time zone:
 For more info see the Debian [System Administrator’s Manual –
 Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
-## Setting the Date and Time</span>
+## Setting the Date and Time
 
 The switch contains a battery backed hardware clock that maintains the
 time while the switch is powered off and in between reboots. When the
@@ -111,7 +109,7 @@ Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.ht
 specifically the section [Setting and showing hardware
 clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
 
-## Setting Time Using NTP and NCLU</span>
+## Setting Time Using NTP and NCLU
 
 The `ntpd` daemon running on the switch implements the NTP protocol. It
 synchronizes the system time with time servers listed in
@@ -176,7 +174,7 @@ To remove one or more NTP servers:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## Specifying the NTP Source Interface</span>
+## Specifying the NTP Source Interface
 
 You can change the source interface that NTP uses if you want to use an
 interface other than eth0, the default.
@@ -195,22 +193,20 @@ These commands create the following configuration snippet in the
      
     ...
 
-## NTP Default Configuration</span>
+## NTP Default Configuration
 
 The default NTP configuration comprises the following servers, which are
 listed in the `/etc/ntpd.conf` file:
 
   - server 0.cumulusnetworks.pool.ntp.org iburst
-
   - server 1.cumulusnetworks.pool.ntp.org iburst
-
   - server 2.cumulusnetworks.pool.ntp.org iburst
-
   - server 3.cumulusnetworks.pool.ntp.org iburst
 
 If you need to restore the default NTP configuration, its contents are
 listed below.
 
+<details>
 <summary>Default ntpd.conf file ... </summary>
 
     # /etc/ntp.conf, configuration for ntpd; see ntp.conf(5) for help
@@ -271,24 +267,12 @@ listed below.
      
     # Specify interfaces, don't listen on switch ports
     interface listen eth0
+</details>
 
-## Related Information</span>
+## Related Information
 
   - [Debian System Administrator’s Manual –
     Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
-
   - [www.ntp.org](http://www.ntp.org)
-
   - [en.wikipedia.org/wiki/Network\_Time\_Protocol](http://en.wikipedia.org/wiki/Network_Time_Protocol)
-
   - [wiki.debian.org/NTP](http://wiki.debian.org/NTP)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

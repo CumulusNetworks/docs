@@ -14,17 +14,16 @@ siteSlug: cumulus-linux-35
 The following sections describe various ways you can troubleshoot
 `ifupdown2`.
 
-## Enabling Logging for Networking</span>
+## Enabling Logging for Networking
 
 The `/etc/default/networking` file contains two settings for logging:
 
   - To get `ifupdown2` logs when the switch boots (stored in `syslog`)
-
   - To enable logging when you run `systemctl [start|stop|reload]
     networking.service`
 
 This file also contains an option for excluding interfaces when you boot
-the switch or run ` systemctl start|stop|reload networking.service  `.
+the switch or run `systemctl start|stop|reload networking.service`.
 You can exclude any interface specified in `/etc/network/interfaces`.
 These interfaces do not come up when you boot the switch or
 start/stop/reload the networking service.
@@ -48,7 +47,7 @@ start/stop/reload the networking service.
     # Exclude interfaces
     EXCLUDE_INTERFACES=
 
-## Using ifquery to Validate and Debug Interface Configurations</span>
+## Using ifquery to Validate and Debug Interface Configurations
 
 You use `ifquery` to print parsed `interfaces` file entries.
 
@@ -103,7 +102,7 @@ database.
     auto eth0
     iface eth0 inet dhcp
 
-## Debugging Mako Template Errors</span>
+## Debugging Mako Template Errors
 
 An easy way to debug and get details about template errors is to use the
 `mako-render` command on your interfaces template file or on
@@ -135,7 +134,7 @@ An easy way to debug and get details about template errors is to use the
       
     cumulus@switch:~$ sudo mako-render /etc/network/interfaces.d/<interfaces_stub_file>
 
-## ifdown Cannot Find an Interface that Exists</span>
+## ifdown Cannot Find an Interface that Exists
 
 If you are trying to bring down an interface that you know exists, use
 `ifdown` with the `--use-current-config` option to force `ifdown` to
@@ -153,7 +152,7 @@ was interrupted before it updated the state database. For example:
      
     cumulus@switch:~$ sudo ifdown br0 --use-current-config 
 
-## Removing All References to a Child Interface</span>
+## Removing All References to a Child Interface
 
 If you have a configuration with a child interface, whether it's a VLAN,
 bond or another physical interface, and you remove that interface from a
@@ -188,10 +187,10 @@ Notice that bond1 is a member of br0. If bond1 is removed, you must
 remove the reference to it from the br0 configuration. Otherwise, if you
 reload the configuration with `ifreload -a`, bond1 is still part of br0.
 
-## MTU Set on a Logical Interface Fails with Error: "Numerical result out of range"</span>
+## MTU Set on a Logical Interface Fails with Error: "Numerical result out of range"
 
 This error occurs when the
-[MTU](Layer-1-and-Switch-Port-Attributes.html#src-8357670_Layer1andSwitchPortAttributes-mtu)
+[MTU](/version/cumulus-linux-35/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/#mtu)
 you are trying to set on an interface is higher than the MTU of the
 lower interface or dependent interface. Linux expects the upper
 interface to have an MTU less than or equal to the MTU on the lower
@@ -210,7 +209,7 @@ as well.
     iface swp1  
         mtu 9000
 
-## Interpreting iproute2 batch Command Failures</span>
+## Interpreting iproute2 batch Command Failures
 
 `ifupdown2` batches `iproute2` commands for performance reasons. A batch
 command contains `ip -force -batch -` in the error message. The command
@@ -228,7 +227,7 @@ bridge`. There was an error adding the bond *host2* to the bridge named
     Command failed -:1) 
     warning: bridge configuration failed (missing ports) 
 
-## Understanding the "RTNETLINK answers: Invalid argument" Error when Adding a Port to a Bridge</span>
+## Understanding the "RTNETLINK answers: Invalid argument" Error when Adding a Port to a Bridge
 
 This error can occur when the bridge port does not have a valid hardware
 address.
@@ -237,18 +236,10 @@ This can typically occur when the interface being added to the bridge is
 an incomplete bond; a bond without slaves is incomplete and does not
 have a valid hardware address.
 
-## MLAG Peerlink Interface Drops Many Packets</span>
+## MLAG Peerlink Interface Drops Many Packets
 
 Losing a large number of packets across an MLAG peerlink interface may
 not be a problem. Instead this could be occurring in order to prevent
 looping of BUM (broadcast, unknown unicast and multicast) packets. For
-more information, and how to detect these drops, read the [MLAG
-chapter](Multi-Chassis-Link-Aggregation-MLAG.html#src-8357455_Multi-ChassisLinkAggregation-MLAG-drops).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+more information, and how to detect these drops, read the 
+[MLAG chapter](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG/#large-packet-drops-on-the-peerlink-interface).

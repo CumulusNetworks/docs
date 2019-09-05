@@ -11,10 +11,10 @@ version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-*QinQ* is an amendment to the [IEEE 802.1Q
-specification](http://www.ieee802.org/1/pages/802.1Q.html) that provides
-the capability for multiple [VLAN
-tags](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging) to
+*QinQ* is an amendment to the
+[IEEE 802.1Q specification](http://www.ieee802.org/1/pages/802.1Q.html) that 
+provides the capability for multiple
+[VLAN tags](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging) to
 be inserted into a single Ethernet frame.
 
 The primary use case for QinQ with VXLAN is where a service provider who
@@ -26,28 +26,26 @@ inner tag is for the service.
 
 In Cumulus Linux, you map QinQ packets to VXLANs through:
 
-  - *Single tag translation*, where you map a customer to a VNI and
-    preserve the service as an inner VLAN inside a VXLAN packet.
-
-  - *Double tag translation*, where you map a customer and service to a
-    VNI.
+- *Single tag translation*, where you map a customer to a VNI and
+  preserve the service as an inner VLAN inside a VXLAN packet.
+- *Double tag translation*, where you map a customer and service to a
+  VNI.
 
 QinQ is available on the following switches:
 
-  - Broadcom Tomahawk 2, Tomahawk+, Tomahawk, Trident3, Trident II+ and
-    Trident II switches.
-
-  - Mellanox switches, only with [VLAN-aware
-    bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
-    with 802.1ad and only with single tag translation.
+- Broadcom Tomahawk 2, Tomahawk+, Tomahawk, Trident3, Trident II+ and
+  Trident II switches.
+- Mellanox switches, only with
+  [VLAN-aware bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+  with 802.1ad and only with single tag translation.
 
 ## Remove the Early Access QinQ Metapackage
 
 If you are upgrading Cumulus Linux from a version earlier than 3.4.0 and
 had installed the early access QinQ metapackage, you need to remove the
 `cumulus-qinq` metapackage before upgrading to Cumulus Linux 3.4.0 or
-later. To remove the `cumulus-qinq` metapackage, read the [early access
-feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
+later. To remove the `cumulus-qinq` metapackage, read the
+[early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
 article.
 
 ## Configure Single Tag Translation
@@ -59,8 +57,8 @@ VXLAN VNI. The inner C-tag, which represents the service, is transparent
 to the provider. The public cloud handoff interface is a QinQ trunk
 where packets on the wire carry both the S-tag and the C-tag.
 
-Single tag translation leverages [VLAN-aware bridge
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+Single tag translation leverages
+[VLAN-aware bridge mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 with the use of the 802.1ad VLAN protocol (the only supported protocol
 at the time of writing). Hence, it is more scalable.
 
@@ -82,13 +80,11 @@ All edges need to support QinQ with VXLANs to correctly interoperate.
 
 For the switch facing the public cloud:
 
-  - Configure the bridge with `vlan_protocol` set to *802.1ad*.
-
-  - The VNI maps back to S-tag (customer).
-
-  - A trunk port connected to the public cloud is the QinQ trunk, and
-    packets are double tagged, where the S-tag is for the customer and
-    the C-tag is for the service.
+- Configure the bridge with `vlan_protocol` set to *802.1ad*.
+- The VNI maps back to S-tag (customer).
+- A trunk port connected to the public cloud is the QinQ trunk, and
+  packets are double tagged, where the S-tag is for the customer and
+  the C-tag is for the service.
 
 To configure the public cloud-facing switch, run the following
 [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
@@ -135,13 +131,11 @@ These commands create the following configuration in the
 
 For the switch facing the customer:
 
-  - Configure the bridge with `vlan_protocol` set to *802.1ad*.
-
-  - The customer interface is the QinQ access port, the PVID is the
-    S-tag (customer) and is mapped to a VNI.
-
-  - The service VLAN tags (C-tags) are preserved during VXLAN
-    encapsulation.
+- Configure the bridge with `vlan_protocol` set to *802.1ad*.
+- The customer interface is the QinQ access port, the PVID is the
+  S-tag (customer) and is mapped to a VNI.
+- The service VLAN tags (C-tags) are preserved during VXLAN
+  encapsulation.
 
 To configure the customer-facing switch, run the following
 [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
@@ -221,8 +215,8 @@ To check the customer-facing switch, use `net show bridge vlan`:
     vni-1000        100  PVID, Egress Untagged  1000
     vni-3000        200  PVID, Egress Untagged  3000
 
-To verify that the bridge is configured for QinQ, run `ip -d link show
-bridge` and look for *vlan\_protocol 802.1ad* in the output:
+To verify that the bridge is configured for QinQ, run 
+`ip -d link show bridge` and look for *vlan\_protocol 802.1ad* in the output:
 
     cumulus@switch:~$ sudo ip -d link show bridge
     287: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
@@ -260,8 +254,8 @@ as swp3.100 in the example below.
 
 {{%notice note%}}
 
-Double tag translation only works with bridges in [traditional
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
+Double tag translation only works with bridges in 
+[traditional mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
 (not VLAN-aware mode).
 
 {{%/notice%}}
@@ -323,7 +317,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
         bridge-ports swp3.10  swp4  swp5.100.10
         bridge-vlan-aware no
 
-{{% imgOld 2 %}}
+{{< figure src="/images/cumulus-linux/qinq-double-tagged-no-vxlan.png" width="600" >}}
 
 {{%/notice%}}
 
@@ -331,40 +325,32 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
 
 ### Feature Limitations
 
-  - `iptables` match on double-tagged interfaces is not supported.
+- `iptables` match on double-tagged interfaces is not supported.
+- Single-tagged translation supports only VLAN-aware bridge mode with
+  the bridge’s VLAN 802.1ad protocol.
+- [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+  is only supported with single-tagged translation.
+- Mixing 802.1Q and 802.1ad subinterfaces on the same switch port is
+  not supported.
+- When configuring bridges in
+  [traditional mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode),
+  all VLANs that are members of the same switch port must use the same
+  `vlan_protocol`.
+- When using switches with Mellanox Spectrum ASICs in an MLAG pair:
 
-  - Single-tagged translation supports only VLAN-aware bridge mode with
-    the bridge’s VLAN 802.1ad protocol.
+  - The peerlink (peerlink.4094) between the MLAG pair should be
+    configured for VLAN protocol 802.1ad.
+  - The peerlink cannot be used as a backup datapath in the event
+    that one of the MLAG peers loses all uplinks.
+- For switches with the Spectrum ASIC (but not the Spectrum 2), when
+  the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, either:
 
-  - [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
-    is only supported with single-tagged translation.
+  - All bridge ports are access ports, except for the MLAG peerlink.
+  - All bridge ports are VLAN trunks.
 
-  - Mixing 802.1Q and 802.1ad subinterfaces on the same switch port is
-    not supported.
-
-  - When configuring bridges in [traditional
-    mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode),
-    all VLANs that are members of the same switch port must use the same
-    `vlan_protocol`.
-
-  - When using switches with Mellanox Spectrum ASICs in an MLAG pair:
-
-      - The peerlink (peerlink.4094) between the MLAG pair should be
-        configured for VLAN protocol 802.1ad.
-
-      - The peerlink cannot be used as a backup datapath in the event
-        that one of the MLAG peers loses all uplinks.
-
-  - For switches with the Spectrum ASIC (but not the Spectrum 2), when
-    the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, either:
-
-      - All bridge ports are access ports, except for the MLAG peerlink.
-
-      - All bridge ports are VLAN trunks.
-
-    This means the switch terminating the cloud provider connections
-    (double-tagged) cannot have local clients; these clients must be on
-    a separate switch.
+  This means the switch terminating the cloud provider connections
+  (double-tagged) cannot have local clients; these clients must be on
+  a separate switch.
 
 ### Long Interface Names
 

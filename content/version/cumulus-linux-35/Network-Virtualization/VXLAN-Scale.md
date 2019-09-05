@@ -23,17 +23,17 @@ The limit is a physical to virtual mappings where a switch can hold
 is also an upper limit of around 3000 VLANs you can configure before you
 hit the reserved range (Cumulus Linux uses 3000-3999 by default).
 Cumulus Networks typically uses a soft number because the math is unique
-to each customer's environment. An internal VLAN is consumed by each
-<span style="color: #222222;"> layer 3 port, subinterface, [traditional
-bridge](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges)
-and the [VLAN-aware
-bridge](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
-Thus, the number of configurable VXLANs is: </span>
+to each customer's environment. An internal VLAN is consumed by each layer 
+3 port, subinterface, 
+[traditional bridge](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/Traditional-Mode-Bridges)
+and the 
+[VLAN-aware bridge](/version/cumulus-linux-35/Layer-1-and-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
+Thus, the number of configurable VXLANs is:
 
-<span style="color: #222222;"> (total configurable 802.1q VLANs) -
+(total configurable 802.1q VLANs) -
 (reserved VLANS) - (physical or logical interfaces) =  
 4094-999-eth0-loopback = **3093** by default (without any other
-configuration) </span>
+configuration)
 
 The equation for the number of configurable VXLANs looks like this:
 
@@ -81,11 +81,3 @@ The equation now looks like this:
 18 \* X = 11943
 
 663 = VXLANS (still configurable) for a total of **863**
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

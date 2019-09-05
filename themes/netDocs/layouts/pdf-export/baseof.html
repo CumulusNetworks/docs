@@ -12,7 +12,7 @@
 
   <!-- Theme stylesheet, you can customize scss by creatig `assets/custom.scss` in your website -->
   <!-- WHERE Hugo pipes in and compiles book.scss-->
-  {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify }}
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
 
   <!-- Favicon -->

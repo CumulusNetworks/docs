@@ -1,5 +1,5 @@
 ---
-title: Upgrade NetQ Appliances
+title: Upgrade NetQ Software on Your NetQ Appliance
 author: Cumulus Networks
 weight: 127
 aliases:
@@ -11,7 +11,7 @@ version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
-This document describes the steps required to upgrade the NetQ Software (versions 2.1.x and 2.2.0) installed and running on your NetQ or NetQ Cloud Appliances to NetQ version 2.2.1.
+This document describes the steps required to upgrade the NetQ Software (versions 2.1.0 through 2.2.1) installed and running on your NetQ or NetQ Cloud Appliances to NetQ version 2.2.2.
 
 {{%notice info%}}
 
@@ -21,9 +21,6 @@ maintenance window.
 {{%/notice%}}
 
 {{%notice note%}}
-
-Any data you have collected while using NetQ 2.1.x or 2.2.0 is maintained during
-this upgrade process.
 
 Events generated during the upgrade process will not be available in the
 database. Once the upgrade process is complete, the NetQ Agents resynchronize with
@@ -43,69 +40,73 @@ Before you begin the upgrade process, please note the following:
     state could also be *ContainerCreating*, in which case the host is
     initializing with the SSH keys.
 
-{{%notice info%}}
+## Perform an In-place Upgrade of Cumulus NetQ
 
-Cumulus Networks recommends you install the NetQ or NetQ Cloud Appliance as part of an out-of-band management network to ensure it can monitor in-band network
-issues without being affected itself.
+An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1. If you are upgrading from NetQ 2.2.0 or earlier, a [disk image upgrade](#perform-a-disk-image-upgrade-of-cumulus-netq) is recommended.
 
-{{%/notice%}}
+### In-place Upgrade Workflow
+Upgrading NetQ in place involves downloading and installing the new version of NetQ applications, and upgrading and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-## Upgrade the NetQ Appliances
+{{< figure src="/images/netq/upgrade-wkflow-on-prem-in-place-nqappl-222.png" width="600" >}}
 
-To upgrade the NetQ software on your NetQ or NetQ Cloud Appliance:
+### Download Appliance Upgrade Image
 
-1.  Download the appliance upgrade image:
-    1.  On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list box.
-    2.  Click *2.2* from the **Version** list box, and then select
-        *2.2.x* from the submenu.
-    3.  From the **Hypervisor/Platform** list box, select *Appliance* for NetQ Appliance upgrades or select *Appliance (Cloud)* for NetQ Cloud Appliance upgrades.
+The first step in upgrading your NetQ Appliance is to obtain the appliance upgrade image:
 
-         {{< figure src="/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
+1.  On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list box.
 
-    4.  Click **Upgrade**.
+2.  Click *2.2* from the **Version** list box, and then select
+  *2.2.2* from the submenu.
 
-         {{< figure src="/images/netq/netq-22-appl-upgrade.png" width="500" >}}
+3.  From the **Hypervisor/Platform** list box, select *Appliance*.
 
-2.  From a terminal window, log in to the appliance using your
-    login credentials. This example uses the default
-    *cumulus/CumulusLinux\!* credentials, on a NetQ Appliance.
+      {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+
+4.  Click **Upgrade**.
+
+      {{< figure src="/images/netq/netq-22-nqappl-upgrade-222.png" width="200" >}}
+
+### Run the Installation Script
+
+You must first store the downloaded file in a location where the installation script can find it, export the installer script from the tgz file, and configure SSH access (if this is the first time you have upgraded this server).
+
+1.  From a terminal window, log in to the appliance using your
+login credentials. This example uses the default
+*cumulus/CumulusLinux\!* credentials, on a NetQ Appliance.
 
         <computer>:~<username>$ ssh cumulus@netq-appliance
         cumulus@netq-appliance's password: 
         cumulus@netq-appliance:~$ 
 
-3.  Change to the root user.
+2.  Change to the root user.
 
         cumulus@netq-appliance:~$ sudo -i
         [sudo] password for cumulus:
         root@netq-appliance:~#
 
-4.  Copy the upgrade package (`NetQ-2.2.x-opta.tgz`) into your new directory.
+3.  Copy the upgrade package (`NetQ-2.2.2.tgz`) into your new directory.
 
         root@netq-appliance:~# cd /mnt/installables/
-        root@netq-appliance:/mnt/installables# cp /home/usr/dir/NetQ-2.2.x-opta.tgz ./ 
+        root@netq-appliance:/mnt/installables# cp /home/usr/dir/NetQ-2.2.2.tgz ./ 
 
-5.  Export the installer script.
+4.  Export the installer script.
 
-        root@netq-appliance:/mnt/installables# tar -xvf NetQ-2.2.x-opta.tgz ./netq-install.sh
+        root@netq-appliance:/mnt/installables# tar -xvf NetQ-2.2.2.tgz ./netq-install.sh
 
-6.  Verify the contents of the directory. You should have the package
+5.  Verify the contents of the directory. You should have the package
     and the `netq-install.sh` script.
 ```
         root@netq-appliance:/mnt/installables# ls -l
         total 9607744
-        -rw-r--r-- 1 cumulus cumulus 5911383922 Jul 23 11:13 NetQ-2.2.x-opta.tgz
+        -rw-r--r-- 1 cumulus cumulus 5911383922 Jul 23 11:13 NetQ-2.2.2.tgz
         -rwxr-xr-x 1 _lldpd _lldpd 4309 Jul 23 10:34 netq-install.sh
         root@netq-appliance:/mnt/installables#
 ```
-7.  Configure SSH access.
+6.  Configure SSH access.
 
     {{%notice note%}}
 
-If you perform the upgrade more than once, you can skip this step
-    after performing it once.
-
-If you have an existing SSH key, skip to step 7c.
+If you perform the upgrade more than once, you can skip this step after performing it once. If you have an existing SSH key, skip to step 6c.
 
     {{%/notice%}}
 
@@ -134,52 +135,61 @@ Leave the passphrase blank to simplify running the script.
 
     3.  Associate the key with the installer.
 
-            root@netq-appliance:/mnt/installables/# ./netq-install.sh --usekey ~/.ssh/id_rsa
-            [Fri 26 Jul 2019 06:34:47 AM UTC] - This Script can only be invoked by user: root
-            [Fri 26 Jul 2019 06:34:47 AM UTC] - The logged in user is root
-            [Fri 26 Jul 2019 06:34:47 AM UTC] - Install directory /mnt/installables exists on system.
-            [Fri 26 Jul 2019 06:34:47 AM UTC] - File /root/.ssh/id_rsa exists on system...
-            [Fri 26 Jul 2019 06:34:47 AM UTC] - checking the presence of existing instaler-ssh-keys secret/instaler-ssh-keys created
-            [Fri 26 Jul 2019 06:34:48 AM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
-            [Fri 26 Jul 2019 06:34:58 AM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
-            [Fri 26 Jul 2019 06:35:08 AM UTC] - Able to find the netq-installer up and running...
+```
+root@netq-platform:/mnt/installables/# ./netq-install.sh --usekey ~/.ssh/id_rsa
+[Tue Aug 27 04:50:07 2019] - File /root/.ssh/id_rsa exists on system...
+[Tue Aug 27 04:50:08 2019] - checking the presence of existing installer-ssh-keys
+[Tue Aug 27 04:50:08 2019] - Able to find existence of secret key ..
+[Tue Aug 27 04:50:08 2019] - Re-generating the newer installer-ssh-keys ...
+[Tue Aug 27 04:50:08 2019] - Successfully created newer installer-ssh-keys ...
+[Tue Aug 27 04:50:08 2019] - Re-generating the older instaler-ssh-keys ...
+[Tue Aug 27 04:50:08 2019] - Successfully created older instaler-ssh-keys ...
+[Tue Aug 27 04:50:08 2019] - Validating the status of netq-installer-deploy pod ...
+[Tue Aug 27 04:50:08 2019] - Able to find netq-installer-deploy pod: netq-installer-deploy-56dc64b6f9-bk2lj
+[Tue Aug 27 04:50:08 2019] - Terminating the netq-installer-deploy pod: netq-installer-deploy-56dc64b6f9-bk2lj
+[Tue Aug 27 04:50:09 2019] - Successfully terminated netq-installer-deploy pod: netq-installer-deploy-56dc64b6f9-bk2lj ...
+[Tue Aug 27 04:50:09 2019] - Checking the Status of netq-installer ....
+[Tue Aug 27 04:50:09 2019] - The netq-installer is up and running ...
+```
 
-8.  Upgrade the NetQ software.
+7.  Run the installation script to upgrade the NetQ software.
 
-        root@netq-appliance:/mnt/installables# ./netq-install.sh  --installbundle  /mnt/installables/NetQ-2.2.1.tgz --updateapps
-        [Fri 26 Jul 2019 08:18:37 PM UTC] - File /mnt/installables/NetQ-2.2.1.tgz exists on system for updating netq-installer ...
-        [Fri 26 Jul 2019 08:18:37 PM UTC] - Check the netq-installer is up and running to process requests ....
-        [Fri 26 Jul 2019 08:18:37 PM UTC] - Checking the Status of netq-installer ....
-        [Fri 26 Jul 2019 08:18:37 PM UTC] - The netq-installer is up and running ...
-        [Fri 26 Jul 2019 08:18:37 PM UTC] - Updating the netq-installer ...
-        [Fri 26 Jul 2019 08:18:37 PM UTC] - Able to execute the command for updating netq-installer ...
-        [Fri 26 Jul 2019 08:18:37 PM UTC] - Checking initialization of netq-installer update ...
-        [Fri 26 Jul 2019 08:18:37 PM UTC] - Update of netq-installer is in progress ...
-        ******************************0
-        [Fri 26 Jul 2019 08:28:39 PM UTC] - Successfully updated netq installer....
-        0,/mnt/installables/NetQ-2.2.1.tgz
-        [Fri 26 Jul 2019 08:28:39 PM UTC] - File /mnt/installables/NetQ-2.2.1.tgz exists on system for updating netq apps...
-        [Fri 26 Jul 2019 08:28:39 PM UTC] - User selected to update netq-apps ...
-        [Fri 26 Jul 2019 08:28:39 PM UTC] - Checking the Status of netq-installer ....
-        [Fri 26 Jul 2019 08:28:41 PM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
-        [Fri 26 Jul 2019 08:28:52 PM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
-        [Fri 26 Jul 2019 08:29:03 PM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
-        [Fri 26 Jul 2019 08:29:14 PM UTC] - Unable to find netq-installer up and running. Sleeping for 10 seconds ...
-        [Fri 26 Jul 2019 08:29:24 PM UTC] - The netq-installer is up and running ...
-        [Fri 26 Jul 2019 08:29:24 PM UTC] - Able to execute the command for netq apps updates ...
-        [Fri 26 Jul 2019 08:29:24 PM UTC] - Checking initialization of apps update ...
-        [Fri 26 Jul 2019 08:29:29 PM UTC] - netq apps update is in progress ...
-        ************************************************************************************************************************************    ******************************************************************************************************************************************************************************
-        0
-        [Fri 26 Jul 2019 09:20:31 PM UTC] - Successfully updated netq apps ....
-        root@netq-appliance:/mnt/installables#
+```
+root@netq-platform:/mnt/installables# ./netq-install.sh  --installbundle  /mnt/installables/NetQ-2.2.2.tgz --updateapps
+[Tue Aug 27 04:51:29 2019] - Updating the netq-installer ...
+[Tue Aug 27 04:51:29 2019] - Able to execute the command for updating netq-installer ...
+[Tue Aug 27 04:51:29 2019] - Checking initialization of netq-installer update ...
+[Tue Aug 27 04:51:29 2019] - Update of netq-installer is in progress ...
+******************************************0
+[Tue Aug 27 05:05:30 2019] - Validating the update of netq installer....
 
+...
+
+[Tue Aug 27 05:07:47 2019] - Checking the Status of netq-installer ....
+[Tue Aug 27 05:07:47 2019] - The netq-installer is up and running ...
+[Tue Aug 27 05:07:47 2019] - Able to execute the command for netq apps updates ...
+[Tue Aug 27 05:07:47 2019] - Checking initialization of apps update ...
+[Tue Aug 27 05:07:52 2019] - netq apps update is in progress ...
+****************************************************0
+[Tue Aug 27 05:54:54 2019] - Successfully updated netq apps ....
+[Tue Aug 27 05:54:54 2019] - Updating the release informatio on system...
+[Tue Aug 27 05:54:54 2019] - Successfully finished netq apps update procedure.
+[Tue Aug 27 05:54:54 2019] - Refer logs:/var/log/netq/netq_upgrade.log for more details !
+root@netq-platform:/mnt/installables#
+```
     {{%notice note%}}
 
 Please allow about an hour for the upgrade to complete.
 
     {{%/notice%}}
 
+8. Verify the release has been updated successfully.
+
+```
+root@netq-platform:/mnt/installables# cat /etc/app-release
+APPLIANCE_VERSION=2.2.2
+APPLIANCE_MANIFEST_HASH=a7f3cda
+```
 {{%notice info%}}
 
 If you have changed the IP Address of your appliance, you need to
@@ -214,7 +224,7 @@ continue.
 
 {{%/notice%}}
 
-### Update the CLI
+### Install and Configure the CLI
 
 Now that the core software is updated, you must update the CLI.
 
@@ -234,12 +244,17 @@ Now that the core software is updated, you must update the CLI.
    cumulus@switch:~$ sudo apt-get install netq-apps
    ```
 
-### Verify the Installation
+3. Configure the CLI server, using the IP address of your NetQ server.
+
+   ```
+   cumulus@switch:~$ netq config add cli server 192.168.1.254
+   cumulus@switch:~$ netq config restart cli
+   ```
+
+### Verify the Operation of NetQ on Your Appliance
 
 1. Run the `netq show opta-health` command to verify all applications are
-    operating properly. Note that the output is different depending on whether you installed the on-premises or in-cloud version of NetQ. Please allow 10-15 minutes for all applications to come up and report their status.
-
-    <details><summary><span style="color:teal">On-premises</span></summary>
+    operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
 
      ```
      cumulus@<netq-platform-hostname>:~$ netq show opta-health
@@ -296,31 +311,58 @@ If any of the applications or services display Status as DOWN after 30 minutes, 
 
       {{%/notice%}}
 
-      </details>
-      <details><summary><span style="color:teal">In-cloud</span></summary>
+2.  Verify that NTP is configured and running. NTP operation is critical to proper operation of NetQ. Refer to [Setting Date and Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) in the *Cumulus Linux User Guide* for details and instructions.
 
-     ```
-     cumulus@<netq-platform-hostname>:~$ netq show opta-health
-     OPTA is healthy
-     ```         
+3.  Continue the NetQ upgrade by loading the NetQ Agent on each switch or host you want to monitor. Refer to [Upgrade the NetQ Agents and CLI on Your Switches and Hosts](#upgrade-the-netq-agents-and-cli-on-your-switches-and-hosts) for instructions.
 
-     {{%notice note%}}
+## Perform a Disk Image Upgrade of Cumulus NetQ
 
-If the results do not indicate the server is healthy after 30 minutes, open a [support ticket](https://cumulusnetworks.com/support/file-a-ticket/) and attach the output of the `opta-support` command.
+A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 and earlier. If you are upgrading from NetQ 2.2.1, an [in-place upgrade](#perform-an-in-place-upgrade-of-cumulus-netq) is sufficient.
 
-      {{%/notice%}}
+### Disk Image Upgrade Workflow
 
-     </details>
+Upgrading NetQ using a disk image involves backing up your NetQ data, downloading and installing the new version of NetQ software, restoring your data, and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-3.  Verify that NTP is configured and running. NTP operation is critical
-    to proper operation of NetQ. Refer to [Setting Date and
-    Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) in the *Cumulus Linux User Guide* for details and instructions.
+{{< figure src="/images/netq/upgrade-wkflow-disk-img-on-prem-nqappl-222.png" width="700" >}}
 
-4.  Continue the NetQ installation by loading the NetQ Agent on each
-    switch or host you want to monitor. Refer to the next section for
-    instructions.
+### Backup Your NetQ Data
 
-## Upgrade the NetQ Agents
+If you want to retain the data you have already collected with an earlier version of Cumulus NetQ, you need to backup that data as follows:
+
+Run the provided backup script to create a backup file in `/opt/<backup-directory>` being sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file.
+ ```
+ cumulus@<netq-appliance>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
+ ```
+The file is named `netq_master_snapshot_<timestamp>.tar.gz`. For more detail about the script and the back up process, refer to [Backup NetQ](../../Backup-and-Restore-NetQ/Backup-NetQ).
+
+### Download the NetQ Software Image
+
+### Install the Image Using ONIE
+
+ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch. Use the `onie-install -a -i <image-location>` command to install the image from the web or local file.
+
+- This example installs the image from a web server, then reboots the appliance.
+
+```
+cumulus@netq-platform:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-netq-server-2.2.2-ts-amd64.bin && sudo reboot
+```
+
+- This example installs the image from a local file, then reboots the appliance.
+
+```
+cumulus@netq-platform:~$ sudo onie-install -a -i /home/<local-directory>/<path>/cumulus-netq-server-2.2.2-ts-amd64.bin && sudo reboot
+```
+
+### Restore Your NetQ Data
+
+Restore the configuration files to the new release.
+
+### Verify the Operation of NetQ
+
+Verify correct operation with the old configurations on the new release.
+
+
+## Upgrade the NetQ Agents and CLI on Your Switches and Hosts
 
 The NetQ Agent should be upgraded on each of the existing nodes you want
 to monitor. The node can be a:

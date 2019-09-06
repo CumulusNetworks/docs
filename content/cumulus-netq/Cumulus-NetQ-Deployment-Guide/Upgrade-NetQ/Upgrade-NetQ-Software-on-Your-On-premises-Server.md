@@ -170,7 +170,7 @@ You must first store the downloaded file in a location where the installation sc
     {{%notice note%}}
 
 If you perform the upgrade more than once, you can skip this step
-    after performing it once. If you have an existing SSH key, skip to step 9c.
+    after performing it once. If you have an existing SSH key, skip to step 7c.
 
     {{%/notice%}}
 
@@ -406,7 +406,7 @@ The file is named `netq_master_snapshot_<timestamp>.tar.gz`. For more detail abo
 4.  Optionally, select the hypervisor you wish to use (*VMware* or *KVM*) from the
   **Hypervisor/Platform** list box.
 
-     {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+     {{< figure src="/images/netq/NetQ-22-Download-Options-22.png" width="500" >}}
 
 5.  Scroll down to review the images that match your selection criteria, and click **Download** for the image you want.
 

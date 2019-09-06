@@ -96,7 +96,7 @@ An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1. If you 
 ### In-place Upgrade Workflow
 Upgrading NetQ in place involves downloading and installing the new version of NetQ applications, and upgrading and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-{{< figure src="/images/netq/upgrade-flow-on-prem-in-place-cust-hw-222.png" width="600" >}}
+{{< figure src="/images/netq/upgrade-wkflow-on-prem-in-place-cust-hw-222.png" width="600" >}}
 
 ### Download the NetQ Virtual Machine Upgrade Image
 
@@ -382,7 +382,7 @@ A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 and ear
 
 Upgrading NetQ using a disk image involves backing up your NetQ data, downloading and installing the new version of NetQ software, restoring your data, and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-{{< figure src="/images/netq/upgrade-flow-on-prem-disk-img-cust-hw-222.png" width="600" >}}
+{{< figure src="/images/netq/upgrade-wkflow-on-prem-disk-img-cust-hw-222.png" width="700" >}}
 
 ### Backup Your NetQ Data
 
@@ -406,7 +406,7 @@ The file is named `netq_master_snapshot_<timestamp>.tar.gz`. For more detail abo
 4.  Optionally, select the hypervisor you wish to use (*VMware* or *KVM*) from the
   **Hypervisor/Platform** list box.
 
-     {{< figure src="/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
+     {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
 
 5.  Scroll down to review the images that match your selection criteria, and click **Download** for the image you want.
 

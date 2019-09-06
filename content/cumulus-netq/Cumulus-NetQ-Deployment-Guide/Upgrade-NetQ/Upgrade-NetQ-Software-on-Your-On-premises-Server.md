@@ -304,6 +304,13 @@ While optional, it is useful to have the updated CLI running on your server.
    cumulus@switch:~$ sudo apt-get install netq-apps
    ```
 
+3. Configure the CLI server, using the IP address of your NetQ server.
+
+   ```
+   cumulus@switch:~$ netq config add cli server 192.168.1.254
+   cumulus@switch:~$ netq config restart cli
+   ```
+
 ### Verify the Operation of NetQ on Your Server
 
 1. Run the `netq show opta-health` command to verify all applications are operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
@@ -365,7 +372,7 @@ If any of the applications or services display Status as DOWN after 30 minutes, 
 
 2.  Verify that NTP is configured and running. NTP operation is critical to proper operation of NetQ. Refer to [Setting Date and Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) in the *Cumulus Linux User Guide* for details and instructions.
 
-3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to [Upgrade the NetQ Agents and CLI](#upgrade-the-netq-agents-and-cli) for instructions.
+3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to [Upgrade the NetQ Agents and CLI on Your Switches and Hosts](#upgrade-the-netq-agents-and-cli-on-your-switches-and-hosts) for instructions.
 
 ## Perform a Disk Image Upgrade of Cumulus NetQ
 
@@ -403,7 +410,7 @@ The file is named `netq_master_snapshot_<timestamp>.tar.gz`. For more detail abo
 
 5.  Scroll down to review the images that match your selection criteria, and click **Download** for the image you want.
 
-      {{< figure src="/images/netq/netq-22-vm-dwnld.png" width="750" >}}
+      {{< figure src="/images/netq/netq-22-vm-dwnld-on-prem-222.png" width="400" >}}
 
 6.  Open your hypervisor and set up your VM.  
     You can use these examples for reference or use your own hypervisor
@@ -435,9 +442,10 @@ The file is named `netq_master_snapshot_<timestamp>.tar.gz`. For more detail abo
    6.  Provide a name for the VM, for example *Cumulus NetQ*.
    7.  Drag and drop the NetQ Platform image file you downloaded in Step 1
        above.
-   8.  Click **Next**.
 
          {{< figure src="/images/netq/vmw-name-the-vm.png" width="700" >}}
+
+   8.  Click **Next**.
 
    9.  Select the storage type and data store for the image to use, then
        click **Next**. In this example, only one is available.
@@ -453,11 +461,11 @@ The file is named `netq_master_snapshot_<timestamp>.tar.gz`. For more detail abo
        the settings, or click **Finish** to continue with the creation of
        the VM.
 
-         {{< figure src="/images/netq/vmw-review-before-deploy.png" width="700" >}}
+         {{< figure src="/images/netq/vmw-review-before-create.png" width="700" >}}
 
-       The progress of the request is shown in the Recent Tasks window at
-       the bottom of the application. This may take some time, so continue
-       with your other work until the upload finishes.
+          The progress of the request is shown in the Recent Tasks window at
+          the bottom of the application. This may take some time, so continue
+          with your other work until the upload finishes.
 
    12. Once completed, view the full details of the VM and hardware.
 
@@ -537,8 +545,8 @@ connected to the external network.
 
 {{%notice info%}}
 
-If you have changed the IP address of the NetQ Platform, you need to
-re-register this address with the Kubernetes containers before you can
+If you have changed the IP address or hostname of the NetQ Platform, you need to
+re-register this address or hostname with the Kubernetes containers before you can
 continue.
 
 1.  Reset all Kubernetes administrative settings. Run the command twice
@@ -595,6 +603,12 @@ While optional, it is useful to have the updated CLI running on your server.
    cumulus@switch:~$ sudo apt-get update
    cumulus@switch:~$ sudo apt-get install netq-apps
    ```
+3. Configure the CLI server, using the IP address of your NetQ server.
+
+```
+cumulus@switch:~$ netq config add cli server 192.168.1.254
+cumulus@switch:~$ netq config restart cli
+```
 
 ### Verify the Operation of NetQ on Your Server
 
@@ -613,15 +627,14 @@ If the results do not indicate the server is healthy after 30 minutes, open a [s
 
 2.  Verify that NTP is configured and running. NTP operation is critical to proper operation of NetQ. Refer to [Setting Date and Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) in the *Cumulus Linux User Guide* for details and instructions.
 
-3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to [Upgrade the NetQ Agents and CLI](#upgrade-the-netq-agents-and-cli) for instructions.
+3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to the next section.
 
-
-## Upgrade the NetQ Agents and CLI
+## Upgrade the NetQ Agents and CLI on Your Switches and Hosts
 
 Cumulus Networks recommends upgrading the NetQ Agent and CLI on each of the nodes you want to monitor to be sure you have the latest features and fixes. The node can be a:
 
   - Switch running Cumulus Linux version 3.3.2 or later
-  - Server running Red Hat RHEL 7.1, Ubuntu 16.04, Ubuntu 18.04 (NetQ 2.2.2 and later) or CentOS 7
+  - Server running Red Hat RHEL 7.1, Ubuntu 16.04, Ubuntu 18.04 (NetQ 2.2.2 and later), or CentOS 7
   - Linux virtual machine running any of the above Linux operating
     systems
 
@@ -645,7 +658,7 @@ so `apt-get` can access the meta package on the Cumulus Networks repository.
 
 ### Upgrade NetQ Agent on a Cumulus Linux Switch
 
-A simple process installs the NetQ Agent on a Cumulus switch.
+A simple process installs the upgraded NetQ Agent on a Cumulus switch.
 
 1.  Verify or edit the `/etc/apt/sources.list` file to include the repository for
     Cumulus NetQ.
@@ -703,18 +716,17 @@ If you intend to use VRF, skip to [Configure the Agent to Use
     This command updates the configuration in the `/etc/netq/netq.yml`
     file.
 
-6.  Optionally, install and configure the CLI on this switch by updating the local `apt` repository and then providing the IP address of the NetQ server.
+6.  Optionally, configure the updated CLI on this switch by providing the IP address of the NetQ server. (The updated CLI was installed in Step 2.)
 
-```
-cumulus@switch:~$ sudo apt-get update
-cumulus@switch:~$ sudo apt-get install netq-apps
+      In this example, the IP address for the agent server is *192.168.1.254*.
 
-cumulus@switch:~$ netq config add cli server 192.168.1.254
-cumulus@switch:~$ netq config restart cli
-```
+   ```
+   cumulus@switch:~$ netq config add cli server 192.168.1.254
+   cumulus@switch:~$ netq config restart cli
+   ```
 
 7.  Repeat these steps for each Cumulus switch, or use an automation
-    tool to install and configure the NetQ Agent on multiple Cumulus Linux switches.
+    tool to install and configure the NetQ Agent and CLI on multiple Cumulus Linux switches.
 
 ### Upgrade NetQ Agent on an Ubuntu Server
 
@@ -724,13 +736,29 @@ To upgrade the NetQ Agent on an Ubuntu server:
 
         root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
 
-2.  In `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list`, verify
-    the following repository is included:
+2.  Verify or add the relevant Ubuntu repository:
+
+    <details><summary>Ubuntu 16.04</summary>
+    Create the file
+    `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add
+    the following line (if not already present):
 
         root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
         ...
         deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
         ...
+    </details>
+
+    <details><summary>Ubuntu 18.04</summary>
+    Create the file
+    `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
+    the following line:
+
+        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+        ...
+        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+        ...
+    </details>
 
     {{%notice note%}}
 
@@ -742,27 +770,24 @@ The use of `netq-latest` in this example means that a `get` to the
 
     {{%/notice%}}
 
-3.  Install the meta package on the server.
+3.  Update the meta package on the server.
 
         root@ubuntu:~# apt-get update
         root@ubuntu:~# apt-get install cumulus-netq
 
 4.  Verify the upgrade.
 
-        root@ubuntu:~$ dpkg -l | grep netq
-        ii  cumulus-netq                      2.2.1-cl3u17~155d345432.a60ec9a    all          This meta-package provides installation of Cumulus NetQ packages.
-        ii  netq-agent                        2.2.1-cl3u17~1559c81411.2bba220    amd64        Cumulus NetQ Telemetry Agent for Cumulus Linux
-        ii  netq-apps                         2.2.1-cl3u17~1559c81411.2bba220    amd64        Cumulus NetQ Fabric Validation Application for Cumulus Linux
+```
+root@ubuntu:~# cat /etc/app-release
+APPLIANCE_VERSION=2.2.2
+APPLIANCE_MANIFEST_HASH=a7f3c5a
+```
 
 5.  Configure the NetQ Agent to send telemetry data to the NetQ Platform.
 
     {{%notice info%}}
 
-If you intend to use VRF, skip to [Configure the Agent to Use
-    VRF](#configure-the-agent-to-use-a-vrf-interface).
-    If you intend to specify a port for communication, skip to
-    [Configure the Agent to Communicate over a Specific
-    Port](#configure-the-agent-to-communicate-over-a-specific-port).
+If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-the-agent-to-use-a-vrf-interface). If you intend to specify a port for communication, skip to [Configure the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port).
 
     {{%/notice%}}
 
@@ -776,34 +801,14 @@ If you intend to use VRF, skip to [Configure the Agent to Use
     This command updates the configuration in the `/etc/netq/netq.yml`
     file.
 
-6.  If you have not already configured CLI access for this hosts, you can do so at this time.
+6.  Optionally, configure the updated CLI on this switch by providing the IP address of your NetQ server. (The updated CLI was installed in Step 3.)
 
-   - For on-premises deployment:
+      In this example, the IP address for the CLI server is *192.168.1.254*.
 
-        ```
-        user@ubuntu:~# netq config add cli server 192.168.1.254
-        Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
-        user@ubuntu:~# netq config restart cli
-        ```
-
-   - For in-cloud deployment:
-      {{%notice info%}}
-
-The switch or host must have access to the Internet to configure CLI access.
-
-      {{%/notice%}}
-
-         Be sure to replace the key values with your user credentials.
-
-         ```
-         user@ubuntu:~# netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
-         user@ubuntu:~# netq config restart cli
-         ```
-         or, if you have a *credentials.yml* file, be sure to use the full path to the file and the correct file name.
-         ```
-         user@ubuntu:~# netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
-         user@ubuntu:~# netq config restart cli
-         ```
+   ```
+   user@ubuntu:~# netq config add cli server 192.168.1.254
+   user@ubuntu:~# netq config restart cli
+   ```
 
 9.  Repeat these steps for each switch/host running Ubuntu, or use an
     automation tool to install and configure the NetQ Agent on multiple hosts.
@@ -845,10 +850,11 @@ To upgrade the NetQ Agent on a Red Hat or CentOS server:
 
 4.  Verify the upgrade.
 
-        root@ubuntu:~$ yum list installed | grep netq
-        ii  cumulus-netq                      2.2.1-cl3u17~15573c5432.a60ec9a    all          This meta-package provides installation of Cumulus NetQ packages.
-        ii  netq-agent                        2.2.1-cl3u17~1559b81411.2bba220    amd64        Cumulus NetQ Telemetry Agent for Cumulus Linux
-        ii  netq-apps                         2.2.1-cl3u17~1559b81411.2bba220    amd64        Cumulus NetQ Fabric Validation Application for Cumulus Linux
+```
+root@ubuntu:~# cat /etc/app-release
+APPLIANCE_VERSION=2.2.2
+APPLIANCE_MANIFEST_HASH=a7f3c5a
+```
 
 5.  Configure the NetQ Agent to send telemetry data to the NetQ Platform.
 
@@ -864,33 +870,13 @@ If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-th
         Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
         root@rhel7:~# netq config restart agent
 
-6.  If you have not already configured CLI access for this host, you can do so at this time.
-   - For on-premises deployments:
+6.  Optionally configure CLI access for this host.
 
       ```
       root@rhel7:~# netq config add cli server 192.168.1.254
       Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
       root@rhel7:~# netq config restart cli
       ```
-
-   - For in-cloud deployment:
-      {{%notice info%}}
-
-The switch or host must have access to the Internet to configure CLI access.
-
-      {{%/notice%}}
-
-         Be sure to replace the key values with your user credentials.
-
-         ```
-         root@rhel7:~# netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
-         root@rhel7:~# netq config restart cli
-         ```
-         or, if you have a *credentials.yml* file, be sure to use the full path to the file and the correct file name.
-         ```
-         root@rhel7:~# netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
-         root@rhel7:~# netq config restart cli
-         ```
 
 9.  Repeat these steps for each host running Red Hat or CentOS, or use an
     automation tool to install and configure the NetQ Agent on multiple hosts.

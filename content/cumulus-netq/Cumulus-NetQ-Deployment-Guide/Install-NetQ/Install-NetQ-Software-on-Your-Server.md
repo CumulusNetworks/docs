@@ -700,15 +700,29 @@ To install the NetQ Agent on an Ubuntu server:
 
         root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
 
-2.  Create the file
+2. Add the Ubuntu repository:
+
+    <details><summary>Ubuntu 16.04</summary>
+    Create the file
     `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add
-    the following lines:
+    the following line:
 
         root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
         ...
         deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
         ...
+    </details>
 
+    <details><summary>Ubuntu 18.04</summary>
+    Create the file
+    `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
+    the following line:
+
+        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+        ...
+        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+        ...
+    </details>
     {{%notice note%}}
 
 The use of `netq-latest` in this example means that a `get` to the

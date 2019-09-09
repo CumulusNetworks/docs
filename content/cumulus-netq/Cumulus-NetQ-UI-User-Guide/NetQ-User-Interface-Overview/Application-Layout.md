@@ -21,7 +21,7 @@ The NetQ UI contains two main areas:
     status and configuration information about your network and its
     various components).
 
-{{% imgOld 4 %}}
+{{< figure src="/images/netq/dashboard-cn-wb-layout-222.png" width="700" >}}
 
 ## Main Menu
 
@@ -37,7 +37,7 @@ Found in the application header, click {{% imgOld 5 %}} to open the main menu wh
   - **Admin**: contains link to user documentation and application
     management
 
-{{% imgOld 6 %}}
+{{< figure src="/images/netq/main-menu-222.png" width="450" >}}
 
 ## Recent Actions
 
@@ -45,7 +45,7 @@ Found in the header, Recent Actions keeps track of every action you take on your
 
 To open Recent Actions, click {{% imgOld 7 %}}. Click on any of the actions to perform that action again.
 
-{{% imgOld 8 %}}
+{{< figure src="/images/netq/recent-actions-222.png" width="250" >}}
 
 ## Search
 
@@ -57,7 +57,7 @@ devices. It behaves like most searches and can help you quickly find device info
 Found in the header, the graph and performance rating provide a view
 into the health of your network at a glance.
 
-{{% imgOld 11 %}}
+{{< figure src="/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
 
 {{%notice note%}}
 
@@ -109,11 +109,3 @@ Color is used to indicate links, options, and status within the UI.
 | Result with high severity event     | Red    |
 | Result with medium severity event   | Orange |
 | Result with low severity event      | Yellow |
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

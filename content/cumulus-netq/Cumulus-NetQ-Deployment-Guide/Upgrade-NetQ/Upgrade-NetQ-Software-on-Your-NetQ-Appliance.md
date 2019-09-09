@@ -192,7 +192,7 @@ APPLIANCE_MANIFEST_HASH=a7f3cda
 ```
 {{%notice info%}}
 
-If you have changed the IP Address of your appliance, you need to
+If you have changed the IP Address or hostname of your appliance, you need to
 re-register this address with the Kubernetes containers before you can
 continue.
 
@@ -219,9 +219,6 @@ continue.
     ```  
     **Note**: Allow 15 minutes for the prompt to return.
 
-5.  Reboot the VM.  
-    **Note**: Allow 5-10 minutes for the VM to boot.
-
 {{%/notice%}}
 
 ### Install and Configure the CLI
@@ -244,7 +241,7 @@ Now that the core software is updated, you must update the CLI.
    cumulus@switch:~$ sudo apt-get install netq-apps
    ```
 
-3. Configure the CLI server, using the IP address of your NetQ server.
+3. Configure the CLI server, using the IP address assigned to your CLI server.
 
    ```
    cumulus@switch:~$ netq config add cli server 192.168.1.254
@@ -337,6 +334,21 @@ The file is named `netq_master_snapshot_<timestamp>.tar.gz`. For more detail abo
 
 ### Download the NetQ Software Image
 
+The next step is to obtain the new image.
+
+1.  On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list box.
+
+2.  Click *2.2* from the **Version** list box, and then select
+  *2.2.2* from the submenu.
+
+3.  From the **Hypervisor/Platform** list box, select *Appliance*.
+
+      {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+
+4.  Click **Download**.
+
+      {{< figure src="/images/netq/netq-22-nqappl-dwnld-222.png" width="200" >}}
+
 ### Install the Image Using ONIE
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch. Use the `onie-install -a -i <image-location>` command to install the image from the web or local file.
@@ -355,12 +367,76 @@ cumulus@netq-platform:~$ sudo onie-install -a -i /home/<local-directory>/<path>/
 
 ### Restore Your NetQ Data
 
-Restore the configuration files to the new release.
+Restore the configuration files to the new release. Run the restore script being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
 
-### Verify the Operation of NetQ
+ ```
+ cumulus@<netq-platform/netq-appliance>:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
+ ```
 
-Verify correct operation with the old configurations on the new release.
+This uses the `netq_master_snapshot_<timestamp>.tar.gz` file to restore your data. For more detail about the script and the restoration process, refer to [Restore NetQ](../../Backup-and-Restore-NetQ/Restore-NetQ).
 
+### Verify the Operation of NetQ on Your Appliance
+
+1. Run the `netq show opta-health` command to verify all applications are operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
+
+```
+cumulus@<netq-platform-hostname>:~$ netq show opta-health
+   Application                    Status    Health    Kafka Stream    Git Hash    Timestamp
+   -----------------------------  --------  --------  --------------  ----------  ------------------------
+   netq-app-macfdb                UP        true      up              14b42e6     Mon Jun  3 20:20:35 2019
+   netq-app-interface             UP        true                      0fe11c6     Mon Jun  3 20:20:34 2019
+   netq-app-vlan                  UP        true                      4daed85     Mon Jun  3 20:20:35 2019
+   netq-app-sensors               UP        true      up              f37272c     Mon Jun  3 20:20:34 2019
+   netq-app-topology              UP        true                      3f4a887     Mon Jun  3 20:20:34 2019
+   kafka-broker                   UP                                              Mon Jun  3 20:20:35 2019
+   netq-app-mstpinfo              UP        true      up              ef5565d     Mon Jun  3 20:20:35 2019
+   netq-app-address               UP        true      up              7e0d03d     Mon Jun  3 20:20:35 2019
+   netq-gui                       UP                                              Mon Jun  3 20:20:35 2019
+   netq-app-kube                  UP        true      up              fbcaa9d     Mon Jun  3 20:20:34 2019
+   netq-app-link                  UP        true      up              6c2b21a     Mon Jun  3 20:20:35 2019
+   netq-app-ptm                   UP        true      up              7162771     Mon Jun  3 20:20:34 2019
+   netq-opta                      UP        true                                  Mon Jun  3 20:20:34 2019
+   netq-app-clagsession           UP        true      up              356dda9     Mon Jun  3 20:20:34 2019
+   netq-endpoint-gateway          UP        true                      295e9ed     Mon Jun  3 20:20:34 2019
+   netq-app-ospf                  UP        true      up              e0e2ab0     Mon Jun  3 20:20:34 2019
+   netq-app-lldp                  UP        true      up              90582de     Mon Jun  3 20:20:35 2019
+   netq-app-inventory             UP        true      up              bbf9938     Mon Jun  3 20:20:34 2019
+   netq-app-tracecheck-scheduler  UP        true                      5484c68     Mon Jun  3 20:20:34 2019
+   netq-app-infra                 UP        true      up              13f9e7c     Mon Jun  3 20:20:34 2019
+   kafka-connect                  UP                                              Mon Jun  3 20:20:35 2019
+   netq-app-search                UP        true      up              e47aaba     Mon Jun  3 20:20:34 2019
+   netq-app-procdevstats          UP        true      up              b8e280e     Mon Jun  3 20:20:34 2019
+   netq-app-vxlan                 UP        true      up              123c577     Mon Jun  3 20:20:34 2019
+   zookeeper                      UP                                              Mon Jun  3 20:20:35 2019
+   netq-app-resource-util         UP        true      up              41dfb07     Mon Jun  3 20:20:34 2019
+   netq-app-evpn                  UP        true      up              05a4003     Mon Jun  3 20:20:34 2019
+   netq-api-gateway               UP        true                      c40231a     Mon Jun  3 20:20:34 2019
+   netq-app-port                  UP        true      up              4592b70     Mon Jun  3 20:20:35 2019
+   netq-app-macs                  UP        true                      dd6cd96     Mon Jun  3 20:20:35 2019
+   netq-app-notifier              UP        true      up              da57b69     Mon Jun  3 20:20:35 2019
+   netq-app-events                UP        true      up              8f7b4d9     Mon Jun  3 20:20:34 2019
+   netq-app-services              UP        true      up              5094f4a     Mon Jun  3 20:20:34 2019
+   cassandra                      UP                                              Mon Jun  3 20:20:35 2019
+   netq-app-configdiff            UP        true      up              3be2ef1     Mon Jun  3 20:20:34 2019
+   netq-app-neighbor              UP        true      up              9ebe479     Mon Jun  3 20:20:35 2019
+   netq-app-bgp                   UP        true      up              e68f7a8     Mon Jun  3 20:20:35 2019
+   schema-registry                UP                                              Mon Jun  3 20:20:35 2019
+   netq-app-lnv                   UP        true      up              a9ca80a     Mon Jun  3 20:20:34 2019
+   netq-app-healthdashboard       UP        true                      eea044c     Mon Jun  3 20:20:34 2019
+   netq-app-ntp                   UP        true      up              651c86f     Mon Jun  3 20:20:35 2019
+   netq-app-customermgmt          UP        true                      7250354     Mon Jun  3 20:20:34 2019
+   netq-app-node                  UP        true      up              f676c9a     Mon Jun  3 20:20:34 2019
+   netq-app-route                 UP        true      up              6e31f98     Mon Jun  3 20:20:35 2019
+```
+      {{%notice note%}}
+
+If any of the applications or services display Status as DOWN after 30 minutes, open a [support ticket](https://cumulusnetworks.com/support/file-a-ticket/) and  attach the output of the `opta-support` command.
+
+      {{%/notice%}}
+
+2.  Verify that NTP is configured and running. NTP operation is critical to proper operation of NetQ. Refer to [Setting Date and Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) in the *Cumulus Linux User Guide* for details and instructions.
+
+3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to the next section for instructions.
 
 ## Upgrade the NetQ Agents and CLI on Your Switches and Hosts
 
@@ -392,7 +468,7 @@ so `apt-get` can access the meta package on the Cumulus Networks repository.
 
 ###  Upgrade NetQ Agent on a Cumulus Linux Switch
 
-A simple process installs the NetQ Agent on a Cumulus switch.
+A simple process ugprades the NetQ Agent on a Cumulus switch.
 
 1.  Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
     **Note** that NetQ has a separate repository from Cumulus Linux.  
@@ -418,10 +494,16 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb
 
 3.  Verify the upgrade.
 
-        cumulus@switch:~$ dpkg -l | grep netq
-        ii  cumulus-netq                      2.2.1-cl3u17~1557345432.a60ec9a    all          This meta-package provides installation of Cumulus NetQ packages.
-        ii  netq-agent                        2.2.1-cl3u17~1559681411.2bba220    amd64        Cumulus NetQ Telemetry Agent for Cumulus Linux
-        ii  netq-apps                         2.2.1-cl3u17~1559681411.2bba220    amd64        Cumulus NetQ Fabric Validation Application for Cumulus Linux
+```
+cumulus@netq-appliance:~$ cat /etc/app-release
+APPLIANCE_VERSION=2.2.2
+APPLIANCE_MANIFEST_HASH=a7f3cda
+
+cumulus@netq-appliance:~$ dpkg -l | grep netq
+ii  cumulus-netq                      2.2.2-cl3u17~155734b432.a60ec9a    all          This meta-package provides installation of Cumulus NetQ packages.
+ii  netq-agent                        2.2.2-cl3u17~1559c81411.2bba220    amd64        Cumulus NetQ Telemetry Agent for Cumulus Linux
+ii  netq-apps                         2.2.2-cl3u17~15596814a1.2bba220    amd64        Cumulus NetQ Fabric Validation Application for Cumulus Linux
+```
 
 4.  Restart `rsyslog` so log files are sent to the correct destination.
 
@@ -442,33 +524,14 @@ If you intend to use VRF, skip to [Configure the Agent to Use            VRF](#c
 
       This command updates the configuration in the `/etc/netq/netq.yml` file.
 
-6.  If you have not already configured CLI access for this switch, you can do so at this time.
+6.  Optionally, configure the updated CLI on this switch by providing the IP address of your CLI server. (The updated CLI was installed in Step 3.)
 
-      - For on-premises deployment:
+      In this example, the IP address for the CLI server is *192.168.1.254*.
 
-         ```
-         cumulus@switch:~$ netq config add cli server 192.168.1.254
-         cumulus@switch:~$ netq config restart cli
-         ```
-
-      - For in-cloud deployment:
-         {{%notice info%}}
-
-The switch or host must have access to the Internet to configure CLI access.
-
-         {{%/notice%}}
-
-         Be sure to replace the key values with your user credentials.
-
-         ```
-         cumulus@switch:~$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
-         cumulus@switch:~$ netq config restart cli
-         ```
-         or, if you have a *credentials.yml* file, be sure to use the full path to the file and the correct file name.
-         ```
-         cumulus@switch:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
-         cumulus@switch:~$ netq config restart cli
-         ```
+   ```
+   user@ubuntu:~# netq config add cli server 192.168.1.254
+   user@ubuntu:~# netq config restart cli
+   ```
 
 7.  Repeat these steps for each Cumulus switch, or use an automation
             tool to install and configure the NetQ Agent on multiple Cumulus Linux switches.
@@ -483,16 +546,32 @@ To install the NetQ Agent on an Ubuntu server:
       root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
       ```
 
-2.  In `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list`, verify the following repository is included:
+2.  Verify or add the relevant Ubuntu repository:
 
-         root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-         ...
-         deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-         ...
+    <details><summary>Ubuntu 16.04</summary>
+    Create the file
+    `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add
+    the following line (if not already present):
+
+        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+        ...
+        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+        ...
+    </details>
+    <details><summary>Ubuntu 18.04</summary>
+    Create the file
+    `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
+    the following line:
+
+        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+        ...
+        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+        ...
+    </details>
 
       {{%notice note%}}
 
-The use of `netq-latest` in this example means that a `get` to the
+The use of `netq-latest` in these examples means that a `get` to the
             repository always retrieves the latest version of NetQ, even in the
             case where a major version update has been made. If you want to keep
             the repository on a specific version — such as `netq-2.2` — use that
@@ -507,10 +586,12 @@ The use of `netq-latest` in this example means that a `get` to the
 
 4.  Verify the upgrade.
 
-         root@ubuntu:~$ dpkg -l | grep netq
-         ii  cumulus-netq                      2.2.1-cl3u17~155d345432.a60ec9a    all          This meta-package provides installation of Cumulus NetQ packages.
-         ii  netq-agent                        2.2.1-cl3u17~1559c81411.2bba220    amd64        Cumulus NetQ Telemetry Agent for Cumulus Linux
-         ii  netq-apps                         2.2.1-cl3u17~1559c81411.2bba220    amd64        Cumulus NetQ Fabric Validation Application for Cumulus Linux
+```
+root@ubuntu:~$ dpkg -l | grep netq
+         ii  cumulus-netq                      2.2.2-cl3u17~155d3c5432.a60ec9a    all          This meta-package provides installation of Cumulus NetQ packages.
+         ii  netq-agent                        2.2.2-cl3u17~1559c814b1.2bba220    amd64        Cumulus NetQ Telemetry Agent for Cumulus Linux
+         ii  netq-apps                         2.2.2-cl3u17~1559c814b1.2bba220    amd64        Cumulus NetQ Fabric Validation Application for Cumulus Linux
+```
 
 5.  Configure the NetQ Agent to send telemetry data to the NetQ Platform.
 
@@ -529,32 +610,11 @@ If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-th
       ```
       This command updates the configuration in the `/etc/netq/netq.yml` file.
 
-6.  If you have not already configured CLI access for this hosts, you can do so at this time.
-
-      - For on-premises deployment:
+6.  Optionally, configure the updated CLI on this switch by providing the IP address of your CLI server. (The updated CLI was installed in Step 3.)
 
          ```
          user@ubuntu:~# netq config add cli server 192.168.1.254
          Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
-         user@ubuntu:~# netq config restart cli
-         ```
-
-      - For in-cloud deployment:
-         {{%notice info%}}
-
-The switch or host must have access to the Internet to configure CLI access.
-
-         {{%/notice%}}
-
-         Be sure to replace the key values with your user credentials.
-
-         ```
-         user@ubuntu:~# netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
-         user@ubuntu:~# netq config restart cli
-         ```
-         or, if you have a *credentials.yml* file, be sure to use the full path to the file and the correct file name.
-         ```
-         user@ubuntu:~# netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
          user@ubuntu:~# netq config restart cli
          ```
 
@@ -616,32 +676,12 @@ If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-th
          Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
          root@rhel7:~# netq config restart agent
 
-6.  If you have not already configured CLI access for this host, you can do so at this time.
-      - For on-premises deployments:
+6.  Optionally, configure the updated CLI on this switch by providing the IP address of your CLI server. (The updated CLI was installed in Step 3.)
 
          ```
          root@rhel7:~# netq config add cli server 192.168.1.254
          Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
          root@rhel7:~# netq config restart cli
-         ```
-
-      - For in-cloud deployment:
-         {{%notice info%}}
-
-The switch or host must have access to the Internet to configure CLI access.
-
-         {{%/notice%}}
-
-         Be sure to replace the key values with your user credentials.
-
-         ```
-         root@rhel7:~# netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
-         root@rhel7:~# netq config restart cli
-         ```
-         or, if you have a *credentials.yml* file, be sure to use the full path to the file and the correct file name.
-         ```
-         root@rhel7:~# netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
-         root@rhel7:~# netq config restart cli
          ```
 
 7.  Repeat these steps for each host running Red Hat or CentOS, or use an  automation tool to install and configure the NetQ Agent on multiple hosts.

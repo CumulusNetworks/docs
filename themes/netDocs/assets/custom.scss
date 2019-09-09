@@ -969,6 +969,7 @@ div.notices {
 div.notices.info {
   background-color: rgba(255, 200, 46, 0.3);
   border: 1px solid #ffc82e;
+  border-radius: 0;
   margin: 1.99rem 0;
   padding: 1.764rem;
 
@@ -1141,7 +1142,7 @@ div.notices.tip>*:first-child:after {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    // height: 100vh;
+    height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
   }

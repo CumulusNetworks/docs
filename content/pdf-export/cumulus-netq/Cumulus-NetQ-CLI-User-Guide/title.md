@@ -1,9 +1,11 @@
 ---
-title: Cumulus NetQ Deployment Guide
+title: Cumulus NetQ CLI User Guide
 author: Cumulus Networks
-weight: 51
+weight: 19
 aliases:
- - /display/NETQ/Investigate+NetQ+Issues
+ - /display/NETQ/Cumulus+NetQ+CLI+User+Guide
+ - /pages/viewpage.action?pageId=10977536
+pageID: 10977536
 product: Cumulus NetQ
 version: 2.2
 imgData: cumulus-netq-22

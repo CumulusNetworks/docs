@@ -263,6 +263,16 @@ $block-border-radius: 0.15rem;
     background: $code-block-background;
   }
 
+  li code {
+    color: $cn-nevada;
+    background: $code-block-background;
+  }
+
+  td code {
+    color: $cn-nevada;
+    background: $code-block-background;
+  }
+
   .notices p code {
     color: inherit;
   }

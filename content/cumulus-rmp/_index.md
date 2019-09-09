@@ -138,3 +138,19 @@ For more information about each feature, follow the links below to the
 The [quick start guide](/cumulus-rmp/Quick-Start-Guide) walks you
 through the steps necessary for getting your Cumulus RMP switch up and
 running after you remove it from the box.
+
+## Caveats and Errata
+
+### Dynamic MAC Address Learning Delays
+
+On Cumulus RMP switches, during an STP topology change or an interface flap, the following symptoms could be observed:
+
+- A dynamic MAC address learned on the switch can take a long time to get
+  populated back into the kernel, even though the MAC address has already been
+  updated in hardware.
+- The update of MAC learning can take a much longer time than expected, causing
+  the MAC address to point to the wrong interface in hardware and not show up in
+  the kernel, which leads to traffic disruption.
+
+These symptoms have only been observed on Cumulus RMP switches; Cumulus RMP is meant to be used for out-of-band management purposes. Other platforms do not
+exhibit this issue.

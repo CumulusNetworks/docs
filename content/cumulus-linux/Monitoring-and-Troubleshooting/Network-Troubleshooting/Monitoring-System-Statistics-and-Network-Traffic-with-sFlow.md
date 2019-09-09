@@ -39,7 +39,6 @@ for configuring the service.
 To configure `hsflowd` to send to the designated collectors, either:
 
 - Use DNS service discovery (DNS-SD)
-
 - Manually configure the `/etc/hsflowd.conf` file
 
 ### Configure sFlow via DNS-SD
@@ -138,8 +137,13 @@ collector for more information.
 For information on configuring various sFlow visualization tools, read this
 [Help Center article](https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools).
 
+## Caveats and Errata
+
+The [EdgeCore AS4610 switch](https://cumulusnetworks.com/products/hardware-compatibility-list/?Brand=EdgeCore&ASIC=Broadcom)
+occasionally sends malformed packets and does not send any flow samples; it
+sends only counters. This is a known limitation on this Helix4 platform.
+
 ## Related Information
 
 - [sFlow Collectors](http://www.sflow.org/products/collectors.php)
-
 - [sFlow Wikipedia page](http://en.wikipedia.org/wiki/SFlow)

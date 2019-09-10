@@ -1441,21 +1441,6 @@ To run `traceroute` on a VRF from the default VRF, run the
 - You cannot configure
   [EVPN address families](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
   within a VRF.
-- If you try to create a new BGP instance with a different AS than one
-  already used for another BGP instance, you get a
-  `BGP instance name and AS number mismatch` error. For example, if
-  you already have a BGP instance with AS 65000, and try to create a new BGP
-  instance with AS 66000, the error would look like this:
-
-  ```
-leaf01(config)# router bgp 66000 vrf tenant2
-BGP instance name and AS number mismatch
-BGP instance is already running; AS is 65000
-  ```
-
-  In order to create the new BGP instance, use the already established AS:
-
-  ```
-  leaf01(config)# router bgp 65000 vrf tenant2
-  leaf01(config-router)# exit
-  ```
+- When [EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
+  is configured, FRRouting supports only a single autonomous system number (ASN) for
+  all VRFs configured with BGP on the system.

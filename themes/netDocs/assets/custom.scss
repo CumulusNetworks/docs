@@ -1138,8 +1138,6 @@ div.notices.tip>*:first-child:after {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    // height: 100vh;
-    overflow-y: auto;
     overflow-x: hidden;
   }
 
@@ -1167,6 +1165,8 @@ div.notices.tip>*:first-child:after {
 }
 
 .book-toc nav {
+  height: calc(100vh - 130px);
+  overflow-y: auto;
   padding: 0;
   top: 278px;
 

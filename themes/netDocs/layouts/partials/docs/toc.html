@@ -1,3 +1,4 @@
+{{ if not .Site.Params.pdfExport }}
 <aside class="book-toc fixed">
 
   {{ if .GitInfo }}
@@ -34,3 +35,4 @@
   {{ end }}
 
 </aside>
+{{ end }}

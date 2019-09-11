@@ -37,7 +37,7 @@ services.
 The small Validation Request card displays:
 
 {{% imgOld 0 %}}
-
+<p> </p>
 <table>
 <colgroup>
 <col style="width: 15%" />
@@ -69,7 +69,7 @@ The small Validation Request card displays:
 The medium Validation Request card displays:
 
 {{% imgOld 2 %}}
-
+<p> </p>
 <table>
 <colgroup>
 <col style="width: 15%" />
@@ -112,7 +112,7 @@ The medium Validation Request card displays:
 
 The large Validation Request card displays:
 
-{{< figure src="/images/netq/valid-request-large.png" width="500" >}}
+{{< figure src="/images/netq/valid-request-large-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -257,7 +257,7 @@ To run a scheduled validation now:
 2.  Select the validation from the **Validation** dropdown list.  
 
     {{% imgOld 9 %}} {{% imgOld 10 %}}
-    {{< figure src="/images/netq/run-sch-valid-now-large.png" width="500" >}}
+    {{< figure src="/images/netq/valid-request-large-valid-selection-222.png" width="500" >}}
 
 3.  Click **Go** or **Run Now**.  
     The associated Validation Result card is opened on your workbench.
@@ -289,7 +289,7 @@ To create and run a request for *more than one* protocol and/or service:
 2.  Click the names of the protocols and services you want to validate.
     We selected BGP and EVPN in this example.
 
-    {{< figure src="/images/netq/valid-request-bgp-evpn.png" width="500" >}}
+    {{< figure src="/images/netq/valid-request-bgp-evpn-222.png" width="500" >}}
 
 3.  Click **Run Now** to start the validation.  
     The associated on-demand validation result cards (one per protocol
@@ -311,24 +311,23 @@ To create and run a new scheduled validation:
     validation. In this example we have chosen the Agents and NTP
     services.
 
-      {{< figure src="/images/netq/valid-request-agents-ntp.png" width="500" >}}
+      {{< figure src="/images/netq/valid-request-agents-ntp-222.png" width="500" >}}
 
 3.  Enter the schedule frequency (30 min, 1 hour, 3 hours, 6 hours, 12
-    hours, or 1 day) by selecting it from the **Timeframe** list.
+    hours, or 1 day) by selecting it from the **Run every** list. Default is hourly.
 
-    {{% imgOld 21 %}}
+    {{< figure src="/images/netq/schedule-frequency-selection-222.png" width="300" >}}
 
-4.  Select the starting day and click **Next**, then select the starting
-    time and click **OK**.  
+4.  Select the time to start the validation runs, by clicking in the Starting field. Select a day and click **Next**, then select the starting time and click **OK**.  
 
-    {{% imgOld 22 %}}
+    {{< figure src="/images/netq/date-selection-222.png" width="150">}}
     <p> </p>
-    {{% imgOld 23 %}}
+    {{< figure src="/images/netq/time-selection-222.png" width="150">}}
 
 5.  Verify the selections were made correctly.
 6.  Click **Save As New**.
 
-      {{< figure src="/images/netq/valid-request-agents-ntp-save-as-new.png" width="500" >}}
+      {{< figure src="/images/netq/valid-request-agents-ntp-save-as-new-222.png" width="500" >}}
 
 7.  Enter a name for the validation.
 
@@ -347,7 +346,7 @@ small, medium or large size card) and run immediately using **Run Now**,
 or you can wait for it to run the first time according to the schedule
 you specified. Refer to [View Scheduled Validation Results](#view-scheduled-validation-results). Note that the number of scheduled validations is now two (2).
 
-{{< figure src="/images/netq/valid-request-select-sched.png" width="500">}}
+{{< figure src="/images/netq/valid-request-select-sched-222.png" width="500">}}
 
 ### Modify an Existing Scheduled Validation Request
 
@@ -387,8 +386,8 @@ and service.
 
 The small Validation Result card displays:
 
-{{% imgOld 28 %}}
-
+{{<figure src="/images/netq/valid-result-on-demand-bgp-small-222.png" width="200">}}
+<p> </p>
 <table>
 <colgroup>
 <col style="width: 20%" />
@@ -426,7 +425,7 @@ The small Validation Result card displays:
 
 The medium Validation Result card displays:
 
-{{% imgOld 32 %}}
+{{<figure src="/images/netq/valid-result-on-demand-bgp-medium-222.png" width="200">}}
 
 <table>
 <colgroup>
@@ -581,7 +580,7 @@ The *Summary* tab displays:
 The *Configuration* tab displays:
 
 {{% imgOld 42 %}}
-
+<p> </p>
 <table>
 <colgroup>
 <col style="width: 15%" />
@@ -842,7 +841,7 @@ The large Validation Result card contains two tabs.
 
    The *Summary* tab displays:
 
-   {{< figure src="/images/netq/sch-valid-result-large-sum-tab.png" width="500" >}}
+   {{< figure src="/images/netq/sch-valid-result-large-sum-tab-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -909,7 +908,7 @@ The large Validation Result card contains two tabs.
 
 The *Configuration* tab displays:
 
-{{< figure src="/images/netq/sch-valid-result-large-config-tab.png" width="500" >}}
+{{< figure src="/images/netq/sch-valid-result-large-config-tab-222.png" width="500" >}}
 
 <table>
 <colgroup>

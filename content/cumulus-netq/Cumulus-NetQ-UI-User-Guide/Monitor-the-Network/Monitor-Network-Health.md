@@ -148,8 +148,8 @@ The *System Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for overall Network Health</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/></p></td>
+<td><p>Indicates data is for System Health</p></td>
 </tr>
 <tr class="odd">
 <td><p>Health trend</p></td>
@@ -185,7 +185,7 @@ The *System Health* tab displays:
 </tbody>
 </table>
 
-The *Network Services Health* tab displays:
+The *Network Health* tab displays:
 
 {{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth.png" width="500" >}}
 
@@ -206,8 +206,8 @@ The *Network Services Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for overall Network Health</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/></p></td>
+<td><p>Indicates data is for Network Protocols and Services Health</p></td>
 </tr>
 <tr class="odd">
 <td><p>Health trend</p></td>
@@ -340,7 +340,7 @@ information about each component from the large Network Health card.
 To view information about each system component:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/laptop-heart.svg", height="18", width="18"/>.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/>.
 
     {{< figure src="/images/netq/ntwk-hlth-large-sys-hlth.png" width="500" >}}
 
@@ -357,7 +357,7 @@ efforts toward selected devices versus the service itself. To view
 devices with the most issues, select **Most Failures** from the filter
 above the table on the right.
 
-{{% imgOld 15 %}}
+{{<figure src="/images/netq/ntwk-health-large-table-options-222.png" width="300">}}
 
 Devices with the highest number of issues are listed at the top. Scroll
 down to view those with fewer issues. To further investigate the
@@ -425,7 +425,7 @@ service. To view devices with the most issues, open the large Network
 Health card. Select **Most Failures** from the dropdown above the table
 on the right.
 
-{{% imgOld 19 %}}
+{{<figure src="/images/netq/ntwk-health-large-table-options-222.png" width="300">}}
 
 Devices with the highest number of issues are listed at the top. Scroll
 down to view those with fewer issues. To further investigate the

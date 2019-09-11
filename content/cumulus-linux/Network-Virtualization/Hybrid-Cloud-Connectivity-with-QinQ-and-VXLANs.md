@@ -57,12 +57,9 @@ VXLAN VNI. The inner C-tag, which represents the service, is transparent
 to the provider. The public cloud handoff interface is a QinQ trunk
 where packets on the wire carry both the S-tag and the C-tag.
 
-Single tag translation leverages
-[VLAN-aware bridge mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
-with the use of the 802.1ad VLAN protocol (the only supported protocol
-at the time of writing). Hence, it is more scalable.
+Single tag translation works with both [VLAN-aware bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode) and [traditional bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode). However, single tag translation with *VLAN-aware bridge mode* is more scalable.
 
-An example configuration could look like the following:
+An example configuration looks like the following:
 
 {{% imgOld 0 %}}
 
@@ -222,6 +219,32 @@ To verify that the bridge is configured for QinQ, run
     287: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
         link/ether 06:a2:ae:de:e3:43 brd ff:ff:ff:ff:ff:ff promiscuity 0
         bridge forward_delay 1500 hello_time 200 max_age 2000 ageing_time 30000 stp_state 2 priority 32768 vlan_filtering 1 vlan_protocol 802.1ad bridge_id 8000.6:a2:ae:de:e3:43 designated_root 8000.6:a2:ae:de:e3:43 root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00 tcn_timer    0.00 topology_change_timer    0.00 gc_timer   64.29 vlan_default_pvid 1 vlan_stats_enabled 1 group_fwd_mask 0 group_address 01:80:c2:00:00:08 mcast_snooping 0 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0 mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2 mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500 mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 mcast_stats_enabled 1 mcast_igmp_version 2 mcast_mld_version 1 nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0 addrgenmode eui64
+
+### Example Configuration in Traditional Bridge Mode
+
+An example configuration for single tag translation in traditional bridge mode on a leaf switch is shown below.
+
+<details>
+
+<summary>Example /etc/network/interfaces File </summary>
+
+```
+auto swp3.11
+iface swp3.11
+    vlan-protocol 802.1ad
+
+auto vxlan101
+iface vxlan101
+    vxlan-id 101
+    vxlan-local-tunnelip 10.0.0.13
+
+auto br11
+iface br11
+    bridge-ports swp3.11 vxlan101
+    bridge-learning vxlan101=off
+```
+
+</details>
 
 ## Configure Double Tag Translation
 

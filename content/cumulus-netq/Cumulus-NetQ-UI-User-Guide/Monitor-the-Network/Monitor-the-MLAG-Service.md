@@ -252,7 +252,7 @@ The *All CLAG Alarms* tab which displays:
 The full screen CLAG Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{% imgOld 14 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-clag-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -537,7 +537,7 @@ To view all CLAG events:
 1.  Open the full screen CLAG Service card.
 2.  Click **All Alarms** tab.
 
-    {{% imgOld 33 %}}
+    {{<figure src="/images/netq/ntwk-svcs-all-clag-fullscr-alarms-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -554,7 +554,7 @@ include:
     subset and clicking **Export Selected** in edit menu
   - Return to your workbench by clicking {{% imgOld 34 %}} in the top right corner
 
-### View Detailed Information About All Switches Running CLAG
+### View Details About All Switches Running CLAG
 
 You can view all stored attributes of all switches running CLAG in your
 network in the full-screen card.
@@ -562,7 +562,7 @@ network in the full-screen card.
 To view all switch details, open the full screen CLAG Service card, and
 click the **All Switches** tab.
 
-{{% imgOld 35 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-clag-fullscr-222.png" width="700">}}
 
 To return to your workbench, click {{% imgOld 36 %}} in the top right corner.
 
@@ -576,9 +576,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{% imgOld 37 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-clag-fullscr-switches-tab-selected-hosts-222.png" width="700">}}
 
-{{% imgOld 38 %}}
+{{<figure src="/images/netq/ntwk-svcs-fullscr-edit-menu-4selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -877,7 +877,7 @@ The *Configuration File Evolution* tab displays:
 The full screen CLAG Session card provides tabs for all CLAG sessions
 and all events.
 
-{{% imgOld 70 %}}
+{{<figure src="/images/netq/ntwk-svcs-single-clag-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -1047,7 +1047,7 @@ associated with the two devices on this card.
 To view all session details, open the full screen CLAG Session card, and
 click the **All CLAG Sessions** tab.
 
-{{% imgOld 82 %}}
+{{<figure src="/images/netq/ntwk-svcs-single-clag-fullscr-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -1063,7 +1063,7 @@ include:
     subset and clicking **Export Selected** in edit menu
   - Return to your workbench by clicking {{% imgOld 83 %}} in the top right corner
 
-### View All Events
+### View All CLAG Session Events
 
 You can view all of the alarm and info events for the two devices on
 this card.
@@ -1071,7 +1071,7 @@ this card.
 To view all events, open the full screen CLAG Session card, and click
 the **All Events** tab.
 
-{{% imgOld 84 %}}
+{{<figure src="/images/netq/ntwk-svcs-single-clag-fullscr-events-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -1087,11 +1087,3 @@ include:
   - Export the data to a file by clicking **Export** or selecting a
     subset and clicking **Export Selected** in edit menu
   - Return to your workbench by clicking {{% imgOld 85 %}} in the top right corner
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

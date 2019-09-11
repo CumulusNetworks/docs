@@ -20,9 +20,8 @@ hosts which would like to receive multicast traffic destined to that group.
 {{%notice note%}}
 
 In Cumulus Linux 3.7.4 and later, IGMP and MLD snooping is supported
-over VXLAN bridges on Broadcom switches; however, this feature is *not*
-enabled by default. To enable IGMP and MLD over VXLAN, see 
-[Configure IGMP/MLD Snooping over VXLAN](#configure-igmp-mld-snooping-over-vxlan).
+over VXLAN bridges; however, this feature is *not* enabled by default. 
+To enable IGMP and MLD over VXLAN, see [Configure IGMP/MLD Snooping over VXLAN](#configure-igmp-mld-snooping-over-vxlan).
 
 {{%/notice%}}
 
@@ -47,7 +46,7 @@ ports interested in receiving multicast traffic destined to that group.
 ## Configure IGMP/MLD Snooping over VXLAN
 
 Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN
-bridges on Broadcom switches, where VXLAN ports are set as router ports.
+bridges, where VXLAN ports are set as router ports.
 
 To enable IGMP/MLD snooping over VXLAN, run the 
 `net add bridge <bridge> mcsnoop yes` command:

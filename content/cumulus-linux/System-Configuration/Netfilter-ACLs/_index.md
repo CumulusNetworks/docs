@@ -542,6 +542,28 @@ And here are example rules for a traditional mode bridge:
     -A FORWARD --out-interface br0 -p icmp -j ACCEPT
     -A FORWARD --in-interface br0 -j POLICE --set-mode  pkt  --set-rate  1 --set-burst 1 --set-class 0
 
+### Match on VLAN IDs on Layer 2 Interfaces
+
+Cumulus Linux 3.7.9 and later enables you to match on VLAN IDs on layer 2 interfaces for ingress rules.
+
+{{%notice note%}}
+
+Matching VLAN IDs on layer 2 Interfaces is supported on Mellanox switches only.
+
+{{%/notice%}}
+
+The following example matches on a VLAN and DSCP class, and sets the internal class of the packet:
+
+This can be combined with ingress iptable rules for extended matching on IP fields.
+
+```
+[ebtables]
+-A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 0x66
+
+[iptables]
+-A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
+```
+
 ## Install and Manage ACL Rules with NCLU
 
 NCLU provides an easy way to create custom ACLs in Cumulus Linux. The

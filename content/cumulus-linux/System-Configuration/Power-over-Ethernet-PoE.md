@@ -15,31 +15,35 @@ siteSlug: cumulus-linux
 ---
 Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain
 Cumulus Linux switches can supply power from Ethernet switch ports to
-enabled devices over the Ethernet cables that connect them. PoE is 
+enabled devices over the Ethernet cables that connect them. PoE is
 capable of powering devices up to 15W, while PoE+ can power devices up to 30W.
+Configuration for power negotiation is done over
+[LLDP](../../Layer-2/Link-Layer-Discovery-Protocol/).
 
-The [currently supported platform](http://cumulusnetworks.com/hcl/) is
-the Edge-Core AS4610-54P, which supports PoE and PoE+ and configuration
-over Ethernet layer 2 LLDP for power negotiation.
+The [currently supported platforms](https://cumulusnetworks.com/products/hardware-compatibility-list/?Type=POE) include:
+
+- Cumulus Express CX-1048-P
+- Dell N3048EP-ON
+- EdgeCore AS4610-54P
 
 ## PoE Basics
 
 PoE functionality is provided by the `cumulus-poe` package. When a
 powered device is connected to the switch via an Ethernet cable:
 
-  - If the available power is greater than the power required by the
-    connected device, power is supplied to the switch port, and the
-    device powers on
-  - If available power is less than the power required by the connected
-    device and the switch port's priority is less than the port priority
-    set on all powered ports, power is **not** supplied to the port
-  - If available power is less than the power required by the connected
-    device and the switch port's priority is greater than the priority
-    of a currently powered port, power is removed from lower priority
-    port(s) and power is supplied to the port
-  - If the total consumed power exceeds the configured power limit of
-    the power source, low priority ports are turned off. In the case of
-    a tie, the port with the lower port number gets priority
+- If the available power is greater than the power required by the
+  connected device, power is supplied to the switch port, and the
+  device powers on
+- If available power is less than the power required by the connected
+  device and the switch port's priority is less than the port priority
+  set on all powered ports, power is **not** supplied to the port
+- If available power is less than the power required by the connected
+  device and the switch port's priority is greater than the priority
+  of a currently powered port, power is removed from lower priority
+  port(s) and power is supplied to the port
+- If the total consumed power exceeds the configured power limit of
+  the power source, low priority ports are turned off. In the case of
+  a tie, the port with the lower port number gets priority
 
 Power is available as follows:
 
@@ -51,9 +55,9 @@ Power is available as follows:
 
 The AS4610-54P has an LED on the front panel to indicate PoE status:
 
-  - Green: The `poed` daemon is running and no errors are detected
-  - Yellow: One or more errors are detected or the `poed` daemon is not
-    running
+- Green: The `poed` daemon is running and no errors are detected
+- Yellow: One or more errors are detected or the `poed` daemon is not
+  running
 
 {{% notice note %}}
 
@@ -66,12 +70,13 @@ possible.
 
 ## Configure PoE
 
-You use the `poectl` command utility to configure PoE on a [switch that
-supports](http://cumulusnetworks.com/hcl/) the feature. You can:
+You use the `poectl` command utility to configure PoE on a
+[switch that supports](https://cumulusnetworks.com/products/hardware-compatibility-list/?Type=POE)
+the feature. You can:
 
-  - Enable or disable PoE for a given switch port
-  - Set a switch port's PoE priority to one of three values: *low*,
-    *high* or *critical*
+- Enable or disable PoE for a given switch port
+- Set a switch port's PoE priority to one of three values: *low*,
+  *high* or *critical*
 
 The PoE configuration resides in `/etc/cumulus/poe.conf`. The file lists
 all the switch ports, whether PoE is enabled for those ports and the
@@ -206,25 +211,24 @@ To display PoE information for a set of switch ports, run
     swp11   searching              n/a           low      IEEE802.3at   none        0.0 V      0 mA    0.0 W 
     swp12   connected              n/a           low      IEEE802.3at   2          53.5 V     25 mA    1.4 W 
     swp13   connected              51.0 W        low      IEEE802.3at   4          53.6 V     72 mA    3.8 W 
-     
 
 The **Status** can be one of the following:
 
-  - **searching:** PoE is enabled but no device has been detected.
-  - **disabled:** The PoE port has been configured as disabled.
-  - **connected:** A powered device is connected and receiving power.
-  - **power-denied:** There is insufficient PoE power available to
-    enable the connected device.
+- **searching:** PoE is enabled but no device has been detected.
+- **disabled:** The PoE port has been configured as disabled.
+- **connected:** A powered device is connected and receiving power.
+- **power-denied:** There is insufficient PoE power available to
+  enable the connected device.
 
 The **Allocated** column displays how much PoE power has been allocated
 to the port, which can be one of the following:
 
-  - **n/a:** No device is connected or the connected device does not
-    support LLDP negotiation.
-  - **negotiating:** An LLDP-capable device is connected and is
-    negotiating for PoE power.
-  - **XX.X W:** An LLDP-capable device has negotiated for XX.X watts of
-    power (for example, 51.0 watts for swp13 above).
+- **n/a:** No device is connected or the connected device does not
+  support LLDP negotiation.
+- **negotiating:** An LLDP-capable device is connected and is
+  negotiating for PoE power.
+- **XX.X W:** An LLDP-capable device has negotiated for XX.X watts of
+  power (for example, 51.0 watts for swp13 above).
 
 To see all the PoE information for a switch, run `poectl -s`:
 
@@ -315,14 +319,14 @@ The `poectl` command takes the following arguments:
 You can troubleshoot PoE and PoE+ using the following utilities and
 files:
 
-  - `poectl -s`, as described above.
-  - The Cumulus Linux `cl-support` script, which includes PoE-related
-    output from `poed.conf`, `syslog`, `poectl --diag-info` and
-    `lldpctl`.`  `
-  - `lldpcli show neighbors ports <swp> protocol lldp hidden details`
-  - `tcpdump -v -v -i <swp> ether proto 0x88cc`
-  - The contents of the PoE/PoE+ `/etc/lldpd.d/poed.conf` configuration
-    file, as described above.
+- `poectl -s`, as described above.
+- The Cumulus Linux `cl-support` script, which includes PoE-related
+  output from `poed.conf`, `syslog`, `poectl --diag-info` and
+  `lldpctl`.
+- `lldpcli show neighbors ports <swp> protocol lldp hidden details`
+- `tcpdump -v -v -i <swp> ether proto 0x88cc`
+- The contents of the PoE/PoE+ `/etc/lldpd.d/poed.conf` configuration
+  file, as described above.
 
 ### Verify the Link Is Up
 
@@ -437,7 +441,7 @@ received. For example:
 
 The `poed` service logs the following events to `syslog`:
 
-  - When a switch provides power to a powered device.
-  - When a device that was receiving power is removed.
-  - When the power available to the switch changes.
-  - Errors are detected.
+- When a switch provides power to a powered device.
+- When a device that was receiving power is removed.
+- When the power available to the switch changes.
+- Errors are detected.

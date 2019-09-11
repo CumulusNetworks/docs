@@ -237,7 +237,7 @@ The *Alarms* tab displays:
 The full screen BGP Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{% imgOld 19 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -530,7 +530,7 @@ To view all BGP events:
 2.  Click **All Alarms** tab in the navigation panel.  
     By default, events are listed in most recent to least recent order.
 
-    {{% imgOld 37 %}}
+    {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-alarms-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a couple of options
 include:
@@ -551,7 +551,7 @@ in your network in the full screen card.
 To view all device details, open the full screen BGP Service card and
 click the **All Switches** tab.
 
-{{% imgOld 38 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
@@ -563,7 +563,7 @@ in the full-screen card.
 To view all session details, open the full screen BGP Service card and
 click the **All Sessions** tab.
 
-{{% imgOld 40 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-sessions-tab-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
@@ -577,9 +577,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{% imgOld 42 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-switches-tab-2selected-222.png" width="700">}}
 
-{{% imgOld 43 %}}
+{{<figure src="/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -874,7 +874,7 @@ The *Configuration File Evolution* tab displays:
 The full screen BGP Session card provides tabs for all BGP sessions and
 all events.
 
-{{% imgOld 65 %}}
+{{<figure src="/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -1042,7 +1042,7 @@ with the two devices on this card.
 To view all session details, open the full screen BGP Session card, and
 click the **All BGP Sessions** tab.
 
-{{% imgOld 75 %}}
+{{<figure src="/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
@@ -1051,7 +1051,7 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 You can view all of the alarm and info events for the two devices on
 this card.
 
-To view all events, o pen the full screen BGP Session card, and click
+To view all events, open the full screen BGP Session card, and click
 the **All Events** tab.
 
 {{% imgOld 77 %}}

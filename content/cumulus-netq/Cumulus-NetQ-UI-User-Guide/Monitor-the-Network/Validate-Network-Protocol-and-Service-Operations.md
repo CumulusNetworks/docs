@@ -181,7 +181,7 @@ The large Validation Request card displays:
 The full screen Validation Request card displays all scheduled
 validation requests.
 
-{{< figure src="/images/netq/valid-request-fullscr.png" width="700" >}}
+{{< figure src="/images/netq/valid-request-fullscr-222.png" width="700" >}}
 
 <table>
 <colgroup>

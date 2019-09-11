@@ -239,7 +239,7 @@ The *Alarms* tab displays:
 The full screen OSPF Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{% imgOld 16 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-switches-tab-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -520,7 +520,7 @@ OSPF in your network in the full screen card.
 To view all device details, open the full screen OSPF Service card and
 click the **All Switches** tab.
 
-{{% imgOld 30 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-switches-tab-222.png" width="700">}}
 
 To return to your workbench, click {{% imgOld 31 %}} in the top right corner.
 
@@ -532,7 +532,7 @@ in the full-screen card.
 To view all session details, open the full screen OSPF Service card and
 click the **All Sessions** tab.
 
-{{% imgOld 32 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
 To return to your workbench, click {{% imgOld 33 %}} in the top right corner.
 
@@ -546,9 +546,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{% imgOld 34 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-switches-tab-2-selected-222.png" width="700">}}
 
-{{% imgOld 35 %}}
+{{<figure src="/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -878,7 +878,7 @@ The *Configuration File Evolution* tab displays:
 The full screen OSPF Session card provides tabs for all OSPF sessions
 and all events.
 
-{{% imgOld 64 %}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -1041,7 +1041,7 @@ associated with the two devices on this card.
 To view all session details, open the full screen OSPF Session card, and
 click the **All OSPF Sessions** tab.
 
-{{% imgOld 74 %}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
 To return to your workbench, click {{% imgOld 75 %}} in the top right corner.
 
@@ -1052,7 +1052,5 @@ this card.
 
 To view all events, open the full screen OSPF Session card, and click
 the **All Events** tab.
-
-{{% imgOld 76 %}}
 
 To return to your workbench, click {{% imgOld 77 %}} in the top right corner.

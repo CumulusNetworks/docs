@@ -237,7 +237,7 @@ The *Alarms* tab which displays:
 The full screen EVPN Service card provides tabs for all switches, all
 sessions, all alarms.
 
-{{% imgOld 16 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -549,7 +549,7 @@ To view all EVPN events:
 2.  Click **All Alarms** tab in the navigation panel. By default, events
     are sorted by Time, with most recent events listed first.
 
-    {{% imgOld 37 %}}
+    {{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-alarms-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -569,7 +569,7 @@ network in the full screen card.
 To view all switch and host details, open the full screen EVPN Service
 card, and click the **All Switches** tab.
 
-{{% imgOld 39 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-222.png" width="700">}}
 
 To return to your workbench, click {{% imgOld 40 %}} at the top right.
 
@@ -581,7 +581,7 @@ in the full screen card.
 To view all session details, open the full screen EVPN Service card, and
 click the **All Sessions** tab.
 
-{{% imgOld 41 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-sessions-tab-222.png" width="700">}}
 
 To return to your workbench, click {{% imgOld 42 %}} at the top right.
 
@@ -595,9 +595,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{% imgOld 43 %}}
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-sessions-tab-2selected-222.png" width="700">}}
 
-{{% imgOld 44 %}}
+{{<figure src="/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -811,7 +811,7 @@ The *Configuration File Evolution* tab displays:
 The full screen EVPN Session card provides tabs for all EVPN sessions
 and all events.
 
-{{% imgOld 54 %}}
+{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -930,7 +930,7 @@ network-wide.
 To view all session details, open the full screen EVPN Session card and
 click the **All EVPN Sessions** tab.
 
-{{% imgOld 62 %}}
+{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-222.png" width="700">}}
 
 To return to your workbench, click {{% imgOld 63 %}} in the top right of the card.
 
@@ -941,7 +941,7 @@ You can view all of the alarm and info events occurring network wide.
 To view all events, o pen the full screen EVPN Session card and click
 the **All Events** tab.
 
-{{% imgOld 64 %}}
+{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-events-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -952,11 +952,3 @@ include:
   - Export the data for use in another analytics tool, by selecting all
     or some of the events and clicking **Export**.
   - Click {{% imgOld 65 %}} at the top right to return to your workbench.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

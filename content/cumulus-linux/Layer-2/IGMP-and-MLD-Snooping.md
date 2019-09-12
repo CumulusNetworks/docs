@@ -12,15 +12,15 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 IGMP (Internet Group Management Protocol) and MLD (Multicast Listener
-Discovery) snooping are implemented in the bridge driver in the Cumulus
+Discovery) snooping are implemented in the bridge driver of the Cumulus
 Linux kernel and are enabled by default. IGMP snooping processes IGMP
-v1/v2/v3 reports received on a bridge port in a bridge to identify the
-hosts which would like to receive multicast traffic destined to that group.
+v1, v2, and v3 reports received on a bridge port in a bridge to identify the
+hosts that want to receive multicast traffic destined to that group.
 
 {{%notice note%}}
 
 In Cumulus Linux 3.7.4 and later, IGMP and MLD snooping is supported
-over VXLAN bridges; however, this feature is *not* enabled by default. 
+over VXLAN bridges; however, this feature is *not* enabled by default.
 To enable IGMP and MLD over VXLAN, see [Configure IGMP/MLD Snooping over VXLAN](#configure-igmp-mld-snooping-over-vxlan).
 
 {{%/notice%}}
@@ -47,6 +47,14 @@ ports interested in receiving multicast traffic destined to that group.
 
 Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN
 bridges, where VXLAN ports are set as router ports.
+
+{{%notice note%}}
+
+Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN bridges 
+on Mellanox switches. Cumulus Linux 3.7.9 and later supports IGMP/MLD snooping over VXLAN
+bridges on Mellanox and Broadcom switches.
+
+{{%/notice%}}
 
 To enable IGMP/MLD snooping over VXLAN, run the 
 `net add bridge <bridge> mcsnoop yes` command:

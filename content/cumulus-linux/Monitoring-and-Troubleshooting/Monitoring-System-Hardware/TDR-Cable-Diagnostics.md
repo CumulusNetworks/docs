@@ -21,7 +21,7 @@ Cumulus Linux TDR runs, checks, and reports on the status of the cable diagnosti
 
 {{%notice warning%}}
 
-Running TDR is disruptive to an active link; If the link is up on an enabled port when you start diagnostics on the port, the link is brought down, then brought back up when the diagnostics are complete.
+Running TDR is disruptive to an active link; If the link is up on an enabled port when you start diagnostics, the link is brought down, then brought back up when the diagnostics are complete.
 
 {{%/notice%}}
 

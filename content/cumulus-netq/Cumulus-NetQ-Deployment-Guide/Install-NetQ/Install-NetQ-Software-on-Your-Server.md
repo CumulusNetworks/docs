@@ -373,7 +373,7 @@ If you are still experiencing issues with your installation, confirm that your D
 
       {{%/notice%}}
 
-You are almost done. The NetQ server installation is complete. The final step is to install NetQ Agents on each of the switches and hosts you want monitored. Go to [Install the NetQ Agent](#install-the-netq-agent) for these instructions.
+You are almost done. The NetQ server installation is complete. The final step is to install NetQ Agents on each of the switches and hosts you want monitored. Go to [Install the NetQ Agent and CLI on Switches](../Install-NetQ-Agents-and-CLI-on-Switches) for these instructions.
 
 ## Install Cumulus NetQ for a Cloud Deployment
 

@@ -703,7 +703,7 @@ The *Software* tab displays:
 <tr class="even">
 <td><p>Agent Version chart</p></td>
 <td><p>Distribution of NetQ Agent versions. Hover over chart segment to view the number of switches with each version.</p>
-<p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, you likely need to upgrade the older agents.</p></td>
+<p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, Cumulus Networks recommends that you upgrade the older agents.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Show All</p></td>

@@ -7,7 +7,6 @@ version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
-
 After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents and, optionally, the CLI on your monitored switches and hosts.
 
 This topic describes how to perform the installation. If you are upgrading, you can skip some of the steps which do not need to be performed a second time.
@@ -98,7 +97,7 @@ If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-th
 
     {{%/notice%}}
 
-In this example, the IP address for the NetQ hardware is
+    In this example, the IP address for the NetQ hardware is
     *192.168.1.254*.
 
         cumulus@switch:~$ netq config add agent server 192.168.1.254
@@ -151,7 +150,6 @@ To install the NetQ Agent on an Ubuntu server:
         deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
         ...
     </details>
-
     <details><summary>Ubuntu 18.04</summary>
     Create the file
     `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
@@ -377,14 +375,14 @@ While installation of the CLI on one or more of your switches and hosts is not r
 
 Installing the CLI for on-premises deployments requires only two commands:
 
-      ```
-      netq config add cli server <ip-address-of-netq-server-or-appliance>
-      netq config restart cli
-      ```
+```
+netq config add cli server <ip-address-of-netq-server-or-appliance>
+netq config restart cli
+```
 
-      {{%notice tip%}}
+{{%notice tip%}}
 Save time by including these steps in your automation scripts for installing and upgrading the NetQ Agents.
-      {{%/notice%}}
+{{%/notice%}}
 
 
 ### Install NetQ CLI in Cloud Deployments

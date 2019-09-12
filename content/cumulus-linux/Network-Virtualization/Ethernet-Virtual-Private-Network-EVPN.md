@@ -1348,13 +1348,11 @@ duplicate address flag. No functional action is taken on the address.
 {{%notice note%}}
 
 If a MAC address is flagged as a duplicate, all IP addresses associated
-with that MAC are flagged as duplicates.****
+with that MAC are flagged as duplicates.
 
 {{%/notice%}}
 
 {{%notice note%}}
-
-**MLAG Deployments**
 
 In an MLAG configuration, duplicate address detection runs independently
 on each switch in the MLAG pair. Based on the sequence in which local
@@ -1377,7 +1375,6 @@ higher move for the address.
 
 If an address is undergoing a mobility
 event between remote VTEPs, duplicate detection is not started.
-
 
 The following illustration shows VTEP-A, VTEP-B, and VTEP-C in an EVPN
 configuration. Duplicate address detection triggers on VTEP-A when there

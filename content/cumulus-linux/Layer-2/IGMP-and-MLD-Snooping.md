@@ -45,29 +45,33 @@ ports interested in receiving multicast traffic destined to that group.
 
 ## Configure IGMP/MLD Snooping over VXLAN
 
-Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN
-bridges, where VXLAN ports are set as router ports.
+Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN bridges, where VXLAN ports are set as router ports, on Broadcom switches.
 
-{{%notice note%}}
+Cumulus Linux 3.7.9 and later also supports IGMP/MLD snooping over VXLAN bridges on Mellanox switches. However, in addition to enabling IGMP/MLD snooping over VXLAN, you need to perform an additional configuration step, described below.
 
-Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN bridges 
-on Mellanox switches. Cumulus Linux 3.7.9 and later supports IGMP/MLD snooping over VXLAN
-bridges on Mellanox and Broadcom switches.
+To enable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop yes` command:
 
-{{%/notice%}}
+```
+cumulus@switch:~$ net add bridge mybridge mcsnoop yes
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
-To enable IGMP/MLD snooping over VXLAN, run the 
-`net add bridge <bridge> mcsnoop yes` command:
+Cumulus Networks recommends that you also configure IGMP/MLD querier. See [Configure IGMP/MLD Querier](#configure-igmp-mld-querier) below.
 
-    cumulus@switch:~$ net add bridge mybridge mcsnoop yes
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.
 
-Cumulus Networks recommends that you also configure IGMP/MLD querier.
-See [Configure IGMP/MLD Querier](#configure-igmp-mld-querier) below.
+**Additional Configuration for Mellanox switches**
 
-To disable IGMP/MLD snooping over VXLAN, run the 
-`net add bridge <bridge> mcsnoop no` command.
+For mellanox switches, the IGMP reports received over VXLAN from remote hosts are not forwarded to the kernel, which, in certain cases, might result in local receivers not responding to the IGMP query. To workaround this issue, you need to apply certain ACL rules to avoid the IGMP report packets being sent across to the hosts:
+
+Add the following lines to the `/etc/cumulus/acl/policy.d/23_acl_test.rules` file (where `<swp>` is the port connected to the access host), then run the `cl-acltool -i` command:
+
+```
+[ebtables]
+-A FORWARD -p IPv4 -o #<swp> --ip-proto igmp -j ACCEPT --ip-destination 224.0.0.0/24
+-A FORWARD -p IPv4 -o #<swp> --ip-proto igmp -j DROP
+```
 
 ## Configure IGMP/MLD Querier
 

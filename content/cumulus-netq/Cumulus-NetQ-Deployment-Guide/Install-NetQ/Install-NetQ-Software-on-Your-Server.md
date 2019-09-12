@@ -77,7 +77,18 @@ systems:
 The NetQ CLI, UI, and RESTful API are supported on NetQ 2.1.0 and later.
 NetQ 1.4 and earlier applications are not supported in NetQ 2.x.
 
-### The NetQ Platform
+### Install Workflow
+
+Installation of NetQ involves installing the NetQ software, and
+installing and configuring the NetQ Agents. Additional steps are needed
+to [Integrate NetQ with Event Notification Applications](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integration-Guide/Integrate-with-Notification-Applications).
+This flow chart shows the required steps to install and setup
+NetQ to start validating your network, and the optional steps of
+integrating with event notification applications and monitoring hosts.
+
+{{<figure src="/images/netq/install-wkflow-on-prem-cust-hw-222.png">}}
+
+## Install the NetQ Platform
 
 The first step of the install process is to install the NetQ software
 onto your hardware (NetQ Platform).
@@ -763,8 +774,7 @@ Whether using the NetQ Appliance or your own hardware, the NetQ Agent
 must be installed on each node you want to monitor. The node can be a:
 
   - Switch running Cumulus Linux version 3.3.2 or later
-  - Servers running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7 (Cumulus NetQ 2.2.1 and earlier)
-  - Servers running Red Hat RHEL 7.1, Ubuntu 16.04, Ubuntu 18.04, or CentOS 7 (Cumulus NetQ 2.2.2 and later)
+  - Server running Red Hat RHEL 7.1, Ubuntu 16.04, Ubuntu 18.04 (NetQ 2.2.2 and later) or CentOS 7
   - Linux virtual machine running any of the above Linux operating
     systems
 
@@ -944,7 +954,6 @@ To install the NetQ Agent on an Ubuntu server:
          deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
          ...
      </details>
-
 
     {{%notice note%}}
 

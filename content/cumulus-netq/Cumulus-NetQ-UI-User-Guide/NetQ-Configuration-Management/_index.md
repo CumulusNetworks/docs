@@ -5,6 +5,7 @@ weight: 91
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
+ - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Management/
 pageID: 12321950
 product: Cumulus NetQ
 version: 2.2

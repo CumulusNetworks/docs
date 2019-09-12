@@ -7,7 +7,6 @@ version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
-
 After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents and, optionally, the CLI on your monitored switches and hosts.
 
 This topic describes how to perform the installation. If you are upgrading, you can skip some of the steps which do not need to be performed a second time.

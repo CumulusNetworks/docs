@@ -1,10 +1,11 @@
 ---
-title: Monitor the Network
+title: Monitor Network Performance
 author: Cumulus Networks
 weight: 93
 aliases:
  - /display/NETQ/Monitor+the+Network
  - /pages/viewpage.action?pageId=12321070
+ - /cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network
 pageID: 12321070
 product: Cumulus NetQ
 version: 2.2

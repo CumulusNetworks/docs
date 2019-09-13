@@ -782,9 +782,7 @@ The small Validation Result card displays:
 
 The medium Validation Result card displays:
 
-{{% imgOld 60 %}}
-
-{{% imgOld 61 %}}
+{{<figure src="/images/netq/sch-valid-result-medium-222.png" width="425">}}
 
 <table>
 <colgroup>
@@ -1053,9 +1051,7 @@ To view the results:
     first column of the result and clicking the check box.
 3.  On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items.  
 
-    {{% imgOld 79 %}}
-
-    {{% imgOld 80 %}}
+    {{<figure src="/images/netq/sch-valid-result-medium-222.png" width="425">}}
 
 4.  Note the distribution of results. Are there many failures? Are they
     concentrated together in time? Has the protocol or service recovered
@@ -1068,7 +1064,7 @@ To view the results:
     devices, as it might point to an issue with the devices rather than
     the network service.
 
-    {{% imgOld 81 %}}
+    {{<figure src="/images/netq/sch-valid-result-medium-bgp-popup-222.png" width="200">}}
 
 6.  Optionally, click **Open** \<*network service*\> **Card** link to open the
     medium individual Network Services card. Your current card is not

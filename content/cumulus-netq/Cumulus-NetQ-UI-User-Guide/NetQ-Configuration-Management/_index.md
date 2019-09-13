@@ -5,6 +5,7 @@ weight: 91
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
+ - /cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Management
 pageID: 12321950
 product: Cumulus NetQ
 version: 2.2
@@ -291,12 +292,23 @@ To export a scheduled validation:
 5.  To export specific validations, select only those validations you
     want to export, and click **Export Selected**.
 
+## View System Server Information
 
+From the NetQ Management workbench, you can view information about the NetQ hardware server (your own or one of the Cumulus NetQ Appliances).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
+Locate the System Server Info card on the workbench. You may need to scroll down.
 
-</article>
+{{<figure src="/images/netq/netq-mgmt-sys-server-info-222.png" width="500">}}
 
-<footer id="ht-footer">
+The following data is available on this card:
 
-</footer>
+| Parameter | Description |
+| --------- | ----------- |
+| Application Serial Number | Identifier of the Cumulus NetQ instance running on this server |
+| Appliance Version | Version of the hardware; a VX value indicates a virtual server |
+| CPU Core | Number of CPU cores on this server |
+| IP | IP address associated with this server |
+| Memory | Size of the RAM on this server |
+| NetQ Version | Version of the Cumulus NetQ software running on this server |
+| OS Version | Version of the operating system running on this server |
+| Timestamp | Date and time this information was collected from the server |

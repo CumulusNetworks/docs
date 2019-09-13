@@ -181,7 +181,7 @@ The large Validation Request card displays:
 The full screen Validation Request card displays all scheduled
 validation requests.
 
-{{< figure src="/images/netq/valid-request-fullscr-222.png" width="700" >}}
+{{< figure src="/images/netq/valid-request-fullscr.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -1104,11 +1104,3 @@ To view the results:
     validations?
 16. Return to the full screen Validation Results card to view another
     Scheduled Validation Result.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

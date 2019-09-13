@@ -11,11 +11,20 @@ version: 2.2
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
-Cumulus NetQ 2.0.x, 2.1.x, and 2.2.0 can be upgraded to the newest NetQ 2.2.x release. Cumulus NetQ 1.x versions require a new install.
+Cumulus NetQ 2.0.0 through 2.2.1 can be upgraded to the newest NetQ 2.2.2 release.
 
+Two types of upgrades can be performed: an in-place upgrade, or a disk image upgrade. An in-place upgrade does not require you to backup and restore your data (but you may choose to do so), and does not update the NetQ operating system and kernels. A disk image upgrade requires you to backup and restore your data (if you want to keep it), and replaces all NetQ related software on the system.
 
-- If you are upgrading from NetQ 2.x software installed on your own hardware server, please follow the instructions in [Upgrade NetQ Software on Your Server](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-Server).
+Cumulus NetQ 1.x versions require a new install.
 
-- If you are upgrading the NetQ Appliance or the NetQ Cloud Appliance, please follow the instructions in [Upgrade Your NetQ or NetQ Cloud Appliance](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Appliances).
+If you are upgrading from NetQ 2.x software installed on:
 
-- If you are installing Cumulus NetQ software for the first time or are upgrading from NetQ 1.4.x, please follow the instructions in [Install NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/)
+- Your own hardware server in an on-premises deployment, please follow the instructions in [Upgrade NetQ Software on Your On-premises Server](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-On-premises-Server).
+
+- Your own hardware server in a cloud deployment, please follow the instructions in [Upgrade NetQ Software on Your Cloud Server](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-Cloud-Server).
+
+- Your NetQ Appliance, please follow the instructions in [Upgrade NetQ Software on Your NetQ Appliance](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-NetQ-Appliance).
+
+- Your NetQ Cloud Appliance, please follow the instructions in [Upgrade NetQ Software on Your NetQ Cloud Appliance](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-NetQ-Cloud-Appliance).
+
+If you are upgrading from NetQ 1.4.x (or earlier), please follow the instructions in [Install NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/).

@@ -22,13 +22,12 @@ networking commands directly through bash, making configuration and
 troubleshooting simple and easy; no need to edit files or enter modes
 and sub-modes. NCLU provides these benefits:
 
-  - Embeds help, examples, and automatic command checking with
-    suggestions in case you enter a typo.
-  - Runs directly from and integrates with bash, while being
-    interoperable with the regular way of accessing underlying
-    configuration files and automation.
-  - Configures dependent features automatically so that you don't have
-    to.
+- Embeds help, examples, and automatic command checking with
+  suggestions in case you enter a typo.
+- Runs directly from and integrates with bash, while being
+  interoperable with the regular way of accessing underlying
+  configuration files and automation.
+- Configures dependent features automatically so that you don't have to.
 
 {{% imgOld 0 %}}
 
@@ -66,13 +65,11 @@ the following message:
 Use the following workflow to stage and commit changes to Cumulus Linux
 with NCLU:
 
-1.  Use the `net add` and `net del` commands to stage and remove
-    configuration changes.
-
-2.  Use the `net pending` command to review staged changes.
-
-3.  Use `net commit` and `net abort` to commit and delete staged
-    changes.
+1. Use the `net add` and `net del` commands to stage and remove
+   configuration changes.
+2. Use the `net pending` command to review staged changes.
+3. Use `net commit` and `net abort` to commit and delete staged
+   changes.
 
 {{%notice note%}}
 
@@ -94,36 +91,35 @@ sure to set the system clock on the switch.
 When you have a running configuration, you can review and update the
 configuration with the following commands:
 
-  - `net show` is a series of commands for viewing various parts of
-    the network configuration. For example, use `net show configuration`
-    to view the complete network configuration, `net show commit
-    history` to view a history of commits using NCLU, and `net show
-    bgp` to view BGP status.
-  - `net clear` provides a way to clear `net show` counters, BGP and
-    OSPF neighbor content, and more.
-  - `net rollback` provides a mechanism to
-    [revert back](/cumulus-linux/Installation-Management/Using-Snapshots/#roll-back-to-earlier-snapshots) to
-    an earlier configuration.
-  - `net commit confirm` requires you to press *Enter* to commit changes
-    using NCLU. If you run `net commit confirm` but do not press *Enter*
-    within 10 seconds, the commit automatically reverts and no changes
-    are made.
-  - `net commit description <description>` enables you to provide a
-    descriptive summary of the changes you are about to commit.
-  - `net commit permanent` retains the
-    [snapshot](/cumulus-linux/Installation-Management/Using-Snapshots)
-    taken when committing the change. Otherwise, the snapshots created
-    from NCLU commands are cleaned up periodically with a snapper cron
-    job.
-  - `net commit delete` deletes one or more snapshots created when
-    committing changes with NCLU.
-  - `net del all` deletes all configurations and stops the IEEE 802.1X
-    service.
+- `net show` is a series of commands for viewing various parts of the
+  network configuration. For example, use `net show configuration`
+  to view the complete network configuration, `net show commit
+  history` to view a history of commits using NCLU, and
+  `net show bgp` to view BGP status.
+- `net clear` provides a way to clear `net show` counters, BGP and
+  OSPF neighbor content, and more.
+- `net rollback` provides a mechanism to
+  [revert back](../../Installation-Management/Using-Snapshots/#roll-back-to-earlier-snapshots)
+  to an earlier configuration.
+- `net commit confirm` requires you to press *Enter* to commit changes
+  using NCLU. If you run `net commit confirm` but do not press *Enter*
+  within 10 seconds, the commit automatically reverts and no changes
+  are made.
+- `net commit description <description>` enables you to provide a
+  descriptive summary of the changes you are about to commit.
+- `net commit permanent` retains the
+  [snapshot](../../Installation-Management/Using-Snapshots)
+  taken when committing the change. Otherwise, the snapshots created
+  from NCLU commands are cleaned up periodically with a snapper cron job.
+- `net commit delete` deletes one or more snapshots created when
+  committing changes with NCLU.
+- `net del all` deletes all configurations and stops the IEEE 802.1X
+  service.
 
     {{%notice note%}}
 
 The `net del all` command does not remove
-[management VRF](/cumulus-linux/Layer-3/Management-VRF) configurations; NCLU
+[management VRF](../../Layer-3/Management-VRF) configurations; NCLU
 does not interact with eth0 interfaces and management VRF.
 
     {{%/notice%}}
@@ -153,7 +149,7 @@ commands:
         net add interface <interface> mtu <552-9216>
 
 NCLU has a comprehensive built in help system. In addition to the net
-man page, you can use ` ?  `and `help` to display available commands:
+man page, you can use `?` and `help` to display available commands:
 
     cumulus@switch:~$ net help
      
@@ -289,7 +285,7 @@ ospf             :  Open Shortest Path First (OSPFv2)
 vlan-interfaces  :  IP interfaces for VLANs
 
 cumulus@switch:~$ net example bridge
-     
+
 Scenario
 ========
 We are configuring switch1 and would like to configure the following
@@ -311,7 +307,7 @@ We are configuring switch1 and would like to configure the following
           /    \
          /      \
      host-11   host-12
-     
+
 switch1 net commands
 ====================
 - enable vlans 10-20
@@ -331,7 +327,7 @@ switch1# net add int swp3 bridge trunk vlans 10-12,20
 # Review and commit changes
 switch1# net pending
 switch1# net commit
-     
+
 Verification
 ============
 switch1# net show interface
@@ -340,19 +336,19 @@ switch1# net show bridge macs
 
 ## Configure User Accounts
 
-You can configure user accounts in Cumulus Linux with read-only or edit
-permissions for NCLU:
+You can configure [user accounts](../Authentication-Authorization-and-Accounting/User-Accounts/)
+in Cumulus Linux with read-only or edit permissions for NCLU:
 
-  - You create user accounts with **read-only** permissions for NCLU by
-    adding them to the `netshow` group. A user in the `netshow` group
-    can run NCLU `net show` commands, such as `net show interface` or
-    `net show config`, and certain general Linux commands, such as `ls`,
-    `cd` or `man`, but cannot run `net add`, `net del` or `net commit`
-    commands.
-  - You create user accounts with **edit** permissions for NCLU by
-    adding them to the `netedit` group. A user in the `netedit` group
-    can run NCLU configuration commands, such `net add`, `net del` or
-    `net commit` in addition to NCLU `net show` commands.
+- You create user accounts with **read-only** permissions for NCLU by
+  adding them to the `netshow` group. A user in the `netshow` group
+  can run NCLU `net show` commands, such as `net show interface` or
+  `net show config`, and certain general Linux commands, such as `ls`,
+  `cd` or `man`, but cannot run `net add`, `net del` or `net commit`
+  commands.
+- You create user accounts with **edit** permissions for NCLU by
+  adding them to the `netedit` group. A user in the `netedit` group
+  can run NCLU configuration commands, such `net add`, `net del` or
+  `net commit` in addition to NCLU `net show` commands.
 
 The examples below demonstrate how to add a new user account or modify
 an existing user account called *myuser*.
@@ -397,9 +393,9 @@ You can use the `adduser` command for local user accounts only. You can
 use the `addgroup` command for both local and remote user accounts. For
 a remote user account, you must use the mapping username, such as
 `tacacs3` or `radius_user`, not the
-[TACACS](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
+[TACACS](../Authentication-Authorization-and-Accounting/TACACS-Plus)
 or
-[RADIUS](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA)
+[RADIUS](../Authentication-Authorization-and-Accounting/RADIUS-AAA)
 account name.
 
 {{%/notice%}}
@@ -442,7 +438,7 @@ To configure a new user group to use NCLU, add that group to the
 
 Use caution giving edit permissions to groups. For example, don't give
 edit permissions to the
-[*tacacs* group](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus#configure-nclu-for-tacacs-plus-users).
+[*tacacs* group](../Authentication-Authorization-and-Accounting/TACACS-Plus#configure-nclu-for-tacacs-plus-users).
 
 {{%/notice%}}
 
@@ -487,15 +483,15 @@ changes to take effect.
     cumulus@switch:~$ sudo nano /etc/netd.conf
     cumulus@switch:~$ sudo systemctl restart netd.service
 
-| Configuration Variable | Default Setting                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Description                                                                             |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| show\_linux\_command   | False                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | When true, displays the Linux command running in the background.                        |
-| enable\_ifupdown2      | True                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Enables `net` wrapping of `ifupdown2` commands.                                         |
-| enable\_frr            | True                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Enables `net` wrapping of FRRouting commands.                                           |
-| users\_with\_edit      | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Sets the Linux users with root edit privileges.                                         |
-| groups\_with\_edit     | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Sets the Linux groups with root edit privileges.                                        |
-| users\_with\_show      | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Controls which users are allowed to run `show` commands.                                |
-| groups\_with\_show     | root, cumulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Controls which groups are allowed to run `show` commands.                               |
+| Configuration Variable | Default Setting    | Description |
+| ---------------------- | ------------------ | ----------- |
+| show\_linux\_command   | False                 | When true, displays the Linux command running in the background.              |
+| enable\_ifupdown2      | True | Enables `net` wrapping of `ifupdown2` commands.  |
+| enable\_frr            | True | Enables `net` wrapping of FRRouting commands.    |
+| users\_with\_edit      | root, cumulus | Sets the Linux users with root edit privileges.  |
+| groups\_with\_edit     | root, cumulus | Sets the Linux groups with root edit privileges.  |
+| users\_with\_show      | root, cumulus | Controls which users are allowed to run `show` commands.                                |
+| groups\_with\_show     | root, cumulus | Controls which groups are allowed to run `show` commands.                               |
 | ifupdown\_blacklist    | address-purge, bond-ad-actor-sys-prio, bond-ad-actor-system, bond-mode, bond-num-grat-arp, bond-num-unsol-na, bond-use-carrier, bond-xmit-hash-policy, bridge-bridgeprio, bridge-fd, bridge-hashel, bridge-hashmax, bridge-hello, bridge-maxage, bridge-maxwait, bridge-mclmc, bridge-mclmi, bridge-mcmi, bridge-mcqi, bridge-mcqpi, bridge-mcqri, bridge-mcrouter, bridge-mcsqc, bridge-mcsqi, bridge-pathcosts, bridge-port-pvids, bridge-port-vids, bridge-portprios, bridge-stp, bridge-waitport, broadcast, hwaddress, link-type, mstpctl-ageing, mstpctl-fdelay, mstpctl-forcevers, mstpctl-hello, mstpctl-maxage, mstpctl-maxhops, mstpctl-portp2p, mstpctl-portpathcost, mstpctl-portrestrrole, mstpctl-portrestrtcn, mstpctl-treeportcost, mstpctl-treeportprio, mstpctl-txholdcount, netmask, preferred-lifetime, scope, vxlan-ageing, vxlan-learning, up, down, bridge-ageing, bridge-gcint, bridge-mcqifaddr, bridge-mcqv4src | Hides corner case command options from tab complete, to simplify and streamline output. |
 
 {{%notice info%}}

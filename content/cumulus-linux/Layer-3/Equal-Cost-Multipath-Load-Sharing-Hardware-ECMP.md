@@ -12,8 +12,8 @@ version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-Cumulus Linux supports hardware-based [equal cost
-multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing)
+Cumulus Linux supports hardware-based
+[equal cost multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing)
 (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load
 sharing occurs automatically for all routes with multiple next hops
 installed. ECMP load sharing supports both IPv4 and IPv6 routes.
@@ -32,17 +32,17 @@ have been installed in the routing table:
 
 For routes to be considered equal they must:
 
-  - Originate from the same routing protocol. Routes from different
-    sources are not considered equal. For example, a static route and an
-    OSPF route are not considered for ECMP load sharing.
-  - Have equal cost. If two routes from the same protocol are unequal,
-    only the best route is installed in the routing table.
+- Originate from the same routing protocol. Routes from different
+  sources are not considered equal. For example, a static route and an
+  OSPF route are not considered for ECMP load sharing.
+- Have equal cost. If two routes from the same protocol are unequal,
+  only the best route is installed in the routing table.
 
 {{%notice info%}}
 
 The BGP `maximum-paths` setting is enabled, so multiple routes are
 installed by default. See the
-[ECMP section](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/#ecmp-with-bgp)
+[ECMP section](../Border-Gateway-Protocol-BGP/#ecmp-with-bgp)
 of the BGP chapter for more information.
 
 {{%/notice%}}
@@ -52,17 +52,23 @@ of the BGP chapter for more information.
 Once multiple routes are installed in the routing table, a hash is used
 to determine which path a packet follows.
 
-Cumulus Linux hashes on the following
-fields:
+Cumulus Linux hashes on the following fields:
 
-  - IP protocol
-  - Source IPv4 or IPv6 address
-  - Destination IPv4 or IPv6 address
+- IP protocol
+- Source IPv4 or IPv6 address
+- Destination IPv4 or IPv6 address
+
+Further, on Mellanox switches, Cumulus Linux hashes on these additional fields:
+
+- Source MAC address
+- Destination MAC address
+- Ethertype
+- VLAN ID
 
 For TCP/UDP frames, Cumulus Linux also hashes on:
 
-  - Source port
-  - Destination port
+- Source port
+- Destination port
 
 {{% imgOld 0 %}}
 
@@ -153,7 +159,6 @@ existing flow.
 
 {{% imgOld 4 %}}
 
-
 A next hop fails and the next hop and hash bucket are removed. The
 remaining next hops may be reassigned.
 
@@ -201,8 +206,6 @@ These commands create the following configuration in the
     ...
     cumulus@leaf01:~$
 
-
-
 ## Resilient Hashing
 
 In Cumulus Linux, when a next hop fails or is removed from an ECMP pool,
@@ -228,10 +231,9 @@ does not prevent disruption when next hops are added.
 
 {{%notice note%}}
 
-Resilient hashing is supported only on switches with the [Broadcom
-Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox
-Spectrum](http://cumulusnetworks.com/hcl/) chipsets. You can run ` net
-show system  `to determine the chipset.
+Resilient hashing is supported only on switches with the
+[Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum](http://cumulusnetworks.com/hcl/) chipsets. You can run
+`net show system` to determine the chipset.
 
 {{%/notice%}}
 
@@ -250,7 +252,6 @@ Unlike default ECMP hashing, when a next hop needs to be removed, the
 number of hash buckets does not change.
 
 {{% imgOld 6 %}}
-
 
 With 12 buckets assigned and four next hops, instead of reducing the
 number of buckets — which would impact flows to known good hosts — the
@@ -313,18 +314,18 @@ routes log an error and are not installed.
 
 To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
-1.  Enable resilient hashing:
+1. Enable resilient hashing:
 
         # Enable resilient hashing
         resilient_hash_enable = TRUE
 
-2.  **(Optional)** Edit the number of hash buckets:
+2. **(Optional)** Edit the number of hash buckets:
 
         # Resilient hashing flowset entries per ECMP group
         # Valid values - 64, 128, 256, 512, 1024
         resilient_hash_entries_ecmp = 256
 
-3.  [Restart](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
-    the `switchd` service:
+3. [Restart](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
+   the `switchd` service:
 
         cumulus@switch:~$ sudo systemctl restart switchd.service

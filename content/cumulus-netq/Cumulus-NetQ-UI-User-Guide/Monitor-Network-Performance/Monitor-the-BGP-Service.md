@@ -1054,6 +1054,6 @@ this card.
 To view all events, open the full screen BGP Session card, and click
 the **All Events** tab.
 
-{{% imgOld 77 %}}
+{{<figure src="/images/netq/ntwk-svcs-fullscr-events-tab-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.

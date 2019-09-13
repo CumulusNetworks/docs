@@ -129,7 +129,7 @@ The large Network Health card contains two tabs.
 
 The *System Health* tab displays:
 
-{{< figure src="/images/netq/ntwk-hlth-large-sys-hlth.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -187,7 +187,7 @@ The *System Health* tab displays:
 
 The *Network Health* tab displays:
 
-{{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -342,7 +342,7 @@ To view information about each system component:
 1.  Open the large Network Health card.
 2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/>.
 
-    {{< figure src="/images/netq/ntwk-hlth-large-sys-hlth.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-222.png" width="500" >}}
 
     The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
@@ -381,7 +381,7 @@ You can focus the data in the table on the right, by unselecting one or
 more services. Click the checkbox next to the service you want to remove
 from the data. In this example, we have unchecked Licenses.
 
-{{< figure src="/images/netq/filter-sys-hlth-in-tbl.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-filter-sys-hlth-in-tbl-222.png" width="500" >}}
 
 This removes the checkbox next to the associated chart and grays out the title of the chart, temporarily removing the data related to that service from the table. Add it back by hovering over the chart and clicking the checkbox that appears.
 
@@ -400,7 +400,7 @@ To view information about each network protocol or service:
 1.  Open the large Network Health card.
 2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/>.
 
-    {{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
 
 The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
@@ -448,10 +448,10 @@ the indicated switches.
 
 You can focus the data in the table on the right, by unselecting one or
 more services. Click the checkbox next to the service you want to
-remove. In this example, we are removed NTP and LNV and are in the
+remove. In this example, we removed NTP and LNV and are in the
 process of removing OSPF.
 
-{{< figure src="/images/netq/filter-ntwk-hlth-in-tbl.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-filter-ntwk-hlth-in-tbl-222.png" width="500" >}}
 
 This grays out the chart title and removes the associated checkbox, temporarily removing the data related to that service from the table.
 

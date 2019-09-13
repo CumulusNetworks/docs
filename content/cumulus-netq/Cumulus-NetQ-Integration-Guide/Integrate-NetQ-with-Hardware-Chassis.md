@@ -12,8 +12,6 @@ imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
 
-# Integrate with a Hardware Chassis
-
 NetQ can run within a [Facebook Backpack
 chassis](https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/),
 [Cumulus Express CX-10256-S
@@ -45,4 +43,3 @@ chassis:
         netq-agent:
           send_chassis_sensor_data: true
         ...
-

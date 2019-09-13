@@ -14,6 +14,27 @@ your premises, real-time data collection and fabric-wide performance
 analysis are available through the cloud service. New functionality has
 also been added to the NetQ UI.
 
+**Cumulus NetQ 2.2.2** includes bug fixes and the following new features and improvements:
+
+*For on-premises and in-cloud*
+
+- Command Line Interface (CLI)
+   - Support of syslog for event notifications
+   - Improved install procedure includes CLI update in NetQ upgrade process
+- Graphical User Interface (UI)
+   - Improved interaction for adding cards to workbenches
+   - Modified alarm reporting on Events | Alarms cards to include only alarms occurring during the designated time period on the card
+
+*For on-premises only*
+
+- Simplified upgrade process for NetQ Appliance includes upgrade of netq-apps
+
+*For in-cloud only*
+
+- Command Line Interface (CLI)
+   - Added CLI proxy to NetQ Cloud Appliance to remove internet access requirement when installing CLI on hosts and servers
+   - Improved netq install opta interface command enables download and installation of cloud software in single step
+
 **Cumulus NetQ 2.2.1** includes the following new features and improvements:
 
 *For on-premises and in-cloud solutions*

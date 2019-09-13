@@ -5,7 +5,7 @@ weight: 91
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
- - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Management/
+ - /cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Management
 pageID: 12321950
 product: Cumulus NetQ
 version: 2.2
@@ -25,7 +25,7 @@ The NetQ Management workbench is accessed from the main menu. For the user(s) re
 
 To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>, and select **Management** under the **Admin** column.
 
-{{% imgOld 1 %}}
+{{<figure src="/images/netq/netq-mgmt-wb-222.png" width="700">}}
 
 ## Manage User Accounts
 
@@ -69,10 +69,10 @@ Be especially careful entering the email address as you *cannot*
 7.  Click **Save** to create the user account, or **Cancel** to discard
     the user account.  
 
+    {{<figure src="/images/netq/netq-mgmt-user-accts-tab-222.png" width="700">}}
+
     By default the User Accounts table is sorted by *Role*. Change
     the sort by clicking in any of the headers, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.  
-
-    {{% imgOld 3 %}}
 
 8.  Repeat these steps to add all of your users.
 
@@ -84,11 +84,10 @@ easily.
 To change a user name:
 
 1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
-2.  Hover over the account you want to change, and click the checkbox
-    next to it.
-4.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
-5.  Modify the first and/or last name as needed.
-6.  Enter your admin password.
+2.  Select the account you want to change by clicking the checkbox next to it.
+3.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+4.  Modify the first and/or last name as needed.
+5.  Enter your admin password.
 
     {{< figure src="/images/netq/edit-user-modal-221.png" width="250" >}}
 
@@ -102,18 +101,21 @@ change a password for a particular user account.
 To change a password:
 
 1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
-3.  Hover over the account you want to change, and click the checkbox
-    next to it.
-4.  In the Edit menu that appears at the bottom of the window, click click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
-5.  Click **Reset Password**.
-6.  Enter your admin password.
+2.  Select the account you want to change by clicking the checkbox next to it.
+3.  In the Edit menu that appears at the bottom of the window, click click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+4.  Click **Reset Password**.
+5.  Enter your admin password.
 
     {{< figure src="/images/netq/change-user-password-221.png" width="250" >}}
 
-7.  Enter a new password for the user.
-8.  Re-enter the user password. *Tip: If the password you enter does not
-    match, Save is gray (not activated).*
-9.  Click **Save** to commit the change, or **Cancel** to discard the
+6.  Enter a new password for the user.
+7.  Re-enter the user password.
+
+      {{%notice tip%}}
+If the password you enter does not match, **Save** is not activated, and you cannot save the change.
+      {{%/notice%}}
+
+8.  Click **Save** to commit the change, or **Cancel** to discard the
     change.
 
 ### Change a User's Access Permissions
@@ -125,17 +127,15 @@ modify their access rights.
 
 To change access permissions:
 
-1.  Click **Manage** on the User Accounts card.
-2.  Click the **User Accounts** tab.
-3.  Hover over the account you want to change, and click the checkbox
-    next to it.
-4.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
+2.  Select the account you want to change by clicking the checkbox next to it.
+3.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+4.  Enter your admin password.
 5.  Select the appropriate user type from the dropdown list.
 
     {{< figure src="/images/netq/change-user-permissions-221.png" width="250" >}}
 
-6.  Enter your admin password.
-7.  Click **Save** to commit the change, or **Cancel** to discard the
+6.  Click **Save** to commit the change, or **Cancel** to discard the
     change.
 
 ### Correct a Mistyped User ID (Email Address)
@@ -151,15 +151,24 @@ Accounts tab.
 
 To export information for one or more user accounts:
 
-1.  Click **Manage** on the User Accounts card.
-2.  Click the **User Accounts** tab.
-3.  Hover over and select at least one user account.
-4.  To export all user accounts, click **Select All** in the Edit menu and then click  **Export Selected**.
+1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
+2.  Select one or more accounts that you want to export by clicking the checkbox next to them.
+3.  To export all user accounts, click **Select All** in the Edit menu and then click  **Export Selected**.
 
-    {{% imgOld 11 %}}
+    {{<figure src="/images/netq/user-acct-edit-menu-export-222.png" width="600">}}
 
-5.  To export specific user accounts, select only those accounts you
+4.  To export specific user accounts, select only those accounts you
     want to export, and click **Export Selected** in the Edit menu.
+
+### Delete a User Account
+
+NetQ application administrators should remove user accounts associated with users that are no longer using the application.
+
+To delete one or more user accounts:
+
+1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
+2.  Select one or more accounts that you want to remove by clicking the checkbox next to them.
+3.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg", height="18", width="18"/> in the Edit menu to remove the accounts.
 
 ## Manage Scheduled Traces
 
@@ -180,7 +189,7 @@ To add a trace:
 1.  Click **Manage** on the Scheduled Traces card to open the **Scheduled Traces** tab.
 2.  Click **Add Trace** to open the large New Trace Request card.
 
-    {{% imgOld 12 %}}
+    {{<figure src="/images/netq/trace-request-large-222.png" width="500">}}
 
 3.  Enter source and destination addresses.
 
@@ -261,7 +270,7 @@ To add a scheduled validation:
 2.  Click the **Scheduled Validations** tab.
 3.  Click **Add Validation** to open the large Validation Request card.
 
-    {{% imgOld 16 %}}
+    {{<figure src="/images/netq/valid-request-large-222.png" width="500">}}
 
 4.  Configure the request. Refer to [Validate Network Protocol and Service Operations](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Validate-Network-Protocol-and-Service-Operations) for details.
 
@@ -283,12 +292,23 @@ To export a scheduled validation:
 5.  To export specific validations, select only those validations you
     want to export, and click **Export Selected**.
 
+## View System Server Information
 
+From the NetQ Management workbench, you can view information about the NetQ hardware server (your own or one of the Cumulus NetQ Appliances).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
+Locate the System Server Info card on the workbench. You may need to scroll down.
 
-</article>
+{{<figure src="/images/netq/netq-mgmt-sys-server-info-222.png" width="500">}}
 
-<footer id="ht-footer">
+The following data is available on this card:
 
-</footer>
+| Parameter | Description |
+| --------- | ----------- |
+| Application Serial Number | Identifier of the Cumulus NetQ instance running on this server |
+| Appliance Version | Version of the hardware; a VX value indicates a virtual server |
+| CPU Core | Number of CPU cores on this server |
+| IP | IP address associated with this server |
+| Memory | Size of the RAM on this server |
+| NetQ Version | Version of the Cumulus NetQ software running on this server |
+| OS Version | Version of the operating system running on this server |
+| Timestamp | Date and time this information was collected from the server |

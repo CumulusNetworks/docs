@@ -16,8 +16,8 @@ You monitor system hardware in these ways, using:
 - `decode-syseeprom`
 - `smond`
 - `sensors`
-- [Net-SNMP](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP)
-- watchdog
+- [Net-SNMP](../../Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP)
+- `watchdog`
 
 ## Retrieve Hardware Information Using decode-syseeprom
 
@@ -215,12 +215,11 @@ Example chip names include:
 
 ## Monitor Switch Hardware Using SNMP
 
-The Net-SNMP documentation is discussed
-[here](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP).
+The Net-SNMP documentation is discussed [here](../Simple-Network-Management-Protocol-SNMP).
 
 ## Keep the Switch Alive Using the Hardware Watchdog
 
-Cumulus Linux includes a simplified version of the ` wd_keepalive(8)` 
+Cumulus Linux includes a simplified version of the `wd_keepalive(8)`
 daemon from the standard `watchdog` Debian package. `wd_keepalive`
 writes to a file called `/dev/watchdog` periodically to keep the switch
 from resetting, at least once per minute. Each write delays the reboot
@@ -246,6 +245,14 @@ Then stop the daemon:
 You can modify the settings for the watchdog — like the timeout setting
 and scheduler priority — in its configuration file,
 `/etc/watchdog.conf`.
+
+## Known Limitations
+
+### Facebook Backpack PSU Monitoring Occasionally Replies with N/A Values or FAULT ALARM instead of Integers
+
+On Facebook Backpack switches, you sometimes see unparsible sensor value
+`"FAULT ALARM"` and/or `state changed from OK to ABSENT` in the
+`/var/log/syslog` file. This is a known issue with the platform.
 
 ## Related Information
 

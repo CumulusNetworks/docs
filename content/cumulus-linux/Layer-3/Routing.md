@@ -167,21 +167,15 @@ including:
 
   - L3 IPv4 LPM (longest prefix match) entries, which have a mask that
     is less than /32
-
   - L3 IPv6 LPM entries, which have a mask that is /64 or less
-
   - L3 IPv6 LPM entries, which have a mask that is greater than /64
-
   - L3 IPv4 neighbor (or host) entries, which are the next hops seen in
     `ip neighbor`
-
-  - L3 IPv6 neighbor entries, which are the next hops seen in `ip -6
-    neighbor`
-
+  - L3 IPv6 neighbor entries, which are the next hops seen in 
+    `ip -6 neighbor`
   - ECMP next hops, which are IP address entries in a router's routing
     table that specify the next closest/most optimal router in its
     routing path
-
   - MAC addresses
 
 In addition, switches on the Tomahawk, Trident II, Trident II+, and
@@ -190,8 +184,31 @@ Algorithm Longest Prefix Match (ALPM). In ALPM mode, the hardware can
 store significantly more route entries.
 
 You can use
-[`cl-resource-query`](/cumulus-linux/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query)
+[`cl-resource-query`](../../Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query)
 to determine the current table sizes on a given switch.
+
+{{%notice info%}}
+**Don't Query a Large BGP Routing Tables for JSON Data**
+
+In a deployment with a BGP routing table that has more than 100K paths, avoid
+querying the entire routing table for JSON data. For example, do not issue the
+command `net show bgp <afi> <safi> json`, as doing so may cause BGP to time out;
+you can query the routing table for non-JSON data.
+
+If you need the JSON data, you can increase the timeout value for the BGP daemon. Do the following:
+
+1. Specify a non-default timeout value for the FRR daemons by adding `-t <timeout in seconds>` to the `watchfrr_options` configuration. For example:
+```
+watchfrr_options=(-d -r /usr/lib/frr/frrbBrestartbB%s -s /usr/lib/frr/frrbBstartbB%s -k /usr/lib/frr/frrbBstopbB%s -b bB -t 180)
+```
+   The default timeout is 90 seconds; the value you specify here should be based on the size of the BGP routing table.
+
+1. Restart the FRR service:
+```
+systemctl restart frr.service
+```
+
+{{%/notice%}}
 
 ### Forwarding Table Profiles
 

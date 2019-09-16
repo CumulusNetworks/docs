@@ -23,12 +23,8 @@ in Cumulus Linux.
 
 {{%notice note%}}
 
-  - You cannot use EVPN and LNV at the same time.
-
-  - When using EVPN, you *must* disable data plane MAC learning on all
-    VXLAN interfaces. This is described in [Basic EVPN
-    Configuration](#basic-evpn-configuration),
-    below.
+- You cannot use EVPN and LNV at the same time.
+- When using EVPN, you *must* disable data plane MAC learning on all VXLAN interfaces. This is described in [Basic EVPN Configuration](#basic-evpn-configuration), below.
 
 {{%/notice%}}
 
@@ -50,40 +46,27 @@ features include:
 
   - VNI membership exchange between VTEPs using EVPN type-3 (Inclusive
     multicast Ethernet tag) routes.
-
   - Exchange of host MAC and IP addresses using EVPN type-2 (MAC/IP
     advertisement) routes.
-
   - Support for host/VM mobility (MAC and IP moves) through exchange of
     the MAC Mobility Extended community.
-
   - Support for dual-attached hosts via [VXLAN active-active
     mode](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode).
     MAC synchronization between the peer switches is done using
     [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG).
-
   - Support for ARP/ND suppression, which provides VTEPs with the
     ability to suppress ARP flooding over VXLAN tunnels.
-
   - Support for exchange of static (sticky) MAC addresses through EVPN.
-
   - Support for distributed symmetric routing between different subnets.
-
   - Support for distributed asymmetric routing between different
     subnets.
-
   - Support for centralized routing.
-
   - Support for prefix-based routing using EVPN type-5 routes (EVPN IP
     prefix route)
-
   - Support for layer 3 multi-tenancy.
-
   - Support for IPv6 tenant routing.
-
   - Symmetric routing, asymmetric routing and prefix-based routing are
     supported for both IPv4 and IPv6 hosts and prefixes.
-
   - ECMP (equal cost multipath) support for overlay networks on
     RIOT-capable Broadcom switches (Trident 3, Maverick, Trident 2+) in
     addition to Tomahawk and Mellanox Spectrum-A1 switches. No

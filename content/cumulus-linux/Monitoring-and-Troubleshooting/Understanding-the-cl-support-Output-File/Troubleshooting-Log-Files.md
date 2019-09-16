@@ -13,7 +13,7 @@ siteSlug: cumulus-linux
 ---
 The only real unique entity for logging on Cumulus Linux compared to any
 other Linux distribution is `switchd.log`, which logs the HAL (hardware
-abstraction layer) from hardware like the Broadcom or Mellanox ASIC.
+abstraction layer) from hardware like the [Broadcom or Spectrum ASIC](https://cumulusnetworks.com/products/hardware-compatibility-list/).
 
 [This guide on NixCraft](http://www.cyberciti.biz/faq/linux-log-files-location-and-how-do-i-view-logs-files/)
 is amazing for understanding how `/var/log` works. The green highlighted

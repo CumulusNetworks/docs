@@ -41,7 +41,7 @@ unsupported error is shown.
 
 {{%/notice%}}
 
-For **Mellanox switches**, MTU is the only port attribute you can directly configure. The Mellanox firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
+For switches with **[Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1)**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
 the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 For **Broadcom-based switches,** Cumulus Networks recommends that you
@@ -344,7 +344,7 @@ There are additional FEC options for Cumulus Linux configuration:
   DAC, FEC can be negotiated with the remote end. However, optical
   modules do not have auto-negotiation capability; if the device
   chooses a preferred mode, it might not match the remote end. This is
-  the current default on a Mellanox switch.
+  the current default on a Spectrum switch.
 - No FEC (no error correction is done). This is the current default on
   a Broadcom switch.
 
@@ -473,10 +473,10 @@ classification.
 
 This depends upon the make of the switch you are using.
 
-A Mellanox switch enables FEC automatically when it powers up; that is,
+A Spectrum switch enables FEC automatically when it powers up; that is,
 the setting is `fec auto`. The port firmware tests and determines the
 correct FEC mode to bring the link up with the neighbor. It is possible
-to get a link up to a Mellanox switch without enabling FEC on the remote
+to get a link up to a Spectrum switch without enabling FEC on the remote
 device as the switch eventually finds a working combination to the
 neighbor without FEC.
 
@@ -492,14 +492,14 @@ enable and disable FEC.
 ### Show the Current FEC Mode
 
 Cumulus Linux returns different output for the `ethtool --show-fec`
-command, depending upon whether you are using a Broadcom or Mellanox
+command, depending upon whether you are using a Broadcom or Spectrum
 switch.
 
 On a Broadcom switch, the `--show-fec` output tells you exactly what you
 configured, even if the link is down due to a FEC mismatch with the
 neighbor.
 
-On a Mellanox switch, the `--show-fec` output tells you the current
+On a Spectrum switch, the `--show-fec` output tells you the current
 active state of FEC **only if the link is up**; that is, if the FEC
 modes matches that of the neighbor. If the link is not up, the value
 displays *None*, which is not valid.
@@ -588,7 +588,7 @@ expected to be the same.
 
 {{%notice note%}}
 
-Mellanox switches automatically configure these settings following a
+Spectrum switches automatically configure these settings following a
 predefined list of parameter settings until the link comes up.
 
 {{%/notice%}}
@@ -928,14 +928,14 @@ out then set the link speed:
 
 {{%notice note%}}
 
-On Mellanox switches, you need to disable the next port (see below). In
+On Spectrum switches, you need to disable the next port (see below). In
 this example, you must run the following before committing the update
 with `net commit`:
 
     cumulus@switch:~$ net add interface swp4 breakout disabled
 
 Also, [see below](#mellanox-logical-port-limits-and-breakout-configurations) for
-how to configure breakout ports on Mellanox switches.
+how to configure breakout ports on Spectrum switches.
 
 {{%/notice%}}
 
@@ -1496,10 +1496,10 @@ However, you can configure all other ports to run at 10G speeds.
 
 {{%/notice%}}
 
-### ethtool Shows Incorrect Port Speed on 100G Mellanox Switches
+### ethtool Shows Incorrect Port Speed on 100G Spectrum Switches
 
 After setting the interface speed to 40G by editing the `ports.conf`
-file on a Mellanox switch, `ethtool` still shows the speed as 100G.
+file on a Spectrum switch, `ethtool` still shows the speed as 100G.
 
 This is a known issue where `ethtool` does not update after restarting
 `switchd`, so it continues to display the outdated port speed.

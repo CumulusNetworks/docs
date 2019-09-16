@@ -119,13 +119,8 @@ to every remote VTEP.
 
 #### Head End Replication
 
-The Broadcom switch with the Tomahawk, Trident II+, and Trident II ASIC
-and the Mellanox switch with the Spectrum ASIC are capable of head end
-replication (HER), which is the ability to generate all the BUM traffic
-in hardware. The most scalable solution available with LNV is to have
-each VTEP (top of rack switch) generate all of its own BUM traffic
-instead of relying on an external service node. HER is enabled by
-default in Cumulus Linux.
+Broadcom switches with Tomahawk, Trident II+, and Trident II ASICs
+and switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1) are capable of head end replication (HER), which is the ability to generate all the BUM traffic in hardware. The most scalable solution available with LNV is to have each VTEP (top of rack switch) generate all of its own BUM traffic instead of relying on an external service node. HER is enabled by default in Cumulus Linux.
 
 Cumulus Linux verified support for up to 128 VTEPs with head end
 replication.
@@ -177,8 +172,8 @@ You only specify this parameter when head end replication is
 
 ### Hardware Requirements
 
-  - Broadcom switches with the Tomahawk, Trident II+, or Trident II ASIC
-    or Mellanox switches with the Spectrum ASIC running Cumulus Linux
+  - Switches with the Broadcom Tomahawk, Trident II+, or Trident II ASIC
+    or switches with the Mellanox Spectrum ASIC running Cumulus Linux
     2.5.4 or later. Please refer to the Cumulus Networks [hardware
     compatibility
     list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/)

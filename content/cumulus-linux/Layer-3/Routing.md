@@ -308,9 +308,9 @@ entry takes up twice the space of an IPv4 entry.
 
 {{%/notice%}}
 
-### TCAM Resource Profiles for Mellanox Switches
+### TCAM Resource Profiles for Spectrum Switches
 
-The Mellanox Spectrum ASIC provides the ability to configure the TCAM
+The [Spectrum ASIC](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1) provides the ability to configure the TCAM
 resource allocation, which is shared between IP multicast forwarding
 entries and ACL tables. Cumulus Linux provides a number of general
 profiles for this platform: *default*, *ipmc-heavy* and *acl-heavy*.

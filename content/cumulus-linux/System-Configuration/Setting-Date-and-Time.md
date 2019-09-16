@@ -18,9 +18,8 @@ Setting the time zone, date and time requires root privileges; use
 
 You can use one of two methods to set the time zone on the switch:
 
-  - Edit the `/etc/timezone` file.
-
-  - Use the guided wizard.
+- Edit the `/etc/timezone` file.
+- Use the guided wizard.
 
 ### Edit the /etc/timezone File
 
@@ -130,17 +129,17 @@ explanation of the output.
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
+including the [management VRF](../../Layer-3/Management-VRF),
 follow [these
-steps](/cumulus-linux/Layer-3/Management-VRF#run-services-within-the-management-vrf) for
+steps](../../Layer-3/Management-VRF#run-services-within-the-management-vrf) for
 configuring the service.
 
 {{%/notice%}}
 
 By default, `/etc/ntp.conf` contains some default time servers. You can
 specify the NTP server or servers you want to use with
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU);
+[NCLU](../Network-Command-Line-Utility-NCLU);
 include the `iburst` option to increase the sync speed.
 
     cumulus@switch:~$ net add time ntp server 4.cumulusnetworks.pool.ntp.org iburst
@@ -218,19 +217,16 @@ These commands create the following configuration snippet in the
 The default NTP configuration comprises the following servers, which are
 listed in the `/etc/ntpd.conf` file:
 
-  - server
+- server
     [0.cumulusnetworks.pool.ntp.org](http://0.cumulusnetworks.pool.ntp.org)
     iburst
-
-  - server
+- server
     [1.cumulusnetworks.pool.ntp.org](http://1.cumulusnetworks.pool.ntp.org)
     iburst
-
-  - server
+- server
     [2.cumulusnetworks.pool.ntp.org](http://2.cumulusnetworks.pool.ntp.org)
     iburst
-
-  - server
+- server
     [3.cumulusnetworks.pool.ntp.org](http://3.cumulusnetworks.pool.ntp.org)
     iburst
 
@@ -322,27 +318,20 @@ Cumulus Linux includes the `linuxptp` package for PTP, which uses the
 
 {{%notice note%}}
 
-  - Cumulus Linux currently supports PTP on the Mellanox Spectrum ASIC
-    only.
-
-  - If you do not perform a full disk image install of Cumulus Linux 3.6
-    or later, you need to install the `linuxptp` package with the `sudo
-    -E` `apt-get install linuxptp` command.
-
-  - PTP is supported in boundary clock mode only (the switch provides
-    timing to downstream servers; it is a slave to a higher-level clock
-    and a master to downstream clocks).
-
-  - The switch uses hardware time stamping to capture timestamps from an
-    Ethernet frame at the physical layer. This allows PTP to account for
-    delays in message transfer and greatly improves the accuracy of time
-    synchronization.
-
-  - Only IPv4/UDP PTP packets are supported.
-
-  - Only a single PTP domain per network is supported. A PTP domain is a
-    network or a portion of a network within which all the clocks are
-    synchronized.
+- Cumulus Linux currently supports PTP on the Mellanox Spectrum ASIC only.
+- If you do not perform a full disk image install of Cumulus Linux 3.6
+  or later, you need to install the `linuxptp` package with the `sudo -E apt-get install linuxptp` command.
+- PTP is supported in boundary clock mode only (the switch provides
+  timing to downstream servers; it is a slave to a higher-level clock
+  and a master to downstream clocks).
+- The switch uses hardware time stamping to capture timestamps from an
+  Ethernet frame at the physical layer. This allows PTP to account for
+  delays in message transfer and greatly improves the accuracy of time
+  synchronization.
+- Only IPv4/UDP PTP packets are supported.
+- Only a single PTP domain per network is supported. A PTP domain is a
+  network or a portion of a network within which all the clocks are
+  synchronized.
 
 {{%/notice%}}
 
@@ -389,19 +378,16 @@ PTP *is* supported on BGP unnumbered interfaces. PTP is *not* supported on switc
 
       - Set the `gm-capable` option to `no` to configure the switch to
         be a boundary clock.
-
       - Set the priority, which selects the best master clock. You can
         set priority 1 or 2. For each priority, you can use a number
         between 0 and 255. The default priority is 255. For the boundary
         clock, use a number above 128. The lower priority is applied
         first.
-
       - Add the `time-stamping` parameter. The switch automatically
         enables hardware time-stamping to capture timestamps from an
         Ethernet frame at the physical layer. If you are testing PTP in
         a virtual environment, hardware time-stamping is not available;
         however the `time-stamping` parameter is still required.
-
       - Add the PTP master and slave interfaces. You do not specify
         which is a master interface and which is a slave interface; this
         is determined by the PTP packet received.

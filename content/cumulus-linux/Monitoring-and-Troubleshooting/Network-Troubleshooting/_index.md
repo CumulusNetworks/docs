@@ -261,7 +261,6 @@ packets have the following format:
 {{%notice note%}}
 
  - Mirrored traffic is not guaranteed. If the MTP is congested, mirrored packets might be discarded.
-
  - A SPAN/ERSPAN destination interface that is oversubscribed might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN/ERSPAN when the aggregate speeds of all source ports exceeds the destination port. Selective SPAN is recommended when possible to limit traffic in this scenario.
 
 {{%/notice%}}
@@ -271,9 +270,8 @@ SPAN and ERSPAN are configured via `cl-acltool`, the
 The match criteria for SPAN and ERSPAN is usually an interface; for more
 granular match terms, use [selective spanning](#selective-spanning). The
 SPAN source interface can be a port, a subinterface or a bond interface.
-Ingress traffic on interfaces can be matched, and on Mellanox Spectrum
-switches, egress traffic can be matched. See the
-[list of limitations](#limitations-for-span/erspan) below.
+Ingress traffic on interfaces can be matched, and on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Spectrum Spectrum&ASIC=Mellanox Spectrum_A1), egress traffic can be matched. See the
+[list of limitations](#limitations-for-span-erspan) below.
 
 Cumulus Linux supports a maximum of 2 SPAN destinations. Multiple rules
 (SPAN sources) can point to the same SPAN destination, although a given
@@ -295,7 +293,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
     destinations.
   - Because SPAN and ERSPAN are done in hardware, eth0 is not supported
     as a destination.
-  - For Mellanox Spectrum switches, Cumulus Linux supports only a single
+  - For Spectrum switches, Cumulus Linux supports only a single
     SPAN destination in atomic mode or three SPAN destinations in
     non-atomic mode.
   - Multiple rules (SPAN sources) can point to the same SPAN
@@ -304,7 +302,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
   - To configure SPAN or ERSPAN on a Tomahawk or Trident3 switch, you
     must enable
     [non-atomic update mode](/cumulus-linux/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode).
-  - Mellanox switches reject SPAN ACL rules for an output interface that
+  - Spectrum switches reject SPAN ACL rules for an output interface that
     is a subinterface.
   - Mirrored traffic is not guaranteed. If the MTP is congested,
     mirrored packets might be discarded.
@@ -479,7 +477,7 @@ is **not** supported for ERSPAN in Cumulus Linux on switches using
 Broadcom Tomahawk, Trident II+ and Trident II ASICs.
 
 Cut-through mode **is** supported for ERSPAN in Cumulus Linux on
-switches using Mellanox Spectrum ASICs.
+switches using Spectrum ASICs.
 
 {{%/notice%}}
 

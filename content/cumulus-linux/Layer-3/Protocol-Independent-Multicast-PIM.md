@@ -1252,8 +1252,8 @@ multicast entry is the maximum value:
     cumulus@switch:~$ cl-resource-query  | grep Mcast
        Total Mcast Routes:         450,   0% of maximum value    450
 
-For Mellanox chipsets, refer to
-[TCAM Resource Profiles for Mellanox Switches](/cumulus-linux/Layer-3/Routing/#tcam-resource-profiles-for-mellanox-switches).
+For Spectrum chipsets, refer to
+[TCAM Resource Profiles for Spectrum Switches](/cumulus-linux/Layer-3/Routing/#tcam-resource-profiles-for-spectrum-switches).
 
 ### Verify MSDP Session State
 

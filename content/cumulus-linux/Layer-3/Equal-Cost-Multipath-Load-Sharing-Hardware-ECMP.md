@@ -58,7 +58,8 @@ Cumulus Linux hashes on the following fields:
 - Source IPv4 or IPv6 address
 - Destination IPv4 or IPv6 address
 
-Further, on Mellanox switches, Cumulus Linux hashes on these additional fields:
+Further, on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1), 
+Cumulus Linux hashes on these additional fields:
 
 - Source MAC address
 - Destination MAC address
@@ -120,9 +121,7 @@ single physical port in the port tab file, like the physical switch
 ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces
 are not supported.
 
-`cl-ecmpcalc` is supported only on switches with the [Mellanox Spectrum
-and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and
-Trident3](http://cumulusnetworks.com/hcl/) chipsets.
+`cl-ecmpcalc` is supported only on switches with the [Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3](http://cumulusnetworks.com/hcl/) chipsets.
 
 ### ECMP Hash Buckets
 
@@ -325,7 +324,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
         # Valid values - 64, 128, 256, 512, 1024
         resilient_hash_entries_ecmp = 256
 
-3. [Restart](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
+3. [Restart](../../System-Configuration/Configuring-switchd/#restart-switchd)
    the `switchd` service:
 
         cumulus@switch:~$ sudo systemctl restart switchd.service

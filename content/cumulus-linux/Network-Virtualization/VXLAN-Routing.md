@@ -40,13 +40,10 @@ mode](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode).
 The following chipsets support VXLAN routing:
 
   - Broadcom Trident II+, Trident3, and Maverick
-
   - Broadcom Tomahawk and Tomahawk+, using an internal loopback on one
     or more switch ports
-
   - Broadcom Trident II, static VXLAN routing only, using an external
     loopback on one or more switch ports
-
   - Mellanox Spectrum
 
 {{%notice note%}}
@@ -54,10 +51,8 @@ The following chipsets support VXLAN routing:
   - Using ECMP with VXLAN routing is supported only on RIOT-capable
     Broadcom switches (Trident 3, Maverick, Trident 2+) in addition to
     Tomahawk, Tomahawk+ and Mellanox Spectrum-A1 switches.
-
   - For additional restrictions and considerations for VXLAN routing
-    with EVPN, refer to [the EVPN
-    chapter](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN).
+    with EVPN, refer to [the EVPN chapter](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN).
 
 {{%/notice%}}
 

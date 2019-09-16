@@ -17,14 +17,12 @@ for data at specific intervals and takes certain actions so that you can
 quickly identify and respond to problems, such as:
 
   - Microbursts that result in longer packet latency
-
   - Packet buffer congestion that might lead to packet drops
-
   - Network problems with a particular switch, port, or traffic class
 
 {{%notice note%}}
 
-ASIC monitoring is currently supported on Mellanox switches only.
+ASIC monitoring is currently supported on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1) only.
 
 {{%/notice%}}
 
@@ -35,17 +33,14 @@ monitoring tool:
 
   - A fine-grained history of queue lengths using histograms maintained
     by the ASIC
-
   - Packet counts per port, priority and size
-
   - Dropped packet, pause frame, and ECN-marked packet counts
-
   - Buffer congestion occupancy per port, priority and buffer pool, and
     at input and output ports
 
 ## Collecting Queue Lengths in Histograms
 
-The Mellanox Spectrum ASIC provides a mechanism to measure and report
+The Spectrum ASIC provides a mechanism to measure and report
 egress queue lengths in histograms (a graphical representation of data,
 which is divided into intervals or bins). You can configure the ASIC to
 measure up to 64 egress queues. Each queue is reported through a
@@ -66,31 +61,18 @@ For example, consider the following histogram queue length ranges, in
 bytes:
 
   - Min = 960
-
   - Histogram size = 12288
-
   - Max = 13248
-
   - Range size = 1536
-
   - Bin 0: 0:959
-
   - Bin 1: 960:2495
-
   - Bin 2: 2496:4031
-
   - Bin 3: 4032:5567
-
   - Bin 4: 5568:7103
-
   - Bin 5: 7104:8639
-
   - Bin 6: 8640:10175
-
   - Bin 7: 10176:11711
-
   - Bin 8: 11712:13247
-
   - Bin 9: 13248:\*
 
 The following illustration demonstrates a histogram showing how many
@@ -104,7 +86,7 @@ bytes 125 times within one second.
 
 The ASIC monitoring tool is managed by the `asic-monitor` service,
 (which is managed by `systemd`). The `asic-monitor` service reads the
-` /etc/cumulus/datapath/monitor.conf  `configuration file to determine
+`/etc/cumulus/datapath/monitor.conf` configuration file to determine
 what statistics to collect and when to trigger. The service always
 starts; however, if the configuration file is empty, the service exits.
 
@@ -249,20 +231,13 @@ Several configuration examples are provided below.
 
 In the following example:
 
-  - Queue length histograms are collected every second for swp1 through
-    swp50.
+- Queue length histograms are collected every second for swp1 through swp50.
+- The results are written to the `/var/lib/cumulus/histogram_stats` snapshot file.
+- The size of the histogram is set to 12288 bytes, the minimum boundary to 960 bytes, and the sampling time to 1024 nanoseconds.
+- A threshold is set so that when the size of the queue reaches 500
+  bytes, the system sends a message to the `/var/log/syslog` file.
 
-  - The results are written to the `/var/lib/cumulus/histogram_stats`
-    snapshot file.
-
-  - The size of the histogram is set to 12288 bytes, the minimum
-    boundary to 960 bytes, and the sampling time to 1024 nanoseconds.
-
-  - A threshold is set so that when the size of the queue reaches 500
-    bytes, the system sends a message to the `/var/log/syslog` file.
-
-<!-- end list -->
-
+```
     monitor.port_group_list                               = [histogram_pg]
     monitor.histogram_pg.port_set                         = swp1-swp50
     monitor.histogram_pg.stat_type                        = histogram
@@ -276,18 +251,16 @@ In the following example:
     monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
     monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
     monitor.histogram_pg.histogram.sample_time_ns         = 1024
+```
 
 ### Packet Drops Due to Errors
 
 In the following example:
 
-  - Packet drops on swp1 through swp50 are collected every two seconds.
-
-  - If the number of packet drops is greater than 100, the results are
+- Packet drops on swp1 through swp50 are collected every two seconds.
+- If the number of packet drops is greater than 100, the results are
     written to the `/var/lib/cumulus/discard_stats snapshot` file and
     the system sends a message to the `/var/log/syslog` file.
-
-<!-- end list -->
 
     monitor.port_group_list                            = [discards_pg]
     monitor.discards_pg.port_set                       = swp1-swp50
@@ -308,30 +281,24 @@ action.
 
 In the following example:
 
-  - Queue length histograms are collected for swp1 through swp50 every
-    second.
+- Queue length histograms are collected for swp1 through swp50 every second.
+- The results are written to the `/var/lib/cumulus/histogram_stats`
+  snapshot file.
+- When the queue length reaches 500 bytes, the system sends a message
+  to the `/var/log/syslog` file and collects additional data; buffer
+  occupancy and all packets per port.
+- Buffer occupancy data is written to the
+  `/var/lib/cumulus/buffer_stats` snapshot file and all packets per
+  port data is written to the `/var/lib/cumulus/all_packet_stats`
+  snapshot file.
+- In addition, packet drops on swp1 through swp50 are collected every
+  two seconds. If the number of packet drops is greater than 100, the
+  results are written to the `/var/lib/cumulus/discard_stats` snapshot
+  file and a message is sent to the `/var/log/syslog` file.
 
-  - The results are written to the `/var/lib/cumulus/histogram_stats`
-    snapshot file.
-
-  - When the queue length reaches 500 bytes, the system sends a message
-    to the `/var/log/syslog` file and collects additional data; buffer
-    occupancy and all packets per port.
-
-  - Buffer occupancy data is written to the
-    `/var/lib/cumulus/buffer_stats` snapshot file and all packets per
-    port data is written to the `/var/lib/cumulus/all_packet_stats`
-    snapshot file.
-
-  - In addition, packet drops on swp1 through swp50 are collected every
-    two seconds. If the number of packet drops is greater than 100, the
-    results are written to the `/var/lib/cumulus/discard_stats` snapshot
-    file and a message is sent to the `/var/log/syslog` file.
-
-<!-- end list -->
-
+```
     monitor.port_group_list                               = [histogram_pg,discards_pg]
-     
+
     monitor.histogram_pg.port_set                         = swp1-swp50
     monitor.histogram_pg.stat_type                        = buffer
     monitor.histogram_pg.cos_list                         = [0]
@@ -369,6 +336,7 @@ In the following example:
     monitor.discards_pg.snapshot.packet_error_drops       = 100
     monitor.discards_pg.snapshot.file                     = /var/lib/cumulus/discard_stats
     monitor.discards_pg.snapshot.file_count               = 16
+```
 
 {{%notice note%}}
 
@@ -521,7 +489,7 @@ In the following example, because the snapshot file count is set to 64, the firs
 <tr class="odd">
 <td><p><code>&lt;port_group_name&gt;.histogram.minimum_bytes_boundary</code></p></td>
 <td><p><em>For histogram monitoring</em></p>
-<p>The minimum boundary size for the histogram in bytes. On a Mellanox switch, this number must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values are used to represent the range of queue lengths per bin.</p>
+<p>The minimum boundary size for the histogram in bytes. On a Spectrum switch, this number must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values are used to represent the range of queue lengths per bin.</p>
 <p>Example:</p>
 <p><code>monitor.histogram_pg.histogram.minimum_bytes_boundary = 960</code></p></td>
 </tr>

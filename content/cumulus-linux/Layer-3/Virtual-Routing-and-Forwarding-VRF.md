@@ -402,9 +402,7 @@ between a pair of VRFs.
   shared service VRF. Create another VRF for shared services.
 - Broadcom switches have certain limitations when leaking routes
   between the default VRF and non-default VRFs.
-- On Mellanox switches, only leak the specific routes you need from
-  the default VRF; do not include the VTEP routes or filter out the
-  VTEP routes with a route filter.
+- On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1), only leak the specific routes you need from the default VRF; do not include the VTEP routes or filter out the VTEP routes with a route filter.
 
 {{%/notice%}}
 

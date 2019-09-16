@@ -43,10 +43,8 @@ For a basic VXLAN configuration, make sure that:
 
   - The VXLAN has a network identifier (VNI); do not use 0 or 16777215
     as the VNI ID, which are reserved values under Cumulus Linux.
-
   - The VXLAN link and local interfaces are added to bridge to create
     the association between port, VLAN, and VXLAN instance.
-
   - Each traditional bridge on the switch has only one VXLAN interface.
     Cumulus Linux does not support more than one VXLAN ID per
     traditional bridge.
@@ -77,10 +75,8 @@ corresponds to the loopback address of the switch.
 To configure static VXLAN tunnels, do the following for each leaf:
 
   - Specify an IP address for the loopback
-
   - Create a VXLAN interface using the loopback address for the local
     tunnel IP address
-
   - Create the tunnels by configuring the remote IP address to each
     other leaf switch's loopback address
 

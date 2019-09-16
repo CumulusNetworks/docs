@@ -19,11 +19,9 @@ number of tools available for configuring ACLs in Cumulus Linux:
   - `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools
     used to administer filtering rules for IPv4 packets, IPv6 packets,
     and Ethernet frames (layer 2 using MAC addresses).
-
   - [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
     is a Cumulus Linux-specific userspace tool used to configure custom
     ACLs.
-
   - `cl-acltool` is a Cumulus Linux-specific userspace tool used to
     administer filtering rules and configure default ACLs.
 
@@ -132,16 +130,12 @@ points are known as *chains* and are shown here:
 The chains and their uses are:
 
   - **PREROUTING** touches packets before they are routed
-
   - **INPUT** touches packets after they are determined to be destined
     for the local system but before they are received by the control
     plane software
-
   - **FORWARD** touches transit traffic as it moves through the box
-
   - **OUTPUT** touches packets that are sourced by the control plane
     software before they are put on the wire
-
   - **POSTROUTING** touches packets immediately before they are put on
     the wire but after the routing decision has been made
 
@@ -151,7 +145,6 @@ When building rules to affect the flow of traffic, the individual chains
 can be accessed by *tables*. Linux provides three tables by default:
 
   - **Filter** classifies traffic or filters traffic
-
   - **NAT** applies Network Address Translation rules
 
     {{%notice note%}}
@@ -191,19 +184,15 @@ those different components.
   - **Table:** The first argument is the *table*. Notice the second
     example does not specify a table, that is because the filter table
     is implied if a table is not specified.
-
   - **Chain:** The second argument is the *chain*. Each table supports
     several different chains. See Understanding Tables above.
-
   - **Matches:** The third argument(s) are called the *matches*. You can
     specify multiple matches in a single rule. However, the more matches
     you use in a rule, the more memory that rule consumes.
-
   - **Jump:** The *jump* specifies the target of the rule; that is, what
     action to take if the packet matches the rule. If this option is
     omitted in a rule, then matching the rule will have no effect on the
     packet's fate, but the counters on the rule will be incremented.
-
   - **Target(s):** The *target* can be a user-defined chain (other than
     the one this rule is in), one of the special built-in targets that
     decides the fate of the packet immediately (like DROP), or an
@@ -218,9 +207,7 @@ All the rules from each chain are read from `iptables`, `ip6tables`, and
 mangle table. The rules are read from the kernel in the following order:
 
   - IPv6 (`ip6tables`)
-
   - IPv4 (`iptables`)
-
   - `ebtables`
 
 When rules are combined and put into one table, the order determines the
@@ -235,7 +222,6 @@ underneath processes packets. Be aware of the following:
     process packets. The switch silicon reorders rules when `switchd`
     writes to the ASIC, whereas traditional `iptables` execute the list
     of rules in order.
-
   - All rules are terminating; after a rule matches, the action is
     carried out and no more rules are processed. The exception to this
     is when a SETCLASS rule is placed immediately before another rule;
@@ -278,19 +264,15 @@ underneath processes packets. Be aware of the following:
 
   - When using rules that do a mangle and a filter lookup for a packet,
     Cumulus Linux processes them in parallel and combines the action.
-
   - If a switch port is assigned to a bond, any egress rules must be
     assigned to the bond.
-
   - When using the OUTPUT chain, rules must be assigned to the source.
     For example, if a rule is assigned to the switch port in the
     direction of traffic but the source is a bridge (VLAN), the traffic
     is not affected by the rule and must be applied to the bridge.
-
   - If all transit traffic needs to have a rule applied, use the FORWARD
     chain, not the OUTPUT chain.
-
-  - ` ebtable  `rules are put into either the IPv4 or IPv6 memory space
+  - `ebtable` rules are put into either the IPv4 or IPv6 memory space
     depending on whether the rule utilizes IPv4 or IPv6 to make a
     decision. Layer 2-only rules that match the MAC address are put into
     the IPv4 memory space.
@@ -362,9 +344,7 @@ interrupt network traffic when new rules are installed. The rules are
 mapped into the following tables and are updated in this order:
 
   - mirror (ingress only)
-
   - ipv4-mac (can be both ingress and egress)
-
   - ipv6 (ingress only)
 
 {{%notice warning%}}
@@ -548,7 +528,7 @@ Cumulus Linux 3.7.9 and later enables you to match on VLAN IDs on layer 2 interf
 
 {{%notice note%}}
 
-Matching VLAN IDs on layer 2 Interfaces is supported on Mellanox switches only.
+Matching VLAN IDs on layer 2 interfaces is supported on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1) only.
 
 {{%/notice%}}
 
@@ -912,7 +892,7 @@ The Mellanox Spectrum ASIC has one common
 [TCAM](https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs)
 for both ingress and egress, which can be used for other non-ACL-related
 resources. However, the number of supported rules varies with the [TCAM
-profile](/cumulus-linux/Layer-3/Routing#tcam-resource-profiles-for -mellanox-switches) specified for the
+profile](/cumulus-linux/Layer-3/Routing#tcam-resource-profiles-for -spectrum-switches) specified for the
 switch.
 
 | Profile      | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
@@ -1720,8 +1700,7 @@ instead because:
 
 ### Mellanox Spectrum Hardware Limitations
 
-Due to hardware limitations in the Spectrum ASIC, [BFD
-policers](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
+Due to hardware limitations in the Spectrum ASIC, [BFD policers](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
 are shared between all BFD-related control plane rules. Specifically the
 following default rules share the same policer in the
 `00control_plan.rules` file:
@@ -1771,9 +1750,9 @@ following is displayed:
 The Dell S3048-ON has a limit of 24576 MAC address entries instead of
 32K for other 1G switches.
 
-### Mellanox Spectrum Switches and INPUT Chain Rules
+### Mellanox Spectrum ASICs and INPUT Chain Rules
 
-On Mellanox Spectrum switches, INPUT chain rules are implemented using a
+On switches with Mellanox Spectrum ASICs, INPUT chain rules are implemented using a
 trap mechanism. Packets headed to the CPU are assigned trap IDs. The
 default INPUT chain rules are mapped to these trap IDs. However, if a
 packet matches multiple traps, they are resolved by an internal priority

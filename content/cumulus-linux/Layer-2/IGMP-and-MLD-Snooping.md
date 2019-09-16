@@ -47,7 +47,7 @@ ports interested in receiving multicast traffic destined to that group.
 
 Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN bridges, where VXLAN ports are set as router ports, on Broadcom switches.
 
-Cumulus Linux 3.7.9 and later also supports IGMP/MLD snooping over VXLAN bridges on Mellanox switches. However, in addition to enabling IGMP/MLD snooping over VXLAN, you need to perform an additional configuration step, described below.
+Cumulus Linux 3.7.9 and later also supports IGMP/MLD snooping over VXLAN bridges on Spectrum switches. However, in addition to enabling IGMP/MLD snooping over VXLAN, you need to perform an additional configuration step, described below.
 
 To enable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop yes` command:
 
@@ -61,9 +61,9 @@ Cumulus Networks recommends that you also configure IGMP/MLD querier. See [Confi
 
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.
 
-**Additional Configuration for Mellanox switches**
+**Additional Configuration for Spectrum Switches**
 
-For mellanox switches, the IGMP reports received over VXLAN from remote hosts are not forwarded to the kernel, which, in certain cases, might result in local receivers not responding to the IGMP query. To workaround this issue, you need to apply certain ACL rules to avoid the IGMP report packets being sent across to the hosts:
+For Spectrum switches, the IGMP reports received over VXLAN from remote hosts are not forwarded to the kernel, which, in certain cases, might result in local receivers not responding to the IGMP query. To workaround this issue, you need to apply certain ACL rules to avoid the IGMP report packets being sent across to the hosts:
 
 Add the following lines to the `/etc/cumulus/acl/policy.d/23_acl_test.rules` file (where `<swp>` is the port connected to the access host), then run the `cl-acltool -i` command:
 
@@ -86,7 +86,7 @@ address of the queries to be the bridge IP address, configure
 For an explanation of the relevant parameters, see the
 `ifupdown-addons-interfaces` man page.
 
-For a 
+For a
 [VLAN-aware bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
 use a configuration like the following:
 

@@ -19,8 +19,8 @@ capabilities.
 
 To take advantage of the numerous event messages generated and processed
 by NetQ, you must integrate with third-party event notification
-applications. You can integrate NetQ with the PagerDuty and Slack tools.
-You may integrate with one or both of these applications.
+applications. You can integrate NetQ with PagerDuty, Slack, and syslog.
+You may integrate with one or more of these applications.
 
 Each network protocol and service in the NetQ Platform receives the raw
 data stream from the NetQ Agents, processes the data and delivers events
@@ -28,7 +28,7 @@ to the Notification function. Notification then stores, filters and
 sends messages to any configured notification applications. Filters are
 based on rules you create. You must have at least one rule per filter.
 
-{{<figure src="/images/netq/event-notif-arch.png" width="700" >}}
+{{<figure src="/images/netq/event-notif-arch-222.png" width="700">}}
 
 {{%notice note%}}
 
@@ -113,6 +113,7 @@ to assist when needed. The command syntax is:
     ##Channels
     netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
     netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
+    netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity warning | severity error | severity debug]
      
     ##Rules and Filters
     netq add notification rule <text-rule-name> key <text-rule-key> value <text-rule-value>
@@ -157,7 +158,7 @@ to the notification channels.
 
 ### Create Channels
 
-Create one or more PagerDuty and Slack channels to present the
+Create one or more PagerDuty, Slack, and syslog channels to present the
 notifications.
 
 #### Configure a PagerDuty Channel
@@ -218,7 +219,7 @@ To configure NetQ to send notifications to Slack:
     7.  Click **Add Incoming WebHooks integration**.
     8.  Save WebHook URL in a text file for use in next step.
 
-2.  Configure the following options in the ` netq config add
+2.  Configure the following options in the `netq config add
     notification channel` command:
 
     <table>
@@ -274,6 +275,48 @@ To configure NetQ to send notifications to Slack:
 
     {{<figure src="/images/netq/slack-add-webhook-ex.png">}}
 
+#### Configure a Syslog Channel
+
+With NetQ 2.2.2 and later you can integrate your syslog daemon with the NetQ notification capabilities. Cumulus Networks recommends that all events directed to Syslog are written to and configured in the Syslog. For example, in /var/log/messages:
+
+```
+Aug 27 05:03:07 kafka-connect-deploy-86dadc8459-57dp2 -: critical : link : HostName server01 changed state from up to down Interface:swp3
+Aug 27 05:03:07 kafka-connect-deploy-86dadc8459-57dp2 -: info : link : HostName server01 changed state from down to up Interface:swp3
+```
+
+NetQ assumes that your syslog is reachable from the kafka-connect pod.
+
+To configure NetQ to send notifications to syslog:
+
+1. Verify you can reach your syslog by spawning a new Kubernetes pod for syslog and configuring the IP address and port of the syslog service.
+
+2. Configure the following options in the `netq config add
+    notification channel` command:
+
+    | Option | Description |
+    | ------ | ----------- |
+    | syslog \<text-channel-name\> | The third-party notification channel and name |
+    | hostname \<text-syslog-hostname\> | Hostname or IP address where your syslog service resides |
+    | port | Access port for syslog on the syslog host |
+    | severity | (Optional) The log level to set, which can be one of *info*, *warning*, *error*, *critical* or *debug*. The severity defaults to *info*. |
+
+```
+cumulus@switch:~$ netq add notification channel syslog syslog-channel hostname server01 port 24
+Successfully added/updated channel syslog-channel
+```
+
+3. Verify that the channel is configured properly.
+
+```
+cumulus@switch:~$ netq show notification channel
+
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+syslog-channel  syslog           info             host: server01,
+                                                      port: 24
+```
+
 ### Create Rules
 
 Each rule is comprised of a single key-value pair. The key-value pair
@@ -282,8 +325,8 @@ to a notification channel. You can create more than one rule for a
 single filter. Creating multiple rules for a given filter can provide a
 very defined filter. For example, you can specify rules around hostnames
 or interface names, enabling you to filter messages specific to those
-hosts or interfaces. You should have already defined the PagerDuty or
-Slack channels (as described earlier).
+hosts or interfaces. You should have already defined the PagerDuty,
+Slack, or syslog channels (as described earlier).
 
 There is a fixed set of valid rule keys. Values are entered as regular
 expressions and *vary according to your deployment*.
@@ -2284,14 +2327,13 @@ You can limit or direct event messages using filters. Filters are
 created based on rules you define; like those in the previous section.
 Each filter contains one or more rules. When a message matches the rule,
 it is sent to the indicated destination. Before you can create filters,
-you need to have already defined the rules and configured PagerDuty
-and/or Slack channels (as described earlier).
+you need to have already defined the rules and configured PagerDuty, Slack and/or syslog channels (as described earlier).
 
 As filters are created, they are added to the bottom of a filter list.
 By default, filters are processed in the order they appear in this list
 (from top to bottom) until a match is found. This means that each event
 message is first evaluated by the first filter listed, and if it matches
-then it is processed, ignoring all other filters, and the system moves
+then it is processed, ignoring all other filters. The system moves
 on to the next event message received. If the event does not match the
 first filter, it is tested against the second filter, and if it matches
 then it is processed and the system moves on to the next event received.
@@ -2305,7 +2347,7 @@ processed before or after another.
 This diagram shows an example with four defined filters with sample
 output results.
 
-{{<figure src="/images/netq/NQ-2x-Filter-Process-Flow.png">}}
+{{<figure src="/images/netq/NQ-2x-Filter-Process-Flow-222.png">}}
 
 {{%notice note%}}
 
@@ -2331,7 +2373,7 @@ Create a Filter for a Given VNI in Your EVPN Overlay:
 
 Create a Filter for when a Configuration File has been Updated:
 
-    cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
+    cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel syslog-channel
     Successfully added/updated filter configChange
 
 Create a Filter to Monitor Ports with FEC Support:
@@ -2371,7 +2413,7 @@ platform.
     bgpSpine        2          info             pd-netq-events   bgpHostnam
                                                                  e
     vni42           3          warning          pd-netq-events   evpnVni
-    configChange    4          info             slk-netq-events  sysconf
+    configChange    4          info             syslog-channel   sysconf
     newFEC          5          info             slk-netq-events  fecSupport
     svcDown         6          critical         slk-netq-events  svcStatus
     critTemp        7          critical         pd-netq-events   overTemp
@@ -2415,7 +2457,7 @@ Run the `netq show notification` command again to verify the changes:
     bgpSpine        4          info             pd-netq-events   bgpHostnam
                                                                  e
     vni42           5          warning          pd-netq-events   evpnVni
-    configChange    6          info             slk-netq-events  sysconf
+    configChange    6          info             syslog-channel   sysconf
     newFEC          7          info             slk-netq-events  fecSupport
 
 ## Example Notification Configurations
@@ -2503,28 +2545,27 @@ from VNI 42 are filtered to the *pd-netq-events* channel.
 
 ### Create a Notification for Configuration File Changes
 
-In this example, we created a notification integration with a Slack
-channel called *slk-netq-events*. We then created a rule *sysconf* and a
+In this example, we created a notification integration with a Syslog
+channel called *syslog-channel*. We then created a rule *sysconf* and a
 filter called *configChange* for any configuration file update messages.
 The result is that any configuration update messages are filtered to the
-*slk-netq-events* channel.
+*syslog-channel* channel.
 
-    cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
-    Successfully added/updated channel slk-netq-events
+    cumulus@switch:~$ netq add notification channel syslog syslog-channel hostname server01 port 24
+    Successfully added/updated channel syslog-channel
      
     cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
     Successfully added/updated rule sysconf
      
-    cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
+    cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel syslog-channel
     Successfully added/updated filter configChange
      
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
-    slk-netq-events slack            info     webhook:https://hooks.s
-                                              lack.com/services/text/
-                                              moretext/evenmoretext     
+    syslog-channel  syslog            info     hostname: server01
+                                                port: 24
      
     cumulus@switch:~$ netq show notification rule
     Matching config_notify records:
@@ -2541,7 +2582,7 @@ The result is that any configuration update messages are filtered to the
     bgpSpine        1          info             pd-netq-events   bgpHostnam
                                                                  e
     vni42           2          warning          pd-netq-events   evpnVni
-    configChange    3          info             slk-netq-events  sysconf
+    configChange    3          info             syslog-channel   sysconf
 
 ### Create a Notification for When a Service Goes Down
 
@@ -2776,7 +2817,7 @@ For example:
                 "severity":"info"
             },
             {
-                "channels":"slk-netq-events",
+                "channels":"syslog-channel",
                 "rules":"sysconf",
                 "name":"configChange",
                 "severity":"info"
@@ -2850,7 +2891,7 @@ removed:
     swp52Drop       1          error            NetqDefaultChann swp52
                                                 el
     vni42           2          warning          pd-netq-events   evpnVni
-    configChange    3          info             slk-netq-events  sysconf
+    configChange    3          info             syslog-channel   sysconf
     svcDown         4          critical         slk-netq-events  svcStatus
     critTemp        5          critical         pd-netq-events   switchLeaf
                                                                  04

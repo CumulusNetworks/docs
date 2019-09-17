@@ -15,9 +15,9 @@ Cumulus Linux includes native Linux VXLAN kernel support.
 
 ## Requirements
 
-A VXLAN configuration requires a Broadcom switch with the Tomahawk,
+A VXLAN configuration requires a switch with the Broadcom Tomahawk,
 Trident II+, or Trident II ASIC running Cumulus Linux 2.0 or later, or a
-Mellanox switch with the Spectrum ASIC running Cumulus Linux 3.2.0 or
+switch with the Mellanox Spectrum ASIC running Cumulus Linux 3.2.0 or
 later.
 
 For a basic VXLAN configuration, make sure that:

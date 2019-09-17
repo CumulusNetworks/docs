@@ -238,7 +238,7 @@ $block-border-radius: 0.15rem;
     table-layout: fixed;
     width: 100%;
     display: block;
-    overflow: scroll;
+    overflow: auto;
 
     p {
       word-break: unset;
@@ -259,6 +259,16 @@ $block-border-radius: 0.15rem;
   }
 
   p code {
+    color: $cn-nevada;
+    background: $code-block-background;
+  }
+
+  li code {
+    color: $cn-nevada;
+    background: $code-block-background;
+  }
+
+  td code {
     color: $cn-nevada;
     background: $code-block-background;
   }

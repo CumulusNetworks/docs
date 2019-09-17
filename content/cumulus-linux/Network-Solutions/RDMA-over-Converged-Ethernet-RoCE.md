@@ -53,8 +53,7 @@ chapter.
 
 {{%notice tip%}}
 
-On Mellanox switches, you can alternately use NCLU to configure RoCE
-with PFC:
+On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1), you can alternately use NCLU to configure RoCE with PFC:
 
     cumulus@switch:~$ net add interface swp1 storage-optimized pfc
     cumulus@switch:~$ net pending
@@ -119,8 +118,7 @@ chapter.
 
 {{%notice tip%}}
 
-On Mellanox switches, you can alternately use NCLU to configure RoCE
-with ECN:
+On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1), you can alternately use NCLU to configure RoCE with ECN:
 
     cumulus@switch:~$ net add interface swp1 storage-optimized
     cumulus@switch:~$ net pending

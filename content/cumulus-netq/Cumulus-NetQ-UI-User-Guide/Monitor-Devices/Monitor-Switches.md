@@ -232,7 +232,11 @@ The *Utilization* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Performance</p></td>
-<td><p>Displays distribution of CPU usage, memory usage, and switch up time during the designated time period</p></td>
+<td><p>Displays distribution, trend, and current CPU and memory usage during the designated time period.</p><p>The precentage value represents current usage, and the arrow represents the usage trend where:</p>
+<ul>
+<li><p><strong>Pointing upward and bright pink</strong>: Usage in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
+<li><p><strong>Pointing downward and green</strong>: Usage in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
+<li><p><strong>No arrow</strong>: Usage is unchanged over the last two data collection windows, trend is steady</p></li></td>
 </tr>
 <tr class="even">
 <td><p>Network</p></td>
@@ -248,7 +252,7 @@ The *Utilization* tab displays:
 The full screen Switch card provides tabs for all IP addresses, all MAC
 addresses, and all interfaces.
 
-{{< figure src="/images/netq/dev-switch-fullscr-ipaddr-tab.png" width="700" >}}
+{{< figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-222.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -451,7 +455,7 @@ To view all IP addresses:
 1.  Open the full screen Switch card. The **IP addresses** tab is shown
     by default.
 
-    {{% imgOld 22 %}}
+    {{<figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-222.png" width="700">}}
 
 2.  Review the addresses for any anomalies, to obtain prefix
     information, determine if it is an IPv4 or IPv6 address, and so
@@ -464,7 +468,7 @@ To view all MAC addresses:
 1.  Open the full screen Switch card and click the **MAC Addresses**
     tab.
 
-    {{% imgOld 24 %}}
+    {{<figure src="/images/netq/dev-switch-fullscr-macaddr-tab-222.png" width="700">}}
 
 2.  Review the addresses for any anomalies, to see the associated egress
     port, associated VLANs, and so forth.
@@ -482,7 +486,7 @@ To view all interfaces:
 1.  Open the full screen Switch card and click the **All Interfaces**
     tab.
 
-    {{% imgOld 26 %}}
+    {{<figure src="/images/netq/dev-switch-fullscr-interfaces-tab-222.png" width="700">}}
 
 2.  Look for interfaces that are down, shown in the **State** column.
 3.  Look for recent changes to the interfaces, shown in the **Last
@@ -539,7 +543,7 @@ The medium Switch Inventory card displays:
 <tr class="odd">
 <td><p>Chart</p></td>
 <td><p>Distribution of switch components (disk size, OS, ASIC, NetQ Agents, CPU, Cumulus Linux licenses, platform, and memory size) during the designated time period. Hover over chart segment to view versions of each component.</p>
-<p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, you likely need to upgrade the older agents.</p></td>
+<p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, Cumulus Networks recommends that you upgrade the older agents.</p></td>
 </tr>
 <tr class="even">
 <td><p>Unique</p></td>
@@ -699,7 +703,7 @@ The *Software* tab displays:
 <tr class="even">
 <td><p>Agent Version chart</p></td>
 <td><p>Distribution of NetQ Agent versions. Hover over chart segment to view the number of switches with each version.</p>
-<p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, you likely need to upgrade the older agents.</p></td>
+<p><strong>Note</strong>: You should only have one version of NetQ Agent running and it should match the NetQ Platform release number. If you have more than one, Cumulus Networks recommends that you upgrade the older agents.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Show All</p></td>

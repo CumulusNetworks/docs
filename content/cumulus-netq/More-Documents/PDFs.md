@@ -10,6 +10,10 @@ siteSlug: cumulus-netq-22
 
 The following Cumulus NetQ user documentation is available in PDF for offline viewing or printing:
 
+NetQ 2.2.2
+
+- PDFs for NetQ 2.2.2 are coming soon.
+
 NetQ 2.2.1
 
 - PDFs for NetQ 2.2.1 are coming soon.

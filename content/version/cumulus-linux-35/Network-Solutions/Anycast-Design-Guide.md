@@ -11,10 +11,8 @@ version: '3.5'
 imgData: cumulus-linux-35
 siteSlug: cumulus-linux-35
 ---
-Cumulus Networks' [Routing on the
-Host](https://docs.cumulusnetworks.com/display/ROH/Routing+on+the+Host)
-provides the ability to run
-[OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-OSPF---Protocol)
+Cumulus Networks' Routing on the Host provides the ability to run
+[OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-OSPF-Protocol)
 or
 [BGP](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol-BGP)
 directly on server hosts. This can enable a network architecture known
@@ -33,7 +31,7 @@ advertising the 172.16.255.66/32 anycast IP address.
 
 {{% imgOld 0 %}}
 
-## Anycast Architecture</span>
+## Anycast Architecture
 
 Anycast relies on layer 3 equal cost multipath functionality to provide
 load sharing throughout the network. Each server announces a route for a
@@ -81,7 +79,7 @@ sessions were hashed to different egress ports.
     ecmpcalc: will query hardware
     swp3
 
-## Anycast with TCP and UDP</span>
+## Anycast with TCP and UDP
 
 A key component to the functionality and cost effective nature of
 anycast is that the network does not maintain state for flows. Every
@@ -109,10 +107,9 @@ for anycast. However, TCP applications in an anycast environment should
 have short-lived flows (measured in seconds or less) to reduce the
 impact of network changes or failures.
 
-## Resilient Hashing</span>
+## Resilient Hashing
 
-[Resilient
-hashing](Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP.html#src-8357725_EqualCostMultipathLoadSharing-HardwareECMP-resilient_hashing)
+[Resilient hashing](/version/cumulus-linux-35/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#resilient-hashing)
 provides a method to prevent failures from impacting the hash result of
 unrelated flows. However, resilient hashing does not prevent rehashing
 when new next hops are added.
@@ -173,7 +170,7 @@ cannot prevent rehashing on next hop addition.
 You can read more information on resilient hashing in the [ECMP
 chapter](/version/cumulus-linux-35/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP).
 
-## Applications for Anycast</span>
+## Applications for Anycast
 
 As previously mentioned, UDP-based applications are great candidates for
 anycast architectures, such as NTP or DNS.
@@ -186,7 +183,7 @@ first two questions to answer are:
   - Whether the application relies on more than one session as part of
     the application.
 
-### Applications with Multiple Connections</span>
+### Applications with Multiple Connections
 
 The network has no knowledge of any sessions or relationships between
 different sessions for the same application. This affects protocols that
@@ -204,7 +201,7 @@ server. The new server would only accept that data connection if the FTP
 server application was capable of robust information sharing, as it has
 no history of the original request in the control session.
 
-### Initiating Traffic vs. Receiving Traffic</span>
+### Initiating Traffic vs. Receiving Traffic
 
 It is also important to understand that an outbound TCP session should
 never be initiated over an anycast IP address, as traffic that
@@ -213,7 +210,7 @@ server after the network hash. Contrast this with inbound sessions,
 where the network hash is the same for all packets in a flow, so the
 inbound traffic will hash to the same anycast server.
 
-### TCP and Anycast</span>
+### TCP and Anycast
 
 TCP-based applications can be used with anycast, with the following
 recommendations:
@@ -241,7 +238,7 @@ anycast services. For example:
 It should be noted that anycast TCP is possible and has been implemented
 by a number of organizations, one notable example being LinkedIn.
 
-## Conclusion</span>
+## Conclusion
 
 Anycast can provide a low cost, highly scalable implementation for
 services. However, the limitations inherent in network-based ECMP makes

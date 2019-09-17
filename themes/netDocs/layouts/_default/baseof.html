@@ -14,7 +14,10 @@
   <!-- WHERE Hugo pipes in and compiles book.scss-->
   {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
-
+  {{ if .Site.Params.pdfExport }}
+    {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify }}
+  {{ end }}
+  
   <!-- Favicon -->
   <link rel="icon" href="{{ "icons/favicon.png" | relURL }}" type="image/x-icon">
 
@@ -37,6 +40,7 @@
 
 
 <body>
+  {{ if not .Site.Params.pdfExport }}
   <input type="checkbox" style="display: none" id="menu-control" />
   <!-- INSERT article page header -->
   <header id="site-nav">
@@ -205,8 +209,10 @@
       </div>
     </div> <!-- search-container -->
   </div> <!-- mobile product nav -->
+  {{ end }}
 
   <main class="flex container">
+    {{ if not .Site.Params.pdfExport }}
     <aside class="book-menu fixed">
 
       <nav role="navigation">
@@ -232,8 +238,10 @@
 
 
     </aside>
+    {{ end }}
 
     <div class="book-page">
+    {{ if not .Site.Params.pdfExport }}
 
       <!-- default mobile header from themes/book -->
       <!-- <header class="align-center justify-between book-header">
@@ -242,6 +250,7 @@
         </label>
         <strong>{{- .Page.Title -}}</strong>
       </header> -->
+    {{ end }}
 
       <!-- branch to list.html or single.html -->
       {{ block "main" . }}
@@ -258,6 +267,7 @@
       {{ end }}
 
   </main>
+  {{ if not .Site.Params.pdfExport }}
   <footer class="footer-top">
     <div class="container">
       <div class="row">
@@ -433,6 +443,7 @@
   <script>
     (function(w,d,s){var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='//embeddable-widgets-usw2.insided.com/cumulusnetworks-en.insided-conversational.js';f.parentNode.insertBefore(j,f);})(window,document,'script');
   </script>
+  {{ end }}
 
 </body>
 

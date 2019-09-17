@@ -115,7 +115,7 @@ double-wide). For information about ACL entries, see
 
 {{%notice note%}}
 
-On a Mellanox switch in Cumulus Linux 3.7.4, the `cl-resource-query`
+On a Spectrum switch in Cumulus Linux 3.7.4, the `cl-resource-query`
 command shows the number of TCAM entries used by the different types of
 ACL resources.
 

@@ -23,12 +23,8 @@ in Cumulus Linux.
 
 {{%notice note%}}
 
-  - You cannot use EVPN and LNV at the same time.
-
-  - When using EVPN, you *must* disable data plane MAC learning on all
-    VXLAN interfaces. This is described in [Basic EVPN
-    Configuration](#basic-evpn-configuration),
-    below.
+- You cannot use EVPN and LNV at the same time.
+- When using EVPN, you *must* disable data plane MAC learning on all VXLAN interfaces. This is described in [Basic EVPN Configuration](#basic-evpn-configuration), below.
 
 {{%/notice%}}
 
@@ -50,40 +46,27 @@ features include:
 
   - VNI membership exchange between VTEPs using EVPN type-3 (Inclusive
     multicast Ethernet tag) routes.
-
   - Exchange of host MAC and IP addresses using EVPN type-2 (MAC/IP
     advertisement) routes.
-
   - Support for host/VM mobility (MAC and IP moves) through exchange of
     the MAC Mobility Extended community.
-
   - Support for dual-attached hosts via [VXLAN active-active
     mode](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode).
     MAC synchronization between the peer switches is done using
     [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG).
-
   - Support for ARP/ND suppression, which provides VTEPs with the
     ability to suppress ARP flooding over VXLAN tunnels.
-
   - Support for exchange of static (sticky) MAC addresses through EVPN.
-
   - Support for distributed symmetric routing between different subnets.
-
   - Support for distributed asymmetric routing between different
     subnets.
-
   - Support for centralized routing.
-
   - Support for prefix-based routing using EVPN type-5 routes (EVPN IP
     prefix route)
-
   - Support for layer 3 multi-tenancy.
-
   - Support for IPv6 tenant routing.
-
   - Symmetric routing, asymmetric routing and prefix-based routing are
     supported for both IPv4 and IPv6 hosts and prefixes.
-
   - ECMP (equal cost multipath) support for overlay networks on
     RIOT-capable Broadcom switches (Trident 3, Maverick, Trident 2+) in
     addition to Tomahawk and Mellanox Spectrum-A1 switches. No
@@ -1116,6 +1099,12 @@ file:
     vrf turtle
       vni 104001 prefix-routes-only
 
+{{%notice note%}}
+
+There is no command to delete the `prefix-routes-only` option. The `net del vrf <vrf> vni <vni> prefix-routes-only` command deletes the VNI.
+
+{{%/notice%}}
+
 ### Control Which RIB Routes Are Injected into EVPN
 
 By default, when announcing IP prefixes in the BGP RIB as EVPN type-5
@@ -1342,13 +1331,11 @@ duplicate address flag. No functional action is taken on the address.
 {{%notice note%}}
 
 If a MAC address is flagged as a duplicate, all IP addresses associated
-with that MAC are flagged as duplicates.****
+with that MAC are flagged as duplicates.
 
 {{%/notice%}}
 
 {{%notice note%}}
-
-**MLAG Deployments**
 
 In an MLAG configuration, duplicate address detection runs independently
 on each switch in the MLAG pair. Based on the sequence in which local
@@ -1371,7 +1358,6 @@ higher move for the address.
 
 If an address is undergoing a mobility
 event between remote VTEPs, duplicate detection is not started.
-
 
 The following illustration shows VTEP-A, VTEP-B, and VTEP-C in an EVPN
 configuration. Duplicate address detection triggers on VTEP-A when there

@@ -538,19 +538,9 @@ release.
       <td>2.2.0</td>
     </tr>
     <tr>
-      <td>netq install opta interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt; config-key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;][force]</td>
-      <td>Installs NetQ v2.2.1 software onto the NetQ Cloud Appliance. The <em>force</em> option was also added.</td>
-      <td>2.2.1</td>
-    </tr>
-    <tr>
-      <td>netq upgrade opta interface &lt;text-opta-ifname&gt; key &lt;text-opta-key&gt;     </td>
+      <td>netq upgrade opta interface &lt;text-opta-ifname&gt; key &lt;text-opta-key&gt;</td>
       <td>Upgrades the NetQ software on the NetQ Cloud Appliance.</td>
       <td>2.2.0</td>
-    </tr>
-    <tr>
-      <td>netq upgrade opta tarball &lt;text-tarball-name&gt;</td>
-      <td>Upgrades the NetQ software on the NetQ Cloud Appliance.</td>
-      <td>2.2.1</td>
     </tr>
     <tr>
       <td>netq update opta config-key &lt;text-opta-key&gt;</td>
@@ -561,6 +551,11 @@ release.
       <td>netq [&lt;hostname&gt;] show interface-stats [errors|all] [&lt;physical-port&gt;] [around &lt;text-time&gt;] [json]</td>
       <td>Displays a variety of NetQ server or appliance interface statistics.</td>
       <td>2.2.0 EA, 2.2.1 GA</td>
+    </tr>
+    <tr>
+      <td>netq add notification channel syslog &lt;text-channel-name&gt; hostname &lt;text-syslog-hostname&gt; port &lt;text-syslog-port&gt; [severity info | severity warning | severity error | severity debug]</td>
+      <td>Configures syslog to receive event notifications</td>
+      <td>2.2.2</td>
     </tr>
    </tbody>
 </table>
@@ -587,16 +582,40 @@ this release.
  </thead>
  <tbody>
     <tr>
+      <td>netq install opta interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt; config-key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;][force]</td>
+      <td>netq install opta interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt; key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;]
+      <td>Installs NetQ v2.2.1 software onto the NetQ Cloud Appliance. The <em>key</em> option was changed to <em>config-key</em>, and the <em>force</em> option was added.</td>
+      <td>2.2.1</td>
+    </tr>
+    <tr>
+      <td>netq install opta interface &lt;text-opta-ifname&gt; tarball (&lt;text-tarball-name&gt; | download | download <text-opta-version>) config-key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;]</td>
+      <td>netq install opta interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt; config-key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;]</td>
+      <td>Added option to download and install latest (<em>download</em>) or specific (<em>download &lt;text-opta-version&gt;</em>) version of install package for NetQ Cloud software in one step.</td>
+      <td>2.2.2</td>
+   </tr>
+   <tr>
+     <td>netq upgrade opta tarball &lt;text-tarball-name&gt;</td>
+     <td>netq upgrade opta interface &lt;text-opta-ifname&gt; key &lt;text-opta-key&gt;</td>
+     <td>Upgrades the NetQ software on the NetQ Cloud Appliance. Simplified command to use tarball name rather than interface and key.</td>
+     <td>2.2.1</td>
+   </tr>
+   <tr>
+      <td>netq upgrade opta tarball (&lt;text-tarball-name&gt; | download | download <text-opta-version>)</td>
+      <td>netq upgrade opta tarball &lt;text-tarball-name&gt;</td>
+      <td>Added option to download and install latest (<em>download</em>) or specific (<em>download &lt;text-opta-version&gt;</em>)version of upgrade package for NetQ Cloud software in one step.</td>
+      <td>2.2.2</td>
+   </tr>
+   <tr>
       <td>netq check evpn [mac-consistency] [around &lt;text-time&gt;] [json]</td>
       <td>netq [&lt;hostname&gt;] show evpn [vni &lt;text-vni&gt;] [around &lt;text-time&gt;] [json]</td>
       <td>Added <em>mac-consistency</em> option that includes a check to verify if the MAC associated with each end of the EVPN connection is the same. Removed <em>hostname</em> and <em>vni</em> options.</td>
       <td>2.2.0</td>
     </tr>
     <tr>
-      <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [premise &lt;text-premise-name&gt;] [port &lt;text-gateway-port&gt;] [vrf &lt;text-vrf-name&gt;]</td>
+      <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [premises &lt;text-premise-name&gt;] [port &lt;text-gateway-port&gt;] [vrf &lt;text-vrf-name&gt;]</td>
       <td>netq config add cli server</td>
-      <td>adds the CLI daemon to the switch or host where this command is run. When using a NetQ Cloud Appliance, the access-key, secret-key, and port are required. Only NetQ v2.2.1 supports the <em>cli-keys-file</em> option.</td>
-      <td>2.2.0, 2.2.1</td>
+      <td>Adds the CLI daemon to the switch or host where this command is run. When using a NetQ Cloud Appliance, the access-key, secret-key, and port are required. In NetQ 2.2.2, the <em>premise</em> option was changed to <em>premises</em>. Only NetQ v2.2.1 and later support the <em>cli-keys-file</em> option.</td>
+      <td>2.2.0, 2.2.1, 2.2.2</td>
     </tr>
     <tr>
       <td>netq config show cli premises [json]</td>

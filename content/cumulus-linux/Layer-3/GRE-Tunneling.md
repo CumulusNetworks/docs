@@ -15,8 +15,7 @@ siteSlug: cumulus-linux
 
 **Early Access Feature**
 
-GRE Tunneling is an [early access
-feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
+GRE tunneling is an [early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
 
 {{%/notice%}}
 
@@ -40,15 +39,9 @@ subnets, and allow VPNs across wide area networks.
 
 {{%notice note%}}
 
-**Notes**
-
-  - GRE Tunneling is supported for Mellanox (Spectrum ASIC) switches
-    only.
-
-  - Only static routes are supported as a destination for the tunnel
-    interface.
-
-  - IPv6 endpoints are not supported.
+- GRE tunneling is supported on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1) only.
+- Only static routes are supported as a destination for the tunnel interface.
+- IPv6 endpoints are not supported.
 
 {{%/notice%}}
 
@@ -67,11 +60,8 @@ routes for tunneling on both endpoints as follows:
 1.  Create a tunnel interface by specifying an interface name, the
     tunnel mode as `gre`, the source (local) and destination (remote)
     underlay IP address, and the `ttl` (optional).
-
 2.  Bring the GRE tunnel interface up.
-
 3.  Assign an IP address to the tunnel interface.
-
 4.  Add route entries to encapsulate the packets using the tunnel
     interface.
 
@@ -84,8 +74,6 @@ The local tunnel endpoint for `Tunnel-R2` is 10.0.0.2 and the remote
 endpoint is 10.0.0.9.
 
 {{% imgOld 1 %}}
-
-
 
 **Tunnel-R1 commands:**
 

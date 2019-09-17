@@ -313,7 +313,7 @@ example:
 
 ## FEC
 
-[Forward Error Correction (FEC)](https://en.wikipedia.org/wiki/Forward_error_correction) 
+[Forward Error Correction (FEC)](https://en.wikipedia.org/wiki/Forward_error_correction)
 is an encoding and decoding layer that enables the switch to detect and
 correct bit errors introduced over the cable between two interfaces.
 Because 25G transmission speeds can introduce a higher than acceptable
@@ -348,9 +348,7 @@ There are additional FEC options for Cumulus Linux configuration:
 - No FEC (no error correction is done). This is the current default on
   a Broadcom switch.
 
-{{%notice note%}}
-
-**Important**
+{{%notice info%}}
 
 The Tomahawk switch does not support RS FEC or auto-negotiation of FEC
 on 25G lanes that are broken out (Tomahawk pre-dates 802.3by). If you
@@ -390,8 +388,8 @@ if they comply to the dB loss and BER requirements.
 If a cable is manufactured to CA-25G-S classification and FEC is not
 enabled, the BER might be unacceptable in a production network. It is
 important to set the FEC according to the cable class (or better) to
-have acceptable bit error rates. See 
-[Determining Cable Class](#determine-cable-class-of-100g-and-25g-dacs) 
+have acceptable bit error rates. See
+[Determining Cable Class](#determine-cable-class-of-100g-and-25g-dacs)
 below.
 
 You can check bit errors using `cl-netstat` (`RX_ERR` column) or
@@ -469,9 +467,44 @@ method described above and is not visible in the `ethool -m` output.
 When in doubt, consult the manufacturer directly to determine the cable
 classification.
 
+### Spectrum ASIC FEC Behavior
+
+The firmware in a Spectrum ASIC applies an FEC configuration to 25G and 100G
+cables based on the cable type and whether the peer switch also has a Spectrum
+ASIC.
+
+When the link is between two switches with Spectrum ASICs:
+
+- For 25G optical modules, the Spectrum ASIC firmware chooses BaseR/FC-FEC.
+- For 25G DAC cables with attenuation less or equal to 16db, the firmware
+  chooses BaseR/FC-FEC.
+- For 25G DAC cables with attenuation higher than 16db, the firmware chooses
+  RS-FEC.
+- For 100G cables/modules, the firmware chooses RS-FEC.
+
+| Cable Type                              | FEC Mode     |
+| --------------------------------------- | ------------ |
+| 25G optical cables                      | BaseR/FC-FEC |
+| 25G 1,2 meters: CA-N, loss <13db        | BaseR/FC-FEC |
+| 25G 2.5,3 meters: CA-S, loss <16db      | BaseR/FC-FEC |
+| 25G 2.5,3,4,5 meters: CA-L, loss > 16db | RS-FEC       |
+| 100G DAC or optical                     | RS-FEC       |
+
+When linking to a non-Spectrum peer, the firmware lets the peer decide. The
+Spectrum ASIC supports RS-FEC (for both 100G and 25G), BaseR/FC-FEC (25G only),
+or no-FEC (for both 100G and 25G).
+
+| Cable Type                              | FEC Mode                          |
+| --------------------------------------- | --------------------------------- |
+| 25G pptical cables                      | Let peer decide                   |
+| 25G 1,2 meters: CA-N, loss <13db        | Let peer decide                   |
+| 25G 2.5,3 meters: CA-S, loss <16db      | Let peer decide                   |
+| 25G 2.5,3,4,5 meters: CA-L, loss > 16db | Let peer decide                   |
+| 100G                                    | Let peer decide: RS-FEC or No FEC |
+
 ### How Cumulus Linux Uses FEC
 
-This depends upon the make of the switch you are using.
+How Cumulus Linux uses FEC depends upon the type of switch ASIC you are using.
 
 A Spectrum switch enables FEC automatically when it powers up; that is,
 the setting is `fec auto`. The port firmware tests and determines the

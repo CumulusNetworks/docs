@@ -736,6 +736,8 @@ Currently only *swp+* and *bond+* are supported as wildcard names. There
 might be kernel restrictions in supporting more complex wildcards likes
 *swp1+ etc*.
 
+swp+ rules are applied as an aggregate, *not* per port. If you want to apply per port policing, specify a specific port instead of a wildcard.
+
 {{%/notice%}}
 
     INGRESS = swp+

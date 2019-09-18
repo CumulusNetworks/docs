@@ -2217,7 +2217,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
 - You must configure the overlay (tenants) in a specific VRF(s) and
     separate from the underlay, which resides in the default VRF. A
     layer 3 VNI mapping for the default VRF is not supported.
-- On the Broadcom Trident II+, Trident 3, and Maverick-based switch,
+- On the Broadcom Trident II+ and Maverick-based switch,
   when a lookup is done after VXLAN decapsulation on the
   external-facing switch (exit/border leaf), the switch does not
   rewrite the MAC addresses or TTL; for through traffic, packets are

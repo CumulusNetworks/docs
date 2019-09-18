@@ -18,8 +18,7 @@ core (the underlay). The initial definition of VXLAN
 ([RFC 7348](https://tools.ietf.org/html/rfc7348)) did not include any
 control plane and relied on a flood-and-learn approach for MAC address
 learning. An alternate deployment model was to use a controller or a
-technology such as [Lightweight Network Virtualization (LNV)](../Lightweight-Network-Virtualization-Overview/)
-in Cumulus Linux.
+technology such as [Lightweight Network Virtualization (LNV)](../Lightweight-Network-Virtualization-Overview/) in Cumulus Linux.
 
 {{%notice note%}}
 

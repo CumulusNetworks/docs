@@ -18,7 +18,7 @@ core (the underlay). The initial definition of VXLAN
 ([RFC 7348](https://tools.ietf.org/html/rfc7348)) did not include any
 control plane and relied on a flood-and-learn approach for MAC address
 learning. An alternate deployment model was to use a controller or a
-technology such as [Lightweight Network Virtualization (LNV)](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+technology such as [Lightweight Network Virtualization (LNV)](../Lightweight-Network-Virtualization-Overview/)
 in Cumulus Linux.
 
 {{%notice note%}}
@@ -44,34 +44,20 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN,
 including for both intra-subnet bridging and inter-subnet routing. Key
 features include:
 
-  - VNI membership exchange between VTEPs using EVPN type-3 (Inclusive
-    multicast Ethernet tag) routes.
-  - Exchange of host MAC and IP addresses using EVPN type-2 (MAC/IP
-    advertisement) routes.
-  - Support for host/VM mobility (MAC and IP moves) through exchange of
-    the MAC Mobility Extended community.
-  - Support for dual-attached hosts via [VXLAN active-active
-    mode](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode).
-    MAC synchronization between the peer switches is done using
-    [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG).
-  - Support for ARP/ND suppression, which provides VTEPs with the
-    ability to suppress ARP flooding over VXLAN tunnels.
-  - Support for exchange of static (sticky) MAC addresses through EVPN.
-  - Support for distributed symmetric routing between different subnets.
-  - Support for distributed asymmetric routing between different
-    subnets.
-  - Support for centralized routing.
-  - Support for prefix-based routing using EVPN type-5 routes (EVPN IP
-    prefix route)
-  - Support for layer 3 multi-tenancy.
-  - Support for IPv6 tenant routing.
-  - Symmetric routing, asymmetric routing and prefix-based routing are
-    supported for both IPv4 and IPv6 hosts and prefixes.
-  - ECMP (equal cost multipath) support for overlay networks on
-    RIOT-capable Broadcom switches (Trident 3, Maverick, Trident 2+) in
-    addition to Tomahawk and Mellanox Spectrum-A1 switches. No
-    configuration is needed, ECMP occurs in the overlay when there are
-    multiple next hops.
+- VNI membership exchange between VTEPs using EVPN type-3 (Inclusive multicast Ethernet tag) routes.
+- Exchange of host MAC and IP addresses using EVPN type-2 (MAC/IP advertisement) routes.
+- Support for host/VM mobility (MAC and IP moves) through exchange of the MAC Mobility Extended community.
+- Support for dual-attached hosts via [VXLAN active-active mode](../VXLAN-Active-Active-Mode). MAC synchronization between the peer switches is done using [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG).
+- Support for ARP/ND suppression, which provides VTEPs with the ability to suppress ARP flooding over VXLAN tunnels.
+- Support for exchange of static (sticky) MAC addresses through EVPN.
+- Support for distributed symmetric routing between different subnets.
+- Support for distributed asymmetric routing between different subnets.
+- Support for centralized routing.
+- Support for prefix-based routing using EVPN type-5 routes (EVPN IP prefix route)
+- Support for layer 3 multi-tenancy.
+- Support for IPv6 tenant routing.
+- Symmetric routing, asymmetric routing and prefix-based routing are supported for both IPv4 and IPv6 hosts and prefixes.
+- ECMP (equal cost multipath) support for overlay networks on RIOT-capable Broadcom switches (Trident 3, Maverick, Trident 2+) in addition to Tomahawk and Mellanox Spectrum-A1 switches. No configuration is needed, ECMP occurs in the overlay when there are multiple next hops.
 
 EVPN address-family is supported with both eBGP and iBGP peering. If the
 underlay routing is provisioned using eBGP, the same eBGP session can
@@ -85,21 +71,19 @@ over iBGP peering, OSPF can be used as the IGP or the next hops can also
 be resolved using iBGP.
 
 You can provision and manage EVPN using
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU).
 
 {{%notice note%}}
 
 For Cumulus Linux 3.4 and later releases, the routing control plane
 (including EVPN) is installed as part of the
 [FRRouting](https://frrouting.org/) (FRR) package. For more information
-about FRR, refer to the [FRR
-Overview](/cumulus-linux/Layer-3/FRRouting-Overview/).
+about FRR, refer to the [FRR Overview](../../Layer-3/FRRouting-Overview/).
 
 {{%/notice%}}
 
 For information about VXLAN routing, including platform and hardware
-limitations, see [VXLAN
-Routing](/cumulus-linux/Network-Virtualization/VXLAN-Routing).
+limitations, see [VXLAN Routing](../VXLAN-Routing).
 
 ## Basic EVPN Configuration
 
@@ -110,11 +94,8 @@ VLANs to VNIs.
 
 1.  Enable EVPN route exchange (that is, address-family layer 2
     VPN/EVPN) between BGP peers.
-
 2.  Enable EVPN on the system to advertise VNIs and host reachability
-    information (MAC addresses learned on associated VLANs) to BGP
-    peers.
-
+    information (MAC addresses learned on associated VLANs) to BGP peers.
 3.  Disable MAC learning on VXLAN interfaces as EVPN is responsible for
     installing remote MACs.
 
@@ -126,7 +107,7 @@ parameters.
 ### Enable EVPN between BGP Neighbors
 
 You enable EVPN between
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) neighbors by
+[BGP](../../Layer-3/Border-Gateway-Protocol-BGP) neighbors by
 adding the address family *evpn* to the existing neighbor address-family
 activation command.
 
@@ -134,7 +115,7 @@ For a non-VTEP device that is merely participating in EVPN route
 exchange, such as a spine switch (the network deployment uses hop-by-hop
 eBGP or the switch is acting as an iBGP route reflector), activating the
 interface for the EVPN address family is the fundamental configuration
-needed in [FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/).
+needed in [FRRouting](../../Layer-3/FRRouting-Overview/).
 Additional configuration options for specific scenarios are described
 later on in this chapter.
 
@@ -175,8 +156,7 @@ The above commands create the following configuration snippet in the
 
 The above configuration does not result in BGP knowing about the local
 VNIs defined on the system and advertising them to peers. This requires
-additional configuration, [as described
-below](#advertise-all-vnis).
+additional configuration, [as described below](#advertise-all-vnis).
 
 ### Advertise All VNIs
 
@@ -308,9 +288,8 @@ The above commands create the following configuration snippet in the
 
 ### Enable EVPN in an iBGP Environment with an OSPF Underlay
 
-EVPN can be deployed with an
-[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF) or static
-route underlay if needed. This is a more complex configuration than
+EVPN can be deployed with an [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF)
+or static route underlay if needed. This is a more complex configuration than
 using eBGP. In this case, iBGP advertises EVPN routes directly between
 VTEPs, and the spines are unaware of EVPN or BGP.
 
@@ -375,8 +354,8 @@ VXLAN interfaces because the purpose of EVPN is to exchange MACs between
 VTEPs in the control plane. In the `/etc/network/interfaces` file,
 configure the `bridge-learning` value to *off*:
 
+    cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.0.0.1
     cumulus@switch:~$ net add vxlan vni200 vxlan id 10200
-    cumulus@switch:~$ net add vxlan vni200 vxlan local-tunnelip 10.0.0.1
     cumulus@switch:~$ net add vxlan vni200 bridge access 200
     cumulus@switch:~$ net add vxlan vni200 bridge learning off
     cumulus@switch:~$ net pending
@@ -385,17 +364,20 @@ configure the `bridge-learning` value to *off*:
 These commands create the following code snippet in the
 `/etc/network/interfaces` file:
 
+    # The loopback network interface
+    auto lo
+    iface lo inet loopback
+        vxlan-local-tunnelip 10.0.0.1
+
     auto vni200
     iface vni200
         bridge-access 200
         bridge-learning off
         vxlan-id 10200
-        vxlan-local-tunnelip 10.0.0.1
 
 {{%notice tip%}}
 
-For a bridge in [traditional
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode),
+For a bridge in [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
@@ -475,10 +457,11 @@ appropriate on the VLANs. See the example configuration below.
 {{%/notice%}}
 
 To configure ARP or ND suppression, use
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU).
 Here is an example configuration using two VXLANs (10100 and 10200) and
 two VLANs (100 and 200).
 
+    cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.0.0.1
     cumulus@switch:~$ net add bridge bridge ports vni100,vni200
     cumulus@switch:~$ net add bridge bridge vids 100,200
     cumulus@switch:~$ net add vxlan vni100 vxlan id 10100
@@ -489,8 +472,6 @@ two VLANs (100 and 200).
     cumulus@switch:~$ net add vxlan vni100 bridge arp-nd-suppress on
     cumulus@switch:~$ net add vxlan vni200 bridge arp-nd-suppress on
     cumulus@switch:~$ net add vxlan vni200 bridge access 200
-    cumulus@switch:~$ net add vxlan vni100 vxlan local-tunnelip 10.0.0.1
-    cumulus@switch:~$ net add vxlan vni200 vxlan local-tunnelip 10.0.0.1
     cumulus@switch:~$ net add vlan 100 ip forward off
     cumulus@switch:~$ net add vlan 100 ipv6 forward off
     cumulus@switch:~$ net add vlan 200 ip forward off
@@ -501,6 +482,11 @@ two VLANs (100 and 200).
 These commands create the following configuration in the
 `/etc/network/interfaces` file:
 
+    # The loopback network interface
+    auto lo
+    iface lo inet loopback
+        vxlan-local-tunnelip 10.0.0.1
+    
     auto bridge
     iface bridge
         bridge-ports vni100 vni200
@@ -528,7 +514,6 @@ These commands create the following configuration in the
         bridge-arp-nd-suppress on
         bridge-learning off
         vxlan-id 10100
-        vxlan-local-tunnelip 10.0.0.1
 
     auto vni200
     iface vni200
@@ -536,12 +521,10 @@ These commands create the following configuration in the
          bridge-access 200
          bridge-arp-nd-suppress on
          vxlan-id 10200
-         vxlan-local-tunnelip 10.0.0.1
 
 {{%notice tip%}}
 
-For a bridge in [traditional
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode),
+For a bridge in [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
@@ -595,9 +578,8 @@ router.
 
 The router flag (R-bit) is used in following scenarios:
 
-  - In a centralized VXLAN routing configuration with a gateway router.
-
-  - In a layer 2 switch deployment with ARP/ND suppression.
+- In a centralized VXLAN routing configuration with a gateway router.
+- In a layer 2 switch deployment with ARP/ND suppression.
 
 When the MAC/IP (type-2) route contains the IPv6-MAC pair and the R-bit
 is set, the route belongs to a router. If the R-bit is set to zero, the
@@ -638,9 +620,9 @@ ND extended community, run this command:
 ## EVPN and VXLAN Active-active Mode
 
 No additional EVPN-specific configuration is needed for
-[VXLAN active-active mode](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode).
+[VXLAN active-active mode](../VXLAN-Active-Active-Mode).
 Both switches in the
-[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 pair establish EVPN peering with other EVPN speakers (for example, with
 spine switches, if using hop-by-hop eBGP) and inform about their locally
 known VNIs and MACs. When MLAG is active, both switches announce this
@@ -648,27 +630,21 @@ information with the shared anycast IP address.
 
 The active-active configuration, make sure that:
 
-  - The `clagd-vxlan-anycast-ip` parameter is under the
-    [loopback stanza](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode/#active-active-vtep-anycast-ip-behavior)
-    on both peers.
-  - The anycast address is advertised to the routed fabric from both
-    peers.
-  - The
-    [VNIs](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode/#example-vxlan-active-active-configuration)
-    are configured identically on both peers. However,
-    `vxlan-local-tunnelip` must be sourced from unique loopback stanza
-    IP address of the switch.
-  - The
-    [peerlink](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode/#example-vxlan-active-active-configuration)
-    must belong to the bridge.
+- The `clagd-vxlan-anycast-ip` and `vxlan-local-tunnelip` parameters are
+  under the [loopback stanza](../VXLAN-Active-Active-Mode/#active-active-vtep-anycast-ip-behavior)
+  on both peers.
+- The anycast address is advertised to the routed fabric from both
+  peers.
+- The [VNIs](../VXLAN-Active-Active-Mode/#example-vxlan-active-active-configuration)
+  are configured identically on both peers. 
+- The [peerlink](../VXLAN-Active-Active-Mode/#example-vxlan-active-active-configuration)
+  must belong to the bridge.
 
 MLAG synchronizes information between the two switches in the MLAG pair;
 EVPN does not synchronize.
 
 For information about active-active VTEPs and anycast IP behavior, and
-for failure scenarios, read the
-[VXLAN Active-Active Mode](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode)
-chapter.
+for failure scenarios, read the [VXLAN Active-Active Mode](../VXLAN-Active-Active-Mode) chapter.
 
 ## Inter-subnet Routing
 
@@ -676,25 +652,14 @@ There are multiple models in EVPN for routing between different subnets
 (VLANs), also known as inter-VLAN routing. These models arise due to the
 following considerations:
 
-  - Does every VTEP act as a layer 3 gateway and do routing, or only
-    specific VTEPs do routing?
-
-  - Is routing done only at the ingress of the VXLAN tunnel or is it
-    done at both the ingress and the egress of the VXLAN tunnel?
+- Does every VTEP act as a layer 3 gateway and do routing, or only specific VTEPs do routing?
+- Is routing done only at the ingress of the VXLAN tunnel or is it done at both the ingress and the egress of the VXLAN tunnel?
 
 These models are:
 
-  - **Centralized routing:** Specific VTEPs act as designated layer 3
-    gateways and perform routing between subnets; other VTEPs just
-    perform bridging.
-
-  - **Distributed asymmetric routing:** Every VTEP participates in
-    routing, but all routing is done at the ingress VTEP; the egress
-    VTEP only performs bridging.
-
-  - **Distributed symmetric routing:** Every VTEP participates in
-    routing and routing is done at both the ingress VTEP and the egress
-    VTEP.
+- **Centralized routing:** Specific VTEPs act as designated layer 3 gateways and perform routing between subnets; other VTEPs just perform bridging.
+- **Distributed asymmetric routing:** Every VTEP participates in routing, but all routing is done at the ingress VTEP; the egress VTEP only performs bridging.
+- **Distributed symmetric routing:** Every VTEP participates in routing and routing is done at both the ingress VTEP and the egress VTEP.
 
 Distributed routing — asymmetric or symmetric — is commonly deployed
 with the VTEPs configured with an *anycast IP/MAC address* for each
@@ -706,8 +671,7 @@ when it moves from one VTEP to another.
 EVPN in Cumulus Linux supports all of the routing models listed above.
 The models are described further in the following sections.
 
-All routing happens in the context of a tenant VRF ([virtual routing and
-forwarding](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF)).
+All routing happens in the context of a tenant VRF ([virtual routing and forwarding](../../Layer-3/Virtual-Routing-and-Forwarding-VRF)).
 A VRF instance is provisioned for each tenant, and the subnets of the
 tenant are associated with that VRF (the corresponding SVI is attached
 to the VRF). Inter-subnet routing for each tenant occurs within the
@@ -716,9 +680,8 @@ tenants.
 
 {{%notice note%}}
 
-When configuring [VXLAN
-routing](/cumulus-linux/Network-Virtualization/VXLAN-Routing), Cumulus
-Networks recommends enabling ARP suppression on all VXLAN interfaces.
+When configuring [VXLAN routing](../VXLAN-Routing), Cumulus Networks recommends 
+enabling ARP suppression on all VXLAN interfaces.
 Otherwise, when a locally attached host ARPs for the gateway, it will
 receive multiple responses, one from each anycast gateway.
 
@@ -760,15 +723,14 @@ These commands create the following configuration snippet in the
 
 {{%notice note%}}
 
-  - You can deploy centralized routing at the VNI level. Therefore, you
-    can configure the `advertise-default-gw` command per VNI so that
-    centralized routing is used for some VNIs while distributed routing
-    (described below) is used for other VNIs. This type of configuration
-    is not recommended unless the deployment requires it.
-
-  - When centralized routing is in use, even if the source host and
-    destination host are attached to the same VTEP, the packets travel
-    to the gateway VTEP to get routed and then come back.
+- You can deploy centralized routing at the VNI level. Therefore, you
+  can configure the `advertise-default-gw` command per VNI so that
+  centralized routing is used for some VNIs while distributed routing
+  (described below) is used for other VNIs. This type of configuration
+  is not recommended unless the deployment requires it.
+- When centralized routing is in use, even if the source host and
+  destination host are attached to the same VTEP, the packets travel
+  to the gateway VTEP to get routed and then come back.
 
 {{%/notice%}}
 
@@ -820,19 +782,12 @@ referred to as the layer 2 VNI.
 
 **L3-VNI**
 
-  - There is a one-to-one mapping between a layer 3 VNI and a tenant
-    (VRF).
-
-  - The VRF to layer 3 VNI mapping has to be consistent across all
-    VTEPs. The layer 3 VNI has to be provisioned by the operator.
-
-  - Layer 3 VNI and layer 2 VNI cannot share the same number space; that
-    is, you cannot have vlan10 and vxlan10 for example. Otherwise, the
-    layer 2 VNI does not get created.
-
-  - In an MLAG configuration, the SVI used for the layer 3 VNI cannot be
-    part of the bridge. This ensures that traffic tagged with that VLAN
-    ID is not forwarded on the peer link or other trunks.
+- There is a one-to-one mapping between a layer 3 VNI and a tenant (VRF).
+- The VRF to layer 3 VNI mapping has to be consistent across all VTEPs. The layer 3 VNI has to be provisioned by the operator.
+- Layer 3 VNI and layer 2 VNI cannot share the same number space; that is, you cannot have vlan10 and vxlan10 for example. Otherwise, the layer 2 VNI does not get created.
+- In an MLAG configuration, the SVI used for the layer 3 VNI cannot be
+  part of the bridge. This ensures that traffic tagged with that VLAN
+  ID is not forwarded on the peer link or other trunks.
 
 {{%/notice%}}
 
@@ -850,19 +805,17 @@ For EVPN symmetric routing, additional configuration is required:
     VNI for the tenant. This VXLAN interface is part of the bridge and
     router MAC addresses of remote VTEPs is installed over this
     interface.
-
 2.  Configure an SVI (layer 3 interface) corresponding to the per-tenant
     VXLAN interface. This is attached to the tenant's VRF. Remote host
     routes for symmetric routing are installed over this SVI.
-
 3.  Specify the mapping of VRF to layer 3 VNI. This configuration is for
     the BGP control plane.
 
 #### VXLAN Interface Corresponding to the Layer 3 VNI
 
+    cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.0.0.1
     cumulus@leaf01:~$ net add vxlan vni104001 vxlan id 104001
     cumulus@leaf01:~$ net add vxlan vni104001 bridge access 4001
-    cumulus@leaf01:~$ net add vxlan vni104001 vxlan local-tunnelip 10.0.0.11
     cumulus@leaf01:~$ net add vxlan vni104001 bridge learning off
     cumulus@leaf01:~$ net add vxlan vni104001 bridge arp-nd-suppress on
     cumulus@leaf01:~$ net add bridge bridge ports vni104001
@@ -872,13 +825,17 @@ For EVPN symmetric routing, additional configuration is required:
 The above commands create the following snippet in the
 `/etc/network/interfaces` file:
 
+    # The loopback network interface
+    auto lo
+    iface lo inet loopback
+        vxlan-local-tunnelip 10.0.0.1
+    
     auto vni104001
     iface vni104001
         bridge-access 4001
         bridge-arp-nd-suppress on
         bridge-learning off
         vxlan-id 104001
-        vxlan-local-tunnelip 10.0.0.11
      
     auto bridge
     iface bridge
@@ -980,7 +937,6 @@ To advertise locally attached subnets, you must:
 1.  Enable advertisement of EVPN prefix (type-5) routes. Refer to
     [Prefix-based Routing — EVPN Type-5 Routes](#prefix-based-routing-evpn-type-5-routes),
     below.
-
 2.  Ensure that the routes corresponding to the connected subnets are
     known in the BGP VRF routing table by injecting them using the
     `network` command or redistributing them using the `redistribute
@@ -1045,11 +1001,9 @@ This configuration is the same as for symmetric routing. You need to:
     VNI for the tenant. This VXLAN interface is part of the bridge;
     router MAC addresses of remote VTEPs are installed over this
     interface.
-
 2.  Configure an SVI (layer 3 interface) corresponding to the per-tenant
     VXLAN interface. This is attached to the tenant's VRF. The remote
     prefix routes are installed over this SVI.
-
 3.  Specify the mapping of the VRF to layer 3 VNI. This configuration is
     for the BGP control plane.
 
@@ -1165,8 +1119,7 @@ These commands create the following configuration in the
 
 {{%notice tip%}}
 
-For a bridge in [traditional
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode),
+For a bridge in [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode),
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
@@ -1214,15 +1167,13 @@ from a remote VTEP/rack.
 
 **Notes**
 
-  - The `advertise-svi-ip` option is available in Cumulus Linux 3.7.4
-    and later.
-
-  - When you enable the `advertise-svi-ip` option, the anycast IP/MAC
-    address pair is not advertised. Be sure **not** to enable both the
-    `advertise-svi-ip` option and the `advertise-default-gw` option at
-    the same time. (The `advertise-default-gw` option configures the
-    gateway VTEPs to advertise their IP/MAC address. See
-    [Advertising the Default Gateway](#advertising-the-default-gateway)).
+- The `advertise-svi-ip` option is available in Cumulus Linux 3.7.4 and later.
+- When you enable the `advertise-svi-ip` option, the anycast IP/MAC
+  address pair is not advertised. Be sure **not** to enable both the
+  `advertise-svi-ip` option and the `advertise-default-gw` option at
+  the same time. (The `advertise-default-gw` option configures the
+  gateway VTEPs to advertise their IP/MAC address. See
+  [Advertising the Default Gateway](#advertising-the-default-gateway)).
 
 {{%/notice%}}
 
@@ -1318,10 +1269,8 @@ to faulty configuration or behavior.
 
 Duplicate address detection is enabled by default and triggers when:
 
-  - Two hosts have the same MAC address (the host IP addresses might be
-    the same or different)
-
-  - Two hosts have the same IP address but different MAC addresses
+- Two hosts have the same MAC address (the host IP addresses might be the same or different)
+- Two hosts have the same IP address but different MAC addresses
 
 By default, when a duplicate address is detected, Cumulus Linux flags
 the address as a duplicate and generates an error in syslog so that you
@@ -1346,7 +1295,7 @@ duplicate.
 
 {{%/notice%}}
 
-**When Does Duplicate Address Detection Trigger?**
+#### When Does Duplicate Address Detection Trigger?
 
 The VTEP that sees an address move from remote to local begins the detection
 process by starting a timer. Each VTEP runs duplicate address detection independently.
@@ -1369,9 +1318,7 @@ events occur between two remote VTEPs (VTEP-B and VTEP-C).
 
 #### Configure Duplicate Address Detection
 
-To change the threshold for MAC and IP address moves, run the `net add
-bgp l2vpn evpn dup-addr-detection max-moves <number-of-events> time
-<duration>` command. You can specify `max-moves` to be between 2 and
+To change the threshold for MAC and IP address moves, run the `net add bgp l2vpn evpn dup-addr-detection max-moves <number-of-events> time <duration>` command. You can specify `max-moves` to be between 2 and
 1000 and `time` to be between 2 and 1800 seconds.
 
 The following example command sets the maximum number of address moves
@@ -1404,7 +1351,7 @@ after which it is cleared automatically.
 
 When you enable the freeze option and a duplicate address is detected:
 
-  - If the MAC or IP address is learned from a remote VTEP at the time
+- If the MAC or IP address is learned from a remote VTEP at the time
     it is frozen, the forwarding information in the kernel and hardware
     is not updated, leaving it in the prior state. Any future remote
     updates are processed but they are not reflected in the kernel
@@ -1413,8 +1360,7 @@ When you enable the freeze option and a duplicate address is detected:
     locally-learned entry already present in its kernel, FRR will
     originate a corresponding MAC-IP route and advertise it to all
     remote VTEPs.
-
-  - If the MAC or IP address is locally learned on this VTEP at the time
+- If the MAC or IP address is locally learned on this VTEP at the time
     it is frozen, the address is not advertised to remote VTEPs. Future
     local updates are processed but are not advertised to remote VTEPs.
     If FRR receives a local entry delete event, the frozen entry is
@@ -1456,9 +1402,7 @@ of 1000 seconds, after which it is cleared automatically :
 
     cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze 1000
 
-{{%notice note%}}
-
-**Best Practice**
+{{%notice tip%}}
 
 Cumulus Networks recommends you set the freeze timer to be three times
 the duplicate address detection window. For example, if the duplicate
@@ -1514,8 +1458,7 @@ configuration and all existing duplicate addresses.
 #### Show Detected Duplicate Address Information
 
 During the duplicate address detection process, you can see the start
-time and current detection count with the `net show evpn mac vni
-<vni_id> mac <mac_addr>` command. The following command example shows
+time and current detection count with the `net show evpn mac vni <vni_id> mac <mac_addr>` command. The following command example shows
 that detection started for MAC address 00:01:02:03:04:11 for VNI 1001 on
 Tuesday, Nov 6 at 18:55:05 and the number of moves detected is 1.
 
@@ -1527,8 +1470,7 @@ Tuesday, Nov 6 at 18:55:05 and the number of moves detected is 1.
      Neighbors:
         10.0.1.26 Active
 
-After the duplicate MAC address is cleared, the `net show evpn mac vni
-<vni_id> mac <mac_addr>` command shows:
+After the duplicate MAC address is cleared, the `net show evpn mac vni <vni_id> mac <mac_addr>` command shows:
 
     MAC: 00:01:02:03:04:11
      Remote VTEP: 172.16.0.16
@@ -1537,8 +1479,7 @@ After the duplicate MAC address is cleared, the `net show evpn mac vni
      Neighbors:
         10.0.1.26 Active
 
-To display information for a duplicate IP address, run the ` net show
-evpn arp-cache vni <vni_id> ip <ip_addr>  `command. The following
+To display information for a duplicate IP address, run the `net show evpn arp-cache vni <vni_id> ip <ip_addr>` command. The following
 command example shows information for IP address 10.0.0.9 for VNI 1001.
 
     cumulus@switch:~$ net show evpn arp-cache vni 1001 ip 10.0.0.9
@@ -1563,8 +1504,7 @@ aa:bb:cc:dd:ee:ff local  hostbond3             1001
 ```
 
 To show a list of IP addresses detected as duplicate for a specific VNI
-or for all VNIs, run the `net show evpn arp-cache vni <vni-id|all>
-duplicate` command. The following example command shows a list of
+or for all VNIs, run the `net show evpn arp-cache vni <vni-id|all> duplicate` command. The following example command shows a list of
 duplicate IP addresses for VNI 1001:
 
     cumulus@switch:~$ net show evpn arp-cache vni 1001 duplicate
@@ -1574,8 +1514,7 @@ duplicate IP addresses for VNI 1001:
     10.0.0.9          local  active   aa:11:aa:aa:aa:aa
     10.10.0.12        remote active   aa:22:aa:aa:aa:aa  172.16.0.16
 
-To show configured duplicate address detection parameters, run the `net
-show evpn` command:
+To show configured duplicate address detection parameters, run the `net show evpn` command:
 
     cumulus@switch:~$ net show evpn
     L2 VNIs: 4
@@ -1595,17 +1534,12 @@ can also use these commands to examine the neighbor cache and the
 routing table (for the underlay or for a specific tenant VRF). Some of
 the key commands are:
 
-  - `ip [-d] link show`
-
-  - `bridge link show`
-
-  - `bridge vlan show`
-
-  - `bridge [-s] fdb show`
-
-  - `ip neighbor show`
-
-  - `ip route show [table <vrf-name>]`
+- `ip [-d] link show`
+- `bridge link show`
+- `bridge vlan show`
+- `bridge [-s] fdb show`
+- `ip neighbor show`
+- `ip route show [table <vrf-name>]`
 
 A sample output of `ip -d link show type vxlan` is shown below for one
 VXLAN interface. Some relevant parameters are the VNI value, the state,
@@ -1625,21 +1559,17 @@ the VXLAN interface.
 A sample output of `bridge fdb show` is depicted below. Some interesting
 information from this output includes:
 
-  - swp3 and swp4 are access ports with VLAN ID 100. This is mapped to
+- swp3 and swp4 are access ports with VLAN ID 100. This is mapped to
     VXLAN interface vni100.
-
-  - 00:02:00:00:00:01 is a local host MAC learned on swp3.
-
-  - The remote VTEPs which participate in VLAN ID 100 are 10.0.0.3,
+- 00:02:00:00:00:01 is a local host MAC learned on swp3.
+- The remote VTEPs which participate in VLAN ID 100 are 10.0.0.3,
     10.0.0.4 and 10.0.0.2. This is evident from the FDB entries with a
     MAC address of 00:00:00:00:00:00. These entries are used for BUM
     traffic replication.
-
-  - 00:02:00:00:00:06 is a remote host MAC reachable over the VXLAN
+- 00:02:00:00:00:06 is a remote host MAC reachable over the VXLAN
     tunnel to 10.0.0.2.
 
-<!-- end list -->
-
+    ```
     cumulus@leaf01:~$ bridge fdb show
     00:02:00:00:00:13 dev swp3 master bridge permanent
     00:02:00:00:00:01 dev swp3 vlan 100 master bridge
@@ -1651,27 +1581,26 @@ information from this output includes:
     00:00:00:00:00:00 dev vni100 dst 10.0.0.2 self permanent
     00:02:00:00:00:06 dev vni100 dst 10.0.0.2 self offload
     ...
+    ```
 
 A sample output of `ip neigh show` is shown below. Some interesting
 information from this output includes:
 
-  - 172.16.120.11 is a locally-attached host on VLAN 100. It is shown
-    twice because of the configuration of the anycast IP/MAC on the
-    switch.
-
-  - 172.16.120.42 is a remote host on VLAN 100 and 172.16.130.23 is a
+- 172.16.120.11 is a locally-attached host on VLAN 100. It is shown
+    twice because of the configuration of the anycast IP/MAC on the switch.
+- 172.16.120.42 is a remote host on VLAN 100 and 172.16.130.23 is a
     remote host on VLAN 200. The MAC address of these hosts can be
     examined using the `bridge fdb show` command described earlier to
     determine the VTEPs behind which these hosts are located.
 
-<!-- end list -->
-
+    ```
     cumulus@leaf01:~$ ip neigh show
     172.16.120.11 dev vlan100-v0 lladdr 00:02:00:00:00:01 STALE
     172.16.120.42 dev vlan100 lladdr 00:02:00:00:00:0e offload REACHABLE
     172.16.130.23 dev vlan200 lladdr 00:02:00:00:00:07 offload REACHABLE
     172.16.120.11 dev vlan100 lladdr 00:02:00:00:00:01 REACHABLE
     ...
+    ```
 
 ### General BGP Operational Commands Relevant to EVPN
 
@@ -1753,7 +1682,6 @@ output from a leaf switch:
     C * fe80::/64 is directly connected, peerlink.4094, 19:48:21
     C * fe80::/64 is directly connected, swp52, 19:48:21
     C>* fe80::/64 is directly connected, swp51, 19:48:21
-     
      
     cumulus@leaf01:~$
 
@@ -1946,7 +1874,7 @@ VTEPs. This command is only relevant for a layer 3 VNI:
     00:01:00:00:13:00 10.0.0.3            
     cumulus@leaf01:~$
 
-Run the ` net show evpn rmac vni all  `command to examine router MACs
+Run the `net show evpn rmac vni all` command to examine router MACs
 for all layer 3 VNIs.
 
 ### Examine Gateway Next Hops in EVPN
@@ -2066,8 +1994,7 @@ options are shown below:
 
 ### Display a Specific EVPN Route
 
-To drill down on a specific route for more information, run the `net
-show bgp l2vpn evpn route rd <rd-value>` command. This command displays
+To drill down on a specific route for more information, run the `net show bgp l2vpn evpn route rd <rd-value>` command. This command displays
 all EVPN routes with that RD and with the path attribute details for
 each path. Additional filtering is possible based on route type or by
 specifying the MAC and/or IP address. The following example shows a
@@ -2103,16 +2030,15 @@ each and the associated router MAC address.
 
 {{%notice note%}}
 
-  - Only global VNIs are supported. Even though VNI values are exchanged
+- Only global VNIs are supported. Even though VNI values are exchanged
     in the type-2 and type-5 routes, the received values are not used
     when installing the routes into the forwarding plane; the local
     configuration is used. You must ensure that the VLAN to VNI mappings
     and the layer 3 VNI assignment for a tenant VRF are uniform
     throughout the network.
-
-  - If the remote host is dual attached, the next hop for the EVPN route
+- If the remote host is dual attached, the next hop for the EVPN route
     is the anycast IP address of the remote
-    [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+    [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
     pair, when MLAG is active.
 
 {{%/notice%}}
@@ -2155,8 +2081,7 @@ Received EVPN routes are maintained in the global EVPN routing table
 EVPN routing table even though there are no VNIs present on it. When
 local VNIs are present, received EVPN routes are imported into the
 per-VNI routing tables based on the route target attributes. You can
-examine the per-VNI routing table with the `net show bgp l2vpn evpn
-route vni <vni>` command:
+examine the per-VNI routing table with the `net show bgp l2vpn evpn route vni <vni>` command:
 
     cumulus@leaf01:~$ net show bgp l2vpn evpn route vni 10110
     BGP table version is 8, local router ID is 10.0.0.1
@@ -2182,8 +2107,7 @@ route vni <vni>` command:
     Displayed 7 prefixes (7 paths)
     cumulus@leaf01:~$
 
-To display the VNI routing table for all VNIs, run the `net show bgp
-l2vpn evpn route vni all` command.
+To display the VNI routing table for all VNIs, run the `net show bgp l2vpn evpn route vni all` command.
 
 ### Display the per-VRF BGP Routing Table
 
@@ -2191,8 +2115,7 @@ When symmetric routing is deployed, received type-2 and type-5 routes
 are imported into the VRF routing table (against the corresponding
 address-family: IPv4 unicast or IPv6 unicast) based on a match on the
 route target attributes. You can examine BGP's VRF routing table using
-the `net show bgp vrf <vrf-name> ipv4 unicast` command or the `net show
-bgp vrf <vrf-name> ipv6 unicast` command.
+the `net show bgp vrf <vrf-name> ipv4 unicast` command or the `net show bgp vrf <vrf-name> ipv6 unicast` command.
 
     cumulus@leaf01:~$ net show bgp vrf vrf1 ipv4 unicast
     BGP table version is 8, local router ID is 172.16.120.250
@@ -2269,56 +2192,49 @@ You can identify static or *sticky* MACs in EVPN by the presence of
 To troubleshoot EVPN, enable FRR debug logs. The relevant debug options
 are as follows:
 
-  - `debug zebra vxlan` traces VNI addition and deletion (local and
-    remote) as well as MAC and neighbor addition and deletion (local and
-    remote).
-
-  - `debug zebra kernel` traces actual netlink messages exchanged with
-    the kernel, which includes everything, not just EVPN.
-
-  - `debug bgp updates` traces BGP update exchanges, including all
-    updates. Output is extended to show EVPN specific information.
-
-  - `debug bgp zebra` traces interactions between BGP and zebra for EVPN
-    (and other) routes.
+- `debug zebra vxlan` traces VNI addition and deletion (local and
+  remote) as well as MAC and neighbor addition and deletion (local and
+  remote).
+- `debug zebra kernel` traces actual netlink messages exchanged with
+  the kernel, which includes everything, not just EVPN.
+- `debug bgp updates` traces BGP update exchanges, including all
+  updates. Output is extended to show EVPN specific information.
+- `debug bgp zebra` traces interactions between BGP and zebra for EVPN
+  (and other) routes.
 
 ## Caveats
 
 The following caveats apply to EVPN in this version of Cumulus Linux:
 
-  - When EVPN is enabled on a switch (VTEP), all locally defined VNIs on
+- When EVPN is enabled on a switch (VTEP), all locally defined VNIs on
     that switch and other information (such as MAC addresses) pertaining
     to them are advertised to EVPN peers. There is no provision to only
     announce certain VNIs.
-
-  - In a [VXLAN
-    active-active](/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode)
+- In a [VXLAN active-active](../VXLAN-Active-Active-Mode)
     configuration, ARPs are sometimes *not* suppressed even if ARP
     suppression is enabled. This is because the neighbor entries are not
     synchronized between the two switches operating in active-active
     mode by a control plane. This has no impact on forwarding.
-
-  - You must configure the overlay (tenants) in a specific VRF(s) and
+- You must configure the overlay (tenants) in a specific VRF(s) and
     separate from the underlay, which resides in the default VRF. A
     layer 3 VNI mapping for the default VRF is not supported.
+- On the Broadcom Trident II+, Trident 3, and Maverick-based switch,
+  when a lookup is done after VXLAN decapsulation on the
+  external-facing switch (exit/border leaf), the switch does not
+  rewrite the MAC addresses or TTL; for through traffic, packets are
+  dropped by the next hop instead of correctly routing from a VXLAN
+  overlay network into a non-VXLAN external network (such as the
+  Internet). This applies to all forms of VXLAN routing (centralized,
+  asymmetric and symmetric) and affects all traffic from VXLAN overlay
+  hosts that need to be routed after VXLAN decapsulation on an
+  exit/border leaf, including traffic destined to external networks
+  (through traffic) and traffic destined to the exit leaf SVI address.
 
-  - On the Broadcom Trident II+, Trident 3, and Maverick-based switch,
-    when a lookup is done after VXLAN decapsulation on the
-    external-facing switch (exit/border leaf), the switch does not
-    rewrite the MAC addresses or TTL; for through traffic, packets are
-    dropped by the next hop instead of correctly routing from a VXLAN
-    overlay network into a non-VXLAN external network (such as the
-    Internet). This applies to all forms of VXLAN routing (centralized,
-    asymmetric and symmetric) and affects all traffic from VXLAN overlay
-    hosts that need to be routed after VXLAN decapsulation on an
-    exit/border leaf, including traffic destined to external networks
-    (through traffic) and traffic destined to the exit leaf SVI address.
+  To work around this issue, modify the external-facing interface for
+  each VLAN sub-interface on the exit leaf by creating a temporary VNI
+  and associating it with the existing VLAN ID.
 
-    To work around this issue, modify the external-facing interface for
-    each VLAN sub-interface on the exit leaf by creating a temporary VNI
-    and associating it with the existing VLAN ID.
-
-    For example, if the expected interface configuration is:
+  For example, if the expected interface configuration is:
 
         auto swp3.2001
         iface swp3.2001
@@ -2345,7 +2261,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
             vlan-raw-device bridge
             vrf vrf1
 
-    Modify the configuration as follows:
+  Modify the configuration as follows:
 
         auto swp3
         iface swp3
@@ -2390,18 +2306,15 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
             vlan-raw-device bridge
             vrf vrf1
 
-    If an MLAG pair is used instead of a single exit/border leaf, add
-    the same temporary VNIs on both switches of the MLAG pair.
+  If an MLAG pair is used instead of a single exit/border leaf, add
+  the same temporary VNIs on both switches of the MLAG pair.
 
 ## Example Configurations
 
-  - Basic Clos (4x2) for bridging
-
-  - Clos with MLAG and centralized routing
-
-  - Clos with MLAG and asymmetric routing
-
-  - Basic Clos with symmetric routing and exit leafs
+- Basic Clos (4x2) for bridging
+- Clos with MLAG and centralized routing
+- Clos with MLAG and asymmetric routing
+- Basic Clos with symmetric routing and exit leafs
 
 ### Basic Clos (4x2) for Bridging
 
@@ -2433,8 +2346,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.7
     address 10.0.0.7/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
@@ -2481,7 +2396,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.7
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -2492,7 +2406,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.7
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -2539,8 +2452,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.8
     address 10.0.0.8/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
@@ -2587,7 +2502,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.8
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -2598,7 +2512,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.8
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -2758,8 +2671,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.9
     address 10.0.0.9/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.9
@@ -2807,7 +2722,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.9
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -2818,7 +2732,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.9
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -2865,8 +2778,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.10
     address 10.0.0.10/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.9
@@ -2914,7 +2829,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.10
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -2925,7 +2839,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.10
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3085,8 +2998,9 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
     address 10.0.0.5/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
 
@@ -3123,8 +3037,9 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
     address 10.0.0.6/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
 
@@ -3304,8 +3219,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.7
     address 10.0.0.7/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
@@ -3353,7 +3270,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.7
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3364,7 +3280,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.7
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3375,7 +3290,6 @@ auto vx-101002
 iface vx-101002
     vxlan-id 101002
     bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.7
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3386,7 +3300,6 @@ auto vx-101003
 iface vx-101003
     vxlan-id 101003
     bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.7
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3459,8 +3372,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.8
     address 10.0.0.8/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
@@ -3508,7 +3423,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.8
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3519,7 +3433,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.8
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3530,7 +3443,6 @@ auto vx-101002
 iface vx-101002
     vxlan-id 101002
     bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.8
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3541,7 +3453,6 @@ auto vx-101003
 iface vx-101003
     vxlan-id 101003
     bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.8
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3729,8 +3640,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.9
     address 10.0.0.9/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.9
@@ -3778,7 +3691,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.9
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3789,7 +3701,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.9
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3800,7 +3711,6 @@ auto vx-101002
 iface vx-101002
     vxlan-id 101002
     bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.9
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3811,7 +3721,6 @@ auto vx-101003
 iface vx-101003
     vxlan-id 101003
     bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.9
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3872,8 +3781,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.10
     address 10.0.0.10/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.9
@@ -3921,7 +3832,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.10
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3932,7 +3842,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.10
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3943,7 +3852,6 @@ auto vx-101002
 iface vx-101002
     vxlan-id 101002
     bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.10
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -3954,7 +3862,6 @@ auto vx-101003
 iface vx-101003
     vxlan-id 101003
     bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.10
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4348,8 +4255,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.7
     address 10.0.0.7/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
@@ -4397,7 +4306,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.7
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4408,7 +4316,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.7
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4419,7 +4326,6 @@ auto vx-101002
 iface vx-101002
     vxlan-id 101002
     bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.7
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4430,7 +4336,6 @@ auto vx-101003
 iface vx-101003
     vxlan-id 101003
     bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.7
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4503,8 +4408,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.8
     address 10.0.0.8/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 172.16.100.7
@@ -4552,7 +4459,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.8
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4563,7 +4469,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.8
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4574,7 +4479,6 @@ auto vx-101002
 iface vx-101002
     vxlan-id 101002
     bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.8
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4585,7 +4489,6 @@ auto vx-101003
 iface vx-101003
     vxlan-id 101003
     bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.8
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4771,8 +4674,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.9
     address 10.0.0.9/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 36.0.0.9
@@ -4820,7 +4725,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.9
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4831,7 +4735,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.9
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4842,7 +4745,6 @@ auto vx-101002
 iface vx-101002
     vxlan-id 101002
     bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.9
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4853,7 +4755,6 @@ auto vx-101003
 iface vx-101003
     vxlan-id 101003
     bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.9
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4926,8 +4827,10 @@ iface eth0 inet dhcp
 # Include any platform-specific interface configuration
 #source /etc/network/interfaces.d/*.if
 
+# The loopback network interface
 auto lo
-iface lo
+iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.10
     address 10.0.0.10/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
     clagd-vxlan-anycast-ip 36.0.0.9
@@ -4975,7 +4878,6 @@ auto vx-101000
 iface vx-101000
     vxlan-id 101000
     bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.10
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4986,7 +4888,6 @@ auto vx-101001
 iface vx-101001
     vxlan-id 101001
     bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.10
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -4997,7 +4898,6 @@ auto vx-101002
 iface vx-101002
     vxlan-id 101002
     bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.10
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -5008,7 +4908,6 @@ auto vx-101003
 iface vx-101003
     vxlan-id 101003
     bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.10
     bridge-learning off
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
@@ -5411,6 +5310,7 @@ diagram:
 # The loopback network interface
 auto lo
 iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.1
 
 auto eth0
 iface eth0
@@ -5450,7 +5350,6 @@ iface swp6
 auto vni110
 iface vni110
     vxlan-id 10110
-    vxlan-local-tunnelip 10.0.0.1
     bridge-learning off
     bridge-access 110
     bridge-arp-nd-suppress on
@@ -5458,7 +5357,6 @@ iface vni110
 auto vni210
 iface vni210
     vxlan-id 10210
-    vxlan-local-tunnelip 10.0.0.1
     bridge-learning off
     bridge-access 210
     bridge-arp-nd-suppress on
@@ -5466,14 +5364,12 @@ iface vni210
 auto vni4001
 iface vni4001
     vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.1
     bridge-learning off
     bridge-access 4001
 
 auto vni4002
 iface vni4002
     vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.1
     bridge-learning off
     bridge-access 4002
 
@@ -5533,6 +5429,7 @@ iface vlan4002
 # The loopback network interface
 auto lo
 iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.2
 
 auto eth0
 iface eth0
@@ -5572,7 +5469,6 @@ iface swp6
 auto vni120
 iface vni120
     vxlan-id 10120
-    vxlan-local-tunnelip 10.0.0.2
     bridge-learning off
     bridge-access 120
     bridge-arp-nd-suppress on
@@ -5580,7 +5476,6 @@ iface vni120
 auto vni220
 iface vni220
     vxlan-id 10220
-    vxlan-local-tunnelip 10.0.0.2
     bridge-learning off
     bridge-access 220
     bridge-arp-nd-suppress on
@@ -5588,14 +5483,12 @@ iface vni220
 auto vni4001
 iface vni4001
     vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.2
     bridge-learning off
     bridge-access 4001
 
 auto vni4002
 iface vni4002
     vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.2
     bridge-learning off
     bridge-access 4002
 
@@ -5758,6 +5651,7 @@ line vty
 # The loopback network interface
 auto lo
 iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.3
 
 auto eth0
 iface eth0
@@ -5797,7 +5691,6 @@ iface swp6
 auto vni130
 iface vni130
     vxlan-id 10130
-    vxlan-local-tunnelip 10.0.0.3
     bridge-learning off
     bridge-access 130
     bridge-arp-nd-suppress on
@@ -5805,7 +5698,6 @@ iface vni130
 auto vni230
 iface vni230
     vxlan-id 10230
-    vxlan-local-tunnelip 10.0.0.3
     bridge-learning off
     bridge-access 230
     bridge-arp-nd-suppress on
@@ -5813,14 +5705,12 @@ iface vni230
 auto vni4001
 iface vni4001
     vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.3
     bridge-learning off
     bridge-access 4001
 
 auto vni4002
 iface vni4002
     vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.3
     bridge-learning off
     bridge-access 4002
 
@@ -5880,6 +5770,7 @@ iface vlan4002
 # The loopback network interface
 auto lo
 iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.4
 
 auto eth0
 iface eth0
@@ -5919,7 +5810,6 @@ iface swp6
 auto vni140
 iface vni140
     vxlan-id 10140
-    vxlan-local-tunnelip 10.0.0.4
     bridge-learning off
     bridge-access 140
     bridge-arp-nd-suppress on
@@ -5927,7 +5817,6 @@ iface vni140
 auto vni240
 iface vni240
     vxlan-id 10240
-    vxlan-local-tunnelip 10.0.0.4
     bridge-learning off
     bridge-access 240
     bridge-arp-nd-suppress on
@@ -5935,14 +5824,12 @@ iface vni240
 auto vni4001
 iface vni4001
     vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.4
     bridge-learning off
     bridge-access 4001
 
 auto vni4002
 iface vni4002
     vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.4
     bridge-learning off
     bridge-access 4002
 
@@ -6298,6 +6185,7 @@ line vty
 # The loopback network interface
 auto lo
 iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.5
 
 auto eth0
 iface eth0 inet dhcp
@@ -6331,7 +6219,6 @@ iface swp2s0
 auto vni150
 iface vni150
     vxlan-id 10150
-    vxlan-local-tunnelip 10.0.0.5
     bridge-learning off
     bridge-access 150
     bridge-arp-nd-suppress on
@@ -6339,7 +6226,6 @@ iface vni150
 auto vni250
 iface vni250
     vxlan-id 10250
-    vxlan-local-tunnelip 10.0.0.5
     bridge-learning off
     bridge-access 250
     bridge-arp-nd-suppress on
@@ -6358,14 +6244,12 @@ iface vrf2
 auto vni4001
 iface vni4001
     vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.5
     bridge-learning off
     bridge-access 4001
 
 auto vni4002
 iface vni4002
     vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.5
     bridge-learning off
     bridge-access 4002
 
@@ -6436,14 +6320,12 @@ iface vlan2002
 auto vni16001
 iface vni16001
     vxlan-id 16001
-    vxlan-local-tunnelip 10.0.0.5
     bridge-learning off
     bridge-access 2001
 
 auto vni16002
 iface vni16002
     vxlan-id 16002
-    vxlan-local-tunnelip 10.0.0.5
     bridge-learning off
     bridge-access 2002</code></pre>
 </details></td>
@@ -6457,6 +6339,7 @@ iface vni16002
 # The loopback network interface
 auto lo
 iface lo inet loopback
+    vxlan-local-tunnelip 10.0.0.6
 
 auto eth0
 iface eth0
@@ -6491,7 +6374,6 @@ iface swp5
 auto vni160
 iface vni160
     vxlan-id 10160
-    vxlan-local-tunnelip 10.0.0.6
     bridge-learning off
     bridge-access 160
     bridge-arp-nd-suppress on
@@ -6499,7 +6381,6 @@ iface vni160
 auto vni260
 iface vni260
     vxlan-id 10260
-    vxlan-local-tunnelip 10.0.0.6
     bridge-learning off
     bridge-access 260
     bridge-arp-nd-suppress on
@@ -6518,14 +6399,12 @@ iface vrf2
 auto vni4001
 iface vni4001
     vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.6
     bridge-learning off
     bridge-access 4001
 
 auto vni4002
 iface vni4002
     vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.6
     bridge-learning off
     bridge-access 4002
 
@@ -6592,19 +6471,17 @@ iface vlan2002
     vlan-id 2002
     vlan-raw-device bridge
     vrf vrf2
-    address 172.16.101.6/30                         
+    address 172.16.101.6/30
 
 auto vni16001
 iface vni16001
     vxlan-id 16001
-    vxlan-local-tunnelip 10.0.0.6
     bridge-learning off
     bridge-access 2001
 
 auto vni16002
 iface vni16002
     vxlan-id 16002
-    vxlan-local-tunnelip 10.0.0.6
     bridge-learning off
     bridge-access 2002</code></pre>
 </details></td>

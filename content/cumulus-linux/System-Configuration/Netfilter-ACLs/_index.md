@@ -1410,6 +1410,25 @@ rule as:
 
     -A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --tcp-flags SYN,RST,ACK,FIN SYN -j DROP
 
+### Control Who Can SSH into the Switch
+
+Run the following NCLU commands to control who can SSH into the switch.
+In the following example, 10.0.0.11/32 is the interface IP address (or loopback IP address) of the switch and 10.255.4.0/24 can SSH into the switch.
+
+```
+cumulus@switch:~$ net add acl ipv4 test priority 10 accept source-ip 10.255.4.0/24 dest-ip 10.0.0.11/32
+cumulus@switch:~$ net add acl ipv4 test priority 20 drop source-ip any dest-ip 10.0.0.11/32
+cumulus@switch:~$ net add control-plane acl ipv4 test inbound
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{%notice note%}}
+
+Cumulus Linux does not support the keyword `iprouter` (typically used for traffic sent to the CPU, where the destination MAC address is that of the router but the destination IP address is not the router).
+
+{{%/notice%}}
+
 ## Example Scenario
 
 The following

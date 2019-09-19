@@ -536,17 +536,17 @@ information with the shared anycast IP address.
 The active-active configuration should include the following:
 
   - The `clagd-vxlan-anycast-ip` parameter must be under the 
-    [loopback stanza](LNV-VXLAN-Active-Active-Mode.html#src-8357503_LNVVXLANActive-ActiveMode-anycast)
+    [loopback stanza](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode/#configuring-the-anycast-ip-address)
     on both peers
   - The anycast address should be advertised to the routed fabric from
     both peers
   - The
-    [VNIs](LNV-VXLAN-Active-Active-Mode.html#src-8357503_LNVVXLANActive-ActiveMode-example)
+    [VNIs](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode/#example-vxlan-active-active-configuration)
     must be configured identically on both peers. However,
-    `vxlan-local-``tunnelip` must be sourced from the switch's unique
+    `vxlan-local-tunnelip` must be sourced from the switch's unique
     loopback stanza IP address.
   - The
-    [peerlink](LNV-VXLAN-Active-Active-Mode.html#src-8357503_LNVVXLANActive-ActiveMode-example)
+    [peerlink](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode/#example-vxlan-active-active-configuration)
     must belong to the bridge
 MLAG syncs information between the two switches in the MLAG pair; EVPN
 does not synchronize.

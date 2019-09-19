@@ -972,7 +972,7 @@ already, using the `cl-resource-query` command:
        Total Mcast Routes:         450,   0% of maximum value    450
 
 For Mellanox chipsets, please refer to [TCAM Resource Profiles for
-Mellanox Switches](Routing.html#src-5869207_Routing-tcam).
+Mellanox Switches](/version/cumulus-linux-332/Layer-Three/Routing/#tcam-resource-profiles-for-mellanox-switches).
 
 ### Verify MSDP Session State
 

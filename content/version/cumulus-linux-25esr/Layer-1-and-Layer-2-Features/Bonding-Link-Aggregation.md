@@ -4,6 +4,8 @@ author: Cumulus Networks
 weight: 97
 aliases:
  - /display/CL25ESR/Bonding+++Link+Aggregation
+ - /display/CL25ESR/Bonding+-+Link+Aggregation
+ - /display/CL25ESR/Bonding+Link+Aggregation
  - /pages/viewpage.action?pageId=5116007
 pageID: 5116007
 product: Cumulus Linux
@@ -20,14 +22,12 @@ access control (MAC) client can treat the link aggregation group as if
 it were a single link. The benefits of link aggregation are:
 
   - Linear scaling of bandwidth as links are added to LAG
-
   - Load balancing
-
   - Failover protection
 
 Cumulus Linux LAG control protocol is LACP version 1.
 
-## Example: Bonding 4 Slaves</span>
+## Example: Bonding 4 Slaves
 
 {{% imgOld 0 %}}
 
@@ -44,21 +44,15 @@ recommended defaults and should only be added to a configuration in
 `/etc/network/interfaces` if you plan to use a different setting.
 
   - `bond-slaves`: The list of slaves in bond.
-
   - `bond-mode`: Is set to *802.3ad* by default and **must not** be
     changed.
-
   - `bond-miimon`: How often the link state of each slave is inspected
     for link failures. It *100*, the recommended value.
-
   - `bond-use-carrier`: How to determine link state. It defaults to *1*.
-
   - `bond-xmit-hash-policy`: Hash method used to select the slave for a
     given packet; it defaults to *layer3+4* and **must not** be changed.
-
   - `bond-lacp-rate`: Rate to ask link partner to transmit LACP control
     packets. It defaults to *1*.
-
   - `bond-min-links`: Specifies the minimum number of links that must be
     active before asserting carrier on the bond. It defaults to *1*, but
     a value greater than 1 is useful if higher level services need to
@@ -122,7 +116,7 @@ address to address traffic to the bond.
 
 {{%/notice%}}
 
-## Hash Distribution</span>
+## Hash Distribution
 
 Egress traffic through a bond is distributed to a slave based on a
 packet hash calculation. This distribution provides load balancing over
@@ -135,34 +129,22 @@ the same slave. Many flows will be distributed over all the slaves to
 load balance the total traffic. In a failover event, the hash
 calculation is adjusted to steer traffic over available slaves.
 
-## Configuration Files</span>
+## Configuration Files
 
   - /etc/network/interfaces
 
-## Useful Links</span>
+## Useful Links
 
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding>
-
   - [802.3ad](http://www.ieee802.org/3/ad/) ([Accessible
     writeup](http://cs.uccs.edu/%7Escold/doc/linkage%20aggregation.pdf))
-
   - [Link aggregation from
     Wikipedia](http://en.wikipedia.org/wiki/Link_aggregation)
 
-## Caveats and Errata</span>
+## Caveats and Errata
 
   - An interface cannot belong to multiple bonds.
-
   - Slave ports within a bond should all be set to the same
     speed/duplex, and should match the link partner’s slave ports.
-
   - A bond cannot enslave VLAN subinterfaces. A bond can have
     subinterfaces, but not the other way around.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

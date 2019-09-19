@@ -300,14 +300,15 @@ the steps below. To configure static route leaking with EVPN, see
         ...
         #static vrf route leak enable
         vrf_route_leak_enable = TRUE
+        vrf_route_leak_enable_dynamic = false
 
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
     {{%notice note%}}
 
-Only set the `vrf_route_leak_enable` option to `TRUE` for *static*
-VRF route leaking. This option must be set to `false` for dynamic
-route leaking.
+Set only the `vrf_route_leak_enable` option to `TRUE` for *static*
+VRF route leaking (make sure `vrf_route_leak_enable_dynamic` is set to
+_false_, as that is used only for [dynamic route leaking](#configure-dynamic-route-leaking).
 
     {{%/notice%}}
 
@@ -375,8 +376,10 @@ can import routes from a single source VRF and a VRF can import routes
 from multiple source VRFs. This is typically used when a single VRF
 provides connectivity to external networks or a shared service for many
 other VRFs.  
+
 You can control the routes that are leaked dynamically across VRFs with
 a route-map.  
+
 Because dynamic route leaking happens through BGP, the underlying
 mechanism relies on the BGP constructs of the Route Distinguisher (RD)
 and Route Targets (RTs). However, you do not need to configure these
@@ -402,26 +405,55 @@ between a pair of VRFs.
   shared service VRF. Create another VRF for shared services.
 - Broadcom switches have certain limitations when leaking routes
   between the default VRF and non-default VRFs.
-- On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1), only leak the specific routes you need from the default VRF; do not include the VTEP routes or filter out the VTEP routes with a route filter.
+- On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox%20Spectrum&ASIC=Mellanox%20Spectrum_A1), only leak the specific routes you need from the default VRF; do not include the VTEP routes or filter out the VTEP routes with a route filter.
 
 {{%/notice%}}
 
-In the following example commands, routes in the BGP routing table of
-VRF `rocket` are dynamically leaked into VRF `turtle`.
+1.  In the `/etc/cumulus/switchd.conf` file, change the
+    `vrf_route_leak_enable_dynamic` option to `TRUE` and uncomment the line.
+    Then, restart `switchd` for the change to take effect.
 
-    cumulus@switch:~$ net add bgp vrf turtle ipv4 unicast import vrf rocket
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+        cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+        ...
+        #static vrf route leak enable
+        vrf_route_leak_enable = false
+        vrf_route_leak_enable_dynamic = TRUE
+
+        cumulus@switch:~$ sudo systemctl restart switchd.service
+
+    {{%notice note%}}
+
+Set only the `vrf_route_leak_enable_dynamic` option to `TRUE` for *dynamic*
+VRF route leaking (make sure `vrf_route_leak_enable` is set to
+_false_, as that is used only for [static route leaking](#configure-static-route-leaking).
+
+    {{%/notice%}}
+
+2.  Use NCLU to configure dynamic route leaking. For example, in the
+    commands below, routes in the BGP routing table of VRF `rocket` are
+    dynamically leaked into VRF `turtle`.
+
+        cumulus@switch:~$ net add bgp vrf rocket autonomous-system 65001
+        cumulus@switch:~$ net add bgp vrf turtle autonomous-system 65002
+        cumulus@switch:~$ net add bgp vrf turtle ipv4 unicast import vrf rocket
+        cumulus@switch:~$ net pending
+        cumulus@switch:~$ net commit
 
 The NCLU commands save the configuration in the `/etc/frr/frr.conf`
 file. For example:
 
-    cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+    cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
     ...
-    router bgp 65001 vrf turtle
+    router bgp 65001 vrf rocket
+    !
+    router bgp 65002 vrf turtle
      !
-     address-family ipv4 unicast
-      import vrf rocket
+      address-family ipv4 unicast
+       import vrf rocket
+      exit-address-family
+     !
+    router bgp 65002
+    !
     ...
 
 #### Exclude Certain Prefixes
@@ -443,7 +475,7 @@ For the imported routes, the community is set to 11:11 in VRF `rocket`.
 
 ### Dynamic Route Leaking Between VRFs where Subnets Extend across Racks
 
-When you configure dynamic ** VRF route leaking to leak routes between
+When you configure dynamic VRF route leaking to leak routes between
 VRFs, especially in an EVPN deployment where subnets are extended across
 racks, be aware of the the following considerations:
 
@@ -468,8 +500,9 @@ racks, be aware of the the following considerations:
 
 ### Verify Dynamic Route Leaking Configuration
 
-To check the status of dynamic VRF route leaking, run the NCLU `net show
-bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
+To check the status of dynamic VRF route leaking, run the NCLU
+`net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command.
+For example:
 
     cumulus@switch:~$ net show bgp vrf turtle ipv4 unicast route-leak
     This VRF is importing IPv4 Unicast routes from the following VRFs:
@@ -530,14 +563,12 @@ cause issues when used with VRF route leaking in FRR.
 ## FRRouting Operation in a VRF
 
 In Cumulus Linux 3.5 and later,
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP),
-[OSPFv2](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF) and
-[static routing](/cumulus-linux/Layer-3/Routing) (IPv4 and IPv6) are
-supported within a VRF context. Various FRRouting routing constructs,
-such as routing tables, nexthops, router-id, and related processing are
-also VRF-aware.
+[BGP](../Border-Gateway-Protocol-BGP), [OSPFv2](../Open-Shortest-Path-First-OSPF)
+and [static routing](../Routing) (IPv4 and IPv6) are supported within a VRF
+context. Various FRRouting routing constructs, such as routing tables, next hops,
+router-id, and related processing are also VRF-aware.
 
-[FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/) learns of VRFs
+[FRRouting](../FRRouting-Overview/) learns of VRFs
 provisioned on the system as well as interface attachment to a VRF
 through notifications from the kernel.
 
@@ -551,8 +582,7 @@ VRF neighbors are bound to the VRF, which is how you can have
 overlapping address spaces in different VRFs. Each VRF can have its own
 parameters, such as address families and redistribution. Incoming
 connections rely on the Linux kernel for VRF-global sockets. BGP
-neighbors can be tracked using
-[BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD),
+neighbors can be tracked using [BFD](../Bidirectional-Forwarding-Detection-BFD),
 both for single and multiple hops. You can configure multiple BGP
 instances, associating each with a VRF.
 
@@ -562,7 +592,7 @@ and physical interfaces. The VRF supports types 1 through 5 (ABR/ASBR –
 external LSAs) and types 9 through 11 (opaque LSAs) link state
 advertisements, redistributing other routing protocols, connected and
 static routes, and route maps. As with BGP, you can track OSPF neighbors
-with [BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD).
+with [BFD](../Bidirectional-Forwarding-Detection-BFD).
 
 {{%notice note%}}
 

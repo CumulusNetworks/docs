@@ -16,9 +16,7 @@ which enables the hosts to communicate with any redundant router
 without:
 
   - Needing to be reconfigured
-
   - Having to run dynamic router protocols
-
   - Having to run router redundancy protocols
 
 A basic VRR-enabled network configuration is shown below. The network
@@ -33,7 +31,7 @@ An actual implementation will have many more server hosts and network
 connections than are shown here. But this basic configuration provides a
 complete description of the important aspects of the VRR setup.
 
-## Configuring the Network</span>
+## Configuring the Network
 
 Configuring this network is fairly straightforward. First create the
 bridge subinterface, then create the secondary address for the virtual
@@ -74,21 +72,17 @@ bridge. The parameters of this configuration are:
 
   - *`bridge.500`*: 500 represents a VLAN subinterface of the bridge,
     sometimes called a switched virtual interface, or SVI.
-
   - *`192.168.0.252/24`* : The unique IP address assigned to this
     bridge. It is unique because, unlike the 192.168.0.254 address, it
     is assigned only to this bridge, not the bridge on the other router.
-
   - *`00:00:5e:00:01:01`*: The MAC address of the virtual router. This
     must be the same on all virtual routers. Cumulus Linux has a
     reserved range for VRR MAC addresses. See below for details.
-
   - *`192.168.0.254/24`*, *`2001:aa::1/48`*: The IPv4 and IPv6 addresses
     of the virtual router, including the routing prefixes. These
     addresses must be the same on all the virtual routers and must match
     the default gateway address configured on the servers as well as the
     size of the subnet.
-
   - `address-virtual`: This keyword enables and configures VRR.
 
 The above bridge configuration enables VRR by creating a *MAC VLAN
@@ -96,13 +90,11 @@ interface* on the SVI. This MAC VLAN interface is:
 
   - Named *bridge-500-v0*, which is the name of the SVI with dots
     changed to dashes and *-v0* appended to the end.
-
   - Assigned a MAC address of *00:00:5e:00:01:01*.
-
   - Assigned an IPv4 address of *192.168.0.254* and an IPv6 address of
     *2001:aa::1/48*.
 
-### Reserved MAC Address Range</span>
+### Reserved MAC Address Range
 
 In order to prevent MAC address conflicts with other interfaces in the
 same bridged network, Cumulus Networks has [reserved a range of MAC
@@ -114,7 +106,7 @@ You may notice that this is the same range reserved for VRRP, since VRR
 serves a similar function. Cumulus Networks recommends you use this
 range of MAC addresses when configuring VRR.
 
-### Configuring the Hosts</span>
+### Configuring the Hosts
 
 Each host should have two network interfaces. The routers configure the
 interfaces as bonds running LACP; the hosts should also configure its
@@ -126,7 +118,7 @@ router; this default gateway address never changes.
 Configure the links between the hosts and the routers in *active-active*
 mode for First Hop Redundancy Protocol.
 
-### Configuring the Routers</span>
+### Configuring the Routers
 
 The routers implement the layer 2 network interconnecting the hosts, as
 well as the redundant routers. If you are using
@@ -135,7 +127,6 @@ configure each router with a bridge interface, named *bridge* in our
 example, with these different types of interfaces:
 
   - One bond interface to each host (swp1-swp5 in the image above).
-
   - One or more interfaces to each peer router (peerbond in the image
     above). Multiple inter-peer links are typically bonded interfaces in
     order to accommodate higher bandwidth between the routers and to
@@ -148,12 +139,12 @@ interface to each host instead of a bond.
 
 {{%/notice%}}
 
-### Other Network Connections</span>
+### Other Network Connections
 
 Other interfaces on the router can connect to other subnets and are
 accessed through layer 3 forwarding (swp7 in the image above).
 
-### Handling ARP Requests</span>
+### Handling ARP Requests
 
 The entire purpose of this configuration is to have all the redundant
 routers respond to ARP requests from hosts for the virtual router IP
@@ -171,7 +162,7 @@ that receives these replies will not get confused over which response is
 "correct" and will either ignore replies after the first, or accept them
 and overwrite the previous reply with identical information.
 
-### Monitoring Peer Links and Uplinks</span>
+### Monitoring Peer Links and Uplinks
 
 When an uplink on a switch in active-active mode goes down, the peer
 link may get congested. When this occurs, you should monitor the uplink
@@ -185,7 +176,7 @@ goes to the secondary MLAG switch, traffic will be black-holed. To avoid
 this, shut down all the uplinks when the peer link goes down using
 `ifplugd`.
 
-## <span id="src-5116083_VirtualRouterRedundancy-VRR-ifplugd" class="confluence-anchor-link"></span>Using ifplugd</span>
+## Using ifplugd
 
 `ifplugd` is a link state monitoring daemon that can execute
 user-specified scripts on link transitions (not admin-triggered
@@ -199,8 +190,7 @@ Run the following commands to install the `ifplugd` service:
 Next, configure `ifplugd`. The example below indicates that when the
 peerbond goes down in a MLAG environment, `ifplugd` brings down all the
 uplinks. Run the following `ifplugd` script on both the primary and
-secondary
-[MLAG](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)
+secondary [MLAG](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)
 switches.
 
 To configure `ifplugd`, modify `/etc/default/ifplugd` and add the
@@ -249,17 +239,9 @@ Finally, restart `ifplugd` for your changes to take effect:
 
     cumulus@switch:$ sudo service ifplugd restart
 
-## Notes</span>
+## Notes
 
   - The default shell is `/bin/sh`, which is `dash` and not `bash`. This
     makes for faster execution of the script since `dash` is small and
     quick, but consequently less featureful than `bash`. For example, it
     doesn't handle multiple uplinks.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

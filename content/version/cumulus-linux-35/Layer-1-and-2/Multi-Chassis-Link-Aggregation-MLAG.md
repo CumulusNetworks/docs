@@ -527,8 +527,7 @@ addresses used for managing the `clagd` service.
 
 At minimum, this VLAN subinterface should not be in your layer 2 domain,
 and you should give it a very high VLAN ID (up to 4094). Read more about
-the [range of VLAN IDs you can
-use](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-8357447_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-range).
+the [range of VLAN IDs you can use](/version/cumulus-linux-332/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/#reserved-vlan-range).
 
 {{%/notice%}}
 
@@ -1456,9 +1455,7 @@ Or the `systemctl status` command:
 
 For MLAG to function properly, the dual-connected hosts' interfaces
 should be configured identically on the pair of peering switches. See
-the note above in the [Configuring
-MLAG](#src-8357455_Multi-ChassisLinkAggregation-MLAG-configuring)
-section.
+the note above in the [Configuring MLAG](#configuring-mlag) section.
 
 ### Understanding MTU in an MLAG Configuration
 
@@ -1612,7 +1609,7 @@ network.
 
 Further, with MLAG, Cumulus Networks recommends you enable BPDU guard on
 the host-facing bond interfaces. (For more information about BPDU guard,
-see [BPDU Guard](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-8357467_SpanningTreeandRapidSpanningTree-bpdu).)
+see [BPDU Guard](/version/cumulus-linux-332/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard).)
 
 {{%notice tip%}}
 

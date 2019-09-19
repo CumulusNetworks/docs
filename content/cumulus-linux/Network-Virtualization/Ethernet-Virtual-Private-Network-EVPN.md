@@ -410,7 +410,7 @@ different VNIs of VXLAN tunnels between 2 VTEPs.
 With EVPN, the only method of generating BUM traffic in hardware is *head end replication*. Head end replication
 is enabled by default in Cumulus Linux.
 
-Broadcom switches with Tomahawk, Trident3, Trident II+, and Trident II
+Broadcom switches with Tomahawk, Maverick, Trident3, Trident II+, and Trident II
 ASICs and Mellanox switches with Spectrum ASICs are capable of head end
 replication. The most scalable solution available with EVPN is to have
 each VTEP (top of rack switch) generate all of its own BUM traffic

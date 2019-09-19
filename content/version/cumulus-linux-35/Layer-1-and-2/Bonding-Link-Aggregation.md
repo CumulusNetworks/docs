@@ -115,7 +115,7 @@ configuration values, refer to the Related Information section below.
 <tr class="odd">
 <td><p><code>bond mode</code></p></td>
 <td><p>The defined bonding mode.</p>
-<p>Cumulus Linux supports IEEE 802.3ad link aggregation mode and balance-xor mode. You should use balance-xor mode only if you cannot use LACP for some reason. <a href="#src-8357435_Bonding-LinkAggregation-balance_xor">See below</a> for more information.</p></td>
+<p>Cumulus Linux supports IEEE 802.3ad link aggregation mode and balance-xor mode. You should use balance-xor mode only if you cannot use LACP for some reason. <a href="#enabling-balance-xor-mode">See below</a> for more information.</p></td>
 <td><p><code>802.3ad</code></p></td>
 </tr>
 <tr class="even">

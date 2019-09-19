@@ -18,8 +18,7 @@ core (the underlay). The initial definition of VXLAN
 ([RFC 7348](https://tools.ietf.org/html/rfc7348)) did not include any
 control plane and relied on a flood-and-learn approach for MAC address
 learning. An alternate deployment model was to use a controller or a
-technology such as [Lightweight Network Virtualization (LNV)](../Lightweight-Network-Virtualization-Overview/)
-in Cumulus Linux.
+technology such as [Lightweight Network Virtualization (LNV)](../Lightweight-Network-Virtualization-Overview/) in Cumulus Linux.
 
 {{%notice note%}}
 
@@ -410,7 +409,7 @@ different VNIs of VXLAN tunnels between 2 VTEPs.
 With EVPN, the only method of generating BUM traffic in hardware is *head end replication*. Head end replication
 is enabled by default in Cumulus Linux.
 
-Broadcom switches with Tomahawk, Trident3, Trident II+, and Trident II
+Broadcom switches with Tomahawk, Maverick, Trident3, Trident II+, and Trident II
 ASICs and Mellanox switches with Spectrum ASICs are capable of head end
 replication. The most scalable solution available with EVPN is to have
 each VTEP (top of rack switch) generate all of its own BUM traffic
@@ -2218,7 +2217,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
 - You must configure the overlay (tenants) in a specific VRF(s) and
     separate from the underlay, which resides in the default VRF. A
     layer 3 VNI mapping for the default VRF is not supported.
-- On the Broadcom Trident II+ and Maverick-based switch,
+- On Broadcom Trident II+ and Maverick-based switches,
   when a lookup is done after VXLAN decapsulation on the
   external-facing switch (exit/border leaf), the switch does not
   rewrite the MAC addresses or TTL; for through traffic, packets are

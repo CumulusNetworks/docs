@@ -10,9 +10,9 @@ a command line interface.
 
 In order to build and view the live site:
 
-1. Install Hugo version 0.55.6
+1. Install Hugo version 0.58.3
 
-    - https://github.com/gohugoio/hugo/releases/tag/v0.55.6
+    - https://github.com/gohugoio/hugo/releases/tag/v0.58.3
 
 2. Verify Hugo is installed with `hugo version` This site supports hugo version 0.55.6
 

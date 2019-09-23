@@ -29,7 +29,6 @@ pre-production rollouts and developing scripts.
   - Integrates with [KVM](http://www.linux-kvm.org/page/Downloads),
     [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and
     [VMware](https://my.vmware.com/web/vmware/downloads) hypervisors
-
   - Runs within [GNS3](http://www.gns3.com) and
     [Vagrant](https://www.vagrantup.com) environments
 
@@ -45,11 +44,8 @@ Four versions of the virtual disk image are available for use across
 various hypervisors:
 
   - An OVA disk image for use with VirtualBox.
-
   - A VMware-specific OVA disk image.
-
   - A qcow2 disk image for use with KVM.
-
   - A Box image for use with Vagrant.
 
 ## Comparisons with Other Cumulus Networks Products
@@ -60,8 +56,7 @@ article](/version/cumulus-vx-25/Comparing-Cumulus-VX-with-Other-Cumulus-Networks
 
 ## Community Support
 
-Cumulus VX is a [community-supported
-product](https://support.cumulusnetworks.com/hc/en-us/articles/206382248).
+Cumulus VX is a [community-supported product](https://support.cumulusnetworks.com/hc/en-us/articles/206382248).
 Join the [Cumulus Networks
 community](https://community.cumulusnetworks.com/cumulus/categories/cumulus_vx)
 and ask for or offer help.
@@ -76,27 +71,17 @@ image contains a single VM for a standalone switch. You can clone this
 virtual machine to build out your test network. For more information,
 read the appropriate steps below:
 
-  - [Using Cumulus VX with
-    VMware](/version/cumulus-vx-25/Using-Cumulus-VX-with-VMware/)
-
-  - [Using Cumulus VX with
-    VirtualBox](/version/cumulus-vx-25/Using-Cumulus-VX-with-VirtualBox/)
-
-  - [Using Cumulus VX with
-    KVM](/version/cumulus-vx-25/Using-Cumulus-VX-with-KVM)
-
-  - [Using Cumulus VX with
-    Vagrant](/version/cumulus-vx-25/Using-Cumulus-VX-with-Vagrant)
-
-  - [Using Cumulus VX with
-    GNS3](http://docs.cumulusnetworks.com/display/VX/Using+Cumulus+VX+with+GNS3)
+  - [Using Cumulus VX with VMware](/version/cumulus-vx-25/Using-Cumulus-VX-with-VMware/)
+  - [Using Cumulus VX with VirtualBox](/version/cumulus-vx-25/Using-Cumulus-VX-with-VirtualBox/)
+  - [Using Cumulus VX with KVM](/version/cumulus-vx-25/Using-Cumulus-VX-with-KVM)
+  - [Using Cumulus VX with Vagrant](/version/cumulus-vx-25/Using-Cumulus-VX-with-Vagrant)
+  - [Using Cumulus VX with GNS3](http://docs.cumulusnetworks.com/display/VX/Using+Cumulus+VX+with+GNS3)
 
 ## Logging in to the VM
 
 The Cumulus VX VM has these default login credentials:
 
   - **User name:** cumulus
-
   - **Password:** CumulusLinux\!
 
 The cumulus user has `sudo` privileges, just like a Cumulus Linux
@@ -107,24 +92,13 @@ switch.
 For more information about Cumulus VX, Cumulus Linux and supported
 environments, visit these links:
 
-  - [Cumulus VX release
-    notes](https://support.cumulusnetworks.com/hc/en-us/articles/115002082808)
-
+  - [Cumulus VX release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115002082808)
   - [Cumulus Linux documentation](/cumulus-linux)
-
-  - [Cumulus Networks knowledge
-    base](https://support.cumulusnetworks.com/hc/en-us/)
-
+  - [Cumulus Networks knowledge base](https://support.cumulusnetworks.com/hc/en-us/)
   - [VMware documentation](https://www.vmware.com/support/pubs/)
-
-  - [VirtualBox
-    documentation](https://www.virtualbox.org/wiki/Documentation)
-
+  - [VirtualBox documentation](https://www.virtualbox.org/wiki/Documentation)
   - [KVM documents](http://www.linux-kvm.org/page/Documents)
-
   - [Vagrant documentation](https://docs.vagrantup.com/v2/)
-
-  - [GNS3
-    documentation](https://community.gns3.com/community/software/documentation)
+  - [GNS3 documentation](https://community.gns3.com/community/software/documentation)
 
 {{% imgOld 0 %}}

@@ -7,7 +7,6 @@ aliases:
  - /pages/viewpage.action?pageId=5116338
 pageID: 5116338
 product: Cumulus RMP
-version: 2.5.12
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---

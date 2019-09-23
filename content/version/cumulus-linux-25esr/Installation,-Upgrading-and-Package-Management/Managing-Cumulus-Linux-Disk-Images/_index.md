@@ -7,7 +7,6 @@ aliases:
  - /pages/viewpage.action?pageId=5115988
 pageID: 5115988
 product: Cumulus Linux
-version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---

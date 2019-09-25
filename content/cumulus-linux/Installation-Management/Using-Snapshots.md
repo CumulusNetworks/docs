@@ -14,10 +14,7 @@ siteSlug: cumulus-linux
 Cumulus Linux supports the ability to take snapshots of the complete
 file system as well as the ability to roll back to a previous snapshot.
 Snapshots are performed automatically right before and after you upgrade
-Cumulus Linux using [package
-
-install](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/),
-
+Cumulus Linux using [package install](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/), 
 and right before and after you commit a switch configuration using
 [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
 In addition, you can take a snapshot at any time. You can roll back the
@@ -28,14 +25,12 @@ The primary snapshot components include:
 
   - [btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page) — an
     underlying file system in Cumulus Linux, which supports snapshots.
-
   - [snapper](http://snapper.io/documentation.html) — a userspace
     utility to create and manage snapshots on demand as well as taking
     snapshots automatically before and after running `apt-get
     upgrade|install|remove|dist-upgrade`. You can use `snapper` to roll
     back to earlier snapshots, view existing snapshots, or delete one or
     more snapshots.
-
   - [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
     — takes snapshots automatically before and after committing network
     configurations. You can use NCLU to roll back to earlier snapshots,
@@ -57,7 +52,6 @@ Snapshots are taken automatically:
 
   - Before and after you update your switch configuration by running the
     NCLU `net commit` command.
-
   - Before and after you update Cumulus Linux by running `apt-get
     upgrade|install|remove|dist-upgrade`, via `snapper`.
 
@@ -310,14 +304,14 @@ snapshots are subvolumes, not all subvolumes are snapshots.
 Cumulus Linux excludes a number of directories when taking a snapshot of
 the root file system (and from any rollbacks):
 
-| Directory                                                         | Reason                                                                                                                                                                                                                  |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/home`                                                           | This directory is excluded to avoid user data loss on rollbacks.                                                                                                                                                        |
-| `/var/log, /var/support`                                          | The log file and Cumulus support location. These directories are excluded from snapshots to allow post-rollback analysis.                                                                                               |
-| `/tmp, /var/tmp`                                                  | There is no need to rollback temporary files.                                                                                                                                                                           |
-| `/opt, /var/opt`                                                  | Third-party software is installed typically in `/opt`. Exclude `/opt` to avoid re-installing these applications after rollbacks.                                                                                        |
-| `/srv`                                                            | This directory contains data for HTTP and FTP servers. Exclude this directory to avoid server data loss on rollbacks.                                                                                                   |
-| `/usr/local`                                                      | This directory is used when installing locally built software. Exclude this directory to avoid re-installing this software after rollbacks.                                                                             |
-| `/var/spool`                                                      | Exclude this directory to avoid loss of mail after a rollback.                                                                                                                                                          |
-| `/var/lib/libvirt/images`                                         | This is the default directory for libvirt VM images. Exclude this directory from the snapshot. Additionally, disable Copy-On-Write (COW) for this subvolume as COW and VM image I/O access patterns are not compatible. |
-| `/boot/grub/i386-pc, /boot/grub/x86_64-efi, /boot/grub/arm-uboot` | The GRUB kernel modules must stay in sync with the GRUB kernel installed in the master boot record or UEFI system partition.                                                                                            |
+| Directory      | Reason    |
+| -------------- | --------- |
+| `/home`           | This directory is excluded to avoid user data loss on rollbacks.          |
+| `/var/log, /var/support`  | The log file and Cumulus support location. These directories are excluded from snapshots to allow post-rollback analysis.   |
+| `/tmp, /var/tmp`  | There is no need to rollback temporary files.   |
+| `/opt, /var/opt`   | Third-party software is installed typically in `/opt`. Exclude `/opt` to avoid re-installing these applications after rollbacks.    |
+| `/srv` | This directory contains data for HTTP and FTP servers. Exclude this directory to avoid server data loss on rollbacks.              |
+| `/usr/local`                  | This directory is used when installing locally built software. Exclude this directory to avoid re-installing this software after rollbacks.      |
+| `/var/spool`  | Exclude this directory to avoid loss of mail after a rollback.  |
+| `/var/lib/libvirt/images`  | This is the default directory for libvirt VM images. Exclude this directory from the snapshot. Additionally, disable Copy-On-Write (COW) for this subvolume as COW and VM image I/O access patterns are not compatible. |
+| `/boot/grub/i386-pc, /boot/grub/x86_64-efi, /boot/grub/arm-uboot` | The GRUB kernel modules must stay in sync with the GRUB kernel installed in the master boot record or UEFI system partition.        |

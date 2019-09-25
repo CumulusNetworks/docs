@@ -6,9 +6,8 @@ aliases:
  - /display/VX25/Cumulus+VX+Getting+Started+Guide
  - /pages/viewpage.action?pageId=5115387
 pageID: 5115387
-cascade: 
-  product: Cumulus VX
-  version: 2.5 ESR
+product: Cumulus VX
+version: 2.5 ESR
 imgData: cumulus-vx-25
 siteSlug: cumulus-vx-25
 subsection: true

@@ -6,6 +6,8 @@ aliases:
  - /display/VX25/Using+GNS3+with+VirtualBox+VMs
  - /pages/viewpage.action?pageId=5115408
 pageID: 5115408
+product: Cumulus VX
+version: 2.5 ESR
 siteSlug: cumulus-vx-25
 imgData: cumulus-vx-25
 ---

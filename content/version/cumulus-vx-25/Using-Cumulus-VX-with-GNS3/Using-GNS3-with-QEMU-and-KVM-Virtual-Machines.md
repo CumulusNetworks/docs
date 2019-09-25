@@ -6,6 +6,8 @@ aliases:
  - /display/VX25/Using+GNS3+with+QEMU+and+KVM+Virtual+Machines
  - /pages/viewpage.action?pageId=5115412
 pageID: 5115412
+product: Cumulus VX
+version: 2.5 ESR
 siteSlug: cumulus-vx-25
 imgData: cumulus-vx-25
 ---

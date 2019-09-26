@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=5115422
 pageID: 5115422
 product: Cumulus VX
-version: '2.5'
-imgData: cumulus-vx-25
+version: 2.5 ESR
 siteSlug: cumulus-vx-25
+imgData: cumulus-vx-25
 ---
 The process to integrate and use the Cumulus VX OVA image with VMware
 Workstation on a Windows machine is similar to VMware Fusion, as
@@ -38,7 +38,7 @@ are as follows:
 5.  Click **Import** to start the import process. It take couple seconds
     to import the VM into VMware Workstation and create the VMX image.
 
-    {{% imgOld 0 %}}
+    {{<figure src="/images/cumulus-vx/VMware_WS.png">}}
 
 6.  Once imported, a dialog with the current VM settings appears. Click
     **Edit virtual machine settings** and make sure to match the network

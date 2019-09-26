@@ -7,19 +7,17 @@ aliases:
  - /pages/viewpage.action?pageId=5115408
 pageID: 5115408
 product: Cumulus VX
-version: '2.5'
-imgData: cumulus-vx-25
+version: 2.5 ESR
 siteSlug: cumulus-vx-25
+imgData: cumulus-vx-25
 ---
 Before you run your virtual network under GNS3, make sure you have done
 the following:
 
   - Download and install [VirtualBox](https://www.virtualbox.org).
-
   - Download the the [VirtualBox OVA
     image](https://cumulusnetworks.com/cumulus-vx/download/) and import
     all the VMs that you want to run in GNS3 into VirtualBox.
-
   - Download and install
     [GNS3](https://community.gns3.com/login.jspa?referer=/community/software/download).
 
@@ -43,7 +41,7 @@ consider cloning them first.
     In **VM list**, a list of VirtualBox VMs that you already set up
     earlier appears.
     
-    {{% imgOld 0 %}}
+    {{<figure src="/images/cumulus-vx/VX_GNS3_new_VBox_VM.png">}}
 
 5.  From the **VM list**, select the VM that you want to run in GNS3,
     then click **Finish**. The VM you selected appears in the center
@@ -51,32 +49,28 @@ consider cloning them first.
     run in GNS3. For the example topology above, they are: Cumulus
     VX-spine1, Cumulus VX-spine2, Cumulus VX-leaf1 and Cumulus VX-leaf2.
     
-    {{% imgOld 1 %}}
+    {{<figure src="/images/cumulus-vx/VX_GNS3_VBox_VMs.png">}}
 
 6.  Enable GNS3 to work with the VirtualBox VMs’ network interfaces.
     Configure each VM's network settings, using the GNS3 interface:
     
       - Select a VM in the center pane, then click **Edit**.
-    
       - In the VirtualBox VM configuration dialog, click the **Network**
         tab.
         
-        {{% imgOld 2 %}}
+        {{<figure src="/images/cumulus-vx/VX_GNS3_VBox_VM_nwconfig.png">}}
     
       - Increase the number of **Adapters** to *4*.
-    
       - Select the **Type** to be *Paravirtualized Network*.
-    
       - Select **Allow GNS3 to use any configured VirtualBox adapter**.
-    
       - Click **OK** to save your settings and close the dialog.
         
         {{%notice note%}}
-        
-        GNS3 overwrites the interface names that are configured in
-        VirtualBox, so, if you want to use the VM in VirtualBox, then
-        you might want to consider cloning them first.
-        
+
+GNS3 overwrites the interface names that are configured in
+VirtualBox, so, if you want to use the VM in VirtualBox, then
+you might want to consider cloning them first.
+
         {{%/notice%}}
 
 7.  To connect VMs, select the cable icon from the left pane, then
@@ -102,10 +96,9 @@ consider cloning them first.
         e3\<-\>e0 PC2 (VPCS)
     
     {{%notice note%}}
-    
-    e1 in GNS3 corresponds to swp1 in Cumulus VX, e2 to swp2, and so
-    forth.
-    
+
+e1 in GNS3 corresponds to swp1 in Cumulus VX, e2 to swp2, and so forth.
+
     {{%/notice%}}
 
 You can also drag and drop virtual PCs (VPCS) and connect them to the
@@ -123,11 +116,3 @@ Start all the VMs.
 
 You should be able to ping between the VMs, and between the virtual PCs
 as well.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

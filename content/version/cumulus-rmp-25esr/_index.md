@@ -28,13 +28,11 @@ out-of-band management.
 {{% imgOld 0 %}}
 
 This documentation is current as of November 28, 2016 for version
-2.5.11. Please visit the <span style="color: #007937;"> [Cumulus
-Networks Web site](http://docs.cumulusnetworks.com) </span> for the most
+2.5.11. Please visit the [Cumulus Networks Web site](http://docs.cumulusnetworks.com) for the most
 up to date documentation.
 
-Read the <span style="color: #007937;"> [release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/223501428)
-</span> for new features and known issues in this release.
+Read the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/223501428)
+for new features and known issues in this release.
 
 ## Extended Support Release</span>
 
@@ -68,11 +66,3 @@ article](https://support.cumulusnetworks.com/hc/en-us/articles/217132357).
     Features](/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/)
 
   - [Routing](/version/cumulus-rmp-25esr/Routing)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

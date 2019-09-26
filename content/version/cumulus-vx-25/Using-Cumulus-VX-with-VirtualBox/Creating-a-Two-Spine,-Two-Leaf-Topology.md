@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=5115392
 pageID: 5115392
 product: Cumulus VX
-version: '2.5'
-imgData: cumulus-vx-25
+version: 2.5 ESR
 siteSlug: cumulus-vx-25
+imgData: cumulus-vx-25
 ---
 To create a two-spine/two-leaf configuration, you start by importing the
 OVA image into VirtualBox four times, as each instance of the VM

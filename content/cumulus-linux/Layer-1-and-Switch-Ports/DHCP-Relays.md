@@ -30,17 +30,17 @@ hosts, DHCP relay, and DHCP server using the following topology:
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
-follow [these steps](/cumulus-linux/Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
-configuring them. See also the [VRF chapter](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
+including the [management VRF](../../Layer-3/Management-VRF),
+follow [these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
+configuring them. See also the [VRF chapter](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
 
 {{%/notice%}}
 
 ## Configure IPv4 DHCP Relays
 
 Configure `isc-dhcp-relay` using
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU),
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU),
 specifying the IP addresses to each DHCP server and the interfaces that
 are used as the uplinks.
 
@@ -96,7 +96,7 @@ dhcrelay.service` command:
 
 You can configure DHCP relays to inject the `circuit-id` field with the
 `-a` option, which you add to the `OPTIONS` line in the
-` /etc/default/isc-dhcp-relay  `file. By default, the ingress SVI
+`/etc/default/isc-dhcp-relay` file. By default, the ingress SVI
 interface against which the relayed DHCP discover packet is processed is
 injected into this field. You can change this behavior by adding the
 `--use-pif-circuit-id` option. With this option, the physical switch
@@ -140,8 +140,6 @@ The following illustration demonstrates how you can control the giaddr
 with RFC 3527.
 
 {{% imgOld 1 %}}
-
-
 
 To enable RFC 3527 support and control the giaddr, run the `net add dhcp
 relay giaddr-interface` command with interface/IP address you want to
@@ -283,10 +281,11 @@ To configure multiple DHCP relay daemons on a switch:
 ## Configure a DHCP Relay with VRR
 
 The configuration procedure for DHCP relay with VRR is the same as
-documented above. Note that D HCP relay
+documented above. Note that DHCP relay
 must run on the SVI and not on the -v0 interface.
 
 ## Configure the DHCP Relay Service Manually (Advanced)
+
 <details>
 <summary>Configuring the DHCP service manually ... </summary>
 
@@ -317,12 +316,14 @@ The `/etc/default/isc-dhcp-relay` variables file needs to reference both
 interfaces participating in DHCP relay (facing the server and facing the
 client) and the IP address of the server. If the client-facing interface
 is a bridge port, specify the switch virtual interface (SVI) name if you
-are using a [VLAN-aware
-bridge](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+are using a
+[VLAN-aware bridge](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 (for example, vlan100), or the bridge name if you are using traditional
 bridging (for example, br100).
 </details>
+
 ## Use the Gateway IP Address as the Source IP for Relayed DHCP Packets (Advanced)
+
 <details>
 <summary>Using the gateway IP address as the source IP for relayed DHCP
 packets </summary>
@@ -421,6 +422,6 @@ uplink.
     Program terminated with signal SIGSEGV, Segmentation fault.
 
 To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay`
-file to remove the space, then run the `systemctl restart
-dhcrelay.service` command to restart the `dhcrelay` service and apply
-the configuration change.
+file to remove the space, then run the
+`systemctl restart dhcrelay.service` command to restart the `dhcrelay`
+service and apply the configuration change.

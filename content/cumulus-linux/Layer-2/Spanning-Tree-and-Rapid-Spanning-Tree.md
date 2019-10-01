@@ -21,14 +21,13 @@ an active link fails. STP is enabled by default in Cumulus Linux.
 The STP modes Cumulus Linux supports vary depending upon whether the
 traditional or VLAN-aware bridge driver mode is in use.
 
-  - Bridges configured in
-    *[VLAN-aware](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)*
-    mode operate **only** in RSTP mode.
-
-  - Bridges configured in [*traditional*
-    mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
-    operate in both PVST and PVRST mode. The default is set to PVRST.
-    Each traditional bridge has its own separate STP instance.
+- Bridges configured in
+  *[VLAN-aware](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)*
+  mode operate **only** in RSTP mode.
+- Bridges configured in 
+  [*traditional* mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
+  operate in both PVST and PVRST mode. The default is set to PVRST.
+  Each traditional bridge has its own separate STP instance.
 
 ### STP for a VLAN-aware Bridge
 
@@ -43,9 +42,9 @@ giant switch.
 
 {{%notice note%}}
 
-When connecting a VLAN-aware bridge to a proprietary PVST+ switch using STP,
-VLAN 1 must be allowed on all 802.1Q trunks that interconnect them, regardless of the configured *native*
-VLAN. This is because only VLAN
+If trying to connect a VLAN-aware bridge to a proprietary PVST+ switch, the recommendation is to convert the proprietary switch to MSTP for the best interoperability experience.  However, if PVST+ has to be used, the root needs to reside on the non-Cumulus side.
+In addition, VLAN 1 must be allowed on all 802.1Q trunks that interconnect them, regardless
+of the configured *native* VLAN. This is because only VLAN
 1 enables the switches to address the BPDU frames to the IEEE multicast
 MAC address. The proprietary switch might be configured like this:
 
@@ -75,6 +74,7 @@ interoperability.
 
 To check STP status for a bridge, run the `net show bridge
 spanning-tree` command:
+
 <details>
 <summary>Click to reveal the output ... </summary>
 
@@ -265,6 +265,7 @@ To show the `mstpd` bridge port state, run this command:
       Num RX BPDU        0                       Num RX TCN           0
       Num Transition FWD 2                       Num Transition BLK   2
 </details>
+
 ## Customize Spanning Tree Protocol
 
 There are a number of ways you can customize STP in Cumulus Linux.
@@ -313,7 +314,7 @@ simple end host, this is not mandatory. In the data center, edge ports
 typically connect to servers, which might pass both tagged and untagged
 traffic.
 
-{{%notice info has%}}
+{{%notice info%}}
 
 **Example VLAN-aware Bridge Configuration**
 
@@ -334,13 +335,12 @@ The NCLU commands above create the following code snippet:
 
 {{%/notice%}}
 
-{{%notice info has%}}
+{{%notice info%}}
 
 **Example Traditional Bridge Configuration**
 
-For a bridge in [traditional
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/), configure
-`PortAdminEdge` under the bridge stanza in `/etc/network/interfaces`:
+For a bridge in [traditional mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/),
+configure `PortAdminEdge` under the bridge stanza in `/etc/network/interfaces`:
 
     auto br2
     iface br2 inet static
@@ -380,17 +380,17 @@ learning states before resuming forwarding.
 
 PortAutoEdge is enabled by default in Cumulus Linux.
 
-To disable PortAutoEdge for an interface, run the `net add interface
-<port> stp portautoedge no` command. The following example disables
-PortAutoEdge on swp1:
+To disable PortAutoEdge for an interface, run the
+`net add interface <port> stp portautoedge no` command. The following
+example disables PortAutoEdge on swp1:
 
     cumulus@switch:~$ net add interface swp1 stp portautoedge no
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-To re-enable PortAutoEdge for an interface, run the the `net del
-interface <port> stp portautoedge no` command. The following example
-re-enables PortAutoEdge on swp1:
+To re-enable PortAutoEdge for an interface, run the the
+`net del interface <port> stp portautoedge no` command. The following
+example re-enables PortAutoEdge on swp1:
 
     cumulus@switch:~$ net del interface swp1 stp portautoedge no
     cumulus@switch:~$ net pending
@@ -405,7 +405,7 @@ new switch to an access port off of a leaf switch. If this new switch is
 configured with a low priority, it could become the new root switch and
 affect the forwarding path for the entire layer 2 topology.
 
-{{%notice info has%}}
+{{%notice info%}}
 
 **Example BPDU Guard Configuration**
 
@@ -437,8 +437,8 @@ received, run:
      bpdu guard port    yes                     bpdu guard error     yes
 
 The only way to recover a port that has been placed in the disabled
-state is to manually un-shut or bring up the port with ` sudo ifup
- ``[port]`, as shown in the example below.
+state is to manually un-shut or bring up the port with
+`sudo ifup [port]`, as shown in the example below.
 
 {{%notice note%}}
 
@@ -513,7 +513,7 @@ The default setting for bridge assurance is off. This means that there
 is no difference between disabling bridge assurance on an interface and
 not configuring bridge assurance on an interface.
 
-{{%notice info has%}}
+{{%notice info%}}
 
 **Example Bridge Assurance Configuration**
 
@@ -551,7 +551,7 @@ feature deliberately and with extreme caution.
 
 {{%/notice%}}
 
-{{%notice info has%}}
+{{%notice info%}}
 
 **Example BPDU Filter Configuration**
 
@@ -578,7 +578,7 @@ These commands create the following stanza in the
 interfaces, which can cause poor network performance.
 
 You configure storm control for each physical port by [configuring
-`switchd`](/cumulus-linux/System-Configuration/Configuring-switchd). For
+`switchd`](../../System-Configuration/Configuring-switchd). For
 example, to enable unicast and multicast storm control at 400 packets
 per second (pps) and 3000 pps, respectively, for swp1, run the
 following:
@@ -597,7 +597,7 @@ reboot the switch. To make the changes apply persistently, edit the
     interface.swp1.storm_control.unknown_unicast = 3000
 
 Save the file then 
-[restart `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
+[restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd)
 to make the changes persist across reboots.
 
 ### Spanning Tree Parameter List
@@ -615,8 +615,10 @@ article](https://support.cumulusnetworks.com/hc/en-us/articles/206908397).
 {{%notice note%}}
 
 Most of these parameters are blacklisted in the `ifupdown_blacklist`
-section of the`  /etc/ ``netd.conf` file. Before you configure these
-parameters, you must [edit the file](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU/#advanced-configuration) to remove them from the blacklist.
+section of the `/etc/netd.conf` file. Before you configure these
+parameters, you must
+[edit the file](../../System-Configuration/Network-Command-Line-Utility-NCLU/#advanced-configuration) 
+to remove them from the blacklist.
 
 {{%/notice%}}
 
@@ -754,21 +756,14 @@ can be accomplished using PVRSTP or PVSTP.
 
 ## Related Information
 
-The source code for `mstpd`/`mstpctl` was written by [Vitalii
-Demianets](mailto:vitas%40nppfactor.kiev.ua) and is hosted at the URL
-below.
+The source code for `mstpd`/`mstpctl` was written by
+[Vitalii Demianets](mailto:vitas%40nppfactor.kiev.ua) and is hosted at
+the URL below.
 
-  - [Github - mstpd project](https://github.com/mstpd/mstpd)
-
-  - [Wikipedia - Spanning Tree
-    Protocol](http://en.wikipedia.org/wiki/Spanning_Tree_Protocol)
-
-  - brctl(8)
-
-  - bridge-utils-interfaces(5)
-
-  - ifupdown-addons-interfaces(5)
-
-  - mstpctl(8)
-
-  - mstpctl-utils-interfaces(5)
+- [GitHub - mstpd project](https://github.com/mstpd/mstpd)
+- [Wikipedia - Spanning Tree Protocol](http://en.wikipedia.org/wiki/Spanning_Tree_Protocol)
+- brctl(8)
+- bridge-utils-interfaces(5)
+- ifupdown-addons-interfaces(5)
+- mstpctl(8)
+- mstpctl-utils-interfaces(5)

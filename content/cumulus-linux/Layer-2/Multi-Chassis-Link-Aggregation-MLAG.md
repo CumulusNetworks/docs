@@ -1420,6 +1420,16 @@ configure the IGMP querier on the switch to generate IGMP query
 messages. For more information, read the
 [IGMP and MLD Snooping](../IGMP-and-MLD-Snooping) chapter.
 
+{{%notice note%}}
+
+ In an MLAG configuration, the switch in the secondary role does not
+ send IGMP queries, even though the configuration is identical to the
+ switch in the primary role. This is expected behavior, as there can be
+ only one querier on each VLAN. Once the querier on the primary switch
+ stops transmitting, the secondary switch starts transmitting.
+
+{{%/notice%}}
+
 ## Monitor the Status of the clagd Service
 
 Due to the critical nature of the `clagd` service, `systemd`

@@ -45,11 +45,11 @@ cannot run concurrently.
         cumulus@switch:~$ sudo -E apt-get upgrade
     
     {{%notice note%}}
-    
-    At the end of the `apt-get upgrade` process, the output shows
-    details of the upgrade process, regarding the Quagga to FRR
-    switchover.
-    
+
+At the end of the `apt-get upgrade` process, the output shows
+details of the upgrade process, regarding the Quagga to FRR
+switchover.
+
         Unpacking quagga-compat (1.0.0+cl3u15-1) ...                                                                                                                                                                                                                                                                                                                                                                                    [476/476]
         Selecting previously unselected package frr.
         Preparing to unpack .../frr_3.1+cl3u1_amd64.deb ...
@@ -125,12 +125,12 @@ To complete the transition to FRR:
 1.  Migrate all `/etc/quagga/*` files to `/etc/frr/*`.
     
     {{%notice warning%}}
-    
-    The `vtysh.conf` file should not be moved, as it is unlikely any
-    configuration is in the file. However, if there is necessary
-    configuration in place, copy the contents into
-    `/etc/frr/vtysh.conf`.
-    
+
+The `vtysh.conf` file should not be moved, as it is unlikely any
+configuration is in the file. However, if there is necessary
+configuration in place, copy the contents into
+`/etc/frr/vtysh.conf`.
+
     {{%/notice%}}
 
 2.  Merge the current `Quagga.conf` file with the new `frr.conf` file.
@@ -146,21 +146,20 @@ To complete the transition to FRR:
 5.  Remove the compatibility package:
     
     {{%notice warning%}}
-    
-    This step stops the Quagga compatibility mode, causing routing to go
-    down.
-    
+
+This step stops the Quagga compatibility mode, causing routing to go down.
+
     {{%/notice%}}
     
         cumulus@switch:~$ sudo -E apt-get remove quagga quagga-compat quagga-doc
     
     {{%notice note%}}
-    
-    Removing the `quagga-compat` package also removes `quagga.service`.
-    
-    However, the `/etc/quagga` directory is not removed in this step, as
-    it is left in place for reference.
-    
+
+Removing the `quagga-compat` package also removes `quagga.service`.
+
+However, the `/etc/quagga` directory is not removed in this step, as
+it is left in place for reference.
+
     {{%/notice%}}
 
 6.  Purge the Quagga packages:
@@ -168,19 +167,19 @@ To complete the transition to FRR:
         cumulus@switch:~$ sudo dpkg -P quagga quagga-compat
     
     {{%notice warning%}}
-    
-    This step deletes all Quagga configuration files. Please ensure you
-    back up your configuration.
-    
+
+This step deletes all Quagga configuration files. Please ensure you
+back up your configuration.
+
     {{%/notice%}}
     
     {{%notice warning%}}
-    
-    Cumulus Networks does not recommend reinstalling the `quagga` and
-    `quagga-compat` packages once they have been removed. While they can
-    be reinstalled to continue migration iterations, limited testing has
-    taken place, and configuration issues may occur.
-    
+
+Cumulus Networks does not recommend reinstalling the `quagga` and
+`quagga-compat` packages once they have been removed. While they can
+be reinstalled to continue migration iterations, limited testing has
+taken place, and configuration issues may occur.
+
     {{%/notice%}}
 
 7.  Start FRR without Quagga compatibility mode:
@@ -188,7 +187,7 @@ To complete the transition to FRR:
         cumulus@switch:~$ sudo systemctl start frr.service
         cumulus@switch:~$ sudo systemctl -l status frr.service
 
-## Troubleshooting</span>
+## Troubleshooting
 
 If the `systemctl -l status frr` output shows an issue, edit the
 configuration files to correct it, and repeat the process. If issues
@@ -212,11 +211,3 @@ this section to upgrade to FRR:
 
     cumulus@switch:~$ sudo systemctl reset-failed frr.service
     cumulus@switch:~$ sudo systemctl enable frr.service
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

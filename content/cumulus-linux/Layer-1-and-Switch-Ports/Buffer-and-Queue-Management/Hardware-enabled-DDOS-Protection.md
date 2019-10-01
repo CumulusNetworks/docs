@@ -22,34 +22,21 @@ incurring no performance impact:
 
   - Source IP address matches the destination address for IPv4 and IPv6
     packets
-
   - Source MAC address matches the destination MAC address
-
   - Unfragmented or first fragment SYN packets with a source port of
     0-1023
-
   - TCP packets with control flags =0 and seq number == 0
-
   - TCP packets with FIN, URG and PSH bits set and seq number == 0
-
   - TCP packets with both SYN and FIN bits set
-
   - TCP source PORT matches the destination PORT
-
   - UDP source PORT matches the destination PORT
-
   - First TCP fragment with partial TCP header
-
   - TCP header has fragment offset value of 1
-
   - ICMPv6 ping packets payload larger than programmed value of ICMP max
     size
-
   - ICMPv4 ping packets payload larger than programmed value of ICMP max
     size
-
   - Fragmented ICMP packet
-
   - IPv6 fragment lower than programmed minimum IPv6 packet size
 
 ## Supported ASICs
@@ -57,19 +44,12 @@ incurring no performance impact:
 DDOS protection is available for the following Broadcom ASICs:
 
   - Helix4
-
   - Maverick
-
   - Tomahawk
-
   - Tomahawk+
-
   - Trident
-
   - Trident-II
-
   - Trident-II+
-
   - Trident3
 
 Cumulus Networks recommends enabling this feature when deploying a
@@ -115,12 +95,11 @@ Spectrum ASICs.
         dos.icmpv4_length = true
         dos.icmpv6_length = true
         dos.ipv6_min_frag = true
-```        
+```
 
     {{%notice note%}}
 
-Configuring any of the following settings affects the [BFD
-    echo](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
+Configuring any of the following settings affects the [BFD echo](../../Layer-3/Bidirectional-Forwarding-Detection-BFD)
     function. For example, if you enable `dos.udp_ports_eq`, all the BFD
     packets will get dropped because the BFD protocol uses the same
     source and destination UDP ports.

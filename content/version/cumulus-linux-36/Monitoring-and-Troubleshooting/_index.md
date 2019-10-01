@@ -445,17 +445,3 @@ To see the contents of the `syslog` file, use the `tcpdump -X` option:
     0x0060: 6d75 6c75 7320 3b20 5553 4552 3d72 6f6f mulus.;.USER=roo
     0x0070: 7420 3b20 434f 4d4d 414e 443d 2f62 696e t.;.COMMAND=/bin
     0x0080: 2f64 6174 65 /date
-
-## Next Steps
-
-The links below discuss more specific monitoring topics.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

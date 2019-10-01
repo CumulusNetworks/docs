@@ -139,28 +139,21 @@ To see all the currently running services, run:
 operation on a given service.
 
   - **status**: Returns the status of the specified service.
-
   - **start**: Starts the service.
-
   - **stop**: Stops the service.
-
   - **restart**: Stops, then starts the service, all the while
     maintaining state. So if there are dependent services or services
     that mark the restarted service as *Required*, the other services
     also get restarted. For example, running `systemctl restart
     frr.service` restarts any of the routing protocol services that are
     enabled and running, such as `bgpd` or `ospfd`.
-
   - **reload**: Reloads a service's configuration.
-
   - **enable**: Enables the service to start when the system boots, but
     does not start it unless you use the `systemctl start
     SERVICENAME.service` command or reboot the switch.
-
   - **disable**: Disables the service, but does not stop it unless you
     use the `systemctl stop SERVICENAME.service` command or reboot the
     switch. A disabled service can still be started or stopped.
-
   - **reenable**: Disables, then enables a service. You might need to do
     this so that any new *Wants* or *WantedBy* lines create the symlinks
     necessary for ordering. This has no side effects on other services.
@@ -276,6 +269,7 @@ To determine which services are currently active or stopped, run the
 
 You can also run the `systemctl list-unit-files --type service` command
 to list all services on the switch and see which ones are enabled:
+
 <details>
 <summary>Click here to see output of this command ... </summary>
 
@@ -494,6 +488,7 @@ to list all services on the switch and see which ones are enabled:
     210 unit files listed.
     lines 165-213/213 (END)
 </details>
+
 ## Identify Essential Services
 
 If you need to know which services are required to run when the switch
@@ -503,58 +498,41 @@ boots, run:
 
 To see which services are needed for networking, run:
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>cumulus@switch:~$ systemctl list-dependencies --after network.target</code></pre>
-<p><span style="color: #5cdd49;"> <strong>●</strong> </span> <code>├─switchd.service</code><br />
-<span style="color: #5cdd49;"> <strong>●</strong> </span> <code>├─wd_keepalive.service</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>└─network-pre.target</code></p></td>
-</tr>
-</tbody>
-</table>
+<pre style="line-height: 1rem;">cumulus@switch:~$ systemctl list-dependencies --after network.target
+<span style="color: #5cdd49;"> <strong>●</strong> </span> ├─switchd.service
+<span style="color: #5cdd49;"> <strong>●</strong> </span> ├─wd_keepalive.service
+<span style="color: #6a0900;"> <strong>●</strong> </span> └─network-pre.target</pre>
 
 To identify the services needed for a multi-user environment, run:
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>cumulus@switch:~$ systemctl list-dependencies --before multi-user.target</code></pre>
-<p><code>● ├─bootlog.service</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>├─systemd-readahead-done.service</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>├─systemd-readahead-done.timer</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>├─systemd-update-utmp-runlevel.service</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>└─graphical.target</code><br />
-<span style="color: #6a0900;"> <strong>●</strong> </span> <code>└─systemd-update-utmp-runlevel.service</code></p></td>
-</tr>
-</tbody>
-</table>
+<pre style="line-height: 1rem;">cumulus@switch:~$ systemctl list-dependencies --before multi-user.target
+
+ ●  ├─bootlog.service
+<span style="color: #6a0900;"> <strong>●</strong> </span> ├─systemd-readahead-done.service
+<span style="color: #6a0900;"> <strong>●</strong> </span> ├─systemd-readahead-done.timer
+<span style="color: #6a0900;"> <strong>●</strong> </span> ├─systemd-update-utmp-runlevel.service
+<span style="color: #6a0900;"> <strong>●</strong> </span> └─graphical.target
+<span style="color: #6a0900;"> <strong>●</strong> </span> └─systemd-update-utmp-runlevel.service</pre>
 
 ### Important Services
 
 The following table lists the most important services in Cumulus Linux.
 
-| Service Name | Description                                                                                                                                                                                                                                                                                                 | Affects Forwarding?                          |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| switchd      | Hardware abstraction daemon, synchronizes the kernel with the ASIC.                                                                                                                                                                                                                                         | YES                                          |
-| sx\_sdk      | Only on Mellanox switches, interfaces with the Spectrum ASIC.                                                                                                                                                                                                                                               | YES                                          |
-| portwd       | Reads pluggable information over the I2C bus. Identifies and classifies the optics that are inserted into the system. Sets interface speeds and capabilities to match the optics.                                                                                                                           | YES, eventually, if optics are added/removed |
-| frr          | [FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/), handles routing protocols. There are separate processes for each routing protocol, like bgpd and ospfd.                                                                                                                                            | YES if routing                               |
-| clag         | Cumulus link aggregation daemon, handles [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG).                                                                                                                                                                                              | YES if using MLAG                            |
-| neighmgrd    | Synchronizes MAC address information when MLAG is in use.                                                                                                                                                                                                                                                   | YES if using MLAG                            |
-| mstpd        | [Spanning tree protocol](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree) daemon.                                                                                                                                                                                                              | YES if using layer 2                         |
+| Service Name | Description        | Affects Forwarding?                          |
+| ------------ | ------------------ | -------------------------------------------- |
+| switchd      | Hardware abstraction daemon, synchronizes the kernel with the ASIC.                | YES                                          |
+| sx\_sdk      | Only on Mellanox switches, interfaces with the Spectrum ASIC.       | YES                                          |
+| portwd       | Reads pluggable information over the I2C bus. Identifies and classifies the optics that are inserted into the system. Sets interface speeds and capabilities to match the optics.   | YES, eventually, if optics are added/removed |
+| frr          | [FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/), handles routing protocols. There are separate processes for each routing protocol, like bgpd and ospfd.                    | YES if routing                               |
+| clag         | Cumulus link aggregation daemon, handles [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG).   | YES if using MLAG |
+| neighmgrd    | Synchronizes MAC address information when MLAG is in use. | YES if using MLAG                            |
+| mstpd        | [Spanning tree protocol](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree) daemon. | YES if using layer 2            |
 | ptmd         | [Prescriptive Topology Manager](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM), verifies cabling based on [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) output, also sets up [BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD) sessions. | YES if using BFD                             |
-| netd         | [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU) back end.                                                                                                                                                                                                                   | NO                                           |
-| rsyslog      | Handles logging of syslog messages.                                                                                                                                                                                                                                                                         | NO                                           |
-| ntp          | [Network time protocol](/cumulus-linux/System-Configuration/Setting-Date-and-Time).                                                                                                                                                                                                                         | NO                                           |
-| ledmgrd      | [LED manager](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/Network-Switch-Port-LED-and-Status-LED-Guidelines), reads the state of system LEDs.                                                                                                                                  | NO                                           |
-| sysmonitor   | Watches and logs critical system load (free memory, disk, CPU).                                                                                                                                                                                                                                             | NO                                           |
-| lldpd        | Handles Tx/Rx of [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) information.                                                                                                                                                                                                                 | NO                                           |
-| smond        | Reads [platform sensors and fan information](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/) from pwmd.                                                                                                                                                                          | NO                                           |
-| pwmd         | Reads and sets fan speeds.                                                                                                                                                                                                                                                                                  | NO                                           |
+| netd         | [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU) back end.      |
+| rsyslog      | Handles logging of syslog messages.             | NO  |
+| ntp          | [Network time protocol](/cumulus-linux/System-Configuration/Setting-Date-and-Time).   | NO                                           |
+| ledmgrd      | [LED manager](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/Network-Switch-Port-LED-and-Status-LED-Guidelines), reads the state of system LEDs.  | NO  |
+| sysmonitor   | Watches and logs critical system load (free memory, disk, CPU).    | NO                                           |
+| lldpd        | Handles Tx/Rx of [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) information.  | NO |
+| smond        | Reads [platform sensors and fan information](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/) from pwmd.  | NO  |
+| pwmd         | Reads and sets fan speeds.  | NO   |

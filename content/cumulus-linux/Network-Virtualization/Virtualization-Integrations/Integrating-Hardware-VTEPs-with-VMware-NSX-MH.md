@@ -25,9 +25,7 @@ availability mode. Refer to
 ## Getting Started
 
 Before you integrate VXLANs with NSX-MH, make sure you have a layer 2
-gateway; a Broadcom Tomahawk, Trident II+, Trident II, Maverick, or
-Mellanox Spectrum switch running Cumulus Linux. Cumulus Linux includes
-OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support
+gateway; a switch with either the Broadcom Tomahawk, Trident II+, Trident II, Maverick ASIC or the Mellanox Spectrum ASIC running Cumulus Linux. Cumulus Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support
 [VLAN-aware bridges](../../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
 
 To integrate a VXLAN with NSX-MH, you need to:

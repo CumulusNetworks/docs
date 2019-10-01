@@ -18,7 +18,7 @@ routing](/version/cumulus-linux-35/Layer-3/Configuring-FRRouting/) in
 Cumulus Linux. However, an alternative exists in the the `vtysh` modal
 CLI. The available commands are as follows:
 
-## Comparing vtysh and NCLU Commands</span>
+## Comparing vtysh and NCLU Commands
 
 The following table compares the various FRRouting commands with their
 Cumulus Linux NCLU counterparts.
@@ -73,7 +73,7 @@ switch(config-if)# ipv6 address 3002:2123:1234:1abc::21/64</code></pre></td>
 <td><pre><code>switch(config)# ptm-enable</code></pre></td>
 </tr>
 <tr class="odd">
-<td><p>Configure <a href="Layer-1-and-Switch-Port-Attributes.html#src-8357670_Layer1andSwitchPortAttributes-mtu">MTU</a> in IPv6 network discovery for an interface</p></td>
+<td><p>Configure <a href="/version/cumulus-linux-35/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/#mtu">MTU</a> in IPv6 network discovery for an interface</p></td>
 <td><pre><code>cumulus@switch:~$ sudo cl-ra interface swp3 set mtu 9000</code></pre></td>
 <td><pre><code>switch(config)# int swp3
 switch(config-if)# ipv6 nd mtu 9000</code></pre></td>

@@ -232,7 +232,7 @@ To help visualize the following diagram is provided:
             PortDescr:    vmnic2
         -------------------------------------------------------------------------------
 
-3.  Use ` net show  `to look at `lldp` information:
+3.  Use `net show` to look at `lldp` information:
 
         cumulus@switch:~$ net show lldp
          

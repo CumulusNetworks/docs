@@ -24,8 +24,7 @@ Availability](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/
 ## Getting Started
 
 Before you integrate VXLANs with NSX-V, make sure you have a layer 2
-gateway; a Broadcom Tomahawk, Trident II+, Trident II, Maverick or
-Mellanox Spectrum switch running Cumulus Linux. Cumulus Linux includes
+gateway; a switch with the Broadcom Tomahawk, Trident II+, Trident II, Maverick ASIC or the Mellanox Spectrum ASIC running Cumulus Linux. Cumulus Linux includes
 OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support
 [VLAN-aware
 bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
@@ -33,9 +32,7 @@ bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
 To integrate a VXLAN with NSX-V, you need to:
 
   - Configure the NSX-V integration on the switch.
-
   - Configure the transport and logical layers from the NSX Manager.
-
   - Verify the VXLAN configuration.
 
 {{%notice note%}}
@@ -84,18 +81,14 @@ command with these options:
 
   - `controller_ip` is the IP address of the NSX controller
     (192.168.100.17 in the example command below).
-
   - The ID for the VTEP (`vtep7` in the example command below).
-
   - The datapath IP address of the VTEP (`172.16.20.157` in the example
     command below). This is the VXLAN anycast IP address.
-
   - The IP address of the management interface on the switch
     (`192.168.100.157` in the example command below). This interface is
     used for control traffic.
 
-<!-- end list -->
-
+```
     cumulus@switch:~$ vtep-bootstrap vtep7 --controller_ip 192.168.100.17 172.16.20.157 192.168.100.157
     Executed:
         create certificate on a switch, to be used for authentication with controller
@@ -119,6 +112,7 @@ command with these options:
     Executed:
         restart a service
          ().
+```
 
 Run the following commands in the order shown to complete the
 configuration process:

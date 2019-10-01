@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=5115426
 pageID: 5115426
 product: Cumulus VX
-version: '2.5'
+version: 2.5 ESR
 imgData: cumulus-vx-25
 siteSlug: cumulus-vx-25
 ---
@@ -15,14 +15,13 @@ This section covers configuring the network interfaces and Quagga for a
 2 leaf/2 spine topology. The steps below assume that the VMs have been
 set up. Refer to earlier sections of this guide to set up the VMs.
 
-## Configuring leaf1 VM</span>
+## Configuring leaf1 VM
 
 To configure leaf1:
 
 1.  Log into the VM using the following credentials:
     
       - username: cumulus
-    
       - password: CumulusLinux\!
 
 2.  Configure the interfaces:
@@ -94,7 +93,7 @@ To configure leaf1:
     
         root@leaf1:~$ service quagga restart
 
-## Configuring leaf2, spine1, and spine2 VMs</span>
+## Configuring leaf2, spine1, and spine2 VMs
 
 The configuration steps for `leaf2`, `spine1`, and `spine2` are the same
 as those listed above for `leaf1`, however the file configurations are
@@ -231,7 +230,7 @@ continuing.
 
 {{%/notice%}}
 
-## Testing the Connections</span>
+## Testing the Connections
 
 Once the VMs have been restarted, you can ping across VMs to test:
 
@@ -248,11 +247,3 @@ Once the VMs have been restarted, you can ping across VMs to test:
       - Ping `spine2`:
         
             root@leaf1:~# ping 10.2.1.4
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

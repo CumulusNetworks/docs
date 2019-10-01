@@ -7,7 +7,6 @@ aliases:
  - /pages/viewpage.action?pageId=5115975
 pageID: 5115975
 product: Cumulus Linux
-version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
@@ -16,7 +15,7 @@ for password recovery. Entering single user mode is
 [platform-specific](http://cumulusnetworks.com/hcl/), so follow the
 appropriate steps for your x86, ARM or PowerPC switch.
 
-## Entering Single User Mode on an x86 Switch</span>
+## Entering Single User Mode on an x86 Switch
 
 1.  Boot the switch, as soon as you see the GRUB menu, use the ^ and v
     arrow keys to select the boot entry you wish to modify, then press
@@ -24,10 +23,10 @@ appropriate steps for your x86, ARM or PowerPC switch.
     so that the password change is applied correctly to the slot you
     desire. The active slot is the first selected image when the GRUB
     menu appears.
-    
+
     ``` 
                            GNU GRUB  version 1.99-27+deb7u2
-    
+
      +--------------------------------------------------------------------------+
      |Cumulus Linux 2.5.5-4cd66d9-201512071810-build - slot 1                   | 
      |Cumulus Linux 2.5.5-4cd66d9-201512071810-build - slot 1 (recovery mode)   |
@@ -42,17 +41,17 @@ appropriate steps for your x86, ARM or PowerPC switch.
      |                                                                          |
      |                                                                          | 
      +--------------------------------------------------------------------------+
-    
-          Use the ^ and v keys to select which entry is highlighted.      
-          Press enter to boot the selected OS, 'e' to edit the commands      
-          before booting or 'c' for a command-line.      
+
+          Use the ^ and v keys to select which entry is highlighted.
+          Press enter to boot the selected OS, 'e' to edit the commands
+          before booting or 'c' for a command-line.
     ```
 
 2.  After pressing *e*, a menu similar to the following should appear:
-    
+
     ``` 
                           GNU GRUB  version 1.99-27+deb7u2
-    
+
      +--------------------------------------------------------------------------+
      | setparams 'Cumulus Linux 2.5.5-4cd66d9-201512071810-build - slot 1'      | 
      |                                                                          |
@@ -67,19 +66,19 @@ appropriate steps for your x86, ARM or PowerPC switch.
      | 1084b6337 console=ttyS1,115200n8 cl_platform=dell_s3000_c2338 quiet act\ |
      | ive=1                                                                    |v
      +--------------------------------------------------------------------------+
-    
-          Minimum Emacs-like screen editing is supported. TAB lists      
-          completions. Press Ctrl-x or F10 to boot, Ctrl-c or F2 for      
+
+          Minimum Emacs-like screen editing is supported. TAB lists
+          completions. Press Ctrl-x or F10 to boot, Ctrl-c or F2 for
           a command-line or ESC to discard edits and return to the GRUB menu.
     ```
 
 3.  Scroll down to the line that starts with "linux" and add
     *init=/bin/bash* to the end of the line. This allows the system to
     boot into single user mode.
-    
+
     ``` 
                            GNU GRUB  version 1.99-27+deb7u2
-    
+
      +--------------------------------------------------------------------------+
      |                                                                          |^
      | insmod gzio                                                              |
@@ -95,8 +94,8 @@ appropriate steps for your x86, ARM or PowerPC switch.
      | echo 'Loading initial ramdisk ...'                                       |v
      +--------------------------------------------------------------------------+
     
-          Minimum Emacs-like screen editing is supported. TAB lists      
-          completions. Press Ctrl-x or F10 to boot, Ctrl-c or F2 for      
+          Minimum Emacs-like screen editing is supported. TAB lists
+          completions. Press Ctrl-x or F10 to boot, Ctrl-c or F2 for
           a command-line or ESC to discard edits and return to the GRUB menu.
     ```
 
@@ -119,7 +118,7 @@ appropriate steps for your x86, ARM or PowerPC switch.
     Restarting the system.    
     ```
 
-## Entering Single User Mode on a PowerPC Switch</span>
+## Entering Single User Mode on a PowerPC Switch
 
 1.  From the console, boot the switch, interrupting the U-Boot countdown
     to enter the U-Boot prompt. Enter the following:
@@ -141,7 +140,7 @@ appropriate steps for your x86, ARM or PowerPC switch.
         cumulus@switch:~$ sudo reboot -f  
         Restarting the system.
 
-## Entering Single User Mode on an ARM Switch</span>
+## Entering Single User Mode on an ARM Switch
 
 1.  From the console, boot the switch, interrupting the U-Boot countdown
     to enter the U-Boot prompt. Enter the following:
@@ -164,11 +163,3 @@ appropriate steps for your x86, ARM or PowerPC switch.
         root@cumulus:~# sync
         root@cumulus:~# reboot -f  
         Restarting the system.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

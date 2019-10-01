@@ -78,11 +78,6 @@ should be 50 bytes smaller than the MTU for the physical interfaces on
 the switch. For more information on setting MTU, read
 [Layer 1 and Switch Port Attributes](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu-for-a-bridge).
 
-### VLANs and VXLANs Cannot Share the Same ID
-
-The layer 3 VNI and layer 2 VNI cannot share the same number space; that
-is, you cannot have *vlan10* and *vxlan10*, for example. Otherwise, the
-layer 2 VNI does not get created.
 
 ## Useful Links
 

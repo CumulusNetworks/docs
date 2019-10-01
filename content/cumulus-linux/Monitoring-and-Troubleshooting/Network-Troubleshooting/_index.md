@@ -261,7 +261,6 @@ packets have the following format:
 {{%notice note%}}
 
  - Mirrored traffic is not guaranteed. If the MTP is congested, mirrored packets might be discarded.
-
  - A SPAN/ERSPAN destination interface that is oversubscribed might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN/ERSPAN when the aggregate speeds of all source ports exceeds the destination port. Selective SPAN is recommended when possible to limit traffic in this scenario.
 
 {{%/notice%}}
@@ -271,9 +270,8 @@ SPAN and ERSPAN are configured via `cl-acltool`, the
 The match criteria for SPAN and ERSPAN is usually an interface; for more
 granular match terms, use [selective spanning](#selective-spanning). The
 SPAN source interface can be a port, a subinterface or a bond interface.
-Ingress traffic on interfaces can be matched, and on Mellanox Spectrum
-switches, egress traffic can be matched. See the
-[list of limitations](#limitations-for-span/erspan) below.
+Ingress traffic on interfaces can be matched, and on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Spectrum Spectrum&ASIC=Mellanox Spectrum_A1), egress traffic can be matched. See the
+[list of limitations](#limitations-for-span-erspan) below.
 
 Cumulus Linux supports a maximum of 2 SPAN destinations. Multiple rules
 (SPAN sources) can point to the same SPAN destination, although a given
@@ -295,7 +293,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
     destinations.
   - Because SPAN and ERSPAN are done in hardware, eth0 is not supported
     as a destination.
-  - For Mellanox Spectrum switches, Cumulus Linux supports only a single
+  - For Spectrum switches, Cumulus Linux supports only a single
     SPAN destination in atomic mode or three SPAN destinations in
     non-atomic mode.
   - Multiple rules (SPAN sources) can point to the same SPAN
@@ -304,7 +302,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
   - To configure SPAN or ERSPAN on a Tomahawk or Trident3 switch, you
     must enable
     [non-atomic update mode](/cumulus-linux/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode).
-  - Mellanox switches reject SPAN ACL rules for an output interface that
+  - Spectrum switches reject SPAN ACL rules for an output interface that
     is a subinterface.
   - Mirrored traffic is not guaranteed. If the MTP is congested,
     mirrored packets might be discarded.
@@ -479,7 +477,7 @@ is **not** supported for ERSPAN in Cumulus Linux on switches using
 Broadcom Tomahawk, Trident II+ and Trident II ASICs.
 
 Cut-through mode **is** supported for ERSPAN in Cumulus Linux on
-switches using Mellanox Spectrum ASICs.
+switches using Spectrum ASICs.
 
 {{%/notice%}}
 
@@ -539,11 +537,11 @@ Cumulus Linux supports selective spanning for `iptables` only.
 
 The following matching fields are supported:
 
-  - IPv4 SIP/DIP
-  - IP protocol
-  - L4 (TCP/UDP) src/dst port
-  - TCP flags
-  - An ingress port/wildcard (swp+) can be specified in addition
+- IPv4 SIP/DIP
+- IP protocol
+- L4 (TCP/UDP) src/dst port
+- TCP flags
+- An ingress port/wildcard (swp+) can be specified in addition
 
 {{%notice note%}}
 
@@ -555,43 +553,56 @@ Exceeding this limit produces an error when you install the rules with
 
 #### SPAN Examples
 
-  - To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
+- To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
     DIP 20.0.1.2 to port swp1s1:
 
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j SPAN --dport swp1s2
-  - To mirror icmp packets from all ports to swp1s2:
+- To mirror icmp packets from all ports to swp1s2:
 
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -p icmp -j SPAN --dport swp1s2
-  - To mirror forwarded UDP packets received from port swp1s0, towards
+- To mirror forwarded UDP packets received from port swp1s0, towards
     DIP 20.0.1.2 and destination port 53:
 
         -A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j SPAN --dport swp1s2
-  - To mirror all forwarded TCP packets with only SYN set:
+- To mirror all forwarded TCP packets with only SYN set:
 
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j SPAN --dport swp1s2
-  - To mirror all forwarded TCP packets with only FIN set:
+- To mirror all forwarded TCP packets with only FIN set:
 
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j SPAN --dport swp1s2
 
 #### ERSPAN Examples
 
-  - To mirror forwarded packets from all ports matching SIP 20.0.1.0 and
-    DIP 20.0.1.2:
+- To mirror forwarded packets from all ports matching SIP 20.0.1.0 and DIP 20.0.1.2:
 
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
-  - To mirror ICMP packets from all ports:
+- To mirror ICMP packets from all ports:
 
         -A FORWARD --in-interface swp+ -s 20.0.0.2 -p icmp -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
-  - To mirror forwarded UDP packets received from port swp1s0, towards
+- To mirror forwarded UDP packets received from port swp1s0, towards
     DIP 20.0.1.2 and destination port 53:
 
         -A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
-  - To mirror all forwarded TCP packets with only SYN set:
+- To mirror all forwarded TCP packets with only SYN set:
 
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
-  - To mirror all forwarded TCP packets with only FIN set:
+- To mirror all forwarded TCP packets with only FIN set:
 
         -A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
+
+{{%notice tip%}}
+
+If you specify a VNI instead of a switch port while using selective ERSPAN, you
+need to reverse the `-s` and `-d` parameters, as this traffic is being captured after
+VXLAN decapsulation.
+
+If the previous example was used with a VNI, you would specify the rule like this:
+
+```
+-A FORWARD --in-interface vni10 -s 20.0.1.2 -d 20.0.0.2 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
+```
+
+{{%/notice%}}
 
 ### Remove SPAN Rules
 
@@ -614,19 +625,18 @@ You can use `tcpdump` to monitor control plane traffic — traffic sent to
 and coming from the switch CPUs. `tcpdump` does **not** monitor data
 plane traffic; use `cl-acltool` instead (see above).
 
-For more information on tcpdump, read [the `tcpdump`
-documentation](http://www.tcpdump.org/#documentation) and the [`tcpdump`
-man page](http://www.tcpdump.org/manpages/tcpdump.1.html).
+For more information on tcpdump, read
+[the `tcpdump` documentation](http://www.tcpdump.org/#documentation)
+and the [`tcpdump` man page](http://www.tcpdump.org/manpages/tcpdump.1.html).
 
 The following example incorporates a few `tcpdump` options:
 
-  - `-i bond0`, which captures packets from bond0 to the CPU and from
+- `-i bond0`, which captures packets from bond0 to the CPU and from
     the CPU to bond0
-  - `host 169.254.0.2`, which filters for this IP address
-  - `-c 10`, which captures 10 packets then stops
+- `host 169.254.0.2`, which filters for this IP address
+- `-c 10`, which captures 10 packets then stops
 
-<!-- end list -->
-
+    ```
     cumulus@switch:~$ sudo tcpdump -i bond0 host 169.254.0.2 -c 10
     tcpdump: WARNING: bond0: no IPv4 address assigned
     tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
@@ -644,9 +654,10 @@ The following example incorporates a few `tcpdump` options:
     10 packets captured
     12 packets received by filter
     0 packets dropped by kernel
+    ```
 
 ## Related Information
 
-  - [en.wikipedia.org/wiki/Ping](http://en.wikipedia.org/wiki/Ping)
-  - [en.wikipedia.org/wiki/Traceroute](https://en.wikipedia.org/wiki/Traceroute)
-  - [www.tcpdump.org](http://www.tcpdump.org)
+- [en.wikipedia.org/wiki/Ping](http://en.wikipedia.org/wiki/Ping)
+- [en.wikipedia.org/wiki/Traceroute](https://en.wikipedia.org/wiki/Traceroute)
+- [www.tcpdump.org](http://www.tcpdump.org)

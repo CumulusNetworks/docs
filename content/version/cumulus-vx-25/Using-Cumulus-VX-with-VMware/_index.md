@@ -7,17 +7,15 @@ aliases:
  - /pages/viewpage.action?pageId=5115413
 pageID: 5115413
 product: Cumulus VX
-version: '2.5'
-imgData: cumulus-vx-25
+version: 2.5 ESR
 siteSlug: cumulus-vx-25
+imgData: cumulus-vx-25
 ---
 The Cumulus VX OVA image is compatible with these hypervisor platforms
 provided by VMware:
 
   - VMware vSphere ESXi (type-I server hypervisor)
-
   - VMware Fusion (for Mac users)
-
   - VMware Workstation (for Windows/Linux users)
 
 No matter which VMware hypervisor you use, you use the same Cumulus VX
@@ -32,16 +30,7 @@ The resulting configuration contains four VMs:
 
   - Two spine VMs, which represent two spine (aggregation layer)
     switches on the network
-
   - Two leaf VMs, which represent two leaf (access layer) switches on
     the network
 
-{{% imgOld 0 %}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+{{<figure src="/images/cumulus-vx/VX_VirtualBox_topo_noOOB.png">}}

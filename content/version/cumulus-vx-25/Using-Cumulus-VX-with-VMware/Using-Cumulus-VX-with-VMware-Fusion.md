@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=5115423
 pageID: 5115423
 product: Cumulus VX
-version: '2.5'
-imgData: cumulus-vx-25
+version: 2.5 ESR
 siteSlug: cumulus-vx-25
+imgData: cumulus-vx-25
 ---
 The process to integrate and use the Cumulus VX OVA image with VMware
 Fusion is pretty straightforward. The procedure was tested on VMware
@@ -45,17 +45,14 @@ The steps are as follows:
 
       - Network Adapter (1): *Share with my Mac* (equivalent to *NAT* in
         VirtualBox)
-
       - Network Adapter 2: *Private to my Mac* (equivalent to *Internal
         Network*)
-
       - Network Adapter 3: *Private to my Mac* (equivalent to *Internal
         Network*)
-
       - Network Adapter 4: *Private to my Mac* (equivalent to *Internal
         Network*)
 
-    {{% imgOld 0 %}}
+    {{<figure src="/images/cumulus-vx/VX_fusion.png">}}
 
 8.  When you finish customizing the network settings, click **Start Up**
     to power on the VM and use it as you desire.
@@ -64,11 +61,8 @@ The steps are as follows:
     VMs and name them as follows:
 
       - Cumulus VX-leaf1
-
       - Cumulus VX-leaf2
-
       - Cumulus VX-spine1
-
       - Cumulus VX-spine2
 
 10. Repeat the steps above for each VM, importing the original OVA image
@@ -88,7 +82,6 @@ To configure leaf1:
 1.  Log into the VM using the following credentials:
 
       - username: cumulus
-
       - password: CumulusLinux\!
 
 2.  Configure the interfaces:

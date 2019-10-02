@@ -4,10 +4,11 @@ author: Cumulus Networks
 weight: 63
 aliases:
  - /display/CL25ESR/Power+over+Ethernet+++PoE
+ - /display/CL25ESR/Power+over+Ethernet+-+PoE
+ - /display/CL25ESR/Power+over+Ethernet+PoE
  - /pages/viewpage.action?pageId=5115909
 pageID: 5115909
 product: Cumulus Linux
-version: 2.5.12
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---
@@ -26,23 +27,20 @@ PoE+ and uPoE are not supported at this time.
 
 {{%/notice%}}
 
-## How It Works</span>
+## How It Works
 
 When a powered device is connected to the switch via an Ethernet cable:
 
   - If the available power is greater than the power required by the
     connected device, power is supplied to the switch port, and the
     device powers on
-
   - If available power is less than the power required by the connected
     device and the switch port's priority is less than the port priority
     set on all powered ports, power is **not** supplied to the port
-
   - If available power is less than the power required by the connected
     device and the switch port's priority is greater than the priority
     of a currently powered port, power is removed from lower priority
     port(s) and power is supplied to the port
-
   - If the total consumed power exceeds the configured power limit of
     the power source, low priority ports are turned off. In the case of
     a tie, the port with the lower port number gets priority
@@ -58,28 +56,26 @@ For the Accton AS4610-54P switch, power is available as follows:
 The AS4610-54P has an LED on the front panel to indicate PoE status:
 
   - Green: The `poed` daemon is running and no errors are detected
-
   - Yellow: One or more errors are detected or the `poed` daemon is not
     running
 
-### About Link State and PoE State</span>
+### About Link State and PoE State
 
 Link state and PoE state are completely independent of each other. When
 a link is brought down on particular port using `ip link <port> down`,
 power on that port is not turned off.
 
-### LLDP with POE Attributes not Supported</span>
+### LLDP with POE Attributes not Supported
 
 Cumulus Linux does not support LLDP auto discovery and negotiation of
 PoE attributes via LLDP between the powered device and the switch.
 
-## Configuring PoE</span>
+## Configuring PoE
 
 You use the `poectl` command utility to configure PoE on a [switch that
 supports](http://cumulusnetworks.com/hcl/) the feature. You can:
 
   - Enable or disable PoE for a given switch port
-
   - Set a switch port's PoE priority to one of three values: *low*,
     *high* or *critical*
 
@@ -122,7 +118,7 @@ Or to see all the PoE information for a switch, run `poectl -s`:
 The set commands (priority, enable, disable) either succeed silently or
 display an error message if the command fails.
 
-### poectl Arguments</span>
+### poectl Arguments
 
 The `poectl` command takes the following arguments:
 
@@ -182,26 +178,15 @@ The `poectl` command takes the following arguments:
 </tbody>
 </table>
 
-## Logging poed Events</span>
+## Logging poed Events
 
 The `poed` service logs the following events to syslog:
 
   - When a switch provides power to a powered device
-
   - When a device that was receiving power is removed
-
   - When the power available to the switch changes
-
   - Errors
 
-## Man Pages</span>
+## Man Pages
 
 man poectl
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

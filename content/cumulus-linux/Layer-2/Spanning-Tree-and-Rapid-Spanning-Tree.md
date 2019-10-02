@@ -42,8 +42,8 @@ giant switch.
 
 {{%notice note%}}
 
-When connecting a VLAN-aware bridge to a proprietary PVST+ switch using STP,
-VLAN 1 must be allowed on all 802.1Q trunks that interconnect them, regardless
+If trying to connect a VLAN-aware bridge to a proprietary PVST+ switch, the recommendation is to convert the proprietary switch to MSTP for the best interoperability experience.  However, if PVST+ has to be used, the root needs to reside on the non-Cumulus side.
+In addition, VLAN 1 must be allowed on all 802.1Q trunks that interconnect them, regardless
 of the configured *native* VLAN. This is because only VLAN
 1 enables the switches to address the BPDU frames to the IEEE multicast
 MAC address. The proprietary switch might be configured like this:

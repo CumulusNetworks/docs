@@ -406,8 +406,31 @@ There are two ways you can work around this issue.
         fe80::/64 dev eth0  proto kernel  metric 256
         default via 2001:620:5ca1:160::1 dev eth0  metric 1024
 
+### Increase Startup Timeout with High Number of Routes
+
+If the routing table contains a high number of routes (for example 130K or more), create a unit override file with an increased startup timeout to prevent the `portwd` service from failing. For example:
+
+```
+sudo mkdir -p /etc/systemd/system/portwd.service.d
+
+cat > /tmp/starttime.conf << EOF
+[Service]
+TimeoutSec=5m
+EOF
+sudo mv /tmp/starttime.conf /etc/systemd/system/portwd.service.d
+sudo chown -R root.root /etc/systemd/system/portwd.service.d
+sudo systemctl daemon-reload
+```
+
+Run the `systemctl cat portwd.service` command to verify that there are no errors. Make sure the file ends with:
+
+```
+# /etc/systemd/system/portwd.service.d/starttime.conf
+[Service]
+TimeoutSec=5m
+```
+
 ## Related Information
 
-  - [Linux IP - ip route command](http://linux-ip.net/html/tools-ip-route.html)
-
-  - [FRRouting docs - static route commands](https://frrouting.org/user-guide/zebra.html#static-route-commands)
+- [Linux IP - ip route command](http://linux-ip.net/html/tools-ip-route.html)
+- [FRRouting docs - static route commands](https://frrouting.org/user-guide/zebra.html#static-route-commands)

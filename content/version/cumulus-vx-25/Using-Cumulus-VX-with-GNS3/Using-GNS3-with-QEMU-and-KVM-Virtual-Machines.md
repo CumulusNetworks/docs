@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=5115412
 pageID: 5115412
 product: Cumulus VX
-version: '2.5'
-imgData: cumulus-vx-25
+version: 2.5 ESR
 siteSlug: cumulus-vx-25
+imgData: cumulus-vx-25
 ---
 Before you run your virtual network under GNS3, make sure you have done
 the following:

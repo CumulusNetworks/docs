@@ -3,9 +3,9 @@ title: Install the NetQ Agent and CLI on Switches
 author: Cumulus Networks
 weight: 415
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq-23
+siteSlug: cumulus-netq-23
 ---
 After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents and, optionally, the CLI on your monitored switches and hosts.
 
@@ -55,7 +55,7 @@ A simple process installs the NetQ Agent on a Cumulus switch.
 
         cumulus@switch:~$ sudo nano /etc/apt/sources.list
         ...
-        deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.2
+        deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.3
         ...
 
     {{%notice tip%}}
@@ -72,7 +72,7 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install cumulus-netq
 
-3.  Verify that [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
+3.  Verify that [NTP](../../../../cumulus-linux/System-Configuration/Setting-Date-and-Time/)
     is running on the host node. Nodes must be in time synchronization with the
     NetQ Platform to enable useful statistical analysis.
 
@@ -262,14 +262,14 @@ To install the NetQ Agent on a Red Hat or CentOS server:
 
         root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
         ...
-        [cumulus-arch-netq-2.2]
+        [cumulus-arch-netq-2.3]
         name=Cumulus netq packages
-        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.2/$basearch
+        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.3/$basearch
         gpgcheck=1
         enabled=1
-        [cumulus-noarch-netq-2.2]
+        [cumulus-noarch-netq-2.3]
         name=Cumulus netq architecture-independent packages
-        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.2/noarch
+        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.3/noarch
         gpgcheck=1
         enabled=1
         ...
@@ -389,13 +389,14 @@ Save time by including these steps in your automation scripts for installing and
 
 Installing the CLI for cloud deployments also only requires two commands; however, there are a couple of additional options that you can apply:
 
-- In NetQ 2.2.2, if your nodes do not have Internet access, you can use the CLI proxy that is available on the NetQ server or Cloud Appliance.
-- In NetQ 2.2.1 and later, you can save your access credentials in a file and reference that file here to simplify the installation commands.
-- In NetQ 2.2.1 and later, you can specify which premises you want to query
+- In NetQ 2.2.2 and later, if your nodes do not have Internet access, you can use the CLI proxy that is available on the NetQ server or Cloud Appliance.
+- In NetQ 2.2.1 and later, you can:
+    - save your access credentials in a file and reference that file here to simplify the installation commands
+    - specify which premises you want to query
 
 ### Install NetQ CLI on Switches with Internet Access
 
-In **NetQ 2.2.x**, run the following commands. Replace the key values with your generated keys.
+Run the following commands, being sure to replace the key values with your generated keys.
 
 ```
 $ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
@@ -406,7 +407,7 @@ $ netq config restart cli
 Restarting NetQ CLI... Success!
 ```
 
-In **NetQ 2.2.1 and later**, if you have created a `credentials.yml` file as noted in the installation procedures for the NetQ Cloud server or Appliance, run the following commands. Be sure to include the *full path* the to file.
+If you have created a keys file as noted in the installation procedures for the NetQ Cloud server or Appliance, run the following commands. Be sure to include the *full path* the to file.
 
 ```
 $ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /<full-path>/credentials.yml port 443
@@ -417,7 +418,7 @@ $ netq config restart cli
 Restarting NetQ CLI... Success!
 ```
 
-In **NetQ 2.2.1 and later**, if you have multiple premises, be sure to include which premises you want to query. **Note**: For 2.2.1 use the `premise` option. For 2.2.2 use the `premises` option.
+If you have multiple premises, be sure to include which premises you want to query.
 
 ```
 $ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <premises-name> port 443

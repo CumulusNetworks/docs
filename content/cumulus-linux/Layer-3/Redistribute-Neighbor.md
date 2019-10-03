@@ -401,7 +401,7 @@ route](http://manpages.ubuntu.com/manpages/quantal/man8/ip-route.8.html).
 For BGP, check the advertised routes to the neighbor.
 
     cumulus@leaf01:~$ sudo vtysh
-    Hello, this is Quagga (version 0.99.23.1+cl3u2).
+    Hello, this is FRRouting (version 0.99.23.1+cl3u2).
     Copyright 1996-2005 Kunihiro Ishiguro, et al.
     leaf01# show ip bgp neighbor swp51 advertised-routes
     BGP table version is 5, local router ID is 10.0.0.11
@@ -440,7 +440,7 @@ imported/advertised:
     routing table 10.
 
         cumulus@switch:~$ sudo vtysh
-        Hello, this is Quagga (version 0.99.23.1+cl3u2).
+        Hello, this is FRRouting (version 0.99.23.1+cl3u2).
         Copyright 1996-2005 Kunihiro Ishiguro, et al.
          
         switch# show ip route table

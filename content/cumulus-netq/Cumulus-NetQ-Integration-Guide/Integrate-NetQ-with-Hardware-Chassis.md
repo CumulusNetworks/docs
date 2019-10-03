@@ -1,18 +1,16 @@
 ---
 title: Integrate with Hardware Chassis
 author: Cumulus Networks
-weight: 204
+weight: 202
 aliases:
  - /display/NETQ/Integrate+with+Third+party+Software+and+Hardware
  - /pages/viewpage.action?pageId=12320911
 pageID: 12320911
 product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+version: 2.2
+imgData: cumulus-netq-22
+siteSlug: cumulus-netq-22
 ---
-
-# Integrate with a Hardware Chassis
 
 NetQ can run within a [Facebook Backpack
 chassis](https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/),
@@ -45,4 +43,3 @@ chassis:
         netq-agent:
           send_chassis_sensor_data: true
         ...
-

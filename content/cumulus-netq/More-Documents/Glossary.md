@@ -3,12 +3,12 @@ title: Glossary
 author: Cumulus Networks
 weight: 304
 product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+version: 2.2
+imgData: cumulus-netq-22
+siteSlug: cumulus-netq-22
 ---
 
-# Common Cumulus Linux and NetQ Terminology
+## Common Cumulus Linux and NetQ Terminology
 
 The following table covers some basic terms used throughout the NetQ
 user documentation.
@@ -137,7 +137,7 @@ user documentation.
 </tbody>
 </table>
 
-# Common Cumulus Linux and NetQ Acronyms
+## Common Cumulus Linux and NetQ Acronyms
 
 The following table covers some common acronyms used throughout the NetQ
 user documentation.

@@ -16,7 +16,7 @@ This chapter discusses routing on switches running Cumulus Linux.
 ## Manage Static Routes
 
 You manage static routes using
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU)
 or the Cumulus Linux `ip route` command. The routes are added to the
 [FRRouting](https://frrouting.org) routing table, and are then updated
 into the kernel routing table as well.
@@ -82,8 +82,8 @@ To view mroutes, open the FRRouting CLI, and run the following command:
 
 ### Static Routing via ip route
 
-A static route can also be created by adding ` post-up ip route add
- `command to a switch port configuration. For example:
+A static route can also be created by adding `post-up ip route add` command to 
+a switch port configuration. For example:
 
     cumulus@switch:~$ net add interface swp3 ip address 198.51.100.1/24
     cumulus@switch:~$ net add interface swp3 post-up routing route add 203.0.113.0/24 via 198.51.100.2
@@ -138,7 +138,7 @@ To display the routing table:
 
 ### Apply a Route Map for Route Updates
 
-To apply a [route map](http://www.nongnu.org/quagga/docs/docs-multi/Route-Map.html#Route-Map)
+To apply a [route map](http://docs.frrouting.org/en/latest/routemap.html)
 to filter route updates from Zebra into the Linux kernel:
 
     cumulus@switch:$ net add routing protocol static route-map <route-map-name>
@@ -198,15 +198,16 @@ you can query the routing table for non-JSON data.
 If you need the JSON data, you can increase the timeout value for the BGP daemon. Do the following:
 
 1. Specify a non-default timeout value for the FRR daemons by adding `-t <timeout in seconds>` to the `watchfrr_options` configuration. For example:
-```
-watchfrr_options=(-d -r /usr/lib/frr/frrbBrestartbB%s -s /usr/lib/frr/frrbBstartbB%s -k /usr/lib/frr/frrbBstopbB%s -b bB -t 180)
-```
+
+   ```
+   watchfrr_options=(-d -r /usr/lib/frr/frrbBrestartbB%s -s /usr/lib/frr/frrbBstartbB%s -k /usr/lib/frr/frrbBstopbB%s -b bB -t 180)
+   ```
    The default timeout is 90 seconds; the value you specify here should be based on the size of the BGP routing table.
 
 1. Restart the FRR service:
-```
-systemctl restart frr.service
-```
+   ```
+   systemctl restart frr.service
+   ```
 
 {{%/notice%}}
 
@@ -232,7 +233,7 @@ your network architecture and specify the profile name for the
     forwarding_table.profile = default
 
 After you specify a different profile,
-[restart `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
+[restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd)
 for the change to take effect. You can see the forwarding table profile
 when you run `cl-resource-query`.
 
@@ -277,19 +278,19 @@ manufacturers' specifications provided about these chipsets.
 
 #### Broadcom Tomahawk/Tomahawk+ Switches
 
-| Profile                    | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)     |
-| -------------------------- | ------------- | ------------ | ------------------------------ |
-| default                    | 40k           | 40k          | 64k (IPv4) or 8k (IPv6-long)   |
-| l2-heavy                   | 72k           | 72k          | 8k (IPv4) or 2k (IPv6-long)    |
-| v4-lpm-heavy, v6-lpm-heavy | 8k            | 8k           | 128k (IPv4) or 20k (IPv6-long) |
+| Profile           | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)     |
+| ----------------- | ------------- | ------------ | ------------------------------ |
+| default           | 40k           | 40k          | 64k (IPv4) or 8k (IPv6-long)   |
+| l2-heavy          | 72k           | 72k          | 8k (IPv4) or 2k (IPv6-long)    |
+| v4-lpm-heavy, v6-lpm-heavy | 8k   | 8k           | 128k (IPv4) or 20k (IPv6-long) |
 
 #### Broadcom Trident II/Trident II+/Trident3 Switches
 
-| Profile                    | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)     |
-| -------------------------- | ------------- | ------------ | ------------------------------ |
-| default                    | 32k           | 16k          | 128k (IPv4) or 20k (IPv6-long) |
-| l2-heavy                   | 160k          | 96k          | 8k (IPv4) or 2k (IPv6-long)    |
-| v4-lpm-heavy, v6-lpm-heavy | 32k           | 16k          | 128k (IPv4) or 20k (IPv6-long) |
+| Profile             | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)     |
+| ------------------- | ------------- | ------------ | ------------------------------ |
+| default             | 32k           | 16k          | 128k (IPv4) or 20k (IPv6-long) |
+| l2-heavy            | 160k          | 96k          | 8k (IPv4) or 2k (IPv6-long)    |
+| v4-lpm-heavy, v6-lpm-heavy | 32k    | 16k          | 128k (IPv4) or 20k (IPv6-long) |
 
 #### Broadcom Helix4 Switches
 
@@ -313,49 +314,48 @@ entry takes up twice the space of an IPv4 entry.
 The [Spectrum ASIC](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1) provides the ability to configure the TCAM
 resource allocation, which is shared between IP multicast forwarding
 entries and ACL tables. Cumulus Linux provides a number of general
-profiles for this platform: *default*, *ipmc-heavy* and *acl-heavy*.
-Choose the profile that best suits your network architecture and specify
-that profile name in the `tcam_resource.profile` variable in the
-`/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf`
-file.
+profiles for this platform: *default*, *ipmc-heavy*, *acl-heavy*, *ipmc-max*
+and *ip-acl-heavy*. Choose the profile that best suits your network architecture
+and specify that profile name in the `tcam_resource.profile` variable in the
+`/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file.
 
 ```
 cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf | grep -B3 "tcam_resource"
 #TCAM resource forwarding profile
-     
-     
-    1. Valid profiles -
-    2. default, ipmc-heavy, acl-heavy, ipmc-max
-       tcam_resource.profile = default
+# Valid profiles -
+#    default, ipmc-heavy, acl-heavy, ipmc-max, `ip-acl-heavy`
+tcam_resource.profile = default
 ```
 
 After you specify a different profile,
-[restart `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd)
+[restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd)
 for the change to take effect.
 
-When [nonatomic updates](/cumulus-linux/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode)
+When [nonatomic updates](../../System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode)
 are enabled (that is, the `acl.non_atomic_update_mode` is set to *TRUE* in
 `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL
 entries for each profile are as follows:
 
-| Profile    | Mroute Entries | ACL Entries                |
-| ---------- | -------------- | -------------------------- |
-| default    | 1000           | 500 (IPv6) or 1000 (IPv4)  |
-| ipmc-heavy | 8500           | 1000 (IPv6) or 1500 (IPv4) |
-| acl-heavy  | 450            | 2000 (IPv6) or 3500 (IPv4) |
-| ipmc-max   | 13000          | 1000 (IPv6) or 2000 (IPv4) |
+| Profile      | Mroute Entries | ACL Entries                |
+| ------------ | -------------- | -------------------------- |
+| default      | 1000           | 500 (IPv6) or 1000 (IPv4)  |
+| ipmc-heavy   | 8500           | 1000 (IPv6) or 1500 (IPv4) |
+| acl-heavy    | 450            | 2000 (IPv6) or 3500 (IPv4) |
+| ipmc-max     | 13000          | 1000 (IPv6) or 2000 (IPv4) |
+| ip-acl-heavy | | |
 
-When [nonatomic updates](/cumulus-linux/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode)
+When [nonatomic updates](../../System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode)
 are disabled (that is, the `acl.non_atomic_update_mode` is set to *FALSE* in
 `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL
 entries for each profile are as follows:
 
-| Profile    | Mroute Entries | ACL Entries                |
-| ---------- | -------------- | -------------------------- |
-| default    | 1000           | 250 (IPv6) or 500 (IPv4)   |
-| ipmc-heavy | 8500           | 500 (IPv6) or 750 (IPv4)   |
-| acl-heavy  | 450            | 1000 (IPv6) or 1750 (IPv4) |
-| ipmc-max   | 13000          | 500 (IPv6) or 1000 (IPv4)  |
+| Profile      | Mroute Entries | ACL Entries                |
+| ------------ | -------------- | -------------------------- |
+| default      | 1000           | 250 (IPv6) or 500 (IPv4)   |
+| ipmc-heavy   | 8500           | 500 (IPv6) or 750 (IPv4)   |
+| acl-heavy    | 450            | 1000 (IPv6) or 1750 (IPv4) |
+| ipmc-max     | 13000          | 500 (IPv6) or 1000 (IPv4)  |
+| ip-acl-heavy | | |
 
 ## Caveats and Errata
 
@@ -430,7 +430,13 @@ Run the `systemctl cat portwd.service` command to verify that there are no error
 TimeoutSec=5m
 ```
 
+### Multicast Traffic on Broadcom Switches Maps to Queue 0
+
+On Broadcom switches, all IPv4 and IPv6 multicast traffic that is VLAN tagged
+always maps into queue 0, regardless of priority. This is a known limitation on
+these platforms.
+
 ## Related Information
 
 - [Linux IP - ip route command](http://linux-ip.net/html/tools-ip-route.html)
-- [FRRouting docs - static route commands](https://frrouting.org/user-guide/zebra.html#static-route-commands)
+- [FRRouting docs - static route commands](http://docs.frrouting.org/en/latest/static.html#static-route-commands)

@@ -36,7 +36,7 @@ rack.
 
 Cumulus Networks supports static VXLAN tunnels only on switches in the
 [Cumulus Linux HCL](http://cumulusnetworks.com/hcl/) using the Broadcom
-Tomahawk, Trident II+ and Trident II ASICs, as well as the Mellanox
+Tomahawk, Trident II+, Trident II, and Maverick ASICs, as well as the Mellanox
 Spectrum ASIC.
 
 For a basic VXLAN configuration, make sure that:

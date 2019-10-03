@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321072
 pageID: 12321072
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq-23
+siteSlug: cumulus-netq-23
 ---
 As with any network, one of the challenges is keeping track of all of
 the moving parts. With the NetQ GUI, you can view the overall health of
@@ -39,7 +39,7 @@ The small Network Health card displays:
 <tbody>
 <tr class="odd">
 <td>
-<p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
+<p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="even">
@@ -95,7 +95,7 @@ trend of the:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 3 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="odd">
@@ -129,7 +129,7 @@ The large Network Health card contains two tabs.
 
 The *System Health* tab displays:
 
-{{< figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-222.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-sys-hlth.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -148,8 +148,8 @@ The *System Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for System Health</p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
+<td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="odd">
 <td><p>Health trend</p></td>
@@ -185,9 +185,9 @@ The *System Health* tab displays:
 </tbody>
 </table>
 
-The *Network Health* tab displays:
+The *Network Services Health* tab displays:
 
-{{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -206,8 +206,8 @@ The *Network Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for Network Protocols and Services Health</p></td>
+<td><p>{{% imgOld 7 %}}</p></td>
+<td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="odd">
 <td><p>Health trend</p></td>
@@ -264,7 +264,7 @@ The full screen Network Health card displays all events in the network.
 <td><p>Network Health</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -291,7 +291,7 @@ The full screen Network Health card displays all events in the network.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 10 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -340,9 +340,9 @@ information about each component from the large Network Health card.
 To view information about each system component:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/>.
+2.  Hover over the card and click {{% imgOld 13 %}}.
 
-    {{< figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-222.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-hlth-large-sys-hlth.png" width="500" >}}
 
     The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
@@ -357,7 +357,7 @@ efforts toward selected devices versus the service itself. To view
 devices with the most issues, select **Most Failures** from the filter
 above the table on the right.
 
-{{<figure src="/images/netq/ntwk-health-large-table-options-222.png" width="300">}}
+{{% imgOld 15 %}}
 
 Devices with the highest number of issues are listed at the top. Scroll
 down to view those with fewer issues. To further investigate the
@@ -381,7 +381,7 @@ You can focus the data in the table on the right, by unselecting one or
 more services. Click the checkbox next to the service you want to remove
 from the data. In this example, we have unchecked Licenses.
 
-{{< figure src="/images/netq/ntwk-hlth-large-filter-sys-hlth-in-tbl-222.png" width="500" >}}
+{{< figure src="/images/netq/filter-sys-hlth-in-tbl.png" width="500" >}}
 
 This removes the checkbox next to the associated chart and grays out the title of the chart, temporarily removing the data related to that service from the table. Add it back by hovering over the chart and clicking the checkbox that appears.
 
@@ -398,9 +398,9 @@ card.
 To view information about each network protocol or service:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/>.
+2.  Hover over the card and click {{% imgOld 17 %}}.
 
-    {{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth.png" width="500" >}}
 
 The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
@@ -425,7 +425,7 @@ service. To view devices with the most issues, open the large Network
 Health card. Select **Most Failures** from the dropdown above the table
 on the right.
 
-{{<figure src="/images/netq/ntwk-health-large-table-options-222.png" width="300">}}
+{{% imgOld 19 %}}
 
 Devices with the highest number of issues are listed at the top. Scroll
 down to view those with fewer issues. To further investigate the
@@ -448,10 +448,10 @@ the indicated switches.
 
 You can focus the data in the table on the right, by unselecting one or
 more services. Click the checkbox next to the service you want to
-remove. In this example, we removed NTP and LNV and are in the
+remove. In this example, we are removed NTP and LNV and are in the
 process of removing OSPF.
 
-{{< figure src="/images/netq/ntwk-hlth-large-filter-ntwk-hlth-in-tbl-222.png" width="500" >}}
+{{< figure src="/images/netq/filter-ntwk-hlth-in-tbl.png" width="500" >}}
 
 This grays out the chart title and removes the associated checkbox, temporarily removing the data related to that service from the table.
 

@@ -3,9 +3,9 @@ title: Install the Cumulus NetQ Appliance
 author: Cumulus Networks
 weight: 411
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq-23
+siteSlug: cumulus-netq-23
 ---
 
 The Cumulus NetQ appliance provides a complete monitoring solution for your network; the server comes preloaded with a Cumulus Linux image that includes Cumulus NetQ services, a Cumulus Linux license and certified cables and optics.
@@ -134,7 +134,7 @@ If you want to proactively monitor events in your network, you can
 integrate NetQ with the PagerDuty or Slack notification tools. To do so
 you need to configure both the notification application itself to
 receive the messages, and NetQ with what messages to send and where to
-send them. Refer to [Integrate NetQ with Event Notification Applications](/cumulus-netq/Cumulus-NetQ-Integration-Guide/integrate-netq-with-notification-applications)
+send them. Refer to [Integrate NetQ with Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications)
 to use the CLI for configuration.
 
 ## Set Up Security

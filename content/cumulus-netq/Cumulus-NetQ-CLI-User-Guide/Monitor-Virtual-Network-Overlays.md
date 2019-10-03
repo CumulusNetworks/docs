@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321050
 pageID: 12321050
 product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+version: 2.2
+imgData: cumulus-netq-22
+siteSlug: cumulus-netq-22
 ---
 
 With NetQ, a network administrator can monitor virtual network

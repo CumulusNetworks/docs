@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321856
 pageID: 12321856
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq-23
+siteSlug: cumulus-netq-23
 ---
 Cards present information about your network for monitoring and
 troubleshooting. This is where you can expect to spend most of your
@@ -43,7 +43,7 @@ content items may be present. Some examples include a Devices Inventory
 card, a Switch Inventory card, an Alarm Events card, an Info Events
 card, and a Network Health card, as shown here:
 
-{{< figure src="/images/netq/cumulus-wb-default-small-cards-only.png" width="700" >}}
+{{% imgOld 12 %}}
 
 ### Medium Cards
 
@@ -56,7 +56,7 @@ Devices Inventory card, a Switch Inventory card, an Alarm Events card,
 an Info Events card, and a Network Health card, as shown here. Compare
 these with their related small- and large-sized cards.
 
-{{< figure src="/images/netq/cumulus-wb-default-med-cards-only.png" width="700" >}}
+{{% imgOld 13 %}}
 
 ### Large Cards
 
@@ -70,7 +70,7 @@ examples include a Devices Inventory card, an Alarm Events card, and a
 Network Health card, as shown here. Compare these with their related
 small- and medium-sized cards.
 
-{{< figure src="/images/netq/sample-of-large-cards.png" width="500" >}}
+{{% imgOld 14 %}}
 
 ### Full-Screen Cards
 
@@ -81,9 +81,9 @@ full-screen card. Most full-screen cards display data in a grid, or
 table; however, some contain visualizations. Some examples include All
 Events card and All Switches card, as shown here.
 
-{{< figure src="/images/netq/events-alarms-fullscr.png" width="700" >}}
+{{% imgOld 15 %}}
 
-{{< figure src="/images/netq/inventory-devices-switches-fullscr-allswitch-tab.png" width="700" >}}
+{{% imgOld 16 %}}
 
 ### Card Size Summary
 
@@ -135,11 +135,11 @@ several ways.
 
 ### Sort Data by Column
 
-Hover over a column header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.
+Hover over a column header and click {{% imgOld 17 %}}.
 
 ### Choose Columns to Display
 
-1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/> at the top right of the card.
+1.  Click {{% imgOld 18 %}} at the top right of the card.
 2.  Click **Change Columns** from the **Display Settings**.
 3.  Click the checkbox next to each column name to toggle on/off the
     columns you would like displayed. Columns listed under **Active**
@@ -153,11 +153,11 @@ When you have a large number of possible columns for display, you
 
     {{%/notice%}}
 
-4.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> to close the selection box and view the updated data grid.
+4.  Click {{% imgOld 19 %}} to close the selection box and view the updated data grid.
 
 ### Change Order of Columns
 
-1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/> and then click **Change Columns**.
+1.  Click {{% imgOld 20 %}} and then click **Change Columns**.
 2.  Hover over a column name.
 
     {{%notice tip%}}
@@ -170,9 +170,9 @@ You use the **Quick Filter** to find the column when you have a large
 3.  Point to the six dots to the left of the checkbox.
 4.  Click and drag the selected column up or down in the list.
 
-    {{< figure src="/images/netq/grids-change-column-order-222.png" width="250" >}}
+    {{% imgOld 21 %}}
 
-5.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> to close the selection box and view the updated data grid.
+5.  Click {{% imgOld 22 %}} to close the selection box and view the updated data grid.
 
 ### Take Actions on Items
 
@@ -183,23 +183,23 @@ To take actions on the data, click in the blank column at the very left
 of a row. A checkbox appears, selecting that item, and an edit menu is
 shown at the bottom of the card (shown enlarged here).
 
-{{< figure src="/images/netq/ntwk-svcs-allbgp-fullscr-items-selected-222.png" width="700" >}}
+{{% imgOld 23 %}}
 
-{{< figure src="/images/netq/edit-menu-pop-up-222.png" width="700" >}}
+{{% imgOld 24 %}}
 
 You can perform the following actions on the results list. **Note**:
 The actions vary based on the card displayed.
 
-| Option                   | Action or Behavior on Click |
-| ------------------------ | --------------------------- |
-| Select All               | Selects all items in the results list |
-| Clear All                | Clears all existing selections of items in the results list. This also hides the edit menu. |
-| Edit                     | Edit the selected items |
-| Delete                   | Remove the selected items |
-| Generate/Delete AuthKeys | Create or remove NetQ Cloud authorization keys |
-| Open Cards               | Open the corresponding validation or trace result card |
-| Hide Selected            | Hide selected items (switches, sessions, alarms, and so forth) from the results list |
-| Show Only Selected       | Hide unselected items (switches, sessions, alarms, and so forth) from the results list |
+| Option                   | Action or Behavior on Click                                                                                      |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Select All               | Selects all items in the results list                                                                            |
+| Clear All                | Clears all existing selections of items in the results list. This also hides the edit menu.                      |
+| Edit                     | Edit the selected items                                                                                          |
+| Delete                   | Remove the selected items                                                                                        |
+| Generate/Delete AuthKeys | Create or remove NetQ Cloud authorization keys                                                                   |
+| Open Cards               | Open the corresponding validation or trace result card                                                           |
+| Hide Selected            | Hide selected items (switches, sessions, alarms, and so forth) from the results list                             |
+| Show Only Selected       | Hide unselected items (switches, sessions, alarms, and so forth) from the results list                           |
 | Export Selected          | Exports selected data into a .csv file. If you want to export to a .json file format, use the **Export** button. |
 
 To return to original display of results, click the associated tab.
@@ -215,11 +215,11 @@ To export the data:
     items first.
 2.  Click **EXPORT**.
 
-    {{< figure src="/images/netq/export-button-fullscr-cards-222.png" width="250" >}}
+    {{% imgOld 25 %}}
 
 3.  Select all data or selected data for export in the dialog box:
 
-    {{< figure src="/images/netq/export-data-dialog-222.png" width="250" >}}
+    {{% imgOld 26 %}}
 
 4.  Select the export format.
 5.  Click **EXPORT** to save the file to your downloads directory.
@@ -260,10 +260,10 @@ existing issues.
 To change the time period for a card:
 
 1.  Hover over any card.
-2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/> in the header.
+2.  Click {{% imgOld 27 %}} in the header.
 3.  Select a time period from the dropdown list.
 
-    {{< figure src="/images/netq/time-picker-popup-222.png" width="200" >}}
+    {{% imgOld 28 %}}
 
 {{%notice tip%}}
 
@@ -284,7 +284,7 @@ To change the card size:
 2.  Hover over the Card Size Picker and move the cursor to the right or
     left until the desired size option is highlighted.
 
-    {{< figure src="/images/netq/card-size-picker-222.png" width="200" >}}
+    {{% imgOld 29 %}}
 
     Single width opens a small card. Double width opens a medium card.
     Triple width opens large cards. Full width opens full-screen cards.
@@ -300,7 +300,9 @@ turns up and is highlighted. Clicking the corner turns the card over
 where a description of the card and any relevant tabs are described.
 Hover and click again to turn it back to the front side.
 
-{{< figure src="/images/netq/card-desc-on-back-222.png" width="400" >}}
+{{% imgOld 30 %}}
+
+{{% imgOld 31 %}}
 
 ### Reposition a Card on Your Workbench
 
@@ -316,79 +318,36 @@ To move a card:
     medium Network Health card to the left of the medium Devices
     Inventory card.  
 
-    {{< figure src="/images/netq/move-card-click-drag-222.png" width="700" >}}
+    {{% imgOld 32 %}}
 
-    {{< figure src="/images/netq/move-card-release-222.png" width="700" >}}
+    {{% imgOld 33 %}}
 
-### Add Cards to Your Workbench
+    {{% imgOld 34 %}}
 
-You can add one or more cards to a workbench at any time. To add Devices|Switches cards, refer to [Add Switch Cards to Your Workbench](#add-switch-cards-to-your-workbench). For all other cards, follow the steps in this section.
+### Add or Remove a Card
 
-To add one or more cards:
+You can add or remove cards from a workbench at any time.
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open the **Cards** modal.
+To add a card:
 
-    {{< figure src="/images/netq/add-card-modal-all-cards-222.png" width="700" >}}
+1.  Click {{% imgOld 35 %}}.
 
-2.  Scroll down until you find the card you want to add, or select the category of cards to find the card you want to add.
+    {{% imgOld 36 %}}
 
-      {{< figure src="/images/netq/add-card-modal-ntwk-svcs-222.png" width="700" >}}
+2.  Select a card from the available list.
 
-3. Click on each card you want to add.
-
-      As you select each card, it is grayed out and a <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> appears on top of it. If you have selected one or more cards using the category option, you can selected another category without losing your current selection. Note that the total number of cards selected for addition to your workbench is noted at the bottom.
-
-      {{< figure src="/images/netq/add-card-2-selected-222.png" width="700" >}}
-
-      Also note that if you change your mind and do not want to add a particular card you have selected, simply click on it again to remove it from the cards to be added. Note the total number of cards selected decreases with each card you remove.
-
-4. When you have selected all of the cards you want to add to your workbench, you can confirm which cards have been selected by clicking the **Cards Selected** link. Modify your selection as needed.
-
-      {{< figure src="/images/netq/add-card-confirm-selection-222.png" width="700" >}}
-
-5. Click **Open Cards** to add the selected cards, or **Cancel** to return to your workbench without adding any cards.
-
-The cards are placed at the end of the set of cards currently on the
-workbench. You might need to scroll down to see them. By default, the
-medium size of the card is added to your workbench for all except the Validation and Trace cards. These are added in the large size by default. You can rearrange the cards as described in [Reposition a Card on Your Workbench](#reposition-a-card-on-your-workbench).
-
-### Add Switch Cards to Your Workbench
-
-You can add switch cards to a workbench at any time. For all other cards, follow the steps in [Add Cards to Your Workbench](#add-cards-to-your-workbench).
-
-To add a switch card:
-
-1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> to open the Add Switch Card modal.
-
-    {{< figure src="/images/netq/add-switch-card-modal-222.png" width="250" >}}
-
-2. Begin entering the hostname of the switch you want to monitor.
-
-3. Select the device from the suggestions that appear.
-
-      {{< figure src="/images/netq/add-switch-card-auto-suggest-222.png" width="250" >}}
-
-      {{%notice tip%}}
-
-If you attempt to enter a hostname that is unknown to NetQ, a pink border appears around the entry field and you are unable to select **Add**. Try checking for spelling errors. If you feel your entry is valid, but not an available choice, consult with your network administrator.
-
-      {{%/notice%}}
-
-4. Optionally select the small or large size to display instead of the medium size.
-
-5. Click **Add** to add the switch card to your workbench, or **Cancel** to return to your workbench without adding the switch card.
-
-### Remove Cards from Your Workbench
-
-Removing cards is handled one card at a time.
+The card is placed at the end of the set of cards currently on the
+workbench. You might need to scroll down to see it. By default, the
+medium size of the card is added to your workbench. You can move it to
+another location as described above.
 
 To remove a card:
 
 1.  Hover over the card you want to remove.
-2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg", height="18", width="18"/> (*More Actions* menu).
+2.  Click {{% imgOld 37 %}} (*More Actions* menu).
 3.  Click **Remove**.
 
-    {{< figure src="/images/netq/remove-card-222.png" width="100" >}}
+    {{% imgOld 38 %}}
 
 The card is removed from the workbench, but not from the application.
 
@@ -435,17 +394,17 @@ need to scroll down to see the card you have just added.
 
 To open the card workflow through an existing workbench:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> in the workbench task bar.
+1.  Click {{% imgOld 39 %}} in the workbench task bar.
 
 2.  Select the relevant workbench.
 
-    {{< figure src="/images/netq/workbench-selection-from-wb-hdr-222.png" width="200" >}}
+    {{% imgOld 40 %}}
 
     The workbench opens, hiding your previous workbench.
 
-To open the card workflow from Recent Actions:
+To open the card workflow from a prior search:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg", height="18", width="18"/> in the application header.
+1.  Browse your search list in the navigation panel.
 2.  Look for an "Add: \<card name\>" item.
 3.  If it is still available, click the item.
 
@@ -453,8 +412,8 @@ To open the card workflow from Recent Actions:
 
 To access the card workflow by adding the card:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> in the workbench task bar.
-2.  Follow the instructions in [Add Cards to Your Workbench](#add-cards-to-your-workbench) or [Add Switch Cards to Your Workbench](#add-switch-cards-to-your-workbench).
+1.  Click {{% imgOld 41 %}} in the workbench task bar.
+2.  Select the relevant card.
 
     The card appears on the current workbench, at the bottom.
 
@@ -464,17 +423,11 @@ To access the card workflow by searching for the card:
 2.  Begin typing the name of the card.
 3.  Select it from the list.
 
-    {{< figure src="/images/netq/add-card-thru-search-222.png" width="350" >}}
+    {{% imgOld 42 %}}
 
     The card appears on a current workbench, at the bottom.
 
 ## Card Decks
-
-{{%notice note%}}
-
-This option only applies to NetQ 2.1.0 through 2.2.1. It has been removed from NetQ 2.2.2.
-
-{{%/notice%}}
 
 A card deck is a collection of related cards that can be added and
 removed from a workbench all at once. They are distinct from card
@@ -491,5 +444,13 @@ provided by default:
 
 To add a card deck:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-cards.svg", height="18", width="18"/> in the workbench task bar.
+1.  Click {{% imgOld 43 %}} in the workbench task bar.
 2.  Select the deck you want to add to your workbench.
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

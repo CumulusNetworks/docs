@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321856
 pageID: 12321856
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq-23
+siteSlug: cumulus-netq-23
 ---
 Each user can customize the NetQ application display, change his account
 password, and manage his workbenches.
@@ -27,30 +27,30 @@ date and time format, choosing words or number format and a 12- or
 
 To configure the display settings:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
+1.  Click {{% imgOld 44 %}} in the application header to open the **User Settings** options.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
+    {{% imgOld 45 %}}
 
 2.  Click **Profile & Preferences**.
 3.  Locate the Display card.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-display-card-222.png" width="200">}}
+    {{% imgOld 46 %}}
 
-4.  In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> to select your choice of theme. This figure shows the light theme. Switch back and forth as desired.
+4.  In the **Theme** field, click {{% imgOld 47 %}} to select your choice of theme. This figure shows the light theme. Switch back and forth as desired.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-light-theme-222.png" width="700">}}
+    {{% imgOld 48 %}}
 
-5.  In the **Time Zone** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> to change the time zone from the default.  
+5.  In the **Time Zone** field, click {{% imgOld 49 %}} to change the time zone from the default.  
     By default, the time zone is set to the user's local time zone. If a
     time zone has not been selected, NetQ defaults to the current local
     time zone where NetQ is installed. All time values are based on this
     setting. This is displayed in the application header, and is based
     on Greenwich Mean Time (GMT).  
 
-    **Tip**: You can also change the time zone from the header
-    display.
+    {{% imgOld 50 %}}
 
-    {{<figure src="/images/netq/app-hdr-time-zone-222.png" width="75">}}
+    **Note**: You can also change the time zone from the header
+    display.
 
     If your deployment is not local to you (for example, you want to
     view the data from the perspective of a data center in another time
@@ -92,12 +92,12 @@ To configure the display settings:
 6.  In the **Date Format** field, select the data and time format you
     want displayed on the cards.  
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-date-format-222.png" width="200">}}
+    {{% imgOld 51 %}}
 
     The four options include the date displayed in words or abbreviated
-    with numbers, and either a 12- or 24-hour time representation. The default is the third option.
+    with numbers, and either a 12- or 24-hour time representation.
 
-7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+7.  Return to your workbench by clicking {{% imgOld 52 %}} and selecting a workbench from the NetQ list.
 
 ## Change Your Password
 
@@ -107,24 +107,24 @@ so.
 
 To change your password:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
+1.  Click {{% imgOld 53 %}} in the application header to open the **User Settings** options.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
+    {{% imgOld 54 %}}
 
 2.  Click **Profile & Preferences**.
 3.  Locate the Basic Account Info card.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-basic-acct-info-card-222.png" width="200">}}
+    {{% imgOld 55 %}}
 
 4.  Click **Change Password**.
 5.  Enter your current password.
 6.  Enter and confirm a new password.
 
-    {{<figure src="/images/netq/change-passwd-modal-222.png" width="200">}}
+    {{% imgOld 56 %}}
 
 7.  Click **Save** to change to the new password, or click **Cancel** to
     discard your changes.
-8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+8.  Return to your workbench by clicking {{% imgOld 57 %}} and selecting a workbench from the NetQ list.
 
 ## Manage Your Workbenches
 
@@ -144,33 +144,22 @@ the Workbenches card, you can:
     workbenches). An administrative role is required to remove
     workbenches that are common to all users (public workbenches).
 
-    {{%notice info%}}
-
-It is strongly recommended that you do not delete the default
-    Cumulus Networks workbench. Once deleted, you must contact support
-    to regain access to it. Extreme caution is recommended when deleting
-    all other workbenches. Once they have been deleted, they cannot be
-    restored.
-
-    {{%/notice%}}
-
 To manage your workbenches:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
+1.  Click {{% imgOld 58 %}} in the application header to open the **User Settings** options.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
+    {{% imgOld 59 %}}
 
 2.  Click **Profile & Preferences**.
 3.  Locate the Workbenches card.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-wbs-card-222.png" width="500">}}
+    {{% imgOld 60 %}}
 
-4.  To specify a favorite workbench, click and drag <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg", height="18", width="18"/> next to the left of the desired workbench name.
-5.  To search the workbench list by name, access type, and
+4.  To specify a favorite workbench, click and drag {{% imgOld 61 %}} next to the left of the desired workbench name.
+5.  To search and/or sort the workbench list by name, access type, and
     cards present on the workbench, click the relevant header and begin
     typing your search criteria.
-6. To sort the workbench list, click the relevant header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.
-7.  To delete a workbench, hover over the workbench name to view the
+6.  To delete a workbench, hover over the workbench name to view the
     **Delete** button. As an administrator, you can delete both private
     and public workbenches.
-8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+7.  Return to your workbench by clicking {{% imgOld 62 %}} and selecting a workbench from the NetQ list.

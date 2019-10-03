@@ -19,15 +19,11 @@ Specifically, BGP:
 
   - Does not require the routing state to be periodically refreshed,
     unlike OSPF.
-
   - Is less chatty than its link-state siblings. For example, a link or
     node transition can result in a bestpath change, causing BGP to send
     updates.
-
   - Is multi-protocol and extensible.
-
   - Has many robust vendor implementations.
-
   - Is very mature as a protocol and comes with many years of
     operational experience.
 
@@ -134,9 +130,9 @@ updates from peers in the same cluster, they do not install routes from
 a route reflector in the same cluster; this reduces the number of
 updates that need to be stored in BGP routing tables.
 
-To configure a cluster ID on a route reflector, run the `net add bgp
-cluster-id (<ipv4>|<1-4294967295>)` command. You can enter the cluster
-ID as an IP address or as a 32-bit quantity.
+To configure a cluster ID on a route reflector, run the
+`net add bgp cluster-id (<ipv4>|<1-4294967295>)` command. You can
+enter the cluster ID as an IP address or as a 32-bit quantity.
 
 The following example configures a cluster ID on a route reflector in IP
 address format:
@@ -152,7 +148,6 @@ The following example configures a cluster ID on a route reflector as a
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-
 ## ECMP with BGP
 
 If a BGP node hears a prefix **p** from multiple peers, it has all the
@@ -160,15 +155,14 @@ information necessary to program the routing table to forward traffic
 for that prefix **p** through all of these peers; BGP supports
 equal-cost multipathing (ECMP).
 
-To perform ECMP in BGP, you may need to configure `net add bgp bestpath
-as-path multipath-relax` (if you are using eBGP).
+To perform ECMP in BGP, you may need to configure 
+`net add bgp bestpath as-path multipath-relax` (if you are using eBGP).
 
 ### Maximum Paths
 
 In Cumulus Linux, the BGP `maximum-paths` setting is enabled by default,
 so multiple routes are already installed. The default setting is 64
 paths.
-
 
 ### BGP for Both IPv4 and IPv6
 
@@ -415,7 +409,6 @@ You can use the following command to display more neighbor information:
     fe80::4638:39ff:fe00:2b dev swp52 lladdr 44:38:39:00:00:2b router REACHABLE
     fe80::4638:39ff:fe00:5c dev swp51 lladdr 44:38:39:00:00:5c router REACHABLE
 
-
 ### How traceroute Interacts with BGP Unnumbered Interfaces
 
 Every router or end host must have an IPv4 address to complete a
@@ -427,7 +420,6 @@ typically advertised. This is because:
 
   - Link addresses take up valuable FIB resources. In a large Clos
     environment, the number of such addresses can be quite large.
-
   - Link addresses expose an additional attack vector for intruders to
     use to either break in or engage in DDOS attacks.
 
@@ -467,14 +459,12 @@ IPv6 next hops.
   - `route-map` can impose two next hops in scenarios where Cumulus
     Linux only sends one next hop — by specifying `set ipv6 nexthop
     link-local`.
-
   - For all routes to eBGP peers and self-originated routes to iBGP
     peers, the global next hop (first value) is the peering address of
     the local system. If the peering is on the link-local address, this
     is the global IPv6 address on the peering interface, if present;
     otherwise, it is the link-local IPv6 address on the peering
     interface.
-
   - For other routes to iBGP peers (eBGP to iBGP or reflected), the
     global next hop will be the global next hop in the received
     attribute.
@@ -493,38 +483,31 @@ If this address is a link-local IPv6 address, it is reset so that
     for *iBGP* peers. The route map or peer configuration can also set
     the next hop to unchanged, which ensures the source IPv6 global next
     hop is passed around — which is relevant for *eBGP* peers.
-
   - Whenever two next hops are being sent, the link-local next hop (the
     second value of the two) is the link-local IPv6 address on the
     peering interface unless it is due to `nh-local-unchanged` or
     `route-map` has set the link-local next hop.
-
   - Network administrators cannot set [martian
     values](http://en.wikipedia.org/wiki/Martian_packet) for IPv6 next
     hops in `route-map`. Also, global and link-local next hops are
     validated to ensure they match the respective address types.
-
   - In a received update, a martian check is imposed for the IPv6 global
     next hop. If the check fails, it gets treated as an implicit
     withdraw.
-
   - If two next hops are received in an update and the second next hop
     is not a link-local address, it gets ignored and the update is
     treated as if only one next hop was received.
-
   - Whenever two next hops are received in an update, the second next
     hop is used to install the route into `zebra`. As per the previous
     point, it is already assured that this is a link-local IPv6 address.
     Currently, this is assumed to be reachable and is not registered
     with NHT.
-
   - When `route-map` specifies the next hop as `peer-address`, the
     global IPv6 next hop as well as the link-local IPv6 next hop (if
     it's being sent) is set to the *peering address*. If the peering is
     on a link-local address, the former could be the link-local address
     on the peering interface, unless there is a global IPv6 address
     present on this interface.
-
   - When using iBGP unnumbered with IPv6 Link Local Addresses (the
     default), FRR rewrites the BGP next hop to be the adjacent link.
     This is similar behavior to eBGP next hops. However, iBGP route
@@ -541,35 +524,28 @@ recommendations in the Internet draft
 [draft-kato-bgp-ipv6-link-local-00.txt](https://tools.ietf.org/html/draft-kato-bgp-ipv6-link-local-00),
 "BGP4+ Peering Using IPv6 Link-local Address".
 
-
 ### Limitations
 
   - Interface-based peering with separate IPv4 and IPv6 sessions is not
     supported.
-
   - In Cumulus Linux 3.7.1 and earlier, ENHE is sent for IPv6 link-local
     peerings only. In Cumulus Linux 3.7.2 and later, ENHE can also be
     also sent for IPv6 GUA peerings (see below).
-
   - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4
     peering is used over IPv6 link-local peering.
-
   - If the default router lifetime in the generated IPv6 route
     advertisements (RA) is set to *0*, the receiving FRRouting instance
     drops the RA if it is on a Cumulus Linux **2.5.z** switch. To work
     around this issue, either:
-
       - Explicitly configure the switch to advertise a router lifetime
         of 0, unless a value is specifically set by the operator — with
         the assumption that the host is running Cumulus Linux 3.y.z
         version of FRRouting. When hosts see an IPv6 RA with a router
         lifetime of 0, they do not make that router a default router.
-
       - Use the `sysctl` on the host —
         `net.ipv6.conf.all.accept_ra_defrtr`. However, this requires
         applying this setting on all hosts, which might mean many hosts,
         especially if FRRouting is run on the hosts.
-
 
 ## RFC 5549 Support with Global IPv6 Peers (Cumulus Linux 3.7.2 and later)
 
@@ -591,7 +567,6 @@ to install the route into the kernel. These route advertisement settings
 are configured automatically when FRR receives an update from a BGP peer
 using IPv6 global addresses that contain an IPv4 prefix with an IPv6
 nexthop, and the enhanced-nexthop capability has been negotiated.
-
 
 ### Configure RFC 5549 Support with Global IPv6 Peers
 
@@ -636,7 +611,6 @@ The above commands create the following configuration in the
     address-family ipv4 unicast
      neighbor 2001:1:1::3 activate
     exit-address-family
-
 
 ### Show IPv4 Prefixes Learned with IPv6 Next Hops
 
@@ -851,7 +825,6 @@ this:
 
 {{%/notice%}}
 
-
 ## BGP add-path
 
 Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
@@ -926,7 +899,6 @@ node for receiving. Each path has a unique AddPath ID.
           AddPath ID: RX 0, TX 3
           Last update: Wed Nov 16 22:47:00 2016
 
-
 ### BGP add-path TX
 
 AddPath TX allows BGP to advertise more than just the bestpath for a
@@ -946,15 +918,10 @@ prefix. Consider the following topology:
 In this topology:
 
   - r1 and r2 are in AS 100
-
   - r3 and r4 are in AS 300
-
   - r5 and r6 are in AS 500
-
   - r7 is in AS 700
-
   - r8 is in AS 800
-
   - r7 learns 1.1.1.1/32 from r1, r2, r3, r4, r5, and r6. Among these r7
     picks the path from r1 as the bestpath for 1.1.1.1/32
 
@@ -1029,7 +996,6 @@ The output below shows the result on r8:
           AddPath ID: RX 6, TX 2
           Last update: Thu Jun  2 00:57:14 2016
 
-
 ## Fast Convergence Design Considerations
 
 Cumulus Networks strongly recommends the following use of addresses in
@@ -1037,7 +1003,6 @@ the design of a BGP-based data center network:
 
   - Set up BGP sessions only using interface-scoped addresses. This
     allows BGP to react quickly to link failures.
-
   - Use of next hop-self: Every BGP node says that it knows how to
     forward traffic to the prefixes it is announcing. This reduces the
     requirement to announce interface-specific addresses and thereby
@@ -1085,7 +1050,6 @@ seconds and defaults to 10 seconds.
 
 {{%/notice%}}
 
-
 ## Peer Groups to Simplify Configuration
 
 When a switch has many peers to connect to, the amount of redundant
@@ -1118,7 +1082,6 @@ dynamically examine all peers and group them if they have the same
 outbound policy.
 
 {{%/notice%}}
-
 
 ## Configure BGP Dynamic Neighbors
 
@@ -1154,7 +1117,6 @@ These commands produce an IPv4 configuration that looks like this:
      neighbor SPINE remote-as 65000
       bgp listen limit 5
       bgp listen range 10.1.1.0/24 peer-group SPINE
-
 
 ## Configure BGP Peering Relationships across Switches
 
@@ -1258,7 +1220,6 @@ These commands create the following configuration snippet:
 
 {{%/notice%}}
 
-
 ## Configure MD5-enabled BGP Neighbors
 
 The following sections outline how to configure an MD5-enabled BGP
@@ -1301,7 +1262,6 @@ connected by the link 10.0.0.100/30, with the following configurations:
     show bgp ipv6 unicast summary
     =============================
     No IPv6 neighbor is configured
-     
 
 **To manually configure an MD5-enabled BGP neighbor:**
 
@@ -1368,11 +1328,9 @@ from peers that do not specify a password.
 
 {{%/notice%}}
 
-
 ## Configure eBGP Multihop
 
-
-The eBGP Multihop option lets you use BGP to exchange routes with an
+The eBGP multihop option lets you use BGP to exchange routes with an
 external peer that is more than one hop away.
 
 1.  To establish a connection between two eBGP peers that are not
@@ -1507,7 +1465,6 @@ using a leaf (`leaf01`) and spine (`spine01`) for the example output:
         BGP Connect Retry Timer in Seconds: 10
         Read thread: on  Write thread: on
 
-
 ## Configure Graceful BGP Shutdown
 
 To reduce packet loss during planned maintenance of a router or link,
@@ -1551,7 +1508,6 @@ graceful-shutdown` command:
     cumulus@spine01:~$ net pending
     cumulus@spine01:~$ net commit
 
-
 ## Configuration Tips
 
 ### BGP Advertisement Best Practices
@@ -1561,7 +1517,6 @@ network is a best practice you should follow. The following image
 illustrates one way you can do so in a typical Clos architecture:
 
 {{% imgOld 1 %}}
-
 
 ### Multiple Routing Tables and Forwarding
 
@@ -1578,11 +1533,9 @@ context. For more information, refer to [Virtual Routing and Forwarding
 
 {{%/notice%}}
 
-
 ### BGP Community Lists
 
-You can use [*community
-lists*](http://www.nongnu.org/quagga/docs/docs-multi/BGP-Community-Lists.html#BGP-Community-Lists)
+You can use [*community lists*](http://docs.frrouting.org/en/latest/bgp.html#community-lists)
 to define a BGP community to tag one or more routes. You can then use
 the communities to apply route policy on either egress or ingress.
 
@@ -1593,12 +1546,9 @@ applied on route ingress. Alternately, it can be one of four BGP default
 communities:
 
   - *internet*: a BGP community that matches all routes
-
   - *local-AS*: a BGP community that restrict routes to your
     confederation's sub-AS
-
   - *no-advertise*: a BGP community that isn't advertised to anyone
-
   - *no-export*: a BGP community that isn't advertised to the eBGP peer
 
 An expanded BGP community list takes a regular expression of communities
@@ -1625,13 +1575,10 @@ by default, include the following:
 
   - `bgp deterministic-med`, which ensures path ordering no longer
     impacts bestpath selection.
-
   - `bgp show-hostname`, which displays the hostname in show command
     output.
-
   - `bgp network import-check`, which enables the advertising of the BGP
     network in IGP.
-
 
 ### Configure BGP Neighbor maximum-prefixes
 
@@ -1781,7 +1728,6 @@ The above example shows that the routing table prefix seen by BGP is
 10.0.0.11/32, that this route is advertised to two neighbors, and that
 it is not heard by any neighbors.
 
-
 ### Log Neighbor State Changes
 
 To log the changes that a neighbor goes through so that you can
@@ -1795,7 +1741,6 @@ The output is sent to the specified log file, usually
     2016/07/08 10:12:06.572954 BGP: Notification sent to neighbor 10.0.0.2: type 6/3
     2016/07/08 10:12:16.682071 BGP: %ADJCHANGE: neighbor 192.0.2.2 Up
     2016/07/08 10:12:16.682660 BGP: %ADJCHANGE: neighbor 10.0.0.2 Up
-
 
 ### Troubleshoot Link-local Addresses
 
@@ -1905,7 +1850,6 @@ the IP address.
     Next connect timer due in 1 seconds
     Read thread: on  Write thread: on
 
-
 ## Enable Read-only Mode
 
 As BGP peers are established and updates are received, prefixes might be
@@ -1969,12 +1913,10 @@ bgp summary` command.
 
 ## Apply a Route Map for Route Updates
 
-There are two ways you can apply [route
-maps](http://www.nongnu.org/quagga/docs/docs-multi/Route-Map.html#Route-Map)
+There are two ways you can apply [route maps](http://docs.frrouting.org/en/latest/routemap.html)
 for BGP:
 
   - By filtering routes from BGP into Zebra
-
   - By filtering routes from Zebra into the Linux kernel
 
 ### Filter Routes from BGP into Zebra
@@ -1993,14 +1935,12 @@ the following command:
 
     cumulus@switch:$ net add bgp table-map <route-map-name>
 
-
 ### Filter Routes from Zebra into the Linux Kernel
 
 To apply a route map to filter route updates from Zebra into the Linux
 kernel, run the following command:
 
     cumulus@switch:$ net add routing protocol bgp route-map <route-map-name>
-
 
 ## Protocol Tuning
 
@@ -2057,7 +1997,6 @@ for this neighbor:
       Configured hold time is 30, keepalive interval is 10 seconds
     ...
 
-
 ### Reconnect Quickly
 
 A BGP process attempts to connect to a peer after a failure (or on
@@ -2067,7 +2006,6 @@ To modify this value, run the following command:
     cumulus@switch:~$ net add bgp neighbor swp51 timers connect 30
 
 You must specify this command for each neighbor.
-
 
 ### Advertisement Interval
 
@@ -2116,7 +2054,6 @@ This command is not supported with peer-groups.
 See this [IETF draft](http://tools.ietf.org/html/draft-jakma-mrai-02)
 for more details on the use of this value.
 
-
 ## Caveats and Errata
 
 ### ttl-security Issue
@@ -2144,79 +2081,56 @@ For more information about ACLs, see [Netfilter
 
 {{%/notice%}}
 
-
 ### BGP Dynamic Capabilities not Supported
 
 Dynamic capabilities, which enable BGP to renegotiate a new feature for
 an already established peer, are not supported in Cumulus Linux.
-
 
 ### Related Information
 
   - [Bidirectional forwarding
     detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
     (BFD) and BGP
-
   - [Wikipedia entry for
     BGP](http://en.wikipedia.org/wiki/Border_Gateway_Protocol) (includes
     list of useful RFCs)
-
   - [FRR BGP documentation](https://frrouting.org/user-guide/bgp.html)
-
   - [IETF draft discussing BGP use within data
     centers](http://tools.ietf.org/html/draft-lapukhov-bgp-routing-large-dc-04)
-
   - [RFC 1657, Definitions of Managed Objects for the Fourth Version of
     the Border Gateway Protocol (BGP-4) using
     SMIv2](https://tools.ietf.org/html/rfc1657)
-
   - [RFC 1997, BGP Communities
     Attribute](https://tools.ietf.org/html/rfc1997)
-
   - [RFC 2385, Protection of BGP Sessions via the TCP MD5 Signature
     Option](https://tools.ietf.org/html/rfc2385)
-
   - [RFC 2439, BGP Route Flap
     Damping](https://tools.ietf.org/html/rfc2439)
-
   - [RFC 2545, Use of BGP-4 Multiprotocol Extensions for IPv6
     Inter-Domain Routing](https://tools.ietf.org/html/rfc2545)
-
   - [RFC 2918, Route Refresh Capability for
     BGP-4](https://tools.ietf.org/html/rfc2918)
-
   - [RFC 4271, A Border Gateway Protocol 4
     (BGP-4)](https://tools.ietf.org/html/rfc4271)
-
   - [RFC 4360, BGP Extended Communities
     Attribute](https://tools.ietf.org/html/rfc4360)
-
   - [RFC 4456, BGP Route Reflection – An Alternative to Full Mesh
     Internal BGP (iBGP)](https://tools.ietf.org/html/rfc4456)
-
   - [RFC 4760, Multiprotocol Extensions for
     BGP-4](https://tools.ietf.org/html/rfc4760)
-
   - [RFC 5004, Avoid BGP Best Path Transitions from One External to
     Another](https://tools.ietf.org/html/rfc5004)
-
   - [RFC 5065, Autonomous System Confederations for
     BGP](https://tools.ietf.org/html/rfc5065)
-
   - [RFC 5291, Outbound Route Filtering Capability for
     BGP-4](https://tools.ietf.org/html/rfc5291)
-
   - [RFC 5492, Capabilities Advertisement with
     BGP-4](https://tools.ietf.org/html/rfc5492)
-
   - [RFC 5549, Advertising IPv4 Network Layer Reachability Information
     with an IPv6 Next Hop](https://tools.ietf.org/html/rfc5549)
-
   - [RFC 6793, BGP Support for Four-Octet Autonomous System (AS) Number
     Space](https://tools.ietf.org/html/rfc6793)
-
   - [RFC 7911, Advertisement of Multiple Paths in
     BGP](https://tools.ietf.org/html/rfc7911)
-
   - [draft-walton-bgp-hostname-capability-02, Hostname Capability for
     BGP](https://tools.ietf.org/html/draft-walton-bgp-hostname-capability-00)

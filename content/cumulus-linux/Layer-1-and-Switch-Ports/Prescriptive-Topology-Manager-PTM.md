@@ -568,17 +568,12 @@ graph from working correctly.
 
     If the subinterface is configured on the physical interface and the
     physical interface is incorrectly marked as being in a PTM FAIL
-    state, routes on the physical interface are not processed in Quagga,
+    state, routes on the physical interface are not processed in FRRouting,
     but the subinterface is working.
 
 ## Related Information
 
-  - [Bidirectional Forwarding Detection
-    (BFD)](http://tools.ietf.org/html/rfc5880)
-
+  - [Bidirectional Forwarding Detection (BFD)](http://tools.ietf.org/html/rfc5880)
   - [Graphviz](http://www.graphviz.org)
-
-  - [LLDP on
-    Wikipedia](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
-
+  - [LLDP on Wikipedia](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
   - [PTMd GitHub repo](https://github.com/CumulusNetworks/ptm)

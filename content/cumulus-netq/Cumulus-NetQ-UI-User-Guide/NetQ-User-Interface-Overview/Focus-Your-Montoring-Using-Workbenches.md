@@ -8,8 +8,8 @@ aliases:
 pageID: 12321856
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 Workbenches are an integral structure of the Cumulus NetQ application. They are where you collect and view the data that is important to you.
 

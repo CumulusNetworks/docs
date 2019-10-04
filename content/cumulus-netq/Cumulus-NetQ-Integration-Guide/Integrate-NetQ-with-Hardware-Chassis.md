@@ -8,8 +8,8 @@ aliases:
 pageID: 12320911
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 NetQ can run within a [Facebook Backpack

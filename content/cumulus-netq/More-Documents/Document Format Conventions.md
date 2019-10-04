@@ -4,8 +4,8 @@ author: Cumulus Networks
 weight: 302
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 The Cumulus NetQ documentation uses the following typographical and note conventions.

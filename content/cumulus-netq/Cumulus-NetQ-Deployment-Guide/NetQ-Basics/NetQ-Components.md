@@ -5,8 +5,8 @@ weight: 401
 pageID: 12320801
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 Cumulus NetQ contains the following applications and key components:

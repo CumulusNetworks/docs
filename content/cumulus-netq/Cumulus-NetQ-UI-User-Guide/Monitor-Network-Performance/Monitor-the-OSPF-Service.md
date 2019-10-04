@@ -8,8 +8,8 @@ aliases:
 pageID: 12321517
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The Cumulus NetQ UI enables operators to view the health of the OSPF
 service on a network-wide and a per session basis, giving greater

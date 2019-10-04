@@ -8,8 +8,8 @@ aliases:
 pageID: 12321072
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 As with any network, one of the challenges is keeping track of all of
 the moving parts. With the NetQ GUI, you can view the overall health of

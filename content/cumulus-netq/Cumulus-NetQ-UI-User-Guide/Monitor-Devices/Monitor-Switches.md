@@ -8,8 +8,8 @@ aliases:
 pageID: 12321794
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 With the NetQ UI, you can monitor individual switches separately from
 the network. You are able to view the status of services they are

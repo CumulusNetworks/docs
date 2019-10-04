@@ -8,8 +8,8 @@ aliases:
 pageID: 12320801
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 Cumulus® NetQ is a highly-scalable, modern network operations tool set
 that provides visibility and troubleshooting of your overlay and

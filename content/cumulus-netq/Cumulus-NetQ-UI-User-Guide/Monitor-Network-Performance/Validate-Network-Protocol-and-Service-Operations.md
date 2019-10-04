@@ -8,8 +8,8 @@ aliases:
 pageID: 12321612
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 With the NetQ UI, you can validate the operation of the network
 protocols and services running in your network either on demand or on a

@@ -5,8 +5,8 @@ weight: 405
 pageID: 12320801
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 In either in-band or out-of-band deployments, NetQ offers network-wide configuration

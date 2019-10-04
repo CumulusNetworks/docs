@@ -144,12 +144,18 @@ snippet:
     iface swp1
        link-speed 10000
 
-**Platform Limitations**
+### Platform Limitations
 
 - On Lenovo NE2572O switches, swp1 thru swp8 only support 25G speed.
 - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
-    you must edit the `/etc/cumulus/ports.conf` file and configure the
-    four ports in the same core to be 10G. See [Caveats and Errata](#caveats-and-errata) below.
+  you must edit the `/etc/cumulus/ports.conf` file and configure the
+  four ports in the same core to be 10G. See [Caveats and Errata](#caveats-and-errata)
+  below.
+- A switch with the Maverick ASIC switch limits multicast traffic by the lowest speed
+  port that has joined a particular group. For example, if you are sending 100G
+  multicast through and subscribe with one 100G and one 25G port, traffic on both
+  egress ports is limited to 25Gbps. If you remove the 25G port from the group,
+  traffic correctly forwards at 100Gbps.
 
 ## MTU
 

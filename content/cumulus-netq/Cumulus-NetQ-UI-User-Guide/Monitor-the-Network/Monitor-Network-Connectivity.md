@@ -8,8 +8,8 @@ aliases:
 pageID: 12321680
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 It is helpful to verify that communications are freely flowing between
 the various devices in your network. You can verify the connectivity

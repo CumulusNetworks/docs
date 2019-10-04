@@ -8,8 +8,8 @@ aliases:
 pageID: 12321043
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 Running NetQ on Linux hosts provides unprecedented network visibility,
 giving the network operator a complete view of the entire

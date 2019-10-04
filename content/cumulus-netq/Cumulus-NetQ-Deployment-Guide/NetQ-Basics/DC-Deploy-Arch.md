@@ -5,8 +5,8 @@ weight: 403
 pageID: 12320801
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 There are two deployment types that are commonly deployed for network management in the data center:

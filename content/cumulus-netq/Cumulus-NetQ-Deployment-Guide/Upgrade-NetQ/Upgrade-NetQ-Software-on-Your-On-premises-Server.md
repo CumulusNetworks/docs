@@ -8,8 +8,8 @@ aliases:
 pageID: 12321007
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 This document describes the steps required to upgrade the NetQ Software (versions 2.0 through 2.2) installed and running on your own server hardware to NetQ version 2.3.
 

@@ -3,10 +3,9 @@ title: PDFs
 author: Cumulus Networks
 weight: 306
 product: Cumulus NetQ
-draft: true
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 The following Cumulus NetQ user documentation is available in PDF for offline viewing or printing:

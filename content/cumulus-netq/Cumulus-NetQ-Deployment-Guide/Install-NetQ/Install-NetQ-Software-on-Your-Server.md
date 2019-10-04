@@ -8,8 +8,8 @@ aliases:
 pageID: 12320951
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 The installation instructions in this topic describe how to install the Cumulus NetQ software onto your server for either an on-premises or in-cloud deployment. There are three key steps:

@@ -7,8 +7,8 @@ aliases:
  - /pages/viewpage.action?pageId=12320911
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 After you have installed NetQ applications package and the NetQ Agents,
 you may want to configure some of the additional capabilities that NetQ

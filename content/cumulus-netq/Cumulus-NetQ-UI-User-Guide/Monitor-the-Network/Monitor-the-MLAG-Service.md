@@ -8,8 +8,8 @@ aliases:
 pageID: 12321372
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The Cumulus NetQ UI enables operators to view the health of the MLAG
 service on a network-wide and a per session basis, giving greater

@@ -8,8 +8,8 @@ aliases:
 pageID: 12321856
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 Cards present information about your network for monitoring and
 troubleshooting. This is where you can expect to spend most of your

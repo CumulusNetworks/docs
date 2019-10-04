@@ -8,8 +8,8 @@ aliases:
 pageID: 12321042
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The NetQ Agent monitors container environments the same way it monitors
 [physical servers](../Monitor-Linux-Hosts).

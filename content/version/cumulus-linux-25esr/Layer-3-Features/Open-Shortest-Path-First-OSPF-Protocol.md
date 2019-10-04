@@ -4,9 +4,12 @@ author: Cumulus Networks
 weight: 131
 aliases:
  - /display/CL25ESR/Open+Shortest+Path+First+++OSPF+++Protocol
+ - /display/CL25ESR/Open+Shortest+Path+First+-+OSPF+-+Protocol
+ - /display/CL25ESR/Open+Shortest+Path+First+OSPF+Protocol
  - /pages/viewpage.action?pageId=5116109
 pageID: 5116109
 product: Cumulus Linux
+version: 2.5 ESR
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---

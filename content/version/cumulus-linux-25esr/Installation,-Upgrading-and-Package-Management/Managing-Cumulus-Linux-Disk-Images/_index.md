@@ -6,6 +6,7 @@ aliases:
  - /display/CL25ESR/Managing+Cumulus+Linux+Disk+Images
  - /pages/viewpage.action?pageId=5115988
 pageID: 5115988
+version: 2.5 ESR
 product: Cumulus Linux
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr

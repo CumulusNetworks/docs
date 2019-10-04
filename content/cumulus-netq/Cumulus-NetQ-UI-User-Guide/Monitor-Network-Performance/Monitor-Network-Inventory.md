@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321095
 pageID: 12321095
 product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
+version: 2.2
+imgData: cumulus-netq-22
+siteSlug: cumulus-netq-22
 ---
 With NetQ, a network administrator can monitor both the switch hardware
 and its operating system for misconfigurations or misbehaving services.
@@ -29,8 +29,7 @@ The Devices Inventory card workflow helps answer questions such as:
   - Are NetQ agents running on all of my switches?
 
 For monitoring inventory and performance on a switch-by-switch basis,
-refer to the <span style="color: #ff0000;"> [Monitor
-Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
+refer to the [Monitor Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
 
 ## Devices Inventory Card Workflow Summary
 
@@ -51,19 +50,19 @@ The small Devices Inventory card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>{{% imgOld 1 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for device inventory</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 2 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg", height="18", width="18"/></p></td>
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><p>{{% imgOld 3 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg", height="18", width="18"/></p></td>
 <td><p>Total number of hosts in inventory during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 4 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-4.svg", height="18", width="18"/></p></td>
 <td><p>Total number of chassis in inventory during the designated time period. Not monitored in this release.</p></td>
 </tr>
 </tbody>
@@ -86,7 +85,7 @@ The medium Devices Inventory card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>{{% imgOld 6 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for device inventory</p></td>
 </tr>
 <tr class="even">
@@ -94,15 +93,15 @@ The medium Devices Inventory card displays:
 <td><p>Inventory | Devices</p></td>
 </tr>
 <tr class="odd">
-<td><p><p>{{% imgOld 7 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg", height="18", width="18"/></p></td>
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 8 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg", height="18", width="18"/></p></td>
 <td><p>Total number of hosts in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 9 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-4.svg", height="18", width="18"/></p></td>
 <td><p>Total number of chassis in inventory during the designated time period. Not monitored in this release.</p></td>
 </tr>
 <tr class="even">
@@ -135,7 +134,7 @@ The *Switches* tab displays:
 <td><p>Always Now for inventory by default</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 11 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for device inventory</p></td>
 </tr>
 <tr class="odd">
@@ -147,7 +146,7 @@ The *Switches* tab displays:
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p>{{% imgOld 13 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="18", width="18"/></p></td>
 <td><p>Link to full screen listing of all switches</p></td>
 </tr>
 <tr class="even">

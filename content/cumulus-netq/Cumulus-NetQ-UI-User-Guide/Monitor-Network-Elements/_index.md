@@ -11,7 +11,7 @@ In addition to network performance monitoring, the Cumulus NetQ UI provides a vi
 
 Some of these views provide data that is also available through the card workflows, but these views are not treated like cards. They only provide the current status; you cannot change the time period of the views, or graph the data within the UI.
 
-The tables can be manipulated as described in [Data Grid settings](../NetQ-User-Interface-Overview/Access-Data-with-Cards/#data-grid-settings).
+The tables can be manipulated as described in [Data Grid settings](,,//NetQ-User-Interface-Overview/Access-Data-with-Cards/#data-grid-settings).
 
 Access these tables through the Main Menu (<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>), under the **Network** heading.
 

@@ -8,8 +8,8 @@ aliases:
 pageID: 12321983
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The NetQ API provides access to key telemetry and system monitoring data
 gathered about the performance and operation of your data center network

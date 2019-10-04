@@ -8,8 +8,8 @@ aliases:
 pageID: 12321059
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The NetQ CLI provides access to all of the network state and event
 information collected by the NetQ Agents. It behaves the same way most

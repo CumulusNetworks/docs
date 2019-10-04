@@ -8,8 +8,8 @@ aliases:
 pageID: 10977536
 product: Cumulus NetQ
 version: 2.3
-imgData: cumulus-netq-23
-siteSlug: cumulus-netq-23
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 This guide is intended for network administrators who are responsible
 for monitoring and troubleshooting the network in their data center

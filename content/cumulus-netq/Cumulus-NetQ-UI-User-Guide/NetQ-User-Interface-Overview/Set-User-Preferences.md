@@ -8,8 +8,8 @@ aliases:
 pageID: 12321856
 product: Cumulus NetQ
 version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 Each user can customize the NetQ application display, change his account
 password, and manage his workbenches.

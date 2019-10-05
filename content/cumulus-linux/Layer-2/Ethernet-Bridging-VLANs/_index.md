@@ -101,11 +101,11 @@ By default, Cumulus Linux stores MAC addresses in the Ethernet switching
 table for 1800 seconds (30 minutes). You can change this setting using NCLU.
 
 The `bridge-ageing` option is in the
-[NCLU blacklist](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU/#edit-the-netd-conf-file),
+[NCLU blacklist](../../System-Configuration/Network-Command-Line-Utility-NCLU/#edit-the-netd-conf-file),
 as it's not frequently used. To configure this setting, you need to
 remove the `bridge-ageing` keyword from the `ifupdown_blacklist` in
 `/etc/netd.conf`.
-[Restart the `netd` service](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU/#restart-the-netd-service)
+[Restart the `netd` service](../../System-Configuration/Network-Command-Line-Utility-NCLU/#restart-the-netd-service)
 after you edit the file.
 
 Now you can change the setting using NCLU. For example, to change the
@@ -121,7 +121,7 @@ These commands create the following configuration in the `/etc/network/interface
 
 ```
 cumulus@switch:~$ cat /etc/network/interfaces
- 
+
 ...
      
 auto bridge
@@ -148,7 +148,7 @@ unreachable.
 {{%/notice%}}
 
 To configure the SVI, use
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU):
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU):
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-2
@@ -165,7 +165,7 @@ iface bridge
     bridge-ports swp1 swp2
     bridge-vids 10
     bridge-vlan-aware yes
- 
+
 auto vlan10
 iface vlan10
     address 10.100.100.1/24
@@ -213,14 +213,12 @@ bridge:
 ```
 cumulus@switch:~$ cat /etc/network/interfaces
 ...
- 
 auto bridge
 iface bridge
     bridge-vlan-aware yes
     bridge-ports swp3
     bridge-vids 100
     bridge-pvid 1
-     
 ...
 ```
 
@@ -305,13 +303,11 @@ These commands create the following configuration in the `/etc/network/interface
 ```
 cumulus@switch:~$ cat /etc/network/interfaces
 ...
-
 auto vlan100
 iface vlan 100
     ipv6-addrgen off
     vlan-id 100
     vlan-raw-device bridge
-
 ...
 ```
 
@@ -328,13 +324,13 @@ These commands create the following configuration in the `/etc/network/interface
 ```
 cumulus@switch:~$ cat /etc/network/interfaces
 ...
-     
+
 auto vlan100
 iface vlan 100
     address-virtual-ipv6-addrgen off
     vlan-id 100
     vlan-raw-device bridge
-     
+
 ...
 ```
 
@@ -364,19 +360,9 @@ on which ports it learned those MAC addresses. The `bridge fdb show`
 command output contains some specific keywords that require further
 explanation:
 
-  - **self**: the Linux kernel FDB entry flag indicating the FDB entry
-    belongs to the FDB on the device referenced by the device.  
-    For example, this FDB entry belongs to the VXLAN device vx-1000:  
-    `"00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self"`
-  - **master**: the Linux kernel FDB entry flag indicating the FDB entry
-    belongs to the FDB on the device's master, and the FDB entry is
-    pointing to a master's port.  
-    For example, this FDB entry is from the master device named *bridge*
-    and is pointing to the VXLAN bridge port vx-1001:  
-    `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge`
-  - **offload**: the Linux kernel FDB entry flag indicating the FDB
-    entry is managed (or offloaded) by an external control plane — for
-    example, the BGP control plane for EVPN.
+- **self**: the Linux kernel FDB entry flag indicating the FDB entry belongs to the FDB on the device referenced by the device. For example, this FDB entry belongs to the VXLAN device vx-1000: `"00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self"`
+- **master**: the Linux kernel FDB entry flag indicating the FDB entry belongs to the FDB on the device's master, and the FDB entry is pointing to a master's port. For example, this FDB entry is from the master device named *bridge* and is pointing to the VXLAN bridge port vx-1001: `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge`
+- **offload**: the Linux kernel FDB entry flag indicating the FDB entry is managed (or offloaded) by an external control plane — for example, the BGP control plane for EVPN.
 
 Consider the following output of the `bridge fdb show` command:
 
@@ -388,38 +374,22 @@ cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
 
 Some things you should note about the output:
 
-  - *02:02:00:00:00:08* is the MAC address learned via BGP EVPN.
-  - The first FDB entry points to a Linux bridge entry pointing to the
-    VXLAN device *vx-1001*.
-  - The second FDB entry points to the same entry on the VXLAN device
-    with additional remote destination information.
-  - The VXLAN FDB augments the bridge FDB with additional remote
-    destination information.
-  - All FDB entries pointing to a VXLAN port appear as two such entries
-    with the second entry augmenting the remote destination information.
+- *02:02:00:00:00:08* is the MAC address learned via BGP EVPN.
+- The first FDB entry points to a Linux bridge entry pointing to the VXLAN device *vx-1001*.
+- The second FDB entry points to the same entry on the VXLAN device with additional remote destination information.
+- The VXLAN FDB augments the bridge FDB with additional remote destination information.
+- All FDB entries pointing to a VXLAN port appear as two such entries with the second entry augmenting the remote destination information.
 
 ## Caveats and Errata
 
-  - A bridge cannot contain multiple subinterfaces of the **same** port.
-    Attempting this configuration results in an error.
-  - In environments where both VLAN-aware and traditional bridges are in
-    use, if a traditional bridge has a subinterface of a bond that is a
-    normal interface in a VLAN-aware bridge, the bridge is flapped when
-    the traditional bridge's bond subinterface is brought down.
-  - You cannot enslave a VLAN raw device to a different master interface
-    (that is, you cannot edit the `vlan-raw-device` setting in the
-    `/etc/network/interfaces` file). You need to delete the VLAN and
-    create it again.
-  - On a Spectrum platform, Cumulus Linux supports up to 2000 VLANs.
-    This includes the internal interfaces, bridge interfaces, logical
-    interfaces, and so forth.
-  - In Cumulus Linux, MAC learning is enabled by default on traditional
-    or VLAN-aware bridge interfaces. Cumulus Networks recommends you do
-    not disable MAC learning unless you are using EVPN. See
-    [Ethernet Virtual Private Network - EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
+- A bridge cannot contain multiple subinterfaces of the **same** port. Attempting this configuration results in an error.
+- In environments where both VLAN-aware and traditional bridges are in use, if a traditional bridge has a subinterface of a bond that is a normal interface in a VLAN-aware bridge, the bridge is flapped when the traditional bridge's bond subinterface is brought down.
+- You cannot enslave a VLAN raw device to a different master interface (that is, you cannot edit the `vlan-raw-device` setting in the `/etc/network/interfaces` file). You need to delete the VLAN and create it again.
+- On a Spectrum platform, Cumulus Linux supports up to 2000 VLANs. This includes the internal interfaces, bridge interfaces, logical interfaces, and so forth.
+- In Cumulus Linux, MAC learning is enabled by default on traditional or VLAN-aware bridge interfaces. Cumulus Networks recommends you do not disable MAC learning unless you are using EVPN. See [Ethernet Virtual Private Network - EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
 
 ## Related Information
 
-  - [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-  - [Linux Journal - Linux as an Ethernet Bridge](http://www.linuxjournal.com/article/8172)
-  - [Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode](https://support.cumulusnetworks.com/hc/en-us/articles/204909397)
+- [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
+- [Linux Journal - Linux as an Ethernet Bridge](http://www.linuxjournal.com/article/8172)
+- [Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode](https://support.cumulusnetworks.com/hc/en-us/articles/204909397)

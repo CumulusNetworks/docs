@@ -594,20 +594,20 @@ net add interface eth0 ip address dhcp</code></pre>
 auto lo
 iface lo inet loopback
     address 10.0.0.22/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 #downlinks
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
- 
+
 auto swp4
 iface swp4</code></pre></td>
 </tr>
@@ -657,50 +657,50 @@ net add bond server1-2 stp bpduguard</code></pre>
 auto lo
 iface lo inet loopback
     address 10.0.0.11/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 #peerlink
 auto swp49
 iface swp49
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+
 auto swp50
 iface swp50
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+
 #uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52
- 
+
 #bridge to hosts
 auto bridge
 iface bridge
     bridge-ports peerlink server1 server2
     bridge-vids 100
     bridge-vlan-aware yes
- 
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
- 
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.12
     clagd-peer-ip 169.254.1.2
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:01
- 
+
 auto server1
 iface server1
     bond-slaves swp1
@@ -708,7 +708,7 @@ iface server1
     clag-id 1
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+
 auto server2
 iface server2
     bond-slaves swp2
@@ -716,7 +716,7 @@ iface server2
     clag-id 2
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+
 auto vlan100
 iface vlan100
     address 172.16.1.1/24
@@ -751,49 +751,49 @@ net add bond server1-2 stp bpduguard
 auto lo
 iface lo inet loopback
     address 10.0.0.12/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 #peerlink
 auto swp49
 iface swp49
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+
 auto swp50
 iface swp50
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+
 #uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52
- 
+
 #bridge to hosts
 auto bridge
 iface bridge
     bridge-ports peerlink server1 server2
     bridge-vids 100
     bridge-vlan-aware yes
- 
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
- 
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.11
     clagd-peer-ip 169.254.1.1
     clagd-sys-mac 44:38:39:FF:00:01
- 
+
 auto server1
 iface server1
     bond-slaves swp1
@@ -801,7 +801,7 @@ iface server1
     clag-id 1
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+
 auto server2
 iface server2
     bond-slaves swp2
@@ -809,7 +809,7 @@ iface server2
     clag-id 2
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+
 auto vlan100
 iface vlan100
     address 172.16.1.2/24
@@ -845,50 +845,50 @@ net add bond server3-4 stp bpduguard</code></pre>
 auto lo
 iface lo inet loopback
     address 10.0.0.13/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 #peerlink
 auto swp49
 iface swp49
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+
 auto swp50
 iface swp50
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+
 #uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52
- 
+
 #bridge to hosts
 auto bridge
 iface bridge
     bridge-ports peerlink server3 server4
     bridge-vids 100
     bridge-vlan-aware yes
- 
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
- 
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.14
     clagd-peer-ip 169.254.1.2
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:02
- 
+
 auto server3
 iface server3
     bond-slaves swp1
@@ -896,7 +896,7 @@ iface server3
     clag-id 3
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+
 auto server4
 iface server4
     bond-slaves swp2
@@ -938,49 +938,49 @@ net add bond server3-4 stp bpduguard</code></pre>
 auto lo
 iface lo inet loopback
     address 10.0.0.14/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 #peerlink
 auto swp49
 iface swp49
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+
 auto swp50
 iface swp50
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+
 #uplinks
 auto swp51
 iface swp51
- 
+
 auto swp52
 iface swp52
- 
+
 #bridge to hosts
 auto bridge
 iface bridge
     bridge-ports peerlink server3 server4
     bridge-vids 100
     bridge-vlan-aware yes
- 
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
- 
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.13
     clagd-peer-ip 169.254.1.1
     clagd-sys-mac 44:38:39:FF:00:02
- 
+
 auto server3
 iface server3
     bond-slaves swp1
@@ -988,7 +988,7 @@ iface server3
     clag-id 3
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+
 auto server4
 iface server4
     bond-slaves swp2
@@ -1039,12 +1039,12 @@ The peer is alive
           Peer Interface and IP: peerlink.4094 169.254.1.1  
                       Backup IP: 192.168.1.12 (inactive)
                      System MAC: 44:38:39:FF:00:01
- 
+
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
-         server1   server1            1         -                      -              
-         server2   server2            2         -                      -      
+         server1   server1            1         -                      -
+         server2   server2            2         -                      -
 ```
 
 A command line utility called `clagctl` is available for interacting
@@ -1068,9 +1068,10 @@ The peer is alive
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
-         server1   server1            1         -                      -              
+         server1   server1            1         -                      -
          server2   server2            2         -                      -
 ```
+
 </details>
 
 ## Configure MLAG with a Traditional Mode Bridge
@@ -1169,16 +1170,10 @@ IP address for this purpose. Which one should you choose?
 
   To ensure IP connectivity between the loopbacks, you must carefully
   consider what implications this has on the BGP ASN configured:
-      
-  - The two MLAG member switches must use unique BGP ASNs, **or**,
-  - If the two MLAG member switches use the same BGP ASN, then you
-    must bypass the BGP loop prevention check on AS\_PATH attribute.
-- If your MLAG configuration has **bridged uplinks** (such as a campus
-  network or a large, flat layer 2 network), then configure `clagd` to
-  use the peer switch **eth0** address for the health check. When the
-  peer link is down, the secondary switch must route towards the eth0
-  address using the OOB network (provided you have implemented an OOB
-  network).
+
+- The two MLAG member switches must use unique BGP ASNs, **or**,
+- If the two MLAG member switches use the same BGP ASN, then you must bypass the BGP loop prevention check on AS\_PATH attribute.
+- If your MLAG configuration has **bridged uplinks** (such as a campus network or a large, flat layer 2 network), then configure `clagd` to use the peer switch **eth0** address for the health check. When the peer link is down, the secondary switch must route towards the eth0 address using the OOB network (provided you have implemented an OOB network).
 
 You can also specify the backup UDP port. The port defaults to 5342, but
 you can configure it as an argument in `clagd-args` using
@@ -1274,11 +1269,11 @@ The peer is alive
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
-           bond4   bond4              4         -                      -              
-           bond1   bond1              1         -                      -              
-           bond2   bond2              2         -                      -              
-           bond3   bond3              3         -                      -     
-     
+           bond4   bond4              4         -                      -
+           bond1   bond1              1         -                      -
+           bond2   bond2              2         -                      -
+           bond3   bond3              3         -                      -
+
 ...
 ```
 
@@ -1673,12 +1668,7 @@ bridge:peerlink CIST info
   cumulus@switch:~$ net add bridge stp treeprio PRIORITY_VALUE
   cumulus@switch:~$ net commit
   ```
-- Use
-    [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU)
-    (`net`) commands for all spanning tree configurations, including
-    bridge priority, path cost and so forth. Do not use `brctl` commands
-    for spanning tree, except for `brctl stp on/off`, as changes are not
-    reflected to `mstpd` and can create conflicts.
+- Use [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU) (`net`) commands for all spanning tree configurations, including bridge priority, path cost and so forth. Do not use `brctl` commands for spanning tree, except for `brctl stp on/off`, as changes are not reflected to `mstpd` and can create conflicts.
 
 ## Troubleshooting
 
@@ -1712,13 +1702,9 @@ the peer link, if the destination lookup results in an egress interface
 that is a dual-connected bond, the switch does not forward the packet to
 prevent loops. This results in a drop being recorded on the peer link.
 
-You can detect this issue by running the `net show counters` or 
-`ethtool -S <interface>` command.
+You can detect this issue by running the `net show counters` or the `ethtool -S <interface>` command.
 
-Using
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU),
-the number of dropped packets is displayed in the RX\_DRP column when
-you run `net show counters`:
+Using [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU), the number of dropped packets is displayed in the RX\_DRP column when you run `net show counters`:
 
 ```
 cumulus@switch:~$ net show counters 
@@ -1732,8 +1718,7 @@ swp51           1500       0      6587220      0      2129676  0       38957769 
 swp52           1500       0      12639501     0      822784   0       16157561     0       162      0       BMsRU
 ```
 
-When you run `ethtool -S` on a peer link interface, the drops are indicated by
-the `HwIfInDiscards` counter:
+When you run `ethtool -S` on a peer link interface, the drops are indicated by the `HwIfInDiscards` counter:
 
 ```
 cumulus@switch:~$ sudo ethtool -S swp51
@@ -1765,10 +1750,5 @@ cabling or configuration error.
 
 ## Caveats and Errata
 
-- If both the backup and peer connectivity are lost within a 30-second
-  window, the switch in the secondary role misinterprets the event
-  sequence, believing the peer switch is down, so it takes over as the
-  primary.
-- MLAG is disabled on the chassis, including the
-  [Facebook Backpack](https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/)
-  and EdgeCore OMP-800.
+- If both the backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, believing the peer switch is down, so it takes over as the primary.
+- MLAG is disabled on the chassis, including the [Facebook Backpack](https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/) and EdgeCore OMP-800.

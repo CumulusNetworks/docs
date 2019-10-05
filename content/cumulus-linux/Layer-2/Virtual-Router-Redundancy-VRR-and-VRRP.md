@@ -32,8 +32,8 @@ configuration.
 
 {{%notice note%}}
 
-  - VRRP is supported in Cumulus Linux 3.7.4 and later.
-  - You cannot configure both VRR and VRRP on the same switch.
+- VRRP is supported in Cumulus Linux 3.7.4 and later.
+- You cannot configure both VRR and VRRP on the same switch.
 
 {{%/notice%}}
 
@@ -42,7 +42,7 @@ configuration.
 The diagram below illustrates a basic VRR-enabled network configuration.
 The network includes several hosts and two routers running Cumulus Linux
 configured with 
-[Multi-chassis Link Aggregation](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+[Multi-chassis Link Aggregation](../Multi-Chassis-Link-Aggregation-MLAG)
 (MLAG).
 
 {{%notice note%}}
@@ -98,15 +98,15 @@ The routers implement the layer 2 network interconnecting the hosts and
 the redundant routers. To configure the routers, add a bridge with the
 following interfaces to each router:
 
-  - One bond interface or switch port interface to each host.
+- One bond interface or switch port interface to each host.
 
     {{%notice note%}}
 
-For networks using MLAG, use bond interfaces. Otherwise, use switch
-    port interfaces.
+For networks using MLAG, use bond interfaces. Otherwise, use switch port interfaces.
 
     {{%/notice%}}
-  - One or more interfaces to each peer router.
+
+- One or more interfaces to each peer router.
 
     {{%notice note%}}
 
@@ -130,29 +130,33 @@ The VLAN interface must have unique IP addresses for both the
 The example NCLU commands below create a VLAN-aware bridge interface for
 a VRR-enabled network:
 
-    cumulus@switch:~$ net add bridge
-    cumulus@switch:~$ net add vlan 500 ip address 192.0.2.252/24
-    cumulus@switch:~$ net add vlan 500 ip address-virtual 00:00:5e:00:01:01 192.0.2.254/24
-    cumulus@switch:~$ net add vlan 500 ipv6 address 2001:db8::1/32
-    cumulus@switch:~$ net add vlan 500 ipv6 address-virtual 00:00:5e:00:01:01 2001:db8::f/32
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add bridge
+cumulus@switch:~$ net add vlan 500 ip address 192.0.2.252/24
+cumulus@switch:~$ net add vlan 500 ip address-virtual 00:00:5e:00:01:01 192.0.2.254/24
+cumulus@switch:~$ net add vlan 500 ipv6 address 2001:db8::1/32
+cumulus@switch:~$ net add vlan 500 ipv6 address-virtual 00:00:5e:00:01:01 2001:db8::f/32
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 The NCLU commands above produce the following `/etc/network/interfaces`
 snippet:
 
-    auto bridge
-    iface bridge
-        bridge-vids 500
-        bridge-vlan-aware yes
-     
-    auto vlan500
-    iface vlan500
-        address 192.0.2.252/24
-        address 2001:db8::1/32
-        address-virtual 00:00:5e:00:01:01 2001:db8::f/32 192.0.2.254/24
-        vlan-id 500
-        vlan-raw-device bridge
+```
+auto bridge
+iface bridge
+    bridge-vids 500
+    bridge-vlan-aware yes
+
+auto vlan500
+iface vlan500
+    address 192.0.2.252/24
+    address 2001:db8::1/32
+    address-virtual 00:00:5e:00:01:01 2001:db8::f/32 192.0.2.254/24
+    vlan-id 500
+    vlan-raw-device bridge
+```
 
 #### Configure the Hosts
 
@@ -169,7 +173,7 @@ mode for First Hop Redundancy Protocol.
 ### Example VRR Configuration with MLAG
 
 To create an
-[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+[MLAG](../Multi-Chassis-Link-Aggregation-MLAG)
 configuration that incorporates VRR, use a configuration like the following:
 
 ### leaf01 Configuration
@@ -357,15 +361,15 @@ Create a configuration like the following on an Ubuntu host:
 ```
 auto eth0
 iface eth0 inet dhcp
- 
+
 auto eth1
 iface eth1 inet manual
     bond-master uplink
- 
+
 auto eth2
 iface eth2 inet manual
     bond-master uplink
- 
+
 auto uplink
 iface uplink inet static
     bond-slaves eth1 eth2
@@ -378,19 +382,19 @@ iface uplink inet static
     netmask 255.255.255.0
     post-up ip route add 172.16.0.0/16 via 172.16.1.1
     post-up ip route add 10.0.0.0/8 via 172.16.1.1
- 
+
 auto uplink:200
 iface uplink:200 inet static
     address 10.0.2.101
- 
+
 auto uplink:300
 iface uplink:300 inet static
     address 10.0.3.101
- 
+
 auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
- 
+
 # modprobe bonding
 ```
 
@@ -401,15 +405,15 @@ Create a configuration like the following on an Ubuntu host:
 ```
 auto eth0
 iface eth0 inet dhcp
- 
+
 auto eth1
 iface eth1 inet manual
     bond-master uplink
- 
+
 auto eth2
 iface eth2 inet manual
     bond-master uplink
- 
+
 auto uplink
 iface uplink inet static
     bond-slaves eth1 eth2
@@ -422,19 +426,19 @@ iface uplink inet static
     netmask 255.255.255.0
     post-up ip route add 172.16.0.0/16 via 172.16.1.1
     post-up ip route add 10.0.0.0/8 via 172.16.1.1
- 
+
 auto uplink:200
 iface uplink:200 inet static
     address 10.0.2.101
- 
+
 auto uplink:300
 iface uplink:300 inet static
     address 10.0.3.101
- 
+
 auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
- 
+
 # modprobe bonding
 ```
 
@@ -459,12 +463,11 @@ the IP addresses of the virtual router.
 
 {{%notice note%}}
 
-  - VRRP is supported in Cumulus Linux 3.7.4 and later.
-  - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol
-    version is VRRPv3.
-  - 255 virtual routers are supported per switch.
-  - VRRP is not supported currently in an MLAG environment or with EVPN.
-  - VRRP is supported on physical interfaces and sub-interfaces.
+- VRRP is supported in Cumulus Linux 3.7.4 and later.
+- Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
+- 255 virtual routers are supported per switch.
+- VRRP is not supported currently in an MLAG environment or with EVPN.
+- VRRP is supported on physical interfaces and sub-interfaces.
 
 {{%/notice%}}
 
@@ -480,100 +483,97 @@ The following example illustrates a basic VRRP configuration.
 To configure VRRP, you need to specify the following information on each
 switch:
 
-  - **A virtual router ID (VRID) that identifies the group of VRRP
-    routers**. You must specify the same ID across all virtual routers
-    in the group.
-  - **One or more virtual IP addresses that are assigned to the virtual
-    router group**. These are IP addresses that do not directly connect
-    to a specific interface. Inbound packets sent to a virtual IP
-    address are redirected to a physical network interface.
+- **A virtual router ID (VRID) that identifies the group of VRRP routers**. You must specify the same ID across all virtual routers in the group.
+- **One or more virtual IP addresses that are assigned to the virtual router group**. These are IP addresses that do not directly connect to a specific interface. Inbound packets sent to a virtual IP address are redirected to a physical network interface.
 
-You can also set these optional parameters. If you do not set these
-parameters, the defaults are used:
+You can also set these optional parameters. If you do not set these parameters, the defaults are used:
 
-| Optional Parameter       | Default Value     | Description                                                                                                                                                                                                                                                                                                                              |
-| ------------------------ | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `priority`               | 100               | The priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. Virtual routers have a priority between 1 and 254; the router with the highest priority becomes the master.                                                     |
-| `advertisement interval` | 1000 milliseconds | The advertisement interval is the interval between successive advertisements by the master in a virtual router group. You can specify a value between 10 and 40950.                                                                                                                                                                      |
-| `preempt`                | enabled           | Preempt mode lets the router take over as master for a virtual router group if it has a higher priority than the current master. Preempt mode is enabled by default. To disable preempt mode, you need to edit the `/etc/frr/frr.conf` file and add the line `vrrp <VRID> preempt no` to the interface stanza, then restart FRR service. |
+| Optional Parameter  | Default Value | Description |
+| ------------------- | ------------- | ----------- |
+| `priority` | 100 | The priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. Virtual routers have a priority between 1 and 254; the router with the highest priority becomes the master. |
+| `advertisement interval` | 1000 milliseconds | The advertisement interval is the interval between successive advertisements by the master in a virtual router group. You can specify a value between 10 and 40950. |
+| `preempt` | enabled | Preempt mode lets the router take over as master for a virtual router group if it has a higher priority than the current master. Preempt mode is enabled by default. To disable preempt mode, you need to edit the `/etc/frr/frr.conf` file and add the line `vrrp <VRID> preempt no` to the interface stanza, then restart FRR service. |
 
-The NCLU commands write VRRP configuration to the
-`/etc/network/interfaces` file and the `/etc/frr/frr.conf` file.
+The NCLU commands write VRRP configuration to the `/etc/network/interfaces` file and the `/etc/frr/frr.conf` file.
 
-The following example commands configure two switches (spine01 and
-spine02) that form one virtual router group (VRID 44) with IPv4 address
-10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master;
-it has a priority of 254. *spine02* is the backup VRRP router.
+The following example commands configure two switches (spine01 and spine02) that form one virtual router group (VRID 44) with IPv4 address 10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master; it has a priority of 254. *spine02* is the backup VRRP router.
 
 **spine01**
 
-    cumulus@spine01:~$ net add interface swp1 vrrp 44 10.0.0.1/24
-    cumulus@spine01:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
-    cumulus@spine01:~$ net add interface swp1 vrrp 44 priority 254
-    cumulus@spine01:~$ net add interface swp1 vrrp 44 advertisement-interval 5000
-    cumulus@spine01:~$ net pending
-    cumulus@spine01:~$ net commit
+```
+cumulus@spine01:~$ net add interface swp1 vrrp 44 10.0.0.1/24
+cumulus@spine01:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
+cumulus@spine01:~$ net add interface swp1 vrrp 44 priority 254
+cumulus@spine01:~$ net add interface swp1 vrrp 44 advertisement-interval 5000
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
 
 **spine02**
 
-    cumulus@spine02:~$ net add interface swp1 vrrp 44 10.0.0.1/24
-    cumulus@spine02:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
-    cumulus@spine02:~$ net pending
-    cumulus@spine02:~$ net commit
+```
+cumulus@spine02:~$ net add interface swp1 vrrp 44 10.0.0.1/24
+cumulus@spine02:~$ net add interface swp1 vrrp 44 2001:0db8::1/64
+cumulus@spine02:~$ net pending
+cumulus@spine02:~$ net commit
+```
 
 The NCLU commands save the configuration in the `/etc/frr/frr.conf`
 file. For example:
 
-    cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
-    ...
-    interface swp1
-     vrrp 44
-     vrrp 44 advertisement-interval 5000
-     vrrp 44 priority 254
-     vrrp 44 ip 10.0.0.1
-     vrrp 44 ipv6 2001:0db8::1
-    ...
+```
+cumulus@spine01:~$ sudo cat /etc/frr/frr.conf
+...
+interface swp1
+  vrrp 44
+  vrrp 44 advertisement-interval 5000
+  vrrp 44 priority 254
+  vrrp 44 ip 10.0.0.1
+  vrrp 44 ipv6 2001:0db8::1
+...
+```
 
 ### Show VRRP Configuration
 
-To show virtual router information on a switch, run the `net show vrrp
-<VRID>` command. For example:
+To show virtual router information on a switch, run the `net show vrrp <VRID>` command. For example:
 
-    cumulus@spine01:~$ net show vrrp 44
-    Virtual Router ID                    44
-     Protocol Version                     3
-     Autoconfigured                       No                  
-     Shutdown                             No                  
-     Interface                            swp1              
-     VRRP interface (v4)                  vrrp4-3-1         
-     VRRP interface (v6)                  vrrp6-3-1                
-     Primary IP (v4)                                          
-     Primary IP (v6)                      fe80::54df:e543:5c12:7762   
-     Virtual MAC (v4)                     00:00:5e:00:01:01
-     Virtual MAC (v6)                     00:00:5e:00:02:01
-     Status (v4)                          Master
-     Status (v6)                          Master
-     Priority                             254
-     Effective Priority (v4)              254
-     Effective Priority (v6)              254
-     Preempt Mode                         Yes
-     Accept Mode                          Yes
-     Advertisement Interval               5000 ms
-     Master Advertisement Interval (v4)   0 ms
-     Master Advertisement Interval (v6)   5000 ms
-     Advertisements Tx (v4)               17
-     Advertisements Tx (v6)               17
-     Advertisements Rx (v4)               0
-     Advertisements Rx (v6)               0
-     Gratuitous ARP Tx (v4)               1
-     Neigh. Adverts Tx (v6)               1
-     State transitions (v4)               2
-     State transitions (v6)               2
-     Skew Time (v4)                       0 ms
-     Skew Time (v6)                       0 ms
-     Master Down Interval (v4)            0 ms
-     Master Down Interval (v6)            0 ms
-     IPv4 Addresses                       1
-     . . . . . . . . . . . . . . . . . .  10.0.0.1
-     IPv6 Addresses                       1
-     . . . . . . . . . . . . . . . . . .  2001:0db8::1
+```
+cumulus@spine01:~$ net show vrrp 44
+Virtual Router ID                    44
+ Protocol Version                     3
+ Autoconfigured                       No
+ Shutdown                             No
+ Interface                            swp1
+ VRRP interface (v4)                  vrrp4-3-1
+ VRRP interface (v6)                  vrrp6-3-1
+ Primary IP (v4)
+ Primary IP (v6)                      fe80::54df:e543:5c12:7762
+ Virtual MAC (v4)                     00:00:5e:00:01:01
+ Virtual MAC (v6)                     00:00:5e:00:02:01
+ Status (v4)                          Master
+ Status (v6)                          Master
+ Priority                             254
+ Effective Priority (v4)              254
+ Effective Priority (v6)              254
+ Preempt Mode                         Yes
+ Accept Mode                          Yes
+ Advertisement Interval               5000 ms
+ Master Advertisement Interval (v4)   0 ms
+ Master Advertisement Interval (v6)   5000 ms
+ Advertisements Tx (v4)               17
+ Advertisements Tx (v6)               17
+ Advertisements Rx (v4)               0
+ Advertisements Rx (v6)               0
+ Gratuitous ARP Tx (v4)               1
+ Neigh. Adverts Tx (v6)               1
+ State transitions (v4)               2
+ State transitions (v6)               2
+ Skew Time (v4)                       0 ms
+ Skew Time (v6)                       0 ms
+ Master Down Interval (v4)            0 ms
+ Master Down Interval (v6)            0 ms
+ IPv4 Addresses                       1
+ . . . . . . . . . . . . . . . . . .  10.0.0.1
+ IPv6 Addresses                       1
+ . . . . . . . . . . . . . . . . . .  2001:0db8::1
+```

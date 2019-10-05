@@ -22,34 +22,33 @@ connected to a switch.
 
 {{% imgOld 0 %}}
 
-  - *host1* connects to swp1 with both untagged frames and with 802.1Q
-    frames tagged for *vlan100*.
-
-  - *host2* connects to swp2 with 802.1Q frames tagged for *vlan120* and
-    *vlan130*.
+- *host1* connects to swp1 with both untagged frames and with 802.1Q frames tagged for *vlan100*.
+- *host2* connects to swp2 with 802.1Q frames tagged for *vlan120* and *vlan130*.
 
 To configure the above example, edit the `/etc/network/interfaces` file
 and add a configuration like the following:
 
-    # Config for host1
-     
-    auto swp1
-    iface swp1
-     
-    auto swp1.100
-    iface swp1.100
-     
-    # Config for host2
-    # swp2 must exist to create the .1Q subinterfaces, but it is not assigned an address
-     
-    auto swp2
-    iface swp2
-     
-    auto swp2.120
-    iface swp2.120
-     
-    auto swp2.130
-    iface swp2.130
+```
+# Config for host1
+
+auto swp1
+iface swp1
+
+auto swp1.100
+iface swp1.100
+
+# Config for host2
+# swp2 must exist to create the .1Q subinterfaces, but it is not assigned an address
+
+auto swp2
+iface swp2
+
+auto swp2.120
+iface swp2.120
+
+auto swp2.130
+iface swp2.130
+```
 
 ## VLAN Tagging, an Advanced Example
 
@@ -58,27 +57,20 @@ two switches, with a number of bridges and a bond connecting them all.
 
 {{% imgOld 1 %}}
 
-  - *host1* connects to bridge *br-untagged* with bare Ethernet frames
-    and to bridge *br-tag100* with 802.1q frames tagged for *vlan100*.
-  - *host2* connects to bridge *br-tag100* with 802.1q frames tagged for
-    *vlan100* and to bridge *br-vlan120* with 802.1q frames tagged for
-    *vlan120*.
-  - *host3* connects to bridge *br-vlan120* with 802.1q frames tagged
-    for *vlan120* and to bridge *v130* with 802.1q frames tagged for
-    *vlan130*.
-  - *bond2* carries tagged and untagged frames in this example.
+- *host1* connects to bridge *br-untagged* with bare Ethernet frames and to bridge *br-tag100* with 802.1q frames tagged for *vlan100*.
+- *host2* connects to bridge *br-tag100* with 802.1q frames tagged for *vlan100* and to bridge *br-vlan120* with 802.1q frames tagged for *vlan120*.
+- *host3* connects to bridge *br-vlan120* with 802.1q frames tagged for *vlan120* and to bridge *v130* with 802.1q frames tagged for *vlan130*.
+- *bond2* carries tagged and untagged frames in this example.
 
 Although not explicitly designated, the bridge member ports function as
 802.1Q *access ports* and *trunk ports*. In the example above, comparing
 Cumulus Linux with a traditional Cisco device:
 
-  - *swp1* is equivalent to a trunk port with untagged and *vlan100*.
-  - *swp2* is equivalent to a trunk port with *vlan100* and *vlan120*.
-  - *swp3* is equivalent to a trunk port with *vlan120* and *vlan130*.
-  - *bond2* is equivalent to an EtherChannel in trunk mode with
-    untagged, *vlan100*, *vlan120*, and *vlan130*.
-  - Bridges *br-untagged*, *br-tag100*, *br-vlan120*, and *v130* are
-    equivalent to SVIs (switched virtual interfaces).
+- *swp1* is equivalent to a trunk port with untagged and *vlan100*.
+- *swp2* is equivalent to a trunk port with *vlan100* and *vlan120*.
+- *swp3* is equivalent to a trunk port with *vlan120* and *vlan130*.
+- *bond2* is equivalent to an EtherChannel in trunk mode with untagged, *vlan100*, *vlan120*, and *vlan130*.
+- Bridges *br-untagged*, *br-tag100*, *br-vlan120*, and *v130* are equivalent to SVIs (switched virtual interfaces).
 
 To create the above configuration, edit the `/etc/network/interfaces`
 file and add a configuration like the following:
@@ -260,9 +252,11 @@ A single bridge cannot contain multiple subinterfaces of the **same**
 port as members. Attempting to apply such a configuration will result in
 an error:
 
-    cumulus@switch:~$ sudo  brctl addbr another_bridge
-    cumulus@switch:~$ sudo  brctl addif another_bridge swp9 swp9.100
-    bridge cannot contain multiple subinterfaces of the same port: swp9, swp9.100
+```
+cumulus@switch:~$ sudo  brctl addbr another_bridge
+cumulus@switch:~$ sudo  brctl addif another_bridge swp9 swp9.100
+bridge cannot contain multiple subinterfaces of the same port: swp9, swp9.100
+```
 
 {{%/notice%}}
 
@@ -284,9 +278,9 @@ with the VLAN ID translated.
 
 {{%notice note%}}
 
-A bridge in [VLAN-aware mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+A bridge in [VLAN-aware mode](../VLAN-aware-Bridge-Mode)
 cannot have VLAN translation enabled for it; only bridges configured in
-[traditional mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
+[traditional mode](../Traditional-Bridge-Mode)
 can utilize VLAN translation.
 
 {{%/notice%}}

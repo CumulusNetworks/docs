@@ -21,13 +21,8 @@ an active link fails. STP is enabled by default in Cumulus Linux.
 The STP modes Cumulus Linux supports vary depending upon whether the
 traditional or VLAN-aware bridge driver mode is in use.
 
-- Bridges configured in
-  *[VLAN-aware](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)*
-  mode operate **only** in RSTP mode.
-- Bridges configured in 
-  [*traditional* mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
-  operate in both PVST and PVRST mode. The default is set to PVRST.
-  Each traditional bridge has its own separate STP instance.
+- Bridges configured in *[VLAN-aware](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)* mode operate **only** in RSTP mode.
+- Bridges configured in [*traditional* mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode) operate in both PVST and PVRST mode. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
 
 ### STP for a VLAN-aware Bridge
 
@@ -43,6 +38,7 @@ giant switch.
 {{%notice note%}}
 
 If trying to connect a VLAN-aware bridge to a proprietary PVST+ switch, the recommendation is to convert the proprietary switch to MSTP for the best interoperability experience.  However, if PVST+ has to be used, the root needs to reside on the non-Cumulus side.
+
 In addition, VLAN 1 must be allowed on all 802.1Q trunks that interconnect them, regardless
 of the configured *native* VLAN. This is because only VLAN
 1 enables the switches to address the BPDU frames to the IEEE multicast
@@ -76,6 +72,7 @@ To check STP status for a bridge, run the `net show bridge
 spanning-tree` command:
 
 <details>
+
 <summary>Click to reveal the output ... </summary>
 
     cumulus@switch:~$ net show bridge spanning-tree
@@ -188,6 +185,7 @@ spanning-tree` command:
 </details>
 
 <details>
+
 <summary>Using Linux to check STP status ... </summary>
 
 `mstpctl` is the utility provided by the `mstpd` service to configure
@@ -209,61 +207,69 @@ in some cases.
 
 To get the bridge state, use:
 
-    cumulus@switch:~$ sudo brctl show
-     bridge name     bridge id               STP enabled     interfaces
-     bridge          8000.001401010100       yes             swp1
-                                                             swp4
-                                                             swp5
+```
+cumulus@switch:~$ sudo brctl show
+ bridge name     bridge id               STP enabled     interfaces
+ bridge          8000.001401010100       yes             swp1
+                                                         swp4
+                                                         swp5
+```
 
 To show the `mstpd` bridge state, run this command:
 
-    cumulus@switch:~$ net show bridge spanning-tree
-     bridge CIST info
-      enabled         yes
-      bridge id       F.000.00:14:01:01:01:00
-      designated root F.000.00:14:01:01:01:00
-      regional root   F.000.00:14:01:01:01:00
-      root port       none
-      path cost     0          internal path cost   0
-      max age       20         bridge max age       20
-      forward delay 15         bridge forward delay 15
-      tx hold count 6          max hops             20
-      hello time    2          ageing time          200
-      force protocol version     rstp
-      time since topology change 90843s
-      topology change count      4
-      topology change            no
-      topology change port       swp4
-      last topology change port  swp5
+```
+cumulus@switch:~$ net show bridge spanning-tree
+ bridge CIST info
+ enabled         yes
+ bridge id       F.000.00:14:01:01:01:00
+ designated root F.000.00:14:01:01:01:00
+ regional root   F.000.00:14:01:01:01:00
+ root port       none
+ path cost     0          internal path cost   0
+ max age       20         bridge max age       20
+ forward delay 15         bridge forward delay 15
+ tx hold count 6          max hops             20
+ hello time    2          ageing time          200
+ force protocol version     rstp
+ time since topology change 90843s
+ topology change count      4
+ topology change            no
+ topology change port       swp4
+ last topology change port  swp5
+```
 
 To show the `mstpd` bridge port state, run this command:
 
-    cumulus@switch:~$ sudo mstpctl showport bridge
-     E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
-       swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
-     E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
+```
+cumulus@switch:~$ sudo mstpctl showport bridge
+ E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
+   swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
+ E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
+```
 
-    cumulus@switch:~$ net show bridge spanning-tree
+```
+cumulus@switch:~$ net show bridge spanning-tree
+...
+  bridge:swp1 CIST info
+  enabled            yes                     role                 Designated
+  port id            8.001                   state                forwarding
+  external port cost 2000                    admin external cost  0
+  internal port cost 2000                    admin internal cost  0
+  designated root    F.000.00:14:01:01:01:00 dsgn external cost   0
+  dsgn regional root F.000.00:14:01:01:01:00 dsgn internal cost   0
+  designated bridge  F.000.00:14:01:01:01:00 designated port      8.001
+  admin edge port    no                      auto edge port       yes
+  oper edge port     yes                     topology change ack  no
+  point-to-point     yes                     admin point-to-point auto
+  restricted role    no                      restricted TCN       no
+  port hello time    2                       disputed             no
+  bpdu guard port    no                      bpdu guard error     no
+  network port       no                      BA inconsistent      no
+  Num TX BPDU        45772                   Num TX TCN           4
+  Num RX BPDU        0                       Num RX TCN           0
+  Num Transition FWD 2                       Num Transition BLK   2
+```
 
-    ...
-     bridge:swp1 CIST info
-      enabled            yes                     role                 Designated
-      port id            8.001                   state                forwarding
-      external port cost 2000                    admin external cost  0
-      internal port cost 2000                    admin internal cost  0
-      designated root    F.000.00:14:01:01:01:00 dsgn external cost   0
-      dsgn regional root F.000.00:14:01:01:01:00 dsgn internal cost   0
-      designated bridge  F.000.00:14:01:01:01:00 designated port      8.001
-      admin edge port    no                      auto edge port       yes
-      oper edge port     yes                     topology change ack  no
-      point-to-point     yes                     admin point-to-point auto
-      restricted role    no                      restricted TCN       no
-      port hello time    2                       disputed             no
-      bpdu guard port    no                      bpdu guard error     no
-      network port       no                      BA inconsistent      no
-      Num TX BPDU        45772                   Num TX TCN           4
-      Num RX BPDU        0                       Num RX TCN           0
-      Num Transition FWD 2                       Num Transition BLK   2
 </details>
 
 ## Customize Spanning Tree Protocol
@@ -282,9 +288,11 @@ be a multiple of 4096; the default is *32768*.
 
 To set the tree priority, run:
 
-    cumulus@switch:~$ net add bridge stp treeprio 8192
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add bridge stp treeprio 8192
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 {{%notice note%}}
 
@@ -321,17 +329,21 @@ traffic.
 To configure PortAdminEdge mode, use the `bpduguard` and `portadminedge`
 NCLU configuration commands:
 
-    cumulus@switch:~$ net add interface swp5 stp bpduguard
-    cumulus@switch:~$ net add interface swp5 stp portadminedge
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface swp5 stp bpduguard
+cumulus@switch:~$ net add interface swp5 stp portadminedge
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 The NCLU commands above create the following code snippet:
 
-    auto swp5
-    iface swp5
-        mstpctl-bpduguard yes
-        mstpctl-portadminedge yes
+```
+auto swp5
+iface swp5
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+```
 
 {{%/notice%}}
 
@@ -342,15 +354,19 @@ The NCLU commands above create the following code snippet:
 For a bridge in [traditional mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/),
 configure `PortAdminEdge` under the bridge stanza in `/etc/network/interfaces`:
 
-    auto br2
-    iface br2 inet static
-      bridge-ports swp1 swp2 swp3 swp4
-      mstpctl-bpduguard swp1=yes swp2=yes swp3=yes swp4=yes
-      mstpctl-portadminedge swp1=yes swp2=yes swp3=yes swp4=yes
+```
+auto br2
+iface br2 inet static
+   bridge-ports swp1 swp2 swp3 swp4
+   mstpctl-bpduguard swp1=yes swp2=yes swp3=yes swp4=yes
+   mstpctl-portadminedge swp1=yes swp2=yes swp3=yes swp4=yes
+```
 
 To load the new configuration, run `ifreload -a`:
 
-    cumulus@switch:~$ sudo ifreload -a
+```
+cumulus@switch:~$ sudo ifreload -a
+```
 
 {{%/notice%}}
 
@@ -384,17 +400,21 @@ To disable PortAutoEdge for an interface, run the
 `net add interface <port> stp portautoedge no` command. The following
 example disables PortAutoEdge on swp1:
 
-    cumulus@switch:~$ net add interface swp1 stp portautoedge no
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface swp1 stp portautoedge no
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 To re-enable PortAutoEdge for an interface, run the the
 `net del interface <port> stp portautoedge no` command. The following
 example re-enables PortAutoEdge on swp1:
 
-    cumulus@switch:~$ net del interface swp1 stp portautoedge no
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net del interface swp1 stp portautoedge no
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 ### BPDU Guard
 
@@ -405,36 +425,38 @@ new switch to an access port off of a leaf switch. If this new switch is
 configured with a low priority, it could become the new root switch and
 affect the forwarding path for the entire layer 2 topology.
 
-{{%notice info%}}
+To configure **BPDU guard**, set the `bpduguard` value for the interface:
 
-**Example BPDU Guard Configuration**
-
-To configure BPDU guard, set the `bpduguard` value for the interface:
-
-    cumulus@switch:~$ net add interface swp5 stp bpduguard
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface swp5 stp bpduguard
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 This creates the following stanza in the `/etc/network/interfaces` file:
 
-    auto swp5
-    iface swp5
-        mstpctl-bpduguard yes
-
-{{%/notice%}}
+```
+auto swp5
+iface swp5
+    mstpctl-bpduguard yes
+```
 
 #### Recover a Port Disabled by BPDU Guard
 
 If a BPDU is received on the port, STP will bring down the port and log
 an error in `/var/log/syslog`. The following is a sample error:
 
-    mstpd: error, MSTP_IN_rx_bpdu: bridge:bond0 Recvd BPDU on BPDU Guard Port - Port Down
+```
+mstpd: error, MSTP_IN_rx_bpdu: bridge:bond0 Recvd BPDU on BPDU Guard Port - Port Down
+```
 
 To determine whether BPDU guard is configured, or if a BPDU has been
 received, run:
 
-    cumulus@switch:~$ net show bridge spanning-tree | grep bpdu
-     bpdu guard port    yes                     bpdu guard error     yes
+```
+cumulus@switch:~$ net show bridge spanning-tree | grep bpdu
+  bpdu guard port    yes                     bpdu guard error     yes
+```
 
 The only way to recover a port that has been placed in the disabled
 state is to manually un-shut or bring up the port with
@@ -513,30 +535,30 @@ The default setting for bridge assurance is off. This means that there
 is no difference between disabling bridge assurance on an interface and
 not configuring bridge assurance on an interface.
 
-{{%notice info%}}
-
-**Example Bridge Assurance Configuration**
-
-To enable bridge assurance on an interface, add the `portnetwork` option
+To enable **bridge assurance** on an interface, add the `portnetwork` option
 to the interface:
 
-    cumulus@switch:~$ net add interface swp1 stp portnetwork
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface swp1 stp portnetwork
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 This creates the following interface stanza:
 
-    auto swp1
-    iface swp1
-        mstpctl-portnetwork yes
-
-{{%/notice%}}
+```
+auto swp1
+iface swp1
+    mstpctl-portnetwork yes
+```
 
 You can monitor logs for bridge assurance messages by doing the
 following:
 
-    cumulus@switch:~$ sudo grep -in assurance /var/log/syslog | grep mstp
-     1365:Jun 25 18:03:17 mstpd: br1007:swp1.1007 Bridge assurance inconsistent
+```
+cumulus@switch:~$ sudo grep -in assurance /var/log/syslog | grep mstp
+    1365:Jun 25 18:03:17 mstpd: br1007:swp1.1007 Bridge assurance inconsistent
+```
 
 ### BPDU Filter
 
@@ -551,25 +573,23 @@ feature deliberately and with extreme caution.
 
 {{%/notice%}}
 
-{{%notice info%}}
-
-**Example BPDU Filter Configuration**
-
-To configure the BPDU filter, add the `portbpdufilter` option to the
+To configure the **BPDU filter**, add the `portbpdufilter` option to the
 interface:
 
-    cumulus@switch:~$ net add interface swp6 stp portbpdufilter
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface swp6 stp portbpdufilter
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 These commands create the following stanza in the
 `/etc/network/interfaces` file:
 
-    auto swp6
-    iface swp6
-        mstpctl-portbpdufilter yes
-
-{{%/notice%}}
+```
+auto swp6
+iface swp6
+    mstpctl-portbpdufilter yes
+```
 
 ### Storm Control
 
@@ -583,18 +603,22 @@ example, to enable unicast and multicast storm control at 400 packets
 per second (pps) and 3000 pps, respectively, for swp1, run the
 following:
 
-    cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/broadcast'
-    cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
-    cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
+```
+cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/broadcast'
+cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
+cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
+```
 
 The configuration above takes effect immediately, but does not persist if you
 reboot the switch. To make the changes apply persistently, edit the
 `/etc/cumulus/switchd.conf` file in a text editor as shown below:
 
-    # Storm Control setting on a port, in pps, 0 means disable
-    interface.swp1.storm_control.broadcast = 400
-    interface.swp1.storm_control.multicast = 3000
-    interface.swp1.storm_control.unknown_unicast = 3000
+```
+# Storm Control setting on a port, in pps, 0 means disable
+interface.swp1.storm_control.broadcast = 400
+interface.swp1.storm_control.multicast = 3000
+interface.swp1.storm_control.unknown_unicast = 3000
+```
 
 Save the file then 
 [restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd)

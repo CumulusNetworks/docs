@@ -3,8 +3,8 @@ title: More Documents
 author: Cumulus Networks
 weight: 21
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
-This topic provides general information about the NetQ release and the network environment, along with the PDFs of the documentation.
+The documents included here are mostly for reference, and provide insight into the document formatting, terminology used, and a summary of what is new with the current release.

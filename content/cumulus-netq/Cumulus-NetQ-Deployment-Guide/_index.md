@@ -7,19 +7,25 @@ aliases:
  - /pages/viewpage.action?pageId=12320788
 pageID: 12320788
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 This guide is intended for network administrators who are responsible
 for installation, setup, and maintenance of Cumulus NetQ in their data
 center environment. NetQ offers the ability to monitor and manage your
 data center network infrastructure and operational health with simple
-tools based on open source Linux. This guide provides an overview of the NetQ components and operation and instructions for installing NetQ, upgrading an existing NetQ installation, and backing up and restoring your NetQ data.
+tools based on open source Linux. This guide provides instructions and
+information about installing NetQ core capabilities, configuring
+optional capabilities, and upgrading an existing NetQ installation. This
+guide assumes you have already installed Cumulus Linux on your network
+switches and you are ready to add these NetQ capabilities.
 
 For information about monitoring and troubleshooting your network, refer
-to the [Cumulus NetQ CLI User Guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/) or the
-[Cumulus NetQ UI User Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide).
+to the [Cumulus NetQ CLI User
+Guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/) or the
+[Cumulus NetQ UI User
+Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide).
 
 {{%notice tip%}}
 
@@ -28,3 +34,4 @@ notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374-Cumulu
 for this version.
 
 {{%/notice%}}
+

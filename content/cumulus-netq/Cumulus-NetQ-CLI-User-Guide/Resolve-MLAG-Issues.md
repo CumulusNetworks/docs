@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321054
 pageID: 12321054
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 This topic outlines a few scenarios that illustrate how you use NetQ to
 troubleshoot

@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321042
 pageID: 12321042
 product: Cumulus NetQ
-version: 2.2
+version: 2.3
 imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+siteSlug: cumulus-netq
 ---
 The NetQ Agent monitors container environments the same way it monitors
 [physical

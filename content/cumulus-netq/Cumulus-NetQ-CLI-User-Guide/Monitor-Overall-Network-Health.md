@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321047
 pageID: 12321047
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 NetQ provides the information you need to monitor the health of your
 network fabric, devices, and interfaces. You are able to easily validate
@@ -34,20 +34,23 @@ in the network.
 
 You can validate the following network fabric elements:
 
-    cumulus@switch:~$ netq check
-        agents : Netq agent
-        bgp : BGP info
-        clag : Cumulus Multi-chassis LAG
-        evpn : EVPN
-        interfaces : network interface port
-        license : License information
-        lnv : Lightweight Network Virtualization info
-        mtu : Link MTU
-        ntp : NTP
-        ospf : OSPF info
-        sensors : Temperature/Fan/PSU sensors
-        vlan : VLAN
-        vxlan : VXLAN data path
+```
+cumulus@switch:/$ netq check 
+    agents      :  Netq agent
+    bgp         :  BGP info
+    cl-version  :  Cumulus Linux version
+    clag        :  Cumulus Multi-chassis LAG
+    evpn        :  EVPN
+    interfaces  :  network interface port
+    license     :  License information
+    lnv         :  Lightweight Network Virtualization info
+    mtu         :  Link MTU
+    ntp         :  NTP
+    ospf        :  OSPF info
+    sensors     :  Temperature/Fan/PSU sensors
+    vlan        :  VLAN
+    vxlan       :  VXLAN data path
+```
 
 For example, to determine the status of BGP running on your network:
 
@@ -223,6 +226,83 @@ When failures are seen, additional information is provided to start your
 investigation. In this example, some reconfiguration is required for
 auto-negotiation with peer interfaces.
 
+### Create Filters for Provisioning Exceptions
+
+With this release, you are able to configure filters to change validation errors to warnings that would normally occur due to the default expectations of the `netq check` commands. This applies to all protocols and services, except for Agents and LNV. For example, if you have provisioned BGP with configurations where a BGP peer is not expected or desired, you will get errors that a BGP peer is missing. By creating a filter, you can remove the error in favor of a warning.
+
+To create a validation filter:
+
+1. Navigate to the */etc/netq* directory.
+
+2. Create or open the *check_filter.yml*  file using your text editor of choice.
+
+    This file contains the syntax to follow to create one or more rules for one or more protocols or services. Create your own rules, and/or edit and un-comment any example rules you would like to use.
+
+    ```
+    # Netq check result filter rule definition file.  This is for filtering
+    # results based on regex match on one or more columns of each test result.
+    # Currently, only action 'filter' is supported. Each test can have one or
+    # more rules, and each rule can match on one or more columns.  In addition,
+    # rules can also be optionally defined under the 'global' section and will
+    # apply to all tests of a check.
+    #
+    # syntax:
+    #
+    # <check name>:
+    #   tests:
+    #     <test name, as shown in test list when using the include/exclude and tab>:
+    #       - rule:
+    #           match:
+    #             <column name>: regex
+    #             <more columns and regex.., result is AND>
+    #           action:
+    #             filter
+    #       - <more rules..>
+    #   global:
+    #     - rule:
+    #         . . .
+    #     - rule:
+    #         . . .
+    #
+    # <another check name>:
+    #   . . .
+    #
+    # e.g.
+    #
+    # bgp:
+    #   tests:
+    #     Address Families:
+    #       - rule:
+    #           match:
+    #             Hostname: (^exit*|^firewall)
+    #             VRF: DataVrf1080
+    #             Reason: AFI/SAFI evpn not activated on peer
+    #           action:
+    #             filter
+    #       - rule:
+    #           match:
+    #             Hostname: exit-2
+    #             Reason: SAFI evpn not activated on peer
+    #           action:
+    #             filter
+    #     Router ID:
+    #       - rule:
+    #           match:
+    #             Hostname: exit-2
+    #           action:
+    #             filter
+    #
+    # evpn:
+    #   tests:
+    #     EVPN Type 2:
+    #       - rule:
+    #           match:
+    #             Hostname: exit-1
+    #           action:
+    #             filter
+    #
+    ```
+
 ## View Network Details
 
 The `netq show` commands display a wide variety of content about the
@@ -257,23 +337,24 @@ is running as expected. The Agent sends a heartbeat every 30 seconds,
 and if three consecutive heartbeats are missed, its status changes to
 *Rotten*.
 
-    cumulus@switch:~$ netq show agents
-    Matching agents records:
-    Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
-    ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-    edge01            Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:4h:27m:34s             2d:4h:27m:27s             2d:4h:27m:27s              Sun Apr 21 16:00:50 2019
-    exit01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:4h:26m:52s             2d:4h:26m:44s             2d:4h:26m:44s              Sun Apr 21 16:00:52 2019
-    exit02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:4h:26m:58s             2d:4h:26m:49s             2d:4h:26m:49s              Sun Apr 21 16:01:19 2019
-    leaf01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:4h:26m:50s             19m:34.763s               19m:34.763s                Sun Apr 21 20:05:45 2019
-    leaf02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:4h:27m:0s              2d:4h:26m:51s             2d:4h:26m:51s              Sun Apr 21 16:01:43 2019
-    leaf03            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:4h:26m:59s             2d:4h:26m:50s             2d:4h:26m:50s              Sun Apr 21 16:01:23 2019
-    leaf04            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:4h:27m:1s              2d:4h:26m:53s             2d:4h:26m:53s              Sun Apr 21 16:01:27 2019
-    server01          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:4h:24m:57s             2d:4h:24m:49s             2d:4h:24m:49s              Sun Apr 21 16:00:43 2019
-    server02          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:4h:24m:56s             2d:4h:24m:48s             2d:4h:24m:48s              Sun Apr 21 16:00:46 2019
-    server03          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:4h:24m:56s             2d:4h:24m:48s             2d:4h:24m:48s              Sun Apr 21 16:00:52 2019
-    server04          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:4h:24m:56s             2d:4h:24m:48s             2d:4h:24m:48s              Sun Apr 21 16:00:43 2019
-    spine01           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:4h:27m:2s              2d:4h:26m:54s             2d:4h:26m:54s              Sun Apr 21 16:01:33 2019
-    spine02           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:4h:26m:56s             2d:4h:26m:48s             2d:4h:26m:48s              Sun Apr 21 16:01:12 2019
+```
+cumulus@switch:~$ netq show agents
+Matching agents records:
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+exit01            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:30m:19s            1d:21h:30m:9s             1d:21h:30m:9s              Tue Sep 24 22:45:03 2019
+exit02            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:32m:1s             1d:21h:31m:51s            1d:21h:31m:51s             Tue Sep 24 22:43:35 2019
+leaf01            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:31m:14s            1d:21h:31m:5s             1d:21h:31m:5s              Tue Sep 24 22:44:25 2019
+leaf02            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:31m:57s            1d:21h:31m:47s            1d:21h:31m:47s             Tue Sep 24 22:44:20 2019
+leaf03            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:31m:4s             1d:21h:30m:55s            1d:21h:30m:55s             Tue Sep 24 22:44:19 2019
+leaf04            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:32m:37s            1d:21h:32m:28s            1d:21h:32m:28s             Tue Sep 24 22:43:05 2019
+server01          Fresh            no       2.3.0-ub18.04u21~1569246309.30858c3  1d:21h:10m:50s            1d:21h:10m:38s            1d:21h:10m:38s             Tue Sep 24 22:49:10 2019
+server02          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  1d:21h:10m:50s            1d:21h:10m:38s            1d:21h:10m:38s             Wed Sep 25 18:35:44 2019
+server03          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  1d:21h:10m:50s            1d:21h:10m:38s            1d:21h:10m:38s             Wed Sep 25 15:37:10 2019
+server04          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  1d:21h:10m:49s            1d:21h:10m:37s            1d:21h:10m:37s             Tue Sep 24 22:49:33 2019
+spine01           Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:30m:10s            1d:21h:30m:1s             1d:21h:30m:1s              Tue Sep 24 22:44:40 2019
+spine02           Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:30m:16s            1d:21h:30m:6s             1d:21h:30m:6s              Tue Sep 24 22:43:32 2019
+```
 
 Some additional examples follow.
 
@@ -369,11 +450,3 @@ View the status of the hardware sensors:
     leaf02            fan4            fan tray 2, fan 2                   ok                                             Wed Feb  6 22:59:54 2019
     leaf02            fan5            fan tray 3, fan 1                   ok                                             Wed Feb  6 22:59:54 2019
     ...
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

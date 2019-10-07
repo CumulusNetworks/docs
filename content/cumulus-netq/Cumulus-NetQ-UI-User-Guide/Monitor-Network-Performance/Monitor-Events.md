@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321771
 pageID: 12321771
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 Two event workflows, the Alarms card workflow and the Info card
 workflow, provide a view into the events occurring in the network. The
@@ -344,7 +344,7 @@ OR
 
 {{< figure src="/images/netq/events-alarms-fullscr-allevents-tab.png" width="700" >}}
 
-To return to your workbench, click {{% imgOld 21 %}} in the top right corner of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner of the card.
 
 ## Monitor Info Events
 
@@ -633,7 +633,7 @@ OR
 
 {{<figure src="/images/netq/events-info-fullscr-222.png" width="700">}}
 
-To return to your workbench, click {{% imgOld 39 %}} in the top right corner of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner of the card.
 
 ## Events Reference
 

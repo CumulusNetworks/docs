@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321439
 pageID: 12321439
 product: Cumulus NetQ
-version: 2.2
+version: 2.3
 imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+siteSlug: cumulus-netq
 ---
 The Cumulus NetQ UI enables operators to view the health of the LLDP
 service on a network-wide and a per session basis, giving greater
@@ -44,7 +44,7 @@ The small LLDP Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -52,11 +52,11 @@ The small LLDP Service card displays:
 <td><p>LLDP: All LLDP Sessions, or the LLDP Service</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 2 %}}</p></td>
 <td><p>Total number of switches with the LLDP service enabled during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 3 %}}</p></td>
 <td><p>Total number of LLDP-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="odd">
@@ -87,7 +87,7 @@ The medium LLDP Service card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -95,11 +95,11 @@ The medium LLDP Service card displays:
 <td><p>LLDP: All LLDP Sessions, or the LLDP Service</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 6 %}}</p></td>
 <td><p>Total number of switches with the LLDP service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 7 %}}</p></td>
 <td><p>Total number of LLDP-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -142,7 +142,7 @@ The *Sessions Summary* tab which displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -150,11 +150,11 @@ The *Sessions Summary* tab which displays:
 <td><p>Sessions Summary (Network Services | All LLDP Sessions)</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 10 %}}</p></td>
 <td><p>Total number of switches with the LLDP service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 11 %}}</p></td>
 <td><p>Total number of LLDP-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -211,11 +211,11 @@ The *Alarms* tab which displays:
 <td><p>Alarms (visible when you hover over card)</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 14 %}}</p></td>
 <td><p>Total number of switches with the LLDP service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in summary bar)</p></td>
+<td><p>{{% imgOld 15 %}} (in summary bar)</p></td>
 <td><p>Total number of LLDP-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -237,7 +237,7 @@ The *Alarms* tab which displays:
 The full screen LLDP Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
+{{% imgOld 16 %}}
 
 <table>
 <colgroup>
@@ -256,12 +256,12 @@ sessions, and all alarms.
 <td><p>Network Services | LLDP</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p>{{% imgOld 17 %}}</p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 18 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -369,7 +369,7 @@ sessions, and all alarms.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 19 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -444,7 +444,7 @@ To compare this data with the same data at a previous time:
 1.  Open another large LLDP Service card.
 2.  Move the new card next to the original card if needed.
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
+    the card and clicking {{% imgOld 24 %}}.
 4.  Select the time period that you want to compare with the current
     time.  
     You can now see whether there are significant differences between
@@ -513,7 +513,7 @@ information about possible causes for the alarms.
 To view switches with most LLDP alarms:
 
 1.  Open the large LLDP Service card.
-2.  Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/>.
+2.  Hover over the header and click {{% imgOld 31 %}}.
 3.  Select **Events by Most Active Device** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
@@ -546,7 +546,7 @@ To view all LLDP events:
 1.  Open the full screen LLDP Service card.
 2.  Click the **All Alarms** tab.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-222.png" width="700">}}
+    {{% imgOld 33 %}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -562,7 +562,7 @@ include:
   - Export data to a file
   - Return to your workbench by clicking {{% imgOld 34 %}} in the top right corner
 
-### View Details About All Switches Running LLDP
+### View Detailed Information About All Switches Running LLDP
 
 You can view all stored attributes of all switches running LLDP in your
 network in the full screen card.
@@ -570,7 +570,7 @@ network in the full screen card.
 To view all switch details, open the LLDP Service card, and click the
 **All Switches** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
+{{% imgOld 35 %}}
 
 Return to your workbench by clicking {{% imgOld 36 %}} in the top right corner.
 
@@ -582,7 +582,7 @@ in the full screen card.
 To view all session details, open the LLDP Service card, and click the
 **All Sessions** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-sessions-tab-222.png" width="700">}}
+{{% imgOld 37 %}}
 
 Return to your workbench by clicking {{% imgOld 38 %}} in the top right corner.
 
@@ -596,9 +596,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-switches-tab-2-selected-222.png" width="700">}}
+{{% imgOld 39 %}}
 
-{{<figure src="/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
+{{% imgOld 40 %}}
 
 You can perform the following actions on the results list:
 
@@ -676,7 +676,7 @@ The small LLDP Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
+<td><p>{{% imgOld 43 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -688,8 +688,9 @@ The small LLDP Session card displays:
 <td><p>Host and peer devices in session. Arrow points from host to peer.</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
-<td><p>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/> no peer</p></td>
+<td><p>{{% imgOld 44 %}}, {{% imgOld 45 %}}</p></td>
+<td><p>Indicates whether the host sees the peer or not; {{% imgOld 46 %}} has a peer,
+{{% imgOld 47 %}} no peer</p></td>
 </tr>
 </tbody>
 </table>
@@ -715,7 +716,7 @@ The medium LLDP Session card displays:
 <td><p>Range of time in which the displayed data was collected</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
+<td><p>{{% imgOld 49 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -727,8 +728,9 @@ The medium LLDP Session card displays:
 <td><p>Host and peer devices in session. Arrow points from host to peer.</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
-<td><p>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/> no peer</p></td>
+<td><p>{{% imgOld 50 %}}, {{% imgOld 51 %}}</p></td>
+<td><p>Indicates whether the host sees the peer or not; {{% imgOld 52 %}} has a peer,
+ {{% imgOld 53 %}} no peer</p></td>
 </tr>
 <tr class="even">
 <td><p>Time period</p></td>
@@ -780,7 +782,7 @@ The *Session Summary* tab displays:
 <td><p>Range of time in which the displayed data was collected</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
+<td><p>{{% imgOld 55 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -792,8 +794,9 @@ The *Session Summary* tab displays:
 <td><p>Host and peer devices in session. Arrow points from host to peer.</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
-<td><p>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/> no peer</p></td>
+<td><p>{{% imgOld 56 %}}, {{% imgOld 57 %}}</p></td>
+<td><p>Indicates whether the host sees the peer or not; {{% imgOld 58 %}} has a peer,
+{{% imgOld 59 %}} no peer</p></td>
 </tr>
 <tr class="even">
 <td><p>Heat map</p></td>
@@ -843,20 +846,21 @@ The *Configuration File Evolution* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/></p></td>
-<td><p>Indicates configuration file information for a single session of a Network Service or Protocol</p></td>
+<td><p>{{% imgOld 61 %}}</p></td>
+<td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
 <td><p>(Network Services | LLDP Session) Configuration File Evolution</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open associated device card.</p></td>
+<td><p>{{% imgOld 62 %}}</p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on {{% imgOld 63 %}} to open associated device card.</td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></p></td>
-<td><p>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/> no peer</p></td>
+<td><p>{{% imgOld 64 %}}, {{% imgOld 65 %}}</p></td>
+<td><p>Indication of detected peer, Has Peer {{% imgOld 66 %}} or No Peer {{% imgOld 67 %}}</p></td>
+</tr>
 <tr class="even">
 <td><p>Timestamps</p></td>
 <td><p>When changes to the configuration file have occurred, the date and time are indicated. Click the time to see the changed file.</p></td>
@@ -872,7 +876,7 @@ The *Configuration File Evolution* tab displays:
 The full screen LLDP Session card provides tabs for all LLDP sessions
 and all events.
 
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
+{{% imgOld 68 %}}
 
 <table>
 <colgroup>
@@ -891,12 +895,12 @@ and all events.
 <td><p>Network Services | LLDP</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p>{{% imgOld 69 %}}</p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 70 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -940,7 +944,7 @@ and all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p>{{% imgOld 71 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -1006,7 +1010,7 @@ causes for alarms or sessions losing their connections.
 To view the configuration file changes:
 
 1.  Open the large LLDP Session card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/> to open the **LLDP Configuration File Evolution** tab.
+2.  Hover over the card and click {{% imgOld 76 %}} to open the **LLDP Configuration File Evolution** tab.
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
 
@@ -1034,7 +1038,7 @@ associated with the two devices on this card.
 To view all session details, open the full screen LLDP Session card, and
 click the **All LLDP Sessions** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
+{{% imgOld 80 %}}
 
 To return to your workbench, click {{% imgOld 81 %}} in the top right of the card.
 
@@ -1045,7 +1049,7 @@ You can view all of the alarm and info events in the network.
 To view all events, open the full screen LLDP Session card, and click
 the **All Events** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-events-tab-222.png" width="700">}}
+{{% imgOld 82 %}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -1060,3 +1064,12 @@ include:
         events
   - Export data to a file
   - Return to your workbench by clicking {{% imgOld 83 %}} in the top right corner
+
+
+<article id="html-search-results" class="ht-content" style="display: none;">
+
+</article>
+
+<footer id="ht-footer">
+
+</footer>

@@ -7,11 +7,11 @@ aliases:
  - /pages/viewpage.action?pageId=12321005
 pageID: 12321005
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
-Cumulus NetQ 2.0.0 through 2.2.1 can be upgraded to the newest NetQ 2.2.2 release.
+Cumulus NetQ 2.0.0 through 2.2.2 can be upgraded to the newest NetQ 2.3.0 release.
 
 Two types of upgrades can be performed: an in-place upgrade, or a disk image upgrade. An in-place upgrade does not require you to backup and restore your data (but you may choose to do so), and does not update the NetQ operating system and kernels. A disk image upgrade requires you to backup and restore your data (if you want to keep it), and replaces all NetQ related software on the system.
 

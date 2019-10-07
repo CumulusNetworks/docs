@@ -1,88 +1,39 @@
 ---
-title: What's New in Cumulus NetQ 2.2
+title: What's New in Cumulus NetQ 2.3
 author: Cumulus Networks
 weight: 300
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
-Cumulus NetQ is now available as a cloud service, making it even easier
-to scale with your network growth. Just like Cumulus NetQ deployed in
-your premises, real-time data collection and fabric-wide performance
-analysis are available through the cloud service. New functionality has
-also been added to the NetQ UI.
+Cumulus NetQ 2.3 improves your operational efficiency by providing LDAP integration to work in conjunction with your enterprise management strategies and network state and configuration comparisons to reduce network downtime from unexpected behaviors due to configuration changes or upgrades.
 
-**Cumulus NetQ 2.2.2** includes bug fixes and the following new features and improvements:
+**Cumulus NetQ 2.3.0** includes the following new features and improvements:
 
-*For on-premises and in-cloud*
-
-- Command Line Interface (CLI)
-   - Support of syslog for event notifications
-   - Improved install procedure includes CLI update in NetQ upgrade process
-- Graphical User Interface (UI)
-   - Improved interaction for adding cards to workbenches
-   - Modified alarm reporting on Events | Alarms cards to include only alarms occurring during the designated time period on the card
-
-*For on-premises only*
-
-- Simplified upgrade process for NetQ Appliance includes upgrade of netq-apps
-
-*For in-cloud only*
-
-- Command Line Interface (CLI)
-   - Added CLI proxy to NetQ Cloud Appliance to remove internet access requirement when installing CLI on hosts and servers
-   - Improved netq install opta interface command enables download and installation of cloud software in single step
-
-**Cumulus NetQ 2.2.1** includes the following new features and improvements:
-
-*For on-premises and in-cloud solutions*
-
-- Command Line Interface (CLI)
-   - Upgraded [Interface Statistics](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Switch-Hardware-and-Software/#view-interface-statistics) from an early access feature to a generally available feature
-   - Added ability to view [NetQ Agent status and inventory for NetQ server/appliance](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Manage-Netq-Agents)
-- Graphical User Interface (UI)
-   - Added ability to save user workbenches
-   - Added OSPF events
-- Reorganized documentation
-   - Modified installation and upgrade procedures in Deployment Guide
-   - Created Integration Guide to collect all integration options together
-   - Created More Documents topic to contain generic information about Cumulus Networks documents and this NetQ release
-   - Format fixes
-
-*For on-premises solutions only*
-
-- Added NetQ data backup and restore procedure.
-
-*For in-cloud solutions only*
-
-- Command Line Interface (CLI)
-   - Modified installation and upgrade commands
-   - Added ability to store and retrieve authentication keys from a file
-
-**Cumulus NetQ 2.2.0** includes the following new features and
-improvements:
-
-*For on-site and in-cloud solutions*
+*For on-premises and cloud solutions*
 
   - Graphical User Interface (UI)
-      - Added ability to monitor and validate OSPF network protocol and
-        services operation
-      - Added ability to validate MTU, Sensors, VLAN and VXLAN protocols
-      - Added events for MTU, OSPF, VLAN, and VXLAN
-      - Added new standard user role, *user*, with reduced access
-        permission compared to the administrative user
-      - Added Prescriptive Topology Manager (PTM) events
+    - Added lifecycle management feature that enables a user to compare snapshots of the live network state and configuration before and after changes are made
+    - Added disk utilization to large Switches card
+    - Added interface statistics and utilization to large Switches card
+    - Added validation events
+    - Changed references of CLAG to MLAG
+  - Integrations
+    - Added optional integration with open source Grafana analytics and monitoring tool
   - Command Line Interface (CLI)
-      - Included Interface Statistics as an early access feature
+    - Added `netq show platform` command to view NetQ software version running on device
+    - Added `netq show interface-utils` command to view interface statistics, utilization, and port speed
+    - Added `netq check cl-version` to validate the Cumulus Linux version running on all devices
 
-*For in-cloud solution only*
+*For cloud solution only*
 
-  - Released new Cumulus NetQ Cloud Appliance to speed deployment and
-    get monitoring as quickly as possible
-  - Added CLI support for installation and configuration of the Cumulus
-    NetQ Cloud Appliance
-  - Added support for multiple data centers
+  - Modified secure access process to use symmetric keys instead of asymmetric keys
 
-For further information regarding new features, improvements, bug fixes, and known issues present in this release, refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
+*For on-premises solution only*
+
+  - Added role-based access control (RBAC) that can be integrated with your LDAP server
+
+
+For further information regarding new features, improvements, bug fixes, and known issues present in this release, refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360036416953).

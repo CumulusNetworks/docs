@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321856
 pageID: 12321856
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 Each user can customize the NetQ application display, change his account
 password, and manage his workbenches.
@@ -51,6 +51,7 @@ To configure the display settings:
     display.
 
     {{<figure src="/images/netq/app-hdr-time-zone-222.png" width="75">}}
+
 
     If your deployment is not local to you (for example, you want to
     view the data from the perspective of a data center in another time
@@ -143,16 +144,6 @@ the Workbenches card, you can:
     You can remove workbenches that you have created (private
     workbenches). An administrative role is required to remove
     workbenches that are common to all users (public workbenches).
-
-    {{%notice info%}}
-
-It is strongly recommended that you do not delete the default
-    Cumulus Networks workbench. Once deleted, you must contact support
-    to regain access to it. Extreme caution is recommended when deleting
-    all other workbenches. Once they have been deleted, they cannot be
-    restored.
-
-    {{%/notice%}}
 
 To manage your workbenches:
 

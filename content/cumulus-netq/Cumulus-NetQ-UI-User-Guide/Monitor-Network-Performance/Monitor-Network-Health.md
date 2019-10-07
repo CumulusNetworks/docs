@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321072
 pageID: 12321072
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 As with any network, one of the challenges is keeping track of all of
 the moving parts. With the NetQ GUI, you can view the overall health of
@@ -23,7 +23,7 @@ rollups.
 
 The small Network Health card displays:
 
-{{% imgOld 0 %}}
+{{< figure src="/images/netq/ntwk-hlth-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -76,7 +76,7 @@ The small Network Health card displays:
 The medium Network Health card displays the distribution, score, and
 trend of the:
 
-{{% imgOld 2 %}}
+{{< figure src="/images/netq/ntwk-hlth-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -245,7 +245,7 @@ The *Network Health* tab displays:
 
 The full screen Network Health card displays all events in the network.
 
-{{% imgOld 8 %}}
+{{< figure src="/images/netq/ntwk-hlth-fullscr-bgp-tab-230.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -306,11 +306,9 @@ indicator, and a distribution of the validation results.
 To view a summary of your network health, open the small Network Health
 card.
 
-{{% imgOld 11 %}}
+{{< figure src="/images/netq/ntwk-hlth-small-230.png" width="200" >}}
 
-In this example, the overall health is quite low and digging further for
-causes is definitely warranted. Refer to the next section for viewing
-the key health metrics.
+In this example, the overall health is relatively good, but improving compared to recent status. Refer to the next section for viewing the key health metrics.
 
 ## View Key Metrics of Network Health
 
@@ -321,12 +319,10 @@ To view these key metrics, open the medium Network Health card. Each
 metric is shown with the the percentage of successful validations, a
 trend indicator, and a distribution of the validation results.
 
-{{% imgOld 12 %}}
+{{< figure src="/images/netq/ntwk-hlth-medium-230.png" width="200" >}}
 
-In this example, the health of each of the three key metrics are all
-good. You might choose to dig further on the system health if it did not
-continue to improve. Refer to the following section for additional
-details.
+In this example, the health of each of the system and network services are
+good, but interface health is on the lower side. While it is improving, you might choose to dig further if it does not continue to improve. Refer to the following section for additional details.
 
 ## View System Health
 
@@ -471,7 +467,7 @@ To view all the validation results:
     at a specific time? Was it when you starting running the service on
     more nodes? Did sessions fail, but nodes were fine?
 
-    {{% imgOld 21 %}}
+    {{< figure src="/images/netq/ntwk-hlth-fullscr-bgp-tab-230.png" width="700" >}}
 
 Where to go next depends on what data you see, but a few options
 include:

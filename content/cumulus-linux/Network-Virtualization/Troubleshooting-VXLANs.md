@@ -16,64 +16,54 @@ VXLANs.
 
 ## Verify the Registration Node Daemon
 
-Use the `vxrdctl vxlans` ****command to see the configured VNIs, the
+Use the `vxrdctl vxlans` command to see the configured VNIs, the
 local address being used to source the VXLAN tunnel, and the service
 node being used.
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>cumulus@leaf1:~$ vxrdctl vxlans
+```
+cumulus@leaf1:~$ vxrdctl vxlans
 VNI     Local Addr       Svc Node
 ===     ==========       ========
  10      10.2.1.1        10.2.1.3
  30      10.2.1.1        10.2.1.3
-2000      10.2.1.1        10.2.1.3</code></pre></td>
-<td><pre><code>cumulus@leaf2:~$ vxrdctl vxlans
+2000      10.2.1.1        10.2.1.3
+```
+
+```
+cumulus@leaf2:~$ vxrdctl vxlans
 VNI     Local Addr       Svc Node
 ===     ==========       ========
  10      10.2.1.2        10.2.1.3
  30      10.2.1.2        10.2.1.3
-2000      10.2.1.2        10.2.1.3</code></pre></td>
-</tr>
-</tbody>
-</table>
+2000      10.2.1.2        10.2.1.3
+```
 
 Use the `vxrdctl peers` command to see configured VNIs and all VTEPs
 (leaf switches) within the network that have them configured.
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>cumulus@leaf1:~$ vxrdctl peers
+```
+cumulus@leaf1:~$ vxrdctl peers
 VNI         Peer Addrs
 ===         ==========
 10          10.2.1.1, 10.2.1.2
 30          10.2.1.1, 10.2.1.2
-2000        10.2.1.1, 10.2.1.2</code></pre></td>
-<td><pre><code>cumulus@leaf2:~$ vxrdctl peers
+2000        10.2.1.1, 10.2.1.2
+```
+
+```
+cumulus@leaf2:~$ vxrdctl peers
 VNI         Peer Addrs
 ===         ==========
 10          10.2.1.1, 10.2.1.2
 30          10.2.1.1, 10.2.1.2
-2000        10.2.1.1, 10.2.1.2</code></pre></td>
-</tr>
-</tbody>
-</table>
+2000        10.2.1.1, 10.2.1.2
+```
 
 {{%notice note%}}
 
 When head end replication mode is disabled, the command does not work.
 
-Use the ` vxrdctl peers  `command to see the other VTEPs (leaf switches)
+Use the `vxrdctl peers` command to see the other VTEPs (leaf switches)
 and the VNIs with which they are associated. This does not show anything
 unless you enabled head end replication mode by setting the `head_rep`
 option to *True*. Otherwise, replication is done by the service node.

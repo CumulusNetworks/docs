@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321680
 pageID: 12321680
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 It is helpful to verify that communications are freely flowing between
 the various devices in your network. You can verify the connectivity
@@ -365,9 +365,9 @@ To run a scheduled trace now:
 
 1.  Open the small or medium or large Trace Request card.  
 
-    {{% imgOld 20 %}}
+    {{< figure src="/images/netq/trace-request-small-selection-230.png" width="200" >}}
 
-    {{% imgOld 21 %}}
+    {{< figure src="/images/netq/trace-request-medium-selection-230.png" width="200" >}}
 
     {{< figure src="/images/netq/trace-request-large-selection-222.png" width="500" >}}
 
@@ -389,7 +389,7 @@ large or small Trace Results card, respectively.
 The small On-demand Trace Results card
 displays:
 
-{{<figure src="/images/uploads/sch-trace-request-small-card.png" width="200" padding="0">}}
+{{< figure src="/images/netq/od-trace-result-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -420,7 +420,7 @@ displays:
 
 The medium On-demand Trace Results card displays:
 
-{{% imgOld 27 %}}
+{{< figure src="/images/netq/od-trace-result-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -469,9 +469,11 @@ The medium On-demand Trace Results card displays:
 </tbody>
 </table>
 
-The large On-demand Trace Results card displays:
+The large On-demand Trace Results card contains two tabs.
 
-{{% imgOld 31 %}}
+The *On-demand Trace Result* tab displays:
+
+{{< figure src="/images/netq/od-trace-result-large-summary-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -535,9 +537,64 @@ The large On-demand Trace Results card displays:
 </tbody>
 </table>
 
+The *On-demand Trace Settings* tab displays:
+
+{{< figure src="/images/netq/od-trace-result-large-config-tab-230.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p>Item</p></th>
+<th><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p>Indicates an on-demand trace setting</p></td>
+</tr>
+<tr class="even">
+<td><p>Title</p></td>
+<td><p>On-demand Trace Settings</p></td>
+</tr>
+<tr class="odd">
+<td><p>Source</p></td>
+<td><p>Starting point for the trace</p></td>
+</tr>
+<tr class="even">
+<td><p>Destination</p></td>
+<td><p>Ending point for the trace</p></td>
+</tr>
+<tr class="odd">
+<td><p>Schedule</p></td>
+<td><p>Does not apply to on-demand traces</p></td>
+</tr>
+<tr class="even">
+<td><p>VRF</p></td>
+<td><p>Associated virtual route forwarding interface, when used with layer 3 traces</p></td>
+</tr>
+<tr class="odd">
+<td><p>VLAN</p></td>
+<td><p>Associated virtual local area network, when used with layer 2 traces</p></td>
+</tr>
+<tr class="even">
+<td><p>Job ID</p></td>
+<td><p>Identifier of the job; used internally</p></td>
+</tr>
+<tr class="odd">
+<td><p>Re-run Trace</p></td>
+<td><p>Clicking this button runs the trace again</p></td>
+</tr>
+</tbody>
+</table>
+
 The full screen On-demand Trace Results card displays:
 
-{{% imgOld 35 %}}
+{{< figure src="/images/netq/od-trace-result-fullscr-230.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -597,13 +654,13 @@ When you start the trace, the corresponding results card is opened on
 your workbench. While it is working on the trace, a notice is shown on
 the card indicating it is running.
 
-{{% imgOld 37 %}}
+{{< figure src="/images/netq/od-trace-result-medium-running-230.png" width="200" >}}
 
 Once the job is completed, the results are displayed.
 
-{{% imgOld 38 %}}
+{{< figure src="/images/netq/od-trace-result-medium-good-230.png" width="200" >}}
 
-{{% imgOld 39 %}}
+{{< figure src="/images/netq/od-trace-result-medium-fail-230.png" width="200" >}}
 
 In this example, we see that the trace was successful. Four paths were
 found between the devices, each with four hops and with an overall MTU
@@ -611,9 +668,9 @@ of 1500. If there was a difference between the minimum and maximum
 number of hops or other failures, viewing the results on the large card
 would provide additional information.
 
-{{% imgOld 40 %}}
-<p> </p>
-{{% imgOld 41 %}}
+{{< figure src="/images/netq/od-trace-result-large-summary-tab-230.png" width="500" >}}
+
+{{< figure src="/images/netq/od-trace-result-large-summary-tab-fail-230.png" width="500" >}}
 
 In our example, we can verify that every path option had four hops since
 the distribution chart only shows one hop count and the table indicates
@@ -627,40 +684,26 @@ When you start the trace, the corresponding results card is opened on
 your workbench. While it is working on the trace, a notice is shown on
 the card indicating it is running.
 
-{{% imgOld 42 %}}
+{{< figure src="/images/netq/od-trace-result-medium-l3-running-230.png" width="200" >}}
 
 Once results are obtained, it displays them. Using our example from
 earlier, the following results are shown:
 
-{{% imgOld 43 %}}
+{{< figure src="/images/netq/od-trace-result-medium-230.png" width="200" >}}
 
-In this example, we see that the trace was successful. Eight paths were
+In this example, we see that the trace was successful. Six paths were
 found between the devices, each with five hops and with an overall MTU
 of 1500. If there was a difference between the minimum and maximum
 number of hops or other failures, viewing the results on the large card
 would provide additional information.
 
-{{% imgOld 44 %}}
+{{< figure src="/images/netq/od-trace-result-large-summary-tab-230.png" width="500" >}}
 
 In our example, we can verify that every path option had five hops since
 the distribution chart only shows one hop count and the table indicates
 each path had a value of five hops. Similarly, you can view the MTU
 data. If there had been any warnings, the count would have been visible
 in the table.
-
-### View All On-demand Trace Results
-
-If you have run multiple on-demand traces, you may find it easier to
-view the results all together in a single view. The full screen Trace
-Results card provides this information.
-
-To view all on-demand trace results, open the full screen On-demand
-Trace Results card.
-
-{{% imgOld 45 %}}
-
-Ordered by most recent trace, you can now view all recent traces
-together.
 
 ## View Scheduled Trace Results
 
@@ -868,7 +911,7 @@ The *Configuration* tab displays:
 
 The full screen Scheduled Trace Results card displays:
 
-{{% imgOld 63 %}}
+{{< figure src="/images/netq/sch-trace-result-fullscr-230.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -941,7 +984,7 @@ failures decrease, the blocks increase their gray saturation. An example
 heat map for a time period of 24 hours is shown here with the most
 common time periods in the table showing the resulting time blocks.
 
-{{% imgOld 67 %}}
+{{< figure src="/images/netq/sch-trace-result-granularity-230.png" width="300" >}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -962,7 +1005,7 @@ To view the results:
 1.  Open the full screen Trace Request card to view all scheduled traces
     that have been run.
 
-    {{% imgOld 68 %}}
+    {{< figure src="/images/netq/sch-trace-result-fullscr-230.png" width="700" >}}
 
 2.  Select the scheduled trace you want to view results for by clicking
     in the first column of the result and clicking the check box.
@@ -973,8 +1016,10 @@ To view the results:
 
 4.  Note the distribution of results. Are there many failures? Are they
     concentrated together in time? Has the trace begun passing again?
+
 5.  Hover over the heat maps to view the status numbers and what
     percentage of the total results that represents for a given region.
+
 6.  Switch to the large Scheduled Trace Result card.
 
     {{< figure src="/images/netq/sch-trace-result-large-sum-tab.png" width="500" >}}
@@ -1006,17 +1051,17 @@ To view the results:
 13. View the details of any specific trace result by clicking on the
     trace. A new window opens similar to the following:
 
-    {{% imgOld 73 %}}
+    {{< figure src="/images/netq/sch-trace-result-fullscr-trace-detail-230.png" width="700" >}}
 
     Scroll to the right to view the information for a given hop. Scroll
     down to view additional paths.  
     This display shows each of the hosts and detailed steps the trace
     takes to validate a given path between two devices. Using Path 1 as
     an example, each path can be interpreted as follows:  
-    Hop 1 is from the source device, spine-1 in this case. It exits this
-    device at switch port 7 with an MTU of 9202 and over the default VRF
-    too get to tor-1. The trace goes in to swp 3 with an MTU of 9202
-    over its default VRF interface. It exits tor-1 through switch port 5
+    Hop 1 is from the source device, server02 in this case. It exits this
+    device at switch port bond0 with an MTU of 9000 and over the default VRF
+    too get to leaf02. The trace goes in to swp2 with an MTU of 9216
+    over the vrf1 interface. It exits leaf02 through switch port 52
     and so on.
 
 14. Export this data using the **Export** button or click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> to return to the results list to view another trace in detail.

@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321612
 pageID: 12321612
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 With the NetQ UI, you can validate the operation of the network
 protocols and services running in your network either on demand or on a
@@ -23,7 +23,7 @@ services: Agents, BGP, CLAG, EVPN, Interfaces, License, MTU, NTP, OSPF,
 Sensors, VLAN, and VXLAN.
 
 For a more general understanding of how well your network is operating,
-refer to the [Monitor Network Health](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Health)
+refer to the [Monitor Network Health](../Monitor-Network-Health)
 topic.
 
 ## Create Validation Requests
@@ -36,7 +36,7 @@ services.
 
 The small Validation Request card displays:
 
-{{% imgOld 0 %}}
+{{< figure src="/images/netq/valid-request-small-230.png" width="200" >}}
 <p> </p>
 <table>
 <colgroup>
@@ -68,7 +68,7 @@ The small Validation Request card displays:
 
 The medium Validation Request card displays:
 
-{{% imgOld 2 %}}
+{{< figure src="/images/netq/valid-request-medium-230.png" width="200" >}}
 <p> </p>
 <table>
 <colgroup>
@@ -256,14 +256,14 @@ To run a scheduled validation now:
 1.  Open either the small, medium, or large Validation Request card.
 2.  Select the validation from the **Validation** dropdown list.  
 
-    {{% imgOld 9 %}} {{% imgOld 10 %}}
+    {{< figure src="/images/netq/valid-request-small-plus-medium-selection-230.png" width="420" >}}
     {{< figure src="/images/netq/valid-request-large-valid-selection-222.png" width="500" >}}
 
 3.  Click **Go** or **Run Now**.  
     The associated Validation Result card is opened on your workbench.
     Refer to [View On-demand Validation Results](#view-on-demand-validation-results).
 
-    {{% imgOld 11 %}}
+    {{< figure src="/images/netq/valid-request-medium-default-bgp-running-230.png" width="200" >}}
 
 ### Create a New On-demand Validation Request
 
@@ -296,7 +296,7 @@ To create and run a request for *more than one* protocol and/or service:
     or service selected) are opened on your current workbench. Refer to
     [View On-demand Validation Results](#view-on-demand-validation-results).
 
-    {{% imgOld 19 %}}
+    {{< figure src="/images/netq/valid-request-medium-bgpevpn-running-230.png" width="420" >}}
 
 ### Create a New Scheduled Validation Request
 
@@ -486,7 +486,7 @@ The medium Validation Result card displays:
 </tr>
 <tr class="odd">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, where available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, where available. Refer to <a href="http://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
 </tr>
 </tbody>
 </table>
@@ -557,7 +557,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="http://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
 </tr>
 <tr class="even">
 <td><p>Table/Filter options</p></td>
@@ -579,7 +579,7 @@ The *Summary* tab displays:
 
 The *Configuration* tab displays:
 
-{{% imgOld 42 %}}
+{{< figure src="/images/netq/od-valid-result-bgp-large-config-tab-230.png" width="500" >}}
 <p> </p>
 <table>
 <colgroup>
@@ -694,9 +694,7 @@ To view the results:
     or service, so be sure to use the date and time on the card to
     ensure you are viewing the correct card.  
 
-    {{% imgOld 49 %}}
-
-    {{% imgOld 50 %}}
+    {{< figure src="/images/netq/od-valid-result-bgp-medium-date-highlight-230.png" width="420" >}}
 
 2.  Note the total number and distribution of results for the tested
     devices and sessions (when appropriate). Are there many failures?
@@ -705,7 +703,7 @@ To view the results:
     for both devices and sessions.
 4.  Switch to the large on-demand Validation Result card.
 
-    {{% imgOld 51 %}}
+    {{< figure src="/images/netq/od-valid-result-bgp-large-230.png" width="500" >}}
 
 5.  If there are a large number of device warnings or failures, view the
     devices with the most issues in the table on the right. By default,
@@ -738,7 +736,7 @@ validation result card, but the content is similar on each.
 
 The small Validation Result card displays:
 
-{{% imgOld 53 %}}
+{{< figure src="/images/netq/sch-valid-result-small-4cards-230.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -830,7 +828,7 @@ The medium Validation Result card displays:
 </tr>
 <tr class="even">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="http://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
 </tr>
 </tbody>
 </table>
@@ -884,7 +882,7 @@ The large Validation Result card contains two tabs.
 </tr>
 <tr class="odd">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/">Monitor Network Protocols and Services</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="http://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
 </tr>
 <tr class="even">
 <td><p>Table/Filter options</p></td>
@@ -1024,7 +1022,7 @@ passing block is proportionally reduced in saturation. An example heat
 map for a time period of 24 hours is shown here with the most common
 time periods in the table showing the resulting time blocks and regions.
 
-{{% imgOld 76 %}}
+{{< figure src="/images/netq/sch-valid-result-granularity-230.png" width="300" >}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -1045,11 +1043,11 @@ To view the results:
 1.  Open the full size Validation Request card to view all scheduled
     validations.
 
-    {{% imgOld 77 %}}
+    {{< figure src="/images/netq/valid-request-fullscr-222.png" width="700" >}}
 
 2.  Select the validation results you want to view by clicking in the
     first column of the result and clicking the check box.
-3.  On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items.  
+3.  On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items. 
 
     {{<figure src="/images/netq/sch-valid-result-medium-222.png" width="425">}}
 
@@ -1072,11 +1070,11 @@ To view the results:
 7.  Switch to the large Scheduled Validation card.
 8.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg", height="18", width="18"/> to expand the chart.
 
-    {{% imgOld 83 %}}
+    {{<figure src="/images/netq/sch-valid-result-large-bgp-expand-chart-230.png" width="500">}}
 
 9.  Collapse the heat map by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg", height="18", width="18"/>.
 
-    {{% imgOld 85 %}}
+    {{<figure src="/images/netq/sch-valid-result-large-bgp-collapse-chart-230.png" width="500">}}
 
 10. If there are a large number of warnings or failures, view the
     devices with the most issues by clicking **Most Active** in the

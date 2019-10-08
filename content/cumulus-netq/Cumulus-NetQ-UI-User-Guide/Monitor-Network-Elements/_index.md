@@ -3,15 +3,15 @@ title: Monitor Network Elements
 author: Cumulus Networks
 weight: 97
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 In addition to network performance monitoring, the Cumulus NetQ UI provides a view into the current status and configuration of the network elements in a tabular, network-wide view. These are helpful when you want to see all data for all of a particular element in your network for troubleshooting, or you want to export a list view.
 
 Some of these views provide data that is also available through the card workflows, but these views are not treated like cards. They only provide the current status; you cannot change the time period of the views, or graph the data within the UI.
 
-The tables can be manipulated as described in [Data Grid settings](,,//NetQ-User-Interface-Overview/Access-Data-with-Cards/#data-grid-settings).
+The tables can be manipulated as described in [Data Grid settings](../NetQ-User-Interface-Overview/Access-Data-with-Cards/#data-grid-settings).
 
 Access these tables through the Main Menu (<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>), under the **Network** heading.
 

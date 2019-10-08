@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321048
 pageID: 12321048
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 With NetQ, a network administrator can monitor OSI Layer 2 devices and
 protocols, including switches, bridges, link control, and physical media

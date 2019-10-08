@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321058
 pageID: 12321058
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 With NetQ, a network administrator can monitor both the switch hardware
 and software components for misconfigurations. NetQ helps answer
@@ -21,7 +21,7 @@ questions such as:
   - Are all switches licensed correctly?
   - Do all switches have NetQ agents running?
 
-NetQ uses [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) (Link
+NetQ uses [LLDP](../../../cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) (Link
 Layer Discovery Protocol) to collect port information. NetQ can also
 identify peer ports connected to DACs (Direct Attached Cables) and AOCs
 (Active Optical Cables) without using LLDP, even if the link is not UP.
@@ -572,30 +572,38 @@ events using the severity `level` option.
     cumulus@switch:~$ netq show events level critical type sensors
     No matching events records found
 
-## View Interface Statistics
+## View Interface Statistics and Utilization
 
 NetQ Agents collect performance statistics every 30 seconds for the
 physical interfaces on switches and hosts in your network. The NetQ
 Agent does not collect statistics for non-physical interfaces, such as
-bonds, bridges, and VXLANs. After enabling the feature, the NetQ Agent
-collects the following statistics:
+bonds, bridges, and VXLANs. The NetQ Agent collects the following statistics:
 
-- **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs,
+- Statistics
+    - **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs,
         tx\_packets
-- **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
+    - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
         rx\_multicast, rx\_packets
+- Utilization
+    - rx\_util, tx\_util
+    - port speed
 
-These can be viewed using the following NetQ CLI command:
+These can be viewed using the following NetQ CLI commands:
 
 ```
 netq [<hostname>] show interface-stats [errors | all] [<physical-port>] [around <text-time>] [json]
+netq [<hostname>] show interface-utils [<text-port>] [tx|rx] [around <text-time>] [json]
 ```
 
-Use the `hostname` option to limit the output to a particular switch.
-Use the `errors` option to view only the transmit and receive errors
-found on the designated interfaces. Use the `physical-ports` option to
-limit the output to a particular port. Use the `around` option to view
-the data at a time in the past.
+Where the various options are:
+
+- `hostname` limits the output to a particular switch
+- `errors` limits the output to only the transmit and receive errors found on the designated interfaces
+- `physical-port` limits the output to a particular port
+- `around` enables viewing of the data at a time in the past
+- `json` outputs results in json format
+- `text-port` limits output to a particular host and port; `hostname` is required with this option
+- `tx`, `rx` limits output to the transmit or receive values, respectively
 
 In this example, we view the interface statistics for all switches and
 all of their physical interfaces.
@@ -620,6 +628,55 @@ exit02            bridge                    61               1008               
 exit02            eth0                      20               2711                 0                    0                    4983                 0                    0                    Mon Jun  3 23:03:07 2019
 exit02            mgmt                      30               2162                 0                    0                    5506                 0                    0                    Mon Jun  3 23:03:07 2019
 exit02            swp44                     20               3040                 0                    0                    3824                 0                    0                    Mon Jun  3 23:03:07 2019
+...
+```
+
+In this example, we view the interface statistics for switch port 29.
+
+```
+cumulus@switch:~$ netq show interface-stats swp29
+Matching proc_dev_stats records:
+Hostname          Interface                 RX Bytes             RX Drop              RX Errors            TX Bytes             TX Drop              TX Errors            Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+spine01           swp29                     12853778             0                    0                    13281292             0                    0                    Wed Sep 25 14:43:17 2019
+spine02           swp29                     11739987             0                    0                    13316634             0                    0                    Wed Sep 25 14:43:32 2019
+```
+
+In this example, we view the utilization for the leaf03 switch.
+
+```
+cumulus@switch:~$ netq leaf03 show interface-utils 
+Matching port_stats records:
+Hostname          Interface                 RX Bytes             RX Drop              RX Errors            RX Util              TX Bytes             TX Drop              TX Errors            TX Util              Port Speed           Last Changed
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+leaf03            bond03                    4447                 0                    0                    0                    5041                 0                    0                    0                    NA                   Wed Sep 25 14:46:16
+                                                                                                                                                                                                                                         2019
+leaf03            bond04                    3811                 0                    0                    0                    4957                 0                    0                    0                    NA                   Wed Sep 25 14:46:16
+                                                                                                                                                                                                                                         2019
+leaf03            bridge                    540                  0                    0                    0                    476                  0                    0                    0                    NA                   Wed Sep 25 14:46:16
+                                                                                                                                                                                                                                         2019
+leaf03            eth0                      3471                 0                    0                    0.00033102           10480                0                    0                    0.000999451          1G                   Wed Sep 25 14:46:16
+                                                                                                                                                                                                                                         2019
+...
+```
+
+In this example, we view the transmit utilization only.
+
+```
+cumulus@switch:~$ netq show interface-utils tx
+Matching port_stats records:
+Hostname          Interface                 TX Bytes             TX Drop              TX Errors            TX Util              Port Speed           Last Changed
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+exit01            bridge                    784                  0                    0                    0                    NA                   Wed Sep 25 14:48:10
+                                                                                                                                                     2019
+exit01            eth0                      7497                 0                    0                    0.00071497           1G                   Wed Sep 25 14:48:10
+                                                                                                                                                     2019
+exit01            lo                        0                    0                    0                    0                    NA                   Mon Sep 23 22:45:38
+                                                                                                                                                     2019
+exit01            mgmt                      8014                 0                    0                    0                    NA                   Wed Sep 25 14:48:10
+                                                                                                                                                     2019
+exit01            swp1                      0                    0                    0                    0                    Unknown              Mon Sep 23 22:45:38
+                                                                                                                                                     2019
 ...
 ```
 
@@ -1041,8 +1098,7 @@ This example shows the status of the BGP daemon.
 ### View Events Related to a Given Service
 
 To view changes over a given time period, use the `netq show events`
-command. For more detailed information about events, refer to [Monitor
-Events](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Events).
+command. For more detailed information about events, refer to [Monitor Events](../../Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Events).
 
 In this example, we want to view changes to the bgpd service in the last
 48 hours.

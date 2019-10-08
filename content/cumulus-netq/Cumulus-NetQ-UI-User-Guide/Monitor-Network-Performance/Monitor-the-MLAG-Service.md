@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321372
 pageID: 12321372
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The Cumulus NetQ UI enables operators to view the health of the MLAG
 service on a network-wide and a per session basis, giving greater
@@ -21,22 +21,22 @@ are described separately here.
 
 **MLAG or CLAG?**
 The Cumulus Linux implementation of MLAG is referred to by other vendors
-as CLAG, MC-LAG or VPC. The Cumulus NetQ UI uses the CLAG terminology.
+as MLAG, MC-LAG or VPC. The Cumulus NetQ UI uses the MLAG terminology predominantly.
 
 {{%/notice%}}
 
-## Monitor the CLAG Service (All Sessions)
+## Monitor the MLAG Service (All Sessions)
 
-With NetQ, you can monitor the number of nodes running the CLAG service,
-view sessions running, and view alarms triggered by the CLAG service.
-For an overview and how to configure CLAG in your data center network,
-refer to [Multi-Chassis Link Aggregation - MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
+With NetQ, you can monitor the number of nodes running the MLAG service,
+view sessions running, and view alarms triggered by the MLAG service.
+For an overview and how to configure MLAG in your data center network,
+refer to [Multi-Chassis Link Aggregation - MLAG](../../../../cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
 
-### CLAG Service Card Workflow Summary
+### MLAG Service Card Workflow Summary
 
-The small CLAG Service card displays:
+The small MLAG Service card displays:
 
-{{% imgOld 0 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -56,26 +56,26 @@ The small CLAG Service card displays:
 </tr>
 <tr class="even">
 <td><p>Title</p></td>
-<td><p>CLAG: All CLAG Sessions, or the CLAG Service</p></td>
+<td><p>MLAG: All MLAG Sessions, or the MLAG Service</p></td>
 </tr>
 <tr class="odd">
 <td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
-<td><p>Total number of switches with the CLAG service enabled during the designated time period</p></td>
+<td><p>Total number of switches with the MLAG service enabled during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
-<td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
+<td><p>Total number of MLAG-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="odd">
 <td><p>Chart</p></td>
-<td><p>Distribution of CLAG-related alarms received during the designated time period</p></td>
+<td><p>Distribution of MLAG-related alarms received during the designated time period</p></td>
 </tr>
 </tbody>
 </table>
 
-The medium CLAG Service card displays:
+The medium MLAG Service card displays:
 
-{{% imgOld 4 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -99,15 +99,15 @@ The medium CLAG Service card displays:
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>Network Services | All CLAG Sessions</p></td>
+<td><p>Network Services | All MLAG Sessions</p></td>
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
-<td><p>Total number of switches with the CLAG service enabled during the designated time period</p></td>
+<td><p>Total number of switches with the MLAG service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
-<td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
+<td><p>Total number of MLAG-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/11-Pins-Style%20Two/style-two-pin-off-map.svg", height="18", width="18"/></p></td>
@@ -119,26 +119,26 @@ The medium CLAG Service card displays:
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Distribution of switches and hosts with the CLAG service enabled during the designated time period, and a total number of nodes running the service currently.
-<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running CLAG last week or last month might be more or less than the number of nodes running CLAG currently.</p></td>
+<td><p>Distribution of switches and hosts with the MLAG service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running MLAG last week or last month might be more or less than the number of nodes running MLAG currently.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Total Open Alarms chart</p></td>
-<td><p>Distribution of CLAG-related alarms received during the designated time period, and the total number of current CLAG-related alarms in the network.</p>
+<td><p>Distribution of MLAG-related alarms received during the designated time period, and the total number of current MLAG-related alarms in the network.</p>
 <p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Sessions chart</p></td>
-<td><p>Distribution of CLAG sessions running during the designated time period, and the total number of sessions running on the network currently</p></td>
+<td><p>Distribution of MLAG sessions running during the designated time period, and the total number of sessions running on the network currently</p></td>
 </tr>
 </tbody>
 </table>
 
-The large CLAG service card contains two tabs.
+The large MLAG service card contains two tabs.
 
-The *All CLAG Sessions Summary* tab which displays:
+The *All MLAG Sessions Summary* tab which displays:
 
-{{% imgOld 10 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-large-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -162,24 +162,24 @@ The *All CLAG Sessions Summary* tab which displays:
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>All CLAG Sessions Summary</p></td>
+<td><p>All MLAG Sessions Summary</p></td>
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
-<td><p>Total number of switches with the CLAG service enabled during the designated time period</p></td>
+<td><p>Total number of switches with the MLAG service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
-<td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
+<td><p>Total number of MLAG-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Nodes Running chart</p></td>
-<td><p>Distribution of switches and hosts with the CLAG service enabled during the designated time period, and a total number of nodes running the service currently.
-<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running CLAG last week or last month might be more or less than the number of nodes running CLAG currently.</p></td>
+<td><p>Distribution of switches and hosts with the MLAG service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running MLAG last week or last month might be more or less than the number of nodes running MLAG currently.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Total Sessions chart</p></td>
-<td><p>Distribution of CLAG sessions running during the designated time period, and the total number of sessions running on the network currently</p></td>
+<td><p>Distribution of MLAG sessions running during the designated time period, and the total number of sessions running on the network currently</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Sessions with Inactive-backup-ip chart</p></td>
@@ -187,19 +187,19 @@ The *All CLAG Sessions Summary* tab which displays:
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
-<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of unestablished session count—devices with the largest number of unestablished sessions are listed first</p></td>
+<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
+<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of unestablished session count—devices with the largest number of unestablished sessions are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
-<td><p>Link to view all CLAG sessions in the full screen card</p></td>
+<td><p>Link to view all MLAG sessions in the full screen card</p></td>
 </tr>
 </tbody>
 </table>
 
-The *All CLAG Alarms* tab which displays:
+The *All MLAG Alarms* tab which displays:
 
-{{< figure src="/images/netq/ntwk-svcs-all-clag-large-alarms-tab.png" width="500" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-large-alarms-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -219,40 +219,40 @@ The *All CLAG Alarms* tab which displays:
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in header)</p></td>
-<td><p>Indicates alarm data for all CLAG sessions</p></td>
+<td><p>Indicates alarm data for all MLAG sessions</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>Network Services | All CLAG Alarms (visible when you hover over card)</p></td>
+<td><p>Network Services | All MLAG Alarms (visible when you hover over card)</p></td>
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></p></td>
-<td><p>Total number of switches with the CLAG service enabled during the designated time period</p></td>
+<td><p>Total number of switches with the MLAG service enabled during the designated time period</p></td>
 </tr>
 <tr class="odd">
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in summary bar)</p></td>
-<td><p>Total number of CLAG-related alarms received during the designated time period</p></td>
+<td><p>Total number of MLAG-related alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
 <td><p>Total Alarms chart</p></td>
-<td><p>Distribution of CLAG-related alarms received during the designated time period, and the total number of current CLAG-related alarms in the network.</p>
+<td><p>Distribution of MLAG-related alarms received during the designated time period, and the total number of current MLAG-related alarms in the network.</p>
 <p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of alarm count—devices with the largest number of sessions are listed first</p></td>
+<td><p>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of alarm count—devices with the largest number of sessions are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
-<td><p>Link to view all CLAG sessions in the full screen card</p></td>
+<td><p>Link to view all MLAG sessions in the full screen card</p></td>
 </tr>
 </tbody>
 </table>
 
-The full screen CLAG Service card provides tabs for all switches, all
+The full screen MLAG Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="/images/netq/ntwk-svcs-all-clag-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-fullscr-all-switches-tab-230.png" width="700">}}
 
 <table>
 <colgroup>
@@ -268,7 +268,7 @@ sessions, and all alarms.
 <tbody>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>Network Services | CLAG</p></td>
+<td><p>Network Services | MLAG</p></td>
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
@@ -284,7 +284,7 @@ sessions, and all alarms.
 </tr>
 <tr class="odd">
 <td><p>All Switches tab</p></td>
-<td><p>Displays all switches and hosts running the CLAG service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:</p>
+<td><p>Displays all switches and hosts running the MLAG service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:</p>
 <ul>
 <li><p><strong>Agent</strong></p>
 <ul>
@@ -330,7 +330,7 @@ sessions, and all alarms.
 </tr>
 <tr class="even">
 <td><p>All Sessions tab</p></td>
-<td><p>Displays all CLAG sessions network-wide. By default, the session list is sorted by hostname. This tab provides the following additional data about each session:</p>
+<td><p>Displays all MLAG sessions network-wide. By default, the session list is sorted by hostname. This tab provides the following additional data about each session:</p>
 <ul>
 <li><p><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down</p></li>
 <li><p><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false)</p></li>
@@ -343,7 +343,7 @@ sessions, and all alarms.
 </ul></li>
 <li><p><strong>Clag Sysmac</strong>: Unique MAC address for each bond interface pair. <strong>Note</strong>: Must be a value between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff.</p></li>
 <li><p><strong>DB State</strong>: Session state of the DB.</p></li>
-<li><p><strong>OPID</strong>: CLAG service identifier</p></li>
+<li><p><strong>OPID</strong>: MLAG service identifier</p></li>
 <li><p><strong>Peer</strong>:</p>
 <ul>
 <li><p>If: Name of the peer interface</p></li>
@@ -378,54 +378,54 @@ sessions, and all alarms.
 
 ### View Service Status Summary
 
-A summary of the CLAG service is available from the CLAG Service card
+A summary of the MLAG service is available from the MLAG Service card
 workflow, including the number of nodes running the service, the number
-of CLAG-related alarms, and a distribution of those alarms.
+of MLAG-related alarms, and a distribution of those alarms.
 
-To view the summary, open the small CLAG Service card.
+To view the summary, open the small MLAG Service card.
 
-{{% imgOld 18 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-small-230.png" width="200" >}}
 
-For more detail, select a different size CLAG Service card.
+For more detail, select a different size MLAG Service card.
 
 ### View the Distribution of Sessions and Alarms
 
-It is useful to know the number of network nodes running the CLAG
+It is useful to know the number of network nodes running the MLAG
 protocol over a period of time, as it gives you insight into the amount
 of traffic associated with and breadth of use of the protocol. It is
-also useful to compare the number of nodes running CLAG with the alarms
+also useful to compare the number of nodes running MLAG with the alarms
 present at the same time to determine if there is any correlation
-between the issues and the ability to establish a CLAG session.
+between the issues and the ability to establish a MLAG session.
 
-To view these distributions, open the medium CLAG Service card.
+To view these distributions, open the medium MLAG Service card.
 
-{{% imgOld 19 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-medium-230.png" width="200" >}}
 
 If a visual correlation is apparent, you can dig a little deeper with
-the large CLAG Service card tabs.
+the large MLAG Service card tabs.
 
 ### View Devices with the Most CLAG Sessions
 
-You can view the load from CLAG on your switches using the large CLAG
+You can view the load from MLAG on your switches using the large MLAG
 Service card. This data enables you to see which switches are handling
-the most CLAG traffic currently, validate that is what is expected based
+the most MLAG traffic currently, validate that is what is expected based
 on your network design, and compare that with data from an earlier time
 to look for any differences.
 
-To view switches and hosts with the most CLAG sessions:
+To view switches and hosts with the most MLAG sessions:
 
-1.  Open the large CLAG Service card.
+1.  Open the large MLAG Service card.
 2.  Select **Switches with Most Sessions** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
-    running the most CLAG sessions at the top. Scroll down to view those
+    running the most MLAG sessions at the top. Scroll down to view those
     with the fewest sessions.
 
-    {{% imgOld 20 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-large-most-sessions-230.png" width="500" >}}
 
 To compare this data with the same data at a previous time:
 
-1.  Open another large CLAG Service card.
+1.  Open another large MLAG Service card.
 2.  Move the new card next to the original card if needed.
 3.  Change the time period for the data on the new card by hovering over
     the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
@@ -434,110 +434,85 @@ To compare this data with the same data at a previous time:
     You can now see whether there are significant differences between
     this time period and the previous time period.  
 
-    {{% imgOld 22 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
 
-    {{% imgOld 23 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-large-most-sessions-6hr-230.png" width="500" >}}
 
     If the changes are unexpected, you can investigate further by
     looking at another time frame, determining if more nodes are now
-    running CLAG than previously, looking for changes in the topology,
+    running MLAG than previously, looking for changes in the topology,
     and so forth.
 
-### View Devices with the Most Unestablished CLAG Sessions
+### View Devices with the Most Unestablished MLAG Sessions
 
 You can identify switches that are experiencing difficulties
-establishing CLAG sessions; both currently and in the past.
+establishing MLAG sessions; both currently and in the past.
 
-To view switches with the most unestablished CLAG sessions:
+To view switches with the most unestablished MLAG sessions:
 
-1.  Open the large CLAG Service card.
+1.  Open the large MLAG Service card.
 2.  Select **Switches with Most Unestablished Sessions** from the filter above the table.
     The table content is sorted by this characteristic, listing nodes
-    with the most unestablished CLAG sessions at the top. Scroll down to
+    with the most unestablished MLAG sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
 
-    {{% imgOld 24 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-large-most-unestab-230.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
 
-  - Hover over the any of the charts to focus on the number of switches
-    or sessions with the chart characteristic during that smaller time
-    slice.  
-    The table content changes to match the hovered content. Click on the
-    chart to persist the table changes.
-
-    {{% imgOld 25 %}}
-
   - Change the time period for the data to compare with a prior time.  
-
-    {{% imgOld 26 %}}
-
-    {{% imgOld 27 %}}
-
 
     If the same switches are consistently indicating the most
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
-    probable causes. Refer to [Monitor
-    Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
+    probable causes. Refer to [Monitor Switches](../../Monitor-Devices/Monitor-Switches).
 
-  - Click **Show All Sessions** to investigate all CLAG sessions with
+  - Click **Show All Sessions** to investigate all MLAG sessions with
     events in the full screen card.
 
-### View Switches with the Most CLAG-related Alarms
+### View Switches with the Most MLAG-related Alarms
 
-Switches experiencing a large number of CLAG alarms may indicate a
+Switches experiencing a large number of MLAG alarms may indicate a
 configuration or performance issue that needs further investigation. You
-can view the switches sorted by the number of CLAG alarms and then use
+can view the switches sorted by the number of MLAG alarms and then use
 the Switches card workflow or the Alarms card workflow to gather more
 information about possible causes for the alarms.
 
-To view switches with most CLAG alarms:
+To view switches with most MLAG alarms:
 
-1.  Open the large CLAG Service card.
+1.  Open the large MLAG Service card.
 2.  Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/>.
 3.  Select **Events by Most Active Device** from the filter above the
     table.  
     The table content is sorted by this characteristic, listing nodes
-    with the most CLAG alarms at the top. Scroll down to view those with
+    with the most MLAG alarms at the top. Scroll down to view those with
     the fewest alarms.
 
-    {{% imgOld 29 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-large-alarms-tab-230.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
-
-  - Hover over the Total Alarms chart to focus on the switches
-    exhibiting alarms during that smaller time slice.  
-    The table content changes to match the hovered content. Click on the
-    chart to persist the table changes.
-
-    {{% imgOld 30 %}}
 
   - Change the time period for the data to compare with a prior time. If
     the same switches are consistently indicating the most alarms, you
     might want to look more carefully at those switches using the
     Switches card workflow.  
 
-    {{% imgOld 31 %}}
-
-    {{% imgOld 32 %}}
-
-  - Click **Show All Sessions** to investigate all CLAG sessions with
+  - Click **Show All Sessions** to investigate all MLAG sessions with
     alarms in the full screen card.
 
-### View All CLAG Events
+### View All MLAG Events
 
-The CLAG Service card workflow enables you to view all of the CLAG
+The MLAG Service card workflow enables you to view all of the MLAG
 events in the designated time period.
 
-To view all CLAG events:
+To view all MLAG events:
 
-1.  Open the full screen CLAG Service card.
+1.  Open the full screen MLAG Service card.
 2.  Click **All Alarms** tab.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-clag-fullscr-alarms-tab-222.png" width="700">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-fullscr-all-alarms-tab-230.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -552,23 +527,23 @@ include:
         events
   - Export the data to a file by clicking **Export** or selecting a
     subset and clicking **Export Selected** in edit menu
-  - Return to your workbench by clicking {{% imgOld 34 %}} in the top right corner
+  - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner
 
-### View Details About All Switches Running CLAG
+### View Details About All Switches Running MLAG
 
-You can view all stored attributes of all switches running CLAG in your
+You can view all stored attributes of all switches running MLAG in your
 network in the full-screen card.
 
-To view all switch details, open the full screen CLAG Service card, and
+To view all switch details, open the full screen MLAG Service card, and
 click the **All Switches** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-all-clag-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-fullscr-all-switches-tab-230.png" width="700">}}
 
-To return to your workbench, click {{% imgOld 36 %}} in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 
 ### Take Actions on Data Displayed in Results List
 
-In the full screen BGP Service card, you can determine which results are
+In the full screen MLAG Service card, you can determine which results are
 displayed in the results list, and which are exported.
 
 To take actions on the data, click in the blank column at the very left
@@ -576,9 +551,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{<figure src="/images/netq/ntwk-svcs-all-clag-fullscr-switches-tab-selected-hosts-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-mlag-fullscr-switches-tab-selected-hosts-230.png" width="700">}}
 
-{{<figure src="/images/netq/ntwk-svcs-fullscr-edit-menu-4selected-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-fullscr-edit-menu-4selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -593,24 +568,24 @@ You can perform the following actions on the results list:
 
 To return to original display of results, click the associated tab.
 
-## Monitor a Single CLAG Session
+## Monitor a Single MLAG Session
 
-With NetQ, you can monitor the number of nodes running the CLAG service,
+With NetQ, you can monitor the number of nodes running the MLAG service,
 view switches with the most peers alive and not alive, and view alarms
-triggered by the CLAG service. For an overview and how to configure CLAG
+triggered by the MLAG service. For an overview and how to configure MLAG
 in your data center network, refer to
-[Multi-Chassis Link Aggregation - MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
+[Multi-Chassis Link Aggregation - MLAG](../../../../cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
 
 {{%notice note%}}
 
-To access the single session cards, you must open the full screen CLAG
+To access the single session cards, you must open the full screen MLAG
 Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
 
 {{%/notice%}}
 
 ### Granularity of Data Shown Based on Time Period
 
-On the medium and large single CLAG session cards, the status of the
+On the medium and large single MLAG session cards, the status of the
 peers is represented in heat maps stacked vertically; one for peers that
 are reachable (alive), and one for peers that are unreachable (not
 alive). Depending on the time period of data on the card, the number of
@@ -625,7 +600,7 @@ proportionally reduced in saturation. An example heat map for a time
 period of 24 hours is shown here with the most common time periods in
 the table showing the resulting time blocks.
 
-{{% imgOld 39 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-result-granularity-230.png" width="300">}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -636,11 +611,11 @@ the table showing the resulting time blocks.
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-### CLAG Session Card Workflow Summary
+### MLAG Session Card Workflow Summary
 
-The small CLAG Session card displays:
+The small MLAG Session card displays:
 
-{{% imgOld 40 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-small-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -673,9 +648,9 @@ The small CLAG Session card displays:
 </tbody>
 </table>
 
-The medium CLAG Session card displays:
+The medium MLAG Session card displays:
 
-{{< figure src="/images/netq/ntwk-svcs-single-session-clag-medium.png" width="200" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -699,7 +674,7 @@ The medium CLAG Session card displays:
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>Network Services | CLAG Session</p></td>
+<td><p>Network Services | MLAG Session</p></td>
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></p></td>
@@ -723,7 +698,7 @@ The medium CLAG Session card displays:
 </tr>
 <tr class="odd">
 <td><p>CLAG sysmac</p></td>
-<td><p>System MAC address of the CLAG session</p></td>
+<td><p>System MAC address of the MLAG session</p></td>
 </tr>
 <tr class="even">
 <td><p>Peer Role</p></td>
@@ -736,11 +711,11 @@ The medium CLAG Session card displays:
 </tbody>
 </table>
 
-The large CLAG Session card contains two tabs.
+The large MLAG Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-{{% imgOld 54 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-large-sess-sum-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -764,7 +739,7 @@ The *Session Summary* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>(Network Services | CLAG Session) Session Summary</p></td>
+<td><p>(Network Services | MLAG Session) Session Summary</p></td>
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></p></td>
@@ -796,7 +771,7 @@ The *Session Summary* tab displays:
 </tr>
 <tr class="odd">
 <td><p>CLAG SysMAC</p></td>
-<td><p>System MAC address of the CLAG session</p></td>
+<td><p>System MAC address of the MLAG session</p></td>
 </tr>
 <tr class="even">
 <td><p>Peer State</p></td>
@@ -823,7 +798,7 @@ The *Session Summary* tab displays:
 
 The *Configuration File Evolution* tab displays:
 
-{{% imgOld 62 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-large-config-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -847,11 +822,7 @@ The *Configuration File Evolution* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>(Network Services | CLAG Session) Configuration File Evolution</p></td>
-</tr>
-<tr class="even">
-<td><p>{{% imgOld 64 %}}</p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on {{% imgOld 65 %}} to open associated device card.</td>
+<td><p>(Network Services | MLAG Session) Configuration File Evolution</p></td>
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></p></td>
@@ -874,10 +845,10 @@ The *Configuration File Evolution* tab displays:
 </tbody>
 </table>
 
-The full screen CLAG Session card provides tabs for all CLAG sessions
+The full screen MLAG Session card provides tabs for all MLAG sessions
 and all events.
 
-{{<figure src="/images/netq/ntwk-svcs-single-clag-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-fullscr-sessions-tab-230.png" width="700">}}
 
 <table>
 <colgroup>
@@ -893,7 +864,7 @@ and all events.
 <tbody>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>Network Services | CLAG</p></td>
+<td><p>Network Services | MLAG</p></td>
 </tr>
 <tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
@@ -908,8 +879,8 @@ and all events.
 <td><p>Number of results found for the selected tab</p></td>
 </tr>
 <tr class="odd">
-<td><p>All CLAG Sessions tab</p></td>
-<td><p>Displays all CLAG sessions for the given session. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:</p>
+<td><p>All MLAG Sessions tab</p></td>
+<td><p>Displays all MLAG sessions for the given session. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:</p>
 <ul>
 <li><p><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down</p></li>
 <li><p><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false)</p></li>
@@ -920,9 +891,9 @@ and all events.
 <li><p>Dual: Identifies a set of interfaces connecting to both switches</p></li>
 <li><p>Proto Down: Interface on the switch brought down by the <code>clagd</code> service. Value is blank if no interfaces are down due to <code>clagd</code> service.</p></li>
 </ul></li>
-<li><p><strong>Clag Sysmac</strong>: Unique MAC address for each bond interface pair. <strong>Note</strong>: Must be a value between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff.</p></li>
+<li><p><strong>Mlag Sysmac</strong>: Unique MAC address for each bond interface pair. <strong>Note</strong>: Must be a value between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff.</p></li>
 <li><p><strong>DB State</strong>: Session state of the DB.</p></li>
-<li><p><strong>OPID</strong>: CLAG service identifier</p></li>
+<li><p><strong>OPID</strong>: MLAG service identifier</p></li>
 <li><p><strong>Peer</strong>:</p>
 <ul>
 <li><p>If: Name of the peer interface</p></li>
@@ -930,7 +901,7 @@ and all events.
 <li><p>State: Indicates if peer device is up (true) or down (false)</p></li>
 </ul></li>
 <li><p><strong>Role</strong>: Role of the host device. Values include primary and secondary.</p></li>
-<li><p><strong>Timestamp</strong>: Date and time the CLAG session was started, deleted, updated, or marked dead (device went down)</p></li>
+<li><p><strong>Timestamp</strong>: Date and time the MLAG session was started, deleted, updated, or marked dead (device went down)</p></li>
 <li><p><strong>Vxlan Anycast</strong>: Anycast IP address used for VXLAN termination</p></li>
 </ul></td>
 </tr>
@@ -957,79 +928,77 @@ and all events.
 
 ### View Session Status Summary
 
-A summary of the CLAG session is available from the CLAG Session card
+A summary of the MLAG session is available from the MLAG Session card
 workflow, showing the node and its peer and current status.
 
 To view the summary:
 
-1.  Open the full screen CLAG Service card.
+1.  Open the full screen MLAG Service card.
 2.  Select a session from the listing to view.
-3.  Close the full screen card to view the medium CLAG Session card.  
+3.  Close the full screen card to view the medium MLAG Session card.  
 
-    {{% imgOld 74 %}}
-
-    {{% imgOld 75 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-medium-summ-highlighted-bad-230.png" width="200" >}}
+    
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-medium-summ-highlighted-230.png" width="200" >}}
 
     In the left example, we see that the tor1 switch plays the secondary
     role in this session with the switch at 44:38:39:ff:01:01. In the
     right example, we see that the leaf03 switch plays the primary role
     in this session with leaf04.
 
-### View CLAG Session Peering State Changes
+### View MLAG Session Peering State Changes
 
-You can view the peering state for a given CLAG session from the medium
-and large CLAG Session cards. For a given time period, you can determine
-the stability of the CLAG session between two devices. If you
+You can view the peering state for a given MLAG session from the medium
+and large MLAG Session cards. For a given time period, you can determine
+the stability of the MLAG session between two devices. If you
 experienced connectivity issues at a particular time, you can use these
 cards to help verify the state of the peer. If the peer was not alive
 more than it was alive, you can then investigate further into possible
 causes.
 
-To view the state transitions for a given CLAG session:
+To view the state transitions for a given MLAG session:
 
-1.  Open the full screen CLAG Service card.
+1.  Open the full screen MLAG Service card.
 2.  Select a session from the listing to view.
-3.  Close the full screen card to view the medium CLAG Session card.
+3.  Close the full screen card to view the medium MLAG Session card.
 
-    {{% imgOld 76 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-medium-chart-highlighted-230.png" width="200" >}}
 
     In this example, the peer switch has been alive for the entire
     24-hour period.
 
 From this card, you can also view the node role, peer role and state,
-and CLAG system MAC address which identify the session in more detail.
+and MLAG system MAC address which identify the session in more detail.
 
-To view the peering state transitions for a given CLAG session on the
-large CLAG Session card, open that card.
+To view the peering state transitions for a given MLAG session on the
+large MLAG Session card, open that card.
 
-{{% imgOld 77 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-large-session-tab-chart-highlighted-230.png" width="500" >}}
 
 From this card, you can also view the alarm and info event counts, node
-role, peer role, state, and interface, CLAG system MAC address, active
+role, peer role, state, and interface, MLAG system MAC address, active
 backup IP address, single, dual, conflicted, and protocol down bonds,
 and the VXLAN anycast address identifying the session in more detail.
 
-### View Changes to the CLAG Service Configuration File
+### View Changes to the MLAG Service Configuration File
 
-Each time a change is made to the configuration file for the CLAG
+Each time a change is made to the configuration file for the MLAG
 service, NetQ logs the change and enables you to compare it with the
 last version. This can be useful when you are troubleshooting potential
 causes for alarms or sessions losing their connections.
 
 To view the configuration file changes:
 
-1.  Open the large CLAG Session card.
+1.  Open the large MLAG Session card.
 2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/> to open the **Configuration File Evolution** tab.
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
-
-    {{% imgOld 79 %}}
 
 4.  Choose between the **File** view and the **Diff** view (selected
     option is dark; File by default).  
     The File view displays the content of the file for you to review.
 
-    {{% imgOld 80 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-large-config-tab-file-230.png" width="500" >}}
 
     The Diff view displays the changes between this version (on left)
     and the most recent version (on right) side by side. The changes are
@@ -1037,17 +1006,17 @@ To view the configuration file changes:
     changes after this first creation, so the same file is shown on both
     sides and no highlighting is present.
 
-    {{% imgOld 81 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-large-config-tab-diff-230.png" width="500" >}}
 
-### All CLAG Session Details
+### All MLAG Session Details
 
-You can view all stored attributes of all of the CLAG sessions
+You can view all stored attributes of all of the MLAG sessions
 associated with the two devices on this card.
 
-To view all session details, open the full screen CLAG Session card, and
-click the **All CLAG Sessions** tab.
+To view all session details, open the full screen MLAG Session card, and
+click the **All MLAG Sessions** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-clag-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-fullscr-sessions-tab-230.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -1061,22 +1030,22 @@ include:
         correct backup IP address is specified for the service
   - Export the data to a file by clicking **Export** or selecting a
     subset and clicking **Export Selected** in edit menu
-  - Return to your workbench by clicking {{% imgOld 83 %}} in the top right corner
+  - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner
 
-### View All CLAG Session Events
+### View All MLAG Session Events
 
 You can view all of the alarm and info events for the two devices on
 this card.
 
-To view all events, open the full screen CLAG Session card, and click
+To view all events, open the full screen MLAG Session card, and click
 the **All Events** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-clag-fullscr-events-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-mlag-fullscr-events-tab-230.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
 
-  - Open the **All CLAG Sessions** tabs to look more closely at the
+  - Open the **All MLAG Sessions** tabs to look more closely at the
     individual sessions.
   - Sort on other parameters:
       - by **Message** to determine the frequency of particular events
@@ -1086,4 +1055,4 @@ include:
         events
   - Export the data to a file by clicking **Export** or selecting a
     subset and clicking **Export Selected** in edit menu
-  - Return to your workbench by clicking {{% imgOld 85 %}} in the top right corner
+  - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner

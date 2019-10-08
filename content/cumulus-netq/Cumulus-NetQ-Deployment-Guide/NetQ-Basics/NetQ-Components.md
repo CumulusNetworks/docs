@@ -4,9 +4,9 @@ author: Cumulus Networks
 weight: 401
 pageID: 12320801
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 Cumulus NetQ contains the following applications and key components:
@@ -23,9 +23,9 @@ Cumulus NetQ contains the following applications and key components:
 While these function apply to both the on-site and in-cloud solutions, where
 the functions reside varies, as shown here.
 
-{{% imgOld 0 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-comps-onpremises-230.png" width="700" >}}
 
-{{% imgOld 1 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-comps-cloud-230.png" width="450" >}}
 
 NetQ interfaces with event notification applications, third-party
 analytics tools.

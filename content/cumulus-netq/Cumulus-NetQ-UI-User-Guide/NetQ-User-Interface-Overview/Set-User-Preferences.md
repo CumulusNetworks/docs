@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321856
 pageID: 12321856
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 Each user can customize the NetQ application display, change his account
 password, and manage his workbenches.
@@ -29,16 +29,16 @@ To configure the display settings:
 
 1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
 
 2.  Click **Profile & Preferences**.
 3.  Locate the Display card.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-display-card-222.png" width="200">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/user-settings-profile-prefs-display-card-222.png" width="200">}}
 
 4.  In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> to select your choice of theme. This figure shows the light theme. Switch back and forth as desired.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-light-theme-222.png" width="700">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/user-settings-profile-prefs-light-theme-222.png" width="700">}}
 
 5.  In the **Time Zone** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> to change the time zone from the default.  
     By default, the time zone is set to the user's local time zone. If a
@@ -50,7 +50,8 @@ To configure the display settings:
     **Tip**: You can also change the time zone from the header
     display.
 
-    {{<figure src="/images/netq/app-hdr-time-zone-222.png" width="75">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/app-hdr-time-zone-222.png" width="75">}}
+
 
     If your deployment is not local to you (for example, you want to
     view the data from the perspective of a data center in another time
@@ -92,7 +93,7 @@ To configure the display settings:
 6.  In the **Date Format** field, select the data and time format you
     want displayed on the cards.  
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-date-format-222.png" width="200">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/user-settings-profile-prefs-date-format-222.png" width="200">}}
 
     The four options include the date displayed in words or abbreviated
     with numbers, and either a 12- or 24-hour time representation. The default is the third option.
@@ -109,18 +110,18 @@ To change your password:
 
 1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
 
 2.  Click **Profile & Preferences**.
 3.  Locate the Basic Account Info card.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-basic-acct-info-card-222.png" width="200">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/user-settings-profile-prefs-basic-acct-info-card-222.png" width="200">}}
 
 4.  Click **Change Password**.
 5.  Enter your current password.
 6.  Enter and confirm a new password.
 
-    {{<figure src="/images/netq/change-passwd-modal-222.png" width="200">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/change-passwd-modal-222.png" width="200">}}
 
 7.  Click **Save** to change to the new password, or click **Cancel** to
     discard your changes.
@@ -144,26 +145,16 @@ the Workbenches card, you can:
     workbenches). An administrative role is required to remove
     workbenches that are common to all users (public workbenches).
 
-    {{%notice info%}}
-
-It is strongly recommended that you do not delete the default
-    Cumulus Networks workbench. Once deleted, you must contact support
-    to regain access to it. Extreme caution is recommended when deleting
-    all other workbenches. Once they have been deleted, they cannot be
-    restored.
-
-    {{%/notice%}}
-
 To manage your workbenches:
 
 1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
 
 2.  Click **Profile & Preferences**.
 3.  Locate the Workbenches card.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-wbs-card-222.png" width="500">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/user-settings-profile-prefs-wbs-card-222.png" width="500">}}
 
 4.  To specify a favorite workbench, click and drag <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg", height="18", width="18"/> next to the left of the desired workbench name.
 5.  To search the workbench list by name, access type, and

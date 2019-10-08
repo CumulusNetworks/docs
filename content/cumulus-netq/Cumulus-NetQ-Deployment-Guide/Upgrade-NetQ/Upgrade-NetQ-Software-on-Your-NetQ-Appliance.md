@@ -7,11 +7,11 @@ aliases:
  - /pages/viewpage.action?pageId=12321037
 pageID: 12321037
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
-This document describes the steps required to upgrade the NetQ Software (versions 2.1.0 through 2.2.1) installed and running on your NetQ or NetQ Cloud Appliances to NetQ version 2.2.2.
+This document describes the steps required to upgrade the NetQ Software (versions 2.1 and 2.2) installed and running on your NetQ or NetQ Cloud Appliances to NetQ version 2.3.
 
 {{%notice info%}}
 
@@ -42,12 +42,13 @@ Before you begin the upgrade process, please note the following:
 
 ## Perform an In-place Upgrade of Cumulus NetQ
 
-An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1. If you are upgrading from NetQ 2.2.0 or earlier, a [disk image upgrade](#perform-a-disk-image-upgrade-of-cumulus-netq) is recommended.
+An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1 and 2.2.2. If you are upgrading from NetQ 2.2.0 or earlier, a [disk image upgrade](#perform-a-disk-image-upgrade-of-cumulus-netq) is recommended.
 
 ### In-place Upgrade Workflow
+
 Upgrading NetQ in place involves downloading and installing the new version of NetQ applications, and upgrading and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-{{< figure src="/images/netq/upgrade-wkflow-on-prem-in-place-nqappl-222.png" width="600" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/upgrade-wkflow-on-prem-in-place-nqappl-222.png" width="600" >}}
 
 ### Download Appliance Upgrade Image
 
@@ -55,16 +56,16 @@ The first step in upgrading your NetQ Appliance is to obtain the appliance upgra
 
 1.  On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list box.
 
-2.  Click *2.2* from the **Version** list box, and then select
-  *2.2.2* from the submenu.
+2.  Click *2.3* from the **Version** list box, and then select
+  *2.3.0* from the submenu.
 
 3.  From the **Hypervisor/Platform** list box, select *Appliance*.
 
-      {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-download-options-230.png" width="500" >}}
 
 4.  Click **Upgrade**.
 
-      {{< figure src="/images/netq/netq-22-nqappl-upgrade-222.png" width="200" >}}
+      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-nqappl-upgrade-230.png" width="200" >}}
 
 ### Run the Installation Script
 
@@ -84,21 +85,21 @@ login credentials. This example uses the default
         [sudo] password for cumulus:
         root@netq-appliance:~#
 
-3.  Copy the upgrade package (`NetQ-2.2.2.tgz`) into your new directory.
+3.  Copy the upgrade package (`NetQ-2.3.0.tgz`) into your new directory.
 
         root@netq-appliance:~# cd /mnt/installables/
-        root@netq-appliance:/mnt/installables# cp /home/usr/dir/NetQ-2.2.2.tgz ./ 
+        root@netq-appliance:/mnt/installables# cp /home/usr/dir/NetQ-2.3.0.tgz ./ 
 
 4.  Export the installer script.
 
-        root@netq-appliance:/mnt/installables# tar -xvf NetQ-2.2.2.tgz ./netq-install.sh
+        root@netq-appliance:/mnt/installables# tar -xvf NetQ-2.3.0.tgz ./netq-install.sh
 
 5.  Verify the contents of the directory. You should have the package
     and the `netq-install.sh` script.
 ```
         root@netq-appliance:/mnt/installables# ls -l
         total 9607744
-        -rw-r--r-- 1 cumulus cumulus 5911383922 Jul 23 11:13 NetQ-2.2.2.tgz
+        -rw-r--r-- 1 cumulus cumulus 5911383922 Jul 23 11:13 NetQ-2.3.0.tgz
         -rwxr-xr-x 1 _lldpd _lldpd 4309 Jul 23 10:34 netq-install.sh
         root@netq-appliance:/mnt/installables#
 ```
@@ -136,7 +137,7 @@ Leave the passphrase blank to simplify running the script.
     3.  Associate the key with the installer.
 
 ```
-root@netq-platform:/mnt/installables/# ./netq-install.sh --usekey ~/.ssh/id_rsa
+root@net-appliance:/mnt/installables/# ./netq-install.sh --usekey ~/.ssh/id_rsa
 [Tue Aug 27 04:50:07 2019] - File /root/.ssh/id_rsa exists on system...
 [Tue Aug 27 04:50:08 2019] - checking the presence of existing installer-ssh-keys
 [Tue Aug 27 04:50:08 2019] - Able to find existence of secret key ..
@@ -155,7 +156,7 @@ root@netq-platform:/mnt/installables/# ./netq-install.sh --usekey ~/.ssh/id_rsa
 7.  Run the installation script to upgrade the NetQ software.
 
 ```
-root@netq-platform:/mnt/installables# ./netq-install.sh  --installbundle  /mnt/installables/NetQ-2.2.2.tgz --updateapps
+root@net-appliance:/mnt/installables# ./netq-install.sh  --installbundle  /mnt/installables/NetQ-2.3.0.tgz --updateapps
 [Tue Aug 27 04:51:29 2019] - Updating the netq-installer ...
 [Tue Aug 27 04:51:29 2019] - Able to execute the command for updating netq-installer ...
 [Tue Aug 27 04:51:29 2019] - Checking initialization of netq-installer update ...
@@ -186,9 +187,9 @@ Please allow about an hour for the upgrade to complete.
 8. Verify the release has been updated successfully.
 
 ```
-root@netq-platform:/mnt/installables# cat /etc/app-release
-APPLIANCE_VERSION=2.2.2
-APPLIANCE_MANIFEST_HASH=a7f3cda
+root@net-appliance:/mnt/installables# cat /etc/app-release
+APPLIANCE_VERSION=2.3.0
+APPLIANCE_MANIFEST_HASH=a8f3cda
 ```
 {{%notice info%}}
 
@@ -199,23 +200,23 @@ continue.
 1.  Reset all Kubernetes administrative settings. Run the command twice
     to make sure all directories and files have been reset.  
     ```
-    cumulus@switch:~$ sudo kubeadm reset -f  
-    cumulus@switch:~$ sudo kubeadm reset -f
+    cumulus@net-appliance:~$ sudo kubeadm reset -f  
+    cumulus@net-appliance:~$ sudo kubeadm reset -f
     ```
 
 2.  Remove the Kubernetes configuration.  
     ```
-    cumulus@switch:~$ sudo rm /home/cumulus/.kube/config
+    cumulus@net-appliance:~$ sudo rm /home/cumulus/.kube/config
     ```
 
 3.  Reset the NetQ Platform install daemon.  
     ```
-    cumulus@switch:~$ sudo systemctl reset-failed
+    cumulus@net-appliance:~$ sudo systemctl reset-failed
     ```
 
 4.  Reset the Kubernetes service.  
     ```
-    cumulus@switch:~$ sudo systemctl restart cts-kubectl-config
+    cumulus@net-appliance:~$ sudo systemctl restart cts-kubectl-config
     ```  
     **Note**: Allow 15 minutes for the prompt to return.
 
@@ -228,24 +229,24 @@ Now that the core software is updated, you must update the CLI.
 1. Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.  
 
    ```
-   cumulus@switch:~$ sudo nano /etc/apt/sources.list
+   cumulus@net-appliance:~$ sudo nano /etc/apt/sources.list
    ...
-   deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.2
+   deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.3
    ...
    ```
 
 2. Update the local `apt` repository, then install the NetQ apps  package on the switch.
 
    ```
-   cumulus@switch:~$ sudo apt-get update
-   cumulus@switch:~$ sudo apt-get install netq-apps
+   cumulus@net-appliance:~$ sudo apt-get update
+   cumulus@net-appliance:~$ sudo apt-get install netq-apps
    ```
 
 3. Configure the CLI server, using the IP address assigned to your CLI server.
 
    ```
-   cumulus@switch:~$ netq config add cli server 192.168.1.254
-   cumulus@switch:~$ netq config restart cli
+   cumulus@net-appliance:~$ netq config add cli server 192.168.1.254
+   cumulus@net-appliance:~$ netq config restart cli
    ```
 
 ### Verify the Operation of NetQ on Your Appliance
@@ -254,7 +255,7 @@ Now that the core software is updated, you must update the CLI.
     operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
 
      ```
-     cumulus@<netq-platform-hostname>:~$ netq show opta-health
+     cumulus@net-appliance:~$ netq show opta-health
         Application                    Status    Health    Kafka Stream    Git Hash    Timestamp
         -----------------------------  --------  --------  --------------  ----------  ------------------------
         netq-app-macfdb                UP        true      up              14b42e6     Mon Jun  3 20:20:35 2019
@@ -310,17 +311,17 @@ If any of the applications or services display Status as DOWN after 30 minutes, 
 
 2.  Verify that NTP is configured and running. NTP operation is critical to proper operation of NetQ. Refer to [Setting Date and Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) in the *Cumulus Linux User Guide* for details and instructions.
 
-3.  Continue the NetQ upgrade by loading the NetQ Agent on each switch or host you want to monitor. Refer to [Upgrade the NetQ Agents and CLI on Your Switches and Hosts](#upgrade-the-netq-agents-and-cli-on-your-switches-and-hosts) for instructions.
+3.  Continue the NetQ upgrade by loading the NetQ Agent on each switch or host you want to monitor. Refer to [Install the NetQ Agents and CLI on Switches](../../Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches) for instructions.
 
 ## Perform a Disk Image Upgrade of Cumulus NetQ
 
-A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 and earlier. If you are upgrading from NetQ 2.2.1, an [in-place upgrade](#perform-an-in-place-upgrade-of-cumulus-netq) is sufficient.
+A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 and earlier. If you are upgrading from NetQ 2.2.1 or 2.2.2, an [in-place upgrade](#perform-an-in-place-upgrade-of-cumulus-netq) is sufficient.
 
 ### Disk Image Upgrade Workflow
 
 Upgrading NetQ using a disk image involves backing up your NetQ data, downloading and installing the new version of NetQ software, restoring your data, and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-{{< figure src="/images/netq/upgrade-wkflow-disk-img-on-prem-nqappl-222.png" width="700" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/upgrade-wkflow-disk-img-on-prem-nqappl-222.png" width="700" >}}
 
 ### Backup Your NetQ Data
 
@@ -338,16 +339,16 @@ The next step is to obtain the new image.
 
 1.  On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list box.
 
-2.  Click *2.2* from the **Version** list box, and then select
-  *2.2.2* from the submenu.
+2.  Click *2.3* from the **Version** list box, and then select
+  *2.3.x* from the submenu.
 
 3.  From the **Hypervisor/Platform** list box, select *Appliance*.
 
-      {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-download-options-230.png" width="500" >}}
 
 4.  Click **Download**.
 
-      {{< figure src="/images/netq/netq-22-nqappl-dwnld-222.png" width="200" >}}
+      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-nqappl-dwnld-230.png" width="200" >}}
 
 ### Install the Image Using ONIE
 
@@ -356,13 +357,13 @@ ONIE is an open source project (equivalent to PXE on servers) that enables the i
 - This example installs the image from a web server, then reboots the appliance.
 
 ```
-cumulus@netq-platform:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-netq-server-2.2.2-ts-amd64.bin && sudo reboot
+cumulus@netq-appliance:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-netq-server-2.3.0-ts-amd64.bin && sudo reboot
 ```
 
 - This example installs the image from a local file, then reboots the appliance.
 
 ```
-cumulus@netq-platform:~$ sudo onie-install -a -i /home/<local-directory>/<path>/cumulus-netq-server-2.2.2-ts-amd64.bin && sudo reboot
+cumulus@netq-appliance:~$ sudo onie-install -a -i /home/<local-directory>/<path>/cumulus-netq-server-2.3.0-ts-amd64.bin && sudo reboot
 ```
 
 ### Restore Your NetQ Data
@@ -370,7 +371,7 @@ cumulus@netq-platform:~$ sudo onie-install -a -i /home/<local-directory>/<path>/
 Restore the configuration files to the new release. Run the restore script being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
 
  ```
- cumulus@<netq-platform/netq-appliance>:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
+ cumulus@netq-appliance:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
  ```
 
 This uses the `netq_master_snapshot_<timestamp>.tar.gz` file to restore your data. For more detail about the script and the restoration process, refer to [Restore NetQ](../../Backup-and-Restore-NetQ/Restore-NetQ).
@@ -430,13 +431,13 @@ cumulus@<netq-platform-hostname>:~$ netq show opta-health
 ```
       {{%notice note%}}
 
-If any of the applications or services display Status as DOWN after 30 minutes, open a [support ticket](https://cumulusnetworks.com/support/file-a-ticket/) and  attach the output of the `opta-support` command.
+If any of the applications or services display Status as DOWN after 30 minutes, open a [support ticket](https://cumulusnetworks.com/support/file-a-ticket/) and attach the output of the `opta-support` command.
 
       {{%/notice%}}
 
 2.  Verify that NTP is configured and running. NTP operation is critical to proper operation of NetQ. Refer to [Setting Date and Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) in the *Cumulus Linux User Guide* for details and instructions.
 
-3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to [Install NetQ Agents and CLI on Your Switches](,,/,,/Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches).
+3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to [Install NetQ Agents and CLI on Your Switches](../../Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches).
 
 
 ## Upgrade Tips

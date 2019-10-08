@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321294
 pageID: 12321294
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The Cumulus NetQ UI enables operators to view the health of the EVPN
 service on a network-wide and a per session basis, giving greater
@@ -22,13 +22,13 @@ are described separately here.
 With NetQ, you can monitor the number of nodes running the EVPN service,
 view switches with the sessions, total number of VNIs, and alarms
 triggered by the EVPN service. For an overview and how to configure EVPN
-in your data center network, refer to [Ethernet Virtual Private Network-EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
+in your data center network, refer to [Ethernet Virtual Private Network-EVPN](../../../../cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
 
 ### EVPN Service Card Workflow Summary
 
 The small EVPN Service card displays:
 
-{{% imgOld 0 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -67,7 +67,7 @@ The small EVPN Service card displays:
 
 The medium EVPN Service card displays:
 
-{{% imgOld 4 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -122,7 +122,7 @@ The large EVPN service card contains two tabs.
 
 The *Sessions Summary* tab which displays:
 
-{{% imgOld 8 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-large-summary-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -184,7 +184,7 @@ The *Sessions Summary* tab which displays:
 
 The *Alarms* tab which displays:
 
-{{< figure src="/images/netq/ntwk-svcs-allevpn-large-alarms-tab.png" width="500" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-allevpn-large-alarms-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -237,7 +237,7 @@ The *Alarms* tab which displays:
 The full screen EVPN Service card provides tabs for all switches, all
 sessions, all alarms.
 
-{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -360,7 +360,7 @@ number of EVPN-related alarms, and a distribution of those alarms.
 
 To view the summary, open the small EVPN Network Service card.
 
-{{% imgOld 20 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-small-230.png" width="200" >}}
 
 For more detail, select a different size EVPN Network Service card.
 
@@ -375,7 +375,7 @@ between the issues and the ability to establish an EVPN session.
 
 To view these distributions, open the medium EVPN Service card.
 
-{{% imgOld 21 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-medium-230.png" width="200" >}}
 
 If a visual correlation is apparent, you can dig a little deeper with
 the large EVPN Service card tabs.
@@ -388,7 +388,7 @@ into the complexity of the VXLAN.
 To view this distribution, open the large EVPN Service card and view the
 bottom chart on the left.
 
-{{% imgOld 22 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-large-summary-tab-vni-chart-230.png" width="500" >}}
 
 ### View Devices with the Most EVPN Sessions
 
@@ -407,7 +407,7 @@ To view switches and hosts with the most EVPN sessions:
     running the most EVPN sessions at the top. Scroll down to view those
     with the fewest sessions.
 
-    {{% imgOld 23 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-large-summary-tab-top-sessions-230.png" width="500" >}}
 
 To compare this data with the same data at a previous time:
 
@@ -420,9 +420,9 @@ To compare this data with the same data at a previous time:
     You can now see whether there are significant differences between
     this time period and the previous time period.  
 
-    {{% imgOld 25 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
 
-    {{% imgOld 26 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-large-summary-tab-past-week-230.png" width="500" >}}
 
 If the changes are unexpected, you can investigate further by looking at
 another time frame, determining if more nodes are now running EVPN than
@@ -445,7 +445,7 @@ To view switches and hosts with the most layer 2 EVPN sessions:
     running the most layer 2 EVPN sessions at the top. Scroll down to
     view those with the fewest sessions.
 
-    {{% imgOld 27 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l2evpn-230.png" width="500" >}}
 
 To compare this data with the same data at a previous time:
 
@@ -458,9 +458,9 @@ To compare this data with the same data at a previous time:
     You can now see whether there are significant differences between
     this time period and the previous time period.  
 
-    {{% imgOld 29 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
 
-    {{% imgOld 30 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l2-pst-wk-230.png" width="500" >}}
 
 If the changes are unexpected, you can investigate further by looking at
 another time frame, determining if more nodes are now running EVPN than
@@ -483,7 +483,7 @@ To view switches and hosts with the most layer 3 EVPN sessions:
     running the most layer 3 EVPN sessions at the top. Scroll down to
     view those with the fewest sessions.
 
-    {{% imgOld 31 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l3evpn-230.png" width="500" >}}
 
 To compare this data with the same data at a previous time:
 
@@ -496,9 +496,9 @@ To compare this data with the same data at a previous time:
     You can now see whether there are significant differences between
     this time period and the previous time period.  
 
-    {{% imgOld 33 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
 
-    {{% imgOld 34 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l3-pst-wk-230.png" width="500" >}}
 
 If the changes are unexpected, you can investigate further by looking at
 another time frame, determining if more nodes are now running EVPN than
@@ -522,7 +522,7 @@ To view switches with the most EVPN alarms:
     with the most EVPN alarms at the top. Scroll down to view those with
     the fewest alarms.
 
-    {{% imgOld 36 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-large-alarms-tab-230.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -549,7 +549,7 @@ To view all EVPN events:
 2.  Click **All Alarms** tab in the navigation panel. By default, events
     are sorted by Time, with most recent events listed first.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-alarms-tab-222.png" width="700">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-fullscr-alarms-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -559,7 +559,7 @@ include:
   - Sort by the **Message** or **Severity** to narrow your focus.
   - Export the data for use in another analytics tool, by selecting all
     or some of the events and clicking **Export**.
-  - Click {{% imgOld 38 %}} at the top right to return to your workbench.
+  - Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right to return to your workbench.
 
 ### View Details for All Devices Running EVPN
 
@@ -569,9 +569,9 @@ network in the full screen card.
 To view all switch and host details, open the full screen EVPN Service
 card, and click the **All Switches** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-fullscr-222.png" width="700">}}
 
-To return to your workbench, click {{% imgOld 40 %}} at the top right.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right.
 
 ### View Details for All EVPN Sessions
 
@@ -581,9 +581,9 @@ in the full screen card.
 To view all session details, open the full screen EVPN Service card, and
 click the **All Sessions** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-sessions-tab-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-fullscr-sessions-tab-222.png" width="700">}}
 
-To return to your workbench, click {{% imgOld 42 %}} at the top right.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right.
 
 ### Take Actions on Data Displayed in Results List
 
@@ -595,9 +595,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-sessions-tab-2selected-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-evpn-fullscr-sessions-tab-2selected-222.png" width="700">}}
 
-{{<figure src="/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -630,7 +630,7 @@ Service, click the All Sessions tab, select the desired session, then click <img
 
 The small EVPN Session card displays:
 
-{{% imgOld 45 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-small-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -665,7 +665,7 @@ The small EVPN Session card displays:
 
 The medium EVPN Session card displays:
 
-{{% imgOld 47 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-medium-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -714,7 +714,7 @@ The large EVPN Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-{{% imgOld 49 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-large-summary-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -765,7 +765,7 @@ The *Session Summary* tab displays:
 
 The *Configuration File Evolution* tab displays:
 
-{{% imgOld 51 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-large-config-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -792,7 +792,7 @@ The *Configuration File Evolution* tab displays:
 <td><p>(Network Services | EVPN Session) Configuration File Evolution</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 53 %}}</p></td>
+<td><p><img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-vtep-count-icon-230.png", width="24", height="24"/></p></td>
 <td><p>VTEP count (currently)</p></td>
 </tr>
 <tr class="odd">
@@ -811,7 +811,7 @@ The *Configuration File Evolution* tab displays:
 The full screen EVPN Session card provides tabs for all EVPN sessions
 and all events.
 
-{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -894,9 +894,9 @@ To view the summary:
     automatically.
 5.  Optionally, switch to the small EVPN Session card.  
 
-    {{% imgOld 58 %}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-medium-230.png" width="200">}}
 
-    {{% imgOld 59 %}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-small-230.png" width="200">}}
 
 For more detail, select a different size EVPN Session card.
 
@@ -914,13 +914,13 @@ card:
 4.  Double-click the session of interest. The full screen card closes
     automatically.
 
-    {{% imgOld 60 %}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-medium-vtep-count-230.png" width="200">}}
 
 To view the count for a given EVPN session on the *large* EVPN Session
 card, follow the same steps as for the medium card and then switch to
 the large card.
 
-{{% imgOld 61 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-large-summary-tab-vtep-cnt-230.png" width="500">}}
 
 ### View All EVPN Session Details
 
@@ -930,9 +930,9 @@ network-wide.
 To view all session details, open the full screen EVPN Session card and
 click the **All EVPN Sessions** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-fullscr-222.png" width="700">}}
 
-To return to your workbench, click {{% imgOld 63 %}} in the top right of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right of the card.
 
 ### View All Events
 
@@ -941,7 +941,7 @@ You can view all of the alarm and info events occurring network wide.
 To view all events, o pen the full screen EVPN Session card and click
 the **All Events** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-events-tab-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-evpn-fullscr-events-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -951,4 +951,4 @@ include:
   - Sort by the **Message** or **Severity** to narrow your focus.
   - Export the data for use in another analytics tool, by selecting all
     or some of the events and clicking **Export**.
-  - Click {{% imgOld 65 %}} at the top right to return to your workbench.
+  - Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right to return to your workbench.

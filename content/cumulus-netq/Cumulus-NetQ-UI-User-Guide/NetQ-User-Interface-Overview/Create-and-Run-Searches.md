@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321856
 pageID: 12321856
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The Global Search field in the UI header enables you to search for
 devices or cards. You can create new searches or run existing searches.
@@ -33,7 +33,7 @@ To create a new search:
 3.  Click the device hostname or card workflow in the search list to
     open the associated information.  
 
-    {{< figure src="/images/netq/search-create-auto-suggest-222.png" width="300" >}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/search-create-auto-suggest-222.png" width="300" >}}
 
     {{%notice note%}}
 
@@ -55,7 +55,7 @@ To re-run a recent search:
 2.  When the desired search appears in the suggested searches list,
     select it.  
 
-    {{< figure src="/images/netq/search-rerun-222.png" width="300" >}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/search-rerun-222.png" width="300" >}}
 
     {{%notice note%}}
 

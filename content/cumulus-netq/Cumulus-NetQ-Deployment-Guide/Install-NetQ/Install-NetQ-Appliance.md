@@ -3,9 +3,9 @@ title: Install the Cumulus NetQ Appliance
 author: Cumulus Networks
 weight: 411
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 The Cumulus NetQ appliance provides a complete monitoring solution for your network; the server comes preloaded with a Cumulus Linux image that includes Cumulus NetQ services, a Cumulus Linux license and certified cables and optics.
@@ -26,7 +26,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 
 Install and set up your NetQ Appliance and switch and host Agents using the following steps:
 
-{{< figure src="/images/netq/install-flow-nqappl-on-prem-nq222.png" width="600" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/install-flow-nqappl-on-prem-nq222.png" width="600" >}}
 
 ## Install the Appliance
 
@@ -37,7 +37,7 @@ After you unbox the appliance:
 3. Connect the Ethernet cable to the 1G management port (eth0).
 4. Power on the appliance.
 
-   {{< figure src="/images/netq/netq-appliance-port-connections.png" width="700" >}}
+   {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-appliance-port-connections.png" width="700" >}}
 
 If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over the network. If DHCP is not enabled, then you configure the appliance using the console cable provided.
 
@@ -134,7 +134,7 @@ If you want to proactively monitor events in your network, you can
 integrate NetQ with the PagerDuty or Slack notification tools. To do so
 you need to configure both the notification application itself to
 receive the messages, and NetQ with what messages to send and where to
-send them. Refer to [Integrate NetQ with Event Notification Applications](/cumulus-netq/Cumulus-NetQ-Integration-Guide/integrate-netq-with-notification-applications)
+send them. Refer to [Integrate NetQ with Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications)
 to use the CLI for configuration.
 
 ## Set Up Security

@@ -1,15 +1,15 @@
 ---
 title: Cumulus NetQ API User Guide
 author: Cumulus Networks
-weight: 204
+weight: 205
 aliases:
  - /display/NETQ/Cumulus+NetQ+API+User+Guide
  - /pages/viewpage.action?pageId=12321983
 pageID: 12321983
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The NetQ API provides access to key telemetry and system monitoring data
 gathered about the performance and operation of your data center network
@@ -27,7 +27,7 @@ known issues present in this release, refer to the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
 
 This Cumulus NetQ API User Guide is available in
-[PDF](/pdfs/Cumulus_NetQ_220_API_User_Guide.pdf) for
+[PDF](https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/pdfs/Cumulus_NetQ_220_API_User_Guide.pdf) for
 offline viewing.
 
 ## API Organization
@@ -427,7 +427,7 @@ monitored nodes and their configuration information, as follows:
 ## View the API
 
 For simplicity, all of the endpoint APIs are combined into a single
-json-formatted file. There have been no changes to the file in the NetQ 2.2.1 or 2.2.2 releases.
+json-formatted file. There have been no changes to the file in the NetQ 2.3.0 release.
 
 <details><summary><span style="color:teal">netq-220.json</span></summary>
 

@@ -8,7 +8,6 @@ version: 2.3
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-
 The following Cumulus NetQ user documentation is available in PDF for offline viewing or printing:
 
 NetQ 2.3.0

@@ -4,9 +4,12 @@ author: Cumulus Networks
 weight: 251
 aliases:
  - /display/CL25ESR/Lightweight+Network+Virtualization+++LNV
+ - /display/CL25ESR/Lightweight+Network+Virtualization+-+LNV
+  - /display/CL25ESR/Lightweight+Network+Virtualization+LNV
  - /pages/viewpage.action?pageId=5116051
 pageID: 5116051
 product: Cumulus Linux
+version: 2.5 ESR
 imgData: cumulus-linux-25esr
 siteSlug: cumulus-linux-25esr
 ---

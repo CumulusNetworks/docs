@@ -7,17 +7,16 @@ aliases:
  - /pages/viewpage.action?pageId=12321059
 pageID: 12321059
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The NetQ CLI provides access to all of the network state and event
 information collected by the NetQ Agents. It behaves the same way most
 CLIs behave, with groups of commands used to display related
 information, the ability to use TAB completion when entering commands,
 and to get help for given commands and options. The commands are grouped
-into four categories: check and show, agent and notifier, trace, and
-resolve.
+into four categories: check, show, config, and trace.
 
 {{%notice note%}}
 
@@ -28,10 +27,7 @@ implemented with Intel x86 or ARM-based architectures. If you are unsure what ar
 
 ## CLI Access
 
-When NetQ is installed, the CLI is also installed and enabled (refer to
-the [Install
-NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
-topic). Simply log in to any network node to access the command line.
+When NetQ is installed or upgraded, the CLI may also be installed and enabled on your NetQ server or appliance and hosts. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ) and [Upgrade NetQ](../../Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ) topics for details.
 
 To access the CLI from a switch or server:
 
@@ -47,7 +43,7 @@ To access the CLI from a switch or server:
          * Documentation:  https://help.ubuntu.com
          * Management:     https://landscape.canonical.com
          * Support:        https://ubuntu.com/advantage
-        Last login: Tue Feb 11 09:28:12 2019 from 10.0.0.14
+        Last login: Tue Sep 15 09:28:12 2019 from 10.0.0.14
         cumulus@switch:~$ 
 
 3.  Run commands. For example:
@@ -80,12 +76,12 @@ NetQ CLI commands all begin with `netq`. Cumulus NetQ commands fall into one of 
     netq config <action> <object> [options]
     netq trace <destination> from <source> [options]
 
-| Symbols               | Meaning                                                                                                                |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Parentheses ( )       | Grouping of required parameters. Choose one.                                                                           |
-| Square brackets \[ \] | Single or group of optional parameters. If more than one object or keyword is available, choose one.                   |
-| Angle brackets \< \>  | Required variable. Value for a keyword or option; enter according to your deployment nomenclature.                     |
-| Pipe |                | Separates object and keyword options, also separates value options; enter one object or keyword and zero or one value. |
+| Symbols  | Meaning  |
+| -------- | -------- |
+| Parentheses ( )       | Grouping of required parameters. Choose one. |
+| Square brackets \[ \] | Single or group of optional parameters. If more than one object or keyword is available, choose one. |
+| Angle brackets \< \>  | Required variable. Value for a keyword or option; enter according to your deployment nomenclature. |
+| Pipe \|                | Separates object and keyword options, also separates value options; enter one object or keyword and zero or one value. |
 
 For example, in the `netq check` command:
 
@@ -114,36 +110,39 @@ All check and show commands are run with a default timeframe of now to one hour 
 
 NetQ code examples use the following prompts:
 
-  - ` cumulus@switch:~$  ` Indicates the user *cumulus* is logged in to a
+  - `cumulus@switch:~$` Indicates the user *cumulus* is logged in to a
     switch to run the example command
-  - ` cumulus@host:~$  ` Indicates the user *cumulus* is logged in to a
+  - `cumulus@host:~$` Indicates the user *cumulus* is logged in to a
     host to run the example command
+  - `cumulus@netq-appliance:~$` Indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
 
 The switches must be running the Cumulus Linux operating system (OS),
 NetQ Platform software, and the NetQ Agent. The hosts must be running
-CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the [Install
-NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
+CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ)
 topic for details.
 
 ### Command Completion
 
 As you enter commands, you can get help with the valid keywords or options using the **Tab** key. For example, using Tab completion with `netq check` displays the possible objects for the command, and returns you to the command prompt to complete the command.
 
-    cumulus@switch:~$ netq check <<press Tab>>
-        agents      :  Netq agent
-        bgp         :  BGP info
-        clag        :  Cumulus Multi-chassis LAG
-        evpn        :  EVPN
-        interfaces  :  network interface port
-        license     :  License information
-        lnv         :  Lightweight Network Virtualization info
-        mtu         :  Link MTU
-        ntp         :  NTP
-        ospf        :  OSPF info
-        sensors     :  Temperature/Fan/PSU sensors
-        vlan        :  VLAN
-        vxlan       :  VXLAN data path
-    cumulus@switch:~$ netq check 
+```
+cumulus@switch:~$ netq check <<press Tab>>
+    agents      :  Netq agent
+    bgp         :  BGP info
+    cl-version  :  Cumulus Linux version
+    clag        :  Cumulus Multi-chassis LAG
+    evpn        :  EVPN
+    interfaces  :  network interface port
+    license     :  License information
+    lnv         :  Lightweight Network Virtualization info
+    mtu         :  Link MTU
+    ntp         :  NTP
+    ospf        :  OSPF info
+    sensors     :  Temperature/Fan/PSU sensors
+    vlan        :  VLAN
+    vxlan       :  VXLAN data path
+cumulus@switch:~$ netq check 
+```
 
 ### Command Help
 
@@ -185,6 +184,7 @@ The `netq` `check` commands enable the network administrator to validate the cur
   - **bgp**: BGP (Border Gateway Protocol) operation across the network
     fabric
   - **clag**: Cumulus Multi-chassis LAG (link aggregation) operation
+  - **cl-version**: Cumulus Linux version
   - **evpn**: EVPN (Ethernet Virtual Private Network) operation
   - **interfaces**: network interface port operation
   - **license**: License status
@@ -204,20 +204,22 @@ by the same command using the `json` option. If there had been any
 failures, they would be have been listed below the summary results or in
 the *failedNodes* section, respectively.
 
-    cumulus@switch:~$ netq check bgp
-    Total Nodes: 8, Failed Nodes: 0, Total Sessions: 30, Failed Sessions: 0
-     
-    cumulus@switch:~$ netq check bgp json
-    {
-        "failedNodes":[
-        ],
-        "summary":{
-            "checkedNodeCount":8,
-            "failedSessionCount":0,
-            "failedNodeCount":0,
-            "totalSessionCount":30
-        }
+```
+cumulus@switch:~$ netq check bgp
+Total Nodes: 8, Failed Nodes: 0, Total Sessions: 30, Failed Sessions: 0
+ 
+cumulus@switch:~$ netq check bgp json
+{
+    "failedNodes":[
+    ],
+    "summary":{
+        "checkedNodeCount":8,
+        "failedSessionCount":0,
+        "failedNodeCount":0,
+        "totalSessionCount":30
     }
+}
+```
 
 ### Monitoring Commands
 
@@ -231,6 +233,8 @@ for the following:
   - **clag**: CLAG status
   - **events**: Display changes over time
   - **evpn**: EVPN status
+  - **interface-stats**: Interface statistics
+  - **interface-utils**: Interface statistics plus utilization
   - **interfaces**: network interface port status
   - **inventory**: hardware component information
   - **ip**: IPv4 status
@@ -242,7 +246,9 @@ for the following:
   - **macs**: MAC table or address information
   - **notification**: Slack or PagerDuty notification configurations
   - **ntp**: NTP status
+  - **opta-health**: Display health of apps on the OPTA
   - **ospf**: OSPF status
+  - **platform** Appliance version info
   - **sensors**: Temperature/Fan/PSU sensor status
   - **services**: System services status
   - **vlan**: VLAN status
@@ -257,64 +263,67 @@ for a selected device using the `hostname` option.
 This example shows the standard and restricted output for the `netq show
 agents` command.
 
-    cumulus@switch:~$ netq show agents
-    Matching agents records:
-    Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
-    ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-    edge01            Fresh            yes      2.2.1-ub16.04u15~1555612152.6e34b56  2d:2h:48m:43s             2d:2h:48m:36s             2d:2h:48m:36s              Sun Jul 21 16:00:50 2019
-    exit01            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:1s              2d:2h:47m:53s             2d:2h:47m:53s              Sun Apr 21 16:00:52 2019
-    exit02            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:7s              2d:2h:47m:58s             2d:2h:47m:58s              Sun Jul 21 16:01:19 2019
-    leaf01            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:47m:59s             2d:2h:47m:51s             2d:2h:47m:51s              Sun Jul 21 16:00:59 2019
-    leaf02            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:9s              2d:2h:48m:0s              2d:2h:48m:0s               Sun Jul 21 16:01:43 2019
-    leaf03            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:8s              2d:2h:47m:59s             2d:2h:47m:59s              Sun Jul 21 16:01:23 2019
-    leaf04            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:10s             2d:2h:48m:2s              2d:2h:48m:2s               Sun Jul 21 16:01:27 2019
-    server01          Fresh            yes      2.2.1-ub16.04u15~1555612152.6e34b56  2d:2h:46m:6s              2d:2h:45m:58s             2d:2h:45m:58s              Sun Jul 21 16:00:43 2019
-    server02          Fresh            yes      2.2.1-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Jul 21 16:00:46 2019
-    server03          Fresh            yes      2.2.1-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Jul 21 16:00:52 2019
-    server04          Fresh            yes      2.2.1-ub16.04u15~1555612152.6e34b56  2d:2h:46m:5s              2d:2h:45m:57s             2d:2h:45m:57s              Sun Jul 21 16:00:43 2019
-    spine01           Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:11s             2d:2h:48m:3s              2d:2h:48m:3s               Sun Jul 21 16:01:33 2019
-    spine02           Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:48m:5s              2d:2h:47m:57s             2d:2h:47m:57s              Sun Jul 21 16:01:12 2019
-
-    cumulus@switch:~$ netq show agents json
-    {
-        "agents":[
-            {
-                "status":"Fresh",
-                "lastChanged":1555862450.0,
-                "reinitializeTime":1555689453.0,
-                "hostname":"edge01",
-                "version":"2.2.1-ub16.04u15~1555612152.6e34b56",
-                "sysUptime":1555689446.0,
-                "ntpSync":"yes",
-                "agentUptime":1555689453.0
-            },
-            {
-                "status":"Fresh",
-                "lastChanged":1555862452.0,
-                "reinitializeTime":1555689496.0,
-                "hostname":"exit01",
-                "version":"2.2.1-cl3u15~1555612272.6e34b56",
-                "sysUptime":1555689488.0,
-                "ntpSync":"yes",
-                "agentUptime":1555689496.0
-            },
-            {
-                "status":"Fresh",
-                "lastChanged":1555862479.0,
-                "reinitializeTime":1555689491.0,
-                "hostname":"exit02",
-                "version":"2.2.1-cl3u15~1555612272.6e34b56",
-                "sysUptime":1555689482.0,
-                "ntpSync":"yes",
-                "agentUptime":1555689491.0
-            },
-    ...
-
-    cumulus@switch:~$ netq leaf01 show agents
-    Matching agents records:
-    Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
-    ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-    leaf01            Fresh            yes      2.2.1-cl3u15~1555612272.6e34b56      2d:2h:49m:59s             2d:2h:49m:51s             2d:2h:49m:51s              Sun Jul 21 16:00:59 2019
+```
+cumulus@switch:~$ netq show agents
+Matching agents records:
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+exit01            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:34m:15s               15h:34m:5s                15h:34m:5s                 Mon Sep 23 22:44:49 2019
+exit02            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:35m:57s               15h:35m:47s               15h:35m:47s                Mon Sep 23 22:43:09 2019
+leaf01            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:35m:10s               15h:35m:1s                15h:35m:1s                 Mon Sep 23 22:43:55 2019
+leaf02            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:35m:53s               15h:35m:43s               15h:35m:43s                Mon Sep 23 22:44:17 2019
+leaf03            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:35m:0s                15h:34m:51s               15h:34m:51s                Mon Sep 23 22:44:01 2019
+leaf04            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:36m:33s               15h:36m:24s               15h:36m:24s                Mon Sep 23 22:43:03 2019
+server01          Fresh            no       2.3.0-ub18.04u21~1569246309.30858c3  15h:14m:46s               15h:14m:34s               15h:14m:34s                Mon Sep 23 22:48:56 2019
+server02          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  15h:14m:46s               15h:14m:34s               15h:14m:34s                Mon Sep 23 22:49:24 2019
+server03          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  15h:14m:46s               15h:14m:34s               15h:14m:34s                Mon Sep 23 22:49:24 2019
+server04          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  15h:14m:45s               15h:14m:33s               15h:14m:33s                Mon Sep 23 22:49:24 2019
+spine01           Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:34m:6s                15h:33m:57s               15h:33m:57s                Mon Sep 23 22:44:27 2019
+spine02           Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:34m:12s               15h:34m:2s                15h:34m:2s                 Mon Sep 23 22:43:30 2019
+```
+```
+cumulus@switch:~$ netq show agents json
+{
+    "agents":[
+        {
+            "status":"Fresh",
+            "lastChanged":1569278689.0,
+            "reinitializeTime":1569277757.0,
+            "hostname":"exit01",
+            "version":"2.3.0-cl3u21~1569246310.30858c3",
+            "sysUptime":1569277747.0,
+            "ntpSync":"yes",
+            "agentUptime":1569277757.0
+        },
+        {
+            "status":"Fresh",
+            "lastChanged":1569278589.0,
+            "reinitializeTime":1569277655.0,
+            "hostname":"exit02",
+            "version":"2.3.0-cl3u21~1569246310.30858c3",
+            "sysUptime":1569277645.0,
+            "ntpSync":"yes",
+            "agentUptime":1569277655.0
+        },
+        {
+            "status":"Fresh",
+            "lastChanged":1569278635.0,
+            "reinitializeTime":1569277701.0,
+            "hostname":"leaf01",
+            "version":"2.3.0-cl3u21~1569246310.30858c3",
+            "sysUptime":1569277692.0,
+            "ntpSync":"yes",
+            "agentUptime":1569277701.0
+        },
+...
+```
+```
+cumulus@switch:~$ netq leaf01 show agents
+Matching agents records:
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+leaf01            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:57m:24s               15h:57m:15s               15h:57m:15s                Mon Sep 23 22:43:55 2019
+```
 
 ### Configuration Commands
 
@@ -323,11 +332,7 @@ The `netq config` and `netq notification` commands enable the network administra
 #### NetQ Agent Configuration
 
 The agent commands enable the network administrator to configure
-individual NetQ Agents. Refer to [Cumulus NetQ
-Primer](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Cumulus-NetQ-Primer)
-for a description of NetQ Agents and to [Manage NetQ
-Agents](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Manage-NetQ-Agents)
-for more detailed usage examples.
+individual NetQ Agents. Refer to [Cumulus NetQ Components](../../Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components) for a description of NetQ Agents, to [Manage NetQ Agents](../Manage-NetQ-Agents), or to [Install NetQ Agents and CLI on Switches](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches/) for more detailed usage examples.
 
 The agent configuration commands enable you to add and remove agents
 from switches and hosts, start and stop agent operations, add and remove
@@ -336,8 +341,7 @@ and add or remove FRR (FRRouting).
 
 {{%notice note%}}
 
-Commands
-apply to one agent at a time, and are run from the switch or host where
+Commands apply to one agent at a time, and are run from the switch or host where
 the NetQ Agent resides.
 
 {{%/notice%}}
@@ -391,21 +395,24 @@ Commands apply to one device at a time, and are run from the switch or host wher
 {{%/notice%}}
 
 The CLI configuration commands include:
+```
+netq config add cli server
+netq config del cli server
+netq config show cli premises [json]
+netq config show (cli|all) [json]
+netq config (status|restart) cli
+```
 
-    netq config (add|del|show) cli server
-    netq config add cli server api.netq.cumulusnetworks.com access-key <user-access-key> secret-key <user-secret-key> port 443
-    netq config (start|restart) cli
+This example shows how to restart the CLI instance.
 
-This example shows how to start the CLI instance.
-
-    cumulus@switch~:$ netq config start cli
+    cumulus@switch~:$ netq config restart cli
 
 This example shows how to enable the CLI on a NetQ Platform or NetQ
 Appliance.
 
     cumulus@switch~:$ netq config add cli server 10.1.3.101
 
-This example shows how to enable the CLI on a NetQ Cloud Appliance.
+This example shows how to enable the CLI on a NetQ Cloud Appliance with a single premise.
 
     netq config add cli server api.netq.cumulusnetworks.com access-key <user-access-key> secret-key <user-secret-key> port 443
 
@@ -416,17 +423,16 @@ The notification configuration commands enable you to add, remove and show notif
     netq (add|del|show) notification channel
     netq (add|del|show) notification rule
     netq (add|del|show) notification filter
+    netq (add|del|show) notification proxy
 
-An integration includes at least one channel, PagerDuty or Slack.
-Filters are optional and defined by rules you create. If you have a
-filter, it must have at least one rule.
+An integration includes at least one channel (PagerDuty, Slack, or syslog), at least one filters (defined by rules you create), and at least one rule.
 
 This example shows how to configure a PagerDuty channel:
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
     Successfully added/updated channel pd-netq-events
 
-Refer to [Integrate with Third-party Software and Hardware](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware) for details about using these commands and additional examples.
+Refer to [Integrate NetQ with Notification Applications](../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications/) for details about using these commands and additional examples.
 
 ### Trace Commands
 
@@ -531,31 +537,18 @@ release.
       <th>Version</th>
     </tr>
     <tr>
-      <td>
-        netq install opta interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt; key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;]
-      </td>
-      <td>Installs NetQ v2.2.0 software onto the NetQ Cloud Appliance.</td>
-      <td>2.2.0</td>
+      <td>netq check cl-version [match-version &lt;cl-ver&gt; | min-version &lt;cl-ver&gt;] [include &lt;version-number-range-list&gt; | exclude &lt;version-number-range-list&gt;] [around &lt;text-time&gt;] [json | summary]</td>
+      <td>When no options are used, validates that the Cumulus Linux version running on all of the monitored nodes is consistent. When <em>min-version</em> is provided, validates CL version is equal or greater than specified version. When <em>match-version</em> is provided, validates all nodes are using specified version.</td>
+      <td>2.3.0</td>
+      <tr>
+      <td>netq [&lt;hostname&gt;] show interface-utils [&lt;text-port&gt;] [tx|rx] [around &lt;text-time&gt;] [json]</td>
+      <td>Similar to <code>netq show interface-stats</code>, this command displays NetQ server or appliance interface receive and transmit statistics, but it also shows utilization and port speed.</td>
+      <td>2.3.0</td>
     </tr>
     <tr>
-      <td>netq upgrade opta interface &lt;text-opta-ifname&gt; key &lt;text-opta-key&gt;</td>
-      <td>Upgrades the NetQ software on the NetQ Cloud Appliance.</td>
-      <td>2.2.0</td>
-    </tr>
-    <tr>
-      <td>netq update opta config-key &lt;text-opta-key&gt;</td>
-      <td>Overwrites the existing config-key on the NetQ Cloud Appliance.</td>
-      <td>2.2.1</td>
-    </tr>
-    <tr>
-      <td>netq [&lt;hostname&gt;] show interface-stats [errors|all] [&lt;physical-port&gt;] [around &lt;text-time&gt;] [json]</td>
-      <td>Displays a variety of NetQ server or appliance interface statistics.</td>
-      <td>2.2.0 EA, 2.2.1 GA</td>
-    </tr>
-    <tr>
-      <td>netq add notification channel syslog &lt;text-channel-name&gt; hostname &lt;text-syslog-hostname&gt; port &lt;text-syslog-port&gt; [severity info | severity warning | severity error | severity debug]</td>
-      <td>Configures syslog to receive event notifications</td>
-      <td>2.2.2</td>
+      <td>netq show platform [json]</td>
+      <td>Displays the NetQ software version installed on your NetQ server or appliance.</td>
+      <td>2.3.0</td>
     </tr>
    </tbody>
 </table>
@@ -582,58 +575,11 @@ this release.
  </thead>
  <tbody>
     <tr>
-      <td>netq install opta interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt; config-key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;][force]</td>
-      <td>netq install opta interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt; key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;]
-      <td>Installs NetQ v2.2.1 software onto the NetQ Cloud Appliance. The <em>key</em> option was changed to <em>config-key</em>, and the <em>force</em> option was added.</td>
-      <td>2.2.1</td>
-    </tr>
-    <tr>
-      <td>netq install opta interface &lt;text-opta-ifname&gt; tarball (&lt;text-tarball-name&gt; | download | download <text-opta-version>) config-key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;]</td>
-      <td>netq install opta interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt; config-key &lt;text-opta-key&gt; [file &lt;text-config-file&gt;]</td>
-      <td>Added option to download and install latest (<em>download</em>) or specific (<em>download &lt;text-opta-version&gt;</em>) version of install package for NetQ Cloud software in one step.</td>
-      <td>2.2.2</td>
-   </tr>
-   <tr>
-     <td>netq upgrade opta tarball &lt;text-tarball-name&gt;</td>
-     <td>netq upgrade opta interface &lt;text-opta-ifname&gt; key &lt;text-opta-key&gt;</td>
-     <td>Upgrades the NetQ software on the NetQ Cloud Appliance. Simplified command to use tarball name rather than interface and key.</td>
-     <td>2.2.1</td>
-   </tr>
-   <tr>
-      <td>netq upgrade opta tarball (&lt;text-tarball-name&gt; | download | download <text-opta-version>)</td>
-      <td>netq upgrade opta tarball &lt;text-tarball-name&gt;</td>
-      <td>Added option to download and install latest (<em>download</em>) or specific (<em>download &lt;text-opta-version&gt;</em>)version of upgrade package for NetQ Cloud software in one step.</td>
-      <td>2.2.2</td>
-   </tr>
-   <tr>
-      <td>netq check evpn [mac-consistency] [around &lt;text-time&gt;] [json]</td>
-      <td>netq [&lt;hostname&gt;] show evpn [vni &lt;text-vni&gt;] [around &lt;text-time&gt;] [json]</td>
-      <td>Added <em>mac-consistency</em> option that includes a check to verify if the MAC associated with each end of the EVPN connection is the same. Removed <em>hostname</em> and <em>vni</em> options.</td>
-      <td>2.2.0</td>
-    </tr>
-    <tr>
-      <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [premises &lt;text-premise-name&gt;] [port &lt;text-gateway-port&gt;] [vrf &lt;text-vrf-name&gt;]</td>
-      <td>netq config add cli server</td>
-      <td>Adds the CLI daemon to the switch or host where this command is run. When using a NetQ Cloud Appliance, the access-key, secret-key, and port are required. In NetQ 2.2.2, the <em>premise</em> option was changed to <em>premises</em>. Only NetQ v2.2.1 and later support the <em>cli-keys-file</em> option.</td>
-      <td>2.2.0, 2.2.1, 2.2.2</td>
-    </tr>
-    <tr>
-      <td>netq config show cli premises [json]</td>
-      <td>netq config show cli [json]</td>
-      <td>Displays configuration settings for the CLI for all cloud premises.</td>
-      <td>2.2.0</td>
-    </tr>
-    <tr>
-      <td>netq [&lt;hostname&gt;] show agents [fresh|dead|rotten|opta] [around &lt;text-time&gt;] [json]</td>
-      <td>netq [&lt;hostname&gt;] show agents [fresh|dead|rotten] [around &lt;text-time&gt;] [json]</td>
-      <td>The <em>opta</em> option has been added to only view the information about the NetQ Agent on the NetQ or NetQ Cloud Appliance.</td>
-      <td>2.2.1</td>
-    </tr>
-    <tr>
-      <td>netq [&lt;hostname&gt;] show inventory [asic|board|brief|cpu|disk| license|memory|os] [&lt;options-specific-to-inventory-item&gt;] [opta] [json]</td>
-      <td>netq [&lt;hostname&gt;] show inventory [asic|board|brief|cpu|disk| license|memory|os] [&lt;options-specific-to-inventory-item&gt;] [json]</td>
-      <td>Added `opta` option to show only the selected inventory information for the NetQ or NetQ Cloud Appliance.</td>
-      <td>2.2.1</td>
+      <td><p>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; premises &lt;text-premises-name&gt; | cli-keys-file &lt;text-key-file&gt; premises &lt;text-premises-name&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;]</p>
+      <p>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;]</p></td>
+      <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [premise &lt;text-premise-name&gt;] [port &lt;text-gateway-port&gt;] [vrf &lt;text-vrf-name&gt;]</td>
+      <td>Adds the CLI daemon to the switch or host where this command is run. Split command into two: the first for when you want to specify the premises, the second for when you want to use the first premises in your list of premises. The <em>access-key</em>, <em>secret-key</em>, and <em>port</em> are required for cloud deployments. The <em>text-gateway-dest</em> is the only required value for on-premises deployments.</td>
+      <td>2.3.0</td>
     </tr>
    </tbody>
 </table>
@@ -647,10 +593,3 @@ recommended alternative, if appropriate.
 | ------- | ------------------- |
 | N/A     | N/A                 |
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

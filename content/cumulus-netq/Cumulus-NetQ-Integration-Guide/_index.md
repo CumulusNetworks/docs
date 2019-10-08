@@ -3,9 +3,9 @@ title: Cumulus NetQ Integration Guide
 author: Cumulus Networks
 weight: 15
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 After you have completed the installation of Cumulus NetQ,
 you may want to configure some of the additional capabilities that NetQ

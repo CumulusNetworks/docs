@@ -19,7 +19,7 @@ number of tools available for configuring ACLs in Cumulus Linux:
   - `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools
     used to administer filtering rules for IPv4 packets, IPv6 packets,
     and Ethernet frames (layer 2 using MAC addresses).
-  - [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
+  - [NCLU](../Network-Command-Line-Utility-NCLU)
     is a Cumulus Linux-specific userspace tool used to configure custom
     ACLs.
   - `cl-acltool` is a Cumulus Linux-specific userspace tool used to
@@ -476,11 +476,11 @@ entry is one of the following:
 
 Cumulus Linux supports matching ACL rules for both ingress and egress
 interfaces on both
-[VLAN-aware](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+[VLAN-aware](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 and [traditional
-mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
+mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
 bridges, including bridge SVIs ([switch VLAN
-interfaces](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/#configure-an-svi-(switch-vlan-interface))
+interfaces](../../Layer-2/Ethernet-Bridging-VLANs/#configure-an-svi-(switch-vlan-interface))
 for input and output. However, keep the following in mind:
 
   - If a traditional mode bridge has a mix of different VLANs, or has
@@ -894,7 +894,7 @@ The Mellanox Spectrum ASIC has one common
 [TCAM](https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs)
 for both ingress and egress, which can be used for other non-ACL-related
 resources. However, the number of supported rules varies with the [TCAM
-profile](/cumulus-linux/Layer-3/Routing#tcam-resource-profiles-for -spectrum-switches) specified for the
+profile](../../Layer-3/Routing#tcam-resource-profiles-for -spectrum-switches) specified for the
 switch.
 
 | Profile      | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
@@ -1646,7 +1646,7 @@ disable atomic update mode.
 To do so, enable nonatomic update mode by setting the value for
 `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`,
 then [restart
-`switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd).
+`switchd`](../Configuring-switchd/#restart-switchd).
 
     acl.non_atomic_update_mode = TRUE
 
@@ -1676,7 +1676,7 @@ On a Trident3 switch, you must enable nonatomic update mode before you
 can configure ERSPAN. To do so, set the value for
 `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`,
 then [restart
-  `switchd`](/cumulus-linux/System-Configuration/Configuring-switchd/#restart-switchd).
+  `switchd`](../Configuring-switchd/#restart-switchd).
 
     acl.non_atomic_update_mode = TRUE
 
@@ -1721,7 +1721,7 @@ instead because:
 
 ### Mellanox Spectrum Hardware Limitations
 
-Due to hardware limitations in the Spectrum ASIC, [BFD policers](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
+Due to hardware limitations in the Spectrum ASIC, [BFD policers](../../Layer-3/Bidirectional-Forwarding-Detection-BFD)
 are shared between all BFD-related control plane rules. Specifically the
 following default rules share the same policer in the
 `00control_plan.rules` file:

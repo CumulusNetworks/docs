@@ -25,7 +25,7 @@ greater redundancy and greater system throughput.
 by other vendors as CLAG, MC-LAG or VPC. You will even see references to
 CLAG in Cumulus Linux, including the management daemon, named `clagd`, and
 other options in the code, such as `clag-id`, which exist for historical
-purposes. The Cumulus Linux implementation is truly a multi-chassis link 
+purposes. The Cumulus Linux implementation is truly a multi-chassis link
 aggregation protocol, so we call it MLAG.
 
 {{%/notice%}}
@@ -168,7 +168,7 @@ configuration on the other peer switch. This applies to all
 configuration changes, including:
 
 - Port configuration; for example, VLAN membership,
-  [MTU](../Multi-Chassis-Link-Aggregation-MLAG/#mtu-in-an-mlag-configuration), 
+  [MTU](../Multi-Chassis-Link-Aggregation-MLAG/#mtu-in-an-mlag-configuration),
   and bonding parameters.
 - Bridge configuration; for example, spanning tree parameters or
   bridge properties.
@@ -176,7 +176,7 @@ configuration changes, including:
   IGMP entries.
 - QoS configuration; for example, ACL entries.
 
-You can verify the configuration of VLAN membership with the 
+You can verify the configuration of VLAN membership with the
 `net show clag verify-vlans verbose` command.
 
 <details>
@@ -212,7 +212,7 @@ uplink                  104   uplink
 ### Reserved MAC Address Range
 
 To prevent MAC address conflicts with other interfaces in the same
-bridged network, Cumulus Networks has 
+bridged network, Cumulus Networks has
 [reserved a range of MAC addresses](https://support.cumulusnetworks.com/hc/en-us/articles/203837076)
 specifically to use with MLAG. This range of MAC addresses is
 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff.
@@ -495,7 +495,7 @@ neighSync = True
 permanentMacSync = True
 cmdLine = /usr/sbin/clagd --daemon 169.254.1.2 peerlink.4094 44:38:39:FF:00:01 --priority 1000 --backupIp 192.168.0.12 --peerTimeout 900
 peerlinkLearnEnable = False
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$
 ```
 
 ## Example MLAG Configuration
@@ -513,7 +513,7 @@ example clag l2-with-server-vlan-trunks`.
 
 {{%/notice%}}
 
-{{< figure src="/cumulus-linux/Images/exampleMLAGconfig.png">}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/cumulus-linux/exampleMLAGconfig.png">}}
 
 You configure these interfaces using
 [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU),

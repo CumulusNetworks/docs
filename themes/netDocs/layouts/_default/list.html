@@ -6,7 +6,12 @@
 
 {{ define "main" }}
 <article class="markdown">
-<h1>  {{- .Page.Title -}} </h1>
+  {{ if .Site.Params.pdfExport }}
+    {{ $id := .Page.Title | lower | replaceRE "[^0-9a-z]" "-" | replaceRE "-+" "-"}}
+    <h1 id="{{ $id }}">  {{- .Page.Title -}} </h1>
+  {{else}}
+    <h1>  {{- .Page.Title -}} </h1>
+  {{ end }}
   {{- .Content -}}
 </article>
 {{ end }}

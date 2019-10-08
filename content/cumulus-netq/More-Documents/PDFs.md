@@ -13,9 +13,9 @@ The following Cumulus NetQ user documentation is available in PDF for offline vi
 
 NetQ 2.3.0
 
-- [Cumulus NetQ Deployment Guide PDF](/pdfs/Cumulus_NetQ_220_Deployment_Guide.pdf)
-- [Cumulus NetQ CLI User Guide PDF](/pdfs/Cumulus_NetQ_220_CLI_User_Guide.pdf)
-- [Cumulus NetQ UI User Guide PDF](/pdfs/Cumulus_NetQ_220_UI_User_Guide.pdf)
+- [Cumulus NetQ Deployment Guide PDF](https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/Cumulus_NetQ_220_Deployment_Guide.pdf)
+- [Cumulus NetQ CLI User Guide PDF](https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/Cumulus_NetQ_220_CLI_User_Guide.pdf)
+- [Cumulus NetQ UI User Guide PDF](https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/Cumulus_NetQ_220_UI_User_Guide.pdf)
 
 {{%notice note%}}
 

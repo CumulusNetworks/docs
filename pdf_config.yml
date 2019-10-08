@@ -2,24 +2,36 @@ version: "3.4"
 
 documents:
   # Item tag below is not of any significance, purely for structure
-  cumulus-netq-cli:
+  cumulus-netq-ui:
     # PDF file name
-    name: Cumulus-NetQ-CLI-User-Guide
-    # Path to the index HTML file for the title page 
-    title-page: cumulus-netq/Cumulus-NetQ-CLI-User-Guide/title/
+    name: Cumulus-NetQ-UI-User-Guide
+    # Path to the index HTML file for the title page
+    title-page: cumulus-netq/Cumulus-NetQ-UI-User-Guide/title/
     # Paths to index files to include
     folders:
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/NetQ-Command-Line-Overview
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Overall-Network-Health
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Switch-Hardware-and-Software
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Physical-Layer-Components
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Data-Link-Layer-Devices-and-Protocols
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Network-Layer-Protocols
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Virtual-Network-Overlays
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Linux-Hosts
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Container-Environments
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Manage-NetQ-Agents
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Investigate-NetQ-Issues
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-MLAG-Issues
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/CLI-Early-Access-Features
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-the-UI
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Application-Layout
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Create-and-Run-Searches
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Focus-Your-Montoring-Using-Workbenches
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Set-User-Preferences
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Configuration-Management/
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Configuration-Management/Application-Management
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Configuration-Management/Lifecycle-Management
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Network-Health
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Validate-Network-Protocol-and-Service-Operations
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Network-Inventory
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Events
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-the-BGP-Service
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-the-EVPN-Service
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-the-LLDP-Service
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-the-MLAG-Service
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-the-OSPF-Service
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Network-Connectivity
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/UI-Early-Access-Features
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Devices/
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Devices/Monitor-Switches
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Elements/

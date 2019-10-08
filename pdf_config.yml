@@ -4,7 +4,7 @@ documents:
   # Item tag below is not of any significance, purely for structure
   cumulus-netq-deployment:
     # PDF file name
-    name: Cumulus-NetQ-Deployment-Guide
+    name: Cumulus-NetQ-Deployment-Guide-23
     # Path to the index HTML file for the title page
     title-page: cumulus-netq/Cumulus-NetQ-Deployment-Guide/title/
     # Paths to index files to include
@@ -28,11 +28,11 @@ documents:
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Restore-NetQ
 
-      
+
   cumulus-netq-cli:
     # PDF file name
-    name: Cumulus-NetQ-CLI-User-Guide
-    # Path to the index HTML file for the title page 
+    name: Cumulus-NetQ-CLI-User-Guide-23
+    # Path to the index HTML file for the title page
     title-page: cumulus-netq/Cumulus-NetQ-CLI-User-Guide/title/
     # Paths to index files to include
     folders:
@@ -53,7 +53,7 @@ documents:
 
   cumulus-netq-ui:
     # PDF file name
-    name: Cumulus-NetQ-UI-User-Guide
+    name: Cumulus-NetQ-UI-User-Guide-23
     # Path to the index HTML file for the title page
     title-page: cumulus-netq/Cumulus-NetQ-UI-User-Guide/title/
     # Paths to index files to include
@@ -87,7 +87,7 @@ documents:
 
   cumulus-netq-integration:
     # PDF file name
-    name: Cumulus-NetQ-Integration-Guide
+    name: Cumulus-NetQ-Integration-Guide-23
     # Path to the index HTML file for the title page
     title-page: cumulus-netq/Cumulus-NetQ-Integration-Guide/title/
     # Paths to index files to include
@@ -98,4 +98,3 @@ documents:
       - cumulus-netq/Cumulus-NetQ-Integration-Guide/Integrate-with-Grafana
       - cumulus-netq/Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Hardware-Chassis
       - cumulus-netq/Cumulus-NetQ-Integration-Guide/API-User-Guide
-  

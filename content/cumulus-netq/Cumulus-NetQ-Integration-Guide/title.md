@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ CLI User Guide
+title: Cumulus NetQ Integration Guide
 author: Cumulus Networks
 weight: 19
 aliases:

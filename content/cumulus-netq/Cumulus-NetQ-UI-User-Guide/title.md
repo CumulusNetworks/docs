@@ -1,9 +1,8 @@
 ---
-title: Cumulus NetQ CLI User Guide
+title: Cumulus NetQ UI User Guide
 author: Cumulus Networks
-weight: 19
+weight: 51
 aliases:
-pageID: 10977536
 product: Cumulus NetQ
 version: 2.3
 imgData: cumulus-netq-22

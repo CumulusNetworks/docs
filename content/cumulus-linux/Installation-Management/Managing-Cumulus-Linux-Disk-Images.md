@@ -15,9 +15,9 @@ The Cumulus Linux operating system resides on a switch as a *disk
 image*. This section discusses how to manage the disk image.
 
 For information on installing a new Cumulus Linux disk image, refer to
-[Installing a New Cumulus Linux Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
+[Installing a New Cumulus Linux Image](../Installing-a-New-Cumulus-Linux-Image).
 For information on upgrading Cumulus Linux, refer to
-[Upgrading Cumulus Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux).
+[Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux).
 
 ## Determine the Switch Platform
 

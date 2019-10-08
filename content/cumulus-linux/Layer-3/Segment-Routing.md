@@ -13,8 +13,6 @@ siteSlug: cumulus-linux
 ---
 {{%notice warning%}}
 
-**Early Access Feature**
-
 Segment routing is an [early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878) in Cumulus Linux and is supported only on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1).
 
 {{%/notice%}}

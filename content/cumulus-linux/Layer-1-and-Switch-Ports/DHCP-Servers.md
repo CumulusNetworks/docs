@@ -26,10 +26,10 @@ dedicated server in your environment.
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](/cumulus-linux/Layer-3/Management-VRF),
-follow [these steps](/cumulus-linux/Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
-configuring them. See also the [VRF chapter](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
+including the [management VRF](../../Layer-3/Management-VRF),
+follow [these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
+configuring them. See also the [VRF chapter](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
 
 {{%/notice%}}
 

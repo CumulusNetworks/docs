@@ -19,7 +19,7 @@ provisioning across virtual and physical server infrastructures.
 
 Cumulus Linux also supports integration with VMware NSX in high
 availability mode. Refer to [OVSDB Server High
-Availability](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/OVSDB-Server-High-Availability).
+Availability](../OVSDB-Server-High-Availability).
 
 ## Getting Started
 
@@ -27,7 +27,7 @@ Before you integrate VXLANs with NSX-V, make sure you have a layer 2
 gateway; a switch with the Broadcom Tomahawk, Trident II+, Trident II, Maverick ASIC or the Mellanox Spectrum ASIC running Cumulus Linux. Cumulus Linux includes
 OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support
 [VLAN-aware
-bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
+bridges](../../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
 
 To integrate a VXLAN with NSX-V, you need to:
 

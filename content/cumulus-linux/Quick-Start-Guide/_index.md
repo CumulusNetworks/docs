@@ -50,7 +50,7 @@ system choice, such as Cumulus Linux.
 
 If Cumulus Linux is already installed on your switch and you need to
 upgrade the software only, skip to [Upgrading Cumulus
-Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux).
+Linux](../Installation-Management/Upgrading-Cumulus-Linux).
 
 {{%/notice%}}
 
@@ -81,7 +81,7 @@ server typically completes in less than ten minutes.
 
 You have more options for installing Cumulus Linux with ONIE. Read
 [Installing a New Cumulus Linux
-Image](/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image)
+Image](../Installation-Management/Installing-a-New-Cumulus-Linux-Image)
 to install Cumulus Linux using ONIE in the following ways:
 
   - DHCP/web server with and without DHCP options
@@ -138,7 +138,7 @@ All accounts except `root` are permitted remote SSH login; you can use
 change the system configuration require this elevated level of access.
 
 For more information about `sudo`, read [Using sudo to Delegate
-Privileges](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
+Privileges](../System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
 
 ### Serial Console Management
 
@@ -184,7 +184,7 @@ file:
 ### Configure the Hostname and Timezone
 
 To change the hostname, run `net add hostname`, which modifies both
-the`  /etc/hostname  `and `/etc/hosts` files with the desired hostname.
+the `/etc/hostname` and `/etc/hosts` files with the desired hostname.
 
     cumulus@switch:~$ net add hostname <hostname>
     cumulus@switch:~$ net pending
@@ -228,7 +228,7 @@ required.
 
 Before you install the license, verify that the date and time on the
 switch are correct. You must [correct the date and
-time](/cumulus-linux/System-Configuration/Setting-Date-and-Time) if they
+time](../System-Configuration/Setting-Date-and-Time) if they
 are incorrect. The wrong date and time can have impacts on the switch,
 such as the inability to synchronize with Puppet or return errors like
 this one after you restart `switchd`:
@@ -292,7 +292,7 @@ as described above.
 
 If you are using 4x10G DAC or AOC cables, or want to break out 100G or
 40G switch ports, configure the breakout ports. For more details, see
-[Layer 1 and Switch Port Attributes](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#breakout-ports).
+[Layer 1 and Switch Port Attributes](../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#breakout-ports).
 
 ## Test Cable Connectivity
 

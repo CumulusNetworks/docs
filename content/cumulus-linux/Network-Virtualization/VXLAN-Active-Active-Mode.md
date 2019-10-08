@@ -12,14 +12,14 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 *VXLAN active-active mode* allows a pair of
-[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 switches to act as a single VTEP, providing active-active VXLAN
 termination for bare metal as well as virtualized workloads.
 
 There are some differences whether you're deploying this with
-[EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
+[EVPN](../Ethernet-Virtual-Private-Network-EVPN)
 or
-[LNV](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/).
+[LNV](../Lightweight-Network-Virtualization-Overview/).
 This chapter outlines the configurations for both options.
 
 ## Terminology
@@ -44,9 +44,9 @@ to work correctly.
 
 |Technology|More Information|
 |--- |--- |
-|MLAG|Refer to the [MLAG chapter](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) for more detailed configuration information. Configurations for the demonstration are provided below.|
-|OSPF or BGP|Refer to the [OSPF chapter](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/) or the [BGP chapter](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/) for more detailed configuration information. Configurations for the BGP demonstration are provided below.|
-|STP|You must enable [BPDU filter](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-filter) and [BPDU guard](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard) in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN. Configurations for the demonstration are provided below.|
+|MLAG|Refer to the [MLAG chapter](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) for more detailed configuration information. Configurations for the demonstration are provided below.|
+|OSPF or BGP|Refer to the [OSPF chapter](../../Layer-3/Open-Shortest-Path-First-OSPF/) or the [BGP chapter](../../Layer-3/Border-Gateway-Protocol-BGP/) for more detailed configuration information. Configurations for the BGP demonstration are provided below.|
+|STP|You must enable [BPDU filter](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-filter) and [BPDU guard](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard) in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN. Configurations for the demonstration are provided below.|
 
 ### Active-active VTEP Anycast IP Behavior
 
@@ -137,8 +137,8 @@ changes to anycast upon MLAG peering.
 ### FRRouting Configuration
 
 You can configure the layer 3 fabric using
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) or
-[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF). The
+[BGP](../../Layer-3/Border-Gateway-Protocol-BGP) or
+[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF). The
 following example uses BGP unnumbered. The MLAG switch configuration for
 the topology above is shown below.
 
@@ -595,7 +595,7 @@ iface bond0.20 inet static
 ## Using Active-active Mode with LNV
 
 When using VXLAN active-active mode with [lightweight network
-virtualization](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+virtualization](../Lightweight-Network-Virtualization-Overview/)
 (LNV), follow the steps outlined above. In addition, the following
 configuration steps are needed:
 
@@ -890,7 +890,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 ## Troubleshooting
 
 In addition to [troubleshooting single-attached
-configurations](/cumulus-linux/Network-Virtualization/Troubleshooting-VXLANs),
+configurations](../Troubleshooting-VXLANs),
 there is now the MLAG daemon (`clagd`) to consider. The `clagctl`
 command gives the output of MLAG behavior and any inconsistencies that
 might arise between a MLAG pair.
@@ -948,7 +948,7 @@ that there is a `vxlan-id` mis-match on VXLAN10.
 Do not reuse the VLAN used for the peer link layer 3 subinterface for
 any other interface in the system. A high VLAN ID value is recommended.
 For more information on VLAN ID ranges, refer to the
-[VLAN-aware bridge chapter](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/#reserved-vlan-range).
+[VLAN-aware bridge chapter](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/#reserved-vlan-range).
 
 ### Bonds with Vagrant in Cumulus VX
 
@@ -1022,5 +1022,4 @@ mode can function correctly.
 
 ## Related Information
 
-  - [Network virtualization chapter, Cumulus Linux user
-    guide](/cumulus-linux/Network-Virtualization/)
+[Network virtualization chapter, Cumulus Linux user guide](../../Network-Virtualization/)

@@ -1,0 +1,29 @@
+version: "3.4"
+
+documents:
+  # Item tag below is not of any significance, purely for structure
+  cumulus-netq-deployment:
+    # PDF file name
+    name: Cumulus-NetQ-Deployment-Guide
+    # Path to the index HTML file for the title page
+    title-page: cumulus-netq/Cumulus-NetQ-Deployment-Guide/title/
+    # Paths to index files to include
+    folders:
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/NetQ-Basics/
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/NetQ-Basics/DC-Deploy-Arch
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Operation
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Software-on-Your-Server
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Appliance
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Cloud_Appliance
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-On-premises-Server
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-Cloud-Server
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-NetQ-Appliance
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-NetQ-Cloud-Appliance
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Restore-NetQ

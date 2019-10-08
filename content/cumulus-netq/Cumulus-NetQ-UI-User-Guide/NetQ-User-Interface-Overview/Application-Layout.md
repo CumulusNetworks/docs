@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321856
 pageID: 12321856
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The NetQ UI contains two main areas:
 
@@ -21,11 +21,11 @@ The NetQ UI contains two main areas:
     status and configuration information about your network and its
     various components).
 
-{{< figure src="/images/netq/dashboard-cn-wb-layout-222.png" width="700" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/app-layout-cumulus-wb-areas-highlighted-230.png" width="700" >}}
 
 ## Main Menu
 
-Found in the application header, click {{% imgOld 5 %}} to open the main menu which provides navigation to:
+Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the main menu which provides navigation to:
 
   - **Favorites**: contains list of links to workbenches that you have
     designated as favorites; Home is listed by default
@@ -37,27 +37,27 @@ Found in the application header, click {{% imgOld 5 %}} to open the main menu wh
   - **Admin**: contains link to user documentation and application
     management
 
-{{< figure src="/images/netq/main-menu-222.png" width="450" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-222.png" width="450" >}}
 
 ## Recent Actions
 
 Found in the header, Recent Actions keeps track of every action you take on your workbench and then saves each action with a timestamp. This enables you to go back to a previous state or repeat an action.
 
-To open Recent Actions, click {{% imgOld 7 %}}. Click on any of the actions to perform that action again.
+To open Recent Actions, click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg", height="18", width="18"/>. Click on any of the actions to perform that action again.
 
-{{< figure src="/images/netq/recent-actions-222.png" width="250" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/recent-actions-222.png" width="250" >}}
 
 ## Search
 
 The Global Search field in the UI header enables you to search for
-devices. It behaves like most searches and can help you quickly find device information. For more detail on creating and running searches, refer to [Create and Run Searches](../Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Create-and-Run-Searches).
+devices. It behaves like most searches and can help you quickly find device information. For more detail on creating and running searches, refer to [Create and Run Searches](../Create-and-Run-Searches).
 
 ## Quick Network Health View
 
 Found in the header, the graph and performance rating provide a view
 into the health of your network at a glance.
 
-{{< figure src="/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
 
 {{%notice note%}}
 
@@ -73,7 +73,7 @@ A workbench is comprised of a given set of cards. In this release, a
 preconfigured default workbench, Cumulus Workbench, is available to get
 you started. It contains Device Inventory, Switch Inventory, Alarm and
 Info Events, and Network Health cards. On initial login, this workbench
-is opened. You can create your own workbenches by adding or removing cards available cards to meet your particular needs. For more detail about managing your data using workbenches, refer to [Manage Data on Workbenches](../Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Manage-Data-on-Workbenches).
+is opened. You can create your own workbenches by adding or removing cards available cards to meet your particular needs. For more detail about managing your data using workbenches, refer to [Focus Your Monitoring Using Workbenches](../Focus-Your-Montoring-Using-Workbenches/).
 
 ## Cards
 
@@ -87,11 +87,11 @@ detailed information on the full-screen view. Cards are collected onto a
 workbench where you see all of the data relevant to a task or set of
 tasks. You can add and remove cards from a workbench, move between cards
 and card sizes, and make copies of cards to show different levels of
-data at the same time. For details about working with cards, refer to [Access Data with Cards](../Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards).
+data at the same time. For details about working with cards, refer to [Access Data with Cards](../Access-Data-with-Cards).
 
 ## User Settings
 
-Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> > Profile & Preferences. For details, refer to [Set User Preferences](../Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Set-User-Preferences).
+Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> > Profile & Preferences. For details, refer to [Set User Preferences](../Set-User-Preferences).
 
 ## Format Cues
 

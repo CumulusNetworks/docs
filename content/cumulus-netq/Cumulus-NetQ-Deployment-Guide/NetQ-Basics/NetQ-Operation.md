@@ -4,9 +4,9 @@ author: Cumulus Networks
 weight: 405
 pageID: 12320801
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 In either in-band or out-of-band deployments, NetQ offers network-wide configuration
@@ -22,7 +22,7 @@ switch has software associated with the hardware platform, the operating
 system, and communications. For data centers, the software on a Cumulus
 Linux network switch would be similar to the diagram shown here.
 
-{{< figure src="/images/netq/netq-agent-operation-diag.png" width="550" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-agent-operation-diag.png" width="500" >}}
 
 The NetQ Agent interacts with the various
 components and software on switches and hosts and provides the gathered
@@ -42,7 +42,8 @@ and operating correctly.
 
 For example, if the NetQ Agent learns that an interface has gone down, a
 new BGP neighbor has been configured, or a container has moved, it
-provides that information to the NetQ Platform. That information can then be used to notify users of
+provides that information to the NetQ
+Platform. That information can then be used to notify users of
 the operational state change through various channels. By default, data
 is logged in the database, but you can use the CLI (`netq show events`)
 or configure the Event Service in NetQ to send the information to a
@@ -181,7 +182,7 @@ by the commands to run to determine the cause of a BGP error on spine01.
 Note that the commands use the `around` option to see the results for
 last night and that they can be run from any switch in the network.
 
-{{% imgOld 6 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-ops-historic-230.png" width="700" >}}
 
     cumulus@switch:~$ netq check bgp around 30m
     Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
@@ -252,7 +253,7 @@ routing issues as they occur. This is an example of a Slack message
 received on a *netq-notifier* channel indicating that the BGP session on
 switch *leaf04* interface *swp2* has gone down.
 
-{{% imgOld 7 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/slack-msg-example.png" width="500" >}}
 
 ## Timestamps in NetQ
 
@@ -504,18 +505,14 @@ this:
 Open the full screen Switch Inventory card, select the data to export,
 and click **Export**.
 
-{{% imgOld 8 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-fullscr-export-button-230.png" width="700" >}}
 
-## Key File Locations
+## Important File Locations
 
-The primary configuration file for all
-Cumulus NetQ tools, `netq.yml`,
-resides in `/etc/netq` by
-default.
+The primary configuration file for all Cumulus NetQ tools, `netq.yml`,
+resides in `/etc/netq` by default.
 
-Log files are stored in `/var/logs/` by
-default.
+Log files are stored in `/var/logs/` by default.
 
-Refer to [Investigate NetQ Issues](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Investigate-NetQ-Issues)
-for a complete listing of configuration files and logs for use in issue
-resolution.
+Refer to [Investigate NetQ Issues](../../../Cumulus-NetQ-CLI-User-Guide/Investigate-NetQ-Issues)
+for a complete listing of configuration files and logs for use in issue resolution.

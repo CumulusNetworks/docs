@@ -3,9 +3,9 @@ title: Install the Cumulus NetQ Cloud Appliance
 author: Cumulus Networks
 weight: 413
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 The Cumulus NetQ Cloud Appliance provides secure streaming of telemetry data collected by NetQ Agents to the NetQ Cloud; the server comes preloaded with a Cumulus Linux image that includes basic Cumulus NetQ services,  Cumulus Linux license, and certified cables and optics.
@@ -26,13 +26,13 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 
 Install and set up your NetQ Appliance and switch and host Agents using the following steps:
 
-{{< figure src="/images/netq/install-flow-nqcldappl-cloud-nq222.png" width="600" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/install-flow-nqcldappl-cloud-nq222.png" width="600" >}}
 
 ## Install the Appliance
 
 After you unbox the appliance, mount it in the rack and connect it to power following the procedures described in your appliance's [user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf). Connect the Ethernet cable to the 10G management port (eth0), then power on the appliance.
 
-{{< figure src="/images/netq/netq-cloud-appl-port-connections.png" width="700" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-cloud-appl-port-connections.png" width="700" >}}
 
 If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over the network. If DHCP isn't enabled, then you configure the appliance using the console cable provided.
 
@@ -88,90 +88,13 @@ cumulus@netq-appliance:~$ net commit
 
 ## Download and Install the NetQ Cloud Software
 
-Be sure to use the correct instructions as they have changed for the NetQ 2.2.2 release.
+Download and install the tarball file. The config-key was provided to you by Cumulus Networks via an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) to have it sent to you again.
 
-<details>
-<summary>NetQ 2.2.2</summary>
-
-1. Download and install the tarball file.
-
-   The config-key was provided to you by Cumulus Networks via an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) to have it sent to you again.
-
-   **Note**: Be sure to replace the interface and key values with values appropriate for your configuration. This example uses eth0 and a sample key.
+**Note**: Be sure to replace the interface and key values with values appropriate for your configuration. This example uses eth0 and a sample key.
 
 ```
 cumulus@netq-appliance:~$ netq install opta interface eth0 tarball download config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
 ```
-
-</details>
-<details>
-<summary>NetQ 2.2.0 or 2.2.1</summary>
-
-1. On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list box.
-
-2. Click *2.2* from the **Version** list box, and then select *2.2.x* from the submenu.
-
-      **Note**: You must choose 2.2.x. Earlier versions do not support this appliance.
-
-      {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="600" >}}
-
-3. Select *Appliance (Cloud)* from the **Hypervisor/Platform** list box.
-
-      {{< figure src="/images/netq/NetQ-Cloud-Appl-SW-Dwnld-222.png" width="250" >}}
-
-4. Click **Upgrade** to download the installer bundle.
-
-      **Note**: The download option only provides the OS which is pre-installed on the appliance.
-
-
-5. Copy the downloaded package (*NetQ-2.2.x-opta.tgz*) into the */mnt/installables/* directory.
-
-      **Note**: The name of the package needs to be replaced with the exact version you have downloaded. Instead of 2.2.x, you would enter 2.2.1 for example.
-
-      ```
-      cumulus@netq-appliance:~$ sudo cp /home/usr/dir/NetQ-2.2.x-opta.tgz /mnt/installables/
-      ```
-
-6. Install the software using the interface you defined above and your config-key.
-
-      The config-key was provided to you by Cumulus Networks via an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) to have it sent to you again.
-
-      **Note**: Be sure to replace the interface and key values with values appropriate for your configuration. These examples use eth0 and a sample key.
-
-      <details><summary>NetQ v2.2.1</span></summary>
-
-      ```
-      cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.1-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
-      opta-installer: Resetting OPTA
-      opta-installer: Checking for installer directory
-      opta-installer: Checking minimum RAM requirements
-      opta-installer: Checking for minimum CPU requirements
-      opta-installer: Checking for Python 2.7
-      opta-installer: Checking for Kubernetes v1.11.5
-      opta-installer: Checking for Docker /usr/bin/docker
-      ...
-      Successfully installed the opta
-      ```
-
-      </details>
-
-      <details><summary>NetQ v2.2.0</span></summary>
-
-      ```
-      cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.0-opta.tgz key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
-      opta-installer: Resetting OPTA
-      opta-installer: Checking for installer directory
-      opta-installer: Checking minimum RAM requirements
-      opta-installer: Checking for minimum CPU requirements
-      opta-installer: Checking for Python 2.7
-      opta-installer: Checking for Kubernetes v1.11.5
-      opta-installer: Checking for Docker /usr/bin/docker
-      ...
-      Successfully installed the opta
-      ```
-
-      </details>
-</details>
 
 {{%notice info%}}
 
@@ -179,31 +102,15 @@ If you changed the IP address or interface of the appliance to something other t
 
 If you changed the IP address, but kept the interface the same (for example, eth0), re-run the `netq install opta interface` command using your config-key:
 
-   *For NetQ 2.2.1 or 2.2.2*
-
 ```
-cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
-```
-   *For NetQ 2.2.0*
-
-```
-cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.x-opta.tgz key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.3.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
 ```
 
 If you changed the interface (for example, eth0 to eth1), run the `netq install opta interface` command with the new interface and your config-key:
 
-   *For NetQ 2.2.1 or 2.2.2*
-
 ```
-cumulus@netq-appliance:~$ netq install opta interface eth1 tarball NetQ-2.2.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+cumulus@netq-appliance:~$ netq install opta interface eth1 tarball NetQ-2.3.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
 ```
-
-   *For NetQ 2.2.0*
-
-```
-cumulus@netq-appliance:~$ netq install opta interface eth1 tarball NetQ-2.2.x-opta.tgz key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
-```
-
 {{%/notice%}}
 {{%notice note%}}
 
@@ -224,10 +131,10 @@ The `text-config-file` value is then the full path to the YAML file; for example
 
 Now that your appliance is installed and configured, you can verify that all applications and services are operating properly.
 
-   ```
-   cumulus@<netq-appliance-hostname>:~$ netq show opta-health
-   OPTA is healthy
-   ```
+```
+cumulus@netq-appliance:~$ netq show opta-health
+OPTA is healthy
+```
 
 ## Configure CLI Access on Appliance
 
@@ -241,19 +148,24 @@ To configure CLI access:
 
 3. From the Main Menu, select *Management* in the **Admin** column.
 
-      {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
+      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 5. Select your user and click **Generate AuthKeys**.
 
-      {{< figure src="/images/netq/generate-auth-keys.png" width="700">}}
+      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/generate-auth-keys.png" width="700">}}
 
 6. Copy these keys to a safe place.
 
       {{%notice info%}}
 The secret key is only shown once. If you don't copy these, you will need to regenerate them and reconfigure CLI access.
 
-In version 2.2.1 and later, you can save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can store this file wherever you like, give it a name, such as, *credentials.yml*, and make sure it has the following format:
+In version 2.2.1 and later, you can save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
+
+- store the file wherever you like, for example in */home/cumulus/* or */etc/netq*
+- name the file whatever you like, for example *credentials.yml*, *creds.yml*, or *keys.yml*
+
+BUT, the file must have the following format:
 
 ```
 access-key: <user-access-key-value-here>
@@ -262,7 +174,7 @@ secret-key: <user-secret-key-value-here>
       {{%/notice%}}
 
 7. Run the following command using your generated keys:
-   - In NetQ 2.2.x, run the following commands. Replace the key values with your generated keys.
+   - In NetQ 2.3.x, run the following commands. Replace the key values with your generated keys.
    ```
    cumulus@netq-appliance:~$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
@@ -271,7 +183,7 @@ secret-key: <user-secret-key-value-here>
    cumulus@netq-appliance:~$ netq config restart cli
    Restarting NetQ CLI... Success!
    ```
-   - In NetQ 2.2.1 and later, if you have created a *credentials.yml* file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
+   - In NetQ 2.2.1 and later, if you have created a keys file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
    ```
    cumulus@netq-appliance:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
@@ -280,7 +192,7 @@ secret-key: <user-secret-key-value-here>
    cumulus@netq-appliance:~$ netq config restart cli
    Restarting NetQ CLI... Success!
    ```
-With your NetQ cloud server now set up and configured, you are ready to install the NetQ Agent on each switch and host you want to monitor with NetQ. Follow the instructions in [Install the NetQ Agent and CLI on Switches](../Install-NetQ-Agents-and-CLI-on-Switches) for details.
+With your NetQ cloud server set up and configured, you are ready to install the NetQ Agent on each switch and host you want to monitor with NetQ. Follow the instructions in [Install NetQ Agents and CLI on Switches](../Install-NetQ-Agents-and-CLI-on-Switches) for details.
 
 ## Intelligent Platform Management Interface - IPMI
 
@@ -292,7 +204,7 @@ If you want to proactively monitor events in your network, you can
 integrate NetQ with the PagerDuty or Slack notification tools. To do so
 you need to configure both the notification application itself to
 receive the messages, and NetQ with what messages to send and where to
-send them. Refer to [Integrate NetQ with Event Notification Applications](/cumulus-netq/Cumulus-NetQ-Integration-Guide/integrate-netq-with-notification-applications)
+send them. Refer to [Integrate NetQ with Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications)
 to use the CLI for configuration.
 
 ## Set Up Security

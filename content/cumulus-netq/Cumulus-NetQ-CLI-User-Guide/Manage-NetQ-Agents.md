@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321061
 pageID: 12321061
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 At various points in time, you might want to change which network nodes
 are being monitored by NetQ or look more closely at a network node for
@@ -174,7 +174,7 @@ structure:
 
 For example:
 
-{{<figure src="/images/uploads/NetQAgentLogFormat.png" height="69" width="747">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/uploads/NetQAgentLogFormat.png" height="69" width="747">}}
 
 This example shows a portion of a NetQ Agent log with debug level
 logging.

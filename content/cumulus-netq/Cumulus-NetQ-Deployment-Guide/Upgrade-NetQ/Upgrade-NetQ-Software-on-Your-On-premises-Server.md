@@ -7,11 +7,11 @@ aliases:
  - /pages/viewpage.action?pageId=12321007
 pageID: 12321007
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
-This document describes the steps required to upgrade the NetQ Software (versions 2.0.0 through 2.2.1) installed and running on your own server hardware to NetQ version 2.2.2.
+This document describes the steps required to upgrade the NetQ Software (versions 2.0 through 2.2) installed and running on your own server hardware to NetQ version 2.3.
 
 {{%notice info%}}
 
@@ -33,9 +33,9 @@ Server.
 
 Before you begin the upgrade process, please note the following:
 
-  - The minimum supported Cumulus Linux version for NetQ 2.2.x is 3.3.2.
+  - The minimum supported Cumulus Linux version for NetQ 2.3.x is 3.3.2.
   - You must upgrade your NetQ Agents as well as the NetQ Platform.
-  - You can upgrade to NetQ 2.2.x without upgrading Cumulus Linux.
+  - You can upgrade to NetQ 2.3.x without upgrading Cumulus Linux.
   - The NetQ installer pod `netq-installer` should be up in either the
     *Containercreating* or *Running* state. The `netq-installer` pod
     state could also be *ContainerCreating*, in which case the host is
@@ -92,12 +92,12 @@ NetQ 2.2 Agents are supported on the following switch and host operating
 
 ## Perform an In-place Upgrade of Cumulus NetQ
 
-An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1. If you are upgrading from NetQ 2.2.0 or earlier, a [disk image upgrade](#perform-a-disk-image-upgrade-of-cumulus-netq) is recommended.
+An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1 or 2.2.2. If you are upgrading from NetQ 2.2.0 or earlier, a [disk image upgrade](#perform-a-disk-image-upgrade-of-cumulus-netq) is recommended.
 
 ### In-place Upgrade Workflow
 Upgrading NetQ in place involves downloading and installing the new version of NetQ applications, and upgrading and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-{{<figure src="/images/netq/upgrade-wkflow-on-prem-in-place-cust-hw-222.png" width="600">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/upgrade-wkflow-on-prem-in-place-cust-hw-222.png" width="600">}}
 
 ### Download the NetQ Virtual Machine Upgrade Image
 
@@ -107,21 +107,21 @@ The first step in upgrading your on-premises NetQ Server is to obtain the VM upg
     requirements set out [above](#hardware-requirements).
 
 2.  On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list box.
-3.  Click *2.2* from the **Version** list box, and then select *2.2.2* from the submenu.
+3.  Click *2.3* from the **Version** list box, and then select *2.3.0* from the submenu.
 4.  Optionally, select the hypervisor you wish to use (*VMware* or *KVM*) from the
   **Hypervisor/Platform** list box.
 
-     {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+     {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-download-options-230.png" width="500" >}}
 
      {{%notice note%}}
 
-For customers with VMware/ESXi OVA deployments, Cumulus Networks recommends deploying a fresh installation of NetQ 2.2.2, rather than performing the upgrade from 2.1.x or 2.2.0, to take advantage of the performance improvements available with the new vmxnet3 and Paravirtualization SCSI drivers. Customers with on-premises deployments must backup their NetQ data prior to the fresh installation to retain their data, and then follow the installation with a restoration. Follow the instructions in [Backup and Restore NetQ](/cumulus-netq/cumulus-netq-deployment-guide/backup-and-restore-netq) and [Install NetQ Software on Your Server](/cumulus-netq/cumulus-netq-deployment-guide/install-netq/#install-netq-software-on-your-server).
+For customers with VMware/ESXi OVA deployments, Cumulus Networks recommends deploying a fresh installation of NetQ 2.3.0, rather than performing the upgrade from 2.1 or 2.2, to take advantage of the performance improvements available with the new vmxnet3 and Paravirtualization SCSI drivers. Customers with on-premises deployments must backup their NetQ data prior to the fresh installation to retain their data, and then follow the installation with a restoration. Follow the instructions in [Backup and Restore NetQ](../../Backup-and-Restore-NetQ) and [Install NetQ Software on Your Server](../../Install-NetQ/Install-NetQ-Software-on-Your-Server).
 
         {{%/notice%}}
 
 4.  Scroll down to review the images that match your selection criteria.
 
-      {{< figure src="/images/netq/netq-22-vm-upgrade-222.png" width="400" >}}
+      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-vm-upgrade-230.png" width="400" >}}
 
 5.  Click **Upgrade** for the relevant version, being careful to
   select the correct deployment version.
@@ -148,21 +148,21 @@ You must first store the downloaded file in a location where the installation sc
 
         root@netq-platform:~# mkdir -p /mnt/installables/
 
-4.  Copy the upgrade image file, `NetQ-2.2.2.tgz`, into your new directory.
+4.  Copy the upgrade image file, `NetQ-2.3.0.tgz`, into your new directory.
 
         root@netq-platform:~# cd /mnt/installables/
-        root@netq-platform:/mnt/installables# cp /home/usr/dir/NetQ-2.2.2.tgz ./ 
+        root@netq-platform:/mnt/installables# cp /home/usr/dir/NetQ-2.3.0.tgz ./ 
 
 5.  Export the installer script.
 
-        root@netq-platform:/mnt/installables# tar -xvf NetQ-2.2.2.tgz ./netq-install.sh
+        root@netq-platform:/mnt/installables# tar -xvf NetQ-2.3.0.tgz ./netq-install.sh
 
 6.  Verify the contents of the directory. You should have the image file
     and the `netq-install.sh` script.
 
         root@netq-platform:/mnt/installables# ls -l
         total 9607744
-        -rw-r--r-- 1 cumulus cumulus 5911383922 Aug 28 11:13 NetQ-2.2.2.tgz
+        -rw-r--r-- 1 cumulus cumulus 5911383922 Aug 28 11:13 NetQ-2.3.0.tgz
         -rwxr-xr-x 1 \_lldpd \_lldpd 4309 Aug 28 10:34 netq-install.sh
         root@netq-platform:/mnt/installables#
 
@@ -220,7 +220,7 @@ root@netq-platform:/mnt/installables/# ./netq-install.sh --usekey ~/.ssh/id_rsa
 8.  Run the installation script to upgrade the NetQ software.
 
 ```
-root@netq-platform:/mnt/installables# ./netq-install.sh  --installbundle  /mnt/installables/NetQ-2.2.2.tgz --updateapps
+root@netq-platform:/mnt/installables# ./netq-install.sh  --installbundle  /mnt/installables/NetQ-2.3.0.tgz --updateapps
 [Tue Aug 27 04:51:29 2019] - Updating the netq-installer ...
 [Tue Aug 27 04:51:29 2019] - Able to execute the command for updating netq-installer ...
 [Tue Aug 27 04:51:29 2019] - Checking initialization of netq-installer update ...
@@ -253,8 +253,8 @@ Please allow about an hour for the upgrade to complete.
 
 ```
 root@netq-platform:/mnt/installables# cat /etc/app-release
-APPLIANCE_VERSION=2.2.2
-APPLIANCE_MANIFEST_HASH=a7f3cda
+APPLIANCE_VERSION=2.3.0
+APPLIANCE_MANIFEST_HASH=a7f34da
 ```
 
 {{%notice info%}}
@@ -294,7 +294,7 @@ While optional, it is useful to have the updated CLI running on your server.
    ```
    cumulus@switch:~$ sudo nano /etc/apt/sources.list
    ...
-   deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.2
+   deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.3
    ...
    ```
 
@@ -373,24 +373,24 @@ If any of the applications or services display Status as DOWN after 30 minutes, 
 
 2.  Verify that NTP is configured and running. NTP operation is critical to proper operation of NetQ. Refer to [Setting Date and Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) in the *Cumulus Linux User Guide* for details and instructions.
 
-3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to [Upgrade the NetQ Agents and CLI on Your Switches and Hosts](#upgrade-the-netq-agents-and-cli-on-your-switches-and-hosts) for instructions.
+3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to [Install the NetQ Agents and CLI on Your Switches](../../Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches) for instructions.
 
 ## Perform a Disk Image Upgrade of Cumulus NetQ
 
-A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 and earlier. If you are upgrading from NetQ 2.2.1, an [in-place upgrade](#perform-an-in-place-upgrade-of-cumulus-netq) is sufficient.
+A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 and earlier. If you are upgrading from NetQ 2.2.1 or 2.2.2, an [in-place upgrade](#perform-an-in-place-upgrade-of-cumulus-netq) is sufficient.
 
 ### Disk Image Upgrade Workflow
 
 Upgrading NetQ using a disk image involves backing up your NetQ data, downloading and installing the new version of NetQ software, restoring your data, and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-{{< figure src="/images/netq/upgrade-wkflow-on-prem-disk-img-cust-hw-222.png" width="700" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/upgrade-wkflow-on-prem-disk-img-cust-hw-222.png" width="700" >}}
 
 Please follow the instructions in the following topics in this order:
 
-1. [Backup Your NetQ Data](../Backup-and-Restore-NetQ/Backup-NetQ/)
+1. [Backup Your NetQ Data](../../Backup-and-Restore-NetQ/Backup-NetQ/)
 
-2. [Download and Install the New Software](../Install-NetQ/Install-NetQ-Software-on-Your-Server/)
+2. [Download and Install the New Software](../../Install-NetQ/Install-NetQ-Software-on-Your-Server/)
 
-3. [Restore Your NetQ Data](../Backup-and-Restore-NetQ/Restore-NetQ/)
+3. [Restore Your NetQ Data](../../Backup-and-Restore-NetQ/Restore-NetQ/)
 
-4. [Install and Configure NetQ Agent and CLI on Switches and Hosts](../Install-NetQ/Install-NetQ-Software-on-Your-Server/#install-and-configure-the-netq-agent-and-cli-access)
+4. [Install and Configure NetQ Agent and CLI on Switches and Hosts](../../Install-NetQ/Install-NetQ-Software-on-Your-Server/#install-and-configure-the-netq-agent-and-cli-access)

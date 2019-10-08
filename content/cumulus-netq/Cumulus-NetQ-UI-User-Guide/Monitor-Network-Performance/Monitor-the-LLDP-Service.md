@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12321439
 pageID: 12321439
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 The Cumulus NetQ UI enables operators to view the health of the LLDP
 service on a network-wide and a per session basis, giving greater
@@ -23,13 +23,13 @@ With NetQ, you can monitor the number of nodes running the LLDP service,
 view nodes with the most LLDP neighbor nodes, those nodes with the least
 neighbor nodes, and view alarms triggered by the LLDP service. For an
 overview and how to configure LLDP in your data center network, refer to
-[Link Layer Discovery Protocol](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
+[Link Layer Discovery Protocol](../../../../cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
 
 ### LLDP Service Card Workflow Summary
 
 The small LLDP Service card displays:
 
-{{% imgOld 0 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -68,7 +68,7 @@ The small LLDP Service card displays:
 
 The medium LLDP Service card displays:
 
-{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -123,7 +123,7 @@ The large LLDP service card contains two tabs.
 
 The *Sessions Summary* tab which displays:
 
-{{% imgOld 8 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-large-summary-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -184,7 +184,7 @@ The *Sessions Summary* tab which displays:
 
 The *Alarms* tab which displays:
 
-{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -237,7 +237,7 @@ The *Alarms* tab which displays:
 The full screen LLDP Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -383,10 +383,10 @@ number of LLDP-related alarms, and a distribution of those alarms.
 
 To view the summary, open the small LLDP Service card.
 
-{{% imgOld 20 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
 
 In this example, there are no LLDP alarms present on the network of
-twelve devices.
+14 devices.
 
 For more detail, select a different size LLDP Network Services card.
 
@@ -400,7 +400,7 @@ investigating either the service or particular devices.
 
 To view the distribution, open the medium LLDP Service card.
 
-{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
 
 In this example, we see that 13 nodes are running the LLDP protocol,
 that there are 52 sessions established, and that no LLDP-related alarms
@@ -415,9 +415,9 @@ link communication issues.
 To view the distribution, open the large LLDP Service card and view the
 bottom chart on the left, **Total Sessions with No Nbr**.
 
-{{% imgOld 22 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-large-summary-tab-no-nbr-highlight-230.png" width="500" >}}
 
-In this example, we see that 18 of the 52 sessions are missing the
+In this example, we see that 16 of the 52 sessions are missing the
 neighbor (peer) device.
 
 ### View Devices with the Most LLDP Sessions
@@ -437,7 +437,7 @@ To view switches and hosts with the most LLDP sessions:
     running the most LLDP sessions at the top. Scroll down to view those
     with the fewest sessions.
 
-    {{% imgOld 23 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-large-summary-tab-230.png" width="500" >}}
 
 To compare this data with the same data at a previous time:
 
@@ -450,9 +450,9 @@ To compare this data with the same data at a previous time:
     You can now see whether there are significant differences between
     this time period and the previous time period.  
 
-    {{% imgOld 25 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
 
-    {{% imgOld 26 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-large-summary-tab-past-week-230.png" width="500" >}}
 
     In this case, notice that the alarms have reduced significantly in
     the last week. If the changes are unexpected, you can investigate
@@ -474,30 +474,17 @@ To view switches with the most unestablished LLDP sessions:
     with the most unestablished CLAG sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
 
-    {{% imgOld 27 %}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-large-summary-tab-most-unestab-230.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
 
-  - Hover over any of the charts to focus on the number of switches or
-    sessions with the chart characteristic during that smaller time
-    slice.  
-    The table content changes to match the hovered content. Click on the
-    chart to persist the table changes.
-
-    {{% imgOld 28 %}}
-
-  - Change the time period for the data to compare with a prior time.  
-
-    {{% imgOld 29 %}}
-
-    {{% imgOld 30 %}}
+  - Change the time period for the data to compare with a prior time.
 
     If the same switches are consistently indicating the most
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
-    probable causes. Refer to [Monitor
-    Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
+    probable causes. Refer to [Monitor Switches](../../Monitor-Devices/Monitor-Switches).
 
   - Click **Show All Sessions** to investigate all LLDP sessions with
     events in the full screen card.
@@ -520,7 +507,7 @@ To view switches with most LLDP alarms:
     with the most BGP alarms at the top. Scroll down to view those with
     the fewest alarms.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -546,7 +533,7 @@ To view all LLDP events:
 1.  Open the full screen LLDP Service card.
 2.  Click the **All Alarms** tab.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-222.png" width="700">}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -560,7 +547,7 @@ include:
         particular time to try to correlate them with other system
         events
   - Export data to a file
-  - Return to your workbench by clicking {{% imgOld 34 %}} in the top right corner
+  - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner
 
 ### View Details About All Switches Running LLDP
 
@@ -570,9 +557,9 @@ network in the full screen card.
 To view all switch details, open the LLDP Service card, and click the
 **All Switches** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
 
-Return to your workbench by clicking {{% imgOld 36 %}} in the top right corner.
+Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 
 ### View Detailed Information About All LLDP Sessions
 
@@ -582,9 +569,9 @@ in the full screen card.
 To view all session details, open the LLDP Service card, and click the
 **All Sessions** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-sessions-tab-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-fullscr-sessions-tab-222.png" width="700">}}
 
-Return to your workbench by clicking {{% imgOld 38 %}} in the top right corner.
+Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 
 ### Take Actions on Data Displayed in Results List
 
@@ -596,9 +583,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-switches-tab-2-selected-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-lldp-fullscr-switches-tab-2-selected-222.png" width="700">}}
 
-{{<figure src="/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -619,7 +606,7 @@ With NetQ, you can monitor the number of nodes running the LLDP service,
 view neighbor state changes, and compare with events occurring at the
 same time, as well as monitor the running LLDP configuration and changes
 to the configuration file. For an overview and how to configure LLDP in
-your data center network, refer to [Link Layer Discovery Protocol](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
+your data center network, refer to [Link Layer Discovery Protocol](../../../../cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
 
 {{%notice note%}}
 
@@ -646,7 +633,7 @@ detected block increases in saturation, the peers that are unreachable
 An example heat map for a time period of 24 hours is shown here with the
 most common time periods in the table showing the resulting time blocks.
 
-{{% imgOld 41 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-result-granularity-230.png" width="300">}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -661,7 +648,7 @@ most common time periods in the table showing the resulting time blocks.
 
 The small LLDP Session card displays:
 
-{{% imgOld 42 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -696,7 +683,7 @@ The small LLDP Session card displays:
 
 The medium LLDP Session card displays:
 
-{{% imgOld 48 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-medium-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -761,7 +748,7 @@ The large LLDP Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-{{% imgOld 54 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-large-summary-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -824,7 +811,7 @@ The *Session Summary* tab displays:
 
 The *Configuration File Evolution* tab displays:
 
-{{% imgOld 60 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-large-config-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -872,7 +859,7 @@ The *Configuration File Evolution* tab displays:
 The full screen LLDP Session card provides tabs for all LLDP sessions
 and all events.
 
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -958,9 +945,9 @@ To view the summary:
 3.  Locate the medium LLDP Session card.
 4.  Optionally, open the small LLDP Session card.  
 
-    {{% imgOld 72 %}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-medium-summary-highlight-230.png" width="200">}}
 
-    {{% imgOld 73 %}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
 
 ### View LLDP Session Neighbor State Changes
 
@@ -979,7 +966,7 @@ card:
 2.  Double-click on a session. The full screen card closes automatically.
 3.  Locate the medium LLDP Session card.
 
-    {{% imgOld 74 %}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-medium-nbr-state-highlight-230.png" width="200">}}
 
 In this example, the heat map tells us that this LLDP session has been
 able to detect a neighbor for the entire time period.
@@ -990,7 +977,7 @@ the peer name and interface name.
 To view the neighbor availability for a given LLDP session on the large
 LLDP Session card, open that card.
 
-{{% imgOld 75 %}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-large-nbr-state-highlight-230.png" width="500">}}
 
 From this card, you can also view the alarm and info event counts, host
 interface name, peer hostname, and peer interface identifying the
@@ -1010,13 +997,11 @@ To view the configuration file changes:
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
 
-    {{% imgOld 77 %}}
-
 4.  Choose between the **File** view and the **Diff** view (selected
     option is dark; File by default).  
     The File view displays the content of the file for you to review.
 
-    {{% imgOld 78 %}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-large-config-tab-file-selected-230.png" width="500">}}
 
     The Diff view displays the changes between this version (on left)
     and the most recent version (on right) side by side. The changes are
@@ -1024,7 +1009,7 @@ To view the configuration file changes:
     changes to the file, so the same file is shown on both sides, and
     thus no highlighted lines.
 
-    {{% imgOld 79 %}}
+    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-large-config-tab-diff-selected-230.png" width="500">}}
 
 ### View All LLDP Session Details
 
@@ -1034,9 +1019,9 @@ associated with the two devices on this card.
 To view all session details, open the full screen LLDP Session card, and
 click the **All LLDP Sessions** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
 
-To return to your workbench, click {{% imgOld 81 %}} in the top right of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right of the card.
 
 ### View All Events
 
@@ -1045,7 +1030,7 @@ You can view all of the alarm and info events in the network.
 To view all events, open the full screen LLDP Session card, and click
 the **All Events** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-events-tab-222.png" width="700">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-lldp-fullscr-events-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -1059,4 +1044,4 @@ include:
         particular time to try to correlate them with other system
         events
   - Export data to a file
-  - Return to your workbench by clicking {{% imgOld 83 %}} in the top right corner
+  - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner

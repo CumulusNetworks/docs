@@ -4,9 +4,9 @@ author: Cumulus Networks
 weight: 403
 pageID: 12320801
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 There are two deployment types that are commonly deployed for network management in the data center:
@@ -59,8 +59,7 @@ other over a peerlink and act as an MLAG pair for Server 03 and Server
 04. The Edge is connected to both Exit devices, and the Internet node is
 connected to Exit 01.
 
-{{% imgOld 2 %}}
-
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/deploy-arch-dc-example-230.png" width="700" >}}
 
 <span class="caption">Data Center Network Example</span>
 
@@ -75,7 +74,7 @@ The physical *management* hardware includes:
 These switches are connected to each of the physical network devices
 through a virtual network overlay, shown with purple lines.
 
-{{% imgOld 3 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/deploy-arch-oob-example-230.png" width="700" >}}
 
 ### In-band Management Deployment
 
@@ -88,5 +87,5 @@ performs the aggregation function that the OOB management switch
 performed. If your network goes down, you might not have access to the
 NetQ Platform for troubleshooting.
 
-{{% imgOld 4 %}}
+{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/deploy-arch-ib-example-230.png" width="700" >}}
 

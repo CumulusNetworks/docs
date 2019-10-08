@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=12320951
 pageID: 12320951
 product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
+version: 2.3
+imgData: cumulus-netq
+siteSlug: cumulus-netq
 ---
 
 The installation instructions in this topic describe how to install the Cumulus NetQ software onto your server for either an on-premises or in-cloud deployment. There are three key steps:
@@ -64,11 +64,12 @@ of the following hypervisors:
 
 ### NetQ Agent Operating System Requirements
 
-NetQ 2.2 Agents are supported on the following switch and host operating
+NetQ 2.3 Agents are supported on the following switch and host operating
 systems:
 
 - Cumulus Linux 3.3.2 and later
-- Ubuntu 16.04, Ubuntu 18.04 (NetQ 2.2.2 and later)
+- Ubuntu 16.04
+- Ubuntu 18.04 (NetQ 2.2.2 and later)
 - Red Hat<sup>®</sup> Enterprise Linux (RHEL) 7.1
 - CentOS 7
 
@@ -81,12 +82,12 @@ NetQ 1.4 and earlier applications are not supported in NetQ 2.x.
 
 Installation of NetQ involves installing the NetQ software, and
 installing and configuring the NetQ Agents. Additional steps are needed
-to [Integrate NetQ with Event Notification Applications](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integration-Guide/Integrate-with-Notification-Applications).
+to [Integrate NetQ with Event Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications).
 This flow chart shows the required steps to install and setup
 NetQ to start validating your network, and the optional steps of
 integrating with event notification applications and monitoring hosts.
 
-{{<figure src="/images/netq/install-wkflow-on-prem-cust-hw-222.png">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/install-wkflow-on-prem-cust-hw-222.png">}}
 
 ## Install the NetQ Platform
 
@@ -124,9 +125,9 @@ Follow the instructions in this section to install Cumulus NetQ software onto a 
 
 Installation of NetQ involves installing the NetQ software, and
 installing and configuring the NetQ Agents. Additional steps are needed
-to [Integrate NetQ with Event Notification Applications](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integration-Guide/Integrate-with-Notification-Applications).
+to [Integrate NetQ with Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications).
 
-{{<figure src="/images/netq/install-flow-cust-hw-on-prem-nq222.png" width="600" >}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/install-flow-cust-hw-on-prem-nq222.png" width="600" >}}
 
 ### Install the NetQ Software
 
@@ -139,18 +140,18 @@ To install the NetQ software onto your own hardware using a VM image:
     1.  On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select
         *NetQ* from the **Product** list box.
 
-    2.  Click *2.2* from the **Version** list box, and then select
-        *2.2.x* from the submenu.
+    2.  Click *2.3* from the **Version** list box, and then select
+        *2.3.x* from the submenu.
 
     3.  Optionally, select the hypervisor you wish to use (*VMware* or *KVM*) from the
         **Hypervisor/Platform** list box.
 
-        {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-download-options-230.png" width="500" >}}
 
     4.  Scroll down to review the images that match your selection
         criteria, and click **Download** for the image you want.
 
-        {{< figure src="/images/netq/netq-22-vm-dwnld-222.png" width="400" >}}
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-vm-dwnld-230.png" width="400" >}}
 
 3.  Open your hypervisor and set up your VM.  
     You can use these examples for reference or use your own hypervisor
@@ -161,47 +162,48 @@ To install the NetQ software onto your own hardware using a VM image:
       This example shows the VM setup process using an OVA file with VMware
       ESXi.
 
-      1.  Enter the address of the hardware in your browser.
-      2.  Log in to VMware using credentials with root access.  
+      1. Enter the address of the hardware in your browser.
 
-          {{% imgOld 3 %}}
+      2. Log in to VMware using credentials with root access.  
 
-      3.  For an on-site NetQ Platform deployment, click **Storage** in the
+          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-main-page.png" width="700" >}}
+
+      3. For an on-site NetQ Platform deployment, click **Storage** in the
           Navigator to verify you have an SSD installed.  
 
-          {{% imgOld 4 %}}
+          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-verify-storage.png" width="700" >}}
 
-      4.  Click **Create/Register VM** at the top of the right pane.
+      4. Click **Create/Register VM** at the top of the right pane.
 
-          {{% imgOld 5 %}}
+          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-menu-create-register.png" width="700" >}}
 
-      5.  Select **Deploy a virtual machine from and OVF or OVA file**, and
+      5. Select **Deploy a virtual machine from and OVF or OVA file**, and
           click **Next**.  
 
-          {{% imgOld 6 %}}
+          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-deploy-vm-from-ova.png" width="700" >}}
 
-      6.  Provide a name for the VM, for example *Cumulus NetQ*.
-      7.  Drag and drop the NetQ Platform image file you downloaded in Step 1
-          above.
-      8.  Click **Next**.
+      6. Provide a name for the VM, for example *Cumulus NetQ*.
 
-          {{% imgOld 7 %}}
+      7. Drag and drop the NetQ Platform image file you downloaded in Step 1 above.
+      8. Click **Next**.
 
-      9.  Select the storage type and data store for the image to use, then
+          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-name-the-vm.png" width="700" >}}
+
+      9. Select the storage type and data store for the image to use, then
           click **Next**. In this example, only one is available.
 
-          {{% imgOld 8 %}}
+          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-select-storage.png" width="700" >}}
 
       10. Accept the default deployment options or modify them according to
           your network needs. Click **Next** when you are finished.
 
-          {{% imgOld 9 %}}
+          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-default-deploy-options.png" width="700" >}}
 
       11. Review the configuration summary. Click **Back** to change any of
           the settings, or click **Finish** to continue with the creation of
           the VM.
 
-          {{% imgOld 10 %}}
+          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-review-before-create.png" width="700" >}}
 
           The progress of the request is shown in the Recent Tasks window at
           the bottom of the application. This may take some time, so continue
@@ -209,7 +211,7 @@ To install the NetQ software onto your own hardware using a VM image:
 
       12. Once completed, view the full details of the VM and hardware.
 
-          {{% imgOld 11 %}}
+          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-deploy-results.png" width="700" >}}
 
     </details>
 
@@ -218,38 +220,36 @@ To install the NetQ software onto your own hardware using a VM image:
       This example shows the VM setup process for a system with Libvirt and
       KVM/QEMU installed.
 
-      1.  Confirm that the SHA256 checksum matches the one posted on the
-          Cumulus Downloads website to ensure the image download has not been
-          corrupted.
+      1. Confirm that the SHA256 checksum matches the one posted on the Cumulus Downloads website to ensure the image download has not been corrupted.
 
-              $ sha256sum ./Downloads/cumulus-netq-server-2.2.0-ts-amd64-qemu.qcow2
-              $ 6fff5f2ac62930799b4e8cc7811abb6840b247e2c9e76ea9ccba03f991f42424  ./Downloads/cumulus-netq-server-2.2.0-ts-amd64-qemu.qcow2
+```
+$ sha256sum ./Downloads/cumulus-netq-server-2.3.0-ts-amd64-qemu.qcow2
+$ 6fff5f2ac62930799b4e8cc7811abb6840b247e2c9e76ea9ccba03f991f42424  ./Downloads/cumulus-netq-server-2.2.0-ts-amd64-qemu.qcow2
+```
 
-      2.  Copy the QCOW2 image to a directory where you want to run it.
+      2. Copy the QCOW2 image to a directory where you want to run it.
 
-          {{%notice tip%}}
+        {{%notice tip%}} 
+Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.
+        {{%/notice%}}
 
-      Copy, instead of moving, the original QCOW2 image that
-          was downloaded to avoid re-downloading it again later
-          should you need to perform this process again.
+```
+$ sudo mkdir /vms
+$ sudo cp ./Downloads/cumulus-netq-server-2.3.0-ts-amd64-qemu.qcow2 /vms/ts.qcow2
+```
 
-          {{%/notice%}}
-
-              $ sudo mkdir /vms
-              $ sudo cp ./Downloads/cumulus-netq-server-2.2.0-ts-amd64-qemu.qcow2 /vms/ts.qcow2
-
-      3.  Create the VM.
+      3. Create the VM.
 
           For a Direct VM, where the VM uses a MACVLAN interface to sit on the
           host interface for its connectivity:
 
-              $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
-               --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
-               --network=type=direct,source=eth0,model=virtio --import --noautoconsole
+            $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
+            --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
+            --network=type=direct,source=eth0,model=virtio --import --noautoconsole
 
           {{%notice note%}}
 
-      Replace the disk path value with the location where the QCOW2 image
+Replace the disk path value with the location where the QCOW2 image
           is to reside. Replace network model value (eth0 in the above
           example) with the name of the interface where the VM is connected to
           the external network.
@@ -259,13 +259,13 @@ To install the NetQ software onto your own hardware using a VM image:
           Or, for a Bridged VM, where the VM attaches to a bridge which has
           already been setup to allow for external access:
 
-              $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
-               --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
-               --network=bridge=br0,model=virtio --import --noautoconsole
+            $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
+            --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
+            --network=bridge=br0,model=virtio --import --noautoconsole
 
           {{%notice note%}}
 
-      Replace network bridge value (br0 in the above example) with the
+Replace network bridge value (br0 in the above example) with the
           name of the (pre-existing) bridge interface where the VM is
           connected to the external network.
 
@@ -273,15 +273,15 @@ To install the NetQ software onto your own hardware using a VM image:
 
       4.  Watch the boot process in another terminal window.
 
-              $ virsh console netq_ts
+            $ virsh console netq_ts
 
       5.  From the Console of the VM, check to see which IP address Eth0 has
           obtained via DHCP, or alternatively set a static IP address with
           NCLU on the NetQ Appliance or Platform VM.
 
-              $ ip addr show eth0
-              $ net add interface eth0 ip address 10.0.0.1
-              $ net commit
+            $ ip addr show eth0
+            $ net add interface eth0 ip address 10.0.0.1
+            $ net commit
       </details>
 
 {{%notice info%}}
@@ -383,9 +383,9 @@ Follow the instructions in this section to install Cumulus NetQ software onto a 
 
 Installation of NetQ involves installing the NetQ software, and
 installing and configuring the NetQ Agents. Additional steps are needed
-to [Integrate NetQ with Event Notification Applications](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Integration-Guide/Integrate-with-Notification-Applications).
+to [Integrate NetQ with Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications).
 
-{{<figure src="/images/netq/install-flow-cust-hw-cloud-nq222.png" width="600" >}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/install-flow-cust-hw-cloud-nq222.png" width="600" >}}
 
 ### Download NetQ Virtual Machine
 
@@ -398,18 +398,18 @@ To install the NetQ VM image onto your own hardware:
     1.  On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select
         *NetQ* from the **Product** list box.
 
-    2.  Click *2.2* from the **Version** list box, and then select
-        *2.2.x* from the submenu.
+    2.  Click *2.3* from the **Version** list box, and then select
+        *2.3.x* from the submenu.
 
     3.  Optionally, select the hypervisor you wish to use (*VMware (Cloud)* or *KVM (Cloud)*) from the
         **Hypervisor/Platform** list box.
 
-        {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-download-options-230.png" width="500" >}}
 
     4.  Scroll down to review the images that match your selection
         criteria, and click **Download** for the image you want.
 
-        {{< figure src="/images/netq/netq-22-vm-dwnld-cloud-222.png" width="400" >}}
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-vm-cloud-dwnld-230.png" width="400" >}}
 
 3.  Open your hypervisor and set up your VM.  
     You can use these examples for reference or use your own hypervisor
@@ -417,130 +417,124 @@ To install the NetQ VM image onto your own hardware:
 
     <details><summary>VMware example</summary>
 
-      This example shows the VM setup process using an OVA file with VMware
-      ESXi.
+    This example shows the VM setup process using an OVA file with VMware
+    ESXi.
 
-      1.  Enter the address of the hardware in your browser.
-      2.  Log in to VMware using credentials with root access.  
+    1. Enter the address of the hardware in your browser.
 
-          {{% imgOld 3 %}}
+    2. Log in to VMware using credentials with root access.  
 
-      3.  For an on-site NetQ Platform deployment, click **Storage** in the
-          Navigator to verify you have an SSD installed.  
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-main-page.png" width="700" >}}
 
-          {{% imgOld 4 %}}
+    3. Click **Create/Register VM** at the top of the right pane.
 
-      4.  Click **Create/Register VM** at the top of the right pane.
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-menu-create-register.png" width="700" >}}
 
-          {{% imgOld 5 %}}
+    4. Select **Deploy a virtual machine from and OVF or OVA file**, and
+        click **Next**.  
 
-      5.  Select **Deploy a virtual machine from and OVF or OVA file**, and
-          click **Next**.  
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-deploy-vm-from-ova.png" width="700" >}}
 
-          {{% imgOld 6 %}}
+    5. Provide a name for the VM, for example *Cumulus NetQ*.
 
-      6.  Provide a name for the VM, for example *Cumulus NetQ*.
-      7.  Drag and drop the NetQ Platform image file you downloaded in Step 1
-          above.
-      8.  Click **Next**.
+    6. Drag and drop the NetQ Platform image file you downloaded in Step 1 above.
 
-          {{% imgOld 7 %}}
+    7. Click **Next**.
 
-      9.  Select the storage type and data store for the image to use, then
-          click **Next**. In this example, only one is available.
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-name-the-vm.png" width="700" >}}
 
-          {{% imgOld 8 %}}
+    8. Select the storage type and data store for the image to use, then
+        click **Next**. In this example, only one is available.
 
-      10. Accept the default deployment options or modify them according to
-          your network needs. Click **Next** when you are finished.
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-select-storage.png" width="700" >}}
 
-          {{% imgOld 9 %}}
+    9. Accept the default deployment options or modify them according to
+        your network needs. Click **Next** when you are finished.
 
-      11. Review the configuration summary. Click **Back** to change any of
-          the settings, or click **Finish** to continue with the creation of
-          the VM.
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-default-deploy-options.png" width="700" >}}
 
-          {{% imgOld 10 %}}
+    10. Review the configuration summary. Click **Back** to change any of
+        the settings, or click **Finish** to continue with the creation of
+        the VM.
 
-          The progress of the request is shown in the Recent Tasks window at
-          the bottom of the application. This may take some time, so continue
-          with your other work until the upload finishes.
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-review-before-create.png" width="700" >}}
 
-      12. Once completed, view the full details of the VM and hardware.
+        The progress of the request is shown in the Recent Tasks window at
+        the bottom of the application. This may take some time, so continue
+        with your other work until the upload finishes.
 
-          {{% imgOld 11 %}}
+    11. Once completed, view the full details of the VM and hardware.
+
+        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-deploy-results.png" width="700" >}}
 
     </details>
-
     <details><summary>KVM example</summary>
 
-      This example shows the VM setup process for a system with Libvirt and
-      KVM/QEMU installed.
+    This example shows the VM setup process for a system with Libvirt and
+    KVM/QEMU installed.
 
-      1.  Confirm that the SHA256 checksum matches the one posted on the
-          Cumulus Downloads website to ensure the image download has not been
-          corrupted.
+    1.  Confirm that the SHA256 checksum matches the one posted on the
+        Cumulus Downloads website to ensure the image download has not been
+        corrupted.
 
-              $ sha256sum ./Downloads/cumulus-netq-server-2.2.0-ts-amd64-qemu.qcow2
-              $ 6fff5f2ac62930799b4e8cc7811abb6840b247e2c9e76ea9ccba03f991f42424  ./Downloads/cumulus-netq-server-2.2.0-ts-amd64-qemu.qcow2
+            $ sha256sum ./Downloads/cumulus-netq-server-2.3.0-ts-amd64-qemu.qcow2
+            $ 6fff5f2ac62930799b4e8cc7811abb6840b247e2c9e76ea9ccba03f991f42424  ./Downloads/cumulus-netq-server-2.3.0-ts-amd64-qemu.qcow2
 
-      2.  Copy the QCOW2 image to a directory where you want to run it.
+    2.  Copy the QCOW2 image to a directory where you want to run it.
 
-          {{%notice tip%}}
+        {{%notice tip%}}
 
-      Copy, instead of moving, the original QCOW2 image that
-          was downloaded to avoid re-downloading it again later
-          should you need to perform this process again.
+Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.
 
-          {{%/notice%}}
+        {{%/notice%}}
 
-              $ sudo mkdir /vms
-              $ sudo cp ./Downloads/cumulus-netq-server-2.2.0-ts-amd64-qemu.qcow2 /vms/ts.qcow2
+            $ sudo mkdir /vms
+            $ sudo cp ./Downloads/cumulus-netq-server-2.3.0-ts-amd64-qemu.qcow2 /vms/ts.qcow2
 
-      3.  Create the VM.
+    3.  Create the VM.
 
-          For a Direct VM, where the VM uses a MACVLAN interface to sit on the
-          host interface for its connectivity:
+        For a Direct VM, where the VM uses a MACVLAN interface to sit on the
+        host interface for its connectivity:
 
-              $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
-               --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
-               --network=type=direct,source=eth0,model=virtio --import --noautoconsole
+            $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
+            --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
+            --network=type=direct,source=eth0,model=virtio --import --noautoconsole
 
-          {{%notice note%}}
+        {{%notice note%}}
 
-      Replace the disk path value with the location where the QCOW2 image
-          is to reside. Replace network model value (eth0 in the above
-          example) with the name of the interface where the VM is connected to
-          the external network.
+Replace the disk path value with the location where the QCOW2 image
+        is to reside. Replace network model value (eth0 in the above
+        example) with the name of the interface where the VM is connected to
+        the external network.
 
-          {{%/notice%}}
+        {{%/notice%}}
 
-          Or, for a Bridged VM, where the VM attaches to a bridge which has
-          already been setup to allow for external access:
+        Or, for a Bridged VM, where the VM attaches to a bridge which has
+        already been setup to allow for external access:
 
-              $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
-               --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
-               --network=bridge=br0,model=virtio --import --noautoconsole
+            $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
+            --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
+            --network=bridge=br0,model=virtio --import --noautoconsole
 
-          {{%notice note%}}
+        {{%notice note%}}
 
-      Replace network bridge value (br0 in the above example) with the
-          name of the (pre-existing) bridge interface where the VM is
-          connected to the external network.
+Replace network bridge value (br0 in the above example) with the
+        name of the (pre-existing) bridge interface where the VM is
+        connected to the external network.
 
-          {{%/notice%}}
+        {{%/notice%}}
 
-      4.  Watch the boot process in another terminal window.
+    4.  Watch the boot process in another terminal window.
 
-              $ virsh console netq_ts
+            $ virsh console netq_ts
 
-      5.  From the Console of the VM, check to see which IP address Eth0 has
-          obtained via DHCP, or alternatively set a static IP address with
-          NCLU on the NetQ Appliance or Platform VM.
+    5.  From the Console of the VM, check to see which IP address Eth0 has
+        obtained via DHCP, or alternatively set a static IP address with
+        NCLU on the NetQ Appliance or Platform VM.
 
-              $ ip addr show eth0
-              $ net add interface eth0 ip address 10.0.0.1
-              $ net commit
+            $ ip addr show eth0
+            $ net add interface eth0 ip address 10.0.0.1
+            $ net commit
       </details>
 
 {{%notice info%}}
@@ -577,86 +571,15 @@ continue.
 
 ### Download and Install NetQ Cloud Components
 
-Be sure to use the correct instructions as they have changed for the NetQ 2.2.2 release.
+Download and install the tarball file.
 
-<details>
-<summary>NetQ 2.2.2</summary>
+The `config-key` was provided to you by Cumulus Networks via an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) to have it sent to you again.
 
-1. Download and install the tarball file.
-
-      The config-key was provided to you by Cumulus Networks via an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) to have it sent to you again.
-
-      **Note**: Be sure to replace the interface and key values with values appropriate for your configuration. This example uses eth0 and a sample key.
+**Note**: Be sure to replace the interface and key values with values appropriate for your configuration. This example uses eth0 and a sample key.
 
 ```
-cumulus@netq-appliance:~$ netq install opta interface eth0 tarball download config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+cumulus@netq-platform:~$ netq install opta interface eth0 tarball download config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
 ```
-
-</details>
-<details>
-<summary>NetQ 2.2.0 or 2.2.1</summary>
-
-To download and install the NetQ cloud components:
-
-1. Download the appliance image.
-
-    1. On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select
-        *NetQ* from the **Product** list box.
-
-    2. Click *2.2* from the **Version** list box, and then select *2.2.x* from the submenu.
-
-    3. Optionally, select *Appliance (Cloud)* from the **Hypervisor/Platform** list box.
-
-         {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" >}}
-
-    4. Click the **Upgrade** button.
-
-         {{< figure src="/images/netq/NetQ-Cloud-Appl-SW-Dwnld-222.png" width="250">}}
-
-2. Log in to the NetQ server.
-3. Copy the downloaded file into the `/mnt/installables/` directory. Be sure to use the correct file name, with appropriate version.
-
-   ```
-   cumulus@netq-server:~$ sudo cp /home/usr/dir/NetQ-2.2.1-opta.tgz /mnt/installables/
-   ```
-
-4. Identify the IP address and interface where NetQ Agents should send the telemetry data collected from your monitored switches and hosts.
-   - Using dynamic address (DHCP): run the `net show interface eth0` command.
-   - Using static address: assign the address by running `net show interface <eth0|eth1> address <IP-address>`, then review and commit the assignment using `net pending` and then `net commit`.
-5. Install the downloaded software.
-      <details><summary>NetQ v2.2.0</summary>
-
-      ```
-      cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.0-opta.tgz key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
-      opta-installer: Resetting OPTA
-      opta-installer: Checking for installer directory
-      opta-installer: Checking minimum RAM requirements
-      opta-installer: Checking for minimum CPU requirements
-      opta-installer: Checking for Python 2.7
-      opta-installer: Checking for Kubernetes v1.11.5
-      opta-installer: Checking for Docker /usr/bin/docker
-      ...
-      Successfully installed the opta
-      ```
-
-      </details>
-      <details><summary>NetQ v2.2.1</summary>
-
-      ```
-      cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.1-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
-      opta-installer: Resetting OPTA
-      opta-installer: Checking for installer directory
-      opta-installer: Checking minimum RAM requirements
-      opta-installer: Checking for minimum CPU requirements
-      opta-installer: Checking for Python 2.7
-      opta-installer: Checking for Kubernetes v1.11.5
-      opta-installer: Checking for Docker /usr/bin/docker
-      ...
-      Successfully installed the opta
-      ```
-
-      </details>
-</details>
 
 {{%notice info%}}
 
@@ -664,29 +587,14 @@ If you changed the IP address or interface of the appliance to something other t
 
 If you changed the IP address, but kept the interface the same (for example, eth0), re-run the `netq install opta interface` command using your config-key:
 
-   *For NetQ 2.2.1 or 2.2.2*
-
 ```
-cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
-```
-   *For NetQ 2.2.0*
-
-```
-cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.2.x-opta.tgz key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+cumulus@netq-platform:~$ netq install opta interface eth0 tarball NetQ-2.3.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
 ```
 
 If you changed the interface (for example, eth0 to eth1), run the `netq install opta interface` command with the new interface and your config-key:
 
-   *For NetQ 2.2.1 or 2.2.2*
-
 ```
-cumulus@netq-appliance:~$ netq install opta interface eth1 tarball NetQ-2.2.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
-```
-
-   *For NetQ 2.2.0*
-
-```
-cumulus@netq-appliance:~$ netq install opta interface eth1 tarball NetQ-2.2.x-opta.tgz key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+cumulus@netq-platform:~$ netq install opta interface eth1 tarball NetQ-2.2.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
 ```
 
 {{%/notice%}}
@@ -710,10 +618,10 @@ The `text-config-file` value is then the full path to the YAML file; for example
 
 Now that your appliance is installed and configured, you can verify that all applications and services are operating properly.
 
-   ```
-   cumulus@<netq-appliance-hostname>:~$ netq show opta-health
-   OPTA is healthy
-   ```
+```
+cumulus@netq-platform:~$ netq show opta-health
+OPTA is healthy
+```
 
 ### Configure CLI Access on Appliance
 
@@ -727,46 +635,54 @@ To configure CLI access:
 
 3. From the Main Menu, select *Management* in the **Admin** column.
 
-      {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
+
 5. Select your user and click **Generate AuthKeys**.
 
-      {{< figure src="/images/netq/generate-auth-keys.png" width="700">}}
+    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/generate-auth-keys.png" width="700">}}
 
 6. Copy these keys to a safe place.
 
-      {{%notice info%}}
-The secret key is only shown once. If you don't copy these, you will need to regenerate them and reconfigure CLI access.
+    {{%notice info%}}
+The secret key is only shown once. If you do not copy these, you will need to regenerate them and reconfigure CLI access.
 
-In version 2.2.1 and later, you can save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can store this file wherever you like, give it a name, such as, *credentials.yml*, and make sure it has the following format:
+In version 2.2.1 and later, you can save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
+
+- store the file wherever you like, for example in */home/cumulus/* or */etc/netq*
+- name the file whatever you like, for example *credentials.yml*, *creds.yml*, or *keys.yml*
+
+BUT, the file must have the following format:
+
 ```
 access-key: <user-access-key-value-here>
 secret-key: <user-secret-key-value-here>
 ```
+
       {{%/notice%}}
 
 7. Configure access to the CLI:
-   - In NetQ 2.2.x, run the following commands. Replace the key values with your generated keys.
+   - In NetQ 2.3.x, run the following commands. Replace the key values with your generated keys.
    ```
-   cumulus@netq-appliance:~$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
+   cumulus@netq-platform:~$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> port 443
    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
    Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-   cumulus@netq-appliance:~$ netq config restart cli
+   cumulus@netq-platform:~$ netq config restart cli
    Restarting NetQ CLI... Success!
    ```
-   - In NetQ 2.2.1 and later, if you have created a *credentials.yml* file as noted in the previous step, run the following commands. Be sure to include the full path the to file.
+   - In NetQ 2.2.1 and later, if you have created a keys file as noted in the previous step, run the following commands. Be sure to include the *full path* the to file.
    ```
-   cumulus@netq-appliance:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
+   cumulus@netq-platform:~$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /full-path/credentials.yml port 443
    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
    Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-   cumulus@netq-appliance:~$ netq config restart cli
+   cumulus@netq-platform:~$ netq config restart cli
    Restarting NetQ CLI... Success!
    ```
 
-With your NetQ cloud server now set up and configured, you are ready to install the NetQ Agent on each switch and host you want to monitor with NetQ. Follow the instructions in [Install the NetQ Agent and CLI on Switches](../Install-NetQ-Agents-and-CLI-on-Switches) for details.
+With your NetQ cloud server set up and configured, you are ready to install the NetQ Agent on each switch and host you want to monitor with NetQ. Follow the instructions in [Install the NetQ Agent and CLI on Switches](../Install-NetQ-Agents-and-CLI-on-Switches) for details.
 
 ## Integrate with Event Notification Tools
 
@@ -774,7 +690,7 @@ If you want to proactively monitor events in your network, you can
 integrate NetQ with the PagerDuty or Slack notification tools. To do so
 you need to configure both the notification application itself to
 receive the messages, and NetQ with what messages to send and where to
-send them. Refer to [Integrate NetQ with Event Notification Applications](/cumulus-netq/Cumulus-NetQ-Integration-Guide/integrate-netq-with-notification-applications)
+send them. Refer to [Integrate NetQ with Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications/)
 to use the CLI for configuration.
 
 ## Set Up Security

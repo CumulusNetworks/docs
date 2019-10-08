@@ -99,7 +99,7 @@ You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
     value is *False*.
 
   - `new_bridge` — Enables/disables [VLAN-aware bridge
-    mode](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+    mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
     for the bridge configuration. The default value is *False*, so a
     traditional mode bridge is created.
 

@@ -2,9 +2,9 @@
 # See https://github.com/gohugoio/hugoThemes#themetoml for an example
 
 name = "netDocs"
-license = "MIT"
+license = ""
 licenselink = ""
-description = ""
+description = "Cumulus Networks Documentation Theme"
 homepage = ""
 tags = []
 features = []

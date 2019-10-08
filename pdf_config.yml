@@ -11,17 +11,19 @@ documents:
     folders:
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/NetQ-Basics/
-      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/NetQ-Basics/DC-Deploy-Arch
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Operation
-      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Software-on-Your-Server
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Appliance
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Cloud_Appliance
-      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ
-      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-Server
-      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Appliances
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-On-premises-Server
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-Cloud-Server
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-NetQ-Appliance
+      - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/Upgrade-NetQ-Software-on-Your-NetQ-Cloud-Appliance
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ
       - cumulus-netq/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Restore-NetQ
@@ -34,7 +36,7 @@ documents:
     title-page: cumulus-netq/Cumulus-NetQ-CLI-User-Guide/title/
     # Paths to index files to include
     folders:
-      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide
+      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/
       - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/NetQ-Command-Line-Overview
       - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Overall-Network-Health
       - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Switch-Hardware-and-Software
@@ -47,3 +49,53 @@ documents:
       - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Manage-NetQ-Agents
       - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Investigate-NetQ-Issues
       - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Resolve-MLAG-Issues
+      - cumulus-netq/Cumulus-NetQ-CLI-User-Guide/CLI-Early-Access-Features
+
+  cumulus-netq-ui:
+    # PDF file name
+    name: Cumulus-NetQ-UI-User-Guide
+    # Path to the index HTML file for the title page
+    title-page: cumulus-netq/Cumulus-NetQ-UI-User-Guide/title/
+    # Paths to index files to include
+    folders:
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-the-UI
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Application-Layout
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Create-and-Run-Searches
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Focus-Your-Montoring-Using-Workbenches
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Set-User-Preferences
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Configuration-Management/
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Configuration-Management/Application-Management
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-Configuration-Management/Lifecycle-Management
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Network-Health
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Validate-Network-Protocol-and-Service-Operations
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Network-Inventory
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Events
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-the-BGP-Service
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-the-EVPN-Service
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-the-LLDP-Service
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-the-MLAG-Service
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-the-OSPF-Service
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Network-Connectivity
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/UI-Early-Access-Features
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Devices/
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Devices/Monitor-Switches
+      - cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Elements/
+
+  cumulus-netq-integration:
+    # PDF file name
+    name: Cumulus-NetQ-Integration-Guide
+    # Path to the index HTML file for the title page
+    title-page: cumulus-netq/Cumulus-NetQ-Integration-Guide/title/
+    # Paths to index files to include
+    folders:
+      - cumulus-netq/Cumulus-NetQ-Integration-Guide/
+      - cumulus-netq/Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications
+      - cumulus-netq/Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Your-LDAP-Server
+      - cumulus-netq/Cumulus-NetQ-Integration-Guide/Integrate-with-Grafana
+      - cumulus-netq/Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Hardware-Chassis
+      - cumulus-netq/Cumulus-NetQ-Integration-Guide/API-User-Guide
+  

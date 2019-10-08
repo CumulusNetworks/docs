@@ -14,9 +14,9 @@ siteSlug: cumulus-linux
 Cumulus Linux supports the ability to take snapshots of the complete
 file system as well as the ability to roll back to a previous snapshot.
 Snapshots are performed automatically right before and after you upgrade
-Cumulus Linux using [package install](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/), 
+Cumulus Linux using [package install](../Upgrading-Cumulus-Linux/), 
 and right before and after you commit a switch configuration using
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU).
 In addition, you can take a snapshot at any time. You can roll back the
 entire file system to a specific snapshot or just retrieve specific
 files.
@@ -31,7 +31,7 @@ The primary snapshot components include:
     upgrade|install|remove|dist-upgrade`. You can use `snapper` to roll
     back to earlier snapshots, view existing snapshots, or delete one or
     more snapshots.
-  - [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU)
+  - [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU)
     — takes snapshots automatically before and after committing network
     configurations. You can use NCLU to roll back to earlier snapshots,
     view existing snapshots, or delete one or more snapshots.

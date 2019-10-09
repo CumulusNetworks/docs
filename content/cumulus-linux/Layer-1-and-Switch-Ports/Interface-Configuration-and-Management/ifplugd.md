@@ -40,7 +40,7 @@ configured to bring down all uplinks when the peerbond goes down in an
 MLAG environment.
 
 `ifplugd` is configured on both both the primary and secondary
-[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+[MLAG](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 switches in this example.
 
 1.  Open `/etc/default/ifplugd` in a text editor.

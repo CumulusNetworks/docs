@@ -45,7 +45,7 @@ For more information, see `man ptmd(8)`.
     demand mode is not supported. For more information on how BFD
     operates in Cumulus Linux, read the [Bidirectional Forwarding
     Detection -
-    BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
+    BFD](../../Layer-3/Bidirectional-Forwarding-Detection-BFD)
     chapter and read `man ptmd(8)`.
 
   - Integration with FRRouting (PTM to FRRouting notification).
@@ -304,7 +304,7 @@ detection over all media and protocol layers. Use BFD to detect failures
 for IPv4 and IPv6 single or multihop paths between any two network
 devices, including unidirectional path failure detection. For
 information about configuring BFD using PTM, see the [BFD
-topic](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD).
+topic](../../Layer-3/Bidirectional-Forwarding-Detection-BFD).
 
 ## Check Link State with FRRouting
 

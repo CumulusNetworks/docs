@@ -195,7 +195,7 @@ The above commands upgrade all installed versions with their latest
 versions but do not install any new packages.
 
 Refer to [Upgrading Cumulus
-Linux](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux)
+Linux](../Upgrading-Cumulus-Linux)
 for additional information.
 
 ## Add New Packages

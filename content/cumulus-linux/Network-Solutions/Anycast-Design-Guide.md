@@ -12,15 +12,15 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 [FRRouting](https://frrouting.org/) provides the ability to run
-[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF) or
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) directly on
+[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF) or
+[BGP](../../Layer-3/Border-Gateway-Protocol-BGP) directly on
 server hosts. This can enable a network architecture known as *anycast*,
 where many servers can provide the same service without needing layer 2
 extensions or load balancer appliances.
 
 Anycast is not a new protocol or protocol implementation and does not
 require any additional network configuration. Anycast leverages the
-[equal cost multipath](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP)
+[equal cost multipath](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP)
 (ECMP) capabilities inherent in layer 3 networks to provide stateless
 load sharing services.
 
@@ -107,7 +107,7 @@ impact of network changes or failures.
 
 ## Resilient Hashing
 
-[Resilient hashing](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#resilient-hashing)
+[Resilient hashing](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#resilient-hashing)
 provides a method to prevent failures from impacting the hash result of
 unrelated flows. However, resilient hashing does not prevent rehashing
 when new next hops are added.
@@ -166,7 +166,7 @@ Although resilient hashing can prevent rehashing on next hop failure, it
 cannot prevent rehashing on next hop addition.
 
 You can read more information on resilient hashing in the [ECMP
-chapter](/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP).
+chapter](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP).
 
 ## Applications for Anycast
 

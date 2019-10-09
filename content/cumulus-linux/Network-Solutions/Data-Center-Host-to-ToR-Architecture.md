@@ -38,7 +38,7 @@ server hosts.
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><a href="/cumulus-linux/Layer-2/Bonding-Link-Aggregation">Bond</a>/Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.</p>
+<td><p><a href="../../Layer-2/Bonding-Link-Aggregation">Bond</a>/Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <pre><code>auto bridge
@@ -88,10 +88,10 @@ iface br-20 inet manual
 <li><p>Easy configuration for customer</p></li>
 <li><p>Immense documentation from multiple vendors and industry</p></li>
 </ul></li>
-<li><p>Ability to use <a href="/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a> commands</p>
+<li><p>Ability to use <a href="../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a> commands</p>
 <ul>
 <li><p>mstpctl-portadminedge</p></li>
-<li><p><a href="/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard">BPDU guard</a></p></li>
+<li><p><a href="../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard">BPDU guard</a></p></li>
 </ul></li>
 <li><p>Layer 2 reachability to all VMs</p></li>
 </ul>
@@ -123,7 +123,7 @@ iface br-20 inet manual
 <li><p>None (not possible with traditional spanning tree)</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="/cumulus-linux/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP">VRR</a></p></li>
+<li><p><a href="../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP">VRR</a></p></li>
 </ul>
 <p><strong><br />
 </strong></p></td>
@@ -161,7 +161,7 @@ iface br-20 inet manual
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><a href="/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="/cumulus-linux/Network-Virtualization/VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
+<td><p><a href="../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="../../Network-Virtualization/VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <pre><code>auto bridge
@@ -217,7 +217,7 @@ iface vm-br10 inet manual
 </ul>
 <p><strong>Additional Comments</strong></p>
 <ul>
-<li><p>Can be done with either the <a href="/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/">traditional</a> or <a href="/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode">VLAN-aware</a> bridge driver depending on overall STP needs</p></li>
+<li><p>Can be done with either the <a href="../../Layer-2/Ethernet-Bridging-VLANs/">traditional</a> or <a href="../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode">VLAN-aware</a> bridge driver depending on overall STP needs</p></li>
 <li><p>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific</p></li>
 <li><p><a href="https://cumulusnetworks.com/media/resources/validated-design-guides/Cumulus-Linux-Layer-2-HA-Validated-Design-Guide_v1.0.0.pdf" class="external-link">Cumulus Networks Layer 2 HA validated design guide</a></p></li>
 </ul></td>
@@ -241,7 +241,7 @@ iface vm-br10 inet manual
 <tbody>
 <tr class="odd">
 <td><ul>
-<li><p><a href="/cumulus-linux/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP">VRR</a></p></li>
+<li><p><a href="../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP">VRR</a></p></li>
 </ul></td>
 <td><p>None</p></td>
 <td><ul>
@@ -404,7 +404,7 @@ iface eth1 inet static
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Routing on the host means there is a routing application (such as <a href="/cumulus-linux/Layer-3/FRRouting-Overview/">FRRouting</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
+<td><p>Routing on the host means there is a routing application (such as <a href="../../Layer-3/FRRouting-Overview/">FRRouting</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>No requirement for MLAG</p></li>
@@ -431,7 +431,7 @@ iface eth1 inet static
 </ul></td>
 <td><ul>
 <li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Install the FRRouting package on an Ubuntu server</a></p></li>
-<li><p><a href="/cumulus-linux/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
+<li><p><a href="../../Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -482,7 +482,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </ul></td>
 <td><ul>
 <li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Install the FRRouting package on an Ubuntu server</a></p></li>
-<li><p><a href="/cumulus-linux/Layer-3/Configuring-FRRouting/">Configure FRRouting</a></p></li>
+<li><p><a href="../../Layer-3/Configuring-FRRouting/">Configure FRRouting</a></p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -505,7 +505,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/" class="unresolved">BGP</a> or <a href="/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF">OSPF</a>.</p></td>
+<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="../../Layer-3/Border-Gateway-Protocol-BGP/" class="unresolved">BGP</a> or <a href="../../Layer-3/Open-Shortest-Path-First-OSPF">OSPF</a>.</p></td>
 <td><p><strong><strong>Benefits</strong></strong></p>
 <p>In addition to routing on a host:</p>
 <ul>
@@ -514,7 +514,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </ul>
 <p><strong><strong>Caveats</strong></strong></p>
 <ul>
-<li><p><a href="/cumulus-linux/Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP">ECMP</a> might not work correctly (load balancing to multiple ToRs); Linux kernel in older versions is not capable of ECMP per flow (does it per packet)</p></li>
+<li><p><a href="../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP">ECMP</a> might not work correctly (load balancing to multiple ToRs); Linux kernel in older versions is not capable of ECMP per flow (does it per packet)</p></li>
 <li><p>No L2 adjacency between servers without VXLAN</p></li>
 </ul></td>
 </tr>
@@ -529,7 +529,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </ul></td>
 <td><ul>
 <li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Install the FRRouting package on an Ubuntu server</a></p></li>
-<li><p><a href="/cumulus-linux/Layer-3/Configuring-FRRouting/">Configure FRRouting</a></p></li>
+<li><p><a href="../../Layer-3/Configuring-FRRouting/">Configure FRRouting</a></p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -638,7 +638,7 @@ iface eth2 inet static
 </thead>
 <tbody>
 <tr class="odd">
-<td colspan="2"><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
+<td colspan="2"><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="../../Network-Virtualization/Lightweight-Network-Virtualization-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <p><code>/etc/network/interfaces</code></p>
@@ -683,7 +683,7 @@ iface br-10
 </ul>
 <p><strong><strong>Caveats</strong></strong></p>
 <ul>
-<li><p>Needs MLAG (with the same caveats from the <a href="#mlag">MLAG section</a> above) and <a href="/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a></p></li>
+<li><p>Needs MLAG (with the same caveats from the <a href="#mlag">MLAG section</a> above) and <a href="../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a></p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -705,7 +705,7 @@ iface br-10
 <tbody>
 <tr class="odd">
 <td><ul>
-<li><p><a href="/cumulus-linux/Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP">VRR</a></p></li>
+<li><p><a href="../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP">VRR</a></p></li>
 </ul></td>
 <td><p>None</p></td>
 <td><ul>
@@ -721,7 +721,7 @@ iface br-10
 <td><p> </p></td>
 <td><p> </p></td>
 <td><ul>
-<li><p><a href="/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
+<li><p><a href="../../Network-Virtualization/Lightweight-Network-Virtualization-Overview/">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
 </ul></td>
 </tr>
 </tbody>

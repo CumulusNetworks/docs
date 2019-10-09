@@ -195,7 +195,7 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
 
 In Linux, all ACL rules are always counted. To create an ACL rule for
 counting purposes only, set the rule action to ACCEPT. See the
-[Netfilter](/cumulus-linux/System-Configuration/Netfilter-ACLs/)
+[Netfilter](../../System-Configuration/Netfilter-ACLs/)
 chapter for details on how to use `cl-acltool` to set up
 iptables-/ip6tables-/ebtables-based ACLs.
 
@@ -266,7 +266,7 @@ packets have the following format:
 {{%/notice%}}
 
 SPAN and ERSPAN are configured via `cl-acltool`, the
-[same utility for security ACL configuration](/cumulus-linux/System-Configuration/Netfilter-ACLs/).
+[same utility for security ACL configuration](../../System-Configuration/Netfilter-ACLs/).
 The match criteria for SPAN and ERSPAN is usually an interface; for more
 granular match terms, use [selective spanning](#selective-spanning). The
 SPAN source interface can be a port, a subinterface or a bond interface.
@@ -301,7 +301,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
     destinations.
   - To configure SPAN or ERSPAN on a Tomahawk or Trident3 switch, you
     must enable
-    [non-atomic update mode](/cumulus-linux/System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode).
+    [non-atomic update mode](../../System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode).
   - Spectrum switches reject SPAN ACL rules for an output interface that
     is a subinterface.
   - Mirrored traffic is not guaranteed. If the MTP is congested,
@@ -470,9 +470,7 @@ from `swp1` to 12.0.0.2.
 
 {{%notice note%}}
 
-**Cut-through Mode Support**
-
-[Cut-through mode](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-cut-through-mode-and-store-and-forward-switching)
+[Cut-through mode](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-cut-through-mode-and-store-and-forward-switching)
 is **not** supported for ERSPAN in Cumulus Linux on switches using
 Broadcom Tomahawk, Trident II+ and Trident II ASICs.
 

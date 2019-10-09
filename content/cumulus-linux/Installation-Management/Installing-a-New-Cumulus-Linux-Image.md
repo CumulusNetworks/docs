@@ -413,15 +413,7 @@ Homepage: http://www.cumulusnetworks.com/
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
-    {{%notice note%}}
-
-SSH sessions to the switch get dropped after this step. To complete
-the remaining instructions, connect to the console of the switch.
-Cumulus Linux switches display their boot process to the console;
-you need to monitor the console specifically to complete the next
-step.
-
-{%/notice%}}
+    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
 2. Interrupt the normal boot process before the countdown (shown below) completes. Press any key to stop the autoboot.
 

@@ -523,16 +523,16 @@ The following table lists the most important services in Cumulus Linux.
 | switchd      | Hardware abstraction daemon, synchronizes the kernel with the ASIC.                | YES                                          |
 | sx\_sdk      | Only on Mellanox switches, interfaces with the Spectrum ASIC.       | YES                                          |
 | portwd       | Reads pluggable information over the I2C bus. Identifies and classifies the optics that are inserted into the system. Sets interface speeds and capabilities to match the optics.   | YES, eventually, if optics are added/removed |
-| frr          | [FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/), handles routing protocols. There are separate processes for each routing protocol, like bgpd and ospfd.                    | YES if routing                               |
-| clag         | Cumulus link aggregation daemon, handles [MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG).   | YES if using MLAG |
+| frr          | [FRRouting](../../Layer-3/FRRouting-Overview/), handles routing protocols. There are separate processes for each routing protocol, like bgpd and ospfd.                    | YES if routing                               |
+| clag         | Cumulus link aggregation daemon, handles [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG).   | YES if using MLAG |
 | neighmgrd    | Synchronizes MAC address information when MLAG is in use. | YES if using MLAG                            |
-| mstpd        | [Spanning tree protocol](/cumulus-linux/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree) daemon. | YES if using layer 2            |
-| ptmd         | [Prescriptive Topology Manager](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM), verifies cabling based on [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) output, also sets up [BFD](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD) sessions. | YES if using BFD                             |
-| netd         | [NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU) back end.      |
+| mstpd        | [Spanning tree protocol](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree) daemon. | YES if using layer 2            |
+| ptmd         | [Prescriptive Topology Manager](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM), verifies cabling based on [LLDP](../../Layer-2/Link-Layer-Discovery-Protocol/) output, also sets up [BFD](../../Layer-3/Bidirectional-Forwarding-Detection-BFD) sessions. | YES if using BFD                             |
+| netd         | [NCLU](../Network-Command-Line-Utility-NCLU) back end.      |
 | rsyslog      | Handles logging of syslog messages.             | NO  |
-| ntp          | [Network time protocol](/cumulus-linux/System-Configuration/Setting-Date-and-Time).   | NO                                           |
-| ledmgrd      | [LED manager](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/Network-Switch-Port-LED-and-Status-LED-Guidelines), reads the state of system LEDs.  | NO  |
+| ntp          | [Network time protocol](../Setting-Date-and-Time).   | NO                                           |
+| ledmgrd      | [LED manager](../../Monitoring-and-Troubleshooting/Monitoring-System-Hardware/Network-Switch-Port-LED-and-Status-LED-Guidelines), reads the state of system LEDs.  | NO  |
 | sysmonitor   | Watches and logs critical system load (free memory, disk, CPU).    | NO                                           |
-| lldpd        | Handles Tx/Rx of [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) information.  | NO |
-| smond        | Reads [platform sensors and fan information](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/) from pwmd.  | NO  |
+| lldpd        | Handles Tx/Rx of [LLDP](../../Layer-2/Link-Layer-Discovery-Protocol/) information.  | NO |
+| smond        | Reads [platform sensors and fan information](../../Monitoring-and-Troubleshooting/Monitoring-System-Hardware/) from pwmd.  | NO  |
 | pwmd         | Reads and sets fan speeds.  | NO   |

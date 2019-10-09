@@ -27,9 +27,9 @@ automatically when the switch boots up.
 The `hsflowd` service does not sample interfaces that are up but not configured.
 
 If you intend to run this service within a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](/cumulus-linux/Layer-3/Management-VRF), follow
-[these steps](/cumulus-linux/Layer-3/Management-VRF/#run-services-within-the-management-vrf)
+[VRF](../../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
+including the [management VRF](../../../Layer-3/Management-VRF), follow
+[these steps](../../../Layer-3/Management-VRF/#run-services-within-the-management-vrf)
 for configuring the service.
 
 {{%/notice%}}

@@ -17,13 +17,13 @@ As of Cumulus Linux 3.7, the lightweight network virtualization
 feature (LNV) has been deprecated. The feature will be removed in
 Cumulus Linux 4.0. Cumulus Networks recommends you use [Ethernet virtual
 private network
-(EVPN)](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
+(EVPN)](../Ethernet-Virtual-Private-Network-EVPN)
 for network virtualization.
 
 {{%/notice%}}
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
-[VXLANs](/cumulus-linux/Network-Virtualization/) without a central
+[VXLANs](../../Network-Virtualization/) without a central
 controller on bare metal switches. This solution requires no external
 controller or software suite; it runs the VXLAN service and registration
 daemons on Cumulus Linux itself. The data path between bridge entities
@@ -32,7 +32,7 @@ node coupled with traditional MAC address learning.
 
 To see an example of a full solution before reading the following
 background information,
-[read this chapter](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/LNV-Full-Example).
+[read this chapter](../Lightweight-Network-Virtualization-Overview/LNV-Full-Example).
 
 {{%notice note%}}
 
@@ -47,7 +47,7 @@ Cumulus Linux.
 {{%notice note%}}
 
 You cannot use LNV and
-[EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
+[EVPN](../Ethernet-Virtual-Private-Network-EVPN)
 at the same time.
 
 {{%/notice%}}
@@ -384,8 +384,8 @@ iface swp1s3
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
-[BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP) or
-[OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF). In this
+[BGP](../../Layer-3/Border-Gateway-Protocol-BGP) or
+[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF). In this
 example, OSPF is used to demonstrate full reachability. Click to expand
 the FRRouting configurations below.
 <details>
@@ -1195,4 +1195,4 @@ the IP address.
 
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
-  - [Network virtualization section, Cumulus Linux user guide](/cumulus-linux/Network-Virtualization/)
+  - [Network virtualization section, Cumulus Linux user guide](../../Network-Virtualization/)

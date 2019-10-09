@@ -6,6 +6,7 @@ aliases:
  - /display/NETQ/Investigate+NetQ+Issues
 product: Cumulus NetQ
 version: 2.2
+draft: true
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---

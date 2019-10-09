@@ -15,7 +15,7 @@ siteSlug: cumulus-linux
 Linux uses an updated version of this tool, `ifupdown2`.
 
 For more information on network interfaces, see [Switch Port
-Attributes](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
+Attributes](../Interface-Configuration-and-Management/Switch-Port-Attributes).
 
 {{%notice info%}}
 
@@ -101,7 +101,7 @@ interfaces are also in the auto class:
     cumulus@switch:~$ sudo ifreload -a
 
 If you are using [Management
-VRF](/cumulus-linux/Layer-3/Management-VRF), you can use the special
+VRF](../../Layer-3/Management-VRF), you can use the special
 interface class called *mgmt*, and put the management interface into
 that class.
 
@@ -109,7 +109,7 @@ that class.
 
 The mgmt interface class is not supported if you are configuring Cumulus
 Linux using
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU).
 
 {{%/notice%}}
 
@@ -174,7 +174,7 @@ The loopback interface *lo* must always be specified in `/etc/network/interfaces
 
 By default, `ifupdown` recognizes and uses any interface present on the
 system — whether a VLAN, bond or physical interface — that is listed as
-a dependent of an interface. You are not required to list them in the `interfaces` file unless they need a specific configuration, such [MTU or link speed](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes).
+a dependent of an interface. You are not required to list them in the `interfaces` file unless they need a specific configuration, such [MTU or link speed](../Interface-Configuration-and-Management/Switch-Port-Attributes).
 And if you need to delete a child interface, you should delete all
 references to that interface from the `interfaces` file.
 
@@ -394,17 +394,17 @@ Linux configuration tools, most notably `ifupdown2` and its predecessor
 `ifupdown`, recognize such a name as a VLAN interface name.
 
 A VLAN subinterface only receives traffic
-[tagged](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging)
+[tagged](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging)
 for that VLAN, so swp1.100 only receives packets tagged with VLAN 100 on
 switch port swp1. Similarly, any transmits from swp1.100 result in
 tagging the packet with VLAN 100.
 
 For an
-[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
 deployment, the peerlink interface that connects the two switches in the
 MLAG pair has a VLAN subinterface named 4094 by default, provided you
 configured the subinterface with
-[NCLU](/cumulus-linux/System-Configuration/Network-Command-Line-Utility-NCLU).
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU).
 The peerlink.4094 subinterface only receives traffic tagged for VLAN
 4094.
 

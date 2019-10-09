@@ -57,7 +57,7 @@ Cumulus Linux supports only PIM Sparse Mode.
 <td><p>Rendezvous Point (RP)</p></td>
 <td><p>The RP allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable.</p>
 <p>{{%notice warning%}}</p>
-<p>Do not use a spine switch as an RP. If you are running <a href="/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP">BGP</a> on a spine switch and it is *not* configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP — see below).</p>
+<p>Do not use a spine switch as an RP. If you are running <a href="../Border-Gateway-Protocol-BGP">BGP</a> on a spine switch and it is *not* configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP — see below).</p>
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr class="even">
@@ -781,13 +781,11 @@ the MSDP:
 3.  Configure the MSDP mesh group for all active RPs (the following
     example uses 3 RPs):
 
-    {{%notice note%}}
+     {{%notice note%}}
 
-    The mesh group must include all RPs in the domain as members, with a
-    unique address as the source. This configuration results in MSDP
-    peerings between all RPs.
+The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
 
-    {{%/notice%}}
+{{%/notice%}}
 
         cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.2
         cumulus@rp01:$ net add msdp mesh-group cumulus member 100.1.1.3
@@ -975,7 +973,7 @@ On the RP:
 
 ## PIM in a VRF
 
-[VRFs](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF)
+[VRFs](../Virtual-Routing-and-Forwarding-VRF)
 divide the routing table on a per-tenant basis, ultimately providing for
 separate layer 3 networks over a single layer 3 infrastructure. With a
 VRF, each tenant has its own virtualized layer 3 network, so IP
@@ -1097,7 +1095,7 @@ In FRR, you can use show commands to display VRF information:
 ## BFD for PIM Neighbors
 
 You can use [bidirectional forward
-detection](/cumulus-linux/Layer-3/Bidirectional-Forwarding-Detection-BFD)
+detection](../Bidirectional-Forwarding-Detection-BFD)
 (BFD) for PIM neighbors to quickly detect link failures. When you
 configure an interface, include the `pim bfd` option:
 
@@ -1253,7 +1251,7 @@ multicast entry is the maximum value:
        Total Mcast Routes:         450,   0% of maximum value    450
 
 For Spectrum chipsets, refer to
-[TCAM Resource Profiles for Spectrum Switches](/cumulus-linux/Layer-3/Routing/#tcam-resource-profiles-for-spectrum-switches).
+[TCAM Resource Profiles for Spectrum Switches](../Routing/#tcam-resource-profiles-for-spectrum-switches).
 
 ### Verify MSDP Session State
 

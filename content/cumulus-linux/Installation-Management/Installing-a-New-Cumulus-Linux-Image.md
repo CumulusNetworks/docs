@@ -55,7 +55,7 @@ In the following procedures:
     options.
   - After you install the Cumulus Linux disk image, you need to install
     the license file. Refer to [Install the
-    License](/cumulus-linux/Quick-Start-Guide#install-the-license).
+    License](../../Quick-Start-Guide#install-the-license).
 
 ## Install Using a DHCP/Web Server with DHCP Options
 
@@ -329,7 +329,7 @@ USB drive. Instructions are provided for x86 and ARM platforms.
     sudo mkfs.msdos -F 32 /dev/sdb1
     sudo mkfs.vfat /dev/sdb1</code></pre>
     <p>{{%notice note%}}</p>
-    <p>To use <code>mkfs.msdos</code> or <code>mkfs.vfat</code>, you need to install the <code>dosfstools</code> package from the <a href="https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/#add-packages-from-another-repository" class="external-link">Debian software repositories</a>, as they are not included by default.</p>
+    <p>To use <code>mkfs.msdos</code> or <code>mkfs.vfat</code>, you need to install the <code>dosfstools</code> package from the <a href="../Adding-and-Updating-Packages/#add-packages-from-another-repository" class="external-link">Debian software repositories</a>, as they are not included by default.</p>
     <p>{{%/notice%}}</p></li>
     <li><p>To continue installing Cumulus Linux, mount the USB drive to move files.</p>
     <pre><code>sudo mkdir /mnt/usb
@@ -535,4 +535,4 @@ step.
   - [Cumulus on a
     Stick](https://cumulusnetworks.com/cumulus-on-a-stick/)
   - [Managing Cumulus Linux Disk
-    Images](/cumulus-linux/Installation-Management/Managing-Cumulus-Linux-Disk-Images)
+    Images](../Managing-Cumulus-Linux-Disk-Images)

@@ -133,7 +133,7 @@ cumulus@switch:~$ ledmgrd -j</code></pre></td>
 
 Not all switch models include a sensor for monitoring power consumption
 and voltage. See
-[this note](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/#monitor-system-units-using-smond)
+[this note](../Monitoring-System-Hardware/#monitor-system-units-using-smond)
 for details.
 
 {{%/notice%}}
@@ -641,7 +641,7 @@ BFD, and associated logs are documented in the code.
 
 Cumulus Networks recommends that you track peering information through
 PTM. For more information, refer to the [Prescriptive Topology Manager
-documentation](/cumulus-linux/Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM).
+documentation](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM).
 
 {{%/notice%}}
 

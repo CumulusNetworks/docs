@@ -13,7 +13,7 @@ siteSlug: cumulus-linux
 ---
 You can use the `cl-resource-query` command to retrieve information
 about host entries, MAC entries, layer 2 and layer 3 routes, and
-[ECMP](/cumulus-linux/Layer-3/Network-Topology/#load-balancing)
+[ECMP](../../Layer-3/Network-Topology/#load-balancing)
 routes that are in use. Because Cumulus Linux synchronizes routes
 between the kernel and the switching silicon, if the required resource
 pools in hardware fill up, new kernel routes can cause existing routes
@@ -109,7 +109,7 @@ Trident II switch:
 
 Ingress ACL and Egress ACL entries show the counts in single wide (*not*
 double-wide). For information about ACL entries, see
-[Estimate the Number of ACL Rules](/cumulus-linux/System-Configuration/Netfilter-ACLs/#estimate-the-number-of-rules).
+[Estimate the Number of ACL Rules](../../System-Configuration/Netfilter-ACLs/#estimate-the-number-of-rules).
 
 {{%/notice%}}
 

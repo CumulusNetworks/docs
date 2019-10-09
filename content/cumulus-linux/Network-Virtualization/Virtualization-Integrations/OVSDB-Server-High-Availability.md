@@ -13,8 +13,6 @@ siteSlug: cumulus-linux
 ---
 {{%notice warning%}}
 
-**Early Access Feature**
-
 OVSDB server high availability is an [early access
 feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
 in Cumulus Linux 3.7.
@@ -27,9 +25,9 @@ running in active-active mode). For information about VMware NSX in
 standalone mode and for a description of the components that work
 together to integrate VMware NSX and Cumulus Linux, see [Integrating
 Hardware VTEPs with VMware
-NSX-MH](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+NSX-MH](../Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
 or [Integrating Hardware VTEPs with VMware
-NSX-V](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V).
+NSX-V](../Integrating-Hardware-VTEPs-with-VMware-NSX-V).
 
 With OVSDB server high availability mode, you use two peer Cumulus Linux
 switches in an MLAG configuration. Both the MLAG primary and MLAG
@@ -72,7 +70,7 @@ Before you configure OVSDB server high availability, make sure you have
 **two switches running Cumulus Linux in an MLAG configuration**. Cumulus
 Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`),
 which support [VLAN-aware
-bridges](/cumulus-linux/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
+bridges](../../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
 
 The following example configuration in the `/etc/network/interfaces`
 file shows the *minimum* MLAG configuration required (the MLAG peerlink
@@ -280,8 +278,8 @@ vtep-bootstrap` or run the command `vtep-bootstrap --help`.
 After you finish configuring the NSX integration on both the MLAG
 primary and MLAG secondary switch, you need to configure the transport
 and logical layers from the NSX Manager. Refer to
-[Configuring the Transport and Logical Layers (NSX-MH)](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH/#configure-the-transport-and-logical-layers)
-or [Configuring the Transport and Logical Layers (NSX-V](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V/#configure-the-transport-and-logical-layers)).
+[Configuring the Transport and Logical Layers (NSX-MH)](../Integrating-Hardware-VTEPs-with-VMware-NSX-MH/#configure-the-transport-and-logical-layers)
+or [Configuring the Transport and Logical Layers (NSX-V](../Integrating-Hardware-VTEPs-with-VMware-NSX-V/#configure-the-transport-and-logical-layers)).
 
 ## Troubleshooting
 

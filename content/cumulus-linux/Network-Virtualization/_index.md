@@ -38,9 +38,9 @@ the original frame. The UDP destination port is the standard port 4789.
 
 Cumulus Linux includes the native Linux VXLAN kernel support and
 integrates with controller-based overlay solutions like
-[VMware NSX](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+[VMware NSX](../Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
 and
-[Midokura MidoNet](/cumulus-linux/Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack).
+[Midokura MidoNet](../Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack).
 
 VXLAN is supported only on switches in the [Cumulus Linux
 HCL](http://cumulusnetworks.com/support/hcl/) using the Broadcom
@@ -65,7 +65,7 @@ at least one layer 3 hop between the VXLAN source and destination.
 On switches using Broadcom Tomahawk, Trident II, Trident II+, and
 Trident3 ASICs, Cumulus Linux supports store and forward switching for
 VXLANs but does **not** support
-[cut-through mode](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-cut-through-mode-and-store-and-forward-switching).
+[cut-through mode](../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-cut-through-mode-and-store-and-forward-switching).
 
 On switches using Mellanox Spectrum ASICs, Cumulus Linux supports
 cut-through mode for VXLANs but does **not** support store and forward
@@ -76,7 +76,7 @@ switching.
 The maximum transmission unit (MTU) size for a virtual network interface
 should be 50 bytes smaller than the MTU for the physical interfaces on
 the switch. For more information on setting MTU, read
-[Layer 1 and Switch Port Attributes](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu-for-a-bridge).
+[Layer 1 and Switch Port Attributes](../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu-for-a-bridge).
 
 
 ## Useful Links

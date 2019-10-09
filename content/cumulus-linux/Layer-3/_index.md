@@ -11,3 +11,4 @@ version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
+This section describes layer 3 configuration. Read this section to understand routing protocols and learn how to configure routing on the Cumulus Linux switch.

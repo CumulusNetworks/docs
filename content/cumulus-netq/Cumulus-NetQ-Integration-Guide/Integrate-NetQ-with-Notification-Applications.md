@@ -10,10 +10,9 @@ version: 2.3
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-After you have installed NetQ applications package and the NetQ Agents,
+After you have installed the NetQ applications package and the NetQ Agents,
 you may want to configure some of the additional capabilities that NetQ
-offers. This topic describes how to install, setup, and configure these
-capabilities.
+offers. This topic describes how to integrate NetQ with an event notification application.
 
 ## Integrate NetQ with an Event Notification Application
 
@@ -126,6 +125,210 @@ to assist when needed. The command syntax is:
 
 The options are described in the following sections where they are used.
 
+## Configure Basic NetQ Event Notification
+
+The simplest configuration you can create is one that sends all of the generated events to a single notification application. This is described here. For more granular configurations, refer to [Configure Advanced NetQ Event Notifications](#configure-advanced-netq-event-notifications).
+
+A notification configuration must contain one channel, one rule, and one filter. Creation of the configuration follows this same path:
+
+1. Add a channel (slack, pagerduty, syslog)
+2. Add a rule that accepts all notification types
+3. Add a filter that associates this catch-call rule with the newly created channel
+
+### Create a Basic PagerDuty Configuration
+
+To create a notification configuration that sends all events to PagerDuty:
+
+1. Create a PagerDuty channel.
+
+    - Configure a channel using the integration key for your Pager Duty setup.
+
+    ```
+    cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
+    Successfully added/updated channel pd-netq-events
+    ```
+
+    - Verify the channel is configured properly.
+
+        ```
+        cumulus@switch:~$ netq show notification channel
+        Matching config_notify records:
+        Name            Type             Severity         Channel Info
+        --------------- ---------------- ---------------- ------------------------
+        pd-netq-events  pagerduty        info             integration-key: c6d666e
+                                                        210a8425298ef7abde0d1998      
+        ```
+2. Create a rule to accept all notification types.
+
+    - Create the rule.
+
+    ```
+    cumulus@switch:~$ netq add notification rule all-events key xx value xx
+    Successfully added/updated rule all-events
+    ```
+
+    - Verify the rule is configured properly.
+
+    ```
+    cumulus@switch:~$ netq show notification rule
+    Matching config_notify records:
+    Name            Rule Key         Rule Value
+    --------------- ---------------- --------------------
+    all-events     hostname         spine-01
+    ```
+
+3. Create a filter to tie the rule to the channel.
+
+    - Create the filter.
+
+    ```
+    cumulus@switch:~$ netq add notification filter notify-all rule all-events channel pd-netq-events
+    Successfully added/updated filter notify-all
+    ```
+
+    - Verify the filter is configured properly.
+    
+    ```
+    cumulus@switch:~$ netq show notification filter
+    Matching config_notify records:
+    Name            Order      Severity         Channels         Rules
+    --------------- ---------- ---------------- ---------------- ----------
+    notify-all      1          info             pd-netq-events   all-events
+    ```
+
+NetQ is now configured to send all events to your pd-netq-events channel.
+
+### Create a Basic Slack Configuration
+
+To create a notification configuration that sends all events to Slack:
+
+1. Create a Slack channel.
+
+    - Create an *incoming webhook* as described in the documentation for your version of Slack.
+
+    - Create the channel using this webhook.
+
+        ```
+        cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+        Successfully added/updated channel slk-netq-events
+        ```
+
+    - Verify the channel is configured properly.
+
+        ```
+        cumulus@switch:~$ netq show notification channel
+        Matching config_notify records:
+        Name            Type             Severity Channel Info
+        --------------- ---------------- -------- ----------------------
+        slk-netq-events slack            info     webhook:https://hooks.s
+                                                lack.com/services/text/
+                                                moretext/evenmoretext
+        ```
+
+2. Create a rule to accept all notification types.
+
+    - Create the rule.
+        ```
+        cumulus@switch:~$ netq add notification rule all-events key xx value xx
+        Successfully added/updated rule all-events
+        ```
+
+    - Verify the rule is configured properly.
+
+        ```
+        cumulus@switch:~$ netq show notification rule
+        Matching config_notify records:
+        Name            Rule Key         Rule Value
+        --------------- ---------------- --------------------
+        all-events      hostname         spine-01
+        ```
+
+3. Create a filter to tie the rule to the channel.
+
+    - Create the filter.
+        ```
+        cumulus@switch:~$ netq add notification filter notify-all rule all-events channel slk-netq-events
+        Successfully added/updated filter notify-all
+        ```
+
+    - Verify the filter is configured properly.
+    
+        ```
+        cumulus@switch:~$ netq show notification filter
+        Matching config_notify records:
+        Name            Order      Severity         Channels         Rules
+        --------------- ---------- ---------------- ---------------- ----------
+        notify-all      1          info             slk-netq-events   all-events
+        ```
+
+NetQ is now configured to send all events to your slk-netq-events channel.
+
+### Create a Basic Syslog Configuration
+
+To create a notification configuration that sends all events to syslog:
+
+1. Create a syslog channel.
+
+    - Create the channel using the syslog server hostname (or IP address) and port.
+
+        ```
+        cumulus@switch:~$ netq add notification channel syslog syslog-netq-events hostname syslog-server port 514
+        Successfully added/updated channel syslog-netq-events
+        ```
+
+    - Verify the channel is configured properly.
+
+        ```
+        cumulus@switch:~$ netq show notification channel
+        Matching config_notify records:
+        Name            Type             Severity Channel Info
+        --------------- ---------------- -------- ----------------------
+        syslog-netq-eve syslog            info     host:syslog-server
+        nts                                        port: 514
+        ```
+
+2. Create a rule to accept all notification types.
+
+    - Create the rule.
+        ```
+        cumulus@switch:~$ netq add notification rule all-events key xx value xx
+        Successfully added/updated rule all-events
+        ```
+
+    - Verify the rule is configured properly.
+
+        ```
+        cumulus@switch:~$ netq show notification rule
+        Matching config_notify records:
+        Name            Rule Key         Rule Value
+        --------------- ---------------- --------------------
+        all-events      hostname         spine-01
+        ```
+
+3. Create a filter to tie the rule to the channel.
+
+    - Create the filter.
+        ```
+        cumulus@switch:~$ netq add notification filter notify-all rule all-events channel syslog-netq-events
+        Successfully added/updated filter notify-all
+        ```
+
+    - Verify the filter is configured properly.
+    
+        ```
+        cumulus@switch:~$ netq show notification filter
+        Matching config_notify records:
+        Name            Order      Severity         Channels         Rules
+        --------------- ---------- ---------------- ---------------- ----------
+        notify-all      1          info             syslog-netq-events   all-events
+        ```
+
+NetQ is now configured to send all events to your syslog-netq-events channel.
+
+## Configure Advanced NetQ Event Notifications
+
+If you want to create more granular notifications based on such items as selected devices, characteristics of devices, or protocols, or you want to use a proxy server, you need more than the basic notification configuration. Details for creating these more complex notification configurations are included here.
+
 ### Configure a Proxy Server
 
 To send notification messages through a proxy server instead of directly
@@ -157,7 +360,7 @@ to the notification channels.
 
 ### Create Channels
 
-Create one or more PagerDuty and Slack channels to present the
+Create one or more PagerDuty, Slack, or syslog channels to present the
 notifications.
 
 #### Configure a PagerDuty Channel
@@ -266,11 +469,10 @@ To configure NetQ to send notifications to Slack:
     --------------- ---------------- -------- ----------------------
     slk-netq-events slack            info     webhook:https://hooks.s
                                               lack.com/services/text/
-                                              moretext/evenmoretext                                     
+                                              moretext/evenmoretext
     ```
 
-    From the Slack Channel:  
-
+    From the Slack Channel:
 
     {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/slack-add-webhook-ex.png">}}
 
@@ -2418,7 +2620,7 @@ Run the `netq show notification` command again to verify the changes:
     configChange    6          info             slk-netq-events  sysconf
     newFEC          7          info             slk-netq-events  fecSupport
 
-## Example Notification Configurations
+## Examples of Advanced Notification Configurations
 
 Putting all of these channel, rule, and filter definitions together you
 create a complete notification configuration. The following are example

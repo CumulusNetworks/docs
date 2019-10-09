@@ -212,9 +212,9 @@ username passwords and has the option of encrypting the packet contents.
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](/cumulus-linux/Layer-3/Management-VRF), follow
-[these steps](/cumulus-linux/Layer-3/Management-VRF/#run-services-within-the-management-vrf)
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
+including the [management VRF](../../Layer-3/Management-VRF), follow
+[these steps](/../../Layer-3/Management-VRF/#run-services-within-the-management-vrf)
 for configuring the service.
 
 {{%/notice%}}
@@ -526,9 +526,9 @@ it using `systemctl`.
 {{%notice note%}}
 
 As mentioned above, if you intend to run this service within a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](/cumulus-linux/Layer-3/Management-VRF), follow
-[these steps](/cumulus-linux/Layer-3/Management-VRF/#run-services-within-the-management-vrf)
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
+including the [management VRF](../../Layer-3/Management-VRF), follow
+[these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf)
 for configuring the service.
 
 {{%/notice%}}
@@ -562,7 +562,7 @@ on the switch.
 ### Configure SNMP with Management VRF (used prior to Cumulus Linux 3.6)
 
 When you configure [Management
-VRF](/cumulus-linux/Layer-3/Management-VRF), you need to be aware of the
+VRF](../../Layer-3/Management-VRF), you need to be aware of the
 interface IP addresses on which SNMP is listening. If you set
 listening-address to all, the `snmpd` daemon responds to incoming
 requests on all interfaces that are in the default VRF. If you prefer to
@@ -732,7 +732,7 @@ To enable read-only querying by a client:
 ## Enable SNMP Support for FRRouting
 
 SNMP supports Routing MIBs in
-[FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/). To enable SNMP
+[FRRouting](../../Layer-3/FRRouting-Overview/). To enable SNMP
 support for FRRouting, you need to:
 
   - Configure [AgentX](http://www.net-snmp.org/docs/README.agentx.html)
@@ -1463,7 +1463,7 @@ for them. The overall Cumulus Linux MIB is defined in the
 </tr>
 <tr class="odd">
 <td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-POE-MIB.txt" class="external-link">CUMULUS-POE-MIB</a></p></td>
-<td><p>The Cumulus Networks custom <a href="/cumulus-linux/System-Configuration/Power-over-Ethernet-PoE">Power over Ethernet</a> PoE MIB defined in the <code>/usr/share/snmp/mibs/Cumulus-POE-MIB.txt</code> file. For devices that provide PoE, this provides users with the system wide power information in <code>poeSystemValues</code> as well as per interface <code>PoeObjectsEntry</code> values for the <code>poeObjectsTable</code>. Most of this information comes from the <code>poectl</code> command. To enable this MIB, uncomment the following line in <code>/etc/snmp/snmpd.conf</code>:</p>
+<td><p>The Cumulus Networks custom <a href="../../System-Configuration/Power-over-Ethernet-PoE">Power over Ethernet</a> PoE MIB defined in the <code>/usr/share/snmp/mibs/Cumulus-POE-MIB.txt</code> file. For devices that provide PoE, this provides users with the system wide power information in <code>poeSystemValues</code> as well as per interface <code>PoeObjectsEntry</code> values for the <code>poeObjectsTable</code>. Most of this information comes from the <code>poectl</code> command. To enable this MIB, uncomment the following line in <code>/etc/snmp/snmpd.conf</code>:</p>
 <pre><code>#pass_persist .1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py</code></pre></td>
 </tr>
 <tr class="even">
@@ -1524,7 +1524,7 @@ SNMPDOPTS=&#39;-LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pi
 </tr>
 <tr class="even">
 <td><p><a href="https://cumulusnetworks.com/static/mibs/LLDP-MIB.txt" class="external-link">LLDP-MIB</a></p></td>
-<td><p>Layer 2 neighbor information from <code>lldpd</code> (you need to <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/#enable-the-snmp-subagent-in-lldp">enable the SNMP subagent</a> in LLDP). You need to start <code>lldpd</code> with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
+<td><p>Layer 2 neighbor information from <code>lldpd</code> (you need to <a href="../../Layer-2/Link-Layer-Discovery-Protocol/#enable-the-snmp-subagent-in-lldp">enable the SNMP subagent</a> in LLDP). You need to start <code>lldpd</code> with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
 </tr>
 <tr class="odd">
 <td><p><a href="https://cumulusnetworks.com/static/mibs/LM-SENSORS-MIB.txt" class="external-link">LM-SENSORS MIB</a></p></td>
@@ -1616,13 +1616,13 @@ to Net-SNMP. The scripts are stored in `/usr/share/snmp` and include:
 All the scripts are enabled by default in Cumulus Linux, except for:
 
   - `bgp4_pp.py`, which is now handled by
-    [FRRouting](/cumulus-linux/Layer-3/FRRouting-Overview/) instead of
+    [FRRouting](../../Layer-3/FRRouting-Overview/) instead of
     Quagga, so monitoring has changed accordingly.
 
   - `cl_poe_pp.py`, which is disabled by default as only certain
     platforms that Cumulus Linux supports are capable of doing [Power
     over
-    Ethernet](/cumulus-linux/System-Configuration/Power-over-Ethernet-PoE).
+    Ethernet](../../System-Configuration/Power-over-Ethernet-PoE).
 
 ## Troubleshooting
 

@@ -29,12 +29,12 @@ stack:
 
   - RoCEv1, which runs at the link layer and cannot be run over a routed
     network. Therefore, it requires the link layer
-    [priority flow control](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-priority-flow-control)
+    [priority flow control](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-priority-flow-control)
     (PFC) to be enabled.
 
   - RoCEv2, which runs over layer 3. Since it's a routed solution,
     Cumulus Networks recommends you use
-    [explicit congestion notification](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-explicit-congestion-notification)
+    [explicit congestion notification](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-explicit-congestion-notification)
     (ECN) with RoCEv2 since ECN bits are communicated end-to-end across
     a routed network.
 
@@ -46,9 +46,9 @@ lossless Ethernet layer handles congestion hop by hop.
 
 To learn the Cumulus Linux settings you need to configure to support
 RoCEv1, see the example configuration in the
-[PFC](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-priority-flow-control)
+[PFC](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-priority-flow-control)
 section of the
-[Buffer and Queue Management](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
+[Buffer and Queue Management](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
 chapter.
 
 {{%notice tip%}}
@@ -91,7 +91,7 @@ buffer limits in the
 
 {{%notice note%}}
 
-While [link pause](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-link-pause)
+While [link pause](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-link-pause)
 is another way to provide lossless ethernet, PFC is the preferred
 method. PFC allows more granular control by pausing the traffic flow for
 a given CoS group, rather than the entire link.
@@ -111,9 +111,9 @@ notification packet directed to the source of the packet.
 
 To learn the Cumulus Linux settings you need to configure to support
 RoCEv2, see the example configuration in the
-[ECN](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-explicit-congestion-notification)
+[ECN](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-explicit-congestion-notification)
 section of the
-[Buffer and Queue Management](/cumulus-linux/Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
+[Buffer and Queue Management](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
 chapter.
 
 {{%notice tip%}}

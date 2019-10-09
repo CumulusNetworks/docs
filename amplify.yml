@@ -1,0 +1,28 @@
+version: 1.0
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo Installing Hugo ...
+        - wget https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extended_0.55.6_Linux-64bit.tar.gz
+        - tar -xf hugo_extended_0.55.6_Linux-64bit.tar.gz hugo
+        - mv hugo /usr/bin/hugo
+        - rm -rf hugo_extended_0.55.6_Linux-64bit.tar.gz
+        - echo Successfully installed Hugo
+    build:
+      commands:
+        - echo Building docs with Hugo
+        - echo Now move static images and files ...
+        - aws s3 sync static $STATIC_BUCKET --delete
+        - echo Remove static directory
+        - rm -rf static
+        - echo Building docs ...
+        - hugo --baseURL $BASEURL
+        - echo Successfully built docs
+        - du -h -d 1 public
+  artifacts:
+    files:
+      - '**/*'
+    baseDirectory: public
+  cache:
+    paths: []

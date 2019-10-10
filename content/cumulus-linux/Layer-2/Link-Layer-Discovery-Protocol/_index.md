@@ -52,7 +52,7 @@ cumulus@switch:~$ sudo nano /etc/default/lldpd
 
 # Add "-x" to DAEMON_ARGS to start SNMP subagent
 # Enable CDP by default
-DAEMON_ARGS="-c -I *, !swp43"
+DAEMON_ARGS="-c -I *,!swp43"
 ```
 
 `lldpd` logs to `/var/log/daemon.log` with the *lldpd* prefix:

@@ -467,7 +467,7 @@ the IP addresses of the virtual router.
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
 - 255 virtual routers are supported per switch.
 - VRRP is not supported currently in an MLAG environment or with EVPN.
-- VRRP is supported on physical interfaces and sub-interfaces.
+- To configure VRRP on an SVI, you need to edit the `/etc/frr/frr.conf` file; The NCLU commands are not supported for SVIs.
 
 {{%/notice%}}
 

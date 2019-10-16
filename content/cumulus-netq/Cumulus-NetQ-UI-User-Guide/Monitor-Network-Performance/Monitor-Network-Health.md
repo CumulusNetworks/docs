@@ -23,7 +23,7 @@ rollups.
 
 The small Network Health card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-small-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-hlth-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -76,7 +76,7 @@ The small Network Health card displays:
 The medium Network Health card displays the distribution, score, and
 trend of the:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-hlth-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -129,7 +129,7 @@ The large Network Health card contains two tabs.
 
 The *System Health* tab displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-large-sys-hlth-tab-222.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -187,7 +187,7 @@ The *System Health* tab displays:
 
 The *Network Health* tab displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -245,7 +245,7 @@ The *Network Health* tab displays:
 
 The full screen Network Health card displays all events in the network.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-fullscr-bgp-tab-230.png" width="700" >}}
+{{< figure src="/images/netq/ntwk-hlth-fullscr-bgp-tab-230.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -306,7 +306,7 @@ indicator, and a distribution of the validation results.
 To view a summary of your network health, open the small Network Health
 card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-small-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-hlth-small-230.png" width="200" >}}
 
 In this example, the overall health is relatively good, but improving compared to recent status. Refer to the next section for viewing the key health metrics.
 
@@ -319,7 +319,7 @@ To view these key metrics, open the medium Network Health card. Each
 metric is shown with the the percentage of successful validations, a
 trend indicator, and a distribution of the validation results.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-hlth-medium-230.png" width="200" >}}
 
 In this example, the health of each of the system and network services are
 good, but interface health is on the lower side. While it is improving, you might choose to dig further if it does not continue to improve. Refer to the following section for additional details.
@@ -338,7 +338,7 @@ To view information about each system component:
 1.  Open the large Network Health card.
 2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/>.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-large-sys-hlth-tab-222.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-222.png" width="500" >}}
 
     The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
@@ -353,7 +353,7 @@ efforts toward selected devices versus the service itself. To view
 devices with the most issues, select **Most Failures** from the filter
 above the table on the right.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-health-large-table-options-222.png" width="300">}}
+{{<figure src="/images/netq/ntwk-health-large-table-options-222.png" width="300">}}
 
 Devices with the highest number of issues are listed at the top. Scroll
 down to view those with fewer issues. To further investigate the
@@ -377,7 +377,7 @@ You can focus the data in the table on the right, by unselecting one or
 more services. Click the checkbox next to the service you want to remove
 from the data. In this example, we have unchecked Licenses.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-large-filter-sys-hlth-in-tbl-222.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-filter-sys-hlth-in-tbl-222.png" width="500" >}}
 
 This removes the checkbox next to the associated chart and grays out the title of the chart, temporarily removing the data related to that service from the table. Add it back by hovering over the chart and clicking the checkbox that appears.
 
@@ -396,7 +396,7 @@ To view information about each network protocol or service:
 1.  Open the large Network Health card.
 2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/>.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
 
 The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
@@ -421,7 +421,7 @@ service. To view devices with the most issues, open the large Network
 Health card. Select **Most Failures** from the dropdown above the table
 on the right.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-health-large-table-options-222.png" width="300">}}
+{{<figure src="/images/netq/ntwk-health-large-table-options-222.png" width="300">}}
 
 Devices with the highest number of issues are listed at the top. Scroll
 down to view those with fewer issues. To further investigate the
@@ -447,7 +447,7 @@ more services. Click the checkbox next to the service you want to
 remove. In this example, we removed NTP and LNV and are in the
 process of removing OSPF.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-large-filter-ntwk-hlth-in-tbl-222.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-filter-ntwk-hlth-in-tbl-222.png" width="500" >}}
 
 This grays out the chart title and removes the associated checkbox, temporarily removing the data related to that service from the table.
 
@@ -467,7 +467,7 @@ To view all the validation results:
     at a specific time? Was it when you starting running the service on
     more nodes? Did sessions fail, but nodes were fine?
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-hlth-fullscr-bgp-tab-230.png" width="700" >}}
+    {{< figure src="/images/netq/ntwk-hlth-fullscr-bgp-tab-230.png" width="700" >}}
 
 Where to go next depends on what data you see, but a few options
 include:

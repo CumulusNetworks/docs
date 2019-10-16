@@ -48,7 +48,7 @@ An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1 and 2.2.
 
 Upgrading NetQ in place involves downloading and installing the new version of NetQ applications, and upgrading and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-on-prem-in-place-nqappl-222.png" width="600" >}}
+{{< figure src="/images/netq/upgrade-wkflow-on-prem-in-place-nqappl-222.png" width="600" >}}
 
 ### Download Appliance Upgrade Image
 
@@ -61,11 +61,11 @@ The first step in upgrading your NetQ Appliance is to obtain the appliance upgra
 
 3.  From the **Hypervisor/Platform** list box, select *Appliance*.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-23-download-options-230.png" width="500" >}}
+      {{< figure src="/images/netq/netq-23-download-options-230.png" width="500" >}}
 
 4.  Click **Upgrade**.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-23-nqappl-upgrade-230.png" width="200" >}}
+      {{< figure src="/images/netq/netq-23-nqappl-upgrade-230.png" width="200" >}}
 
 ### Run the Installation Script
 
@@ -321,7 +321,7 @@ A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 and ear
 
 Upgrading NetQ using a disk image involves backing up your NetQ data, downloading and installing the new version of NetQ software, restoring your data, and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-disk-img-on-prem-nqappl-222.png" width="700" >}}
+{{< figure src="/images/netq/upgrade-wkflow-disk-img-on-prem-nqappl-222.png" width="700" >}}
 
 ### Backup Your NetQ Data
 
@@ -344,11 +344,11 @@ The next step is to obtain the new image.
 
 3.  From the **Hypervisor/Platform** list box, select *Appliance*.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-23-download-options-230.png" width="500" >}}
+      {{< figure src="/images/netq/netq-23-download-options-230.png" width="500" >}}
 
 4.  Click **Download**.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-23-nqappl-dwnld-230.png" width="200" >}}
+      {{< figure src="/images/netq/netq-23-nqappl-dwnld-230.png" width="200" >}}
 
 ### Install the Image Using ONIE
 

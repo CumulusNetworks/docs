@@ -65,7 +65,7 @@ The small LLDP Service card displays:
 
 The medium LLDP Service card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -181,7 +181,7 @@ The *Sessions Summary* tab which displays:
 
 The *Alarms* tab which displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -234,7 +234,7 @@ The *Alarms* tab which displays:
 The full screen LLDP Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -397,7 +397,7 @@ investigating either the service or particular devices.
 
 To view the distribution, open the medium LLDP Service card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
 
 In this example, we see that 13 nodes are running the LLDP protocol,
 that there are 52 sessions established, and that no LLDP-related alarms
@@ -517,7 +517,7 @@ To view switches with most LLDP alarms:
     with the most BGP alarms at the top. Scroll down to view those with
     the fewest alarms.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -543,7 +543,7 @@ To view all LLDP events:
 1.  Open the full screen LLDP Service card.
 2.  Click the **All Alarms** tab.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-222.png" width="700">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -567,7 +567,7 @@ network in the full screen card.
 To view all switch details, open the LLDP Service card, and click the
 **All Switches** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
 
 Return to your workbench by clicking {{% imgOld 36 %}} in the top right corner.
 
@@ -579,7 +579,7 @@ in the full screen card.
 To view all session details, open the LLDP Service card, and click the
 **All Sessions** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-fullscr-sessions-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-sessions-tab-222.png" width="700">}}
 
 Return to your workbench by clicking {{% imgOld 38 %}} in the top right corner.
 
@@ -593,9 +593,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-fullscr-switches-tab-2-selected-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-switches-tab-2-selected-222.png" width="700">}}
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -869,7 +869,7 @@ The *Configuration File Evolution* tab displays:
 The full screen LLDP Session card provides tabs for all LLDP sessions
 and all events.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -1031,7 +1031,7 @@ associated with the two devices on this card.
 To view all session details, open the full screen LLDP Session card, and
 click the **All LLDP Sessions** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
 
 To return to your workbench, click {{% imgOld 81 %}} in the top right of the card.
 
@@ -1042,7 +1042,7 @@ You can view all of the alarm and info events in the network.
 To view all events, open the full screen LLDP Session card, and click
 the **All Events** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-fullscr-events-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-events-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:

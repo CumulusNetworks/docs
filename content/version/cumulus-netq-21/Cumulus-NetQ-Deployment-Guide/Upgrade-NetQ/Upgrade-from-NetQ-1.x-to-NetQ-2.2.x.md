@@ -142,12 +142,12 @@ To install the NetQ software onto your own hardware:
     3.  Optionally, select the hypervisor you wish to use (*VMware* or *KVM*) from the
         **Hypervisor/Platform** list.
 
-        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-21-download-options.png" width="500" >}}
+        {{< figure src="/images/netq/netq-21-download-options.png" width="500" >}}
 
     4.  Scroll down to review the images that match your selection
         criteria, and click **Download** for the image you want.
 
-        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-21-vm-dwnld.png" width="400" >}}
+        {{< figure src="/images/netq/netq-21-vm-dwnld.png" width="400" >}}
 
 3.  Open your hypervisor and set up your VM.  
     You can use these examples for reference or use your own hypervisor

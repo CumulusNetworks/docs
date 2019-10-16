@@ -10,9 +10,9 @@ siteSlug: cumulus-netq-22
 
 The following Cumulus NetQ user documentation is available in PDF for offline viewing or printing:
 
-- [Cumulus NetQ Deployment Guide PDF](https://dkahegywkrw3e.cloudfront.net/Cumulus_NetQ_220_Deployment_Guide.pdf)
-- [Cumulus NetQ CLI User Guide PDF](https://dkahegywkrw3e.cloudfront.net/Cumulus_NetQ_220_CLI_User_Guide.pdf)
-- [Cumulus NetQ UI User Guide PDF](https://dkahegywkrw3e.cloudfront.net/Cumulus_NetQ_220_UI_User_Guide.pdf)
+- [Cumulus NetQ Deployment Guide PDF](/Cumulus_NetQ_220_Deployment_Guide.pdf)
+- [Cumulus NetQ CLI User Guide PDF](/Cumulus_NetQ_220_CLI_User_Guide.pdf)
+- [Cumulus NetQ UI User Guide PDF](/Cumulus_NetQ_220_UI_User_Guide.pdf)
 
 {{%notice note%}}
 

@@ -138,7 +138,7 @@ The *Switches* tab displays:
 <td><p>Inventory | Devices</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="/images/netq/inventory-devices-large-total-number-icon-230.png", width="24", height="24"/></p></td>
+<td><p>{{<img src="/images/netq/inventory-devices-large-total-number-icon-230.png" width="24" height="24">}}</p></td>
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">

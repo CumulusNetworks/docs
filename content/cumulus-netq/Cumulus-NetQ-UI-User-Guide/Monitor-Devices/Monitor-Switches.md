@@ -450,7 +450,7 @@ To view the resource utilization on a particular switch:
     {{<figure src="/images/netq/dev-switch-large-utilization-tab-230.png" width="500">}}
 
 4.  Look at the hardware performance charts. Are there any that are
-    reaching critical usage levels? 
+    reaching critical usage levels?
 5.  Is usage high at a particular time of day?
 6.  Change the time period. Is the performance about the same? Better? Worse? The
     results can guide your decisions about upgrade options.
@@ -685,7 +685,7 @@ The *Platform* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="/images/netq/platform-icon.png", height="20", width="20"/></p></td>
+<td><p>{{<img src="/images/netq/platform-icon.png" height="20" width="20">}}</p></td>
 <td><p>Indicates data is for platform information</p></td>
 </tr>
 <tr class="even">
@@ -839,12 +839,12 @@ count.
 
 {{<figure src="/images/netq/inventory-switch-medium-hover-license-230.png" width="200">}}
 
-To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click <img src="/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
+To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click {{<img src="/images/netq/platform-icon.png" height="18", width="18">}} to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
 
 To view *which* switches have invalid or missing licenses, either:
 
-  - hover over the large Switch Inventory card and click <img src="/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Above the Licenses State or the Vendor chart, click **Show All**.
-      {{< figure src="/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
+  - hover over the large Switch Inventory card and click {{<img src="/images/netq/platform-icon.png" height="18" width="18">}} to open the **Platform** tab. Above the Licenses State or the Vendor chart, click **Show All**.
+      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
   - open the full screen Switch Inventory card. Then sort the **All Switches** tab data table by the **License State** column to locate the switches with bad or missing licenses.
       {{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab-license-highlight.png" width="700" >}}
 

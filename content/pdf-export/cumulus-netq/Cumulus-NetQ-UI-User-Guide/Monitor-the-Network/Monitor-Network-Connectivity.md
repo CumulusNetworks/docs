@@ -28,7 +28,7 @@ configure and run both of these trace types.
 
 The small Trace Request card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/uploads/trace-request-small-card.png" width="200">}}
+{{<figure src="/images/uploads/trace-request-small-card.png" width="200">}}
 
 <table>
 <colgroup>
@@ -392,7 +392,7 @@ large or small Trace Results card, respectively.
 The small On-demand Trace Results card
 displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/uploads/sch-trace-request-small-card.png" width="200" padding="0">}}
+{{<figure src="/images/uploads/sch-trace-request-small-card.png" width="200" padding="0">}}
 
 <table>
 <colgroup>

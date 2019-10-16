@@ -15,7 +15,7 @@ Monitoring of systems inevitably leads to the need to troubleshoot and
 resolve the issues found. In fact network management follows a common
 pattern as shown in this diagram.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/high-level-troubleshooting-workflow.png" width="700" >}}
+{{< figure src="/images/netq/high-level-troubleshooting-workflow.png" width="700" >}}
 
 This topic describes some of the tools and commands you can use to
 troubleshoot issues with the network and NetQ itself.

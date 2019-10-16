@@ -333,7 +333,7 @@ configuration would look something like this:
         bridge-ports swp3.10  swp4  swp5.100.10
         bridge-vlan-aware no
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-linux/qinq-double-tagged-no-vxlan.png" width="600" >}}
+{{< figure src="/images/cumulus-linux/qinq-double-tagged-no-vxlan.png" width="600" >}}
 
 {{%/notice%}}
 

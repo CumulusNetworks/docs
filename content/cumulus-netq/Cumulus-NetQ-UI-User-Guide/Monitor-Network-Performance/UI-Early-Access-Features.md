@@ -39,11 +39,11 @@ The core capabilities of Cumulus NetQ enable you to monitor your network by view
 
 To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg", height="18", width="18"/> in any workbench header.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-access-from-wb-hdr-230.png" width="700">}}
+{{<figure src="/images/netq/topo-access-from-wb-hdr-230.png" width="700">}}
 
 This opens the full screen view of your network topology.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-main-page-ref-topo.png" width="700">}}
+{{<figure src="/images/netq/topo-main-page-ref-topo.png" width="700">}}
 
 This document uses the Cumulus Networks [reference topology](https://docs.cumulusnetworks.com/cumulus-linux/Network-Solutions/Cumulus-Networks-Services-Demos/#reference-topology) for all examples.
 
@@ -55,10 +55,10 @@ The topology view provides a visual representation of your Linux network, showin
 
 | Symbol | Usage |
 | :----: | ----- |
-| <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/rocket-turtle-limed-spruce.svg", width="28", height="28"/> | Switch running Cumulus Linux OS |
+| <img src="/images/netq/rocket-turtle-limed-spruce.svg", width="28", height="28"/> | Switch running Cumulus Linux OS |
 | <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> | Switch running RedHat, Ubuntu, or CentOS |
 | <img src="https://icons.cumulusnetworks.com/12-Design/08-Grids-Rulers/grid-monitor.svg", height="18", width="18"/> | Host |
-| <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-circle-nubs-icon-230.png", width="18", height="18"/> | Network server |
+| <img src="/images/netq/topo-circle-nubs-icon-230.png", width="18", height="18"/> | Network server |
 | Red <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> | Alarm (critical) event is present on the node|
 | Yellow <img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg", height="18", width="18"/> | Info event is present |
 | Lines | Physical links or connections |
@@ -71,7 +71,7 @@ There are a number of ways in which you can interact with the topology.
 
 You can move the focus on the topology closer to view a smaller number of nodes, or further out to view a larger number of nodes. As with mapping applications, the node labels appear and disappear as you move in and out on the diagram for better readability. To zoom, you can use:
 
-- the zoom controls, <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-zoom-widget-230.png" width="18">, in the bottom right corner of the screen; the '+' zooms you in closer, the '-' moves you further out, and the 'o' resets to the default size.
+- the zoom controls, <img src="/images/netq/topo-zoom-widget-230.png" width="18">, in the bottom right corner of the screen; the '+' zooms you in closer, the '-' moves you further out, and the 'o' resets to the default size.
 - a scrolling motion on your mouse
 - your trackpad
 
@@ -81,16 +81,16 @@ You can also click anywhere on the topology, and drag it left, right, up, or dow
 
 You can hover over the various elements to view data about them.  Hovering over a node highlights its connections to other nodes, temporarily de-emphasizing all other connections. 
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-hover-node-230.png" width="700">}}
+{{<figure src="/images/netq/topo-hover-node-230.png" width="700">}}
 
 Hovering over a line highlights the connection and displays the interface ports used on each end of the connection. All other connections are temporarily de-emphasized.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-hover-link-230.png" width="300">}}
+{{<figure src="/images/netq/topo-hover-link-230.png" width="300">}}
 
 You can also click on the nodes and links to open the Configuration Panel with additional data about them.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-node-detail-230.png" width="700">}}
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-link-detail-230.png" width="500">}}
+{{<figure src="/images/netq/topo-node-detail-230.png" width="700">}}
+{{<figure src="/images/netq/topo-link-detail-230.png" width="500">}}
 
 From the Configuration Panel, you can view the following data about nodes and links:
 
@@ -119,17 +119,17 @@ After reviewing the provided information, click <img src="https://icons.cumulusn
 
 View the unique count of items in the network by clicking on the <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-2.svg", height="18", width="18"/> on the upper left to open the count summary. (Be sure that you do not have a node selected.) Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg", height="18", width="18"/> to close the panel.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-open-item-count-summary-230.png" width="400">}}
+{{<figure src="/images/netq/topo-open-item-count-summary-230.png" width="400">}}
 
 You can change the time period for the data as well. This enables you to view the state of the network in the past and compare it with the current state. Click in the timestamp box in the topology header to select an alternate time period.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-time-picker-230.png" width="150">}}
+{{<figure src="/images/netq/topo-time-picker-230.png" width="150">}}
     
 ### Export Your NetQ Topology Data
 
 The topology view  provides the option to export your topology information as a JSON file. Click **Export** in the header.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/topo-export-button-230.png" width="700">}}
+{{<figure src="/images/netq/topo-export-button-230.png" width="700">}}
 
 The JSON file will be similar to this example:
 

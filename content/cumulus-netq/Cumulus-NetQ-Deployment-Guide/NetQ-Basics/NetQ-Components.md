@@ -23,9 +23,9 @@ Cumulus NetQ contains the following applications and key components:
 While these function apply to both the on-site and in-cloud solutions, where
 the functions reside varies, as shown here.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-comps-onpremises-230.png" width="700" >}}
+{{< figure src="/images/netq/netq-comps-onpremises-230.png" width="700" >}}
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-comps-cloud-230.png" width="450" >}}
+{{< figure src="/images/netq/netq-comps-cloud-230.png" width="450" >}}
 
 NetQ interfaces with event notification applications, third-party
 analytics tools.

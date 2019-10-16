@@ -171,7 +171,7 @@ structure:
 
 For example:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/uploads/NetQAgentLogFormat.png" height="69" width="747">}}
+{{<figure src="/images/uploads/NetQAgentLogFormat.png" height="69" width="747">}}
 
 This example shows a portion of a NetQ Agent log with debug level
 logging.

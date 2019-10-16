@@ -22,7 +22,7 @@ switch has software associated with the hardware platform, the operating
 system, and communications. For data centers, the software on a Cumulus
 Linux network switch would be similar to the diagram shown here.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-agent-operation-diag.png" width="500" >}}
+{{< figure src="/images/netq/netq-agent-operation-diag.png" width="500" >}}
 
 The NetQ Agent interacts with the various
 components and software on switches and hosts and provides the gathered
@@ -182,7 +182,7 @@ by the commands to run to determine the cause of a BGP error on spine01.
 Note that the commands use the `around` option to see the results for
 last night and that they can be run from any switch in the network.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-ops-historic-230.png" width="700" >}}
+{{< figure src="/images/netq/netq-ops-historic-230.png" width="700" >}}
 
     cumulus@switch:~$ netq check bgp around 30m
     Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
@@ -253,7 +253,7 @@ routing issues as they occur. This is an example of a Slack message
 received on a *netq-notifier* channel indicating that the BGP session on
 switch *leaf04* interface *swp2* has gone down.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/slack-msg-example.png" width="500" >}}
+{{< figure src="/images/netq/slack-msg-example.png" width="500" >}}
 
 ## Timestamps in NetQ
 
@@ -505,7 +505,7 @@ this:
 Open the full screen Switch Inventory card, select the data to export,
 and click **Export**.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-fullscr-export-button-230.png" width="700" >}}
+{{< figure src="/images/netq/inventory-devices-fullscr-export-button-230.png" width="700" >}}
 
 ## Important File Locations
 

@@ -36,7 +36,7 @@ refer to [Multi-Chassis Link Aggregation - MLAG](../../../../cumulus-linux/Layer
 
 The small MLAG Service card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-small-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-mlag-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -75,7 +75,7 @@ The small MLAG Service card displays:
 
 The medium MLAG Service card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-mlag-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -138,7 +138,7 @@ The large MLAG service card contains two tabs.
 
 The *All MLAG Sessions Summary* tab which displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-large-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-mlag-large-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -199,7 +199,7 @@ The *All MLAG Sessions Summary* tab which displays:
 
 The *All MLAG Alarms* tab which displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-large-alarms-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-mlag-large-alarms-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -252,7 +252,7 @@ The *All MLAG Alarms* tab which displays:
 The full screen MLAG Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-fullscr-all-switches-tab-230.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-all-switches-tab-230.png" width="700">}}
 
 <table>
 <colgroup>
@@ -384,7 +384,7 @@ of MLAG-related alarms, and a distribution of those alarms.
 
 To view the summary, open the small MLAG Service card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-small-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-mlag-small-230.png" width="200" >}}
 
 For more detail, select a different size MLAG Service card.
 
@@ -399,7 +399,7 @@ between the issues and the ability to establish a MLAG session.
 
 To view these distributions, open the medium MLAG Service card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-mlag-medium-230.png" width="200" >}}
 
 If a visual correlation is apparent, you can dig a little deeper with
 the large MLAG Service card tabs.
@@ -421,7 +421,7 @@ To view switches and hosts with the most MLAG sessions:
     running the most MLAG sessions at the top. Scroll down to view those
     with the fewest sessions.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-large-most-sessions-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-mlag-large-most-sessions-230.png" width="500" >}}
 
 To compare this data with the same data at a previous time:
 
@@ -434,9 +434,9 @@ To compare this data with the same data at a previous time:
     You can now see whether there are significant differences between
     this time period and the previous time period.  
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
+    {{< figure src="/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-large-most-sessions-6hr-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-mlag-large-most-sessions-6hr-230.png" width="500" >}}
 
     If the changes are unexpected, you can investigate further by
     looking at another time frame, determining if more nodes are now
@@ -456,7 +456,7 @@ To view switches with the most unestablished MLAG sessions:
     with the most unestablished MLAG sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-large-most-unestab-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-mlag-large-most-unestab-230.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -489,7 +489,7 @@ To view switches with most MLAG alarms:
     with the most MLAG alarms at the top. Scroll down to view those with
     the fewest alarms.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-large-alarms-tab-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-mlag-large-alarms-tab-230.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -512,7 +512,7 @@ To view all MLAG events:
 1.  Open the full screen MLAG Service card.
 2.  Click **All Alarms** tab.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-fullscr-all-alarms-tab-230.png" width="700">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-all-alarms-tab-230.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -537,7 +537,7 @@ network in the full-screen card.
 To view all switch details, open the full screen MLAG Service card, and
 click the **All Switches** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-fullscr-all-switches-tab-230.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-all-switches-tab-230.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 
@@ -551,9 +551,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-mlag-fullscr-switches-tab-selected-hosts-230.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-switches-tab-selected-hosts-230.png" width="700">}}
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-fullscr-edit-menu-4selected-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-fullscr-edit-menu-4selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -600,7 +600,7 @@ proportionally reduced in saturation. An example heat map for a time
 period of 24 hours is shown here with the most common time periods in
 the table showing the resulting time blocks.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-result-granularity-230.png" width="300">}}
+{{<figure src="/images/netq/ntwk-svcs-single-mlag-result-granularity-230.png" width="300">}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -615,7 +615,7 @@ the table showing the resulting time blocks.
 
 The small MLAG Session card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-small-230.png" width="200">}}
+{{<figure src="/images/netq/ntwk-svcs-single-mlag-small-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -650,7 +650,7 @@ The small MLAG Session card displays:
 
 The medium MLAG Session card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-single-mlag-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -715,7 +715,7 @@ The large MLAG Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-large-sess-sum-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-single-mlag-large-sess-sum-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -798,7 +798,7 @@ The *Session Summary* tab displays:
 
 The *Configuration File Evolution* tab displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-large-config-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-single-mlag-large-config-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -848,7 +848,7 @@ The *Configuration File Evolution* tab displays:
 The full screen MLAG Session card provides tabs for all MLAG sessions
 and all events.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-fullscr-sessions-tab-230.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-mlag-fullscr-sessions-tab-230.png" width="700">}}
 
 <table>
 <colgroup>
@@ -937,9 +937,9 @@ To view the summary:
 2.  Select a session from the listing to view.
 3.  Close the full screen card to view the medium MLAG Session card.  
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-medium-summ-highlighted-bad-230.png" width="200" >}}
+    {{< figure src="/images/netq/ntwk-svcs-single-mlag-medium-summ-highlighted-bad-230.png" width="200" >}}
     
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-medium-summ-highlighted-230.png" width="200" >}}
+    {{< figure src="/images/netq/ntwk-svcs-single-mlag-medium-summ-highlighted-230.png" width="200" >}}
 
     In the left example, we see that the tor1 switch plays the secondary
     role in this session with the switch at 44:38:39:ff:01:01. In the
@@ -962,7 +962,7 @@ To view the state transitions for a given MLAG session:
 2.  Select a session from the listing to view.
 3.  Close the full screen card to view the medium MLAG Session card.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-medium-chart-highlighted-230.png" width="200" >}}
+    {{< figure src="/images/netq/ntwk-svcs-single-mlag-medium-chart-highlighted-230.png" width="200" >}}
 
     In this example, the peer switch has been alive for the entire
     24-hour period.
@@ -973,7 +973,7 @@ and MLAG system MAC address which identify the session in more detail.
 To view the peering state transitions for a given MLAG session on the
 large MLAG Session card, open that card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-large-session-tab-chart-highlighted-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-single-mlag-large-session-tab-chart-highlighted-230.png" width="500" >}}
 
 From this card, you can also view the alarm and info event counts, node
 role, peer role, state, and interface, MLAG system MAC address, active
@@ -998,7 +998,7 @@ To view the configuration file changes:
     option is dark; File by default).  
     The File view displays the content of the file for you to review.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-large-config-tab-file-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-single-mlag-large-config-tab-file-230.png" width="500" >}}
 
     The Diff view displays the changes between this version (on left)
     and the most recent version (on right) side by side. The changes are
@@ -1006,7 +1006,7 @@ To view the configuration file changes:
     changes after this first creation, so the same file is shown on both
     sides and no highlighting is present.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-large-config-tab-diff-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-single-mlag-large-config-tab-diff-230.png" width="500" >}}
 
 ### All MLAG Session Details
 
@@ -1016,7 +1016,7 @@ associated with the two devices on this card.
 To view all session details, open the full screen MLAG Session card, and
 click the **All MLAG Sessions** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-fullscr-sessions-tab-230.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-mlag-fullscr-sessions-tab-230.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -1040,7 +1040,7 @@ this card.
 To view all events, open the full screen MLAG Session card, and click
 the **All Events** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-mlag-fullscr-events-tab-230.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-mlag-fullscr-events-tab-230.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:

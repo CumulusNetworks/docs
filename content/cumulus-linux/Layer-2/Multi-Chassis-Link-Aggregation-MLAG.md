@@ -513,7 +513,7 @@ example clag l2-with-server-vlan-trunks`.
 
 {{%/notice%}}
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-linux/exampleMLAGconfig.png">}}
+{{< figure src="/images/cumulus-linux/exampleMLAGconfig.png">}}
 
 You configure these interfaces using
 [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU),

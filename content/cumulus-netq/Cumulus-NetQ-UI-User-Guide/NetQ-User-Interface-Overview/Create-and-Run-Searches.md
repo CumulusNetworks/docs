@@ -33,7 +33,7 @@ To create a new search:
 3.  Click the device hostname or card workflow in the search list to
     open the associated information.  
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/search-create-auto-suggest-222.png" width="300" >}}
+    {{< figure src="/images/netq/search-create-auto-suggest-222.png" width="300" >}}
 
     {{%notice note%}}
 
@@ -55,7 +55,7 @@ To re-run a recent search:
 2.  When the desired search appears in the suggested searches list,
     select it.  
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/search-rerun-222.png" width="300" >}}
+    {{< figure src="/images/netq/search-rerun-222.png" width="300" >}}
 
     {{%notice note%}}
 

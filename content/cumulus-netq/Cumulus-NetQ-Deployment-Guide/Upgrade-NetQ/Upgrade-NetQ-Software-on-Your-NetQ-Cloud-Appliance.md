@@ -54,7 +54,7 @@ An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1 and 2.2.
 ### In-place Upgrade Workflow
 Upgrading NetQ involves backing up your data, downloading and installing the new version of NetQ software, restoring your NetQ data, and upgrading and configuring the NetQ Agents.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-in-place-cloud-nqcldappl-222.png"  width="500" >}}
+{{< figure src="/images/netq/upgrade-wkflow-in-place-cloud-nqcldappl-222.png"  width="500" >}}
 
 ### Install and Configure the CLI
 
@@ -81,12 +81,12 @@ The first step in upgrading NetQ software on your NetQ Cloud Appliance is to ins
   1. Open the NetQ UI.
   2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", width="18", height="18"/>, then select *Management* in the **Admin** column.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-mgmt-selected.png" width="400">}}
+      {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
   3. Click **Manage** on the User Accounts card.
   4. Select a user and click **Delete AuthKeys** in the Edit menu.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/delete-auth-keys-230.png" width="700">}}
+      {{< figure src="/images/netq/delete-auth-keys-230.png" width="700">}}
       
   5. Select the user again and click **Generate AuthKeys**.
   6. Copy these keys to a safe place.
@@ -198,7 +198,7 @@ A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 or earl
 
 Upgrading NetQ involves downloading and installing the new version of NetQ software, and upgrading and configuring the NetQ Agents.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-disk-img-cloud-nqcldappl-222.png" width="700" >}}
+{{< figure src="/images/netq/upgrade-wkflow-disk-img-cloud-nqcldappl-222.png" width="700" >}}
 
 ### Download the NetQ Software Image
 
@@ -211,11 +211,11 @@ The next step is to obtain the new image.
 
 3.  From the **Hypervisor/Platform** list box, select *Appliance (Cloud)*.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-23-download-options-230.png" width="500" >}}
+      {{< figure src="/images/netq/netq-23-download-options-230.png" width="500" >}}
 
 4.  Click **Download**.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-23-nqappl-cloud-dwnld-230.png" width="200" >}}
+      {{< figure src="/images/netq/netq-23-nqappl-cloud-dwnld-230.png" width="200" >}}
 
 ### Install the Image Using ONIE
 
@@ -271,12 +271,12 @@ To configure CLI access:
 
 3. From the Main Menu, select *Management* in the **Admin** column.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-mgmt-selected.png" width="400">}}
+      {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 5. Select your user and click **Generate AuthKeys**.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/generate-auth-keys.png" width="700">}}
+      {{< figure src="/images/netq/generate-auth-keys.png" width="700">}}
 
 6. Copy these keys to a safe place.
 

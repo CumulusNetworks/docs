@@ -38,7 +38,7 @@ are as follows:
 5.  Click **Import** to start the import process. It take couple seconds
     to import the VM into VMware Workstation and create the VMX image.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-vx/VMware_WS.png">}}
+    {{<figure src="/images/cumulus-vx/VMware_WS.png">}}
 
 6.  Once imported, a dialog with the current VM settings appears. Click
     **Edit virtual machine settings** and make sure to match the network

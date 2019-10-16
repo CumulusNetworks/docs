@@ -28,7 +28,7 @@ configure and run both of these trace types.
 
 The small Trace Request card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/uploads/trace-request-small-card.png" width="200">}}
+{{<figure src="/images/uploads/trace-request-small-card.png" width="200">}}
 
 <table>
 <colgroup>
@@ -59,7 +59,7 @@ The small Trace Request card displays:
 
 The medium Trace Request card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-medium-222.png" width="200">}}
+{{<figure src="/images/netq/trace-request-medium-222.png" width="200">}}
 
 <table>
 <colgroup>
@@ -102,7 +102,7 @@ The medium Trace Request card displays:
 
 The large Trace Request card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-large-222.png" width="500" >}}
+{{< figure src="/images/netq/trace-request-large-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -169,7 +169,7 @@ The large Trace Request card displays:
 
 The full screen Trace Request card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-fullscr-preview-tab-222.png" width="700" >}}
+{{< figure src="/images/netq/trace-request-fullscr-preview-tab-222.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -233,14 +233,14 @@ To create a layer 3 trace request:
 
 1.  Open the medium Trace Request card.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-medium-222.png" width="200">}}
+    {{<figure src="/images/netq/trace-request-medium-222.png" width="200">}}
 
 2.  In the **Source** field, enter the hostname or IP address of the
     device where you want to start the trace.
 3.  In the **Destination** field, enter the IP address of the device
     where you want to end the trace.  
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-medium-l3-example-222.png" width="200">}}
+    {{<figure src="/images/netq/trace-request-medium-l3-example-222.png" width="200">}}
 
     In this example, we are starting our trace at *server02* and ending
     it at *10.1.3.103*.
@@ -273,7 +273,7 @@ To create the trace request:
 4.  In the **VRF** field, enter the identifier for the VRF interface you
     want to use.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-large-l3wVRF-example-222.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-l3wVRF-example-222.png" width="500" >}}
 
     In this example, we are starting our trace at *leaf01* and ending it
     at *10.1.3.103* using VRF *vrf1.*
@@ -300,7 +300,7 @@ To create a layer 2 trace request:
 4.  In the **VLAN ID** field, enter the identifier for the VLAN you want
     to use.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-large-l2vlan-example-222.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-l2vlan-example-222.png" width="500" >}}
 
     In this example, we are starting our trace at *leaf01* and ending it
     at *00:03:00:33:33:01* using VLAN *13.*
@@ -327,28 +327,28 @@ To schedule a trace:
     address (layer 3) of the device where you want to end the trace.
 4.  Optionally, enter a VLAN ID (layer 2) or VRF interface (layer 3).
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-large-l2vlan-ex.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-l2vlan-ex.png" width="500" >}}
 
 5.  Select a timeframe under **Schedule** to specify how often you want
     to run the trace.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/schedule-frequency-selection-222.png" width="300" >}}
+    {{< figure src="/images/netq/schedule-frequency-selection-222.png" width="300" >}}
 
 6.  Accept the default starting time, or click in the **Starting** field to specify the day you want the trace to run for the first time.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/date-selection-222.png" width="200" >}}
+    {{< figure src="/images/netq/date-selection-222.png" width="200" >}}
 
 7.  Click **Next**.
 8.  Click the time you want the trace to run for the first time.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/time-selection-222.png" width="200" >}}
+    {{< figure src="/images/netq/time-selection-222.png" width="200" >}}
 
 9.  Click **OK**.
 10. Verify your entries are correct, then click **Save As New**.
 11. Provide a name for the trace. **Note**: This name must be unique
     for a given user.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/save-trace-name-modal.png" width="250" >}}
+    {{< figure src="/images/netq/save-trace-name-modal.png" width="250" >}}
 
 12. Click **Save**. You can now run this trace on demand by selecting it
     from the dropdown list, or wait for it to run on its defined
@@ -365,11 +365,11 @@ To run a scheduled trace now:
 
 1.  Open the small or medium or large Trace Request card.  
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-small-selection-230.png" width="200" >}}
+    {{< figure src="/images/netq/trace-request-small-selection-230.png" width="200" >}}
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-medium-selection-230.png" width="200" >}}
+    {{< figure src="/images/netq/trace-request-medium-selection-230.png" width="200" >}}
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-large-selection-222.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-selection-222.png" width="500" >}}
 
 2.  Select the scheduled trace from the **Select Trace** or **New Trace
     Request** list. **Note**: In the medium and large cards, the trace
@@ -389,7 +389,7 @@ large or small Trace Results card, respectively.
 The small On-demand Trace Results card
 displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-small-230.png" width="200" >}}
+{{< figure src="/images/netq/od-trace-result-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -420,7 +420,7 @@ displays:
 
 The medium On-demand Trace Results card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/od-trace-result-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -473,7 +473,7 @@ The large On-demand Trace Results card contains two tabs.
 
 The *On-demand Trace Result* tab displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-large-summary-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/od-trace-result-large-summary-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -539,7 +539,7 @@ The *On-demand Trace Result* tab displays:
 
 The *On-demand Trace Settings* tab displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-large-config-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/od-trace-result-large-config-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -594,7 +594,7 @@ The *On-demand Trace Settings* tab displays:
 
 The full screen On-demand Trace Results card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-fullscr-230.png" width="700" >}}
+{{< figure src="/images/netq/od-trace-result-fullscr-230.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -654,13 +654,13 @@ When you start the trace, the corresponding results card is opened on
 your workbench. While it is working on the trace, a notice is shown on
 the card indicating it is running.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-medium-running-230.png" width="200" >}}
+{{< figure src="/images/netq/od-trace-result-medium-running-230.png" width="200" >}}
 
 Once the job is completed, the results are displayed.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-medium-good-230.png" width="200" >}}
+{{< figure src="/images/netq/od-trace-result-medium-good-230.png" width="200" >}}
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-medium-fail-230.png" width="200" >}}
+{{< figure src="/images/netq/od-trace-result-medium-fail-230.png" width="200" >}}
 
 In this example, we see that the trace was successful. Four paths were
 found between the devices, each with four hops and with an overall MTU
@@ -668,9 +668,9 @@ of 1500. If there was a difference between the minimum and maximum
 number of hops or other failures, viewing the results on the large card
 would provide additional information.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-large-summary-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/od-trace-result-large-summary-tab-230.png" width="500" >}}
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-large-summary-tab-fail-230.png" width="500" >}}
+{{< figure src="/images/netq/od-trace-result-large-summary-tab-fail-230.png" width="500" >}}
 
 In our example, we can verify that every path option had four hops since
 the distribution chart only shows one hop count and the table indicates
@@ -684,12 +684,12 @@ When you start the trace, the corresponding results card is opened on
 your workbench. While it is working on the trace, a notice is shown on
 the card indicating it is running.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-medium-l3-running-230.png" width="200" >}}
+{{< figure src="/images/netq/od-trace-result-medium-l3-running-230.png" width="200" >}}
 
 Once results are obtained, it displays them. Using our example from
 earlier, the following results are shown:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/od-trace-result-medium-230.png" width="200" >}}
 
 In this example, we see that the trace was successful. Six paths were
 found between the devices, each with five hops and with an overall MTU
@@ -697,7 +697,7 @@ of 1500. If there was a difference between the minimum and maximum
 number of hops or other failures, viewing the results on the large card
 would provide additional information.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-trace-result-large-summary-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/od-trace-result-large-summary-tab-230.png" width="500" >}}
 
 In our example, we can verify that every path option had five hops since
 the distribution chart only shows one hop count and the table indicates
@@ -714,7 +714,7 @@ displayed on the Scheduled Trace Results cards.
 
 The small Scheduled Trace Results card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-trace-result-small.png" width="200" >}}
+{{< figure src="/images/netq/sch-trace-result-small.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -750,7 +750,7 @@ The small Scheduled Trace Results card displays:
 
 The medium Scheduled Trace Results card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-trace-result-medium.png" width="200" >}}
+{{< figure src="/images/netq/sch-trace-result-medium.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -797,7 +797,7 @@ The large Scheduled Trace Results card contains two tabs:
 
 The *Results* tab displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-trace-result-large-sum-tab.png" width="500" >}}
+{{< figure src="/images/netq/sch-trace-result-large-sum-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -848,7 +848,7 @@ The *Results* tab displays:
 
 The *Configuration* tab displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-trace-result-large-config-tab.png" width="500" >}}
+{{< figure src="/images/netq/sch-trace-result-large-config-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -911,7 +911,7 @@ The *Configuration* tab displays:
 
 The full screen Scheduled Trace Results card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-trace-result-fullscr-230.png" width="700" >}}
+{{< figure src="/images/netq/sch-trace-result-fullscr-230.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -984,7 +984,7 @@ failures decrease, the blocks increase their gray saturation. An example
 heat map for a time period of 24 hours is shown here with the most
 common time periods in the table showing the resulting time blocks.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-trace-result-granularity-230.png" width="300" >}}
+{{< figure src="/images/netq/sch-trace-result-granularity-230.png" width="300" >}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -1005,14 +1005,14 @@ To view the results:
 1.  Open the full screen Trace Request card to view all scheduled traces
     that have been run.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-trace-result-fullscr-230.png" width="700" >}}
+    {{< figure src="/images/netq/sch-trace-result-fullscr-230.png" width="700" >}}
 
 2.  Select the scheduled trace you want to view results for by clicking
     in the first column of the result and clicking the check box.
 
 3.  On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> (Open Cards). This opens the medium Scheduled Trace Results card(s) for the selected items.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-trace-result-medium.png" width="200" >}}
+    {{< figure src="/images/netq/sch-trace-result-medium.png" width="200" >}}
 
 4.  Note the distribution of results. Are there many failures? Are they
     concentrated together in time? Has the trace begun passing again?
@@ -1022,7 +1022,7 @@ To view the results:
 
 6.  Switch to the large Scheduled Trace Result card.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-trace-result-large-sum-tab.png" width="500" >}}
+    {{< figure src="/images/netq/sch-trace-result-large-sum-tab.png" width="500" >}}
 
 7.  If there are a large number of warnings or failures, view the
     associated messages by selecting **Failures** or **Warning** in the
@@ -1051,7 +1051,7 @@ To view the results:
 13. View the details of any specific trace result by clicking on the
     trace. A new window opens similar to the following:
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-trace-result-fullscr-trace-detail-230.png" width="700" >}}
+    {{< figure src="/images/netq/sch-trace-result-fullscr-trace-detail-230.png" width="700" >}}
 
     Scroll to the right to view the information for a given hop. Scroll
     down to view additional paths.  

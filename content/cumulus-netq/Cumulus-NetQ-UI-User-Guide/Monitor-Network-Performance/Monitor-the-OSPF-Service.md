@@ -30,7 +30,7 @@ configure OSPF to run in your data center network, refer to
 
 The small OSPF Service card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-small-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -69,7 +69,7 @@ The small OSPF Service card displays:
 
 The medium OSPF Service card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -124,7 +124,7 @@ The large OSPF service card contains two tabs.
 
 The *Sessions Summary* tab displays:  
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-large-summary-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -186,7 +186,7 @@ The *Sessions Summary* tab displays:
 
 The *Alarms* tab displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-large-alarms-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-large-alarms-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -239,7 +239,7 @@ The *Alarms* tab displays:
 The full screen OSPF Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-fullscr-switches-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-switches-tab-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -362,7 +362,7 @@ number of OSPF-related alarms, and a distribution of those alarms.
 
 To view the summary, open the small OSPF Service card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-small-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-small-230.png" width="200" >}}
 
 For more detail, select a different size OSPF Service card.
 
@@ -375,7 +375,7 @@ also useful to view the health of the sessions.
 
 To view these distributions, open the medium OSPF Service card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200" >}}
 
 You can dig a little deeper with the large OSPF Service card tabs.
 
@@ -396,7 +396,7 @@ To view switches and hosts with the most OSPF sessions:
     running the most OSPF sessions at the top. Scroll down to view those
     with the fewest sessions.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-large-summary-tab-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-230.png" width="500" >}}
 
 To compare this data with the same data at a previous time:
 
@@ -407,9 +407,9 @@ To compare this data with the same data at a previous time:
 4.  Select the time period that you want to compare with the original
     time. We chose *Past Week* for this example.  
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
+    {{< figure src="/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-large-summary-tab-past-week-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-past-week-230.png" width="500" >}}
 
     You can now see whether there are significant differences between
     this time and the original time. If the changes are unexpected, you
@@ -431,14 +431,14 @@ To view switches with the most unestablished OSPF sessions:
     with the most unestablished OSPF sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-large-summary-tab-most-unestab-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-most-unestab-230.png" width="500" >}}
 
 Where to go next depends on what data you see, but a couple of options
 include:
 
   - Change the time period for the data to compare with a prior time.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-large-summary-tab-most-unestab-pst-wk-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-most-unestab-pst-wk-230.png" width="500" >}}
 
     If the same switches are consistently indicating the most
     unestablished sessions, you might want to look more carefully at
@@ -470,7 +470,7 @@ To view switches with the most OSPF alarms:
     with the most OSPF alarms at the top. Scroll down to view those with
     the fewest alarms.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-large-alarms-tab-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-ospf-large-alarms-tab-230.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -509,7 +509,7 @@ OSPF in your network in the full screen card.
 To view all device details, open the full screen OSPF Service card and
 click the **All Switches** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-fullscr-switches-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-switches-tab-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 
@@ -521,7 +521,7 @@ in the full-screen card.
 To view all session details, open the full screen OSPF Service card and
 click the **All Sessions** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-fullscr-sessions-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 
@@ -535,9 +535,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-ospf-fullscr-switches-tab-2-selected-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-switches-tab-2-selected-222.png" width="700">}}
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -586,7 +586,7 @@ established block is proportionally reduced in saturation. An example
 heat map for a time period of 24 hours is shown here with the most
 common time periods in the table showing the resulting time blocks.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-result-granularity-230.png" width="300">}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-result-granularity-230.png" width="300">}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -601,7 +601,7 @@ common time periods in the table showing the resulting time blocks.
 
 The small OSPF Session card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-small-230.png" width="200">}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-small-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -637,7 +637,7 @@ The small OSPF Session card displays:
 
 The medium OSPF Session card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-medium-230.png" width="200">}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-medium-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -699,7 +699,7 @@ The large OSPF Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-large-summary-tab-230.png" width="500">}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-large-summary-tab-230.png" width="500">}}
 
 <table class="confluenceTable">
 <colgroup>
@@ -815,7 +815,7 @@ removed from SPF calculations in the OSPF database.</td>
 
 The *Configuration File Evolution* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-large-config-tab-file-selected-230.png" width="500">}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-large-config-tab-file-selected-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -865,7 +865,7 @@ The *Configuration File Evolution* tab displays:
 The full screen OSPF Session card provides tabs for all OSPF sessions
 and all events.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-fullscr-sessions-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -948,9 +948,9 @@ To view the summary:
     automatically.
 5.  Optionally, switch to the small OSPF Session card.  
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-medium-state-highighted-230.png" width="200">}}
+    {{<figure src="/images/netq/ntwk-svcs-single-ospf-medium-state-highighted-230.png" width="200">}}
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-small-230.png" width="200">}}
+    {{<figure src="/images/netq/ntwk-svcs-single-ospf-small-230.png" width="200">}}
 
 ### View OSPF Session State Changes
 
@@ -972,7 +972,7 @@ OSPF Session card:
 5.  Double-click the session of interest. The full screen card closes
     automatically.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-medium-state-highighted-230.png" width="200">}}
+    {{<figure src="/images/netq/ntwk-svcs-single-ospf-medium-state-highighted-230.png" width="200">}}
 
 The heat map indicates the status of the session over the designated
 time period. In this example, the session has been established for the
@@ -985,7 +985,7 @@ To view the state transitions for a given OSPF session on the large OSPF
 Session card, follow the same steps to open the medium OSPF Session card
 and then switch to the large card.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-large-state-highighted-230.png" width="500">}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-large-state-highighted-230.png" width="500">}}
 
 From this card, you can view the alarm and info event counts, interface
 name, peer address and peer id, state, and several other parameters
@@ -1009,14 +1009,14 @@ To view the configuration file changes:
     option is dark; File by default).  
     The File view displays the content of the file for you to review.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-large-config-tab-file-selected-230.png" width="500">}}
+    {{<figure src="/images/netq/ntwk-svcs-single-ospf-large-config-tab-file-selected-230.png" width="500">}}
 
     The Diff view displays the changes between this version (on left)
     and the most recent version (on right) side by side. The changes are
     highlighted in red and green. In this example, we don't have a
     change to highlight, so it shows the same file on both sides.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-large-config-tab-diff-selected-230.png" width="500">}}
+    {{<figure src="/images/netq/ntwk-svcs-single-ospf-large-config-tab-diff-selected-230.png" width="500">}}
 
 ### View All OSPF Session Details
 
@@ -1026,7 +1026,7 @@ associated with the two devices on this card.
 To view all session details, open the full screen OSPF Session card, and
 click the **All OSPF Sessions** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-ospf-fullscr-sessions-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 

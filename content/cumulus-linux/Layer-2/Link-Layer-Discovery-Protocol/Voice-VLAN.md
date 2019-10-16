@@ -24,7 +24,7 @@ Data traffic is always [untagged](../../Ethernet-Bridging-VLANs/VLAN-Tagging).
 
 ## Cumulus Linux Voice VLAN Example
 
-{{< img src = "https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/cumulus-linux/voice-vlan.png" >}}
+{{< img src = "https://dkahegywkrw3e.cloudfront.net/images/cumulus-linux/voice-vlan.png" >}}
 
 You can configure the topology above using the following [NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU) commands. In this configuration:
 

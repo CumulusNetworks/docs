@@ -338,7 +338,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
         bridge-ports swp3.10  swp4  swp5.100.10
         bridge-vlan-aware no
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/cumulus-linux/qinq-double-tagged-no-vxlan.png" width="600" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-linux/qinq-double-tagged-no-vxlan.png" width="600" >}}
 
 {{%/notice%}}
 

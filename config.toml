@@ -51,8 +51,6 @@ noChmod = true
 pygmentsCodeFencesGuessSyntax = true
 pygmentsUseClasses = true
 
-
-
 showVisitedLinks = true
 
 # (Optional, default true) Show or hide table of contents globally

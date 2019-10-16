@@ -76,7 +76,7 @@ The small Switch card displays:
 <li><p><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</p></li>
 <li><p><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</p></li>
 </ul>
-<p>{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
+<p>{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
 </tr>
 </tbody>
 </table>
@@ -126,7 +126,7 @@ The large Switch card contains two tabs:
 
 The *Attributes* tab displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/dev-switch-large-attributes-tab.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-large-attributes-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -249,7 +249,7 @@ The *Utilization* tab displays:
 The full screen Switch card provides tabs for all IP addresses, all MAC
 addresses, and all interfaces.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/dev-switch-fullscr-ipaddr-tab-222.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-fullscr-ipaddr-tab-222.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -348,16 +348,16 @@ To view the summary:
 
 1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/>, and select Devices|Switch. A dialog box opens.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/dev-switch-open-switch-card.png" width="250" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-open-switch-card.png" width="250" >}}
 
 2.  Begin typing the hostname of the device you are interested in.
     Select it from the suggested matches when it appears.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/dev-switch-type-dev-name.png" width="250" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-type-dev-name.png" width="250" >}}
 
 3.  Select the size of the card, *Small*, to open the small size card.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/dev-switch-choose-card-size.png" width="250" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-choose-card-size.png" width="250" >}}
 
 4.  Click **Add**, or **Cancel** to exit the process.
 
@@ -396,7 +396,7 @@ of the card.
 For a quick look at the key attributes of a particular switch, open the
 large Switch card. Attributes are displayed as the default tab.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/dev-switch-large-attributes-tab.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-large-attributes-tab.png" width="500" >}}
 
 In this example, the items of interest might be the five interfaces that
 are down and what version of OS and NetQ Agent the switch is running.
@@ -452,7 +452,7 @@ To view all IP addresses:
 1.  Open the full screen Switch card. The **IP addresses** tab is shown
     by default.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/dev-switch-fullscr-ipaddr-tab-222.png" width="700">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-fullscr-ipaddr-tab-222.png" width="700">}}
 
 2.  Review the addresses for any anomalies, to obtain prefix
     information, determine if it is an IPv4 or IPv6 address, and so
@@ -465,7 +465,7 @@ To view all MAC addresses:
 1.  Open the full screen Switch card and click the **MAC Addresses**
     tab.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/dev-switch-fullscr-macaddr-tab-222.png" width="700">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-fullscr-macaddr-tab-222.png" width="700">}}
 
 2.  Review the addresses for any anomalies, to see the associated egress
     port, associated VLANs, and so forth.
@@ -483,7 +483,7 @@ To view all interfaces:
 1.  Open the full screen Switch card and click the **All Interfaces**
     tab.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/dev-switch-fullscr-interfaces-tab-222.png" width="700">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-fullscr-interfaces-tab-222.png" width="700">}}
 
 2.  Look for interfaces that are down, shown in the **State** column.
 3.  Look for recent changes to the interfaces, shown in the **Last
@@ -643,7 +643,7 @@ The *Platform* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/platform-icon.png", height="20", width="20"/></p></td>
+<td><p><img src="https://dkahegywkrw3e.cloudfront.net/images/netq/platform-icon.png", height="20", width="20"/></p></td>
 <td><p>Indicates data is for platform information</p></td>
 </tr>
 <tr class="even">
@@ -712,7 +712,7 @@ The *Software* tab displays:
 The full screen Switch Inventory card provides tabs for all components,
 ASIC, platform, CPU, memory, disk, and OS components.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}
 
 There are a multitude of ways to view and analyze the available data
 within this workflow. A few examples are provided here.
@@ -797,18 +797,18 @@ count.
 
 {{% imgOld 46 %}}
 
-To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
+To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
 
 To view *which* switches have invalid or missing licenses, either:
 
-  - hover over the large Switch Inventory card and click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Above the Licenses State or the Vendor chart, click **Show All**.
+  - hover over the large Switch Inventory card and click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Above the Licenses State or the Vendor chart, click **Show All**.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
 
   - open the full screen Switch Inventory card. Then sort the **All Switches** tab data table by the **License State**
 column to locate the switches with bad or missing licenses.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-switch-fullscr-show-all-tab-license-highlight.png" width="700" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-fullscr-show-all-tab-license-highlight.png" width="700" >}}
 
 ### View the Most Commonly Deployed ASIC
 
@@ -903,4 +903,4 @@ provides the information you need, open the full screen Switch Inventory
 card. Select the component tab of interest and filter and sort as
 desired. Export the data to a third-party tool, by clicking **Export**.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}

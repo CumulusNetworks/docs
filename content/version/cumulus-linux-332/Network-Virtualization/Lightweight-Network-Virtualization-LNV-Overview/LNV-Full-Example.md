@@ -58,7 +58,7 @@ Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/) .
 
 {{%notice tip%}}
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/download/thumbnails/5869055/turtle_training.png" width="50" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/download/thumbnails/5869055/turtle_training.png" width="50" >}}
 
 Feeling Overwhelmed? Come join a [Cumulus Boot Camp](http://cumulusnetworks.com/education/instructor-led-training/) and
 get instructor-led training\!

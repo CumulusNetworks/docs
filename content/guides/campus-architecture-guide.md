@@ -103,7 +103,7 @@ Classically, a campus network hierarchy is modeled as three tiers:
 2. Distribution (Aggregation)
 3. Access
 
-{{<figure src="/images/guides/campus-3-tier.jpg" caption="Three-tiered hierarchical model">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-3-tier.jpg" caption="Three-tiered hierarchical model">}}
 
 The three-tiered model is useful for understanding the distinct roles of network devices to provide a framework to customize and tailor for your own most effective use. In practice, there are no absolute rules that govern how a campus network must be physically built. Many larger campus networks are constructed with three distinct tiers, while a smaller network may find enough overlap and cost savings in the distribution and core tier functions that they can be collapsed into a single tier. A hierarchical design describes each tier's unique set of functions, services and specific role in the design.
 

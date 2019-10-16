@@ -16,7 +16,7 @@ subsection: true
 ## What is Cumulus Linux?
 
 Cumulus Linux is the first full-featured Linux operating system for the
-networking industry. The 
+networking industry. The
 [Debian Jessie](https://www.debian.org/releases/jessie/)-based,
 networking-focused distribution runs on hardware produced by a 
 [broad partner ecosystem](http://cumulusnetworks.com/hcl/), ensuring 
@@ -28,11 +28,9 @@ solutions, and monitoring and troubleshooting recommendations. In
 addition, the quick start guide provides an end-to-end setup process to
 get you started.
 
-
 ### User Guide
-A link to download the Cumulus Linux 3.7.7 Documentation User Guide is 
-[here](/Cumulus_Linux_3-7-7_User_Guide.pdf).
-
+A link to download the Cumulus Linux 3.7.7 Documentation User Guide is
+[here](http://dkahegywkrw3e.cloudfront.net/Cumulus_Linux_3-7-7_User_Guide.pdf).
 
 ### What's New in this Release?
 

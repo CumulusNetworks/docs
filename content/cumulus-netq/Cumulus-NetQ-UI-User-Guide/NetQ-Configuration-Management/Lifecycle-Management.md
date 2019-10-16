@@ -19,19 +19,19 @@ It is simple to capture the state of your network using the snapshot feature.
 
 To create a snapshot:
 
-1. From any workbench, click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/camera.svg", width="22.5", height="18"/> in the workbench header.
+1. From any workbench, click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/camera.svg", width="22.5", height="18"/> in the workbench header.
 
 2. Click **Create Snapshot**.
 
 3. Enter a name and, optionally, a descriptive note for the snapshot.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/snapshot-create-snap-modal-ex-230.png" width="500">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/snapshot-create-snap-modal-ex-230.png" width="500">}}
 
 4. Click **Finish**.
 
     A medium Snapshot card appears on your desktop. Spinning arrows are visible while it works. When it finishes you can see the number of items that have been captured, and if any failed. This example shows a successful result.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/snapshot-success-230.png" width="200">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/snapshot-success-230.png" width="200">}}
 
     {{%notice note%}}
 If you change your mind and do not want to create the snapshot, click **Back** or **Choose Action**. Do not click **Done** until you are ready to close the card. Done saves the snapshot automatically.
@@ -55,33 +55,33 @@ To compare network snapshots:
         - Simply put them next to each other to view an overview.
         - Scroll down to see all of the items.
 
-        {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/snapshot-compare-snap-results-230.png" width="425">}}
+        {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/snapshot-compare-snap-results-230.png" width="425">}}
 
     - If you have only one of the cards open:
         - Click **Compare** on the open card.
         - Select the snapshot to compare with.
 
-        {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/snapshot-compare-select-fr-open-card-230.png" width="250">}}
+        {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/snapshot-compare-select-fr-open-card-230.png" width="250">}}
 
     - If you have closed one or both of the cards (you may have created them some time before):
-        - Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/camera.svg", width="22.5", height="18"/>.
+        - Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/camera.svg", width="22.5", height="18"/>.
         - Click **Compare Snapshots**.
         - Click on the two snapshots you want to compare.
         - Click **Finish**.
 
-        {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/snapshot-compare-selection-modal-230.png" width="500">}}
+        {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/snapshot-compare-selection-modal-230.png" width="500">}}
 
     In the latter two cases, the large Snapshot card opens. The only difference is in the card title. If you opened the comparison card from a snapshot on your workbench, the title includes the name of that card. If you open the comparison card through the Snapshot menu, the title is generic, indicating a comparison only. Functionally, you have reached the same point.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/snapshot-large-compare-from-modal-230.png" width="500">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/snapshot-large-compare-from-modal-230.png" width="500">}}
 
 ### Interpreting the Comparison Data
 
 For each network element that is compared, count values and changes are shown:
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/snapshot-large-compare-data-interpretation-230.png" width="300">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/snapshot-large-compare-data-interpretation-230.png" width="300">}}
 
 For example, if the snapshot taken first had a total count of 110 interfaces, changes were made that added 40 interfaces and removed 32 interfaces before the second snapshot was taken, the second snapshot total count of interfaces would be eight more than in the first snapshot, or 118.
 
@@ -96,7 +96,7 @@ From this card you can:
 - see each of the elements that was added and removed, and various information about each
 - export the results per element
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/snapshot-fullscr-change-details-230.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/snapshot-fullscr-change-details-230.png" width="700">}}
 
 | Element | Data Descriptions |
 | ------- | ----------------- |
@@ -120,7 +120,7 @@ You can create as many snapshots as you like and view them at any time. When a s
 
 To view an existing snapshot:
 
-1. From any workbench, click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/camera.svg", width="22.5", height="18"/> in the workbench header.
+1. From any workbench, click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/camera.svg", width="22.5", height="18"/> in the workbench header.
 
 2. Click **View/Delete Snapshots**.
 
@@ -132,7 +132,7 @@ To view an existing snapshot:
 
 To remove an existing snapshot:
 
-1. From any workbench, click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/camera.svg", width="22.5", height="18"/> in the workbench header.
+1. From any workbench, click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/camera.svg", width="22.5", height="18"/> in the workbench header.
 
 2. Click **View/Delete Snapshots**.
 

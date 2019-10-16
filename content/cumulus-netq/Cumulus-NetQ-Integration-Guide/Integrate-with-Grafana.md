@@ -68,15 +68,15 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
 2.  Log in using your application credentials.
     
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-login-230.png" width="400">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-login-230.png" width="400">}}
     
     The Home Dashboard appears.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-home-page-230.png" width="700">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-home-page-230.png" width="700">}}
 
-3. Click **Add data source** or <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-config-icon.png", width="24", height="24"/> > *Data Sources*.
+3. Click **Add data source** or <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-config-icon.png", width="24", height="24"/> > *Data Sources*.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-add-data-src-230.png" width="500">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-add-data-src-230.png" width="500">}}
 
 4. Enter **Net-Q** in the search box or scroll down to the **Other** category, and select *Net-Q* from there.
 
@@ -101,19 +101,19 @@ You can either use the dashboard provided with the plug-in, NetQ Interface Stati
 
 To use the Cumulus-provided dashboard, select the *NetQ Interface Statistics* from the left panel of the Home Page.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-netq-dashboard-230.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-netq-dashboard-230.png" width="700">}}
 
 If you choose this option, you can skip directly to [analyzing your data](#analyze-the-data).
 
 To create your own dashboard:
 
-1. Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-create-dashbd-icon.png", width="24", height="24"/> to open a blank dashboard.
+1. Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-create-dashbd-icon.png", width="24", height="24"/> to open a blank dashboard.
 
-2. Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-config-icon.png", width="24", height="24"/> (Dashboard Settings) at the top of the dashboard.
+2. Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-config-icon.png", width="24", height="24"/> (Dashboard Settings) at the top of the dashboard.
 
 3. Click **Variables**.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-add-hostname-variable-230.png" width="600">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-add-hostname-variable-230.png" width="600">}}
 
 4. Enter *hostname* into the **Name** field.
 
@@ -127,11 +127,11 @@ To create your own dashboard:
 
     You should see a preview at the bottom of the hostname values.
 
-9. Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-back-button-230.png", width="24", height="24"/> to return to the new dashboard.
+9. Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-back-button-230.png", width="24", height="24"/> to return to the new dashboard.
 
 10. Click **Add Query**.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-create-chart-230.png" width="600">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-create-chart-230.png" width="600">}}
 
 11. Select *Net-Q* from the **Query** source list.
 
@@ -139,7 +139,7 @@ To create your own dashboard:
 
 13. Click the **General** icon.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-create-chart-general-settings-230.png" width="600">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-create-chart-general-settings-230.png" width="600">}}
 
 14. Select *hostname* from the **Repeat** list.
 
@@ -155,13 +155,13 @@ Once you have your dashboard configured, you can start analyzing the data:
 
 1. Select the hostname from the variable list at the top left of the charts to see the statistics for that switch or host.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-variable-list-230.png" width="200">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-variable-list-230.png" width="200">}}
 
 2. Review the statistics, looking for peaks and valleys, unusual patterns, and so forth.
 
 3. Explore the data more by modifying the data view in one of several ways using the dashboard tool set:
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-dashboard-tools-230.png" width="600">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-dashboard-tools-230.png" width="600">}}
     
     - Select a different time period for the data by clicking the forward or back arrows. The default time range is dependent on the width of your browser window.
     - Zoom in on the dashboard by clicking the magnifying glass.

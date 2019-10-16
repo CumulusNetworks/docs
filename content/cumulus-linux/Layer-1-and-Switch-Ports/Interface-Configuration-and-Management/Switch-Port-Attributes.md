@@ -1244,7 +1244,8 @@ and FEC on swp1, run:
 
 To view the FEC setting on an interface, run:
 
-    cumulus@switch:~$ sudo ethtool --show-fec swp1FEC parameters for swp1:
+    cumulus@switch:~$ sudo ethtool --show-fec swp1
+    FEC parameters for swp1:
     Auto-negotiation: off
     FEC encodings : RS
 

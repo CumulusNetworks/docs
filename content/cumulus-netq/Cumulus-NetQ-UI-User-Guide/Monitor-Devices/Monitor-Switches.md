@@ -839,7 +839,7 @@ count.
 
 {{<figure src="/images/netq/inventory-switch-medium-hover-license-230.png" width="200">}}
 
-To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click {{<img src="/images/netq/platform-icon.png" height="18", width="18">}} to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
+To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click {{<img src="/images/netq/platform-icon.png" height="18" width="18">}} to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
 
 To view *which* switches have invalid or missing licenses, either:
 

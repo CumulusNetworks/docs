@@ -17,8 +17,8 @@ To log in to the UI:
 
 1.  Open a new Internet browser window or tab.
 2.  Enter the following URL into the Address bar for the on-site NetQ Platform/NetQ Appliance or the NetQ Cloud Appliance:  
-    - On-site: *http://\<netq-platform/appliance-ipaddress\>:32666*  
-    - In-cloud: *http//netq.cumulusnetworks.com*
+    - On-premises: *https://\<netq-platform/appliance-ipaddress\>:32666*  
+    - Cloud: *https://netq.cumulusnetworks.com*
 
     {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/access-ui-login-screen-230.png" width="700" >}}
 

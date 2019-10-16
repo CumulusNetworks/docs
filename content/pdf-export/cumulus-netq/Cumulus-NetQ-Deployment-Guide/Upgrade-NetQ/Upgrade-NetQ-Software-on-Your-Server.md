@@ -108,7 +108,7 @@ To upgrade the NetQ software onto your own hardware using a VM image:
         VMware (cloud), KVM,* or *KVM (cloud)*) from the
         **Hypervisor/Platform** list box.
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
 
         {{%notice note%}}
 
@@ -123,7 +123,7 @@ For customers with VMware/ESXi OVA deployments, Cumulus Networks recommends depl
     4.  Scroll down to review the images that match your selection
         criteria.
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-22-vm-upgrade.png" width="750" >}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-22-vm-upgrade.png" width="750" >}}
 
     5.  Click **Upgrade** for the relevant version, being careful to
         select the correct deployment version.

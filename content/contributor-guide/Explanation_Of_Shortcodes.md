@@ -69,7 +69,7 @@ Renders this image:
 
 You can also use the `img` shortcode, shown below.
 
-<pre>{{&lt; img src = "https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/uploads/PTPExample.png" >}}</pre>
+<pre>{{&lt; img src = "https://dkahegywkrw3e.cloudfront.net/images/uploads/PTPExample.png" >}}</pre>
 
 Images added with either of the two methods above do not allow for resizing or
 captioning.
@@ -94,8 +94,8 @@ Figure parameters include:
 
 For example, the following code:
 
-<pre>{{&lt;figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/uploads/NetQAgentLogFormat.png" alt="NetQAgentLogFormat.png" caption="NetQ Agent log format" height="50px" >}}</pre>
+<pre>{{&lt;figure src="https://dkahegywkrw3e.cloudfront.net/images/uploads/NetQAgentLogFormat.png" alt="NetQAgentLogFormat.png" caption="NetQ Agent log format" height="50px" >}}</pre>
 
 Renders this image with a caption:
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/uploads/NetQAgentLogFormat.png" alt="NetQAgentLogFormat.png" caption="NetQ Agent log format" height="50px" >}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/uploads/NetQAgentLogFormat.png" alt="NetQAgentLogFormat.png" caption="NetQ Agent log format" height="50px" >}}

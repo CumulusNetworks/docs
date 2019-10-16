@@ -86,7 +86,7 @@ This flow chart shows the required steps to install and setup
 NetQ to start validating your network, and the optional steps of
 integrating with event notification applications and monitoring hosts.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/install-wkflow-cust-hw.png">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/install-wkflow-cust-hw.png">}}
 
 ## Install the NetQ Platform
 
@@ -134,7 +134,7 @@ image:
         VMware (Cloud),* *KVM (Cloud)*, or *KVM*) from the
         **Hypervisor/Platform** list box.
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
 
         {{%notice note%}}
 
@@ -144,7 +144,7 @@ If you are installing the on-premises solution, select either *VMware* or *KVM*.
     4.  Scroll down to review the images that match your selection
         criteria, and click **Download** for the image you want.
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-22-vm-dwnld.png" width="750" >}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-22-vm-dwnld.png" width="750" >}}
 
 3.  Open your hypervisor and set up your VM.  
     You can use these examples for reference or use your own hypervisor
@@ -428,11 +428,11 @@ To obtain the additional cloud components:
 
     3. Optionally, select *Appliance (Cloud)* from the **Hypervisor/Platform** list box.
 
-         {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/NetQ-22-Download-Options.png" >}}
+         {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options.png" >}}
 
     4. Click the **Upgrade** button.
 
-         {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/NetQ-Cloud-Appl-SW-Dwnld-v2.png" width="250">}}
+         {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-Cloud-Appl-SW-Dwnld-v2.png" width="250">}}
 
 2. Log in to the NetQ server.
 3. Copy the downloaded file into the `/mnt/installables/` directory. Be sure to use the correct file name, with appropriate version.
@@ -512,12 +512,12 @@ To configure CLI access:
 
 3. From the Main Menu, select *Management* in the **Admin column**.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-mgmt-selected.png" width="400">}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 5. Select your user and click **Generate AuthKeys**.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/generate-auth-keys.png" width="700">}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/generate-auth-keys.png" width="700">}}
 
 6. Copy these keys to a safe place.
 

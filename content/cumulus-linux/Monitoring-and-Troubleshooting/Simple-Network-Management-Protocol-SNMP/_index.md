@@ -214,7 +214,7 @@ username passwords and has the option of encrypting the packet contents.
 If you intend to run this service within a
 [VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
 including the [management VRF](../../Layer-3/Management-VRF), follow
-[these steps](/../../Layer-3/Management-VRF/#run-services-within-the-management-vrf)
+[these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf)
 for configuring the service.
 
 {{%/notice%}}

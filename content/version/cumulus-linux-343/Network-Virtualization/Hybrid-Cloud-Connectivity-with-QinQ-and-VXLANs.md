@@ -306,7 +306,7 @@ You can check the configuration with the `brctl show` command:
 You can try this out without the bridge being VXLAN-enabled. The
 configuration would look something like this:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/cumulus-linux/qinq-double-tagged-no-vxlan.png" height="250" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-linux/qinq-double-tagged-no-vxlan.png" height="250" >}}
 
     auto swp5.100.10
     iface swp5.100.10

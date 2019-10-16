@@ -84,7 +84,7 @@ This flow chart shows the required steps to install and setup
 NetQ to start validating your network, and the optional steps of
 integrating with event notification applications and monitoring hosts.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/install-wkflow-on-prem-cust-hw-222.png">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/install-wkflow-on-prem-cust-hw-222.png">}}
 
 ## Install the NetQ Platform
 
@@ -124,7 +124,7 @@ Installation of NetQ involves installing the NetQ software, and
 installing and configuring the NetQ Agents. Additional steps are needed
 to [Integrate NetQ with Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications/).
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/install-flow-cust-hw-on-prem-nq222.png" width="600" >}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/install-flow-cust-hw-on-prem-nq222.png" width="600" >}}
 
 ### Install the NetQ Software
 
@@ -143,12 +143,12 @@ To install the NetQ software onto your own hardware using a VM image:
     3.  Optionally, select the hypervisor you wish to use (*VMware* or *KVM*) from the
         **Hypervisor/Platform** list box.
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
 
     4.  Scroll down to review the images that match your selection
         criteria, and click **Download** for the image you want.
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-22-vm-dwnld-222.png" width="400" >}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-22-vm-dwnld-222.png" width="400" >}}
 
 3.  Open your hypervisor and set up your VM.  
     You can use these examples for reference or use your own hypervisor
@@ -383,7 +383,7 @@ Installation of NetQ involves installing the NetQ software, and
 installing and configuring the NetQ Agents. Additional steps are needed
 to [Integrate NetQ with Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications/).
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/install-flow-cust-hw-cloud-nq222.png" width="600" >}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/install-flow-cust-hw-cloud-nq222.png" width="600" >}}
 
 ### Download NetQ Virtual Machine
 
@@ -402,12 +402,12 @@ To install the NetQ VM image onto your own hardware:
     3.  Optionally, select the hypervisor you wish to use (*VMware (Cloud)* or *KVM (Cloud)*) from the
         **Hypervisor/Platform** list box.
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
 
     4.  Scroll down to review the images that match your selection
         criteria, and click **Download** for the image you want.
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-22-vm-dwnld-cloud-222.png" width="400" >}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-22-vm-dwnld-cloud-222.png" width="400" >}}
 
 3.  Open your hypervisor and set up your VM.  
     You can use these examples for reference or use your own hypervisor
@@ -421,21 +421,21 @@ To install the NetQ VM image onto your own hardware:
       1.  Enter the address of the hardware in your browser.
       2.  Log in to VMware using credentials with root access.  
 
-          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-main-page.png" width="700" >}}
+          {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmw-main-page.png" width="700" >}}
 
       3.  For an on-site NetQ Platform deployment, click **Storage** in the
           Navigator to verify you have an SSD installed.  
 
-          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-verify-storage.png" width="700" >}}
+          {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmw-verify-storage.png" width="700" >}}
 
       4.  Click **Create/Register VM** at the top of the right pane.
 
-          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-menu-create-register.png" width="700" >}}
+          {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmw-menu-create-register.png" width="700" >}}
 
       5.  Select **Deploy a virtual machine from and OVF or OVA file**, and
           click **Next**.  
 
-          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-deploy-vm-from-ova.png" width="700" >}}
+          {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmw-deploy-vm-from-ova.png" width="700" >}}
 
       6.  Provide a name for the VM, for example *Cumulus NetQ*.
 
@@ -443,23 +443,23 @@ To install the NetQ VM image onto your own hardware:
 
       8.  Click **Next**.
 
-          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-name-the-vm.png" width="700" >}}
+          {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmw-name-the-vm.png" width="700" >}}
 
       9.  Select the storage type and data store for the image to use, then
           click **Next**. In this example, only one is available.
 
-          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-select-storage.png" width="700" >}}
+          {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmw-select-storage.png" width="700" >}}
 
       10. Accept the default deployment options or modify them according to
           your network needs. Click **Next** when you are finished.
 
-          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-default-deploy-options.png" width="700" >}}
+          {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmw-default-deploy-options.png" width="700" >}}
 
       11. Review the configuration summary. Click **Back** to change any of
           the settings, or click **Finish** to continue with the creation of
           the VM.
 
-          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-review-before-create.png" width="700" >}}
+          {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmw-review-before-create.png" width="700" >}}
 
           The progress of the request is shown in the Recent Tasks window at
           the bottom of the application. This may take some time, so continue
@@ -467,7 +467,7 @@ To install the NetQ VM image onto your own hardware:
 
       12. Once completed, view the full details of the VM and hardware.
 
-          {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmw-deploy-results.png" width="700" >}}
+          {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmw-deploy-results.png" width="700" >}}
 
     </details>
     <details><summary>KVM example</summary>
@@ -605,11 +605,11 @@ To download and install the NetQ cloud components:
 
     3. Optionally, select *Appliance (Cloud)* from the **Hypervisor/Platform** list box.
 
-         {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/NetQ-22-Download-Options-222.png" >}}
+         {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options-222.png" >}}
 
     4. Click the **Upgrade** button.
 
-         {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/NetQ-Cloud-Appl-SW-Dwnld-222.png" width="250">}}
+         {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-Cloud-Appl-SW-Dwnld-222.png" width="250">}}
 
 2. Log in to the NetQ server.
 3. Copy the downloaded file into the `/mnt/installables/` directory. Be sure to use the correct file name, with appropriate version.
@@ -725,12 +725,12 @@ To configure CLI access:
 
 3. From the Main Menu, select *Management* in the **Admin** column.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-mgmt-selected.png" width="400">}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 5. Select your user and click **Generate AuthKeys**.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/generate-auth-keys.png" width="700">}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/generate-auth-keys.png" width="700">}}
 
 6. Copy these keys to a safe place.
 

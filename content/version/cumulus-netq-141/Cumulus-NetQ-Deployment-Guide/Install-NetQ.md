@@ -151,7 +151,7 @@ To install the Telemetry Server VM:
 
         3.  Click **Forward**.
 
-            {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmm-create-new-vm.png" width="350" >}}
+            {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmm-create-new-vm.png" width="350" >}}
 
     3.  Place the image in the `/var/lib` directory.
 
@@ -159,12 +159,12 @@ To install the Telemetry Server VM:
 
         2.  Click **Choose Volume**.
 
-            {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmm-choose-storage-volume.png" width="450" >}}
+            {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmm-choose-storage-volume.png" width="450" >}}
 
         3.  Type, or browse for, the location where you want to store
             the volume. The directory must already exist.
 
-            {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmm-create-virtual-machine.png" width="450" >}}
+            {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmm-create-virtual-machine.png" width="450" >}}
 
         4.  Select **Generic** for the **OS type** and **Version**.
 
@@ -181,7 +181,7 @@ your configuration and a number of other criteria; refer to the
 
         {{%/notice%}}
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmm-choose-memory-and-cpu.png" width="450" >}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmm-choose-memory-and-cpu.png" width="450" >}}
 
         1.  Increase or decrease the amount of **Memory** and **number
             of CPUs** using the + and - symbols to best meet your
@@ -197,7 +197,7 @@ your configuration and a number of other criteria; refer to the
 
         3.  Click **Finish** to open the configuration options.
 
-               {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmm-install-prep.png" width="450" >}}
+               {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmm-install-prep.png" width="450" >}}
 
     6.  Configure custom CPU parameters.
 
@@ -211,7 +211,7 @@ your configuration and a number of other criteria; refer to the
 
         4.  Click **Apply**.  
 
-            {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmm-config-cpu.png" width="450" >}}
+            {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmm-config-cpu.png" width="450" >}}
 
     7.  Configure custom network interface card (NIC) parameters.
 
@@ -225,7 +225,7 @@ your configuration and a number of other criteria; refer to the
 
         5.  Click **Apply**.
 
-            {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/vmm-config-vni.png" width="450" >}}
+            {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/vmm-config-vni.png" width="450" >}}
 
 3.  Verify NetQ TS VM has started.  
     If the VM did not start automatically, click **Begin

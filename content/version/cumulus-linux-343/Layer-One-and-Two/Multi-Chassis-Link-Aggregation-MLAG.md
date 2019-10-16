@@ -483,7 +483,7 @@ An example configuration is included below. It configures two bonds for
 MLAG, each with a single port, a peer link that is a bond with two
 member ports, and three VLANs on each port.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/cumulus-linux/mlag_cfg.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-linux/mlag_cfg.png" width="500" >}}
 
 You configure these interfaces using
 [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU),

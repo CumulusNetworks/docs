@@ -29,7 +29,7 @@ configure BGP to run in your data center network, refer to
 
 The small BGP Service card displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-small-230.png" width="200" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -68,7 +68,7 @@ The small BGP Service card displays:
 
 The medium BGP Service card displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-medium-230.png" width="200" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -124,7 +124,7 @@ The large BGP service card contains two tabs.
 
 The *Sessions Summary* tab displays:  
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-large-summary-tab-230.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-large-summary-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -182,7 +182,7 @@ The *Sessions Summary* tab displays:
 
 The *Alarms* tab displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-large-alarms-tab-230.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-large-alarms-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -235,7 +235,7 @@ The *Alarms* tab displays:
 The full screen BGP Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -371,7 +371,7 @@ of BGP-related alarms, and a distribution of those alarms.
 
 To view the summary, open the small BGP Service card.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-small-230.png" width="200" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-small-230.png" width="200" >}}
 
 For more detail, select a different size BGP Service card.
 
@@ -387,7 +387,7 @@ to establish a BGP session.
 
 To view these distributions, open the medium BGP Service card.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-medium-230.png" width="200" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-medium-230.png" width="200" >}}
 
 If a visual correlation is apparent, you can dig a little deeper with
 the large BGP Service card tabs.
@@ -409,7 +409,7 @@ To view switches and hosts with the most BGP sessions:
     running the most BGP sessions at the top. Scroll down to view those
     with the fewest sessions.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-large-summary-tab-230.png" width="500" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-large-summary-tab-230.png" width="500" >}}
 
 To compare this data with the same data at a previous time:
 
@@ -420,9 +420,9 @@ To compare this data with the same data at a previous time:
 4.  Select the time period that you want to compare with the original
     time. We chose *Past Week* for this example.  
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-large-summary-tab-past-week-230.png" width="500" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-large-summary-tab-past-week-230.png" width="500" >}}
 
     You can now see whether there are significant differences between
     this time and the original time. If the changes are unexpected, you
@@ -445,7 +445,7 @@ To view switches with the most unestablished BGP sessions:
     with the most unestablished BGP sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-allbgp-large-unestab-sessions.png" width="500" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-allbgp-large-unestab-sessions.png" width="500" >}}
 
 Where to go next depends on what data you see, but a couple of options
 include:
@@ -479,7 +479,7 @@ To view switches with the most BGP alarms:
     with the most BGP alarms at the top. Scroll down to view those with
     the fewest alarms.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-large-alarms-tab-230.png" width="500" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-large-alarms-tab-230.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -503,7 +503,7 @@ To view all BGP events:
 2.  Click **All Alarms** tab in the navigation panel.  
     By default, events are listed in most recent to least recent order.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-fullscr-alarms-tab-222.png" width="700">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-fullscr-alarms-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a couple of options
 include:
@@ -524,7 +524,7 @@ in your network in the full screen card.
 To view all device details, open the full screen BGP Service card and
 click the **All Switches** tab.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
@@ -536,7 +536,7 @@ in the full-screen card.
 To view all session details, open the full screen BGP Service card and
 click the **All Sessions** tab.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-fullscr-sessions-tab-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-fullscr-sessions-tab-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
@@ -550,9 +550,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-fullscr-switches-tab-2selected-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-fullscr-switches-tab-2selected-222.png" width="700">}}
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -600,7 +600,7 @@ established block is proportionally reduced in saturation. An example
 heat map for a time period of 24 hours is shown here with the most
 common time periods in the table showing the resulting time blocks.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-result-granularity-230.png" width="300">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-result-granularity-230.png" width="300">}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -615,7 +615,7 @@ common time periods in the table showing the resulting time blocks.
 
 The small BGP Session card displays:
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-small-230.png" width="200">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-small-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -650,7 +650,7 @@ The small BGP Session card displays:
 
 The medium BGP Session card displays:
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-medium-230.png" width="200">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-medium-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -715,7 +715,7 @@ The large BGP Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-large-summary-tab-230.png" width="500">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-large-summary-tab-230.png" width="500">}}
 
 <table class="confluenceTable">
 <colgroup>
@@ -797,7 +797,7 @@ The *Session Summary* tab displays:
 
 The *Configuration File Evolution* tab displays:
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-large-config-tab-230.png" width="500">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-large-config-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -847,7 +847,7 @@ The *Configuration File Evolution* tab displays:
 The full screen BGP Session card provides tabs for all BGP sessions and
 all events.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -935,9 +935,9 @@ To view the summary:
     automatically.
 5.  Optionally, switch to the small BGP Session card.  
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-medium-session-status-highlight-230.png" width="200">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-medium-session-status-highlight-230.png" width="200">}}
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-small-230.png" width="200">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-small-230.png" width="200">}}
 
 ### View BGP Session State Changes
 
@@ -959,7 +959,7 @@ BGP Session card:
 5.  Double-click the session of interest. The full screen card closes
     automatically.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-medium-session-status-highlight-230.png" width="200">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-medium-session-status-highlight-230.png" width="200">}}
 
 The heat map indicates the status of the session over the designated
 time period. In this example, the session has been established for the
@@ -972,7 +972,7 @@ To view the state transitions for a given BGP session on the large BGP
 Session card, follow the same steps to open the medium BGP Session card
 and then switch to the large card.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-large-session-status-highlight-230.png" width="500">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-large-session-status-highlight-230.png" width="500">}}
 
 From this card, you can view the alarm and info event counts, Peer ASN,
 hostname, and router id, VRF, and Tx/Rx families identifying the session
@@ -997,13 +997,13 @@ To view the configuration file changes:
     option is dark; File by default).  
     The File view displays the content of the file for you to review.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-large-config-tab-file-selected-230.png" width="500">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-large-config-tab-file-selected-230.png" width="500">}}
 
     The Diff view displays the changes between this version (on left)
     and the most recent version (on right) side by side. The changes are
     highlighted, as seen in this example.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-large-config-tab-diff-selected-230.png" width="500">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-large-config-tab-diff-selected-230.png" width="500">}}
 
 ### View All BGP Session Details
 
@@ -1013,7 +1013,7 @@ with the two devices on this card.
 To view all session details, open the full screen BGP Session card, and
 click the **All BGP Sessions** tab.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 
@@ -1025,6 +1025,6 @@ this card.
 To view all events, open the full screen BGP Session card, and click
 the **All Events** tab.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-fullscr-events-tab-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-fullscr-events-tab-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.

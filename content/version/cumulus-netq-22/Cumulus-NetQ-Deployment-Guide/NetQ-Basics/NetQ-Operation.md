@@ -22,7 +22,7 @@ switch has software associated with the hardware platform, the operating
 system, and communications. For data centers, the software on a Cumulus
 Linux network switch would be similar to the diagram shown here.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-agent-operation-diag.png" width="550" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-agent-operation-diag.png" width="550" >}}
 
 The NetQ Agent interacts with the various
 components and software on switches and hosts and provides the gathered

@@ -51,7 +51,7 @@ An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1. If you 
 ### In-place Upgrade Workflow
 Upgrading NetQ involves backing up your data, downloading and installing the new version of NetQ software, restoring your NetQ data, and upgrading and configuring the NetQ Agents.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/upgrade-wkflow-in-place-cloud-nqcldappl-222.png"  width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-in-place-cloud-nqcldappl-222.png"  width="500" >}}
 
 ### Install and Configure the CLI
 
@@ -161,7 +161,7 @@ A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 or earl
 ### Disk Image Upgrade Workflow
 Upgrading NetQ involves downloading and installing the new version of NetQ software, and upgrading and configuring the NetQ Agents.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/upgrade-wkflow-disk-img-cloud-nqcldappl-222.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-disk-img-cloud-nqcldappl-222.png" width="700" >}}
 
 ### Download the NetQ Software Image
 
@@ -174,11 +174,11 @@ The next step is to obtain the new image.
 
 3.  From the **Hypervisor/Platform** list box, select *Appliance (Cloud)*.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
 
 4.  Click **Download**.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-22-nqappl-dwnld-222.png" width="200" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-22-nqappl-dwnld-222.png" width="200" >}}
 
 ### Install the Image Using ONIE
 
@@ -234,12 +234,12 @@ To configure CLI access:
 
 3. From the Main Menu, select *Management* in the **Admin** column.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-mgmt-selected.png" width="400">}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 5. Select your user and click **Generate AuthKeys**.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/generate-auth-keys.png" width="700">}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/generate-auth-keys.png" width="700">}}
 
 6. Copy these keys to a safe place.
 

@@ -108,7 +108,7 @@ The medium Validation Request card displays:
 
 The large Validation Request card displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/valid-request-large-222.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-request-large-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -177,7 +177,7 @@ The large Validation Request card displays:
 The full screen Validation Request card displays all scheduled
 validation requests.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/valid-request-fullscr-222.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-request-fullscr-222.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -253,7 +253,7 @@ To run a scheduled validation now:
 2.  Select the validation from the **Validation** dropdown list.  
 
     {{% imgOld 9 %}} {{% imgOld 10 %}}
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/valid-request-large-valid-selection-222.png" width="500" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-request-large-valid-selection-222.png" width="500" >}}
 
 3.  Click **Go** or **Run Now**.  
     The associated Validation Result card is opened on your workbench.
@@ -272,7 +272,7 @@ To create and run a request for *a single* protocol or service:
 1.  Open the small, medium or large Validation Request card.
 2.  Select the validation from the **Validation** dropdown list.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/valid-request-selection.png" width="300" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-request-selection.png" width="300" >}}
 
 3.  Click **Go** or **Run Now**.  
     The associated Validation Result card is opened on your workbench.
@@ -285,7 +285,7 @@ To create and run a request for *more than one* protocol and/or service:
 2.  Click the names of the protocols and services you want to validate.
     We selected BGP and EVPN in this example.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/valid-request-bgp-evpn-222.png" width="500" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-request-bgp-evpn-222.png" width="500" >}}
 
 3.  Click **Run Now** to start the validation.  
     The associated on-demand validation result cards (one per protocol
@@ -307,23 +307,23 @@ To create and run a new scheduled validation:
     validation. In this example we have chosen the Agents and NTP
     services.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/valid-request-agents-ntp-222.png" width="500" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-request-agents-ntp-222.png" width="500" >}}
 
 3.  Enter the schedule frequency (30 min, 1 hour, 3 hours, 6 hours, 12
     hours, or 1 day) by selecting it from the **Run every** list. Default is hourly.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/schedule-frequency-selection-222.png" width="300" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/schedule-frequency-selection-222.png" width="300" >}}
 
 4.  Select the time to start the validation runs, by clicking in the Starting field. Select a day and click **Next**, then select the starting time and click **OK**.  
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/date-selection-222.png" width="150">}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/date-selection-222.png" width="150">}}
     <p> </p>
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/time-selection-222.png" width="150">}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/time-selection-222.png" width="150">}}
 
 5.  Verify the selections were made correctly.
 6.  Click **Save As New**.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/valid-request-agents-ntp-save-as-new-222.png" width="500" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-request-agents-ntp-save-as-new-222.png" width="500" >}}
 
 7.  Enter a name for the validation.
 
@@ -333,7 +333,7 @@ Spaces and special characters are *not* allowed in validation request names.
 
       {{%/notice%}}
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/save-valid-name-example.png" width="250" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/save-valid-name-example.png" width="250" >}}
 
 8.  Click **Save**.
 
@@ -342,7 +342,7 @@ small, medium or large size card) and run immediately using **Run Now**,
 or you can wait for it to run the first time according to the schedule
 you specified. Refer to [View Scheduled Validation Results](#view-scheduled-validation-results). Note that the number of scheduled validations is now two (2).
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/valid-request-select-sched-222.png" width="500">}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-request-select-sched-222.png" width="500">}}
 
 ### Modify an Existing Scheduled Validation Request
 
@@ -382,7 +382,7 @@ and service.
 
 The small Validation Result card displays:
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/valid-result-on-demand-bgp-small-222.png" width="200">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-result-on-demand-bgp-small-222.png" width="200">}}
 <p> </p>
 <table>
 <colgroup>
@@ -421,7 +421,7 @@ The small Validation Result card displays:
 
 The medium Validation Result card displays:
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/valid-result-on-demand-bgp-medium-222.png" width="200">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-result-on-demand-bgp-medium-222.png" width="200">}}
 
 <table>
 <colgroup>
@@ -491,7 +491,7 @@ The large Validation Result card contains two tabs.
 
 The *Summary* tab displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/od-valid-result-bgp-large.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-valid-result-bgp-large.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -611,7 +611,7 @@ The *Configuration* tab displays:
 The full screen Validation Result card provides a tab for all on-demand
 validation results.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/od-valid-result-bgp-fullscr.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-valid-result-bgp-fullscr.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -715,7 +715,7 @@ To view the results:
 8.  To view all data available for all on-demand validation results for
     a given protocol, switch to the full screen card.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/od-valid-result-bgp-fullscr.png" width="700" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/od-valid-result-bgp-fullscr.png" width="700" >}}
 
     You may find that comparing various results gives you a clue as to
     why certain devices are experiencing more warnings or failures. For
@@ -778,7 +778,7 @@ The small Validation Result card displays:
 
 The medium Validation Result card displays:
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/sch-valid-result-medium-222.png" width="425">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-valid-result-medium-222.png" width="425">}}
 
 <table>
 <colgroup>
@@ -835,7 +835,7 @@ The large Validation Result card contains two tabs.
 
    The *Summary* tab displays:
 
-   {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/sch-valid-result-large-sum-tab-222.png" width="500" >}}
+   {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-valid-result-large-sum-tab-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -902,7 +902,7 @@ The large Validation Result card contains two tabs.
 
 The *Configuration* tab displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/sch-valid-result-large-config-tab-222.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-valid-result-large-config-tab-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -946,7 +946,7 @@ The *Configuration* tab displays:
 The full screen Validation Result card provides tabs for all scheduled
 validation results for the service.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/sch-valid-result-fullscr.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-valid-result-fullscr.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -1047,7 +1047,7 @@ To view the results:
     first column of the result and clicking the check box.
 3.  On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items.  
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/sch-valid-result-medium-222.png" width="425">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-valid-result-medium-222.png" width="425">}}
 
 4.  Note the distribution of results. Are there many failures? Are they
     concentrated together in time? Has the protocol or service recovered
@@ -1060,7 +1060,7 @@ To view the results:
     devices, as it might point to an issue with the devices rather than
     the network service.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/sch-valid-result-medium-bgp-popup-222.png" width="200">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-valid-result-medium-bgp-popup-222.png" width="200">}}
 
 6.  Optionally, click **Open** \<*network service*\> **Card** link to open the
     medium individual Network Services card. Your current card is not
@@ -1093,7 +1093,7 @@ To view the results:
     the given protocol or service, click **Show All Results** or switch
     to the full screen card.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/sch-valid-result-fullscr.png" width="700" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sch-valid-result-fullscr.png" width="700" >}}
 
 15. Look for changes and patterns in the results. Scroll to the right.
     Are there more failed sessions or nodes during one or more

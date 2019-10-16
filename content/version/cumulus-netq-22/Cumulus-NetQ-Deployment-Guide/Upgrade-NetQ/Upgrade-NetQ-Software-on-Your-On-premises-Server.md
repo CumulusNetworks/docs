@@ -97,7 +97,7 @@ An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1. If you 
 ### In-place Upgrade Workflow
 Upgrading NetQ in place involves downloading and installing the new version of NetQ applications, and upgrading and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/upgrade-wkflow-on-prem-in-place-cust-hw-222.png" width="600">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-on-prem-in-place-cust-hw-222.png" width="600">}}
 
 ### Download the NetQ Virtual Machine Upgrade Image
 
@@ -111,7 +111,7 @@ The first step in upgrading your on-premises NetQ Server is to obtain the VM upg
 4.  Optionally, select the hypervisor you wish to use (*VMware* or *KVM*) from the
   **Hypervisor/Platform** list box.
 
-     {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+     {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
 
      {{%notice note%}}
 
@@ -121,7 +121,7 @@ For customers with VMware/ESXi OVA deployments, Cumulus Networks recommends depl
 
 4.  Scroll down to review the images that match your selection criteria.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-22-vm-upgrade-222.png" width="400" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-22-vm-upgrade-222.png" width="400" >}}
 
 5.  Click **Upgrade** for the relevant version, being careful to
   select the correct deployment version.
@@ -383,7 +383,7 @@ A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 and ear
 
 Upgrading NetQ using a disk image involves backing up your NetQ data, downloading and installing the new version of NetQ software, restoring your data, and configuring the NetQ Agents. While optional, upgrading the CLI is recommended.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/upgrade-wkflow-on-prem-disk-img-cust-hw-222.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-on-prem-disk-img-cust-hw-222.png" width="700" >}}
 
 Please follow the instructions in the following topics in this order:
 

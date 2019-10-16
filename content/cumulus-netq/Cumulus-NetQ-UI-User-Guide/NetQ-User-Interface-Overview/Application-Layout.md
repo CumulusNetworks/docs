@@ -21,7 +21,7 @@ The NetQ UI contains two main areas:
     status and configuration information about your network and its
     various components).
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/app-layout-cumulus-wb-areas-highlighted-230.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/app-layout-cumulus-wb-areas-highlighted-230.png" width="700" >}}
 
 ## Main Menu
 
@@ -37,7 +37,7 @@ Found in the application header, click <img src="https://icons.cumulusnetworks.c
   - **Admin**: contains link to user documentation and application
     management
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-222.png" width="450" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-222.png" width="450" >}}
 
 ## Recent Actions
 
@@ -45,7 +45,7 @@ Found in the header, Recent Actions keeps track of every action you take on your
 
 To open Recent Actions, click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg", height="18", width="18"/>. Click on any of the actions to perform that action again.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/recent-actions-222.png" width="250" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/recent-actions-222.png" width="250" >}}
 
 ## Search
 
@@ -57,7 +57,7 @@ devices. It behaves like most searches and can help you quickly find device info
 Found in the header, the graph and performance rating provide a view
 into the health of your network at a glance.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
 
 {{%notice note%}}
 

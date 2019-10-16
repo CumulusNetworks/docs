@@ -92,7 +92,6 @@ showVisitedLinks = true
   BookDateFormat= "Jan 2, 2006"
 
 [blackfriday]
-hrefTargetBlank = true
 fractions = false
 
 [taxonomies]

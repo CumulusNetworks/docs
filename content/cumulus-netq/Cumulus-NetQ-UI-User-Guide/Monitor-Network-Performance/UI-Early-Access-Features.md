@@ -55,10 +55,10 @@ The topology view provides a visual representation of your Linux network, showin
 
 | Symbol | Usage |
 | :----: | ----- |
-| <img src="/images/netq/rocket-turtle-limed-spruce.svg", width="28", height="28"/> | Switch running Cumulus Linux OS |
+| {{<img src="/images/netq/rocket-turtle-limed-spruce.svg" width="28" height="28">}} | Switch running Cumulus Linux OS |
 | <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> | Switch running RedHat, Ubuntu, or CentOS |
 | <img src="https://icons.cumulusnetworks.com/12-Design/08-Grids-Rulers/grid-monitor.svg", height="18", width="18"/> | Host |
-| <img src="/images/netq/topo-circle-nubs-icon-230.png", width="18", height="18"/> | Network server |
+| {{<img src="/images/netq/topo-circle-nubs-icon-230.png" width="18" height="18">}} | Network server |
 | Red <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> | Alarm (critical) event is present on the node|
 | Yellow <img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg", height="18", width="18"/> | Info event is present |
 | Lines | Physical links or connections |
@@ -71,7 +71,7 @@ There are a number of ways in which you can interact with the topology.
 
 You can move the focus on the topology closer to view a smaller number of nodes, or further out to view a larger number of nodes. As with mapping applications, the node labels appear and disappear as you move in and out on the diagram for better readability. To zoom, you can use:
 
-- the zoom controls, <img src="/images/netq/topo-zoom-widget-230.png" width="18">, in the bottom right corner of the screen; the '+' zooms you in closer, the '-' moves you further out, and the 'o' resets to the default size.
+- the zoom controls, {{<img src="/images/netq/topo-zoom-widget-230.png" width="18">}}, in the bottom right corner of the screen; the '+' zooms you in closer, the '-' moves you further out, and the 'o' resets to the default size.
 - a scrolling motion on your mouse
 - your trackpad
 
@@ -79,7 +79,7 @@ You can also click anywhere on the topology, and drag it left, right, up, or dow
 
 ### View Data About the Network
 
-You can hover over the various elements to view data about them.  Hovering over a node highlights its connections to other nodes, temporarily de-emphasizing all other connections. 
+You can hover over the various elements to view data about them.  Hovering over a node highlights its connections to other nodes, temporarily de-emphasizing all other connections.
 
 {{<figure src="/images/netq/topo-hover-node-230.png" width="700">}}
 
@@ -115,7 +115,7 @@ From the Configuration Panel, you can view the following data about nodes and li
 | Target | Switch where the connection ends |
 | Target Interface | Port on the destination switch used by the connection |
 
-After reviewing the provided information, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg", height="18", width="18"/> to close the panel, or to view data for another node or link without closing the panel, simply click on that element. The panel is hidden by default. 
+After reviewing the provided information, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg", height="18", width="18"/> to close the panel, or to view data for another node or link without closing the panel, simply click on that element. The panel is hidden by default.
 
 View the unique count of items in the network by clicking on the <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-2.svg", height="18", width="18"/> on the upper left to open the count summary. (Be sure that you do not have a node selected.) Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg", height="18", width="18"/> to close the panel.
 

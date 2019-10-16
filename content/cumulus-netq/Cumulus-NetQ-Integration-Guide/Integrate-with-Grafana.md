@@ -51,7 +51,7 @@ The first step is to install the NetQ plug-in on your NetQ server or appliance. 
     brew services restart grafana
     ```
     Then restart Grafana.
-    
+
     {{%notice info%}}
 The Grafana GUI is accessed through port 3000 by default. If you are
 running Grafana on a simulation server, you may need to modify
@@ -74,7 +74,7 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
     {{<figure src="/images/netq/grafana-home-page-230.png" width="700">}}
 
-3. Click **Add data source** or <img src="/images/netq/grafana-config-icon.png", width="24", height="24"/> > *Data Sources*.
+3. Click **Add data source** or {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} > *Data Sources*.
 
     {{<figure src="/images/netq/grafana-add-data-src-230.png" width="500">}}
 
@@ -91,7 +91,7 @@ The quickest way to view the interface statistics for your Cumulus Linux network
     - If you leave the **Premises** field blank, the first premises name is selected by default
     - If you enter a premises name, that premises is selected for viewing
 
-        *Note*: If multiple premises are configured with the same name, then the first premises of that name is selected for viewing 
+        *Note*: If multiple premises are configured with the same name, then the first premises of that name is selected for viewing
 
 9. Click **Save & Test**
 
@@ -107,9 +107,9 @@ If you choose this option, you can skip directly to [analyzing your data](#analy
 
 To create your own dashboard:
 
-1. Click <img src="/images/netq/grafana-create-dashbd-icon.png", width="24", height="24"/> to open a blank dashboard.
+1. Click {{<img src="/images/netq/grafana-create-dashbd-icon.png" width="24" height="24">}} to open a blank dashboard.
 
-2. Click <img src="/images/netq/grafana-config-icon.png", width="24", height="24"/> (Dashboard Settings) at the top of the dashboard.
+2. Click {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} (Dashboard Settings) at the top of the dashboard.
 
 3. Click **Variables**.
 
@@ -127,7 +127,7 @@ To create your own dashboard:
 
     You should see a preview at the bottom of the hostname values.
 
-9. Click <img src="/images/netq/grafana-back-button-230.png", width="24", height="24"/> to return to the new dashboard.
+9. Click {{<img src="/images/netq/grafana-back-button-230.png" width="24" height="24">}} to return to the new dashboard.
 
 10. Click **Add Query**.
 

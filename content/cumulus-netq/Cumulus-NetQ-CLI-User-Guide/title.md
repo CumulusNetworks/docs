@@ -12,4 +12,4 @@ draft: true
 imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/logo_cumulus_jade_reversed.png" >}}
+{{< figure src="/images/logo_cumulus_jade_reversed.png" >}}

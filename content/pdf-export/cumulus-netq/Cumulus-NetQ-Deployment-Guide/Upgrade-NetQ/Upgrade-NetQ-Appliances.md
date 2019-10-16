@@ -60,11 +60,11 @@ To upgrade the NetQ software on your NetQ or NetQ Cloud Appliance:
         *2.2.x* from the submenu.
     3.  From the **Hypervisor/Platform** list box, select *Appliance* for NetQ Appliance upgrades or select *Appliance (Cloud)* for NetQ Cloud Appliance upgrades.
 
-         {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
+         {{< figure src="/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
 
     4.  Click **Upgrade**.
 
-         {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-22-appl-upgrade.png" width="500" >}}
+         {{< figure src="/images/netq/netq-22-appl-upgrade.png" width="500" >}}
 
 2.  From a terminal window, log in to the appliance using your
     login credentials. This example uses the default

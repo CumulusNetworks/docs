@@ -41,7 +41,7 @@ consider cloning them first.
     In **VM list**, a list of VirtualBox VMs that you already set up
     earlier appears.
     
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-vx/VX_GNS3_new_VBox_VM.png">}}
+    {{<figure src="/images/cumulus-vx/VX_GNS3_new_VBox_VM.png">}}
 
 5.  From the **VM list**, select the VM that you want to run in GNS3,
     then click **Finish**. The VM you selected appears in the center
@@ -49,7 +49,7 @@ consider cloning them first.
     run in GNS3. For the example topology above, they are: Cumulus
     VX-spine1, Cumulus VX-spine2, Cumulus VX-leaf1 and Cumulus VX-leaf2.
     
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-vx/VX_GNS3_VBox_VMs.png">}}
+    {{<figure src="/images/cumulus-vx/VX_GNS3_VBox_VMs.png">}}
 
 6.  Enable GNS3 to work with the VirtualBox VMs’ network interfaces.
     Configure each VM's network settings, using the GNS3 interface:
@@ -58,7 +58,7 @@ consider cloning them first.
       - In the VirtualBox VM configuration dialog, click the **Network**
         tab.
         
-        {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-vx/VX_GNS3_VBox_VM_nwconfig.png">}}
+        {{<figure src="/images/cumulus-vx/VX_GNS3_VBox_VM_nwconfig.png">}}
     
       - Increase the number of **Adapters** to *4*.
       - Select the **Type** to be *Paravirtualized Network*.

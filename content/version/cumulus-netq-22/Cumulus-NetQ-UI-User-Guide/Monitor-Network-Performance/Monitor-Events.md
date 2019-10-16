@@ -29,7 +29,7 @@ card workflow.
 
 The small Alarms card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-small-222.png" width="200" >}}
+{{< figure src="/images/netq/events-alarms-small-222.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -68,7 +68,7 @@ The small Alarms card displays:
 <li><p><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</p></li>
 <li><p><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</p></li>
 </ul>
-<p>{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
+<p>{{< figure src="/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
 </tr>
 <tr class="odd">
 <td><p>Chart</p></td>
@@ -79,7 +79,7 @@ The small Alarms card displays:
 
 The medium Alarms card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-medium-222.png" width="200" >}}
+{{< figure src="/images/netq/events-alarms-medium-222.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -129,7 +129,7 @@ The large Alarms card has one tab.
 
 The *System, Trace and Interfaces* tab displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-large-systrcif-tab-222.png" width="500" >}}
+{{< figure src="/images/netq/events-alarms-large-systrcif-tab-222.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -173,7 +173,7 @@ The *System, Trace and Interfaces* tab displays:
 
 The full screen Alarms card provides tabs for all events.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-fullscr-allevents-tab.png" width="700" >}}
+{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -232,7 +232,7 @@ of those alarms.
 
 To view the summary, open the small Alarms card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-small-222.png" width="200" >}}
+{{< figure src="/images/netq/events-alarms-small-222.png" width="200" >}}
 
 In this example, there are a small number of alarms (0), the number of
 alarms is steady (no arrow), and there are fewer alarms right now than the
@@ -248,7 +248,7 @@ services. You can also view the trend of alarms in each source category.
 To view the alarm distribution, open the medium Alarms card. Scroll down
 to view all of the charts.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-medium-222.png" width="200" >}}
+{{< figure src="/images/netq/events-alarms-medium-222.png" width="200" >}}
 
 ### Monitor System and Interface Alarm Details
 
@@ -263,7 +263,7 @@ or view devices with the most network services alarms.
 
 To view network services alarms, open the large Alarms card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-large-systrcif-tab-222.png" width="500" >}}
+{{< figure src="/images/netq/events-alarms-large-systrcif-tab-222.png" width="500" >}}
 
 From this card, you can view the distribution of alarms for each of the
 categories over time. Scroll down to view any hidden charts. A list of
@@ -279,7 +279,7 @@ You can filter instead for the devices that have the most alarms.
 To view devices with the most alarms, open the large Alarms card, and
 then select **Devices by event count** from the dropdown.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-large-by-event-count-222.png" width="500" >}}
+{{< figure src="/images/netq/events-alarms-large-by-event-count-222.png" width="500" >}}
 
 #### Filter Alarms by System or Interface
 
@@ -298,7 +298,7 @@ To filter for selected categories:
 
 In this example, we removed the Services from the event listing.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-large-filtered-222.png" width="500" >}}
+{{< figure src="/images/netq/events-alarms-large-filtered-222.png" width="500" >}}
 
 #### Compare Alarms with a Prior Time
 
@@ -317,13 +317,13 @@ To compare two time periods:
     contain a large amount of data.
 4.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/time-picker-popup-narrow-222.png" width="175" >}}
+    {{< figure src="/images/netq/time-picker-popup-narrow-222.png" width="175" >}}
 
 5.  Select a different time period.  
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-large-systrcif-tab-event-count-222.png" width="500" >}}
+    {{< figure src="/images/netq/events-alarms-large-systrcif-tab-event-count-222.png" width="500" >}}
     <p> </p>
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-large-systrcif-event-count-tab-1w-222.png" width="500" >}}
+    {{< figure src="/images/netq/events-alarms-large-systrcif-event-count-tab-1w-222.png" width="500" >}}
 
 6.  Compare the two cards with the **Devices by event count** filter applied.
 
@@ -335,11 +335,11 @@ You can view all events in the network either by clicking the **Show All
 Events** link under the table on the large Alarm Events card, or by
 opening the full screen Alarm Events card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-large-show-all-events-link-222.png" width="200" >}}
+{{< figure src="/images/netq/events-alarms-large-show-all-events-link-222.png" width="200" >}}
 
 OR
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-fullscr-allevents-tab.png" width="700" >}}
+{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab.png" width="700" >}}
 
 To return to your workbench, click {{% imgOld 21 %}} in the top right corner of the card.
 
@@ -359,7 +359,7 @@ informational alarms occurring anywhere in your network.
 
 The small Info card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-small-222.png" width="200">}}
+{{<figure src="/images/netq/events-info-small-222.png" width="200">}}
 
 <table>
 <colgroup>
@@ -394,7 +394,7 @@ The small Info card displays:
 
 The medium Info card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-medium-222.png" width="200">}}
+{{<figure src="/images/netq/events-info-medium-222.png" width="200">}}
 
 <table>
 <colgroup>
@@ -438,7 +438,7 @@ The medium Info card displays:
 
 The large Info card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-large-222.png" width="500">}}
+{{<figure src="/images/netq/events-info-large-222.png" width="500">}}
 
 <table>
 <colgroup>
@@ -494,7 +494,7 @@ The large Info card displays:
 
 The full screen Info card provides tabs for all events.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/events-info-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -556,7 +556,7 @@ This card gives you a high-level view in a condensed visual, including
 the number and distribution of the info events along with the alarms
 that have occurred during the same time period.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-small-222.png" width="200">}}
+{{<figure src="/images/netq/events-info-small-222.png" width="200">}}
 
 To view the summary with the *medium* Info card, simply open the card.
 This card gives you the same count and distribution of info and alarm
@@ -564,14 +564,14 @@ events, but it also provides information about the sources of the info
 events and enables you to view a small slice of time using the
 distribution charts.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-medium-222.png" width="200">}}
+{{<figure src="/images/netq/events-info-medium-222.png" width="200">}}
 
 Use the chart at the top of the card to view the various sources of info
 events. The four or so types with the most info events are called out
 separately, with all others collected together into an *Other* category.
 Hover over segment of chart to view the count for each type.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-large-hover-on-type-222.png" width="500">}}
+{{<figure src="/images/netq/events-info-large-hover-on-type-222.png" width="500">}}
 
 To view the summary with the large Info card, open the card. The left
 side of the card provides the same capabilities as the medium Info card.
@@ -606,7 +606,7 @@ of the info events are listed with the most recently occurring event at
 the top. Scrolling down shows you the info events that have occurred at
 an earlier time within the selected time period for the card.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-large-222.png" width="500">}}
+{{<figure src="/images/netq/events-info-large-222.png" width="500">}}
 
 ### View Devices with the Most Info Events
 
@@ -614,9 +614,9 @@ You can filter instead for the devices that have the most info events by
 selecting the **Devices by Event Count** option from the filter above
 the table.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-large-table-options-222.png" width="300">}}
+{{<figure src="/images/netq/events-info-large-table-options-222.png" width="300">}}
 <p> </p>
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-large-by-event-count-222.png" width="500">}}
+{{<figure src="/images/netq/events-info-large-by-event-count-222.png" width="500">}}
 
 ### View All Events
 
@@ -624,11 +624,11 @@ You can view all events in the network either by clicking the **Show All
 Events** link under the table on the large Info Events card, or by
 opening the full screen Info Events card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-large-show-all-events-link-222.png" width="200" >}}
+{{< figure src="/images/netq/events-alarms-large-show-all-events-link-222.png" width="200" >}}
 
 OR
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-info-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/events-info-fullscr-222.png" width="700">}}
 
 To return to your workbench, click {{% imgOld 39 %}} in the top right corner of the card.
 

@@ -27,7 +27,7 @@ known issues present in this release, refer to the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
 
 This Cumulus NetQ API User Guide is available in
-[PDF](https://dkahegywkrw3e.cloudfront.net/Cumulus_NetQ_220_API_User_Guide.pdf) for
+[PDF](/Cumulus_NetQ_220_API_User_Guide.pdf) for
 offline viewing.
 
 ## API Organization

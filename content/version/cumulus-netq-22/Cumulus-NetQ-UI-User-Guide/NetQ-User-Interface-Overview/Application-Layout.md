@@ -18,7 +18,7 @@ The NetQ UI contains two main areas:
     status and configuration information about your network and its
     various components).
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dashboard-cn-wb-layout-222.png" width="700" >}}
+{{< figure src="/images/netq/dashboard-cn-wb-layout-222.png" width="700" >}}
 
 ## Main Menu
 
@@ -34,7 +34,7 @@ Found in the application header, click {{% imgOld 5 %}} to open the main menu wh
   - **Admin**: contains link to user documentation and application
     management
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-222.png" width="450" >}}
+{{< figure src="/images/netq/main-menu-222.png" width="450" >}}
 
 ## Recent Actions
 
@@ -42,7 +42,7 @@ Found in the header, Recent Actions keeps track of every action you take on your
 
 To open Recent Actions, click {{% imgOld 7 %}}. Click on any of the actions to perform that action again.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/recent-actions-222.png" width="250" >}}
+{{< figure src="/images/netq/recent-actions-222.png" width="250" >}}
 
 ## Search
 
@@ -54,7 +54,7 @@ devices. It behaves like most searches and can help you quickly find device info
 Found in the header, the graph and performance rating provide a view
 into the health of your network at a glance.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
+{{< figure src="/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
 
 {{%notice note%}}
 

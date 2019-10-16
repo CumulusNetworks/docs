@@ -21,7 +21,7 @@ The NetQ Management workbench is accessed from the main menu. For the user(s) re
 
 To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>, and select **Management** under the **Admin** column.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-mgmt-wb-222.png" width="700">}}
+{{<figure src="/images/netq/netq-mgmt-wb-222.png" width="700">}}
 
 ## Manage User Accounts
 
@@ -39,7 +39,7 @@ To add a new user account:
 1.  Click **Manage** on the User Accounts card, to open the **User Accounts** tab.
 2.  Click **Add User**.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/add-new-user-modal-221.png" width="250" >}}
+    {{< figure src="/images/netq/add-new-user-modal-221.png" width="250" >}}
 
 3.  Enter the user's email address, along with their first and last
     name.
@@ -65,7 +65,7 @@ Be especially careful entering the email address as you *cannot*
 7.  Click **Save** to create the user account, or **Cancel** to discard
     the user account.  
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-mgmt-user-accts-tab-222.png" width="700">}}
+    {{<figure src="/images/netq/netq-mgmt-user-accts-tab-222.png" width="700">}}
 
     By default the User Accounts table is sorted by *Role*. Change
     the sort by clicking in any of the headers, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.  
@@ -85,7 +85,7 @@ To change a user name:
 4.  Modify the first and/or last name as needed.
 5.  Enter your admin password.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/edit-user-modal-221.png" width="250" >}}
+    {{< figure src="/images/netq/edit-user-modal-221.png" width="250" >}}
 
 6.  Click **Save** to commit the changes or **Cancel** to discard them.
 
@@ -102,7 +102,7 @@ To change a password:
 4.  Click **Reset Password**.
 5.  Enter your admin password.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/change-user-password-221.png" width="250" >}}
+    {{< figure src="/images/netq/change-user-password-221.png" width="250" >}}
 
 6.  Enter a new password for the user.
 7.  Re-enter the user password.
@@ -129,7 +129,7 @@ To change access permissions:
 4.  Enter your admin password.
 5.  Select the appropriate user type from the dropdown list.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/change-user-permissions-221.png" width="250" >}}
+    {{< figure src="/images/netq/change-user-permissions-221.png" width="250" >}}
 
 6.  Click **Save** to commit the change, or **Cancel** to discard the
     change.
@@ -151,7 +151,7 @@ To export information for one or more user accounts:
 2.  Select one or more accounts that you want to export by clicking the checkbox next to them.
 3.  To export all user accounts, click **Select All** in the Edit menu and then click  **Export Selected**.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/user-acct-edit-menu-export-222.png" width="600">}}
+    {{<figure src="/images/netq/user-acct-edit-menu-export-222.png" width="600">}}
 
 4.  To export specific user accounts, select only those accounts you
     want to export, and click **Export Selected** in the Edit menu.
@@ -185,7 +185,7 @@ To add a trace:
 1.  Click **Manage** on the Scheduled Traces card to open the **Scheduled Traces** tab.
 2.  Click **Add Trace** to open the large New Trace Request card.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/trace-request-large-222.png" width="500">}}
+    {{<figure src="/images/netq/trace-request-large-222.png" width="500">}}
 
 3.  Enter source and destination addresses.
 
@@ -266,7 +266,7 @@ To add a scheduled validation:
 2.  Click the **Scheduled Validations** tab.
 3.  Click **Add Validation** to open the large Validation Request card.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/valid-request-large-222.png" width="500">}}
+    {{<figure src="/images/netq/valid-request-large-222.png" width="500">}}
 
 4.  Configure the request. Refer to [Validate Network Protocol and Service Operations](../Monitor-Network-Performance/Validate-Network-Protocol-and-Service-Operations/) for details.
 
@@ -294,7 +294,7 @@ From the NetQ Management workbench, you can view information about the NetQ hard
 
 Locate the System Server Info card on the workbench. You may need to scroll down.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-mgmt-sys-server-info-222.png" width="500">}}
+{{<figure src="/images/netq/netq-mgmt-sys-server-info-222.png" width="500">}}
 
 The following data is available on this card:
 

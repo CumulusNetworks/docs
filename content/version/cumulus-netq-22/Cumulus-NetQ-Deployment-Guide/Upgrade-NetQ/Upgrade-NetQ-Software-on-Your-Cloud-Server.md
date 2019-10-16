@@ -90,7 +90,7 @@ An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1. If you 
 ### In-place Upgrade Workflow
 Upgrading NetQ involves backing up your data, downloading and installing the new version of NetQ software, restoring your NetQ data, and upgrading and configuring the NetQ Agents.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-in-place-cloud-cust-hw-222.png" width="600" >}}
+{{< figure src="/images/netq/upgrade-wkflow-in-place-cloud-cust-hw-222.png" width="600" >}}
 
 ### Download the NetQ Software
 
@@ -107,7 +107,7 @@ To upgrade the NetQ software on your own hardware using a VM image:
 4.  Optionally, select the hypervisor you wish to use (*VMware (Cloud)* or *KVM (Cloud)*) from the
   **Hypervisor/Platform** list box.
 
-     {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
+     {{< figure src="/images/netq/NetQ-22-Download-Options-222.png" width="500" >}}
 
      {{%notice note%}}
 
@@ -118,7 +118,7 @@ For customers with VMware/ESXi OVA deployments, Cumulus Networks recommends depl
 5.  Scroll down to review the images that match your selection
   criteria.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-22-vm-cloud-upgrade-222.png" width="400" >}}
+      {{< figure src="/images/netq/netq-22-vm-cloud-upgrade-222.png" width="400" >}}
 
 6.  Click **Upgrade** for the relevant version, being careful to
   select the correct deployment version.
@@ -223,7 +223,7 @@ A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 or earl
 ### Disk Image Upgrade Workflow
 Upgrading NetQ involves backing up your data, downloading and installing the new version of NetQ software, restoring your NetQ data, and upgrading and configuring the NetQ Agents.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-disk-img-cloud-cust-hw-222.png" width="600" >}}
+{{< figure src="/images/netq/upgrade-wkflow-disk-img-cloud-cust-hw-222.png" width="600" >}}
 
 Please follow the instructions in the following topics in this order:
 

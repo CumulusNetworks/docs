@@ -20,9 +20,9 @@ NetQ 2.2.1
 
 NetQ 2.2.0
 
-- [Cumulus NetQ Deployment Guide PDF](https://dkahegywkrw3e.cloudfront.net/pdfs/Cumulus_NetQ_220_Deployment_Guide.pdf)
-- [Cumulus NetQ CLI User Guide PDF](https://dkahegywkrw3e.cloudfront.net/pdfs/Cumulus_NetQ_220_CLI_User_Guide.pdf)
-- [Cumulus NetQ UI User Guide PDF](https://dkahegywkrw3e.cloudfront.net/pdfs/Cumulus_NetQ_220_UI_User_Guide.pdf)
+- [Cumulus NetQ Deployment Guide PDF](/pdfs/Cumulus_NetQ_220_Deployment_Guide.pdf)
+- [Cumulus NetQ CLI User Guide PDF](/pdfs/Cumulus_NetQ_220_CLI_User_Guide.pdf)
+- [Cumulus NetQ UI User Guide PDF](/pdfs/Cumulus_NetQ_220_UI_User_Guide.pdf)
 
 {{%notice note%}}
 

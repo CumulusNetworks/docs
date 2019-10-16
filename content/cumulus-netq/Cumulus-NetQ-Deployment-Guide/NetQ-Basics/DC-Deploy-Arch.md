@@ -59,7 +59,7 @@ other over a peerlink and act as an MLAG pair for Server 03 and Server
 04. The Edge is connected to both Exit devices, and the Internet node is
 connected to Exit 01.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/deploy-arch-dc-example-230.png" width="700" >}}
+{{< figure src="/images/netq/deploy-arch-dc-example-230.png" width="700" >}}
 
 <span class="caption">Data Center Network Example</span>
 
@@ -74,7 +74,7 @@ The physical *management* hardware includes:
 These switches are connected to each of the physical network devices
 through a virtual network overlay, shown with purple lines.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/deploy-arch-oob-example-230.png" width="700" >}}
+{{< figure src="/images/netq/deploy-arch-oob-example-230.png" width="700" >}}
 
 ### In-band Management Deployment
 
@@ -87,5 +87,5 @@ performs the aggregation function that the OOB management switch
 performed. If your network goes down, you might not have access to the
 NetQ Platform for troubleshooting.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/deploy-arch-ib-example-230.png" width="700" >}}
+{{< figure src="/images/netq/deploy-arch-ib-example-230.png" width="700" >}}
 

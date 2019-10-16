@@ -26,7 +26,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 
 After you unbox the appliance, mount it in the rack and connect it to power following the procedures described in your appliance's [user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf). Connect the Ethernet cable to the 10G management port (eth0), then power on the appliance.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-cloud-appl-port-connections.png" >}}
+{{< figure src="/images/netq/netq-cloud-appl-port-connections.png" >}}
 
 If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over the network. If DHCP isn't enabled, then you configure the appliance using the console cable provided.
 
@@ -37,11 +37,11 @@ If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over
 2. Click *2.2* from the **Version** list box, and then select *2.2.x* from the submenu.
    **Note**: You must choose 2.2.x. Earlier versions do not support this appliance.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
+      {{< figure src="/images/netq/NetQ-22-Download-Options-v2.png" width="500" >}}
 
 3. Select *Appliance (Cloud)* from the **Hypervisor/Platform** list box.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/NetQ-Cloud-Appl-SW-Dwnld-v2.png" width="250" >}}
+      {{< figure src="/images/netq/NetQ-Cloud-Appl-SW-Dwnld-v2.png" width="250" >}}
 
 4. Click **Upgrade** to download the installer bundle.
    **Note**: The download option only provides the OS which is pre-installed on the appliance.
@@ -195,12 +195,12 @@ To configure CLI access:
 
 3. From the Main Menu, select *Management* in the **Admin column**.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-mgmt-selected.png" width="400">}}
+      {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 5. Select your user and click **Generate AuthKeys**.
 
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/generate-auth-keys.png" width="700">}}
+      {{< figure src="/images/netq/generate-auth-keys.png" width="700">}}
 
 6. Copy these keys to a safe place.
 

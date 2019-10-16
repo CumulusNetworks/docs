@@ -123,7 +123,7 @@ A discrete distribution layer is usually required for sites with more than a few
 
 The access layer is the edge of the wired network and is where end user devices are attached to gain connectivity to the rest of the campus. Some devices attached at the access layer create a micro-extension beyond an access switch's physical port. Devices such as wireless access points and IP phones are two notable examples that provide small extensions to the access layer.
 
-{{<figure src="/images/guides/campus-accessplus1.jpg" caption="Wireless clients and workstations behind IP phones are not directly connected to access switch ports">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-accessplus1.jpg" caption="Wireless clients and workstations behind IP phones are not directly connected to access switch ports">}}
 
 The wide variety of devices that connect to the access layer, along with the large security attack surface, requires the access layer to be one of the most feature rich parts of the campus network. It provides security, QoS, device discovery and even physical infrastructure services like power over Ethernet.
 
@@ -141,7 +141,7 @@ Sharing a name with and also mapping to the hierarchical model tier, the core is
 
 The core segment optimizes for speed, simplicity and high availability. There may not be any native layer 2 extension into or across the core. As will be discussed in a later section, overlay networks and tunneling protocols such as VXLAN are now the de facto solution to extend layer 2 connectivity across layer 3 boundaries such as a campus core.
 
-{{<figure src="/images/guides/campus-core.jpg" caption="A campus core network interconnecting several other campus segments, including a large server room">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-core.jpg" caption="A campus core network interconnecting several other campus segments, including a large server room">}}
 
 #### Aggregation and Access
 
@@ -151,7 +151,7 @@ Different aggregation & access segments can be designed differently to meet loca
 
 High port density deployments may take advantage of breakout or fan-out cabling at the aggregation layer to support extremely large numbers of access switches. For example, a 32x100G Trident3 based switch can have each 100G port split into 4x25G. This can allow for support of up to 128x25G ports or up to 128 switches to be interconnected. With access switches each having 48 ports x 128 switches, this example can provide 6144 access ports for end device connectivity.[^1]
 
-{{<figure src="/images/guides/campus-aggregationandaccess.jpg" caption="An access and aggregation block">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-aggregationandaccess.jpg" caption="An access and aggregation block">}}
 
 Depending on each use case, services such as security, wireless controllers and VoIP may be implemented inside of this segment, but can also warrant their own logical segmentation depending on size and complexity.
 
@@ -167,7 +167,7 @@ Some campus networks provide connectivity into a data center, server room or a s
 
 Data center networks are designed to accommodate high volumes of east-west traffic and optimize for speed, low latency and high availability. Data centers and server rooms with more than one rack are normally built using a leaf/spine or Clos style design. The close proximity of racks provides for minimal impact with increased cabling complexity.
 
-{{<figure src="/images/guides/campus-CLOSwithborder.jpg" caption="Clos or leaf/spine-style network segments. Large server rooms with two or more full racks should deploy a leaf/spine network design.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-CLOSwithborder.jpg" caption="Clos or leaf/spine-style network segments. Large server rooms with two or more full racks should deploy a leaf/spine network design.">}}
 
 #### WAN/Edge
 
@@ -181,11 +181,11 @@ A WAN/edge segment may also include dedicated security appliances to perform the
 
 In cases where the network is contained to a single floor or even with multiple adjacent buildings and a sufficient number of fiber runs, it is possible to collapse the core into distribution switches as shown in the figure below.
 
-{{<figure src="/images/guides/campus-collapseddistronocore.jpg" caption="A cluster of buildings with interconnected distribution switches and no dedicated core layer">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-collapseddistronocore.jpg" caption="A cluster of buildings with interconnected distribution switches and no dedicated core layer">}}
 
 Similarly, it may be possible in some instances such as a very small building or sparse connectivity needs to combine the access and distribution layers into a single switch or pair of switches and route directly into a core layer.
 
-{{<figure src="/images/guides/campus-collapseddistro-access example.jpg" caption="A large campus network with collapsed distribution and access segments that route directly into the layer 3 core">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-collapseddistro-access example.jpg" caption="A large campus network with collapsed distribution and access segments that route directly into the layer 3 core">}}
 
 #### Layer 2 vs Layer 3 ECMP Device Connections
 
@@ -277,7 +277,7 @@ For these small networks, [inter-VLAN routing](/cumulus-linux/Network-Virtualiza
 
 Platform choice is flexible and includes options with or without Power over Ethernet (PoE). To see all 1G switch options, refer to the [hardware compatibility list](https://cumulusnetworks.com/products/hardware-compatibility-list/?portfolio%5B0%5D=1G&Speed=1G).
 
-{{<figure src="/images/guides/campus-SmallOfficeRemoteOffice.jpg" caption="Small campus networks with consolidated network layers. **Left**: A small campus site with a single LAN switch. **Right**: One collapsed layer with one MLAG switch pair and security services in the WAN edge.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-SmallOfficeRemoteOffice.jpg" caption="Small campus networks with consolidated network layers. **Left**: A small campus site with a single LAN switch. **Right**: One collapsed layer with one MLAG switch pair and security services in the WAN edge.">}}
 
 ### Single Site - Small Building
 
@@ -299,14 +299,14 @@ This provides several key benefits:
 
 Cumulus Networks recommends using [eBGP Unnumbered](#bgp-unnumbered) to build and maintain the set of layer 3 links between the access and distribution switches. BGP Unnumbered uses auto-generated IPv6 link local addresses and several intuitive configuration optimizations to drastically reduce configuration and deployment complexity. For more information on [eBGP Unnumbered](#bgp-unnumbered), refer to the [Cumulus Linux user guide](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/#configure-bgp-unnumbered-interfaces).
 
-{{<figure src="/images/guides/campus-SingleSiteLargeBuilding.jpg" caption="Campus networks with a distribution layer. **Left**: A classic campus network with layer 2 bonds interconnecting the access and distribution layer. Routing for access VLANs occurs at the distribution layer. **Right**: An alternative design using layer 3 ECMP uplinks from the access layer and BGP Unnumbered. Routing for access VLANs occurs at the access layer switches.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-SingleSiteLargeBuilding.jpg" caption="Campus networks with a distribution layer. **Left**: A classic campus network with layer 2 bonds interconnecting the access and distribution layer. Routing for access VLANs occurs at the distribution layer. **Right**: An alternative design using layer 3 ECMP uplinks from the access layer and BGP Unnumbered. Routing for access VLANs occurs at the access layer switches.">}}
 
 An optional improvement to the layer 3 ECMP design in the figure above includes an additional pair of switches to transition in and out of the broader aggregation and access network segment. Often, this serves as a multi-purpose
 [services](#services) segment or block. This design option more closely adheres to Clos leaf/spine network design principles that have proven success in modern data centers.
 
 In this configuration, distribution layer switches only route IP packets between access switches and participate in BGP to facilitate route advertisement. This simplicity has several inherent benefits. Troubleshooting is easier since we only need to examine routing and no switching operations. This also keeps the distribution layer configuration much simpler as there are no layer 2 control plane protocols needed and all of the complexity of route filtering, summarization or redistribution into another routing protocol for this segment occurs on the border switches.
 
-{{<figure src="/images/guides/campus-SingleSite_LargeBuilding-Layer3withborderswitches.jpg" caption="Layer 3 ECMP design with optional border switches.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-SingleSite_LargeBuilding-Layer3withborderswitches.jpg" caption="Layer 3 ECMP design with optional border switches.">}}
 
 | Tier | Supported Platforms |
 | ---- | ------------------- |
@@ -323,11 +323,11 @@ Routing between VLANs in a VXLAN topology presents a few choices. For performanc
 
 The design in the figure below prescribes for a VTEP to be configured at every switch in the access and distribution layer. Both access layer and distribution layer switches must perform VXLAN encapsulation and decapsulation and support routing in and out of VXLAN tunnels.
 
-{{<figure src="/images/guides/campus-SingleSite_LargeBuilding-Layer3withVXLAN.jpg" caption="An example modern campus design. EVPN VXLAN provides VLAN extension and layer 2 connectivity across the campus. Distribution and access layer switches are both VTEPs and perform VXLAN encapsulation for the network.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-SingleSite_LargeBuilding-Layer3withVXLAN.jpg" caption="An example modern campus design. EVPN VXLAN provides VLAN extension and layer 2 connectivity across the campus. Distribution and access layer switches are both VTEPs and perform VXLAN encapsulation for the network.">}}
 
 In this design above, northbound links from the distribution layer switches are ideally discrete layer 3 routed links. Since MLAG is not required for the southbound access layer connectivity, the introduction of MLAG for strictly this purpose weakens some of the design's inherent advantages. A design that requires connectivity using MLAG at the distribution layer limits the distribution layer to a strict pair of switches, increases control plane dependencies, and increases troubleshooting complexity.
 
-{{<figure src="/images/guides/campus-SingleSite_LargeBuilding-Layer3withVXLAN-MLAGnorthbound.jpg" caption="A similar design as the previous figure with distribution layer switches configured with MLAG.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-SingleSite_LargeBuilding-Layer3withVXLAN-MLAGnorthbound.jpg" caption="A similar design as the previous figure with distribution layer switches configured with MLAG.">}}
 
 Platform choice in these designs is more rigid with the need for VXLAN encapsulation and VXLAN routing support. For access layer switches, Helix4 and Hurricane2-based platforms do not offer VXLAN support. Trident3-based platforms are best suited, but a Trident II+-based switch may also be acceptable.
 
@@ -338,7 +338,7 @@ Platform choice in these designs is more rigid with the need for VXLAN encapsula
 
 The non-MLAG design two figures above can be improved with the addition of dedicated border switches in the network segment. This option provides a number of significant benefits by removing complexity at the distribution layer switches. In contrast to the design above, the distribution layer switches do not need to serve as VTEPs for the network. VTEP switches are only in the access and border layers, which leaves the distribution layer to perform IP routing and delivering VXLAN packets between VTEPs.
 
-{{<figure src="/images/guides/campus-SingleSite_LargeBuilding-Layer3withborderswitchesandVXLAN.jpg" caption="Layer 3 design using EVPN VXLAN. Access switches act as VTEPs and support VXLAN encapsulation. VLANs can be extended across the campus to other access switches across the routed distribution layer.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-SingleSite_LargeBuilding-Layer3withborderswitchesandVXLAN.jpg" caption="Layer 3 design using EVPN VXLAN. Access switches act as VTEPs and support VXLAN encapsulation. VLANs can be extended across the campus to other access switches across the routed distribution layer.">}}
 
 This design option also provides more flexibility for northbound access to the core or the rest of the campus network. Border switch segments can be designed more flexibly and may be implemented more easily as an MLAG pair to retain the inherent design benefits of a modern layer 3 network.
 
@@ -356,9 +356,9 @@ The maximum size of a single access layer is bound by the number of ports on the
 
 When adding or designing for a more than two aggregation and access network segments, the addition of a dedicated core should be considered. As discussed earlier, a [dedicated layer 3 core](#core) layer provides several advantages and, most importantly, reduces cable complexity for interconnections to other network blocks. A multi-building campus may not be able to connect all buildings and network segments to each other due to geographical and cabling challenges.
 
-{{<figure src="/images/guides/campus-multipledistributionlayersnocore.jpg" caption="Multiple campus segments connected with a collapsed core design. Full link redundancy creates a mesh and does not scale.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-multipledistributionlayersnocore.jpg" caption="Multiple campus segments connected with a collapsed core design. Full link redundancy creates a mesh and does not scale.">}}
 
-{{<figure src="/images/guides/campus-multipledistributionlayerswithcore.jpg" caption="Multiple campus segments interconnected with a dedicated core. A network segment only needs to connect to the core instead of every other segment.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-multipledistributionlayerswithcore.jpg" caption="Multiple campus segments interconnected with a dedicated core. A network segment only needs to connect to the core instead of every other segment.">}}
 
 A campus core layer can be easily built using [BGP Unnumbered](#bgp-unnumbered). In the design above, the distribution layer switches and core layer switches peer with each other using eBGP Unnumbered to manage IP addressing and also create the BGP neighbor relationships to exchange routes. With a Cumulus Linux data center or server room, all of the routed links included in the grey box in the figure above can be built and maintained using BGP Unnumbered. The WAN/edge devices can also run BGP and peer with the rest of the campus core.
 
@@ -370,7 +370,7 @@ There are two main variations of a large scale EVPN VXLAN campus when there is a
 
 Cumulus Networks does not recommend implementing VTEP functionality in the core layer. Core switches should only perform simple IP routing to more closely adhere to [core layer design principles](#core-tier). This may require that a set of border switches be used to provide VXLAN encapsulation/decapsulation to other areas of the campus depending upon the particular needs and use cases.
 
-{{<figure src="/images/guides/campus-multipledistributionlayerswithcore-VXLANatdistrolayer.jpg" caption="An EVPN VXLAN-enabled campus with VTEPs at the distribution layer. Access switches use layer 2 bonds to an MLAG pair of distribution switches. Access VLANs can be extended through the core to other distribution access blocks or to an EVPN VXLAN-enabled data center.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-multipledistributionlayerswithcore-VXLANatdistrolayer.jpg" caption="An EVPN VXLAN-enabled campus with VTEPs at the distribution layer. Access switches use layer 2 bonds to an MLAG pair of distribution switches. Access VLANs can be extended through the core to other distribution access blocks or to an EVPN VXLAN-enabled data center.">}}
 
 This design increases platform flexibility and choice on access switches as they do not need to perform VXLAN encapsulation. Inside of a [distribution-access](#aggregation-and-access) segment, VLANs are extended and trunked using normal 802.1q VLAN tagging through the distribution layer. Routing for access VLANs occurs in the distribution layer. BGP Unnumbered is recommended to configure the layer 3 links to the core and also carry the EVPN address family to enable VXLAN. For performance and best scalability, [symmetric mode](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing) with IRB (integrated routing and bridging), is the recommended inter-VLAN routing strategy.
 
@@ -389,7 +389,7 @@ Distribution layer or border switches serve as VTEPs; thus, they carry the most 
 
 Another variation of a campus EVPN VXLAN design is a more modern and scalable network version that uses BGP Unnumbered through the core down to the access layer switches. Access layer switches are VTEPs and perform VXLAN encapsulation and decapsulation and also routing in and out of VXLAN tunnels (RIOT). For performance and best scalability, [symmetric mode](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing) with IRB (integrated routing and bridging), is the recommended inter-VLAN routing strategy.
 
-{{<figure src="/images/guides/campus-multipledistributionlayerswithcore-VXLANataccesslayer.jpg" caption="A more scalable and robust EVPN VXLAN campus network. Not all VXLAN connections are indicated. Access switches serve as VTEPs leaving the distribution and core layers to perform only IP routing. BGP Unnumbered is used to build the core, distribution and access layers and also carries the EVPN address family to enable VXLAN across the entire campus.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-multipledistributionlayerswithcore-VXLANataccesslayer.jpg" caption="A more scalable and robust EVPN VXLAN campus network. Not all VXLAN connections are indicated. Access switches serve as VTEPs leaving the distribution and core layers to perform only IP routing. BGP Unnumbered is used to build the core, distribution and access layers and also carries the EVPN address family to enable VXLAN across the entire campus.">}}
 
 Symmetric mode with distributed anycast gateways provides for devices to move between access switches and always route at the local switch. All routing for access VLANs occurs in the context of a tenant (VRF). The global routing table is used to carry and advertise routing information for the network endpoints (such as VTEP addresses and loopbacks). All IP subnets for access VLANs exist as a member of a VRF.
 
@@ -397,7 +397,7 @@ To provide the highest level of isolation and traffic control, VRFs can be imple
 
 In the figure below, wireless devices and workstations are in different VLANs and different IP subnets, but are in the same VRF named "Data." The VTEP access switch can route between subnets that are within the same VRF directly. For traffic between VRFs such as "Voice" and "Data", there is no direct path due to VRF isolation. Packets must flow to a centralized location where VRF route leaking occurs or travels "out-and-back" through a VRF-unaware device. Notice in the figure below, inter-VRF traffic from the "Voice" VRF to the "Data" VRF must go through a centralized point and take a different path to get into the completely separate "data" IP network.
 
-{{<figure src="/images/guides/campus-multipledistributionlayerswithcore-VXLANataccesslayerwithVRF.jpg" caption="Intra-VRF and inter-VRF routing paths. Not all VXLAN tunnel connections are indicated.">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-multipledistributionlayerswithcore-VXLANataccesslayerwithVRF.jpg" caption="Intra-VRF and inter-VRF routing paths. Not all VXLAN tunnel connections are indicated.">}}
 
 Platform requirements in this example differ from the previous example when VTEPs are at the distribution layer. In this configuration, the access layer switch requirements now must include VXLAN capabilities, but the distribution layer switches do not. In this design, the distribution layer switches perform only IP routing and inherit the same simplicity and ease of use benefits as layer 3 core designs.
 
@@ -414,45 +414,45 @@ Platform requirements in this example differ from the previous example when VTEP
 
 For a single pane view, NetQ brings a modern graphical user interface. Important information such as network service health, IP addresses, MAC addresses, events and alarms are all pulled together into an easy to consume, browser-based view. A command line interface is also provided that can be used from any node that runs a NetQ agent. This provides access to any information, from any node, from anywhere an operator may be logged in.
 
-{{<figure src="/images/guides/campus-netq-gui.png" caption="Cumulus NetQ GUI">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-netq-gui.png" caption="Cumulus NetQ GUI">}}
 
 NetQ also provides an API and structured data outputs to provide capabilities to integrate into nearly any 3rd party monitoring and alerting tools. Every NetQ CLI command has a JSON output option, which provides a structured response that is easy to parse and interpret programmatically. Cumulus NetQ also provides a full RESTful API with a standard OpenAPI definition that can be found in the [API User Guide](/cumulus-netq/Cumulus-NetQ-Integration-Guide/API-User-Guide/#view-the-api).
 
-{{<figure src="/images/guides/campus-netq-json.png" caption="Cumulus NetQ CLI JSON output">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-netq-json.png" caption="Cumulus NetQ CLI JSON output">}}
 
 NetQ delivers advanced path tracing, even through a VXLAN overlay, by either layer 3 IP address or by layer 2 MAC address. NetQ agents stream forwarding information from every node, which provides a unique opportunity to perform a more complete path trace. A NetQ trace discovers all possible paths and checks each path, hop by hop for errors and possible problems.
 
-{{<figure src="/images/guides/campus-netq-trace.png" caption="Cumulus NetQ CLI providing layer 2, layer 3 and VXLAN overlay trace capabilities">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-netq-trace.png" caption="Cumulus NetQ CLI providing layer 2, layer 3 and VXLAN overlay trace capabilities">}}
 
 Fabric-wide service validations and health checks bring accurate alerting and diagnostics, and can provide prebuilt comprehensive testing for CI/CD automated workflows. NetQ agents stream a wide breadth of both control plane and data plane information that can be cross referenced and checked to better represent the status of the entire network instead of individual pieces. Services like BGP, EVPN, MLAG and NTP can be verified as the total of all nodes working together in addition to physical interface settings, licenses, and environmental sensors.
 
-{{<figure src="/images/guides/campus-netq-bgp-validation.png" caption="On-demand validation of a BGP fabric from the NetQ GUI">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-netq-bgp-validation.png" caption="On-demand validation of a BGP fabric from the NetQ GUI">}}
 
 ### NetQ CLI Examples
 
 #### netq show macs
 
-{{<figure src="/images/guides/campus-netq-show-macs.png" caption="netq show macs">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-netq-show-macs.png" caption="netq show macs">}}
 
 #### netq show ip routes
 
-{{<figure src="/images/guides/campus-netq-show-macs.png" caption="netq show ip routes">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-netq-show-macs.png" caption="netq show ip routes">}}
 
 #### netq show ip address
 
-{{<figure src="/images/guides/campus-netq-show-ip-address.png" caption="netq show ip address">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-netq-show-ip-address.png" caption="netq show ip address">}}
 
 #### netq check
 
 The ability to check `bgp`, `evpn`, `clag`, `interfaces`, `license`, `mtu`, `ntp`, `ospf`/`ospf6`, `sensors`, `vlan` and `vxlan` are supported.
 
-{{<figure src="/images/guides/campus-netq-check-mtu.png" caption="netq check">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-netq-check-mtu.png" caption="netq check">}}
 
 #### netq trace
 
 `netq trace` provides layer 2, layer 3 and VXLAN overlay support.
 
-{{<figure src="/images/guides/campus-netq-trace2.png" caption="Cumulus NetQ CLI providing layer 2, layer 3 and VXLAN overlay trace capabilities">}}
+{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/guides/campus-netq-trace2.png" caption="Cumulus NetQ CLI providing layer 2, layer 3 and VXLAN overlay trace capabilities">}}
 
 <!-- Footnotes themselves at the bottom. -->
 ## Notes

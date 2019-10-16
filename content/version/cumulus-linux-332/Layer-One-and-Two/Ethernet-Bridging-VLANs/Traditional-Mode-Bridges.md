@@ -108,7 +108,7 @@ connected to bridge-B. This means that:
   - host-3 and host-4 can communicate with each other.
   - host-1 and host-2 cannot communicate with host-3 and host-4.
 
-{{<figure src ="https://dkahegywkrw3e.cloudfront.net/images/download/attachments/5868987/multiple-bridges.png" >}}
+{{<figure src ="/images/download/attachments/5868987/multiple-bridges.png" >}}
 
 This example configuration looks like this in the
 `/etc/network/interfaces` file:

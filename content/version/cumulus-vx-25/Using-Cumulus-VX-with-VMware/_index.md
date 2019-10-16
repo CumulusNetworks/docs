@@ -33,4 +33,4 @@ The resulting configuration contains four VMs:
   - Two leaf VMs, which represent two leaf (access layer) switches on
     the network
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-vx/VX_VirtualBox_topo_noOOB.png">}}
+{{<figure src="/images/cumulus-vx/VX_VirtualBox_topo_noOOB.png">}}

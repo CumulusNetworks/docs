@@ -29,7 +29,7 @@ overview and how to configure LLDP in your data center network, refer to
 
 The small LLDP Service card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -68,7 +68,7 @@ The small LLDP Service card displays:
 
 The medium LLDP Service card displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -123,7 +123,7 @@ The large LLDP service card contains two tabs.
 
 The *Sessions Summary* tab which displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-large-summary-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -184,7 +184,7 @@ The *Sessions Summary* tab which displays:
 
 The *Alarms* tab which displays:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -237,7 +237,7 @@ The *Alarms* tab which displays:
 The full screen LLDP Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -383,7 +383,7 @@ number of LLDP-related alarms, and a distribution of those alarms.
 
 To view the summary, open the small LLDP Service card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
 
 In this example, there are no LLDP alarms present on the network of
 14 devices.
@@ -400,7 +400,7 @@ investigating either the service or particular devices.
 
 To view the distribution, open the medium LLDP Service card.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
 
 In this example, we see that 13 nodes are running the LLDP protocol,
 that there are 52 sessions established, and that no LLDP-related alarms
@@ -415,7 +415,7 @@ link communication issues.
 To view the distribution, open the large LLDP Service card and view the
 bottom chart on the left, **Total Sessions with No Nbr**.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-large-summary-tab-no-nbr-highlight-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-no-nbr-highlight-230.png" width="500" >}}
 
 In this example, we see that 16 of the 52 sessions are missing the
 neighbor (peer) device.
@@ -437,7 +437,7 @@ To view switches and hosts with the most LLDP sessions:
     running the most LLDP sessions at the top. Scroll down to view those
     with the fewest sessions.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-large-summary-tab-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-230.png" width="500" >}}
 
 To compare this data with the same data at a previous time:
 
@@ -450,9 +450,9 @@ To compare this data with the same data at a previous time:
     You can now see whether there are significant differences between
     this time period and the previous time period.  
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
+    {{< figure src="/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-large-summary-tab-past-week-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-past-week-230.png" width="500" >}}
 
     In this case, notice that the alarms have reduced significantly in
     the last week. If the changes are unexpected, you can investigate
@@ -474,7 +474,7 @@ To view switches with the most unestablished LLDP sessions:
     with the most unestablished CLAG sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-large-summary-tab-most-unestab-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-most-unestab-230.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -507,7 +507,7 @@ To view switches with most LLDP alarms:
     with the most BGP alarms at the top. Scroll down to view those with
     the fewest alarms.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -533,7 +533,7 @@ To view all LLDP events:
 1.  Open the full screen LLDP Service card.
 2.  Click the **All Alarms** tab.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-222.png" width="700">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -557,7 +557,7 @@ network in the full screen card.
 To view all switch details, open the LLDP Service card, and click the
 **All Switches** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
 
 Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 
@@ -569,7 +569,7 @@ in the full screen card.
 To view all session details, open the LLDP Service card, and click the
 **All Sessions** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-fullscr-sessions-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-sessions-tab-222.png" width="700">}}
 
 Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 
@@ -583,9 +583,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-lldp-fullscr-switches-tab-2-selected-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-switches-tab-2-selected-222.png" width="700">}}
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -633,7 +633,7 @@ detected block increases in saturation, the peers that are unreachable
 An example heat map for a time period of 24 hours is shown here with the
 most common time periods in the table showing the resulting time blocks.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-result-granularity-230.png" width="300">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-result-granularity-230.png" width="300">}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -648,7 +648,7 @@ most common time periods in the table showing the resulting time blocks.
 
 The small LLDP Session card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -683,7 +683,7 @@ The small LLDP Session card displays:
 
 The medium LLDP Session card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-medium-230.png" width="200">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-medium-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -748,7 +748,7 @@ The large LLDP Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-large-summary-tab-230.png" width="500">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-large-summary-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -811,7 +811,7 @@ The *Session Summary* tab displays:
 
 The *Configuration File Evolution* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-large-config-tab-230.png" width="500">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-large-config-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -859,7 +859,7 @@ The *Configuration File Evolution* tab displays:
 The full screen LLDP Session card provides tabs for all LLDP sessions
 and all events.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -945,9 +945,9 @@ To view the summary:
 3.  Locate the medium LLDP Session card.
 4.  Optionally, open the small LLDP Session card.  
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-medium-summary-highlight-230.png" width="200">}}
+    {{<figure src="/images/netq/ntwk-svcs-single-lldp-medium-summary-highlight-230.png" width="200">}}
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
+    {{<figure src="/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
 
 ### View LLDP Session Neighbor State Changes
 
@@ -966,7 +966,7 @@ card:
 2.  Double-click on a session. The full screen card closes automatically.
 3.  Locate the medium LLDP Session card.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-medium-nbr-state-highlight-230.png" width="200">}}
+    {{<figure src="/images/netq/ntwk-svcs-single-lldp-medium-nbr-state-highlight-230.png" width="200">}}
 
 In this example, the heat map tells us that this LLDP session has been
 able to detect a neighbor for the entire time period.
@@ -977,7 +977,7 @@ the peer name and interface name.
 To view the neighbor availability for a given LLDP session on the large
 LLDP Session card, open that card.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-large-nbr-state-highlight-230.png" width="500">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-large-nbr-state-highlight-230.png" width="500">}}
 
 From this card, you can also view the alarm and info event counts, host
 interface name, peer hostname, and peer interface identifying the
@@ -1001,7 +1001,7 @@ To view the configuration file changes:
     option is dark; File by default).  
     The File view displays the content of the file for you to review.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-large-config-tab-file-selected-230.png" width="500">}}
+    {{<figure src="/images/netq/ntwk-svcs-single-lldp-large-config-tab-file-selected-230.png" width="500">}}
 
     The Diff view displays the changes between this version (on left)
     and the most recent version (on right) side by side. The changes are
@@ -1009,7 +1009,7 @@ To view the configuration file changes:
     changes to the file, so the same file is shown on both sides, and
     thus no highlighted lines.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-large-config-tab-diff-selected-230.png" width="500">}}
+    {{<figure src="/images/netq/ntwk-svcs-single-lldp-large-config-tab-diff-selected-230.png" width="500">}}
 
 ### View All LLDP Session Details
 
@@ -1019,7 +1019,7 @@ associated with the two devices on this card.
 To view all session details, open the full screen LLDP Session card, and
 click the **All LLDP Sessions** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right of the card.
 
@@ -1030,7 +1030,7 @@ You can view all of the alarm and info events in the network.
 To view all events, open the full screen LLDP Session card, and click
 the **All Events** tab.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-lldp-fullscr-events-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-events-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options
 include:

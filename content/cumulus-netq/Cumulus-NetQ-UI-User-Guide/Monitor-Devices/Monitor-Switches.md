@@ -32,7 +32,7 @@ accomplished through the Switches card.
 
 The small Switch card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-small-card-230.png" width="200">}}
+{{<figure src="/images/netq/dev-switch-small-card-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -79,14 +79,14 @@ The small Switch card displays:
 <li><p><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</p></li>
 <li><p><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</p></li>
 </ul>
-<p>{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
+<p>{{< figure src="/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
 </tr>
 </tbody>
 </table>
 
 The medium Switch card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-medium-score-charts-230.png" width="420">}}
+{{<figure src="/images/netq/dev-switch-medium-score-charts-230.png" width="420">}}
 
 <table>
 <colgroup>
@@ -123,7 +123,7 @@ The large Switch card contains three tabs:
 
 The *Attributes* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-large-attributes-tab-230.png" width="500">}}
+{{<figure src="/images/netq/dev-switch-large-attributes-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -202,7 +202,7 @@ The *Attributes* tab displays:
 
 The *Utilization* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-large-utilization-tab-230.png" width="500">}}
+{{<figure src="/images/netq/dev-switch-large-utilization-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -237,7 +237,7 @@ The *Utilization* tab displays:
 
 The *Interfaces* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-large-interfaces-tab-230.png" width="500">}}
+{{<figure src="/images/netq/dev-switch-large-interfaces-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -281,7 +281,7 @@ The *Interfaces* tab displays:
 The full screen Switch card provides tabs for all IP addresses, all MAC
 addresses, and all interfaces.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-fullscr-ipaddr-tab-230.png" width="700" >}}
+{{< figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-230.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -380,20 +380,20 @@ To view the summary:
 
 1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/>, and select Device|Switches. A dialog box opens.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-open-switch-card.png" width="250" >}}
+    {{< figure src="/images/netq/dev-switch-open-switch-card.png" width="250" >}}
 
 2.  Begin typing the hostname of the device you are interested in.
     Select it from the suggested matches when it appears.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-type-dev-name.png" width="250" >}}
+    {{< figure src="/images/netq/dev-switch-type-dev-name.png" width="250" >}}
 
 3.  Select the size of the card, *L1*, to open the small size card.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-choose-card-size.png" width="250" >}}
+    {{< figure src="/images/netq/dev-switch-choose-card-size.png" width="250" >}}
 
 4.  Click **Add**, or **Cancel** to exit the process.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-small-card-230.png" width="200">}}
+    {{<figure src="/images/netq/dev-switch-small-card-230.png" width="200">}}
 
 In this example, we see that the leaf01 switch has had very few alarms
 overall, but the number is trending upward, with a total count of 24
@@ -416,7 +416,7 @@ alarms attributed to the following activities on the switch:
   - interface performance
   - platform performance
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-medium-score-charts-230.png" width="420">}}
+{{<figure src="/images/netq/dev-switch-medium-score-charts-230.png" width="420">}}
 
 Also included on the card is the total alarm count for all of these
 metrics. You can view the key performance metrics as numerical scores or
@@ -428,7 +428,7 @@ of the card.
 For a quick look at the key attributes of a particular switch, open the
 large Switch card. Attributes are displayed as the default tab.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-large-attributes-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/dev-switch-large-attributes-tab-230.png" width="500" >}}
 
 In this example, the items of interest might be the five interfaces that
 are down and what version of OS and NetQ Agent the switch is running.
@@ -447,7 +447,7 @@ To view the resource utilization on a particular switch:
 3.  The card is divided into two sections, displaying
     hardware-related performance through a series of charts.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-large-utilization-tab-230.png" width="500">}}
+    {{<figure src="/images/netq/dev-switch-large-utilization-tab-230.png" width="500">}}
 
 4.  Look at the hardware performance charts. Are there any that are
     reaching critical usage levels? 
@@ -472,7 +472,7 @@ To view interface statistics:
 
 5. Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/07-Data-Transfer/data-transfer-square-diagonal.svg", width="18", height="18"/> to open the Interface Stats tab.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-large-interfaces-tab-230.png" width="500">}}
+    {{<figure src="/images/netq/dev-switch-large-interfaces-tab-230.png" width="500">}}
 
 6. Select an interface from the list, scrolling down until you find it. By default the interfaces are sorted by Name, but you may find it easier to sort by the highest transmit or receive utilization using the filter above the list.
 
@@ -494,7 +494,7 @@ To view all IP addresses:
 1.  Open the full screen Switch card. The **IP addresses** tab is shown
     by default.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-fullscr-ipaddr-tab-230.png" width="700">}}
+    {{<figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-230.png" width="700">}}
 
 2.  Review the addresses for any anomalies, to obtain prefix
     information, determine if it is an IPv4 or IPv6 address, and so
@@ -507,7 +507,7 @@ To view all MAC addresses:
 1.  Open the full screen Switch card and click the **MAC Addresses**
     tab.
 
-    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-fullscr-macaddr-tab-230.png" width="700" >}}
+    {{< figure src="/images/netq/dev-switch-fullscr-macaddr-tab-230.png" width="700" >}}
 
 2.  Review the addresses for any anomalies, to see the associated egress
     port, associated VLANs, and so forth.
@@ -525,7 +525,7 @@ To view all interfaces:
 1.  Open the full screen Switch card and click the **All Interfaces**
     tab.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/dev-switch-fullscr-interfaces-tab-230.png" width="700">}}
+    {{<figure src="/images/netq/dev-switch-fullscr-interfaces-tab-230.png" width="700">}}
 
 2.  Look for interfaces that are down, shown in the **State** column.
 3.  Look for recent changes to the interfaces, shown in the **Last
@@ -547,7 +547,7 @@ accomplished through the Switch Inventory card.
 
 The small Switch Inventory card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-small-230.png" width="200">}}
+{{<figure src="/images/netq/inventory-switch-small-230.png" width="200">}}
 
 | Item              | Description  |
 | ----------------- | ------------ |
@@ -557,7 +557,7 @@ The small Switch Inventory card displays:
 
 The medium Switch Inventory card displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-medium-230.png" width="200">}}
+{{<figure src="/images/netq/inventory-switch-medium-230.png" width="200">}}
 
 <table>
 <colgroup>
@@ -595,7 +595,7 @@ The large Switch Inventory card contains four tabs.
 
 The *Summary* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-summary-tab-230.png" width="500">}}
+{{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -631,7 +631,7 @@ The *Summary* tab displays:
 
 The *ASIC* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-asic-tab-230.png" width="500">}}
+{{<figure src="/images/netq/inventory-switch-large-asic-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -670,7 +670,7 @@ The *ASIC* tab displays:
 
 The *Platform* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-platform-tab-230.png" width="500">}}
+{{<figure src="/images/netq/inventory-switch-large-platform-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -685,7 +685,7 @@ The *Platform* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://dkahegywkrw3e.cloudfront.net/images/netq/platform-icon.png", height="20", width="20"/></p></td>
+<td><p><img src="/images/netq/platform-icon.png", height="20", width="20"/></p></td>
 <td><p>Indicates data is for platform information</p></td>
 </tr>
 <tr class="even">
@@ -713,7 +713,7 @@ The *Platform* tab displays:
 
 The *Software* tab displays:
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-software-tab-230.png" width="500">}}
+{{<figure src="/images/netq/inventory-switch-large-software-tab-230.png" width="500">}}
 
 <table>
 <colgroup>
@@ -754,7 +754,7 @@ The *Software* tab displays:
 The full screen Switch Inventory card provides tabs for all components,
 ASIC, platform, CPU, memory, disk, and OS components.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}
+{{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}
 
 There are a multitude of ways to view and analyze the available data
 within this workflow. A few examples are provided here.
@@ -764,7 +764,7 @@ within this workflow. A few examples are provided here.
 A communication status summary for all of your switches across the
 network is available from the small Switch Inventory card.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-small-230.png" width="200">}}
+{{<figure src="/images/netq/inventory-switch-small-230.png" width="200">}}
 
 In this example, we see all 13 switches have been heard from recently
 (they are fresh).
@@ -781,7 +781,7 @@ To view this count for all of the components on the switch:
 
 1.  Open the medium Switch Inventory card.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-medium-230.png" width="200">}}
+    {{<figure src="/images/netq/inventory-switch-medium-230.png" width="200">}}
 
 2.  Note the number in the **Unique** column for each component.  
     In the above example, there are four different disk sizes deployed,
@@ -809,11 +809,11 @@ To view the distribution:
 1.  Open the medium or large Switch Inventory card. Each component has a
     chart showing the distribution.  
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-medium-230.png" width="200">}}
+    {{<figure src="/images/netq/inventory-switch-medium-230.png" width="200">}}
 
     OR
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-summary-tab-230.png" width="500">}}
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="500">}}
 
 2.  Hover over a segment of the chart to view the name, version, model
     or vendor and the number of switches that have been deployed. You
@@ -822,7 +822,7 @@ To view the distribution:
     related components for the selected component. This is shown in blue
     here.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-summary-tab-hover-os-230.png" width="500">}}
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-hover-os-230.png" width="500">}}
 
 3.  Point to additional segments on that component or other components
     to view their detail.
@@ -837,16 +837,16 @@ operational without a valid license. Simply open the medium or large
 Switch Inventory card, and hover over the License chart to see the
 count.
 
-{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-medium-hover-license-230.png" width="200">}}
+{{<figure src="/images/netq/inventory-switch-medium-hover-license-230.png" width="200">}}
 
-To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
+To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click <img src="/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
 
 To view *which* switches have invalid or missing licenses, either:
 
-  - hover over the large Switch Inventory card and click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Above the Licenses State or the Vendor chart, click **Show All**.
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
+  - hover over the large Switch Inventory card and click <img src="/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Above the Licenses State or the Vendor chart, click **Show All**.
+      {{< figure src="/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
   - open the full screen Switch Inventory card. Then sort the **All Switches** tab data table by the **License State** column to locate the switches with bad or missing licenses.
-      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-fullscr-show-all-tab-license-highlight.png" width="700" >}}
+      {{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab-license-highlight.png" width="700" >}}
 
 ### View the Most Commonly Deployed ASIC
 
@@ -864,7 +864,7 @@ To view the most commonly deployed ASIC, for example:
     appears shows you the number of switches with the given ASIC and the
     percentage of your entire switch population with this ASIC.  
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-medium-asic-highlight-230.png" width="200">}}
+    {{<figure src="/images/netq/inventory-switch-medium-asic-highlight-230.png" width="200">}}
 
 
     Click on any other component in a similar fashion to see the most
@@ -880,14 +880,14 @@ To view the most commonly deployed ASIC, for example:
     supports that platform. Moving your cursor off of the carts removes
     the highlight.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-asic-tab-vendor-highlight-230.png" width="500">}}
+    {{<figure src="/images/netq/inventory-switch-large-asic-tab-vendor-highlight-230.png" width="500">}}
 
 6.  *Click* on a segment of the
     **Vendor** pie chart to drill down and see only that Vendor and its
     supported models. A filter tag is
     placed at the top of the charts.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-asic-tab-vendor-selected-230.png" width="500">}}
+    {{<figure src="/images/netq/inventory-switch-large-asic-tab-vendor-selected-230.png" width="500">}}
 
 7.  To return to the complete view of vendors and platforms, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> on the filter tag.
 
@@ -902,7 +902,7 @@ distribution by version:
 
 2.  View the number in the **Unique** column next to Agent.
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-medium-agent-highlight-230.png" width="200">}}
+    {{<figure src="/images/netq/inventory-switch-medium-agent-highlight-230.png" width="200">}}
 
 3.  If the number is greater than one, you have multiple NetQ Agent
     versions deployed.
@@ -914,7 +914,7 @@ distribution by version:
 
 6.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg", height="20", width="20"/> to open the **Software** tab.  
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-software-tab-230.png" width="500">}}
+    {{<figure src="/images/netq/inventory-switch-large-software-tab-230.png" width="500">}}
 
 7.  Hover over the chart on the right to view the number of switches
     using the various versions of the NetQ Agent.
@@ -922,7 +922,7 @@ distribution by version:
 8.  Hover over the Operating System chart to see which NetQ Agent
     versions are being run on each OS.  
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-large-software-tab-os-highlight-230.png" width="500">}}
+    {{<figure src="/images/netq/inventory-switch-large-software-tab-os-highlight-230.png" width="500">}}
 
 9.  Click either chart to focus on a particular OS or agent version.
 
@@ -940,4 +940,4 @@ provides the information you need, open the full screen Switch Inventory
 card. Select the component tab of interest and filter and sort as
 desired. Export the data to a third-party tool, by clicking **Export**.
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}
+{{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}

@@ -26,7 +26,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 
 Install and set up your NetQ Appliance and switch and host Agents using the following steps:
 
-{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/install-flow-nqappl-on-prem-nq222.png" width="600" >}}
+{{< figure src="/images/netq/install-flow-nqappl-on-prem-nq222.png" width="600" >}}
 
 ## Install the Appliance
 
@@ -37,7 +37,7 @@ After you unbox the appliance:
 3. Connect the Ethernet cable to the 1G management port (eth0).
 4. Power on the appliance.
 
-   {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-appliance-port-connections.png" width="700" >}}
+   {{< figure src="/images/netq/netq-appliance-port-connections.png" width="700" >}}
 
 If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over the network. If DHCP is not enabled, then you configure the appliance using the console cable provided.
 

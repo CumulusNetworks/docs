@@ -52,7 +52,7 @@ The steps are as follows:
       - Network Adapter 4: *Private to my Mac* (equivalent to *Internal
         Network*)
 
-    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-vx/VX_fusion.png">}}
+    {{<figure src="/images/cumulus-vx/VX_fusion.png">}}
 
 8.  When you finish customizing the network settings, click **Start Up**
     to power on the VM and use it as you desire.

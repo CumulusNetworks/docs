@@ -24,7 +24,7 @@ Both types of workbenches display a set of cards. Default workbenches are public
 
 In this release, only one default workbench is available, the *Cumulus Workbench*, to get you started. It contains Device Inventory, Switch Inventory, Alarm and Info Events, and Network Health cards, giving you a high-level view of how your network is operating.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/cumulus-workbench-cloud-230.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/cumulus-workbench-cloud-230.png" width="700" >}}
 
 On initial login, the Cumulus Workbench is opened. On subsequent logins, the last workbench you had displayed is opened.
 
@@ -44,7 +44,7 @@ To create a workbench:
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg", height="18", width="18"/> in the workbench header.
 
-      {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/add-custom-workbench-modal-230.png" width="200">}}
+      {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/add-custom-workbench-modal-230.png" width="200">}}
 
 2. Enter a name for the workbench.
 
@@ -62,7 +62,7 @@ To remove a workbench:
 
 1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
 
 2.  Click **Profile & Preferences**.
 

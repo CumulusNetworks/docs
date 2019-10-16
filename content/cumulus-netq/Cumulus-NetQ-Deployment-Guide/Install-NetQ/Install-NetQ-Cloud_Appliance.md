@@ -26,13 +26,13 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 
 Install and set up your NetQ Appliance and switch and host Agents using the following steps:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/install-flow-nqcldappl-cloud-nq222.png" width="600" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/install-flow-nqcldappl-cloud-nq222.png" width="600" >}}
 
 ## Install the Appliance
 
 After you unbox the appliance, mount it in the rack and connect it to power following the procedures described in your appliance's [user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf). Connect the Ethernet cable to the 10G management port (eth0), then power on the appliance.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-cloud-appl-port-connections.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-cloud-appl-port-connections.png" width="700" >}}
 
 If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over the network. If DHCP isn't enabled, then you configure the appliance using the console cable provided.
 
@@ -148,12 +148,12 @@ To configure CLI access:
 
 3. From the Main Menu, select *Management* in the **Admin** column.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-mgmt-selected.png" width="400">}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 5. Select your user and click **Generate AuthKeys**.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/generate-auth-keys.png" width="700">}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/generate-auth-keys.png" width="700">}}
 
 6. Copy these keys to a safe place.
 

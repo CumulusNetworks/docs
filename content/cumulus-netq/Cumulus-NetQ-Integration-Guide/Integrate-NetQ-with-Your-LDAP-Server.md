@@ -19,7 +19,7 @@ One LDAP server can be configured per admin user account. Once LDAP is configure
 
 2. Locate the LDAP Server Info card, and click **Configure LDAP**.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-mgmt-ldap-config-modal-230.png" width="500">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-mgmt-ldap-config-modal-230.png" width="500">}}
 
 3. Obtain and enter the following information about your LDAP server:
 
@@ -45,7 +45,7 @@ LDAP config cannot be changed once configured. If you need to change the configu
 
 3. On the User Accounts tab, click **Add User**.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-mgmt-user-acct-add-new-user-modal-230.png" width="250">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-mgmt-user-acct-add-new-user-modal-230.png" width="250">}}
 
 4. Select **LDAP User**.
 
@@ -57,7 +57,7 @@ LDAP config cannot be changed once configured. If you need to change the configu
 
 8. If the user is found, the email address, first and last name fields are automatically filled in on the Add New User form. If searching is not enabled on the LDAP server, you must enter the information manually.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-mgmt-user-acct-ldap-search-result-230.png" width="300">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-mgmt-user-acct-ldap-search-result-230.png" width="300">}}
 
     {{%notice tip%}}
 If the fields are not automatically filled in, and searching is enabled on the LDAP server, you might require changes to the mapping file.
@@ -67,7 +67,7 @@ If the fields are not automatically filled in, and searching is enabled on the L
 
 10. Enter your admin password, and click **Save**, or click **Cancel** to discard the user account.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-mgmt-user-acct-fullscr-added-user-230.png" width="700">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-mgmt-user-acct-fullscr-added-user-230.png" width="700">}}
 
     {{%notice tip%}}
 

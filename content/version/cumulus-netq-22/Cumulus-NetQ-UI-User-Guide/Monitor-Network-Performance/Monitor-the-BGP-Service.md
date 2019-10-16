@@ -67,7 +67,7 @@ The small BGP Service card displays:
 
 The medium BGP Service card displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-bgp-medium.png" width="150" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-bgp-medium.png" width="150" >}}
 
 <table>
 <colgroup>
@@ -234,7 +234,7 @@ The *Alarms* tab displays:
 The full screen BGP Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -444,7 +444,7 @@ To view switches with the most unestablished BGP sessions:
     with the most unestablished BGP sessions at the top. Scroll down to
     view those with the fewest unestablished sessions.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-allbgp-large-unestab-sessions.png" width="500" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-allbgp-large-unestab-sessions.png" width="500" >}}
 
 Where to go next depends on what data you see, but a couple of options
 include:
@@ -526,7 +526,7 @@ To view all BGP events:
 2.  Click **All Alarms** tab in the navigation panel.  
     By default, events are listed in most recent to least recent order.
 
-    {{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-fullscr-alarms-tab-222.png" width="700">}}
+    {{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-fullscr-alarms-tab-222.png" width="700">}}
 
 Where to go next depends on what data you see, but a couple of options
 include:
@@ -547,7 +547,7 @@ in your network in the full screen card.
 To view all device details, open the full screen BGP Service card and
 click the **All Switches** tab.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
@@ -559,7 +559,7 @@ in the full-screen card.
 To view all session details, open the full screen BGP Service card and
 click the **All Sessions** tab.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-fullscr-sessions-tab-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-fullscr-sessions-tab-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
@@ -573,9 +573,9 @@ of a row. A checkbox appears, selecting that switch, session, or alarm,
 and an edit menu is shown at the bottom of the card (shown enlarged
 here).
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-all-bgp-fullscr-switches-tab-2selected-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-all-bgp-fullscr-switches-tab-2selected-222.png" width="700">}}
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
 
 You can perform the following actions on the results list:
 
@@ -870,7 +870,7 @@ The *Configuration File Evolution* tab displays:
 The full screen BGP Session card provides tabs for all BGP sessions and
 all events.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
 
 <table>
 <colgroup>
@@ -1038,7 +1038,7 @@ with the two devices on this card.
 To view all session details, open the full screen BGP Session card, and
 click the **All BGP Sessions** tab.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.
 
@@ -1050,6 +1050,6 @@ this card.
 To view all events, open the full screen BGP Session card, and click
 the **All Events** tab.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-fullscr-events-tab-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-fullscr-events-tab-222.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> in the top right corner.

@@ -26,7 +26,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 
 After you unbox the appliance, mount it in the rack and connect it to power following the procedures described in your appliance's user manual. Connect the Ethernet cable to the 1G management port (eth0), then power on the appliance.
 
-   {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-appliance-port-connections.png" >}}
+   {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-appliance-port-connections.png" >}}
 
 If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over the network. If DHCP isn't enabled, then you configure the appliance using the console cable provided.
 

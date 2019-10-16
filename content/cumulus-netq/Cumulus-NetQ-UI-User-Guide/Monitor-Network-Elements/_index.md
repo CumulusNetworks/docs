@@ -15,46 +15,46 @@ The tables can be manipulated as described in [Data Grid settings](../NetQ-User-
 
 Access these tables through the Main Menu (<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>), under the **Network** heading.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-ntwk-choices-highlighted-222.png" width="400">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-ntwk-choices-highlighted-222.png" width="400">}}
 
 ## View All NetQ Agents
 
 The Agents view provides all available parameter data about all NetQ Agents in the system.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-ntwk-agents-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-ntwk-agents-222.png" width="700">}}
 
 ## View All Events
 
 The Events view provides all available parameter data about all events in the system.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-ntwk-events-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-ntwk-events-222.png" width="700">}}
 
 ## View All MACs
 
 The MACs (media access control addresses) view provides all available parameter data about all MAC addresses in the system.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-ntwk-macs-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-ntwk-macs-222.png" width="700">}}
 
 ## View All VLANs
 
 The VLANs (virtual local area networks) view provides all available parameter data about all VLANs in the system.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-ntwk-vlans-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-ntwk-vlans-222.png" width="700">}}
 
 ## View All IP Routes
 
 The IP Routes view provides all available parameter data about all IP routes, all IPv4 routes, and all IPv6 routes in the system.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-ntwk-iproutes-all-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-ntwk-iproutes-all-222.png" width="700">}}
 
 ## View All IP Neighbors
 
 The IP Neighbors view provides all available parameter data about all IP neighbors, all IPv4 neighbors, and all IPv6 neighbors in the system.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-ntwk-ipnbrs-all-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-ntwk-ipnbrs-all-222.png" width="700">}}
 
 ## View All IP Addresses
 
 The IP Addresses view provides all available parameter data about all IP addresses, all IPv4 addresses, and all IPv6 addresses in the system.
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-ntwk-ipaddrs-all-222.png" width="700">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-ntwk-ipaddrs-all-222.png" width="700">}}

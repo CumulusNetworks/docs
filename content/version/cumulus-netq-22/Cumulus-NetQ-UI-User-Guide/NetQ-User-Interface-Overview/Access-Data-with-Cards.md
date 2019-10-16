@@ -40,7 +40,7 @@ content items may be present. Some examples include a Devices Inventory
 card, a Switch Inventory card, an Alarm Events card, an Info Events
 card, and a Network Health card, as shown here:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/cumulus-wb-default-small-cards-only.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/cumulus-wb-default-small-cards-only.png" width="700" >}}
 
 ### Medium Cards
 
@@ -53,7 +53,7 @@ Devices Inventory card, a Switch Inventory card, an Alarm Events card,
 an Info Events card, and a Network Health card, as shown here. Compare
 these with their related small- and large-sized cards.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/cumulus-wb-default-med-cards-only.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/cumulus-wb-default-med-cards-only.png" width="700" >}}
 
 ### Large Cards
 
@@ -67,7 +67,7 @@ examples include a Devices Inventory card, an Alarm Events card, and a
 Network Health card, as shown here. Compare these with their related
 small- and medium-sized cards.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/sample-of-large-cards.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/sample-of-large-cards.png" width="500" >}}
 
 ### Full-Screen Cards
 
@@ -78,9 +78,9 @@ full-screen card. Most full-screen cards display data in a grid, or
 table; however, some contain visualizations. Some examples include All
 Events card and All Switches card, as shown here.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/events-alarms-fullscr.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/events-alarms-fullscr.png" width="700" >}}
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-switches-fullscr-allswitch-tab.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-switches-fullscr-allswitch-tab.png" width="700" >}}
 
 ### Card Size Summary
 
@@ -167,7 +167,7 @@ You use the **Quick Filter** to find the column when you have a large
 3.  Point to the six dots to the left of the checkbox.
 4.  Click and drag the selected column up or down in the list.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grids-change-column-order-222.png" width="250" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/grids-change-column-order-222.png" width="250" >}}
 
 5.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> to close the selection box and view the updated data grid.
 
@@ -180,9 +180,9 @@ To take actions on the data, click in the blank column at the very left
 of a row. A checkbox appears, selecting that item, and an edit menu is
 shown at the bottom of the card (shown enlarged here).
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/ntwk-svcs-allbgp-fullscr-items-selected-222.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/ntwk-svcs-allbgp-fullscr-items-selected-222.png" width="700" >}}
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/edit-menu-pop-up-222.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/edit-menu-pop-up-222.png" width="700" >}}
 
 You can perform the following actions on the results list. **Note**:
 The actions vary based on the card displayed.
@@ -212,11 +212,11 @@ To export the data:
     items first.
 2.  Click **EXPORT**.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/export-button-fullscr-cards-222.png" width="250" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/export-button-fullscr-cards-222.png" width="250" >}}
 
 3.  Select all data or selected data for export in the dialog box:
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/export-data-dialog-222.png" width="250" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/export-data-dialog-222.png" width="250" >}}
 
 4.  Select the export format.
 5.  Click **EXPORT** to save the file to your downloads directory.
@@ -260,7 +260,7 @@ To change the time period for a card:
 2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/> in the header.
 3.  Select a time period from the dropdown list.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/time-picker-popup-222.png" width="200" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/time-picker-popup-222.png" width="200" >}}
 
 {{%notice tip%}}
 
@@ -281,7 +281,7 @@ To change the card size:
 2.  Hover over the Card Size Picker and move the cursor to the right or
     left until the desired size option is highlighted.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/card-size-picker-222.png" width="200" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/card-size-picker-222.png" width="200" >}}
 
     Single width opens a small card. Double width opens a medium card.
     Triple width opens large cards. Full width opens full-screen cards.
@@ -297,7 +297,7 @@ turns up and is highlighted. Clicking the corner turns the card over
 where a description of the card and any relevant tabs are described.
 Hover and click again to turn it back to the front side.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/card-desc-on-back-222.png" width="400" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/card-desc-on-back-222.png" width="400" >}}
 
 ### Reposition a Card on Your Workbench
 
@@ -313,9 +313,9 @@ To move a card:
     medium Network Health card to the left of the medium Devices
     Inventory card.  
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/move-card-click-drag-222.png" width="700" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/move-card-click-drag-222.png" width="700" >}}
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/move-card-release-222.png" width="700" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/move-card-release-222.png" width="700" >}}
 
 ### Add Cards to Your Workbench
 
@@ -325,23 +325,23 @@ To add one or more cards:
 
 1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open the **Cards** modal.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/add-card-modal-all-cards-222.png" width="700" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/add-card-modal-all-cards-222.png" width="700" >}}
 
 2.  Scroll down until you find the card you want to add, or select the category of cards to find the card you want to add.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/add-card-modal-ntwk-svcs-222.png" width="700" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/add-card-modal-ntwk-svcs-222.png" width="700" >}}
 
 3. Click on each card you want to add.
 
       As you select each card, it is grayed out and a <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> appears on top of it. If you have selected one or more cards using the category option, you can selected another category without losing your current selection. Note that the total number of cards selected for addition to your workbench is noted at the bottom.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/add-card-2-selected-222.png" width="700" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/add-card-2-selected-222.png" width="700" >}}
 
       Also note that if you change your mind and do not want to add a particular card you have selected, simply click on it again to remove it from the cards to be added. Note the total number of cards selected decreases with each card you remove.
 
 4. When you have selected all of the cards you want to add to your workbench, you can confirm which cards have been selected by clicking the **Cards Selected** link. Modify your selection as needed.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/add-card-confirm-selection-222.png" width="700" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/add-card-confirm-selection-222.png" width="700" >}}
 
 5. Click **Open Cards** to add the selected cards, or **Cancel** to return to your workbench without adding any cards.
 
@@ -357,13 +357,13 @@ To add a switch card:
 
 1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> to open the Add Switch Card modal.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/add-switch-card-modal-222.png" width="250" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/add-switch-card-modal-222.png" width="250" >}}
 
 2. Begin entering the hostname of the switch you want to monitor.
 
 3. Select the device from the suggestions that appear.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/add-switch-card-auto-suggest-222.png" width="250" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/add-switch-card-auto-suggest-222.png" width="250" >}}
 
       {{%notice tip%}}
 
@@ -385,7 +385,7 @@ To remove a card:
 2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg", height="18", width="18"/> (*More Actions* menu).
 3.  Click **Remove**.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/remove-card-222.png" width="100" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/remove-card-222.png" width="100" >}}
 
 The card is removed from the workbench, but not from the application.
 
@@ -436,7 +436,7 @@ To open the card workflow through an existing workbench:
 
 2.  Select the relevant workbench.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/workbench-selection-from-wb-hdr-222.png" width="200" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/workbench-selection-from-wb-hdr-222.png" width="200" >}}
 
     The workbench opens, hiding your previous workbench.
 
@@ -461,7 +461,7 @@ To access the card workflow by searching for the card:
 2.  Begin typing the name of the card.
 3.  Select it from the list.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/add-card-thru-search-222.png" width="350" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/add-card-thru-search-222.png" width="350" >}}
 
     The card appears on a current workbench, at the bottom.
 

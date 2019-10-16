@@ -20,7 +20,7 @@ running the VMs with either hypervisor,
 The topology configured below applies to both hypervisors, and looks
 like this:
 
-{{<figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/cumulus-vx/VX_GNS3_topo_noOOB.png">}}
+{{<figure src="https://dkahegywkrw3e.cloudfront.net/images/cumulus-vx/VX_GNS3_topo_noOOB.png">}}
 
 {{%notice note%}}
 

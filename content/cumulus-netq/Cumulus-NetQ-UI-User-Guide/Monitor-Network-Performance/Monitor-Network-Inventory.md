@@ -35,7 +35,7 @@ refer to the [Monitor Switches](../../Monitor-Devices/Monitor-Switches).
 
 The small Devices Inventory card displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-small-230.png" width="200" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-small-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -70,7 +70,7 @@ The small Devices Inventory card displays:
 
 The medium Devices Inventory card displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-medium-230.png" width="200" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-medium-230.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -111,7 +111,7 @@ The large Devices Inventory card has one tab.
 
 The *Switches* tab displays:
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-large-switches-tab-230.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-large-switches-tab-230.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -138,7 +138,7 @@ The *Switches* tab displays:
 <td><p>Inventory | Devices</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-large-total-number-icon-230.png", width="24", height="24"/></p></td>
+<td><p><img src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-large-total-number-icon-230.png", width="24", height="24"/></p></td>
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">
@@ -162,7 +162,7 @@ The *Switches* tab displays:
 
 The full screen Devices Inventory card provides tabs for all switches and all hosts.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-fullscr-allswitches-tab-230.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-fullscr-allswitches-tab-230.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -249,7 +249,7 @@ useful for validating that devices have been added as scheduled.
 
 To view the quantity of devices in your network, open the small Devices Inventory card.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-small-230.png" width="200" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-small-230.png" width="200" >}}
 
 {{%notice tip%}}
 
@@ -269,7 +269,7 @@ the relative dependence on a given OS in your network.
 To view the OS distribution, open the medium Devices Inventory card if
 it is not already on your workbench.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-medium-230.png" width="200" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-medium-230.png" width="200" >}}
 
 ## View Switch Components
 
@@ -278,7 +278,7 @@ default the Switches tab is shown displaying the total number of
 switches, ASIC vendor, OS versions, license status, NetQ Agent versions,
 and specific platforms deployed on all of your switches.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-large-switches-tab-230.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-large-switches-tab-230.png" width="500" >}}
 
 ### Highlight a Selected Component Type
 
@@ -292,7 +292,7 @@ tooltip appears displaying:
     compared to the total number of switches
   - percentage of this type with respect to all component types.  
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650" >}}
 
 Additionally, sympathetic highlighting is used to show the related
 component types relevant to the highlighted segment and the number of
@@ -308,18 +308,18 @@ To view component type data:
 
 1.  Click a segment of the component distribution charts.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-large-switches-tab-component-filter.png" width="300" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-large-switches-tab-component-filter.png" width="300" >}}
 
 2.  Select the first option from the popup, *Filter* \<*component
     name*\>. The card data is filtered to show only the components
     associated with selected component type. A filter tag appears next
     to the total number of switches indicating the filter criteria.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-large-switches-tab-component-filter-os-230.png" width="250" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-large-switches-tab-component-filter-os-230.png" width="250" >}}
 
 3.  Hover over the segments to view the related components.
 
-    {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-large-switches-tab-component-highlight2-230.png" width="500" >}}
+    {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-large-switches-tab-component-highlight2-230.png" width="500" >}}
 
 4.  To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the filter tag.
 
@@ -330,7 +330,7 @@ want to see more detail about your switch inventory. This can be found
 in the Switches Inventory card workflow. To open that workflow, click
 the **Switch Inventory** button at the top right of the Switches card.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-large-switches-tab-switch-inv-button-230.png" width="500" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-large-switches-tab-switch-inv-button-230.png" width="500" >}}
 
 ## View All Switches
 
@@ -338,7 +338,7 @@ You can view all stored attributes for all switches in your network. To
 view all switch details, open the full screen Devices Inventory card and
 click the **All Switches** tab in the navigation panel.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-fullscr-allswitches-tab-230.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-fullscr-allswitches-tab-230.png" width="700" >}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner of the card.
 
@@ -348,6 +348,6 @@ You can view all stored attributes for all hosts in your network. To
 view all hosts details, open the full screen Devices Inventory card and
 click the **All Hosts** tab in the navigation panel.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-devices-fullscr-allhosts-tab-230.png" width="700" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/inventory-devices-fullscr-allhosts-tab-230.png" width="700" >}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner of the card.

@@ -144,7 +144,7 @@ forwarding rules in IPtables to allow access to port 3000.
 
 6.  Create a data source.
 
-    1.  Click **Configuration** (<img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-config-icon.png" width="16"/>) \> **Data Sources**.
+    1.  Click **Configuration** (<img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-config-icon.png" width="16"/>) \> **Data Sources**.
 
     2.  Click **Add data source**.
 
@@ -174,7 +174,7 @@ forwarding rules in IPtables to allow access to port 3000.
 
 7.  Create a Dashboard.
 
-    1.  Click Create (<img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-create-dashbd-icon.png" width="16"/>) \> Dashboard.
+    1.  Click Create (<img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-create-dashbd-icon.png" width="16"/>) \> Dashboard.
 
     2.  Select a panel type to add to the Dashboard.  
         You can add as many panels to your dashboard as you want, pick
@@ -191,7 +191,7 @@ forwarding rules in IPtables to allow access to port 3000.
 
         {{%notice note%}}
 
-When creating queries in the **Metrics** tab, in FROM select *procnetdev* to access the receive and transmit statistics for display. In WHERE, click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-create-dashbd-icon.png" width="16"/>, select *hostname* to specify a particular host. In SELECT, choose a statistic to display. And so forth.
+When creating queries in the **Metrics** tab, in FROM select *procnetdev* to access the receive and transmit statistics for display. In WHERE, click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-create-dashbd-icon.png" width="16"/>, select *hostname* to specify a particular host. In SELECT, choose a statistic to display. And so forth.
 
         {{%/notice%}}
 
@@ -199,7 +199,7 @@ When creating queries in the **Metrics** tab, in FROM select *procnetdev* to acc
         dashboard** title, enter a name for the dashboard, and click
         **Save**.
 
-    6.  Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-save-dashbd-icon.png" width="16"/> to save the Dashboard itself.
+    6.  Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-save-dashbd-icon.png" width="16"/> to save the Dashboard itself.
 
 You now have a customized view of the NetQ interface statistics. You can
 add and remove panels at any time.
@@ -223,7 +223,7 @@ To add a total number of dropped packets panel:
 
 2.  Open your dashboard (Cumulus Statistics in this example).
 
-3.  Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-add-new-panel-icon.png" width="24"/> to add a new panel.
+3.  Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-add-new-panel-icon.png" width="24"/> to add a new panel.
 
 4.  Select **Singlestat**.
 
@@ -238,7 +238,7 @@ To add a total number of dropped packets panel:
 
     1.  In FROM, select *procnetdev*
 
-    2.  In WHERE, click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-create-dashbd-icon.png" width="16"/> \> select **hostname** \> select *leaf01* **** \> click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-create-dashbd-icon.png" width="16"/> \> select **interface** \> select *swp1*
+    2.  In WHERE, click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-create-dashbd-icon.png" width="16"/> \> select **hostname** \> select *leaf01* **** \> click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-create-dashbd-icon.png" width="16"/> \> select **interface** \> select *swp1*
 
     3.  In SELECT, select **rxDrop**
 
@@ -249,9 +249,9 @@ To add a total number of dropped packets panel:
 11. Optionally on the **Options** tab, increase the font size and add
     thresholds.
 
-12. Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-close-options-icon.png" width="16"/> to close the edit options.
+12. Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-close-options-icon.png" width="16"/> to close the edit options.
 
-13. Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-save-dashbd-icon.png" width="16"/> to save the dashboard.
+13. Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-save-dashbd-icon.png" width="16"/> to save the dashboard.
 
     {{% imgOld 14 %}}
 
@@ -268,7 +268,7 @@ To add a trend view of dropped packets to your dashboard:
 
 2.  Open your dashboard (Cumulus Statistics in this example).
 
-3.  Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-add-new-panel-icon.png" width="24"/> to add a new panel.
+3.  Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-add-new-panel-icon.png" width="24"/> to add a new panel.
 
 4.  Select **Graph**.
 
@@ -283,7 +283,7 @@ To add a trend view of dropped packets to your dashboard:
 
     1.  In FROM, select *procnetdev*
 
-    2.  In WHERE, click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-create-dashbd-icon.png" width="16"/> \> select **hostname** \> select *leaf01* **** \> click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-create-dashbd-icon.png" width="16"/> \> select **interface** \> select *swp1*
+    2.  In WHERE, click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-create-dashbd-icon.png" width="16"/> \> select **hostname** \> select *leaf01* **** \> click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-create-dashbd-icon.png" width="16"/> \> select **interface** \> select *swp1*
 
     3.  In SELECT, select **rxDrop**
 
@@ -292,11 +292,11 @@ To add a trend view of dropped packets to your dashboard:
 10. Optionally on the **Time range** tab \> **Override relative time**
     \> 72h to view rolling results for the last 72 hours.
 
-11. Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-close-options-icon.png" width="16"/> to close the edit options.
+11. Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-close-options-icon.png" width="16"/> to close the edit options.
 
     {{% imgOld 20 %}}
 
-12. Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-save-dashbd-icon.png" width="16"/> to save the dashboard.
+12. Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-save-dashbd-icon.png" width="16"/> to save the dashboard.
 
     {{% imgOld 22 %}}
 
@@ -311,7 +311,7 @@ To add trend view of received bytes to the dashboard:
 
 2.  Open your dashboard (Cumulus Statistics in this example).
 
-3.  Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-add-new-panel-icon.png" width="24"/> to add a new panel.
+3.  Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-add-new-panel-icon.png" width="24"/> to add a new panel.
 
 4.  Select **Graph**.
 
@@ -326,7 +326,7 @@ To add trend view of received bytes to the dashboard:
 
     1.  In FROM, select *procnetdev*
 
-    2.  In WHERE, click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-create-dashbd-icon.png" width="16"/> \> select **hostname** \> select *spine01*
+    2.  In WHERE, click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-create-dashbd-icon.png" width="16"/> \> select **hostname** \> select *spine01*
 
     3.  In SELECT, select **rxBytes**
 
@@ -334,11 +334,11 @@ To add trend view of received bytes to the dashboard:
 
 10. Optionally specify other graph criteria using the other tabs.
 
-11. Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-close-options-icon.png" width="16"/> to close the edit options.
+11. Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-close-options-icon.png" width="16"/> to close the edit options.
 
     {{% imgOld 26 %}}
 
-12. Click <img src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/grafana-save-dashbd-icon.png" width="16"/> to save the dashboard.
+12. Click <img src="https://dkahegywkrw3e.cloudfront.net/images/netq/grafana-save-dashbd-icon.png" width="16"/> to save the dashboard.
 
     {{% imgOld 28 %}}
 

@@ -91,7 +91,7 @@ An in-place upgrade is recommended for upgrades from Cumulus NetQ 2.2.1 or 2.2.2
 ### In-place Upgrade Workflow
 Upgrading NetQ involves backing up your data, downloading and installing the new version of NetQ software, restoring your NetQ data, and upgrading and configuring the NetQ Agents.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/upgrade-wkflow-in-place-cloud-cust-hw-222.png" width="600" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-in-place-cloud-cust-hw-222.png" width="600" >}}
 
 ### Download the NetQ Software
 
@@ -108,7 +108,7 @@ To upgrade the NetQ software on your own hardware using a VM image:
 4.  Optionally, select the hypervisor you wish to use (*VMware (Cloud)* or *KVM (Cloud)*) from the
   **Hypervisor/Platform** list box.
 
-     {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-download-options-230.png" width="500" >}}
+     {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-23-download-options-230.png" width="500" >}}
 
      {{%notice note%}}
 
@@ -119,7 +119,7 @@ For customers with VMware/ESXi OVA deployments, Cumulus Networks recommends depl
 5.  Scroll down to review the images that match your selection
   criteria.
 
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/netq-23-vm-cloud-upgrade-230.png" width="400" >}}
+      {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/netq-23-vm-cloud-upgrade-230.png" width="400" >}}
 
 6.  Click **Upgrade** for the relevant version, being careful to
   select the correct deployment version.
@@ -150,13 +150,13 @@ You must upgrade the CLI to make use of the modified upgrade command. Additional
 
     2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", width="18", height="18"/>, then select *Management* in the **Admin** column.
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/main-menu-mgmt-selected.png" width="400">}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/main-menu-mgmt-selected.png" width="400">}}
 
     3. Click **Manage** on the User Accounts card.
 
     4. Select a user and click **Delete AuthKeys** in the Edit menu.
 
-        {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/delete-auth-keys-230.png" width="700">}}
+        {{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/delete-auth-keys-230.png" width="700">}}
 
     5. Select the user again and click **Generate AuthKeys**.
 
@@ -254,7 +254,7 @@ A disk image upgrade is recommended for upgrades from Cumulus NetQ 2.2.0 or earl
 ### Disk Image Upgrade Workflow
 Upgrading NetQ involves backing up your data, downloading and installing the new version of NetQ software, restoring your NetQ data, and upgrading and configuring the NetQ Agents.
 
-{{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/upgrade-wkflow-disk-img-cloud-cust-hw-222.png" width="600" >}}
+{{< figure src="https://dkahegywkrw3e.cloudfront.net/images/netq/upgrade-wkflow-disk-img-cloud-cust-hw-222.png" width="600" >}}
 
 Please follow the instructions in the following topics in this order:
 

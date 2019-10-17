@@ -10,9 +10,13 @@ a command line interface.
 
 In order to build and view the live site:
 
-1. Install Hugo version 0.55.6 from https://github.com/gohugoio/hugo/releases/tag/v0.55.6.
+1. Install Hugo version 0.55.6 **extended** from https://github.com/gohugoio/hugo/releases/tag/v0.55.6.
 
-2. Verify Hugo is installed with `hugo version`. This site supports hugo version 0.55.6.
+2. Verify Hugo is installed with `hugo version`. This site supports hugo version 0.55.6. The output of the `hugo version` command should read:
+
+```
+Hugo Static Site Generator v0.55.6/extended darwin/amd64 BuildDate: unknown
+```
 
 3. Clone this repository with `git clone`.
 

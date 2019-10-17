@@ -380,6 +380,23 @@ TimeoutSec=5m
 
 On Broadcom switches, all IPv4 and IPv6 multicast traffic that is VLAN tagged always maps into queue 0, regardless of priority. This is a known limitation on these platforms.
 
+### Use the Same Neighbor Cache Aging Timer for IPv4 and IPv6
+
+Cumulus Linux does not support different neighbor cache aging timer settings for IPv4 and IPv6.
+
+For example, see the two settings for `neigh.default.base_reachable_time_ms` in `/etc/sysctl.d/neigh.conf`:
+
+```
+cumulus@switch:~$ sudo cat /etc/sysctl.d/neigh.conf
+
+...
+
+net.ipv4.neigh.default.base_reachable_time_ms=1080000
+net.ipv6.neigh.default.base_reachable_time_ms=1080000
+
+...
+```
+
 ## Related Information
 
 - [Linux IP - ip route command](http://linux-ip.net/html/tools-ip-route.html)

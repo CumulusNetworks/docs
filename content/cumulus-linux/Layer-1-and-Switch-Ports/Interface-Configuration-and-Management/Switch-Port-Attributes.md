@@ -931,7 +931,7 @@ accordingly. The following example shows a file called `address.json.`
             }
         },
         "address": {
-            "defaults": { "mtu": "9000" }
+            "defaults": { "mtu": "9000" },
             "iface_defaults": {
                 "eth0": {"mtu": "1500"}
             }

@@ -1612,6 +1612,12 @@ There are two ways you can apply [route maps](http://docs.frrouting.org/en/lates
 - By filtering routes from BGP into Zebra
 - By filtering routes from Zebra into the Linux kernel
 
+{{%notice info%}}
+In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
+
+This is a known limitation in `network-docopt`, which NCLU uses to parse commands.
+{{%/notice%}}
+
 ### Filter Routes from BGP into Zebra
 
 You can apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations for this attach-point are limited to metric and next hop only. Any operation of this feature does not affect BGPs internal RIB.

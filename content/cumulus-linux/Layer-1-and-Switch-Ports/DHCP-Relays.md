@@ -425,3 +425,13 @@ To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay`
 file to remove the space, then run the
 `systemctl restart dhcrelay.service` command to restart the `dhcrelay`
 service and apply the configuration change.
+
+## Caveats and Errata
+
+### Interface Names Cannot Be Longer than 14 Characters
+
+The `dhcrelay` command does not bind to an interface if the interface's name is
+longer than 14 characters. To work around this issue, change the interface name
+to be 14 or fewer characters if `dhcrelay` is required to bind to it.
+
+This is a known limitation in `dhcrelay`.

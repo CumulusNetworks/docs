@@ -265,6 +265,7 @@ Cumulus Linux provides two options for route leaking across VRFs:
 - Do not mix static and dynamic route leaking in a fabric.
 - VRF route leaking is not supported between the tenant VRF and the
   default VRF with onlink next hops (BGP unnumbered).
+- The NCLU command to configure route leaking fails if the VRF is named `red` (lowercase letters only). This is not a problem if the VRF is named `RED` (uppercase letters) or has a name other than red.<br />To work around this issue, rename the VRF or run the `vtysh` command instead.<br />This is a known limitation in `network-docopt`.
 
 {{%/notice%}}
 

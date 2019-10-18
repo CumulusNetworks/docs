@@ -643,7 +643,7 @@ The following table lists all event messages organized by type.
 
 The messages can be viewed through third-party notification
 applications. For details about configuring notifications using the NetQ
-CLI, refer to [Integrate NetQ with Notification Applications](/cumulus-netq/Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications).
+CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications).
 
 {{%/notice%}}
 
@@ -780,31 +780,59 @@ CLI, refer to [Integrate NetQ with Notification Applications](/cumulus-netq/Cumu
 </tr>
 <tr class="odd">
 <td><p>clag</p></td>
+<td><p>Local CLAG host MTU does not match its remote peer MTU</p></td>
+<td><p>Critical</p></td>
+<td><p>SVI @svi1 on vlan @vlan mtu @mtu1 mismatched with peer mtu @mtu2</p></td>
+<td><p>SVI svi7 on vlan 4 mtu 1592 mistmatched with peer mtu 1680</p></td>
+</tr>
+<tr class="even">
+<td><p>clag</p></td>
+<td><p>CLAG SVI on VLAN is missing from remote peer state</p></td>
+<td><p>Warning</p></td>
+<td><p>SVI on vlan @vlan is missing from peer</p></td>
+<td><p>SVI on vlan vlan4 is missing from peer</p></td>
+</tr>
+<tr class="odd">
+<td><p>clag</p></td>
+<td><p>CLAG peerlink is not opperating at full capacity. At least one link is down.</p></td>
+<td><p>Warning</p></td>
+<td><p>Clag peerlink not at full redundancy, member link @slave is down</p></td>
+<td><p>Clag peerlink not at full redundancy, member link swp40 is down</p></td>
+</tr>
+<tr class="even">
+<td><p>clag</p></td>
 <td><p>CLAG remote peer state changed from down to up</p></td>
 <td><p>Info</p></td>
 <td><p>Peer state changed to up</p></td>
 <td><p>Peer state changed to up</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>clag</p></td>
 <td><p>Local CLAG host state changed from down to up</p></td>
 <td><p>Info</p></td>
 <td><p>Clag state changed from down to up</p></td>
 <td><p>Clag state changed from down to up</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>clag</p></td>
 <td><p>CLAG bond in Conflicted state was updated with new bonds</p></td>
 <td><p>Info</p></td>
 <td><p>Clag conflicted bond changed from @old_conflicted_bonds to @new_conflicted_bonds</p></td>
 <td><p>Clag conflicted bond changed from swp7 swp8 to @swp9 swp10</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>clag</p></td>
 <td><p>CLAG bond changed state from protodown to up state</p></td>
 <td><p>Info</p></td>
 <td><p>Clag conflicted bond changed from @old_state_protodownbond to @new_state_protodownbond</p></td>
 <td><p>Clag conflicted bond changed from protodown to up</p></td>
+</tr>
+<tr class="even">
+<td><p>clsupport</p></td>
+<td><p>A new CL Support file has been created for the given node</p></td>
+<td><p>Critical</p></td>
+<td><p>HostName @hostname has new CL SUPPORT file</p></td>
+<td><p>HostName leaf01 has new CL SUPPORT file</p></td>
 </tr>
 <tr class="odd">
 <td><p>configdiff</p></td>
@@ -910,6 +938,20 @@ CLI, refer to [Integrate NetQ with Notification Applications](/cumulus-netq/Cumu
 <td><p>Critical</p></td>
 <td><p>vxrd service not running</p></td>
 <td><p>vxrd service not running</p></td>
+</tr>
+<tr class="even">
+<td><p>mtu</p></td>
+<td><p>VLAN interface link MTU is smaller than that of its parent MTU</p></td>
+<td><p>Warning</p></td>
+<td><p>vlan interface @link mtu @mtu is smaller than parent @parent mtu @parent_mtu</p></td>
+<td><p>vlan interface swp3 mtu 1500 is smaller than parent peerlink-1 mtu 1690</p></td>
+</tr>
+<tr class="odd">
+<td><p>mtu</p></td>
+<td><p>Bridge interface MTU is smaller than the member interface with the smallest MTU</p></td>
+<td><p>Warning</p></td>
+<td><p>bridge @link mtu @mtu is smaller than least of member interface mtu @min</p></td>
+<td><p>bridge swp0 mtu 1280 is smaller than least of member interface mtu 1500</p></td>
 </tr>
 <tr class="even">
 <td><p>ntp</p></td>
@@ -1021,6 +1063,13 @@ CLI, refer to [Integrate NetQ with Notification Applications](/cumulus-netq/Cumu
 <td><p>Service @name changed state from inactive to active</p></td>
 <td><p>Service bgp changed state from inactive to active</p>
 <p>Service lldp changed state from inactive to active</p></td>
+</tr>
+<tr class="odd">
+<td><p>vxlan</p></td>
+<td><p>Replication list is contains an inconsistent set of nodes</p></td>
+<td><p>Critical</p></td>
+<td><p>VNI @vni replication list inconsistent with @conflicts diff:@diff</p></td>
+<td><p>VNI 14 replication list inconsistent with ["leaf03","leaf04"] diff:+:["leaf03","leaf04"] -:["leaf07","leaf08"]</p></td>
 </tr>
 </tbody>
 </table>

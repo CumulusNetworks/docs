@@ -944,7 +944,7 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <td><p>VLAN interface link MTU is smaller than that of its parent MTU</p></td>
 <td><p>Warning</p></td>
 <td><p>vlan interface @link mtu @mtu is smaller than parent @parent mtu @parent_mtu</p></td>
-<td><p>vlan interface swp3 mtu 1500 is smaller than parent ???? mtu 1690</p></td>
+<td><p>vlan interface swp3 mtu 1500 is smaller than parent peerlink-1 mtu 1690</p></td>
 </tr>
 <tr class="odd">
 <td><p>mtu</p></td>
@@ -1066,10 +1066,10 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 </tr>
 <tr class="odd">
 <td><p>vxlan</p></td>
-<td><p>Replication list is inconsistent in some way</p></td>
+<td><p>Replication list is contains an inconsistent set of nodes</p></td>
 <td><p>Critical</p></td>
 <td><p>VNI @vni replication list inconsistent with @conflicts diff:@diff</p></td>
-<td><p>VNI @vni replication list inconsistent with @conflicts diff:@diff</p></td>
+<td><p>VNI 14 replication list inconsistent with ["leaf03","leaf04"] diff:+:["leaf03","leaf04"] -:["leaf07","leaf08"]</p></td>
 </tr>
 </tbody>
 </table>

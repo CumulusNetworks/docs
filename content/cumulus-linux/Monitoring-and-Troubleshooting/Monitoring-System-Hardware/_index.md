@@ -254,6 +254,14 @@ On Facebook Backpack switches, you sometimes see unparsible sensor value
 `"FAULT ALARM"` and/or `state changed from OK to ABSENT` in the
 `/var/log/syslog` file. This is a known issue with the platform.
 
+### No PSU sensors/smonctl support for Edgecore OMP-800
+
+On the Edgecore OMP-800, there is no power supply information from the sensor or from `smonctl`.
+
+The platform driver has support for the PSUs but this was not added to the sensors infrastructure.
+
+This is a known limitation on the OMP-800 platform.
+
 ## Related Information
 
 - [packages.debian.org/search?keywords=lshw](http://packages.debian.org/search?keywords=lshw)

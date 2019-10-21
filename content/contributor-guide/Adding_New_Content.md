@@ -3,6 +3,7 @@ title: Adding New Content
 author: Daniel Cawley
 weight: 10
 siteSlug: contributor-guide
+version: 1.0
 ---
 
 After you install [Hugo](https://gohugo.io/getting-started/installing/),

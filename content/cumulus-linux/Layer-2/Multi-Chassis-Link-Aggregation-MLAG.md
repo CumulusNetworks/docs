@@ -284,6 +284,7 @@ For example, if *peerlink* is the inter-chassis bond, and VLAN 4094 is
 the peer link VLAN, configure *peerlink.4094* as follows:
 
 <details>
+
 <summary>Cumulus Linux 3.7.6 and earlier</summary>
 
 ```
@@ -302,7 +303,7 @@ The above commands save the configuration in the `/etc/network/interfaces` file.
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
-     
+
 auto peerlink.4094
 iface peerlink.4094  
     address 169.254.1.1/30  
@@ -310,9 +311,11 @@ iface peerlink.4094
     clagd-backup-ip 192.0.2.50  
     clagd-sys-mac 44:38:39:FF:40:94
 ```
+
 </details>
 
 <details>
+
 <summary>Cumulus Linux 3.7.7 and later</summary>
 
 In Cumulus Linux 3.7.7 and later, you can use MLAG unnumbered:
@@ -325,6 +328,7 @@ cumulus@leaf01:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:FF:40:94
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
+
 The above commands save the configuration in the `/etc/network/interfaces` file.
 
 ```
@@ -338,6 +342,7 @@ iface peerlink.4094
   clagd-peer-ip linklocal
   clagd-sys-mac 44:38:39:FF:40:94
 ```
+
 </details>
 
 {{%notice info%}}
@@ -568,20 +573,20 @@ net add interface eth0 ip address dhcp</code></pre>
 auto lo
 iface lo inet loopback
     address 10.0.0.21/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 #downlinks
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
- 
+
 auto swp4
 iface swp4</code></pre></td>
 <td><p><strong>spine02</strong></p>
@@ -697,7 +702,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.12
-    clagd-peer-ip 169.254.1.2
+    clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:01
 
@@ -791,7 +796,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.11
-    clagd-peer-ip 169.254.1.1
+    clagd-peer-ip linklocal
     clagd-sys-mac 44:38:39:FF:00:01
 
 auto server1
@@ -885,7 +890,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.14
-    clagd-peer-ip 169.254.1.2
+    clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:02
 
@@ -978,7 +983,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.13
-    clagd-peer-ip 169.254.1.1
+    clagd-peer-ip linklocal
     clagd-sys-mac 44:38:39:FF:00:02
 
 auto server3
@@ -1036,7 +1041,7 @@ cumulus@leaf01:~$ net show clag
 The peer is alive
     Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
      Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary
-          Peer Interface and IP: peerlink.4094 169.254.1.1  
+          Peer Interface and IP: peerlink.4094 linklocal  
                       Backup IP: 192.168.1.12 (inactive)
                      System MAC: 44:38:39:FF:00:01
 
@@ -1062,7 +1067,7 @@ displayed by `clagctl`:
 The peer is alive
     Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
      Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary
-          Peer Interface and IP: peerlink.4094 169.254.1.1  
+          Peer Interface and IP: peerlink.4094 linklocal  
                       Backup IP: 192.168.1.12 (inactive)
                      System MAC: 44:38:39:FF:00:01
 CLAG Interfaces
@@ -1192,7 +1197,7 @@ cumulus@spine01:~$ net show clag
 The peer is alive
      Our Priority, ID, and Role: 32768 44:38:39:00:00:41 primary
     Peer Priority, ID, and Role: 32768 44:38:39:00:00:42 secondary
-          Peer Interface and IP: peerlink.4094 169.254.1.1
+          Peer Interface and IP: peerlink.4094 linklocal
                       Backup IP: 192.168.0.22 (active)
                      System MAC: 44:38:39:FF:40:90
 
@@ -1249,7 +1254,7 @@ iface green
 auto peer5.4000
 iface peer5.4000
     address 192.0.2.15/24
-    clagd-peer-ip 192.0.2.16
+    clagd-peer-ip linklocal
     clagd-backup-ip 192.0.2.2 vrf green
     clagd-sys-mac 44:38:39:01:01:01
 ...
@@ -1262,7 +1267,7 @@ cumulus@leaf01:~$ net show clag status verbose
 The peer is alive
     Peer Priority, ID, and Role: 32768 00:02:00:00:00:13 primary
      Our Priority, ID, and Role: 32768 c4:54:44:f6:44:5a secondary
-          Peer Interface and IP: peer5.4000 192.0.2.2
+          Peer Interface and IP: peer5.4000 linklocal
                       Backup IP: 192.0.2.2 vrf green (active)
                      System MAC: 44:38:39:01:01:01
 

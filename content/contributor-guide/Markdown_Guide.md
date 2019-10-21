@@ -3,6 +3,7 @@ title: Markdown Guide
 author: Daniel Cawley
 weight: 15
 siteSlug: contributor-guide
+version: 1.0
 ---
 
 This guide is a rehash of what you can find in the original

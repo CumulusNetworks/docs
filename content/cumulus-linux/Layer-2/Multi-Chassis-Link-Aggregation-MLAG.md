@@ -318,10 +318,7 @@ iface peerlink.4094
 In Cumulus Linux 3.7.7 and later, you can use MLAG unnumbered:
 
 ```
-cumulus@leaf01:~$ net add bond peerlink bond slaves swp49-50
-cumulus@leaf01:~$ net add interface peerlink.4094 clag peer-ip linklocal
-cumulus@leaf01:~$ net add interface peerlink.4094 clag backup-ip 192.0.2.50
-cumulus@leaf01:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:FF:40:94
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 192.0.2.50
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -697,7 +694,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.12
-    clagd-peer-ip 169.254.1.2
+    clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:01
 
@@ -791,7 +788,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.11
-    clagd-peer-ip 169.254.1.1
+    clagd-peer-ip linklocal
     clagd-sys-mac 44:38:39:FF:00:01
 
 auto server1
@@ -885,7 +882,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.14
-    clagd-peer-ip 169.254.1.2
+    clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:02
 
@@ -978,7 +975,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.13
-    clagd-peer-ip 169.254.1.1
+    clagd-peer-ip linklocal
     clagd-sys-mac 44:38:39:FF:00:02
 
 auto server3
@@ -1036,7 +1033,7 @@ cumulus@leaf01:~$ net show clag
 The peer is alive
     Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
      Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary
-          Peer Interface and IP: peerlink.4094 169.254.1.1  
+          Peer Interface and IP: peerlink.4094 linklocal  
                       Backup IP: 192.168.1.12 (inactive)
                      System MAC: 44:38:39:FF:00:01
 
@@ -1062,7 +1059,7 @@ displayed by `clagctl`:
 The peer is alive
     Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
      Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary
-          Peer Interface and IP: peerlink.4094 169.254.1.1  
+          Peer Interface and IP: peerlink.4094 linklocal  
                       Backup IP: 192.168.1.12 (inactive)
                      System MAC: 44:38:39:FF:00:01
 CLAG Interfaces
@@ -1192,7 +1189,7 @@ cumulus@spine01:~$ net show clag
 The peer is alive
      Our Priority, ID, and Role: 32768 44:38:39:00:00:41 primary
     Peer Priority, ID, and Role: 32768 44:38:39:00:00:42 secondary
-          Peer Interface and IP: peerlink.4094 169.254.1.1
+          Peer Interface and IP: peerlink.4094 linklocal
                       Backup IP: 192.168.0.22 (active)
                      System MAC: 44:38:39:FF:40:90
 
@@ -1249,7 +1246,7 @@ iface green
 auto peer5.4000
 iface peer5.4000
     address 192.0.2.15/24
-    clagd-peer-ip 192.0.2.16
+    clagd-peer-ip linklocal
     clagd-backup-ip 192.0.2.2 vrf green
     clagd-sys-mac 44:38:39:01:01:01
 ...
@@ -1262,7 +1259,7 @@ cumulus@leaf01:~$ net show clag status verbose
 The peer is alive
     Peer Priority, ID, and Role: 32768 00:02:00:00:00:13 primary
      Our Priority, ID, and Role: 32768 c4:54:44:f6:44:5a secondary
-          Peer Interface and IP: peer5.4000 192.0.2.2
+          Peer Interface and IP: peer5.4000 linklocal
                       Backup IP: 192.0.2.2 vrf green (active)
                      System MAC: 44:38:39:01:01:01
 

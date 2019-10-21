@@ -284,6 +284,7 @@ For example, if *peerlink* is the inter-chassis bond, and VLAN 4094 is
 the peer link VLAN, configure *peerlink.4094* as follows:
 
 <details>
+
 <summary>Cumulus Linux 3.7.6 and earlier</summary>
 
 ```
@@ -302,7 +303,7 @@ The above commands save the configuration in the `/etc/network/interfaces` file.
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
-     
+
 auto peerlink.4094
 iface peerlink.4094  
     address 169.254.1.1/30  
@@ -310,18 +311,24 @@ iface peerlink.4094
     clagd-backup-ip 192.0.2.50  
     clagd-sys-mac 44:38:39:FF:40:94
 ```
+
 </details>
 
 <details>
+
 <summary>Cumulus Linux 3.7.7 and later</summary>
 
 In Cumulus Linux 3.7.7 and later, you can use MLAG unnumbered:
 
 ```
-cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 192.0.2.50
+cumulus@leaf01:~$ net add bond peerlink bond slaves swp49-50
+cumulus@leaf01:~$ net add interface peerlink.4094 clag peer-ip linklocal
+cumulus@leaf01:~$ net add interface peerlink.4094 clag backup-ip 192.0.2.50
+cumulus@leaf01:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:FF:40:94
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
+
 The above commands save the configuration in the `/etc/network/interfaces` file.
 
 ```
@@ -335,6 +342,7 @@ iface peerlink.4094
   clagd-peer-ip linklocal
   clagd-sys-mac 44:38:39:FF:40:94
 ```
+
 </details>
 
 {{%notice info%}}
@@ -565,20 +573,20 @@ net add interface eth0 ip address dhcp</code></pre>
 auto lo
 iface lo inet loopback
     address 10.0.0.21/32
- 
+
 auto eth0
 iface eth0 inet dhcp
- 
+
 #downlinks
 auto swp1
 iface swp1
- 
+
 auto swp2
 iface swp2
- 
+
 auto swp3
 iface swp3
- 
+
 auto swp4
 iface swp4</code></pre></td>
 <td><p><strong>spine02</strong></p>

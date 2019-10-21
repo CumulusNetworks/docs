@@ -3,6 +3,7 @@ title: Links and References
 author: Daniel Cawley
 weight: 14
 siteSlug: contributor-guide
+version: 1.0
 ---
 
 ## Hugo Shortcodes

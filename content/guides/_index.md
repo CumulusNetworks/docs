@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 1
 product: Cumulus Networks Guides
 imgData: guides
+version: 1.0
 siteSlug: guides
 ---
 

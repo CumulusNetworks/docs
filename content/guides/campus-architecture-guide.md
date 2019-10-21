@@ -3,6 +3,7 @@ title: Campus Architecture Solution Guide
 author: Cumulus Networks
 weight: 10
 product: Cumulus Networks Guides
+version: 1.0
 imgData: guides
 siteSlug: guides
 ---
@@ -149,11 +150,11 @@ This is the most familiar segment of a campus network. This includes the access 
 
 Different aggregation & access segments can be designed differently to meet local device and user needs. Some business applications create much more east-west traffic (within a segment) versus north-south traffic (in and out of the network segment) which may drive the need for higher speeds or higher numbers of uplinks from the access layer.
 
-High port density deployments may take advantage of breakout or fan-out cabling at the aggregation layer to support extremely large numbers of access switches. For example, a 32x100G Trident3 based switch can have each 100G port split into 4x25G. This can allow for support of up to 128x25G ports or up to 128 switches to be interconnected. With access switches each having 48 ports x 128 switches, this example can provide 6144 access ports for end device connectivity.[^1]
+High port density deployments may take advantage of breakout or fan-out cabling at the distribution layer to support extremely large numbers of access switches. For example, a 32x100G Trident3 based switch can have each 100G port split into 4x25G. This can allow for support of up to 128x25G ports or up to 128 switches to be interconnected. With access switches each having 48 ports x 128 switches, this example can provide 6144 access ports for end device connectivity.[^1]
 
 {{<figure src="/images/guides/campus-aggregationandaccess.jpg" caption="An access and aggregation block">}}
 
-Depending on each use case, services such as security, wireless controllers and VoIP may be implemented inside of this segment, but can also warrant their own logical segmentation depending on size and complexity.
+Depending on each use case, services such as security, wireless and VoIP may be implemented inside of this segment, but can also warrant their own logical segmentation depending on size and complexity.
 
 #### Services
 
@@ -193,11 +194,11 @@ Often, application or business requirements create a need for layer 2 (VLAN) adj
 
 VLAN extension can become problematic with large numbers of switches or when a layer 2 adjacency needs to span a wide geographic area. A layer 2 segment is a shared failure domain, and the behaviors of spanning tree can lead to network brownouts, or temporary periods of reduced bandwidth or increased latency. The nature of broadcast domains and shared trunk links exposes a risk that loops or storms in one VLAN may affect all other VLANs on those trunks.
 
-In addition, layer 2 networks running spanning tree result in topology changes or failures in one area having ripple effects, triggering reconvergence across the entire domain. This reconvergence can cause temporary traffic outages as spanning tree blocks ports to prevent loops. Plus, in large layer 2 networks MAC address tables are larger, especially at the aggregation layer, and as a result, hardware ASIC limits may need to be closely monitored. Further, scaling a distribution layer beyond two switches becomes particularly difficult for spanning tree to reliably converge quickly. Most layer 2 designs rely heavily on proprietary MLAG protocols to form layer 2 trunks to a pair of switches. This dependency creates the undesirable side effects of increasing control plane complexity, introducing an additional point of failure and another dimension of vendor lock-in.
+In addition, layer 2 networks running spanning tree result in topology changes or failures in one area having ripple effects, triggering reconvergence across the entire domain. This reconvergence can cause temporary traffic outages as spanning tree blocks ports to prevent loops. Plus, in large layer 2 networks MAC address tables are larger, especially at the distribution layer, and as a result, hardware ASIC limits may need to be closely monitored. Further, scaling a distribution layer beyond two switches becomes particularly difficult for spanning tree to reliably converge quickly. Most layer 2 designs rely heavily on proprietary MLAG protocols to form layer 2 trunks to a pair of switches. This dependency creates the undesirable side effects of increasing control plane complexity, introducing an additional point of failure and another dimension of vendor lock-in.
 
 By contrast, interconnecting network devices using layer 3 routed equal cost multipath (ECMP) links provides a few distinct advantages over layer 2 trunks. By keeping layer 2 broadcast domains smaller, spanning tree scale and convergence issues are kept in check. In some campus network designs, routing can occur at the access layer switches. This removes the need for uplinks into the distribution to be layer 2 bonds. What follows is a reduction or elimination of MLAG as a control plane dependency and the peer links or inter-switch links that are required to support the pairing. Additionally, since distribution layer switches only perform layer 3 routing in this design, it addresses many of the layer 2 (MAC address) hardware table size concerns.
 
-The emergence of EVPN for VXLAN enables network architects and designers to realize the benefits of a layer 3 ECMP network while still providing layer 2 extension across the campus. The section below on [EVPN and VXLAN](#evpn-and-vxlan") discusses more details about how to achieve layer 2 extension over a layer 3 network to achieve the best of both layer 2 and layer 3.
+The emergence of EVPN for VXLAN enables network architects and designers to realize the benefits of a layer 3 ECMP network while still providing layer 2 extension across the campus. The section below on [EVPN and VXLAN](#evpn-and-vxlan) discusses more details about how to achieve layer 2 extension over a layer 3 network to achieve the best of both layer 2 and layer 3.
 
 #### BGP Unnumbered
 
@@ -205,7 +206,7 @@ BGP Unnumbered is a Cumulus Linux feature that comprises two major tasks for con
 
 Traditionally, when configuring BGP between two devices, an IPv4 address is needed to serve as the binding point for the session. For large numbers of point-to-point layer 3 links, like in a core, it can be burdensome to allocate and manage internal IPv4 subnet space for large numbers of point-to-point links.
 
-The IPv6 standard prescribes that all IPv6-enabled interfaces automatically generate and assign a link local IPv6 address in the fe80::/10 address space. BGP Unnumbered takes advantage of this feature and eliminates the need to configure any IPv4 addresses on routed links for BGP. 
+The IPv6 standard prescribes that all IPv6-enabled interfaces automatically generate and assign a link local IPv6 address in the fe80::/10 address space. BGP Unnumbered takes advantage of this feature and eliminates the need to configure any IPv4 addresses on routed links for BGP.
 
 The other major problem that BGP Unnumbered solves is that traditionally, BGP configuration requires an explicit peer IP address to be configured. This is the address that the BGP peer will open a TCP socket to, for BGP session establishment. BGP Unnumbered also solves this problem by listening for IPv6 router advertisements and dynamically building a BGP session to the IPv6 link local address in the router advertisement that it receives from its peer on the other side of the point-to-point link.
 
@@ -217,7 +218,7 @@ For more information on BGP Unnumbered and eBGP inside the network, download the
 
 #### EVPN and VXLAN
 
-EVPN and VXLAN have emerged from the data center as an ideal solution to provide the best of both layer 2 and layer 3 designs. Network designers and architects are beginning to apply the proven successes of building a mostly layer 3 routed network using BGP Unnumbered then applying EVPN and VXLAN to provide VLAN extension and layer 2 connectivity to anywhere in the campus it is required.
+EVPN as a control plane for VXLAN has emerged from the data center as an ideal solution to provide the best of both layer 2 and layer 3 designs. Network designers and architects are beginning to apply the proven successes of building a mostly layer 3 routed network using BGP Unnumbered then applying EVPN and VXLAN to provide VLAN extension and layer 2 connectivity to anywhere in the campus it is required.
 
 The key benefit of VXLAN is that layer 2 VLANs can be extended over a layer 3 routed network. This provides many of the same VLAN and MAC mobility benefits that drive layer 2 designs, while allowing for the network infrastructure to inherit the reliability and scale benefits of a routed layer 3 design. 
 
@@ -259,7 +260,7 @@ The [recommended designs](#recommended-designs) in the section below illustrate 
 
 #### Chassis Switches
 
-Similar to the concept of stacking, switch chassis have traditionally been a way to scale port density while maintaining a single point of device management. Chassis improve on a switch stack in a few minor ways, but tend to carry a higher cost. A chassis switch can also provide for embedded and on box services like security or wireless. Chassis switches tend to be used more often in the core and distribution layers while switch stacks tend to be used in the access layer.
+Similar to the concept of stacking, chassis switches have traditionally been a way to scale port density while maintaining a single point of device management. Chassis improve on a switch stack in a few minor ways, but tend to carry a higher cost. A chassis switch can also provide for embedded and on box services like security or wireless. Chassis switches tend to be used more often in the core and distribution layers while switch stacks tend to be used in the access layer.
 
 Chassis create lock-in and a certain inflexibility of the network devices and services that it can support. Cards or blades are proprietary form factors, making it impossible to act as standalone devices. A chassis is usually a long term investment due to its high initial cost combined with the idea that components of the chassis can be upgraded as capabilities and speeds improve over time. This continues to drive lock-in and forces long term decisions in other adjacent areas such as operations and management.
 
@@ -273,7 +274,7 @@ For more information about switch platforms that run Cumulus Linux, refer to our
 
 Small campus network sites such as remote and satellite offices are often able to collapse all LAN switching functions into a single switch or single pair of switches. A dedicated WAN/edge router is required and security devices may also be implemented near the WAN edge depending on business and compliance needs.
 
-For these small networks, [inter-VLAN routing](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#inter-subnet-routing) can be performed on either the LAN switch or on a layer 3 device upstream. Performing routing upstream provides the opportunity for more robust and granular security and policy enforcement beyond what a LAN switch can provide in its hardware forwarding path, but may not be able to meet performance requirements. Inter-VLAN routing can be performed at wire speed and takes the most direct path when performed on the LAN switch.
+For these small networks, [inter-subnet routing](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#inter-subnet-routing) can be performed on either the LAN switch or on a layer 3 device upstream. Performing routing upstream provides the opportunity for more robust and granular security and policy enforcement beyond what a LAN switch can provide in its hardware forwarding path, but may not be able to meet performance requirements. Inter-subnet routing can be performed at wire speed and takes the most direct path when performed on the LAN switch.
 
 Platform choice is flexible and includes options with or without Power over Ethernet (PoE). To see all 1G switch options, refer to the [hardware compatibility list](https://cumulusnetworks.com/products/hardware-compatibility-list/?portfolio%5B0%5D=1G&Speed=1G).
 
@@ -281,7 +282,7 @@ Platform choice is flexible and includes options with or without Power over Ethe
 
 ### Single Site - Small Building
 
-Campus networks that require more than two access switches also require an aggregation layer. Interconnecting access switches in a mesh, ring or daisy chain fashion is **not** recommended. Access switches should be arranged in a hierarchy such that traffic between access switches flows through a distribution layer switch.
+Campus networks that require more than two access switches also require a distribution layer. Interconnecting access switches in a mesh, ring or daisy chain fashion is **not** recommended. Access switches should be arranged in a hierarchy such that traffic between access switches flows through a distribution layer switch.
 
 {{%notice info%}}
 **Exception:** Two access switches configured as an MLAG pair with a peer link.
@@ -319,7 +320,7 @@ In this configuration, distribution layer switches only route IP packets between
 Layer 3 ECMP-based designs can be further improved to add layer 2 extension across the network. As discussed in the
 [EVPN and VXLAN section](#evpn-and-vxlan), it's possible to realize the reliability and scalability of a layer 3 design and also deliver layer 2 connectivity to devices across access switches and across the layer 3 ECMP network. Cumulus Linux makes EVPN and VXLAN easy to use, especially when combined with a network built using BGP Unnumbered. EVPN also uses BGP, so the same protocol seamlessly drives both functions.
 
-Routing between VLANs in a VXLAN topology presents a few choices. For performance and best scalability, symmetric mode with IRB (integrated routing and bridging), is the recommended inter-VLAN routing strategy. In this mode, routing always occurs at the access switch. For inter-VLAN traffic local to the switch (or pair), symmetric mode routes the packet at the access switch and the packet takes the optimal path. For more information on EVPN symmetric mode, see the documentation [here](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing).
+Routing between VLANs in a VXLAN topology presents a few choices. For performance and best scalability, symmetric mode with IRB (integrated routing and bridging), is the recommended inter-subnet routing strategy. In this mode, routing always occurs at the access switch. For inter-subnet traffic local to the switch (or pair), symmetric mode routes the packet at the access switch and the packet takes the optimal path. For more information on EVPN symmetric mode, see the documentation [here](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing).
 
 The design in the figure below prescribes for a VTEP to be configured at every switch in the access and distribution layer. Both access layer and distribution layer switches must perform VXLAN encapsulation and decapsulation and support routing in and out of VXLAN tunnels.
 
@@ -350,9 +351,9 @@ Platform choice in this design follows closely with other VXLAN options. Access 
 | Distribution | Any supported platform on the Cumulus HCL. |
 | Border | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a [few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
 
-### Large and Multi-site or Multiple Distribution Layers
+### Multiple Distribution Layers
 
-The maximum size of a single access layer is bound by the number of ports on the distribution layer switches. For example, a 32 port distribution layer switch can interconnect 30 access layer switches, leaving two uplinks. To scale out access layer connectivity, more port dense distribution switches can be used, or an additional access aggregation block can be added. Designs built using layer 2 bonds for switch uplinks should limit the size of the access layer to avoid problems with spanning tree and layer 2 scaling as discussed in an earlier section.
+The maximum size of a single access layer is bound by the number of ports on the distribution layer switches. For example, a 32 port distribution layer switch can interconnect 30 access layer switches, leaving two uplinks. To scale out access layer connectivity, more port dense distribution switches can be used, or an additional access aggregation block can be added. Designs built using layer 2 bonds for switch uplinks should limit the size of the access layer to avoid problems with spanning tree and layer 2 scaling as [discussed in an earlier section](#layer-2-vs-layer-3-ecmp-device-connections).
 
 When adding or designing for a more than two aggregation and access network segments, the addition of a dedicated core should be considered. As discussed earlier, a [dedicated layer 3 core](#core) layer provides several advantages and, most importantly, reduces cable complexity for interconnections to other network blocks. A multi-building campus may not be able to connect all buildings and network segments to each other due to geographical and cabling challenges.
 
@@ -372,7 +373,7 @@ Cumulus Networks does not recommend implementing VTEP functionality in the core 
 
 {{<figure src="/images/guides/campus-multipledistributionlayerswithcore-VXLANatdistrolayer.jpg" caption="An EVPN VXLAN-enabled campus with VTEPs at the distribution layer. Access switches use layer 2 bonds to an MLAG pair of distribution switches. Access VLANs can be extended through the core to other distribution access blocks or to an EVPN VXLAN-enabled data center.">}}
 
-This design increases platform flexibility and choice on access switches as they do not need to perform VXLAN encapsulation. Inside of a [distribution-access](#aggregation-and-access) segment, VLANs are extended and trunked using normal 802.1q VLAN tagging through the distribution layer. Routing for access VLANs occurs in the distribution layer. BGP Unnumbered is recommended to configure the layer 3 links to the core and also carry the EVPN address family to enable VXLAN. For performance and best scalability, [symmetric mode](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing) with IRB (integrated routing and bridging), is the recommended inter-VLAN routing strategy.
+This design increases platform flexibility and choice on access switches as they do not need to perform VXLAN encapsulation. Inside of a [distribution-access](#aggregation-and-access) segment, VLANs are extended and trunked using normal 802.1q VLAN tagging through the distribution layer. Routing for access VLANs occurs in the distribution layer. BGP Unnumbered is recommended to configure the layer 3 links to the core and also carry the EVPN address family to enable VXLAN. For performance and best scalability, [symmetric mode](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing) with IRB (integrated routing and bridging), is the recommended inter-subnet routing strategy.
 
 Symmetric mode with distributed anycast gateways provides for devices to move between access switches and always perform routing at the local switch. All routing for access VLANs occurs in the context of a tenant (VRF). The global routing table is used to carry and advertise routing information for the network endpoints (such as VTEP addresses and loopbacks). All IP subnets for access VLANs exist as a member of a VRF. More information about VRFs in this design is discussed below.
 
@@ -387,7 +388,7 @@ Distribution layer or border switches serve as VTEPs; thus, they carry the most 
 | Border | Any Broadcom Trident3, Trident II+ or Mellanox Spectrum-based platform is preferred. Broadcom Tomahawk family is acceptable, although routing in and out of VXLAN tunnels (RIOT) on Tomahawk platforms introduces a [few limitations and extra configuration](/cumulus-linux/Network-Virtualization/VXLAN-Routing/#tomahawk-and-tomahawk). |
 | Core | Any model on the Cumulus HCL. |
 
-Another variation of a campus EVPN VXLAN design is a more modern and scalable network version that uses BGP Unnumbered through the core down to the access layer switches. Access layer switches are VTEPs and perform VXLAN encapsulation and decapsulation and also routing in and out of VXLAN tunnels (RIOT). For performance and best scalability, [symmetric mode](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing) with IRB (integrated routing and bridging), is the recommended inter-VLAN routing strategy.
+Another variation of a campus EVPN VXLAN design is a more modern and scalable network version that uses BGP Unnumbered through the core down to the access layer switches. Access layer switches are VTEPs and perform VXLAN encapsulation and decapsulation and also routing in and out of VXLAN tunnels (RIOT). For performance and best scalability, [symmetric mode](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing) with IRB (integrated routing and bridging), is the recommended inter-subnet routing strategy.
 
 {{<figure src="/images/guides/campus-multipledistributionlayerswithcore-VXLANataccesslayer.jpg" caption="A more scalable and robust EVPN VXLAN campus network. Not all VXLAN connections are indicated. Access switches serve as VTEPs leaving the distribution and core layers to perform only IP routing. BGP Unnumbered is used to build the core, distribution and access layers and also carries the EVPN address family to enable VXLAN across the entire campus.">}}
 
@@ -418,11 +419,73 @@ For a single pane view, NetQ brings a modern graphical user interface. Important
 
 NetQ also provides an API and structured data outputs to provide capabilities to integrate into nearly any 3rd party monitoring and alerting tools. Every NetQ CLI command has a JSON output option, which provides a structured response that is easy to parse and interpret programmatically. Cumulus NetQ also provides a full RESTful API with a standard OpenAPI definition that can be found in the [API User Guide](/cumulus-netq/Cumulus-NetQ-Integration-Guide/API-User-Guide/#view-the-api).
 
-{{<figure src="/images/guides/campus-netq-json.png" caption="Cumulus NetQ CLI JSON output">}}
+```
+cumulus@oob-mgmt-server:~$ netq leaf01 show ip routes json
+{
+    "routes":[
+        {
+            "origin":"no",
+            "lastChanged":1571689245.9370000362,
+            "hostname":"leaf01",
+            "prefix":"10.0.0.22/32",
+            "vrf":"default",
+            "nexthops":"169.254.0.1: swp52"
+        },
+        {
+            "origin":"yes",
+            "lastChanged":1571689245.9360001087,
+            "hostname":"leaf01",
+            "prefix":"10.0.0.11/32",
+            "vrf":"default",
+            "nexthops":"lo"
+        },
+        {
+            "origin":"yes",
+            "lastChanged":1571689245.9360001087,
+            "hostname":"leaf01",
+            "prefix":"10.2.4.1/32",
+            "vrf":"vrf1",
+            "nexthops":"vlan24-v0"
+        },
+        {
+            "origin":"no",
+            "lastChanged":1571689245.9360001087,
+            "hostname":"leaf01",
+            "prefix":"10.0.0.12/32",
+            "vrf":"default",
+            "nexthops":"169.254.1.2: peerlink.4094"
+        },
+        {
+            "origin":"no",
+            "lastChanged":1571689245.9360001087,
+            "hostname":"leaf01",
+            "prefix":"0.0.0.0/0",
+            "vrf":"mgmt",
+            "nexthops":"Blackhole"
+        },
 
-NetQ delivers advanced path tracing, even through a VXLAN overlay, by either layer 3 IP address or by layer 2 MAC address. NetQ agents stream forwarding information from every node, which provides a unique opportunity to perform a more complete path trace. A NetQ trace discovers all possible paths and checks each path, hop by hop for errors and possible problems.
+...
+```
 
-{{<figure src="/images/guides/campus-netq-trace.png" caption="Cumulus NetQ CLI providing layer 2, layer 3 and VXLAN overlay trace capabilities">}}
+NetQ delivers advanced path tracing, even through a VXLAN overlay, by either layer 3 IP address or by layer 2 MAC address. NetQ agents stream forwarding information from every node, which provides a unique opportunity to perform a more complete path trace. A NetQ trace discovers all possible paths and checks each path, hop by hop for errors and possible problems. As shown in the example below, Cumulus NetQ CLI provides layer 2, layer 3 and VXLAN overlay trace capabilities.
+
+<pre>
+cumulus@oob-mgmt-server:~$ netq trace 10.2.4.104 from server01 pretty
+Number of Paths: 8
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 1500
+
+ <span style="color: #fff"><strong>server01</strong></span> bond0 -- swp1 <vlan13> <span style="color: #fff"><strong>leaf02</strong></span> <vlan4001> <span style="color: #00f"><strong>vni: 104001</strong></span> swp52 -- swp2 <span style="color: #fff"><strong>spine02</strong></span> swp4 -- swp52 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf04</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+                                             swp52 -- swp2 <span style="color: #fff"><strong>spine02</strong></span> swp3 -- swp52 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf03</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+          bond0 -- swp1 <vlan13> <span style="color: #fff"><strong>leaf02</strong></span> <vlan4001> <span style="color: #00f"><strong>vni: 104001</strong></span> swp51 -- swp2 <span style="color: #fff"><strong>spine01</strong></span> swp4 -- swp51 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf04</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+                                             swp51 -- swp2 <span style="color: #fff"><strong>spine01</strong></span> swp3 -- swp51 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf03</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+          bond0 -- swp1 <vlan13> <span style="color: #fff"><strong>leaf01</strong></span> <vlan4001> <span style="color: #00f"><strong>vni: 104001</strong></span> swp52 -- swp1 <span style="color: #fff"><strong>spine02</strong></span> swp4 -- swp52 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf04</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+                                             swp52 -- swp1 <span style="color: #fff"><strong>spine02</strong></span> swp3 -- swp52 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf03</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+          bond0 -- swp1 <vlan13> <span style="color: #fff"><strong>leaf01</strong></span> <vlan4001> <span style="color: #00f"><strong>vni: 104001</strong></span> swp51 -- swp1 <span style="color: #fff"><strong>spine01</strong></span> swp4 -- swp51 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf04</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+                                             swp51 -- swp1 <span style="color: #fff"><strong>spine01</strong></span> swp3 -- swp51 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf03</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+
+</pre>
 
 Fabric-wide service validations and health checks bring accurate alerting and diagnostics, and can provide prebuilt comprehensive testing for CI/CD automated workflows. NetQ agents stream a wide breadth of both control plane and data plane information that can be cross referenced and checked to better represent the status of the entire network instead of individual pieces. Services like BGP, EVPN, MLAG and NTP can be verified as the total of all nodes working together in addition to physical interface settings, licenses, and environmental sensors.
 
@@ -432,27 +495,140 @@ Fabric-wide service validations and health checks bring accurate alerting and di
 
 #### netq show macs
 
-{{<figure src="/images/guides/campus-netq-show-macs.png" caption="netq show macs">}}
+```
+cumulus@switch:~$ netq leaf01 show macs
+
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
+------ ------------------ ------ ----------------- -------------------- ------ -------------------------
+no     00:03:00:11:11:01  13     leaf01            bond01               no     Mon Oct 21 21:55:52 2019
+no     00:03:00:22:22:01  24     leaf01            bond02               no     Mon Oct 21 21:55:52 2019
+no     00:03:00:33:33:01  13     leaf01            vni13::10.0.0.134    yes    Mon Oct 21 21:55:52 2019
+no     00:03:00:44:44:01  24     leaf01            vni24::10.0.0.134    yes    Mon Oct 21 21:55:52 2019
+no     02:03:00:11:11:01  13     leaf01            bond01               no     Mon Oct 21 21:55:52 2019
+no     02:03:00:11:11:02  13     leaf01            bond01               no     Mon Oct 21 21:55:51 2019
+no     02:03:00:22:22:01  24     leaf01            bond02               no     Mon Oct 21 21:55:51 2019
+no     02:03:00:22:22:02  24     leaf01            bond02               no     Mon Oct 21 21:55:51 2019
+no     02:03:00:33:33:01  13     leaf01            vni13::10.0.0.134    yes    Mon Oct 21 21:55:52 2019
+no     02:03:00:33:33:02  13     leaf01            vni13::10.0.0.134    yes    Mon Oct 21 21:55:51 2019
+no     02:03:00:44:44:01  24     leaf01            vni24::10.0.0.134    yes    Mon Oct 21 21:55:52 2019
+no     02:03:00:44:44:02  24     leaf01            vni24::10.0.0.134    yes    Mon Oct 21 21:55:51 2019
+no     44:38:39:00:00:15  13     leaf01            peerlink             no     Mon Oct 21 21:55:51 2019
+no     44:38:39:00:00:15  24     leaf01            peerlink             no     Mon Oct 21 21:55:51 2019
+no     44:38:39:00:00:23  13     leaf01            vni13::10.0.0.134    yes    Mon Oct 21 21:55:52 2019
+no     44:38:39:00:00:23  24     leaf01            vni24::10.0.0.134    yes    Mon Oct 21 21:55:52 2019
+no     44:38:39:00:00:5c  13     leaf01            vni13::10.0.0.134    yes    Mon Oct 21 21:55:52 2019
+no     44:38:39:00:00:5c  24     leaf01            vni24::10.0.0.134    yes    Mon Oct 21 21:55:52 2019
+no     44:39:39:ff:40:95  4001   leaf01            vxlan4001::10.0.0.13 yes    Mon Oct 21 21:55:51 2019
+                                                   4
+no     c2:10:71:7d:82:de  4001   leaf01            vxlan4001::10.0.0.41 yes    Mon Oct 21 21:55:52 2019
+no     f6:6b:a7:96:8c:b2  4001   leaf01            vxlan4001::10.0.0.42 yes    Mon Oct 21 21:55:51 2019
+yes    44:38:39:00:00:03  13     leaf01            bridge               no     Mon Oct 21 21:55:52 2019
+yes    44:38:39:00:00:03  24     leaf01            bridge               no     Mon Oct 21 21:55:52 2019
+yes    44:38:39:00:00:03  4001   leaf01            bridge               no     Mon Oct 21 21:55:52 2019
+yes    44:39:39:ff:00:13  13     leaf01            bridge               no     Mon Oct 21 21:55:52 2019
+yes    44:39:39:ff:00:24  24     leaf01            bridge               no     Mon Oct 21 21:55:52 2019
+yes    44:39:39:ff:40:94  4001   leaf01            bridge               no     Mon Oct 21 21:55:52 2019
+```
 
 #### netq show ip routes
 
-{{<figure src="/images/guides/campus-netq-show-macs.png" caption="netq show ip routes">}}
+```
+cumulus@switch:~$ netq leaf01 show ip routes
+
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no     default         10.0.0.12/32                   leaf01            169.254.1.2: peerlink.4094          Mon Oct 21 20:20:45 2019
+no     default         10.0.0.13/32                   leaf01            169.254.0.1: swp51,                 Mon Oct 21 20:20:45 2019
+                                                                        169.254.0.1: swp52
+no     default         10.0.0.134/32                  leaf01            169.254.0.1: swp51,                 Mon Oct 21 20:20:45 2019
+                                                                        169.254.0.1: swp52
+no     default         10.0.0.14/32                   leaf01            169.254.0.1: swp51,                 Mon Oct 21 20:20:45 2019
+                                                                        169.254.0.1: swp52
+no     default         10.0.0.21/32                   leaf01            169.254.0.1: swp51                  Mon Oct 21 20:20:45 2019
+no     default         10.0.0.22/32                   leaf01            169.254.0.1: swp52                  Mon Oct 21 20:20:45 2019
+no     default         10.0.0.41/32                   leaf01            169.254.0.1: swp51,                 Mon Oct 21 20:20:45 2019
+                                                                        169.254.0.1: swp52
+no     default         10.0.0.42/32                   leaf01            169.254.0.1: swp51,                 Mon Oct 21 20:20:45 2019
+                                                                        169.254.0.1: swp52
+no     mgmt            0.0.0.0/0                      leaf01            Blackhole                           Mon Oct 21 20:20:45 2019
+no     vrf1            0.0.0.0/0                      leaf01            Blackhole                           Mon Oct 21 20:20:45 2019
+no     vrf1            10.0.0.0/8                     leaf01            10.0.0.41: vlan4001,                Mon Oct 21 20:20:45 2019
+                                                                        10.0.0.42: vlan4001
+no     vrf1            10.0.0.253/32                  leaf01            10.0.0.41: vlan4001,                Mon Oct 21 20:20:45 2019
+                                                                        10.0.0.42: vlan4001
+no     vrf1            10.1.3.103/32                  leaf01            10.0.0.134: vlan4001                Mon Oct 21 20:20:45 2019
+no     vrf1            10.2.4.104/32                  leaf01            10.0.0.134: vlan4001                Mon Oct 21 20:20:45 2019
+yes    default         10.0.0.11/32                   leaf01            lo                                  Mon Oct 21 20:20:45 2019
+yes    default         10.0.0.112/32                  leaf01            lo                                  Mon Oct 21 20:20:45 2019
+yes    default         169.254.1.0/30                 leaf01            peerlink.4094                       Mon Oct 21 20:20:45 2019
+yes    default         169.254.1.1/32                 leaf01            peerlink.4094                       Mon Oct 21 20:20:45 2019
+yes    mgmt            192.168.0.0/24                 leaf01            eth0                                Mon Oct 21 20:20:45 2019
+yes    mgmt            192.168.0.11/32                leaf01            eth0                                Mon Oct 21 20:20:45 2019
+yes    vrf1            10.1.3.0/24                    leaf01            vlan13-v0                           Mon Oct 21 20:20:45 2019
+yes    vrf1            10.1.3.1/32                    leaf01            vlan13-v0                           Mon Oct 21 20:20:45 2019
+yes    vrf1            10.1.3.11/32                   leaf01            vlan13                              Mon Oct 21 20:20:45 2019
+yes    vrf1            10.2.4.0/24                    leaf01            vlan24-v0                           Mon Oct 21 20:20:45 2019
+yes    vrf1            10.2.4.1/32                    leaf01            vlan24-v0                           Mon Oct 21 20:20:45 2019
+yes    vrf1            10.2.4.11/32                   leaf01            vlan24                              Mon Oct 21 20:20:45 2019
+```
 
 #### netq show ip address
 
-{{<figure src="/images/guides/campus-netq-show-ip-address.png" caption="netq show ip address">}}
+```
+cumulus@switch:~$ netq leaf01 show ip address
+
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+10.0.0.11/32              leaf01            lo                        default         Mon Oct 21 20:20:45 2019
+10.0.0.112/32             leaf01            lo                        default         Mon Oct 21 20:20:45 2019
+10.1.3.1/24               leaf01            vlan13-v0                 vrf1            Mon Oct 21 20:20:45 2019
+10.1.3.11/24              leaf01            vlan13                    vrf1            Mon Oct 21 20:20:45 2019
+10.2.4.1/24               leaf01            vlan24-v0                 vrf1            Mon Oct 21 20:20:45 2019
+10.2.4.11/24              leaf01            vlan24                    vrf1            Mon Oct 21 20:20:45 2019
+169.254.1.1/30            leaf01            peerlink.4094             default         Mon Oct 21 20:20:45 2019
+192.168.0.11/24           leaf01            eth0                      mgmt            Mon Oct 21 20:20:45 2019
+```
 
 #### netq check
 
 The ability to check `bgp`, `evpn`, `clag`, `interfaces`, `license`, `mtu`, `ntp`, `ospf`/`ospf6`, `sensors`, `vlan` and `vxlan` are supported.
 
-{{<figure src="/images/guides/campus-netq-check-mtu.png" caption="netq check">}}
+<pre>
+cumulus@oob-mgmt-server:~$ netq check sensors
+<span style="color: #f00">Total Nodes: 13, Failed Nodes: 5, Checked Sensors: 136, Failed Sensors: 0</span>
+Hostname          Name            Description                         State      Value      Message
+----------------- --------------- ----------------------------------- ---------- ---------- -----------------------------------
+<span style="color: #f00">edge01            -               -                                   unknown    -          No sensor info present</span>
+<span style="color: #f00">server01          -               -                                   unknown    -          No sensor info present</span>
+<span style="color: #f00">server02          -               -                                   unknown    -          No sensor info present</span>
+<span style="color: #f00">server03          -               -                                   unknown    -          No sensor info present</span>
+<span style="color: #f00">server04          -               -                                   unknown    -          No sensor info present</span>
+</pre>
 
 #### netq trace
 
 `netq trace` provides layer 2, layer 3 and VXLAN overlay support.
 
-{{<figure src="/images/guides/campus-netq-trace2.png" caption="Cumulus NetQ CLI providing layer 2, layer 3 and VXLAN overlay trace capabilities">}}
+<pre>
+cumulus@oob-mgmt-server:~$ netq trace 10.2.4.104 from server01 pretty
+Number of Paths: 8
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 1500
+
+ <span style="color: #fff"><strong>server01</strong></span> bond0 -- swp1 <vlan13> <span style="color: #fff"><strong>leaf02</strong></span> <vlan4001> <span style="color: #00f"><strong>vni: 104001</strong></span> swp52 -- swp2 <span style="color: #fff"><strong>spine02</strong></span> swp4 -- swp52 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf04</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+                                             swp52 -- swp2 <span style="color: #fff"><strong>spine02</strong></span> swp3 -- swp52 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf03</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+          bond0 -- swp1 <vlan13> <span style="color: #fff"><strong>leaf02</strong></span> <vlan4001> <span style="color: #00f"><strong>vni: 104001</strong></span> swp51 -- swp2 <span style="color: #fff"><strong>spine01</strong></span> swp4 -- swp51 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf04</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+                                             swp51 -- swp2 <span style="color: #fff"><strong>spine01</strong></span> swp3 -- swp51 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf03</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+          bond0 -- swp1 <vlan13> <span style="color: #fff"><strong>leaf01</strong></span> <vlan4001> <span style="color: #00f"><strong>vni: 104001</strong></span> swp52 -- swp1 <span style="color: #fff"><strong>spine02</strong></span> swp4 -- swp52 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf04</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+                                             swp52 -- swp1 <span style="color: #fff"><strong>spine02</strong></span> swp3 -- swp52 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf03</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+          bond0 -- swp1 <vlan13> <span style="color: #fff"><strong>leaf01</strong></span> <vlan4001> <span style="color: #00f"><strong>vni: 104001</strong></span> swp51 -- swp1 <span style="color: #fff"><strong>spine01</strong></span> swp4 -- swp51 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf04</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+                                             swp51 -- swp1 <span style="color: #fff"><strong>spine01</strong></span> swp3 -- swp51 <span style="color: #00f"><strong>vni: 104001</strong></span> <vlan4001> <span style="color: #fff"><strong>leaf03</strong></span> <vlan24> bond04 -- bond0 <span style="color: #fff"><strong>server04</strong></span>  
+
+</pre>
 
 <!-- Footnotes themselves at the bottom. -->
 ## Notes

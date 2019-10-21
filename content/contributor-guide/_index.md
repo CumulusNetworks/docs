@@ -3,6 +3,7 @@ title: Contributor Guide
 author: Daniel Cawley
 weight: 1
 siteSlug: contributor-guide
+version: 1.0
 ---
 Welcome to the Cumulus Networks documentation contributor guide!
 

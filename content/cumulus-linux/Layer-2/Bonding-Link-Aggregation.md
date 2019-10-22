@@ -183,7 +183,7 @@ policy specified by `xmit-hash-policy`.
 
 When using balance-xor mode to dual-connect host-facing bonds in an
 [MLAG](../Multi-Chassis-Link-Aggregation-MLAG)
-environment, you **must** configure the `clag_id` parameter on the MLAG
+environment, you **must** configure the `clag-id` parameter on the MLAG
 bonds and it must be the same on both MLAG switches. Otherwise, the
 bonds are treated by the MLAG switch pair as single-connected.
 

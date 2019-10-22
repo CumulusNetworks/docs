@@ -7,7 +7,7 @@ product: Cumulus NetQ
 version: 2.3
 imgData: cumulus-netq
 ---
-With this release and an administrator role, you are able to integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. Currently there are two roles, admin and user. With the integration,, user authentication is handled through LDAP and your directory service, such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service. A copy of each user from LDAP is stored in the local NetQ database.
+With this release and an administrator role, you are able to integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. Currently there are two roles, admin and user. With the integration, user authentication is handled through LDAP and your directory service, such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service. A copy of each user from LDAP is stored in the local NetQ database.
 
 Integrating with an LDAP server does not prevent you from configuring local users (stored and managed in the NetQ database) as well.
 
@@ -40,11 +40,11 @@ Three attributes are required to define a user entry in a directory. The DNs are
 - dc=\<domain-extension\>
 - cn=\<common-name\>
 
-- **Bind DN**: DN used for binding with the LDAP server. For NetQ, the bind DN is based on the User ID plus other variables that you specify. For example, Bind DN=`{user-id},ou=ntwkops,dc=mycompany,dc=com`, where the value of the *user-id* is based on the User ID type.
+- **Bind DN**: DN used for binding with the LDAP server. For NetQ, the bind DN is based on the User ID plus other variables that you specify. The Bind DN=`{userIdAttribute}={userId},ou=ntwkops,dc=mycompany,dc=com`, where{userIdAttribute} should be replaced with the value specified in User ID field. For example, uid={userId},ou=ntwkops,dc=mycompany,dc=com.
 - **User ID**: Type of identifier used to specify an LDAP user. This can vary depending on the authentication service you are using. For example,  user ID (UID) or email address  could be used with OpenLDAP, whereas sAMAccountName might be used with Active Directory.  For example, 
-    - If the User ID type is `UID`, then the {user-id} in the Bind DN could be jsmith, janed, or user.man
-    - If the User ID type is `email`, then the {user-id} in the Bind DN could be jsmith,dc=mycompany,dc=com
-    - If the User ID type is `sAMAccountName`, than the {user-id} in the Bind DN could be clientA
+    - If the User ID type is `UID`, then the {user-id} in the Bind DN could accept jsmith, janed, or user.man
+    - If the User ID type is `email`, then the {user-id} in the Bind DN could accept jsmith,dc=mycompany,dc=com
+    - If the User ID type is `sAMAccountName`, than the {user-id} in the Bind DN could accept clientA
 - **Base DN**: Location in directory structure where search begins. For example, `dc=mycompany,dc=com`
 
 Optionally you can also specify the user's first name, last name, and email address.
@@ -98,7 +98,7 @@ A variety of example configurations are provided here.
 | Host Server URL | ldap://ldap1.mycompany.com |
 | Host Server Port | 389 |
 | Authentication | Anonymous |
-| Bind DN | {userId},dc=mycompany,dc=com |
+| Bind DN | {userIdAttribute}={userId},dc=mycompany,dc=com |
 | Base DN | dc=mycompany,dc=com |
 | User ID | email |
 | Search Scope | Base |
@@ -111,9 +111,9 @@ A variety of example configurations are provided here.
 | Host Server URL | ldaps://ldap1.mycompany.com |
 | Host Server Port | 636 |
 | Authentication | Basic |
-| Admin DN | xxx |
+| Admin DN | cn=cumulusnq,ou=netops |
 | Admin Password | nqldap! |
-| Bind DN | {userId},ou=netops,dc=mycompany,dc=com |
+| Bind DN | {userIdAttribute}={userId},ou=netops,dc=mycompany,dc=com |
 | Base DN | dc=mycompany,dc=com |
 | User ID | UID |
 | Search Scope | One Level |
@@ -126,9 +126,9 @@ A variety of example configurations are provided here.
 | Host Server URL | ldaps://192.168.10.2 |
 | Host Server Port | 636 |
 | Authentication | SASL |
-| Admin DN | xxx |
+| Admin DN | cn=cumulus,ou=netadmin |
 | Admin Password | 1dap*netq |
-| Bind DN | {userId},ou=netadmin,dc=mycompany, dc=net |
+| Bind DN | {userIdAttribute}={userId},ou=netadmin,dc=mycompany,dc=com |
 | Base DN | dc=mycompany, dc=net |
 | User ID | UID |
 | Search Scope | Subtree |
@@ -141,13 +141,13 @@ A variety of example configurations are provided here.
 | Host Server URL | ldaps://192.168.10.2 |
 | Host Server Port | 636 |
 | Authentication | SASL |
-| Admin DN | xxx |
-| Admin Password | nq&4Mad! |
-| Bind DN | {userId},ou=netadmin,dc=mycompany, dc=net |
+| Admin DN | cn=cumulusnq,ou=netadmin |
+| Admin Password | nq&4mAd! |
+| Bind DN | {userId}@mycompany.com |
 | Base DN | dc=mycompany, dc=net |
 | User ID | sAMAccountName |
 | Search Scope | Subtree |
-| Search Query | userIdAttribute}={userId} |
+| Search Query | {userIdAttribute}={userId} |
 
 
 ## Add LDAP Users to NetQ

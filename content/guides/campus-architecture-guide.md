@@ -18,7 +18,7 @@ This guide walks a network architect or administrator through the various techno
 
 Cumulus Linux is the industry-leading open network operating system (NOS) that drives [open networking switches](https://cumulusnetworks.com/hcl) built on commodity hardware and switching silicon. It is the key that brings the same hardware and software disaggregation advantages to the network that IT departments already enjoy for their application servers and storage resources.
 
-Incumbent and traditional networking vendors create lock-in by bundling a proprietary operating system on custom built and proprietary networking hardware. Open networking switches often contain the same hardware forwarding chipsets as traditional vendors but at a significantly lower price. When you need to run Linux on a server today, you have your choice of any bare metal server from any manufacturer that meets your needs and budget. The commitment to the operating system is a separate choice from the hardware that it runs on.
+Incumbent and traditional networking vendors create lock-in by bundling a proprietary operating system on custom built and proprietary networking hardware. Open networking switches often contain the same hardware forwarding chipsets as traditional vendors. When you need to run Linux on a server today, you have your choice of any bare metal server from any manufacturer that meets your needs and budget. The commitment to the operating system is a separate choice from the hardware that it runs on.
 
 Cumulus Linux is an open, native Linux distribution that allows for choice in hardware to provide a wide range of speeds, feeds and features. By being an open NOS, administrators are provided with maximum hardware and application choice. The same monitoring and operational tools already in use for Linux systems in the enterprise today can be easily reused to operate and monitor the network infrastructure.
 
@@ -330,7 +330,7 @@ In this design above, northbound links from the distribution layer switches are 
 
 {{<figure src="/images/guides/campus-SingleSite_LargeBuilding-Layer3withVXLAN-MLAGnorthbound.jpg" caption="A similar design as the previous figure with distribution layer switches configured with MLAG.">}}
 
-Platform choice in these designs is more rigid with the need for VXLAN encapsulation and VXLAN routing support. For access layer switches, Helix4 and Hurricane2-based platforms do not offer VXLAN support. Trident3-based platforms are best suited, but a Trident II+-based switch may also be acceptable.
+Platform choice in these designs is more rigid with the need for VXLAN encapsulation and VXLAN routing support. For access layer switches, Helix4 and Hurricane2-based platforms do not offer VXLAN support. As a result, we recommend Trident3 or Mellanox Spectrum-based platforms, which support VXLAN routing.
 
 | Tier | Supported Platforms |
 | ---- | ------------------- |
@@ -343,7 +343,7 @@ The non-MLAG design two figures above can be improved with the addition of dedic
 
 This design option also provides more flexibility for northbound access to the core or the rest of the campus network. Border switch segments can be designed more flexibly and may be implemented more easily as an MLAG pair to retain the inherent design benefits of a modern layer 3 network.
 
-Platform choice in this design follows closely with other VXLAN options. Access and border switches must be able to support VXLAN encapsulation/decapsulation and also routing in and out of VXLAN tunnels (RIOT) to support [symmetric mode](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing). Helix4, Hurricane2 and other native 1Gbps switch ASICs do not offer VXLAN support. Trident3-based platforms are best suited, but a Trident II+-based platform may also be acceptable. Distribution switches do not perform any VXLAN encapsulation/decapsulation in this design and have fewer feature driven requirements.
+Platform choice in this design follows closely with other VXLAN options. Access and border switches must be able to support VXLAN encapsulation/decapsulation and also routing in and out of VXLAN tunnels (RIOT) to support [symmetric mode](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#symmetric-routing). Helix4, Hurricane2 and other native 1Gbps switch ASICs do not offer VXLAN support. As a result, we recommend Trident3 or Mellanox Spectrum-based platforms, which support VXLAN routing. Distribution switches do not perform any VXLAN encapsulation/decapsulation in this design and have fewer feature driven requirements.
 
 | Tier | Supported Platforms |
 | ---- | ------------------- |

@@ -28,9 +28,9 @@ mapping, and information for other services on the system.
 
 There are 3 common ways to configure LDAP authentication on Linux:
 
-  - libnss-ldap
-  - libnss-ldapd
-  - libnss-sss
+- libnss-ldap
+- libnss-ldapd
+- libnss-sss
 
 This chapter describes using `libnss-ldapd` only. From internal testing,
 this library worked best with Cumulus Linux and is the easiest to
@@ -60,8 +60,6 @@ using `debconf-set-selections`:
     root# debconf-set-selections <<'zzzEndOfFilezzz'
      
     # LDAP database user. Leave blank will be populated later!
-    # This way of setting binddn and bindpw doesn't seem to work.
-    # So have to manually do it. But interactive apt-get mode works.
     nslcd nslcd/ldap-binddn  string
      
     # LDAP user password. Leave blank!

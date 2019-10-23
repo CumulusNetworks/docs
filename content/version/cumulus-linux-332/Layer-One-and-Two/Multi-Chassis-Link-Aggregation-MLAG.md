@@ -81,7 +81,7 @@ MLAG has these requirements:
 If for some reason you cannot use LACP, you can also use
 [balance-xor mode](/version/cumulus-linux-332/Layer-One-and-Two/Bonding-Link-Aggregation/#enabling-balance-xor-mode)
 to dual-connect host-facing bonds in an MLAG environment. If you do,
-the `clag_id` parameter **must** be configured on the MLAG bonds and
+the `clag-id` parameter **must** be configured on the MLAG bonds and
 must be the same on both MLAG switches. Otherwise, the bonds are
 treated by the MLAG switch pair as if they were single-connected.
 
@@ -126,10 +126,10 @@ However, if for some reason you cannot use LACP in your environment, you
 can configure the bonds in
 [balance-xor mode](/version/cumulus-linux-332/Layer-One-and-Two/Bonding-Link-Aggregation/#enabling-balance-xor-mode).
 When using balance-xor mode to dual-connect host-facing bonds in an MLAG
-environment, the `clag_id` parameter must be configured on the MLAG
+environment, the `clag-id` parameter must be configured on the MLAG
 bonds and must be the same on both MLAG switches. Otherwise, the bonds
 are treated by the MLAG switch pair as if they were single-connected. In
-short, dual-connectedness is solely determined by matching `clag_id` and
+short, dual-connectedness is solely determined by matching `clag-id` and
 any misconnection will **not** be detected.
 
 On each of the peer switches, the links connected to the dual-connected

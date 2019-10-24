@@ -1,11 +1,11 @@
 ---
 title: Monitor Virtual Network Overlays
 author: Cumulus Networks
-weight: 43
+weight: 87
 aliases:
  - /display/NETQ21/Monitor+Virtual+Network+Overlays
- - /pages/viewpage.action?pageId=12321050
-pageID: 12321050
+ - /pages/viewpage.action?pageId=10464105
+pageID: 10464105
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -15,15 +15,15 @@ With NetQ, a network administrator can monitor virtual network
 components in the data center, including VXLAN, EVPN, and LNV software
 constructs. NetQ provides the ability to:
 
-  - Manage virtual constructs: view the performance and status of
-    VXLANs, EVPN, and LNV
-  - Validate overlay communication paths
+- Manage virtual constructs: view the performance and status of
+VXLANs, EVPN, and LNV
+- Validate overlay communication paths
 
 It helps answer questions such as:
 
-  - Is my overlay configured and operating correctly?
-  - Is my control plane configured correctly?
-  - Can device A reach device B?
+- Is my overlay configured and operating correctly?
+- Is my control plane configured correctly?
+- Can device A reach device B?
 
 {{%notice info%}}
 
@@ -31,8 +31,7 @@ Lightweight network virtualization (LNV) was deprecated in Cumulus Linux
 3.7.4 and will be removed in Cumulus Linux 4.0.0. Cumulus NetQ will
 continue to support and return LNV data as long as you are running a
 supported version of Cumulus Linux earlier than 4.0.0. For information
-on the support timeline, read this [knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/217132357-Cumulus-Linux-Release-Versioning-and-Support-Policy).
+on the support timeline, read this [knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/217132357-Cumulus-Linux-Release-Versioning-and-Support-Policy).
 
 {{%/notice%}}
 
@@ -56,11 +55,11 @@ following command:
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
+- d: day(s)
+- h: hour(s)
+- m: minute(s)
+- s: second(s)
+- now
 
 For time ranges, the `<text-time>` is the most recent time and the
 `<text-endtime>` is the oldest time. The values do not have to have the
@@ -68,7 +67,7 @@ same unit of measure.
 
 {{%/notice%}}
 
-### View All VXLANs in Your Network</span>
+### View All VXLANs in Your Network
 
 You can view a list of configured VXLANs for all devices, including the
 VNI (VXLAN network identifier), protocol, address of associated VTEPs
@@ -172,7 +171,7 @@ You can view detailed information about the VXLAN interfaces using the
 given device by adding a hostname to the `show` command. This example
 shows the detailed VXLAN interface information for the leaf02 switch.
 
-    cumulus@switch:~$ netq leaf02 show interfaces type vxlan
+    cumulus@switch:~$ netq leaf02 show interfaces type vxlan 
     Matching link records:
     Hostname          Interface                 Type             State      VRF             Details                             Last Changed
     ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
@@ -195,10 +194,10 @@ configuration and status of the EVPN setup using the `netq show evpn`
 command. You can filter the EVPN information by a VNI (VXLAN network
 identifier), and view the current information or for a time in the past.
 The command also enables visibility into changes that have occurred in
-the configuration during a specific timeframe. The syntax for the
+the configuration during a specific time frame. The syntax for the
 command is:
 
-    netq [<hostname>] show evpn [vni <text-vni>] [mac-consistency] [around <text-time>] [json]
+    netq [<hostname>] show evpn [vni <text-vni>] [around <text-time>] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type vxlan [between <text-time> and <text-endtime>] [json]
 
 {{%notice info%}}
@@ -206,11 +205,11 @@ command is:
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
+- d: day(s)
+- h: hour(s)
+- m: minute(s)
+- s: second(s)
+- now
 
 For time ranges, the `<text-time>` is the most recent time and the
 `<text-endtime>` is the oldest time. The values do not have to have the
@@ -219,7 +218,8 @@ same unit of measure.
 {{%/notice%}}
 
 For more information about and configuration of EVPN in your data
-center, refer to the [Cumulus Linux EVPN](https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN) topic.
+center, refer to the [Cumulus Linux EVPN](https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network+-+EVPN/)
+topic.
 
 ### View the Status of EVPN
 
@@ -228,7 +228,7 @@ your network or for a particular device. This example shows the
 configuration and status for all devices, including the associated VNI,
 VTEP address, the import and export route (showing the BGP ASN and VNI
 path), and the last time a change was made for each device running EVPN.
-Use the *hostname* variable to view the configuration and status for a
+Use the `hostname` variable to view the configuration and status for a
 single device.
 
     cumulus@switch:~$ netq show evpn
@@ -300,14 +300,14 @@ shows the events that have occurred in the last 48 hours.
 ## Monitor LNV
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
-[VXLANs](https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization)
+[VXLANs](https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 without a central controller on bare metal switches. LNV enables data
 center network administrators and operators to create a data path
 between bridges on top of a layer 3 fabric. With NetQ, you can monitor
 the configuration and status of the LNV setup using the `netq show lnv`
 command. You can view the current information or for a time in the past.
 The command also enables visibility into changes that have occurred in
-the configuration during a specific timeframe. The syntax for the
+the configuration during a specific time frame. The syntax for the
 command is:
 
     netq [<hostname>] show lnv [around <text-time>] [json]
@@ -353,17 +353,3 @@ example shows the status of LNV about 30 minutes ago.
     leaf12            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
     leaf21            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
     leaf22            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
-
-For more information about and configuration of LNV, refer to the
-[Cumulus Linux LNV Overview](https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview)
-topic.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

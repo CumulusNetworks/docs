@@ -1,17 +1,17 @@
 ---
 title: NetQ User Interface Overview
 author: Cumulus Networks
-weight: 89
+weight: 55
 aliases:
  - /display/NETQ21/NetQ+User+Interface+Overview
- - /pages/viewpage.action?pageId=12321856
-pageID: 12321856
+ - /pages/viewpage.action?pageId=10465424
+pageID: 10465424
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
 siteSlug: cumulus-netq-21
 ---
-The NetQ 2.2 <span style="color: #353744;"> graphical user interface
+The NetQ 2.1 <span style="color: #353744;"> graphical user interface
 (UI) </span> enables you to access NetQ capabilities through a web
 browser as opposed to through a terminal window using the
 <span style="color: #353744;"> Command Line Interface (CLI). Visual
@@ -19,21 +19,20 @@ representations of the health of the network, inventory, and system
 events make it easy to both find faults and misconfigurations and to fix
 them. </span>
 
-<span style="color: #333333;"> The UI is accessible in both on-site and
-cloud deployments. It is supported on Google Chrome. Other popular
-browsers may be used, but have not been tested and may have some
-presentation issues. </span>
+<span style="color: #333333;"> The UI is supported on Google Chrome.
+Other popular browsers may be used, but have not been tested and may
+have some presentation issues. </span>
 
 {{%notice tip%}}
 
 <span style="color: #333333;"> Before you get started, you should refer
 to the [release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
+notes](https://wiki.cumulusnetworks.com/display/PC/NetQ+2.0+EA+User+Documentation)
 for this version. </span>
 
 {{%/notice%}}
 
-## Access the NetQ UI</span>
+## Access the NetQ UI
 
 <span style="color: #353744;"> Logging in to the NetQ UI is as easy as
 opening any web page. </span>
@@ -43,13 +42,9 @@ opening any web page. </span>
 1.  <span style="color: #353744;"> Open a new Internet browser window or
     tab. </span>
 
-2.  <span style="color: #353744;"> Enter the
-    <span style="color: #353744;"> following URL into the Address bar
-    </span> for the on-site NetQ Platform/NetQ Appliance or the NetQ
-    Cloud:  
-    \- On-site: *http://* </span> *<span style="color: #353744;"> \<
-    </span> netq-platform/appliance-ipaddress\>:32666  
-    *- Cloud: *http//netq.cumulusnetworks.com*
+2.  <span style="color: #353744;"> Enter the following URL into the
+    Address bar: *http://* </span> *<span style="color: #353744;"> \<
+    </span> netq-platform/appliance-ipaddress\>:32666.*
     
     {{% imgOld 0 %}}
 
@@ -62,31 +57,23 @@ opening any web page. </span>
       
 
 4.  <span style="color: #353744;"> Enter your username and then your
-    password: </span>  
-    <span style="color: #353744;"> - NetQ Platform: *admin, admin* by
-    default  
-    \- NetQ Appliance: *cumulus, CumulusLinux\!* by default  
-    </span> <span style="color: #353744;"> - NetQ Cloud: Use credentials
-    provided by Cumulus via email titled *Welcome to Cumulus NetQ\!* and
-    accept the terms of use.  
+    password ( </span> *admin, admin* by default).
+    <span style="color: #353744;">  
     </span>
     
     {{% imgOld 2 %}}
     
       
-    <span style="color: #353744;"> On your first login, the default
-    Cumulus Workbench opens, with your username shown in the upper right
-    corner of the application. The NetQ Cloud UI has a **Premises** list
-    in the application header, but is otherwise the same. On future
-    logins, the last workbench that you were viewing is displayed.
-    </span>
+    <span style="color: #353744;"> The default Cumulus Workbench opens,
+    with your username showing in the upper right corner of the
+    application. </span>
 
 <span style="color: #353744;"> To log out of the UI: </span>
 
 1.  <span style="color: #353744;"> Click the user icon at the top right
     of the application. </span>
 
-2.  <span style="color: #353744;"> Select </span> **Log Out** . **  
+2.  <span style="color: #353744;"> Select </span> **Log Out.  
     **
     
     **{{% imgOld 3 %}}**
@@ -94,14 +81,13 @@ opening any web page. </span>
     **  
     **
 
-## Application Layout</span>
+## Application Layout
 
 The NetQ UI contains two areas:
 
   - **Application Header** (1): Contains the main menu, navigation
     history, search capabilities, NetQ version, quick health status
-    chart, local time zone, premises list (cloud-only), and user account
-    information.
+    chart, local time zone, and user account information.
 
   - **Workbench** (2): Contains a task bar and content cards (with
     status and configuration information about your network and its
@@ -109,7 +95,7 @@ The NetQ UI contains two areas:
 
 {{% imgOld 4 %}}
 
-## Main Menu</span>
+## Main Menu
 
 Found in the application header, click
 
@@ -132,13 +118,13 @@ to open the main menu which provides navigation to:
 
 {{% imgOld 6 %}}
 
-## Recent Actions</span>
+## Navigation History
 
-Found in the header, the Recent Actions keeps track of every action you
-take on your workbench. This enables you to go back to a previous state
-or repeat an action.
+Found in the header, the navigation history keeps track of every action
+you take on your workbench. This enables the user to go back to a
+previous state or repeat an action.
 
-To open Recent Actions, click
+To open the navigation history, click
 
 {{% imgOld 7 %}}
 
@@ -146,12 +132,12 @@ To open Recent Actions, click
 
 {{% imgOld 8 %}}
 
-## Search</span>
+## Search
 
 The Global Search field in the UI header enables you to search for
 devices.
 
-### Create a Search</span>
+### Create a Search
 
 As with most search fields, simply begin entering the criteria in the
 search field. As you type, items that match the search criteria are
@@ -182,7 +168,7 @@ To create a new search:
     
     {{%/notice%}}
 
-### Run a Recent Search</span>
+### Run a Recent Search
 
 You can re-run a recent search, saving time if you are comparing data
 from two or more devices.
@@ -200,11 +186,11 @@ To re-run a recent search:
     
     You may need to click **See All \# Results** to find the desired
     search. If you do not find it in the list, you may still be able to
-    find it in the **Recent Actions** list.
+    find it in the **Navigation History**.
     
     {{%/notice%}}
 
-## Quick Network Health View</span>
+## Quick Network Health View
 
 Found in the header, the graph and performance rating provide a view
 into the health of your network at a glance.
@@ -219,7 +205,7 @@ minutes.
 
 {{%/notice%}}
 
-## Workbenches</span>
+## Workbenches
 
 A workbench is comprised of a given set of cards. In this release, a
 preconfigured default workbench, Cumulus Workbench, is available to get
@@ -227,10 +213,10 @@ you started. It contains Device Inventory, Switch Inventory, Alarm and
 Info Events, and Network Health cards. On initial login, this workbench
 is opened. You can modify a workbench by adding or removing cards or
 card decks, as described in <span style="color: #ff0000;"> [Add or
-Remove a Card](#src-12321856_NetQUserInterfaceOverview-AddDelCard)
+Remove a Card](#src-10465424_NetQUserInterfaceOverview-AddDelCard)
 </span> .
 
-## Cards</span>
+## Cards
 
 Cards present information about your network for monitoring and
 troubleshooting. This is where you can expect to spend most of your
@@ -244,7 +230,7 @@ tasks. You can add and remove cards from a workbench, move between cards
 and card sizes, and make copies of cards to show different levels of
 data at the same time.
 
-### Card Sizes</span>
+### Card Sizes
 
 The various sizes of cards enables you to view your content at just the
 right level. For each aspect that you are monitoring there is typically
@@ -253,7 +239,7 @@ sizes. For example, a snapshot of your total inventory may be
 sufficient, but to monitor the distribution of hardware vendors may
 requires a bit more space.
 
-#### Small Cards</span>
+#### Small Cards
 
 Small cards are most effective at providing a quick view of the
 performance or statistical value of a given aspect of your network. They
@@ -266,7 +252,7 @@ card, and a Network Health card, as shown here:
 
 {{% imgOld 12 %}}
 
-#### Medium Cards</span>
+#### Medium Cards
 
 Medium cards are most effective at providing the key measurements for a
 given aspect of your network. They are commonly comprised of an icon to
@@ -279,7 +265,7 @@ these with their related small- and large-sized cards.
 
 {{% imgOld 13 %}}
 
-#### Large Cards</span>
+#### Large Cards
 
 Large cards are most effective at providing the detailed information for
 monitoring specific components or functions of a given aspect of your
@@ -293,7 +279,7 @@ small- and medium-sized cards.
 
 {{% imgOld 14 %}}
 
-#### Full-Screen Cards</span>
+#### Full-Screen Cards
 
 Full-screen cards are most effective for viewing all available data
 about an aspect of your network all in one place. When you cannot find
@@ -306,7 +292,7 @@ Events card and All Switches card, as shown here.
 
 {{% imgOld 16 %}}
 
-#### Data Grid Settings</span>
+#### Data Grid Settings
 
 You can manipulate the data in a data grid in a full screen card in
 several ways.
@@ -384,30 +370,27 @@ in the results list, and which are exported.
 
 To take actions on the data, click in the blank column at the very left
 of a row. A checkbox appears, selecting that item, and an edit menu is
-shown at the bottom of the card (shown enlarged here).
+shown at the bottom of the card (shown enlarged here). The actions vary
+based on the card displayed.
 
 {{% imgOld 23 %}}
 
 {{% imgOld 24 %}}
 
-You can perform the following actions on the results list. ***Note**:
-The actions vary based on the card displayed.*
+You can perform the following actions on the results list:
 
-| Option                   | Action or Behavior on Click                                                                                      |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| Select All               | Selects all items in the results list                                                                            |
-| Clear All                | Clears all existing selections of items in the results list. This also hides the edit menu.                      |
-| Edit                     | Edit the selected items                                                                                          |
-| Delete                   | Remove the selected items                                                                                        |
-| Generate/Delete AuthKeys | Create or remove NetQ Cloud authorization keys                                                                   |
-| Open Cards               | Open the corresponding validation or trace result card                                                           |
-| Hide Selected            | Hide selected items (switches, sessions, alarms, and so forth) from the results list                             |
-| Show Only Selected       | Hide unselected items (switches, sessions, alarms, and so forth) from the results list                           |
-| Export Selected          | Exports selected data into a .csv file. If you want to export to a .json file format, use the **Export** button. |
+| Option             | Action or Behavior on Click                                                                                      |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Select All         | Selects all items in the results list                                                                            |
+| Clear All          | Clears all existing selections of items in the results list. This also hides the edit menu.                      |
+| Open Cards         | Open the corresponding validation or trace result card.                                                          |
+| Hide Selected      | Hide selected items (switches, sessions, alarms, and so forth) from the results list.                            |
+| Show Only Selected | Hide unselected items (switches, sessions, alarms, and so forth) from the results list.                          |
+| Export Selected    | Exports selected data into a .csv file. If you want to export to a .json file format, use the **Export** button. |
 
 To return to original display of results, click the associated tab.
 
-#### Export Data</span>
+#### Export Data
 
 You can export tabular data from a full screen card to a CSV- or
 JSON-formatted file.
@@ -440,7 +423,7 @@ You can quickly export all data to a .csv file in one of two ways:
 
 {{%/notice%}}
 
-#### Card Size Summary</span>
+#### Card Size Summary
 
 <table>
 <colgroup>
@@ -450,15 +433,17 @@ You can quickly export all data to a .csv file in one of two ways:
 <col style="width: 20%" />
 <col style="width: 20%" />
 </colgroup>
+<thead>
+<tr class="header">
+<th><p>Card Size</p></th>
+<th><p>Small</p></th>
+<th><p>Medium</p></th>
+<th><p>Large</p></th>
+<th><p>Full Screen</p></th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td><p>Card Size</p></td>
-<td><p>Small</p></td>
-<td><p>Medium</p></td>
-<td><p>Large</p></td>
-<td><p>Full Screen</p></td>
-</tr>
-<tr class="even">
 <td><p>Primary Purpose</p></td>
 <td><ul>
 <li><p>Quick view of status, typically at the level of good or bad</p></li>
@@ -483,7 +468,7 @@ You can quickly export all data to a .csv file in one of two ways:
 </tbody>
 </table>
 
-### Card Interactions</span>
+### Card Interactions
 
 Every card contains a standard set of interactions, including the
 ability to switch between card sizes, and change the time period of the
@@ -499,7 +484,7 @@ To access the time period, card size, and additional actions, hover over
 the card. These options appear, covering the card header, enabling you
 to select the desired option.
 
-#### Change the Time Period for the Card Data</span>
+#### Change the Time Period for the Card Data
 
 All cards have a default time period for the data shown on the card,
 typically the last 24 hours. You can change the time period to view the
@@ -527,7 +512,7 @@ the given card.
 
 {{%/notice%}}
 
-#### Switch to a Different Card Size</span>
+#### Switch to a Different Card Size
 
 You can switch between the different card sizes at any time. Only one
 size is visible at a time. To view the same card in different sizes,
@@ -549,7 +534,7 @@ To change the card size:
     The card changes to the selected size, and may move its location on
     the workbench.
 
-#### View a Description of the Card Content</span>
+#### View a Description of the Card Content
 
 When you hover over a medium or large card, the bottom right corner
 turns up and is highlighted. Clicking the corner turns the card over
@@ -560,7 +545,7 @@ Hover and click again to turn it back to the front side.
 
 {{% imgOld 31 %}}
 
-#### Reposition a Card on Your Workbench</span>
+#### Reposition a Card on Your Workbench
 
 You can also move cards around on the workbench, using a simple drag and
 drop method.
@@ -581,7 +566,7 @@ To move a card:
     
     {{% imgOld 34 %}}
 
-### <span id="src-12321856_NetQUserInterfaceOverview-AddDelCard" class="confluence-anchor-link"></span>Add or Remove a Card</span>
+### Add or Remove a Card
 
 You can add or remove cards from a workbench at any time.
 
@@ -618,39 +603,39 @@ To remove a card:
 
 The card is removed from the workbench, but not from the application.
 
-## Card Workflows</span>
+## Card Workflows
 
 The UI provides a number of card workflows. Card workflows focus on a
 particular aspect of your network and are a linked set of each size
 card—a small card, a medium card, one or more large cards, and one or
 more full screen cards. The following card workflows are available:
 
-  - **Network Health**: network-wide view of network health
+  - Network Health: network-wide view of network health
 
-  - **Devices|Switches**: health of a given switch
+  - Devices|Switches: health of a given switch
 
-  - **Inventory|Devices**: information about all switches and hosts in
-    the network
+  - Inventory|Devices: information about all switches and hosts in the
+    network
 
-  - **Inventory|Switches**: information about the components on a given
+  - Inventory|Switches: information about the components on a given
     switch
 
-  - **Events|Alarms**: information about all critical severity events in
-    the system
+  - Events|Alarms: information about all critical severity events in the
+    system
 
-  - **Events|Info**: information about all warning, info, and debug
-    events in the system
+  - Events|Info: information about all warning, info, and debug events
+    in the system
 
-  - **Network Services**: information about the network services and
-    sessions
+  - Network Services: information about the BGP, CLAG, EVPN, and LLDP
+    services and sessions
 
-  - **Validation Request** (and Results): network-wide validation of
-    network protocols and services
+  - Validation Request (and Results): network-wide validation of network
+    protocols and services
 
-  - **Trace Request** (and Results): find available paths between two
+  - Trace Request (and Results): find available paths between two
     devices in the network fabric
 
-### Access a Card Workflow</span>
+### Access a Card Workflow
 
 You can access a card workflow in multiple ways:
 
@@ -718,7 +703,7 @@ To access the card workflow by searching for the card:
 
 The card appears on a current workbench, at the bottom.
 
-## Card Decks</span>
+## Card Decks
 
 A card deck is a collection of related cards that can be added and
 removed from a workbench all at once. They are distinct from card
@@ -728,11 +713,10 @@ performing a broader task. It also simplifies the creation of new
 workbenches when a card deck is available. The following card decks are
 provided by default:
 
-  - **Inventory**: includes the medium Inventory | Switches and
-    Inventory | Devices cards
+  - Inventory: includes the medium Inventory | Switches and Inventory |
+    Devices cards
 
-  - **Events**: includes the medium Events | Alarms and Events | Info
-    cards
+  - Events: includes the medium Events | Alarms and Events | Info cards
 
 To add a card deck:
 
@@ -744,12 +728,12 @@ To add a card deck:
 
 2.  Select the deck you want to add to your workbench.
 
-## <span id="src-12321856_safe-id-TmV0UVVzZXJJbnRlcmZhY2VPdmVydmlldy0jVXNyU2V0" class="confluence-anchor-link"></span>User Settings</span>
+## User Settings
 
 You can customize the NetQ application display, change their account
 password, and manage their workbenches.
 
-### Configure Display Settings</span>
+### Configure Display Settings
 
 The Display card contains the options for setting the application theme,
 language, time zone, and date formats. There are two themes available: a
@@ -790,11 +774,10 @@ To configure the display settings:
     {{% imgOld 49 %}}
     
     to change the time zone from the default.  
-    By default, the time zone is set to the user's local time zone. If a
-    time zone has not been selected, NetQ defaults to the current local
-    time zone where NetQ is installed. All time values are based on this
-    setting. This is displayed in the application header, and is based
-    on Greenwich Mean Time (GMT).  
+    By default, the time zone is set to the current local time zone
+    where NetQ is installed. All time values are based on this setting.
+    This is displayed in the application header, and is based on
+    Greenwich Mean Time (GMT).  
     
     {{% imgOld 50 %}}
     
@@ -806,36 +789,36 @@ To configure the display settings:
     <span style="color: #353744;"> <span style="color: #353744;"> . The
     following table presents a sample of time zones: </span> </span>
     
-    | Time Zone | Description                             | Abbreviation |
-    | --------- | --------------------------------------- | ------------ |
-    | GMT +12   | New Zealand Standard Time               | NST          |
-    | GMT +11   | Solomon Standard Time                   | SST          |
-    | GMT +10   | Australian Eastern Time                 | AET          |
-    | GMT +9:30 | Australia Central Time                  | ACT          |
-    | GMT +9    | Japan Standard Time                     | JST          |
-    | GMT +8    | China Taiwan Time                       | CTT          |
-    | GMT +7    | Vietnam Standard Time                   | VST          |
-    | GMT +6    | Bangladesh Standard Time                | BST          |
-    | GMT +5:30 | India Standard Time                     | IST          |
-    | GMT+5     | Pakistan Lahore Time                    | PLT          |
-    | GMT +4    | Near East Time                          | NET          |
-    | GMT +3:30 | Middle East Time                        | MET          |
-    | GMT +3    | Eastern African Time/Arab Standard Time | EAT/AST      |
-    | GMT +2    | Eastern European Time                   | EET          |
-    | GMT +1    | European Central Time                   | ECT          |
-    | GMT       | Greenwich Mean Time                     | GMT          |
-    | GMT -1    | Central African Time                    | CAT          |
-    | GMT -2    | Uruguay Summer Time                     | UYST         |
-    | GMT -3    | Argentina Standard/Brazil Eastern Time  | AGT/BET      |
-    | GMT -4    | Atlantic Standard Time/Puerto Rico Time | AST/PRT      |
-    | GMT -5    | Eastern Standard Time                   | EST          |
-    | GMT -6    | Central Standard Time                   | CST          |
-    | GMT -7    | Mountain Standard Time                  | MST          |
-    | GMT -8    | Pacific Standard Time                   | PST          |
-    | GMT -9    | Alaskan Standard Time                   | AST          |
-    | GMT -10   | Hawaiian Standard Time                  | HST          |
-    | GMT -11   | Samoa Standard Time                     | SST          |
-    | GMT -12   | New Zealand Standard Time               | NST          |
+    |           |                                         |         |
+    | --------- | --------------------------------------- | ------- |
+    | GMT +12   | New Zealand Standard Time               | NST     |
+    | GMT +11   | Solomon Standard Time                   | SST     |
+    | GMT +10   | Australian Eastern Time                 | AET     |
+    | GMT +9:30 | Australia Central Time                  | ACT     |
+    | GMT +9    | Japan Standard Time                     | JST     |
+    | GMT +8    | China Taiwan Time                       | CTT     |
+    | GMT +7    | Vietnam Standard Time                   | VST     |
+    | GMT +6    | Bangladesh Standard Time                | BST     |
+    | GMT +5:30 | India Standard Time                     | IST     |
+    | GMT+5     | Pakistan Lahore Time                    | PLT     |
+    | GMT +4    | Near East Time                          | NET     |
+    | GMT +3:30 | Middle East Time                        | MET     |
+    | GMT +3    | Eastern African Time/Arab Standard Time | EAT/AST |
+    | GMT +2    | Eastern European Time                   | EET     |
+    | GMT +1    | European Central Time                   | ECT     |
+    | GMT       | Greenwich Mean Time                     | GMT     |
+    | GMT -1    | Central African Time                    | CAT     |
+    | GMT -2    | Uruguay Summer Time                     | UYST    |
+    | GMT -3    | Argentina Standard/Brazil Eastern Time  | AGT/BET |
+    | GMT -4    | Atlantic Standard Time/Puerto Rico Time | AST/PRT |
+    | GMT -5    | Eastern Standard Time                   | EST     |
+    | GMT -6    | Central Standard Time                   | CST     |
+    | GMT -7    | Mountain Standard Time                  | MST     |
+    | GMT -8    | Pacific Standard Time                   | PST     |
+    | GMT -9    | Alaskan Standard Time                   | AST     |
+    | GMT -10   | Hawaiian Standard Time                  | HST     |
+    | GMT -11   | Samoa Standard Time                     | SST     |
+    | GMT -12   | New Zealand Standard Time               | NST     |
     
 
 6.  In the **Date Format** field, select the data and time format you
@@ -857,7 +840,7 @@ To configure the display settings:
 <span style="color: #353744;">  
 </span>
 
-### Change Your Password</span>
+### Change Your Password
 
 You can change your account password at any time should you suspect
 someone has hacked your account or your administrator requests you to do
@@ -897,7 +880,7 @@ To change your password:
     
     and selecting a workbench from the NetQ list.
 
-### Manage Your Workbenches</span>
+### Manage Your Workbenches
 
 You can view all of your workbenches in a list form, making it possible
 to manage various aspects of them. There are public and private
@@ -967,7 +950,7 @@ To manage your workbenches:
     
     and selecting a workbench from the NetQ list.
 
-## Basic Terminology and Acronyms</span>
+## Basic Terminology and Acronyms
 
 The following table covers some basic terms used throughout the NetQ
 user documentation.
@@ -1162,7 +1145,7 @@ Color is used to indicate links, options, and status within the UI.
 | Result with medium severity event   | Orange |
 | Result with low severity event      | Yellow |
 
-## Get Help</span>
+## Get Help
 
 You can access the online user documentation for the UI from the Main
 Menu. Just click

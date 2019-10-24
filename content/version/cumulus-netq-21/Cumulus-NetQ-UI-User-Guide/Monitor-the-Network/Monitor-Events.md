@@ -1,11 +1,11 @@
 ---
 title: Monitor Events
 author: Cumulus Networks
-weight: 145
+weight: 115
 aliases:
  - /display/NETQ21/Monitor+Events
- - /pages/viewpage.action?pageId=12321771
-pageID: 12321771
+ - /pages/viewpage.action?pageId=10465243
+pageID: 10465243
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -21,7 +21,7 @@ To focus on events from a single device perspective, refer to
 Switches](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches)
 </span> .
 
-## Monitor Alarms</span>
+## Monitor Alarms
 
 You can easily monitor critical events occurring across your network
 using the Alarms card. You can determine the number of events for the
@@ -30,7 +30,7 @@ in the network. The content of the cards in the workflow is described
 first, and then followed by common tasks you would perform using this
 card workflow.
 
-### Alarms Card Workflow Summary</span>
+### Alarms Card Workflow Summary
 
 The small Alarms card displays:
 
@@ -56,8 +56,8 @@ The small Alarms card displays:
 <td><p>Alarm trend</p></td>
 <td><p>Trend of alarm count, represented by an arrow:</p>
 <ul>
-<li><p><strong>Pointing upward and <strong>bright pink</strong></strong>: alarm count is higher than the last two time periods, an increasing trend</p></li>
-<li><p><strong>Pointing downward and <strong>green</strong></strong>: alarm count is lower than the last two time periods, a decreasing trend</p></li>
+<li><p><strong>Pointing upward and green</strong>: alarm count is higher than the last two time periods, an increasing trend</p></li>
+<li><p><strong>Pointing downward and bright pink</strong>: alarm count is lower than the last two time periods, a decreasing trend</p></li>
 <li><p><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady</p></li>
 </ul></td>
 </tr>
@@ -114,8 +114,8 @@ The medium Alarms card displays:
 <td><p>Alarm trend</p></td>
 <td><p>Trend of alarm count, represented by an arrow:</p>
 <ul>
-<li><p><strong>Pointing upward and <strong>bright pink</strong></strong>: alarm count is higher than the last two time periods, an increasing trend</p></li>
-<li><p><strong>Pointing downward and <strong>green</strong></strong>: alarm count is lower than the last two time periods, a decreasing trend</p></li>
+<li><p><strong>Pointing upward and green</strong>: alarm count is higher than the last two time periods, an increasing trend</p></li>
+<li><p><strong>Pointing downward and bright pink</strong>: alarm count is lower than the last two time periods, a decreasing trend</p></li>
 <li><p><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady</p></li>
 </ul></td>
 </tr>
@@ -166,8 +166,8 @@ The *System, Trace and Interfaces* tab displays:
 <td><p>Table</p></td>
 <td><p>Listing of items that match the filter selection for the selected alarm categories:</p>
 <ul>
-<li><p><strong>Events by Most Recent</strong>: Most recent event are listed at the top</p></li>
-<li><p><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top</p></li>
+<li><p>Events by Most Recent: Most recent event are listed at the top</p></li>
+<li><p>Devices by Event Count: Devices with the most events are listed at the top</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -231,7 +231,7 @@ The full screen Alarms card provides tabs for all events.
 </tbody>
 </table>
 
-### View Alarm Status Summary</span>
+### View Alarm Status Summary
 
 A summary of the critical alarms in the network includes the number of
 alarms, a trend indicator, a performance indicator, and a distribution
@@ -247,7 +247,7 @@ average number of alarms during this time period. This would indicate a
 need to investigate further. Note that with such a small number of
 alarms, the rating may be a bit skewed.
 
-### View the Distribution of Alarms</span>
+### View the Distribution of Alarms
 
 It is helpful to know where and when alarms are occurring in your
 network. The Alarms card workflow enables you to see the distribution of
@@ -259,12 +259,12 @@ to view all of the charts.
 
 {{% imgOld 11 %}}
 
-### Monitor System and Interface Alarm Details</span>
+### Monitor System and Interface Alarm Details
 
 The Alarms card workflow enables users to easily view and track critical
 severity system and interface alarms occurring anywhere in your network.
 
-#### View All System and Interface Alarms</span>
+#### View All System and Interface Alarms
 
 You can view the alarms associated with the system and interfaces using
 the Alarms card workflow. You can sort alarms based on their occurrence
@@ -281,7 +281,7 @@ the associated alarms is also displayed.
 By default, the list of the most recent alarms for the systems and
 interfaces is displayed when viewing the large cards.
 
-#### View Devices with the Most Alarms</span>
+#### View Devices with the Most Alarms
 
 You can filter instead for the devices that have the most alarms.
 
@@ -290,7 +290,7 @@ then select **Devices by event count** from the dropdown.
 
 {{% imgOld 13 %}}
 
-#### Filter Alarms by System or Interface</span>
+#### Filter Alarms by System or Interface
 
 You can focus your view to include alarms for selected system or
 interface categories.
@@ -312,7 +312,7 @@ In this example, we removed the Services from the event listing.
 
 {{% imgOld 14 %}}
 
-#### Compare Alarms with a Prior Time</span>
+#### Compare Alarms with a Prior Time
 
 You can change the time period for the data to compare with a prior
 time. If the same devices are consistently indicating the most alarms,
@@ -350,7 +350,7 @@ To compare two time periods:
     has the most alarms in each time period, so it might be worth
     investigating this device in more detail.
 
-### View All Events</span>
+### View All Events
 
 You can view all events in the network either by clicking the **Show All
 Events** link under the table on the large Alarm Events card, or by
@@ -368,7 +368,7 @@ To return to your workbench, click
 
 in the top right corner of the card.
 
-## Monitor Info Events</span>
+## Monitor Info Events
 
 You can easily monitor warning, info, and debug severity events
 occurring across your network using the Info card. You can determine the
@@ -377,7 +377,7 @@ protocols and services components in the network. The content of the
 cards in the workflow is described first, and then followed by common
 tasks you would perform using this card workflow.
 
-### Info Card Workflow Summary</span>
+### Info Card Workflow Summary
 
 The Info card workflow enables users to easily view and track
 informational alarms occurring anywhere in your network.
@@ -574,7 +574,7 @@ The full screen Info card provides tabs for all events.
 </tbody>
 </table>
 
-### View Info Status Summary</span>
+### View Info Status Summary
 
 A summary of the informational events occurring in the network can be
 found on the small, medium, and large Info cards. Additional details are
@@ -605,7 +605,7 @@ Hover over segment of chart to view the count for each type.
 To view the summary with the large Info card, open the card. The left
 side of the card provides the same capabilities as the medium Info card.
 
-### Compare Timing of Info and Alarm Events</span>
+### Compare Timing of Info and Alarm Events
 
 While you can see the relative relationship between info and alarm
 events on the small Info card, the medium and large cards provide
@@ -628,7 +628,7 @@ and distributions. Some other possible scenarios:
     severity debug are seen. You would not expect to see an increase in
     critical alarms.
 
-### View All Info Events Sorted by Time of Occurrence</span>
+### View All Info Events Sorted by Time of Occurrence
 
 You can view all info events using the large Info card. Open the large
 card and confirm the **Events By Most Recent** option is selected in the
@@ -639,7 +639,7 @@ an earlier time within the selected time period for the card.
 
 {{% imgOld 34 %}}
 
-### View Devices with the Most Info Events</span>
+### View Devices with the Most Info Events
 
 You can filter instead for the devices that have the most info events by
 selecting the **Devices by Event Count** option from the filter above
@@ -649,7 +649,7 @@ the table.
 
 {{% imgOld 36 %}}
 
-### View All Events</span>
+### View All Events
 
 You can view all events in the network either by clicking the **Show All
 Events** link under the table on the large Info Events card, or by
@@ -667,9 +667,9 @@ To return to your workbench, click
 
 in the top right corner of the card.
 
-## Events Reference</span>
+## Events Reference
 
-The following table lists all event messages organized by type, by
+The following table lists all event messages organized by severity, by
 default. Click the column header to sort the list by that
 characteristic. Click
 
@@ -782,111 +782,104 @@ Hardware](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-
 <td><p>Sync state changed from in sync to not sync for leaf06</p></td>
 </tr>
 <tr class="even">
-<td><p>ptm</p></td>
-<td><p>Physical interface cabling does not match configuration specified in <em>topology.dot</em> file</p></td>
-<td><p>Critical</p></td>
-<td><p>PTM cable status failed</p></td>
-<td><p>PTM cable status failed</p></td>
-</tr>
-<tr class="odd">
 <td><p>sensor</p></td>
 <td><p>A fan or power supply unit sensor has changed state</p></td>
 <td><p>Critical</p></td>
 <td><p>Sensor @sensor state changed from @old_s_state to @new_s_state</p></td>
 <td><p>Sensor fan state changed from up to down</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>sensor</p></td>
 <td><p>A temperature sensor has crossed the maximum threshold for that sensor</p></td>
 <td><p>Critical</p></td>
 <td><p>Sensor @sensor max value @new_s_max exceeds threshold @new_s_crit</p></td>
 <td><p>Sensor temp max value 110 exceeds the threshold 95</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>sensor</p></td>
 <td><p>A temperature sensor has crossed the minimum threshold for that sensor</p></td>
 <td><p>Critical</p></td>
 <td><p>Sensor @sensor min value @new_s_lcrit fall behind threshold @new_s_min</p></td>
 <td><p>Sensor psu min value 10 fell below threshold 25</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>services</p></td>
 <td><p>A service status changed from down to up</p></td>
 <td><p>Critical</p></td>
 <td><p>Service @name status changed from @old_status to @new_status</p></td>
 <td><p>Service bgp status changed from down to up</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>services</p></td>
 <td><p>A service status changed from up to down</p></td>
 <td><p>Critical</p></td>
 <td><p>Service @name status changed from @old_status to @new_status</p></td>
 <td><p>Service lldp status changed from up to down</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>agent</p></td>
 <td><p>NetQ Agent state changed to Fresh</p></td>
 <td><p>Info</p></td>
 <td><p>Agent state changed to fresh</p></td>
 <td><p>Agent state changed to fresh</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>bgp</p></td>
 <td><p>BGP Session state changed from Failed to Established</p></td>
 <td><p>Info</p></td>
 <td><p>BGP session with peer @peer @peerhost @neighbor vrf @vrf session state changed from Failed to Established</p></td>
 <td><p>BGP session with peer swp5 spine02 spine03 vrf default session state changed from Failed to Established</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>bgp</p></td>
 <td><p>BGP Session state changed from down to up</p></td>
 <td><p>Info</p></td>
 <td><p>BGP session with peer @peer @neighbor vrf @vrf state changed from down to up</p></td>
 <td><p>BGP session with peer leaf03 leaf04 vrf mgmt state changed from down to up</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>bgp</p></td>
 <td><p>The reset time for a BGP session changed</p></td>
 <td><p>Info</p></td>
 <td><p>BGP session with peer @peer @neighbor vrf @vrf reset time changed from @old_last_reset_time to @new_last_reset_time</p></td>
 <td><p>BGP session with peer spine03 swp9 vrf vrf2 reset time changed from 1559427694 to 1559837484</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>cable</p></td>
 <td><p>The speed setting for a given port changed</p></td>
 <td><p>Info</p></td>
 <td><p>@ifname speed changed from @old_speed to @new_speed</p></td>
 <td><p>swp9 speed changed from 10 to 40</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>cable</p></td>
 <td><p>The transceiver status for a given port changed</p></td>
 <td><p>Info</p></td>
 <td><p>@ifname transceiver changed from @old_transceiver to @new_transceiver</p></td>
 <td><p>swp4 transceiver changed from disabled to enabled</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>cable</p></td>
 <td><p>The vendor of a given transceiver changed</p></td>
 <td><p>Info</p></td>
 <td><p>@ifname vendor name changed from @old_vendor_name to @new_vendor_name</p></td>
 <td><p>swp23 vendor name changed from Broadcom to Mellanox</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>cable</p></td>
 <td><p>The part number of a given transceiver changed</p></td>
 <td><p>Info</p></td>
 <td><p>@ifname part number changed from @old_part_number to @new_part_number</p></td>
 <td><p>swp7 part number changed from FP1ZZ5654002A to MSN2700-CS2F0</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>cable</p></td>
 <td><p>The serial number of a given transceiver changed</p></td>
 <td><p>Info</p></td>
 <td><p>@ifname serial number changed from @old_serial_number to @new_serial_number</p></td>
 <td><p>swp4 serial number changed from 571254X1507020 to MT1552X12041</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>cable</p></td>
 <td><p>The status of forward error correction (FEC) support for a given port changed</p></td>
 <td><p>Info</p></td>
@@ -894,124 +887,117 @@ Hardware](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-
 <td><p>swp12 supported fec changed from supported to unsupported</p>
 <p>swp12 supported fec changed from unsupported to supported</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>cable</p></td>
 <td><p>The advertised support for FEC for a given port changed</p></td>
 <td><p>Info</p></td>
 <td><p>@ifname supported fec changed from @old_advertised_fec to @new_advertised_fec</p></td>
 <td><p>swp24 supported FEC changed from advertised to not advertised</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>cable</p></td>
 <td><p>The FEC status for a given port changed</p></td>
 <td><p>Info</p></td>
 <td><p>@ifname fec changed from @old_fec to @new_fec</p></td>
 <td><p>swp15 fec changed from disabled to enabled</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>clag</p></td>
 <td><p>CLAG remote peer state changed from down to up</p></td>
 <td><p>Info</p></td>
 <td><p>Peer state changed to up</p></td>
 <td><p>Peer state changed to up</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>clag</p></td>
 <td><p>Local CLAG host state changed from down to up</p></td>
 <td><p>Info</p></td>
 <td><p>Clag state changed from down to up</p></td>
 <td><p>Clag state changed from down to up</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>clag</p></td>
 <td><p>CLAG bond in Conflicted state was updated with new bonds</p></td>
 <td><p>Info</p></td>
 <td><p>Clag conflicted bond changed from @old_conflicted_bonds to @new_conflicted_bonds</p></td>
 <td><p>Clag conflicted bond changed from swp7 swp8 to @swp9 swp10</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>clag</p></td>
 <td><p>CLAG bond changed state from protodown to up state</p></td>
 <td><p>Info</p></td>
 <td><p>Clag conflicted bond changed from @old_state_protodownbond to @new_state_protodownbond</p></td>
 <td><p>Clag conflicted bond changed from protodown to up</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>configdiff</p></td>
 <td><p>Configuration file has been modified</p></td>
 <td><p>Info</p></td>
 <td><p>@hostname config file @type was modified</p></td>
 <td><p>spine03 config file /etc/frr/frr.conf was modified</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>configdiff</p></td>
 <td><p>Configuration file has been created</p></td>
 <td><p>Info</p></td>
 <td><p>@hostname config file @type was created</p></td>
 <td><p>leaf12 config file /etc/lldp.d/README.conf was created</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>evpn</p></td>
 <td><p>A VNI was configured and moved from the down state to the up state</p></td>
 <td><p>Info</p></td>
 <td><p>VNI @vni state changed from down to up</p></td>
 <td><p>VNI 36 state changed from down to up</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>evpn</p></td>
 <td><p>The kernel state changed on a VNI</p></td>
 <td><p>Info</p></td>
 <td><p>VNI @vni kernel state changed from @old_in_kernel_state to @new_in_kernel_state</p></td>
 <td><p>VNI 3 kernel state changed from down to up</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>evpn</p></td>
 <td><p>A VNI state changed from not advertising all VNIs to advertising all VNIs</p></td>
 <td><p>Info</p></td>
 <td><p>VNI @vni vni state changed from @old_adv_all_vni_state to @new_adv_all_vni_state</p></td>
 <td><p>VNI 11 vni state changed from false to true</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>link</p></td>
 <td><p>Link operational state changed from down to up</p></td>
 <td><p>Info</p></td>
 <td><p>HostName @hostname changed state from @old_state to @new_state Interface:@ifname</p></td>
 <td><p>HostName leaf04 changed state from down to up Interface:swp11</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>lldp</p></td>
 <td><p>Local LLDP host has new neighbor information</p></td>
 <td><p>Info</p></td>
 <td><p>LLDP Session with host @hostname and @ifname modified fields @changed_fields</p></td>
 <td><p>LLDP Session with host leaf02 swp6 modified fields leaf06 swp21</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>lldp</p></td>
 <td><p>Local LLDP host has new peer interface name</p></td>
 <td><p>Info</p></td>
 <td><p>LLDP Session with host @hostname and @ifname @old_peer_ifname changed to @new_peer_ifname</p></td>
 <td><p>LLDP Session with host spine01 and swp5 swp12 changed to port12</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>lldp</p></td>
 <td><p>Local LLDP host has new peer hostname</p></td>
 <td><p>Info</p></td>
 <td><p>LLDP Session with host @hostname and @ifname @old_peer_hostname changed to @new_peer_hostname</p></td>
 <td><p>LLDP Session with host leaf03 and swp2 leaf07 changed to exit01</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>ntp</p></td>
 <td><p>NTP sync state changed from not in sync to in sync</p></td>
 <td><p>Info</p></td>
 <td><p>Sync state changed from @old_state to @new_state for @hostname</p></td>
 <td><p>Sync state changed from not sync to in sync for leaf06</p></td>
-</tr>
-<tr class="even">
-<td><p>ptm</p></td>
-<td><p>Physical interface cabling matches configuration specified in <em>topology.dot</em> file</p></td>
-<td><p>Critical</p></td>
-<td><p>PTM cable status passed</p></td>
-<td><p>PTM cable status passed</p></td>
 </tr>
 <tr class="odd">
 <td><p>sensor</p></td>

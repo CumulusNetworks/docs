@@ -1,11 +1,11 @@
 ---
 title: Monitor Network Protocols and Services
 author: Cumulus Networks
-weight: 147
+weight: 117
 aliases:
  - /display/NETQ21/Monitor+Network+Protocols+and+Services
- - /pages/viewpage.action?pageId=12321126
-pageID: 12321126
+ - /pages/viewpage.action?pageId=10464262
+pageID: 10464262
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -27,8 +27,8 @@ its own card workflow containing:
   - full screen cards displaying attributes of all associated switches,
     sessions, alarms or other relevant data.
 
-Refer to [NetQ User Interface
-Overview](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview)
+Refer to [NetQ User Interface Overview (2.1.0
+version)](https://docs-rip.cumulusnetworks.com/pages/viewpage.action?pageId=10464141)
 for information about navigating the card workflows and performing
 common actions.
 

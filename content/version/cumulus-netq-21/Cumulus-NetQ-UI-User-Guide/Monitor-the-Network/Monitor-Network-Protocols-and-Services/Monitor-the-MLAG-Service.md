@@ -1,11 +1,11 @@
 ---
 title: Monitor the MLAG Service
 author: Cumulus Networks
-weight: 167
+weight: 153
 aliases:
  - /display/NETQ21/Monitor+the+MLAG+Service
- - /pages/viewpage.action?pageId=12321372
-pageID: 12321372
+ - /pages/viewpage.action?pageId=10464810
+pageID: 10464810
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -26,15 +26,15 @@ as CLAG, MC-LAG or VPC. The Cumulus NetQ UI uses the CLAG terminology.
 
 {{%/notice%}}
 
-## Monitor the CLAG Service (All Sessions)</span>
+## Monitor the CLAG Service (All Sessions)
 
 With NetQ, you can monitor the number of nodes running the CLAG service,
 view sessions running, and view alarms triggered by the CLAG service.
 For an overview and how to configure CLAG in your data center network,
 refer to [Multi-Chassis Link Aggregation -
-MLAG](/display/NETQ21/Multi-Chassis+Link+Aggregation+-+MLAG).
+MLAG](https://docs-rip.cumulusnetworks.com/display/NETQ21/Multi-Chassis+Link+Aggregation+-+MLAG).
 
-### CLAG Service Card Workflow Summary</span>
+### CLAG Service Card Workflow Summary
 
 The small CLAG Service card displays:
 
@@ -330,7 +330,7 @@ sessions, and all alarms.
 </tbody>
 </table>
 
-### View Service Status Summary</span>
+### View Service Status Summary
 
 A summary of the CLAG service is available from the CLAG Service card
 workflow, including the number of nodes running the service, the number
@@ -342,7 +342,7 @@ To view the summary, open the small CLAG Service card.
 
 For more detail, select a different size CLAG Service card.
 
-### View the Distribution of Sessions and Alarms</span>
+### View the Distribution of Sessions and Alarms
 
 It is useful to know the number of network nodes running the CLAG
 protocol over a period of time, as it gives you insight into the amount
@@ -358,7 +358,7 @@ To view these distributions, open the medium CLAG Service card.
 If a visual correlation is apparent, you can dig a little deeper with
 the large CLAG Service card tabs.
 
-### View Devices with the Most CLAG Sessions</span>
+### View Devices with the Most CLAG Sessions
 
 You can view the load from CLAG on your switches using the large CLAG
 Service card. This data enables you to see which switches are handling
@@ -406,7 +406,7 @@ To compare this data with the same data at a previous time:
     running CLAG than previously, looking for changes in the topology,
     and so forth.
 
-### View Devices with the Most Unestablished CLAG Sessions</span>
+### View Devices with the Most Unestablished CLAG Sessions
 
 You can identify switches that are experiencing difficulties
 establishing CLAG sessions; both currently and in the past.
@@ -445,12 +445,12 @@ include:
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
     probable causes. Refer to [Monitor
-    Switches](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
+    Switches](https://docs-rip.cumulusnetworks.com/pages/viewpage.action?pageId=10460693).
 
   - Click **Show All Sessions** to investigate all CLAG sessions with
     events in the full screen card.
 
-### View Switches with the Most CLAG-related Alarms</span>
+### View Switches with the Most CLAG-related Alarms
 
 Switches experiencing a large number of CLAG alarms may indicate a
 configuration or performance issue that needs further investigation. You
@@ -498,7 +498,7 @@ include:
   - Click **Show All Sessions** to investigate all CLAG sessions with
     alarms in the full screen card.
 
-### View All CLAG Events</span>
+### View All CLAG Events
 
 The CLAG Service card workflow enables you to view all of the CLAG
 events in the designated time period.
@@ -536,7 +536,7 @@ include:
     
     in the top right corner
 
-### View Detailed Information About All Switches Running CLAG</span>
+### View Detailed Information About All Switches Running CLAG
 
 You can view all stored attributes of all switches running CLAG in your
 network in the full-screen card.
@@ -552,7 +552,7 @@ To return to your workbench, click
 
 in the top right corner.
 
-### Take Actions on Data Displayed in Results List</span>
+### Take Actions on Data Displayed in Results List
 
 In the full screen BGP Service card, you can determine which results are
 displayed in the results list, and which are exported.
@@ -579,13 +579,13 @@ You can perform the following actions on the results list:
 
 To return to original display of results, click the associated tab.
 
-## Monitor a Single CLAG Session</span>
+## Monitor a Single CLAG Session
 
 With NetQ, you can monitor the number of nodes running the CLAG service,
 view switches with the most peers alive and not alive, and view alarms
 triggered by the CLAG service. For an overview and how to configure CLAG
 in your data center network, refer to [Multi-Chassis Link Aggregation -
-MLAG](/display/NETQ21/Multi-Chassis+Link+Aggregation+-+MLAG).
+MLAG](https://docs.cumulusnetworks.com/display/DOCS/Multi-Chassis+Link+Aggregation+-+MLAG).
 
 {{%notice info%}}
 
@@ -594,7 +594,7 @@ Service (all sessions) card and double-click on a session.
 
 {{%/notice%}}
 
-### Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period
 
 On the medium and large single CLAG session cards, the status of the
 peers is represented in heat maps stacked vertically; one for peers that
@@ -888,7 +888,7 @@ or secondary
 </tr>
 <tr class="odd">
 <td><p>Configuration File</p></td>
-<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown. When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
+<td><p>When File is selected, the configuration file as it was at the selected time is shown.</p>
 <p><strong>Note</strong>: If no configuration file changes have been made, the card shows no results at all.</p></td>
 </tr>
 </tbody>
@@ -977,7 +977,7 @@ and all events.
 </tbody>
 </table>
 
-### View Session Status Summary</span>
+### View Session Status Summary
 
 A summary of the CLAG session is available from the CLAG Session card
 workflow, showing the node and its peer and current status.
@@ -1000,7 +1000,7 @@ To view the summary:
     right example, we see that the leaf03 switch plays the primary role
     in this session with leaf04.
 
-### View CLAG Session Peering State Changes </span>
+### View CLAG Session Peering State Changes
 
 You can view the peering state for a given CLAG session from the medium
 and large CLAG Session cards. For a given time period, you can determine
@@ -1036,43 +1036,7 @@ role, peer role, state, and interface, CLAG system MAC address, active
 backup IP address, single, dual, conflicted, and protocol down bonds,
 and the VXLAN anycast address identifying the session in more detail.
 
-### View Changes to the CLAG Service Configuration File</span>
-
-Each time a change is made to the configuration file for the CLAG
-service, NetQ logs the change and enables you to compare it with the
-last version. This can be useful when you are troubleshooting potential
-causes for alarms or sessions losing their connections.
-
-To view the configuration file changes:
-
-1.  Open the large CLAG Session card.
-
-2.  Hover over the card and click
-    
-    {{% imgOld 78 %}}
-    
-    to open the **Configuration File Evolution** tab.
-
-3.  Select the time of interest on the left; when a change may have
-    impacted the performance. Scroll down if needed.
-    
-    {{% imgOld 79 %}}
-
-4.  Choose between the **File** view and the **Diff** view (selected
-    option is dark; File by default).  
-    The File view displays the content of the file for you to review.
-    
-    {{% imgOld 80 %}}
-    
-    The Diff view displays the changes between this version (on left)
-    and the most recent version (on right) side by side. The changes are
-    highlighted in red and green. In this example, we don't have any
-    changes after this first creation, so the same file is shown on both
-    sides and no highlighting is present.
-    
-    {{% imgOld 81 %}}
-
-### All CLAG Session Details</span>
+### View All CLAG Session Details
 
 You can view all stored attributes of all of the CLAG sessions
 associated with the two devices on this card.
@@ -1080,7 +1044,7 @@ associated with the two devices on this card.
 To view all session details, open the full screen CLAG Session card, and
 click the **All CLAG Sessions** tab.
 
-{{% imgOld 82 %}}
+{{% imgOld 78 %}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -1101,11 +1065,11 @@ include:
 
   - Return to your workbench by clicking
     
-    {{% imgOld 83 %}}
+    {{% imgOld 79 %}}
     
     in the top right corner
 
-### View All Events</span>
+### View All Events
 
 You can view all of the alarm and info events for the two devices on
 this card.
@@ -1113,7 +1077,7 @@ this card.
 To view all events, open the full screen CLAG Session card, and click
 the **All Events** tab.
 
-{{% imgOld 84 %}}
+{{% imgOld 80 %}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -1136,7 +1100,7 @@ include:
 
   - Return to your workbench by clicking
     
-    {{% imgOld 85 %}}
+    {{% imgOld 81 %}}
     
     in the top right corner
 

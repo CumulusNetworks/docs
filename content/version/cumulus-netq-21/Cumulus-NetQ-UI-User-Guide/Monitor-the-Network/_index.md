@@ -1,11 +1,11 @@
 ---
 title: Monitor the Network
 author: Cumulus Networks
-weight: 93
+weight: 59
 aliases:
  - /display/NETQ21/Monitor+the+Network
- - /pages/viewpage.action?pageId=12321070
-pageID: 12321070
+ - /pages/viewpage.action?pageId=10464195
+pageID: 10464195
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21

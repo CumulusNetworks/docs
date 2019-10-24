@@ -11,87 +11,68 @@ version: '2.1'
 imgData: cumulus-netq-21
 siteSlug: cumulus-netq-21
 ---
-The NetQ 2.1 <span style="color: #353744;"> graphical user interface
-(UI) </span> enables you to access NetQ capabilities through a web
+The NetQ 2.1 graphical user interface
+(UI)  enables you to access NetQ capabilities through a web
 browser as opposed to through a terminal window using the
-<span style="color: #353744;"> Command Line Interface (CLI). Visual
+Command Line Interface (CLI). Visual
 representations of the health of the network, inventory, and system
 events make it easy to both find faults and misconfigurations and to fix
-them. </span>
+them.
 
-<span style="color: #333333;"> The UI is supported on Google Chrome.
+The UI is supported on Google Chrome.
 Other popular browsers may be used, but have not been tested and may
-have some presentation issues. </span>
+have some presentation issues. 
 
 {{%notice tip%}}
 
-<span style="color: #333333;"> Before you get started, you should refer
-to the [release
-notes](https://wiki.cumulusnetworks.com/display/PC/NetQ+2.0+EA+User+Documentation)
-for this version. </span>
+Before you get started, you should refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360017779214)
+for this version.
 
 {{%/notice%}}
 
 ## Access the NetQ UI
 
-<span style="color: #353744;"> Logging in to the NetQ UI is as easy as
-opening any web page. </span>
+Logging in to the NetQ UI is as easy as opening any web page. 
 
-<span style="color: #353744;"> To log in to the UI: </span>
+To log in to the UI: 
 
-1.  <span style="color: #353744;"> Open a new Internet browser window or
-    tab. </span>
+1.  Open a new Internet browser window or tab. 
 
-2.  <span style="color: #353744;"> Enter the following URL into the
-    Address bar: *http://* </span> *<span style="color: #353744;"> \<
-    </span> netq-platform/appliance-ipaddress\>:32666.*
+2.  Enter the following URL into the Address bar: http://\<netq-platform/appliance-ipaddress\>:32666.
     
     {{% imgOld 0 %}}
 
-3.  <span style="color: #353744;"> Select your language of choice
+3.  Select your language of choice
     (English or Spanish) from the dropdown at the top of the window.  
-    </span>
     
     {{% imgOld 1 %}}
     
-      
-
-4.  <span style="color: #353744;"> Enter your username and then your
-    password ( </span> *admin, admin* by default).
-    <span style="color: #353744;">  
-    </span>
+4.  Enter your username and then your password (*admin, admin* by default).
     
     {{% imgOld 2 %}}
     
-      
-    <span style="color: #353744;"> The default Cumulus Workbench opens,
+    The default Cumulus Workbench opens,
     with your username showing in the upper right corner of the
-    application. </span>
+    application.
 
-<span style="color: #353744;"> To log out of the UI: </span>
+To log out of the UI:
 
-1.  <span style="color: #353744;"> Click the user icon at the top right
-    of the application. </span>
+1.  Click the user icon at the top right of the application.
 
-2.  <span style="color: #353744;"> Select </span> **Log Out.  
-    **
+2.  Select **Log Out**.
     
-    **{{% imgOld 3 %}}**
-    
-    **  
-    **
+    {{% imgOld 3 %}}
 
 ## Application Layout
 
 The NetQ UI contains two areas:
 
-  - **Application Header** (1): Contains the main menu, navigation
-    history, search capabilities, NetQ version, quick health status
-    chart, local time zone, and user account information.
-
-  - **Workbench** (2): Contains a task bar and content cards (with
-    status and configuration information about your network and its
-    various components).
+- **Application Header** (1): Contains the main menu, navigation
+history, search capabilities, NetQ version, quick health status
+chart, local time zone, and user account information.
+- **Workbench** (2): Contains a task bar and content cards (with
+status and configuration information about your network and its
+various components).
 
 {{% imgOld 4 %}}
 
@@ -103,18 +84,15 @@ Found in the application header, click
 
 to open the main menu which provides navigation to:
 
-  - **Favorites**: contains list of links to workbenches that you have
-    designated as favorites; Home is listed by default
-
-  - **NetQ**: contains list of links to all workbenches in the
-    application
-
-  - **Network**: contains list of links to tabular data about various
-    network elements; return to a workbench by selecting it from the
-    NetQ menu
-
-  - **Admin**: contains link to user documentation and application
-    management
+- **Favorites**: contains list of links to workbenches that you have
+designated as favorites; Home is listed by default
+- **NetQ**: contains list of links to all workbenches in the
+application
+- **Network**: contains list of links to tabular data about various
+network elements; return to a workbench by selecting it from the
+NetQ menu
+- **Admin**: contains link to user documentation and application
+management
 
 {{% imgOld 6 %}}
 
@@ -162,9 +140,9 @@ To create a new search:
     
     {{%notice info%}}
     
-    If you have more matches than fit in the window, click the **See All
-    \# Results** link to view all found matches. The count represents
-    the number of devices found. It does not include cards found.
+If you have more matches than fit in the window, click the **See All
+\# Results** link to view all found matches. The count represents
+the number of devices found. It does not include cards found.
     
     {{%/notice%}}
 
@@ -184,9 +162,9 @@ To re-run a recent search:
     
     {{%notice info%}}
     
-    You may need to click **See All \# Results** to find the desired
-    search. If you do not find it in the list, you may still be able to
-    find it in the **Navigation History**.
+You may need to click **See All \# Results** to find the desired
+search. If you do not find it in the list, you may still be able to
+find it in the **Navigation History**.
     
     {{%/notice%}}
 
@@ -208,13 +186,11 @@ minutes.
 ## Workbenches
 
 A workbench is comprised of a given set of cards. In this release, a
-preconfigured default workbench, Cumulus Workbench, is available to get
+pre-configured default workbench, Cumulus Workbench, is available to get
 you started. It contains Device Inventory, Switch Inventory, Alarm and
 Info Events, and Network Health cards. On initial login, this workbench
 is opened. You can modify a workbench by adding or removing cards or
-card decks, as described in <span style="color: #ff0000;"> [Add or
-Remove a Card](#src-10465424_NetQUserInterfaceOverview-AddDelCard)
-</span> .
+card decks, as described in [Add or Remove a Card](#add-or-remove-a-card).
 
 ## Cards
 
@@ -299,8 +275,7 @@ several ways.
 
 *Sort Data by Column*
 
-Hover over a column header and click <span style="color: #353744;">
-</span>
+Hover over a column header and click
 
 {{% imgOld 17 %}}
 
@@ -308,7 +283,7 @@ Hover over a column header and click <span style="color: #353744;">
 
 *Choose Columns to Display*
 
-1.  Click <span style="color: #353744;"> </span>
+1.  Click 
     
     {{% imgOld 18 %}}
     
@@ -322,13 +297,13 @@ Hover over a column header and click <span style="color: #353744;">
     
     {{%notice tip%}}
     
-    When you have a large number of possible columns for display, you
-    can search for the column name using the **Quick Filter** to find
-    and select or deselect the column more quickly.
+When you have a large number of possible columns for display, you
+can search for the column name using the **Quick Filter** to find
+and select or deselect the column more quickly.
     
     {{%/notice%}}
 
-4.  Click <span style="color: #353744;"> </span>
+4.  Click 
     
     {{% imgOld 19 %}}
     
@@ -346,8 +321,8 @@ Hover over a column header and click <span style="color: #353744;">
     
     {{%notice tip%}}
     
-    You use the Quick Filter to find the column when you have a large
-    number of columns.
+You use the Quick Filter to find the column when you have a large
+number of columns.
     
     {{%/notice%}}
 
@@ -357,13 +332,13 @@ Hover over a column header and click <span style="color: #353744;">
     
     {{% imgOld 21 %}}
 
-5.  Click <span style="color: #353744;"> </span>
+5.  Click 
     
     {{% imgOld 22 %}}
     
     to close the selection box and view the updated data grid.
 
-*<span style="color: #36424a;"> Take Actions on Items </span>*
+*Take Actions on Items*
 
 In the full screen cards, you can determine which results are displayed
 in the results list, and which are exported.
@@ -416,10 +391,8 @@ To export the data:
 
 You can quickly export all data to a .csv file in one of two ways:
 
-  - Click **Export** at top of list, and click **Export** in the dialog,
-    or
-
-  - Select one item, click **Select All**, click **Export Selected**.
+- Click **Export** at top of list, and click **Export** in the dialog, or
+- Select one item, click **Select All**, click **Export Selected**.
 
 {{%/notice%}}
 
@@ -495,7 +468,7 @@ To change the time period for a card:
 
 1.  Hover over any card.
 
-2.  Click <span style="color: #353744;"> </span>
+2.  Click 
     
     {{% imgOld 27 %}}
     
@@ -610,43 +583,32 @@ particular aspect of your network and are a linked set of each size
 card—a small card, a medium card, one or more large cards, and one or
 more full screen cards. The following card workflows are available:
 
-  - Network Health: network-wide view of network health
-
-  - Devices|Switches: health of a given switch
-
-  - Inventory|Devices: information about all switches and hosts in the
-    network
-
-  - Inventory|Switches: information about the components on a given
-    switch
-
-  - Events|Alarms: information about all critical severity events in the
-    system
-
-  - Events|Info: information about all warning, info, and debug events
-    in the system
-
-  - Network Services: information about the BGP, CLAG, EVPN, and LLDP
-    services and sessions
-
-  - Validation Request (and Results): network-wide validation of network
-    protocols and services
-
-  - Trace Request (and Results): find available paths between two
-    devices in the network fabric
+- Network Health: network-wide view of network health
+- Devices|Switches: health of a given switch
+- Inventory|Devices: information about all switches and hosts in the
+network
+- Inventory|Switches: information about the components on a given
+switch
+- Events|Alarms: information about all critical severity events in the
+system
+- Events|Info: information about all warning, info, and debug events
+in the system
+- Network Services: information about the BGP, CLAG, EVPN, and LLDP
+services and sessions
+- Validation Request (and Results): network-wide validation of network
+protocols and services
+- Trace Request (and Results): find available paths between two
+devices in the network fabric
 
 ### Access a Card Workflow
 
 You can access a card workflow in multiple ways:
 
-  - For workbenches available from the main menu, open the workbench
-    that contains the card flow
-
-  - Open a prior search
-
-  - Add it to a workbench
-
-  - Search for it
+- For workbenches available from the main menu, open the workbench
+that contains the card flow
+- Open a prior search
+- Add it to a workbench
+- Search for it
 
 {{%notice tip%}}
 
@@ -657,7 +619,7 @@ need to scroll down to see the card you have just added.
 
 To open the card workflow through an existing workbench:
 
-1.  Click <span style="color: #353744;"> </span>
+1.  Click 
     
     {{% imgOld 39 %}}
     
@@ -681,7 +643,7 @@ The card appears on the current workbench, at the bottom.
 
 To access the card workflow by adding the card:
 
-1.  Click <span style="color: #353744;"> </span>
+1.  Click 
     
     {{% imgOld 41 %}}
     
@@ -715,12 +677,11 @@ provided by default:
 
   - Inventory: includes the medium Inventory | Switches and Inventory |
     Devices cards
-
   - Events: includes the medium Events | Alarms and Events | Info cards
 
 To add a card deck:
 
-1.  Click <span style="color: #353744;"> </span>
+1.  Click 
     
     {{% imgOld 43 %}}
     
@@ -760,7 +721,7 @@ To configure the display settings:
     
     {{% imgOld 46 %}}
 
-4.  In the **Theme** field, click <span style="color: #353744;"> </span>
+4.  In the **Theme** field, click 
     
     {{% imgOld 47 %}}
     
@@ -781,15 +742,14 @@ To configure the display settings:
     
     {{% imgOld 50 %}}
     
-    ***Note**: You can also change the time zone from the header
-    display.*  
+    **Note**: You can also change the time zone from the header
+    display.  
     If your deployment is not local to you (for example, you want to
     view the data from the perspective of a data center in another time
     zone) you can change the display to another time zone
-    <span style="color: #353744;"> <span style="color: #353744;"> . The
-    following table presents a sample of time zones: </span> </span>
+    . The following table presents a sample of time zones: 
     
-    |           |                                         |         |
+    |  Zone  |   Description  |  Abbreviation  |
     | --------- | --------------------------------------- | ------- |
     | GMT +12   | New Zealand Standard Time               | NST     |
     | GMT +11   | Solomon Standard Time                   | SST     |
@@ -830,15 +790,11 @@ To configure the display settings:
     The four options include the date displayed in words or abbreviated
     with numbers, and either a 12- or 24-hour time representation.
 
-7.  Return to your workbench by clicking <span style="color: #353744;">
-    </span>
+7.  Return to your workbench by clicking 
     
     {{% imgOld 52 %}}
     
     and selecting a workbench from the NetQ list.
-
-<span style="color: #353744;">  
-</span>
 
 ### Change Your Password
 
@@ -873,8 +829,7 @@ To change your password:
 7.  Click **Save** to change to the new password, or click **Cancel** to
     discard your changes.
 
-8.  Return to your workbench by clicking <span style="color: #353744;">
-    </span>
+8.  Return to your workbench by clicking  
     
     {{% imgOld 57 %}}
     
@@ -890,25 +845,21 @@ the Workbenches card, you can:
 
   - **Specify a favorite workbench**: This tells NetQ to open with that
     workbench when you log in instead of the default Cumulus Workbench.
-
   - **Search for a workbench**: If you have a large number of
     workbenches, you can search for a particular workbench by name, or
     sort workbenches by their access type or cards that reside on them.
-
   - **Delete a workbench:** Perhaps there is one that you no longer use.
     You can remove workbenches that you have created (private
     workbenches). An administrative role is required to remove
     workbenches that are common to all users (public workbenches).
     
-    {{%notice note%}}
+    {{%notice info%}}
     
-    **Caution**
-    
-    It is strongly recommended that you do not delete the default
-    Cumulus Networks workbench. Once deleted, you must contact support
-    to regain access to it. Extreme caution is recommended when deleting
-    all other workbenches. Once they have been deleted, they cannot be
-    restored.
+It is strongly recommended that you do not delete the default
+Cumulus Networks workbench. Once deleted, you must contact support
+to regain access to it. Extreme caution is recommended when deleting
+all other workbenches. Once they have been deleted, they cannot be
+restored.
     
     {{%/notice%}}
 
@@ -929,7 +880,6 @@ To manage your workbenches:
     {{% imgOld 60 %}}
 
 4.  To specify a favorite workbench, click and drag
-    <span style="color: #222222;"> </span>
     
     {{% imgOld 61 %}}
     
@@ -943,8 +893,7 @@ To manage your workbenches:
     **Delete** button. As an administrator, you can delete both private
     and public workbenches.
 
-7.  Return to your workbench by clicking <span style="color: #353744;">
-    </span>
+7.  Return to your workbench by clicking 
     
     {{% imgOld 62 %}}
     
@@ -957,8 +906,8 @@ user documentation.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -968,20 +917,20 @@ user documentation.
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> Agent </span></p></td>
-<td><p><span style="color: #353744;"> NetQ software that resides on a host server that provides metrics about the host to the NetQ Telemetry Server for network health analysis. </span></p></td>
+<td><p>Agent </p></td>
+<td><p>NetQ software that resides on a host server that provides metrics about the host to the NetQ Telemetry Server for network health analysis. </p></td>
 </tr>
 <tr class="even">
 <td><p>Alarm</p></td>
 <td><p>In UI, event with critical severity.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> Bridge </span></p></td>
-<td><p><span style="color: #353744;"> Device that connects two communication networks or network segments. Occurs at OSI Model Layer 2, Data Link Layer. </span></p></td>
+<td><p>Bridge </p></td>
+<td><p>Device that connects two communication networks or network segments. Occurs at OSI Model Layer 2, Data Link Layer. </p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> Clos </span></p></td>
-<td><p><span style="color: #353744;"> Multistage circuit switching network used by the telecommunications industry, first formalized by Charles Clos in 1952. </span></p></td>
+<td><p>Clos </p></td>
+<td><p>Multistage circuit switching network used by the telecommunications industry, first formalized by Charles Clos in 1952. </p></td>
 </tr>
 <tr class="odd">
 <td><p>Device</p></td>
@@ -992,41 +941,41 @@ user documentation.
 <td><p>Change or occurrence in network or component; may or may not trigger a notification. In the NetQ UI, there are two types of events: Alarms which indicate a critical severity event, and Info which indicate warning, informational, and debugging severity events.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> Fabric </span></p></td>
-<td><p><span style="color: #353744;"> Network topology where a set of network nodes is interconnected through one or more network switches. </span></p></td>
+<td><p>Fabric </p></td>
+<td><p>Network topology where a set of network nodes is interconnected through one or more network switches. </p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> Fresh </span></p></td>
-<td><p><span style="color: #353744;"> Node that has been heard from in the last 90 seconds. </span></p></td>
+<td><p>Fresh </p></td>
+<td><p>Node that has been heard from in the last 90 seconds. </p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> High Availability </span></p></td>
-<td><p><span style="color: #353744;"> Software used to provide a high percentage of uptime (running and available) for network devices. </span></p></td>
+<td><p>High Availability </p></td>
+<td><p>Software used to provide a high percentage of uptime (running and available) for network devices. </p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> Host </span></p></td>
-<td><p><span style="color: #353744;"> Device that is connected to a TCP/IP network. May run one or more Virtual Machines. </span></p></td>
+<td><p>Host </p></td>
+<td><p>Device that is connected to a TCP/IP network. May run one or more Virtual Machines. </p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> Hypervisor </span></p></td>
-<td><p><span style="color: #353744;"> Software which creates and runs Virtual Machines. Also called a Virtual Machine Monitor. </span></p></td>
+<td><p>Hypervisor </p></td>
+<td><p>Software which creates and runs Virtual Machines. Also called a Virtual Machine Monitor. </p></td>
 </tr>
 <tr class="even">
 <td><p>Info</p></td>
 <td><p>In UI, event with warning, informational, or debugging severity.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> IP Address </span></p></td>
-<td><p><span style="color: #353744;"> An Internet Protocol address is comprised of a series of numbers assigned to a network device to uniquely identify it on a given network. Version 4 addresses are 32 bits and written in dotted decimal notation with 8-bit binary numbers separated by decimal points. Example: 10.10.10.255. Version 6 addresses are 128 bits and written in 16-bit hexadecimal numbers separated by colons. Example: 2018:3468:1B5F::6482:D673. </span></p></td>
+<td><p>IP Address </p></td>
+<td><p>An Internet Protocol address is comprised of a series of numbers assigned to a network device to uniquely identify it on a given network. Version 4 addresses are 32 bits and written in dotted decimal notation with 8-bit binary numbers separated by decimal points. Example: 10.10.10.255. Version 6 addresses are 128 bits and written in 16-bit hexadecimal numbers separated by colons. Example: 2018:3468:1B5F::6482:D673. </p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> Leaf </span></p></td>
-<td><p><span style="color: #353744;"> An access layer switch in a Spine-Leaf or Clos topology. An Exit-Leaf is switch that connects to services outside of the Data Center such as firewalls, load balancers, and Internet routers. </span></p>
-<p><span style="color: #353744;"> See also Spine, CLOS, Top of Rack and Access Switch. </span></p></td>
+<td><p>Leaf </p></td>
+<td><p>An access layer switch in a Spine-Leaf or Clos topology. An Exit-Leaf is switch that connects to services outside of the Data Center such as firewalls, load balancers, and Internet routers. </p>
+<p>See also Spine, CLOS, Top of Rack and Access Switch. </p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> Linux </span></p></td>
-<td><p><span style="color: #353744;"> Set of free and open-source software operating systems built around the Linux kernel. Cumulus Linux is one available distribution packages. </span></p></td>
+<td><p>Linux </p></td>
+<td><p>Set of free and open-source software operating systems built around the Linux kernel. Cumulus Linux is one available distribution packages. </p></td>
 </tr>
 <tr class="even">
 <td><p>Node</p></td>
@@ -1034,47 +983,47 @@ user documentation.
 </tr>
 <tr class="odd">
 <td><p>Notification</p></td>
-<td><p>Item that informs a user of an event. In UI there are two types of notifications: Alert which is a n <span style="color: #000000;"> otification sent by system to inform a user about an event; specifically received through a third-party application, and Message which is a notification <span style="color: #000000;"> sent by a user to share content with another user. </span> </span></p></td>
+<td><p>Item that informs a user of an event. In UI there are two types of notifications: Alert which is a notification sent by system to inform a user about an event; specifically received through a third-party application, and Message which is a notification sent by a user to share content with another user.</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> Peerlink </span></p></td>
-<td><p><span style="color: #353744;"> Link, or bonded links, used to connect two switches in an MLAG pair. </span></p></td>
+<td><p>Peerlink </p></td>
+<td><p>Link, or bonded links, used to connect two switches in an MLAG pair. </p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> Rotten </span></p></td>
-<td><p><span style="color: #353744;"> Node that has not been heard from in 90 seconds or more. </span></p></td>
+<td><p>Rotten </p></td>
+<td><p>Node that has not been heard from in 90 seconds or more. </p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> Router </span></p></td>
-<td><p><span style="color: #353744;"> Device that forwards data packets (directs traffic) from nodes on one communication network to nodes on another network. Occurs at the OSI Model Layer 3, Network Layer. </span></p></td>
+<td><p>Router </p></td>
+<td><p>Device that forwards data packets (directs traffic) from nodes on one communication network to nodes on another network. Occurs at the OSI Model Layer 3, Network Layer. </p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> Spine </span></p></td>
-<td><p><span style="color: #353744;"> Used to describe the role of a switch in a Spine-Leaf or CLOS topology. See also Aggregation switch, End of Row switch, and distribution switch. </span></p></td>
+<td><p>Spine </p></td>
+<td><p>Used to describe the role of a switch in a Spine-Leaf or CLOS topology. See also Aggregation switch, End of Row switch, and distribution switch. </p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> Switch </span></p></td>
-<td><p><span style="color: #353744;"> High-speed device that connects that receives data packets from one device or node and redirects them to other devices or nodes on a network. </span></p></td>
+<td><p>Switch </p></td>
+<td><p>High-speed device that connects that receives data packets from one device or node and redirects them to other devices or nodes on a network. </p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> Telemetry server </span></p></td>
-<td><p><span style="color: #353744;"> NetQ server which receives metrics and other data from NetQ agents on leaf and spine switches and hosts. </span></p></td>
+<td><p>Telemetry server </p></td>
+<td><p>NetQ server which receives metrics and other data from NetQ agents on leaf and spine switches and hosts. </p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> Top of Rack </span></p></td>
-<td><p><span style="color: #353744;"> Switch that connects to the network (versus internally) </span></p></td>
+<td><p>Top of Rack </p></td>
+<td><p>Switch that connects to the network (versus internally) </p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> Virtual Machine </span></p></td>
-<td><p><span style="color: #353744;"> Emulation of a computer system that provides all of the functions of a particular architecture. </span></p></td>
+<td><p>Virtual Machine </p></td>
+<td><p>Emulation of a computer system that provides all of the functions of a particular architecture. </p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> Web-scale </span></p></td>
-<td><p><span style="color: #353744;"> A network architecture designed to deliver capabilities of large cloud service providers within an enterprise IT environment. </span></p></td>
+<td><p>Web-scale </p></td>
+<td><p>A network architecture designed to deliver capabilities of large cloud service providers within an enterprise IT environment. </p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> Whitebox </span></p></td>
-<td><p><span style="color: #353744;"> Generic, off-the-shelf, switch or router hardware used in Software Defined Networks (SDN). </span></p></td>
+<td><p>Whitebox </p></td>
+<td><p>Generic, off-the-shelf, switch or router hardware used in Software Defined Networks (SDN). </p></td>
 </tr>
 </tbody>
 </table>
@@ -1084,51 +1033,51 @@ user documentation.
 
 | Acronym                                              | Meaning                                                                                    |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| <span style="color: #353744;"> ACL </span>           | <span style="color: #353744;"> Access Control Link </span>                                 |
-| <span style="color: #353744;"> ARP </span>           | <span style="color: #353744;"> Address Resolution Protocol </span>                         |
-| <span style="color: #353744;"> ASN </span>           | <span style="color: #353744;"> Autonomous System Number </span>                            |
-| <span style="color: #353744;"> BGP/eBGP/iBGP </span> | <span style="color: #353744;"> Border Gateway Protocol, External BGP, Internal BGP </span> |
-| <span style="color: #353744;"> CLAG </span>          | <span style="color: #353744;"> Cumulus multi-chassis Link Aggregation Group </span>        |
-| <span style="color: #353744;"> DHCP </span>          | <span style="color: #353744;"> Dynamic Host Control Protocol </span>                       |
-| <span style="color: #353744;"> DNS </span>           | <span style="color: #353744;"> Domain Name Server </span>                                  |
-| <span style="color: #353744;"> ECMP </span>          | <span style="color: #353744;"> Equal Cost Multi-Path routing </span>                       |
-| <span style="color: #353744;"> EVPN </span>          | <span style="color: #353744;"> Ethernet Virtual Private Network </span>                    |
-| <span style="color: #353744;"> FDB </span>           | <span style="color: #353744;"> Forwarding Data Base </span>                                |
-| <span style="color: #353744;"> GNU </span>           | <span style="color: #353744;"> GNU’s Not Linux </span>                                     |
-| <span style="color: #353744;"> HA </span>            | <span style="color: #353744;"> High Availability </span>                                   |
-| <span style="color: #353744;"> IGMP </span>          | <span style="color: #353744;"> Internet Group Management Protocol </span>                  |
-| <span style="color: #353744;"> IPv4/IPv6 </span>     | <span style="color: #353744;"> Internet Protocol, version 4 or 6 </span>                   |
-| <span style="color: #353744;"> LACP </span>          | <span style="color: #353744;"> Link Aggregation Control Protocol </span>                   |
-| <span style="color: #353744;"> LAN </span>           | <span style="color: #353744;"> Local Area Network </span>                                  |
-| <span style="color: #353744;"> LLDP </span>          | <span style="color: #353744;"> Link Layer Data Protocol </span>                            |
-| <span style="color: #353744;"> MAC </span>           | <span style="color: #353744;"> Media Access Control </span>                                |
-| <span style="color: #353744;"> MIB </span>           | <span style="color: #353744;"> Management Information Base </span>                         |
-| <span style="color: #353744;"> MLAG </span>          | <span style="color: #353744;"> Multi-chassis Link Aggregation Group </span>                |
-| <span style="color: #353744;"> MLD </span>           | <span style="color: #353744;"> Multicast Listener Discovery </span>                        |
-| <span style="color: #353744;"> NTP </span>           | <span style="color: #353744;"> Network Time Protocol </span>                               |
-| <span style="color: #353744;"> OOB </span>           | <span style="color: #353744;"> Out of Band (management) </span>                            |
-| <span style="color: #353744;"> OSPF </span>          | <span style="color: #353744;"> Open Shortest Path First </span>                            |
-| <span style="color: #353744;"> RFC </span>           | <span style="color: #353744;"> Remote Function Call </span>                                |
-| <span style="color: #353744;"> SDN </span>           | <span style="color: #353744;"> Software-Defined Network </span>                            |
-| <span style="color: #353744;"> SNMP </span>          | <span style="color: #353744;"> Simple Network Management Protocol </span>                  |
-| <span style="color: #353744;"> SSH </span>           | <span style="color: #353744;"> Secure SHell </span>                                        |
-| <span style="color: #353744;"> SQL </span>           | <span style="color: #353744;"> Structured Query Language </span>                           |
-| <span style="color: #353744;"> STP </span>           | <span style="color: #353744;"> Spanning Tree Protocol </span>                              |
-| <span style="color: #353744;"> TCP </span>           | <span style="color: #353744;"> Transport Control Protocol </span>                          |
-| <span style="color: #353744;"> ToR </span>           | <span style="color: #353744;"> Top of Rack </span>                                         |
-| <span style="color: #353744;"> UDP </span>           | <span style="color: #353744;"> User Datagram Protocol </span>                              |
-| <span style="color: #353744;"> URL </span>           | <span style="color: #353744;"> Universal Resource Locator </span>                          |
-| <span style="color: #353744;"> USB </span>           | <span style="color: #353744;"> Universal Serial Bus </span>                                |
-| <span style="color: #353744;"> VLAN </span>          | <span style="color: #353744;"> Virtual Local Area Network </span>                          |
-| <span style="color: #353744;"> VNI </span>           | <span style="color: #353744;"> Virtual Network Instance </span>                            |
-| <span style="color: #353744;"> VPN </span>           | <span style="color: #353744;"> Virtual Private Network </span>                             |
-| <span style="color: #353744;"> VRF </span>           | <span style="color: #353744;"> Virtual Routing and Forwarding </span>                      |
-| <span style="color: #353744;"> VRR </span>           | <span style="color: #353744;"> Virtual Router Redundancy </span>                           |
-| <span style="color: #353744;"> VTEP </span>          | <span style="color: #353744;"> VXLAN Tunnel EndPoint </span>                               |
-| <span style="color: #353744;"> VXLAN </span>         | <span style="color: #353744;"> Virtual Extensible Local Area Network </span>               |
-| <span style="color: #353744;"> ZTP </span>           | <span style="color: #353744;"> Zero Touch Provisioning </span>                             |
+| ACL            | Access Control Link                                  |
+| ARP            | Address Resolution Protocol                          |
+| ASN            | Autonomous System Number                             |
+| BGP/eBGP/iBGP  | Border Gateway Protocol, External BGP, Internal BGP  |
+| CLAG           | Cumulus multi-chassis Link Aggregation Group         |
+| DHCP           | Dynamic Host Control Protocol                        |
+| DNS            | Domain Name Server                                   |
+| ECMP           | Equal Cost Multi-Path routing                        |
+| EVPN           | Ethernet Virtual Private Network                     |
+| FDB            | Forwarding Data Base                                 |
+| GNU            | GNU’s Not Linux                                      |
+| HA             | High Availability                                    |
+| IGMP           | Internet Group Management Protocol                   |
+| IPv4/IPv6      | Internet Protocol, version 4 or 6                    |
+| LACP           | Link Aggregation Control Protocol                    |
+| LAN            | Local Area Network                                   |
+| LLDP           | Link Layer Data Protocol                             |
+| MAC            | Media Access Control                                 |
+| MIB            | Management Information Base                          |
+| MLAG           | Multi-chassis Link Aggregation Group                 |
+| MLD            | Multicast Listener Discovery                         |
+| NTP            | Network Time Protocol                                |
+| OOB            | Out of Band (management)                             |
+| OSPF           | Open Shortest Path First                             |
+| RFC            | Remote Function Call                                 |
+| SDN            | Software-Defined Network                             |
+| SNMP           | Simple Network Management Protocol                   |
+| SSH            | Secure SHell                                         |
+| SQL            | Structured Query Language                            |
+| STP            | Spanning Tree Protocol                               |
+| TCP            | Transport Control Protocol                           |
+| ToR            | Top of Rack                                          |
+| UDP            | User Datagram Protocol                               |
+| URL            | Universal Resource Locator                           |
+| USB            | Universal Serial Bus                                 |
+| VLAN           | Virtual Local Area Network                           |
+| VNI            | Virtual Network Instance                             |
+| VPN            | Virtual Private Network                              |
+| VRF            | Virtual Routing and Forwarding                       |
+| VRR            | Virtual Router Redundancy                            |
+| VTEP           | VXLAN Tunnel EndPoint                                |
+| VXLAN          | Virtual Extensible Local Area Network                |
+| ZTP            | Zero Touch Provisioning                              |
 
-<span style="color: #36424a;"> Format Cues </span>
+Format Cues 
 
 Color is used to indicate links, options, and status within the UI.
 
@@ -1153,11 +1102,3 @@ Menu. Just click
 {{% imgOld 63 %}}
 
 and select *Help Documentation* under the ADMIN category.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

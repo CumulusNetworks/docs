@@ -1,11 +1,11 @@
 ---
 title: UI Preface
 author: Cumulus Networks
-weight: 87
+weight: 53
 aliases:
  - /display/NETQ21/UI+Preface
- - /pages/viewpage.action?pageId=12321978
-pageID: 12321978
+ - /pages/viewpage.action?pageId=10465539
+pageID: 10465539
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -16,46 +16,21 @@ Cumulus NetQ and to take advantage of its monitoring and analytic
 capabilities. These resources are identified here along with information
 about how the content is presented.
 
-## What's New in Cumulus NetQ 2.2</span>
+## What's New in Cumulus NetQ 2.1
 
-Cumulus NetQ is now available as a cloud service, making it even easier
-to scale with your network growth. Just like Cumulus NetQ deployed in
-your premises, real-time data collection and fabric-wide performance
-analysis are available through the cloud service. New functionality has
-also been added to the NetQ UI.
+Cumulus NetQ has been reinvented to scale with the fast adoption rate of
+open networks and rapid network growth. In addition to the real-time
+data collection and fabric-wide performance analysis that are already
+supported in Cumulus NetQ 1.4.1, Cumulus NetQ now offers a graphical
+user interface for:
 
-**Cumulus NetQ 2.2.0** includes the following new features and
-improvements:
+  - Data visualizations of the overlay and underlay networks,
 
-*For on-site and SaaS*
+  - Simplified network troubleshooting with network-wide roll-ups of
+    health and alarm status in a single card, and
 
-  - Graphical User Interface (UI)
-    
-      - Added ability to monitor and validate OSPF network protocol and
-        services operation
-    
-      - Added ability to validate MTU, Sensors, VLAN and VXLAN protocols
-    
-      - Added events for MTU, OSPF, VLAN, and VXLAN
-    
-      - Added new standard user role, *user*, with reduced access
-        permission compared to the administrative user
-    
-      - Added Prescriptive Topology Manager (PTM) events
-
-  - Command Line Interface (CLI)
-    
-      - Included Interface Statistics as an early access feature
-
-*For SaaS only*
-
-  - Released new Cumulus NetQ Cloud Appliance to speed deployment and
-    get monitoring as quickly as possible
-
-  - Added CLI support for installation and configuration of the Cumulus
-    NetQ Cloud Appliance
-
-  - Added support for multiple data centers
+  - Proactive validation of the network status and configuration to
+    regularly detect network issues.
 
 <span style="color: #353744;"> For further information regarding new
 features, improvements, bug fixes, and known issues present in this
@@ -63,7 +38,7 @@ release, refer to the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/360017779214).
 <span style="color: #353744;"> </span> </span>
 
-## Available Documentation</span>
+## Available Documentation
 
 <span style="color: #36424a;"> <span style="color: #353744;"> The NetQ
 documentation set has been reorganized and updated from prior releases.
@@ -81,9 +56,8 @@ the other available documents. </span>
 <span style="color: #353744;"> The following NetQ documents are
 available: </span>
 
-  - <span style="color: #353744;"> [Cumulus NetQ Deployment
-    Guide](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/)
-    </span>
+  - <span style="color: #353744;"> [Cumulus NetQ User
+    Docs](/version/cumulus-netq-21/) </span>
 
   - <span style="color: #353744;"> [Cumulus NetQ CLI User
     Guide](/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/)
@@ -93,7 +67,7 @@ available: </span>
     guide) </span>
 
   - [Cumulus NetQ Release
-    Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374)
+    Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360017779214)
 
   - [What the NetQ Validation System
     Checks](https://support.cumulusnetworks.com/hc/en-us/articles/360021961394)
@@ -101,14 +75,11 @@ available: </span>
   - [Cumulus NetQ Release Versioning and Support
     Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
 
-  - [Cumulus NetQ Cloud Release Versioning and Support
-    Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
-
-## Document Formatting</span>
+## Document Formatting
 
 This guide uses the following typographical and note conventions.
 
-### Typographical Conventions</span>
+### Typographical Conventions
 
 <span style="color: #353744;"> Throughout the guide, text formatting is
 used to convey contextual information about the content. </span>
@@ -120,7 +91,7 @@ used to convey contextual information about the content. </span>
 | <span style="color: #353744;"> \[`Text within square brackets`\] </span> | <span style="color: #353744;"> Optional command parameters; may be presented in mixed case or all caps text </span>                                                               |
 | <span style="color: #353744;"> \<`Text within angle brackets`\> </span>  | <span style="color: #353744;"> Required command parameter values–variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text </span> |
 
-### Note Conventions </span>
+### Note Conventions
 
 <span style="color: #353744;"> Several note types are used throughout
 the document. The formatting of the note indicates its intent and

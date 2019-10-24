@@ -1,11 +1,11 @@
 ---
 title: Monitor Network Connectivity
 author: Cumulus Networks
-weight: 149
+weight: 119
 aliases:
  - /display/NETQ21/Monitor+Network+Connectivity
- - /pages/viewpage.action?pageId=12321680
-pageID: 12321680
+ - /pages/viewpage.action?pageId=10465155
+pageID: 10465155
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -18,13 +18,13 @@ connectivity checks to occur on a scheduled basis. There are three card
 workflows which enable you to view connectivity, the Trace Request,
 On-demand Trace Results, and Scheduled Trace Results.
 
-## Create a Trace Request</span>
+## Create a Trace Request
 
-Two types of connectivity checks can be run–an immediate (on-demand)
-trace and a scheduled trace. The Trace Request card workflow is used to
-configure and run both of these trace types.
+Two types of connectivity checks can be run–an immediate trace and a
+scheduled trace. The Trace Request card workflow is used to configure
+and run both of these trace types.
 
-### Trace Request Card Workflow Summary</span>
+### Trace Request Card Workflow Summary
 
 The small Trace Request card displays:
 
@@ -85,7 +85,7 @@ The medium Trace Request card displays:
 </tr>
 <tr class="odd">
 <td><p>New Trace Request</p></td>
-<td><p>Create a new layer 3 trace request. Use the large Trace Request card to create a new layer 2 or 3 request.</p></td>
+<td><p>Create a new request layer 3 trace request. Use the large Trace Request card to create a new layer 2 or 3 request.</p></td>
 </tr>
 <tr class="even">
 <td><p>Source</p></td>
@@ -129,7 +129,7 @@ The large Trace Request card displays:
 </tr>
 <tr class="odd">
 <td><p>Trace selection</p></td>
-<td><p>Leave <em>New Trace Request</em> selected to create a new request, or choose a scheduled request from the list.</p></td>
+<td><p>Choose <em>New Trace Request</em> to create a new request, or select a scheduled request from the list.</p></td>
 </tr>
 <tr class="even">
 <td><p>Source</p></td>
@@ -227,7 +227,7 @@ The full screen Trace Request card displays:
 </tbody>
 </table>
 
-### Create a Layer 3 On-demand Trace Request</span>
+### Create a Layer 3 On-demand Trace Request
 
 It is helpful to verify the connectivity between two devices when you
 suspect an issue is preventing proper communication between them. It you
@@ -263,10 +263,10 @@ To create a layer 3 trace request:
 
 4.  Click **Run Now**. A corresponding Trace Results card is opened on
     your workbench. Refer to [View Layer 3 Trace
-    Results](#src-12321680_MonitorNetworkConnectivity-ODTL3) for
+    Results](#src-10465155_MonitorNetworkConnectivity-ODTL3) for
     details.
 
-### Create a Layer 3 Trace Through a Given VRF</span>
+### Create a Layer 3 Trace Through a Given VRF
 
 If you want to guide a trace through a particular VRF interface, you can
 do so using the large New Trace Request card.
@@ -291,10 +291,10 @@ To create the trace request:
 
 5.  Click **Run Now**. A corresponding Trace Results card is opened on
     your workbench. Refer to [View Layer 3 Trace
-    Results](#src-12321680_MonitorNetworkConnectivity-ODTL3) for
+    Results](#src-10465155_MonitorNetworkConnectivity-ODTL3) for
     details.
 
-### Create a Layer 2 Trace</span>
+### Create a Layer 2 Trace
 
 It is helpful to verify the connectivity between two devices when you
 suspect an issue is preventing proper communication between them. It you
@@ -323,10 +323,10 @@ To create a layer 2 trace request:
 
 5.  Click **Run Now**. A corresponding Trace Results card is opened on
     your workbench. Refer to [View Layer 2 Trace
-    Results](#src-12321680_MonitorNetworkConnectivity-ODTL2) for
+    Results](#src-10465155_MonitorNetworkConnectivity-ODTL2) for
     details.
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI01vZFNjaFRyYWNl" class="confluence-anchor-link"></span>Create a Trace to Run on a Regular Basis (Scheduled Trace)</span>
+### Create a Trace to Run on a Regular Basis (Scheduled Trace)
 
 There may be paths through your network that you consider critical to
 your everyday or particularly important operations. In that case, it
@@ -374,11 +374,10 @@ To schedule a trace:
     
     {{% imgOld 19 %}}
 
-12. Click **Save**. You can now run this trace on demand by selecting it
-    from the dropdown list, or wait for it to run on its defined
-    schedule.
+12. Click **Save**. You can now run this trace on demand or wait for it
+    to run on its defined schedule.
 
-### Run a Scheduled Trace on Demand</span>
+### Run a Scheduled Trace on Demand
 
 You may find that, although you have a schedule for a particular trace,
 you want to have visibility into the connectivity data now. You can run
@@ -393,31 +392,28 @@ To run a scheduled trace now:
     {{% imgOld 20 %}}
     
     {{% imgOld 21 %}}
-    
-    {{% imgOld 22 %}}
 
 2.  Select the scheduled trace from the **Select Trace** or **New Trace
-    Request** list. **Note**: In the medium and large cards, the trace
-    details are filled in on selection of the scheduled trace.
+    Request** list.
 
 3.  Click **Go** or **Run Now**. A corresponding Trace Results card is
     opened on your workbench.
 
-## <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI09EVHJlc3VsdHM" class="confluence-anchor-link"></span>View On-demand Trace Results</span>
+## View On-demand Trace Results
 
 <span style="color: #333333;"> Once you have started an on-demand trace,
 the results are displayed in the medium Trace Results card by default.
 You may view the results in more or less detail by switching to the
 large or small Trace Results card, respectively. </span>
 
-### On-demand Trace Results Card Workflow Summary</span>
+### On-demand Trace Results Card Workflow Summary
 
 <span style="color: #333333;"> The small On-demand Trace Results card
 displays: </span>
 
 <span style="color: #333333;"> </span>
 
-{{% imgOld 23 %}}
+{{% imgOld 22 %}}
 
 <table>
 <colgroup>
@@ -433,7 +429,7 @@ displays: </span>
 <tbody>
 <tr class="odd">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 24 %}}</p></td>
+<p>{{% imgOld 23 %}}</p></td>
 <td><p>Indicates an on-demand trace result</p></td>
 </tr>
 <tr class="even">
@@ -442,9 +438,9 @@ displays: </span>
 </tr>
 <tr class="odd">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 25 %}}</p>
+<p>{{% imgOld 24 %}}</p>
 <span style="color: #353744;"> , </span> <span style="color: #353744;"> </span>
-<p>{{% imgOld 26 %}}</p>
+<p>{{% imgOld 25 %}}</p>
 </span></td>
 <td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
 </tr>
@@ -456,7 +452,7 @@ displays: </span>
 
 <span style="color: #333333;"> </span>
 
-{{% imgOld 27 %}}
+{{% imgOld 26 %}}
 
 <table>
 <colgroup>
@@ -472,7 +468,7 @@ displays: </span>
 <tbody>
 <tr class="odd">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 28 %}}</p></td>
+<p>{{% imgOld 27 %}}</p></td>
 <td><p>Indicates an on-demand trace result</p></td>
 </tr>
 <tr class="even">
@@ -485,9 +481,9 @@ displays: </span>
 </tr>
 <tr class="even">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 29 %}}</p>
+<p>{{% imgOld 28 %}}</p>
 <span style="color: #353744;"> , </span> <span style="color: #353744;"> </span>
-<p>{{% imgOld 30 %}}</p>
+<p>{{% imgOld 29 %}}</p>
 </span></td>
 <td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
 </tr>
@@ -513,7 +509,7 @@ displays: </span>
 <span style="color: #333333;"> The large On-demand Trace Results card
 displays: </span>
 
-{{% imgOld 31 %}}
+{{% imgOld 30 %}}
 
 <table>
 <colgroup>
@@ -529,7 +525,7 @@ displays: </span>
 <tbody>
 <tr class="odd">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 32 %}}</p></td>
+<p>{{% imgOld 31 %}}</p></td>
 <td><p>Indicates an on-demand trace result</p></td>
 </tr>
 <tr class="even">
@@ -538,9 +534,9 @@ displays: </span>
 </tr>
 <tr class="odd">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 33 %}}</p>
+<p>{{% imgOld 32 %}}</p>
 <span style="color: #353744;"> , </span> <span style="color: #353744;"> </span>
-<p>{{% imgOld 34 %}}</p>
+<p>{{% imgOld 33 %}}</p>
 </span></td>
 <td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
 </tr>
@@ -585,7 +581,7 @@ displays: </span>
 <span style="color: #333333;"> The </span> full screen On-demand Trace
 Results card displays:
 
-{{% imgOld 35 %}}
+{{% imgOld 34 %}}
 
 <table>
 <colgroup>
@@ -622,25 +618,25 @@ Results card displays:
 </tr>
 <tr class="even">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 36 %}}</p></td>
+<p>{{% imgOld 35 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
 </table>
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI09EVEwy" class="confluence-anchor-link"></span>View Layer 2 Trace Results</span>
+### View Layer 2 Trace Results
 
 When you start the trace, the corresponding results card is opened on
 your workbench. While it is working on the trace, a notice is shown on
 the card indicating it is running.
 
-{{% imgOld 37 %}}
+{{% imgOld 36 %}}
 
 Once the job is completed, the results are displayed.
 
-{{% imgOld 38 %}}
+{{% imgOld 37 %}}
 
-{{% imgOld 39 %}}
+{{% imgOld 38 %}}
 
 In this example, we see that the trace was successful. Four paths were
 found between the devices, each with four hops and with an overall MTU
@@ -648,9 +644,9 @@ of 1500. If there was a difference between the minimum and maximum
 number of hops or other failures, viewing the results on the large card
 would provide additional information.
 
-{{% imgOld 40 %}}
+{{% imgOld 39 %}}
 
-{{% imgOld 41 %}}
+{{% imgOld 40 %}}
 
 In our example, we can verify that every path option had four hops since
 the distribution chart only shows one hop count and the table indicates
@@ -658,18 +654,18 @@ each path had a value of four hops. Similarly, you can view the MTU
 data. If there had been any warnings, the count would have been visible
 in the table.
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI09EVEwz" class="confluence-anchor-link"></span>View Layer 3 Trace Results</span>
+### View Layer 3 Trace Results
 
 When you start the trace, the corresponding results card is opened on
 your workbench. While it is working on the trace, a notice is shown on
 the card indicating it is running.
 
-{{% imgOld 42 %}}
+{{% imgOld 41 %}}
 
 Once results are obtained, it displays them. Using our example from
 earlier, the following results are shown:
 
-{{% imgOld 43 %}}
+{{% imgOld 42 %}}
 
 In this example, we see that the trace was successful. Eight paths were
 found between the devices, each with five hops and with an overall MTU
@@ -677,7 +673,7 @@ of 1500. If there was a difference between the minimum and maximum
 number of hops or other failures, viewing the results on the large card
 would provide additional information.
 
-{{% imgOld 44 %}}
+{{% imgOld 43 %}}
 
 In our example, we can verify that every path option had five hops since
 the distribution chart only shows one hop count and the table indicates
@@ -685,7 +681,7 @@ each path had a value of five hops. Similarly, you can view the MTU
 data. If there had been any warnings, the count would have been visible
 in the table.
 
-### View All On-demand Trace Results</span>
+### View All On-demand Trace Results
 
 If you have run multiple on-demand traces, you may find it easier to
 view the results all together in a single view. The full screen Trace
@@ -694,21 +690,21 @@ Results card provides this information.
 To view all on-demand trace results, open the full screen On-demand
 Trace Results card.
 
-{{% imgOld 45 %}}
+{{% imgOld 44 %}}
 
 Ordered by most recent trace, you can now view all recent traces
 together.
 
-## View Scheduled Trace Results</span>
+## View Scheduled Trace Results
 
 You can view the results of scheduled traces at any time. Results are
 displayed on the Scheduled Trace Results cards.
 
-### Scheduled Trace Results Card Workflow Summary</span>
+### Scheduled Trace Results Card Workflow Summary
 
 The small Scheduled Trace Results card displays:
 
-{{% imgOld 46 %}}
+{{% imgOld 45 %}}
 
 <table>
 <colgroup>
@@ -724,7 +720,7 @@ The small Scheduled Trace Results card displays:
 <tbody>
 <tr class="odd">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 47 %}}</p></td>
+<p>{{% imgOld 46 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
 <tr class="even">
@@ -736,13 +732,13 @@ The small Scheduled Trace Results card displays:
 <td><p>Summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
 <li><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 48 %}}</p>
+<p>{{% imgOld 47 %}}</p>
 <p>Number of trace runs completed in the designated time period</p></li>
 <li><p><span style="color: #353744;"> <span style="color: #222222;"> </span></span></p>
-<p>{{% imgOld 49 %}}</p>
+<p>{{% imgOld 48 %}}</p>
 <p>Number of runs with warnings</p></li>
 <li><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 50 %}}</p>
+<p>{{% imgOld 49 %}}</p>
 <p>Number of runs with errors</p></li>
 </ul></td>
 </tr>
@@ -751,7 +747,7 @@ The small Scheduled Trace Results card displays:
 
 The medium Scheduled Trace Results card displays:
 
-{{% imgOld 51 %}}
+{{% imgOld 50 %}}
 
 <table>
 <colgroup>
@@ -771,7 +767,7 @@ The medium Scheduled Trace Results card displays:
 </tr>
 <tr class="even">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 52 %}}</p></td>
+<p>{{% imgOld 51 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
 <tr class="odd">
@@ -783,19 +779,19 @@ The medium Scheduled Trace Results card displays:
 <td><p>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
 <li><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 53 %}}</p>
+<p>{{% imgOld 52 %}}</p>
 <p>Number of trace runs completed in the designated time period</p></li>
 <li><p><span style="color: #353744;"> <span style="color: #222222;"> </span></span></p>
-<p>{{% imgOld 54 %}}</p>
+<p>{{% imgOld 53 %}}</p>
 <p>Number of runs with warnings</p></li>
 <li><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 55 %}}</p>
+<p>{{% imgOld 54 %}}</p>
 <p>Number of runs with errors</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
 <td><p>Charts</p></td>
-<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="https://docs.cumulusnetworks.com/display/NETQ/Validate+Network+Protocol+and+Service+Operations#ValidateNetworkProtocolandServiceOperations-DataGran">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
+<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="https://docs.cumulusnetworks.com/display/NETQ/Validate+Network+Protocol+and+Service+Operations#ValidateNetworkProtocolandServiceOperations-DataGran" class="external-link">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
 <p><strong>Unique Bad Nodes</strong>: Distribution of unique nodes that generated the indicated warnings and/or failures</p></td>
 </tr>
 </tbody>
@@ -805,7 +801,7 @@ The large Scheduled Trace Results card contains two tabs:
 
 The *Results* tab displays:
 
-{{% imgOld 56 %}}
+{{% imgOld 55 %}}
 
 <table>
 <colgroup>
@@ -825,7 +821,7 @@ The *Results* tab displays:
 </tr>
 <tr class="even">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 57 %}}</p></td>
+<p>{{% imgOld 56 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
 <tr class="odd">
@@ -837,19 +833,19 @@ The *Results* tab displays:
 <td><p>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
 <li><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 58 %}}</p>
+<p>{{% imgOld 57 %}}</p>
 <p>Number of trace runs completed in the designated time period</p></li>
 <li><p><span style="color: #353744;"> <span style="color: #222222;"> </span></span></p>
-<p>{{% imgOld 59 %}}</p>
+<p>{{% imgOld 58 %}}</p>
 <p>Number of runs with warnings</p></li>
 <li><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 60 %}}</p>
+<p>{{% imgOld 59 %}}</p>
 <p>Number of runs with errors</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
 <td><p>Charts</p></td>
-<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="#src-12321680_MonitorNetworkConnectivity-DataGran">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
+<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="#src-10465155_MonitorNetworkConnectivity-DataGran">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
 <p><strong>Small charts</strong>: Display counts for each item during the same time period, for the purpose of correlating with the warnings and errors shown in the heat map.</p></td>
 </tr>
 <tr class="even">
@@ -863,7 +859,7 @@ The *Results* tab displays:
 
 The *Configuration* tab displays:
 
-{{% imgOld 61 %}}
+{{% imgOld 60 %}}
 
 <table>
 <colgroup>
@@ -883,7 +879,7 @@ The *Configuration* tab displays:
 </tr>
 <tr class="even">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 62 %}}</p></td>
+<p>{{% imgOld 61 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
 <tr class="odd">
@@ -927,7 +923,7 @@ The *Configuration* tab displays:
 
 The full screen Scheduled Trace Results card displays:
 
-{{% imgOld 63 %}}
+{{% imgOld 62 %}}
 
 <table>
 <colgroup>
@@ -946,13 +942,13 @@ The full screen Scheduled Trace Results card displays:
 <td><p>Scheduled Trace Results</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 64 %}}</p></td>
+<td><p>{{% imgOld 63 %}}</p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 65 %}}</p></td>
+<p>{{% imgOld 64 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -979,13 +975,13 @@ The full screen Scheduled Trace Results card displays:
 </tr>
 <tr class="odd">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 66 %}}</p></td>
+<p>{{% imgOld 65 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
 </table>
 
-### <span id="src-12321680_safe-id-TW9uaXRvck5ldHdvcmtDb25uZWN0aXZpdHktI0RhdGFHcmFu" class="confluence-anchor-link"></span>Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period
 
 On the medium and large Trace Result cards, the status of the runs is
 represented in heat maps stacked vertically; one for runs with warnings
@@ -1002,7 +998,7 @@ failures decrease, the blocks increase their gray saturation. An example
 heat map for a time period of 24 hours is shown here with the most
 common time periods in the table showing the resulting time blocks.
 
-{{% imgOld 67 %}}
+{{% imgOld 66 %}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -1013,7 +1009,7 @@ common time periods in the table showing the resulting time blocks.
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-### View Scheduled Trace Results</span>
+### View Scheduled Trace Results
 
 Once a scheduled trace request has completed, the results are available
 in the corresponding Trace Result card.
@@ -1023,7 +1019,7 @@ To view the results:
 1.  Open the full screen Trace Request card to view all scheduled traces
     that have been run.
     
-    {{% imgOld 68 %}}
+    {{% imgOld 67 %}}
 
 2.  Select the scheduled trace you want to view results for by clicking
     in the first column of the result and clicking the check box.
@@ -1031,12 +1027,12 @@ To view the results:
 3.  On the Edit Menu that appears at the bottom of the window, click
     <span style="color: #353744;"> </span>
     
-    {{% imgOld 69 %}}
+    {{% imgOld 68 %}}
     
     (Open Cards). This opens the medium Scheduled Validation Results
     card(s) for the selected items.
     
-    {{% imgOld 70 %}}
+    {{% imgOld 69 %}}
 
 4.  Note the distribution of results. Are there many failures? Are they
     concentrated together in time? Has the trace begun passing again?
@@ -1046,7 +1042,7 @@ To view the results:
 
 6.  Switch to the large Scheduled Trace Result card.
     
-    {{% imgOld 71 %}}
+    {{% imgOld 70 %}}
 
 7.  If there are a large number of warnings or failures, view the
     associated messages by selecting **Failures** or **Warning** in the
@@ -1067,12 +1063,12 @@ To view the results:
     results shown on this card workflow, by hovering over the card and
     clicking <span style="color: #333c4e;"> </span>
     
-    {{% imgOld 72 %}}
+    {{% imgOld 71 %}}
     
     . If you want to change the configuration, click **Edit** to open
     the large Trace Request card, pre-populated with the current
     configuration. Follow the instructions in [Create a Scheduled Trace
-    Request](#src-12321680_MonitorNetworkConnectivity-ModSchTrace) to
+    Request](#src-10465155_MonitorNetworkConnectivity-ModSchTrace) to
     make your changes in the same way you created a new scheduled trace.
 
 11. To view a summary of all scheduled trace results, switch to the full
@@ -1085,7 +1081,7 @@ To view the results:
 13. View the details of any specific trace result by clicking on the
     trace. A new window opens similar to the following:
     
-    {{% imgOld 73 %}}
+    {{% imgOld 72 %}}
     
     Scroll to the right to view the information for a given hop. Scroll
     down to view additional paths.  
@@ -1100,7 +1096,7 @@ To view the results:
 
 14. Export this data using the **Export** button or click
     
-    {{% imgOld 74 %}}
+    {{% imgOld 73 %}}
     
     to return to the results list to view another trace in detail.
 

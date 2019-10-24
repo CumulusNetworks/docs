@@ -1,11 +1,11 @@
 ---
 title: Monitor the EVPN Service
 author: Cumulus Networks
-weight: 163
+weight: 149
 aliases:
  - /display/NETQ21/Monitor+the+EVPN+Service
- - /pages/viewpage.action?pageId=12321294
-pageID: 12321294
+ - /pages/viewpage.action?pageId=10464665
+pageID: 10464665
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -17,15 +17,16 @@ insight into all aspects of the service. This is accomplished through
 two card workflows, one for the service and one for the session. They
 are described separately here.
 
-## Monitor the EVPN Service (All Sessions)</span>
+## Monitor the EVPN Service (All Sessions)
 
 With NetQ, you can monitor the number of nodes running the EVPN service,
 view switches with the sessions, total number of VNIs, and alarms
 triggered by the EVPN service. For an overview and how to configure EVPN
 in your data center network, refer to [Ethernet Virtual Private Network
-- EVPN](/display/NETQ21/Ethernet+Virtual+Private+Network+-+EVPN).
+-
+EVPN](https://docs-rip.cumulusnetworks.com/display/NETQ21/Ethernet+Virtual+Private+Network+-+EVPN).
 
-### EVPN Service Card Workflow Summary</span>
+### EVPN Service Card Workflow Summary
 
 The small EVPN Service card displays:
 
@@ -355,7 +356,7 @@ sessions, all alarms.
 </tbody>
 </table>
 
-### View Service Status Summary</span>
+### View Service Status Summary
 
 A summary of the EVPN service is available from the Network Services
 card workflow, including the number of nodes running the service, the
@@ -367,7 +368,7 @@ To view the summary, open the small EVPN Network Service card.
 
 For more detail, select a different size EVPN Network Service card.
 
-### View the Distribution of Sessions and Alarms</span>
+### View the Distribution of Sessions and Alarms
 
 It is useful to know the number of network nodes running the EVPN
 protocol over a period of time, as it gives you insight into the amount
@@ -383,7 +384,7 @@ To view these distributions, open the medium EVPN Service card.
 If a visual correlation is apparent, you can dig a little deeper with
 the large EVPN Service card tabs.
 
-### View the Distribution of Layer 3 VNIs </span>
+### View the Distribution of Layer 3 VNIs
 
 It is useful to know the number of layer 3 VNIs, as it gives you insight
 into the complexity of the VXLAN.
@@ -393,7 +394,7 @@ bottom chart on the left.
 
 {{% imgOld 22 %}}
 
-### View Devices with the Most EVPN Sessions</span>
+### View Devices with the Most EVPN Sessions
 
 You can view the load from EVPN on your switches and hosts using the
 large EVPN Service card. This data enables you to see which switches are
@@ -439,7 +440,7 @@ If the changes are unexpected, you can investigate further by looking at
 another time frame, determining if more nodes are now running EVPN than
 previously, looking for changes in the topology, and so forth.
 
-### View Devices with the Most Layer 2 EVPN Sessions</span>
+### View Devices with the Most Layer 2 EVPN Sessions
 
 You can view the number layer 2 EVPN sessions on your switches and hosts
 using the large EVPN Service card. This data enables you to see which
@@ -485,7 +486,7 @@ If the changes are unexpected, you can investigate further by looking at
 another time frame, determining if more nodes are now running EVPN than
 previously, looking for changes in the topology, and so forth.
 
-### View Devices with the Most Layer 3 EVPN Sessions</span>
+### View Devices with the Most Layer 3 EVPN Sessions
 
 You can view the number layer 3 EVPN sessions on your switches and hosts
 using the large EVPN Service card. This data enables you to see which
@@ -531,7 +532,7 @@ If the changes are unexpected, you can investigate further by looking at
 another time frame, determining if more nodes are now running EVPN than
 previously, looking for changes in the topology, and so forth.
 
-### <span id="src-12321294_MonitortheEVPNService-DevMostAlarmsEVPN" class="confluence-anchor-link"></span>View Devices with the Most EVPN-related Alarms</span>
+### View Devices with the Most EVPN-related Alarms
 
 Switches experiencing a large number of EVPN alarms may indicate a
 configuration or performance issue that needs further investigation. You
@@ -573,7 +574,7 @@ include:
   - Click **Show All Sessions** to investigate all EVPN sessions
     network-wide in the full screen card.
 
-### View All EVPN Events</span>
+### View All EVPN Events
 
 The EVPN Service card workflow enables you to view all of the EVPN
 events in the designated time period.
@@ -604,7 +605,7 @@ include:
     
     at the top right to return to your workbench.
 
-### View Details for All Devices Running EVPN</span>
+### View Details for All Devices Running EVPN
 
 You can view all stored attributes of all switches running EVPN in your
 network in the full screen card.
@@ -620,7 +621,7 @@ To return to your workbench, click
 
 at the top right.
 
-### View Details for All EVPN Sessions</span>
+### View Details for All EVPN Sessions
 
 You can view all stored attributes of all EVPN sessions in your network
 in the full screen card.
@@ -636,7 +637,7 @@ To return to your workbench, click
 
 at the top right.
 
-### Take Actions on Data Displayed in Results List</span>
+### Take Actions on Data Displayed in Results List
 
 In the full screen EVPN Service card, you can determine which results
 are displayed in the results list, and which are exported.
@@ -663,13 +664,13 @@ You can perform the following actions on the results list:
 
 To return to original display of results, click the associated tab.
 
-## Monitor a Single EVPN Session</span>
+## Monitor a Single EVPN Session
 
 With NetQ, you can monitor the performance of a single EVPN session,
 including the number of associated VNI, VTEPs and type. For an overview
 and how to configure EVPN in your data center network, refer to
 [Ethernet Virtual Private Network -
-EVPN](/display/NETQ21/Ethernet+Virtual+Private+Network+-+EVPN).
+EVPN](https://docs.cumulusnetworks.com/display/DOCS/Ethernet+Virtual+Private+Network+-+EVPN).
 
 {{%notice info%}}
 
@@ -679,7 +680,7 @@ screen card to view the medium single session card.
 
 {{%/notice%}}
 
-### EVPN Session Card Workflow Summary</span>
+### EVPN Session Card Workflow Summary
 
 The small EVPN Session card displays:
 
@@ -765,7 +766,7 @@ The medium EVPN Session card displays:
 </tbody>
 </table>
 
-The large EVPN Session card contains two tabs.
+The large EVPN Session card contains one tab.
 
 The *Session Summary* tab displays:
 
@@ -805,62 +806,8 @@ The *Session Summary* tab displays:
 <td><p>Distribution of VTEP counts during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p>Alarm Count chart</p></td>
-<td><p>Distribution of alarm event counts during the designated time period</p></td>
-</tr>
-<tr class="odd">
-<td><p>Info Count chart</p></td>
-<td><p>Distribution of info event counts during the designated time period</p></td>
-</tr>
-<tr class="even">
 <td><p>Table</p></td>
 <td><p>VRF (for layer 3) or VLAN (for layer 2) identifiers by device</p></td>
-</tr>
-</tbody>
-</table>
-
-The *Configuration File Evolution* tab displays:
-
-{{% imgOld 51 %}}
-
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
-</tr>
-<tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 52 %}}</p></td>
-<td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
-</tr>
-<tr class="odd">
-<td><p>Title</p></td>
-<td><p>(Network Services | EVPN Session) <strong>Configuration File Evolution</strong></p></td>
-</tr>
-<tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 53 %}}</p></td>
-<td><p>VTEP count</p></td>
-</tr>
-<tr class="odd">
-<td><p>Timestamps</p></td>
-<td><p>When changes to the configuration file have occurred, the date and time are indicated. Click the time to see the changed file.</p></td>
-</tr>
-<tr class="even">
-<td><p>Configuration File</p></td>
-<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown. When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
-<p><strong>Note</strong>: If no configuration file changes have been made, the card shows no results at all.</p></td>
 </tr>
 </tbody>
 </table>
@@ -868,7 +815,7 @@ The *Configuration File Evolution* tab displays:
 The full screen EVPN Session card provides tabs for all EVPN sessions
 and all events.
 
-{{% imgOld 54 %}}
+{{% imgOld 51 %}}
 
 <table>
 <colgroup>
@@ -887,13 +834,13 @@ and all events.
 <td><p>Network Services | EVPN</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 55 %}}</p></td>
+<td><p>{{% imgOld 52 %}}</p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 56 %}}</p></td>
+<p>{{% imgOld 53 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -933,13 +880,13 @@ and all events.
 </tr>
 <tr class="even">
 <td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 57 %}}</p></td>
+<p>{{% imgOld 54 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
 </table>
 
-### View Session Status Summary</span>
+### View Session Status Summary
 
 A summary of the EVPN session is available from the EVPN Session card
 workflow, showing the node and its peer and current status.
@@ -957,13 +904,13 @@ To view the summary:
 
 5.  Optionally, switch to the small EVPN Session card.  
     
-    {{% imgOld 58 %}}
+    {{% imgOld 55 %}}
     
-    {{% imgOld 59 %}}
+    {{% imgOld 56 %}}
 
 For more detail, select a different size EVPN Session card.
 
-### View VTEP Count </span>
+### View VTEP Count
 
 You can view the count of VTEPs for a given EVPN session from the medium
 and large EVPN Session cards.
@@ -980,15 +927,15 @@ card:
 4.  Double-click the session of interest. The full screen card closes
     automatically.
     
-    {{% imgOld 60 %}}
+    {{% imgOld 57 %}}
 
 To view the count for a given EVPN session on the *large* EVPN Session
 card, follow the same steps as for the medium card and then switch to
 the large card.
 
-{{% imgOld 61 %}}
+{{% imgOld 58 %}}
 
-### View All EVPN Session Details</span>
+### View All EVPN Session Details
 
 You can view all stored attributes of all of the EVPN sessions running
 network-wide.
@@ -996,22 +943,22 @@ network-wide.
 To view all session details, open the full screen EVPN Session card and
 click the **All EVPN Sessions** tab.
 
-{{% imgOld 62 %}}
+{{% imgOld 59 %}}
 
 To return to your workbench, click
 
-{{% imgOld 63 %}}
+{{% imgOld 60 %}}
 
 in the top right of the card.
 
-### View All Events</span>
+### View All Events
 
 You can view all of the alarm and info events occurring network wide.
 
 To view all events, o pen the full screen EVPN Session card and click
 the **All Events** tab.
 
-{{% imgOld 64 %}}
+{{% imgOld 61 %}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -1026,7 +973,7 @@ include:
 
   - Click
     
-    {{% imgOld 65 %}}
+    {{% imgOld 62 %}}
     
     at the top right to return to your workbench.
 

@@ -1,11 +1,11 @@
 ---
 title: Monitor the LLDP Service
 author: Cumulus Networks
-weight: 165
+weight: 151
 aliases:
  - /display/NETQ21/Monitor+the+LLDP+Service
- - /pages/viewpage.action?pageId=12321439
-pageID: 12321439
+ - /pages/viewpage.action?pageId=10464735
+pageID: 10464735
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -17,16 +17,16 @@ insight into all aspects of the service. This is accomplished through
 two card workflows, one for the service and one for the session. They
 are described separately here.
 
-## Monitor the LLDP Service (All Sessions)</span>
+## Monitor the LLDP Service (All Sessions)
 
 With NetQ, you can monitor the number of nodes running the LLDP service,
 view nodes with the most LLDP neighbor nodes, those nodes with the least
 neighbor nodes, and view alarms triggered by the LLDP service. For an
 overview and how to configure LLDP in your data center network, refer to
 [Link Layer Discovery
-Protocol](/display/NETQ21/Link+Layer+Discovery+Protocol).
+Protocol](https://docs-rip.cumulusnetworks.com/display/NETQ21/Link+Layer+Discovery+Protocol).
 
-### LLDP Service Card Workflow Summary</span>
+### LLDP Service Card Workflow Summary
 
 The small LLDP Service card displays:
 
@@ -357,7 +357,7 @@ sessions, and all alarms.
 </tbody>
 </table>
 
-### View Service Status Summary</span>
+### View Service Status Summary
 
 A summary of the LLDP service is available from the Network Services
 card workflow, including the number of nodes running the service, the
@@ -372,7 +372,7 @@ twelve devices.
 
 For more detail, select a different size LLDP Network Services card.
 
-### View the Distribution of Nodes, Alarms, and Sessions</span>
+### View the Distribution of Nodes, Alarms, and Sessions
 
 It is useful to know the number of network nodes running the LLDP
 protocol over a period of time, as it gives you insight into nodes that
@@ -388,7 +388,7 @@ In this example, we see that twelve nodes are running the LLDP protocol,
 that there are 70 sessions established, and that no LLDP-related alarms
 have occurred in the last 24 hours.
 
-### View the Distribution of Missing Neighbors</span>
+### View the Distribution of Missing Neighbors
 
 You can view the number of missing neighbors in any given time period
 and how that number has changed over time. This is a good indicator of
@@ -402,7 +402,7 @@ bottom chart on the left, **Total Sessions with No Nbr**.
 In this example, we see that 18 of the 52 sessions are missing the
 neighbor (peer) device.
 
-### View Devices with the Most LLDP Sessions</span>
+### View Devices with the Most LLDP Sessions
 
 You can view the load from LLDP on your switches using the large LLDP
 Service card. This data enables you to see which switches are handling
@@ -451,7 +451,7 @@ To compare this data with the same data at a previous time:
     are now running LLDP than previously, looking for changes in the
     topology, and so forth.
 
-### View Devices with the Most Unestablished LLDP Sessions</span>
+### View Devices with the Most Unestablished LLDP Sessions
 
 You can identify switches that are experiencing difficulties
 establishing LLDP sessions; both currently and in the past.
@@ -490,12 +490,12 @@ include:
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
     probable causes. Refer to [Monitor
-    Switches](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
+    Switches](https://docs-rip.cumulusnetworks.com/pages/viewpage.action?pageId=10460693).
 
   - Click **Show All Sessions** to investigate all LLDP sessions with
     events in the full screen card.
 
-### View Switches with the Most LLDP-related Alarms</span>
+### View Switches with the Most LLDP-related Alarms
 
 Switches experiencing a large number of LLDP alarms may indicate a
 configuration or performance issue that needs further investigation. You
@@ -537,7 +537,7 @@ include:
   - Click **Show All Sessions** to investigate all switches running LLDP
     sessions in the full screen card.
 
-### View All LLDP Events</span>
+### View All LLDP Events
 
 The LLDP Network Services card workflow enables you to view all of the
 LLDP events in the designated time period.
@@ -574,7 +574,7 @@ Sort on other parameters:
     
     in the top right corner
 
-### View Detailed Information About All Switches Running LLDP</span>
+### View Detailed Information About All Switches Running LLDP
 
 You can view all stored attributes of all switches running LLDP in your
 network in the full screen card.
@@ -590,7 +590,7 @@ Return to your workbench by clicking
 
 in the top right corner.
 
-### View Detailed Information About All LLDP Sessions</span>
+### View Detailed Information About All LLDP Sessions
 
 You can view all stored attributes of all LLDP sessions in your network
 in the full screen card.
@@ -606,7 +606,7 @@ Return to your workbench by clicking
 
 in the top right corner.
 
-### Take Actions on Data Displayed in Results List</span>
+### Take Actions on Data Displayed in Results List
 
 In the full screen LLDP Service card, you can determine which results
 are displayed in the results list, and which are exported.
@@ -633,14 +633,14 @@ You can perform the following actions on the results list:
 
 To return to original display of results, click the associated tab.
 
-## Monitor a Single LLDP Session</span>
+## Monitor a Single LLDP Session
 
 With NetQ, you can monitor the number of nodes running the LLDP service,
 view neighbor state changes, and compare with events occurring at the
 same time, as well as monitor the running LLDP configuration and changes
 to the configuration file. For an overview and how to configure LLDP in
 your data center network, refer to [Link Layer Discovery
-Protocol](/display/NETQ21/Link+Layer+Discovery+Protocol).
+Protocol](https://docs.cumulusnetworks.com/display/DOCS/Link+Layer+Discovery+Protocol).
 
 {{%notice info%}}
 
@@ -650,7 +650,7 @@ screen card to view the medium single session card.
 
 {{%/notice%}}
 
-### Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period
 
 On the medium and large single LLDP session cards, the status of the
 neighboring peers is represented in heat maps stacked vertically; one
@@ -679,7 +679,7 @@ most common time periods in the table showing the resulting time blocks.
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-### LLDP Session Card Workflow Summary</span>
+### LLDP Session Card Workflow Summary
 
 The small LLDP Session card displays:
 
@@ -910,9 +910,9 @@ to open associated device card.</td>
 <p>{{% imgOld 64 %}}</p>
 ,
 <p>{{% imgOld 65 %}}</p></td>
-<td><p>Indication of detected peer, Has Peer</p>
+<td><p>Indication of host role, primary</p>
 <p>{{% imgOld 66 %}}</p>
-or No Peer
+or secondary
 <p>{{% imgOld 67 %}}</p></td>
 </tr>
 <tr class="even">
@@ -1006,7 +1006,7 @@ and all events.
 </tbody>
 </table>
 
-### View Session Status Summary</span>
+### View Session Status Summary
 
 A summary of the LLDP session is available from the LLDP Session card
 workflow, showing the node and its peer and current status.
@@ -1026,7 +1026,7 @@ To view the summary:
     
     {{% imgOld 73 %}}
 
-### View LLDP Session Neighbor State Changes </span>
+### View LLDP Session Neighbor State Changes
 
 You can view the neighbor state for a given LLDP session from the medium
 and large LLDP Session cards. For a given time period, you can determine
@@ -1063,7 +1063,7 @@ From this card, you can also view the alarm and info event counts, host
 interface name, peer hostname, and peer interface identifying the
 session in more detail.
 
-### View Changes to the LLDP Service Configuration File</span>
+### View Changes to the LLDP Service Configuration File
 
 Each time a change is made to the configuration file for the LLDP
 service, NetQ logs the change and enables you to compare it with the
@@ -1082,24 +1082,8 @@ To view the configuration file changes:
 
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
-    
-    {{% imgOld 77 %}}
 
-4.  Choose between the **File** view and the **Diff** view (selected
-    option is dark; File by default).  
-    The File view displays the content of the file for you to review.
-    
-    {{% imgOld 78 %}}
-    
-    The Diff view displays the changes between this version (on left)
-    and the most recent version (on right) side by side. The changes are
-    highlighted in red and green. In this example, we don't have any
-    changes to the file, so the same file is shown on both sides, and
-    thus no highlighted lines.
-    
-    {{% imgOld 79 %}}
-
-### View All LLDP Session Details</span>
+### View All LLDP Session Details
 
 You can view all stored attributes of all of the LLDP sessions
 associated with the two devices on this card.
@@ -1107,22 +1091,22 @@ associated with the two devices on this card.
 To view all session details, open the full screen LLDP Session card, and
 click the **All LLDP Sessions** tab.
 
-{{% imgOld 80 %}}
+{{% imgOld 77 %}}
 
 To return to your workbench, click
 
-{{% imgOld 81 %}}
+{{% imgOld 78 %}}
 
 in the top right of the card.
 
-### View All Events</span>
+### View All Events
 
 You can view all of the alarm and info events in the network.
 
 To view all events, open the full screen LLDP Session card, and click
 the **All Events** tab.
 
-{{% imgOld 82 %}}
+{{% imgOld 79 %}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -1144,7 +1128,7 @@ include:
 
   - Return to your workbench by clicking
     
-    {{% imgOld 83 %}}
+    {{% imgOld 80 %}}
     
     in the top right corner
 

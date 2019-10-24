@@ -54,8 +54,8 @@ To add a new user account:
     
     {{%notice note%}}
     
-    Be especially careful entering the email address as you *cannot*
-    change it once you save the account.
+Be especially careful entering the email address as you *cannot*
+change it once you save the account.
     
     {{%/notice%}}
 
@@ -78,8 +78,8 @@ To add a new user account:
     
     {{%notice info%}}
     
-    There is only the *admin* role at this time. Any user account you
-    create will have administrator permissions.
+There is only the *admin* role at this time. Any user account you
+create will have administrator permissions.
     
     {{%/notice%}}
 
@@ -151,8 +151,8 @@ To change a password:
 
 You cannot edit a user's email address, because this is the identifier
 the system uses for authentication. If you need to change an email
-address, you must create a new one for this user. Refer to [Add a New
-User Account](#src-10465518_NetQManagement-AddUsrAct). The old account
+address, you must create a new one for this user. Refer to [Add New
+User Account](#add-new-user-account). The old account
 remains.
 
 ### Export a List of User Accounts
@@ -202,10 +202,10 @@ To add a trace:
     
     {{%notice info%}}
     
-    For layer 2 traces, the source must be a hostname and the
-    destination must be a MAC address. For layer 3 traces, the source
-    can be a hostname or IP address, and the destination must be an IP
-    address.
+For layer 2 traces, the source must be a hostname and the
+destination must be a MAC address. For layer 3 traces, the source
+can be a hostname or IP address, and the destination must be an IP
+address.
     
     {{%/notice%}}
 
@@ -244,7 +244,7 @@ To export one or more scheduled trace configurations:
 
 From the NetQ Management workbench, you can view the total number of
 validations scheduled to run in the system. A set of default scheduled
-validations are provided and preconfigured with the NetQ UI. As an
+validations are provided and pre-configured with the NetQ UI. As an
 administrator, you can view and export the configurations for all
 scheduled validations, or add a new validation.
 
@@ -301,14 +301,5 @@ To add a scheduled validation:
     This opens the large Validation Request card.
 
 4.  Configure the request. Refer to [Validate Network Protocol and
-    Service Operations
-    (Version 2.1.1)](https://docs-rip.cumulusnetworks.com/pages/viewpage.action?pageId=10464962)
+    Service Operations](../Monitor-the-Network/Validate-Network-Protocol-and-Service-Operations)
     for details.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

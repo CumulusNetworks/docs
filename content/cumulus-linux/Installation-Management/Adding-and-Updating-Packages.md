@@ -248,7 +248,7 @@ Packages that are not part of the Cumulus Linux Repository are not typically tes
 
 {{%/notice%}}
 
-Installing packages outside of the Cumulus Linux repository requires the use of `suod -E apt-get`; however, depending on the package, you can use `easy-install` and other commands.
+Installing packages outside of the Cumulus Linux repository requires the use of `sudo -E apt-get`; however, depending on the package, you can use `easy-install` and other commands.
 
 To install a new package, complete the following steps:
 

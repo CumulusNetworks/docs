@@ -26,7 +26,7 @@ If services are stopped, you might need to reboot the switch for those services 
 
 ## Update the Package Cache
 
-To work properly, `apt` relies on a local cache of the available packages. You must populate the cache initially, and then periodically update it with `-E apt-get update`:
+To work properly, `apt` relies on a local cache listing of the available packages. You must populate the cache initially, and then periodically update it with `sudo -E apt-get update`:
 
 ```
   cumulus@switch:~$ sudo -E apt-get update
@@ -190,7 +190,7 @@ cumulus@switch:~$ dpkg -l | grep <name of package>
 ```
 
 - If the package is installed already, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See [Upgrade Packages](#upgrade-packages) above.
-- If the package is *not* already installed, add it by running `-E apt-get install <name of package>`. This retrieves the package from the Cumulus Linux repository and installs it on your system together with any other packages on which this package might depend. The following example adds the `tcpreplay` package to the system:
+- If the package is *not* already installed, add it by running `sudo -E apt-get install <name of package>`. This retrieves the package from the Cumulus Linux repository and installs it on your system together with any other packages on which this package might depend. The following example adds the `tcpreplay` package to the system:
 
 ```
 cumulus@switch:~$ sudo -E apt-get install tcpreplay
@@ -248,7 +248,7 @@ Packages that are not part of the Cumulus Linux Repository are not typically tes
 
 {{%/notice%}}
 
-Installing packages outside of the Cumulus Linux repository requires the use of `-E apt-get`; however, depending on the package, you can use `easy-install` and other commands.
+Installing packages outside of the Cumulus Linux repository requires the use of `suod -E apt-get`; however, depending on the package, you can use `easy-install` and other commands.
 
 To install a new package, complete the following steps:
 
@@ -285,7 +285,7 @@ deb http://security.debian.org/ jessie/updates main
 deb http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus
 ```
 
-4. Run `-E apt-get update`, then install the package and upgrade:
+4. Run `sudo -E apt-get update`, then install the package and upgrade:
 
 ```
 cumulus@switch:~$ sudo -E apt-get update
@@ -301,23 +301,25 @@ The repository is provided for convenience only. You can download and use these 
 
 Below is a non-exhaustive list of some of the packages present in the repository:
 
-- `htop` lets you view CPU, memory, and process information.
-- `scamper` is an ECMP traceroute utility.
-- `mtr` is an ECMP traceroute utility.
-- `dhcpdump` is similar to TCPdump but focused only on DHCP traffic.
-- `vim` is a text editor.
-- `fping` provides a list of targets through textfile to check reachability.
-- `scapy` is a custom packet generator for testing.
-- `bwm-ng` is a real-time bandwidth monitor.
-- `iftop` is a real-time traffic monitor.
-- `tshark` is a CLI version of wireshark.
-- `nmap` is a network scanning utility.
-- `minicom` is a USB/Serial console utility that turns your switch into a terminal server (useful for out of band management switches to provide a console on the dataplane switches in the rack).
-- `apt-cacher-ng` caches packages for mirroring purposes.
-- `iptraf` is a ncurses-based traffic visualization utility.
-- `swatch` monitors system activity. It reads a configuration file that contains patterns for which to search and actions to perform when each pattern is found.
-- `dos2unix` converts line endings from Windows to Unix.
-- `fail2ban` monitors log files (such as `/var/log/auth.log` and `/var/log/apache/access.log`) and temporarily or persistently bans the login of failure-prone IP addresses by updating existing firewall rules. This utility is not hardware accelerated on a Cumulus Linux switch, so only affects the control plane.
+| <div style="width:150px">Package | Description|
+|-------- | -----------|
+| `htop` | Lets you view CPU, memory, and process information. |
+| `scamper` | ECMP traceroute utility. |
+| `mtr` | ECMP traceroute utility. |
+| `dhcpdump` | Similar to TCPdump but focused only on DHCP traffic. |
+| `vim` | Text editor. |
+| `fping` | Provides a list of targets through textfile to check reachability. |
+| `scapy` | Custom packet generator for testing. |
+| `bwm-ng` | Real-time bandwidth monitor. |
+| `iftop` | Real-time traffic monitor. |
+| `tshark` | CLI version of wireshark. |
+| `nmap` | Network scanning utility. |
+| `minicom` | USB/Serial console utility that turns your switch into a terminal server (useful for out of band management switches to provide a console on the dataplane switches in the rack). |
+| `apt-cacher-ng` | Caches packages for mirroring purposes. |
+| `iptraf` | ncurses-based traffic visualization utility. |
+ `swatch` | Monitors system activity. It reads a configuration file that contains patterns for which to search and actions to perform when each pattern is found. |
+| `dos2unix` | Converts line endings from Windows to Unix. |
+| `fail2ban` | Monitors log files (such as `/var/log/auth.log` and `/var/log/apache/access.log`) and temporarily or persistently bans the login of failure-prone IP addresses by updating existing firewall rules. This utility is not hardware accelerated on a Cumulus Linux switch, so only affects the control plane. |
 
 To enable the Supplemental Repository:
 

@@ -13,13 +13,4 @@ siteSlug: cumulus-netq-21
 ---
 The topics contained in this section describe monitoring tasks that
 apply across the entire network. For device-specific monitoring refer to
-[Monitor
-Switches](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+[Monitor Switches](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).

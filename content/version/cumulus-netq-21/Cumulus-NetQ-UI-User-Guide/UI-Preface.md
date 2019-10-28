@@ -25,55 +25,39 @@ supported in Cumulus NetQ 1.4.1, Cumulus NetQ now offers a graphical
 user interface for:
 
   - Data visualizations of the overlay and underlay networks,
-
   - Simplified network troubleshooting with network-wide roll-ups of
     health and alarm status in a single card, and
-
   - Proactive validation of the network status and configuration to
     regularly detect network issues.
 
-<span style="color: #353744;"> For further information regarding new
+For further information regarding new
 features, improvements, bug fixes, and known issues present in this
-release, refer to the [release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/360017779214).
-<span style="color: #353744;"> </span> </span>
+release, refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360017779214).
 
 ## Available Documentation
 
-<span style="color: #36424a;"> <span style="color: #353744;"> The NetQ
+The NetQ
 documentation set has been reorganized and updated from prior releases.
 They still provide the information you need to proactively monitor your
 Linux-based network fabric using Cumulus NetQ. They assume that you have
-already installed Cumulus Linux and NetQ. </span> </span>
+already installed Cumulus Linux and NetQ.
 
-<span style="color: #36424a;"> <span style="color: #353744;"> You may
+You may
 start anywhere in the documentation or read it from start to finish
 depending on your role and familiarity with the NetQ software and Linux
-networking. </span> </span> <span style="color: #353744;"> If you are
+networking. If you are
 new to NetQ, you may want to read the Cumulus NetQ Primer before reading
-the other available documents. </span>
+the other available documents.
 
-<span style="color: #353744;"> The following NetQ documents are
-available: </span>
+The following NetQ documents are
+available:
 
-  - <span style="color: #353744;"> [Cumulus NetQ User
-    Docs](/version/cumulus-netq-21/) </span>
-
-  - <span style="color: #353744;"> [Cumulus NetQ CLI User
-    Guide](/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/)
-    </span>
-
-  - Cumulus NetQ UI User Guide <span style="color: #353744;"> (this
-    guide) </span>
-
-  - [Cumulus NetQ Release
-    Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360017779214)
-
-  - [What the NetQ Validation System
-    Checks](https://support.cumulusnetworks.com/hc/en-us/articles/360021961394)
-
-  - [Cumulus NetQ Release Versioning and Support
-    Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
+  - [Cumulus NetQ User Docs](/version/cumulus-netq-21/)
+  - [Cumulus NetQ CLI User Guide](/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/)
+  - Cumulus NetQ UI User Guide (this guide)
+  - [Cumulus NetQ Release Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360017779214)
+  - [What the NetQ Validation System Checks](https://support.cumulusnetworks.com/hc/en-us/articles/360021961394)
+  - [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
 
 ## Document Formatting
 
@@ -81,45 +65,38 @@ This guide uses the following typographical and note conventions.
 
 ### Typographical Conventions
 
-<span style="color: #353744;"> Throughout the guide, text formatting is
-used to convey contextual information about the content. </span>
+Throughout the guide, text formatting is
+used to convey contextual information about the content.
 
-| **<span style="color: #353744;"> Text Format </span>**                   | **<span style="color: #353744;"> Meaning </span>**                                                                                                                                |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <span style="color: #008000;"> Green text </span>                        | Link to additional content within the topic or to another topic                                                                                                                   |
-| `Text in Monospace font`                                                 | <span style="color: #353744;"> Filename, directory and path names, and command usage </span>                                                                                      |
-| <span style="color: #353744;"> \[`Text within square brackets`\] </span> | <span style="color: #353744;"> Optional command parameters; may be presented in mixed case or all caps text </span>                                                               |
-| <span style="color: #353744;"> \<`Text within angle brackets`\> </span>  | <span style="color: #353744;"> Required command parameter values–variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text </span> |
+| **Text Format**      | **Meaning**       |
+| ----------------------- | ------------------- |
+| <span style="color: #008000;"> Green text </span>  | Link to additional content within the topic or to another topic   |
+| `Text in Monospace font`  | Filename, directory and path names, and command usage   |
+| \[`Text within square brackets`\] | Optional command parameters; may be presented in mixed case or all caps text  |
+| \<`Text within angle brackets`\>  | Required command parameter values–variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text |
 
 ### Note Conventions
 
-<span style="color: #353744;"> Several note types are used throughout
+Several note types are used throughout
 the document. The formatting of the note indicates its intent and
-urgency. </span>
+urgency.
 
 {{%notice tip%}}
 
-**Tip or Best Practice**
-
-<span style="color: #353744;"> Offers information to improve your
-experience with the tool, such as time-saving or shortcut options, or i
-</span> <span style="color: #353744;"> ndicates the common or
-recommended method for performing a particular task or process </span>
+Offers information to improve your
+experience with the tool, such as time-saving or shortcut options, or indicates the common or
+recommended method for performing a particular task or process
 
 {{%/notice%}}
 
-{{%notice info%}}
-
-**Information**
+{{%notice note%}}
 
 Provides additional information or a reminder about a task or process
 that may impact your next step or selection
 
 {{%/notice%}}
 
-{{%notice note%}}
-
-**Caution**
+{{%notice info%}}
 
 Advises that failure to take or avoid specific action can result in
 possible data loss
@@ -128,17 +105,7 @@ possible data loss
 
 {{%notice warning%}}
 
-**Warning**
-
 Advises that failure to take or avoid specific action can result in
 possible physical harm to yourself, hardware equipment, or facility
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

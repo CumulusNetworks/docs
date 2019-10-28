@@ -32,8 +32,8 @@ The small Trace Request card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -43,7 +43,7 @@ The small Trace Request card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates a trace request</p></td>
 </tr>
@@ -64,8 +64,8 @@ The medium Trace Request card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -75,7 +75,7 @@ The medium Trace Request card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 3 %}}</p></td>
 <td><p>Indicates a trace request</p></td>
 </tr>
@@ -108,8 +108,8 @@ The large Trace Request card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -119,7 +119,7 @@ The large Trace Request card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates a trace request</p></td>
 </tr>
@@ -176,8 +176,8 @@ The full screen Trace Request card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -196,7 +196,7 @@ The full screen Trace Request card displays:
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking </p>
 <p>{{% imgOld 8 %}}</p></td>
 </tr>
 <tr class="even">
@@ -220,7 +220,7 @@ The full screen Trace Request card displays:
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 9 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
@@ -254,17 +254,15 @@ To create a layer 3 trace request:
     
     {{%notice tip%}}
     
-    If you mistype an address, you must double-click it, or backspace
-    over the error, and retype the address. You cannot select the
-    address by dragging over it as this action attempts to move the card
-    to another location.
+If you mistype an address, you must double-click it, or backspace
+over the error, and retype the address. You cannot select the
+address by dragging over it as this action attempts to move the card
+to another location.
     
     {{%/notice%}}
 
 4.  Click **Run Now**. A corresponding Trace Results card is opened on
-    your workbench. Refer to [View Layer 3 Trace
-    Results](#src-10465155_MonitorNetworkConnectivity-ODTL3) for
-    details.
+    your workbench. Refer to [View Layer 3 Trace Results](#view-layer-3-trace-results) for details.
 
 ### Create a Layer 3 Trace Through a Given VRF
 
@@ -290,9 +288,7 @@ To create the trace request:
     at *10.1.3.103* using VRF *vrf1.*
 
 5.  Click **Run Now**. A corresponding Trace Results card is opened on
-    your workbench. Refer to [View Layer 3 Trace
-    Results](#src-10465155_MonitorNetworkConnectivity-ODTL3) for
-    details.
+    your workbench. Refer to [View Layer 3 Trace Results](#view-layer-3-trace-results) for details.
 
 ### Create a Layer 2 Trace
 
@@ -322,9 +318,7 @@ To create a layer 2 trace request:
     at *00:03:00:33:33:01* using VLAN *13.*
 
 5.  Click **Run Now**. A corresponding Trace Results card is opened on
-    your workbench. Refer to [View Layer 2 Trace
-    Results](#src-10465155_MonitorNetworkConnectivity-ODTL2) for
-    details.
+    your workbench. Refer to [View Layer 2 Trace Results](#view-layer-2-trace-results) for details.
 
 ### Create a Trace to Run on a Regular Basis (Scheduled Trace)
 
@@ -401,24 +395,22 @@ To run a scheduled trace now:
 
 ## View On-demand Trace Results
 
-<span style="color: #333333;"> Once you have started an on-demand trace,
+Once you have started an on-demand trace,
 the results are displayed in the medium Trace Results card by default.
 You may view the results in more or less detail by switching to the
-large or small Trace Results card, respectively. </span>
+large or small Trace Results card, respectively.
 
 ### On-demand Trace Results Card Workflow Summary
 
-<span style="color: #333333;"> The small On-demand Trace Results card
-displays: </span>
-
-<span style="color: #333333;"> </span>
+The small On-demand Trace Results card
+displays:
 
 {{% imgOld 22 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -428,7 +420,7 @@ displays: </span>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 23 %}}</p></td>
 <td><p>Indicates an on-demand trace result</p></td>
 </tr>
@@ -437,27 +429,23 @@ displays: </span>
 <td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 24 %}}</p>
-<span style="color: #353744;"> , </span> <span style="color: #353744;"> </span>
-<p>{{% imgOld 25 %}}</p>
-</span></td>
+<td><p></p>
+<p>{{% imgOld 24 %}}</p>,  <p>{{% imgOld 25 %}}</p>
+</td>
 <td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
 </tr>
 </tbody>
 </table>
 
-<span style="color: #333333;"> The medium On-demand Trace Results card
-displays: </span>
-
-<span style="color: #333333;"> </span>
+The medium On-demand Trace Results card
+displays:
 
 {{% imgOld 26 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -467,7 +455,7 @@ displays: </span>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 27 %}}</p></td>
 <td><p>Indicates an on-demand trace result</p></td>
 </tr>
@@ -480,11 +468,10 @@ displays: </span>
 <td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 28 %}}</p>
-<span style="color: #353744;"> , </span> <span style="color: #353744;"> </span>
+<td><p></p>
+<p>{{% imgOld 28 %}}</p> ,  
 <p>{{% imgOld 29 %}}</p>
-</span></td>
+</td>
 <td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
 </tr>
 <tr class="odd">
@@ -506,15 +493,15 @@ displays: </span>
 </tbody>
 </table>
 
-<span style="color: #333333;"> The large On-demand Trace Results card
-displays: </span>
+The large On-demand Trace Results card
+displays: 
 
 {{% imgOld 30 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -524,7 +511,7 @@ displays: </span>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 31 %}}</p></td>
 <td><p>Indicates an on-demand trace result</p></td>
 </tr>
@@ -533,11 +520,10 @@ displays: </span>
 <td><p>On-demand Trace Result</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 32 %}}</p>
-<span style="color: #353744;"> , </span> <span style="color: #353744;"> </span>
+<td><p></p>
+<p>{{% imgOld 32 %}}</p> ,  
 <p>{{% imgOld 33 %}}</p>
-</span></td>
+</td>
 <td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
 </tr>
 <tr class="even">
@@ -578,15 +564,15 @@ displays: </span>
 </tbody>
 </table>
 
-<span style="color: #333333;"> The </span> full screen On-demand Trace
+The  full screen On-demand Trace
 Results card displays:
 
 {{% imgOld 34 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -617,7 +603,7 @@ Results card displays:
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 35 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
@@ -645,7 +631,7 @@ number of hops or other failures, viewing the results on the large card
 would provide additional information.
 
 {{% imgOld 39 %}}
-
+<p> </p>
 {{% imgOld 40 %}}
 
 In our example, we can verify that every path option had four hops since
@@ -708,8 +694,8 @@ The small Scheduled Trace Results card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -719,7 +705,7 @@ The small Scheduled Trace Results card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 46 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
@@ -731,13 +717,13 @@ The small Scheduled Trace Results card displays:
 <td><p>Results</p></td>
 <td><p>Summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
-<li><p><span style="color: #353744;"> </span></p>
+<li><p></p>
 <p>{{% imgOld 47 %}}</p>
 <p>Number of trace runs completed in the designated time period</p></li>
-<li><p><span style="color: #353744;"> <span style="color: #222222;"> </span></span></p>
+<li><p> </p>
 <p>{{% imgOld 48 %}}</p>
 <p>Number of runs with warnings</p></li>
-<li><p><span style="color: #353744;"> </span></p>
+<li><p></p>
 <p>{{% imgOld 49 %}}</p>
 <p>Number of runs with errors</p></li>
 </ul></td>
@@ -751,8 +737,8 @@ The medium Scheduled Trace Results card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -766,7 +752,7 @@ The medium Scheduled Trace Results card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 51 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
@@ -778,20 +764,20 @@ The medium Scheduled Trace Results card displays:
 <td><p>Summary</p></td>
 <td><p>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
-<li><p><span style="color: #353744;"> </span></p>
+<li><p></p>
 <p>{{% imgOld 52 %}}</p>
 <p>Number of trace runs completed in the designated time period</p></li>
-<li><p><span style="color: #353744;"> <span style="color: #222222;"> </span></span></p>
+<li><p> </p>
 <p>{{% imgOld 53 %}}</p>
 <p>Number of runs with warnings</p></li>
-<li><p><span style="color: #353744;"> </span></p>
+<li><p></p>
 <p>{{% imgOld 54 %}}</p>
 <p>Number of runs with errors</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
 <td><p>Charts</p></td>
-<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="https://docs.cumulusnetworks.com/display/NETQ/Validate+Network+Protocol+and+Service+Operations#ValidateNetworkProtocolandServiceOperations-DataGran" class="external-link">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
+<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Connectivity/#granularity-of-data-shown-based-on-time-period" class="external-link">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
 <p><strong>Unique Bad Nodes</strong>: Distribution of unique nodes that generated the indicated warnings and/or failures</p></td>
 </tr>
 </tbody>
@@ -805,8 +791,8 @@ The *Results* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -820,7 +806,7 @@ The *Results* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 56 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
@@ -832,13 +818,13 @@ The *Results* tab displays:
 <td><p>Summary</p></td>
 <td><p>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
-<li><p><span style="color: #353744;"> </span></p>
+<li><p></p>
 <p>{{% imgOld 57 %}}</p>
 <p>Number of trace runs completed in the designated time period</p></li>
-<li><p><span style="color: #353744;"> <span style="color: #222222;"> </span></span></p>
+<li><p> </p>
 <p>{{% imgOld 58 %}}</p>
 <p>Number of runs with warnings</p></li>
-<li><p><span style="color: #353744;"> </span></p>
+<li><p></p>
 <p>{{% imgOld 59 %}}</p>
 <p>Number of runs with errors</p></li>
 </ul></td>
@@ -863,8 +849,8 @@ The *Configuration* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -878,7 +864,7 @@ The *Configuration* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 61 %}}</p></td>
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
@@ -927,8 +913,8 @@ The full screen Scheduled Trace Results card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -947,7 +933,7 @@ The full screen Scheduled Trace Results card displays:
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking </p>
 <p>{{% imgOld 64 %}}</p></td>
 </tr>
 <tr class="even">
@@ -974,7 +960,7 @@ The full screen Scheduled Trace Results card displays:
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 65 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
@@ -1001,13 +987,13 @@ common time periods in the table showing the resulting time blocks.
 {{% imgOld 66 %}}
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
-| ----------- | -------------- | ------------------ | ---------------------------- |
-| 6 hours     | 18             | 6                  | 1 hour                       |
-| 12 hours    | 36             | 12                 | 1 hour                       |
-| 24 hours    | 72             | 24                 | 1 hour                       |
-| 1 week      | 504            | 7                  | 1 day                        |
-| 1 month     | 2,086          | 30                 | 1 day                        |
-| 1 quarter   | 7,000          | 13                 | 1 week                       |
+| --------------- | :------------------: | :------------------------: | :--------------------------: |
+| 6 hours     | 18             | 6   | 1 hour  |
+| 12 hours    | 36             | 12  | 1 hour   |
+| 24 hours    | 72             | 24    | 1 hour   |
+| 1 week      | 504            | 7     | 1 day    |
+| 1 month     | 2,086          | 30   | 1 day  |
+| 1 quarter   | 7,000          | 13  | 1 week    |
 
 ### View Scheduled Trace Results
 
@@ -1025,7 +1011,6 @@ To view the results:
     in the first column of the result and clicking the check box.
 
 3.  On the Edit Menu that appears at the bottom of the window, click
-    <span style="color: #353744;"> </span>
     
     {{% imgOld 68 %}}
     
@@ -1061,14 +1046,13 @@ To view the results:
 
 10. You can view the configuration of the request that produced the
     results shown on this card workflow, by hovering over the card and
-    clicking <span style="color: #333c4e;"> </span>
+    clicking 
     
     {{% imgOld 71 %}}
     
     . If you want to change the configuration, click **Edit** to open
     the large Trace Request card, pre-populated with the current
-    configuration. Follow the instructions in [Create a Scheduled Trace
-    Request](#src-10465155_MonitorNetworkConnectivity-ModSchTrace) to
+    configuration. Follow the instructions in [Create a Scheduled Trace Request](#create-a-trace-to-run-on-a-regular-basis-scheduled-trace) to
     make your changes in the same way you created a new scheduled trace.
 
 11. To view a summary of all scheduled trace results, switch to the full
@@ -1099,11 +1083,3 @@ To view the results:
     {{% imgOld 73 %}}
     
     to return to the results list to view another trace in detail.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

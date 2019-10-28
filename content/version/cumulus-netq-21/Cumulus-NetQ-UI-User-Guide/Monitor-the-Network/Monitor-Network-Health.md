@@ -27,8 +27,8 @@ The small Network Health card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -38,7 +38,7 @@ The small Network Health card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
@@ -80,8 +80,8 @@ trend of the:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -95,7 +95,7 @@ trend of the:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 3 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
@@ -134,8 +134,8 @@ The *System Health* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -149,7 +149,7 @@ The *System Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
@@ -193,8 +193,8 @@ The *Network Services Health* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -208,7 +208,7 @@ The *Network Services Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 7 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
@@ -252,8 +252,8 @@ The *Interfaces Health* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -267,7 +267,7 @@ The *Interfaces Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 9 %}}</p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
@@ -311,8 +311,8 @@ The full screen Network Health card displays all events in the network.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -352,7 +352,7 @@ The full screen Network Health card displays all events in the network.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p><span style="color: #353744;"></p>
 <p>{{% imgOld 12 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
@@ -403,7 +403,7 @@ To view information about each system component:
 
 1.  Open the large Network Health card.
 
-2.  Hover over the card and click <span style="color: #222222;"> </span>
+2.  Hover over the card and click 
     
     {{% imgOld 15 %}}
     
@@ -411,11 +411,11 @@ To view information about each system component:
     
     {{% imgOld 16 %}}
 
-<span style="color: #000000;"> The health of each protocol or service is
+The health of each protocol or service is
 represented on the left side of the card by a distribution of the health
 score, a trend indicator, and a percentage of successful results. The
 right side of the card provides a listing of devices running the
-services. </span>
+services.
 
 ### View Devices with the Most Issues
 
@@ -468,7 +468,7 @@ To view information about each network protocol or service:
 
 1.  Open the large Network Health card.
 
-2.  Hover over the card and click <span style="color: #222222;"> </span>
+2.  Hover over the card and click 
     
     {{% imgOld 19 %}}
     
@@ -476,8 +476,6 @@ To view information about each network protocol or service:
     
     {{% imgOld 20 %}}
     
-      
-
 The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,
 and a percentage of successful results. The right side of the card
@@ -517,10 +515,8 @@ devices with the most issues, open the large Network Health card. Select
 **Recent Failures** from the dropdown above the table on the right.
 Devices with the highest number of issues are listed at the top. Scroll
 down to view those with fewer issues. To further investigate the
-critical devices, open <span style="color: #000000;"> the </span>
-<span style="color: #000000;"> Switch card or the </span>
-<span style="color: #000000;"> Event cards and filter on the indicated
-switches. </span>
+critical devices, open the Switch card or the Event cards and filter on the indicated
+switches.
 
 ### Filter Results by Network Service
 
@@ -553,19 +549,6 @@ To view all events:
 Where to go next depends on what data you see, but a few options
 include:
 
-  - Sort or filter event data instead by severity, for example, or type.
-
-  - Export the data for use in another analytics tool, by clicking
-    **Export** and providing a name for the data file.
-
-  
-
-  
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+- Sort or filter event data instead by severity, for example, or type.
+- Export the data for use in another analytics tool, by clicking
+**Export** and providing a name for the data file.

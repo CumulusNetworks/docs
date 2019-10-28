@@ -17,9 +17,7 @@ Alarms card workflow tracks critical severity events, whereas the Info
 card workflow tracks all warning, info, and debug severity events.
 
 To focus on events from a single device perspective, refer to
-<span style="color: #ff0000;"> [Monitor
-Switches](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches)
-</span> .
+[Monitor Switches](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
 
 ## Monitor Alarms
 
@@ -38,8 +36,8 @@ The small Alarms card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -88,8 +86,8 @@ The medium Alarms card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -138,8 +136,8 @@ The *System, Trace and Interfaces* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -183,8 +181,8 @@ The full screen Alarms card provides tabs for all events.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -224,7 +222,7 @@ The full screen Alarms card provides tabs for all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 9 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
@@ -308,9 +306,9 @@ To filter for selected categories:
 
 4.  Click the checkbox again to return a category's data to the table.
 
-In this example, we removed the Services from the event listing.
+    In this example, we removed the Services from the event listing.
 
-{{% imgOld 14 %}}
+    {{% imgOld 14 %}}
 
 #### Compare Alarms with a Prior Time
 
@@ -330,7 +328,7 @@ To compare two time periods:
     that moving large cards can take a few extra seconds since they
     contain a large amount of data.
 
-4.  Hover over the card and click <span style="color: #353744;"> </span>
+4.  Hover over the card and click 
     
     {{% imgOld 15 %}}
     
@@ -350,7 +348,7 @@ To compare two time periods:
     has the most alarms in each time period, so it might be worth
     investigating this device in more detail.
 
-### View All Events
+### View All Alarm Events
 
 You can view all events in the network either by clicking the **Show All
 Events** link under the table on the large Alarm Events card, or by
@@ -388,8 +386,8 @@ The small Info card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -399,7 +397,7 @@ The small Info card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 23 %}}</p></td>
 <td><p>Indicates data is for all warning, info, and debug severity events in the network</p></td>
 </tr>
@@ -424,8 +422,8 @@ The medium Info card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -439,7 +437,7 @@ The medium Info card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 25 %}}</p></td>
 <td><p>Indicates data is for all warning, info, and debug severity events in the network</p></td>
 </tr>
@@ -469,8 +467,8 @@ The large Alarms card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -484,7 +482,7 @@ The large Alarms card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 27 %}}</p></td>
 <td><p>Indicates data is for all warning, info, and debug severity events in the network</p></td>
 </tr>
@@ -526,8 +524,8 @@ The full screen Info card provides tabs for all events.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -567,7 +565,7 @@ The full screen Info card provides tabs for all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p></p>
 <p>{{% imgOld 30 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
@@ -617,16 +615,14 @@ again, an info event of severity warning is generated. For this reason,
 you might see some level of tracking between the info and alarm counts
 and distributions. Some other possible scenarios:
 
-  - When a critical alarm is resolved, you may see a temporary increase
-    in info events as a result.
-
-  - When you get a burst of info events, you may see a follow-on
-    increase in critical alarms, as the info events may have been
-    warning you of something beginning to go wrong.
-
-  - You set logging to debug, and a large number of info events of
-    severity debug are seen. You would not expect to see an increase in
-    critical alarms.
+- When a critical alarm is resolved, you may see a temporary increase
+in info events as a result.
+- When you get a burst of info events, you may see a follow-on
+increase in critical alarms, as the info events may have been
+warning you of something beginning to go wrong.
+- You set logging to debug, and a large number of info events of
+severity debug are seen. You would not expect to see an increase in
+critical alarms.
 
 ### View All Info Events Sorted by Time of Occurrence
 
@@ -649,7 +645,7 @@ the table.
 
 {{% imgOld 36 %}}
 
-### View All Events
+### View All Info Events
 
 You can view all events in the network either by clicking the **Show All
 Events** link under the table on the large Info Events card, or by
@@ -671,28 +667,23 @@ in the top right corner of the card.
 
 The following table lists all event messages organized by severity, by
 default. Click the column header to sort the list by that
-characteristic. Click
+characteristic. 
 
-{{% imgOld 40 %}}
-
-in any column header to toggle the sort order between A-Z and Z-A.
-
-{{%notice info%}}
+{{%notice note%}}
 
 The messages can be viewed through third-party notification
 applications. For details about configuring notifications using the NetQ
-CLI, refer to [Integrate with Third-party Software and
-Hardware](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware).
+CLI, refer to [Integrate with Third-party Software and Hardware](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware).
 
 {{%/notice%}}
 
 <table>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 15%" />
+<col style="width: 22.5%" />
+<col style="width: 22.5%" />
 </colgroup>
 <thead>
 <tr class="header">

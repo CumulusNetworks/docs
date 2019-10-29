@@ -568,7 +568,7 @@ release.
 </tr>
 <tr>
   <td>netq show platform [json]</td>
-  <td>Displays the NetQ software version installed on your NetQ server or appliance. Note change to command in 2.3.1.</td>
+  <td>Displays the NetQ software version installed on your NetQ server or appliance and how long it has been up. Note change to command in 2.3.1.</td>
   <td>2.3.0</td>
 </tr>
 </tbody>

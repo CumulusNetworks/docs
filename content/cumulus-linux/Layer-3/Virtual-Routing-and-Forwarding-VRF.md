@@ -447,32 +447,29 @@ file. For example:
 
     cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
     ...
-
-   cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
-   frr version 7.0+cl4u1
-   frr defaults datacenter
-   hostname leaf01
-   log syslog informational
-   service integrated-vtysh-config
-   !
-   router bgp 65001 vrf rocket
+    
+    hostname leaf01
+    log syslog informational
+    service integrated-vtysh-config
     !
-    address-family l2vpn evpn
-    exit-address-family
-   !
-   router bgp 65001 vrf turtle
+    router bgp 65001 vrf rocket
+     !
+     address-family l2vpn evpn
+     exit-address-family
     !
-    address-family ipv4 unicast
-     import vrf rocket
-    exit-address-family
+    router bgp 65001 vrf turtle
+     !
+     address-family ipv4 unicast
+      import vrf rocket
+     exit-address-family
+     !
+     address-family l2vpn evpn
+     exit-address-family
     !
-    address-family l2vpn evpn
-    exit-address-family
-   !
-   router bgp 65001
-   !
-   line vty
-   !
+    router bgp 65001
+    !
+    line vty
+    !
 
 #### Exclude Certain Prefixes
 

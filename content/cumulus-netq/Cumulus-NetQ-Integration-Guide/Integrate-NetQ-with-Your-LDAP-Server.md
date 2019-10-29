@@ -27,7 +27,7 @@ Three methods of user authentication are available:
 
 - **Anonymous**: LDAP client does not require any authentication. The user can access all resources anonymously. This is not commonly used for production environments.
 - **Basic**: (Also called Simple) LDAP client must provide a bind user and password to authenticate the connection. For NetQ, the bind user is the Admin distinguished name (DN) and password is the Admin password. It is sent as clear text. Only users with these credentials are allowed to perform LDAP operations.
-- **SASL**: Simple Authentication and Security Layer. LDAP client sends messages in clear text to bind to another authentication service which performs the authentication. As with Basic authentication, the messages must contain a bind user and password (an administrative distinguished name (DN) and password) to bind to the directory service and query user credentials.
+- **SASL**: Not implemented. Please select an alternate method.
 
 If you are unfamiliar with the configuration of your LDAP server, contact your administrator to ensure you select the appropriate authentication method and credentials.
 
@@ -55,7 +55,7 @@ While optional, specifying search scope indicates where to start and how deep a 
 
 Search scope options include:
 
-- **None**: No search allowed for user on this LDAP server
+- **None**: Not implemented. Please select an alternate scope.
 - **Base**: Search for users at the base level only; no subordinates
 - **One Level**: Search for immediate children of user; not at base or for any descendants
 - **Subtree**: Search for users from base, subordinates at any depth

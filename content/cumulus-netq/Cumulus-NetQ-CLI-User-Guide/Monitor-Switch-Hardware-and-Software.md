@@ -680,6 +680,20 @@ exit01            swp1                      0                    0              
 ...
 ```
 
+### View SSD Utilization
+
+For NetQ servers and appliances that have 3ME3 solid state drives (SSDs)installed (primarily in on-premises deployments), you can view the utilization of the disk on-demand. Use the `netq-cl-ssd-util` command to view this information.
+
+This example shows the utilization for all devices with SSDs.
+
+```
+cumulus@switch:~$ netq show cl-ssd-util
+Matching ssd_util records:
+
+```
+
+Optionally, use the `hostname` option to view this information for a particular device, or the `around` option to view this information around a particular time.
+
 ## Monitor Switch Software Information
 
 The syntax for this command is:

@@ -522,7 +522,7 @@ see when changes were made, and the operational status.
 
 To view all interfaces:
 
-1.  Open the full screen Switch card and click the **All Interfaces**
+1.  Open the full-screen Switch card and click the **All Interfaces**
     tab.
 
     {{<figure src="/images/netq/dev-switch-fullscr-interfaces-tab-230.png" width="700">}}
@@ -536,6 +536,20 @@ To view all interfaces:
 6.  Verify the correct VRF interface is assigned to an interface, shown
     in the **VRF** column.
 7.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
+
+### View All Software Packages on a Switch
+
+You can view all of the software installed on a given switch to quickly validate versions and total software installed.
+
+To view all software packages:
+
+1. Open the full-screen Switch card and click the **Installed Packages** tab.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-pkgs-tab-231.png" width="700">}}
+
+2. Look for packages of internest and their version and status. Sort by a particular parameter by hovering over the column and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.
+
+3. Optionally, export the list by selecting all or a specific package, then clicking **Export** above the table, or **Export Select** in the Edit Menu.
 
 ## Monitor Switch Component Inventory
 

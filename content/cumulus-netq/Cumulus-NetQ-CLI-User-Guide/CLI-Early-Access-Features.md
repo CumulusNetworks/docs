@@ -16,7 +16,7 @@ NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/20
 features that provide advanced access to new functionality before it becomes generally available. Two features are available as early access features in NetQ 2.3.0:
 
 - Detailed `netq check` validation output (CLI only), described here
-- Topology view (GUI Cloud deployments only), refer to [UI Early Access Features](../../Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/UI-Early-Access-Features/)
+- Topology view, refer to [UI Early Access Features](../../Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/UI-Early-Access-Features/)
 
 These features are bundled into the `netq-apps` package; there is no
 specific EA package like there typically is with Cumulus Linux.

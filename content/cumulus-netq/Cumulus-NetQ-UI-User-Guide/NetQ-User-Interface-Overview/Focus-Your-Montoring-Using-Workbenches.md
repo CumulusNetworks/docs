@@ -30,7 +30,7 @@ On initial login, the Cumulus Workbench is opened. On subsequent logins, the las
 
 ## Custom Workbenches
 
-You can create and save as many workbenches as suit your needs. For example, create a workbench that:
+Users with either administrative or user roles can create and save as many custom workbenches as suits their needs. For example, a user might create a workbench that:
 
 - shows all of the selected cards for the past week and one that shows all of the selected cards for the past 24 hours
 - only has data about your virtual overlays; EVPN plus events cards
@@ -56,7 +56,7 @@ Refer to [Access Data with Cards](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-
 
 ### Remove a Workbench
 
-Once you have created a number of custom workbenches, you might find that you no longer need some of them.
+Once you have created a number of custom workbenches, you might find that you no longer need some of them. As an administrative user, you can remove any workbench, except for the default Cumulus Workbench. Users with a user role can only remove workbenches they have created.
 
 To remove a workbench:
 
@@ -70,4 +70,34 @@ To remove a workbench:
 
 4. Hover over the workbench you want to remove, and click **Delete**.
 
-Refer to [Manage Your Workbenches](../Set-User-Preferences/#manage-your-workbenches) for more detail about workbench management.
+## Manage Auto-Refresh for Your Workbenches
+
+With NetQ 2.3.1 and later, you can specify how often to update the data displayed on your workbenches (global refresh???). Three refresh rates are available:
+
+- **Analyze**: updates every 30 seconds
+- **Debug**: updates every minute
+- **Monitor**: updates every two (2) minutes
+
+By default, auto-refresh is enabled and configured to update every 30 seconds.
+
+### Disable/Enable Auto-Refresh
+
+To disable/enable auto-refresh, simply click [icon] (Refresh). This toggles between the two states, where [icon] indicates it is disabled and [icon] indicates it is enabled.
+
+### View Current Settings
+
+To view the current auto-refresh setting, hover over [icon] (Refresh) on a workbench header, to open the tool tip as follows:
+
+{{<figure src="/images/netq/wb-refresh-tooltip-231.png" width="100">}}
+
+### Change Settings
+
+To modify the auto-refresh setting:
+
+1. Click the [down arrow] on the Refresh icon.
+
+2. Select the refresh rate you want. The refresh rate is applied immediately.
+
+## More Workbench Options
+
+Refer to [Manage Your Workbenches](../Set-User-Preferences/#manage-your-workbenches) for additional workbench configuration options, such as specifying your favorite workbench.

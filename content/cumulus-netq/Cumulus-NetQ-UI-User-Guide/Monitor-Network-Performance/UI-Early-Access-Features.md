@@ -10,7 +10,7 @@ siteSlug: cumulus-netq
 NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined)
 features that provide advanced access to new functionality before it becomes generally available. Two features are available as early access features in NetQ 2.3.0:
 
-- Topology view (GUI Cloud deployments only), described here
+- Topology view, described here
 - Detailed `netq check` validation output (CLI only), refer to [CLI Early Access Features](../../../Cumulus-NetQ-CLI-User-Guide/CLI-Early-Access-Features/)
 
 These features are bundled into the `netq-apps` package; there is no
@@ -29,7 +29,6 @@ You disable the early access features by running the `netq config del experiment
 
     cumulus@switch:~$ netq config del experimental
     Experimental config deleted
-
 
 ## Topology View
 
@@ -57,8 +56,8 @@ The topology view provides a visual representation of your Linux network, showin
 | :----: | ----- |
 | {{<img src="/images/netq/rocket-turtle-limed-spruce.svg" width="28" height="28">}} | Switch running Cumulus Linux OS |
 | <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> | Switch running RedHat, Ubuntu, or CentOS |
-| <img src="https://icons.cumulusnetworks.com/12-Design/08-Grids-Rulers/grid-monitor.svg", height="18", width="18"/> | Host |
-| {{<img src="/images/netq/topo-circle-nubs-icon-230.png" width="18" height="18">}} | Network server |
+| <img src="https://icons.cumulusnetworks.com/12-Design/08-Grids-Rulers/grid-monitor.svg", height="18", width="18"/> | Host with unknown operating system |
+| {{<img src="/images/netq/cof_white-black_hex.png" width="18" height="18">}} | Host running Ubuntu |
 | Red <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> | Alarm (critical) event is present on the node|
 | Yellow <img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg", height="18", width="18"/> | Info event is present |
 | Lines | Physical links or connections |

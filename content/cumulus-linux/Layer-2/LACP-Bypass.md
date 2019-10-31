@@ -73,6 +73,12 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
+{{%notice note%}}
+
+clag-id is not a required parameter in the configuration shown above. While LACP bypass is often configured on bonds involved in MLAG, MLAG is not required to use LACP bypass.
+
+{{%/notice%}}
+
 These commands create the following stanzas in
 `/etc/network/interfaces`:
 

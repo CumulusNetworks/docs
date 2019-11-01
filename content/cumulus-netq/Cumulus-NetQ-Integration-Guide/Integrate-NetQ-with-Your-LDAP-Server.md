@@ -19,11 +19,11 @@ LDAP integration requires information about how to connect to your LDAP server, 
 
 ### Provide Your LDAP Server Information
 
-To connect to your LDAP server, you need the URI and bind credentials. The URI identifies the location of the LDAP server. It is comprised of a  FQDN (fully qualified domain name) or IP address, and the port of the LDAP server where the LDAP client can connect. For example: https://myldap.mycompany.com or http://192.168.10.2. Typically port 389 is used for connection over TCP or UDP.
+To connect to your LDAP server, you need the URI and bind credentials. The URI identifies the location of the LDAP server. It is comprised of a  FQDN (fully qualified domain name) or IP address, and the port of the LDAP server where the LDAP client can connect. For example: https://myldap.mycompany.com or http://192.168.10.2. Typically port 389 is used for connection over TCP or UDP. In production environments, a secure connection with SSL can be deployed. In this case, the port used is typically 636. Setting the **Enable SSL** toggle automatically sets the server port to 636.
 
 ### Specify Your Authentication Method
 
-Two methods of user authentication are available: anonymous and basic. 
+Two methods of user authentication are available: anonymous and basic.
 
 - **Anonymous**: LDAP client does not require any authentication. The user can access all resources anonymously. This is not commonly used for production environments.
 - **Basic**: (Also called Simple) LDAP client must provide a bind DN and password to authenticate the connection. When basic authentication is selected, the distinguished name (DN) is defined using a string of variables. Some common variables include:
@@ -35,7 +35,7 @@ Two methods of user authentication are available: anonymous and basic.
     | dc | domain name |
     | dc | domain extension |
     
-    - **Bind DN**: DN used for binding with the LDAP server. For NetQ, the bind DN is based on the User ID plus other variables that you specify. For example, Bind DN could be `{userIdAttribute}={userId},ou=ntwkops,dc=mycompany,dc=com`, where {userIdAttribute} is replaced with the value specified in the User ID attribute field. In this case, the UserID is *uid* and has the value of *{userId},ou=ntwkops,dc=mycompany,dc=com*. 
+    - **Bind DN**: DN used for binding with the LDAP server. For NetQ, the bind DN is based on the User ID plus other variables that you specify. For example, Bind DN could be `{userIdAttribute}={userId},ou=ntwkops,dc=mycompany,dc=com`, where {userIdAttribute} is replaced with the value specified in the User ID attribute field. In this case, the UserID is *uid* and has the value of *{userId},ou=ntwkops,dc=mycompany,dc=com*.
     - **Bind Password**: Password associated with Bind DN used for binding with the LDAP server.
 
     The Bind DN and password are sent as clear text. Only users with these credentials are allowed to perform LDAP operations.
@@ -46,11 +46,11 @@ If you are unfamiliar with the configuration of your LDAP server, contact your a
 
 Two attributes are required to define a user entry in a directory:
 
+- **Base DN**: Location in directory structure where search begins. For example, `dc=mycompany,dc=com`
 - **User ID**: Type of identifier used to specify an LDAP user. This can vary depending on the authentication service you are using. For example,  user ID (UID) or email address  could be used with OpenLDAP, whereas sAMAccountName might be used with Active Directory.  For example, 
     - If the User ID type is `UID`, then the {user-id} in the Bind DN could accept jsmith, janed, or user.man
     - If the User ID type is `email`, then the {user-id} in the Bind DN could accept jsmith,dc=mycompany,dc=com
     - If the User ID type is `sAMAccountName`, than the {user-id} in the Bind DN could accept clientA
-- **Base DN**: Location in directory structure where search begins. For example, `dc=mycompany,dc=com`
 
 Optionally, you can specify the first name, last name, and email address of the user.
 
@@ -60,9 +60,9 @@ While optional, specifying search scope indicates where to start and how deep a 
 
 Search scope options include:
 
+- **Subtree**: Search for users from base, subordinates at any depth (default)
 - **Base**: Search for users at the base level only; no subordinates
 - **One Level**: Search for immediate children of user; not at base or for any descendants
-- **Subtree**: Search for users from base, subordinates at any depth
 - **Subordinate**: Search for subordinates at any depth of user; but not at base
 
 A typical search query for users would be `{userIdAttribute}={userId}`.
@@ -79,7 +79,7 @@ To create an LDAP configuration:
 
 2. Locate the LDAP Server Info card, and click **Configure LDAP**.
 
-    {{<figure src="/images/netq/netq-mgmt-ldap-config-modal-230.png" width="500">}}
+    {{<figure src="/images/netq/netq-mgmt-ldap-config-modal-231.png" width="500">}}
 
 3. Fill out the LDAP Server Configuration form according to your particular configuration. Refer to [Overview](#overview) for details about the various parameters.
 
@@ -104,7 +104,6 @@ In this scenario, we are configuring the LDAP server with anonymous authenticati
 | Host Server URL | http://ldap1.mycompany.com |
 | Host Server Port | 389 |
 | Authentication | Anonymous |
-| Bind DN | {userIdAttribute}={userId},dc=mycompany,dc=com |
 | Base DN | dc=mycompany,dc=com |
 | User ID | email |
 | Search Scope | Base |
@@ -119,9 +118,8 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 | Host Server URL | https://ldap1.mycompany.com |
 | Host Server Port | 389 |
 | Authentication | Basic |
-| Admin DN | cn=cumulusnq,ou=netops |
-| Admin Password | nqldap! |
-| Bind DN | {userIdAttribute}={userId},ou=netops,dc=mycompany,dc=com |
+| Admin Bind DN | {userIdAttribute}={userId},ou=netops,dc=mycompany,dc=com |
+| Admin Bind Password | nqldap! |
 | Base DN | dc=mycompany,dc=com |
 | User ID | UID |
 | Search Scope | One Level |
@@ -136,8 +134,8 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 | Host Server URL | https://192.168.10.2 |
 | Host Server Port | 389 |
 | Authentication | Basic |
-| Bind DN | {userIdAttribute}={userId},ou=netadmin,dc=mycompany,dc=com |
-| Bind Password | 1dap*netq |
+| Admin Bind DN | {userIdAttribute}={userId},ou=netadmin,dc=mycompany,dc=com |
+| Admin Bind Password | 1dap*netq |
 | Base DN | dc=mycompany, dc=net |
 | User ID | UID |
 | Search Scope | Subtree |
@@ -152,8 +150,8 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 | Host Server URL | https://192.168.10.2 |
 | Host Server Port | 389 |
 | Authentication | Basic |
-| Bind DN | {userId}@mycompany.com |
-| Bind Password | nq&4mAd! |
+| Admin Bind DN | {userId}@mycompany.com |
+| Admin Bind Password | nq&4mAd! |
 | Base DN | dc=mycompany, dc=net |
 | User ID | sAMAccountName |
 | Search Scope | Subtree |
@@ -185,7 +183,7 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 If the fields are not automatically filled in, and searching is enabled on the LDAP server, you might require changes to the mapping file.
     {{%/notice%}}
 
-9. Select the role for this user, *admin* or *user*, in the **User Type** dropdown.
+9. Select the NetQ user role for this user, *admin* or *user*, in the **User Type** dropdown.
 
 10. Enter your admin password, and click **Save**, or click **Cancel** to discard the user account.
 

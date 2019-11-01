@@ -82,21 +82,23 @@ By default, auto-refresh is enabled and configured to update every 30 seconds.
 
 ### Disable/Enable Auto-Refresh
 
-To disable/enable auto-refresh, simply click [icon] (Refresh). This toggles between the two states, where [icon] indicates it is disabled and [icon] indicates it is enabled.
+To disable/enable auto-refresh, simply click the **Refresh** icon. This toggles between the two states, where <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" width="18"/> indicates it is currently disabled and <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" width="18"/> indicates it is currently enabled.
 
 ### View Current Settings
 
-To view the current auto-refresh setting, hover over [icon] (Refresh) on a workbench header, to open the tool tip as follows:
+To view the current auto-refresh setting, hover over the **Refresh** icon on a workbench header, to open the tool tip as follows:
 
-{{<figure src="/images/netq/wb-refresh-tooltip-231.png" width="100">}}
+{{<figure src="/images/netq/wb-refresh-tooltip-231.png" width="150">}}
 
 ### Change Settings
 
 To modify the auto-refresh setting:
 
-1. Click the [down arrow] on the Refresh icon.
+1. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> on the **Refresh** icon.
 
-2. Select the refresh rate you want. The refresh rate is applied immediately.
+2. Select the refresh rate you want. The refresh rate is applied immediately. A check mark is shown next to the current selection.
+
+    {{<figure src="/images/netq/wb-refresh-rate-selection-231.png" width="150">}}
 
 ## More Workbench Options
 

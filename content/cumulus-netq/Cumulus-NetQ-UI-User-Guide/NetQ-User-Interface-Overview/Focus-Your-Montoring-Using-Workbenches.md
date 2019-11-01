@@ -100,6 +100,26 @@ To modify the auto-refresh setting:
 
     {{<figure src="/images/netq/wb-refresh-rate-selection-231.png" width="150">}}
 
-## More Workbench Options
+## Open an Existing Workbench
 
-Refer to [Manage Your Workbenches](../Set-User-Preferences/#manage-your-workbenches) for additional workbench configuration options, such as specifying your favorite workbench.
+There are several options for opening workbenches:
+
+- Open through Workbench Header
+    - Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> next to the current workbench name and locate the workbench
+        - Under My Home, click the name of your favorite workbench
+        - Under My Most Recent, click the workbench if in list
+        - Search by workbench name
+        - Click **All My WB** to open all workbenches and select it from the list
+- Open through Main Menu
+    - Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18"/> (Main Menu) and select the workbench from the **Favorites** or **NetQ** columns
+- Open through Cumulus logo
+    - Click the logo in the header to open your favorite workbench
+
+## Manage Workbenches
+
+To manage your workbenches as a group, either:
+
+- Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> next to the current workbench name, then click **Manage My WB**. 
+- Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" width="18"/>, select **Profiles & Preferences** option.
+
+Both of these open the Profiles & Preferences page. Look for the Workbenches card and refer to [Manage Your Workbenches](../Set-User-Preferences/#manage-your-workbenches) for more information.

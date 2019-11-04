@@ -30,7 +30,9 @@ Hugo Static Site Generator v0.55.6/extended darwin/amd64 BuildDate: unknown
 
 This repository contains the documentation hosted at docs.cumulusnetworks.com. 
 
-If you would like to contribute to the site, please fork and submit a pull request. The docs team will review and, if accepted, publish any pull requests.
+If you would like to contribute to the site, please fork and submit a pull request. Commit your changes to the release branch, which is named *release/#.#.#*. For example, release/1.3.15.
+
+The docs team will review and, if accepted, publish any pull requests.
 
 ## Content with Hugo
 All site content in Hugo is written in Markdown, and hosted in the /content folder.

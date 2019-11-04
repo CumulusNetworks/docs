@@ -22,7 +22,7 @@ quickly identify and respond to problems, such as:
 
 {{%notice note%}}
 
-ASIC monitoring is currently supported on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1) only.
+ASIC monitoring is currently supported on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1) only.
 
 {{%/notice%}}
 

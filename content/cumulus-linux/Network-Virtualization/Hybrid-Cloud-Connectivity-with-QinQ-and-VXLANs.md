@@ -35,7 +35,7 @@ QinQ is available on the following switches:
 
 - Broadcom Tomahawk 2, Tomahawk+, Tomahawk, Trident3, Trident II+ and
   Trident II switches.
-- [Spectrum switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1), only with [VLAN-aware bridges](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode) with 802.1ad and only with single tag translation.
+- [Spectrum switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), only with [VLAN-aware bridges](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode) with 802.1ad and only with single tag translation.
 
 ## Remove the Early Access QinQ Metapackage
 
@@ -357,7 +357,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
   [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode),
   all VLANs that are members of the same switch port must use the same
   `vlan_protocol`.
-- When using switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1) in an MLAG pair:
+- When using switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1) in an MLAG pair:
 
   - The peerlink (peerlink.4094) between the MLAG pair should be
     configured for VLAN protocol 802.1ad.

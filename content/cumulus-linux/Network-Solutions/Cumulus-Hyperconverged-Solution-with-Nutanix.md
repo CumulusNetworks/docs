@@ -388,10 +388,9 @@ and only be assigned to a single switch pair in your network.
 
 You can configure out-of-band management in one of two ways:
 
-  - Using [Cumulus RMP](/cumulus-rmp), which is the recommended way.
-
-  - Running Cumulus Linux on a [supported 1G non-Cumulus RMP
-    switch](https://cumulusnetworks.com/products/hardware-compatibility-list/?Speed=1G).
+- Using [Cumulus RMP](/cumulus-rmp), which is the recommended way.
+- Running Cumulus Linux on a [supported 1G non-Cumulus RMP
+  switch](https://cumulusnetworks.com/products/hardware-compatibility-list/?portfolio%5B0%5D=1G).
 
 ### Cumulus RMP
 

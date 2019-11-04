@@ -1091,7 +1091,7 @@ Mon Nov  4 20:22:40 2019  leaf04            ^      ^      bond03                
 This example shows show to view the history of a MAC address between now and two hours ago. The carrot (^) notation indicates no change in this value from the row above.
 
 ```
-cumulus@oob-mgmt-server:~$ netq show mac-history 00:03:00:11:11:77 vlan 13 between now and 2h
+cumulus@switch:~$ netq show mac-history 00:03:00:11:11:77 vlan 13 between now and 2h
 
 Matching mac-history records:
 Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static

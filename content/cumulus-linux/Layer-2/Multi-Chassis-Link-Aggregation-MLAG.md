@@ -3,8 +3,8 @@ title: Multi-Chassis Link Aggregation - MLAG
 author: Cumulus Networks
 weight: 123
 aliases:
- - /display/DOCS/Multi+Chassis+Link+Aggregation+MLAG
- - /display/DOCS/Multi+Chassis+Link+Aggregation+-+MLAG
+ - /display/DOCS/Multi-Chassis+Link+Aggregation+MLAG
+ - /display/DOCS/Multi-Chassis+Link+Aggregation+-+MLAG
  - /pages/viewpage.action?pageId=8362677
 pageID: 8362677
 product: Cumulus Linux
@@ -1362,7 +1362,7 @@ layer 3 uplink interfaces. In the event of a peer link failure, MLAG
 does not remove static routes or bring down a BGP or OSPF adjacency
 unless a separate link state daemon such as `ifplugd` is used.
 
-**MLAG and Peer Link Peering**
+### MLAG and Peer Link Peering
 
 When using MLAG with VRR, Cumulus Networks recommends you set up a
 routed adjacency across the peerlink.4094 interface. If a routed

@@ -76,8 +76,8 @@ notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003646974-Cumulu
 ## Cumulus RMP Features
 
 Cumulus RMP shares much of the same functionality as Cumulus Linux and
-comes preinstalled on your choice of [1G
-switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?Type=rmp).
+comes preinstalled on your choice of
+[1G switches](https://cumulusnetworks.com/products/hardware-compatibility-list/?platform_type%5B0%5D=RMP).
 For more information about each feature, follow the links below to the
 [Cumulus Linux user guide](/cumulus-linux):
 

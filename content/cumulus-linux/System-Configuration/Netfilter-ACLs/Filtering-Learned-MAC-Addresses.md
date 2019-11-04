@@ -30,7 +30,7 @@ and drop traffic otherwise.
 {{%notice note%}}
 
 This feature is specific to switches on the Broadcom platform only; on
-switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1), the input port ACL does not have these
+switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), the input port ACL does not have these
 issues when learning MAC addresses.
 
 {{%/notice%}}

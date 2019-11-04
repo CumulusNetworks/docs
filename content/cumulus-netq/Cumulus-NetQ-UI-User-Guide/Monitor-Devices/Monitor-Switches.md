@@ -356,6 +356,19 @@ addresses, and all interfaces.
 <li><p><strong>VRF</strong>: Name of the associated virtual route forwarding (VRF) interface if deployed</p></li>
 </ul></td>
 </tr>
+<tr class="odd">
+<td><p>SSD Utilization</p></td>
+<td><p>Displays overall health and utilization of a 3ME3 solid state drive (SSD). This tab provides the following data about each drive:</p>
+<ul>
+<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
+<li><p><strong>Device Name</strong>: SSD model name</p></li>
+<li><p><strong>Health</strong>: Current percentage health of the drive</p></li>
+<li><p><strong>Hostname</strong>: Hostname of the device with the 3ME3 drive installed</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>PE Cycles (Average)</strong>: Average number of program-erase (PE) cycles used in a 24 hour period</p></li>
+<li><p><strong>Time</strong>: Date and time the data was generated</p></li>
+</ul></td>
+</tr>
 <tr class="even">
 <td><p>Export</p></td>
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>

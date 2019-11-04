@@ -273,7 +273,7 @@ For Broadcom switches, IPv4 and IPv6 entries are not carved in separate spaces s
 
 ### TCAM Resource Profiles for Spectrum Switches
 
-The [Spectrum ASIC](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum ASIC=Mellanox Spectrum_A1) provides the ability to configure the TCAM resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Cumulus Linux provides a number of general profiles for this platform: *default*, *ipmc-heavy*, *acl-heavy*, *ipmc-max* and *ip-acl-heavy*. Choose the profile that best suits your network architecture and specify that profile name in the `tcam_resource.profile` variable in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file.
+The [Spectrum ASIC](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1) provides the ability to configure the TCAM resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Cumulus Linux provides a number of general profiles for this platform: *default*, *ipmc-heavy*, *acl-heavy*, *ipmc-max* and *ip-acl-heavy*. Choose the profile that best suits your network architecture and specify that profile name in the `tcam_resource.profile` variable in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file.
 
 ```
 cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf | grep -B3 "tcam_resource"

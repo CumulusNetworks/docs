@@ -194,6 +194,13 @@ For a global policy to set MTU, create a policy document (called
 
 {{%notice note%}}
 
+After making the edits to the policy file above, the changed policy will need to be applied to the system by issuing the `ifreload -a` command.
+NCLU may also apply the policy if an `ifreload -a` is issued as part of the next commit operation.
+
+{{%/notice%}}
+
+{{%notice note%}}
+
 If your platform does not support a high MTU on eth0, you can set a
 lower MTU with the following command:
 

@@ -423,9 +423,8 @@ group. The lossless priority group has been removed from Cumulus Linux.
 {{%/notice%}}
 
 Priority flow control is fully supported on both
-[Broadcom](https://cumulusnetworks.com/support/linux-hardware-compatibility-list/?CPUType=x86_64&Brand=broadcomtrident&Brand=broadcomtridentplus&SwitchSilicon=broadcomtrident2&Brand=broadcomtrident2plus&Brand=broadcomtriumph2)
-and [Mellanox
-switches](https://cumulusnetworks.com/support/linux-hardware-compatibility-list/?Brand=mellanox).
+[Broadcom](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2)
+and [Mellanox](https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox) switches.
 
 PFC is disabled by default in Cumulus Linux. Enabling priority flow
 control (PFC) requires configuring the following settings in

@@ -20,7 +20,7 @@ capable of powering devices up to 15W, while PoE+ can power devices up to 30W.
 Configuration for power negotiation is done over
 [LLDP](../../Layer-2/Link-Layer-Discovery-Protocol/).
 
-The [currently supported platforms](https://cumulusnetworks.com/products/hardware-compatibility-list/?Type=POE) include:
+The [currently supported platforms](https://cumulusnetworks.com/products/hardware-compatibility-list/?platform_type%5B0%5D=POE&Type=POE) include:
 
 - Cumulus Express CX-1048-P
 - Dell N3048EP-ON
@@ -71,7 +71,7 @@ possible.
 ## Configure PoE
 
 You use the `poectl` command utility to configure PoE on a
-[switch that supports](https://cumulusnetworks.com/products/hardware-compatibility-list/?Type=POE)
+[switch that supports](https://cumulusnetworks.com/products/hardware-compatibility-list/?platform_type%5B0%5D=POE&Type=POE)
 the feature. You can:
 
 - Enable or disable PoE for a given switch port

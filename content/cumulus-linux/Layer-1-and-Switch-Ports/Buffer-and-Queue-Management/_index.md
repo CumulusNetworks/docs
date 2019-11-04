@@ -738,7 +738,7 @@ to allow the ECN configuration changes to take effect:
 
 ## Check Interface Buffer Status
 
-On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1), you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the [ASIC monitoring chapter](../../Monitoring-and-Troubleshooting/ASIC-Monitoring) for details.
+On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the [ASIC monitoring chapter](../../Monitoring-and-Troubleshooting/ASIC-Monitoring) for details.
 
 On Broadcom switches, the buffer status is not visible currently.
 

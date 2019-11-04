@@ -41,7 +41,7 @@ unsupported error is shown.
 
 {{%/notice%}}
 
-For switches with **[Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1)**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
+For switches with **[Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1)**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
 the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 For **Broadcom-based switches,** Cumulus Networks recommends that you

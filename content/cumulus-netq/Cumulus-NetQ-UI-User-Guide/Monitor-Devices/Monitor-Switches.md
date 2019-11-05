@@ -583,10 +583,6 @@ To view the disk state:
 3. Look for the **Rebalance Recommended** column. 
     If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the table to determine if you are getting close to needing a rebalance, and come back to view this table at a later time.
 
-### View All Installed Software Packages
-
-
-
 ## Monitor Switch Component Inventory
 
 Knowing what components are included on all of your switches aids in

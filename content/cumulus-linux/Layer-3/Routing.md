@@ -307,6 +307,10 @@ When [nonatomic updates](../../System-Configuration/Netfilter-ACLs/#nonatomic-up
 
 ## Caveats and Errata
 
+### Unsupported IPv6 Prefixes on Hurricane2 Switches
+
+Switches with the Hurricane2 ASIC do not support IPv6 prefixes between /65 and /127. This is a well known ASIC limitation.
+
 ### Do not Delete Routes via Linux Shell
 
 Static routes added via FRRouting can be deleted via Linux shell. This operation, while possible, should be avoided. Routes added by FRRouting should only be deleted by FRRouting, otherwise FRRouting might not be able to clean up all its internal state completely and incorrect routing can occur as a result.

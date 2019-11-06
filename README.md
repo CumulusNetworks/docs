@@ -54,7 +54,7 @@ Use `hugo server -D` to include drafts.
 ## Theme
 
 The site is based off the Hugo Book theme, built by [alex-shpak](https://github.com/alex-shpak/). The NetDocs theme contains custom shortcodes and partial templates, as well as styling customizations and assets not included with the base theme. The layouts directory in the main repo is the final layout override, and contains any site-specific assets. See
-[theme components](https://gohugo.io/themes/theme-components/) for information on theme overrides, and https://gohugo.io/templates/lookup-order/ for information on Hugo's default lookup order.
+[theme components](https://gohugo.io/themes/theme-components/) for information on theme overrides and https://gohugo.io/templates/lookup-order/ for information on Hugo's default lookup order.
 
 
 ## Resources

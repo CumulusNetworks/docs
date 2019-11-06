@@ -337,7 +337,7 @@ entry takes up twice the space of an IPv4 entry.
 
 ### Unsupported IPv6 Prefixes on Hurricane2 Switches
 
-Switches with the Hurricane2 ASIC do not support IPv6 prefixes between /65 to /127. This is a well-known ASIC limitation.
+Switches with the Hurricane2 ASIC do not support IPv6 prefixes between /65 to /127. This is a well known ASIC limitation.
 
 ### Don't Delete Routes via Linux Shell
 

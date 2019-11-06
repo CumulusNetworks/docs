@@ -309,7 +309,7 @@ When [nonatomic updates](../../System-Configuration/Netfilter-ACLs/#nonatomic-up
 
 ### Unsupported IPv6 Prefixes on Hurricane2 Switches
 
-Switches with the Hurricane2 ASIC do not support IPv6 prefixes between /65 to /127. This is a well-known ASIC limitation.
+Switches with the Hurricane2 ASIC do not support IPv6 prefixes between /65 to /127. This is a well known ASIC limitation.
 
 ### Do not Delete Routes via Linux Shell
 

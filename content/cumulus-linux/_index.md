@@ -30,7 +30,7 @@ get you started.
 
 ### User Guide
 A link to download the Cumulus Linux 3.7.7 Documentation User Guide is
-[here](http://dkahegywkrw3e.cloudfront.net/Cumulus_Linux_3-7-7_User_Guide.pdf).
+[here](http://docs-cdn.cumulusnetworks.com/Cumulus_Linux_3-7-7_User_Guide.pdf).
 
 ### What's New in this Release?
 

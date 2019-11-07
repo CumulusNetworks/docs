@@ -402,11 +402,13 @@ between a pair of VRFs.
   even if their next hops become unreachable. Therefore, route leaking
   for BGP-learned routes is recommended only when they are learned
   through single-hop eBGP.
+- You cannot configure VRF instances of BGP in multiple autonomous systems
+  (AS) or an AS that is not the same as the global AS.
 - Cumulus Networks recommends that you do not use the default VRF as a
   shared service VRF. Create another VRF for shared services.
 - Broadcom switches have certain limitations when leaking routes
   between the default VRF and non-default VRFs.
-- On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox%20Spectrum&ASIC=Mellanox%20Spectrum_A1), only leak the specific routes you need from the default VRF; do not include the VTEP routes or filter out the VTEP routes with a route filter.
+- On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), only leak the specific routes you need from the default VRF; do not include the VTEP routes or filter out the VTEP routes with a route filter.
 
 {{%/notice%}}
 
@@ -435,7 +437,7 @@ _false_, as that is used only for [static route leaking](#configure-static-route
     dynamically leaked into VRF `turtle`.
 
         cumulus@switch:~$ net add bgp vrf rocket autonomous-system 65001
-        cumulus@switch:~$ net add bgp vrf turtle autonomous-system 65002
+        cumulus@switch:~$ net add bgp vrf turtle autonomous-system 65001
         cumulus@switch:~$ net add bgp vrf turtle ipv4 unicast import vrf rocket
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
@@ -445,17 +447,29 @@ file. For example:
 
     cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
     ...
+    
+    hostname leaf01
+    log syslog informational
+    service integrated-vtysh-config
+    !
     router bgp 65001 vrf rocket
-    !
-    router bgp 65002 vrf turtle
      !
-      address-family ipv4 unicast
-       import vrf rocket
-      exit-address-family
-     !
-    router bgp 65002
+     address-family l2vpn evpn
+     exit-address-family
     !
-    ...
+    router bgp 65001 vrf turtle
+     !
+     address-family ipv4 unicast
+      import vrf rocket
+     exit-address-family
+     !
+     address-family l2vpn evpn
+     exit-address-family
+    !
+    router bgp 65001
+    !
+    line vty
+    !
 
 #### Exclude Certain Prefixes
 

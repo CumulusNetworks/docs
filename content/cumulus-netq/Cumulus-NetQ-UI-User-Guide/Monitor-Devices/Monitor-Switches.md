@@ -370,6 +370,34 @@ addresses, and all interfaces.
 </ul></td>
 </tr>
 <tr class="even">
+<td><p>BTRFS Utilization</p></td>
+<td><p>Displays disk utilization information for devices running Cumulus Linux 3.x and the b-tree file system (BTRFS):</p>
+<ul>
+<li><p><strong>Device Allocated</strong>: Percentage of the disk space allocated by BTRFS</p></li>
+<li><p><strong>Hostname</strong>: Hostname of the given device</p></li>
+<li><p><strong>Largest Chunk Size</strong>: Largest remaining chunk size on disk</p></li>
+<li><p><strong>Last Changed</strong>: Data and time that the storage allocation was last updated</p></li>
+<li><p><strong>Rebalance Recommended</strong>: Based on rules described in <a href="https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions">When to Rebalance BTRFS Partitions</a>,  a rebalance is suggested</p></li>
+<li><p><strong>Unallocated Space</strong>: Amount of space remaining on the disk</p></li>
+<li><p><strong>Unused Data Chunks Space</strong>: Amount of available data chunk space</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>Installed Packages</p></td>
+<td><p>Displays all known interfaces on the switch. This tab provides the following additional data about each interface:</p>
+<ul>
+<li><p><strong>Details</strong>: Information about the interface, such as MTU, table number, members, protocols running, VLANs</p></li>
+<li><p><strong>Hostname</strong>: Hostname of the given event</p></li>
+<li><p><strong>IfName</strong>: Name of the interface</p></li>
+<li><p><strong>Last Changed</strong>: Data and time that the interface was last enabled, updated, deleted, or changed state to down</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>State</strong>: Indicates if the interface is <em>up</em> or <em>down</em></p></li>
+<li><p><strong>Time</strong>: Date and time the table was generated</p></li>
+<li><p><strong>Type</strong>: Kind of interface; for example, VRF, switch port, loopback, ethernet</p></li>
+<li><p><strong>VRF</strong>: Name of the associated virtual route forwarding (VRF) interface if deployed</p></li>
+</ul></td>
+</tr>
+<tr class="even">
 <td><p>Export</p></td>
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
@@ -566,6 +594,24 @@ To view SSD utilization:
 3. View the Health value for a given drive. Is it lower than  usual? Less than 10%?
 
 Consider adding the switch cards that are suspect to a workbench for easy tracking.
+
+### View Disk Storage After BTRFS Utilization
+
+Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. For details about when a rebalance is recommended, refer to [When to Rebalance BTRFS Partitions](https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions).
+
+To view the disk state:
+
+1. Open the full-screen Switch card for a switch of interest:
+
+     - Type the switch name in the Search box, then use the card size picker to open the full-screen card, or 
+     - Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="24", width="24"/> (Switches) and enter the switch name and select the full-screen card size.
+
+2. Select the BTRFS Utilization tab.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-btrfs-util-tab-231.png" width="700">}}
+
+3. Look for the **Rebalance Recommended** column. 
+    If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the table to determine if you are getting close to needing a rebalance, and come back to view this table at a later time.
 
 ## Monitor Switch Component Inventory
 

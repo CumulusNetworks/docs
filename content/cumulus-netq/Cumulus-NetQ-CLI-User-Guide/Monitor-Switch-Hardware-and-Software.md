@@ -680,9 +680,25 @@ exit01            swp1                      0                    0              
 ...
 ```
 
+### View SSD Utilization
+
+For NetQ servers and appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
+
+Use the `netq-cl-ssd-util` command to view the SSD information.
+
+This example shows the utilization for spine02 which has this type of SSD.
+
+```
+cumulus@switch:~$ netq spine02 show cl-ssd-util
+Hostname        Remaining PE Cycle (%)  Current PE Cycles executed      Total PE Cycles supported       SSD Model               Last Changed
+spine02         80                      576                             2880                            M.2 (S42) 3ME3          Thu Oct 31 00:15:06 2019
+```
+
+This output indicates that this drive is in a good state overall with 80% of its PE cycles remaining. View this information for all devices with this type of SSD by removing the `hostname` option, or add the `around` option to view this information around a particular time.
+
 ## Monitor Switch Software Information
 
-The syntax for this command is:
+The syntax for the commands is:
 
     netq [<hostname>] show agents
     netq [<hostname>] show inventory brief [json]

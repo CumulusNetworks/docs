@@ -342,6 +342,10 @@ entry takes up twice the space of an IPv4 entry.
 
 ## Caveats and Errata
 
+### Unsupported IPv6 Prefixes on Hurricane2 Switches
+
+Switches with the Hurricane2 ASIC do not support IPv6 prefixes between /65 and /127. This is a well known ASIC limitation.
+
 ### Don't Delete Routes via Linux Shell
 
 Static routes added via FRRouting can be deleted via Linux shell. This

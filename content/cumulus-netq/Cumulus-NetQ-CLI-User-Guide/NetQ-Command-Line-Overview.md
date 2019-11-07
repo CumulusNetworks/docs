@@ -548,7 +548,7 @@ release.
 </tr>
 <tr>
   <td>netq [&lt;hostname&gt;] show cl-ssd-util [around &lt;text-time&gt;] [json]</td>
-  <td>Displays status about disk utilization on all devices.</td>
+  <td>Displays status for 3ME3 solid state drive (SSD) utilization on all devices.</td>
   <td>2.3.1</td>
 </tr>
 <tr>

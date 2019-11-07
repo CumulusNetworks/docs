@@ -677,14 +677,14 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <td><p>NetQ Agent rebooted</p></td>
 <td><p>Critical</p></td>
 <td><p>Netq-agent rebooted at (@last_boot)</p></td>
-<td><p>Netq-agent rebooted at xxx</p></td>
+<td><p>Netq-agent rebooted at 1573166417</p></td>
 </tr>
 <tr class="odd">
 <td><p>agent</p></td>
 <td><p>Node running NetQ Agent rebooted</p></td>
 <td><p>Critical</p></td>
 <td><p>Switch rebooted at (@sys_uptime)</p></td>
-<td><p>Switch rebooted at xxx</p></td>
+<td><p>Switch rebooted at 1573166131</p></td>
 </tr>
 <tr class="even">
 <td><p>agent</p></td>
@@ -698,14 +698,14 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <td><p>NetQ Agent state was reset</p></td>
 <td><p>Info</p></td>
 <td><p>Agent state was paused and resumed at (@last_reinit)</p></td>
-<td><p>Agent state was paused and resumed at xxx</p></td>
+<td><p>Agent state was paused and resumed at 1573166125</p></td>
 </tr>
 <tr class="even">
 <td><p>agent</p></td>
 <td><p>Version of NetQ Agent has changed</p></td>
 <td><p>Info</p></td>
-<td><p>Agent version has been changed old_version:@old_version  and new_version:@. Agent reset at @sys_uptime</p></td>
-<td><p>Agent version has been changed old_version:2.1.2  and new_version:2.3.1. Agent reset at xxx</p></td>
+<td><p>Agent version has been changed old_version:@old_version  and new_version:@new_version. Agent reset at @sys_uptime</p></td>
+<td><p>Agent version has been changed old_version:2.1.2  and new_version:2.3.1. Agent reset at 1573079725</p></td>
 </tr>
 <tr class="odd">
 <td><p>bgp</p></td>
@@ -740,14 +740,14 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <td><p>Disk space available after BTRFS allocation is less than 80% of partition size or only 2 GB remain.</p></td>
 <td><p>Critical</p></td>
 <td><p>@info : @details</p></td>
-<td><p>xxx: xxx</p></td>
+<td><p>high btrfs allocation space : greater than 80% of partition size, 61708420</p></td>
 </tr>
 <tr class="even">
 <td><p>btrfsinfo</p></td>
 <td><p>Indicates if space would be freed by a rebalance operation on the disk</p></td>
 <td><p>Critical</p></td>
 <td><p>@info : @details</p></td>
-<td><p>xxx: xxx</p></td>
+<td><p>data storage efficiency : space left after allocation greater than chunk size 6170849.2","</p></td>
 </tr>
 <tr class="odd">
 <td><p>cable</p></td>
@@ -1027,10 +1027,10 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 </tr>
 <tr class="even">
 <td><p>packageinfo</p></td>
-<td><p>Software manifest does not match xxx</p></td>
+<td><p>Package version on device does not match the version identified in the existing manifest</p></td>
 <td><p>Critical</p></td>
 <td><p>@package_name manifest version mismatch</p></td>
-<td><p>xxx manifest version mismatch</p></td>
+<td><p>netq-apps manifest version mismatch</p></td>
 </tr>
 <tr class="odd">
 <td><p>ptm</p></td>
@@ -1048,7 +1048,7 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 </tr>
 <tr class="odd">
 <td><p>resource</p></td>
-<td><p>Resource utilites have been deleted from a device</p></td>
+<td><p>A physical resource has been deleted from a device</p></td>
 <td><p>Critical</p></td>
 <td><p>Resource Utils deleted for @hostname</p></td>
 <td><p>Resource Utils deleted for spine02</p></td>
@@ -1069,7 +1069,7 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 </tr>
 <tr class="even">
 <td><p>resource</p></td>
-<td><p>Resource utilites have been added to a device</p></td>
+<td><p>A physical resource has been added to a device</p></td>
 <td><p>Info</p></td>
 <td><p>Resource Utils added for @hostname</p></td>
 <td><p>Resource Utils added for spine04</p></td>
@@ -1146,42 +1146,42 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <td><p>3ME3 disk health has dropped below 10%</p></td>
 <td><p>Critical</p></td>
 <td><p>@info: @details</p></td>
-<td><p>xxx: xxx</p></td>
+<td><p>low health : 5.0%</p></td>
 </tr>
 <tr class="odd">
 <td><p>ssdutil</p></td>
 <td><p>A dip in 3ME3 disk health of more than 2% has occured within the last 24 hours</p></td>
 <td><p>Critical</p></td>
 <td><p>@info: @details</p></td>
-<td><p>xxx: xxx</p></td>
+<td><p>significant health drop : 3.0%</p></td>
 </tr>
 <tr class="even">
 <td><p>version</p></td>
-<td><p>Unexpected operating system detected</p></td>
+<td><p>An unknown version of the operating system was detected</p></td>
 <td><p>Critical</p></td>
 <td><p>unexpected os version @my_ver</p></td>
-<td><p>unexpected os version xxx</p></td>
+<td><p>unexpected os version cl3.2</p></td>
 </tr>
 <tr class="odd">
 <td><p>version</p></td>
-<td><p>Inconsistent operating system detected</p></td>
+<td><p>Desired version of the operating system is not available</p></td>
 <td><p>Critical</p></td>
-<td><p>os version @my_ver</p></td>
-<td><p>os version xxx</p></td>
+<td><p>os version @ver</p></td>
+<td><p>os version cl3.7.9</p></td>
 </tr>
 <tr class="even">
 <td><p>version</p></td>
-<td><p>Unexpected software package version detected</p></td>
+<td><p>An unknown version of a software package was detected</p></td>
 <td><p>Critical</p></td>
-<td><p>expected released version @ver</p></td>
-<td><p>expected released version xxx</p></td>
+<td><p>expected release version @ver</p></td>
+<td><p>expected release version cl3.6.2</p></td>
 </tr>
 <tr class="odd">
 <td><p>version</p></td>
-<td><p>Inconsistent software package version detected</p></td>
+<td><p>Desired version of a software package is not available</p></td>
 <td><p>Critical</p></td>
 <td><p>different from version @ver</p></td>
-<td><p>different from version xxx</p></td>
+<td><p>different from version cl4.0</p></td>
 </tr>
 <tr class="even">
 <td><p>vxlan</p></td>

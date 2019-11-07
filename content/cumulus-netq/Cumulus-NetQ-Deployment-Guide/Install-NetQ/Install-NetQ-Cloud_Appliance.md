@@ -96,6 +96,18 @@ Download and install the tarball file. The config-key was provided to you by Cum
 cumulus@netq-appliance:~$ netq install opta interface eth0 tarball download config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
 ```
 
+**Note**: If you connect to your NetQ Cloud Appliance via proxy, you must identify the proxy with the `proxy-host` option, as follows:
+
+```
+cumulus@netq-platform:~$ netq install opta interface eth0 tarball download config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM=" proxy-host netqcloudproxy proxy-port 8000
+```
+
+{{%notice info%}}
+It is strongly recommended that you do not use environment variables in the `etc/environment` file (such as  http_proxy, https_proxy, HTTP_PROXY, or HTTPS_PROXY) to define your proxy as this can cause the installation to fail.
+
+If you must use environment variables, comment out these variables just before running the `netq install` command, and then uncomment them when you are finished with installation.
+{{%/notice%}}
+
 {{%notice info%}}
 
 If you changed the IP address or interface of the appliance to something other than what it was assigned previously, you must inform NetQ of the change.

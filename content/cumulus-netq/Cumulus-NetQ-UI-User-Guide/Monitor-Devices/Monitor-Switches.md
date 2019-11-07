@@ -356,6 +356,19 @@ addresses, and all interfaces.
 <li><p><strong>VRF</strong>: Name of the associated virtual route forwarding (VRF) interface if deployed</p></li>
 </ul></td>
 </tr>
+<tr class="odd">
+<td><p>SSD Utilization</p></td>
+<td><p>Displays overall health and utilization of a 3ME3 solid state drive (SSD). This tab provides the following data about each drive:</p>
+<ul>
+<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
+<li><p><strong>Device Name</strong>: SSD model name</p></li>
+<li><p><strong>Health</strong>: Current percentage health of the drive</p></li>
+<li><p><strong>Hostname</strong>: Hostname of the device with the 3ME3 drive installed</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>PE Cycles (Average)</strong>: Average number of program-erase (PE) cycles used in a 24 hour period</p></li>
+<li><p><strong>Time</strong>: Date and time the data was generated</p></li>
+</ul></td>
+</tr>
 <tr class="even">
 <td><p>Export</p></td>
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
@@ -536,6 +549,23 @@ To view all interfaces:
 6.  Verify the correct VRF interface is assigned to an interface, shown
     in the **VRF** column.
 7.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
+
+### View SSD Utilization
+
+For NetQ servers and appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utiilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
+
+To view SSD utilization:
+
+1.  Open the full screen Switch card and click the **SSD Utilization**
+    tab.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-ssd-tab-231.png" width="700">}}
+
+2. View the average PE Cycles value for a given drive. Is it higher than usual?
+
+3. View the Health value for a given drive. Is it lower than  usual? Less than 10%?
+
+Consider adding the switch cards that are suspect to a workbench for easy tracking.
 
 ## Monitor Switch Component Inventory
 

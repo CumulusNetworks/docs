@@ -32,7 +32,7 @@ card workflow.
 
 The small Alarms card displays:
 
-{{< figure src="/images/netq/events-alarms-small-222.png" width="200" >}}
+{{< figure src="/images/netq/events-alarms-small-231.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -156,7 +156,7 @@ The *Alarm Summary* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Alarm Distribution</p></td>
-<td><p><strong>Chart</strong>: Distribution of all alarms received from each category (services, NetQ Agents, Cumulus Linux licenses, sensors, ports, links, MTU, LLDP and configuration changes) during the designated time period</p>
+<td><p><strong>Chart</strong>: Distribution of all alarms received from each category (NetQ Agent, BTRFS Information, CL Support, Config Diff, CL License, Link, LLDP, MTU, Node, Package Versions, Port, Resource, Running Config Diff, Sensor, Services, and SSD Utilization) during the designated time period</p>
 <p><strong>Count</strong>: Total number of alarms received from each category during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -235,10 +235,10 @@ of those alarms.
 
 To view the summary, open the small Alarms card.
 
-{{< figure src="/images/netq/events-alarms-small-222.png" width="200" >}}
+{{< figure src="/images/netq/events-alarms-small-231.png" width="200" >}}
 
-In this example, there are a small number of alarms (0), the number of
-alarms is steady (no arrow), and there are fewer alarms right now than the
+In this example, there are a small number of alarms (2), the number of
+alarms is decreasing (down arrow), and there are fewer alarms right now than the
 average number of alarms during this time period. This would indicate no further investigation is needed. Note that with such a small number of alarms, the rating may be a bit skewed.
 
 ### View the Distribution of Alarms
@@ -266,7 +266,7 @@ or view devices with the most network services alarms.
 
 To view network services alarms, open the large Alarms card.
 
-{{< figure src="/images/netq/events-alarms-large-systrcif-tab-222.png" width="500" >}}
+{{< figure src="/images/netq/events-alarms-large-systrcif-tab-231.png" width="500" >}}
 
 From this card, you can view the distribution of alarms for each of the
 categories over time. Scroll down to view any hidden charts. A list of
@@ -674,10 +674,38 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 </tr>
 <tr class="even">
 <td><p>agent</p></td>
+<td><p>NetQ Agent rebooted</p></td>
+<td><p>Critical</p></td>
+<td><p>Netq-agent rebooted at (@last_boot)</p></td>
+<td><p>Netq-agent rebooted at 1573166417</p></td>
+</tr>
+<tr class="odd">
+<td><p>agent</p></td>
+<td><p>Node running NetQ Agent rebooted</p></td>
+<td><p>Critical</p></td>
+<td><p>Switch rebooted at (@sys_uptime)</p></td>
+<td><p>Switch rebooted at 1573166131</p></td>
+</tr>
+<tr class="even">
+<td><p>agent</p></td>
 <td><p>NetQ Agent state changed to Fresh</p></td>
 <td><p>Info</p></td>
 <td><p>Agent state changed to fresh</p></td>
 <td><p>Agent state changed to fresh</p></td>
+</tr>
+<tr class="odd">
+<td><p>agent</p></td>
+<td><p>NetQ Agent state was reset</p></td>
+<td><p>Info</p></td>
+<td><p>Agent state was paused and resumed at (@last_reinit)</p></td>
+<td><p>Agent state was paused and resumed at 1573166125</p></td>
+</tr>
+<tr class="even">
+<td><p>agent</p></td>
+<td><p>Version of NetQ Agent has changed</p></td>
+<td><p>Info</p></td>
+<td><p>Agent version has been changed old_version:@old_version  and new_version:@new_version. Agent reset at @sys_uptime</p></td>
+<td><p>Agent version has been changed old_version:2.1.2  and new_version:2.3.1. Agent reset at 1573079725</p></td>
 </tr>
 <tr class="odd">
 <td><p>bgp</p></td>
@@ -706,6 +734,20 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <td><p>Info</p></td>
 <td><p>BGP session with peer @peer @neighbor vrf @vrf reset time changed from @old_last_reset_time to @new_last_reset_time</p></td>
 <td><p>BGP session with peer spine03 swp9 vrf vrf2 reset time changed from 1559427694 to 1559837484</p></td>
+</tr>
+<tr class="odd">
+<td><p>btrfsinfo</p></td>
+<td><p>Disk space available after BTRFS allocation is less than 80% of partition size or only 2 GB remain.</p></td>
+<td><p>Critical</p></td>
+<td><p>@info : @details</p></td>
+<td><p>high btrfs allocation space : greater than 80% of partition size, 61708420</p></td>
+</tr>
+<tr class="even">
+<td><p>btrfsinfo</p></td>
+<td><p>Indicates if space would be freed by a rebalance operation on the disk</p></td>
+<td><p>Critical</p></td>
+<td><p>@info : @details</p></td>
+<td><p>data storage efficiency : space left after allocation greater than chunk size 6170849.2","</p></td>
 </tr>
 <tr class="odd">
 <td><p>cable</p></td>
@@ -984,48 +1026,83 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <p>OSPF session swp7 with 27.0.0.18 state changed from Fail to Full</p></td>
 </tr>
 <tr class="even">
+<td><p>packageinfo</p></td>
+<td><p>Package version on device does not match the version identified in the existing manifest</p></td>
+<td><p>Critical</p></td>
+<td><p>@package_name manifest version mismatch</p></td>
+<td><p>netq-apps manifest version mismatch</p></td>
+</tr>
+<tr class="odd">
 <td><p>ptm</p></td>
 <td><p>Physical interface cabling does not match configuration specified in <em>topology.dot</em> file</p></td>
 <td><p>Critical</p></td>
 <td><p>PTM cable status failed</p></td>
 <td><p>PTM cable status failed</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>ptm</p></td>
 <td><p>Physical interface cabling matches configuration specified in <em>topology.dot</em> file</p></td>
 <td><p>Critical</p></td>
 <td><p>PTM cable status passed</p></td>
 <td><p>PTM cable status passed</p></td>
 </tr>
+<tr class="odd">
+<td><p>resource</p></td>
+<td><p>A physical resource has been deleted from a device</p></td>
+<td><p>Critical</p></td>
+<td><p>Resource Utils deleted for @hostname</p></td>
+<td><p>Resource Utils deleted for spine02</p></td>
+</tr>
 <tr class="even">
+<td><p>resource</p></td>
+<td><p>Root file system access on a device has changed from Read/Write to Read Only</p></td>
+<td><p>Critical</p></td>
+<td><p>@hostname root file system access mode set to Read Only</p></td>
+<td><p>server03 root file system access mode set to Read Only</p></td>
+</tr>
+<tr class="odd">
+<td><p>resource</p></td>
+<td><p>Root file system access on a device has changed from Read Only to Read/Write</p></td>
+<td><p>Info</p></td>
+<td><p>@hostname root file system access mode set to Read/Write</p></td>
+<td><p>leaf11 root file system access mode set to Read/Write</p></td>
+</tr>
+<tr class="even">
+<td><p>resource</p></td>
+<td><p>A physical resource has been added to a device</p></td>
+<td><p>Info</p></td>
+<td><p>Resource Utils added for @hostname</p></td>
+<td><p>Resource Utils added for spine04</p></td>
+</tr>
+<tr class="odd">
 <td><p>runningconfigdiff</p></td>
 <td><p>A fan or power supply unit sensor has changed state</p></td>
 <td><p>Info</p></td>
 <td><p>@commandname config result was modified</p></td>
 <td><p>@commandname config result was modified</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>sensor</p></td>
 <td><p>A fan or power supply unit sensor has changed state</p></td>
 <td><p>Critical</p></td>
 <td><p>Sensor @sensor state changed from @old_s_state to @new_s_state</p></td>
 <td><p>Sensor fan state changed from up to down</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>sensor</p></td>
 <td><p>A temperature sensor has crossed the maximum threshold for that sensor</p></td>
 <td><p>Critical</p></td>
 <td><p>Sensor @sensor max value @new_s_max exceeds threshold @new_s_crit</p></td>
 <td><p>Sensor temp max value 110 exceeds the threshold 95</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>sensor</p></td>
 <td><p>A temperature sensor has crossed the minimum threshold for that sensor</p></td>
 <td><p>Critical</p></td>
 <td><p>Sensor @sensor min value @new_s_lcrit fall behind threshold @new_s_min</p></td>
 <td><p>Sensor psu min value 10 fell below threshold 25</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>sensor</p></td>
 <td><p>A temperature, fan, or power supply sensor state changed</p></td>
 <td><p>Info</p></td>
@@ -1034,7 +1111,7 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <p>Sensor fan state changed from absent to ok</p>
 <p>Sensor psu state changed from bad to ok</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>sensor</p></td>
 <td><p>A fan or power supply sensor state changed</p></td>
 <td><p>Info</p></td>
@@ -1042,21 +1119,21 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <td><p>Sensor fan state changed from down to up</p>
 <p>Sensor psu state changed from down to up</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>services</p></td>
 <td><p>A service status changed from down to up</p></td>
 <td><p>Critical</p></td>
 <td><p>Service @name status changed from @old_status to @new_status</p></td>
 <td><p>Service bgp status changed from down to up</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>services</p></td>
 <td><p>A service status changed from up to down</p></td>
 <td><p>Critical</p></td>
 <td><p>Service @name status changed from @old_status to @new_status</p></td>
 <td><p>Service lldp status changed from up to down</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>services</p></td>
 <td><p>A service changed state from inactive to active</p></td>
 <td><p>Info</p></td>
@@ -1064,7 +1141,49 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <td><p>Service bgp changed state from inactive to active</p>
 <p>Service lldp changed state from inactive to active</p></td>
 </tr>
+<tr class="even">
+<td><p>ssdutil</p></td>
+<td><p>3ME3 disk health has dropped below 10%</p></td>
+<td><p>Critical</p></td>
+<td><p>@info: @details</p></td>
+<td><p>low health : 5.0%</p></td>
+</tr>
 <tr class="odd">
+<td><p>ssdutil</p></td>
+<td><p>A dip in 3ME3 disk health of more than 2% has occured within the last 24 hours</p></td>
+<td><p>Critical</p></td>
+<td><p>@info: @details</p></td>
+<td><p>significant health drop : 3.0%</p></td>
+</tr>
+<tr class="even">
+<td><p>version</p></td>
+<td><p>An unknown version of the operating system was detected</p></td>
+<td><p>Critical</p></td>
+<td><p>unexpected os version @my_ver</p></td>
+<td><p>unexpected os version cl3.2</p></td>
+</tr>
+<tr class="odd">
+<td><p>version</p></td>
+<td><p>Desired version of the operating system is not available</p></td>
+<td><p>Critical</p></td>
+<td><p>os version @ver</p></td>
+<td><p>os version cl3.7.9</p></td>
+</tr>
+<tr class="even">
+<td><p>version</p></td>
+<td><p>An unknown version of a software package was detected</p></td>
+<td><p>Critical</p></td>
+<td><p>expected release version @ver</p></td>
+<td><p>expected release version cl3.6.2</p></td>
+</tr>
+<tr class="odd">
+<td><p>version</p></td>
+<td><p>Desired version of a software package is not available</p></td>
+<td><p>Critical</p></td>
+<td><p>different from version @ver</p></td>
+<td><p>different from version cl4.0</p></td>
+</tr>
+<tr class="even">
 <td><p>vxlan</p></td>
 <td><p>Replication list is contains an inconsistent set of nodes</p></td>
 <td><p>Critical</p></td>

@@ -130,9 +130,9 @@ The medium Alarms card displays:
 
 The large Alarms card has one tab.
 
-The *System, Trace and Interfaces* tab displays:
+The *Alarm Summary* tab displays:
 
-{{< figure src="/images/netq/events-alarms-large-systrcif-tab-222.png" width="500" >}}
+{{< figure src="/images/netq/events-alarms-large-summ-tab-231.png" width="500" >}}
 
 <table>
 <colgroup>

@@ -1,37 +1,12 @@
 ---
-title: UI Early Access Features
+title: Monitor Using Topology View
 author: Cumulus Networks
-weight: 173
+weight: 99
 product: Cumulus NetQ
 version: 2.3
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined)
-features that provide advanced access to new functionality before it becomes generally available. Two features are available as early access features in NetQ 2.3.0:
-
-- Topology view, described here
-- Detailed `netq check` validation output (CLI only), refer to [CLI Early Access Features](../../../Cumulus-NetQ-CLI-User-Guide/CLI-Early-Access-Features/)
-
-These features are bundled into the `netq-apps` package; there is no
-specific EA package like there typically is with Cumulus Linux.
-
-These features are provided as is, and are subject to change before they become generally available.
-
-## Enable/Disable Early Access Features
-
-You enable early access features by running the `netq config add experimental` command on any node running NetQ.
-
-    cumulus@switch:~$ netq config add experimental
-    Experimental config added
-
-You disable the early access features by running the `netq config del experimental` command on any node running NetQ.
-
-    cumulus@switch:~$ netq config del experimental
-    Experimental config deleted
-
-## Topology View
-
 The core capabilities of Cumulus NetQ enable you to monitor your network by viewing performance and configuration data about your individual network devices and the entire fabric network-wide. The topics contained in this section describe monitoring tasks that can be performed from a topology view rather than through the NetQ UI card workflows or the NetQ CLI.
 
 ## Access the Topology View

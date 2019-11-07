@@ -1,49 +1,23 @@
 ---
-title: UI Early Access Features
+title: Monitor Using Topology View
 author: Cumulus Networks
-weight: 173
+weight: 99
 product: Cumulus NetQ
 version: 2.3
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined)
-features that provide advanced access to new functionality before it becomes generally available. Two features are available as early access features in NetQ 2.3.0:
-
-- Topology view (GUI Cloud deployments only), described here
-- Detailed `netq check` validation output (CLI only), refer to [CLI Early Access Features](../../../Cumulus-NetQ-CLI-User-Guide/CLI-Early-Access-Features/)
-
-These features are bundled into the `netq-apps` package; there is no
-specific EA package like there typically is with Cumulus Linux.
-
-These features are provided as is, and are subject to change before they become generally available.
-
-## Enable/Disable Early Access Features
-
-You enable early access features by running the `netq config add experimental` command on any node running NetQ.
-
-    cumulus@switch:~$ netq config add experimental
-    Experimental config added
-
-You disable the early access features by running the `netq config del experimental` command on any node running NetQ.
-
-    cumulus@switch:~$ netq config del experimental
-    Experimental config deleted
-
-
-## Topology View
-
 The core capabilities of Cumulus NetQ enable you to monitor your network by viewing performance and configuration data about your individual network devices and the entire fabric network-wide. The topics contained in this section describe monitoring tasks that can be performed from a topology view rather than through the NetQ UI card workflows or the NetQ CLI.
 
 ## Access the Topology View
 
 To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg", height="18", width="18"/> in any workbench header.
 
-{{<figure src="/images/netq/topo-access-from-wb-hdr-230.png" width="700">}}
+{{<figure src="/images/netq/topo-access-from-wb-hdr-231.png" width="700">}}
 
 This opens the full screen view of your network topology.
 
-{{<figure src="/images/netq/topo-main-page-ref-topo.png" width="700">}}
+{{<figure src="/images/netq/topo-main-page-ref-topo-231.png" width="700">}}
 
 This document uses the Cumulus Networks [reference topology](https://docs.cumulusnetworks.com/cumulus-linux/Network-Solutions/Cumulus-Networks-Services-Demos/#reference-topology) for all examples.
 
@@ -57,10 +31,10 @@ The topology view provides a visual representation of your Linux network, showin
 | :----: | ----- |
 | {{<img src="/images/netq/rocket-turtle-limed-spruce.svg" width="28" height="28">}} | Switch running Cumulus Linux OS |
 | <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> | Switch running RedHat, Ubuntu, or CentOS |
-| <img src="https://icons.cumulusnetworks.com/12-Design/08-Grids-Rulers/grid-monitor.svg", height="18", width="18"/> | Host |
-| {{<img src="/images/netq/topo-circle-nubs-icon-230.png" width="18" height="18">}} | Network server |
-| Red <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> | Alarm (critical) event is present on the node|
-| Yellow <img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg", height="18", width="18"/> | Info event is present |
+| <img src="https://icons.cumulusnetworks.com/12-Design/08-Grids-Rulers/grid-monitor.svg", height="18", width="18"/> | Host with unknown operating system |
+| {{<img src="/images/netq/cof_white-black_hex.png" width="18" height="18">}} | Host running Ubuntu |
+| Red <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell-ring.svg", height="18", width="18"/> | Alarm (critical) event is present on the node|
+| Yellow <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg", height="18", width="18"/> | Info event is present |
 | Lines | Physical links or connections |
 
 ## Interact with the Topology
@@ -81,7 +55,7 @@ You can also click anywhere on the topology, and drag it left, right, up, or dow
 
 You can hover over the various elements to view data about them.  Hovering over a node highlights its connections to other nodes, temporarily de-emphasizing all other connections.
 
-{{<figure src="/images/netq/topo-hover-node-230.png" width="700">}}
+{{<figure src="/images/netq/topo-hover-node-231.png" width="500">}}
 
 Hovering over a line highlights the connection and displays the interface ports used on each end of the connection. All other connections are temporarily de-emphasized.
 
@@ -89,7 +63,7 @@ Hovering over a line highlights the connection and displays the interface ports 
 
 You can also click on the nodes and links to open the Configuration Panel with additional data about them.
 
-{{<figure src="/images/netq/topo-node-detail-230.png" width="700">}}
+{{<figure src="/images/netq/topo-node-detail-231.png" width="700">}}
 {{<figure src="/images/netq/topo-link-detail-230.png" width="500">}}
 
 From the Configuration Panel, you can view the following data about nodes and links:
@@ -117,7 +91,7 @@ From the Configuration Panel, you can view the following data about nodes and li
 
 After reviewing the provided information, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg", height="18", width="18"/> to close the panel, or to view data for another node or link without closing the panel, simply click on that element. The panel is hidden by default.
 
-View the unique count of items in the network by clicking on the <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-2.svg", height="18", width="18"/> on the upper left to open the count summary. (Be sure that you do not have a node selected.) Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg", height="18", width="18"/> to close the panel.
+When no devices or links are selected, you can view the unique count of items in the network by clicking on the <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-2.svg", height="18", width="18"/> on the upper left to open the count summary. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg", height="18", width="18"/> to close the panel.
 
 {{<figure src="/images/netq/topo-open-item-count-summary-230.png" width="400">}}
 

@@ -28,7 +28,7 @@ The NetQ UI contains two main areas:
 Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the main menu which provides navigation to:
 
   - **Favorites**: contains list of links to workbenches that you have
-    designated as favorites; Home is listed by default
+    designated as favorites; Home is listed by default and points to the Cumulus Workbench
   - **NetQ**: contains list of links to all workbenches in the
     application
   - **Network**: contains list of links to tabular data about various
@@ -52,6 +52,10 @@ To open Recent Actions, click <img src="https://icons.cumulusnetworks.com/05-Int
 The Global Search field in the UI header enables you to search for
 devices. It behaves like most searches and can help you quickly find device information. For more detail on creating and running searches, refer to [Create and Run Searches](../Create-and-Run-Searches).
 
+## Cumulus Networks Logo
+
+Clicking on the Cumulus logo takes you to your favorite workbench. For details about specifying your favorite workbench, refer to [Set User Preferences](../Set-User-Preferences).
+
 ## Quick Network Health View
 
 Found in the header, the graph and performance rating provide a view
@@ -70,7 +74,7 @@ minutes.
 ## Workbenches
 
 A workbench is comprised of a given set of cards. In this release, a
-preconfigured default workbench, Cumulus Workbench, is available to get
+pre-configured default workbench, Cumulus Workbench, is available to get
 you started. It contains Device Inventory, Switch Inventory, Alarm and
 Info Events, and Network Health cards. On initial login, this workbench
 is opened. You can create your own workbenches by adding or removing cards available cards to meet your particular needs. For more detail about managing your data using workbenches, refer to [Focus Your Monitoring Using Workbenches](../Focus-Your-Montoring-Using-Workbenches/).

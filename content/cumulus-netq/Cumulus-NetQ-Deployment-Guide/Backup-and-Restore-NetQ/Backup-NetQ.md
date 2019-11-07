@@ -10,6 +10,12 @@ siteSlug: cumulus-netq
 
 NetQ 2.x data is stored in a Cassandra database. A backup is performed by running scripts provided with the software and located in the `/usr/sbin` directory. When a backup is performed, a single tar file is created. The file is stored on a local drive that you specify and is named `netq_master_snapshot_<timestamp>.tar.gz`. Currently, only one backup file is supported, and includes the entire set of data tables. It is replaced each time a new backup is created.
 
+{{%notice note%}}
+If you upgrading to version 2.3.0 and need to back up NetQ 2.2.2 or earlier, you must request an updated `backuprestore` script from your local representative. The new script must be manually copied into the `user/sbin` directory.
+
+If you are upgrading to version 2.3.1, you can use the script provided with the release to back up your data from earlier NetQ versions.
+{{%/notice%}}
+
 To create a backup:
 
 1. Run the backup script to create a backup file in `/opt/<backup-directory>` being sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file.

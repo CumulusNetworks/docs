@@ -715,7 +715,7 @@ The large MLAG Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-{{< figure src="/images/netq/ntwk-svcs-single-mlag-large-sess-sum-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-single-mlag-large-sess-sum-tab-231.png" width="500" >}}
 
 <table>
 <colgroup>

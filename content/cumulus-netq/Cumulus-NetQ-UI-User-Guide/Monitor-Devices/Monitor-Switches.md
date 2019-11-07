@@ -563,7 +563,7 @@ see when changes were made, and the operational status.
 
 To view all interfaces:
 
-1.  Open the full screen Switch card and click the **All Interfaces**
+1.  Open the full-screen Switch card and click the **All Interfaces**
     tab.
 
     {{<figure src="/images/netq/dev-switch-fullscr-interfaces-tab-231.png" width="700">}}
@@ -578,40 +578,19 @@ To view all interfaces:
     in the **VRF** column.
 7.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
 
-### View SSD Utilization
+### View All Software Packages on a Switch
 
-For NetQ servers and appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utiilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
+You can view all of the software installed on a given switch to quickly validate versions and total software installed.
 
-To view SSD utilization:
+To view all software packages:
 
-1.  Open the full screen Switch card and click the **SSD Utilization**
-    tab.
+1. Open the full-screen Switch card and click the **Installed Packages** tab.
 
-    {{<figure src="/images/netq/dev-switch-fullscr-ssd-tab-231.png" width="700">}}
+    {{<figure src="/images/netq/dev-switch-fullscr-pkgs-tab-231.png" width="700">}}
 
-2. View the average PE Cycles value for a given drive. Is it higher than usual?
+2. Look for packages of internest and their version and status. Sort by a particular parameter by hovering over the column and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.
 
-3. View the Health value for a given drive. Is it lower than  usual? Less than 10%?
-
-Consider adding the switch cards that are suspect to a workbench for easy tracking.
-
-### View Disk Storage After BTRFS Utilization
-
-Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. For details about when a rebalance is recommended, refer to [When to Rebalance BTRFS Partitions](https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions).
-
-To view the disk state:
-
-1. Open the full-screen Switch card for a switch of interest:
-
-     - Type the switch name in the Search box, then use the card size picker to open the full-screen card, or 
-     - Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="24", width="24"/> (Switches) and enter the switch name and select the full-screen card size.
-
-2. Select the BTRFS Utilization tab.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-btrfs-util-tab-231.png" width="700">}}
-
-3. Look for the **Rebalance Recommended** column. 
-    If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the table to determine if you are getting close to needing a rebalance, and come back to view this table at a later time.
+3. Optionally, export the list by selecting all or a specific package, then clicking **Export** above the table, or **Export Select** in the Edit Menu.
 
 ## Monitor Switch Component Inventory
 

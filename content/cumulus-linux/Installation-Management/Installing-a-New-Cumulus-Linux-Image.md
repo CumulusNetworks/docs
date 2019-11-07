@@ -94,10 +94,10 @@ ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bi
 
 1. Place the Cumulus Linux disk image in a directory on the web server.
 
-2. From the Cumulus Linux command prompt, run the `onie-install` command:
+2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
 ```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin && sudo reboot
+cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 ```
 
 </details>
@@ -150,10 +150,10 @@ ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bi
 
 1. Place the Cumulus Linux disk image in a directory on your web server.
 
-2. From the Cumulus Linux command prompt, run the `onie-install` command:
+2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
 ```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin && sudo reboot
+cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
 ```
 
 </details>
@@ -202,12 +202,12 @@ ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 
 1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
 
-2. From the Cumulus Linux command prompt, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
+2. From the Cumulus Linux command prompt, run one of the following commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
 
 ```
-cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin && sudo reboot
+cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
 
-cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin && sudo reboot
+cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
 ```
 
 </details>
@@ -254,10 +254,10 @@ ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
 
 1. Copy the Cumulus Linux disk image to the switch.
 
-2. From the Cumulus Linux command prompt, run the `onie-install` command:
+2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
 ```
-cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin && sudo reboot
+cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin
 ```
 
 </details>

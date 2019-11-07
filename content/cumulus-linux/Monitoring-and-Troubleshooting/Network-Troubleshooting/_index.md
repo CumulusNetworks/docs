@@ -270,7 +270,7 @@ SPAN and ERSPAN are configured via `cl-acltool`, the
 The match criteria for SPAN and ERSPAN is usually an interface; for more
 granular match terms, use [selective spanning](#selective-spanning). The
 SPAN source interface can be a port, a subinterface or a bond interface.
-Ingress traffic on interfaces can be matched, and on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Spectrum Spectrum&ASIC=Mellanox Spectrum_A1), egress traffic can be matched. See the
+Ingress traffic on interfaces can be matched, and on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), egress traffic can be matched. See the
 [list of limitations](#limitations-for-span-erspan) below.
 
 Cumulus Linux supports a maximum of 2 SPAN destinations. Multiple rules

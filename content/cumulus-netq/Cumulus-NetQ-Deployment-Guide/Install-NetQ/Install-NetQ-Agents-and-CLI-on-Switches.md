@@ -7,28 +7,21 @@ version: 2.3
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents and, optionally, the CLI on your monitored switches and hosts.
+After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents on each node you want to monitor. The node can be a:
 
-This topic describes how to perform the installation. If you are upgrading, you can skip some of the steps which do not need to be performed a second time.
+- Switch running Cumulus Linux version 3.3.2 or later
+- Server running Red Hat RHEL 7.1
+- Server running Ubuntu 16.04
+- Server running Ubuntu 18.04 (NetQ 2.2.2 and later)
+- Server running CentOS 7
 
-## Install the NetQ Agent
+This topic describes how to perform the installation and configuration. If you are upgrading, you can skip some of the steps which do not need to be performed a second time.
 
-Whether using one of the NetQ Appliances or your own hardware, the NetQ Agent
-must be installed on each node you want to monitor. The node can be a:
-
-  - Switch running Cumulus Linux version 3.3.2 or later
-  - Server running Red Hat RHEL 7.1
-  - Server running Ubuntu 16.04
-  - Server running Ubuntu 18.04 (NetQ 2.2.2 and later)
-  - Server running CentOS 7
-  - Linux virtual machine running any of the above Linux operating
-    systems
+## Install a NetQ Agent
 
 To install the NetQ Agent you need to install the OS-specific meta
 package, `cumulus-netq`, on each switch. Optionally, you can install it
-on hosts. The meta package contains the NetQ Agent, the NetQ command
-line interface (CLI), and the NetQ library. The library contains modules
-used by both the NetQ Agent and the CLI.
+on hosts. The meta package contains the NetQ Agent and NetQ applications.
 
 Instructions for installing the meta package on each node type are
 included here:
@@ -89,24 +82,7 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb
 
         cumulus@switch:~$ sudo systemctl restart rsyslog.service
 
-5.  Configure the NetQ Agent to send telemetry data to the NetQ Platform.
-
-    {{%notice info%}}
-
-If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-the-agent-to-use-a-vrf). If you intend to specify a port for communication, skip to [Configure the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port).
-
-    {{%/notice%}}
-
-    In this example, the IP address for the NetQ hardware is
-    *192.168.1.254*.
-
-        cumulus@switch:~$ netq config add agent server 192.168.1.254
-        cumulus@switch:~$ netq config restart agent
-
-6. Optionally install the CLI as described in [Install the NetQ CLI](#install-the-netq-cli)
-
-7. Repeat these steps for each Cumulus switch, or use an automation tool to
-install NetQ Agent on multiple Cumulus Linux switches.
+5. Continue with [NetQ Agent configuration](#configure-your-netq-agents).
 
 ### Install NetQ Agent on an Ubuntu Server
 
@@ -202,26 +178,7 @@ The use of `netq-latest` in this example means that a `get` to the
         root@ubuntu:~# apt-get update
         root@ubuntu:~# apt-get install cumulus-netq
 
-8.  Configure the NetQ Agent to send telemetry data to the NetQ
-    Platform, NetQ Appliance, or NetQ Cloud Appliance.
-
-    {{%notice info%}}
-
-If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-the-agent-to-use-a-vrf). If you intend to specify a port for communication, skip to [Configure the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port).
-
-    {{%/notice%}}
-
-    In this example, the IP address for the NetQ hardware is
-    *192.168.1.254*.
-
-        root@ubuntu:~# netq config add agent server 192.168.1.254
-        Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
-        root@ubuntu:~# netq config restart agent
-
-9.  Optionally install the CLI as described in [Install the NetQ CLI](#install-the-netq-cli).
-
-10. Repeat these steps for all of your hosts running Ubuntu, or use an
-    automation tool to streamline the process.
+8.  Continue with [NetQ Agent Configuration](#configure-your-netq-agents)
 
 ### Install NetQ Agent on a Red Hat or CentOS Server
 
@@ -305,98 +262,60 @@ To install the NetQ Agent on a Red Hat or CentOS server:
         root@rhel7:~# yum -y install bash-completion
         root@rhel7:~# yum install cumulus-netq
 
-8.  Configure the NetQ Agent to send telemetry data to the NetQ
-    Platform, NetQ Appliance, or NetQ Cloud Appliance.
+8.  Continue with [NetQ Agent Configuration](#configure-your-netq-agents).
 
-    {{%notice info%}}
-If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-the-agent-to-use-a-vrf). If you intend to specify a port for communication, skip to [Configure the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port).
-    {{%/notice%}}
-
-    In this example, the IP address for the NetQ hardware is
-    *192.168.1.254*.
-
-        root@rhel7:~# netq config add agent server 192.168.1.254
-        Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
-        root@rhel7:~# netq config restart agent
-
-9.  Optionally install the CLI as described in [Install the NetQ CLI](#install-the-netq-cli).
-
-10. Repeat these steps for all of your hosts running Ubuntu, or use an
-    automation tool to streamline the process.
-
-## Configure Optional NetQ Agent Settings
+## Configure Your NetQ Agents
 
 Once the NetQ Agents have been installed on the network nodes you want
 to monitor, the NetQ Agents must be configured to obtain useful and
-relevant data. The code examples shown in this section illustrate how to
-configure the NetQ Agent on a Cumulus switch, but it is exactly the same
-for the other type of nodes. Depending on your deployment, follow the
-relevant additional instructions after the basic configuration steps:
+relevant data. Two methods are available for configuring a NetQ Agent:
 
-  - [Configuring the Agent to Use a VRF](#configure-the-agent-to-use-a-vrf)
-  - [Configuring the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port)
+- Edit the configuration file on the device, or
+- Configure and run NetQ CLI commands on the device.
 
-### Configure the Agent to Use a VRF
+### Configure NetQ Agents Using a Configuration File
 
-While optional, Cumulus strongly recommends that you configure NetQ
-Agents to communicate with the NetQ Platform only via a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including a
-[management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need to
-specify the VRF name when configuring the NetQ Agent. For example, if
-the management VRF is configured and you want the agent to communicate
-with the NetQ Platform over it, configure the agent like this:
+You can configure the NetQ Agent in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
 
-    cumulus@leaf01:~$ netq config add agent server 192.168.1.254 vrf mgmt
-    cumulus@leaf01:~$ netq config add cli server 192.168.254 vrf mgmt
+1. Open the `netq.yml` file using your text editor of choice.
+2. Locate the *netq-agent* section, or add it.
+3. Set the parameters for the agent as follows:
+    - port: 31980 (default configuration)
+    - server: IP address of the NetQ server or appliance where the agent should send its collected data
+    - vrf: default (default configuration) 
 
-You then restart the agent:
+Your configuration should be similar to this:
 
-    cumulus@leaf01:~$ netq config restart agent
-    cumulus@leaf01:~$ netq config restart cli
+```
+netq-agent:
+  port: 31980
+  server: 127.0.0.1
+  vrf: default
+```
 
-### Configure the Agent to Communicate over a Specific Port
+### Configure NetQ Agents Using the NetQ CLI
 
-By default, NetQ uses port 31980 for communication between the NetQ
-Platform and NetQ Agents. If you want the NetQ Agent to communicate with
-the NetQ Platform via a different port, you need to specify the port
-number when configuring the NetQ Agent like this:
+The NetQ CLI was installed when you installed the NetQ Agent; however, to use it to configure your NetQ Agents, you must first configure the CLI to communicate with your NetQ server or appliance.
 
-    cumulus@leaf01:~$ netq config add agent server 192.168.1.254 port 7379
+#### Configure the NetQ CLI
 
-You then restart the agent:
+ Note that the steps to install the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment.
 
-    cumulus@leaf01:~$ netq config restart agent
-
-## Install the NetQ CLI
-
-While installation of the CLI on one or more of your switches and hosts is not required, it can be very useful to have it available. Note that the steps to install the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment.
-
-### Install NetQ CLI in On-premises Deployments
-
-Installing the CLI for on-premises deployments requires only two commands:
+Configuring the CLI for *on-premises* deployments requires only two commands:
 
 ```
 netq config add cli server <ip-address-of-netq-server-or-appliance>
 netq config restart cli
 ```
 
-{{%notice tip%}}
-Save time by including these steps in your automation scripts for installing and upgrading the NetQ Agents.
-{{%/notice%}}
+Configuring the CLI for *cloud* deployments also only requires two commands; however, there are a couple of additional options that you can apply:
 
-
-### Install NetQ CLI in Cloud Deployments
-
-Installing the CLI for cloud deployments also only requires two commands; however, there are a couple of additional options that you can apply:
-
-- In NetQ 2.2.2 and later, if your nodes do not have Internet access, you can use the CLI proxy that is available on the NetQ server or Cloud Appliance.
+- In NetQ 2.2.2 and later, if your nodes do not have Internet access, you can use the CLI proxy that is available on the NetQ cloud server or NetQ Cloud Appliance.
 - In NetQ 2.2.1 and later, you can:
-    - save your access credentials in a file and reference that file here to simplify the installation commands
+    - save your access credentials in a file and reference that file here to simplify the configuration commands
     - specify which premises you want to query
 
-#### Install NetQ CLI on Switches with Internet Access
-
-Run the following commands, being sure to replace the key values with your generated keys.
+*For switches with Internet access* run the following commands, being sure to replace the key values with your generated keys.
 
 ```
 $ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
@@ -407,7 +326,7 @@ $ netq config restart cli
 Restarting NetQ CLI... Success!
 ```
 
-If you have created a keys file as noted in the installation procedures for the NetQ Cloud server or Appliance, run the following commands. Be sure to include the *full path* the to file.
+Or, if you have created a keys file as noted in the installation procedures for the NetQ Cloud server or Appliance, run the following commands. Be sure to include the *full path* the to file.
 
 ```
 $ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /<full-path>/credentials.yml port 443
@@ -418,7 +337,7 @@ $ netq config restart cli
 Restarting NetQ CLI... Success!
 ```
 
-If you have multiple premises, be sure to include which premises you want to query.
+If you have multiple premises, be sure to include which premises you want to query. Rerun this command to query a different premises.
 
 ```
 $ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <premises-name> port 443
@@ -429,14 +348,57 @@ $ netq config restart cli
 Restarting NetQ CLI... Success!
 ```
 
-#### Install NetQ CLI on Switches without Internet Access
-
-A CLI proxy is part of the NetQ Cloud Appliance with NetQ 2.2.2 and later. If your switches and hosts do not have access to the Internet, you can use the proxy on the NetQ Cloud Server or Appliance to manage CLI access on your nodes. To make use of the proxy, you must point each switch or host to the NetQ Cloud Server or Appliance. Run the following commands, using the IP address of your NetQ Cloud Server or Appliance:
+*For switches without Internet access*, you can use the CLI proxy that is part of the NetQ Cloud Server or Appliance with NetQ 2.2.2 and later to manage CLI access on your nodes. To make use of the proxy, you must point each switch or host to the NetQ Cloud Server or Appliance. Run the following commands, using the IP address of the proxy:
 
 ```
-$ netq config add cli server <netq-cloud-server/appliance-ip-addr>
-Updated cli server <netq-cloud-server/appliance-ip-addr> vrf default port 443. Please restart netqd (netq config restart cli)
+$ netq config add cli server <proxy-ip-addr>
+Updated cli server <proxy-ip-addr> vrf default port 443. Please restart netqd (netq config restart cli)
 
 $ netq config restart cli
 Restarting NetQ CLI... Success!
+```
+
+#### Configure the NetQ Agent
+
+Now that the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Server or Appliance.
+
+{{%notice info%}}
+
+If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-the-agent-to-use-a-vrf). If you intend to specify a port for communication, skip to [Configure the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port).
+
+{{%/notice%}}
+
+The same commands are used no matter the operating system (Cumulus Linux, Ubuntu, etc.). This example uses an IP address of *192.168.1.254* for the NetQ hardware.
+
+```
+$ netq config add agent server 192.168.1.254
+Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
+$ netq config restart agent
+```
+
+#### Configure the Agent to Use a VRF
+
+While optional, Cumulus strongly recommends that you configure NetQ
+Agents to communicate with the NetQ Platform only via a
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including a
+[management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need to
+specify the VRF name when configuring the NetQ Agent. For example, if
+the management VRF is configured and you want the agent to communicate
+with the NetQ Platform over it, configure the agent like this:
+
+```
+cumulus@leaf01:~$ netq config add agent server 192.168.1.254 vrf mgmt
+cumulus@leaf01:~$ netq config restart agent
+```
+
+#### Configure the Agent to Communicate over a Specific Port
+
+By default, NetQ uses port 31980 for communication between the NetQ
+Platform and NetQ Agents. If you want the NetQ Agent to communicate with
+the NetQ Platform via a different port, you need to specify the port
+number when configuring the NetQ Agent like this:
+
+```
+cumulus@leaf01:~$ netq config add agent server 192.168.1.254 port 7379
+cumulus@leaf01:~$ netq config restart agent
 ```

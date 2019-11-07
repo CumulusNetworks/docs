@@ -14,8 +14,6 @@ After installing or upgrading your Cumulus NetQ software, you should install the
 - Server running Ubuntu 16.04
 - Server running Ubuntu 18.04 (NetQ 2.2.2 and later)
 - Server running CentOS 7
-- Linux virtual machine running any of the above Linux operating
-systems
 
 This topic describes how to perform the installation and configuration. If you are upgrading, you can skip some of the steps which do not need to be performed a second time.
 
@@ -23,9 +21,7 @@ This topic describes how to perform the installation and configuration. If you a
 
 To install the NetQ Agent you need to install the OS-specific meta
 package, `cumulus-netq`, on each switch. Optionally, you can install it
-on hosts. The meta package contains the NetQ Agent, the NetQ command
-line interface (CLI), and the NetQ library. The library contains modules
-used by both the NetQ Agent and the CLI.
+on hosts. The meta package contains the NetQ Agent and NetQ applications.
 
 Instructions for installing the meta package on each node type are
 included here:

@@ -119,6 +119,7 @@ Requirements](#hardware-requirements) for specifics.
 {{%/notice%}}
 
 ## Install Cumulus NetQ for an On-premises Deployment
+
 Follow the instructions in this section to install Cumulus NetQ software onto a server that is to be deployed and managed on your premises. For cloud deployments, refer to [Install Cumulus NetQ for a Cloud Deployment](#install-cumulus-netq-for-a-cloud-deployment).
 
 ### On-Premises Install Workflow

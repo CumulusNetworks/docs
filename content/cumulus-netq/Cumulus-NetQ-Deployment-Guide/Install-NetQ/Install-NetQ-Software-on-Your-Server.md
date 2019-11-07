@@ -119,6 +119,7 @@ Requirements](#hardware-requirements) for specifics.
 {{%/notice%}}
 
 ## Install Cumulus NetQ for an On-premises Deployment
+
 Follow the instructions in this section to install Cumulus NetQ software onto a server that is to be deployed and managed on your premises. For cloud deployments, refer to [Install Cumulus NetQ for a Cloud Deployment](#install-cumulus-netq-for-a-cloud-deployment).
 
 ### On-Premises Install Workflow
@@ -543,29 +544,12 @@ If you have changed the IP address or hostname of the NetQ server, you need to
 re-register this address with the Kubernetes containers before you can
 continue.
 
-1.  Reset all Kubernetes administrative settings. Run the command twice
-    to make sure all directories and files have been reset.
-    ```
-    cumulus@netq-platform:~$ sudo kubeadm reset -f
-    ```  
-2.  Remove the Kubernetes configuration.
-
-    ```
-    cumulus@netq-platform:~$ sudo rm /home/cumulus/.kube/config
-    ```
-
-3.  Reset the NetQ Platform install daemon.  
-
-    ```
-    cumulus@netq-platform:~$ sudo systemctl reset-failed
-    ```  
-
-4.  Reset the Kubernetes service.  
-
-    ```
-    cumulus@netq-platform:~$ sudo systemctl restart cts-kubectl-config
-    ```  
-    **Note**: Allow 15 minutes for the prompt to return.
+| Step | Description | Command |
+| :----: | -------------- | ------------- |
+| 1 | Reset all Kubernetes administrative settings | `sudo kubeadm reset -f`|
+| 2 | Remove the Kubernetes configuration | `sudo rm /home/cumulus/.kube/config` |
+| 3 | Reset the NetQ Platform install daemon | `sudo systemctl reset-failed` |
+| 4 | Reset the Kubernetes service |  `sudo systemctl restart cts-kubectl-config`<p>**Note**: Allow 15 minutes for the prompt to return.</p> | 
 
 {{%/notice%}}
 
@@ -580,6 +564,18 @@ The `config-key` was provided to you by Cumulus Networks via an email titled *A 
 ```
 cumulus@netq-platform:~$ netq install opta interface eth0 tarball download config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
 ```
+
+**Note**: If you connect to your NetQ Cloud Server via proxy, you must identify the proxy with the `proxy-host` option, as follows:
+
+```
+cumulus@netq-platform:~$ netq install opta interface eth0 tarball download config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM=" proxy-host netqcloudproxy proxy-port 8000
+```
+
+{{%notice info%}}
+It is strongly recommended that you do not use environment variables in the `etc/environment` file (such as  http_proxy, https_proxy, HTTP_PROXY, or HTTPS_PROXY) to define your proxy as this can cause the installation to fail.
+
+If you must use environment variables, comment out these variables just before running the `netq install` command, and then uncomment them when you are finished with installation.
+{{%/notice%}}
 
 {{%notice info%}}
 

@@ -59,7 +59,7 @@ The small Trace Request card displays:
 
 The medium Trace Request card displays:
 
-{{<figure src="/images/netq/trace-request-medium-222.png" width="200">}}
+{{<figure src="/images/netq/trace-request-medium-231.png" width="200">}}
 
 <table>
 <colgroup>

@@ -11,7 +11,7 @@
          {{- with .Get "height" }} height="{{ . }}"{{ end -}}
     /> <!-- Closing img tag -->
     {{ else }}
-    <img src="https://dkahegywkrw3e.cloudfront.net{{ .Get "src" }}"
+    <img src="http://docs-cdn.cumulusnetworks.com{{ .Get "src" }}"
          {{- if or (.Get "alt") (.Get "caption") }}
          alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
          {{- end -}}

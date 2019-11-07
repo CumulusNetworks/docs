@@ -156,7 +156,7 @@ To manage your workbenches:
 
     {{<figure src="/images/netq/user-settings-profile-prefs-wbs-card-222.png" width="500">}}
 
-4.  To specify a favorite workbench, click and drag <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg", height="18", width="18"/> next to the left of the desired workbench name.
+4.  To specify a favorite workbench, click to the left of the desired workbench name.  <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg", height="18", width="18"/> is placed there to indicate its status as your favorite workbench.
 5.  To search the workbench list by name, access type, and
     cards present on the workbench, click the relevant header and begin
     typing your search criteria.

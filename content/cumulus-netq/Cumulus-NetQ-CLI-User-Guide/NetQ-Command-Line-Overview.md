@@ -530,27 +530,48 @@ release.
 <col style="width: 42.5%" />
 <col style="width: 15%" />
 </colgroup>
-  <tbody>
-  <tr>
-      <th>Command</th>
-      <th>Summary</th>
-      <th>Version</th>
-    </tr>
-    <tr>
-      <td>netq check cl-version [match-version &lt;cl-ver&gt; | min-version &lt;cl-ver&gt;] [include &lt;version-number-range-list&gt; | exclude &lt;version-number-range-list&gt;] [around &lt;text-time&gt;] [json | summary]</td>
-      <td>When no options are used, validates that the Cumulus Linux version running on all of the monitored nodes is consistent. When <em>min-version</em> is provided, validates CL version is equal or greater than specified version. When <em>match-version</em> is provided, validates all nodes are using specified version.</td>
-      <td>2.3.0</td>
-      <tr>
-      <td>netq [&lt;hostname&gt;] show interface-utils [&lt;text-port&gt;] [tx|rx] [around &lt;text-time&gt;] [json]</td>
-      <td>Similar to <code>netq show interface-stats</code>, this command displays NetQ server or appliance interface receive and transmit statistics, but it also shows utilization and port speed.</td>
-      <td>2.3.0</td>
-    </tr>
-    <tr>
-      <td>netq show platform [json]</td>
-      <td>Displays the NetQ software version installed on your NetQ server or appliance.</td>
-      <td>2.3.0</td>
-    </tr>
-   </tbody>
+<tbody>
+<tr>
+  <th>Command</th>
+  <th>Summary</th>
+  <th>Version</th>
+</tr>
+<tr>
+  <td>netq [&lt;hostname&gt;] show cl-btrfs-info [around &lt;text-time&gt;] [json]</td>
+  <td>Displays status about disk utilization on all devices with BTRFS and Cumulus Linux 3.x installed.</td>
+  <td>2.3.1</td>
+</tr>
+<tr>
+  <td>netq [&lt;hostname&gt;] show cl-pkg-info [&lt;text-package-name&gt;] [around &lt;text-time&gt;] [json]</td>
+  <td>Displays version information for all software packages installed on a device.</td>
+  <td>2.3.1</td>
+</tr>
+<tr>
+  <td>netq [&lt;hostname&gt;] show cl-ssd-util [around &lt;text-time&gt;] [json]</td>
+  <td>Displays status about disk utilization on all devices.</td>
+  <td>2.3.1</td>
+</tr>
+<tr>
+  <td>netq [&lt;hostname&gt;] show mac-history &lt;mac&gt; [vlan &lt;1-4096&gt;] [diff] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [listby &lt;text-list-by&gt;] [json]</td>
+  <td>Displays where a MAC address has resided in the network, or when the <em>diff</em> option is applied,  the difference between two points in time. The <em>listby</em> option lets you determine how the output data is displayed.</td>
+  <td>2.3.1</td>
+</tr>
+<tr>
+  <td>netq check cl-version [match-version &lt;cl-ver&gt; | min-version &lt;cl-ver&gt;] [include &lt;version-number-range-list&gt; | exclude &lt;version-number-range-list&gt;] [around &lt;text-time&gt;] [json | summary]</td>
+  <td>When no options are used, validates that the Cumulus Linux version running on all of the monitored nodes is consistent. When <em>min-version</em> is provided, validates CL version is equal or greater than specified version. When <em>match-version</em> is provided, validates all nodes are using specified version.</td>
+  <td>2.3.0</td>
+</tr>
+<tr>
+  <td>netq [&lt;hostname&gt;] show interface-utils [&lt;text-port&gt;] [tx|rx] [around &lt;text-time&gt;] [json]</td>
+  <td>Similar to <code>netq show interface-stats</code>, this command displays NetQ server or appliance interface receive and transmit statistics, but it also shows utilization and port speed.</td>
+  <td>2.3.0</td>
+</tr>
+<tr>
+  <td>netq show platform [json]</td>
+  <td>Displays the NetQ software version installed on your NetQ server or appliance and how long it has been up. Note change to command in 2.3.1.</td>
+  <td>2.3.0</td>
+</tr>
+</tbody>
 </table>
 
 ### Modified Commands
@@ -574,14 +595,38 @@ this release.
  </tr>
  </thead>
  <tbody>
-    <tr>
-      <td><p>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; premises &lt;text-premises-name&gt; | cli-keys-file &lt;text-key-file&gt; premises &lt;text-premises-name&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;]</p>
-      <p>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;]</p></td>
-      <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [premise &lt;text-premise-name&gt;] [port &lt;text-gateway-port&gt;] [vrf &lt;text-vrf-name&gt;]</td>
-      <td>Adds the CLI daemon to the switch or host where this command is run. Split command into two: the first for when you want to specify the premises, the second for when you want to use the first premises in your list of premises. The <em>access-key</em>, <em>secret-key</em>, and <em>port</em> are required for cloud deployments. The <em>text-gateway-dest</em> is the only required value for on-premises deployments.</td>
-      <td>2.3.0</td>
-    </tr>
-   </tbody>
+  <tr>
+    <td><p>netq install opta interface &lt;text-opta-ifname&gt; tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;) config-key &lt;text-opta-key&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;] [file &lt;text-config-file&gt;] [force]</p></td>
+    <td>netq install opta interface &lt;text-opta-ifname&gt; tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;) config-key &lt;text-opta-key&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;] [file &lt;text-config-file&gt;] [force]</td>
+    <td>Added the <em>proxy-host</em> option that lets you communicate through a proxy server versus directly with the NetQ server or appliance.</td>
+    <td>2.3.1</td>
+  </tr>
+  <tr>
+    <td><p>netq upgrade opta tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;) [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;]</p></td>
+    <td>netq upgrade opta tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;)</td>
+    <td>Added the <em>proxy-host</em> option that lets you communicate through a proxy server versus directly with the NetQ server or appliance.</td>
+    <td>2.3.1</td>
+  </tr>
+  <tr>
+  <td>netq show opta-platform [json]</td>
+  <td>netq show platform [json]</td>
+  <td>Modified the keyword name from <em>platform</em> to <em>opta-platform</em>.</td>
+  <td>2.3.1</td>
+</tr>
+  <tr>
+    <td><p>netq [&lt;hostname&gt;] show events [level info | level error | level warning | level critical | level debug] [type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type lnv | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]</p></td>
+    <td>netq [&lt;hostname&gt;] show events [level info | level error | level warning | level critical | level debug] [type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type lnv | type macs | type services | type lldp | type license | type os | type sensors] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]</td>
+    <td>Added the <em>cl-btrfs-info</em> type option to view events related to BTRFS disk utilization.</td>
+    <td>2.3.1</td>
+  </tr>
+  <tr>
+    <td><p>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; premises &lt;text-premises-name&gt; | cli-keys-file &lt;text-key-file&gt; premises &lt;text-premises-name&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;]</p>
+    <p>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;]</p></td>
+    <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [premise &lt;text-premise-name&gt;] [port &lt;text-gateway-port&gt;] [vrf &lt;text-vrf-name&gt;]</td>
+    <td>Adds the CLI daemon to the switch or host where this command is run. Split command into two: the first for when you want to specify the premises, the second for when you want to use the first premises in your list of premises. The <em>access-key</em>, <em>secret-key</em>, and <em>port</em> are required for cloud deployments. The <em>text-gateway-dest</em> is the only required value for on-premises deployments.</td>
+    <td>2.3.0</td>
+  </tr>
+</tbody>
 </table>
 
 ### Deprecated Commands
@@ -589,7 +634,24 @@ this release.
 The following table summarizes the commands that have been removed and a
 recommended alternative, if appropriate.
 
-| Command | Alternative Command |
-| ------- | ------------------- |
-| N/A     | N/A                 |
-
+<table>
+ <colgroup>
+  <col style="width: 45%" />
+  <col style="width: 45%" />
+  <col style="width: 10%" />
+ </colgroup>
+ <thead>
+ <tr class="header">
+ <th>Command</th>
+ <th>Alternate Command</th>
+ <th>Version</th>
+ </tr>
+ </thead>
+ <tbody>
+  <tr>
+    <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;]</td>
+    <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; premises &lt;text-premises-name&gt; | cli-keys-file &lt;text-key-file&gt; premises &lt;text-premises-name&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;] </td>
+    <td>2.3.1 </td>
+  </tr>
+  </body>
+  </table>

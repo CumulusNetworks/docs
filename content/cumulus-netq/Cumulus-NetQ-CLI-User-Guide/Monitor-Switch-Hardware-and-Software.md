@@ -572,7 +572,7 @@ events using the severity `level` option.
     cumulus@switch:~$ netq show events level critical type sensors
     No matching events records found
 
-## View Interface Statistics and Utilization
+### View Interface Statistics and Utilization
 
 NetQ Agents collect performance statistics every 30 seconds for the
 physical interfaces on switches and hosts in your network. The NetQ
@@ -679,6 +679,33 @@ exit01            swp1                      0                    0              
                                                                                                                                                      2019
 ...
 ```
+
+### View Disk Storage Utilization After BTRFS Allocation
+
+Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. Refer to [When to Rebalance BTRFS Partitions](https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions) for details about the rules used to recommend a rebalance operation.
+
+To view the disk utilization and whether a rebalance is recommended, use the `netq show cl-btrfs-util` command as follows:
+
+```
+cumulus@switch:~$ netq show cl-btrfs-info
+Matching btrfs_info records:
+Hostname          Device Allocated     Unallocated Space    Largest Chunk Size   Unused Data Chunks S Rebalance Recommende Last Changed
+                                                                                 pace                 d
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+exit01            31.16 %              3.96 GB              588.5 MB             39.13 MB             no                   Wed Oct 30 18:51:35 2019
+exit02            31.16 %              3.96 GB              588.5 MB             38.79 MB             no                   Wed Oct 30 19:20:41 2019
+leaf01            31.16 %              3.96 GB              588.5 MB             38.75 MB             no                   Wed Oct 30 18:52:34 2019
+leaf02            31.16 %              3.96 GB              588.5 MB             38.79 MB             no                   Wed Oct 30 18:51:22 2019
+leaf03            31.16 %              3.96 GB              588.5 MB             35.44 MB             no                   Wed Oct 30 18:52:02 2019
+leaf04            31.16 %              3.96 GB              588.5 MB             33.49 MB             no                   Wed Oct 30 19:21:15 2019
+spine01           31.16 %              3.96 GB              588.5 MB             36.9 MB              no                   Wed Oct 30 19:21:13 2019
+spine02           31.16 %              3.96 GB              588.5 MB             39.12 MB             no                   Wed Oct 30 18:52:44 2019
+
+```
+
+Look for the **Rebalance Recommended** column. If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the output to determine if you are getting close to needing a rebalance, and come back to view this data at a later time.
+
+Optionally, use the `hostname` option to view the information for a given device, or use the `around` option to view the information for a particular time.
 
 ## Monitor Switch Software Information
 

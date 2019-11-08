@@ -10,6 +10,13 @@ siteSlug: cumulus-netq
 ---
 The following Cumulus NetQ user documentation is available in PDF for offline viewing or printing:
 
+NetQ 2.3.1
+
+- [Cumulus NetQ Deployment Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-Deployment-Guide-231.pdf)
+- [Cumulus NetQ Integration Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-Integration-Guide-231.pdf)
+- [Cumulus NetQ UI User Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-UI-User-Guide-231.pdf)
+- [Cumulus NetQ CLI User Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-CLI-User-Guide-231.pdf)
+
 NetQ 2.3.0
 
 - [Cumulus NetQ Deployment Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-Deployment-Guide-230.pdf)

@@ -30,8 +30,7 @@ Guide](/cumulus-netq/Cumulus-NetQ-UI-User-Guide).
 {{%notice tip%}}
 
 Before you get started, you should review the [release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374-Cumulus-NetQ-2-2-Release-Notes)
+notes](https://support.cumulusnetworks.com/hc/en-us/articles/360036416953)
 for this version.
 
 {{%/notice%}}
-

@@ -21,7 +21,7 @@ them.
 
 The UI is supported on Google Chrome.
 Other popular browsers may be used, but have not been tested and may
-have some presentation issues. 
+have some presentation issues.
 
 {{%notice tip%}}
 
@@ -32,11 +32,11 @@ for this version.
 
 ## Access the NetQ UI
 
-Logging in to the NetQ UI is as easy as opening any web page. 
+Logging in to the NetQ UI is as easy as opening any web page.
 
-To log in to the UI: 
+To log in to the UI:
 
-1.  Open a new Internet browser window or tab. 
+1.  Open a new Internet browser window or tab.
 
 2.  Enter the following URL into the Address bar: http://\<netq-platform/appliance-ipaddress\>:32666.
     
@@ -78,11 +78,7 @@ various components).
 
 ## Main Menu
 
-Found in the application header, click
-
-{{% imgOld 5 %}}
-
-to open the main menu which provides navigation to:
+Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the main menu which provides navigation to:
 
 - **Favorites**: contains list of links to workbenches that you have
 designated as favorites; Home is listed by default
@@ -102,11 +98,7 @@ Found in the header, the navigation history keeps track of every action
 you take on your workbench. This enables the user to go back to a
 previous state or repeat an action.
 
-To open the navigation history, click
-
-{{% imgOld 7 %}}
-
-. Click on any of the actions to perform that action again.
+To open the navigation history, click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg", height="18", width="18"/>. Click on any of the actions to perform that action again.
 
 {{% imgOld 8 %}}
 
@@ -275,19 +267,11 @@ several ways.
 
 *Sort Data by Column*
 
-Hover over a column header and click
-
-{{% imgOld 17 %}}
-
-.
+Hover over a column header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.
 
 *Choose Columns to Display*
 
-1.  Click 
-    
-    {{% imgOld 18 %}}
-    
-    at the top right of the card.
+1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/> at the top right of the card.
 
 2.  Click **Change Columns** from the **Display Settings**.
 
@@ -303,25 +287,17 @@ and select or deselect the column more quickly.
     
     {{%/notice%}}
 
-4.  Click 
-    
-    {{% imgOld 19 %}}
-    
-    to close the selection box and view the updated data grid.
+4.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> to close the selection box and view the updated data grid.
 
 *Change Order of Columns*
 
-1.  Click
-    
-    {{% imgOld 20 %}}
-    
-    and then click **Change Columns**.
+1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/> and then click **Change Columns**.
 
 2.  Hover over a column name.
     
     {{%notice tip%}}
     
-You use the Quick Filter to find the column when you have a large
+You can use the Quick Filter to find the column when you have a large
 number of columns.
     
     {{%/notice%}}
@@ -332,11 +308,7 @@ number of columns.
     
     {{% imgOld 21 %}}
 
-5.  Click 
-    
-    {{% imgOld 22 %}}
-    
-    to close the selection box and view the updated data grid.
+5.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> to close the selection box and view the updated data grid.
 
 *Take Actions on Items*
 
@@ -468,11 +440,7 @@ To change the time period for a card:
 
 1.  Hover over any card.
 
-2.  Click 
-    
-    {{% imgOld 27 %}}
-    
-    in the header .
+2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/> in the header.
 
 3.  Select a time period from the dropdown list.
     
@@ -545,11 +513,7 @@ You can add or remove cards from a workbench at any time.
 
 To add a card:
 
-1.  Click
-    
-    {{% imgOld 35 %}}
-    
-    .
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/>.
     
     {{% imgOld 36 %}}
 
@@ -564,11 +528,7 @@ To remove a card:
 
 1.  Hover over the card you want to remove.
 
-2.  Click
-    
-    {{% imgOld 37 %}}
-    
-    (*More Actions* menu).
+2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg", height="18", width="18"/> (*More Actions* menu).
 
 3.  Click **Remove**.
     
@@ -619,11 +579,7 @@ need to scroll down to see the card you have just added.
 
 To open the card workflow through an existing workbench:
 
-1.  Click 
-    
-    {{% imgOld 39 %}}
-    
-    in the workbench task bar .
+1.  Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="18", width="18"/> in the workbench task bar.
 
 2.  Select the relevant workbench.
     
@@ -643,11 +599,7 @@ The card appears on the current workbench, at the bottom.
 
 To access the card workflow by adding the card:
 
-1.  Click 
-    
-    {{% imgOld 41 %}}
-    
-    in the workbench task bar .
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> in the workbench task bar.
 
 2.  Select the relevant card.
 
@@ -681,11 +633,7 @@ provided by default:
 
 To add a card deck:
 
-1.  Click 
-    
-    {{% imgOld 43 %}}
-    
-    in the workbench task bar.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-cards.svg", height="18", width="18"/> in the workbench task bar.
 
 2.  Select the deck you want to add to your workbench.
 
@@ -707,11 +655,7 @@ date and time format, choosing words or number format and a 12- or
 
 To configure the display settings:
 
-1.  Click
-    
-    {{% imgOld 44 %}}
-    
-    in the application header to open the **User Settings** options.
+1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
     
     {{% imgOld 45 %}}
 
@@ -721,20 +665,12 @@ To configure the display settings:
     
     {{% imgOld 46 %}}
 
-4.  In the **Theme** field, click 
-    
-    {{% imgOld 47 %}}
-    
-    to select your choice of theme. This figure shows the light theme.
+4.  In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="18", width="18"/> to select your choice of theme. This figure shows the light theme.
     Switch back and forth as desired.
     
     {{% imgOld 48 %}}
 
-5.  In the **Time Zone** field, click
-    
-    {{% imgOld 49 %}}
-    
-    to change the time zone from the default.  
+5.  In the **Time Zone** field, click<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="18", width="18"/> to change the time zone from the default.  
     By default, the time zone is set to the current local time zone
     where NetQ is installed. All time values are based on this setting.
     This is displayed in the application header, and is based on
@@ -790,11 +726,7 @@ To configure the display settings:
     The four options include the date displayed in words or abbreviated
     with numbers, and either a 12- or 24-hour time representation.
 
-7.  Return to your workbench by clicking 
-    
-    {{% imgOld 52 %}}
-    
-    and selecting a workbench from the NetQ list.
+7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
 
 ### Change Your Password
 
@@ -804,11 +736,7 @@ so.
 
 To change your password:
 
-1.  Click
-    
-    {{% imgOld 53 %}}
-    
-    in the application header to open the **User Settings** options.
+1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
     
     {{% imgOld 54 %}}
 
@@ -829,11 +757,7 @@ To change your password:
 7.  Click **Save** to change to the new password, or click **Cancel** to
     discard your changes.
 
-8.  Return to your workbench by clicking  
-    
-    {{% imgOld 57 %}}
-    
-    and selecting a workbench from the NetQ list.
+8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
 
 ### Manage Your Workbenches
 
@@ -865,11 +789,7 @@ restored.
 
 To manage your workbenches:
 
-1.  Click
-    
-    {{% imgOld 58 %}}
-    
-    in the application header to open the **User Settings** options.
+1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
     
     {{% imgOld 59 %}}
 
@@ -879,11 +799,7 @@ To manage your workbenches:
     
     {{% imgOld 60 %}}
 
-4.  To specify a favorite workbench, click and drag
-    
-    {{% imgOld 61 %}}
-    
-    next to the left of the desired workbench name.
+4.  To specify a favorite workbench, click and drag <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg", height="18", width="18"/> next to the left of the desired workbench name.
 
 5.  To search and/or sort the workbench list by name, access type, and
     cards present on the workbench, click the relevant header and begin
@@ -893,11 +809,7 @@ To manage your workbenches:
     **Delete** button. As an administrator, you can delete both private
     and public workbenches.
 
-7.  Return to your workbench by clicking 
-    
-    {{% imgOld 62 %}}
-    
-    and selecting a workbench from the NetQ list.
+7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
 
 ## Basic Terminology and Acronyms
 
@@ -1097,8 +1009,4 @@ Color is used to indicate links, options, and status within the UI.
 ## Get Help
 
 You can access the online user documentation for the UI from the Main
-Menu. Just click
-
-{{% imgOld 63 %}}
-
-and select *Help Documentation* under the ADMIN category.
+Menu. Just click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and select *Help Documentation* under the **ADMIN** category.

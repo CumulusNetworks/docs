@@ -36,8 +36,8 @@ The small Switch card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -93,8 +93,8 @@ The medium Switch card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -131,8 +131,8 @@ The *Attributes* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -201,14 +201,14 @@ The *Attributes* tab displays:
 </tbody>
 </table>
 
-The Utilization tab displays:
+The *Utilization* tab displays:
 
 {{% imgOld 8 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -248,8 +248,8 @@ addresses, and all interfaces.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -263,7 +263,7 @@ addresses, and all interfaces.
 <td><p>Switches</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 11 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -517,7 +517,7 @@ The small Switch Inventory card displays:
 
 | Item              | Description                                                                                  |
 | ----------------- | -------------------------------------------------------------------------------------------- |
-| {{% imgOld 29 %}} | Indicates data is for switch inventory                                                       |
+| <img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="18", width="18"/> | Indicates data is for switch inventory                                                       |
 | Count             | Total number of switches in the network inventory                                            |
 | Chart             | Distribution of overall health status during the designated time period; fresh versus rotten |
 
@@ -527,8 +527,8 @@ The medium Switch Inventory card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -539,7 +539,7 @@ The medium Switch Inventory card displays:
 <tbody>
 <tr class="odd">
 <td><p> </p>
-<p>{{% imgOld 31 %}}</p></td>
+<p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for switch inventory</p></td>
 </tr>
 <tr class="even">
@@ -566,8 +566,8 @@ The *Summary* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -577,7 +577,7 @@ The *Summary* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>{{% imgOld 33 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for switch inventory</p></td>
 </tr>
 <tr class="even">
@@ -602,8 +602,8 @@ The *ASIC* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -642,8 +642,8 @@ The *Platform* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -654,7 +654,7 @@ The *Platform* tab displays:
 <tbody>
 <tr class="odd">
 <td><p> </p>
-<p>{{% imgOld 37 %}}</p></td>
+<p>{{<img src="/images/netq/platform-icon.png" height="20" width="20">}}</p></td>
 <td><p>Indicates data is for platform information</p></td>
 </tr>
 <tr class="even">
@@ -686,8 +686,8 @@ The *Software* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -810,7 +810,7 @@ count.
 {{% imgOld 46 %}}
 
 To view which vendors and platforms have bad or missing licenses, open
-the large Switch Inventory card, and click {{% imgOld 47 %}} to open the **Platform Details** tab. Hover over the License State bar
+the large Switch Inventory card, and click {{<img src="/images/netq/platform-icon.png" height="20" width="20">}} to open the **Platform Details** tab. Hover over the License State bar
 chart to highlight the vendor and platforms with the various states.
 
 To view *which* switches have invalid or missing licenses, either:
@@ -893,7 +893,7 @@ distribution by version:
 
 5.  For more detail, switch to the large Switch Inventory card.
 
-6.  Hover over the card and click {{% imgOld 56 %}} to open the **Software Details** tab.
+6.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg", height="18", width="18"/> to open the **Software Details** tab.
     
     {{% imgOld 57 %}}
     
@@ -907,7 +907,7 @@ distribution by version:
     
 9.  Click either chart to focus on a particular OS or agent version.
 
-10. To return to the full view, click {{% imgOld 59 %}} in the filter tag.
+10. To return to the full view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the filter tag.
 
 11. Filter the data on the card by switches that are having trouble
     communicating, by selecting *Rotten Switches* from the dropdown

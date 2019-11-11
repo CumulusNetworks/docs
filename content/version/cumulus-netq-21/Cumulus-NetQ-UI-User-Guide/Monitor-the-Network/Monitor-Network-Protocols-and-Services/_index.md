@@ -17,25 +17,13 @@ In this release, you can monitor the network-wide behavior (all
 sessions) of the BGP, EVPN, MLAG, and LLDP services. Each protocol has
 its own card workflow containing:
 
-  - a small card with an overall status,
+- a small card with an overall status,
+- a medium card displaying key attributes of the protocol,
+- a large card with detailed performance statistics, some with
+  additional tabs, and
+- full screen cards displaying attributes of all associated switches,
+  sessions, alarms or other relevant data.
 
-  - a medium card displaying key attributes of the protocol,
-
-  - a large card with detailed performance statistics, some with
-    additional tabs, and
-
-  - full screen cards displaying attributes of all associated switches,
-    sessions, alarms or other relevant data.
-
-Refer to [NetQ User Interface Overview (2.1.0
-version)](https://docs-rip.cumulusnetworks.com/pages/viewpage.action?pageId=10464141)
+Refer to [NetQ User Interface Overview](../../NetQ-User-Interface-Overview)
 for information about navigating the card workflows and performing
 common actions.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -151,8 +151,7 @@ The *System, Trace and Interfaces* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 6 %}}</p></td>
+<td><p>{{% imgOld 6 %}}</p></td>
 <td><p>Indicates data is for all system, trace and interface critical events in the network</p></td>
 </tr>
 <tr class="odd">
@@ -196,7 +195,7 @@ The full screen Alarms card provides tabs for all events.
 <td><p>Events | Alarms</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 8 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -328,11 +327,7 @@ To compare two time periods:
     that moving large cards can take a few extra seconds since they
     contain a large amount of data.
 
-4.  Hover over the card and click 
-    
-    {{% imgOld 15 %}}
-    
-    .
+4.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
     
     {{% imgOld 16 %}}
 
@@ -360,11 +355,7 @@ OR
 
 {{% imgOld 20 %}}
 
-To return to your workbench, click
-
-{{% imgOld 21 %}}
-
-in the top right corner of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner of the card.
 
 ## Monitor Info Events
 
@@ -539,7 +530,7 @@ The full screen Info card provides tabs for all events.
 <td><p>Events | Info</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 29 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -657,11 +648,7 @@ OR
 
 {{% imgOld 38 %}}
 
-To return to your workbench, click
-
-{{% imgOld 39 %}}
-
-in the top right corner of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner of the card.
 
 ## Events Reference
 

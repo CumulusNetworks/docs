@@ -28,16 +28,11 @@ The Cumulus NetQ API provides endpoints for:
 
   - **Network routing protocols**: BGP, EVPN, LLDP, CLAG, MSTP,
     Neighbors, NTP, Routes
-
   - **Virtual networks**: VLAN
-
   - **Services**: Services
-
   - **Interfaces**: Interface, Port
-
   - **Inventory and Devices**: Address, Inventory, MAC Address tables,
     Node, Sensors
-
   - **Events**: Events
 
 You can make requests for all data and all devices or you can filter the
@@ -76,12 +71,9 @@ method (GET, POST, etc.), the address and API object to query, a variety
 of headers, and sometimes a body. In the log in step you used above:
 
   - API method = POST
-
   - Address and API object =
     "https://\<netq.domain\>:32708/netq/auth/v1/login"
-
   - Headers = -H "Content-Type: application/json"
-
   - Body = -d "{ \\"username\\": \\"admin\\", \\"password\\":
     \\"admin\\"}"
 
@@ -432,11 +424,3 @@ monitored nodes and their configuration information, as follows:
 
 The API is available in a json-formatted file, click
 [netq-212.json](attachments_10465544_1_netq-212.json) to open the file.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

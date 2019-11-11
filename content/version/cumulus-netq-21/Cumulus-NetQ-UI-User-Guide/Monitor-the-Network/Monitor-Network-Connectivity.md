@@ -191,13 +191,12 @@ The full screen Trace Request card displays:
 <td><p>Trace Request</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 7 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking </p>
-<p>{{% imgOld 8 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="18", width="18"/></p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -717,15 +716,9 @@ The small Scheduled Trace Results card displays:
 <td><p>Results</p></td>
 <td><p>Summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
-<li><p></p>
-<p>{{% imgOld 47 %}}</p>
-<p>Number of trace runs completed in the designated time period</p></li>
-<li><p> </p>
-<p>{{% imgOld 48 %}}</p>
-<p>Number of runs with warnings</p></li>
-<li><p></p>
-<p>{{% imgOld 49 %}}</p>
-<p>Number of runs with errors</p></li>
+<li><p>{{% imgOld 47 %}} Number of trace runs completed in the designated time period</p></li>
+<li><p>{{% imgOld 48 %}} Number of runs with warnings</p></li>
+<li><p>{{% imgOld 49 %}} Number of runs with errors</p></li>
 </ul></td>
 </tr>
 </tbody>
@@ -764,15 +757,9 @@ The medium Scheduled Trace Results card displays:
 <td><p>Summary</p></td>
 <td><p>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
-<li><p></p>
-<p>{{% imgOld 52 %}}</p>
-<p>Number of trace runs completed in the designated time period</p></li>
-<li><p> </p>
-<p>{{% imgOld 53 %}}</p>
-<p>Number of runs with warnings</p></li>
-<li><p></p>
-<p>{{% imgOld 54 %}}</p>
-<p>Number of runs with errors</p></li>
+<li><p>{{% imgOld 52 %}} Number of trace runs completed in the designated time period</p></li>
+<li><p>{{% imgOld 53 %}} Number of runs with warnings</p></li>
+<li><p>{{% imgOld 54 %}} Number of runs with errors</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -818,15 +805,9 @@ The *Results* tab displays:
 <td><p>Summary</p></td>
 <td><p>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.</p>
 <ul>
-<li><p></p>
-<p>{{% imgOld 57 %}}</p>
-<p>Number of trace runs completed in the designated time period</p></li>
-<li><p> </p>
-<p>{{% imgOld 58 %}}</p>
-<p>Number of runs with warnings</p></li>
-<li><p></p>
-<p>{{% imgOld 59 %}}</p>
-<p>Number of runs with errors</p></li>
+<li><p>{{% imgOld 57 %}} Number of trace runs completed in the designated time period</p></li>
+<li><p>{{% imgOld 58 %}} Number of runs with warnings</p></li>
+<li><p>{{% imgOld 59 %}} Number of runs with errors</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -928,13 +909,12 @@ The full screen Scheduled Trace Results card displays:
 <td><p>Scheduled Trace Results</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 63 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking </p>
-<p>{{% imgOld 64 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="18", width="18"/></p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -1010,11 +990,7 @@ To view the results:
 2.  Select the scheduled trace you want to view results for by clicking
     in the first column of the result and clicking the check box.
 
-3.  On the Edit Menu that appears at the bottom of the window, click
-    
-    {{% imgOld 68 %}}
-    
-    (Open Cards). This opens the medium Scheduled Validation Results
+3.  On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> (Open Cards). This opens the medium Scheduled Validation Results
     card(s) for the selected items.
     
     {{% imgOld 69 %}}
@@ -1046,11 +1022,7 @@ To view the results:
 
 10. You can view the configuration of the request that produced the
     results shown on this card workflow, by hovering over the card and
-    clicking 
-    
-    {{% imgOld 71 %}}
-    
-    . If you want to change the configuration, click **Edit** to open
+    clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/>. If you want to change the configuration, click **Edit** to open
     the large Trace Request card, pre-populated with the current
     configuration. Follow the instructions in [Create a Scheduled Trace Request](#create-a-trace-to-run-on-a-regular-basis-scheduled-trace) to
     make your changes in the same way you created a new scheduled trace.
@@ -1078,8 +1050,4 @@ To view the results:
     over its default VRF interface. It exits tor-1 through switch port 5
     and so on.
 
-14. Export this data using the **Export** button or click
-    
-    {{% imgOld 73 %}}
-    
-    to return to the results list to view another trace in detail.
+14. Export this data using the **Export** button or click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> to return to the results list to view another trace in detail.

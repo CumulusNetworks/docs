@@ -21,10 +21,7 @@ scheduled).
 This release supports validation of the following network protocols and
 services: Agents, BGP, CLAG, EVPN, Interfaces, License, NTP, and OSPF.
 
-For a more general understanding of how well your network is operating,
-refer to the [Monitor Network
-Health](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Health)
-topic.
+For a more general understanding of how well your network is operating, refer to the [Monitor Network Health](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Health) topic.
 
 ## Create Validation Requests
 
@@ -40,8 +37,8 @@ The small Validation Request card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -51,8 +48,7 @@ The small Validation Request card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 1 %}}</p></td>
+<td><p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates a validation request</p></td>
 </tr>
 <tr class="even">
@@ -73,8 +69,8 @@ The medium Validation Request card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -84,8 +80,7 @@ The medium Validation Request card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 3 %}}</p></td>
+<td><p>{{% imgOld 3 %}}</p></td>
 <td><p>Indicates a validation request</p></td>
 </tr>
 <tr class="even">
@@ -118,8 +113,8 @@ The large Validation Request card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -129,8 +124,7 @@ The large Validation Request card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 5 %}}</p></td>
+<td><p>{{% imgOld 5 %}}</p></td>
 <td><p>Indicates a validation request</p></td>
 </tr>
 <tr class="even">
@@ -184,8 +178,8 @@ validation requests.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -199,7 +193,7 @@ validation requests.
 <td><p>Validation Request</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 7 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -227,8 +221,7 @@ validation requests.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 8 %}}</p></td>
+<td><p>{{% imgOld 8 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -241,23 +234,17 @@ Each has a slightly different flow through the Validation Request card,
 and is therefore described separately. The types are based on the intent
 of the request:
 
-  - [Run an Existing Scheduled Validation Request On
-    Demand](#src-10465092_ValidateNetworkProtocolandServiceOperations-SchValNow)
+  - [Run an Existing Scheduled Validation Request On Demand](#src-10465092_ValidateNetworkProtocolandServiceOperations-SchValNow)
 
-  - [Create a New On-demand Validation
-    Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-OndNow)
+  - [Create a New On-demand Validation Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-OndNow)
 
-  - [Modify an On-demand Validation
-    Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-ModOndNow)
+  - [Modify an On-demand Validation Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-ModOndNow)
 
-  - [Save and Schedule an On-demand Validation
-    Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-SchOnd)
+  - [Save and Schedule an On-demand Validation Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-SchOnd)
 
-  - [Create a New Scheduled Validation
-    Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-SchNew)
+  - [Create a New Scheduled Validation Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-SchNew)
 
-  - [Modify a Scheduled Validation
-    Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-EditSchedVal)
+  - [Modify a Scheduled Validation Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-EditSchedVal)
 
 ### Run an Existing Scheduled Validation Request On Demand
 
@@ -276,8 +263,7 @@ To run a scheduled validation now:
 
 3.  Click **Go** or **Run Now**.  
     The associated Validation Result card is opened on your workbench.
-    Refer to [View On-demand Validation
-    Results](#src-10465092_ValidateNetworkProtocolandServiceOperations-OndValRes).
+    Refer to [View On-demand Validation Results](#src-10465092_ValidateNetworkProtocolandServiceOperations-OndValRes).
     
     {{% imgOld 11 %}}
 
@@ -297,8 +283,7 @@ To create and run a request for *a single* protocol or service:
 
 3.  Click **Go** or **Run Now**.  
     The associated Validation Result card is opened on your workbench.
-    Refer to [View On-demand Validation
-    Results](#src-10465092_ValidateNetworkProtocolandServiceOperations-OndValRes).
+    Refer to [View On-demand Validation Results](#src-10465092_ValidateNetworkProtocolandServiceOperations-OndValRes).
 
 To create and run a request for *more than one* protocol and/or service,
 essentially a custom validation request, you must first save it as a
@@ -336,8 +321,7 @@ scheduled request. After which you can run it on demand.
 8.  Click **Run Now** to start the validation.  
     The associated on-demand validation result cards (one per protocol
     or service selected) are opened on your current workbench. Refer to
-    [View On-demand Validation
-    Results](#src-10465092_ValidateNetworkProtocolandServiceOperations-OndValRes).
+    [View On-demand Validation Results](#src-10465092_ValidateNetworkProtocolandServiceOperations-OndValRes).
     
     {{% imgOld 19 %}}
 
@@ -384,8 +368,7 @@ To create and run a new scheduled validation:
 The validation can now be selected from the Validation listing (on the
 small, medium or large size card) and run immediately using **Run Now**,
 or you can wait for it to run the first time according to the schedule
-you specified. Refer to [View Scheduled Validation
-Results](#src-10465092_ValidateNetworkProtocolandServiceOperations-SchValRes).
+you specified. Refer to [View Scheduled Validation Results](#src-10465092_ValidateNetworkProtocolandServiceOperations-SchValRes).
 
 {{% imgOld 26 %}}
 
@@ -417,8 +400,7 @@ To modify a scheduled validation:
 The validation can now be selected from the Validation listing (on the
 small, medium or large size card) and run immediately using **Run Now**,
 or you can wait for it to run the first time according to the schedule
-you specified. Refer to [View Scheduled Validation
-Results](#src-10465092_ValidateNetworkProtocolandServiceOperations-SchValRes).
+you specified. Refer to [View Scheduled Validation Results](#src-10465092_ValidateNetworkProtocolandServiceOperations-SchValRes).
 
 ## View On-demand Validation Results
 
@@ -437,8 +419,8 @@ The small Validation Result card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -448,8 +430,7 @@ The small Validation Result card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 29 %}}</p></td>
+<td><p>{{% imgOld 29 %}}</p></td>
 <td><p>Indicates an on-demand validation result</p></td>
 </tr>
 <tr class="even">
@@ -461,8 +442,7 @@ The small Validation Result card displays:
 <td><p>Date and time the validation was completed</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 30 %}}</p>
+<td><p>{{% imgOld 30 %}}</p>
 ,
 <p>{{% imgOld 31 %}}</p></td>
 <td><p>Status of the validation job, where:</p>
@@ -480,8 +460,8 @@ The medium Validation Result card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -491,8 +471,7 @@ The medium Validation Result card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 33 %}}</p></td>
+<td><p>{{% imgOld 33 %}}</p></td>
 <td><p>Indicates an on-demand validation result</p></td>
 </tr>
 <tr class="even">
@@ -504,12 +483,7 @@ The medium Validation Result card displays:
 <td><p>Date and time the validation was completed</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 34 %}}</p>
-, <span style="color: #222222;"> </span>
-<p>{{% imgOld 35 %}}</p>
-, </span>
-<p>{{% imgOld 36 %}}</p></td>
+<td><p>{{% imgOld 34 %}}</p>, <p>{{% imgOld 35 %}}</p>, <p>{{% imgOld 36 %}}</p></td>
 <td><p>Status of the validation job, where:</p>
 <ul>
 <li><p><strong>Good</strong>: Job ran successfully.</p></li>
@@ -556,8 +530,8 @@ The *Summary* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -567,8 +541,7 @@ The *Summary* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 38 %}}</p></td>
+<td><p>{{% imgOld 38 %}}</p></td>
 <td><p>Indicates an on-demand validation result</p></td>
 </tr>
 <tr class="even">
@@ -580,11 +553,10 @@ The *Summary* tab displays:
 <td><p>Day and time when the validation completed</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 39 %}}</p>
-, <span style="color: #222222;"> </span>
+<td><p>{{% imgOld 39 %}}</p>
+, 
 <p>{{% imgOld 40 %}}</p>
-, </span>
+, 
 <p>{{% imgOld 41 %}}</p></td>
 <td><p>Status of the validation job, where:</p>
 <ul>
@@ -646,8 +618,8 @@ The *Configuration* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -657,8 +629,7 @@ The *Configuration* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 43 %}}</p></td>
+<td><p>{{% imgOld 43 %}}</p></td>
 <td><p>Indicates an on-demand validation request configuration</p></td>
 </tr>
 <tr class="even">
@@ -683,8 +654,8 @@ validation results.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -698,12 +669,12 @@ validation results.
 <td><p>Validation Results | On-demand</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 45 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking</p>
 <p>{{% imgOld 46 %}}</p></td>
 </tr>
 <tr class="even">
@@ -732,8 +703,7 @@ validation results.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 47 %}}</p></td>
+<td><p>{{% imgOld 47 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -755,12 +725,7 @@ To view the results:
 
 1.  Locate the medium on-demand Validation Result card on your workbench
     for the protocol or service that was run.  
-    You can identify it by the on-demand result icon,
-    <span style="color: #353744;"> </span>
-    
-    {{% imgOld 48 %}}
-    
-    , protocol or service name, and the date and time that it was run.  
+    You can identify it by the on-demand result icon, <img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat-search.svg", height="18", width="18"/>, protocol or service name, and the date and time that it was run.  
     **Note:** You may have more than one card open for a given protocol
     or service, so be sure to use the date and time on the card to
     ensure you are viewing the correct card.  
@@ -818,8 +783,8 @@ The small Validation Result card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -829,8 +794,7 @@ The small Validation Result card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 54 %}}</p></td>
+<td><p>{{% imgOld 54 %}}</p></td>
 <td><p>Indicates a scheduled validation result</p></td>
 </tr>
 <tr class="even">
@@ -841,20 +805,13 @@ The small Validation Result card displays:
 <td><p>Results</p></td>
 <td><p>Summary of validation results:</p>
 <ul>
-<li><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 55 %}}</p>
-<p>Number of validation runs completed in the designated time period</p></li>
-<li><p><span style="color: #353744;"> <span style="color: #222222;"> </span></span></p>
-<p>{{% imgOld 56 %}}</p>
-<p>Number of runs with warnings</p></li>
-<li><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 57 %}}</p>
-<p>Number of runs with errors</p></li>
+<li><p>{{% imgOld 55 %}} Number of validation runs completed in the designated time period</p></li>
+<li><p>{{% imgOld 56 %}} Number of runs with warnings</p></li>
+<li><p>{{% imgOld 57 %}} Number of runs with errors</p></li>
 </ul></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 58 %}}</p>
+<td><p>{{% imgOld 58 %}}</p>
 ,
 <p>{{% imgOld 59 %}}</p></td>
 <td><p>Status of the validation job, where:</p>
@@ -874,8 +831,8 @@ The medium Validation Result card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -889,8 +846,7 @@ The medium Validation Result card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 62 %}}</p></td>
+<td><p>{{% imgOld 62 %}}</p></td>
 <td><p>Indicates a scheduled validation result</p></td>
 </tr>
 <tr class="odd">
@@ -904,12 +860,8 @@ The medium Validation Result card displays:
 <li><p>Name of scheduled validation</p></li>
 <li><p>Status of the validation job, where:</p>
 <ul>
-<li><p><strong></strong></p>
-<p><strong>{{% imgOld 63 %}}</strong></p>
-<p><strong>Pass</strong>: Job ran successfully. One or more warnings may have occurred during the run.</p></li>
-<li><p><strong></strong></p>
-<p><strong>{{% imgOld 64 %}}</strong></p>
-<p><strong>Failed</strong>: Job encountered errors which prevented the job from completing, or job ran successfully, but errors occurred during the run.</p></li>
+<li><p> {{% imgOld 63 %}} <strong>Pass</strong>: Job ran successfully. One or more warnings may have occurred during the run.</p></li>
+<li><p>{{% imgOld 64 %}} <strong>Failed</strong>: Job encountered errors which prevented the job from completing, or job ran successfully, but errors occurred during the run.</p></li>
 </ul></li>
 </ul></td>
 </tr>
@@ -930,14 +882,14 @@ The medium Validation Result card displays:
 
 The large Validation Result card contains two tabs.
 
-  - The *Summary* tab displays:
+The *Summary* tab displays:
 
-  - {{% imgOld 65 %}}
+{{% imgOld 65 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -947,8 +899,7 @@ The large Validation Result card contains two tabs.
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 66 %}}</p></td>
+<td><p>{{% imgOld 66 %}}</p></td>
 <td><p>Indicates a scheduled validation result</p></td>
 </tr>
 <tr class="even">
@@ -962,15 +913,10 @@ The large Validation Result card contains two tabs.
 <li><p>Name of scheduled validation</p></li>
 <li><p>Status of the validation job, where:</p>
 <ul>
-<li><p><strong></strong></p>
-<p><strong>{{% imgOld 67 %}}</strong></p>
-<p><strong>Pass</strong>: Job ran successfully. One or more warnings may have occurred during the run.</p></li>
-<li><p><strong></strong></p>
-<p><strong>{{% imgOld 68 %}}</strong></p>
-<p><strong>Failed</strong>: Job encountered errors which prevented the job from completing, or job ran successfully, but errors occurred during the run.</p></li>
+<li><p>{{% imgOld 67 %}} <strong>Pass</strong>: Job ran successfully. One or more warnings may have occurred during the run.</p></li>
+<li><p>{{% imgOld 68 %}} <strong>Failed</strong>: Job encountered errors which prevented the job from completing, or job ran successfully, but errors occurred during the run.</p></li>
 </ul></li>
-<li><p>{{% imgOld 69 %}}</p>
-<p>: Expand the heat map to full width of card, collapse the heat map to the left</p></li>
+<li><p>{{% imgOld 69 %}}: Expand the heat map to full width of card, collapse the heat map to the left</p></li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -1009,8 +955,8 @@ The *Configuration* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1020,8 +966,7 @@ The *Configuration* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 71 %}}</p></td>
+<td><p>{{% imgOld 71 %}}</p></td>
 <td><p>Indicates a scheduled validation configuration</p></td>
 </tr>
 <tr class="even">
@@ -1054,8 +999,8 @@ validation results for the service.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1069,13 +1014,12 @@ validation results for the service.
 <td><p>Scheduled Validation Results | &lt;Network Protocol or Service&gt;</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 73 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 74 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="18", width="18"/></p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -1103,8 +1047,7 @@ validation results for the service.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 75 %}}</p></td>
+<td><p>{{% imgOld 75 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -1152,13 +1095,7 @@ To view the results:
 2.  Select the validation results you want to view by clicking in the
     first column of the result and clicking the check box.
 
-3.  On the Edit Menu that appears at the bottom of the window, click
-    <span style="color: #353744;"> </span>
-    
-    {{% imgOld 78 %}}
-    
-    (Open Cards). This opens the medium Scheduled Validation Results
-    card(s) for the selected items.  
+3.  On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items.  
     
     {{% imgOld 79 %}}
     
@@ -1184,19 +1121,11 @@ To view the results:
 
 7.  Switch to the large Scheduled Validation card.
 
-8.  Click
-    
-    {{% imgOld 82 %}}
-    
-    to expand the chart.
+8.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg", height="18", width="18"/> to expand the chart.
     
     {{% imgOld 83 %}}
 
-9.  Collapse the heat map by clicking
-    
-    {{% imgOld 84 %}}
-    
-    .
+9.  Collapse the heat map by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg", height="18", width="18"/>.
     
     {{% imgOld 85 %}}
 
@@ -1212,18 +1141,7 @@ To view the results:
 12. Optionally, view the health of the protocol or service as a whole by
     clicking **Open** \<*network service*\> **Card** (when available).
 
-13. You can view the configuration of the request that produced the
-    results shown on this card workflow, by hovering over the card and
-    clicking <span style="color: #333c4e;"> </span>
-    
-    {{% imgOld 86 %}}
-    
-    . If you want to change the configuration, click **Edit Config** to
-    open the large Validation Request card, pre-populated with the
-    current configuration. Follow the instructions in [Modify an
-    Existing Scheduled Validation
-    Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-EditSchedVal)
-    to make your changes.
+13. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/>. If you want to change the configuration, click **Edit Config** to open the large Validation Request card, re-populated with the current configuration. Follow the instructions in [Modify an Existing Scheduled Validation Request](#src-10465092_ValidateNetworkProtocolandServiceOperations-EditSchedVal) to make your changes.
 
 14. To view all data available for all scheduled validation results for
     the given protocol or service, click **Show All Results** or switch

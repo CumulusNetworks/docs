@@ -275,8 +275,7 @@ To configure NetQ to send notifications to Slack:
                                               moretext/evenmoretext                                       
     ```
     
-    From the Slack Channel:  
-      
+    From the Slack Channel:
     
     {{% imgOld 5 %}}
 
@@ -344,7 +343,7 @@ BGP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-message\_type
+message_type
 
 </td>
 
@@ -454,7 +453,7 @@ mgmt, default
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_state
+old_state
 
 </td>
 
@@ -476,7 +475,7 @@ Established, Failed
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_state
+new_state
 
 </td>
 
@@ -498,7 +497,7 @@ Established, Failed
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_last\_reset\_time
+old_last_reset_time
 
 </td>
 
@@ -520,7 +519,7 @@ Apr3, 2019, 4:17 pm
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_last\_reset\_time
+new_last_reset_time
 
 </td>
 
@@ -548,7 +547,7 @@ MLAG (CLAG)
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-message\_type
+message_type
 
 </td>
 
@@ -592,7 +591,7 @@ server02, leaf-9, exit01, spine04
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_conflicted\_bonds
+old_conflicted_bonds
 
 </td>
 
@@ -614,7 +613,7 @@ swp7 swp8, swp3 swp4
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_conflicted\_bonds
+new_conflicted_bonds
 
 </td>
 
@@ -636,7 +635,7 @@ swp11 swp12, swp23 swp24
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_state\_protodownbond
+old_state_protodownbond
 
 </td>
 
@@ -658,7 +657,7 @@ protodown, up
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_state\_protodownbond
+new_state_protodownbond
 
 </td>
 
@@ -686,7 +685,7 @@ ConfigDiff
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-message\_type
+message_type
 
 </td>
 
@@ -752,7 +751,7 @@ Virtual Network Instance identifier
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_state
+old_state
 
 </td>
 
@@ -774,7 +773,7 @@ created, modified
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_state
+new_state
 
 </td>
 
@@ -802,7 +801,7 @@ EVPN
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-message\_type
+message_type
 
 </td>
 
@@ -868,7 +867,7 @@ Virtual Network Instance identifier
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_in\_kernel\_state
+old_in_kernel_state
 
 </td>
 
@@ -890,7 +889,7 @@ true, false
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_in\_kernel\_state
+new_in_kernel_state
 
 </td>
 
@@ -912,7 +911,7 @@ true, false
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_adv\_all\_vni\_state
+old_adv_all_vni_state
 
 </td>
 
@@ -934,7 +933,7 @@ true, false
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_adv\_all\_vni\_state
+new_adv_all_vni_state
 
 </td>
 
@@ -962,7 +961,7 @@ Link
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-message\_type
+message_type
 
 </td>
 
@@ -1034,7 +1033,7 @@ LLDP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-message\_type
+message_type
 
 </td>
 
@@ -1118,7 +1117,7 @@ eth1, swp12
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_peer\_ifname
+old_peer_ifname
 
 </td>
 
@@ -1146,7 +1145,7 @@ eth1, swp12, swp27
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_peer\_ifname
+new_peer_ifname
 
 </td>
 
@@ -1174,7 +1173,7 @@ eth1, swp12, swp27
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_peer\_hostname
+old_peer_hostname
 
 </td>
 
@@ -1202,7 +1201,7 @@ server02, leaf41, exit01, spine-5, tor-36
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_peer\_hostname
+new_peer_hostname
 
 </td>
 
@@ -1230,7 +1229,7 @@ Node
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-message\_type
+message_type
 
 </td>
 
@@ -1286,7 +1285,7 @@ server02, leaf41, exit01, spine-5, tor-36
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-ntp\_state
+ntp_state
 
 </td>
 
@@ -1314,7 +1313,7 @@ in sync, not sync
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-db\_state
+db_state
 
 </td>
 
@@ -1342,7 +1341,7 @@ NTP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-message\_type
+message_type
 
 </td>
 
@@ -1398,7 +1397,7 @@ server02, leaf-9, exit01, spine04
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_state
+old_state
 
 </td>
 
@@ -1426,7 +1425,7 @@ in sync, not sync
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_state
+new_state
 
 </td>
 
@@ -1454,7 +1453,7 @@ Port
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-message\_type
+message_type
 
 </td>
 
@@ -1538,7 +1537,7 @@ eth0, swp14
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_speed
+old_speed
 
 </td>
 
@@ -1566,7 +1565,7 @@ Previous speed rating of port
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_transreceiver
+old_transreceiver
 
 </td>
 
@@ -1594,7 +1593,7 @@ Previous transceiver
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_vendor\_name
+old_vendor_name
 
 </td>
 
@@ -1622,7 +1621,7 @@ Amphenol, OEM, Mellanox, Fiberstore, Finisar
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_serial\_number
+old_serial_number
 
 </td>
 
@@ -1650,7 +1649,7 @@ MT1507VS05177, AVE1823402U, PTN1VH2
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_supported\_fec
+old_supported_fec
 
 </td>
 
@@ -1678,7 +1677,7 @@ none, Base R, RS
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_advertised\_fec
+old_advertised_fec
 
 </td>
 
@@ -1706,7 +1705,7 @@ true, false, not reported
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_fec
+old_fec
 
 </td>
 
@@ -1734,7 +1733,7 @@ none
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_autoneg
+old_autoneg
 
 </td>
 
@@ -1762,7 +1761,7 @@ on, off
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_speed
+new_speed
 
 </td>
 
@@ -1790,7 +1789,7 @@ Current speed rating of port
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_transreceiver
+new_transreceiver
 
 </td>
 
@@ -1818,7 +1817,7 @@ Current transceiver
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_vendor\_name
+new_vendor_name
 
 </td>
 
@@ -1846,7 +1845,7 @@ Amphenol, OEM, Mellanox, Fiberstore, Finisar
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_part\_number
+new_part_number
 
 </td>
 
@@ -1874,7 +1873,7 @@ SFP-H10GB-CU1M, MC3309130-001, 603020003
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_serial\_number
+new_serial_number
 
 </td>
 
@@ -1902,7 +1901,7 @@ MT1507VS05177, AVE1823402U, PTN1VH2
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_supported\_fec
+new_supported_fec
 
 </td>
 
@@ -1930,7 +1929,7 @@ none, Base R, RS
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_advertised\_fec
+new_advertised_fec
 
 </td>
 
@@ -1958,7 +1957,7 @@ true, false
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_fec
+new_fec
 
 </td>
 
@@ -1986,7 +1985,7 @@ none
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_autoneg
+new_autoneg
 
 </td>
 
@@ -2072,7 +2071,7 @@ server02, leaf-26, exit01, spine2-4
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_state
+old_state
 
 </td>
 
@@ -2102,7 +2101,7 @@ Temp: ok, busted, bad, critical
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_state
+new_state
 
 </td>
 
@@ -2132,7 +2131,7 @@ Temp: ok, busted, bad, critical
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_s\_state
+old_s_state
 
 </td>
 
@@ -2161,7 +2160,7 @@ PSU: up, down
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_s\_state
+new_s_state
 
 </td>
 
@@ -2190,7 +2189,7 @@ PSU: up, down
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_s\_max
+new_s_max
 
 </td>
 
@@ -2218,7 +2217,7 @@ Temp: 110
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_s\_crit
+new_s_crit
 
 </td>
 
@@ -2246,7 +2245,7 @@ Temp: 85
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_s\_lcrit
+new_s_lcrit
 
 </td>
 
@@ -2274,7 +2273,7 @@ Temp: -25
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_s\_min
+new_s_min
 
 </td>
 
@@ -2302,7 +2301,7 @@ Services
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-message\_type
+message_type
 
 </td>
 
@@ -2386,7 +2385,7 @@ clagd, lldpd, ssh, ntp, netqd, net-agent
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_pid
+old_pid
 
 </td>
 
@@ -2414,7 +2413,7 @@ Previous process or service identifier
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_pid
+new_pid
 
 </td>
 
@@ -2442,7 +2441,7 @@ Current process or service identifier
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-old\_status
+old_status
 
 </td>
 
@@ -2470,7 +2469,7 @@ up, down
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-new\_status
+new_status
 
 </td>
 

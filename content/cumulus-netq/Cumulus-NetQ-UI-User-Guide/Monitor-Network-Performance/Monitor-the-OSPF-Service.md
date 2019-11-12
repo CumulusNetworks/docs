@@ -699,7 +699,7 @@ The large OSPF Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-{{<figure src="/images/netq/ntwk-svcs-single-ospf-large-summary-tab-230.png" width="500">}}
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-large-summary-tab-231.png" width="500">}}
 
 <table class="confluenceTable">
 <colgroup>

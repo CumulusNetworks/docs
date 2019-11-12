@@ -429,22 +429,22 @@ monitored nodes and their configuration information, as follows:
 For simplicity, all of the endpoint APIs are combined into a single
 json-formatted file. There have been no changes to the file in the NetQ 2.3.0 release.
 
-<details><summary><span style="color:teal">netq-220.json</span></summary>
+<details><summary>netq-231.json</summary>
 
 ```
 {
   "swagger": "2.0",
   "info": {
     "description": "This API is used to gain access to data collected by the Cumulus NetQ Platform and Agents for integration with third-party monitoring and analytics  software. Integrators can pull data for daily monitoring of network protocols and services performance, inventory status, and system-wide events.",
-    "version": "1.0",
-    "title": "Cumulus NetQ 2.2.0 API",
+    "version": "1.1",
+    "title": "Cumulus NetQ 2.3.1 API",
     "termsOfService": "https://cumulusnetworks.com/legal/"
   },
   "host": "<netq-platform-or-appliance-ipaddress>:32708",
   "basePath": "/netq/telemetry/v1",
   "externalDocs": {
     "description": "API Documentation",
-    "url": "https://docs.cumulusnetworks.com/display/NETQ/Cumulus+NetQ+API+User+Guide"
+    "url": "https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-Integration-Guide/API-User-Guide/"
   },
   "schemes": [
     "https"
@@ -565,7 +565,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
           "auth"
         ],
         "summary": "Perform authenticated user login to NetQ",
-        "description": "Sends user-provided login credenentials (username and password) to the NetQ Authorization service for validation. Grants access to the NetQ platform and software if user credentials are valid.",
+        "description": "Sends user-provided login credentials (username and password) to the NetQ Authorization service for validation. Grants access to the NetQ platform and software if user credentials are valid.",
         "operationId": "login",
         "produces": [
           "application/json"
@@ -829,14 +829,14 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
           {
             "name": "gt_timestamp",
             "in": "query",
-            "description": "Used in combination with lt_timestamp, sets the lower limit of the timerange to display. Uses Epoch format. Cannot be used with eq_timestamp. For example, to display events between Monday February 11, 2019 at 1:00am and Tuesday February 12, 2019 at 1:00am, lt_timestamp would be entered as 1549864800 and gt_timestamp would be entered as 1549951200.",
+            "description": "Used in combination with lt_timestamp, sets the lower limit of the time range to display. Uses Epoch format. Cannot be used with eq_timestamp. For example, to display events between Monday February 11, 2019 at 1:00am and Tuesday February 12, 2019 at 1:00am, lt_timestamp would be entered as 1549864800 and gt_timestamp would be entered as 1549951200.",
             "required": false,
             "type": "integer"
           },
           {
             "name": "lt_timestamp",
             "in": "query",
-            "description": "Used in combination with gt_timestamp, sets the upper limit of the timerange to display. Uses Epoch format. Cannot be used with eq_timestamp. For example, to display events between Monday February 11, 2019 at 1:00am and Tuesday February 12, 2019 at 1:00am, lt_timestamp would be entered as 1549864800 and gt_timestamp would be entered as 1549951200.",
+            "description": "Used in combination with gt_timestamp, sets the upper limit of the time range to display. Uses Epoch format. Cannot be used with eq_timestamp. For example, to display events between Monday February 11, 2019 at 1:00am and Tuesday February 12, 2019 at 1:00am, lt_timestamp would be entered as 1549864800 and gt_timestamp would be entered as 1549951200.",
             "required": false,
             "type": "integer"
           },
@@ -1155,7 +1155,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
           "inventory"
         ],
         "summary": "Get component inventory information from a given network device by hostname",
-        "description": "Retrieves the hardware and software component information, such as ASIC, platform, and OS vendor and version information, for the given switchor host in your network. Refer to the InventoryOutput model for all data collected.",
+        "description": "Retrieves the hardware and software component information, such as ASIC, platform, and OS vendor and version information, for the given switch or host in your network. Refer to the InventoryOutput model for all data collected.",
         "produces": [
           "application/json"
         ],
@@ -1649,7 +1649,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
           "node"
         ],
         "summary": "Get device status for all network devices",
-        "description": "Retrieves hostname, uptime, last update, boot and reinitialization time, version, NTP and DB state, timestamp, and its current state (active or not) for all switches and hosts in the network.",
+        "description": "Retrieves hostname, uptime, last update, boot and re-initialization time, version, NTP and DB state, timestamp, and its current state (active or not) for all switches and hosts in the network.",
         "produces": [
           "application/json"
         ],
@@ -1700,7 +1700,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
           "node"
         ],
         "summary": "Get device status for a given network device by hostname",
-        "description": "Retrieves hostname, uptime, last update, boot and reinitialization time, version, NTP and DB state, timestamp, and its current state (active or not) for a given switch or host in the network.",
+        "description": "Retrieves hostname, uptime, last update, boot and re-initialization time, version, NTP and DB state, timestamp, and its current state (active or not) for a given switch or host in the network.",
         "produces": [
           "application/json"
         ],
@@ -3095,7 +3095,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
           "items": {
             "type": "string",
             "format": "byte",
-            "pattern": "^(?:[A-Za-z0-9+/]{4})\*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           }
         },
         "valueAsInt": {
@@ -4106,4 +4106,5 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
     }
   }
 }
+
 ```

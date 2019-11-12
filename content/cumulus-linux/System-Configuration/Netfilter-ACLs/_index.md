@@ -1769,7 +1769,7 @@ offloaded, but are ignored during hardware install.
 
 Packets don't get matched when a subinterface is configured as the output port.
 The ACL matches on packets only if the primary port is configured as an output
-port. If a subinterface is set as an input port, the packets match correctly.
+port. If a subinterface is set as an output or egress port, the packets match correctly.
 
 For example:
 

@@ -172,7 +172,7 @@ or [Midokura MidoNet](../../Network-Virtualization/Virtualization-Integrations/I
 You can upgrade Cumulus Linux in one of two ways:
 
 - Install a disk image of the new release, using ONIE.
-- Upgrade only the changed packages using the `sudo -E apt-get update` and `sudo` `-E apt-get upgrade` command.
+- Upgrade only the changed packages using the `sudo -E apt-get update` and `sudo -E apt-get upgrade` command.
 
 {{%notice note%}}
 
@@ -204,8 +204,8 @@ Be aware of the following when upgrading packages:
 - If you are upgrading Cumulus Linux from a release earlier than 3.6.2, you might encounter certain issues due to package changes and service restarts.
 - You cannot choose the exact release that you want to run. When you upgrade, you upgrade all packages to the latest available release in the Cumulus Networks repository.
 - If you are upgrading from a release earlier than 3.6.2, certain upgrade operations terminate SSH sessions and/or routing on the in-band (front panel) ports, leaving you unable to monitor the upgrade process. (As a workaround, you can use the [dtach tool](https://support.cumulusnetworks.com/hc/en-us/articles/215453578).)
-- The ` sudo  ``-E``  apt-get upgrade ` command might result in services being restarted or stopped as part of the upgrade process.
-- The `sudo  ``-E``   ``apt-get install` command might disrupt core services by changing core service dependency packages.
+- The `sudo -E  apt-get upgrade` command might result in services being restarted or stopped as part of the upgrade process.
+- The `sudo -E apt-get install` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 
 ### Disk Image Install (ONIE)
@@ -232,7 +232,7 @@ cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-3.7.1-
 
 ### Package Upgrade
 
-Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `-E apt-get update and -E apt-get upgrade` commands. Any packages that have been changed since the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
+Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update and -E apt-get upgrade` commands. Any packages that have been changed since the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
 
 When you use package upgrade to upgrade your switch, configuration data stays in place while the packages are upgraded. If the new release updates a configuration file that you changed previously, you are prompted for the version you want to use or if you want to evaluate the differences.
 
@@ -363,7 +363,7 @@ cumulus@switch:~$ sudo ip link set peerlink down
 cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-3.7.1-mlx-amd64.bin
 ```
 
-    To use *package upgrade*, run the `-E apt-get upgrade` command:
+    To use *package upgrade*, run the `sudo -E apt-get upgrade` command:
 
 ```
 cumulus@switch:~$ sudo -E apt-get upgrade

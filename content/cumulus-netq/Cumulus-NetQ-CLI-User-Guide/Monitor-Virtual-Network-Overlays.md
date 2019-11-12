@@ -29,11 +29,11 @@ It helps answer questions such as:
 {{%notice note%}}
 
 Lightweight network virtualization (LNV) was deprecated in Cumulus Linux
-3.7.4 and will be removed in Cumulus Linux 4.0.0. Cumulus NetQ will
-continue to support and return LNV data as long as you are running a
-supported version of Cumulus Linux earlier than 4.0.0. For information
-on the support timeline, read this [knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/217132357-Cumulus-Linux-Release-Versioning-and-Support-Policy).
+3.7.4 and will be removed in Cumulus Linux 4.0.0. LNV is deprecated in Cumulus NetQ 2.3.1, but supports and returns LNV data. Support will be removed from the Cumulus NetQ 2.4.0 release. For information on the support timeline, read these knowledge base articles:
+
+- [Cumulus Linux Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/217132357-Cumulus-Linux-Release-Versioning-and-Support-Policy).
+- [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
+- [Cumulus NetQ Cloud Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
 
 {{%/notice%}}
 
@@ -307,11 +307,22 @@ between bridges on top of a layer 3 fabric. With NetQ, you can monitor
 the configuration and status of the LNV setup using the `netq show lnv`
 command. You can view the current information or for a time in the past.
 The command also enables visibility into changes that have occurred in
-the configuration during a specific timeframe. The syntax for the
+the configuration during a specific time frame. The syntax for the
 command is:
 
     netq [<hostname>] show lnv [around <text-time>] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type lnv [between <text-time> and <text-endtime>] [json]
+
+{{%notice note%}}
+
+Lightweight network virtualization (LNV) was deprecated in Cumulus Linux
+3.7.4 and will be removed in Cumulus Linux 4.0.0. LNV is deprecated in Cumulus NetQ 2.3.1, but supports and returns LNV data. Support will be removed from the Cumulus NetQ 2.4.0 release. For information on the support timeline, read these knowledge base articles:
+
+- [Cumulus Linux Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/217132357-Cumulus-Linux-Release-Versioning-and-Support-Policy).
+- [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
+- [Cumulus NetQ Cloud Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360024807054)
+
+{{%/notice%}}
 
 ### View LNV Status
 

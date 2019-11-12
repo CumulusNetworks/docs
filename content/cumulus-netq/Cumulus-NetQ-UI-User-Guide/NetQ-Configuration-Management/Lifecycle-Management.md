@@ -31,7 +31,7 @@ To create a snapshot:
 
     A medium Snapshot card appears on your desktop. Spinning arrows are visible while it works. When it finishes you can see the number of items that have been captured, and if any failed. This example shows a successful result.
 
-    {{<figure src="/images/netq/snapshot-success-230.png" width="200">}}
+    {{<figure src="/images/netq/snapshot-success-231.png" width="200">}}
 
     {{%notice note%}}
 If you change your mind and do not want to create the snapshot, click **Back** or **Choose Action**. Do not click **Done** until you are ready to close the card. Done saves the snapshot automatically.
@@ -55,27 +55,27 @@ To compare network snapshots:
         - Simply put them next to each other to view an overview.
         - Scroll down to see all of the items.
 
-        {{<figure src="/images/netq/snapshot-compare-snap-results-230.png" width="425">}}
+        {{<figure src="/images/netq/snapshot-compare-snap-results-231.png" width="425">}}
 
     - If you have only one of the cards open:
         - Click **Compare** on the open card.
-        - Select the snapshot to compare with.
+        - Select the snapshot to compare with. Note that only snapshots taken before this snapshot appear in the selection list.
 
-        {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-230.png" width="250">}}
+        {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-231.png" width="250">}}
 
     - If you have closed one or both of the cards (you may have created them some time before):
         - Click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}}.
         - Click **Compare Snapshots**.
         - Click on the two snapshots you want to compare.
-        - Click **Finish**.
+        - Click **Finish**. Note that two snapshots must be selected before **Finish** is active.
 
-        {{<figure src="/images/netq/snapshot-compare-selection-modal-230.png" width="500">}}
+        {{<figure src="/images/netq/snapshot-compare-selection-modal-231.png" width="500">}}
 
     In the latter two cases, the large Snapshot card opens. The only difference is in the card title. If you opened the comparison card from a snapshot on your workbench, the title includes the name of that card. If you open the comparison card through the Snapshot menu, the title is generic, indicating a comparison only. Functionally, you have reached the same point.
 
     {{<figure src="/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
 
-    {{<figure src="/images/netq/snapshot-large-compare-from-modal-230.png" width="500">}}
+    {{<figure src="/images/netq/snapshot-large-compare-from-modal-231.png" width="500">}}
 
 ### Interpreting the Comparison Data
 

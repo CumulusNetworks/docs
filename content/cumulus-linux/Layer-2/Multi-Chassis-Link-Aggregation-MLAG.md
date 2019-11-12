@@ -3,8 +3,8 @@ title: Multi-Chassis Link Aggregation - MLAG
 author: Cumulus Networks
 weight: 123
 aliases:
- - /display/DOCS/Multi+Chassis+Link+Aggregation+MLAG
- - /display/DOCS/Multi+Chassis+Link+Aggregation+-+MLAG
+ - /display/DOCS/Multi-Chassis+Link+Aggregation+MLAG
+ - /display/DOCS/Multi-Chassis+Link+Aggregation+-+MLAG
  - /pages/viewpage.action?pageId=8362677
 pageID: 8362677
 product: Cumulus Linux
@@ -77,7 +77,7 @@ MLAG has these requirements:
 If for some reason you cannot use LACP, you can also use
 [balance-xor mode](../Bonding-Link-Aggregation#enable-balance-xor-mode)
 to dual-connect host-facing bonds in an MLAG environment. If you do,
-you must still configure the same `clag_id` parameter on the MLAG
+you must still configure the same `clag-id` parameter on the MLAG
 bonds, and it must be the same on both MLAG switches. Otherwise, the
 MLAG switch pair treats the bonds as if they are single-connected.
 
@@ -121,11 +121,11 @@ However, if for some reason you cannot use LACP in your environment, you
 can configure the bonds in [balance-xor
 mode](../Bonding-Link-Aggregation/#enable-balance-xor-mode).
 When using balance-xor mode to dual-connect host-facing bonds in an MLAG
-environment, you must configure the `clag_id` parameter on the MLAG
+environment, you must configure the `clag-id` parameter on the MLAG
 bonds, which must be the same on both MLAG switches. Otherwise, the
 bonds are treated by the MLAG switch pair as if they are
 single-connected. In short, dual-connectedness is solely determined by
-matching `clag_id` and any misconnection will **not** be detected.
+matching `clag-id` and any misconnection will **not** be detected.
 
 On each of the peer switches, you must place the links that are
 connected to the dual-connected host or switch in the bond. This is true
@@ -1362,7 +1362,7 @@ layer 3 uplink interfaces. In the event of a peer link failure, MLAG
 does not remove static routes or bring down a BGP or OSPF adjacency
 unless a separate link state daemon such as `ifplugd` is used.
 
-**MLAG and Peer Link Peering**
+### MLAG and Peer Link Peering
 
 When using MLAG with VRR, Cumulus Networks recommends you set up a
 routed adjacency across the peerlink.4094 interface. If a routed

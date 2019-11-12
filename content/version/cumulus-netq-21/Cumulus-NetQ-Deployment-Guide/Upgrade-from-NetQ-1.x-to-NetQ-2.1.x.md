@@ -54,7 +54,7 @@ ports on the NetQ server to use the NetQ software:
 | 32708 | API Gateway              |
 | 32666 | Web-based User Interface |
 
-{{%notice info%}}
+{{%notice note%}}
 
 These ports have changed from NetQ 1.4 and earlier.
 
@@ -103,16 +103,16 @@ Appliance, you can skip to [Upgrade the NetQ Agent](#upgrade-the-netq-agent).
 
 The NetQ Platform is comprised of the following components:
 
-  - **NetQ applications**: network monitoring and analytics
-    functionality
-  - **NetQ CLI**: command line user interface for monitoring network and
-    administering NetQ through a terminal session
-  - **NetQ UI**: graphical interface for monitoring network and
-    administering NetQ
-  - **NetQ API**: Restful application programming interface for
-    accessing NetQ data and integrating with third-party tools
-  - **NetQ notifier**: application used to send event notifications to
-    third-party notification tools
+- **NetQ applications**: network monitoring and analytics
+functionality
+- **NetQ CLI**: command line user interface for monitoring network and
+administering NetQ through a terminal session
+- **NetQ UI**: graphical interface for monitoring network and
+administering NetQ
+- **NetQ API**: Restful application programming interface for
+accessing NetQ data and integrating with third-party tools
+- **NetQ notifier**: application used to send event notifications to
+third-party notification tools
 
 {{%notice note%}}
 
@@ -294,6 +294,8 @@ running on the NetQ Appliance or Platform.
     
     Please allow 5-10 minutes for the VM to boot.
 
+</details>
+
 ### Verify the Installation
 
 1.  Verify you can access the NetQ CLI.
@@ -372,11 +374,9 @@ running on the NetQ Appliance or Platform.
         
         {{%notice info%}}
         
-        If any of the applications or services display Status as DOWN
-        after 30 minutes, open a [support
-        ticket](https://cumulusnetworks.com/support/file-a-ticket/) and
-        attach the output of the `opta-support` command.
-        
+If any of the applications or services display Status as DOWN
+after 30 minutes, open a [support ticket](https://cumulusnetworks.com/support/file-a-ticket/) and attach the output of the `opta-support` command.
+
         {{%/notice%}}
 
 2.  Verify that NTP is configured and running. NTP operation is critical
@@ -393,10 +393,10 @@ running on the NetQ Appliance or Platform.
 Whether using the NetQ Appliance or your own hardware, the NetQ Agent
 must be updated on each node you want to monitor. The node can be a:
 
-  - Switch running Cumulus Linux version 3.7.0 or later
-  - Server running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7
-  - Linux virtual machine running any of the above Linux operating
-    systems
+- Switch running Cumulus Linux version 3.7.0 or later
+- Server running Red Hat RHEL 7.1, Ubuntu 16.04 or CentOS 7
+- Linux virtual machine running any of the above Linux operating
+systems
 
 To upgrade the NetQ Agent you need to install the OS-specific meta
 package, `cumulus-netq`, on each switch. Optionally, you can install it
@@ -407,9 +407,9 @@ used by both the NetQ Agent and the CLI.
 Instructions for installing the meta package on each node type are
 included here:
 
-  - [Upgrade NetQ Agent on a Cumulus Linux Switch](#upgrade-netq-agent-on-a-cumulus-linux-switch)
-  - [Upgrade NetQ Agent on an Ubuntu Server](#upgrade-netq-agent-on-an-ubuntu-server)
-  - [Upgrade NetQ Agent on a Red Hat or CentOS Server](#upgrade-netq-agent-on-a-red-hat-or-centos-server)
+- [Upgrade NetQ Agent on a Cumulus Linux Switch](#upgrade-netq-agent-on-a-cumulus-linux-switch)
+- [Upgrade NetQ Agent on an Ubuntu Server](#upgrade-netq-agent-on-an-ubuntu-server)
+- [Upgrade NetQ Agent on a Red Hat or CentOS Server](#upgrade-netq-agent-on-a-red-hat-or-centos-server)
 
 {{%notice info%}}
 
@@ -433,8 +433,8 @@ A simple process installs the NetQ Agent on a Cumulus switch.
     
 If you are running VRF, run these additional commands:
     
-    `cumulus@switch:~$ sudo systemctl stop netq-agent@mgmt
-    cumulus@switch:~$ sudo systemctl stop netqd@mgmt`
+    cumulus@switch:~$ sudo systemctl stop netq-agent@mgmt
+    cumulus@switch:~$ sudo systemctl stop netqd@mgmt
     
     {{%/notice%}}
 

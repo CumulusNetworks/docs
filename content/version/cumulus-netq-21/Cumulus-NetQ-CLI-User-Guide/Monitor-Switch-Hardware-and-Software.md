@@ -1,11 +1,11 @@
 ---
 title: Monitor Switch Hardware and Software
 author: Cumulus Networks
-weight: 35
+weight: 79
 aliases:
  - /display/NETQ21/Monitor+Switch+Hardware+and+Software
- - /pages/viewpage.action?pageId=12321058
-pageID: 12321058
+ - /pages/viewpage.action?pageId=10464116
+pageID: 10464116
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -15,15 +15,17 @@ With NetQ, a network administrator can monitor both the switch hardware
 and software components for misconfigurations. NetQ helps answer
 questions such as:
 
-  - What switches do I have in the network?
-  - What hardware and software are installed on my switches?
-  - Are all switches licensed correctly?
-  - Do all switches have NetQ agents running?
+- What switches do I have in the network?
+- What hardware and software are installed on my switches?
+- Are all switches licensed correctly?
+- Do all switches have NetQ agents running?
 
-NetQ uses [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol) (Link
-Layer Discovery Protocol) to collect port information. NetQ can also
-identify peer ports connected to DACs (Direct Attached Cables) and AOCs
-(Active Optical Cables) without using LLDP, even if the link is not UP.
+NetQ uses
+[LLDP](https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/)
+(Link Layer Discovery Protocol) to collect port information. NetQ can
+also identify peer ports connected to DACs (Direct Attached Cables) and
+AOCs (Active Optical Cables) without using LLDP, even if the link is not
+UP.
 
 The NetQ CLI provides the `netq show inventory`, `netq show sensors`,
 and `netq show events` commands to monitor switches.
@@ -58,12 +60,12 @@ To view the switch and host information with the CLI, use the following
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
-  - w: week(s)
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
+- w: week(s)
+- d: day(s)
+- h: hour(s)
+- m: minute(s)
+- s: second(s)
+- now
 
 For time ranges, the `<text-time>` is the most recent time and the
 `<text-endtime>` is the oldest time. The values do not have to have the
@@ -241,7 +243,7 @@ a particular CPU architecture using the *arch* keyword. This example
 shows how to determine which architectures are deployed in your network,
 and then shows all devices with an *x86\_64* architecture.
 
-    cumulus@switch:~$ netq show inventory cpu arch
+    cumulus@switch:~$ netq show inventory cpu arch 
         x86_64  :  CPU Architecture
      
     cumulus@switch:~$ netq show inventory cpu arch x86_64
@@ -399,17 +401,17 @@ In this example, we look at the state of all fans with the name *fan1*.
 Use tab completion to determine the names of the fans in your switches:
 
     cumulus@switch:~$ netq show sensors fan <<press tab>>
-        around : Go back in time to around ...
-        fan1 : Fan Name
-        fan2 : Fan Name
-        fan3 : Fan Name
-        fan4 : Fan Name
-        fan5 : Fan Name
-        fan6 : Fan Name
-        json : Provide output in JSON
-        psu1fan1 : Fan Name
-        psu2fan1 : Fan Name
-        <ENTER>
+      around : Go back in time to around ...
+      fan1 : Fan Name
+      fan2 : Fan Name
+      fan3 : Fan Name
+      fan4 : Fan Name
+      fan5 : Fan Name
+      fan6 : Fan Name
+      json : Provide output in JSON
+      psu1fan1 : Fan Name
+      psu2fan1 : Fan Name
+      <ENTER>
 
 {{%/notice%}}
 
@@ -540,7 +542,7 @@ events using the severity *level* option.
     cumulus@switch:~$ netq show events type sensors
     No matching events records found
      
-    cumulus@switch:~$ netq show events level critical type sensors
+    cumulus@switch:~$ netq show events level critical type sensors 
     No matching events records found
 
 ## Monitor Switch Software Information
@@ -568,12 +570,12 @@ have Ubuntu, then that would also be an option for you.
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
-  - w: week(s)
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
+- w: week(s)
+- d: day(s)
+- h: hour(s)
+- m: minute(s)
+- s: second(s)
+- now
 
 For time ranges, the `<text-time>` is the most recent time and the
 `<text-endtime>` is the oldest time. The values do not have to have the
@@ -629,15 +631,15 @@ time values.
 
     cumulus@switch:~$ netq show events type os between 16d and 21d
     Matching inventory records:
-    Hostname          Name            Version                              DB State   Last Changed
+    Hostname          Name              Version                              DB State   Last Changed
     ----------------- --------------- ------------------------------------ ---------- -------------------------
-    mlx-2410a1-05     Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:53 2019
-    mlx-2700-11       Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:45 2019
-    mlx-2100-05       Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:26 2019
-    mlx-2100-05       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:47 2019
-    mlx-2700-11       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:38 2019
-    mlx-2100-05       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:42 2019
-    mlx-2700-11       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:51 2019
+    mlx-2410a1-05       Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:53 2019
+    mlx-2700-11     Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:45 2019
+    mlx-2100-05     Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:26 2019
+    mlx-2100-05     Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:47 2019
+    mlx-2700-11     Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:38 2019
+    mlx-2100-05     Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:42 2019
+    mlx-2700-11     Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:51 2019
 
 ### View License Information for a Switch
 
@@ -690,7 +692,7 @@ Remember to use measurement units on the time values.
     spine02           Cumulus Linux   ok         Tue Apr 2 14:01:05 2019
 
 You can filter the results to show license changes during a particular
-timeframe for a particular device. This example shows that there have
+time frame for a particular device. This example shows that there have
 been no changes to the license state on spine01 between now and 24 hours
 ago.
 
@@ -755,10 +757,10 @@ This example shows NetQ Agent state on all devices.
 You can narrow your focus in several ways:
 
   - View the state of the NetQ Agent on a given device using the
-    *hostname* keyword.
-  - View only the NetQ Agents that are fresh or rotten using the *fresh*
-    or *rotten* keyword.
-  - View the state of NetQ Agents at an earlier time using the *around*
+    `hostname` keyword.
+  - View only the NetQ Agents that are fresh or rotten using the `fresh`
+    or `rotten` keyword.
+  - View the state of NetQ Agents at an earlier time using the `around`
     keyword.
 
 ## Monitor Software Services
@@ -768,28 +770,27 @@ features of these products. You can monitor their status using the `netq
 show services` command. The services related to system-level operation
 are described here. Monitoring of other services, such as those related
 to routing, are described with those topics. NetQ automatically monitors
-t he following services:
+the following services:
 
-  - bgpd: BGP (Border Gateway Protocol) daemon
-  - clagd: MLAG (Multi-chassis Link Aggregation) daemon
-  - helpledmgrd: Switch LED manager daemon
-  - lldpd: LLDP (Link Layer Discovery Protocol) daemon
-  - mstpd: MSTP (Multiple Spanning Tree Protocol) daemon
-  - neighmgrd: Neighbor Manager daemon for BGP and OSPF
-  - netq-agent: NetQ Agent service
-  - netqd: NetQ application daemon
-  - ntp: NTP service
-  - ntpd: NTP daemon
-  - ptmd: PTM (Prescriptive Topology Manager) daemon
-  - pwmd : PWM (Password <span style="color: #ff0000;"> </span> Manager)
-    daemon
-  - rsyslog: Rocket-fast system event logging processing service
-  - smond: System monitor daemon
-  - ssh: Secure Shell service for switches and servers
-  - status: License validation service
-  - syslog: System event logging service
-  - vrf: VRF (Virtual Route Forwarding) service
-  - zebra: GNU Zebra routing daemon
+- bgpd: BGP (Border Gateway Protocol) daemon
+- clagd: MLAG (Multi-chassis Link Aggregation) daemon
+- helpledmgrd: Switch LED manager daemon
+- lldpd: LLDP (Link Layer Discovery Protocol) daemon
+- mstpd: MSTP (Multiple Spanning Tree Protocol) daemon
+- neighmgrd: Neighbor Manager daemon for BGP and OSPF
+- netq-agent: NetQ Agent service
+- netqd: NetQ application daemon
+- ntp: NTP service
+- ntpd: NTP daemon
+- ptmd: PTM (Prescriptive Topology Manager) daemon
+- pwmd : PWM (Password Manager) daemon
+- rsyslog: Rocket-fast system event logging processing service
+- smond: System monitor daemon
+- ssh: Secure Shell service for switches and servers
+- status: License validation service
+- syslog: System event logging service
+- vrf: VRF (Virtual Route Forwarding) service
+- zebra: GNU Zebra routing daemon
 
 The CLI syntax for viewing the status of services is:
 
@@ -961,9 +962,8 @@ This example shows the status of the BGP daemon.
 
 ### View Events Related to a Given Service
 
-To view changes over a given time period, use the `netq` `show events`
-command. For more detailed information about events, refer to [Monitor
-Events](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Events).
+To view changes over a given time period, use the `netq show events`
+command. For more detailed information about events, refer to [Monitor Events](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Events).
 
 In this example, we want to view changes to the bgpd service in the last
 48 hours.
@@ -993,11 +993,3 @@ In this example, we want to view changes to the bgpd service in the last
     leaf01            bgp          info     BGP session with peer spine-3 swp5. 1d:6h:55m:37s
                                             4 vrf DataVrf1082 state changed fro
                                             m failed to Established
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

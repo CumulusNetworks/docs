@@ -296,6 +296,7 @@ running on the NetQ Appliance or Platform.
     {{%/notice%}}
     
     Please allow 5-10 minutes for the VM to boot.
+</details>
 
 ### Verify the Installation
 
@@ -488,24 +489,26 @@ install NetQ Agent on multiple Cumulus Linux switches.
 Before you install the NetQ Agent on an Ubuntu server, make sure the
 following packages are installed and running these minimum versions:
 
-  - iproute 1:4.3.0-1ubuntu3.16.04.1 all
-  - iproute2 4.3.0-1ubuntu3 amd64
-  - lldpd 0.7.19-1 amd64
-  - ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
+- iproute 1:4.3.0-1ubuntu3.16.04.1 all
+- iproute2 4.3.0-1ubuntu3 amd64
+- lldpd 0.7.19-1 amd64
+- ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
     
-    {{%notice info%}}
+{{%notice info%}}
     
 Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not
 include `lldpd` by default, which is required for the installation.
 
 To install this package, run the following commands:
     
-        root@ubuntu:~# apt-get update
-        root@ubuntu:~# apt-get install lldpd
-        root@ubuntu:~# systemctl enable lldpd.service
-        root@ubuntu:~# systemctl start lldpd.service
+```
+root@ubuntu:~# apt-get update
+root@ubuntu:~# apt-get install lldpd
+root@ubuntu:~# systemctl enable lldpd.service
+root@ubuntu:~# systemctl start lldpd.service
+```
     
-    {{%/notice%}}
+{{%/notice%}}
 
 To install the NetQ Agent on an Ubuntu server:
 
@@ -524,11 +527,11 @@ To install the NetQ Agent on an Ubuntu server:
     
     {{%notice note%}}
     
-    The use of `netq-latest` in this example means that a `get` to the
-    repository always retrieves the latest version of NetQ, even in the
-    case where a major version update has been made. If you want to keep
-    the repository on a specific version — such as `netq-2.1` — use that
-    instead.
+The use of `netq-latest` in this example means that a `get` to the
+repository always retrieves the latest version of NetQ, even in the
+case where a major version update has been made. If you want to keep
+the repository on a specific version — such as `netq-2.1` — use that
+instead.
     
     {{%/notice%}}
 
@@ -600,11 +603,13 @@ CentOS does not include `lldpd` by default, nor does it include
 `wget`, which is required for the installation. To install this
 package, run the following commands:
     
-        root@rhel7:~# yum -y install epel-release
-        root@rhel7:~# yum -y install lldpd
-        root@rhel7:~# systemctl enable lldpd.service
-        root@rhel7:~# systemctl start lldpd.service
-        root@rhel7:~# yum install wget
+```
+root@rhel7:~# yum -y install epel-release
+root@rhel7:~# yum -y install lldpd
+root@rhel7:~# systemctl enable lldpd.service
+root@rhel7:~# systemctl start lldpd.service
+root@rhel7:~# yum install wget
+```
     
 {{%/notice%}}
 

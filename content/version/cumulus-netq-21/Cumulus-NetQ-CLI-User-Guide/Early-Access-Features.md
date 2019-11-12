@@ -1,11 +1,11 @@
 ---
 title: Early Access Features
 author: Cumulus Networks
-weight: 53
+weight: 97
 aliases:
  - /display/NETQ21/Early+Access+Features
- - /pages/viewpage.action?pageId=12321063
-pageID: 12321063
+ - /pages/viewpage.action?pageId=10464121
+pageID: 10464121
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -15,15 +15,14 @@ NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/20
 features that provide advanced access to new functionality before it
 becomes generally available. The ability to view physical interface
 statistics collected by the NetQ Agent is the only early access feature
-available in NetQ 2.2.x.
+available in NetQ 2.1.2.
 
 This feature is bundled into the `netq-apps` package; there is no
 specific EA package like there typically is with Cumulus Linux.
 
 ## Enable Early Access Features
 
-You enable early access features by running the ` netq config add
-experimental` command on any node running NetQ.
+You enable early access features by running the `netq config add experimental` command on any node running NetQ.
 
     cumulus@switch:~$ netq config add experimental
     Experimental config added
@@ -36,19 +35,17 @@ Agent does not collect statistics for non-physical interfaces, such as
 bonds, bridges, and VXLANs. After enabling the feature, the NetQ Agent
 collects the following statistics:
 
-  - **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs,
-    tx\_packets
-  - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
-    rx\_multicast, rx\_packets
+  - **Transmit**: tx_bytes, tx_carrier, tx_colls, tx_drop, tx_errs, tx_packets
+  - **Receive**: rx_bytes, rx_drop, rx_errs, rx_frame, rx_multicast, rx_packets
 
 These can be viewed using the following NetQ CLI command:
 
     netq [<hostname>] show interface-stats [errors | all] [<physical-port>] [around <text-time>] [json]
 
-Use the *hostname* option to limit the output to a particular switch.
-Use the *errors* option to view only the transmit and receive errors
-found on the designated interfaces. Use the *physical-port* option to
-limit the output to a particular port. Use the *around* option to view
+Use the `hostname` option to limit the output to a particular switch.
+Use the `errors` option to view only the transmit and receive errors
+found on the designated interfaces. Use the `physical-port` option to
+limit the output to a particular port. Use the `around` option to view
 the data at a time in the past.
 
 In this example, we view the interface statistics for all switches and
@@ -77,18 +74,7 @@ all of their physical interfaces.
 
 ## Disable Early Access Features
 
-You disable the early access features by running the `netq config del
-experimental` command on any node running NetQ.
+You disable the early access features by running the `netq config del experimental` command on any node running NetQ.
 
     cumulus@switch:~$ netq config del experimental
     Experimental config deleted
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

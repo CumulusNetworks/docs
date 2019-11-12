@@ -1,11 +1,11 @@
 ---
 title: Methods for Diagnosing Network Issues
 author: Cumulus Networks
-weight: 107
+weight: 131
 aliases:
  - /display/NETQ21/Methods+for+Diagnosing+Network+Issues
- - /pages/viewpage.action?pageId=12321056
-pageID: 12321056
+ - /pages/viewpage.action?pageId=10464111
+pageID: 10464111
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -38,9 +38,9 @@ and VLAN consistency checks for every link along the path.
 For example, say you get an alert about a BGP session failure. You can
 quickly run `netq check bgp` to determine what sessions failed:
 
-```
+``` 
 cumulus@switch:~$ netq check bgp
-Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
+Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24, 
 Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
 ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
 exit-1            DataVrf1080     swp6.2            firewall-1        BGP session with peer firewall-1 swp6.2: AFI/ 1d:7h:56m:9s
@@ -95,9 +95,9 @@ For example, if you think you had an issue with your sensors last night,
 you can check the sensors on all your nodes around the time you think
 the issue occurred:
 
-```
-cumulus@leaf01:~$ netq check sensors around 12h    
-Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0    
+``` 
+cumulus@leaf01:~$ netq check sensors around 12h
+Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0
 ```
 
 Or you can specify a range of times using the `between` option. The
@@ -134,7 +134,7 @@ exit01, which has the IP address 27.0.0.1:
     spine02 -- spine02:swp3 -- exit01:swp6.4 -- exit01:swp3 -- exit01
                             -- spine02:swp7  -- spine02
 
-### Trace Paths in a VRF</span>
+### Trace Paths in a VRF
 
 The `netq trace` command works with VRFs as well:
 
@@ -142,7 +142,7 @@ The `netq trace` command works with VRFs as well:
     spine01 -- spine01:swp1 -- leaf01:vlan20
             -- spine01:swp2 -- leaf02:vlan20
 
-## Sample Commands for Various Components</span>
+## Sample Commands for Various Components
 
 NetQ provides network validation for the entire stack, providing
 algorithmic answers to many questions, both simple and intractable, that
@@ -220,11 +220,3 @@ pertain to your network fabric.
 </tr>
 </tbody>
 </table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

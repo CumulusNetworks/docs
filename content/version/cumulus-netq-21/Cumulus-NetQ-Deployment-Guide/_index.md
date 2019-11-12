@@ -1,11 +1,11 @@
 ---
 title: Cumulus NetQ Deployment Guide
 author: Cumulus Networks
-weight: 15
+weight: 11
 aliases:
  - /display/NETQ21/Cumulus+NetQ+Deployment+Guide
- - /pages/viewpage.action?pageId=12320788
-pageID: 12320788
+ - /pages/viewpage.action?pageId=12912660
+pageID: 12912660
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -22,23 +22,11 @@ guide assumes you have already installed Cumulus Linux on your network
 switches and you are ready to add these NetQ capabilities.
 
 For information about monitoring and troubleshooting your network, refer
-to the [Cumulus NetQ CLI User
-Guide](/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/) or the
-[Cumulus NetQ UI User
-Guide](https://docs.cumulusnetworks.com/display/NETQ/Cumulus+NetQ+UI+User+Guide).
+to the [Cumulus NetQ CLI User Guide](https://docs.cumulusnetworks.com/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide)
+or the [Cumulus NetQ UI User Guide](https://docs.cumulusnetworks.com/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide).
 
 {{%notice tip%}}
 
-Before you get started, you should review the [release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374-Cumulus-NetQ-2-2-Release-Notes)
-for this version.
+Before you get started, you should review the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360017779214-Cumulus-NetQ-2-1-Release-Notes) for this version.
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

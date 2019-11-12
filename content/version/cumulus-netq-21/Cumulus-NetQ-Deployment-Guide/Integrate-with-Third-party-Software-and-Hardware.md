@@ -1,11 +1,11 @@
 ---
 title: Integrate with Third-party Software and Hardware
 author: Cumulus Networks
-weight: 71
+weight: 41
 aliases:
  - /display/NETQ21/Integrate+with+Third+party+Software+and+Hardware
- - /pages/viewpage.action?pageId=12320911
-pageID: 12320911
+ - /pages/viewpage.action?pageId=10463989
+pageID: 10463989
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -16,18 +16,19 @@ you may want to configure some of the additional capabilities that NetQ
 offers. This topic describes how to install, setup, and configure these
 capabilities.
 
-## <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-IntegrateNotification" class="confluence-anchor-link"></span>Integrate NetQ with an Event Notification Application</span>
+## Integrate NetQ with an Event Notification Application
 
 To take advantage of the numerous event messages generated and processed
 by NetQ, you must integrate with third-party event notification
-applications. You can integrate NetQ with the PagerDuty and Slack tools.
-You may integrate with one or both of these applications.
+applications . You can integrate NetQ with the PagerDuty and Slack
+tools. You may integrate with one or both of these applications.
 
 Each network protocol and service in the NetQ Platform receives the raw
-data stream from the NetQ Agents, processes the data and delivers events
-to the Notification function. Notification then stores, filters and
-sends messages to any configured notification applications. Filters are
-based on rules you create. You must have at least one rule per filter.
+data stream from the NetQ Agents,
+processes the data and delivers events to the Notification function.
+Notification then stores, filters and sends messages to any
+configured notification applications. Filters are based on rules you
+create. You must have at least one rule per filter.
 
 {{% imgOld 0 %}}
 
@@ -44,72 +45,46 @@ NetQ with the proxy information.
 In either case, notifications are generated for the following types of
 events:
 
-  - Network Protocols
-    
-      - BGP status and session state
-    
-      - CLAG (MLAG) status and session state
-    
-      - EVPN status and session state
-    
-      - LLDP status
-    
-      - LNV status and session state \*
-    
-      - OSFP status and session state \*
-    
-      - VLAN status and session state \*
-    
-      - VXLAN status and session state \*
-
-  - Interfaces
-    
-      - Link status
-    
-      - Ports and cables status
-
-  - Services status
-    
-      - NetQ Agent status
-    
-      - PTM
-    
-      - SSH \*
-    
-      - NTP status \*
-
-  - Trace status
-
-  - Sensors
-    
-      - Fan status
-    
-      - PSU (power supply unit) status
-    
-      - Temperature status
-
-  - System
-    
-      - Configuration File changes
-    
-      - Cumulus Linux License status \*
-    
-      - Cumulus Linux Support status
+- Network Protocols
+    - BGP status and session state
+    - CLAG (MLAG) status and session state
+    - EVPN status and session state
+    - LLDP status
+    - LNV status and session state \*
+    - OSFP status and session state
+    - VLAN status and session state \*
+    - VXLAN status and session state \*
+- Interfaces
+    - Link status
+    - Ports and cables status
+- Services status
+    - NetQ Agent status
+    - SSH \*
+    - NTP status \*
+- Trace status
+- Sensors
+    - Fan status
+    - PSU (power supply unit) status
+    - Temperature status
+- System
+    - Configuration File changes
+    - Cumulus Linux License status \*
+    - Cumulus Linux Support status
 
 *\* This type of event can only be viewed in the CLI with this release.*
 
-### Event Message Format</span>
+### Event Message Format
 
 Messages have the following structure:
 `<message-type><timestamp><opid><hostname><severity><message>`
 
 | Element      | Description                                                                                                                      |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| message type | Category of event; *bgp, clag, configdiff, evpn, link, lldp, lnv, node, ntp, ospf, port, sensor, services, trace, vlan or vxlan* |
+| message type | Category of event; *bgp*, *clag*, *configdiff*, *evpn*, *link*, *lldp*, *lnv*, *node*, *ntp*, *ospf*, *port*, *sensor*, *services*, *trace*, *vlan*, or *vxlan* |
 | timestamp    | Date and time event occurred                                                                                                     |
 | opid         | Identifier of the service or process that generated the event                                                                    |
 | hostname     | Hostname of network device where event occurred                                                                                  |
-| severity     | Severity level in which the given event is classified; *debug*, *error*, *info*, *warning,* or *critical*                        |
+| severity     | Severity level in which the given event is classified; *debug*, *error*, *info*, *warning*, or *critical*                        |
 | message      | Text description of event                                                                                                        |
 
 For example:
@@ -124,7 +99,7 @@ accomplished using the NetQ CLI in the following order:
 
 {{% imgOld 2 %}}
 
-### Notification Commands Overview</span>
+### Notification Commands Overview
 
 The NetQ Command Line Interface (CLI) is used to filter and send
 notifications to third-party tools based on severity, service,
@@ -152,7 +127,7 @@ to assist when needed. The command syntax is:
 
 The options are described in the following sections where they are used.
 
-### Configure a Proxy Server</span>
+### Configure a Proxy Server
 
 To send notification messages through a proxy server instead of directly
 to a notification channel, you configure NetQ with the hostname and
@@ -181,12 +156,12 @@ to the notification channels.
     cumulus@switch:~$ netq del notification proxy
     Successfully overwrote notifier proxy to null
 
-### Create Channels</span>
+### Create Channels
 
 Create one or more PagerDuty and Slack channels to present the
 notifications.
 
-#### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-PDcli" class="confluence-anchor-link"></span>Configure a PagerDuty Channel</span>
+#### Configure a PagerDuty Channel
 
 NetQ sends notifications to PagerDuty as PagerDuty events.
 
@@ -196,8 +171,7 @@ For example:
 
 To configure the NetQ notifier to send notifications to PagerDuty:
 
-1.  Configure the following options using the `netq``  add notification
-    channel ` command:
+1.  Configure the following options using the `netq add notification channel ` command:
     
     | Option                                   | Description                                                                                                                                                        |
     | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -217,10 +191,10 @@ To configure the NetQ notifier to send notifications to PagerDuty:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
     pd-netq-events  pagerduty        info             integration-key: c6d666e
-                                                      210a8425298ef7abde0d1998      
+                                                    210a8425298ef7abde0d1998      
     ```
 
-#### Configure a Slack Channel</span>
+#### Configure a Slack Channel
 
 NetQ Notifier sends notifications to Slack as incoming webhooks for a
 Slack channel you configure. For example:
@@ -251,8 +225,7 @@ To configure NetQ to send notifications to Slack:
     
     8.  Save WebHook URL in a text file for use in next step.
 
-2.  Configure the following options in the ` netq  ``config add
-    notification channel` command:
+2.  Configure the following options in the ` netq  config add notification channel` command:
     
     <table>
     <colgroup>
@@ -298,8 +271,8 @@ To configure NetQ to send notifications to Slack:
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
     slk-netq-events slack            info     webhook:https://hooks.s
-                                              lack.com/services/text/
-                                              moretext/evenmoretext                                     
+                                            lack.com/services/text/
+                                              moretext/evenmoretext                                       
     ```
     
     From the Slack Channel:  
@@ -307,7 +280,7 @@ To configure NetQ to send notifications to Slack:
     
     {{% imgOld 5 %}}
 
-### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-FilterRule" class="confluence-anchor-link"></span>Create Rules </span>
+### Create Rules
 
 Each rule is comprised of a single key-value pair. The key-value pair
 indicates what messages to include or drop from event information sent
@@ -1053,7 +1026,7 @@ eth0, swp53
 
 <tr>
 
-<td class="confluenceTd" rowspan="7" colspan="1">
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 LLDP
 
@@ -1083,6 +1056,12 @@ lldp
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 hostname
 
 </td>
@@ -1102,6 +1081,12 @@ server02, leaf41, exit01, spine-5, tor-36
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1127,6 +1112,12 @@ eth1, swp12
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 old\_peer\_ifname
 
 </td>
@@ -1146,6 +1137,12 @@ eth1, swp12, swp27
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1171,6 +1168,12 @@ eth1, swp12, swp27
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 old\_peer\_hostname
 
 </td>
@@ -1190,6 +1193,12 @@ server02, leaf41, exit01, spine-5, tor-36
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1213,7 +1222,7 @@ server02, leaf41, exit01, spine-5, tor-36
 
 <tr>
 
-<td class="confluenceTd" rowspan="4" colspan="1">
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 Node
 
@@ -1243,6 +1252,12 @@ node
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 hostname
 
 </td>
@@ -1262,6 +1277,12 @@ server02, leaf41, exit01, spine-5, tor-36
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1287,6 +1308,12 @@ in sync, not sync
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 db\_state
 
 </td>
@@ -1307,7 +1334,7 @@ Add, Update, Del, Dead
 
 <tr>
 
-<td class="confluenceTd" rowspan="4" colspan="1">
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 NTP
 
@@ -1337,6 +1364,12 @@ ntp
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 hostname
 
 </td>
@@ -1356,6 +1389,12 @@ server02, leaf-9, exit01, spine04
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1381,6 +1420,12 @@ in sync, not sync
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 new\_state
 
 </td>
@@ -1401,7 +1446,7 @@ in sync, not sync
 
 <tr>
 
-<td class="confluenceTd" rowspan="20" colspan="1">
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 Port
 
@@ -1431,6 +1476,12 @@ port
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 hostname
 
 </td>
@@ -1450,6 +1501,12 @@ server02, leaf13, exit01, spine-8, tor-36
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1475,6 +1532,12 @@ eth0, swp14
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 old\_speed
 
 </td>
@@ -1494,6 +1557,12 @@ Previous speed rating of port
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1519,6 +1588,12 @@ Previous transceiver
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 old\_vendor\_name
 
 </td>
@@ -1538,6 +1613,12 @@ Amphenol, OEM, Mellanox, Fiberstore, Finisar
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1563,6 +1644,12 @@ MT1507VS05177, AVE1823402U, PTN1VH2
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 old\_supported\_fec
 
 </td>
@@ -1582,6 +1669,12 @@ none, Base R, RS
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1607,6 +1700,12 @@ true, false, not reported
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 old\_fec
 
 </td>
@@ -1626,6 +1725,12 @@ none
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1651,6 +1756,12 @@ on, off
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 new\_speed
 
 </td>
@@ -1670,6 +1781,12 @@ Current speed rating of port
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1695,6 +1812,12 @@ Current transceiver
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 new\_vendor\_name
 
 </td>
@@ -1714,6 +1837,12 @@ Amphenol, OEM, Mellanox, Fiberstore, Finisar
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1739,6 +1868,12 @@ SFP-H10GB-CU1M, MC3309130-001, 603020003
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 new\_serial\_number
 
 </td>
@@ -1758,6 +1893,12 @@ MT1507VS05177, AVE1823402U, PTN1VH2
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1783,6 +1924,12 @@ none, Base R, RS
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 new\_advertised\_fec
 
 </td>
@@ -1802,6 +1949,12 @@ true, false
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1827,6 +1980,12 @@ none
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 new\_autoneg
 
 </td>
@@ -1847,7 +2006,7 @@ on, off
 
 <tr>
 
-<td class="confluenceTd" rowspan="10" colspan="1">
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 Sensors
 
@@ -1879,6 +2038,12 @@ Temperature: psu1temp1, temp2
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 hostname
 
 </td>
@@ -1898,6 +2063,12 @@ server02, leaf-26, exit01, spine2-4
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1925,6 +2096,12 @@ Temp: ok, busted, bad, critical
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 new\_state
 
 </td>
@@ -1946,6 +2123,12 @@ Temp: ok, busted, bad, critical
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -1972,6 +2155,12 @@ PSU: up, down
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 new\_s\_state
 
 </td>
@@ -1992,6 +2181,12 @@ PSU: up, down
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -2017,6 +2212,12 @@ Temp: 110
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 new\_s\_crit
 
 </td>
@@ -2036,6 +2237,12 @@ Temp: 85
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -2061,6 +2268,12 @@ Temp: -25
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 new\_s\_min
 
 </td>
@@ -2081,7 +2294,7 @@ Temp: -50
 
 <tr>
 
-<td class="confluenceTd" rowspan="7" colspan="1">
+<td class="confluenceTd" rowspan="1" colspan="1">
 
 Services
 
@@ -2111,6 +2324,12 @@ services
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 hostname
 
 </td>
@@ -2130,6 +2349,12 @@ server02, leaf03, exit01, spine-8
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -2155,6 +2380,12 @@ clagd, lldpd, ssh, ntp, netqd, net-agent
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 old\_pid
 
 </td>
@@ -2174,6 +2405,12 @@ Previous process or service identifier
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -2199,6 +2436,12 @@ Current process or service identifier
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
+ 
+
+</td>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
 old\_status
 
 </td>
@@ -2218,6 +2461,12 @@ up, down
 </tr>
 
 <tr>
+
+<td class="confluenceTd" rowspan="1" colspan="1">
+
+ 
+
+</td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
@@ -2255,7 +2504,7 @@ Use Tab completion to view the command options syntax.
 
 {{%/notice%}}
 
-#### Example Rules</span>
+#### Example Rules
 
 Create a BGP Rule Based on Hostname:
 
@@ -2292,7 +2541,7 @@ Create an Interface Rule Based on Port:
     cumulus@switch:~$ netq add notification rule swp52 key port value swp52 
     Successfully added/updated rule swp52 
 
-#### View the Rule Configurations</span>
+#### View the Rule Configurations
 
 Use the `netq show notification` command to view the rules on your
 platform.
@@ -2308,10 +2557,10 @@ platform.
                     c
     overTemp        new_s_crit       24
     svcStatus       new_status       down
-    swp52           port             swp52
+    swp52         port             swp52
     sysconf         configdiff       updated
 
-### <span id="src-12320911_IntegratewithThird-partySoftwareandHardware-NotifierFilters" class="confluence-anchor-link"></span>Create Filters</span>
+### Create Filters
 
 You can limit or direct event messages using filters. Filters are
 created based on rules you define; like those in the previous section.
@@ -2332,7 +2581,7 @@ And so forth. Events that do not match any filter are ignored.
 
 You may need to change the order of filters in the list to ensure you
 capture the events you want and drop the events you do not want. This is
-possible using the *before* or *after* keywords to ensure one rule is
+possible using the `before` or `after` keywords to ensure one rule is
 processed before or after another.
 
 This diagram shows an example with four defined filters with sample
@@ -2350,7 +2599,7 @@ Filter names are also case sensitive.
 
 {{%/notice%}}
 
-#### Example Filters</span>
+#### Example Filters
 
 Create a filter for BGP Events on a Particular Device:
 
@@ -2385,12 +2634,12 @@ Create a Filter to Monitor Overheating Platforms:
 Create a Filter to Drop Messages from a Given Interface, and match
 against this filter before any other filters. To create a drop style
 filter, do not specify a channel. To put the filter first, use the
-*before* option.
+`before` option.
 
     cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
     Successfully added/updated filter swp52Drop
 
-#### View the Filter Configurations</span>
+#### View the Filter Configurations
 
 Use the `netq show notification` command to view the filters on your
 platform.
@@ -2399,25 +2648,25 @@ platform.
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
-    swp52Drop       1          error            NetqDefaultChann swp52
-                                                el
-    bgpSpine        2          info             pd-netq-events   bgpHostnam
-                                                                 e
-    vni42           3          warning          pd-netq-events   evpnVni
-    configChange    4          info             slk-netq-events  sysconf
-    newFEC          5          info             slk-netq-events  fecSupport
-    svcDown         6          critical         slk-netq-events  svcStatus
-    critTemp        7          critical         pd-netq-events   overTemp
+    swp52Drop     1          error            NetqDefaultChann swp52
+                                              el
+    bgpSpine        2        info             pd-netq-events   bgpHostnam
+                                                               e
+    vni42             3          warning          pd-netq-events   evpnVni
+    configChange    4        info             slk-netq-events  sysconf
+    newFEC          5        info             slk-netq-events  fecSupport
+    svcDown         6        critical         slk-netq-events  svcStatus
+    critTemp        7        critical         pd-netq-events   overTemp
 
-#### Reorder Filters</span>
+#### Reorder Filters
 
 When you look at the results of the `netq show notification filter`
 command above, you might notice that although you have the drop-based
 filter first (no point in looking at something you are going to drop
 anyway, so that is good), but the critical severity events are processed
 last, per the current definitions. If you wanted to process those before
-lesser severity events, you can reorder the list using the *before* and
-*after* options.
+lesser severity events, you can reorder the list using the `before` and
+`after` options.
 
 For example, to put the two critical severity event filters just below
 the drop filter:
@@ -2441,26 +2690,25 @@ Run the `netq show notification` command again to verify the changes:
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
-    swp52Drop       1          error            NetqDefaultChann swp52
-                                                el
-    critTemp        2          critical         pd-netq-events   overTemp
-    svcDown         3          critical         slk-netq-events  svcStatus
-    bgpSpine        4          info             pd-netq-events   bgpHostnam
-                                                                 e
-    vni42           5          warning          pd-netq-events   evpnVni
-    configChange    6          info             slk-netq-events  sysconf
-    newFEC          7          info             slk-netq-events  fecSupport
+    swp52Drop     1          error            NetqDefaultChann swp52
+                                              el
+    critTemp        2        critical         pd-netq-events   overTemp
+    svcDown         3        critical         slk-netq-events  svcStatus
+    bgpSpine        4        info             pd-netq-events   bgpHostnam
+                                                               e
+    vni42             5          warning          pd-netq-events   evpnVni
+    configChange    6        info             slk-netq-events  sysconf
+    newFEC          7        info             slk-netq-events  fecSupport
 
-## Example Notification Configurations</span>
+## Example Notification Configurations
 
 Putting all of these channel, rule, and filter definitions together you
 create a complete notification configuration. The following are example
 notification configurations are created using the three-step process
-outlined above. Refer to [Integrate NetQ with an Event Notification
-Application](#src-12320911_IntegratewithThird-partySoftwareandHardware-IntegrateNotification)
+outlined above. Refer to [Integrate NetQ with an Event Notification Application](#integrate-netq-with-an-event-notification-application)
 for details and instructions for creating channels, rules, and filters.
 
-### Create a Notification for BGP Events from a Selected Switch</span>
+### Create a Notification for BGP Events from a Selected Switch
 
 In this example, we created a notification integration with a PagerDuty
 channel called *pd-netq-events*. We then created a rule *bgpHostname*
@@ -2480,8 +2728,8 @@ filtered to the *pd-netq-events* ** channel.
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
     pd-netq-events  pagerduty        info             integration-key: 1234567
-                                                      890   
-                                                                                  
+                                                      890 
+                                                                                
     cumulus@switch:~$ netq show notification rule 
     Matching config_notify records:
     Name            Rule Key         Rule Value
@@ -2492,10 +2740,10 @@ filtered to the *pd-netq-events* ** channel.
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
-    bgpSpine        1          info             pd-netq-events   bgpHostnam
-                                                                 e
+    bgpSpine        1        info             pd-netq-events   bgpHostnam
+                                                                   e
 
-### Create a Notification for Warnings on a Given EVPN VNI</span>
+### Create a Notification for Warnings on a Given EVPN VNI
 
 In this example, we created a notification integration with a PagerDuty
 channel called *pd-netq-events*. We then created a rule *evpnVni* and a
@@ -2517,8 +2765,8 @@ from VNI 42 are filtered to the *pd-netq-events* ** channel.
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
     pd-netq-events  pagerduty        info             integration-key: 1234567
-                                                      890   
-                                                                                  
+                                                      890 
+                                                                                
     cumulus@switch:~$ netq show notification rule 
     Matching config_notify records:
     Name            Rule Key         Rule Value
@@ -2530,11 +2778,11 @@ from VNI 42 are filtered to the *pd-netq-events* ** channel.
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
-    bgpSpine        1          info             pd-netq-events   bgpHostnam
-                                                                 e
-    vni42           2          warning          pd-netq-events   evpnVni
+    bgpSpine        1        info             pd-netq-events   bgpHostnam
+                                                                   e
+    vni42           2        warning          pd-netq-events   evpnVni
 
-### Create a Notification for Configuration File Changes</span>
+### Create a Notification for Configuration File Changes
 
 In this example, we created a notification integration with a Slack
 channel called *slk-netq-events*. We then created a rule *sysconf* and a
@@ -2556,8 +2804,8 @@ The result is that any configuration update messages are filtered to the
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
     slk-netq-events slack            info     webhook:https://hooks.s
-                                              lack.com/services/text/
-                                              moretext/evenmoretext     
+                                            lack.com/services/text/
+                                              moretext/evenmoretext       
      
     cumulus@switch:~$ netq show notification rule 
     Matching config_notify records:
@@ -2571,12 +2819,12 @@ The result is that any configuration update messages are filtered to the
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
-    bgpSpine        1          info             pd-netq-events   bgpHostnam
-                                                                 e
-    vni42           2          warning          pd-netq-events   evpnVni
-    configChange    3          info             slk-netq-events  sysconf
+    bgpSpine        1        info             pd-netq-events   bgpHostnam
+                                                                   e
+    vni42           2        warning          pd-netq-events   evpnVni
+    configChange    3        info             slk-netq-events  sysconf
 
-### Create a Notification for When a Service Goes Down</span>
+### Create a Notification for When a Service Goes Down
 
 In this example, we created a notification integration with a Slack
 channel called *slk-netq-events*. We then created a rule *svcStatus* and
@@ -2598,8 +2846,8 @@ messages are filtered to the *slk-netq-events* ** channel.
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
     slk-netq-events slack            info     webhook:https://hooks.s
-                                              lack.com/services/text/
-                                              moretext/evenmoretext     
+                                            lack.com/services/text/
+                                              moretext/evenmoretext       
      
     cumulus@switch:~$ netq show notification rule 
     Matching config_notify records:
@@ -2614,13 +2862,13 @@ messages are filtered to the *slk-netq-events* ** channel.
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
-    bgpSpine        1          info             pd-netq-events   bgpHostnam
-                                                                 e
-    vni42           2          warning          pd-netq-events   evpnVni
-    configChange    3          info             slk-netq-events  sysconf
-    svcDown         4          critical         slk-netq-events  svcStatus
+    bgpSpine        1        info             pd-netq-events   bgpHostnam
+                                                                   e
+    vni42           2        warning          pd-netq-events   evpnVni
+    configChange    3        info             slk-netq-events  sysconf
+    svcDown         4        critical         slk-netq-events  svcStatus
 
-### Create a Filter to Drop Notifications from a Given Interface</span>
+### Create a Filter to Drop Notifications from a Given Interface
 
 In this example, we created a notification integration with a Slack
 channel called *slk-netq-events*. We then created a rule *swp52* and a
@@ -2641,8 +2889,8 @@ interface *swp52*.
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
     slk-netq-events slack            info     webhook:https://hooks.s
-                                              lack.com/services/text/
-                                              moretext/evenmoretext     
+                                            lack.com/services/text/
+                                              moretext/evenmoretext       
      
     cumulus@switch:~$ netq show notification rule 
     Matching config_notify records:
@@ -2651,22 +2899,22 @@ interface *swp52*.
     bgpHostname     hostname         spine-01
     evpnVni         vni              42
     svcStatus       new_status       down
-    swp52           port             swp52
+    swp52         port             swp52
     sysconf         configdiff       updated
      
     cumulus@switch:~$ netq show notification filter
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
-    swp52Drop       1          error            NetqDefaultChann swp52
-                                                el
-    bgpSpine        2          info             pd-netq-events   bgpHostnam
-                                                                 e
-    vni42           3          warning          pd-netq-events   evpnVni
-    configChange    4          info             slk-netq-events  sysconf
-    svcDown         5          critical         slk-netq-events  svcStatus
+    swp52Drop     1          error            NetqDefaultChann swp52
+                                              el
+    bgpSpine        2        info             pd-netq-events   bgpHostnam
+                                                                   e
+    vni42           3        warning          pd-netq-events   evpnVni
+    configChange    4        info             slk-netq-events  sysconf
+    svcDown         5        critical         slk-netq-events  svcStatus
 
-### Create a Notification for a Given Device that has a Tendency to Overheat (using multiple rules)</span>
+### Create a Notification for a Given Device that has a Tendency to Overheat (using multiple rules)
 
 In this example, we created a notification when switch *leaf04* has
 passed over the high temperature threshold. Two rules were needed to
@@ -2694,7 +2942,7 @@ Name            Type             Severity         Channel Info
 --------------- ---------------- ---------------- ------------------------
 pd-netq-events  pagerduty        info             integration-key: 1234567
                                                   890
-        
+      
 cumulus@switch:~$ netq show notification rule 
 Matching config_notify records:
 Name            Rule Key         Rule Value
@@ -2703,26 +2951,26 @@ bgpHostname     hostname         spine-01
 evpnVni         vni              42
 overTemp        new_s_crit       24
 svcStatus       new_status       down
-switchLeaf04    hostname         leaf04
-swp52           port             swp52
+switchLeaf04  hostname         leaf04
+swp52         port             swp52
 sysconf         configdiff       updated
 cumulus@switch:~$ netq show notification filter
 Matching config_notify records:
 Name            Order      Severity         Channels         Rules
 --------------- ---------- ---------------- ---------------- ----------
-swp52Drop       1          error            NetqDefaultChann swp52
-                                            el
-bgpSpine        2          info             pd-netq-events   bgpHostnam
-                                                             e
-vni42           3          warning          pd-netq-events   evpnVni
-configChange    4          info             slk-netq-events  sysconf
-svcDown         5          critical         slk-netq-events  svcStatus
-critTemp        6          critical         pd-netq-events   switchLeaf
-                                                             04
-                                                             overTemp                                                
+swp52Drop     1          error            NetqDefaultChann swp52
+                                          el
+bgpSpine        2        info             pd-netq-events   bgpHostnam
+                                                               e
+vni42           3        warning          pd-netq-events   evpnVni
+configChange    4        info             slk-netq-events  sysconf
+svcDown         5        critical         slk-netq-events  svcStatus
+critTemp        6        critical         pd-netq-events   switchLeaf
+                                                           04
+                                                           overTemp                                                
 ```
 
-### View Notification Configurations in JSON Format</span>
+### View Notification Configurations in JSON Format
 
 You can view configured integrations using the `netq show notification`
 commands. To view the channels, filters, and rules, run the three
@@ -2745,7 +2993,7 @@ For example:
                 "name":"pd-netq-events",
                 "channelInfo":"integration-key: 1234567890",
                 "severity":"info"
-        }
+      }
         ],
         "truncatedResult":false
     }
@@ -2782,7 +3030,7 @@ For example:
                 "ruleKey":"configdiff",
                 "ruleValue":"updated",
                 "name":"sysconf"
-        }
+      }
         ],
         "truncatedResult":false
     }
@@ -2825,18 +3073,18 @@ For example:
                 "rules":"svcStatus",
                 "name":"svcDown",
                 "severity":"critical"
-        }
+      }
         ],
         "truncatedResult":false
     }
 
-## Manage Event Notification Integrations</span>
+## Manage Event Notification Integrations
 
-<span style="color: #36424a;"> You might need to modify event
+You might need to modify event
 notification configurations at some point in the lifecycle of your
-deployment. Optionally, you might want to configure a proxy. </span>
+deployment. Optionally, you might want to configure a proxy.
 
-### Remove an Event Notification Channel</span>
+### Remove an Event Notification Channel
 
 You can delete an event notification integration using the `netq config
 del notification` command. You can verify it has been removed using the
@@ -2853,7 +3101,7 @@ the configuration:
     pd-netq-events  pagerduty        info             integration-key: 1234567
                                                       890
 
-### Delete an Event Notification Rule</span>
+### Delete an Event Notification Rule
 
 To delete a rule, use the following command, then verify it has been
 removed:
@@ -2867,10 +3115,10 @@ removed:
     evpnVni         vni              42
     overTemp        new_s_crit       24
     svcStatus       new_status       down
-    switchLeaf04    hostname         leaf04
+    switchLeaf04  hostname         leaf04
     sysconf         configdiff       updated
 
-### Delete an Event Notification Filter</span>
+### Delete an Event Notification Filter
 
 To delete a filter, use the following command, then verify it has been
 removed:
@@ -2880,16 +3128,16 @@ removed:
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
-    swp52Drop       1          error            NetqDefaultChann swp52
-                                                el
-    vni42           2          warning          pd-netq-events   evpnVni
-    configChange    3          info             slk-netq-events  sysconf
-    svcDown         4          critical         slk-netq-events  svcStatus
-    critTemp        5          critical         pd-netq-events   switchLeaf
-                                                                 04
-                                                                 overTemp
+    swp52Drop     1          error            NetqDefaultChann swp52
+                                              el
+    vni42           2        warning          pd-netq-events   evpnVni
+    configChange    3        info             slk-netq-events  sysconf
+    svcDown         4        critical         slk-netq-events  svcStatus
+    critTemp        5        critical         pd-netq-events   switchLeaf
+                                                               04
+                                                               overTemp
 
-## Integrate with a Hardware Chassis</span>
+## Integrate with a Hardware Chassis
 
 NetQ can run within a [Facebook Backpack
 chassis](https://cumulusnetworks.com/products/cumulus-express/getting-started/backpack/),
@@ -2904,12 +3152,9 @@ chassis:
   - You must assign a unique hostname to every node that runs the NetQ
     Agent. By default, all the fabric cards in the chassis have the same
     hostname.
-
   - The NetQ Agent must be installed on every line card.
-
   - No information is returned about the ASIC when you run `netq show
     inventory asic`. This is a known issue.
-
   - Since the chassis sensor information is shared, every line card and
     fabric card can report the same sensor data. By default, sensor data
     is disabled on a chassis to avoid this duplication . To enable
@@ -2925,11 +3170,3 @@ chassis:
         netq-agent:
           send_chassis_sensor_data: true
         ...
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -1,11 +1,11 @@
 ---
 title: Monitor Network Layer Protocols
 author: Cumulus Networks
-weight: 41
+weight: 85
 aliases:
  - /display/NETQ21/Monitor+Network+Layer+Protocols
- - /pages/viewpage.action?pageId=12321049
-pageID: 12321049
+ - /pages/viewpage.action?pageId=10464103
+pageID: 10464103
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -16,17 +16,17 @@ protocols running on Linux-based hosts, including IP (Internet
 Protocol), BGP (Border Gateway Protocol) and OSPF (Open Shortest Path
 First). NetQ provides the ability to:
 
-  - Validate protocol configurations
-  - Validate layer 3 communication paths
+- Validate protocol configurations
+- Validate layer 3 communication paths
 
 It helps answer questions such as:
 
-  - Who are the IP neighbors for a switch?
-  - How many IPv4 and IPv6 addresses am I using?
-  - When did changes occur to my IP configuration?
-  - Is BGP working as expected?
-  - Is OSPF working as expected?
-  - Can device A reach device B using IP addresses?
+- Who are the IP neighbors for a switch?
+- How many IPv4 and IPv6 addresses am I using?
+- When did changes occur to my IP configuration?
+- Is BGP working as expected?
+- Is OSPF working as expected?
+- Can device A reach device B using IP addresses?
 
 ## Monitor IP Configuration
 
@@ -250,17 +250,17 @@ devices, including the interface port, MAC address, VRF assignment, and
 whether it learns the MAC address from the peer (remote=yes).
 Additionally, you can:
 
-  - view the information at an earlier point in time
-  - filter against a particular device, interface, address or VRF
-    assignment
-  - obtain a count of all of the addresses
+- view the information at an earlier point in time
+- filter against a particular device, interface, address or VRF
+assignment
+- obtain a count of all of the addresses
 
 Each of these provides information for troubleshooting potential
 configuration and communication issues at the layer 3 level.
 
 **Example: View IPv4 Neighbor Information for All Devices**
 
-    cumulus@switch:~$ netq show ip neighbors
+    cumulus@switch:~$ netq show ip neighbors 
     Matching neighbor records:
     IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
     ------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
@@ -294,9 +294,9 @@ configuration and communication issues at the layer 3 level.
 
 **Example: View IPv6 Neighbor Information for a Given Device**
 
-This example shows the IPv6 neighbors for *leaf02* switch.
+This example shows the IPv6 neighbors for leaf02 switch.
 
-    cumulus@switch$ netq leaf02 show ipv6 neighbors
+    cumulus@switch$ netq leaf02 show ipv6 neighbors 
     Matching neighbor records:
     IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
     ------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
@@ -316,9 +316,9 @@ the IP address (with or without mask), the destination (by hostname) of
 the route, next hops available, VRF assignment, and whether a host is
 the owner of the route or MAC address. Additionally, you can:
 
-  - view the information at an earlier point in time
-  - filter against a particular address or VRF assignment
-  - obtain a count of all of the routes
+- view the information at an earlier point in time
+- filter against a particular address or VRF assignment
+- obtain a count of all of the routes
 
 Each of these provides information for troubleshooting potential
 configuration and communication issues at the layer 3 level.
@@ -359,7 +359,7 @@ network.
 
 **Example: View IP Routes for a Given IP** **Address**
 
-This example shows the routes available for an IP address of *10.0.0.12*.
+This example shows the routes available for an IP address of 10.0.0.12.
 
     cumulus@switch:~$ netq show ip routes 10.0.0.12
     Matching routes records:
@@ -374,7 +374,7 @@ This example shows the routes available for an IP address of *10.0.0.12*.
 
 **Example: View IP Routes Owned by a Given Device**
 
-This example shows the IPv4 routes that are owned by *spine01* switch.
+This example shows the IPv4 routes that are owned by spine01 switch.
 
     cumulus@switch:~$ netq spine01 show ip routes origin 
     Matching routes records:
@@ -386,7 +386,7 @@ This example shows the IPv4 routes that are owned by *spine01* switch.
 
 **Example: View IP Routes for a Given Device at a Prior Time**
 
-This example show the IPv4 routes for *spine01* switch about 24 hours ago.
+This example show the IPv4 routes for spine01 switch about 24 hours ago.
 
     cumulus@switch:~$ netq spine01 show ip routes around 24h
     Matching routes records:
@@ -422,9 +422,9 @@ operation using the NetQ CLI. For each device, you can view its
 associated neighbors, ASN (autonomous system number), peer ASN, receive
 IP or EVPN address prefixes, and VRF assignment. Additionally, you can:
 
-  - view the information at an earlier point in time
-  - filter against a particular device, ASN, or VRF assignment
-  - validate it is operating correctly across the network
+- view the information at an earlier point in time
+- filter against a particular device, ASN, or VRF assignment
+- validate it is operating correctly across the network
 
 The `netq show bgp` command is used to obtain the BGP configuration
 information from the devices. The `netq check bgp` command is used to
@@ -457,7 +457,7 @@ NetQ enables you to view the BGP configuration of a single device or
 across all of your devices at once. You can filter the results based on
 an ASN, BGP session (IP address or interface name), or VRF assignment.
 You can view the configuration in the past and view changes made to the
-configuration within a given timeframe.
+configuration within a given time frame.
 
 **Example: View BGP Configuration Information Across Network**
 
@@ -546,9 +546,9 @@ just over one day ago.
 
 **Example: View BGP Configuration Information for a Given Device**
 
-This example shows the BGP configuration information for the *spine02*
-switch. The switch is peered with *swp1* on *leaf01*, *swp2* on *leaf02*, and so
-on. *Spine02* has an ASN of *65020* and each of the leafs have unique ASNs.
+This example shows the BGP configuration information for the spine02
+switch. The switch is peered with swp1 on leaf01, swp2 on leaf02, and so
+on. Spine02 has an ASN of 65020 and each of the leafs have unique ASNs.
 
     cumulus@switch:~$ netq spine02 show bgp 
     Matching bgp records:
@@ -566,7 +566,7 @@ on. *Spine02* has an ASN of *65020* and each of the leafs have unique ASNs.
 **Example: View BGP Configuration Information for a Given ASN**
 
 This example shows the BGP configuration information for ASN of
-*655557*. This ASN is associated with *spine02* and so the results show
+*655557*. This ASN is associated with spine02 and so the results show
 the BGP neighbors for that switch.
 
     cumulus@switch:~$ netq show bgp asn 655557 
@@ -734,6 +734,7 @@ days ago on this network.
     leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
                                             : state changed from failed to esta
                                             blished
+     
     ...
 
 ### Validate BGP Operation
@@ -754,7 +755,7 @@ sessions.
 This example shows 24 failed BGP sessions with a variety of reasons.
 
     cumulus@switch:~$ netq check bgp
-    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24,
+    Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24, 
     Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
     ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
     exit-1            DataVrf1080     swp6.2            firewall-1        BGP session with peer firewall-1 swp6.2: AFI/ 1d:7h:56m:9s
@@ -796,7 +797,7 @@ associated interfaces, areas, peers, state, and type of OSPF running
   - filter against a particular device, interface, or area
   - validate it is operating correctly across the network
 
-The ` netq show ospf  `command is used to obtain the OSPF configuration
+The `netq show ospf` command is used to obtain the OSPF configuration
 information from the devices. The `netq check ospf` command is used to
 validate the configuration. The syntax of these commands is:
 
@@ -826,7 +827,7 @@ same unit of measure.
 NetQ enables you to view the OSPF configuration of a single device or
 across all of your devices at once. You can filter the results based on
 a device, interface, or area. You can view the configuration in the past
-and view changes made to the configuration within a given timeframe.
+and view changes made to the configuration within a given time frame.
 
 **Example: View OSPF Configuration Information Across the Network**
 
@@ -858,7 +859,7 @@ information was changed.
 
 **Example: View OSPF Configuration Information for a Given Device**
 
-This example show the OSPF configuration information for *leaf01*.
+This example show the OSPF configuration information for leaf01.
 
     cumulus@switch:~$ netq leaf01 show ospf
      
@@ -870,7 +871,7 @@ This example show the OSPF configuration information for *leaf01*.
 
 **Example: View OSPF Configuration Information for a Given Interface**
 
-This example shows the OSPF configuration for all devices with the *swp51*
+This example shows the OSPF configuration for all devices with the swp51
 interface.
 
     cumulus@switch:~$ netq show ospf swp51 
@@ -885,8 +886,8 @@ interface.
 
 **Example: View OSPF Configuration Information at a Prior Time**
 
-This example shows the OSPF configuration for all leaf switches about
-five minutes ago.
+This example shows the OSPF configuration
+for all leaf switches about five minutes ago.
 
     cumulus@switch:~$ netq leaf* show ospf around 5m
      
@@ -921,15 +922,15 @@ All of these conditions trigger a configuration check failure. When a
 failure is found, the reason is identified in the output along with the
 time the issue occurred.
 
-This example shows a check on the OSPF operations that found no failed
-sessions.
+This example shows a check on the OSPF
+operations that found no failed sessions.
 
     cumulus@switch:~$ netq check ospf
     Total Sessions: 16, Failed Sessions: 0
 
 This example shows a check on the OSPF operations that found two failed
 sessions. The results indicate the reason for the failure is a
-mismatched MTU for two links.
+mismatched MTU for two links .
 
     cumulus@switch:~$ netq check ospf
     Total Nodes: 21, Failed Nodes: 2, Total Sessions: 40 , Failed Sessions: 2,
@@ -940,21 +941,27 @@ mismatched MTU for two links.
 
 ## View Paths between Devices
 
-You can view the available paths between two devices on the network
-currently and at a time in the past using their IPv4 or IPv6 addresses.
-You can view the output in one of three formats (*json*, *pretty*, and
-*detail*). JSON output provides the output in a JSON file format for
-ease of importing to other applications or software. Pretty output lines
-up the paths in a pseudo-graphical manner to help visualize multiple
-paths. Detail output is the default when not specified, and is useful
-for traces with higher hop counts where the pretty output wraps lines,
-making it harder to interpret the results. The detail output displays a
-table with a row per hop and a set of rows per path.
+You can view the available paths between
+two devices on the network currently and at a time in the past using
+their IPv4 or IPv6 addresses . You can
+view the output in one of three formats (*json, pretty,* and
+*detail*). JSON output provides the
+output in a JSON file format for ease of importing to other applications
+or software. Pretty output lines up the paths in a pseudo-graphical
+manner to help visualize multiple paths. Detail output is the default
+when not specified, and is useful for traces with higher hop counts
+where the pretty output wraps lines, making it harder to interpret the
+results. The detail output displays a table with a row per hop and a set
+of rows per path.
 
-To view the paths, first identify the addresses for the source and
-destination devices using the `netq show ip addresses` command (see
-syntax above), and then use the `netq trace` command to see the
-available paths between those devices. The trace command syntax is:
+To view
+the paths, first identify the addresses for the source and destination
+devices using the `netq show ip addresses`
+command (see syntax above), and then use
+the `netq trace` command to see
+the available paths between those devices.
+
+The trace command syntax is:
 
     netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
 
@@ -977,7 +984,7 @@ include a summary of the trace, including the total number of paths
 available, those with errors and warnings, and the MTU of the paths. In
 this case, the results are displayed in pseudo-graphical output.
 
-```
+``` 
 cumulus@switch:~$ netq leaf01 show ip addresses
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed
@@ -1030,11 +1037,3 @@ VLAN is configured, so the related fields are left blank.
         2   spine01         swp1                                         swp1            default         swp3            default                               swp3
         3   leaf03          swp51                                        swp51           default         lo
     --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

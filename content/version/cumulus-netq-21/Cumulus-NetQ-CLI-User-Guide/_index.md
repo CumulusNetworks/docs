@@ -1,11 +1,11 @@
 ---
 title: Cumulus NetQ CLI User Guide
 author: Cumulus Networks
-weight: 13
+weight: 15
 aliases:
  - /display/NETQ21/Cumulus+NetQ+CLI+User+Guide
- - /pages/viewpage.action?pageId=12321041
-pageID: 12321041
+ - /pages/viewpage.action?pageId=10464091
+pageID: 10464091
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -21,10 +21,3 @@ itself using the NetQ command line interface (CLI). If you prefer to use
 a graphical interface, refer to the [Cumulus NetQ UI User
 Guide](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -1774,3 +1774,20 @@ port. If a subinterface is set as an output or egress port, the packets match co
 For example:
 
     -A FORWARD --out-interface swp49s1.100 -j ACCEPT
+
+### Mellanox Switches and Egress ACL Matching on Bonds
+
+On the Mellanox switch, ACL rules that match on an outbound *bond* interface are not supported. For example, the following rule is not supported:
+
+```
+[iptables]
+-A FORWARD --out-interface <bond_intf> -j DROP
+```
+
+To work around this issue, duplicate the ACL rule on each physical port of the bond. For example:
+
+```
+[iptables]
+-A FORWARD --out-interface <bond-member-port-1> -j DROP
+-A FORWARD --out-interface <bond-member-port-2> -j DROP
+```

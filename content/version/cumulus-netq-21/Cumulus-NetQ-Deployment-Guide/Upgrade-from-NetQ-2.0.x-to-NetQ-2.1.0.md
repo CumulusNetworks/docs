@@ -236,9 +236,9 @@ A simple process upgrades the NetQ Agent on a Cumulus switch.
     
     {{%notice tip%}}
     
-    The repository `deb http://apps3.cumulusnetworks.com/repos/deb
-    CumulusLinux-3 netq-latest` can be used if you want to always
-    retrieve the latest posted version of NetQ.
+The repository `deb http://apps3.cumulusnetworks.com/repos/deb
+CumulusLinux-3 netq-latest` can be used if you want to always
+retrieve the latest posted version of NetQ.
     
     {{%/notice%}}
 
@@ -267,10 +267,12 @@ Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not
 include `lldpd` by default, which is required for the installation.
 To install this package, run the following commands:
     
-        root@ubuntu:~# apt-get update
-        root@ubuntu:~# apt-get install lldpd
-        root@ubuntu:~# systemctl enable lldpd.service
-        root@ubuntu:~# systemctl start lldpd.service
+```
+root@ubuntu:~# apt-get update
+root@ubuntu:~# apt-get install lldpd
+root@ubuntu:~# systemctl enable lldpd.service
+root@ubuntu:~# systemctl start lldpd.service
+```
     
     {{%/notice%}}
 
@@ -364,12 +366,14 @@ Make sure you are running lldp**d**, not lldp**ad**.
 CentOS does not include `lldpd` by default, nor does it include
 `wget`, which is required for the installation. To install this
 package, run the following commands:
-    
-        root@centos:~# yum -y install epel-release
-        root@centos:~# yum -y install lldpd
-        root@centos:~# systemctl enable lldpd.service
-        root@centos:~# systemctl start lldpd.service
-        root@centos:~# yum install wget
+
+```
+root@centos:~# yum -y install epel-release
+root@centos:~# yum -y install lldpd
+root@centos:~# systemctl enable lldpd.service
+root@centos:~# systemctl start lldpd.service
+root@centos:~# yum install wget
+```
     
     {{%/notice%}}
 

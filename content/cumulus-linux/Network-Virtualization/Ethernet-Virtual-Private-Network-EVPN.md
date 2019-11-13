@@ -425,28 +425,17 @@ local proxy handles ARP requests received from locally attached hosts
 for remote hosts. ARP suppression is the implementation for IPv4; ND
 suppression is the implementation for IPv6.
 
-{{%notice note%}}
-
-Cumulus Networks recommends that you *enable* ARP and ND suppression in
-all EVPN bridging and symmetric routing deployments to reduce flooding
+ARP/ND suppression is not enabled by default. Cumulus Networks recommends that you *enable* ARP and ND suppression in all EVPN bridging and symmetric routing deployments to reduce flooding
 of ARP/ND packets over VXLAN tunnels.
 
-{{%/notice%}}
+You configure ARP/ND suppression on a VXLAN interface. You also need to create an SVI for the
+neighbor entry.
 
 {{%notice note%}}
 
-On switches with the Mellanox Spectrum chipset, ND suppression only
-functions with the Spectrum A1 chip.
-
-{{%/notice%}}
-
-ARP and ND suppression are not enabled by default. You configure ARP/ND
-suppression on a VXLAN interface. You also need to create an SVI for the
-neighbor entry.
-
-{{%notice tip%}}
-
-When ARP and ND suppression are enabled, you need to configure layer 3
+- On switches with the Mellanox Spectrum chipset, ND suppression only functions with the Spectrum A1 chip.
+- ARP/ND suppression must be enabled on all VXLAN interfaces on the switch. You cannot have ARP/ND suppression enabled on some VXLAN interfaces but not on others.
+- When ARP/ND suppression is enabled, you need to configure layer 3
 interfaces even if the switch is configured only for layer 2 (that is,
 you are not using VXLAN routing). To avoid unnecessary layer 3
 information from being installed, Cumulus Networks recommends you
@@ -455,10 +444,8 @@ appropriate on the VLANs. See the example configuration below.
 
 {{%/notice%}}
 
-To configure ARP or ND suppression, use
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU).
-Here is an example configuration using two VXLANs (10100 and 10200) and
-two VLANs (100 and 200).
+To configure ARP/ND suppression, use [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU).
+Here is an example configuration using two VXLANs (10100 and 10200) and two VLANs (100 and 200).
 
     cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.0.0.1
     cumulus@switch:~$ net add bridge bridge ports vni100,vni200

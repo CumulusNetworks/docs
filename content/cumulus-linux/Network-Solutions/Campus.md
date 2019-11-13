@@ -28,4 +28,4 @@ deployment:
 
 ## More Information
 
-For a deep dive into campus architecture, read the [campus architecture solution guide](/guides/campus-architecture-guide).
+For a deep dive into campus architecture, read the [campus architecture solution guide](/guides/campus-architecture-guide/).

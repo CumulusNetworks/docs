@@ -1,11 +1,11 @@
 ---
 title: Monitor Network Inventory
 author: Cumulus Networks
-weight: 143
+weight: 113
 aliases:
  - /display/NETQ21/Monitor+Network+Inventory
- - /pages/viewpage.action?pageId=12321095
-pageID: 12321095
+ - /pages/viewpage.action?pageId=10464217
+pageID: 10464217
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -23,30 +23,24 @@ attributes of all switches and all hosts in your network.
 
 The Devices Inventory card workflow helps answer questions such as:
 
-  - What switches do I have in the network?
-
-  - What is the distribution of ASICs across my network?
-
-  - Do all switches have valid licenses?
-
-  - Are NetQ agents running on all of my switches?
+- What switches do I have in the network?
+- What is the distribution of ASICs across my network?
+- Do all switches have valid licenses?
+- Are NetQ agents running on all of my switches?
 
 For monitoring inventory and performance on a switch-by-switch basis,
-refer to the <span style="color: #ff0000;"> [Monitor
-Switches](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches)
-<span style="color: #333333;"> topic </span> </span> .
+refer to the [Monitor Switches](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches) topic.
 
-## Devices Inventory Card Workflow Summary</span>
+## Devices Inventory Card Workflow Summary
 
-<span style="color: #36424a;"> The small Devices Inventory card
-displays: </span>
+The small Devices Inventory card displays:
 
 {{% imgOld 0 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -56,37 +50,32 @@ displays: </span>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 1 %}}</p></td>
+<td><p>{{% imgOld 1 %}}</p></td>
 <td><p>Indicates data is for device inventory</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 2 %}}</p></td>
+<td><p>{{% imgOld 2 %}}</p></td>
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 3 %}}</p></td>
+<td><p>{{% imgOld 3 %}}</p></td>
 <td><p>Total number of hosts in inventory during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 4 %}}</p></td>
+<td><p>{{% imgOld 4 %}}</p></td>
 <td><p>Total number of chassis in inventory during the designated time period. Not monitored in this release.</p></td>
 </tr>
 </tbody>
 </table>
 
-<span style="color: #36424a;"> The medium Devices Inventory card
-displays: </span>
+The medium Devices Inventory card displays:
 
 {{% imgOld 5 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -96,8 +85,7 @@ displays: </span>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 6 %}}</p></td>
+<td><p>{{% imgOld 6 %}}</p></td>
 <td><p>Indicates data is for device inventory</p></td>
 </tr>
 <tr class="even">
@@ -105,40 +93,35 @@ displays: </span>
 <td><p><strong>Inventory | Devices</strong></p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 7 %}}</p></td>
+<td><p>{{% imgOld 7 %}}</p></td>
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 8 %}}</p></td>
+<td><p>{{% imgOld 8 %}}</p></td>
 <td><p>Total number of hosts in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 9 %}}</p></td>
+<td><p>{{% imgOld 9 %}}</p></td>
 <td><p>Total number of chassis in inventory during the designated time period. Not monitored in this release.</p></td>
 </tr>
 <tr class="even">
 <td><p>Charts</p></td>
-<td><p>Distribution of <span style="color: #36424a;"> operating systems deployed on switches and hosts, respectively </span></p></td>
+<td><p>Distribution of operating systems deployed on switches and hosts, respectively</p></td>
 </tr>
 </tbody>
 </table>
 
-<span style="color: #36424a;"> The large Devices Inventory card has one
-tab. </span>
+The large Devices Inventory card has one
+tab.
 
-<span style="color: #36424a;"> The *Switches* tab displays: </span>
-
-<span style="color: #36424a;"> </span>
+The *Switches* tab displays:
 
 {{% imgOld 10 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -152,8 +135,7 @@ tab. </span>
 <td><p>Always Now for inventory by default</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 11 %}}</p></td>
+<td><p>{{% imgOld 11 %}}</p></td>
 <td><p>Indicates data is for device inventory</p></td>
 </tr>
 <tr class="odd">
@@ -165,8 +147,7 @@ tab. </span>
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 13 %}}</p></td>
+<td><p>{{% imgOld 13 %}}</p></td>
 <td><p>Link to full screen listing of all switches</p></td>
 </tr>
 <tr class="even">
@@ -175,7 +156,7 @@ tab. </span>
 </tr>
 <tr class="odd">
 <td><p>Distribution charts</p></td>
-<td><p>Distribution of <span style="color: #36424a;"> switch components across the network </span></p></td>
+<td><p>Distribution of switch components across the network</p></td>
 </tr>
 <tr class="even">
 <td><p>Unique</p></td>
@@ -184,25 +165,20 @@ tab. </span>
 </tbody>
 </table>
 
-<span style="color: #36424a;"> The full screen Devices Inventory card
-provides tabs for all switches and all hosts. </span>
-
-<span style="color: #36424a;"> </span>
+The full screen Devices Inventory card
+provides tabs for all switches and all hosts.
 
 {{% imgOld 14 %}}
 
-  
+## View the Number of Each Device Type in Your Network
 
-<span style="color: #36424a;"> View the Number of Each Device Type in
-Your Network </span>
-
-<span style="color: #36424a;"> You can view the number of switches and
+You can view the number of switches and
 hosts deployed in your network. As you grow your network this can be
-useful for validating that devices have been added as scheduled. </span>
+useful for validating that devices have been added as scheduled.
 
-<span style="color: #36424a;"> To view the quantity of devices in your
-network, o </span> <span style="color: #36424a;"> pen the small Devices
-Inventory card. </span>
+To view the quantity of devices in your
+network, o pen the small Devices
+Inventory card.
 
 {{% imgOld 15 %}}
 
@@ -214,7 +190,7 @@ network.
 
 {{%/notice%}}
 
-## View Which Operating Systems Are Running on Your Network Devices</span>
+## View Which Operating Systems Are Running on Your Network Devices
 
 You can view the distribution of operating systems running on your
 switches and hosts. This is useful for verifying which versions of the
@@ -234,7 +210,7 @@ network.
 
 {{%/notice%}}
 
-## View Switch Components</span>
+## View Switch Components
 
 To view switch components, open the large Devices Inventory card. By
 default the Switches tab is shown displaying the total number of
@@ -243,29 +219,25 @@ and specific platforms deployed on all of your switches.
 
 {{% imgOld 17 %}}
 
-### Highlight a Selected Component Type</span>
+### Highlight a Selected Component Type
 
 You can hover over any of the segments in a component distribution chart
 to highlight a specific type of the given component. When you *hover*, a
 tooltip appears displaying:
 
-  - the name or value of the component type, such as the version number
-    or status
+- the name or value of the component type, such as the version number or status
+- the total number of switches with that type of component deployed compared to the total number of switches
+- percentage of this type with respect to all component types.  
+  
+{{% imgOld 18 %}}
 
-  - the total number of switches with that type of component deployed
-    compared to the total number of switches
-
-  - percentage of this type with respect to all component types.  
-    
-    {{% imgOld 18 %}}
-    
-    {{% imgOld 19 %}}
+{{% imgOld 19 %}}
 
 Additionally, sympathetic highlighting is used to show the related
 component types relevant to the highlighted segment and the number of
 unique component types associated with this type (shown in blue here).
 
-### Focus on a Selected Component Type</span>
+### Focus on a Selected Component Type
 
 To dig deeper on a particular component type, you can filter the card
 data by that type. In this procedure, the result of filtering on the OS
@@ -273,7 +245,7 @@ is shown.
 
 To view component type data:
 
-1.  Click a segment of the component distribution charts.
+1.  *Click* a segment of the component distribution charts.
     
     {{% imgOld 20 %}}
 
@@ -288,13 +260,9 @@ To view component type data:
     
     {{% imgOld 22 %}}
 
-4.  To return to the full complement of components, click the
-    
-    {{% imgOld 23 %}}
-    
-    in the filter tag.
+4.  To return to the full complement of components, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the filter tag.
 
-### Navigate to Related Cards</span>
+### Navigate to Related Cards
 
 The large Switches card provides quick links to full-screen cards in the
 Device Inventory workflow.
@@ -308,7 +276,7 @@ To navigate to a related card:
     
     {{% imgOld 24 %}}
 
-### Navigate to the Switch Inventory Workflow</span>
+### Navigate to the Switch Inventory Workflow
 
 While the Device Inventory cards provide a network-wide view, you may
 want to see more detail about your switch inventory. This can be found
@@ -317,7 +285,7 @@ the **Switch Inventory** button at the top right of the Switches card.
 
 {{% imgOld 25 %}}
 
-## View All Switches</span>
+## View All Switches
 
 You can view all stored attributes for all switches in your network. To
 view all switch details, open the full screen Devices Inventory card and
@@ -325,13 +293,9 @@ click the **All Switches** tab in the navigation panel.
 
 {{% imgOld 26 %}}
 
-To return to your workbench, click
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner of the card.
 
-{{% imgOld 27 %}}
-
-in the top right corner of the card.
-
-## View All Hosts</span>
+## View All Hosts
 
 You can view all stored attributes for all hosts in your network. To
 view all hosts details, open the full screen Devices Inventory card and
@@ -339,16 +303,4 @@ click the **All Hosts** tab in the navigation panel.
 
 {{% imgOld 28 %}}
 
-To return to your workbench, click
-
-{{% imgOld 29 %}}
-
-in the top right corner of the card.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner of the card.

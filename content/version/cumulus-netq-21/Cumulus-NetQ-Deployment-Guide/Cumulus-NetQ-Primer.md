@@ -1,11 +1,11 @@
 ---
 title: Cumulus NetQ Primer
 author: Cumulus Networks
-weight: 67
+weight: 29
 aliases:
  - /display/NETQ21/Cumulus+NetQ+Primer
- - /pages/viewpage.action?pageId=12320801
-pageID: 12320801
+ - /pages/viewpage.action?pageId=10463727
+pageID: 10463727
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -22,35 +22,29 @@ entire Linux-based data center. With NetQ, network operations change
 from a manual, reactive, box-by-box approach to an automated, informed
 and agile one.
 
-<span style="color: #353744;"> Cumulus NetQ performs three primary
-functions: </span>
+Cumulus NetQ performs three primary functions:
 
-  - **Data collection**: real-time and historical telemetry and network
-    state information
+- **Data collection**: real-time and historical telemetry and network
+  state information
+- **Data analytics**: deep processing of the data
+- **Data visualization**: rich graphical user interface (GUI) for
+  actionable insight
 
-  - **Data analytics**: deep processing of the data
-
-  - **Data visualization**: rich graphical user interface (GUI) for
-    actionable insight
-
-NetQ is available as an on-site or SaaS deployment.
-
-This documentation is current as of June 28, 2019 for version 2.2.0.
-Please visit the [Cumulus Networks documentation
-site](http://docs.cumulusnetworks.com) for the most up to date
+This documentation is current as of April 23, 2019 for version 2.1.0.
+Please visit the [Cumulus Networks website](http://docs.cumulusnetworks.com) for the most up to date
 documentation.
 
-## Cumulus NetQ Operational Advantages</span>
+## Cumulus NetQ Operational Advantages
 
 Unlike other network operations tools, NetQ delivers significant
-operational improvements <span style="color: #3c4043;"> to your network
+operational improvements to your network
 management and maintenance processes. It simplifies the data center
 network by reducing the complexity through real-time visibility into
 hardware and software status and eliminating the guesswork associated
 with investigating issues through the analysis and presentation of
-detailed, focused data. </span>
+detailed, focused data.
 
-### Demystify Overlay Networks</span>
+### Demystify Overlay Networks
 
 While overlay networks provide significant advantages in network
 management, it can be difficult to troubleshoot issues that occur in the
@@ -70,7 +64,7 @@ In summary:
 | Hard to find out what happened in the past | View historical activity with time-machine view                     |
 | Periodically sampled data                  | Real-time collection of telemetry data for a more complete data set |
 
-### Protect Network Integrity with NetQ Validation</span>
+### Protect Network Integrity with NetQ Validation
 
 Network configuration changes can cause numerous trouble tickets because
 you are not able to test a new configuration before deploying it. When
@@ -112,7 +106,7 @@ correlate the logs/events with the issues</p></td>
 </tbody>
 </table>
 
-### Active Network-wide Troubleshooting</span>
+### Active Network-wide Troubleshooting
 
 Troubleshooting networks is challenging in the best of times, but trying
 to do so manually, one box at a time, and digging through a series of
@@ -152,7 +146,7 @@ correlate the logs/events with the issues</p></td>
 </tbody>
 </table>
 
-### Track Connectivity with NetQ Trace</span>
+### Track Connectivity with NetQ Trace
 
 Conventional trace only traverses the data path looking for problems,
 and does so on a node to node basis. For paths with a small number of
@@ -170,32 +164,20 @@ In summary:
 | View portion of entire path                             | View all paths between devices all at once to find problem paths     |
 | Node-to-node check on misconfigurations                 | View any misconfigurations along all hops from source to destination |
 
-## Cumulus NetQ Components</span>
+## Cumulus NetQ Components
 
 NetQ contains the following applications and key components:
 
-  - Telemetry data collection and aggregation
-    
-      - NetQ switch agents
-    
-      - NetQ host agents
-    
-      - Telemetry data aggregation
-    
-      - Database
-
-  - Data streaming
-
-  - Network services
-
-  - User interfaces
-
-While these function apply to both the on-site and SaaS solution, where
-the functions reside varies, as shown here.
+- Telemetry data collection and aggregation
+    - NetQ Switch Agents
+    - NetQ Host Agents
+    - Telemetry Aggregator
+    - Database
+- Data streaming layer
+- Network service layer
+- User Interfaces
 
 {{% imgOld 0 %}}
-
-{{% imgOld 1 %}}
 
 NetQ interfaces with event notification applications, third-party
 analytics tools.
@@ -203,123 +185,106 @@ analytics tools.
 Each of the NetQ components used to gather, store and process data about
 the network state are described here.
 
-## NetQ Agents</span>
+## NetQ Agents
 
 NetQ Agents are software installed and running on every monitored *node*
 in the network — including Cumulus® Linux® switches, Linux bare-metal
 hosts, and virtual machines. The NetQ Agents push network data regularly
 and event information immediately to the NetQ Platform.
 
-### Switch Agents</span>
+### Switch Agents
 
 The NetQ Agents running on Cumulus Linux switches gather the following
 network data via [Netlink](https://tools.ietf.org/html/rfc3549):
 
-  - Interfaces
-
-  - IP addresses (v4 and v6)
-
-  - IP routes (v4 and v6)
-
-  - Links
-
-  - Bridge FDB (MAC Address table)
-
-  - ARP Entries/Neighbors (IPv4 and IPv6)
+- Interfaces
+- IP addresses (v4 and v6)
+- IP routes (v4 and v6)
+- Links
+- Bridge FDB (MAC Address table)
+- ARP Entries/Neighbors (IPv4 and IPv6)
 
 for the following protocols:
 
-  - Bridging protocols: LLDP, STP, MLAG
+- Bridging protocols: LLDP, STP, MLAG
+- Routing protocols: BGP, OSPF
+- Network virtualization: EVPN, LNV, VXLAN
 
-  - Routing protocols: BGP, OSPF
+The NetQ Agent is supported on Cumulus Linux 3.7.0 and later.
 
-  - Network virtualization: EVPN, LNV, VXLAN
-
-<span style="color: #353744;"> The NetQ Agent is supported on </span>
-<span style="color: #353744;"> Cumulus Linux </span> 3.3.2 and later.
-
-### Host Agents</span>
+### Host Agents
 
 The NetQ Agents running on hosts gather the same information as that for
 switches, plus the following network data:
 
-  - Network IP and MAC addresses
+- Network IP and MAC addresses
+- Container IP and MAC addresses
 
-  - Container IP and MAC addresses
-
-<span style="color: #353744;"> The NetQ Agent obtains container
-information by listening to the Kubernetes orchestration tool. </span>
+The NetQ Agent obtains container
+information by listening to the Kubernetes orchestration tool.
 
 The NetQ Agent is supported on hosts running Ubuntu 16.04, Red Hat®
 Enterprise Linux 7, and CentOS 7 Operating Systems.
 
-## NetQ Components</span>
+## NetQ Platform
 
-The NetQ components perform the data collection, storage, and processing
+The NetQ Platform performs the data collection, storage, and processing
 for delivery to various user interfaces. It is comprised of a collection
 of scalable components running entirely within a single server. The NetQ
 software queries this server, rather than individual devices enabling
 greater scalability of the system. Each of these components is described
 briefly here.
 
-### Data Aggregation</span>
+### Data Aggregation Layer
 
-The data aggregation component collects data coming from all of the NetQ
+The data aggregation layer collects data coming from all of the NetQ
 Agents. It then filters, compresses, and forwards the data to the
-streaming component. The server monitors for missing messages and also
+streaming layer. The server monitors for missing messages and also
 monitors the NetQ Agents themselves, providing alarms when appropriate.
 In addition to the telemetry data collected from the NetQ Agents, the
-aggregation component collects information from the switches and hosts,
+aggregation server collects information from the switches and hosts,
 such as vendor, model, version, and basic operational state.
 
-### Data Stores</span>
+### Data Stores
 
 Two types of data stores are used in the NetQ product. The first stores
 the raw data, data aggregations, and discrete events needed for quick
 response to data requests. The second stores data based on correlations,
 transformations and processing of the raw data.
 
-### Real-time Streaming</span>
+### Real-time Streaming Layer
 
-The streaming component processes the incoming raw data from the
-aggregation server in real time. It reads the metrics and stores them as
-a time series, and triggers alarms based on anomaly detection,
-thresholds, and events.
+The streaming layer processes the incoming raw data from the aggregation
+server in real time. It reads the metrics and stores them as a time
+series, and triggers alarms based on anomaly detection, thresholds, and
+events.
 
-### Network Services</span>
+### Network Service Layer
 
-The network services component monitors protocols and services operation
-individually and on a network-wide basis and stores status details.
+The network service layer monitors services network-wide and stores
+status details.
 
-### User Interfaces</span>
+### User Interfaces
 
-<span style="color: #353744;"> NetQ data is available through several
-user interfaces: </span>
+ NetQ data is available through several user interfaces:
 
-  - <span style="color: #353744;"> NetQ <span style="color: #353744;">
-    CLI </span> <span style="color: #353744;"> (
-    <span style="color: #353744;"> command line interface </span>
-    <span style="color: #353744;"> ) </span> </span> </span>
+- NetQ CLI (command line interface)
+- NetQ UI (graphical user interface)
+- NetQ RESTful API (representational state transfer application programming
+  interface)
+- Logs
 
-  - <span style="color: #353744;"> NetQ UI (graphical user interface
-    <span style="color: #353744;"> ) </span> </span>
-
-  - <span style="color: #353744;"> <span style="color: #353744;"> NetQ
-    RESTful API (representational state transfer application programming
-    interface <span style="color: #353744;"> ) </span> </span> </span>
-
-<span style="color: #353744;"> The CLI and UI query the RESTful API for
+The CLI and UI query the RESTful API for
 the data to present. Standard integrations can be configured to
-integrate with third-party notification tools. </span>
+integrate with third-party notification tools.
 
-## Data Center Network Deployments</span>
+## Data Center Network Deployments
 
-<span style="color: #222222;"> T </span> here are two deployment types
+There are two deployment types
 that are commonly deployed for network management in the data center:
 
-  - Out-of-Band Management (recommended)
-
-  - In-band Management
+- Out-of-Band Management (recommended)
+- In-band Management
 
 A summary of each type is provided here.
 
@@ -331,7 +296,7 @@ routed environments whenever possible.
 
 {{%/notice%}}
 
-### Out-of-Band Management Deployment</span>
+### Out-of-Band Management Deployment
 
 Cumulus Networks recommends deploying NetQ on an out-of-band (OOB)
 management network to separate network management traffic from standard
@@ -341,25 +306,18 @@ management network overlaid on top, where NetQ is deployed.
 
 The physical *network* hardware includes:
 
-  - <span style="color: #ff0000;"> **Spine** switches: where data is
+  - **Spine** switches: where data is
     aggregated and distributed ; also known as an aggregation switch,
-    end-of-row (EOR) switch or distribution switch </span>
-
+    end-of-row (EOR) switch or distribution switch
   - **Leaf** switches: where servers connect to the network; also known
     as a Top of Rack (TOR) or access switch
-
-  - <span style="color: #ff0000;"> **Server** hosts: where applications
-    are hosted and data served to the user through the network </span>
-
-  - <span style="color: #ff0000;"> **Exit** switch: where connections to
-    outside the data center occur ; also known as
-    <span style="color: #000000;"> Border Leaf or Service Leaf </span>
-    </span>
-
+  - **Server** hosts: where applications
+    are hosted and data served to the user through the network
+  - **Exit** switch: where connections to
+    outside the data center occur ; also known as Border Leaf or Service Leaf
   - **Edge** server (optional): where the firewall is the demarcation
     point, peering may occur through the exit switch layer to Internet
     (PE) devices
-
   - **Internet** device (PE): where provider edge (PE) equipment
     communicates at layer 3 with the network fabric
 
@@ -372,26 +330,24 @@ other over a peerlink and act as an MLAG pair for Server 03 and Server
 04. The Edge is connected to both Exit devices, and the Internet node is
 connected to Exit 01.
 
-{{% imgOld 2 %}}
+{{% imgOld 1 %}}
 
-  
-<span class="caption">Data Center Network Example</span>
+*Data Center Network Example*
 
 The physical *management* hardware includes:
 
-  - OOB Mgmt Switch: aggregation switch that connects to all of the
-    network devices through communications with the NetQ Agent on each
-    node
-
-  - NetQ Platform: hosts the telemetry software, database and user
-    interfaces (refer to description above).
+- OOB Mgmt Switch: aggregation switch that connects to all of the
+  network devices through communications with the NetQ Agent on each
+  node
+- NetQ Platform: hosts the telemetry software, database and user
+  interfaces (refer to description above).
 
 These switches are connected to each of the physical network devices
 through a virtual network overlay, shown with purple lines.
 
-{{% imgOld 3 %}}
+{{% imgOld 2 %}}
 
-### In-band Management Deployment</span>
+### In-band Management Deployment
 
 While not the preferred deployment method, you might choose to implement
 NetQ within your data network. In this scenario, there is no overlay and
@@ -402,9 +358,9 @@ performs the aggregation function that the OOB management switch
 performed. If your network goes down, you might not have access to the
 NetQ Platform for troubleshooting.
 
-{{% imgOld 4 %}}
+{{% imgOld 3 %}}
 
-## NetQ Operation</span>
+## NetQ Operation
 
 In any of the above deployments, NetQ offers network-wide configuration
 and device management, proactive monitoring capabilities, and
@@ -412,21 +368,21 @@ performance diagnostics for complete management of your network. Each
 component of the solution provides a critical element to make this
 possible.
 
-### The NetQ Agent</span>
+### The NetQ Agent
 
-<span style="color: #36424a;"> From a software perspective, a network
+From a software perspective, a network
 switch has software associated with the hardware platform, the operating
 system, and communications. For data centers, the software on a Cumulus
-Linux network switch would be similar to the diagram shown here. </span>
+Linux network switch would be similar to the diagram shown here.
 
-{{% imgOld 5 %}}
+{{% imgOld 4 %}}
 
-<span style="color: #36424a;"> The NetQ Agent interacts with the various
+The NetQ Agent interacts with the various
 components and software on switches and hosts and provides the gathered
 information to the NetQ Platform. You can view the data using the NetQ
-CLI or UI. </span>
+CLI or UI.
 
-<span style="color: #36424a;"> The NetQ Agent p </span> olls the user
+The NetQ Agent polls the user
 space applications for information about the performance of the various
 routing protocols and services that are running on the switch. Cumulus
 Networks supports BGP and OSPF Free Range Routing (FRR) protocols as
@@ -439,8 +395,8 @@ and operating correctly.
 
 For example, if the NetQ Agent learns that an interface has gone down, a
 new BGP neighbor has been configured, or a container has moved, it
-provides that information to the <span style="color: #36424a;"> NetQ
-Platform </span> . That information can then be used to notify users of
+provides that information to the NetQ
+Platform . That information can then be used to notify users of
 the operational state change through various channels. By default, data
 is logged in the database, but you can use the CLI (`netq show events`)
 or configure the Event Service in NetQ to send the information to a
@@ -456,7 +412,7 @@ expected or favorable.
 
 For example, if a new route is added or a MAC address removed, NetQ
 Agent records these changes and sends that information to the
-<span style="color: #36424a;"> NetQ Platform </span> . Based on the
+NetQ Platform . Based on the
 configuration of the Event Service, these changes can be sent to a
 variety of locations for end user response.
 
@@ -471,52 +427,48 @@ becoming very warm, various levels of alarms are generated. These are
 then communicated through notifications according to the Event Service
 configuration.
 
-### The NetQ Platform</span>
+### The NetQ Platform
 
 Once the collected data is sent to and stored in the NetQ database, you
 can:
 
-  - Validate configurations, identifying misconfigurations in your
-    current network, in the past, or prior to deployment,
-
-  - Monitor communication paths throughout the network,
-
-  - Notify users of issues and management information,
-
-  - Anticipate impact of connectivity changes,
-
-  - and so forth.
+- Validate configurations, identifying misconfigurations in your
+  current network, in the past, or prior to deployment,
+- Monitor communication paths throughout the network,
+- Notify users of issues and management information,
+- Anticipate impact of connectivity changes,
+- and so forth.
 
 **Validate Configurations**
 
 The NetQ CLI enables validation of your network health through two sets
 of commands: `netq check` and `netq show`. They extract the information
-from the Network Service component and Event service. The Network
-Service component is continually validating the connectivity and
-configuration of the devices and protocols running on the network. Using
-the `netq check` and `netq show` commands displays the status of the
-various components and services on a network-wide and complete software
-stack basis. For example, you can perform a network-wide check on all
-sessions of BGP with a single `netq check bgp` command. The command
-lists any devices that have misconfigurations or other operational
-errors in seconds. When errors or misconfigurations are present, using
-the `netq show bgp` command displays the BGP configuration on each
-device so that you can compare and contrast each device, looking for
-potential causes. `netq check` and `netq show` commands are available
-for numerous components and services as shown in the following table.
+from the Network Service Layer and Event service. The Network Service
+Layer is continually validating the connectivity and configuration of
+the devices and protocols running on the network. Using the `netq check`
+and `netq show` commands displays the status of the various components
+and services on a network-wide and complete software stack basis. For
+example, you can perform a network-wide check on all sessions of BGP
+with a single `netq check bgp` command. The command lists any devices
+that have misconfigurations or other operational errors in seconds. When
+errors or misconfigurations are present, using the `netq show bgp`
+command displays the BGP configuration on each device so that you can
+compare and contrast each device, looking for potential causes. `netq
+check` and `netq show` commands are available for numerous components
+and services as shown in the following table.
 
-| Component or Service | Check                                                                                                                                                                                                                      | Show                                                                                                                                                                                                                       | Component or Service | Check                                                                                                                                                                                                                      | Show                                                                                                                                                                                                                       |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Agents               | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | LLDP                 |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| BGP                  | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | LNV                  | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| CLAG (MLAG)          | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | MACs                 |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| Events               |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | MTU                  | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |                                                                                                                                                                                                                            |
-| EVPN                 | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | NTP                  | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| Interfaces           | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | OSPF                 | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| Inventory            |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | Sensors              | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| IPv4/v6              |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | Services             |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| Kubernetes           |                                                                                                                                                                                                                            | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | VLAN                 | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
-| License              | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |                                                                                                                                                                                                                            | VXLAN                | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) | ![/images/s/en\_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/\_/images/icons/emoticons/star\_green.png](/images/s/en_GB/6210/96b66f73363ad6a4132228b496713b1df46ada86.241/_/images/icons/emoticons/star_green.png) |
+| Component or Service | Check | Show | Component or Service | Check | Show |
+| --------------------------- | :-------: | :-----: | --------------------------- | :-------: | :-----: |
+| Agents                          | X          | X       | LLDP                             |             | X    |
+| BGP                               | X          | X       | LNV                              | X          | X   |
+| CLAG (MLAG)              | X           | X       | MACs                           |              | X       |
+| Events                          |               | X       | MTU                             | X          |     |
+| EVPN                            | X          | X        | NTP                              | X       | X       |
+| Interfaces                     | X          | X        | OSPF                            | X       | X       |
+| Inventory                      |              | X       | Sensors                         | X       | X       |
+| IPv4/v6                         |             | X       | Services                         |          | X      |
+| Kubernetes                   |             | X       | VLAN                             | X       | X       |
+| License                          | X       |             | VXLAN                          | X       | X       |
 
 **Monitor Communication Paths**
 
@@ -554,12 +506,11 @@ command show the same output as a tree.
 
 This output is read as:
 
-  - Path 1 traverses the network from server12 out bond1.1002 into
-    leaf12 interface swp8 out VLAN1002 peerlink-1 into VLAN1002
-    interface swp6 on leaf11
-
-  - Path 2 traverses the network from server12 out bond1.1002 into
-    VLAN1002 interface swp8 on leaf11.
+- Path 1 traverses the network from server12 out bond1.1002 into
+  leaf12 interface swp8 out VLAN1002 peerlink-1 into VLAN1002
+  interface swp6 on leaf11
+- Path 2 traverses the network from server12 out bond1.1002 into
+  VLAN1002 interface swp8 on leaf11.
 
 If the MTU does not match across the network, or any of the paths or
 parts of the paths have issues, that data is called out in the summary
@@ -575,7 +526,7 @@ problems now. You can use the `netq check` command to look for
 configuration or operational issues around the time that the messages
 are timestamped. Then use the `netq show` commands to see information
 about how the devices in question were configured at that time or if
-there were any changes in a given timeframe. Optionally, you can use the
+there were any changes in a given time frame. Optionally, you can use the
 `netq trace` command to see what the connectivity looked like between
 any problematic nodes at that time. This example shows problems occurred
 on spine01, leaf04, and server03 last night. The network administrator
@@ -584,7 +535,7 @@ by the commands to run to determine the cause of a BGP error on spine01.
 Note that the commands use the `around` option to see the results for
 last night and that they can be run from any switch in the network.
 
-{{% imgOld 6 %}}
+{{% imgOld 5 %}}
 
     cumulus@switch:~$ netq check bgp around 30m
     Total Nodes: 25, Failed Nodes: 3, Total Sessions: 220 , Failed Sessions: 24, 
@@ -655,9 +606,9 @@ routing issues as they occur. This is an example of a Slack message
 received on a *netq-notifier* channel indicating that the BGP session on
 switch *leaf04* interface *swp2* has gone down.
 
-{{% imgOld 7 %}}
+{{% imgOld 6 %}}
 
-### Timestamps in NetQ</span>
+### Timestamps in NetQ
 
 Every event or entry in the NetQ database is stored with a timestamp of
 when the event was captured by the NetQ Agent on the switch or server.
@@ -688,18 +639,14 @@ the timestamp.
 When retrieving the timestamp, command outputs display the time in three
 ways:
 
-  - For non-JSON output when the timestamp represents the Last Changed
-    time, time is displayed in actual date and time when the time change
-    occurred
-
-  - For non-JSON output when the timestamp represents an Uptime, time is
-    displayed as days, hours, minutes, and seconds from the current
-    time.
-
-  - For JSON output, time is displayed in microseconds that have passed
-    since the Epoch time ( <span style="color: #6a6a6a;"> January 1,
-    1970 </span> <span style="color: #545454;"> at 00:00:00 GMT) </span>
-    .
+- For non-JSON output when the timestamp represents the Last Changed
+  time, time is displayed in actual date and time when the time change
+  occurred
+- For non-JSON output when the timestamp represents an Uptime, time is
+  displayed as days, hours, minutes, and seconds from the current
+  time.
+- For JSON output, time is displayed in microseconds that have passed
+  since the Epoch time (January 1, 1970 at 00:00:00 GMT).
 
 This example shows the difference between the timestamp displays.
 
@@ -827,14 +774,13 @@ once again relative to the start time of the Agent.
 
 {{%/notice%}}
 
-### Exporting NetQ Data</span>
+### Exporting NetQ Data
 
 Data from the NetQ Platform can be exported in a couple of ways:
 
-  - use the `json` option to output command results to JSON format for
-    parsing in other applications
-
-  - use the UI to export data from the full screen cards
+- use the `json` option to output command results to JSON format for
+  parsing in other applications
+- use the UI to export data from the full screen cards
 
 **Example Using the CLI**
 
@@ -857,7 +803,7 @@ You can check the state of BGP on your network with `netq check bgp`:
     ...
 
 When you show the output in JSON format, this same command looks like
-this: <span style="color: #353744;"> </span>
+this:
 
     cumulus@leaf01:~$ netq check bgp json 
     {
@@ -910,27 +856,14 @@ this: <span style="color: #353744;"> </span>
 Open the full screen Switch Inventory card, select the data to export,
 and click **Export**.
 
-{{% imgOld 8 %}}
+{{% imgOld 7 %}}
 
-### Key File Locations</span>
+### Key File Locations
 
-<span style="color: #353744;"> The primary configuration file for all
-Cumulus NetQ tools, </span> `netq.yml` <span style="color: #353744;"> ,
-resides in </span> `/etc/netq` <span style="color: #353744;"> by
-default. </span>
+The primary configuration file for all Cumulus NetQ tools, `netq.yml`, resides in `/etc/netq` by
+default.
 
-<span style="color: #353744;"> Log files are stored in `/var/logs/` by
-default. </span>
+Log files are stored in `/var/logs/` by default.
 
-<span style="color: #353744;"> Refer to [Investigate NetQ
-Issues](/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Investigate-NetQ-Issues)
-for a complete listing of configuration files and logs for use in issue
-resolution. </span>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+Refer to [Investigate NetQ Issues](/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Resolve-Issues/Investigate-NetQ-Issues) for a complete listing of configuration files and logs for use in issue
+resolution.

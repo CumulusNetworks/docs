@@ -57,7 +57,7 @@ sessions:
 ## Configuring BFD
 
 You configure BFD one of two ways: by specifying the configuration in the 
-[PTM `topology.dot` file](/version/cumulus-linux-343/Layer-One-and-Two/Prescriptive-Topology-Manager-PTM),
+[PTM `topology.dot` file](/version/cumulus-linux-343/Layer-One-and-Two/Prescriptive-Topology-Manager-PTM/),
 or using
 [FRRouting](/version/cumulus-linux-343/Layer-Three/FRRouting-Overview/).
 However, the topology file has some limitations:

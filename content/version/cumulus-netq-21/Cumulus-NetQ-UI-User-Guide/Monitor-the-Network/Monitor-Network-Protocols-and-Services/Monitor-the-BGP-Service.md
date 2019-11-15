@@ -1,11 +1,11 @@
 ---
 title: Monitor the BGP Service
 author: Cumulus Networks
-weight: 161
+weight: 147
 aliases:
  - /display/NETQ21/Monitor+the+BGP+Service
- - /pages/viewpage.action?pageId=12321221
-pageID: 12321221
+ - /pages/viewpage.action?pageId=10464593
+pageID: 10464593
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -17,15 +17,14 @@ insight into all aspects of the service. This is accomplished through
 two card workflows, one for the service and one for the session. They
 are described separately here.
 
-## Monitor the BGP Service (All Sessions)</span>
+## Monitor the BGP Service (All Sessions)
 
 With NetQ, you can monitor the number of nodes running the BGP service,
 view switches with the most established and unestablished BGP sessions,
 and view alarms triggered by the BGP service. For an overview and how to
-configure BGP to run in your data center network, refer to [Border
-Gateway Protocol - BGP](/display/NETQ21/Border+Gateway+Protocol+-+BGP).
+configure BGP to run in your data center network, refer to [Border Gateway Protocol - BGP](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/).
 
-### BGP Service Card Workflow</span>
+### BGP Service Card Workflow
 
 The small BGP Service card displays:
 
@@ -35,8 +34,8 @@ The small BGP Service card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -46,8 +45,7 @@ The small BGP Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 2 %}}</p></td>
+<td><p>{{% imgOld 2 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -71,16 +69,14 @@ The small BGP Service card displays:
 
 The medium BGP Service card displays:
 
-<span style="color: #ff0000;"> </span>
-
 {{% imgOld 5 %}}
 
 {{% imgOld 6 %}}
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -94,8 +90,7 @@ The medium BGP Service card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 7 %}}</p></td>
+<td><p>{{% imgOld 7 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -135,8 +130,8 @@ The *Sessions Summary* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -150,8 +145,7 @@ The *Sessions Summary* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 12 %}}</p></td>
+<td><p>{{% imgOld 12 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -192,8 +186,8 @@ The *Alarms* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -207,8 +201,7 @@ The *Alarms* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #333c4e;"> </span></p>
-<p>{{% imgOld 16 %}}</p></td>
+<td><p>{{% imgOld 16 %}}</p></td>
 <td><p>Indicates data is for all sessions of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -245,8 +238,8 @@ sessions, and all alarms.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -260,13 +253,12 @@ sessions, and all alarms.
 <td><p>Network Services | BGP</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 20 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
 <td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <span style="color: #353744;"> </span></p>
-<p>{{% imgOld 21 %}}</p></td>
+<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking {{% imgOld 21 %}}</p></td>
 </tr>
 <tr class="even">
 <td><p>Results</p></td>
@@ -279,21 +271,20 @@ sessions, and all alarms.
 <li><p><strong>Agent</strong></p>
 <ul>
 <li><p>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</p></li>
-<li><p>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</p></li>
-</ul></li>
-<li><p><strong>ASIC</strong></p>
+<li><p>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</p></li></ul></li>
+<li><p><strong>ASIC</strong></p></li>
 <ul>
 <li><p>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</p></li>
 <li><p>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</p></li>
-<li><p>Model Id: Identifier of networking ASIC model. Example values include <span style="color: #222222;"> BCM56960 and BCM56854. </span></p></li>
-<li><p>Ports: Indicates port configuration of the switch. Example values include <span style="color: #222222;"> 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+. </span></p></li>
+<li><p>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</p></li>
+<li><p>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</p></li>
 <li><p>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</p></li>
 </ul></li>
-<li><p><strong>CPU</strong></p>
+<li><p><strong>CPU</strong></p></li>
 <ul>
 <li><p>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</p></li>
-<li><p>Max Freq: Highest rated frequency for CPU. Example values include <span style="color: #222222;"> 2.40 GHz and 1.74 GHz. </span></p></li>
-<li><p>Model: Chip family. Example values include <span style="color: #222222;"> Intel Atom C2538 and Intel Atom C2338. </span></p></li>
+<li><p>Max Freq: Highest rated frequency for CPU. Example values include 2.40 GHz and 1.74 GHz.</p></li>
+<li><p>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</p></li>
 <li><p>Nos: Number of cores. Example values include 2, 4, and 8.</p></li>
 </ul></li>
 <li><p><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</p></li>
@@ -308,8 +299,8 @@ sessions, and all alarms.
 <li><p><strong>Platform</strong></p>
 <ul>
 <li><p>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</p></li>
-<li><p>MAC: System MAC address. Example value: <span style="color: #545454;"> 17:01:AB:EE:C3:F5. </span></p></li>
-<li><p>Model: <span style="color: #222222;"> Manufacturer's model name. Examples values include AS7712-32X and S4048-ON. </span></p></li>
+<li><p>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</p></li>
+<li><p>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON.</p></li>
 <li><p>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</p></li>
 <li><p>Revision: Release version of the platform</p></li>
 <li><p>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</p></li>
@@ -364,14 +355,13 @@ sessions, and all alarms.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 22 %}}</p></td>
+<td><p>{{% imgOld 22 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
 </table>
 
-### View Service Status Summary</span>
+### View Service Status Summary
 
 A summary of the BGP service is available from the Network Services card
 workflow, including the number of nodes running the service, the number
@@ -383,7 +373,7 @@ To view the summary, open the small BGP Service card.
 
 For more detail, select a different size BGP Service card.
 
-### View the Distribution of Sessions and Alarms</span>
+### View the Distribution of Sessions and Alarms
 
 It is useful to know the number of network nodes running the BGP
 protocol over a period of time, as it gives you insight into the amount
@@ -400,7 +390,7 @@ To view these distributions, open the medium BGP Service card.
 If a visual correlation is apparent, you can dig a little deeper with
 the large BGP Service card tabs.
 
-### View Devices with the Most BGP Sessions</span>
+### View Devices with the Most BGP Sessions
 
 You can view the load from BGP on your switches and hosts using the
 large Network Services card. This data enables you to see which switches
@@ -427,11 +417,7 @@ To compare this data with the same data at a previous time:
 2.  Move the new card next to the original card if needed.
 
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking <span style="color: #353744;"> </span>
-    
-    {{% imgOld 26 %}}
-    
-    .
+    the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
 
 4.  Select the time period that you want to compare with the original
     time. We chose *Past Week* for this example.  
@@ -447,7 +433,7 @@ To compare this data with the same data at a previous time:
     determining if more nodes are now running BGP than previously,
     looking for changes in the topology, and so forth.
 
-### View Devices with the Most Unestablished BGP Sessions</span>
+### View Devices with the Most Unestablished BGP Sessions
 
 You can identify switches and hosts that are experiencing difficulties
 establishing BGP sessions; both currently and in the past.
@@ -482,13 +468,12 @@ include:
     If the same switches are consistently indicating the most
     unestablished sessions, you might want to look more carefully at
     those switches using the Switches card workflow to determine
-    probable causes. Refer to [Monitor
-    Switches](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-Switches).
+    probable causes. Refer to [Monitor Switches](../../../Monitor-Switches).
 
   - Click **Show All Sessions** to investigate all BGP sessions with
     events in the full screen card.
 
-### <span id="src-12321221_MonitortheBGPService-DevsMostAlarmsBGP" class="confluence-anchor-link"></span>View Devices with the Most BGP-related Alarms</span>
+### View Devices with the Most BGP-related Alarms
 
 Switches or hosts experiencing a large number of BGP alarms may indicate
 a configuration or performance issue that needs further investigation.
@@ -500,11 +485,7 @@ To view switches with the most BGP alarms:
 
 1.  Open the large BGP Service card.
 
-2.  Hover over the header and click
-    
-    {{% imgOld 32 %}}
-    
-    .
+2.  Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/>.
 
 3.  Select **SWITCHES WITH MOST ALARMS** from the filter above the
     table.  
@@ -533,14 +514,13 @@ include:
     
     {{% imgOld 36 %}}
     
-      
     In this example, the total alarm count has reduced significantly
     from one week ago.
 
   - Click **Show All Sessions** to investigate all BGP sessions with
     events in the full screen card.
 
-### View All BGP Events</span>
+### View All BGP Events
 
 The BGP Network Services card workflow enables you to view all of the
 BGP events in the designated time period.
@@ -557,13 +537,12 @@ To view all BGP events:
 Where to go next depends on what data you see, but a couple of options
 include:
 
-  - Open one of the other full screen tabs in this flow to focus on
-    devices or sessions.
+- Open one of the other full screen tabs in this flow to focus on
+  devices or sessions.
+- Export the data for use in another analytics tool, by clicking
+  **Export** and providing a name for the data file.
 
-  - Export the data for use in another analytics tool, by clicking
-    **Export** and providing a name for the data file.
-
-### View Details for All Devices Running BGP</span>
+### View Details for All Devices Running BGP
 
 You can view all stored attributes of all switches and hosts running BGP
 in your network in the full screen card.
@@ -573,13 +552,9 @@ click the **All Switches** tab.
 
 {{% imgOld 38 %}}
 
-To return to your workbench, click
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner.
 
-{{% imgOld 39 %}}
-
-in the top right corner.
-
-### View Details for All BGP Sessions</span>
+### View Details for All BGP Sessions
 
 You can view all stored attributes of all BGP sessions in your network
 in the full-screen card.
@@ -589,13 +564,9 @@ click the **All Sessions** tab.
 
 {{% imgOld 40 %}}
 
-To return to your workbench, click
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner.
 
-{{% imgOld 41 %}}
-
-in the top right corner.
-
-### Take Actions on Data Displayed in Results List</span>
+### Take Actions on Data Displayed in Results List
 
 In the full screen BGP Service card, you can determine which results are
 displayed in the results list, and which are exported.
@@ -622,14 +593,13 @@ You can perform the following actions on the results list:
 
 To return to original display of results, click the associated tab.
 
-## Monitor a Single BGP Session</span>
+## Monitor a Single BGP Session
 
 With NetQ, you can monitor a single session of the BGP service, view
 session state changes, and compare with alarms occurring at the same
 time, as well as monitor the running BGP configuration and changes to
 the configuration file. For an overview and how to configure BGP to run
-in your data center network, refer to [Border Gateway Protocol -
-BGP](/display/NETQ21/Border+Gateway+Protocol+-+BGP).
+in your data center network, refer to [Border Gateway Protocol - BGP](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/)).
 
 {{%notice info%}}
 
@@ -640,7 +610,7 @@ you can view the medium single session card.
 
 {{%/notice%}}
 
-### <span id="src-12321221_safe-id-TW9uaXRvcnRoZUJHUFNlcnZpY2UtI1RpbWVQZXJHcmFu" class="confluence-anchor-link"></span>Granularity of Data Shown Based on Time Period</span>
+### Granularity of Data Shown Based on Time Period
 
 On the medium and large single BGP session cards, the status of the
 sessions is represented in heat maps stacked vertically; one for
@@ -668,7 +638,7 @@ common time periods in the table showing the resulting time blocks.
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-<span style="color: #36424a;"> BGP Session Card Workflow Summary </span>
+### BGP Session Card Workflow Summary
 
 The small BGP Session card displays:
 
@@ -676,8 +646,8 @@ The small BGP Session card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -687,8 +657,8 @@ The small BGP Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><span style="color: #222222;"> </span></p>
-<p>{{% imgOld 46 %}}</p></td>
+<td><p</p>
+<p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -700,11 +670,9 @@ The small BGP Session card displays:
 <td><p>Hostnames of the two devices in a session. Arrow points from the host to the peer.</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 47 %}}</p>
-, <span style="color: #353744;"> </span>
-<p>{{% imgOld 48 %}}</p>
-</span></td>
+<td><p>{{% imgOld 47 %}}</p>
+, 
+<p>{{% imgOld 48 %}}</p></td>
 <td><p>Current status of the session, either established or not established</p></td>
 </tr>
 </tbody>
@@ -716,8 +684,8 @@ The medium BGP Session card displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -731,7 +699,7 @@ The medium BGP Session card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p>{{% imgOld 50 %}}</p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="18", width="18"/></p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -743,8 +711,7 @@ The medium BGP Session card displays:
 <td><p>Hostnames of the two devices in a session. Arrow points in the direction of the session.</p></td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 51 %}}</p>
+<td><p>{{% imgOld 51 %}}</p>
 ,
 <p>{{% imgOld 52 %}}</p></td>
 <td><p>Current status of the session, either established or not established</p></td>
@@ -755,7 +722,7 @@ The medium BGP Session card displays:
 </tr>
 <tr class="odd">
 <td><p>Session State Changes Chart</p></td>
-<td><p>Heat map of the state of the given session over the given time period. The status is sampled at a rate consistent with the time period. For example, for a 24 hour period, a status is collected every hour. Refer to <a href="#src-12321221_MonitortheBGPService-TimePerGran">Granularity of Data Shown Based on Time Period</a>.</p></td>
+<td><p>Heat map of the state of the given session over the given time period. The status is sampled at a rate consistent with the time period. For example, for a 24 hour period, a status is collected every hour. Refer to <a href="http://docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-BGP-Service/#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a>.</p></td>
 </tr>
 <tr class="even">
 <td><p>Peer Name</p></td>
@@ -780,11 +747,14 @@ The large BGP Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-<span style="color: #000000;"> </span>
-
 {{% imgOld 53 %}}
 
 <table class="confluenceTable">
+
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
 
 <thead class=" ">
 
@@ -833,13 +803,13 @@ card sizes
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-{{% imgOld 54 %}}
+<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="18", width="18"/>
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-Indicates data is for a single session of a Network Service or Protocol
+Indicates data is for all sessions of a Network Service or Protocol
 
 </td>
 
@@ -907,8 +877,7 @@ Session State Changes Chart
 Heat map of the state of the given session over the given time period.
 The status is sampled at a rate consistent with the time period. For
 example, for a 24 hour period, a status is collected every hour. Refer
-to [Granularity of Data Shown Based on Time
-Period](#src-12321221_MonitortheBGPService-TimePerGran) .
+to <a href="http://docs.cumulusnetworks.com/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Protocols-and-Services/Monitor-the-BGP-Service/#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a>.
 
 </td>
 
@@ -1070,8 +1039,8 @@ The *Configuration File Evolution* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1085,24 +1054,22 @@ The *Configuration File Evolution* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
+<td><p</p>
 <p>{{% imgOld 58 %}}</p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
 <td><p>Title</p></td>
-<td><p>(Network Services | BGP Session) <strong>Configuration File Evolution</strong></p></td>
+<td><p>(Network Services | CLAG Session) <strong>Configuration File Evolution</strong></p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 59 %}}</p></td>
-<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on <span style="color: #353744;"> </span></p>
+<td><p>{{% imgOld 59 %}}</p></td>
+<td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click on </p>
 <p>{{% imgOld 60 %}}</p>
 to open associated device card.</td>
 </tr>
 <tr class="odd">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 61 %}}</p>
+<td><p>{{% imgOld 61 %}}</p>
 ,
 <p>{{% imgOld 62 %}}</p></td>
 <td><p>Indication of host role, primary</p>
@@ -1129,8 +1096,8 @@ all events.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1158,10 +1125,9 @@ all events.
 <li><p><strong>Evpn Pfx Rcvd</strong>: Address prefix for EVPN traffic. Examples include 115, 35.</p></li>
 <li><p><strong>Ipv4, and Ipv6 Pfx Rcvd</strong>: Address prefix for IPv4 or IPv6 traffic. Examples include 31, 14, 12.</p></li>
 <li><p><strong>Last Reset Time</strong>: Time at which the session was last established or reset</p>
-<ul>
 <li><p><strong>Objid</strong>: Object identifier for service</p></li>
-</ul>
-<p><strong>OPID</strong>: Customer identifier. This is always zero.<strong>Peer</strong></p>
+<li><p><strong>OPID</strong>: Customer identifier. This is always zero.</p></li>
+<li><p><strong>Peer</strong></p>
 <ul>
 <li><p>ASN: Autonomous System Number for peer device</p></li>
 <li><p>Hostname: User-defined name for peer device</p></li>
@@ -1194,14 +1160,13 @@ all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="even">
-<td><p><span style="color: #353744;"> </span></p>
-<p>{{% imgOld 66 %}}</p></td>
+<td><p>{{% imgOld 66 %}}</p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
 </table>
 
-### View Session Status Summary</span>
+### View Session Status Summary
 
 A summary of the BGP session is available from the BGP Session card
 workflow, showing the node and its peer and current status.
@@ -1223,7 +1188,7 @@ To view the summary:
     
     {{% imgOld 68 %}}
 
-### View BGP Session State Changes</span>
+### View BGP Session State Changes
 
 You can view the state of a given BGP session from the medium and large
 BGP Session Network Service cards. For a given time period, you can
@@ -1267,7 +1232,7 @@ hostname, and router id, VRF, and Tx/Rx families identifying the session
 in more detail. The Connection Drop Count gives you a sense of the
 session performance.
 
-### View Changes to the BGP Service Configuration File</span>
+### View Changes to the BGP Service Configuration File
 
 Each time a change is made to the configuration file for the BGP
 service, NetQ logs the change and enables you to compare it with the
@@ -1278,11 +1243,7 @@ To view the configuration file changes:
 
 1.  Open the large BGP Session card.
 
-2.  Hover over the card and click
-    
-    {{% imgOld 71 %}}
-    
-    to open the **BGP Configuration File Evolution** tab.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/> to open the **BGP Configuration File Evolution** tab.
 
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
@@ -1301,7 +1262,7 @@ To view the configuration file changes:
     
     {{% imgOld 74 %}}
 
-### View All BGP Session Details</span>
+### View All BGP Session Details
 
 You can view all stored attributes of all of the BGP sessions associated
 with the two devices on this card.
@@ -1311,13 +1272,9 @@ click the **All BGP Sessions** tab.
 
 {{% imgOld 75 %}}
 
-To return to your workbench, click
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner.
 
-{{% imgOld 76 %}}
-
-in the top right corner.
-
-### View All Events</span>
+### View All Events
 
 You can view all of the alarm and info events for the two devices on
 this card.
@@ -1327,16 +1284,4 @@ the **All Events** tab.
 
 {{% imgOld 77 %}}
 
-To return to your workbench, click
-
-{{% imgOld 78 %}}
-
-in the top right corner.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner.

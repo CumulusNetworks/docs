@@ -1,11 +1,11 @@
 ---
 title: Manage NetQ Agents
 author: Cumulus Networks
-weight: 49
+weight: 93
 aliases:
  - /display/NETQ21/Manage+NetQ+Agents
- - /pages/viewpage.action?pageId=12321061
-pageID: 12321061
+ - /pages/viewpage.action?pageId=10464119
+pageID: 10464119
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -14,8 +14,7 @@ siteSlug: cumulus-netq-21
 At various points in time, you might want to change which network nodes
 are being monitored by NetQ or look more closely at a network node for
 troubleshooting purposes. Adding the NetQ Agent to a switch or host is
-described in [Install
-NetQ](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
+described in [Install NetQ](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Install-NetQ).
 Disabling an Agent is described here and managing NetQ Agent logging is
 also presented.
 
@@ -35,15 +34,17 @@ and are run from the switch or host where the NetQ Agent resides.
 
 The agent configuration commands include:
 
-    netq config add agent frr-monitor [<text-frr-docker-name>]
-    netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
-    netq config add agent loglevel [debug|error|info|warning]
-    netq config add agent sensors
-    netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
-    netq config (start|stop|status|restart) agent
-    netq config del agent (agent-url|frr-monitor|kubernetes-monitor|loglevel|sensors|server)
-    netq config show agent [frr-monitor|kubernetes-monitor|loglevel|sensors] [json]
-
+```
+netq config add agent frr-monitor [<text-frr-docker-name>]
+netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
+netq config add agent loglevel [debug|error|info|warning]
+netq config add agent sensors
+netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
+netq config (start|stop|status|restart) agent
+netq config del agent (agent-url|frr-monitor|kubernetes-monitor|loglevel|sensors|server)
+netq config show agent [frr-monitor|kubernetes-monitor|loglevel|sensors] [json]
+```
+ 
 This example shows how to specify the IP address and optionally a
 specific port on the NetQ Platform where agents should send their data.
 
@@ -95,12 +96,12 @@ local configuration file.
 To decommission a node from the NetQ database:
 
 1.  On the given node, stop and disable the NetQ Agent service.
-
-        cumulus@switch:~$ sudo systemctl stop netq-agent
+    
+        cumulus@switch:~$ sudo systemctl stop netq-agent 
         cumulus@switch:~$ sudo systemctl disable netq-agent
 
 2.  On the NetQ Appliance or Platform, decommission the node.
-
+    
         cumulus@netq-appliance:~$ netq decommission <hostname>
 
 ## Configure Logging for a NetQ Agent
@@ -113,12 +114,12 @@ logging you want to configure. You can configure the logging level to be
 the same for every NetQ Agent, or selectively increase or decrease the
 logging level for a NetQ Agent on a problematic node.
 
-| Logging Level | Description |
-| ------------- | ----------- |
-| debug         | Sends notifications for all debugging-related, informational, warning, and error messages. |
-| info          | Sends notifications for informational, warning, and error messages (default). |
-| warning       | Sends notifications for warning and error messages. |
-| error         | Sends notifications for errors messages. |
+| Logging Level | Description  |
+| ------------- | --------------------- |
+| debug        | Sends notifications for all debugging-related, informational, warning, and error messages.  |
+| info            | Sends notifications for  informational, warning, and error messages (default).  |
+| warning     | Sends notifications for  warning and error messages.    |
+| error          | Sends notifications for  errors messages.    |
 
 You can view the NetQ Agent log directly. Messages have the following
 structure:
@@ -156,30 +157,30 @@ logging.
 **Example: Configure debug-level logging**
 
 1.  Set the logging level to *debug.*
-
+    
         cumulus@switch:~$ netq config add agent loglevel debug
 
 2.  Restart the NetQ Agent.
-
+    
         cumulus@switch:~$ netq config restart agent
 
 3.  Optionally, verify connection to the NetQ platform by viewing the
     `netq-agent.log` messages.
 
-**Example: Configure warning-level logging**
+**Example: Configure warning-level logging** 
 
-    cumulus@switch:~$ netq config add agent loglevel warning
-    cumulus@switch:~$ netq config restart agent
+    cumulus@switch:~$ netq config add agent loglevel warning 
+    cumulus@switch:~$ netq config restart agent 
 
 **Example: Disable Agent Logging**
 
 If you have set the logging level to
 *debug* for troubleshooting, it is recommended that you either change
 the logging level to a less heavy mode or completely disable agent
-logging altogether when you are finished troubleshooting.
+logging altogether when you are finished troubleshooting. 
 
 To change the logging level, run the
-following command and restart the agent service:
+following command and restart the agent service: 
 
     cumulus@switch:~$ netq config add agent loglevel <LOG_LEVEL> 
     cumulus@switch:~$ netq config restart agent
@@ -188,12 +189,3 @@ To disable all logging:
 
     cumulus@switch:~$ netq config del agent loglevel 
     cumulus@switch:~$ netq config restart agent
-
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

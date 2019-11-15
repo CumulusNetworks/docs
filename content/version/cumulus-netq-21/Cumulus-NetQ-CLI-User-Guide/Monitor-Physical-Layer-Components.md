@@ -1,11 +1,11 @@
 ---
 title: Monitor Physical Layer Components
 author: Cumulus Networks
-weight: 37
+weight: 81
 aliases:
  - /display/NETQ21/Monitor+Physical+Layer+Components
- - /pages/viewpage.action?pageId=12321045
-pageID: 12321045
+ - /pages/viewpage.action?pageId=10464099
+pageID: 10464099
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -15,24 +15,26 @@ With NetQ, a network administrator can monitor OSI Layer 1 physical
 components on network devices, including interfaces, ports, links, and
 peers. NetQ provides the ability to:
 
-  - Manage physical inventory: view the performance and status of
-    various components of a switch or host server
-  - Validate configurations: verify the configuration of network peers
-    and ports
+- Manage physical inventory: view the performance and status of
+  various components of a switch or host server
+- Validate configurations: verify the configuration of network peers
+  and ports
 
 It helps answer questions such as:
 
-  - Are any individual or bonded links down?
-  - Are any links flapping?
-  - Is there a link mismatch anywhere in my network?
-  - Which interface ports are empty?
-  - Which transceivers are installed?
-  - What is the peer for a given port?
+- Are any individual or bonded links down?
+- Are any links flapping?
+- Is there a link mismatch anywhere in my network?
+- Which interface ports are empty?
+- Which transceivers are installed?
+- What is the peer for a given port?
 
-NetQ uses [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol) (Link
-Layer Discovery Protocol) to collect port information. NetQ can also
-identify peer ports connected to DACs ( Direct Attached Cables) and AOCs
-(Active Optical Cables) without using LLDP, even if the link is not UP.
+NetQ uses
+[LLDP](https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/)
+(Link Layer Discovery Protocol) to collect port information. NetQ can
+also identify peer ports connected to DACs (Direct Attached Cables) and
+AOCs (Active Optical Cables) without using LLDP, even if the link is not
+UP.
 
 ## Monitor Physical Layer Inventory
 
@@ -44,15 +46,13 @@ vendor, per part number and so forth. NetQ enables you to view the
 current status and the status an earlier point in time. From this
 information, you can, among other things:
 
-  - determine which ports are empty versus which ones have cables
-    plugged in and thereby validate expected connectivity
-
-  - audit transceiver and cable components used by vendor, giving you
-    insights for estimated replacement costs, repair costs, overall
-    costs, and so forth to improve your maintenance and purchasing
-    processes
-
-  - identify changes in your physical layer, and when they occurred
+- determine which ports are empty versus which ones have cables
+  plugged in and thereby validate expected connectivity
+- audit transceiver and cable components used by vendor, giving you
+  insights for estimated replacement costs, repair costs, overall
+  costs, and so forth to improve your maintenance and purchasing
+  processes
+- identify changes in your physical layer, and when they occurred
 
 The `netq show interfaces physical` command is used to obtain the
 information from the devices. Its syntax is:
@@ -65,11 +65,11 @@ information from the devices. Its syntax is:
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
+- d: day(s)
+- h: hour(s)
+- m: minute(s)
+- s: second(s)
+- now
 
 For time ranges, the `<text-time>` is the most recent time and the
 `<text-endtime>` is the oldest time. The values do not have to have the
@@ -85,80 +85,78 @@ characteristics. You can also view the cable information for a given
 device by adding a hostname to the `show` command. This example shows
 cable information and status for all interface ports on all devices.
 
-    cumulus@switch:~$ netq show interfaces physical
-    Matching cables records:
-    Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
-    ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
-    edge01            eth0                      up         1G         on      RJ45      n/a                  n/a              Fri Jun  7 00:42:52 2019
-    edge01            eth1                      down       1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:42:52 2019
-    edge01            eth2                      down       1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:42:52 2019
-    edge01            vagrant                   down       1G         on      RJ45      n/a                  n/a              Fri Jun  7 00:42:52 2019
-    exit01            eth0                      up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:42:52 2019
-    exit01            swp1                      down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:03 2019
-    exit01            swp44                     up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:51:28 2019
-    exit01            swp45                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:03 2019
-    exit01            swp46                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:03 2019
-    exit01            swp47                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:03 2019
-    exit01            swp48                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:03 2019
-    exit01            swp49                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:03 2019
-    exit01            swp50                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:42:53 2019
-    exit01            swp51                     up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:51:28 2019
-    exit01            swp52                     up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:51:28 2019
-    exit01            vagrant                   down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:03 2019
-    exit02            eth0                      up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:42:51 2019
-    exit02            swp1                      down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:01 2019
-    exit02            swp44                     up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:51:28 2019
-    exit02            swp45                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:01 2019
-    exit02            swp46                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:01 2019
-    exit02            swp47                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:01 2019
-    exit02            swp48                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:01 2019
-    exit02            swp49                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:01 2019
-    exit02            swp50                     down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:01 2019
-    exit02            swp51                     up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:51:28 2019
-    exit02            swp52                     up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:51:28 2019
-    exit02            vagrant                   down       Unknown    off     RJ45      n/a                  n/a              Fri Jun  7 00:43:01 2019
-    leaf01            eth0                      up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:43:02 2019
-    leaf01            swp1                      up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:52:03 2019
-    leaf01            swp2                      up         1G         off     RJ45      n/a                  n/a              Fri Jun  7 00:52:03 2019
+    exit01            eth0                      up         1G         off     RJ45      n/a                  n/a              Thu Feb  7 18:31:52 2019
+    exit01            swp1                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:52 2019
+    exit01            swp2                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:52 2019
+    exit01            swp3                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:52 2019
+    exit01            swp4                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:52 2019
+    exit01            swp5                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:52 2019
+    exit01            swp6                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:52 2019
+    exit01            swp7                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:52 2019
+    exit02            eth0                      up         1G         off     RJ45      n/a                  n/a              Thu Feb  7 18:31:57 2019
+    exit02            swp1                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:57 2019
+    exit02            swp2                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:57 2019
+    exit02            swp3                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:57 2019
+    exit02            swp4                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:57 2019
+    exit02            swp5                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:57 2019
+    exit02            swp6                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:57 2019
+    exit02            swp7                      up         10G        off     RJ45      n/a                  n/a              Thu Feb  7 18:31:57 2019
+    firewall01        eth0                      up         Unknown    off     empty     n/a                  n/a              Thu Feb  7 18:31:25 2019
+    firewall01        swp1                      up         10G        off     empty     n/a                  n/a              Thu Feb  7 18:31:25 2019
+    firewall01        swp2                      up         10G        off     empty     n/a                  n/a              Thu Feb  7 18:31:25 2019
+    firewall01        swp3                      up         10G        off     empty     n/a                  n/a              Thu Feb  7 18:31:25 2019
+    firewall01        swp4                      up         10G        off     empty     n/a                  n/a              Thu Feb  7 18:31:25 2019
+    firewall02        eth0                      up         n/a        n/a     empty     n/a                  n/a              Thu Feb  7 18:31:30 2019
+    firewall02        swp1                      up         n/a        n/a     empty     n/a                  n/a              Thu Feb  7 18:31:30 2019
+    firewall02        swp2                      up         n/a        n/a     empty     n/a                  n/a              Thu Feb  7 18:31:30 2019
+    firewall02        swp3                      up         n/a        n/a     empty     n/a                  n/a              Thu Feb  7 18:31:30 2019
+    firewall02        swp4                      up         n/a        n/a     empty     n/a                  n/a              Thu Feb  7 18:31:30 2019
+    server11          eth0                      up         Unknown    off     empty     n/a                  n/a              Thu Feb  7 18:31:42 2019
+    server11          swp1                      up         10G        off     empty     n/a                  n/a              Thu Feb  7 18:31:42 2019
+    server11          swp2                      up         10G        off     empty     n/a                  n/a              Thu Feb  7 18:31:42 2019
+    server11          swp3                      up         10G        off     empty     n/a                  n/a              Thu Feb  7 18:31:42 2019
+    server11          swp4                      up         10G        off     empty     n/a                  n/a              Thu Feb  7 18:31:42 2019
+    server12          eth0                      up         n/a        n/a     empty     n/a                  n/a              Thu Feb  7 18:31:47 2019
+     
     ...
 
-### View Detailed Module Information for a Given Device</span>
+### View Detailed Module Information for a Given Device
 
 You can view detailed information about the transceiver modules on each
 interface port, including serial number, transceiver type, connector and
 attached cable length. You can also view the module information for a
 given device by adding a hostname to the `show` command. This example
-shows the detailed module information for the interface ports on *leaf02*
+shows the detailed module information for the interface ports on leaf02
 switch.
 
-    cumulus@switch:~$ netq leaf02 show interfaces physical module
+    cumulus@switch:~$ netq leaf02 show interfaces physical module 
     Matching cables records are:
     Hostname          Interface                 Module    Vendor               Part No          Serial No                 Transceiver      Connector        Length Last Changed
      
     ----------------- ------------------------- --------- -------------------- ---------------- ------------------------- ---------------- ---------------- ------ -------------------------
-    leaf02            swp1                      RJ45      n/a                  n/a              n/a                       n/a              n/a              n/a    Thu Feb  7 22:49:37 2019
-    leaf02            swp2                      SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     Thu Feb  7 22:49:37 2019
-                                                                                                                          er Passive,Twin
-                                                                                                                          Axial Pair (TW)
-    leaf02            swp47                     QSFP+     CISCO                AFBR-7IER05Z-CS1 AVE1823402U               n/a              n/a              5m     Thu Feb  7 22:49:37 2019
-    leaf02            swp48                     QSFP28    TE Connectivity      2231368-1        15250052                  100G Base-CR4 or n/a              3m     Thu Feb  7 22:49:37 2019
-                                                                                                                          25G Base-CR CA-L
-                                                                                                                          ,40G Base-CR4               
-    leaf02            swp49                     SFP       OEM                  SFP-10GB-LR      ACSLR130408               10G Base-LR      LC               10km,  Thu Feb  7 22:49:37 2019
-                                                                                                                                                            10000m
-    leaf02            swp50                     SFP       JDSU                 PLRXPLSCS4322N   CG03UF45M                 10G Base-SR,Mult LC               80m,   Thu Feb  7 22:49:37 2019
-                                                                                                                          imode,                            30m,  
-                                                                                                                          50um (M5),Multim                  300m  
-                                                                                                                          ode,            
-                                                                                                                          62.5um (M6),Shor
-                                                                                                                          twave laser w/o
-                                                                                                                          OFC (SN),interme
-                                                                                                                          diate distance (
-                                                                                                                          I)              
-    leaf02            swp51                     SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     Thu Feb  7 22:49:37 2019
-                                                                                                                          er Passive,Twin
-                                                                                                                          Axial Pair (TW)
-    leaf02            swp52                     SFP       FINISAR CORP.        FCLF8522P2BTL    PTN1VH2                   1000Base-T       RJ45             100m   Thu Feb  7 22:49:37 2019
+    leaf02              swp1                      RJ45      n/a                  n/a              n/a                       n/a              n/a              n/a    Thu Feb  7 22:49:37 2019
+    leaf02          swp2                      SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     Thu Feb  7 22:49:37 2019
+                                                                                                                        er Passive,Twin 
+                                                                                                                        Axial Pair (TW) 
+    leaf02          swp47                     QSFP+     CISCO                AFBR-7IER05Z-CS1 AVE1823402U               n/a              n/a              5m     Thu Feb  7 22:49:37 2019
+    leaf02          swp48                     QSFP28    TE Connectivity      2231368-1        15250052                  100G Base-CR4 or n/a              3m     Thu Feb  7 22:49:37 2019
+                                                                                                                            25G Base-CR CA-L
+                                                                                                                            ,40G Base-CR4               
+    leaf02          swp49                     SFP       OEM                  SFP-10GB-LR      ACSLR130408               10G Base-LR      LC               10km,  Thu Feb  7 22:49:37 2019
+                                                                                                                                                              10000m
+    leaf02          swp50                     SFP       JDSU                 PLRXPLSCS4322N   CG03UF45M                 10G Base-SR,Mult LC               80m,   Thu Feb  7 22:49:37 2019
+                                                                                                                        imode,                            30m,  
+                                                                                                                        50um (M5),Multim                  300m  
+                                                                                                                        ode,            
+                                                                                                                        62.5um (M6),Shor
+                                                                                                                            twave laser w/o 
+                                                                                                                        OFC (SN),interme
+                                                                                                                        diate distance (
+                                                                                                                        I)              
+    leaf02          swp51                     SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     Thu Feb  7 22:49:37 2019
+                                                                                                                        er Passive,Twin 
+                                                                                                                        Axial Pair (TW) 
+    leaf02          swp52                     SFP       FINISAR CORP.        FCLF8522P2BTL    PTN1VH2                   1000Base-T       RJ45             100m   Thu Feb  7 22:49:37 2019
 
 ### View Ports without Cables Connected for a Given Device
 
@@ -168,12 +166,12 @@ upgrades. You can also view the cable information for a given device by
 adding a hostname to the `show` command. This example shows the ports
 that are empty on leaf01 switch.
 
-    cumulus@switch:~$ netq leaf01 show interfaces physical empty
+    cumulus@switch:~$ netq leaf01 show interfaces physical empty 
     Matching cables records are:
     Hostname         Interface State Speed      AutoNeg Module    Vendor           Part No          Last Changed
     ---------------- --------- ----- ---------- ------- --------- ---------------- ---------------- ------------------------
-    leaf01           swp49     down  Unknown    on      empty     n/a              n/a              Thu Feb  7 22:49:37 2019
-    leaf01           swp52     down  Unknown    on      empty     n/a              n/a              Thu Feb  7 22:49:37 2019
+    leaf01         swp49     down  Unknown    on      empty     n/a              n/a              Thu Feb  7 22:49:37 2019
+    leaf01             swp52     down  Unknown    on      empty     n/a              n/a              Thu Feb  7 22:49:37 2019
 
 ### View Ports with Cables Connected for a Given Device
 
@@ -185,7 +183,7 @@ keyword, you can view which interface ports had cables connected at a
 previous time. This example shows the ports of *leaf01* switch that have
 attached cables.
 
-    cumulus@switch:~$ netq leaf01 show interfaces physical plugged
+    cumulus@switch:~$ netq leaf01 show interfaces physical plugged 
     Matching cables records:
     Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
     ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
@@ -233,19 +231,19 @@ for possible failure issues, upgrades, or cost reasons. This example
 first determines which models (part numbers) exist on all of the devices
 and then those devices with a part number of QSFP-H40G-CU1M installed.
 
-    cumulus@switch:~$ netq show interfaces physical model
+    cumulus@switch:~$ netq show interfaces physical model 
         2231368-1         :  2231368-1
         624400001         :  624400001
         QSFP-H40G-CU1M    :  QSFP-H40G-CU1M
         QSFP-H40G-CU1MUS  :  QSFP-H40G-CU1MUS
         n/a               :  n/a
      
-    cumulus@switch:~$ netq show interfaces physical model QSFP-H40G-CU1M
+    cumulus@switch:~$ netq show interfaces physical model QSFP-H40G-CU1M 
     Matching cables records:
     Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
     ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
-    leaf01            swp50                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
-    leaf02            swp52                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
+    leaf01              swp50                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
+    leaf02          swp52                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
 
 ### View Changes to Physical Components
 
@@ -263,29 +261,29 @@ scenarios for all devices in the network.
     Matching cables records:
     Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
     ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
-    leaf01            swp1                      up         1G         off     SFP       AVAGO                AFBR-5715PZ-JU1  Thu Feb  7 18:34:20 2019
-    leaf01            swp2                      up         10G        off     SFP       OEM                  SFP-10GB-LR      Thu Feb  7 18:34:20 2019
-    leaf01            swp47                     up         10G        off     SFP       JDSU                 PLRXPLSCS4322N   Thu Feb  7 18:34:20 2019
-    leaf01            swp48                     up         40G        off     QSFP+     Mellanox             MC2210130-002    Thu Feb  7 18:34:20 2019
-    leaf01            swp49                     down       10G        off     empty     n/a                  n/a              Thu Feb  7 18:34:20 2019
-    leaf01            swp50                     up         1G         off     SFP       FINISAR CORP.        FCLF8522P2BTL    Thu Feb  7 18:34:20 2019
-    leaf01            swp51                     up         1G         off     SFP       FINISAR CORP.        FTLF1318P3BTL    Thu Feb  7 18:34:20 2019
-    leaf01            swp52                     down       1G         off     SFP       CISCO-AGILENT        QFBR-5766LP      Thu Feb  7 18:34:20 2019
-    leaf02            swp1                      up         1G         on      RJ45      n/a                  n/a              Thu Feb  7 18:34:20 2019
-    leaf02            swp2                      up         10G        off     SFP       Mellanox             MC2609130-003    Thu Feb  7 18:34:20 2019
-    leaf02            swp47                     up         10G        off     QSFP+     CISCO                AFBR-7IER05Z-CS1 Thu Feb  7 18:34:20 2019
-    leaf02            swp48                     up         10G        off     QSFP+     Mellanox             MC2609130-003    Thu Feb  7 18:34:20 2019
-    leaf02            swp49                     up         10G        off     SFP       FIBERSTORE           SFP-10GLR-31     Thu Feb  7 18:34:20 2019
-    leaf02            swp50                     up         1G         off     SFP       OEM                  SFP-GLC-T        Thu Feb  7 18:34:20 2019
-    leaf02            swp51                     up         10G        off     SFP       Mellanox             MC2609130-003    Thu Feb  7 18:34:20 2019
-    leaf02            swp52                     up         1G         off     SFP       FINISAR CORP.        FCLF8522P2BTL    Thu Feb  7 18:34:20 2019
-    leaf03            swp1                      up         10G        off     SFP       Mellanox             MC2609130-003    Thu Feb  7 18:34:20 2019
-    leaf03            swp2                      up         10G        off     SFP       Mellanox             MC3309130-001    Thu Feb  7 18:34:20 2019
-    leaf03            swp47                     up         10G        off     SFP       CISCO-AVAGO          AFBR-7IER05Z-CS1 Thu Feb  7 18:34:20 2019
-    leaf03            swp48                     up         10G        off     SFP       Mellanox             MC3309130-001    Thu Feb  7 18:34:20 2019
-    leaf03            swp49                     down       1G         off     SFP       FINISAR CORP.        FCLF8520P2BTL    Thu Feb  7 18:34:20 2019
-    leaf03            swp50                     up         1G         off     SFP       FINISAR CORP.        FCLF8522P2BTL    Thu Feb  7 18:34:20 2019
-    leaf03            swp51                     up         10G        off     QSFP+     Mellanox             MC2609130-003    Thu Feb  7 18:34:20 2019
+    leaf01          swp1                      up         1G         off     SFP       AVAGO                AFBR-5715PZ-JU1  Thu Feb  7 18:34:20 2019
+    leaf01          swp2                      up         10G        off     SFP       OEM                  SFP-10GB-LR      Thu Feb  7 18:34:20 2019
+    leaf01            swp47                       up         10G        off     SFP       JDSU                 PLRXPLSCS4322N   Thu Feb  7 18:34:20 2019
+    leaf01              swp48                     up         40G        off     QSFP+     Mellanox             MC2210130-002    Thu Feb  7 18:34:20 2019
+    leaf01              swp49                     down       10G        off     empty     n/a                  n/a              Thu Feb  7 18:34:20 2019
+    leaf01              swp50                     up         1G         off     SFP       FINISAR CORP.        FCLF8522P2BTL    Thu Feb  7 18:34:20 2019
+    leaf01          swp51                     up         1G         off     SFP       FINISAR CORP.        FTLF1318P3BTL    Thu Feb  7 18:34:20 2019
+    leaf01          swp52                     down       1G         off     SFP       CISCO-AGILENT        QFBR-5766LP      Thu Feb  7 18:34:20 2019
+    leaf02          swp1                      up         1G         on      RJ45      n/a                  n/a              Thu Feb  7 18:34:20 2019
+    leaf02          swp2                      up         10G        off     SFP       Mellanox             MC2609130-003    Thu Feb  7 18:34:20 2019
+    leaf02          swp47                     up         10G        off     QSFP+     CISCO                AFBR-7IER05Z-CS1 Thu Feb  7 18:34:20 2019
+    leaf02          swp48                     up         10G        off     QSFP+     Mellanox             MC2609130-003    Thu Feb  7 18:34:20 2019
+    leaf02          swp49                     up         10G        off     SFP       FIBERSTORE           SFP-10GLR-31     Thu Feb  7 18:34:20 2019
+    leaf02          swp50                     up         1G         off     SFP       OEM                  SFP-GLC-T        Thu Feb  7 18:34:20 2019
+    leaf02          swp51                     up         10G        off     SFP       Mellanox             MC2609130-003    Thu Feb  7 18:34:20 2019
+    leaf02          swp52                     up         1G         off     SFP       FINISAR CORP.        FCLF8522P2BTL    Thu Feb  7 18:34:20 2019
+    leaf03          swp1                      up         10G        off     SFP       Mellanox             MC2609130-003    Thu Feb  7 18:34:20 2019
+    leaf03          swp2                      up         10G        off     SFP       Mellanox             MC3309130-001    Thu Feb  7 18:34:20 2019
+    leaf03          swp47                     up         10G        off     SFP       CISCO-AVAGO          AFBR-7IER05Z-CS1 Thu Feb  7 18:34:20 2019
+    leaf03          swp48                     up         10G        off     SFP       Mellanox             MC3309130-001    Thu Feb  7 18:34:20 2019
+    leaf03          swp49                     down       1G         off     SFP       FINISAR CORP.        FCLF8520P2BTL    Thu Feb  7 18:34:20 2019
+    leaf03          swp50                     up         1G         off     SFP       FINISAR CORP.        FCLF8522P2BTL    Thu Feb  7 18:34:20 2019
+    leaf03              swp51                     up         10G        off     QSFP+     Mellanox             MC2609130-003    Thu Feb  7 18:34:20 2019
     ...
     oob-mgmt-server   swp1                      up         1G         off     RJ45      n/a                  n/a              Thu Feb  7 18:34:20 2019
     oob-mgmt-server   swp2                      up         1G         off     RJ45      n/a                  n/a              Thu Feb  7 18:34:20 2019
@@ -294,17 +292,17 @@ scenarios for all devices in the network.
     Matching cables records:
     Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
     ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
-    leaf01            swp1                      up         1G         off     SFP       AVAGO                AFBR-5715PZ-JU1  Thu Feb  7 18:34:20 2019
-    leaf01            swp2                      up         10G        off     SFP       OEM                  SFP-10GB-LR      Thu Feb  7 18:34:20 2019
-    leaf01            swp47                     up         10G        off     SFP       JDSU                 PLRXPLSCS4322N   Thu Feb  7 18:34:20 2019
-    leaf01            swp48                     up         40G        off     QSFP+     Mellanox             MC2210130-002    Thu Feb  7 18:34:20 2019
-    leaf01            swp49                     down       10G        off     empty     n/a                  n/a              Thu Feb  7 18:34:20 2019
-    leaf01            swp50                     up         1G         off     SFP       FINISAR CORP.        FCLF8522P2BTL    Thu Feb  7 18:34:20 2019
-    leaf01            swp51                     up         1G         off     SFP       FINISAR CORP.        FTLF1318P3BTL    Thu Feb  7 18:34:20 2019
-    leaf01            swp52                     down       1G         off     SFP       CISCO-AGILENT        QFBR-5766LP      Thu Feb  7 18:34:20 2019
+    leaf01          swp1                      up         1G         off     SFP       AVAGO                AFBR-5715PZ-JU1  Thu Feb  7 18:34:20 2019
+    leaf01          swp2                      up         10G        off     SFP       OEM                  SFP-10GB-LR      Thu Feb  7 18:34:20 2019
+    leaf01            swp47                       up         10G        off     SFP       JDSU                 PLRXPLSCS4322N   Thu Feb  7 18:34:20 2019
+    leaf01              swp48                     up         40G        off     QSFP+     Mellanox             MC2210130-002    Thu Feb  7 18:34:20 2019
+    leaf01              swp49                     down       10G        off     empty     n/a                  n/a              Thu Feb  7 18:34:20 2019
+    leaf01              swp50                     up         1G         off     SFP       FINISAR CORP.        FCLF8522P2BTL    Thu Feb  7 18:34:20 2019
+    leaf01          swp51                     up         1G         off     SFP       FINISAR CORP.        FTLF1318P3BTL    Thu Feb  7 18:34:20 2019
+    leaf01          swp52                     down       1G         off     SFP       CISCO-AGILENT        QFBR-5766LP      Thu Feb  7 18:34:20 2019
     ...
      
-    cumulus@switch:~$ netq show events type interfaces-physical between 0s and 5h
+    cumulus@switch:~$ netq show events type interfaces-physical between 0s and 5h 
     No matching cables records found
 
 ## Validate Physical Layer Configuration
@@ -324,29 +322,29 @@ You can validate peer connections for all devices in your network or for
 a specific device or port. This example shows the peer hosts and their
 status for leaf03 switch.
 
-```
+``` 
 cumulus@switch:~$ netq leaf03 show interfaces physical peer
 Matching cables records:
 Hostname          Interface                 Peer Hostname     Peer Interface            State      Message
 ----------------- ------------------------- ----------------- ------------------------- ---------- -----------------------------------
-leaf03            swp1                      oob-mgmt-switch   swp7                      up                                
-leaf03            swp2                                                                  down       Peer port unknown                             
-leaf03            swp47                     leaf04            swp47                     up                                
-leaf03            swp48                     leaf04            swp48                     up              
-leaf03            swp49                     leaf04            swp49                     up                                
-leaf03            swp50                     leaf04            swp50                     up                                
-leaf03            swp51                     exit01            swp51                     up                                
-leaf03            swp52                                                                 down       Port cage empty                                
+leaf03          swp1                      oob-mgmt-switch   swp7                      up                                
+leaf03          swp2                                                                  down       Peer port unknown                             
+leaf03          swp47                     leaf04            swp47                     up                                
+leaf03          swp48                     leaf04            swp48                     up              
+leaf03          swp49                     leaf04            swp49                     up                                
+leaf03          swp50                     leaf04            swp50                     up                                
+leaf03          swp51                     exit01            swp51                     up                                
+leaf03          swp52                                                                 down       Port cage empty                                
 ```
 
 This example shows the peer data for a specific interface port.
 
-```
-cumulus@switch:~$ netq leaf01 show interfaces physical swp47
+``` 
+cumulus@switch:~$ netq leaf01 show interfaces physical swp47 peer
 Matching cables records:
 Hostname          Interface                 Peer Hostname     Peer Interface            State      Message
 ----------------- ------------------------- ----------------- ------------------------- ---------- -----------------------------------
-leaf01            swp47                     leaf02            swp47                     up   
+leaf01              swp47                     leaf02            swp47                     up   
 ```
 
 ### Discover Misconfigurations
@@ -354,19 +352,21 @@ leaf01            swp47                     leaf02            swp47             
 You can verify that the following configurations are the same on both
 sides of a peer interface:
 
-  - Admin state
-  - Operational state
-  - Link speed
-  - Auto-negotiation setting
+- Admin state
+- Operational state
+- Link speed
+- Auto-negotiation setting
 
 The `netq check interfaces` command is used to determine if any of the
 interfaces have any continuity errors. This command only checks the
 physical interfaces; it does not check bridges, bonds or other software
-constructs. You can check all interfaces at once. It enables you to
-compare the current status of the interfaces, as well as their status at
-an earlier point in time. The command syntax is:
+constructs. You can check all interfaces at once, or for a given device,
+or check the connection between a given device and its peer. It enables
+you to compare the current status of the interfaces, as well as their
+status at an earlier point in time. The command syntax is:
 
-    netq check interfaces [around <text-time>] [json]
+    netq check interfaces [unverified] [<physical-hostname> <physical-port>|<physical-hostname>] [around <text-time>] [json]
+    netq check interfaces <physical-hostname> <physical-port> and <peer-physical-hostname> <peer-physical-port> [around <text-time>] [json]
 
 {{%notice tip%}}
 
@@ -388,8 +388,8 @@ If the misconfiguration was due to a mismatch in the administrative
 state, the message would have been *Admin state mismatch (up, down)* or
 *Admin state mismatch (down, up)*.
 
-```
-cumulus@switch:~$ netq check interfaces
+``` 
+cumulus@switch:~$ netq check interfaces 
 Checked Nodes: 18, Failed Nodes: 8
 Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
  
@@ -398,43 +398,42 @@ Matching cables records:
 Hostname          Interface                 Peer Hostname     Peer Interface            Message
 ----------------- ------------------------- ----------------- ------------------------- -----------------------------------
 ...
-leaf03            swp1                      oob-mgmt-switch   swp7                                                      
-leaf03            swp2                                                                  Peer port unknown                             
-leaf03            swp47                     leaf04            swp47                                                     
-leaf03            swp48                     leaf04            swp48                     State mismatch (up, down)     
-leaf03            swp49                     leaf04            swp49                                                     
-leaf03            swp50                     leaf04            swp50                                                     
-leaf03            swp52                                                                 Port cage empty                                    
+leaf03          swp1                      oob-mgmt-switch   swp7                                                      
+leaf03          swp2                                                                  Peer port unknown                             
+leaf03          swp47                     leaf04            swp47                                                     
+leaf03          swp48                     leaf04            swp48                     State mismatch (up, down)     
+leaf03          swp49                     leaf04            swp49                                                     
+leaf03          swp50                     leaf04            swp50                                                     
+leaf03          swp52                                                                 Port cage empty                                    
 ...   
 ```
 
 **Example: Find Mismatched Peers**
 
-This example checks the connections between two
+This example uses the *and* keyword to check the connections between two
 peers. An error is seen, so we check the physical peer information and
 discover that the incorrect peer has been specified. After fixing it, we
 run the check again, and see that there are no longer any interface
 errors.
 
-    cumulus@switch:~$ netq check interfaces
+    cumulus@switch:~$ netq check interfaces leaf01 swp50 and leaf02 swp50
     Checked Nodes: 1, Failed Nodes: 1
     Checked Ports: 1, Failed Ports: 1, Unverified Ports: 0
-
     cumulus@switch:~$ netq show interfaces physical peer
      
     Matching cables records:
     Hostname          Interface                 Peer Hostname     Peer Interface            Message
     ----------------- ------------------------- ----------------- ------------------------- -----------------------------------
-    leaf01            swp50                     leaf04            swp49                     Incorrect peer specified. Real peer
-                                                                                            is leaf04 swp50      
+    leaf01              swp50                     leaf04            swp49                     Incorrect peer specified. Real peer
+                                                                                          is leaf04 swp50      
      
-    cumulus@switch:~$ netq check interfaces
+    cumulus@switch:~$ netq check interfaces leaf01 swp50 and leaf02 swp50
     Checked Nodes: 1, Failed Nodes: 0
     Checked Ports: 1, Failed Ports: 0, Unverified Ports: 0
 
 **Example: Find Mismatched Link Speeds**
 
-This example checks for configuration mismatches and finds a link
+This example checks for for configuration mismatches and finds a link
 speed mismatch on server03. The link speed on swp49 is *40G* and the
 peer port swp50 is *unspecified*.
 
@@ -449,7 +448,7 @@ peer port swp50 is *unspecified*.
 **Example: Find Mismatched Auto-negotiation Settings**
 
 This example checks for configuration mismatches and finds
-auto-negotation setting mismatches between the servers and leafs.
+auto-negotiation setting mismatches between the servers and leafs.
 Auto-negotiation is *off* on the leafs, but *on* on the servers.
 
     cumulus@switch:~$ netq check interfaces
@@ -472,25 +471,14 @@ You can also determine whether a link is flapping using the `netq check
 interfaces` command. If a link is flapping, NetQ indicates this in a
 message:
 
-```
-cumulus@switch:~$ netq check interfaces
+``` 
+cumulus@switch:~$ netq check interfaces 
 Checked Nodes: 18, Failed Nodes: 8
 Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
  
 Matching cables records:
 Hostname          Interface                 Peer Hostname     Peer Interface            Message
 ----------------- ------------------------- ----------------- ------------------------- -----------------------------------
-leaf02            -                         -                 -                         Link flapped 11 times in last 5
-                                                                                        mins                    
+leaf02            -                           -                 -                         Link flapped 11 times in last 5
+                                                                                          mins                    
 ```
-
-<span style="color: #ff0000;">  
-</span>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

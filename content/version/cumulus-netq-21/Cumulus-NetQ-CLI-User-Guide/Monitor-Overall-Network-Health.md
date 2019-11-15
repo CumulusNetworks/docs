@@ -1,11 +1,11 @@
 ---
 title: Monitor Overall Network Health
 author: Cumulus Networks
-weight: 33
+weight: 77
 aliases:
  - /display/NETQ21/Monitor+Overall+Network+Health
- - /pages/viewpage.action?pageId=12321047
-pageID: 12321047
+ - /pages/viewpage.action?pageId=10464101
+pageID: 10464101
 product: Cumulus NetQ
 version: '2.1'
 imgData: cumulus-netq-21
@@ -34,20 +34,20 @@ in the network.
 
 You can validate the following network fabric elements:
 
-    cumulus@leaf01:mgmt-vrf:~$ netq check
-       agents : Netq agent
-       bgp : BGP info
-       clag : Cumulus Multi-chassis LAG
-       evpn : EVPN
-       interfaces : network interface port
-       license : License information
-       lnv : Lightweight Network Virtualization info
-       mtu : Link MTU
-       ntp : NTP
-       ospf : OSPF info
-       sensors : Temperature/Fan/PSU sensors
-       vlan : VLAN
-       vxlan : VXLAN data path
+    cumulus@leaf01:mgmt-vrf:~$ netq check 
+      agents : Netq agent
+      bgp : BGP info
+      clag : Cumulus Multi-chassis LAG
+      evpn : EVPN
+      interfaces : network interface port
+      license : License information
+      lnv : Lightweight Network Virtualization info
+      mtu : Link MTU
+      ntp : NTP
+      ospf : OSPF info
+      sensors : Temperature/Fan/PSU sensors
+      vlan : VLAN
+      vxlan : VXLAN data path
 
 For example, to determine the status of BGP running on your network:
 
@@ -120,7 +120,7 @@ additional options available for each of the check commands. For
 example, validate BGP operation for nodes communicating over a
 particular VRF:
 
-```
+``` 
 cumulus@switch:~$ netq check bgp vrf DataVrf1081
 Total Nodes: 25, Failed Nodes: 1, Total Sessions: 52 , Failed Sessions: 1
 Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
@@ -146,9 +146,9 @@ to have occurred about 10 minutes ago, you could run:
 
 You can validate the following device elements:
 
-  - NTP
-  - Sensors
-  - License
+- NTP
+- Sensors
+- License
 
 It is always important to have your devices in time synchronization to
 ensure configuration and management events can be tracked and
@@ -179,7 +179,7 @@ point for maintenance. For example, if you had a temporary HVAC failure
 and you are concerned that some of your nodes are beginning to overheat,
 you can run:
 
-    cumulus@switch:~$ netq check sensors
+    cumulus@switch:~$ netq check sensors 
     Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0
 
 You can also check for any nodes that have invalid licenses without
@@ -229,7 +229,7 @@ The `netq show` commands display a wide variety of content about the
 network and its various elements. You can show content for the
 following:
 
-    cumulus@switch:~$ netq show
+    cumulus@switch:~$ netq show 
         agents        :  Netq agent
         bgp           :  BGP info
         clag          :  Cumulus Multi-chassis LAG
@@ -257,7 +257,7 @@ is running as expected. The Agent sends a heartbeat every 30 seconds,
 and if three consecutive heartbeats are missed, its status changes to
 *Rotten*.
 
-    cumulus@switch:~$ netq show agents
+    cumulus@switch:~$ netq show agents 
     Matching agents records:
     Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
@@ -369,11 +369,3 @@ View the status of the hardware sensors:
     leaf02            fan4            fan tray 2, fan 2                   ok                                             Wed Feb  6 22:59:54 2019
     leaf02            fan5            fan tray 3, fan 1                   ok                                             Wed Feb  6 22:59:54 2019
     ...
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

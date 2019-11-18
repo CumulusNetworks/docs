@@ -20,7 +20,7 @@ the documentation set.
 
 ## Prerequisites
 
-In order to contribute to the Cumulus Networks documentation, you need:
+To contribute to the Cumulus Networks documentation, you need:
 
 - A GitHub account and familiarity with [submitting pull requests](https://guides.github.com/activities/hello-world/).
 - A general understanding of [Markdown](https://daringfireball.net/projects/markdown/syntax),

@@ -1543,6 +1543,10 @@ However, you can configure all other ports to run at 10G speeds.
 
 {{%/notice%}}
 
+### Link Speed on the Lenovo NE2572O Switch
+
+The Lenovo NE2572O switch has external retimers on swp1 through swp8. Currently, these ports only support a speed of 25G.
+
 ### ethtool Shows Incorrect Port Speed on 100G Spectrum Switches
 
 After setting the interface speed to 40G by editing the `ports.conf`

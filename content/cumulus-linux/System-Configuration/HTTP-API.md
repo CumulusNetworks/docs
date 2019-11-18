@@ -194,3 +194,7 @@ To run `net show counters` on the host as a remote procedure call:
 To add a bridge using ML2:
 
     cumulus@switch:~$ curl -X PUT -k -u user:pw https://192.168.0.32:8080/ml2/v1/bridge/"br1"/200
+
+## Caveats
+
+The `/etc/restapi.conf` file is not listed in the `net show configuration files` command output.

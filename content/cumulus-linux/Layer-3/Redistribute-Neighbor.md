@@ -29,7 +29,7 @@ Redistribute neighbor was created with these use cases in mind:
 
 - Virtualized clusters
 - Hosts with service IP addresses that migrate between racks
-- Hosts that are dual connected to two leaf nodes without using proprietary protocols such as [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+- Hosts that are dual connected to two leaf nodes without using proprietary protocols such as [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
 - Anycast services needing dynamic advertisement from multiple hosts
 
 Cumulus Networks recommends following these guidelines with redistribute neighbor:
@@ -181,7 +181,7 @@ Additional host configurations will be covered in future separate knowledge base
 #### Configure a Dual-connected Host
 
 Configure a host with the same /32 IP address on its loopback (lo) and uplinks (in this example, eth1 and eth2). This is done so both leaf switches advertise the same /32 regardless of the interface. Cumulus Linux relies on
-[ECMP](../Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP) to load balance across the interfaces southbound, and an equal cost static route (see the configuration below) for load balancing northbound.
+[ECMP](../Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/) to load balance across the interfaces southbound, and an equal cost static route (see the configuration below) for load balancing northbound.
 
 The loopback hosts the primary service IP address(es) and to which you can bind services.
 
@@ -216,7 +216,7 @@ iface eth2
 
 #### Install ifplugd
 
-Additionally, install and use [ifplugd](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/ifplugd). `ifplugd` modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). The Linux kernel by default leaves routes up even when the physical interface is unavailable (NO-CARRIER).
+Additionally, install and use [ifplugd](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/ifplugd/). `ifplugd` modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). The Linux kernel by default leaves routes up even when the physical interface is unavailable (NO-CARRIER).
 
 After you install `ifplugd`, edit `/etc/default/ifplugd` as follows, where *eth1* and *eth2* are the interface names that your host uses to connect to the leaves.
 
@@ -250,7 +250,7 @@ This release of redistribute neighbor supports IPv4 only.
 
 ### VRFs Are not Supported
 
-This release of redistribute neighbor does not support [VRFs](../Virtual-Routing-and-Forwarding-VRF).
+This release of redistribute neighbor does not support [VRFs](../Virtual-Routing-and-Forwarding-VRF/).
 
 ### Only 1024 Interfaces Supported
 

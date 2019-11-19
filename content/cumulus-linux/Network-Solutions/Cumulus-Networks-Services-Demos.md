@@ -22,7 +22,7 @@ code and simulate failure scenarios.
 
 The Cumulus Networks *reference topology* includes cabling (in DOT
 format for dual use with
-[PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM)),
+[PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/)),
 MAC addressing, IP addressing, switches and servers. This topology is
 blessed by the Professional Services Team at Cumulus Networks to fit a
 majority of designs seen in the field.
@@ -76,4 +76,3 @@ as outlined above.
 You can find an up to date list of all the demos in the 
 [cldemo-vagrant GitHub repository](https://github.com/CumulusNetworks/cldemo-vagrant#available-demos),
 which is available to anyone free of charge.
-

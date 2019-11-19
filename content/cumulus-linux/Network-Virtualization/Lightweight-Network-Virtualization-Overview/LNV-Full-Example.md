@@ -15,9 +15,8 @@ siteSlug: cumulus-linux
 
 As of Cumulus Linux 3.7.4, the lightweight network virtualization
 feature (LNV) has been deprecated. The feature will be removed in
-Cumulus Linux 4.0. Cumulus Networks recommends you use [Ethernet virtual
-private network
-(EVPN)](../../Ethernet-Virtual-Private-Network-EVPN)
+Cumulus Linux 4.0. Cumulus Networks recommends you use
+[Ethernet virtual private network (EVPN)](../../Ethernet-Virtual-Private-Network-EVPN/)
 for network virtualization.
 
 {{%/notice%}}
@@ -263,8 +262,8 @@ iface br-30
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
-[BGP](../../../Layer-3/Border-Gateway-Protocol-BGP) or
-[OSPF](../../../Layer-3/Open-Shortest-Path-First-OSPF). In this
+[BGP](../../../Layer-3/Border-Gateway-Protocol-BGP/) or
+[OSPF](../../../Layer-3/Open-Shortest-Path-First-OSPF/). In this
 example, OSPF is used to demonstrate full reachability.
 
 Here is the FRRouting configuration using OSPF:

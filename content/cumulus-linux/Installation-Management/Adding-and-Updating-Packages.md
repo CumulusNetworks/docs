@@ -179,7 +179,7 @@ A list of packages that will be upgraded is displayed and you are prompted to co
 
 The above commands upgrade all installed versions with their latest versions but do not install any new packages.
 
-Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux) for additional information.
+Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/) for additional information.
 
 ## Add New Packages
 

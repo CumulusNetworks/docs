@@ -108,7 +108,7 @@ configuration with the following commands:
 - `net commit description <description>` enables you to provide a
   descriptive summary of the changes you are about to commit.
 - `net commit permanent` retains the
-  [snapshot](../../Installation-Management/Using-Snapshots)
+  [snapshot](../../Installation-Management/Using-Snapshots/)
   taken when committing the change. Otherwise, the snapshots created
   from NCLU commands are cleaned up periodically with a snapper cron job.
 - `net commit delete` deletes one or more snapshots created when
@@ -119,7 +119,7 @@ configuration with the following commands:
     {{%notice note%}}
 
 The `net del all` command does not remove
-[management VRF](../../Layer-3/Management-VRF) configurations; NCLU
+[management VRF](../../Layer-3/Management-VRF/) configurations; NCLU
 does not interact with eth0 interfaces and management VRF.
 
     {{%/notice%}}
@@ -393,9 +393,9 @@ You can use the `adduser` command for local user accounts only. You can
 use the `addgroup` command for both local and remote user accounts. For
 a remote user account, you must use the mapping username, such as
 `tacacs3` or `radius_user`, not the
-[TACACS](../Authentication-Authorization-and-Accounting/TACACS-Plus)
+[TACACS](../Authentication-Authorization-and-Accounting/TACACS-Plus/)
 or
-[RADIUS](../Authentication-Authorization-and-Accounting/RADIUS-AAA)
+[RADIUS](../Authentication-Authorization-and-Accounting/RADIUS-AAA/)
 account name.
 
 {{%/notice%}}
@@ -438,7 +438,7 @@ To configure a new user group to use NCLU, add that group to the
 
 Use caution giving edit permissions to groups. For example, don't give
 edit permissions to the
-[*tacacs* group](../Authentication-Authorization-and-Accounting/TACACS-Plus#configure-nclu-for-tacacs-plus-users).
+[*tacacs* group](../Authentication-Authorization-and-Accounting/TACACS-Plus/#configure-nclu-for-tacacs-plus-users).
 
 {{%/notice%}}
 

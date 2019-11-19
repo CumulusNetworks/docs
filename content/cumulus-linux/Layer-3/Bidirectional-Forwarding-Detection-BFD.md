@@ -39,7 +39,7 @@ You can configure the following BFD parameters for both IPv4 and IPv6 sessions:
 
 ## Configure BFD
 
-You configure BFD one of two ways: by specifying the configuration in the [PTM `topology.dot` file](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM), or using [FRRouting](../FRRouting-Overview/).
+You configure BFD one of two ways: by specifying the configuration in the [PTM `topology.dot` file](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/), or using [FRRouting](../FRRouting-Overview/).
 However, the topology file has some limitations:
 
 - The `topology.dot` file supports creating BFD IPv4 and IPv6 single hop sessions only; you cannot specify IPv4 or IPv6 multihop sessions in the topology file.
@@ -67,7 +67,7 @@ BFD requires an IP address for any interface on which it is configured. The neig
 
 ## BFD in BGP
 
-For FRRouting when using **BGP**, neighbors are registered and de-registered with [PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM) dynamically when you enable BFD in BGP using `net add bgp neighbor <neighbor|IP|interface> bfd`. For example:
+For FRRouting when using **BGP**, neighbors are registered and de-registered with [PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/) dynamically when you enable BFD in BGP using `net add bgp neighbor <neighbor|IP|interface> bfd`. For example:
 
 Configuration of BFD for a peergroup or individual neighbors is performed in the same way.
 
@@ -110,7 +110,7 @@ cumulus@switch:~$ net commit
 
 ## BFD in OSPF
 
-For FRRouting using **OSFP**, neighbors are registered and de-registered dynamically with [PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM) when you enable or disable BFD in OSPF. A neighbor is registered with BFD when two-way adjacency is established and deregistered when adjacency goes down if the BFD is enabled on the interface. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
+For FRRouting using **OSFP**, neighbors are registered and de-registered dynamically with [PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/) when you enable or disable BFD in OSPF. A neighbor is registered with BFD when two-way adjacency is established and deregistered when adjacency goes down if the BFD is enabled on the interface. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
 
 ```
 cumulus@switch:~$ net add interface swp1 ospf6 bfd 5 500 500

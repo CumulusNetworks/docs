@@ -32,7 +32,6 @@ Follow the steps below to install and configure the `ifplugd` daemon.
 After `ifplugd` is installed, you must edit two configuration files to set up `ifplugd`:
 
   - `/etc/default/ifplugd`
-
   - `/etc/ifplugd/action.d/ifupdown`
 
 The example `ifplugd` configuration below show that `ifplugd` has been
@@ -40,7 +39,7 @@ configured to bring down all uplinks when the peerbond goes down in an
 MLAG environment.
 
 `ifplugd` is configured on both both the primary and secondary
-[MLAG](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+[MLAG](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
 switches in this example.
 
 1.  Open `/etc/default/ifplugd` in a text editor.

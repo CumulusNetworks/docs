@@ -12,7 +12,7 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 On Cumulus Linux, *LACP Bypass* is a feature that allows a
-[bond](../Bonding-Link-Aggregation) configured in
+[bond](../Bonding-Link-Aggregation/) configured in
 802.3ad mode to become active and forward traffic even when there is no
 LACP partner. A typical use case for this feature is to enable a host,
 without the capability to run LACP, to PXE boot while connected to a
@@ -49,7 +49,7 @@ The following features are not supported:
 
 {{%notice note%}}
 
-In an [MLAG deployment](../Multi-Chassis-Link-Aggregation-MLAG)
+In an [MLAG deployment](../Multi-Chassis-Link-Aggregation-MLAG/)
 where bond slaves of a host are connected to two switches and the bond
 is in all-active mode, all the slaves of bond are active on both the
 primary and secondary MLAG nodes.
@@ -157,7 +157,7 @@ cumulus@switch:~$ cat /sys/class/net/swp51/bonding_slave/ad_rx_bypass
 
 The following configuration shows LACP bypass enabled for multiple
 active interfaces (all-active mode) with a bridge in 
-[traditional bridge mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode):
+[traditional bridge mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/):
 
 ```
 auto bond1

@@ -12,14 +12,14 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 Cumulus Networks recommends you use a 
-[VLAN-aware bridge](../VLAN-aware-Bridge-Mode)
+[VLAN-aware bridge](../VLAN-aware-Bridge-Mode/)
 on your switch. You use traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.
 
 ## Create a Traditional Mode Bridge
 
 You can configure a traditional mode bridge either using
-[NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU)
+[NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU/)
 or manually editing the `/etc/network/interfaces` file.
 
 ### Configure a Traditional Bridge with NCLU
@@ -30,7 +30,7 @@ NCLU has limited support for configuring bridges in traditional mode.
 
 The traditional bridge must be named something other than *bridge*, as that name
 is reserved for the single
-[VLAN-aware bridge](../VLAN-aware-Bridge-Mode)
+[VLAN-aware bridge](../VLAN-aware-Bridge-Mode/)
 that you can configure on the switch.
 
 {{%/notice%}}
@@ -265,7 +265,7 @@ To create the above example, add the following configuration to the
 ### VLAN Tagging Examples
 
 You can find more examples of VLAN tagging in 
-[the VLAN tagging chapter](../VLAN-Tagging).
+[the VLAN tagging chapter](../VLAN-Tagging/).
 
 ### Configure ARP Timers
 

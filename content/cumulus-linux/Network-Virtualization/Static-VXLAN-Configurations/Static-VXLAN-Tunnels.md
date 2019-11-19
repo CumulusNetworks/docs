@@ -16,11 +16,11 @@ challenges in determining the destination *virtual tunnel endpoints*
 (VTEPs) for any given VXLAN. At scale, various solutions, including
 [Lightweight Network Virtualization](../../Lightweight-Network-Virtualization-Overview/)
 (LNV), controller-based options like 
-[Midokura MidoNet](../../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
-or 
-[VMware NSX](../../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+[Midokura MidoNet](../../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/)
+or
+[VMware NSX](../../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH/)
 and even new standards like
-[EVPN](../../Ethernet-Virtual-Private-Network-EVPN)
+[EVPN](../../Ethernet-Virtual-Private-Network-EVPN/)
 are attempts to address these complexities, however do retain their own
 complexities.
 
@@ -35,7 +35,7 @@ rack.
 ## Requirements
 
 Cumulus Networks supports static VXLAN tunnels only on switches in the
-[Cumulus Linux HCL](http://cumulusnetworks.com/hcl/) using the Broadcom
+[Cumulus Linux HCL](https://cumulusnetworks.com/hcl/) using the Broadcom
 Tomahawk, Trident II+, Trident II, and Maverick ASICs, as well as the Mellanox
 Spectrum ASIC.
 

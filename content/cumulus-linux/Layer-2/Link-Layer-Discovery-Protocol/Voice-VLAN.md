@@ -20,13 +20,13 @@ Voice VLAN is part of a trunk port with 2 VLANs that comprises either:
 
 The voice traffic is an 802.1q-tagged packet with a VLAN ID (which may or may not be 0) and an 802.1p (3-bit layer 2 COS) with a specific value (typically 5 is assigned for voice traffic).
 
-Data traffic is always [untagged](../../Ethernet-Bridging-VLANs/VLAN-Tagging).
+Data traffic is always [untagged](../../Ethernet-Bridging-VLANs/VLAN-Tagging/).
 
 ## Cumulus Linux Voice VLAN Example
 
 {{< img src = "/images/cumulus-linux/voice-vlan.png" >}}
 
-You can configure the topology above using the following [NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU) commands. In this configuration:
+You can configure the topology above using the following [NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU/) commands. In this configuration:
 
 - swp1 data traffic traverses the bridge's native VLAN and the voice traffic traverses VLAN 200
 - swp2 data traffic traverses VLAN 10 and the voice traffic traverses VLAN 100

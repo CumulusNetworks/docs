@@ -1759,7 +1759,13 @@ For more information about ACLs, see [Netfilter (ACLs)](../../System-Configurati
 
 Dynamic capabilities, which enable BGP to renegotiate a new feature for an already established peer, are not supported in Cumulus Linux.
 
-### Related Information
+### BGP and Route Reflectors
+
+In certain topologies that use BGP and route reflectors, next hop resolution might be impacted by advertising the spine-leaf link addresses from the leafs themselves. The problem is seen primarily with multiple links between each pair of spine and leaf switches, and redistribute connected configured on the leafs.
+
+To work around this issue, only advertise the spine to leaf addresses from the spine switches (or use IGP for next-hop propagation). You can use network statements for the interface addresses that you need to advertise to limit the addresses advertised by the leaf switches. Or, define redistribute connected with route maps to filter the outbound updates and remove the spine to leaf addresses from being sent from the leafs.
+
+## Related Information
 
 - [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD) (BFD) and BGP
 - [Wikipedia entry for BGP](http://en.wikipedia.org/wiki/Border_Gateway_Protocol) (includes list of useful RFCs)

@@ -1506,6 +1506,11 @@ comment out the lines as this prevents `switchd` from restarting.
 
 {{%/notice%}}
 
+### Mellanox SN2100 Switch and eth0 Link Speed
+
+After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
+To work around this issue, either flap the interface or add commands to the `/etc/rc.local` file so that this occurs on boot automatically.
+
 ### Link Speed on the EdgeCore AS7326-56X Switch
 
 On the EdgeCore AS7326-56X switch, all four switch ports in each port
@@ -1543,6 +1548,10 @@ However, you can configure all other ports to run at 10G speeds.
 
 {{%/notice%}}
 
+### Link Speed on the Lenovo NE2572O Switch
+
+The Lenovo NE2572O switch has external retimers on swp1 through swp8. Currently, these ports only support a speed of 25G.
+
 ### ethtool Shows Incorrect Port Speed on 100G Spectrum Switches
 
 After setting the interface speed to 40G by editing the `ports.conf`
@@ -1571,6 +1580,11 @@ interfaces show the `carrier down` status immediately. However, it takes
 one second for the second interface to show the `operational down`
 status. In addition, the services on this interface also take an extra
 second to come down.
+
+### Maverick Switches with Modules that Don't Support Auto-negotiation
+
+On a Maverick switch, if auto-negotiation is configured on a 10G interface and the installed module does not support auto-negotiation (for example, 10G DAC, 10G Optical, 1G RJ45 SFP), the link breaks.
+To work around this issue, disable auto-negotiation on interfaces where it is not supported.
 
 ## Related Information
 

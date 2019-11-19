@@ -23,7 +23,7 @@ per-command authorization requires additional setup on the switch.
 
   - Authentication using PAM; includes `login`, `ssh`, `sudo` and `su`
   - Runs over the eth0 management interface
-  - Ability to run in the [management VRF](../../../Layer-3/Management-VRF)
+  - Ability to run in the [management VRF](../../../Layer-3/Management-VRF/)
   - TACACS+ privilege 15 users can run any command with sudo using the
     `/etc/sudoers.d/tacplus` file that is installed by the
     `libtacplus-map1` package
@@ -219,7 +219,7 @@ accounting. These records are installed as part of the package.
 
 `audisp-tacplus` installs the audit rules for command accounting.
 Modifying the configuration files is not usually necessary. However,
-when a [management VRF](../../../Layer-3/Management-VRF) is
+when a [management VRF](../../../Layer-3/Management-VRF/) is
 configured, the accounting configuration does need special modification
 because the `auditd` service starts prior to networking. It is necessary
 to add the *vrf* parameter and to signal the `audisp-tacplus` process to

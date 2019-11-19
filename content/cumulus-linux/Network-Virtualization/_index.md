@@ -38,12 +38,12 @@ the original frame. The UDP destination port is the standard port 4789.
 
 Cumulus Linux includes the native Linux VXLAN kernel support and
 integrates with controller-based overlay solutions like
-[VMware NSX](../Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
+[VMware NSX](../Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH/)
 and
-[Midokura MidoNet](../Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack).
+[Midokura MidoNet](../Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/).
 
-VXLAN is supported only on switches in the [Cumulus Linux
-HCL](http://cumulusnetworks.com/support/hcl/) using the Broadcom
+VXLAN is supported only on switches in the
+[Cumulus Linux HCL](https://cumulusnetworks.com/support/hcl/) using the Broadcom
 Tomahawk, Trident II, Trident II+ and Trident3 chipsets, as well as the
 Mellanox Spectrum chipset.
 
@@ -77,7 +77,6 @@ The maximum transmission unit (MTU) size for a virtual network interface
 should be 50 bytes smaller than the MTU for the physical interfaces on
 the switch. For more information on setting MTU, read
 [Layer 1 and Switch Port Attributes](../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu-for-a-bridge).
-
 
 ## Useful Links
 

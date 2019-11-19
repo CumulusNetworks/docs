@@ -44,7 +44,7 @@ characteristics:
   using `cmsg`. By default, applications on the switch run against the
   default VRF. Services started by `systemd` run in the default VRF
   unless the VRF instance is used. 
-  If [management VRF](../Management-VRF) is enabled, 
+  If [management VRF](../Management-VRF/) is enabled, 
   logins to the switch default to the management VRF. This is a convenience for
   users to not have to specify management VRF for each command.
 - Listen sockets used by services are VRF-global by default unless the
@@ -75,7 +75,7 @@ or OSPFv2 — for each routing table.
 
 Each routing table is called a *VRF table*, and has its own table ID.
 You configure VRF using
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU),
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/),
 then place the layer 3 interface in the VRF. You can have a maximum of
 255 VRFs on a switch.
 
@@ -88,7 +88,7 @@ interfaces. Keep in mind the following for a VRF table:
   when the kernel forwards the packet.
 - Names for VRF tables can be up to 15 characters. However, you
   **cannot** use the name *mgmt*, as this name can **only** be used
-  for [management VRF](../Management-VRF).
+  for [management VRF](../Management-VRF/).
 
 To configure a VRF, run:
 
@@ -578,8 +578,8 @@ cause issues when used with VRF route leaking in FRR.
 ## FRRouting Operation in a VRF
 
 In Cumulus Linux 3.5 and later,
-[BGP](../Border-Gateway-Protocol-BGP), [OSPFv2](../Open-Shortest-Path-First-OSPF)
-and [static routing](../Routing) (IPv4 and IPv6) are supported within a VRF
+[BGP](../Border-Gateway-Protocol-BGP/), [OSPFv2](../Open-Shortest-Path-First-OSPF/)
+and [static routing](../Routing/) (IPv4 and IPv6) are supported within a VRF
 context. Various FRRouting routing constructs, such as routing tables, next hops,
 router-id, and related processing are also VRF-aware.
 
@@ -597,7 +597,7 @@ VRF neighbors are bound to the VRF, which is how you can have
 overlapping address spaces in different VRFs. Each VRF can have its own
 parameters, such as address families and redistribution. Incoming
 connections rely on the Linux kernel for VRF-global sockets. BGP
-neighbors can be tracked using [BFD](../Bidirectional-Forwarding-Detection-BFD),
+neighbors can be tracked using [BFD](../Bidirectional-Forwarding-Detection-BFD/),
 both for single and multiple hops. You can configure multiple BGP
 instances, associating each with a VRF.
 
@@ -607,7 +607,7 @@ and physical interfaces. The VRF supports types 1 through 5 (ABR/ASBR –
 external LSAs) and types 9 through 11 (opaque LSAs) link state
 advertisements, redistributing other routing protocols, connected and
 static routes, and route maps. As with BGP, you can track OSPF neighbors
-with [BFD](../Bidirectional-Forwarding-Detection-BFD).
+with [BFD](../Bidirectional-Forwarding-Detection-BFD/).
 
 {{%notice note%}}
 
@@ -1137,7 +1137,7 @@ output.
 
 ## BGP Unnumbered Interfaces with VRF
 
-[BGP unnumbered interface configurations](../Border-Gateway-Protocol-BGP)
+[BGP unnumbered interface configurations](../Border-Gateway-Protocol-BGP/)
 are supported with VRF. In BGP unnumbered, there are no addresses on any
 interface. However, debugging tools like `traceroute` need at least a
 single IP address per node as the node's source IP address. Typically,
@@ -1482,8 +1482,8 @@ To run `traceroute` on a VRF from the default VRF, run the
   under the BGP instance using `bgp router-id`. If both are specified,
   the one under the BGP instance overrides the one provided outside BGP.
 - You cannot configure
-  [EVPN address families](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
+  [EVPN address families](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/)
   within a VRF.
-- When [EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
+- When [EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/)
   is configured, FRRouting supports only a single autonomous system number (ASN) for
   all VRFs configured with BGP on the system.

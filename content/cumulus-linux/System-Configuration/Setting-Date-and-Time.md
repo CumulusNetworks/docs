@@ -38,8 +38,8 @@ Use the following command to apply the new time zone immediately.
 
 ### Use the Guided Wizard
 
-To set the time zone using the guided wizard, run `dpkg-reconfigure
-tzdata` as root:
+To set the time zone using the guided wizard, run
+`dpkg-reconfigure tzdata` as root:
 
     cumulus@switch:~$ sudo dpkg-reconfigure tzdata
 
@@ -71,8 +71,8 @@ example selects the US/Pacific time zone:
     Local time is now:      Mon Jun 17 09:27:45 PDT 2013.
     Universal Time is now:  Mon Jun 17 16:27:45 UTC 2013.
 
-For more info see the Debian [System Administrator’s Manual –
-Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
+For more info see the Debian
+[System Administrator’s Manual – Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
 ## Set the Date and Time
 
@@ -129,17 +129,16 @@ explanation of the output.
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](../../Layer-3/Management-VRF),
-follow [these
-steps](../../Layer-3/Management-VRF#run-services-within-the-management-vrf) for
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
+including the [management VRF](../../Layer-3/Management-VRF/),
+follow [these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
 configuring the service.
 
 {{%/notice%}}
 
 By default, `/etc/ntp.conf` contains some default time servers. You can
 specify the NTP server or servers you want to use with
-[NCLU](../Network-Command-Line-Utility-NCLU);
+[NCLU](../Network-Command-Line-Utility-NCLU/);
 include the `iburst` option to increase the sync speed.
 
     cumulus@switch:~$ net add time ntp server 4.cumulusnetworks.pool.ntp.org iburst

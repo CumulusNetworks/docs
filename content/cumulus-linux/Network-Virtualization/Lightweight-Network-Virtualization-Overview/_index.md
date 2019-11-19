@@ -15,9 +15,8 @@ siteSlug: cumulus-linux
 
 As of Cumulus Linux 3.7, the lightweight network virtualization
 feature (LNV) has been deprecated. The feature will be removed in
-Cumulus Linux 4.0. Cumulus Networks recommends you use [Ethernet virtual
-private network
-(EVPN)](../Ethernet-Virtual-Private-Network-EVPN)
+Cumulus Linux 4.0. Cumulus Networks recommends you use
+[Ethernet virtual private network (EVPN)](../Ethernet-Virtual-Private-Network-EVPN/)
 for network virtualization.
 
 {{%/notice%}}
@@ -32,22 +31,20 @@ node coupled with traditional MAC address learning.
 
 To see an example of a full solution before reading the following
 background information,
-[read this chapter](../Lightweight-Network-Virtualization-Overview/LNV-Full-Example).
+[read this chapter](../Lightweight-Network-Virtualization-Overview/LNV-Full-Example/).
 
 {{%notice note%}}
 
 LNV is a lightweight controller option.
 [Contact Cumulus Networks](https://support.cumulusnetworks.com/hc/en-us/requests/new)
 with your scale requirements so we can make sure this is the right fit
-for you. There are also other controller options that can work on
-Cumulus Linux.
+for you. There are also other controller options that can work on Cumulus Linux.
 
 {{%/notice%}}
 
 {{%notice note%}}
 
-You cannot use LNV and
-[EVPN](../Ethernet-Virtual-Private-Network-EVPN)
+You cannot use LNV and [EVPN](../Ethernet-Virtual-Private-Network-EVPN/)
 at the same time.
 
 {{%/notice%}}
@@ -174,9 +171,8 @@ You only specify this parameter when head end replication is
 
   - Switches with the Broadcom Tomahawk, Trident II+, or Trident II ASIC
     or switches with the Mellanox Spectrum ASIC running Cumulus Linux
-    2.5.4 or later. Please refer to the Cumulus Networks [hardware
-    compatibility
-    list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/)
+    2.5.4 or later. Please refer to the Cumulus Networks
+    [hardware compatibility list](https://cumulusnetworks.com/hcl)
     for a list of supported switch models.
 
 ### Configuration Requirements
@@ -384,8 +380,8 @@ iface swp1s3
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
-[BGP](../../Layer-3/Border-Gateway-Protocol-BGP) or
-[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF). In this
+[BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) or
+[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/). In this
 example, OSPF is used to demonstrate full reachability. Click to expand
 the FRRouting configurations below.
 <details>

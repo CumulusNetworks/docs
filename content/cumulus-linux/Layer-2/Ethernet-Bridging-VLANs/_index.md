@@ -35,7 +35,7 @@ interfaces that traverse an 802.1Q VLAN trunk.
 
 {{%notice tip%}}
 
-Cumulus Networks recommends using *[VLAN-aware mode](VLAN-aware-Bridge-Mode)* bridges,
+Cumulus Networks recommends using *[VLAN-aware mode](VLAN-aware-Bridge-Mode/)* bridges,
 rather than *traditional mode* bridges. The bridge driver in Cumulus Linux is
 capable of VLAN filtering, which allows for configurations that are similar to
 incumbent network devices. While Cumulus Linux supports Ethernet bridges in
@@ -67,12 +67,12 @@ VLAN-aware bridge on a given switch.
 ## Create a VLAN-aware Bridge
 
 To learn about VLAN-aware bridges and how to configure them, read
-[VLAN-aware Bridge Mode](VLAN-aware-Bridge-Mode).
+[VLAN-aware Bridge Mode](VLAN-aware-Bridge-Mode/).
 
 ## Create a Traditional Mode Bridge
 
 To create a traditional mode bridge, see
-[Traditional Bridge Mode](Traditional-Bridge-Mode).
+[Traditional Bridge Mode](Traditional-Bridge-Mode/).
 
 ## Configure Bridge MAC Addresses
 
@@ -148,7 +148,7 @@ unreachable.
 {{%/notice%}}
 
 To configure the SVI, use
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU):
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/):
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-2

@@ -48,7 +48,7 @@ Cumulus Linux hashes on the following fields:
 - Source IPv4 or IPv6 address
 - Destination IPv4 or IPv6 address
 
-On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?ASIC=Mellanox Spectrum&ASIC=Mellanox Spectrum_A1), Cumulus Linux hashes on these additional fields:
+On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), Cumulus Linux hashes on these additional fields:
 
 - Source MAC address
 - Destination MAC address
@@ -100,7 +100,7 @@ cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
 
 `cl-ecmpcalc` can only take input interfaces that can be converted to a single physical port in the port tab file, like the physical switch ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces are not supported.
 
-`cl-ecmpcalc` is supported only on switches with the [Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3](http://cumulusnetworks.com/hcl/) chipsets.
+`cl-ecmpcalc` is supported only on switches with the [Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3](https://cumulusnetworks.com/hcl/) chipsets.
 
 ### ECMP Hash Buckets
 
@@ -167,23 +167,57 @@ cumulus@leaf01:~$
 
 In Cumulus Linux, when a next hop fails or is removed from an ECMP pool, the hashing or hash bucket assignment can change. For deployments where there is a need for flows to always use the same next hop, like TCP anycast deployments, this can create session failures.
 
-The ECMP hash performed with resilient hashing is exactly the same as the default hashing mode. Only the method in which next hops are assigned to hash buckets differs.
+*Resilient hashing* is an alternate mechanism for managing ECMP groups. The ECMP hash performed with resilient hashing is exactly the same as the default hashing mode. Only the method in which next hops are assigned to hash buckets differs &mdash; they're assigned to buckets by hashing their header fields and using the resulting hash to index into the table of 2^n hash buckets. Since all packets in a given flow have the same header hash value, they all use the same flow bucket.
 
 Resilient hashing supports both IPv4 and IPv6 routes.
 
-Resilient hashing is not enabled by default. See below for steps on configuring it.
+Resilient hashing behaves slightly differently depending upon whether you are running Cumulus Linux on a switch with a [Broadcom ASIC](#resilient-hashing-on-broadcom-switches) or [Mellanox ASIC](#resilient-hashing-on-mellanox-switches). The differences are described below.
 
-{{%notice note%}}
+Resilient hashing is not enabled by default. See below for [steps on configuring it](#configure-resilient-hashing).
 
-Resilient hashing prevents disruptions when next hops are removed. It does not prevent disruption when next hops are added.
+### Resilient Hashing on Broadcom Switches
 
-{{%/notice%}}
+Resilient hashing is supported only on switches with the [Broadcom Tomahawk, Trident II, Trident II+, and Trident3](https://cumulusnetworks.com/hcl/) ASICs. You can run `net show system` to determine the ASIC.
 
-{{%notice note%}}
+The Broadcom ASIC assigns packets to hash buckets and assigns hash buckets to next hops as follows:
 
-Resilient hashing is supported only on switches with the [Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum](http://cumulusnetworks.com/hcl/) chipsets. You can run `net show system` to determine the chipset.
+- When a next hop is removed, the assigned buckets are distributed to the remaining next hops.
+- When a next hop is added, **some** buckets assigned to other next hops are migrated to the new next hop.
+- The algorithm assigns buckets to next hops so as to make the number of buckets per next hop as close to equal as possible.
+- The assignment of buckets to next hops is not changed in any other case. In particular, this assignment is not changed due to traffic loading or imbalance.
+- Next hops are assigned to buckets randomly, to minimize the chance of systemic imbalance.
 
-{{%/notice%}}
+### Resilient Hashing on Mellanox Switches
+
+A Mellanox switch has two unique options for configuring resilient hashing, both of which you configure in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​` file. The recommended values for these options depend largely on the desired outcome for a specific network implementation &mdash; the number and duration of flows, and the importance of keeping these flows pinned without interruption.
+
+- `resilient_hash_active_timer`: A timer that protects TCP sessions from being
+  disrupted while attempting to populate new next hops. You specify the number of
+  seconds when at least one hash bucket consistently sees no traffic before
+  Cumulus Linux rebalances the flows; the default is 120 seconds. If any
+  one bucket is idle; that is, it sees no traffic for the defined period, the next
+  new flow utilizes that bucket and flows to the new link. Thus, if the network is
+  experiencing a large number of flows or very consistent or persistent flows, there
+  may not be any buckets remaining idle for a consistent 120 second period, and the
+  imbalance remains until that timer has been met. If a new link is brought up and
+  added back to a group during this time, traffic does not get allocated to utilize
+  it until a bucket qualifies as *empty*, meaning it has been idle for 120 seconds.
+  This is when a rebalance can occur.
+- `resilient_hash_max_unbalanced_timer`: You can force a rebalance every N seconds
+  with this option. However, while this could correct the persistent imbalance that
+  is expected with resilient hashing, this rebalance would result in the movement of
+  all flows and thus a break in any TCP sessions that are active at that time.
+
+Note that when you configure these options, a new next hop may not get populated for a long time.
+
+The Mellanox Spectrum ASIC assigns packets to hash buckets and assigns hash buckets to next hops as follows. It also runs a background thread that monitors and may migrate buckets between next hops to rebalance the load.
+
+- When a next hop is removed, the assigned buckets are distributed to the remaining next hops.
+- When a next hop is added, **no** buckets are assigned to the new next hop until the background thread rebalances the load.
+- The load gets rebalanced when the active flow timer specified by the `resilient_hash_active_timer` setting expires if, and only if, there are inactive hash buckets available; the new next hop may remain unpopulated until the period set in `resilient_hash_active_timer` expires
+- When the `resilient_hash_max_unbalanced_timer` setting expires and the load is not balanced, the thread migrates any bucket(s) to different next hops to rebalance the load.
+
+As a result, any flow may be migrated to any next hop, depending on flow activity and load balance conditions; over time, the flow may get pinned, which is the default setting and behavior.
 
 ### Resilient Hash Buckets
 
@@ -197,7 +231,7 @@ Unlike default ECMP hashing, when a next hop needs to be removed, the number of 
 
 {{% imgOld 6 %}}
 
-With 12 buckets assigned and four next hops, instead of reducing the number of buckets — which would impact flows to known good hosts — the remaining next hops replace the failed next hop.
+With 12 buckets assigned and four next hops, instead of reducing the number of buckets &mdash; which would impact flows to known good hosts &mdash; the remaining next hops replace the failed next hop.
 
 {{% imgOld 7 %}}
 
@@ -215,8 +249,6 @@ As a result, some flows may hash to new next hops, which can impact anycast depl
 
 Resilient hashing is not enabled by default. When resilient hashing is enabled, 65,536 buckets are created to be shared among all ECMP groups. An ECMP group is a list of unique next hops that are referenced by multiple ECMP routes.
 
-{{%notice info%}}
-
 An ECMP route counts as a single route with multiple next hops. The following example is considered to be a single ECMP route:
 
 ```
@@ -225,8 +257,6 @@ $ ip route show 10.1.1.0/24
     nexthop via 192.168.1.1 dev swp1 weight 1 onlink
     nexthop via 192.168.2.1 dev swp2 weight 1 onlink
 ```
-
-{{%/notice%}}
 
 All ECMP routes must use the same number of buckets (the number of buckets cannot be configured per ECMP route).
 
@@ -251,7 +281,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 resilient_hash_enable = TRUE
 ```
 
-2. **(Optional)** Edit the number of hash buckets:
+1. **(Optional)** Edit the number of hash buckets:
 
 ```
 # Resilient hashing flowset entries per ECMP group
@@ -259,7 +289,11 @@ resilient_hash_enable = TRUE
 resilient_hash_entries_ecmp = 256
 ```
 
-3. [Restart](../../System-Configuration/Configuring-switchd/#restart-switchd) the `switchd` service:
+1. **(Optional)** On [Mellanox switches](#resilient-hashing-on-mellanox-switches),
+  configure timers in the the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​`
+  file.
+
+1. [Restart](../../System-Configuration/Configuring-switchd/#restart-switchd) the `switchd` service:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service

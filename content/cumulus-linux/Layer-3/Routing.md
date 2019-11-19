@@ -15,7 +15,7 @@ This chapter discusses routing on switches running Cumulus Linux.
 
 ## Manage Static Routes
 
-You manage static routes using [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU) or the Cumulus Linux `ip route` command. The routes are added to the [FRRouting](https://frrouting.org) routing table, and are then updated into the kernel routing table as well.
+You manage static routes using [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/) or the Cumulus Linux `ip route` command. The routes are added to the [FRRouting](https://frrouting.org) routing table, and are then updated into the kernel routing table as well.
 
 To add a static route, run:
 
@@ -175,7 +175,7 @@ Cumulus Linux — via `switchd` — advertises the maximum number of route table
 
 In addition, switches on the Tomahawk, Trident II, Trident II+, and Trident3 platforms are configured to manage route table entries using Algorithm Longest Prefix Match (ALPM). In ALPM mode, the hardware can store significantly more route entries.
 
-You can use [`cl-resource-query`](../../Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query) to determine the current table sizes on a given switch.
+You can use [`cl-resource-query`](../../Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/) to determine the current table sizes on a given switch.
 
 {{%notice info%}}
 

@@ -12,38 +12,37 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 *VXLAN active-active mode* allows a pair of
-[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
 switches to act as a single VTEP, providing active-active VXLAN
 termination for bare metal as well as virtualized workloads.
 
 There are some differences whether you're deploying this with
-[EVPN](../Ethernet-Virtual-Private-Network-EVPN)
+[EVPN](../Ethernet-Virtual-Private-Network-EVPN/)
 or
 [LNV](../Lightweight-Network-Virtualization-Overview/).
 This chapter outlines the configurations for both options.
 
 ## Terminology
 
-| Term                     | Definition                                                                                                                                                                                                                                                                                                                                                                                      |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| VTEP                     | The virtual tunnel endpoint. This is an encapsulation and decapsulation point for VXLANs.                                                                                                                                                                                                                                                                                                       |
-| active-active VTEP       | A pair of switches acting as a single VTEP.                                                                                                                                                                                                                                                                                                                                                     |
-| ToR                      | The top of rack switch; also referred to as a leaf or access switch.                                                                                                                                                                                                                                                                                                                            |
+| Term         | Definition        |
+| ------------ | ----------------- |
+| VTEP                     | The virtual tunnel endpoint. This is an encapsulation and decapsulation point for VXLANs.    |
+| active-active VTEP       | A pair of switches acting as a single VTEP.                             |
+| ToR                      | The top of rack switch; also referred to as a leaf or access switch.    |
 | spine                    | The aggregation switch for multiple leafs. Specifically used when a data center is using a [Clos network architecture.](https://en.wikipedia.org/wiki/Clos_network) Read more about spine-leaf architecture in this [white paper](http://go.cumulusnetworks.com/scalable-dcnetworks?utm_source=homepageslider&utm_medium=search&utm_campaign=Whitepaper-Building+Scalable+Datacenter+Networks). |
-| exit leaf                | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf.                                                                                                                                                                                                                                                            |
-| anycast                  | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches.                                                                                                                               |
-| RIOT                     | Routing in and out of tunnels. A Broadcom feature for routing in and out of tunnels. Allows a VXLAN bridge to have a switch VLAN interface associated with it, and traffic to exit a VXLAN into the layer 3 fabric. Also called VXLAN Routing.                                                                                                                                                  |
-| VXLAN routing            | The industry standard term for the ability to route in and out of a VXLAN. Equivalent to the Broadcom RIOT feature.                                                                                                                                                                                                                                                                             |
-| `clagd-vxlan-anycast-ip` | The anycast address for the MLAG pair to share and bind to when MLAG is up and running.                                                                                                                                                                                                                                                                                                         |
+| exit leaf                | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf.                                            |
+| anycast                  | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches.  |
+| RIOT                     | Routing in and out of tunnels. A Broadcom feature for routing in and out of tunnels. Allows a VXLAN bridge to have a switch VLAN interface associated with it, and traffic to exit a VXLAN into the layer 3 fabric. Also called VXLAN Routing.                    |
+| VXLAN routing            | The industry standard term for the ability to route in and out of a VXLAN. Equivalent to the Broadcom RIOT feature.                   |
+| `clagd-vxlan-anycast-ip` | The anycast address for the MLAG pair to share and bind to when MLAG is up and running.                              |
 
 ## Configure VXLAN Active-active Mode
 
 VXLAN active-active mode requires the following underlying technologies
 to work correctly.
 
-
-|Technology|More Information|
-|--- |--- |
+| Technology | More Information |
+| ---------- | ---------------- |
 |MLAG|Refer to the [MLAG chapter](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) for more detailed configuration information. Configurations for the demonstration are provided below.|
 |OSPF or BGP|Refer to the [OSPF chapter](../../Layer-3/Open-Shortest-Path-First-OSPF/) or the [BGP chapter](../../Layer-3/Border-Gateway-Protocol-BGP/) for more detailed configuration information. Configurations for the BGP demonstration are provided below.|
 |STP|You must enable [BPDU filter](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-filter) and [BPDU guard](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard) in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN. Configurations for the demonstration are provided below.|
@@ -137,8 +136,8 @@ changes to anycast upon MLAG peering.
 ### FRRouting Configuration
 
 You can configure the layer 3 fabric using
-[BGP](../../Layer-3/Border-Gateway-Protocol-BGP) or
-[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF). The
+[BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) or
+[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/). The
 following example uses BGP unnumbered. The MLAG switch configuration for
 the topology above is shown below.
 
@@ -890,7 +889,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 ## Troubleshooting
 
 In addition to [troubleshooting single-attached
-configurations](../Troubleshooting-VXLANs),
+configurations](../Troubleshooting-VXLANs/),
 there is now the MLAG daemon (`clagd`) to consider. The `clagctl`
 command gives the output of MLAG behavior and any inconsistencies that
 might arise between a MLAG pair.
@@ -967,7 +966,7 @@ topologies only, and is not needed on real hardware.
       post-up ip link set $IFACE promisc on
 
 For more information on using Cumulus VX and Vagrant, refer to the
-[Cumulus VX documentation](/cumulus-vx).
+[Cumulus VX documentation](/cumulus-vx/).
 
 ### With LNV, Unique Node ID Required for vxrd in Cumulus VX
 

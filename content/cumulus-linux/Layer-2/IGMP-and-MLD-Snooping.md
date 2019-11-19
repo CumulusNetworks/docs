@@ -87,7 +87,7 @@ For an explanation of the relevant parameters, see the
 `ifupdown-addons-interfaces` man page.
 
 For a
-[VLAN-aware bridge](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
+[VLAN-aware bridge](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/),
 use a configuration like the following:
 
     auto bridge.100
@@ -114,7 +114,7 @@ You can specify a range of VLANs as well. For example:
       bridge-igmp-querier-src 123.1.1.1
 
 For a bridge in 
-[traditional mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode), use a
+[traditional mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/), use a
 configuration like the following:
 
     auto br0

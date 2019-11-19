@@ -30,8 +30,8 @@ hosts, DHCP relay, and DHCP server using the following topology:
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](../../Layer-3/Management-VRF),
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
+including the [management VRF](../../Layer-3/Management-VRF/),
 follow [these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
 configuring them. See also the [VRF chapter](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
 
@@ -40,7 +40,7 @@ configuring them. See also the [VRF chapter](../../Layer-3/Virtual-Routing-and-F
 ## Configure IPv4 DHCP Relays
 
 Configure `isc-dhcp-relay` using
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU),
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/),
 specifying the IP addresses to each DHCP server and the interfaces that
 are used as the uplinks.
 
@@ -317,7 +317,7 @@ interfaces participating in DHCP relay (facing the server and facing the
 client) and the IP address of the server. If the client-facing interface
 is a bridge port, specify the switch virtual interface (SVI) name if you
 are using a
-[VLAN-aware bridge](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+[VLAN-aware bridge](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)
 (for example, vlan100), or the bridge name if you are using traditional
 bridging (for example, br100).
 </details>

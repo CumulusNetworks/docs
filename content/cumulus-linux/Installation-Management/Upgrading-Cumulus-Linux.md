@@ -31,13 +31,13 @@ Understanding the location of configuration data is required for successful upgr
 
 | File Name and Location | Explanation | Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ------------| --------------------------- | -------------------- |
-| `/etc/network/`| Network configuration files, most notably `/etc/network/interfaces` and `/etc/network/interfaces.d/` | [Switch Port Attributes](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes) | N/A |
+| `/etc/network/`| Network configuration files, most notably `/etc/network/interfaces` and `/etc/network/interfaces.d/` | [Switch Port Attributes](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/) | N/A |
 | `/etc/resolv.conf` | DNS resolution | Not unique to Cumulus Linux: [wiki.debian.org/NetworkConfiguration](https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file) | [www.debian.org/doc/manuals/debian-reference/ch05.en.html](https://www.debian.org/doc/manuals/debian-reference/ch05.en.html) |
 | `/etc/frr/` | Routing application (responsible for BGP and OSPF) | [FRRouting Overview](../../Layer-3/FRRouting-Overview/) |
 | `/etc/hostname`   | Configuration file for the hostname of the switch | [Quick Start Guide](../../Quick-Start-Guide/#configuring-the-hostname-and-time-zone)  | [wiki.debian.org/HowTo/ChangeHostname](https://wiki.debian.org/HowTo/ChangeHostname) |
 | `/etc/cumulus/acl/*` | Netfilter configuration | [Netfilter - ACLs](../../System-Configuration/Netfilter-ACLs/) | N/A |
 | `/etc/cumulus/ports.conf`   | Breakout cable configuration file | [Switch Port Attributes](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#configuring-breakout-ports) | N/A; please read the guide on breakout cables |
-| `/etc/cumulus/switchd.conf` | Switchd configuration  | [Configuring switchd](../../System-Configuration/Configuring-switchd) | N/A; please read the guide on switchd configuration |
+| `/etc/cumulus/switchd.conf` | Switchd configuration  | [Configuring switchd](../../System-Configuration/Configuring-switchd/) | N/A; please read the guide on switchd configuration |
 
 </details>
 
@@ -162,8 +162,8 @@ If you have custom user accounts, consider including `/home/<username>/`.
 | `/home/cumulus/.ansible` | Ansible tmp files. Do not copy.                                                    |
 
 If you are using certain forms of [network virtualization](../../Network-Virtualization/), including
-[VMware NSX-V](../../Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V)
-or [Midokura MidoNet](../../Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack), you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you made to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
+[VMware NSX-V](../../Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V/)
+or [Midokura MidoNet](../../Network-Virtualization/Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/), you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you made to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
 
 </details>
 
@@ -218,7 +218,7 @@ To upgrade the switch with a new disk image using ONIE:
 
 2. Download the Cumulus Linux image you want to install.
 
-3. Install the disk image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see [Installing a New Cumulus Linux Image](../Installing-a-New-Cumulus-Linux-Image).
+3. Install the disk image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see [Installing a New Cumulus Linux Image](../Installing-a-New-Cumulus-Linux-Image/).
 
 ```
 cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-3.7.1-mlx-amd64.bin && sudo reboot
@@ -325,7 +325,7 @@ Because Cumulus Linux is a collection of different Debian Linux packages, be awa
 
 ## Upgrade Switches in an MLAG Pair
 
-If you are using [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG) to dual connect two switches in your environment, follow the steps below according to the version of Cumulus Linux from which you are upgrading.
+If you are using [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) to dual connect two switches in your environment, follow the steps below according to the version of Cumulus Linux from which you are upgrading.
 
 ### Upgrade from Cumulus Linux 3.y.z to a Later 3.y.z Release
 
@@ -357,7 +357,7 @@ cumulus@switch:~$ sudo ip link set swpX down
 cumulus@switch:~$ sudo ip link set peerlink down
 ```
 
-5. Perform the upgrade either by installing a disk image or upgrading packages. To *install a disk image*, run the `onie-install -a -i <image-location> ` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see [Installing a New Cumulus Linux Image](../Installing-a-New-Cumulus-Linux-Image).
+5. Perform the upgrade either by installing a disk image or upgrading packages. To *install a disk image*, run the `onie-install -a -i <image-location> ` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see [Installing a New Cumulus Linux Image](../Installing-a-New-Cumulus-Linux-Image/).
 
 ```
 cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-3.7.1-mlx-amd64.bin
@@ -375,7 +375,7 @@ cumulus@switch:~$ sudo -E apt-get upgrade
 cumulus@switch:~$ sudo reboot
 ```
 
-7. If you were originally running Cumulus Linux 3.0.0 through 3.3.2, follow the steps for [upgrading from Quagga to FRRouting](../../Layer-3/FRRouting-Overview/Upgrading-from-Quagga-to-FRRouting).
+7. If you were originally running Cumulus Linux 3.0.0 through 3.3.2, follow the steps for [upgrading from Quagga to FRRouting](../../Layer-3/FRRouting-Overview/Upgrading-from-Quagga-to-FRRouting/).
 
 8. Verify STP convergence across both switches:
 
@@ -413,7 +413,7 @@ cumulus@switch:~$ clagctl priority 32768
 
 ### Upgrade from Cumulus Linux 2.y.z to 3.y.z
 
-If you are using [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG) to dual connect two switches in your environment and those switches are still running Cumulus Linux 2.5 ESR or any other release earlier than 3.0.0, the switches are not dual-connected after you upgrade the first switch.
+If you are using [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) to dual connect two switches in your environment and those switches are still running Cumulus Linux 2.5 ESR or any other release earlier than 3.0.0, the switches are not dual-connected after you upgrade the first switch.
 
 To upgrade the switches, you **must** install a new disk image using ONIE; you cannot use package upgrade:
 
@@ -461,7 +461,7 @@ cumulus@switch:~$ sudo systemctl restart quagga.service
 
 10. After the install, copy the license file and all the configuration files you backed up.
 
-11. Follow the steps for [upgrading from Quagga to FRRouting](../../Layer-3/FRRouting-Overview/Upgrading-from-Quagga-to-FRRouting).
+11. Follow the steps for [upgrading from Quagga to FRRouting](../../Layer-3/FRRouting-Overview/Upgrading-from-Quagga-to-FRRouting/).
 
 12. Enable `clagd` again in the `/etc/network/interfaces` file (set `clagd-enable` to *yes*), then run `ifreload -a`.
 
@@ -500,6 +500,6 @@ After you upgrade using a full disk image install, you need to reinstall any thi
 - [Upgrades: Network Device Worldview and Linux Host Worldview Comparison](https://support.cumulusnetworks.com/hc/en-us/articles/360010451353)
 - [Automation Solutions](https://cumulusnetworks.com/solutions/automation/)
 - [ONIE Design Specification](http://opencomputeproject.github.io/onie/design-spec/)
-- [Multi-Chassis Link Aggregation -  MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+- [Multi-Chassis Link Aggregation -  MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
 - [Configuration File Migration Script](https://support.cumulusnetworks.com/hc/en-us/articles/360011472734-Configuration-File-Migration-Script)
-- [Zero Touch Provisioning - ZTP](../Zero-Touch-Provisioning-ZTP)
+- [Zero Touch Provisioning - ZTP](../Zero-Touch-Provisioning-ZTP/)

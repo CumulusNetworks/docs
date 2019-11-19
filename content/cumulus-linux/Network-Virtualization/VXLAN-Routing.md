@@ -17,23 +17,21 @@ traffic is based on the inner header or the overlay tenant IP address.
 
 Because VXLAN routing is fundamentally routing, it is most commonly
 deployed with a control plane, such as Ethernet Virtual Private Network
-([EVPN](../Ethernet-Virtual-Private-Network-EVPN)).
+([EVPN](../Ethernet-Virtual-Private-Network-EVPN/)).
 You can set up static routing too, either with or without the Cumulus
-[Lightweight Network
-Virtualization](../Lightweight-Network-Virtualization-Overview/)
+[Lightweight Network Virtualization](../Lightweight-Network-Virtualization-Overview/)
 (LNV) for MAC distribution and BUM handling.
 
 This topic describes the platform and hardware considerations for VXLAN
 routing. For a detailed description of different VXLAN routing models
 and configuration examples, refer to
-[EVPN](../Ethernet-Virtual-Private-Network-EVPN).
+[EVPN](../Ethernet-Virtual-Private-Network-EVPN/).
 
 VXLAN routing supports full layer 3 multi-tenancy; all routing occurs in
 the context of a
-[VRF](/../../Layer-3/Virtual-Routing-and-Forwarding-VRF).
+[VRF](/../../Layer-3/Virtual-Routing-and-Forwarding-VRF/).
 Also, VXLAN routing is supported for dual-attached hosts where the
-associated VTEPs function in [active-active
-mode](../VXLAN-Active-Active-Mode).
+associated VTEPs function in [active-active mode](../VXLAN-Active-Active-Mode/).
 
 ## Supported Platforms
 
@@ -52,7 +50,7 @@ The following chipsets support VXLAN routing:
     Broadcom switches (Trident 3, Maverick, Trident 2+) in addition to
     Tomahawk, Tomahawk+ and Mellanox Spectrum-A1 switches.
   - For additional restrictions and considerations for VXLAN routing
-    with EVPN, refer to [the EVPN chapter](../Ethernet-Virtual-Private-Network-EVPN).
+    with EVPN, refer to [the EVPN chapter](../Ethernet-Virtual-Private-Network-EVPN/).
 
 {{%/notice%}}
 
@@ -150,9 +148,9 @@ for the changes to take effect.
 {{%notice note%}}
 
 VXLAN routing using internal loopback is supported only with
-[VLAN-aware bridges](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode);
+[VLAN-aware bridges](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/);
 you cannot use a bridge in
-[traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode).
+[traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/).
 
 {{%/notice%}}
 
@@ -160,7 +158,7 @@ you cannot use a bridge in
 
 {{%notice warning%}}
 
-As of Cumulus Linux 3.7, the external hyperloop workaround for RIOT on Trident II switches has been deprecated. Support for this feature will be removed in Cumulus Linux 4.0. Cumulus Networks recommends you use native VXLAN routing platforms and [EVPN](../Ethernet-Virtual-Private-Network-EVPN) for network virtualization.
+As of Cumulus Linux 3.7, the external hyperloop workaround for RIOT on Trident II switches has been deprecated. Support for this feature will be removed in Cumulus Linux 4.0. Cumulus Networks recommends you use native VXLAN routing platforms and [EVPN](../Ethernet-Virtual-Private-Network-EVPN/) for network virtualization.
 
 {{%/notice%}}
 
@@ -202,7 +200,7 @@ interface (named *inside*) is a member of the bridge. The ports swp45
 and swp47 are bonded together (named *outside*) and act as the layer 3
 end with SVIs configured for VLANs 100 and 200 with the corresponding
 gateway IP addresses. Because the two layer 3 gateways are in an
-[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
 configuration, they use a virtual IP address as the gateway IP. The
 relevant interface configuration on *exit01* is as follows:
 

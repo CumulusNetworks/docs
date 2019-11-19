@@ -212,8 +212,8 @@ username passwords and has the option of encrypting the packet contents.
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](../../Layer-3/Management-VRF), follow
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
+including the [management VRF](../../Layer-3/Management-VRF/), follow
 [these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf)
 for configuring the service.
 
@@ -526,8 +526,8 @@ it using `systemctl`.
 {{%notice note%}}
 
 As mentioned above, if you intend to run this service within a
-[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](../../Layer-3/Management-VRF), follow
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
+including the [management VRF](../../Layer-3/Management-VRF/), follow
 [these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf)
 for configuring the service.
 
@@ -562,7 +562,7 @@ on the switch.
 ### Configure SNMP with Management VRF (used prior to Cumulus Linux 3.6)
 
 When you configure [Management
-VRF](../../Layer-3/Management-VRF), you need to be aware of the
+VRF](../../Layer-3/Management-VRF/), you need to be aware of the
 interface IP addresses on which SNMP is listening. If you set
 listening-address to all, the `snmpd` daemon responds to incoming
 requests on all interfaces that are in the default VRF. If you prefer to
@@ -1594,23 +1594,14 @@ extension](http://net-snmp.sourceforge.net/wiki/index.php/Tut:Extending_snmpd_us
 to Net-SNMP. The scripts are stored in `/usr/share/snmp` and include:
 
   - bgp4\_pp.py
-
   - bridge\_pp.py
-
   - cl\_drop\_cntrs\_pp.py
-
   - cl\_poe\_pp.py
-
   - entity\_pp.py
-
   - entity\_sensor\_pp.py
-
   - ieee8023\_lag\_pp.py
-
   - resq\_pp.py
-
   - snmpifAlias\_pp.py
-
   - sysDescr\_pass.py
 
 All the scripts are enabled by default in Cumulus Linux, except for:
@@ -1618,11 +1609,8 @@ All the scripts are enabled by default in Cumulus Linux, except for:
   - `bgp4_pp.py`, which is now handled by
     [FRRouting](../../Layer-3/FRRouting-Overview/) instead of
     Quagga, so monitoring has changed accordingly.
-
   - `cl_poe_pp.py`, which is disabled by default as only certain
-    platforms that Cumulus Linux supports are capable of doing [Power
-    over
-    Ethernet](../../System-Configuration/Power-over-Ethernet-PoE).
+    platforms that Cumulus Linux supports are capable of doing [Power over Ethernet](../../System-Configuration/Power-over-Ethernet-PoE/).
 
 ## Troubleshooting
 

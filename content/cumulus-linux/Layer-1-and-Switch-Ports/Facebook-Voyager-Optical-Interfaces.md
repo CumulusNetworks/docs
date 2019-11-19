@@ -54,13 +54,11 @@ AC400 module.
 | 16-QAM               | QPSK                 | Independent         |
 | 8-QAM                | 8-QAM                | Coupled             |
 
-QPSK—[Quadrature phase shift
-keying](https://www.allaboutcircuits.com/technical-articles/quadrature-phase-shift-keying-qpsk-modulation/).
+QPSK—[Quadrature phase shift keying](https://www.allaboutcircuits.com/technical-articles/quadrature-phase-shift-keying-qpsk-modulation/).
 When a network interface is using QPSK modulation, it carries 100Gbps
 and is therefore connected to only one client interface.
 
-16-QAM—[Quadrature amplitude
-modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
+16-QAM—[Quadrature amplitude modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
 with 4 bits per symbol. When a network interface is using 16-QAM
 modulation, it carries 200Gbps and is therefore connected to two client
 interfaces. Each of the two client interfaces carried on a network
@@ -68,8 +66,7 @@ interface is called a tributary. The AC400 adds extra information so
 that these tributaries can be sorted out at the far end and delivered to
 the appropriate client interface.
 
-8-QAM—[Quadrature amplitude
-modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
+8-QAM—[Quadrature amplitude modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
 with 3 bits per symbol. When a network interface is using 8-QAM
 modulation, it carries 150Gbps. In this case, the two network interfaces
 in an AC400 module must be coupled, so that the total bandwidth carried
@@ -154,11 +151,11 @@ below.
 Each transponder module has a state, which is set to `ready` by default.
 The available transponder states are listed below.
 
-| Setting     | Description                                                                                                                                                              |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Setting     | Description     |
+| ----------- | --------------- |
 | `reset`     | The module is in the reset state. The module cannot be accessed and remains non-operational until the state is changed to one of the other states.                       |
 | `low-power` | The module is in the low-power configuration state. The network interfaces are not powered up. This state can be used to configure the module before bringing it online. |
-| `tx-off`    | The receivers and transmitters are turned up, but there is nothing being transmitted.                                                                                    |
+| `tx-off`    | The receivers and transmitters are turned up, but there is nothing being transmitted. |
 | `ready`     | This is the fully operational state of the module.                                                                                                                       |
 
 To change the state of the module, run the `net add interface
@@ -335,8 +332,7 @@ cumulus@switch:~$ net add interface L1 frequency 195.<tab>
 
 To see a complete list of the frequencies, channels, and wavelengths,
 run the `net show transponder frequency-map` command (described in
-[Display Available
-Frequencies](#display-available-channel-frequencies).
+[Display Available Frequencies](#display-available-channel-frequencies).
 
 ### Set the Transmit Power
 

@@ -71,7 +71,7 @@ for the changes to take effect:
 The following example `/etc/cumulus/datapath/traffic.conf` datapath
 configuration file applies to 10G, 40G, and 100G switches on Broadcom
 Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum
-[platforms](http://cumulusnetworks.com/hcl/) only. However, see the note
+[platforms](https://cumulusnetworks.com/hcl/) only. However, see the note
 above for all the supported ASICs.
 
 Keep in mind the following about the configuration:
@@ -737,7 +737,7 @@ to allow the ECN configuration changes to take effect:
 
 ## Check Interface Buffer Status
 
-On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the [ASIC monitoring chapter](../../Monitoring-and-Troubleshooting/ASIC-Monitoring) for details.
+On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the [ASIC monitoring chapter](../../Monitoring-and-Troubleshooting/ASIC-Monitoring/) for details.
 
 On Broadcom switches, the buffer status is not visible currently.
 

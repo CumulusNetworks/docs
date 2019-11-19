@@ -18,7 +18,7 @@ OSPF maintains the view of the network topology conceptually as a directed graph
 
 An LSA (*link-state advertisement*) is the fundamental quantum of information that OSPF routers exchange with each other. It seeds the graph building process on the node and triggers SPF computation. LSAs originated by a node are distributed to all the other nodes in the network through a mechanism called *flooding*. Flooding is done hop-by-hop. OSPF ensures reliability by using link state acknowledgement packets. The set of LSAs in a router’s memory is termed *link-state database* (LSDB), a representation of the network graph. Therefore, OSPF ensures a consistent view of LSDB on each node in the network in a distributed fashion (eventual consistency model); this is key to the protocol’s correctness.
 
-This topic describes OSPFv2, which is a [link-state routing protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for IPv4. For IPv6 commands, refer to [Open Shortest Path First v3 - OSPFv3](../Open-Shortest-Path-First-v3-OSPFv3)
+This topic describes OSPFv2, which is a [link-state routing protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for IPv4. For IPv6 commands, refer to [Open Shortest Path First v3 - OSPFv3](../Open-Shortest-Path-First-v3-OSPFv3/)
 
 ## Scalability and Areas
 
@@ -592,7 +592,7 @@ cumulus@switch:~$ net add interface swp1 ospf cost 65535
 
 ## Related Information
 
-- [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD) (BFD) and OSPF
+- [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD/) (BFD) and OSPF
 - [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)
 - [FRR OSPFv2](https://frrouting.org/user-guide/ospfd.html)
 - Perlman, Radia (1999). Interconnections: Bridges, Routers, Switches, and Internetworking Protocols (2 ed.). Addison-Wesley.

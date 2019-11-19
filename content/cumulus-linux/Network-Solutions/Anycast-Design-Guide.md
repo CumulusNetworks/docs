@@ -12,15 +12,15 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 [FRRouting](https://frrouting.org/) provides the ability to run
-[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF) or
-[BGP](../../Layer-3/Border-Gateway-Protocol-BGP) directly on
+[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/) or
+[BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) directly on
 server hosts. This can enable a network architecture known as *anycast*,
 where many servers can provide the same service without needing layer 2
 extensions or load balancer appliances.
 
 Anycast is not a new protocol or protocol implementation and does not
 require any additional network configuration. Anycast leverages the
-[equal cost multipath](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP)
+[equal cost multipath](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/)
 (ECMP) capabilities inherent in layer 3 networks to provide stateless
 load sharing services.
 
@@ -165,8 +165,8 @@ since they do not currently flow through leaf02:
 Although resilient hashing can prevent rehashing on next hop failure, it
 cannot prevent rehashing on next hop addition.
 
-You can read more information on resilient hashing in the [ECMP
-chapter](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP).
+You can read more information on resilient hashing in the
+[ECMP chapter](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/).
 
 ## Applications for Anycast
 
@@ -177,7 +177,6 @@ When considering applications to be deployed in an anycast scenario, the
 first two questions to answer are:
 
   - Whether the application relies on TCP for proper sequencing of data.
-
   - Whether the application relies on more than one session as part of
     the application.
 
@@ -214,23 +213,18 @@ TCP-based applications can be used with anycast, with the following
 recommendations:
 
   - TCP sessions are short lived.
-
   - The impact of a failed session or TCP reset does not impact the
     application. For example, a web page refresh is acceptable.
-
   - There is application-level session management that is completely
     independent of the TCP session.
-
   - A redirection middleware layer handles incorrectly hashed flows.
 
 TCP applications that have longer-lived flows should not be used as
 anycast services. For example:
 
   - FTP or other large file transfers.
-
   - Transactions that must be completed and journaled. For example,
     financial transactions.
-
   - Streaming media without application-level automated recovery.
 
 It should be noted that anycast TCP is possible and has been implemented

@@ -1576,6 +1576,11 @@ one second for the second interface to show the `operational down`
 status. In addition, the services on this interface also take an extra
 second to come down.
 
+### Maverick Switches with Modules that Don't Support Auto-negotiation
+
+On a Maverick switch, if auto-negotiation is configured on a 10G interface and the installed module does not support auto-negotiation (for example, 10G DAC, 10G Optical, 1G RJ45 SFP), the link breaks.
+To work around this issue, disable auto-negotiation on interfaces where it is not supported.
+
 ## Related Information
 
 - [Debian - Network Configuration](http://wiki.debian.org/NetworkConfiguration)

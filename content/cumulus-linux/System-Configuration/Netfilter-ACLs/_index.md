@@ -19,7 +19,7 @@ number of tools available for configuring ACLs in Cumulus Linux:
   - `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools
     used to administer filtering rules for IPv4 packets, IPv6 packets,
     and Ethernet frames (layer 2 using MAC addresses).
-  - [NCLU](../Network-Command-Line-Utility-NCLU)
+  - [NCLU](../Network-Command-Line-Utility-NCLU/)
     is a Cumulus Linux-specific userspace tool used to configure custom
     ACLs.
   - `cl-acltool` is a Cumulus Linux-specific userspace tool used to
@@ -478,9 +478,8 @@ entry is one of the following:
 
 Cumulus Linux supports matching ACL rules for both ingress and egress
 interfaces on both
-[VLAN-aware](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
-and [traditional
-mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
+[VLAN-aware](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)
+and [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/)
 bridges, including bridge SVIs ([switch VLAN
 interfaces](../../Layer-2/Ethernet-Bridging-VLANs/#configure-an-svi-(switch-vlan-interface))
 for input and output. However, keep the following in mind:
@@ -825,15 +824,14 @@ The maximum number of rules that can be handled in hardware is a
 function of the following factors:
 
   - The platform type (switch silicon, like Tomahawk or Spectrum — see
-    the [HCL](http://cumulusnetworks.com/support/hcl) to determine which
+    the [HCL](https://cumulusnetworks.com/hcl) to determine which
     platform type applies to a particular switch).
   - The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the
     maximum number of rules for both IPv4 and IPv6 simultaneously.
   - The number of default rules provided by Cumulus Linux.
   - Whether the rules are applied on ingress or egress.
   - Whether the rules are in atomic or nonatomic mode; nonatomic mode
-    rules are used when nonatomic updates are enabled ([see
-    above](#nonatomic-update-mode-and-update-mode)).
+    rules are used when nonatomic updates are enabled ([see above](#nonatomic-update-mode-and-update-mode)).
 
 If the maximum number of rules for a particular table is exceeded,
 `cl-acltool -i` generates the following error:
@@ -1693,7 +1691,7 @@ instead because:
 
 ### Mellanox Spectrum Hardware Limitations
 
-Due to hardware limitations in the Spectrum ASIC, [BFD policers](../../Layer-3/Bidirectional-Forwarding-Detection-BFD)
+Due to hardware limitations in the Spectrum ASIC, [BFD policers](../../Layer-3/Bidirectional-Forwarding-Detection-BFD/)
 are shared between all BFD-related control plane rules. Specifically the
 following default rules share the same policer in the
 `00control_plan.rules` file:

@@ -32,8 +32,7 @@ After installation is complete, either reboot the switch or run the
 `sudo systemctl restart netd` command.
 
 The `libpam-radius-auth` package supplied with the Cumulus Linux RADIUS
-client is a newer version than the one in [Debian
-Jessie](https://packages.debian.org/jessie/libpam-radius-auth). This
+client is a newer version than the one in [Debian Jessie](https://packages.debian.org/jessie/libpam-radius-auth). This
 package has added support for IPv6, the `src_ip` option described below,
 as well as a number of bug fixes and minor features. The package also
 includes VRF support, provides man pages describing the PAM and RADIUS
@@ -109,7 +108,7 @@ The hostname of the switch must be resolvable to an IP address,
     option, you must also specify the `timeout` option.
 
 4.  Set the `vrf-name` field. This is typically set to *mgmt* if you are
-    using a [management VRF](../../../Layer-3/Management-VRF). You
+    using a [management VRF](../../../Layer-3/Management-VRF/). You
     cannot specify more than one VRF.
 
 The configuration file includes the `mapped_priv_user` field that sets
@@ -323,6 +322,6 @@ mapping file; this might be the first or second user that logged in.
 
 ## Related Information
 
-  - [TACACS+ client](../../Authentication-Authorization-and-Accounting/TACACS-Plus)
+  - [TACACS+ client](../../Authentication-Authorization-and-Accounting/TACACS-Plus/)
   - [Cumulus Networks RADIUS demo on GitHub](https://github.com/CumulusNetworks/cldemo-radius)
   - [Cumulus Network TACACS demo on GitHub](https://github.com/CumulusNetworks/cldemo-tacacs)

@@ -19,7 +19,7 @@ Cumulus Linux is the first full-featured Linux operating system for the
 networking industry. The
 [Debian Jessie](https://www.debian.org/releases/jessie/)-based,
 networking-focused distribution runs on hardware produced by a 
-[broad partner ecosystem](http://cumulusnetworks.com/hcl/), ensuring 
+[broad partner ecosystem](https://cumulusnetworks.com/hcl/), ensuring 
 unmatched customer choice regarding silicon, optics, cables, and systems.
 
 This user guide provides in-depth documentation on the Cumulus Linux

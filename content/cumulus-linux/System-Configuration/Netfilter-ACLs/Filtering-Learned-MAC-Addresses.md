@@ -82,10 +82,9 @@ to configure:
     bridge fdb add 00:00:00:00:00:44 dev swp4 master static vlan 400
     bridge fdb add 00:00:00:00:00:55 dev swp5 master static vlan 500
     bridge fdb add 00:00:00:00:00:66 dev swp6 master static vlan 600
-     
 
 Then create the configuration using
-[NCLU](../../Network-Command-Line-Utility-NCLU):
+[NCLU](../../Network-Command-Line-Utility-NCLU/):
 
     cumulus@switch:~$ net add bridge bridge vids 100,200,300
     cumulus@switch:~$ net add bridge bridge pvid 1
@@ -131,7 +130,7 @@ These commands create the following configuration in the
 ## Interactions with EVPN
 
 If you are using
-[EVPN](../../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN),
+[EVPN](../../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/),
 local static MAC addresses added to the local FDB are exported as static
 MAC addresses to remote switches. Remote MAC addresses are added as MAC
 addresses to the remote FDB.

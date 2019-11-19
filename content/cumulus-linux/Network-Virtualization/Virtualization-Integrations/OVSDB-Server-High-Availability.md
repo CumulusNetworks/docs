@@ -23,11 +23,9 @@ Cumulus Linux supports integration with VMware NSX in both *standalone
 mode* and *OVSDB server high availability mode* (where the data plane is
 running in active-active mode). For information about VMware NSX in
 standalone mode and for a description of the components that work
-together to integrate VMware NSX and Cumulus Linux, see [Integrating
-Hardware VTEPs with VMware
-NSX-MH](../Integrating-Hardware-VTEPs-with-VMware-NSX-MH)
-or [Integrating Hardware VTEPs with VMware
-NSX-V](../Integrating-Hardware-VTEPs-with-VMware-NSX-V).
+together to integrate VMware NSX and Cumulus Linux, see
+[Integrating Hardware VTEPs with VMware NSX-MH](../Integrating-Hardware-VTEPs-with-VMware-NSX-MH/)
+or [Integrating Hardware VTEPs with VMware NSX-V](../Integrating-Hardware-VTEPs-with-VMware-NSX-V/).
 
 With OVSDB server high availability mode, you use two peer Cumulus Linux
 switches in an MLAG configuration. Both the MLAG primary and MLAG
@@ -69,8 +67,7 @@ role again.
 Before you configure OVSDB server high availability, make sure you have
 **two switches running Cumulus Linux in an MLAG configuration**. Cumulus
 Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`),
-which support [VLAN-aware
-bridges](../../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode).
+which support [VLAN-aware bridges](../../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/).
 
 The following example configuration in the `/etc/network/interfaces`
 file shows the *minimum* MLAG configuration required (the MLAG peerlink

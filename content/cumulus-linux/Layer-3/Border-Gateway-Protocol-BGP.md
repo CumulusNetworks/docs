@@ -1265,11 +1265,11 @@ Limiting the exchange of routing information at various parts in the network is 
 
 ### Multiple Routing Tables and Forwarding
 
-You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band/management plane traffic) on the same switch using [management VRF](../Management-VRF) (multiple routing tables and forwarding).
+You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band/management plane traffic) on the same switch using [management VRF](../Management-VRF/) (multiple routing tables and forwarding).
 
 {{%notice note%}}
 
-BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to [Virtual Routing and Forwarding - VRF](../Virtual-Routing-and-Forwarding-VRF).
+BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to [Virtual Routing and Forwarding - VRF](../Virtual-Routing-and-Forwarding-VRF/).
 
 {{%/notice%}}
 
@@ -1767,7 +1767,7 @@ To work around this issue, only advertise the spine to leaf addresses from the s
 
 ## Related Information
 
-- [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD) (BFD) and BGP
+- [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD/) (BFD) and BGP
 - [Wikipedia entry for BGP](http://en.wikipedia.org/wiki/Border_Gateway_Protocol) (includes list of useful RFCs)
 - [FRR BGP documentation](https://frrouting.org/user-guide/bgp.html)
 - [IETF draft discussing BGP use within data centers](http://tools.ietf.org/html/draft-lapukhov-bgp-routing-large-dc-04)

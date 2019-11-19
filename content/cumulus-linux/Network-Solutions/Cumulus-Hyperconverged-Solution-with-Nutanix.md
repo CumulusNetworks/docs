@@ -20,15 +20,13 @@ Nutanix Prism and Nutanix AHV.
 In addition, you can augment the deployment with:
 
   - [Cumulus on a Stick](https://cumulusnetworks.com/cumulus-on-a-stick/) for
-    [zero touch provisioning](../../Installation-Management/Zero-Touch-Provisioning-ZTP)
+    [zero touch provisioning](../../Installation-Management/Zero-Touch-Provisioning-ZTP/)
     Nutanix and Cumulus HCS without any user interaction or additional
     equipment.
-
   - [Cumulus NetQ](/cumulus-netq/) for network telemetry and unprecedented
     real-time and historic visibility into dynamic changes in both the
     network and virtual machines.
-
-  - Out-of-band management and IPMI access using [Cumulus RMP](/cumulus-rmp) or a
+  - Out-of-band management and IPMI access using [Cumulus RMP](/cumulus-rmp/) or a
     generic Cumulus Linux switch, enabling the full provisioning of a
     zero-touch data and management network, eliminating any network
     deployment delays when standing up a Nutanix cluster.
@@ -51,7 +49,7 @@ Cumulus HCS has two major components:
     automatically identifies the physical Nutanix server hosting the VM
     and discovers any VLANs required for the VM. The service then
     automatically adds these VLANs to the default
-    [VLAN-aware bridge](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode),
+    [VLAN-aware bridge](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/),
     the MLAG peer link and the automatically created bond to the Nutanix
     node. When a VM is powered off, removed or moved, and the associated
     VLAN has no other VMs, the VLAN is automatically removed from the
@@ -61,35 +59,24 @@ Cumulus HCS has two major components:
 
   - 2 [Cumulus Networks-compatible switches](https://cumulusnetworks.com/hcl) running Cumulus Linux
     3.7.3 or later
-
   - Nutanix AOS 5.5.8 or later
-
   - Nutanix AHV 20170830.185 or later
-
   - LLDP enabled on Nutanix (which is the default in 5.5.8 and later)
-
   - IP connectivity between the Cumulus Linux switches and the Nutanix
     controller VMs (CVMs)
-
-  - [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+  - [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
     enabled on the Cumulus Linux switches
 
 Cumulus HCS runs on any platform. However, this chapter assumes a
 typical Nutanix deployment with the following configuration:
 
   - Leaf switches with 48 x 10G or 25G ports
-
   - Four or more 40G or 100G uplinks
-
   - Nutanix servers are attached to any of the 10G or 25G ports
-
   - MLAG peer link is on the first two uplink ports: swp49 and swp50
-
   - Connections to other infrastructure are on ports swp51 and above
-
   - The eth0 management interface is configured for
-    [management VRF](../../Layer-3/Management-VRF) via DHCP
-
+    [management VRF](../../Layer-3/Management-VRF/) via DHCP
   - For automatic configuration, the gateway IP addresses for all VMs,
     including the CVM, do not exist on the Cumulus Linux switches.
 
@@ -353,11 +340,11 @@ gateway configuration.
 
 To provide redundant gateways for the dual-attached Nutanix servers,
 Cumulus Linux relies on
-[Virtual Router Redundancy](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP)
+[Virtual Router Redundancy](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/)
 (VRR). VRR enables hosts to communicate with any redundant router
 without reconfiguration, running dynamic routing protocols, or running
 router redundancy protocols. This means that redundant routers will respond to
-[Address Resolution Protocol](../../Layer-3/Address-Resolution-Protocol-ARP)
+[Address Resolution Protocol](../../Layer-3/Address-Resolution-Protocol-ARP/)
 (ARP) requests from hosts. Routers are configured to respond in an
 identical manner, but if one fails, the other redundant routers will
 continue to respond, leaving the hosts with the impression that nothing
@@ -388,7 +375,7 @@ and only be assigned to a single switch pair in your network.
 
 You can configure out-of-band management in one of two ways:
 
-- Using [Cumulus RMP](/cumulus-rmp), which is the recommended way.
+- Using [Cumulus RMP](/cumulus-rmp/), which is the recommended way.
 - Running Cumulus Linux on a [supported 1G non-Cumulus RMP
   switch](https://cumulusnetworks.com/products/hardware-compatibility-list/?portfolio%5B0%5D=1G).
 
@@ -405,8 +392,8 @@ configuration is required.
 
 Cumulus RMP does not support MLAG or active/active connections across
 Cumulus RMP switches. Connections across more than one Cumulus RMP
-switch rely on traditional [spanning tree
-protocol](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree)
+switch rely on traditional
+[spanning tree protocol](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/)
 for redundancy.
 
 ### Other Cumulus Linux 1G Switches
@@ -414,9 +401,8 @@ for redundancy.
 If you want to use a non-Cumulus RMP 1G switch that supports Cumulus
 Linux for out-of-band management, you must manually install the Cumulus
 Linux software and license and set up the baseline configuration. The
-default [Cumulus on a Stick
-image](https://cumulusnetworks.com/cumulus-on-a-stick/) has this
-information.
+default [Cumulus on a Stick image](https://cumulusnetworks.com/cumulus-on-a-stick/)
+has this information.
 
 Once you install the software, you can use the following command to
 configure all ports for a single, untagged management VLAN, including
@@ -526,6 +512,5 @@ details of the Nutanix node and verify the `SysDescr` field.
 
 ## More Information
 
-  - [Hyperconverged infrastructure
-    site](https://cumulusnetworks.com/networking-solutions/converged-infrastructure/)
+  - [Hyperconverged infrastructure site](https://cumulusnetworks.com/networking-solutions/converged-infrastructure/)
     on the Cumulus Networks website

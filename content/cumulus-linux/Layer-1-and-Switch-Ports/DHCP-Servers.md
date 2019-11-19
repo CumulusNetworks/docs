@@ -26,8 +26,8 @@ dedicated server in your environment.
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF),
-including the [management VRF](../../Layer-3/Management-VRF),
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
+including the [management VRF](../../Layer-3/Management-VRF/),
 follow [these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
 configuring them. See also the [VRF chapter](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
 
@@ -41,7 +41,6 @@ configuration files for the two DHCP server instances need to have two
 pools:
 
   - Pool 1: Subnet overlaps interfaces
-
   - Pool 2: Subnet that includes the addresses
 
 ### Configure the IPv4 DHCP Server

@@ -27,8 +27,7 @@ Windows, use a Linux environment like [Cygwin](http://www.cygwin.com/)
 as your command line tool for interacting with Cumulus Linux.
 
 If you are a networking engineer but are unfamiliar with Linux concepts,
-refer to [this reference
-guide](https://support.cumulusnetworks.com/hc/en-us/articles/201787636)
+refer to [this reference guide](https://support.cumulusnetworks.com/hc/en-us/articles/201787636)
 to compare the Cumulus Linux CLI and configuration options, and their
 equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also
 [watch a series of short
@@ -50,7 +49,7 @@ system choice, such as Cumulus Linux.
 
 If Cumulus Linux is already installed on your switch and you need to
 upgrade the software only, skip to [Upgrading Cumulus
-Linux](../Installation-Management/Upgrading-Cumulus-Linux).
+Linux](../Installation-Management/Upgrading-Cumulus-Linux/).
 
 {{%/notice%}}
 
@@ -61,7 +60,7 @@ discovery:
     running a web server. If the host is IPv4-enabled, make sure it is
     running DHCP in addition to a web server.
 
-2.  [Download](http://cumulusnetworks.com/downloads/) the Cumulus Linux
+2.  [Download](https://cumulusnetworks.com/downloads/) the Cumulus Linux
     installation file to the root directory of the web server. Rename
     this file `onie-installer`.
 
@@ -80,8 +79,7 @@ not need a console cable. A fresh install with ONIE using a local web
 server typically completes in less than ten minutes.
 
 You have more options for installing Cumulus Linux with ONIE. Read
-[Installing a New Cumulus Linux
-Image](../Installation-Management/Installing-a-New-Cumulus-Linux-Image)
+[Installing a New Cumulus Linux Image](../Installation-Management/Installing-a-New-Cumulus-Linux-Image/)
 to install Cumulus Linux using ONIE in the following ways:
 
   - DHCP/web server with and without DHCP options
@@ -95,8 +93,7 @@ to install Cumulus Linux using ONIE in the following ways:
 ONIE supports many other discovery mechanisms using USB (copy the
 installer to the root of the drive), DHCPv6 and DHCPv4, and image copy
 methods including HTTP, FTP, and TFTP. For more information on these
-discovery methods, refer to the [ONIE
-documentation](https://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods).
+discovery methods, refer to the [ONIE documentation](https://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods).
 
 After installing Cumulus Linux, you are ready to:
 
@@ -138,7 +135,7 @@ All accounts except `root` are permitted remote SSH login; you can use
 change the system configuration require this elevated level of access.
 
 For more information about `sudo`, read [Using sudo to Delegate
-Privileges](../System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
+Privileges](../System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/).
 
 ### Serial Console Management
 
@@ -228,7 +225,7 @@ required.
 
 Before you install the license, verify that the date and time on the
 switch are correct. You must [correct the date and
-time](../System-Configuration/Setting-Date-and-Time) if they
+time](../System-Configuration/Setting-Date-and-Time/) if they
 are incorrect. The wrong date and time can have impacts on the switch,
 such as the inability to synchronize with Puppet or return errors like
 this one after you restart `switchd`:

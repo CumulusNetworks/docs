@@ -641,7 +641,7 @@ BFD, and associated logs are documented in the code.
 
 Cumulus Networks recommends that you track peering information through
 PTM. For more information, refer to the [Prescriptive Topology Manager
-documentation](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM).
+documentation](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/).
 
 {{%/notice%}}
 

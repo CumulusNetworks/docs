@@ -96,6 +96,5 @@ To configure a completely passwordless system, do not enter a
 
   - [Debian Documentation - Password-less logins with
     OpenSSH](https://debian-administration.org/article/152/Password-less_logins_with_OpenSSH)
-
   - [Wikipedia - Secure Shell
     (SSH)](http://en.wikipedia.org/wiki/Secure_Shell)

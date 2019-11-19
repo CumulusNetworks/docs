@@ -12,8 +12,8 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 Cumulus Linux implements an HTTP (Web) application programing interface 
-to the [OpenStack ML2 driver](../../Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
-and the [NCLU](../Network-Command-Line-Utility-NCLU) 
+to the [OpenStack ML2 driver](../../Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux/)
+and the [NCLU](../Network-Command-Line-Utility-NCLU/)
 API. Rather than accessing Cumulus Linux using SSH, you can interact with the
 switch using an HTTP client, such as cURL, HTTPie or a web browser.
 
@@ -194,3 +194,7 @@ To run `net show counters` on the host as a remote procedure call:
 To add a bridge using ML2:
 
     cumulus@switch:~$ curl -X PUT -k -u user:pw https://192.168.0.32:8080/ml2/v1/bridge/"br1"/200
+
+## Caveats
+
+The `/etc/restapi.conf` file is not listed in the `net show configuration files` command output.

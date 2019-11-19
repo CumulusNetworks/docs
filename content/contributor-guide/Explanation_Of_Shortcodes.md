@@ -25,8 +25,8 @@ The easiest is with inline Markdown:
 ```
 [External Link](https://docs.cumulusnetworks.com)
 [In-Page Anchor](#adding-images)
-[Internal Absolute Reference](/cumulus-linux/Installation_Management/Upgrading_Cumulus_Linux)
-[Internal Relative Reference](../Adding_New_Content)
+[Internal Absolute Reference](/cumulus-linux/Installation_Management/Upgrading_Cumulus_Linux/)
+[Internal Relative Reference](../Adding_New_Content/)
 ```
 
 Hugo provides default shortcodes for internal references,

@@ -1265,11 +1265,11 @@ Limiting the exchange of routing information at various parts in the network is 
 
 ### Multiple Routing Tables and Forwarding
 
-You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band/management plane traffic) on the same switch using [management VRF](../Management-VRF) (multiple routing tables and forwarding).
+You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band/management plane traffic) on the same switch using [management VRF](../Management-VRF/) (multiple routing tables and forwarding).
 
 {{%notice note%}}
 
-BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to [Virtual Routing and Forwarding - VRF](../Virtual-Routing-and-Forwarding-VRF).
+BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to [Virtual Routing and Forwarding - VRF](../Virtual-Routing-and-Forwarding-VRF/).
 
 {{%/notice%}}
 
@@ -1759,9 +1759,15 @@ For more information about ACLs, see [Netfilter (ACLs)](../../System-Configurati
 
 Dynamic capabilities, which enable BGP to renegotiate a new feature for an already established peer, are not supported in Cumulus Linux.
 
-### Related Information
+### BGP and Route Reflectors
 
-- [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD) (BFD) and BGP
+In certain topologies that use BGP and route reflectors, next hop resolution might be impacted by advertising the spine-leaf link addresses from the leafs themselves. The problem is seen primarily with multiple links between each pair of spine and leaf switches, and redistribute connected configured on the leafs.
+
+To work around this issue, only advertise the spine to leaf addresses from the spine switches (or use IGP for next-hop propagation). You can use network statements for the interface addresses that you need to advertise to limit the addresses advertised by the leaf switches. Or, define redistribute connected with route maps to filter the outbound updates and remove the spine to leaf addresses from being sent from the leafs.
+
+## Related Information
+
+- [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD/) (BFD) and BGP
 - [Wikipedia entry for BGP](http://en.wikipedia.org/wiki/Border_Gateway_Protocol) (includes list of useful RFCs)
 - [FRR BGP documentation](https://frrouting.org/user-guide/bgp.html)
 - [IETF draft discussing BGP use within data centers](http://tools.ietf.org/html/draft-lapukhov-bgp-routing-large-dc-04)

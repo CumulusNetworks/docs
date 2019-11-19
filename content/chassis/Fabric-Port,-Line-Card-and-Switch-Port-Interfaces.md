@@ -114,5 +114,5 @@ for these addresses are written to the `/etc/hosts` file by a
 
 The interface configuration is stored in the
 `/etc/network/interfaces.d/chassismgmt.intf` file. See 
-[Chassis Default Configurations](../Chassis-Default-Configurations) 
+[Chassis Default Configurations](../Chassis-Default-Configurations/) 
 for the contents.

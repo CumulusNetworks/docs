@@ -255,19 +255,19 @@ written:
 | ----------------- | --------------------- |
 | 10-rules.conf     | Sets defaults for log messages, include log format and log rate limits. |
 | 15-crit.conf      | Logs crit, alert or emerg log messages to `/var/log/crit.log` to ensure they are not rotated away rapidly.              |
-| 20-clagd.conf     | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](../Layer-2/Multi-Chassis-Link-Aggregation-MLAG).  |
+| 20-clagd.conf     | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).  |
 | 22-linkstate.conf | Logs link state changes for all physical and logical network links to `/var/log/linkstate`              |
 | 25-switchd.conf   | Logs `switchd` messages to `/var/log/switchd.log`.  |
-| 30-ptmd.conf      | Logs `ptmd` messages to `/var/log/ptmd.log` for [Prescription Topology Manager](../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM). |
-| 35-rdnbrd.conf    | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for [redistribute neighbor](../Layer-3/Redistribute-Neighbor).  |
-| 40-netd.conf      | Logs `netd` messages to `/var/log/netd.log` for [NCLU](../System-Configuration/Network-Command-Line-Utility-NCLU). |
+| 30-ptmd.conf      | Logs `ptmd` messages to `/var/log/ptmd.log` for [Prescription Topology Manager](../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/). |
+| 35-rdnbrd.conf    | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for [redistribute neighbor](../Layer-3/Redistribute-Neighbor/).  |
+| 40-netd.conf      | Logs `netd` messages to `/var/log/netd.log` for [NCLU](../System-Configuration/Network-Command-Line-Utility-NCLU/). |
 | 45-frr.conf       | Logs routing protocol messages to /var/log/frr/frr.log. This includes BGP and OSPF log messages. |
 | 99-syslog.conf    | All remaining processes that use `rsyslog` are sent to `/var/log/syslog`.    |
 
 Log files that are rotated are compressed into an archive. Processes
 that do not use `rsyslog` write to their own log files within the
 `/var/log` directory. For more information on specific log files, see
-[Troubleshooting Log Files](Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files).
+[Troubleshooting Log Files](Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files/).
 
 ### Enable Remote syslog
 
@@ -326,7 +326,7 @@ Do not use the `imfile` module with any file written by `rsyslogd`.
 ### Write to syslog with Management VRF Enabled
 
 You can write to syslog with
-[management VRF](../Layer-3/Management-VRF) enabled by applying the
+[management VRF](../Layer-3/Management-VRF/) enabled by applying the
 following configuration; this configuration is commented out in the
 `/etc/rsyslog.d/11-remotesyslog.conf` file:
 

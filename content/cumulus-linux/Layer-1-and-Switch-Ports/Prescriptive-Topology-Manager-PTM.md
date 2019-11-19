@@ -34,28 +34,21 @@ For more information, see `man ptmd(8)`.
     to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship
     between the nodes/ports in the network and compares them against the
     prescribed topology specified in the `topology.dot` file.
-
   - Only physical interfaces, like swp1 or eth0, are currently
     supported. Cumulus Linux does not support specifying virtual
     interfaces like bonds or subinterfaces like eth0.200 in the topology
     file.
-
   - Forwarding path failure detection using [Bidirectional Forwarding
     Detection](http://tools.ietf.org/html/rfc5880) (BFD); however,
     demand mode is not supported. For more information on how BFD
-    operates in Cumulus Linux, read the [Bidirectional Forwarding
-    Detection -
-    BFD](../../Layer-3/Bidirectional-Forwarding-Detection-BFD)
+    operates in Cumulus Linux, read the 
+    [Bidirectional Forwarding Detection - BFD](../../Layer-3/Bidirectional-Forwarding-Detection-BFD/)
     chapter and read `man ptmd(8)`.
-
   - Integration with FRRouting (PTM to FRRouting notification).
-
   - Client management: `ptmd` creates an abstract named socket
     `/var/run/ptmd.socket` on startup. Other applications can connect to
     this socket to receive notifications and send commands.
-
   - Event notifications: see Scripts below.
-
   - User configuration via a `topology.dot` file; [see
     below](#configure-ptm).
 
@@ -231,21 +224,16 @@ while BFD1 and BFD2 are templates for BFD parameters.
 
   - `upMinTx`: the minimum transmit interval, which defaults to *300ms*,
     specified in milliseconds.
-
   - `requiredMinRx`: the minimum interval between received BFD packets,
     which defaults to *300ms*, specified in milliseconds.
-
   - `detectMult`: the detect multiplier, which defaults to *3*, and can
     be any non-zero value.
-
   - `afi`: the address family to be supported for the edge. The address
     family must be one of the following:
 
       - *v4*: BFD sessions will be built for only IPv4 connected peer.
         This is the default value.
-
       - *v6*: BFD sessions will be built for only IPv6 connected peer.
-
       - *both*: BFD sessions will be built for both IPv4 and IPv6
         connected peers.
 
@@ -266,7 +254,6 @@ graph G {
     `lldpd` to compare the topology against the port description instead
     of the interface name. You can set this parameter globally or at the
     per-port level.
-
   - `match_hostname`, which defaults to the host name (`hostname`), but
     enables PTM to match the topology using the fully-qualified domain
     name (`fqdn`) supplied by LLDP.
@@ -485,18 +472,18 @@ cumulus@switch:~$ sudo ptmctl -b -d
  
 ----------------------------------------------------------------------------------------
 port  peer                 state  local  type       diag  det   tx_timeout  rx_timeout  
-                                                          mult                          
+                                                          mult
 ----------------------------------------------------------------------------------------
-swp1  fe80::202:ff:fe00:1  Up     N/A    singlehop  N/A   3     300         900         
-swp1  3101:abc:bcad::2     Up     N/A    singlehop  N/A   3     300         900         
+swp1  fe80::202:ff:fe00:1  Up     N/A    singlehop  N/A   3     300         900
+swp1  3101:abc:bcad::2     Up     N/A    singlehop  N/A   3     300         900
  
 #continuation of output
 ---------------------------------------------------------------------
 echo        echo        max      rx_ctrl  tx_ctrl  rx_echo  tx_echo
-tx_timeout  rx_timeout  hop_cnt                                     
+tx_timeout  rx_timeout  hop_cnt
 ---------------------------------------------------------------------
-0           0           N/A      187172   185986   0        0       
-0           0           N/A      501      533      0        0       
+0           0           N/A      187172   185986   0        0
+0           0           N/A      501      533      0        0
 ```
 
 ### ptmctl Error Outputs

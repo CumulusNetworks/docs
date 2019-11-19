@@ -1,728 +1,809 @@
 ---
 title: Data Center Host to ToR Architecture
 author: Cumulus Networks
-weight: 249
+weight: 247
 aliases:
  - /display/DOCS/Data+Center+Host+to+ToR+Architecture
- - /pages/viewpage.action?pageId=8362991
-pageID: 8362991
+ - /pages/viewpage.action?pageId=8366715
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
-This chapter discusses the various architectures and strategies
-available from the top of rack (ToR) switches all the way down to the
-server hosts.
+This chapter discusses the various architectures and strategies available from the top of rack (ToR) switches all the way down to the server hosts.
 
-## Layer 2 - Architecture
+## Layer 2 - Traditional Spanning Tree - Single Attached
 
-### Traditional Spanning Tree - Single Attached
+|<div style="width:300px">Example| Summary |
+|--------------------------------|----------------|
+| {{< img src = "/images/cumulus-linux/network-solutions-dc-host-to-tor.png">}}| [Bond](../../Layer-2/Bonding-Link-Aggregation/) and Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.|
 
-****
+| <div style="width:300px">Benefits | Caveats |
+|----------|---------|
+|<ul><li>Established technology: Interoperability with other vendors, easy configuration, a lot of documentation from multiple vendors and the industry</li><li>Ability to use [spanning tree](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/) commands: [PortAdminEdge](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree#portadminedge-portfast-mode) and [BPDU guard](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard)</li><li>Layer 2 reachability to all VMs</li></ul>|<ul><li>The load balancing mechanism on the host can cause problems. If there is only host pinning to each NIC, there are no problems, but if you have a bond, you need to look at an MLAG solution.</li><li>No active-active host links. Some operating systems allow HA (NIC failover), but this still does not utilize all the bandwidth. VMs use one NIC, not two.</li></ul>|
 
-**{{% imgOld 0 %}}**
+| <div style="width:130px">Active-Active Mode | <div style="width:130px">Active-Passive Mode | L2 to L3 Demarcation|
+|---------------------|--------------------|---------------------|
+| None (not possible with traditional spanning tree) | [VRR](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/) | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li></ul><br>You can configure VRR on a pair of switches at any level in the network. However, the higher up the network, the larger the layer 2 domain becomes. The benefit is layer 2 reachability. The drawback is that the layer 2 domain is more difficult to troubleshoot, does not scale as well, and the pair of switches running VRR needs to carry the entire MAC address table of everything below it in the network. Cumulus Professional Services recommends minimizing the layer 2 domain as much as possible. For more information, see [this presentation](https://docs.google.com/presentation/d/1l1d_6iUF7RTUHTSAmGuLwm3WCUXTNdFjndCLLxzBSOU/edit?usp=sharing).|
 
-****
+**Example Configuration**
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Summary</p></th>
-<th><p>More Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><a href="../../Layer-2/Bonding-Link-Aggregation">Bond</a>/Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.</p>
-<p><strong>Configurations</strong></p>
-<p><strong>leaf01 Config</strong></p>
-<pre><code>auto bridge
+<details>
+
+<summary>leaf01 configuration </summary>
+
+```
+auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports swp1 peerlink
   bridge-vids 1-2000
   bridge-stp on
- 
+
 auto bridge.10
 iface bridge.10
   address 10.1.10.2/24
- 
+
 auto peerlink
 iface peerlink
     bond-slaves glob swp49-50
- 
+
 auto swp1
 iface swp1
   mstpctl-portadminedge yes
-  mstpctl-bpduguard yes</code></pre>
-<p><strong>Example Host Config (Ubuntu)</strong></p>
-<pre><code>auto eth1
+  mstpctl-bpduguard yes
+```
+
+</details>
+
+<details>
+
+<summary>Ubuntu host configuration </summary>
+
+```
+auto eth1
 iface eth1 inet manual
- 
+
 auto eth1.10
 iface eth1.10 inet manual
- 
+
 auto eth2
 iface eth1 inet manual
- 
+
 auto eth2.20
 iface eth2.20 inet manual
- 
+
 auto br-10
 iface br-10 inet manual
   bridge-ports eth1.10 vnet0
- 
+
 auto br-20
 iface br-20 inet manual
-  bridge-ports eth2.20 vnet1</code></pre></td>
-<td><p><strong>Benefits</strong></p>
-<ul>
-<li><p>Established technology</p>
-<ul>
-<li><p>Interoperability with other vendors</p></li>
-<li><p>Easy configuration for customer</p></li>
-<li><p>Immense documentation from multiple vendors and industry</p></li>
-</ul></li>
-<li><p>Ability to use <a href="../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a> commands</p>
-<ul>
-<li><p>mstpctl-portadminedge</p></li>
-<li><p><a href="../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard">BPDU guard</a></p></li>
-</ul></li>
-<li><p>Layer 2 reachability to all VMs</p></li>
-</ul>
-<p><strong>Caveats</strong></p>
-<ul>
-<li><p>The load balancing mechanism on the host can cause problems. If there is only host pinning to each NIC, there are no problems, but if you are doing a bond, you need to look at an MLAG solution.</p></li>
-<li><p>No active-active host links. Some operating systems allow HA (NIC failover), but this still does not utilize all the bandwidth. VMs are using one NIC, not two.</p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+  bridge-ports eth2.20 vnet1
+```
 
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Active-Active Mode</strong></p></th>
-<th><p><strong>Active-Passive Mode</strong></p></th>
-<th><p><strong>L2 to L3 Demarcation</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><ul>
-<li><p>None (not possible with traditional spanning tree)</p></li>
-</ul></td>
-<td><ul>
-<li><p><a href="../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP">VRR</a></p></li>
-</ul>
-<p><strong><br />
-</strong></p></td>
-<td><details>
-<ul>
-<li><p>ToR layer (recommended)</p></li>
-<li><p>Spine layer</p></li>
-<li><p>Core/edge/exit</p></li>
-</ul>
-<summary>More Info... </summary>
-<p>VRR can be configured on a pair of switches at any level in the network. However, the higher up the network you configure it, the larger the L2 domain becomes. The benefit here is L2 reachability. The drawback is the L2 domain is more difficult to troubleshoot, does not scale as well, and the pair of switches running VRR needs to carry the entire MAC address table of everything below it in the network. Minimizing the L2 domain as much as possible is recommended by Cumulus Professional Services. <a href="https://docs.google.com/presentation/d/1l1d_6iUF7RTUHTSAmGuLwm3WCUXTNdFjndCLLxzBSOU/edit?usp=sharing" class="external-link">See this presentation for more information</a>.</p>
-</details></td>
-</tr>
-</tbody>
-</table>
+</details>
 
-### MLAG
+## Layer 2 - MLAG
 
-****
+| <div style="width:300px">Example | Summary |
+|----|----|
+|{{< img src = "/images/cumulus-linux/network-solutions-mlag.png" >}} | [MLAG (multi-chassis link aggregation)](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) uses both uplinks at the same time. VRR enables both spines to act as gateways simultaneously for HA (high availability) and [active-active mode](../../Network-Virtualization/VXLAN-Active-Active-Mode/) (both are used at the same time). |
 
-**{{% imgOld 1 %}}**
+| <div style="width:300px">Benefits | Caveats |
+|----------| --------|
+| 100% of links utilized | <ul><li>More complicated (more moving parts) </li><li>More configuration</li><li>No interoperability between vendors</li><li>ISL (inter-switch link) required</li></ul> |
 
-****
+| Active-Active Mode | Active-Passive Mode | L2 to L3 Demarcation| More Information|
+|---------------------|--------------------|---------------------|-----------------|
+| [VRR](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/)| None | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li><ul>|<ul><li>Can be done with either the [traditional](../../Layer-2/Ethernet-Bridging-VLANs/) or [VLAN-aware](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) bridge driver depending on overall STP needs.</li><li>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific.</li><li>[Cumulus Networks Layer 2 HA validated design guide](https://cumulusnetworks.com/media/resources/validated-design-guides/Cumulus-Linux-Layer-2-HA-Validated-Design-Guide_v1.0.0.pdf).</li></ul>|
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Summary</p></th>
-<th><p>More Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><a href="../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="../../Network-Virtualization/VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
-<p><strong>Configurations</strong></p>
-<p><strong>leaf01 Config</strong></p>
-<pre><code>auto bridge
+**Example Configuration**
+
+<details>
+
+<summary>leaf01 configuration </summary>
+
+```
+auto bridge
 iface bridge
   bridge-vlan-aware yes
   bridge-ports host-01 peerlink
   bridge-vids 1-2000
   bridge-stp on
- 
+
 auto bridge.10
 iface bridge.10
   address 172.16.1.2/24
   address-virtual 44:38:39:00:00:10 172.16.1.1/24
- 
+
 auto peerlink
 iface peerlink
     bond-slaves glob swp49-50
- 
+
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.1.2
     clagd-enable yes
     clagd-peer-ip 169.254.1.2
     clagd-system-mac 44:38:39:FF:40:94
- 
+
 auto host-01
 iface host-01
   bond-slaves swp1
   clag-id 1
-  {bond-defaults removed for brevity}</code></pre>
-<p><strong>Example Host Config (Ubuntu)</strong></p>
-<pre><code>auto bond0
+  {bond-defaults removed for brevity}
+```
+
+</details>
+
+<details>
+
+<summary>Ubuntu host configuration </summary>
+
+```
+auto bond0
 iface bond0 inet manual
   bond-slaves eth0 eth1
   {bond-defaults removed for brevity}
- 
+
 auto bond0.10
 iface bond0.10 inet manual
- 
+
 auto vm-br10
 iface vm-br10 inet manual
-  bridge-ports bond0.10 vnet0</code></pre></td>
-<td><p><strong>Benefits</strong></p>
-<ul>
-<li><p>100% of links utilized</p></li>
-</ul>
-<p><strong>Caveats</strong></p>
-<ul>
-<li><p>More complicated (more moving parts)</p></li>
-<li><p>More configuration</p></li>
-<li><p>No interoperability between vendors</p></li>
-<li><p>ISL (inter-switch link) required</p></li>
-</ul>
-<p><strong>Additional Comments</strong></p>
-<ul>
-<li><p>Can be done with either the <a href="../../Layer-2/Ethernet-Bridging-VLANs/">traditional</a> or <a href="../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode">VLAN-aware</a> bridge driver depending on overall STP needs</p></li>
-<li><p>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific</p></li>
-<li><p><a href="https://cumulusnetworks.com/media/resources/validated-design-guides/Cumulus-Linux-Layer-2-HA-Validated-Design-Guide_v1.0.0.pdf" class="external-link">Cumulus Networks Layer 2 HA validated design guide</a></p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+  bridge-ports bond0.10 vnet0
+```
 
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Active-Active Mode</strong></p></th>
-<th><p><strong>Active-Passive Mode</strong></p></th>
-<th><p><strong>L2-&gt;L3 Demarcation</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><ul>
-<li><p><a href="../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP">VRR</a></p></li>
-</ul></td>
-<td><p>None</p></td>
-<td><ul>
-<li><p>ToR layer (recommended)</p></li>
-<li><p>Spine layer</p></li>
-<li><p>Core/edge/exit</p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+</details>
 
-## Layer 3 Architecture
+## Layer 3 - Single-attached Hosts
 
-### Single-attached Hosts
+| <div style="width:300px">Example| Summary|
+|----|----|
+|{{< img src = "/images/cumulus-linux/network-solutions-single-attached.png" >}} | The server (physical host) has only has one link to one ToR switch. |
 
-{{% imgOld 2 %}}
+| <div style="width:300px">Benefits | Caveats |
+|----------| --------|
+| <ul><li>Relatively simple network configuration</li><li>No STP</li><li>No MLAG</li><li>No layer 2 loops</li><li>No crosslink between leafs</li><li>Greater route scaling and flexibility</li></ul>| <ul><li>No redundancy for ToR, upgrades can cause downtime</li><li>There is often no software to support application layer redundancy</li><ul>|
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Summary</p></th>
-<th><p>More Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>The server (physical host) has only has one link to one ToR switch.</p>
-<p><strong>Configurations</strong></p>
-<p><strong>leaf01 Config</strong></p>
-<p><code>/etc/network/interfaces</code></p>
-<pre><code>auto swp1
+| <div style="width:300px">FHR (First Hop Redundancy) | More Information |
+|----------| --------|
+| No redundancy for ToR, uses single ToR as gateway.| [Big Data validated design guide](https://cumulusnetworks.com/learn/resources/installation-guides/big-data-deployment-guide) uses single attached ToR.<br><br>For additional bandwidth, links between host and leaf can be bonded. |
+
+**Example Configuration**
+
+<details>
+
+<Summary>leaf01 configuration </summary>
+
+`/etc/network/interfaces` file
+
+```
+auto swp1
 iface swp1
-  address 172.16.1.1/30</code></pre>
-<p><code>/etc/frr/frr.conf</code></p>
-<pre><code>router ospf
+  address 172.16.1.1/30
+```
+
+`/etc/frr/frr.conf` file
+
+```
+router ospf
   router-id 10.0.0.11
 interface swp1
-  ip ospf area 0</code></pre>
-<p><strong>leaf02 Config</strong></p>
-<p><code>/etc/network/interfaces</code></p>
-<pre><code>auto swp1
+  ip ospf area 0
+```
+
+</details>
+
+<details>
+
+<Summary>leaf02 configuration </summary>
+
+`/etc/network/interfaces` file
+
+```
+auto swp1
 iface swp1
-  address 172.16.2.1/30</code></pre>
-<p><code>/etc/frr/frr.conf</code></p>
-<pre><code>router ospf
+  address 172.16.2.1/30
+```
+
+`/etc/frr/frr.conf` file
+
+```
+router ospf
   router-id 10.0.0.12
 interface swp1
-  ip ospf area 0</code></pre>
-<p><strong>host1 Example Config (Ubuntu)</strong></p>
-<pre><code>auto eth1
+  ip ospf area 0
+```
+
+</details>
+
+<details>
+
+<Summary>host1 Example Config (Ubuntu) </summary>
+
+```
+auto eth1
 iface eth1 inet static
   address 172.16.1.2/30
-  up ip route add 0.0.0.0/0 nexthop via 172.16.1.1</code></pre>
-<p><strong>host2 Example Config (Ubuntu)</strong></p>
-<pre><code>auto eth1
+  up ip route add 0.0.0.0/0 nexthop via 172.16.1.1
+```
+
+</details>
+
+<details>
+
+<summary>host2 Example Config (Ubuntu)</summary>
+
+```
+auto eth1
 iface eth1 inet static
   address 172.16.2.2/30
-  up ip route add 0.0.0.0/0 nexthop via 172.16.2.1</code></pre></td>
-<td><p><strong><strong>Benefits</strong></strong></p>
-<ul>
-<li><p>Relatively simple network configuration</p></li>
-<li><p>No STP</p></li>
-<li><p>No MLAG</p></li>
-<li><p>No L2 loops</p></li>
-<li><p>No crosslink between leafs</p></li>
-<li><p>Greater route scaling and flexibility</p></li>
-</ul>
-<p><strong><strong>Caveats</strong></strong></p>
-<ul>
-<li><p>No redundancy for ToR, upgrades would cause downtime</p></li>
-<li><p>Many customers do not have software to support application layer redundancy</p></li>
-</ul>
-<p><strong>Additional Comments</strong></p>
-<ul>
-<li><p>For additional bandwidth links between host and leaf may be bonded</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p><strong>More Information</strong></p></td>
-</tr>
-<tr class="odd">
-<td><ul>
-<li><p>No redundancy, uses single ToR as gateway.</p></li>
-</ul></td>
-<td><ul>
-<li><p><a href="https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf" class="external-link">Big Data validated design guide</a> uses single attached ToR</p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+  up ip route add 0.0.0.0/0 nexthop via 172.16.2.1
+```
 
-### Redistribute Neighbor
+</details>
 
-{{% imgOld 3 %}}
+## Layer 3 - Redistribute Neighbor
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Summary</p></th>
-<th><p>More Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/204339077" class="external-link">Redistribute neighbor</a> daemon grabs ARP entries dynamically, utilizes redistribute table for FRRouting to grab these dynamic entries and redistribute them into the fabric.</p></td>
-<td><p><strong>Benefits</strong></p>
-<ul>
-<li><p>Configuration in FRRouting is simple (route-map + redist table)</p></li>
-<li><p>Supported by Cumulus Networks</p></li>
-</ul>
-<p><strong>Caveats</strong></p>
-<ul>
-<li><p>Silent hosts don't receive traffic (depending on ARP).</p></li>
-<li><p>IPv4 only.</p></li>
-<li><p>If two VMs are on same L2 domain, they could learn about each other directly rather than utilizing gateway, which causes problems (VM migration for example, or getting their network routed). Put hosts on /32 (no other L2 adjacency).</p></li>
-<li><p>VM move does not trigger route withdrawal from original leaf (4 hour timeout).</p></li>
-<li><p>Clearing ARP impacts routing. May not be obvious.</p></li>
-<li><p>No L2 adjacency between servers without VXLAN.</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p><strong>More Information</strong></p></td>
-</tr>
-<tr class="odd">
-<td><ul>
-<li><p>Equal cost route installed on server/host/hypervisor to both ToRs to load balance evenly.</p></li>
-<li><p>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but don't distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter which pair of leafs it is cabled to.</p></li>
-</ul></td>
-<td><ul>
-<li><p><a href="https://cumulusnetworks.com/blog/introducing-rdnbr/" class="external-link">Cumulus Networks blog post introducing redistribute neighbor</a></p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+|<div style="width:300px">Example| Summary |
+|----|----|
+|{{< img src = "/images/cumulus-linux/network-solutions-redis-neighbor.png" >}} | The [Redistribute neighbor](../../Layer-3/Redistribute-Neighbor/) daemon grabs ARP entries dynamically and uses the redistribute table for FRRouting to take these dynamic entries and redistribute them into the fabric. |
 
-### Routing on the Host
+| <div style="width:300px">Benefits | Caveats |
+|-----------------------------------| --------|
+| <ul><li>Configuration in FRRouting is simple (route map plus redistribute table)</li><li>Supported by Cumulus Networks</li></ul>| <ul><li>Silent hosts do not receive traffic (depending on ARP) </li><li>IPv4 only</li><li>If two VMs are on the same layer 2 domain, they can learn about each other directly instead of using the gateway, which causes problems (such as VM migration or getting the network routed). Put hosts on /32 (no other layer 2 adjacency).</li><li>VM moves do not trigger a route withdrawal from the original leaf (four hour timeout).</li><li>Clearing ARP impacts routing.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul> |
 
-{{% imgOld 4 %}}
+| FHR (First Hop Redundancy) | More Information |
+| ---------------------------|------------------|
+|<ul><li>Equal cost route installed on server, host, or hypervisor to both ToRs to load balance evenly.</li><li>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but do not distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter to which pair of leafs it is cabled.| [Cumulus Networks blog post introducing redistribute neighbor](https://cumulusnetworks.com/blog/introducing-rdnbr)|
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Summary</p></th>
-<th><p>More Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Routing on the host means there is a routing application (such as <a href="../../Layer-3/FRRouting-Overview/">FRRouting</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
-<td><p><strong>Benefits</strong></p>
-<ul>
-<li><p>No requirement for MLAG</p></li>
-<li><p>No spanning-tree or layer 2 domain</p></li>
-<li><p>No loops</p></li>
-<li><p>3 or more ToRs can be used instead of usual 2</p></li>
-<li><p>Host and VM mobility</p></li>
-<li><p>Traffic engineering can be used to migrate traffic from one ToR to another for upgrading both hardware and software</p></li>
-</ul>
-<p><strong>Caveats</strong></p>
-<ul>
-<li><p>Certain hypervisors or host OSes might not support a routing application like FRRouting and will require a virtual router on the hypervisor</p></li>
-<li><p>No L2 adjacnecy between servers without VXLAN</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p><strong>More Information</strong></p></td>
-</tr>
-<tr class="odd">
-<td><ul>
-<li><p>The first hop is still the ToR, just like redistribute neighbor</p></li>
-<li><p>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</p></li>
-</ul></td>
-<td><ul>
-<li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Install the FRRouting package on an Ubuntu server</a></p></li>
-<li><p><a href="../../Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+## Layer 3 - Routing on the Host
 
-### Routing on the VM
+|<div style="width:300px">Example| Summary |
+|--------------------------------|-----------|
+| {{< img src = "/images/cumulus-linux/network-solutions-routing-on-host.png" >}} | Routing on the host means there is a routing application (such as [FRRouting](../../Layer-3/FRRouting-Overview/), either on the bare metal host (no VMs or containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team. |
 
-{{% imgOld 5 %}}
+| <div style="width:300px">Benefits | Caveats |
+|-----------------------------------| --------|
+| <ul><li>No requirement for MLAG</li><li>No spanning tree or layer 2 domain</li><li>No loops</li><li>You can use three or more ToRs instead of the usual two</li><li>Host and VM mobility</li><li>You can use traffic engineering to migrate traffic from one ToR to another when upgrading both hardware and software</li></ul>| <ul><li>The hypervisor or host OS might not support a routing application like FRRouting and requires a virtual router on the hypervisor</li><li>No layer 2 adjacnecy between servers without VXLAN</li></ul>|
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Summary</p></th>
-<th><p>More Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Instead of routing on the hypervisor, each virtual machine utilizes its own routing stack.</p></td>
-<td><p><strong>Benefits</strong></p>
-<ul>
-<li><p>In addition to routing on host:</p>
-<ul>
-<li><p>Hypervisor/base OS does not need to be able to do routing</p></li>
-<li><p>VMs can be authenticated into routing fabric</p></li>
-</ul></li>
-</ul>
-<p><strong><strong>Caveats</strong></strong></p>
-<ul>
-<li><p>All VMs must be capable of routing</p></li>
-<li><p>Scale considerations might need to be taken into an account —<br />
-instead of one routing process, there are as many as there are VMs</p></li>
-<li><p>No L2 adjacency between servers without VXLAN</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p><strong>More Information</strong></p></td>
-</tr>
-<tr class="odd">
-<td><ul>
-<li><p>The first hop is still the ToR, just like redistribute neighbor</p></li>
-<li><p>Multiple ToRs (2+) can be used</p></li>
-</ul></td>
-<td><ul>
-<li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Install the FRRouting package on an Ubuntu server</a></p></li>
-<li><p><a href="../../Layer-3/Configuring-FRRouting/">Configure FRRouting</a></p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+| <div style="width:300px">FHR (First Hop Redundancy) | More Information |
+| ---------------------------|------------------|
+|<ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</li></ul>|<ul><li>[Installing the FRRouting Package on an Ubuntu Server](http://docs.frrouting.org/en/latest/installation.html)</li><li>[Configuring FRRouting](../../Layer-3/Configuring-FRRouting/)</li></ul>|
 
-### Virtual Router
+## Layer 3 - Routing on the VM
 
-{{% imgOld 6 %}}
+|<div style="width:300px">Example|Summary|
+|----|----|
+| {{< img src = "/images/cumulus-linux/network-solutions-routing-vm.png" >}} | Instead of routing on the hypervisor, each virtual machine uses its own routing stack. |
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Summary</p></th>
-<th><p>More Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="../../Layer-3/Border-Gateway-Protocol-BGP/" class="unresolved">BGP</a> or <a href="../../Layer-3/Open-Shortest-Path-First-OSPF">OSPF</a>.</p></td>
-<td><p><strong><strong>Benefits</strong></strong></p>
-<p>In addition to routing on a host:</p>
-<ul>
-<li><p>Multi-tenancy can work (multiple customers sharing same racks)</p></li>
-<li><p>Base OS does not need to be routing capable</p></li>
-</ul>
-<p><strong><strong>Caveats</strong></strong></p>
-<ul>
-<li><p><a href="../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP">ECMP</a> might not work correctly (load balancing to multiple ToRs); Linux kernel in older versions is not capable of ECMP per flow (does it per packet)</p></li>
-<li><p>No L2 adjacency between servers without VXLAN</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p><strong>More Information</strong></p></td>
-</tr>
-<tr class="odd">
-<td><ul>
-<li><p>The gateway would be the vRouter, which has two routes out (two ToRs)</p></li>
-<li><p>Multiple vRouters could be used</p></li>
-</ul></td>
-<td><ul>
-<li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Install the FRRouting package on an Ubuntu server</a></p></li>
-<li><p><a href="../../Layer-3/Configuring-FRRouting/">Configure FRRouting</a></p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+| <div style="width:300px">Benefits | Caveats |
+|-----------------------------------| --------|
+| In addition to routing on host:<ul><li> The hypervisor/base OS does not need to be able to do routing.</li><li>VMs can be authenticated into routing fabric.</li></ul> |<ul><li>All VMs must be capable of routing</li><li>You need to take scale considerations into an account; instead of one routing process, there are as many as there are VMs</li><li>No layer 2 adjacency between servers without VXLAN</li></ul>|
 
-### Anycast with Manual Redistribution
+| <div style="width:300px">FHR (First Hop Redundancy) | More Information |
+| ---------------------------|------------------|
+| <ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>You can use multiple ToRs (two or more)</li><ul>|<ul><li>[Installing the FRRouting Package on an Ubuntu Server](http://docs.frrouting.org/en/latest/installation.html)</li><li>[Configuring FRRouting](../../Layer-3/Configuring-FRRouting/)</li><ul>|
 
-{{% imgOld 7 %}}
+## Layer 3 - Virtual Router
 
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Summary</p></th>
-<th><p>More Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>In contrast to routing on the host (preferred), this method allows a user to route <strong>to</strong> the host. The ToRs are the gateway, as with redistribute neighbor, except because there is no daemon running, the networks must be manually configured under the routing process. There is a potential to black hole unless a script is run to remove the routes when the host no longer responds.</p>
-<p><strong>Configurations</strong></p>
-<p><strong>leaf01 Config</strong></p>
-<p><code>/etc/network/interfaces</code></p>
-<pre><code>auto swp1
+|<div style="width:300px">Example | Summary |
+|----|----|
+| {{< img src = "/images/cumulus-linux/network-solutions-vrouter.png" >}} | Virtual router (vRouter) runs as a VM on the hypervisor or host and sends routes to the ToR using [BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) or [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/). |
+
+| <div style="width:300px">Benefits | Caveats |
+|-----------------------------------| --------|
+|In addition to routing on a host:<ul><li>Multi-tenancy can work, where multiple customers share the same racks</li><li>The base OS does not need to be routing capable</li></ul>|<ul><li>[ECMP](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/) might not work correctly (load balancing to multiple ToRs); the Linux kernel in older versions is not capable of ECMP per flow (it does it per packet)</li><li>No layer 2 adjacency between servers without VXLAN</li></ul>|
+
+| <div style="width:300px">FHR (First Hop Redundancy) | More Information |
+| ---------------------------|------------------|
+|<ul><li>The gateway is the vRouter, which has two routes out (two ToRs)</li><li>You can use multiple vRouters</li></ul>|<ul><li>[Installing the FRRouting Package on an Ubuntu Server](http://docs.frrouting.org/en/latest/installation.html)</li><li>[Configuring FRRouting](../../Layer-3/Configuring-FRRouting/)</li></ul>|
+
+## Layer 3 - Anycast with Manual Redistribution
+
+|<div style="width:300px">Example | Summary |
+|----|----|
+| {{< img src = "/images/cumulus-linux/network-solutions-anycast-router.png" >}} | In contrast to routing on the host (preferred), this method allows you to route **to** the host. The ToRs are the gateway, as with redistribute neighbor, except because there is no daemon running, you must manually configure the networks under the routing process. There is a potential to black hole unless you run a script to remove the routes when the host no longer responds. |
+
+| <div style="width:300px">Benefits | Caveats |
+|-----------------------------------| --------|
+| <ul><li>Most benefits of routing **on** the host</li><li>No requirement for host to run routing</li><li>No requirement for redistribute neighbor</li></ul>|<ul><li>Removing a subnet from one ToR and re-adding it to another (network statements from your router process) is a manual process</li><li>Network team and server team have to be in sync, or the server team controls the ToR, or automation is used used whenever VM migration occurs</li><li>When using VMs or containers it is very easy to black hole traffic, as the leafs continue to advertise prefixes even when the VM is down</li><li>No layer 2 adjacency between servers without VXLAN</li></ul>|
+
+| FHR (First Hop Redundancy) |
+| ---------------------------|
+|The gateways are the ToRs, exactly like redistribute neighbor with an equal cost route installed.|
+
+**Example Configuration**
+
+<details>
+
+<summary>leaf01 configuration </summary>
+
+`/etc/network/interfaces file`
+
+```
+auto swp1
 iface swp1
-  address 172.16.1.1/30</code></pre>
-<p><code>/etc/frr/frr.conf</code></p>
-<pre><code>router ospf
+  address 172.16.1.1/30
+```
+
+`/etc/frr/frr.conf` file
+
+```
+router ospf
   router-id 10.0.0.11
 interface swp1
-  ip ospf area 0</code></pre>
-<p><strong>leaf02 Config</strong></p>
-<p><code>/etc/network/interfaces</code></p>
-<pre><code>auto swp2
+  ip ospf area 0
+```
+
+</details>
+
+<details>
+
+<summary>leaf02 configuration </summary>
+
+`/etc/network/interfaces` file
+
+```
+auto swp2
 iface swp2
-  address 172.16.1.1/30</code></pre>
-<p><code>/etc/frr/frr.conf</code></p>
-<pre><code>router ospf
+  address 172.16.1.1/30
+```
+
+`/etc/frr/frr.conf` file
+
+```
+router ospf
   router-id 10.0.0.12
 interface swp1
-  ip ospf area 0</code></pre>
-<p><strong>Example Host Config (Ubuntu)</strong></p>
-<pre><code>auto lo
+  ip ospf area 0
+```
+
+</details>
+
+<details>
+
+<summary>Ubuntu host configuration </summary>
+
+```
+auto lo
 iface lo inet loopback
- 
+
 auto lo:1
 iface lo:1 inet static
   address 172.16.1.2/32
-  up ip route add 0.0.0.0/0 nexthop via 172.16.1.1 dev eth0 onlink \
-    nexthop via 172.16.1.1 dev eth1 onlink
- 
+  up ip route add 0.0.0.0/0 nexthop via 172.16.1.1 dev eth0 onlink nexthop via 172.16.1.1 dev eth1 onlink
+
 auto eth1
 iface eth2 inet static
   address 172.16.1.2/32
- 
+
 auto eth2
 iface eth2 inet static
-  address 172.16.1.2/32</code></pre></td>
-<td><p><strong><strong>Benefits</strong></strong></p>
-<ul>
-<li><p>Most benefits of routing <strong>on</strong> the host</p></li>
-<li><p>No requirement for host to run routing</p></li>
-<li><p>No requirement for redistribute neighbor</p></li>
-</ul>
-<p><strong><strong>Caveats</strong></strong></p>
-<ul>
-<li><p>Removing a subnet from one ToR and re-adding it to another (hence, network statements from your router process) is a manual process</p></li>
-<li><p>Network team and server team would have to be in sync, or server team controls the ToR, or automation is being used whenever VM migration happens</p></li>
-<li><p>When using VMs/containers it is very easy to black hole traffic, as the leafs continue to advertise prefixes even when VM is down</p></li>
-<li><p>No L2 adjacency between servers without VXLAN</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p><strong>More Information</strong></p></td>
-</tr>
-<tr class="odd">
-<td><ul>
-<li><p>The gateways would be the ToRs, exactly like redistribute neighbor with an equal cost route installed</p></li>
-</ul></td>
-<td><p> </p></td>
-</tr>
-</tbody>
-</table>
+  address 172.16.1.2/32
+```
 
-## Network Virtualization
+</details>
 
-**LNV with MLAG**
+## Layer 3 - EVPN with Symmetric VXLAN Routing
 
-{{% imgOld 8 %}}
+[Symmetric VXLAN routing](../../Network-Virtualization/VXLAN-Routing/) is configured directly on the ToR, using [EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/) for both VLAN and VXLAN bridging as well as VXLAN and external routing.
 
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th colspan="2"><p>Summary</p></th>
-<th><p>More Information</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td colspan="2"><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="../../Network-Virtualization/Lightweight-Network-Virtualization-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
-<p><strong>Configurations</strong></p>
-<p><strong>leaf01 Config</strong></p>
-<p><code>/etc/network/interfaces</code></p>
-<pre><code>auto lo
+{{< img src = "/images/cumulus-linux/network-solutions-evpn-symmetric.png" >}}
+
+Each server is configured on a VLAN, with a total of two VLANs for the setup. MLAG is also set up between servers and the leafs. Each leaf is configured with an anycast gateway and the servers default gateways are pointing towards the corresponding leaf switch IP gateway address. Two tenant VNIs (corresponding to two VLANs/VXLANs) are bridged to corresponding VLANs.
+
+| <div style="width:300px">Benefits | Caveats |
+|-----------------------------------| --------|
+| <ul><li>Layer 2 domain is reduced to the pair of ToRs</li><li>Aggregation layer is all layer 3 (VLANs do not have to exist on spine switches)</li><li>Greater route scaling and flexibility</li><li>High availability</li></ul>| Needs MLAG (with the same caveats as the [MLAG](#mlag) section above)|
+
+|Active-Active Mode|Active-Passive Mode|Demarcation| More Information|
+|------------------|-------------------|------------|-------------|
+|[VRR](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP) |None|ToR layer|<ul><li>[Cumulus Networks EVPN with symmetric routing demo on GitHub](https://github.com/CumulusNetworks/cldemo-evpn-symmetric)</li><li>[Ethernet Virtual Private Network - EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/)</li><li>[VXLAN Routing](../../Network-Virtualization/VXLAN-Routing/)</li></ul>|
+
+**Example Configuration**
+
+<details>
+
+<summary>leaf01 /etc/network/interfaces </summary>
+
+```
+# Loopback interface
+auto lo
 iface lo inet loopback
   address 10.0.0.11/32
-  vxrd-src-ip 10.0.0.11
-  vxrd-svcnode-ip 10.10.10.10
-  clagd-vxlan-anycast-ip 36.0.0.11
- 
-auto vni-10
-iface vni-10
-  vxlan-id 10
+  clagd-vxlan-anycast-ip 10.0.0.112
+  alias loopback interface
+
+# Management interface
+ auto eth0
+ iface eth0 inet dhcp
+    vrf mgmt
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
+# Port to Server01
+auto swp1
+iface swp1
+  alias to Server01
+  # This is required for Vagrant only
+  post-up ip link set swp1 promisc on
+
+# Port to Server02
+auto swp2
+iface swp2
+  alias to Server02
+  # This is required for Vagrant only
+  post-up ip link set swp2 promisc on
+
+# Port to Leaf02
+auto swp49
+iface swp49
+  alias to Leaf02
+  # This is required for Vagrant only
+  post-up ip link set swp49 promisc on
+
+# Port to Leaf02
+auto swp50
+iface swp50
+  alias to Leaf02
+  # This is required for Vagrant only
+  post-up ip link set swp50 promisc on
+
+# Port to Spine01
+auto swp51
+iface swp51
+  mtu 9216
+  alias to Spine01
+
+# Port to Spine02
+auto swp52
+iface swp52
+  mtu 9216
+  alias to Spine02
+
+# MLAG Peerlink bond
+auto peerlink
+iface peerlink
+  mtu 9000
+  bond-slaves swp49 swp50
+
+# MLAG Peerlink L2 interface.
+# This creates VLAN 4094 that only lives on the peerlink bond
+# No other interface will be aware of VLAN 4094
+auto peerlink.4094
+iface peerlink.4094
+  address 169.254.1.1/30
+  clagd-peer-ip 169.254.1.2
+  clagd-backup-ip 10.0.0.12
+  clagd-sys-mac 44:39:39:ff:40:94
+  clagd-priority 100
+
+# Bond to Server01
+auto bond01
+iface bond01
+  mtu 9000
+  bond-slaves swp1
+  bridge-access 13
+  clag-id 1
+
+# Bond to Server02
+auto bond02
+iface bond02
+  mtu 9000
+  bond-slaves swp2
+  bridge-access 24
+  clag-id 2
+
+# Define the bridge for STP
+auto bridge
+iface bridge
+  bridge-vlan-aware yes
+  # bridge-ports includes all ports related to VxLAN and CLAG.
+  # does not include the Peerlink.4094 subinterface
+  bridge-ports bond01 bond02 peerlink vni13 vni24 vxlan4001
+  bridge-vids 13 24
+  bridge-pvid 1
+
+# VXLAN Tunnel for Server1-Server3 (Vlan 13)
+auto vni13
+iface vni13
+  mtu 9000
+  vxlan-id 13
   vxlan-local-tunnelip 10.0.0.11
- 
-auto br-10
-iface br-10
-  bridge-ports swp1 vni-10</code></pre>
-<p><strong>leaf02 Config</strong></p>
-<p><code>/etc/network/interfaces</code></p>
-<pre><code>auto lo
+  bridge-access 13
+  mstpctl-bpduguard yes
+  mstpctl-portbpdufilter yes
+
+#VXLAN Tunnel for Server2-Server4 (Vlan 24)
+auto vni24
+iface vni24
+  mtu 9000
+  vxlan-id 24
+  vxlan-local-tunnelip 10.0.0.11
+  bridge-access 24
+  mstpctl-bpduguard yes
+  mstpctl-portbpdufilter yes
+
+auto vxlan4001
+iface vxlan4001
+    vxlan-id 104001
+    vxlan-local-tunnelip 10.0.0.11
+    bridge-access 4001
+
+auto vrf1
+iface vrf1
+   vrf-table auto
+
+#Tenant SVIs - anycast GW
+auto vlan13
+iface vlan13
+    address 10.1.3.11/24
+    address-virtual 44:39:39:ff:00:13 10.1.3.1/24
+    vlan-id 13
+    vlan-raw-device bridge
+    vrf vrf1
+
+auto vlan24
+iface vlan24
+    address 10.2.4.11/24
+    address-virtual 44:39:39:ff:00:24 10.2.4.1/24
+    vlan-id 24
+    vlan-raw-device bridge
+    vrf vrf1
+
+#L3 VLAN interface per tenant (for L3 VNI)
+auto vlan4001
+iface vlan4001
+    hwaddress 44:39:39:FF:40:94
+    vlan-id 4001
+    vlan-raw-device bridge
+    vrf vrf1
+```
+
+</details>
+
+<details>
+
+<summary>Leaf02 /etc/network/interfaces </summary>
+
+```
+# Loopback interface
+auto lo
 iface lo inet loopback
   address 10.0.0.12/32
-  Vxrd-src-ip 10.0.0.12
-  vxrd-svcnode-ip 10.10.10.10
-  clagd-vxlan-anycast-ip 36.0.0.11
- 
-auto vni-10
-iface vni-10
-  vxlan-id 10
-  vxlan-local-tunnelip 10.0.0.12
- 
-auto br-10
-iface br-10
-  bridge-ports swp1 vni-10</code></pre></td>
-<td><p><strong><strong>Benefits</strong></strong></p>
-<ul>
-<li><p>Layer 2 domain is reduced to the pair of ToRs</p></li>
-<li><p>Aggregation layer is all L3 (VLANs do not have to exist on spine switches)</p></li>
-<li><p>Greater route scaling and flexibility</p></li>
-<li><p>High availability</p></li>
-</ul>
-<p><strong><strong>Caveats</strong></strong></p>
-<ul>
-<li><p>Needs MLAG (with the same caveats from the <a href="#mlag">MLAG section</a> above) and <a href="../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a></p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+  clagd-vxlan-anycast-ip 10.0.0.112
+  alias loopback interface
 
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Active-Active Mode</strong></p></th>
-<th><p><strong>Active-Passive Mode</strong></p></th>
-<th><p><strong>Demarcation</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><ul>
-<li><p><a href="../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP">VRR</a></p></li>
-</ul></td>
-<td><p>None</p></td>
-<td><ul>
-<li><p>ToR layer or exit leafs</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p> </p></td>
-<td><p> </p></td>
-<td><p><strong>More Information</strong></p></td>
-</tr>
-<tr class="odd">
-<td><p> </p></td>
-<td><p> </p></td>
-<td><ul>
-<li><p><a href="../../Network-Virtualization/Lightweight-Network-Virtualization-Overview/">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
-</ul></td>
-</tr>
-</tbody>
-</table>
+# Management interface
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
+# Port to Server01
+auto swp1
+iface swp1
+  alias to Server01
+  # This is required for Vagrant only
+  post-up ip link set swp1 promisc on
+
+# Port to Server02
+auto swp2
+iface swp2
+  alias to Server02
+  # This is required for Vagrant only
+  post-up ip link set swp2 promisc on
+
+# Port to Leaf01
+auto swp49
+iface swp49
+  alias to Leaf01
+  # This is required for Vagrant only
+  post-up ip link set swp49 promisc on
+
+# Port to Leaf01
+auto swp50
+iface swp50
+  alias to Leaf01
+  # This is required for Vagrant only
+  post-up ip link set swp50 promisc on
+
+# Port to Spine01
+auto swp51
+iface swp51
+  mtu 9216
+  alias to Spine01
+
+# Port to Spine02
+auto swp52
+iface swp52
+  mtu 9216
+  alias to Spine02
+
+# MLAG Peerlink bond
+auto peerlink
+iface peerlink
+  mtu 9000
+  bond-slaves swp49 swp50
+
+# MLAG Peerlink L2 interface.
+# This creates VLAN 4094 that only lives on the peerlink bond
+# No other interface will be aware of VLAN 4094
+auto peerlink.4094
+iface peerlink.4094
+  address 169.254.1.2/30
+  clagd-peer-ip 169.254.1.1
+  clagd-backup-ip 10.0.0.11
+  clagd-sys-mac 44:39:39:ff:40:94
+  clagd-priority 200
+
+# Bond to Server01
+auto bond01
+iface bond01
+  mtu 9000
+  bond-slaves swp1
+  bridge-access 13
+  clag-id 1
+
+# Bond to Server02
+auto bond02
+iface bond02
+  mtu 9000
+  bond-slaves swp2
+  bridge-access 24
+  clag-id 2
+
+# Define the bridge for STP
+auto bridge
+iface bridge
+  bridge-vlan-aware yes
+  # bridge-ports includes all ports related to VxLAN and CLAG.
+  # does not include the Peerlink.4094 subinterface
+  bridge-ports bond01 bond02 peerlink vni13 vni24 vxlan4001
+  bridge-vids 13 24
+  bridge-pvid 1
+
+auto vxlan4001
+iface vxlan4001
+     vxlan-id 104001
+     vxlan-local-tunnelip 10.0.0.12
+     bridge-access 4001
+
+# VXLAN Tunnel for Server1-Server3 (Vlan 13)
+auto vni13
+iface vni13
+  mtu 9000
+  vxlan-id 13
+  vxlan-local-tunnelip 10.0.0.12
+  bridge-access 13
+  mstpctl-bpduguard yes
+  mstpctl-portbpdufilter yes
+
+#VXLAN Tunnel for Server2-Server4 (Vlan 24)
+auto vni24
+iface vni24
+  mtu 9000
+  vxlan-id 24
+  vxlan-local-tunnelip 10.0.0.12
+  bridge-access 24
+  mstpctl-bpduguard yes
+  mstpctl-portbpdufilter yes
+
+auto vrf1
+iface vrf1
+   vrf-table auto
+
+auto vlan13
+iface vlan13
+    address 10.1.3.12/24
+    address-virtual 44:39:39:ff:00:13 10.1.3.1/24
+    vlan-id 13
+    vlan-raw-device bridge
+    vrf vrf1
+
+auto vlan24
+iface vlan24
+    address 10.2.4.12/24
+    address-virtual 44:39:39:ff:00:24 10.2.4.1/24
+    vlan-id 24
+    vlan-raw-device bridge
+    vrf vrf1
+
+#L3 VLAN interface per tenant (for L3 VNI)
+auto vlan4001
+iface vlan4001
+    hwaddress 44:39:39:FF:40:94
+    vlan-id 4001
+    vlan-raw-device bridge
+    vrf vrf1
+```
+
+</details>
+
+<details>
+
+<summary>Server01 /etc/network/interfaces </summary>
+
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet manual
+  bond-master uplink
+  # Required for Vagrant
+  post-up ip link set promisc on dev eth1
+
+auto eth2
+iface eth2 inet manual
+  bond-master uplink
+  # Required for Vagrant
+  post-up ip link set promisc on dev eth2
+
+auto uplink
+iface uplink inet static
+  mtu 9000
+  bond-slaves none
+  bond-mode 802.3ad
+  bond-miimon 100
+  bond-lacp-rate 1
+  bond-min-links 1
+  bond-xmit-hash-policy layer3+4
+  address 10.1.3.101
+  netmask 255.255.255.0
+  post-up ip route add default via 10.1.3.1
+```
+
+</details>
+
+<details>
+
+<summary>Server02 /etc/network/interfaces </summary>
+
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet manual
+  bond-master uplink
+  # Required for Vagrant
+  post-up ip link set promisc on dev eth1
+
+auto eth2
+iface eth2 inet manual
+  bond-master uplink
+  # Required for Vagrant
+  post-up ip link set promisc on dev eth2
+
+auto uplink
+iface uplink inet static
+  mtu 9000
+  bond-slaves none
+  bond-mode 802.3ad
+  bond-miimon 100
+  bond-lacp-rate 1
+  bond-min-links 1
+  bond-xmit-hash-policy layer3+4
+  address 10.2.4.102
+  netmask 255.255.255.0
+  post-up ip route add default via 10.2.4.1
+```
+
+</details>

@@ -1,15 +1,11 @@
 ---
 title: Virtualization Integrations
 author: Cumulus Networks
-weight: 157
+weight: 151
 aliases:
  - /display/DOCS/Virtualization+Integrations
- - /pages/viewpage.action?pageId=8362794
-pageID: 8362794
+ - /pages/viewpage.action?pageId=8366518
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
-Cumulus Linux integrates with a number of VXLAN controller-based
-virtualization solutions.
+Cumulus Linux integrates with a number of VXLAN controller-based virtualization solutions. You can integrate hardware VTEPs with Midokura-MidoNet and OpenStack, and with VMware NSX.

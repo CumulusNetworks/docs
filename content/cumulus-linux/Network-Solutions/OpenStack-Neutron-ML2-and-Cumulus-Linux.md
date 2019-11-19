@@ -1,104 +1,84 @@
 ---
 title: OpenStack Neutron ML2 and Cumulus Linux
 author: Cumulus Networks
-weight: 255
+weight: 253
 aliases:
  - /display/DOCS/OpenStack+Neutron+ML2+and+Cumulus+Linux
- - /pages/viewpage.action?pageId=8362989
-pageID: 8362989
+ - /pages/viewpage.action?pageId=8366713
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
-The Modular Layer 2 (ML2) plugin is a framework that allows OpenStack
-Networking to utilize a variety of non-vendor-specific layer 2
-networking technologies. The ML2 framework simplifies adding support for
-new layer 2 networking technologies, requiring much less initial and
-ongoing effort — specifically, it enables dynamic provisioning of
-VLAN/VXLAN on switches in OpenStack environment instead of manually
-provisioning L2 connectivity for each VM.
+The Modular Layer 2 (ML2) plugin is a framework that allows OpenStack Networking to use a variety of non-vendor-specific layer 2 networking technologies. The ML2 framework simplifies adding support for new layer 2 networking technologies and enables dynamic provisioning of VLAN/VXLAN on switches in an OpenStack environment instead of manually provisioning layer 2 connectivity for each VM.
 
-The plugin supports configuration caching. The cached configuration is
-replayed back to the Cumulus Linux switch from Cumulus ML2 mechanism
-driver when a switch or process restart is detected.
+The plugin supports configuration caching. The cached configuration is replayed back to the Cumulus Linux switch from the Cumulus ML2 mechanism driver when a switch or process restart is detected.
 
-In order to deploy [OpenStack
-ML2](https://wiki.openstack.org/wiki/Neutron/ML2) in a network with
-Cumulus Linux switches, you need the following:
+To deploy [OpenStack ML2](https://wiki.openstack.org/wiki/Neutron/ML2) in a network with Cumulus Linux switches, you need the following:
 
-  - A REST API, which is installed in Cumulus Linux.
-  - The Cumulus Networks Modular Layer 2 (ML2) mechanism driver for
-    OpenStack, which you install on the OpenStack Neutron controller
-    node. It's available as a Python package from upstream.
-  - The OpenStack Queens release.
+- A REST API, which is installed with Cumulus Linux.
+- The Cumulus Networks Modular Layer 2 (ML2) mechanism driver for OpenStack, which you install on the OpenStack Neutron controller node. The driver is available as a Python package from upstream.
+- The OpenStack Queens release.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/network-solutions-ml2-driver-arch.png" >}}
 
 ## Configure the REST API
 
-1.  Configure the relevant settings in `/etc/restapi.conf`:
+1. Configure the relevant settings in the `/etc/restapi.conf` file:
 
-        [ML2]
-        #local_bind = 10.40.10.122
-        #service_node = 10.40.10.1
-         
-        # Add the list of inter switch links that
-        # need to have the vlan included on it by default
-        # Not needed if doing Hierarchical port binding
-        #trunk_interfaces = uplink
+```
+[ML2]
+#local_bind = 10.40.10.122
+#service_node = 10.40.10.1
 
-2.  Restart the REST API service for the configuration changes to take
-    effect:
+# Add the list of inter switch links that
+# need to have the vlan included on it by default
+# Not needed if doing Hierarchical port binding
+#trunk_interfaces = uplink
+```
 
-        cumulus@switch:~$ sudo systemctl restart restserver
+2. Restart the REST API service for the configuration changes to take effect:
 
-Additional REST API calls have been added to support the configuration
-of bridge using the bridge name instead of network ID.
+```
+cumulus@switch:~$ sudo systemctl restart restserver
+```
 
-## Install and Configure the Cumulus Networks Modular Layer 2 Mechanism Driver
+Additional REST API calls have been added to support bridge configuration using the bridge name instead of network ID.
 
-You need to install the Cumulus Networks ML2 mechanism driver on your
-Neutron host, which is available upstream:
+## Install and Configure the ML2 Driver
 
-    root@neutron:~# git clone https://github.com/CumulusNetworks/networking-cumulus.git
-    root@neutron:~# cd networking-cumulus
-    root@neutron:~# python setup.py install
-    root@neutron:~# neutron-db-manage upgrade head
+1. Install the Cumulus Networks ML2 mechanism driver on your Neutron host, which is available upstream:
 
-Then configure the host to use the ML2 driver:
+```
+root@neutron:~# git clone https://github.com/CumulusNetworks/networking-cumulus.git
+root@neutron:~# cd networking-cumulus
+root@neutron:~# python setup.py install
+root@neutron:~# neutron-db-manage upgrade head
+```
 
-    root@neutron:~# openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini mechanism_drivers linuxbridge,cumulus
+2. Configure the host to use the ML2 driver:
 
-Finally, list the Cumulus Linux switches to configure. Edit
-`/etc/neutron/plugins/ml2/ml2_conf.ini` in a text editor and add the IP
-addresses of the Cumulus Linux switches to the `switches` line. For
-example:
+```
+root@neutron:~# openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini mechanism_drivers linuxbridge,cumulus
+```
 
-    [ml2_cumulus]
-    switches="192.168.10.10,192.168.20.20"
+3. List the Cumulus Linux switches to configure. Edit the `/etc/neutron/plugins/ml2/ml2_conf.ini` file and add the IP addresses of the Cumulus Linux switches to the `switches` line. For example:
 
-The ML2 mechanism driver contains the following configurable parameters.
-You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
+```
+[ml2_cumulus]
+switches="192.168.10.10,192.168.20.20"
+```
 
-  - `switches` — The list of Cumulus Linux switches connected to the
-    Neutron host. Specify a list of IP addresses.
-  - `scheme` — The scheme (for example, HTTP) for the base URL for the
-    ML2 API.
-  - `protocol_port` — The protocol port for the bast URL for the ML2
-    API. The default value is *8000*.
-  - `sync_time` — A periodic time interval for polling the Cumulus Linux
-    switch. The default value is *30* seconds.
-  - `spf_enable` — Enables/disables SPF for the bridge. The default
-    value is *False*.
-  - `new_bridge` — Enables/disables [VLAN-aware bridge
-    mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)
-    for the bridge configuration. The default value is *False*, so a
-    traditional mode bridge is created.
+The ML2 mechanism driver includes the following parameters, which you can configure in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
 
-## Try OpenStack with Cumulus in the Cloud
+| Parameter | Description |
+|-----------| ------------|
+| `switches` | The list of Cumulus Linux switches connected to the Neutron host. Specify a list of IP addresses. |
+| `scheme` | The scheme for the base URL for the ML2 API. For example, HTTP. |
+| `protocol_port` | The protocol port for the bast URL for the ML2 API. The default value is *8000*. |
+| `sync_time` | A periodic time interval for polling the Cumulus Linux switch. The default value is *30* seconds.|
+| `spf_enable` | Enables and disables SPF for the bridge. The default value is *False*.|
+|`new_bridge` | Enables and disables [VLAN-aware bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) for the bridge configuration. The default value is *False*, so a traditional mode bridge is created. |
 
-OpenStack Neutron is available as a preconfigured option with
-[Cumulus in the Cloud](https://cumulusnetworks.com/products/cumulus-in-the-cloud/).
-You just need to add the ML2 driver, as per the
-[instructions above](#install-and-configure-the-cumulus-networks-modular-layer-2-mechanism-driver).
+## OpenStack with Cumulus in the Cloud
+
+OpenStack Neutron is available as a preconfigured option with [Cumulus in the
+Cloud](https://cumulusnetworks.com/products/cumulus-in-the-cloud/). Add the ML2 driver, described above.

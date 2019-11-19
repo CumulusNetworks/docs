@@ -4,11 +4,12 @@ author: Cumulus Networks
 weight: 15
 aliases:
  - /display/DOCS/System+Configuration
- - /pages/viewpage.action?pageId=8362543
-pageID: 8362543
+ - /pages/viewpage.action?pageId=8366264
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
-This section provides information to help you set up your system for authentication, configure packet filtering, set the time and date, and provides other related system tasks.
+This section describes how to configure your Cumulus Linux switch. You can set the date and time, configure authentication, authorization, and accounting and configure access control lists (ACLs), which control the traffic entering your network.
+
+This section also describes the services and daemons that Cumulus Linux uses, and describes how to configure `switchd`, the daemon at the heart of Cumulus Linux.
+
+An overview of the Network Command Line Utility (NCLU) is also provided.

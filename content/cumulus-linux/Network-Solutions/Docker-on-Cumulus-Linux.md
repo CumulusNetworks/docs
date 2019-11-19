@@ -1,114 +1,73 @@
 ---
 title: Docker on Cumulus Linux
 author: Cumulus Networks
-weight: 253
+weight: 251
 aliases:
  - /display/DOCS/Docker+on+Cumulus+Linux
- - /pages/viewpage.action?pageId=8362980
-pageID: 8362980
+ - /pages/viewpage.action?pageId=8366704
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
-Cumulus Linux is based on Linux kernel 4.1, which supports the
-[Docker](https://www.docker.com/) engine. Docker can be installed
-directly on a Cumulus Linux switch, and Docker containers can be run
-natively on the switch. This section covers the installation and set up
-instructions for Docker.
+Cumulus Linux can be used to run the [Docker](https://www.docker.com/) container platform. You can install Docker Engine directly on a Cumulus Linux switch and run Docker containers natively on the switch.
 
-## Set up Docker on Cumulus Linux
+To set up Docker on Cumulus Linux, run the following commands **as root**.
 
-### Configure the Repositories
+1. Install the authentication key for Docker:
 
-1.  Add the following line to the end of
-    `/etc/apt/sources.list.d/jessie.list` in a text editor, and save the
-    file:
+```
+root@switch:~# curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+```
 
-        cumulus@switch:$ sudo nano /etc/apt/sources.list.d/jessie.list
-         
-        ...
-         
-        deb http://httpredir.debian.org/debian jessie main contrib non-free
-        deb-src http://httpredir.debian.org/debian jessie main contrib non-free
+2. Configure the repositories for Docker:
 
-2.  Create the `/etc/apt/sources.list.d/docker.list` file, add the
-    following line in a text editor, and save the file:
+```
+root@switch:~# echo "deb [arch=amd64] https://download.docker.com/linux/debian buster stable" >/etc/apt/sources.list.d/docker.list
+```
 
-        cumulus@switch:$ sudo nano /etc/apt/sources.list.d/docker.list
-         
-        deb https://apt.dockerproject.org/repo debian-jessie main
+3. Install the Docker package:
 
-### Install the Authentication Key
+```
+root@switch:~# apt update
+root@switch:~# apt install -y docker-ce
+```
 
-Install the authentication key for Docker:
+4. Configure Docker to minimize impact on the system's firewall and forwarding configuration:
 
-        cumulus@switch:$ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+```
+root@switch:~# cat >/etc/docker/daemon.json <<EOD
+{
+	"iptables": false,
+	"ip-forward": false,
+	"ip-masq": false
+}
+EOD
+```
 
-### Install the docker-engine Package
+5. Configure Docker to run in the management VRF:
 
-Install Docker:
+```
+root@switch:~# cp /lib/systemd/system/docker.service /lib/systemd/system/docker@.service
+root@switch:~# sed -i -re '
+        /^Requires=docker.socket$/ d;
+        /^ExecStart\>/ s/-H fd:\/\/ //
+' /lib/systemd/system/docker@.service
 
-        cumulus@switch:$ sudo -E apt-get update -y
-        cumulus@switch:$ sudo -E apt-get install docker-engine -qy
+root@switch:~# echo "docker" >>/etc/vrf/systemd.conf
 
-### Configure systemd for Docker
+root@switch:~# systemctl daemon-reload
+root@switch:~# systemctl mask docker.socket
+root@switch:~# systemctl disable --now docker.service
+root@switch:~# systemctl enable --now docker@mgmt
+```
 
-1.  Add `docker` as a new line at the bottom of `/etc/vrf/systemd.conf`,
-    and save the file.
+6. Test your installation by running the `hello-world` container:
 
-        cumulus@switch:$ sudo nano /etc/vrf/systemd.conf
-         
-        ...
-         
-        docker
+```
+root@switch:~# docker run hello-world
+```
 
-2.  Create a directory for the `systemd` configuration file for Docker:
+{{%notice note%}}
 
-        cumulus@switch:$ sudo mkdir -p /etc/systemd/system/docker.service.d/
+Be mindful of the types of applications you want to run in containers on a Cumulus Linux switch. Depending on the configuration of the container, DHCP servers, custom scripts, and other lightweight services run well. However, VPN, NAT and encryption-type services are CPU-intensive and might lead to undesirable effects on critical applications. Resource-intensive services are not supported.
 
-3.  In a text editor, create a file called
-    `/etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf`, add
-    the following lines to it, then save the file:
-
-        cumulus@switch:$ sudo nano /etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf
-         
-        [Service]
-        ExecStart=
-        ExecStart=/usr/bin/docker daemon --iptables=false --ip-masq=false --ip-forward=false
-
-### Stop/Disable the Docker Services
-
-Stop the various Docker services:
-
-        cumulus@switch:$ sudo systemctl daemon-reload
-        cumulus@switch:$ sudo systemctl stop docker.socket
-        cumulus@switch:$ sudo systemctl disable docker.socket
-        cumulus@switch:$ sudo systemctl stop docker.service
-        cumulus@switch:$ sudo systemctl disable docker.service
-
-### Launch Docker and the Ubuntu Container
-
-1.  Enable the Docker management daemon so it starts when the switch
-    boots:
-
-        cumulus@switch:$ sudo systemctl enable docker@mgmt
-
-2.  Start the Docker management daemon:
-
-        cumulus@switch:$ sudo systemctl start docker@mgmt
-
-3.  Run the Ubuntu container and launch the terminal instance:
-
-        cumulus@switch:$ docker run -i -t ubuntu /bin/bash
-
-## Performance Notes
-
-Keep in mind switches are not servers, in terms of the hardware that
-drives them. As such, you should be mindful of the types of applications
-you want to run in containers on a Cumulus Linux switch. In general,
-depending upon the configuration of the container, you can expect DHCP
-servers, custom scripts and other lightweight services to run well.
-However, VPN, NAT and encryption-type services are CPU-intensive and
-could lead to undesirable effects on critical applications. Use of any
-resource-intensive services should be avoided and is not supported.
+{{%/notice%}}

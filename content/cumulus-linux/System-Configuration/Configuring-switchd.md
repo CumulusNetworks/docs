@@ -1,146 +1,129 @@
 ---
 title: Configuring switchd
 author: Cumulus Networks
-weight: 73
+weight: 75
 aliases:
  - /display/DOCS/Configuring+switchd
- - /pages/viewpage.action?pageId=8362561
-pageID: 8362561
+ - /pages/viewpage.action?pageId=8366282
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
-`switchd` is the daemon at the heart of Cumulus Linux. It communicates
-between the switch and Cumulus Linux, and all the applications running
-on Cumulus Linux.
+`switchd` is the daemon at the heart of Cumulus Linux. It communicates between the switch and Cumulus Linux, and all the applications running on Cumulus Linux.
 
 The `switchd` configuration is stored in `/etc/cumulus/switchd.conf`.
 
 ## The switchd File System
 
-`switchd` also exports a file system, mounted on `/cumulus/switchd`,
-that presents all the `switchd` configuration options as a series of
-files arranged in a tree structure. You can see the contents by parsing
-the `switchd` tree; run `tree /cumulus/switchd`. The output below is for
-a switch with one switch port configured:
+`switchd` also exports a file system, mounted on `/cumulus/switchd`, that presents all the `switchd` configuration options as a series of files arranged in a tree structure. To show the contents, run the `tree /cumulus/switchd` command. The following example shows output for a switch with one switch port configured:
 
-    cumulus@switch:~$ sudo tree /cumulus/switchd/
-    /cumulus/switchd/
-    |-- config
-    |   |-- acl
-    |   |   |-- non_atomic_update_mode
-    |   |   `-- optimize_hw
-    |   |-- arp
-    |   |   `-- next_hops
-    |   |-- buf_util
-    |   |   |-- measure_interval
-    |   |   `-- poll_interval
-    |   |-- coalesce
-    |   |   |-- reducer
-    |   |   `-- timeout
-    |   |-- disable_internal_restart
-    |   |-- ignore_non_swps
-    |   |-- interface
-    |   |   |-- swp1
-    |   |   |   `-- storm_control
-    |   |   |       |-- broadcast
-    |   |   |       |-- multicast
-    |   |   |       `-- unknown_unicast
-    |   |-- logging
-    |   |-- route
-    |   |   |-- host_max_percent
-    |   |   `-- table
-    |   `-- stats
-    |       `-- poll_interval
-    |-- ctrl
-    |   |-- acl
-    |   |-- hal
-    |   |   `-- resync
-    |   |-- logger
-    |   |-- netlink
-    |   |   `-- resync
-    |   |-- resync
-    |   `-- sample
-    |       `-- ulog_channel
-    |-- run
-    |   `-- route_info
-    |       |-- ecmp_nh
-    |       |   |-- count
-    |       |   |-- max
-    |       |   `-- max_per_route
-    |       |-- host
-    |       |   |-- count
-    |       |   |-- count_v4
-    |       |   |-- count_v6
-    |       |   `-- max
-    |       |-- mac
-    |       |   |-- count
-    |       |   `-- max
-    |       `-- route
-    |           |-- count_0
-    |           |-- count_1
-    |           |-- count_total
-    |           |-- count_v4
-    |           |-- count_v6
-    |           |-- mask_limit
-    |           |-- max_0
-    |           |-- max_1
-    |           `-- max_total
-    `-- version
+```
+cumulus@switch:~$ sudo tree /cumulus/switchd/
+/cumulus/switchd/
+├── clear
+│   └── stats
+│       ├── vlan
+│       └── vxlan
+├── config
+│   ├── acl
+│   │   ├── flow_based_mirroring
+│   │   ├── non_atomic_update_mode
+│   │   ├── optimize_hw
+│   │   └── vxlan_tnl_arp_punt_disable
+│   ├── arp
+│   │   ├── drop_during_failed_state
+│   │   └── next_hops
+│   ├── bridge
+│   │   ├── broadcast_frame_to_cpu
+│   │   └── optimized_mcast_flood
+│   ├── buf_util
+│   │   ├── measure_interval
+│   │   └── poll_interval
+│   ├── coalesce
+│   │   ├── offset
+│   │   ├── reducer
+│   │   └── timeout
+│   ├── disable_internal_hw_err_restart
+│   ├── disable_internal_parity_restart
+│   ├── hal
+│   │   └── bcm
+│   │       ├── l3
+│   │       │   └── per_vlan_router_mac_lookup_for_vrrp
+│   │       ├── linkscan_interval
+│   │       ├── logging
+│   │       │   └── l3mc
+│   │       ├── per_vlan_router_mac_lookup
+│   │       └── vxlan_support
+│   ├── ignore_non_swps
+│   ├── interface
+│   │   ├── swp1
+│   │   │   ├── ethtool_mode
+│   │   │   ├── interface_mode
+│   │   │   ├── port_security
+│   │   │   │   ├── enable
+│   │   │   │   ├── mac_limit
+│   │   │   │   ├── static_mac
+│   │   │   │   ├── sticky_aging
+│   │   │   │   ├── sticky_mac
+│   │   │   │   ├── sticky_timeout
+│   │   │   │   ├── violation_mode
+│   │   │   │   └── violation_timeout
+│   │   │   └── storm_control
+│   │   │       ├── broadcast
+│   │   │       ├── multicast
+│   │   │       └── unknown_unicast
+...
+```
 
 ## Configure switchd Parameters
 
-You can use `cl-cfg` to configure many `switchd` parameters at runtime
-(like ACLs, interfaces, and route table utilization), which minimizes
-disruption to your running switch. However, some options are read only
-and cannot be configured at runtime.
+To configure the `switchd` parameters, edit the `/etc/cumulus/switchd.conf` file. An example is provided below.
 
-For example, to see data related to routes, run:
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+#
+# /etc/cumulus/switchd.conf - switchd configuration file
+#
 
-    cumulus@switch:~$ sudo cl-cfg -a switchd | grep route
-    route.table = 254
-    route.host_max_percent = 50
-    cumulus@cumulus:~$
+# Statistic poll interval (in msec)
+#stats.poll_interval = 2000
 
-To modify the configuration, run `cl-cfg -w`. For example, to set the
-buffer utilization measurement interval to 1 minute, run:
+# Buffer utilization poll interval (in msec), 0 means disable
+#buf_util.poll_interval = 0
 
-    cumulus@switch:~$ sudo cl-cfg -w switchd buf_util.measure_interval=1
+# Buffer utilization measurement interval (in mins)
+#buf_util.measure_interval = 0
 
-To verify that the value changed, use `grep`:
+# Optimize ACL HW resources for better utilization
+#acl.optimize_hw = FALSE
 
-    cumulus@switch:~$ cl-cfg -a switchd | grep buf
-    buf_util.poll_interval = 0
-    buf_util.measure_interval = 1
+# Enable Flow based mirroring.
+#acl.flow_based_mirroring = TRUE
 
-{{%notice note%}}
+# Enable non atomic acl update
+acl.non_atomic_update_mode = FALSE
 
-You can get some of this information by running `cl-resource-query`;
-though you cannot update the `switchd` configuration with it.
+# Send ARPs for next hops
+#arp.next_hops = TRUE
 
-{{%/notice%}}
+# Kernel routing table ID, range 1 - 2^31, default 254
+#route.table = 254
+...
+```
+
+When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect. See [Restart switchd](#restart-switchd), below.
 
 ## Restart switchd
 
-Whenever you modify any `switchd` hardware configuration file (typically
-changing any `*.conf` file that requires making a change to the
-switching hardware, like `/etc/cumulus/datapath/traffic.conf`), you must
-restart `switchd` for the change to take effect:
+Whenever you modify a `switchd` hardware configuration file (for example, you update any `*.conf` file that requires making a change to the switching hardware, like `/etc/cumulus/datapath/traffic.conf`), you must restart the `switchd` service for the change to take effect:
 
-    cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
 
-{{%notice note%}}
-
-You do not have to restart the `switchd` service when you update a
-network interface configuration (that is, edit
-`/etc/network/interfaces`).
-
-{{%/notice%}}
+You do not have to restart the `switchd` service when you update a network interface configuration (for example, when you edit the `/etc/network/interfaces` file).
 
 {{%notice warning%}}
 
-Restarting `switchd` causes all network ports to reset in addition to
-resetting the switch hardware configuration.
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 
 {{%/notice%}}

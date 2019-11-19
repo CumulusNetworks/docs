@@ -4,12 +4,8 @@ author: Cumulus Networks
 weight: 17
 aliases:
  - /display/DOCS/Layer+1+and+Switch+Ports
- - /pages/viewpage.action?pageId=8363019
-pageID: 8363019
+ - /pages/viewpage.action?pageId=8366743
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
-
-This section describes the physical layer configuration and how to configure switch ports.
+This section discusses how to configure network interfaces, Facebook Voyager optical interfaces. and DHCP delays and servers. The Prescriptive Topology Manager (PTM) cabling verification tool is also discussed.

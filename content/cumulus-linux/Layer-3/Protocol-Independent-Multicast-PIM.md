@@ -221,8 +221,8 @@ supported.
 
 {{%/notice%}}
 
-For additional information, see [RFC 7761 - Protocol Independent
-Multicast - Sparse Mode](https://tools.ietf.org/html/rfc7761).
+For additional information, see
+[RFC 7761 - Protocol Independent Multicast - Sparse Mode](https://tools.ietf.org/html/rfc7761).
 
 ### Any-source Multicast Routing
 
@@ -822,9 +822,7 @@ hello source by setting the source:
 
 {{%notice note%}}
 
-The following outputs are based on the [Cumulus Reference
-Topology](https://github.com/CumulusNetworks/cldemo-vagrant) with
-cldemo-pim.
+The following outputs are based on the [Cumulus Reference Topology](https://github.com/CumulusNetworks/cldemo-vagrant) with `cldemo-pim`.
 
 {{%/notice%}}
 
@@ -973,7 +971,7 @@ On the RP:
 
 ## PIM in a VRF
 
-[VRFs](../Virtual-Routing-and-Forwarding-VRF)
+[VRFs](../Virtual-Routing-and-Forwarding-VRF/)
 divide the routing table on a per-tenant basis, ultimately providing for
 separate layer 3 networks over a single layer 3 infrastructure. With a
 VRF, each tenant has its own virtualized layer 3 network, so IP
@@ -1095,7 +1093,7 @@ In FRR, you can use show commands to display VRF information:
 ## BFD for PIM Neighbors
 
 You can use [bidirectional forward
-detection](../Bidirectional-Forwarding-Detection-BFD)
+detection](../Bidirectional-Forwarding-Detection-BFD/)
 (BFD) for PIM neighbors to quickly detect link failures. When you
 configure an interface, include the `pim bfd` option:
 

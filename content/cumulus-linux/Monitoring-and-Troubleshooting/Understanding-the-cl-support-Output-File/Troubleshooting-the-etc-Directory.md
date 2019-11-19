@@ -11,15 +11,14 @@ version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-The
-[`cl-support`](../../Understanding-the-cl-support-Output-File/)
+The [`cl-support`](../../Understanding-the-cl-support-Output-File/)
 script replicates the /`etc` directory.
 
 Files that `cl-support` deliberately excludes are:
 
-| File              | Description                                                                                                                                    |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| /etc/nologin      | ` nologin  `prevents unprivileged users from logging into the system.                                                                          |
+| File              | Description                           |
+| ----------------- | ------------------------------------- |
+| /etc/nologin      | ` nologin  `prevents unprivileged users from logging into the system.      |
 | /etc/alternatives | `update-alternatives` creates, removes, maintains and displays information about the symbolic links comprising the Debian alternatives system. |
 
 This is the alphabetical of the output from running `ls -l` on the

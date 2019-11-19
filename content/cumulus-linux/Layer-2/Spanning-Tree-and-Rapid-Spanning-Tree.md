@@ -21,8 +21,8 @@ an active link fails. STP is enabled by default in Cumulus Linux.
 The STP modes Cumulus Linux supports vary depending upon whether the
 traditional or VLAN-aware bridge driver mode is in use.
 
-- Bridges configured in *[VLAN-aware](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)* mode operate **only** in RSTP mode.
-- Bridges configured in [*traditional* mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode) operate in both PVST and PVRST mode. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
+- Bridges configured in *[VLAN-aware](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)* mode operate **only** in RSTP mode.
+- Bridges configured in [*traditional* mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/) operate in both PVST and PVRST mode. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
 
 ### STP for a VLAN-aware Bridge
 
@@ -597,8 +597,7 @@ iface swp6
 (broadcast, unknown unicast, multicast) traffic on layer 2 switch port
 interfaces, which can cause poor network performance.
 
-You configure storm control for each physical port by [configuring
-`switchd`](../../System-Configuration/Configuring-switchd). For
+You configure storm control for each physical port by [configuring `switchd`](../../System-Configuration/Configuring-switchd/). For
 example, to enable unicast and multicast storm control at 400 packets
 per second (pps) and 3000 pps, respectively, for swp1, run the
 following:
@@ -633,8 +632,7 @@ specifications.
 
 The table below describes the STP configuration parameters available in
 Cumulus Linux. For a comparison of STP parameter configuration between
-`mstpctl` and other vendors, [read this knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/206908397).
+`mstpctl` and other vendors, [read this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/206908397).
 
 {{%notice note%}}
 

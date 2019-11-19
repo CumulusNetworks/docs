@@ -15,7 +15,7 @@ siteSlug: cumulus-linux
 Linux uses an updated version of this tool, `ifupdown2`.
 
 For more information on network interfaces, see [Switch Port
-Attributes](../Interface-Configuration-and-Management/Switch-Port-Attributes).
+Attributes](../Interface-Configuration-and-Management/Switch-Port-Attributes/).
 
 {{%notice info%}}
 
@@ -51,8 +51,7 @@ command:
 
 In this example, swp1 is administratively UP and the physical link is UP
 (LOWER\_UP flag). More information on interface administrative state and
-physical state can be found in [this knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/202693826).
+physical state can be found in [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202693826).
 
 To put an interface into an admin down state. The interface remains down
 after any future reboots or applying configuration changes with
@@ -101,15 +100,14 @@ interfaces are also in the auto class:
     cumulus@switch:~$ sudo ifreload -a
 
 If you are using [Management
-VRF](../../Layer-3/Management-VRF), you can use the special
+VRF](../../Layer-3/Management-VRF/), you can use the special
 interface class called *mgmt*, and put the management interface into
 that class.
 
 {{%notice warning%}}
 
 The mgmt interface class is not supported if you are configuring Cumulus
-Linux using
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU).
+Linux using [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/).
 
 {{%/notice%}}
 
@@ -174,7 +172,7 @@ The loopback interface *lo* must always be specified in `/etc/network/interfaces
 
 By default, `ifupdown` recognizes and uses any interface present on the
 system — whether a VLAN, bond or physical interface — that is listed as
-a dependent of an interface. You are not required to list them in the `interfaces` file unless they need a specific configuration, such [MTU or link speed](../Interface-Configuration-and-Management/Switch-Port-Attributes).
+a dependent of an interface. You are not required to list them in the `interfaces` file unless they need a specific configuration, such [MTU or link speed](../Interface-Configuration-and-Management/Switch-Port-Attributes/).
 And if you need to delete a child interface, you should delete all
 references to that interface from the `interfaces` file.
 
@@ -394,17 +392,17 @@ Linux configuration tools, most notably `ifupdown2` and its predecessor
 `ifupdown`, recognize such a name as a VLAN interface name.
 
 A VLAN subinterface only receives traffic
-[tagged](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging)
+[tagged](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging/)
 for that VLAN, so swp1.100 only receives packets tagged with VLAN 100 on
 switch port swp1. Similarly, any transmits from swp1.100 result in
 tagging the packet with VLAN 100.
 
 For an
-[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
+[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
 deployment, the peerlink interface that connects the two switches in the
 MLAG pair has a VLAN subinterface named 4094 by default, provided you
 configured the subinterface with
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU).
+[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/).
 The peerlink.4094 subinterface only receives traffic tagged for VLAN
 4094.
 
@@ -585,8 +583,7 @@ addresses for an interface after you change an interface address and
 reload the configuration with `ifreload -a`. If this happens, you must
 shut down and restart the interface with `ifup` and `ifdown`, or
 manually delete superfluous addresses with `ip address delete
-specify.ip.address.here/mask dev DEVICE`. See also the [Caveats and
-Errata](#caveats-and-errata)
+specify.ip.address.here/mask dev DEVICE`. See also the [Caveats and Errata](#caveats-and-errata)
 section below for some cautions about using multiple `iface` stanzas for
 the same interface.
 
@@ -721,9 +718,8 @@ These commands produce the following snippet in the
 
 ## Use Templates
 
-`ifupdown2` supports [Mako-style
-templates](http://www.makotemplates.org/). The Mako template engine is
-run over the `interfaces` file before parsing.
+`ifupdown2` supports [Mako-style templates](http://www.makotemplates.org/).
+The Mako template engine is run over the `interfaces` file before parsing.
 
 Use the template to declare cookie-cutter bridges in the `interfaces`
 file:
@@ -758,9 +754,8 @@ You can test your template and confirm it evaluates correctly by running
 
 {{%/notice%}}
 
-For more examples of configuring Mako templates, read this [knowledge
-base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/202868023).
+For more examples of configuring Mako templates, read this
+[knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202868023).
 
 To comment out content in Mako templates, use double hash marks (\#\#).
 For example:
@@ -787,11 +782,8 @@ To enable or disable `ifupdown2` scripting, edit the `addon_scripts_support` lin
 commands:
 
   - `$IFACE` represents the physical name of the interface being processed; for example, `br0` or vxlan42. The name is obtained from the `/etc/network/interfaces` file.
-
   - `$LOGICAL` represents the logical name (configuration name) of the interface being processed.
-
   - `$METHOD` represents the address method; for example, loopback, DHCP, DHCP6, manual, static, and so on.
-
   - `$ADDRFAM` r epresents the address families associated with the interface, formatted in a comma-separated list;
     for example, `"inet,inet6"` .
 
@@ -910,23 +902,12 @@ the `/etc/network/interfaces` file, then restart the networking.service.
 
 ## Related Information
 
-  - [Debian - Network
-    Configuration](http://wiki.debian.org/NetworkConfiguration)
-
-  - [Linux Foundation -
-    Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
-
-  - [Linux Foundation -
-    VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-
+  - [Debian - Network Configuration](http://wiki.debian.org/NetworkConfiguration)
+  - [Linux Foundation - Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
+  - [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
   - man ifdown(8)
-
   - man ifquery(8)
-
   - man ifreload
-
   - man ifup(8)
-
   - man ifupdown-addons-interfaces(5)
-
   - man interfaces(5)

@@ -33,7 +33,7 @@ In the following procedures:
 - You can name your Cumulus Linux installer disk image using any of the [ONIE naming schemes mentioned here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
 - In the example commands, `[PLATFORM]` can be any supported Cumulus Linux platform, such as *x86\_64*, or *arm*.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
-- After you install the Cumulus Linux disk image, you need to install the license file. Refer to [Install the License](../../Quick-Start-Guide#install-the-license).
+- After you install the Cumulus Linux disk image, you need to install the license file. Refer to [Install the License](../../Quick-Start-Guide/#install-the-license).
 
 ## Install Using a DHCP/Web Server with DHCP Options
 
@@ -275,7 +275,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
 ### Prepare for USB Installation
 
-1. From the [Cumulus Networks Downloads page](http://cumulusnetworks.com/downloads/), download the appropriate Cumulus Linux image for your x86 or ARM platform.
+1. From the [Cumulus Networks Downloads page](https://cumulusnetworks.com/downloads/), download the appropriate Cumulus Linux image for your x86 or ARM platform.
 
 2. From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
@@ -487,6 +487,6 @@ Homepage: http://www.cumulusnetworks.com/
 ## Related Information
 
 - [ONIE Design Specification](http://opencomputeproject.github.io/onie/design-spec/)
-- [Cumulus Networks Downloads page](http://cumulusnetworks.com/downloads/)
+- [Cumulus Networks Downloads page](https://cumulusnetworks.com/downloads/)
 - [Cumulus on a Stick](https://cumulusnetworks.com/cumulus-on-a-stick/)
-- [Managing Cumulus Linux Disk Images](../Managing-Cumulus-Linux-Disk-Images)
+- [Managing Cumulus Linux Disk Images](../Managing-Cumulus-Linux-Disk-Images/)

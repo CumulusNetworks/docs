@@ -23,7 +23,7 @@ Cumulus Networks has not tested RIP, RIPv6, IS-IS, or Babel.
 
 {{%/notice%}}
 
-The `zebra` daemon must always be enabled. The others you can enable according to how you plan to route your network; for example, using [BGP](../../Layer-3/Border-Gateway-Protocol-BGP) instead of [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF).
+The `zebra` daemon must always be enabled. The others you can enable according to how you plan to route your network; for example, using [BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) instead of [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/).
 
 Before you start FRRouting, you need to enable the corresponding daemons. Edit the `/etc/frr/daemons` file and set to *yes* each daemon you are enabling. For example, to enable BGP, set both `zebra` and `bgpd` to *yes*:
 
@@ -55,7 +55,7 @@ not running, it starts `zebra`, then starts the dependent service, such as `bgpd
 
 In general, if you restart a service, its dependent services also get restarted. For example, running `systemctl restart frr.service` restarts any of the routing protocol daemons that are enabled and running.
 
-For more information on the `systemctl` command and changing the state of daemons, read [Services and Daemons in Cumulus Linux](../../System-Configuration/Services-and-Daemons-in-Cumulus-Linux).
+For more information on the `systemctl` command and changing the state of daemons, read [Services and Daemons in Cumulus Linux](../../System-Configuration/Services-and-Daemons-in-Cumulus-Linux/).
 
 {{%/notice%}}
 
@@ -137,7 +137,7 @@ If you disabled `service integrated-vtysh-config`, you need to remove all the co
 
 ## Interface IP Addresses and VRFs
 
-FRRouting inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRRouting. For more information, see [Configure IP Addresses](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#configure-ip-addresses) and [Virtual Routing and Forwarding - VRF](../Virtual-Routing-and-Forwarding-VRF).
+FRRouting inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRRouting. For more information, see [Configure IP Addresses](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#configure-ip-addresses) and [Virtual Routing and Forwarding - VRF](../Virtual-Routing-and-Forwarding-VRF/).
 
 ## FRRouting vtysh Modal CLI
 
@@ -401,7 +401,7 @@ If you attempt to configure a routing protocol that has not been started, `vtysh
 
 {{%/notice%}}
 
-If you do not want to use a modal CLI to configure FRRouting, you can use a suite of [Cumulus Linux-specific commands](../Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands) instead.
+If you do not want to use a modal CLI to configure FRRouting, you can use a suite of [Cumulus Linux-specific commands](../Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands/) instead.
 
 ## Reload the FRRouting Configuration
 

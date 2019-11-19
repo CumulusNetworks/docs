@@ -16,7 +16,7 @@ You monitor system hardware in these ways, using:
 - `decode-syseeprom`
 - `smond`
 - `sensors`
-- [Net-SNMP](../../Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP)
+- [Net-SNMP](../../Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/)
 - `watchdog`
 
 ## Retrieve Hardware Information Using decode-syseeprom
@@ -215,7 +215,7 @@ Example chip names include:
 
 ## Monitor Switch Hardware Using SNMP
 
-The Net-SNMP documentation is discussed [here](../Simple-Network-Management-Protocol-SNMP).
+The Net-SNMP documentation is discussed [here](../Simple-Network-Management-Protocol-SNMP/).
 
 ## Keep the Switch Alive Using the Hardware Watchdog
 

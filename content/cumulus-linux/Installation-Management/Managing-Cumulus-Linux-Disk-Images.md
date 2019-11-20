@@ -4,16 +4,13 @@ author: Cumulus Networks
 weight: 41
 aliases:
  - /display/DOCS/Managing+Cumulus+Linux+Disk+Images
- - /pages/viewpage.action?pageId=8362634
-pageID: 8362634
+ - /pages/viewpage.action?pageId=8366355
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
 The Cumulus Linux operating system resides on a switch as a *disk image*. This section discusses how to manage the disk image.
 
-For information on installing a new Cumulus Linux disk image, refer to [Installing a New Cumulus Linux Image](../Installing-a-New-Cumulus-Linux-Image/). For information on upgrading Cumulus Linux, refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/).
+To install a new Cumulus Linux disk image, refer to [Installing a New Cumulus Linux Image](../Installing-a-New-Cumulus-Linux-Image/). To upgrade Cumulus Linux, refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/).
 
 ## Determine the Switch Platform
 
@@ -22,18 +19,18 @@ To determine if your switch is on an x86 or ARM platform, run the `uname -m` com
 For example, on an x86 platform, `uname -m` outputs *x86\_64*:
 
 ```
-cumulus@x86switch$ uname -m
+cumulus@switch:~$ uname -m
  x86_64
 ```
 
 On an ARM platform, `uname -m` outputs *armv7l*:
 
 ```
-cumulus@ARMswitch$ uname -m
+cumulus@switch:~$ uname -m
  armv7l
 ```
 
-You can also visit the HCL ([hardware compatibility list](https://cumulusnetworks.com/hcl)) to look at your hardware and determine the processor type.
+You can also visit the HCL ([hardware compatibility list](https://cumulusnetworks.com/products/hardware-compatibility-list/)) to look at your hardware and determine the processor type.
 
 ## Reprovision the System (Restart the Installer)
 
@@ -59,7 +56,8 @@ cumulus@switch:~$ sudo onie-select -c
 Cancelling pending install at next reboot...done.
 ```
 
-To stage an installer located in a specific location, run the `onie-`**`install`**` -i` command. You can specify a local, absolute or relative path, an HTTP or HTTPS server, SCP or FTP server. You can also stage a Zero Touch Provisioning (ZTP) script along with the installer. The `onie-install` command is typically used with the `-a` option to activate installation. If you do not specify the `-a` option, a reboot is required for the reinstall to begin.
+To stage an installer located in a specific location, run the `onie-install` `-i` command. You can specify a local, absolute or relative path, an HTTP or HTTPS server, SCP or FTP server. You can also stage a Zero Touch Provisioning (ZTP) script along with the installer.
+The `onie-install` command is typically used with the `-a` option to activate installation. If you do not specify the `-a` option, a reboot is required for the reinstall to begin.
 
 The following example stages the installer located at `http://203.0.113.10/image-installer` together with the ZTP script located at `http://203.0.113.10/ztp-script` and activates installation and ZTP:
 
@@ -75,11 +73,11 @@ You can also specify these options together in the same command. For example:
 cumulus@switch:~$ sudo onie-install -i http://203.0.113.10/image-installer -z http://203.0.113.10/ztp-script -a
 ```
 
-To see more `onie-install` options, run `man onie-install`.
+To see more `onie-install` options, run `man onie-install.`
 
 ## Uninstall All Images and Remove the Configuration
 
-To remove all installed images and configurations and return the switch to its factory defaults, run the `onie-select -k` command.
+To remove all installed images and configurations, and return the switch to its factory defaults, run the `onie-select -k` command.
 
 {{%notice warning%}}
 
@@ -98,11 +96,9 @@ Enabling uninstall at next reboot...done.
 Reboot required to take effect.
 ```
 
-{{%notice note%}}
+A reboot is required for the uninstallation process to begin.
 
-A reboot is required for the uninstall to begin.
-
-{{%/notice%}}
+{{%notice tip%}}
 
 To cancel a pending uninstall operation, run the `onie-select -c` command:
 
@@ -111,9 +107,11 @@ cumulus@switch:~$ sudo onie-select -c
 Cancelling pending uninstall at next reboot...done.
 ```
 
+{{%/notice%}}
+
 ## Boot into Rescue Mode
 
-If your system becomes broken is some way, you can correct certain issues by booting into ONIE rescue mode. In rescue mode, the file systems are unmounted and you can use various Cumulus Linux utilities to try and resolve a problem.
+If your system becomes unresponsive is some way, you can correct certain issues by booting into ONIE rescue mode. In rescue mode, the file systems are unmounted and you can use various Cumulus Linux utilities to try and resolve a problem.
 
 To reboot the system into ONIE rescue mode, run the `onie-select -r` command:
 
@@ -133,12 +131,16 @@ A reboot is required to boot into rescue mode.
 
 {{%/notice%}}
 
+{{%notice tip%}}
+
 To cancel a pending rescue boot operation, run the `onie-select -c` command:
 
 ```
 cumulus@switch:~$ sudo onie-select -c
 Cancelling pending rescue at next reboot...done.
 ```
+
+{{%/notice%}}
 
 ## Inspect the Image File
 
@@ -152,17 +154,17 @@ Verifying image checksum ...OK.
 Preparing image archive ... OK.
 Control File Contents
 =====================
-Description: Cumulus Linux 3.7.6
-Release: 3.7.6
+Description: Cumulus Linux 4.0.0
+Release: 4.0.0
 Architecture: amd64
 Switch-Architecture: bcm-amd64
-Build-Id: 03bbebdzc4d0ff5
-Build-Date: 2019-05-01T19:04:25+0000
+Build-Id: dirtyz224615f
+Build-Date: 2019-05-17T16:34:22+00:00
 Build-User: clbuilder
 Homepage: http://www.cumulusnetworks.com/
 Min-Disk-Size: 1073741824
 Min-Ram-Size: 536870912
-mkimage-version: 0.11.118_gf541
+mkimage-version: 0.11.111_gbcf0
 ```
 
 To extract the contents of the image file, use with the `extract <path>` option. For example, to extract an image file called `onie-installer` located in the `/var/lib/cumulus/installer` directory to the `mypath` directory:
@@ -170,10 +172,10 @@ To extract the contents of the image file, use with the `extract <path>` option.
 ```
 cumulus@switch:~$ sudo /var/lib/cumulus/installer/onie-installer extract mypath
 total 181860
--rw-r--r-- 1 4000 4000 308 May 16 19:04 control
-drwxr-xr-x 5 4000 4000 4096 Apr 26 21:28 embedded-installer
--rw-r--r-- 1 4000 4000 13273936 May 16 19:04 initrd
--rw-r--r-- 1 4000 4000 4239088 May 16 19:04 kernel
+-rw-r--r-- 1 4000 4000       308 May 16 19:04 control
+drwxr-xr-x 5 4000 4000      4096 Apr 26 21:28 embedded-installer
+-rw-r--r-- 1 4000 4000  13273936 May 16 19:04 initrd
+-rw-r--r-- 1 4000 4000   4239088 May 16 19:04 kernel
 -rw-r--r-- 1 4000 4000 168701528 May 16 19:04 sysroot.tar
 ```
 

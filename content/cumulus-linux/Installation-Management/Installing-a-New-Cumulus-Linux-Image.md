@@ -4,14 +4,12 @@ author: Cumulus Networks
 weight: 43
 aliases:
  - /display/DOCS/Installing+a+New+Cumulus+Linux+Image
- - /pages/viewpage.action?pageId=8362643
-pageID: 8362643
+ - /pages/viewpage.action?pageId=8366364
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
-This topic discusses how to install a new Cumulus Linux disk image using [ONIE](http://www.onie.org/), an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
+
+You can install a new Cumulus Linux disk image using [ONIE](http://www.onie.org/), an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
 
 Before you install Cumulus Linux, the switch can be in two different states:
 
@@ -22,7 +20,7 @@ The sections below describe some of the different ways you can install the Cumul
 
 You can download a Cumulus Linux image from the [Cumulus Networks Downloads page](http://cumulusnetworks.com/downloads/).
 
-{{%notice note%}}
+{{%notice warning%}}
 
 Installing the Cumulus Linux disk image is destructive; configuration files on the switch are not saved; copy them to a different server before installing.
 
@@ -33,7 +31,7 @@ In the following procedures:
 - You can name your Cumulus Linux installer disk image using any of the [ONIE naming schemes mentioned here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
 - In the example commands, `[PLATFORM]` can be any supported Cumulus Linux platform, such as *x86\_64*, or *arm*.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
-- After you install the Cumulus Linux disk image, you need to install the license file. Refer to [Install the License](../../Quick-Start-Guide/#install-the-license).
+- After you install the Cumulus Linux disk image, you need to install the license file. Refer to [Install the License](../../Quick-Start-Guide#install-the-license).
 
 ## Install Using a DHCP/Web Server with DHCP Options
 
@@ -44,7 +42,7 @@ To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a D
 3. ONIE downloads the Cumulus Linux disk image, installs, and reboots.
 4. Success\! You are now running Cumulus Linux.
 
-    {{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/install-image-onie-dhcp.png" >}}
 
 {{%notice note%}}
 
@@ -56,8 +54,8 @@ Here is an example DHCP configuration with an [ISC DHCP server](http://www.isc.o
 
 ```
 subnet 172.0.24.0 netmask 255.255.255.0 {
-   range 172.0.24.20 172.0.24.200;
-   option default-url = "http://172.0.24.14/onie-installer-[PLATFORM]";
+  range 172.0.24.20 172.0.24.200;
+  option default-url = "http://172.0.24.14/onie-installer-[PLATFORM]";
 }
 ```
 
@@ -73,13 +71,13 @@ If you do not have a web server, you can use [this free Apache example](https://
 
 ## Install Using a DHCP/Web Server without DHCP Options
 
-Follow the steps below if you have a laptop on the same network and the switch can pull DHCP from the corporate network, but you *cannot* modify DHCP options (maybe it is controlled by another team).
+Follow the steps below if you can log into the switch on a serial console (ONIE), or log in on the console or with ssh (Install from Cumulus Linux).
+
 <details>
 
 <summary>Install from ONIE </summary>
 
 1. Place the Cumulus Linux disk image in a directory on the web server.
-
 2. Run the `onie-nos-install` command:
 
 ```
@@ -104,7 +102,7 @@ cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-inst
 
 ## Install Using a Web Server with no DHCP
 
-Follow the steps below if your laptop is on the same network as the switch eth0 interface but *no* DHCP server is available.
+Follow the steps below if you can log into the switch on a serial console (ONIE), or log in on the console or with ssh (Install from Cumulus Linux) but *no* DHCP server is available.
 
 {{%notice note%}}
 
@@ -137,6 +135,7 @@ ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
 3. Place the Cumulus Linux disk image in a directory on your web server.
 
 4. Run the installer manually (because there are no DHCP options):
+
 
 ```
 ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
@@ -185,7 +184,6 @@ onie# /etc/init.d/discover.sh stop
 ```
 
 3. Place the Cumulus Linux disk image into a TFTP or FTP directory.
-
 4. If you are not using DHCP options, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
 
 ```
@@ -201,8 +199,8 @@ ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 <summary>Install from Cumulus Linux </summary>
 
 1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
-
-2. From the Cumulus Linux command prompt, run one of the following commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
+2. From the Cumulus Linux command prompt, run one of the following
+    commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
 
 ```
 cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
@@ -238,7 +236,7 @@ onie# onie-discovery-stop
 onie# /etc/init.d/discover.sh stop
 ```
 
-3. Use [scp](http://en.wikipedia.org/wiki/Secure_copy) to copy the Cumulus Linux disk image to the switch. (Windows users can use [WinScp](http://winscp.net/eng/index.php).)
+3. Use [scp](http://en.wikipedia.org/wiki/Secure_copy) to copy the Cumulus Linux disk image to the switch.
 
 4. Run the installer manually from ONIE:
 
@@ -275,68 +273,67 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
 ### Prepare for USB Installation
 
-1. From the [Cumulus Networks Downloads page](https://cumulusnetworks.com/downloads/), download the appropriate Cumulus Linux image for your x86 or ARM platform.
-
-2. From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
+1. From the [Cumulus Networks Downloads page](http://cumulusnetworks.com/downloads/), download the appropriate Cumulus Linux image for your x86 or ARM platform.
+2.  From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
     <details>
 
     <summary>Optional: Prepare a USB Drive inside Cumulus Linux</summary>
 
-    <table>
-    <colgroup>
-    <col style="width: 100%" />
-    </colgroup>
-    <tbody>
-    <tr class="odd">
-    <td><p>{{%notice warning%}}</p>
-    <p>Use caution when performing the actions below; it is possible to severely damage your system with the following utilities.</p>
-<p>{{%/notice%}}</p>
-    <ol>
-    <li><p>Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch.</p></li>
-    <li><p>Examine output from <code>cat /proc/partitions</code> and <code>sudo fdisk -l [device]</code> to determine on which device your USB drive can be found. For example, <code>sudo fdisk -l /dev/sdb</code>.</p>
-<p>{{%notice warning%}}</p>
-<p>These instructions assume your USB drive is the <code>/dev/sdb</code> device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the <code>/dev/sda</code> device. Make sure to modify the commands below to use the proper device for your USB drive.</p>
-<p>{{%/notice%}}</p></li>
-    <li><p>Create a new partition table on the USB drive:</p>
-    <pre><code>sudo parted /dev/sdb mklabel msdos</code></pre>
-    <p>{{%notice note%}}</p>
-    <p>The <code>parted</code> utility should already be installed. However, if it is not, install it with: <code>sudo -E apt-get install parted</code></p>
-    <p>{{%/notice%}}</p></li>
-    <li><p>Create a new partition on the USB drive:</p>
-    <pre><code>sudo parted /dev/sdb -a optimal mkpart primary 0% 100%</code></pre></li>
-    <li><p>Format the partition to your filesystem of choice using <em>one</em> of the examples below:</p>
-    <pre><code>sudo mkfs.ext2 /dev/sdb1
+    {{%notice warning%}}
+
+Use caution when performing the actions below; it is possible to severely damage your system with the following utilities.
+
+{{%/notice%}}
+
+    1. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine on which device your USB drive can be found. For example, `sudo fdisk -l /dev/sdb`.
+
+        These instructions assume your USB drive is the `/dev/sdb` device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the `/dev/sda` device. Make sure to modify the commands below to use the proper device for your USB drive.
+
+    2. Create a new partition table on the USB drive. (The `parted` utility should already be installed. However, if it is not, install it with `sudo -E apt-get install parted`.)
+
+    ```
+    sudo parted /dev/sdb mklabel msdos
+    ```
+
+    3. Create a new partition on the USB drive:
+
+    ```
+    sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
+    ```
+
+    4. Format the partition to your filesystem of choice using *one* of the examples below:
+
+    ```
+    sudo mkfs.ext2 /dev/sdb1
     sudo mkfs.msdos -F 32 /dev/sdb1
-    sudo mkfs.vfat /dev/sdb1</code></pre>
-    <p>{{%notice note%}}</p>
-    <p>To use <code>mkfs.msdos</code> or <code>mkfs.vfat</code>, you need to install the <code>dosfstools</code> package from the <a href="../Adding-and-Updating-Packages/#add-packages-from-another-repository" class="external-link">Debian software repositories</a>, as they are not included by default.</p>
-    <p>{{%/notice%}}</p></li>
-    <li><p>To continue installing Cumulus Linux, mount the USB drive to move files.</p>
-    <pre><code>sudo mkdir /mnt/usb
-    sudo mount /dev/sdb1 /mnt/usb</code></pre></li>
-    </ol></td>
-    </tr>
-    </tbody>
-    </table>
-</details>
+    sudo mkfs.vfat /dev/sdb1
+    ```
+
+        To use `mkfs.msdos` or `mkfs.vfat`, you need to install the `dosfstools` package from the [Debian software repositories](../Adding-and-Updating-Packages/), as they are not included by default.
+
+    5. To continue installing Cumulus Linux, mount the USB drive to move files
+
+    ```
+    sudo mkdir /mnt/usb
+    sudo mount /dev/sdb1 /mnt/usb
+    ```
+
+    </details>
 
 3. Copy the Cumulus Linux disk image to the USB drive, then rename the image file to:
 
     - `onie-installer-x86_64`, if installing on an x86 platform
     - `onie-installer-arm`, if installing on an ARM platform
 
-    {{%notice note%}}
-
-You can also use any of the [ONIE naming schemes mentioned here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
-
-{{%/notice%}}
+    You can also use any of the [ONIE naming schemes mentioned
+    here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
 
     {{%notice warning%}}
 
 When using a Mac or Windows computer to rename the installation file, the file extension might still be present. Make sure to remove the file extension otherwise ONIE is not able to detect the file.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 4. Insert the USB drive into the switch, then continue with the appropriate instructions below for your x86 or ARM platform.
 
@@ -359,11 +356,11 @@ SSH sessions to the switch get dropped after this step. To complete the remainin
 
 2. Monitor the console and select the ONIE option from the first GRUB screen shown below.
 
-    {{% imgOld 1 %}}
+    {{< img src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
 
 3. Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB menu specific to the ONIE partition. No action is necessary in this menu to select the default option *ONIE: Install OS*.
 
-    {{% imgOld 2 %}}
+    {{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
 4. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
 
@@ -394,7 +391,8 @@ OS-Release:  3.0.0-3b46bef-201509041633-build
 Architecture: amd64
 Date:  Fri, 27 May 2016 17:10:30 -0700
 Installer-Version:  1.2
-Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s6000_s1220 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley  
+Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s6000_s1220 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley 
+
 Homepage: http://www.cumulusnetworks.com/
 ```
 
@@ -413,7 +411,11 @@ Homepage: http://www.cumulusnetworks.com/
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
-    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
+    {{%notice note%}}
+
+SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
+
+{{%/notice%}}
 
 2. Interrupt the normal boot process before the countdown (shown below) completes. Press any key to stop the autoboot.
 
@@ -423,12 +425,14 @@ U-Boot 2013.01-00016-gddbf4a9-dirty (Feb 14 2014 - 16:30:46) Accton: 1.4.0.5
 CPU0: P2020, Version: 2.1, (0x80e20021)
 Core: E500, Version: 5.1, (0x80211051)
 Clock Configuration:
-CPU0:1200 MHz, CPU1:1200 MHz,
-CCB:600 MHz,
-DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
+      CPU0:1200 MHz, CPU1:1200 MHz, 
+      CCB:600 MHz,
+      DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
 L1: D-cache 32 kB enabled
 I-cache 32 kB enabled
+
 <...snip…>
+
 USB: USB2513 hub OK
 Hit any key to stop autoboot: 0
 ```
@@ -447,23 +451,25 @@ Platform: arm-as4610_54p-r0
 Version : 1.6.1.3
 WARNING: adjusting available memory to 30000000
 ## Booting kernel from Legacy Image at ec040000 …
-    Image Name:   as6701_32x.1.6.1.3
-    Image Type:   ARM Linux Multi-File Image (gzip compressed)
-    Data Size:    4456555 Bytes = 4.3 MiB
-    Load Address: 00000000
-    Entry Point:  00000000
-    Contents:
-        Image 0: 3738543 Bytes = 3.6 MiB
-        Image 1: 706440 Bytes = 689.9 KiB
-        Image 2: 11555 Bytes = 11.3 KiB
-    Verifying Checksum ... OK
+       Image Name:   as6701_32x.1.6.1.3
+       Image Type:   ARM Linux Multi-File Image (gzip compressed)
+       Data Size:    4456555 Bytes = 4.3 MiB
+       Load Address: 00000000
+       Entry Point:  00000000
+       Contents:
+          Image 0: 3738543 Bytes = 3.6 MiB
+          Image 1: 706440 Bytes = 689.9 KiB
+          Image 2: 11555 Bytes = 11.3 KiB
+   Verifying Checksum ... OK
 ## Loading init Ramdisk from multi component Legacy Image at ec040000 …
 ## Flattened Device Tree from multi component Image at EC040000
-    Booting using the fdt at 0xec47d388
-    Uncompressing Multi-File Image ... OK
-    Loading Ramdisk to 2ff53000, end 2ffff788 ... OK
-    Loading Device Tree to 03ffa000, end 03fffd22 ... OK
+   Booting using the fdt at 0xec47d388
+   Uncompressing Multi-File Image ... OK
+   Loading Ramdisk to 2ff53000, end 2ffff788 ... OK
+   Loading Device Tree to 03ffa000, end 03fffd22 ... OK
+
 <...snip...>
+
 ONIE: Starting ONIE Service Discovery
 ONIE: Executing installer: file://dev/sdb1/onie-installer-arm
 Verifying image checksum ... OK.
@@ -487,6 +493,6 @@ Homepage: http://www.cumulusnetworks.com/
 ## Related Information
 
 - [ONIE Design Specification](http://opencomputeproject.github.io/onie/design-spec/)
-- [Cumulus Networks Downloads page](https://cumulusnetworks.com/downloads/)
+- [Cumulus Networks Downloads page](http://cumulusnetworks.com/downloads/)
 - [Cumulus on a Stick](https://cumulusnetworks.com/cumulus-on-a-stick/)
-- [Managing Cumulus Linux Disk Images](../Managing-Cumulus-Linux-Disk-Images/)
+- [Managing Cumulus Linux Disk Images](../Managing-Cumulus-Linux-Disk-Images)

@@ -1,17 +1,16 @@
 ---
 title: TDR Cable Diagnostics
 author: Cumulus Networks
-weight: 433
+weight: 417
 aliases: 
 product: Cumulus Linux
-version: 3.7
-siteSlug: cumulus-linux
+version: '4.0'
 ---
-Cumulus Linux 3.7.9 and later provides the Time Domain Reflectometer (TDR) cable diagnostic tool, which enables you to isolate cable faults on unshielded twisted pair (UTP) cable runs.
+Cumulus Linux provides the Time Domain Reflectometer (TDR) cable diagnostic tool, which enables you to isolate cable faults on unshielded twisted pair (UTP) cable runs.
 
 {{%notice note%}}
 
-TDR is currently supported only on the EdgeCore AS4610. Pluggable modules are not supported.
+TDR is currently supported only on the EdgeCore AS4610 switch. Pluggable modules are not supported.
 
 {{%/notice%}}
 
@@ -21,7 +20,7 @@ Cumulus Linux TDR runs, checks, and reports on the status of the cable diagnosti
 
 {{%notice warning%}}
 
-Running TDR is disruptive to an active link; If the link is up on an enabled port when you start diagnostics, the link is brought down, then brought back up when the diagnostics are complete.
+Running TDR is disruptive to an active link; If the link is up on an enabled port when you start diagnostics on the port, the link is brought down, then brought back up when the diagnostics are complete.
 
 {{%/notice%}}
 

@@ -20,13 +20,13 @@ documents:
       - cumulus-linux/Installation-Management/Adding-and-Updating-Packages
       - cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP
       - cumulus-linux/System-Configuration
-      - cumulus-linux/System-Configuration/Authentication,-Authorization-and-Accounting
-      - cumulus-linux/System-Configuration/Authentication,-Authorization-and-Accounting/SSH-for-Remote-Access
-      - cumulus-linux/System-Configuration/Authentication,-Authorization-and-Accounting/User-Accounts
-      - cumulus-linux/System-Configuration/Authentication,-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges
-      - cumulus-linux/System-Configuration/Authentication,-Authorization-and-Accounting/LDAP-Authentication-and-Authorization
-      - cumulus-linux/System-Configuration/Authentication,-Authorization-and-Accounting/TACACS+
-      - cumulus-linux/System-Configuration/Authentication,-Authorization-and-Accounting/RADIUS-AAA
+      - cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting
+      - cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access
+      - cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts
+      - cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges
+      - cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization
+      - cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS+
+      - cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA
       - cumulus-linux/System-Configuration/Netfilter-ACLs
       - cumulus-linux/System-Configuration/Netfilter-ACLs/Default-Cumulus-Linux-ACL-Configuration
       - cumulus-linux/System-Configuration/Netfilter-ACLs/Filtering-Learned-MAC-Addresses

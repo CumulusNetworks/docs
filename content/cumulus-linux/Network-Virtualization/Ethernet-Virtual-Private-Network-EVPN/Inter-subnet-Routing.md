@@ -727,3 +727,7 @@ iface vlan4001
 If you use an MLAG pair instead of a single exit/border leaf, add the same temporary VNIs on both switches of the MLAG pair.
 
 </details>
+
+### Centralized Routing with ARP Suppression Enabled on the Gateway
+
+In an EVPN centralized routing configuration, where the layer 2 network extends beyond VTEPs, (for example, a host with bridges), the gateway MAC address is not refreshed in the network when ARP suppression is enabled on the gateway. To work around this issue, disable ARP suppression on the centralized gateway.

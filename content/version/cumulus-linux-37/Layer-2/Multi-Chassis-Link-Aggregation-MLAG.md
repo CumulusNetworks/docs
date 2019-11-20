@@ -222,9 +222,8 @@ configuring MLAG.
 
 {{%notice info%}}
 
-You cannot use the same MAC address for different MLAG pairs. Make sure
-you specify a different `clag sys-mac` setting for each MLAG pair in the
-network.
+- You cannot use the same MAC address for different MLAG pairs. Make sure you specify a different `clag sys-mac` setting for each MLAG pair in the network.
+- If you configure MLAG with NCLU commands, Cumulus Linux does not check against a possible collision with VLANs outside the default reserved range when creating the peer link interfaces, in case the reserved VLAN range has been modified.
 
 {{%/notice%}}
 

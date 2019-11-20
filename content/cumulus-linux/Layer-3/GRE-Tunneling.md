@@ -1,19 +1,16 @@
 ---
 title: GRE Tunneling
 author: Cumulus Networks
-weight: 199
+weight: 197
 aliases:
  - /display/DOCS/GRE+Tunneling
- - /pages/viewpage.action?pageId=8362966
-pageID: 8362966
+ - /pages/viewpage.action?pageId=8366690
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
 {{%notice warning%}}
 
-GRE tunneling is an [early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
+GRE Tunneling is an [early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
 
 {{%/notice%}}
 
@@ -25,7 +22,7 @@ GRE uses multiple protocols over a single-protocol backbone and is less demandin
 
 {{%notice note%}}
 
-- GRE tunneling is supported on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1) only.
+- GRE tunneling is supported for switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1) only.
 - Only static routes are supported as a destination for the tunnel interface.
 - IPv6 endpoints are not supported.
 
@@ -33,7 +30,7 @@ GRE uses multiple protocols over a single-protocol backbone and is less demandin
 
 The following example shows two sites that use IPv4 addresses. Using GRE tunneling, the two end points can encapsulate an IPv4 or IPv6 payload inside an IPv4 packet. The packet is routed based on the destination in the outer IPv4 header.
 
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/gre-tunnel-example.png" >}}
 
 ## Configure GRE Tunneling
 
@@ -46,7 +43,7 @@ To configure GRE tunneling, you create a GRE tunnel interface with routes for tu
 
 The following configuration example shows the commands used to set up a bidirectional GRE tunnel between two endpoints: `Tunnel-R1` and `Tunnel-R2`. The local tunnel endpoint for `Tunnel-R1` is 10.0.0.9 and the remote endpoint is 10.0.0.2. The local tunnel endpoint for `Tunnel-R2` is 10.0.0.2 and the remote endpoint is 10.0.0.9.
 
-{{% imgOld 1 %}}
+{{< img src = "/images/cumulus-linux/gre-tunnel-config.png" >}}
 
 **Tunnel-R1 commands:**
 
@@ -70,7 +67,8 @@ To apply the GRE tunnel configuration automatically at reboot, instead of runnin
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
-# Tunnel-R1 configuration
+...
+# Tunnel-R1 configuration 
 auto swp1 #underlay interface for tunnel
 iface swp1
     link-speed 10000
@@ -101,6 +99,7 @@ iface Tunnel-R1 inet static
     pre-up ip tunnel add Tunnel-R1 mode gre local 10.0.0.2 remote 10.0.0.9 ttl 255
     post-up ip route add 10.0.200.0/24 dev Tunnel-R1
     post-down ip tunnel del Tunnel-R1
+...
 ```
 
 For more information about the `pre-up`, `post-up`, and `post-down` commands, run the `man interfaces` command.
@@ -125,7 +124,7 @@ cumulus@switch:~$ sudo ip tunnel del Tunnel-R2 mode gre remote 10.0.0.2 local 10
 
 {{%notice note%}}
 
-You can delete a GRE tunnel directly from the `/etc/network/interfaces` file instead of using the `ip tunnel del` command. Make sure you run the `ifreload -a` command after you update the interfaces file.
+You can delete a GRE tunnel directly from the `/etc/network/interfaces` file instead of using the `ip tunnel del` command. Make sure you run the `ifreload - a` command after you update the interfaces file.
 
 {{%/notice%}}
 
@@ -139,6 +138,6 @@ cumulus@switch:~$ sudo ip tunnel change Tunnel-R2 mode gre local 10.0.0.2 remote
 
 {{%notice note%}}
 
-You can make changes to GRE tunnel settings directly in the `/etc/network/interfaces` file instead of using the `ip tunnel change` command. Make sure you run the `ifreload -a` command after you update the interfaces file.
+You can make changes to GRE tunnel settings directly in the `/etc/network/interfaces` file instead of using the `ip tunnel change` command. Make sure you run the `ifreload - a` command after you update the interfaces file.
 
 {{%/notice%}}

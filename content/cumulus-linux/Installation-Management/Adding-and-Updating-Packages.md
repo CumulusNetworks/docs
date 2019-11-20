@@ -1,21 +1,19 @@
 ---
 title: Adding and Updating Packages
 author: Cumulus Networks
-weight: 49
+weight: 51
 aliases:
  - /display/DOCS/Adding+and+Updating+Packages
- - /pages/viewpage.action?pageId=8362631
-pageID: 8362631
+ - /pages/viewpage.action?pageId=8366352
 product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+version: '4.0'
 ---
+
 You use the Advanced Packaging Tool (`apt`) to manage additional applications (in the form of packages) and to install the latest updates.
 
 {{%notice warning%}}
 
-Updating, upgrading, and installing packages with `apt` **causes disruptions to network services**:
+Updating, upgrading, and installing packages with `apt` causes disruptions to network services:
 
 - Upgrading a package might result in services being restarted or stopped as part of the upgrade process.
 - Installing a package might disrupt core services by changing core service dependency packages. In some cases, installing new packages might also upgrade additional existing packages due to dependencies.
@@ -26,39 +24,39 @@ If services are stopped, you might need to reboot the switch for those services 
 
 ## Update the Package Cache
 
-To work properly, `apt` relies on a local cache listing of the available packages. You must populate the cache initially, and then periodically update it with `sudo -E apt-get update`:
+To work properly, `apt` relies on a local cache listing of the available packages. You must populate the cache initially, then periodically update it with `sudo -E apt-get update`:
 
 ```
-  cumulus@switch:~$ sudo -E apt-get update
-  Get:1 http://repo3.cumulusnetworks.com CumulusLinux-3 InRelease [7,624 B]
-  Get:2 http://repo3.cumulusnetworks.com CumulusLinux-3-security-updates InRelease [7,555 B]
-  Get:3 http://repo3.cumulusnetworks.com CumulusLinux-3-updates InRelease [7,660 B]
-  Get:4 http://repo3.cumulusnetworks.com CumulusLinux-3/cumulus Sources [20 B]
-  Get:5 http://repo3.cumulusnetworks.com CumulusLinux-3/upstream Sources [20 B]
-  Get:6 http://repo3.cumulusnetworks.com CumulusLinux-3/cumulus amd64 Packages [38.4 kB]
-  Get:7 http://repo3.cumulusnetworks.com CumulusLinux-3/upstream amd64 Packages [445 kB]
-  Get:8 http://repo3.cumulusnetworks.com CumulusLinux-3-security-updates/cumulus Sources [20 B]
-  Get:9 http://repo3.cumulusnetworks.com CumulusLinux-3-security-updates/upstream Sources [11.8 kB]
-  Get:10 http://repo3.cumulusnetworks.com CumulusLinux-3-security-updates/cumulus amd64 Packages [20 B]
-  Get:11 http://repo3.cumulusnetworks.com CumulusLinux-3-security-updates/upstream amd64 Packages [8,941 B]
-  Get:12 http://repo3.cumulusnetworks.com CumulusLinux-3-updates/cumulus Sources [20 B]
-  Get:13 http://repo3.cumulusnetworks.com CumulusLinux-3-updates/upstream Sources [776 B]
-  Get:14 http://repo3.cumulusnetworks.com CumulusLinux-3-updates/cumulus amd64 Packages [38.4 kB]
-  Get:15 http://repo3.cumulusnetworks.com CumulusLinux-3-updates/upstream amd64 Packages [444 kB]
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3/cumulus Translation-en_US
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3/cumulus Translation-en
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3/upstream Translation-en_US
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3/upstream Translation-en
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3-security-updates/cumulus Translation-en_US
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3-security-updates/cumulus Translation-en
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3-security-updates/upstream Translation-en_US
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3-security-updates/upstream Translation-en
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3-updates/cumulus Translation-en_US
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3-updates/cumulus Translation-en
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3-updates/upstream Translation-en_US
-  Ign http://repo3.cumulusnetworks.com CumulusLinux-3-updates/upstream Translation-en
-  Fetched 1,011 kB in 1s (797 kB/s)
-  Reading package lists... Done
+cumulus@switch:~$ sudo -E apt-get update
+Get:1 http://repo4.cumulusnetworks.com CumulusLinux-4-latest InRelease [7,624 B]
+Get:2 http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest InRelease [7,555 B]
+Get:3 http://repo4.cumulusnetworks.com CumulusLinux-4-latest-updates InRelease [7,660 B]
+Get:4 http://repo4.cumulusnetworks.com CumulusLinux-4-latest/cumulus Sources [20 B]
+Get:5 http://repo4.cumulusnetworks.com CumulusLinux-4-latest/upstream Sources [20 B]
+Get:6 http://repo4.cumulusnetworks.com CumulusLinux-4-latest/cumulus amd64 Packages [38.4 kB]
+Get:7 http://repo4.cumulusnetworks.com CumulusLinux-4--latest/upstream amd64 Packages [445 kB]
+Get:8 http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Sources [20 B]
+Get:9 http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Sources [11.8 kB]
+Get:10 http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus amd64 Packages [20 B]
+Get:11 http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream amd64 Packages [8,941 B]
+Get:12 http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Sources [20 B]
+Get:13 http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Sources [776 B]
+Get:14 http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus amd64 Packages [38.4 kB]
+Get:15 http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream amd64 Packages [444 kB]
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-latest/cumulus Translation-en_US
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-latest/cumulus Translation-en
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-latest/upstream Translation-en_US
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-latest/upstream Translation-en
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Translation-en_US
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Translation-en
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Translation-en_US
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Translation-en
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Translation-en_US
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Translation-en
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Translation-en_US
+Ign http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Translation-en
+Fetched 1,011 kB in 1s (797 kB/s)
+Reading package lists... Done
 ```
 
 {{%notice tip%}}
@@ -73,44 +71,63 @@ After the cache is populated, use the `apt-cache` command to search the cache an
 
 ```
 cumulus@switch:~$ apt-cache search tcp
-socat - multipurpose relay for bidirectional data transfer
+collectd-core - statistics collection and monitoring daemon (core system)
 fakeroot - tool for simulating superuser privileges
-tcpdump - command-line network traffic analyzer
+iperf - Internet Protocol bandwidth measuring tool
+iptraf-ng - Next Generation Interactive Colorful IP LAN Monitor
+libfakeroot - tool for simulating superuser privileges - shared libraries
+libfstrm0 - Frame Streams (fstrm) library
+libibverbs1 - Library for direct userspace use of RDMA (InfiniBand/iWARP)
+libnginx-mod-stream - Stream module for Nginx
+libqt4-network - Qt 4 network module
+librtr-dev - Small extensible RPKI-RTR-Client C library - development files
+librtr0 - Small extensible RPKI-RTR-Client C library
+libwiretap8 - network packet capture library -- shared library
+libwrap0 - Wietse Venema's TCP wrappers library
+libwrap0-dev - Wietse Venema's TCP wrappers library, development files
+netbase - Basic TCP/IP networking system
+nmap-common - Architecture independent files for nmap
+nuttcp - network performance measurement tool
+openssh-client - secure shell (SSH) client, for secure access to remote machines
 openssh-server - secure shell (SSH) server, for secure access from remote machines
 openssh-sftp-server - secure shell (SSH) sftp server module, for SFTP access from remote machines
-python-dpkt - Python packet creation / parsing module
-libfakeroot - tool for simulating superuser privileges - shared libraries
-openssh-client - secure shell (SSH) client, for secure access to remote machines
+python-dpkt - Python 2 packet creation / parsing module for basic TCP/IP protocols
 rsyslog - reliable system and kernel logging daemon
-libwrap0 - Wietse Venema's TCP wrappers library
-netbase - Basic TCP/IP networking system
+socat - multipurpose relay for bidirectional data transfer
+tcpdump - command-line network traffic analyzer
 ```
 
 ```
 cumulus@switch:~$ apt-cache show tcpdump
 Package: tcpdump
-Status: install ok installed
-Priority: optional
-Section: net
-Installed-Size: 1092
+Version: 4.9.3-1~deb10u1
+Installed-Size: 1109
 Maintainer: Romain Francoise <rfrancoise@debian.org>
 Architecture: amd64
-Multi-Arch: foreign
-Version: 4.6.2-5+deb8u1
-Depends: libc6 (>= 2.14), libpcap0.8 (>= 1.5.1), libssl1.0.0 (>= 1.0.0)
+Replaces: apparmor-profiles-extra (<< 1.12~)
+Depends: libc6 (>= 2.14), libpcap0.8 (>= 1.5.1), libssl1.1 (>= 1.1.0)
+Suggests: apparmor (>= 2.3)
+Breaks: apparmor-profiles-extra (<< 1.12~)
+Size: 400060
+SHA256: 3a63be16f96004bdf8848056f2621fbd863fadc0baf44bdcbc5d75dd98331fd3
+SHA1: 2ab9f0d2673f49da466f5164ecec8836350aed42
+MD5sum: 603baaf914de63f62a9f8055709257f3
 Description: command-line network traffic analyzer
  This program allows you to dump the traffic on a network. tcpdump
-  is able to examine IPv4, ICMPv4, IPv6, ICMPv6, UDP, TCP, SNMP, AFS
-  BGP, RIP, PIM, DVMRP, IGMP, SMB, OSPF, NFS and many other packet
-  types.
-  .
-  It can be used to print out the headers of packets on a network
-  interface, filter packets that match a certain expression. You can
-  use this tool to track down network problems, to detect attacks
-  or to monitor network activities.
+ is able to examine IPv4, ICMPv4, IPv6, ICMPv6, UDP, TCP, SNMP, AFS
+ BGP, RIP, PIM, DVMRP, IGMP, SMB, OSPF, NFS and many other packet
+ types.
+ .
+ It can be used to print out the headers of packets on a network
+ interface, filter packets that match a certain expression. You can
+ use this tool to track down network problems, to detect attacks
+ or to monitor network activities.
 Description-md5: f01841bfda357d116d7ff7b7a47e8782
 Homepage: http://www.tcpdump.org/
-cumulus@switch:~$
+Multi-Arch: foreign
+Section: net
+Priority: optional
+Filename: pool/upstream/t/tcpdump/tcpdump_4.9.3-1~deb10u1_amd64.deb
 ```
 
 {{%notice note%}}
@@ -119,54 +136,103 @@ The search commands look for the search terms not only in the package name but i
 
 {{%/notice%}}
 
-## List Installed Packages
+## List Packages Installed on the System
 
-The APT cache contains information about all the packages available in the repository. To see which packages are actually installed on your system, use `dpkg`. The following example lists all the package names on the system that contain `tcp`:
+The the `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with their versions, run the following commands.
 
-```
-cumulus@switch:~$ dpkg -l \*tcp\*
-Desired=Unknown/Install/Remove/Purge/Hold
-| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
-|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
-||/ Name                          Version             Architecture        Description
-+++-=============================-===================-===================-===============================================================
-un  tcpd                          <none>              <none>              (no description available)
-ii  tcpdump                       4.6.2-5+deb8u1      amd64               command-line network traffic analyzer
-cumulus@switch:~$
-```
+<details>
 
-## Display the Version of a Package
+<summary>NCLU Commands </summary>
 
-To show the version of a specific package installed on the system, run the `net show package version <package>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
-
-```
-cumulus@switch:~$ net show package version vrf
-1.0-cl3u11
-```
-
-As an alternative to the NCLU command described above, you can run the Linux `dpkg -l <package_name>` command.
-
-To see a list of all packages installed on the system with their versions, run the `net show package version` command. For example:
+Run the `net show package version` command:
 
 ```
 cumulus@switch:~$ net show package version
 Package                            Installed Version(s)
 ---------------------------------  -----------------------------------------------------------------------
-acl                                2.2.52-2
-acpi                               1.7-1
-acpi-support-base                  0.142-6
-acpid                              1:2.0.23-2
-adduser                            3.113+nmu3
-apt                                1.0.9.8.2-cl3u3~1532198712.6d9298c
-apt-doc                            1.0.9.8.2-cl3u3~1532198712.6d9298c
-apt-transport-https                1.0.9.8.2-cl3u3~1532198712.6d9298c
-apt-utils                          1.0.9.8.2-cl3u3~1532198712.6d9298c
-arping                             2.14-1
-arptables                          0.0.3.4-1
+acpi                               1.7-1.1
+acpi-support-base                  0.142-8
+acpid                              1:2.0.31-1
+adduser                            3.118
+apt                                1.8.2
+arping                             2.19-6
+arptables                          0.0.4+snapshot20181021-4
+atftp                              0.7.git20120829-3.1
+atftpd                             0.7.git20120829-3.1
 ...
 ```
 
+</details>
+
+<details>
+
+<summary>Linux Commands </summary>
+
+Run the `dpkg -l` command:
+
+```
+cumulus@switch:~$ dpkg -l
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                Version                   Architecture Description
++++-===================-=========================-============-=================================
+ii  acpi                1.7-1.1                   amd64        displays information on ACPI devices
+ii  acpi-support-base   0.142-8                   all          scripts for handling base ACPI events such as th
+ii  acpid               1:2.0.31-1                amd64        Advanced Configuration and Power Interface event
+ii  adduser             3.118                     all          add and remove users and groups
+ii  apt                 1.8.2                     amd64        commandline package manager
+ii  arping              2.19-6                    amd64        sends IP and/or ARP pings (to the MAC address)
+ii  arptables           0.0.4+snapshot20181021-4  amd64        ARP table administration
+ii  atftp               0.7.git20120829-3.1       amd64        advanced TFTP client
+ii  atftpd              0.7.git20120829-3.1       amd64        advanced TFTP server
+...
+```
+
+</details>
+
+## Show the Version of a Package
+
+To show the version of a specific package installed on the system:
+
+<details>
+
+<summary>NCLU Commands </summary>
+
+Run the `net show package version <package>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
+
+```
+cumulus@switch:~$ net show package version vrf
+1.0-cl4u1
+```
+
+</details>
+
+<details>
+
+<summary>Linux Commands </summary>
+
+Run the Linux `dpkg -l <package_name>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
+
+```
+cumulus@switch:~$ dpkg -l vrf
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name       Version      Architecture Description
++++-==========-============-============-=================================
+ii  vrf        1.0-cl4u1    amd64        Linux tools for VRF
+```
+
+</details>
+
 ## Upgrade Packages
+
+{{%notice note%}}
+
+You cannot upgrade to Cumulus Linux 4.0.0 by upgrading packages. You must install a disk image of the new release using ONIE. Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/).
+
+{{%/notice%}}
 
 To upgrade all the packages installed on the system to their latest versions, run the following commands:
 
@@ -179,9 +245,7 @@ A list of packages that will be upgraded is displayed and you are prompted to co
 
 The above commands upgrade all installed versions with their latest versions but do not install any new packages.
 
-Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/) for additional information.
-
-## Add New Packages
+<!--CANNOT DO THIS IN 4.0.0  ## Add New Packages
 
 To add a new package, first ensure the package is not already installed on the system:
 
@@ -193,6 +257,7 @@ cumulus@switch:~$ dpkg -l | grep <name of package>
 - If the package is *not* already installed, add it by running `sudo -E apt-get install <name of package>`. This retrieves the package from the Cumulus Linux repository and installs it on your system together with any other packages on which this package might depend. The following example adds the `tcpreplay` package to the system:
 
 ```
+cumulus@switch:~$ sudo -E apt-get update
 cumulus@switch:~$ sudo -E apt-get install tcpreplay
 Reading package lists... Done
 Building dependency tree
@@ -220,15 +285,9 @@ cumulus@switch:~$ sudo -E apt-get install <package 1> <package 2> <package 3>
 
 {{%notice tip%}}
 
-In some cases, installing a new package might also upgrade
+In some cases, installing a new package might also upgrade additional existing packages due to dependencies. To view these additional packages before you install, run the `apt-get install --dry-run` command.
 
-```
-additional existing packages due to dependencies. To view these
-additional packages before you install, run the `apt-get install
---dry-run` command.
-```
-
-{{%/notice%}}
+{{%/notice%}}-->
 
 ## Add Packages from Another Repository
 
@@ -252,7 +311,8 @@ Installing packages outside of the Cumulus Linux repository requires the use of 
 
 To install a new package, complete the following steps:
 
-1. Run the `dpkg` command to ensure that the package is not already installed on the system:
+1. Run the `dpkg` command to ensure that the package is not already
+    installed on the system:
 
 ```
 cumulus@switch:~$ dpkg -l | grep {name of package}
@@ -269,20 +329,20 @@ cumulus@switch:~$ sudo -E apt-get upgrade
 3. If the package is not on the system, the package source location is most likely **not** in the `/etc/apt/sources.list` file. If the source for the new package is **not** in `sources.list`, edit and add the appropriate source to the file. For example, add the following if you want a package from the Debian repository that is **not** in the Cumulus Linux repository:
 
 ```
-deb http://http.us.debian.org/debian jessie main
-deb http://security.debian.org/ jessie/updates main
+deb http://http.us.debian.org/debian buster main
+deb http://security.debian.org/ buster/updates main
 ```
 
     Otherwise, the repository might be listed in `/etc/apt/sources.list` but is commented out, as can be the case with the early-access repository:
 
 ```
-#deb http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus
+#deb http://repo4.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
 ```
 
     To uncomment the repository, remove the \# at the start of the line, then save the file:
 
 ```
-deb http://repo3.cumulusnetworks.com/repo CumulusLinux-3-early-access cumulus
+deb http://repo4.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
 ```
 
 4. Run `sudo -E apt-get update`, then install the package and upgrade:
@@ -293,60 +353,26 @@ cumulus@switch:~$ sudo -E apt-get install {name of package}
 cumulus@switch:~$ sudo -E apt-get upgrade
 ```
 
-## Cumulus Supplemental Repository
+## Add Packages from the Cumulus Linux Local Archive
 
-Cumulus Networks provides a *Supplemental Repository* that contains third party applications commonly installed on switches.
+Cumulus Linux contains a local archive embedded in the Cumulus Linux disk image. This archive contains the packages needed to install [`ifplugd`](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/ifplugd/), [LDAP](../../System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/), [RADIUS](../../System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA/) or [TACACS+](../../System-Configuration/Authentication-Authorization-and-Accounting/TACACS+/) without needing a network connection.
 
-The repository is provided for convenience only. You can download and use these applications; however, the applications in this repository are not tested, developed, certified, or supported by Cumulus Networks.
+The archive is called `cumulus-local-apt-archive` and is referenced in the  `/etc/apt/cumulus-local-apt-archive-sources.list` file. It contains the following packages:
 
-Below is a non-exhaustive list of some of the packages present in the repository:
+- audisp-tacplus
+- ifplugd
+- libdaemon0
+- libnss-ldapd
+- libnss-mapuser
+- libnss-tacplus
+- libpam-ldapd
+- libpam-radius-auth
+- libpam-tacplus
+- libtac2
+- libtacplus-map1
+- nslcd
 
-| <div style="width:150px">Package | Description|
-|-------- | -----------|
-| `htop` | Lets you view CPU, memory, and process information. |
-| `scamper` | ECMP traceroute utility. |
-| `mtr` | ECMP traceroute utility. |
-| `dhcpdump` | Similar to TCPdump but focused only on DHCP traffic. |
-| `vim` | Text editor. |
-| `fping` | Provides a list of targets through textfile to check reachability. |
-| `scapy` | Custom packet generator for testing. |
-| `bwm-ng` | Real-time bandwidth monitor. |
-| `iftop` | Real-time traffic monitor. |
-| `tshark` | CLI version of wireshark. |
-| `nmap` | Network scanning utility. |
-| `minicom` | USB/Serial console utility that turns your switch into a terminal server (useful for out of band management switches to provide a console on the dataplane switches in the rack). |
-| `apt-cacher-ng` | Caches packages for mirroring purposes. |
-| `iptraf` | ncurses-based traffic visualization utility. |
- `swatch` | Monitors system activity. It reads a configuration file that contains patterns for which to search and actions to perform when each pattern is found. |
-| `dos2unix` | Converts line endings from Windows to Unix. |
-| `fail2ban` | Monitors log files (such as `/var/log/auth.log` and `/var/log/apache/access.log`) and temporarily or persistently bans the login of failure-prone IP addresses by updating existing firewall rules. This utility is not hardware accelerated on a Cumulus Linux switch, so only affects the control plane. |
-
-To enable the Supplemental Repository:
-
-1. In a file editor, open the `/etc/apt/sources.list` file.
-
-```
-cumulus@leaf01:~$ sudo nano /etc/apt/sources.list
-```
-
-2. Uncomment the following lines:
-
-```
-#deb http://repo3.cumulusnetworks.com/repo Jessie-supplemental upstream
-#deb-src http://repo3.cumulusnetworks.com/repo Jessie-supplemental upstream
-```
-
-3. Update the list of software packages:
-
-```
-cumulus@leaf01:~$ sudo -E apt-get update -y
-```
-
-4. Install the software in which you are interested:
-
-```
-cumulus@leaf01:~$ sudo -E apt-get install htop
-```
+You add these packages normally with `apt-get update && apt-get install`, as [described above](#add-new-packages).
 
 ## Related Information
 

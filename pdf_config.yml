@@ -1,5 +1,7 @@
 version: "4.0"
 
+documents:
+  # Item tag below is not of any significance, purely for structure
   cumulus-linux:
     # PDF file name
     name: Cumulus-Linux-User-Guide

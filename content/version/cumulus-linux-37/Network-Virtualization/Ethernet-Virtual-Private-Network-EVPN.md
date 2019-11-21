@@ -2195,6 +2195,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
     that switch and other information (such as MAC addresses) pertaining
     to them are advertised to EVPN peers. There is no provision to only
     announce certain VNIs.
+- For VXLAN type-5 routes, ECMP does not work when the VTEP is directly connected to remote VTEPs. To work around this issue, add an additional device in the VXLAN fabric between the local and remote VTEPs, so that local and remote VTEPs are not directly connected.
 - In a [VXLAN active-active](../VXLAN-Active-Active-Mode/)
     configuration, ARPs are sometimes *not* suppressed even if ARP
     suppression is enabled. This is because the neighbor entries are not

@@ -972,70 +972,98 @@ When you commit your change, `switchd` restarts to apply the changes. The restar
 
 The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on [the hardware compatibility list](http://www.cumulusnetworks.com/hcl).
 
-The following example shows a snippet from the `/etc/cumulus/ports.conf` file on a Dell S6000 switch (with a Trident II+ ASIC) where swp6 is broken out into four 10G ports:
+The following example shows a snippet from the `/etc/cumulus/ports.conf` file on a Dell Z9264F-ON switch (with a Tomahawk2 ASIC) where swp1 and swp63 are broken out into four 10G ports:
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
 # ports.conf --
 #
-# This file controls port aggregation and subdivision.  For example, QSFP+
-# ports are typically configurable as either one 40G interface or four
-# 10G/1000/100 interfaces.  This file sets the number of interfaces per port
-# while /etc/network/interfaces and ethtool configure the link speed for each
-# interface.
+#   configure port speed, aggregation, and subdivision.
 #
-# You must restart switchd for changes to take effect.
+# The Dell Z9264F has:
+#      64 QSFP28 ports numbered 1-64
+#         These ports are configurable as 100G, 50G, 40G, or split into
+#         2x50G, 4x25G, or 4x10G ports.
 #
-# The DELL S6000 has:
-#     32 QSFP ports numbered 1-32
-#     These ports are configurable as 40G, split into 4x10G ports or
-#     disabled.
+# NOTE:  You must restart switchd for any changes to take effect.
+# Only “odd-numbered” port can be split into 4 interfaces and if an odd-numbered
+# port is split in a 4X configuration, the port adjacent to it (even-numbered port)
+# has to be set to “disabled” in this file. When splitting a port into two
+# interfaces, like 2x50G, it is NOT required that the adjacent port be
+# disabled. For example, when splitting port 11 into 4 10G interfaces, port
+# 12 must be configured as "disabled" like this:
 #
-#     The X pipeline covers QSFP ports 1 through 16 and the Y pipeline
-#     covers QSFP ports 17 through 32.
+#   11=4x10G
+#   12=disabled
+
+# QSFP28 ports
 #
-#     The Trident2 chip can only handle 52 logical ports per pipeline.
-#
-#     This means 13 is the maximum number of 40G ports you can ungang
-#     per pipeline, with the remaining three 40G ports set to
-#     "disabled". The 13 40G ports become 52 unganged 10G ports, which
-#     totals 52 logical ports for that pipeline.
-#
-# QSFP+ ports
-#
-# <port label 1-32> = [4x10G|40G|disabled]
-1=40G
-2=40G
-3=40G
-4=40G
-5=40G
-6=4x
-7=40G
-8=40G
-9=40G
-10=40G
-11=40G
-12=40G
-13=40G
-14=40G
-15=40G
-16=40G
-17=40G
-18=40G
-19=40G
-20=40G
-21=40G
-22=40G
-23=40G
-24=40G
-25=40G
-26=40G
-27=40G
-28=40G
-29=40G
-30=40G
-31=40G
-32=40G
+# <port label> = [100G|50G|40G|2x50G|4x25G|4x10G|disabled]
+
+1=4x10G
+2=disabled
+3=100G
+4=100G
+5=100G
+6=100G
+7=100G
+8=100G
+9=100G
+10=100G
+11=100G
+12=100G
+13=100G
+14=100G
+15=100G
+16=100G
+17=100G
+18=100G
+19=100G
+20=100G
+21=100G
+22=100G
+23=100G
+24=100G
+25=100G
+26=100G
+27=100G
+28=100G
+29=100G
+30=100G
+31=100G
+32=100G
+33=100G
+34=100G
+35=100G
+36=100G
+37=100G
+38=100G
+39=100G
+40=100G
+41=100G
+42=100G
+43=100G
+44=100G
+45=100G
+46=100G
+47=100G
+48=100G
+49=100G
+50=100G
+51=100G
+52=100G
+53=100G
+54=100G
+55=100G
+56=100G
+57=100G
+58=100G
+59=100G
+60=100G
+61=100G
+62=100G
+63=4x10G
+64=disabled
 ```
 
 The following example shows the swp26 breakout ports (swp26s0, swp26s1, swp26s2, and swp26s3) in the `/etc/network/interfaces` file.
@@ -1243,33 +1271,32 @@ To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` fi
 
 Before you configure any logical/unganged ports on a switch, check the limitations listed in `/etc/cumulus/ports.conf`; this file is specific to each manufacturer.
 
-The following example shows the logical port limitation provided in the Dell S6000 `ports.conf` file. The maximum number of ports for this switch is 104.
+The following example shows the logical port limitation provided in the Dell Z9254F-ON `ports.conf` file. The maximum number of ports for this switch is 128.
 
 ```
 # ports.conf --
 #
-# This file controls port aggregation and subdivision.  For example, QSFP+
-# ports are typically configurable as either one 40G interface or four
-# 10G/1000/100 interfaces.  This file sets the number of interfaces per port
-# while /etc/network/interfaces and ethtool configure the link speed for each
-# interface.
+#   configure port speed, aggregation, and subdivision.
 #
-# You must restart switchd for changes to take effect.
+# The Dell Z9264F has:
+#      64 QSFP28 ports numbered 1-64
+#         These ports are configurable as 100G, 50G, 40G, or split into
+#         2x50G, 4x25G, or 4x10G ports.
 #
-# The DELL S6000 has:
-#     32 QSFP ports numbered 1-32
-#     These ports are configurable as 40G, split into 4x10G ports or
-#     disabled.
+# NOTE:  You must restart switchd for any changes to take effect.
+# Only “odd-numbered” port can be split into 4 interfaces and if an odd-numbered
+# port is split in a 4X configuration, the port adjacent to it (even-numbered port)
+# has to be set to “disabled” in this file. When splitting a port into two
+# interfaces, like 2x50G, it is NOT required that the adjacent port be
+# disabled. For example, when splitting port 11 into 4 10G interfaces, port
+# 12 must be configured as "disabled" like this:
 #
-#     The X pipeline covers QSFP ports 1 through 16 and the Y pipeline
-#     covers QSFP ports 17 through 32.
+#   11=4x10G
+#   12=disabled
+
+# QSFP28 ports
 #
-#     The Trident2 chip can only handle 52 logical ports per pipeline.
-#
-#     This means 13 is the maximum number of 40G ports you can ungang
-#     per pipeline, with the remaining three 40G ports set to
-#     "disabled". The 13 40G ports become 52 unganged 10G ports, which
-#     totals 52 logical ports for that pipeline.
+# <port label> = [100G|50G|40G|2x50G|4x25G|4x10G|disabled]
 ```
 
 Mellanox SN2700 and SN2700B switches have a limit of 64 logical ports in total. However, the logical ports must be configured in a specific way. See the note above.

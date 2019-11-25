@@ -25,7 +25,7 @@ which to build rack management applications.
 Cumulus RMP shares the same architecture, foundation, and user
 experience with Cumulus Linux. However, the feature set is customized to
 the needs of out-of-band management. For a comparison of the features
-supported in Cumulus RMP, [see below](#cumulus-rmp-features-span).
+supported in Cumulus RMP, [see below](#cumulus-rmp-features).
 
 You can also find more information about Cumulus RMP
 [here](https://cumulusnetworks.com/products/cumulus-rack-management-platform/).
@@ -33,6 +33,12 @@ You can also find more information about Cumulus RMP
 {{% imgOld 0 %}}
 
 ## What's New in Cumulus RMP
+
+{{%notice note%}}
+
+Starting with Cumulus Linux 4.0.0, the Cumulus RMP uses the same binary image as Cumulus Linux.
+
+{{%/notice%}}
 
 Cumulus RMP 3.7.0 contains several bug fixes and the following new
 features:

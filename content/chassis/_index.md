@@ -17,6 +17,12 @@ The Cumulus Express chassis is a self-contained Clos network in a single
 chassis form factor. The chassis available currently is the Cumulus
 Express CX-10256-S chassis, also known as the Edgecore OMP-800 chassis.
 
+{{%notice warning%}}
+
+These chassis only run Cumulus Linux 3.x; they cannot run Cumulus Linux 4.0.0 or later.
+
+{{%/notice%}}
+
 The chassis is like a 16 leaf/8 spine Clos network in a single 10RU
 housing. The chassis comprises a number of components. The components
 pertinent to this guide are:

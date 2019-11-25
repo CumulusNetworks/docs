@@ -69,8 +69,6 @@ Cumulus Networks recommends you use the `-E` option with `sudo` whenever you run
 
 After the cache is populated, use the `apt-cache` command to search the cache and find the packages in which you are interested or to get information about an available package.
 
-For security reasons, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.
-
 Here are examples of the `search` and `show` sub-commands:
 
 ```
@@ -386,3 +384,7 @@ You add these packages normally with `apt-get update && apt-get install`, as [de
 
 - [Debian GNU/Linux FAQ, Ch 8 Package management tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)
 - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
+
+## Caveats and Errata
+
+- At this time, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.

@@ -16,7 +16,7 @@ Cumulus Linux is the first full-featured Linux operating system for the networki
 
 This user guide provides in-depth documentation on the Cumulus Linux installation process, system configuration and management, network solutions, and monitoring and troubleshooting recommendations. In addition, the quick start guide provides an end-to-end setup process to get you started.
 
-Cumulus Linux 4.0 includes the NetQ agent and CLI, which is installed by default on the Cumulus Linux switch. Use NetQ to monitor and manage your data center network infrastructure and operational health. Refer to the [NetQ documentation] (../../cumulus-netq/) for details.
+Cumulus Linux 4.0 includes the latest NetQ agent and CLI, which is installed by default on the Cumulus Linux switch. Use NetQ to monitor and manage your data center network infrastructure and operational health. Refer to the [NetQ documentation] (../../cumulus-netq/) for details.
 
 For information on new features, bug fixes, and known issues present in this release, refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360038927193-Cumulus-Linux-4-0-Release-Notes/).
 

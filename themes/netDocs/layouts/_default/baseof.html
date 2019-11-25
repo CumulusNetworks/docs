@@ -74,18 +74,6 @@
         <li{{ with eq $currentProduct .Title }} class = "active" {{ end }}><a href = {{.URL}} >
           {{.Title}} </a> </li>
       {{ end }}
-        <li>
-          <div id="products-dropdown" class="dropdown">
-              <button class="btn" type="button" id="dropdownMenuButton">
-                Products
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  {{range .Site.Menus.dropnav}}
-                <a class="dropdown-item" href={{.URL}}>{{.Title}}</a>
-                  {{ end }}
-              </div>
-          </div>
-        </li>
       </ul>
       <div class="productMenu-dropdown">
         <div class="dropdown">

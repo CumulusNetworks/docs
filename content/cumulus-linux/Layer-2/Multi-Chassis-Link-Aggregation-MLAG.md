@@ -1550,4 +1550,3 @@ This occurs when you have multiple LACP bonds between the same two LACP endpoint
 ## Caveats and Errata
 
 - If both the backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, sees the peer switch as down and takes over as the primary.
-- MLAG is disabled on the chassis, including the EdgeCore OMP-800.

@@ -67,7 +67,9 @@ Cumulus Networks recommends you use the `-E` option with `sudo` whenever you run
 
 ## List Available Packages
 
-After the cache is populated, use the `apt-cache` command to search the cache and find the packages in which you are interested or to get information about an available package. Here are examples of the `search` and `show` sub-commands:
+After the cache is populated, use the `apt-cache` command to search the cache and find the packages in which you are interested or to get information about an available package.
+
+Here are examples of the `search` and `show` sub-commands:
 
 ```
 cumulus@switch:~$ apt-cache search tcp
@@ -191,6 +193,10 @@ ii  atftpd              0.7.git20120829-3.1       amd64        advanced TFTP ser
 
 </details>
 
+{{%notice note%}}
+The apps repository was removed in Cumulus Linux 4.0.0.
+{{%/notice%}}
+
 ## Show the Version of a Package
 
 To show the version of a specific package installed on the system:
@@ -230,7 +236,7 @@ ii  vrf        1.0-cl4u1    amd64        Linux tools for VRF
 
 {{%notice note%}}
 
-You cannot upgrade to Cumulus Linux 4.0.0 by upgrading packages. You must install a disk image of the new release using ONIE. Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/).
+You cannot upgrade to Cumulus Linux 4.0 from Cumulus 3.7 by upgrading packages. You must install a disk image using ONIE. Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/).
 
 {{%/notice%}}
 
@@ -378,3 +384,7 @@ You add these packages normally with `apt-get update && apt-get install`, as [de
 
 - [Debian GNU/Linux FAQ, Ch 8 Package management tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)
 - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
+
+## Caveats and Errata
+
+- At this time, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.

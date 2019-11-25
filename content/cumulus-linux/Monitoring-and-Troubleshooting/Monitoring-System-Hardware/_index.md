@@ -48,14 +48,14 @@ CRC-32               0xFE   4 0x96543BC5
 
 Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t <target>][-e][-m]`
 
-| Option<img width=600/>| Description<img width=400/>|
+| Option<img width="200" />| Description |
 |---------------------- |--------------------------- |
 | `-h`, `–help` | Displays the help message and exits. |
 | `-a` | Prints the base MAC address for switch interfaces. |
 | `-r` | Prints the number of MACs allocated for switch interfaces. |
 | `-s` | Sets the EEPROM content if the EEPROM is writable. args can be supplied in the command line in a comma separated list of the form `<field>=<value>`. `.` `,` and `=` are illegal characters in field names and values. Fields that are not specified default to their current values. If args are supplied in the command line, they will be written without confirmation. If args is empty, the values will be prompted interactively. |
 | `-j`, `--json` | Displays JSON output. |
-| `-t <target>` | Prints the target EEPROM (board, psu2, psu1) information.<br><br>**Note**: Some systems that use a BMC to manage sensors (such as the Dell Z9264, Facebook Voyager, Facebook Wedge-100, and EdgeCore Minipack AS800) do not provide the PSU EEPROM contents. This is because the BMC connects to the PSUs via I2C and the main CPU of the switch has no direct access. |
+| `-t <target>` | Prints the target EEPROM (board, psu2, psu1) information.<br><br>**Note**: Some systems that use a BMC to manage sensors (such as the Dell Z9264 and EdgeCore Minipack AS8000) do not provide the PSU EEPROM contents. This is because the BMC connects to the PSUs via I2C and the main CPU of the switch has no direct access. |
 | `--serial`, `-e` | Prints the device serial number. |
 | `-m` | Prints the base MAC address for management interfaces. |
 | `--init` | Clears and initializes the board EEPROM cache |
@@ -127,7 +127,7 @@ The following table shows the `smonctl` command options.
 
 Usage: `smonctl [OPTION]... [CHIP]...`
 
-| Option  | Description |
+| Option <img width="200" /> | Description |
 | --------| ----------- |
 | `-s <sensor>`, `--sensor <sensor>` | Displays data for the specified sensor. |
 | `-v`, `--verbose` | Displays detailed hardware sensors data. |
@@ -180,7 +180,7 @@ The following table shows the `sensors` command options.
 
 Usage: `sensors [OPTION]... [CHIP]...`
 
-| Option<img width=600/> | Description <img width=600/>|
+| Option<img width="200" /> | Description |
 | ----------- | ----------- |
 | `-c`, `--config-file` | Specify a config file; use `-` after `-c` to read the config file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
 | `-s`, `--set` | Executes set statements in the config file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers. |
@@ -225,22 +225,6 @@ cumulus@switch:~$ sudo systemctl stop wd_keepalive.service
 ```
 
 You can modify the settings for the watchdog, such as the timeout setting and scheduler priority in its configuration file, `/etc/watchdog.conf`.
-
-## Known Limitations
-
-### Facebook Backpack PSU Monitoring Occasionally Replies with N/A Values or FAULT ALARM instead of Integers
-
-On Facebook Backpack switches, you sometimes see unparsible sensor value
-`"FAULT ALARM"` and/or `state changed from OK to ABSENT` in the
-`/var/log/syslog` file. This is a known issue with the platform.
-
-### No PSU sensors/smonctl support for Edgecore OMP-800
-
-On the Edgecore OMP-800, there is no power supply information from the sensor or from `smonctl`.
-
-The platform driver has support for the PSUs but this was not added to the sensors infrastructure. 
-
-This is a known limitation on the OMP-800 platform.
 
 ## Related Information
 

@@ -28,33 +28,33 @@ To work properly, `apt` relies on a local cache listing of the available package
 
 ```
 cumulus@switch:~$ sudo -E apt-get update
-Get:1 http://repo4.cumulusnetworks.com CumulusLinux-4-latest InRelease [7,624 B]
-Get:2 http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest InRelease [7,555 B]
-Get:3 http://repo4.cumulusnetworks.com CumulusLinux-4-latest-updates InRelease [7,660 B]
-Get:4 http://repo4.cumulusnetworks.com CumulusLinux-4-latest/cumulus Sources [20 B]
-Get:5 http://repo4.cumulusnetworks.com CumulusLinux-4-latest/upstream Sources [20 B]
-Get:6 http://repo4.cumulusnetworks.com CumulusLinux-4-latest/cumulus amd64 Packages [38.4 kB]
-Get:7 http://repo4.cumulusnetworks.com CumulusLinux-4--latest/upstream amd64 Packages [445 kB]
-Get:8 http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Sources [20 B]
-Get:9 http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Sources [11.8 kB]
-Get:10 http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus amd64 Packages [20 B]
-Get:11 http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream amd64 Packages [8,941 B]
-Get:12 http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Sources [20 B]
-Get:13 http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Sources [776 B]
-Get:14 http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus amd64 Packages [38.4 kB]
-Get:15 http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream amd64 Packages [444 kB]
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-latest/cumulus Translation-en_US
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-latest/cumulus Translation-en
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-latest/upstream Translation-en_US
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-latest/upstream Translation-en
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Translation-en_US
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Translation-en
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Translation-en_US
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Translation-en
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Translation-en_US
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Translation-en
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Translation-en_US
-Ign http://repo4.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Translation-en
+Get:1 http://apt.cumulusnetworks.com CumulusLinux-4-latest InRelease [7,624 B]
+Get:2 http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest InRelease [7,555 B]
+Get:3 http://apt.cumulusnetworks.com CumulusLinux-4-latest-updates InRelease [7,660 B]
+Get:4 http://apt.cumulusnetworks.com CumulusLinux-4-latest/cumulus Sources [20 B]
+Get:5 http://apt.cumulusnetworks.com CumulusLinux-4-latest/upstream Sources [20 B]
+Get:6 http://apt.cumulusnetworks.com CumulusLinux-4-latest/cumulus amd64 Packages [38.4 kB]
+Get:7 http://apt.cumulusnetworks.com CumulusLinux-4--latest/upstream amd64 Packages [445 kB]
+Get:8 http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Sources [20 B]
+Get:9 http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Sources [11.8 kB]
+Get:10 http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus amd64 Packages [20 B]
+Get:11 http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream amd64 Packages [8,941 B]
+Get:12 http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Sources [20 B]
+Get:13 http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Sources [776 B]
+Get:14 http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus amd64 Packages [38.4 kB]
+Get:15 http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream amd64 Packages [444 kB]
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-latest/cumulus Translation-en_US
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-latest/cumulus Translation-en
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-latest/upstream Translation-en_US
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-latest/upstream Translation-en
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Translation-en_US
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/cumulus Translation-en
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Translation-en_US
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-security-updates-latest/upstream Translation-en
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Translation-en_US
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/cumulus Translation-en
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Translation-en_US
+Ign http://apt.cumulusnetworks.com CumulusLinux-4-updates-latest/upstream Translation-en
 Fetched 1,011 kB in 1s (797 kB/s)
 Reading package lists... Done
 ```
@@ -67,7 +67,9 @@ Cumulus Networks recommends you use the `-E` option with `sudo` whenever you run
 
 ## List Available Packages
 
-After the cache is populated, use the `apt-cache` command to search the cache and find the packages in which you are interested or to get information about an available package. Here are examples of the `search` and `show` sub-commands:
+After the cache is populated, use the `apt-cache` command to search the cache and find the packages in which you are interested or to get information about an available package.
+
+Here are examples of the `search` and `show` sub-commands:
 
 ```
 cumulus@switch:~$ apt-cache search tcp
@@ -191,6 +193,10 @@ ii  atftpd              0.7.git20120829-3.1       amd64        advanced TFTP ser
 
 </details>
 
+{{%notice note%}}
+The apps repository was removed in Cumulus Linux 4.0.0.
+{{%/notice%}}
+
 ## Show the Version of a Package
 
 To show the version of a specific package installed on the system:
@@ -230,7 +236,7 @@ ii  vrf        1.0-cl4u1    amd64        Linux tools for VRF
 
 {{%notice note%}}
 
-You cannot upgrade to Cumulus Linux 4.0.0 by upgrading packages. You must install a disk image of the new release using ONIE. Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/).
+You cannot upgrade to Cumulus Linux 4.0 from Cumulus 3.7 by upgrading packages. You must install a disk image using ONIE. Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/).
 
 {{%/notice%}}
 
@@ -336,13 +342,13 @@ deb http://security.debian.org/ buster/updates main
     Otherwise, the repository might be listed in `/etc/apt/sources.list` but is commented out, as can be the case with the early-access repository:
 
 ```
-#deb http://repo4.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
+#deb http://apt.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
 ```
 
     To uncomment the repository, remove the \# at the start of the line, then save the file:
 
 ```
-deb http://repo4.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
+deb http://apt.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
 ```
 
 4. Run `sudo -E apt-get update`, then install the package and upgrade:
@@ -378,3 +384,7 @@ You add these packages normally with `apt-get update && apt-get install`, as [de
 
 - [Debian GNU/Linux FAQ, Ch 8 Package management tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)
 - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
+
+## Caveats and Errata
+
+- At this time, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.

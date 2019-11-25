@@ -8,4 +8,4 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-This section discusses how to configure network interfaces, Facebook Voyager optical interfaces. and DHCP delays and servers. The Prescriptive Topology Manager (PTM) cabling verification tool is also discussed.
+This section discusses how to configure network interfaces and DHCP delays and servers. The Prescriptive Topology Manager (PTM) cabling verification tool is also discussed.

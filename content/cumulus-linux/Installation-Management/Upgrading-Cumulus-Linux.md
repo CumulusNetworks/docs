@@ -113,7 +113,7 @@ You can check which files have changed since the last binary install with the fo
 
 ## Upgrade Cumulus Linux
 
-To upgrade to Cumulus Linux 4.0, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
+To upgrade to Cumulus Linux 4.0 from Cumulus Linux 3.7, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
 

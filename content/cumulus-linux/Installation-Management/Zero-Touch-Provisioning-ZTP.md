@@ -357,7 +357,7 @@ You can use verbose mode to debug your script and see where your script failed. 
 cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
 Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
 
-Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  
+Broadcast message from root@dell-s6010-01 (ttyS0) (Tue May 10 22:44:17 2016):  
 
 ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
 ZTP Manual: URL response code 200
@@ -393,15 +393,15 @@ cumulus@switch:~$ sudo systemctl -l status ztp.service
     Main PID: 400 (code=exited, status=1/FAILURE)
 
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Script returned failure
-May 11 16:38:45 dell-s6000-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
-May 11 16:38:45 dell-s6000-01 systemd[1]: Unit ztp.service entered failed state.
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: Script returned failure
+May 11 16:38:45 dell-s6010-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
+May 11 16:38:45 dell-s6010-01 systemd[1]: Unit ztp.service entered failed state.
 cumulus@switch:~$
 cumulus@switch:~$ sudo journalctl -l -u ztp.service --no-pager
 -- Logs begin at Wed 2016-05-11 16:37:42 UTC, end at Wed 2016-05-11 16:40:39 UTC. --
@@ -409,23 +409,23 @@ May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/lib/cumulus/ztp: Sate Director
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/run/ztp.lock: Lock File does not exist. Creating it...
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/lib/cumulus/ztp/ztp_state.log: State File does not exist. Creating it...
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Looking for ZTP local Script
-May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220-rUNKNOWN
-May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6010_s1220-rUNKNOWN
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6010_s1220
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Looking for unmounted USB devices
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Parsing partitions
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1
-May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Script returned failure
-May 11 16:38:45 dell-s6000-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
-May 11 16:38:45 dell-s6000-01 systemd[1]: Unit ztp.service entered failed state.
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1
+May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: Script returned failure
+May 11 16:38:45 dell-s6010-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
+May 11 16:38:45 dell-s6010-01 systemd[1]: Unit ztp.service entered failed state.
 ```
 
 Instead of running `journalctl`, you can see the log history by running:
@@ -436,8 +436,8 @@ cumulus@switch:~$ cat /var/log/syslog | grep ztp
 2016-05-11T16:37:45.134081+00:00 cumulus ztp [400]: /var/run/ztp.lock: Lock File does not exist. Creating it...
 2016-05-11T16:37:45.135360+00:00 cumulus ztp [400]: /var/lib/cumulus/ztp/ztp_state.log: State File does not exist. Creating it...
 2016-05-11T16:37:45.185598+00:00 cumulus ztp [400]: ZTP LOCAL: Looking for ZTP local Script
-2016-05-11T16:37:45.485084+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220-rUNKNOWN
-2016-05-11T16:37:45.486394+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220
+2016-05-11T16:37:45.485084+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6010_s1220-rUNKNOWN
+2016-05-11T16:37:45.486394+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6010_s1220
 2016-05-11T16:37:45.488385+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell
 2016-05-11T16:37:45.489665+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64
 2016-05-11T16:37:45.490854+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp
@@ -462,7 +462,7 @@ If you see that the issue is a script failure, you can modify the script and the
 cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
 Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
 
-Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2019):  
+Broadcast message from root@dell-s6010-01 (ttyS0) (Tue May 10 22:44:17 2019):  
 
 ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
 ZTP Manual: URL response code 200

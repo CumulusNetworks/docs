@@ -386,12 +386,12 @@ Preparing image archive ... OK.
 Dumping image info...
 Control File Contents
 =====================
-Description: Cumulus  Linux
-OS-Release:  3.0.0-3b46bef-201509041633-build
+Description: Cumulus Linux
+OS-Release:  4.0.0~1571178373.763fd151
 Architecture: amd64
-Date:  Fri, 27 May 2016 17:10:30 -0700
+Date:  Fri, 22 November 2019 17:10:30 -0700
 Installer-Version:  1.2
-Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s6000_s1220 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley 
+Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley 
 
 Homepage: http://www.cumulusnetworks.com/
 ```

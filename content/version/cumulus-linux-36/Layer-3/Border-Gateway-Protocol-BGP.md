@@ -20,15 +20,11 @@ Specifically, BGP:
 
   - Does not require routing state to be periodically refreshed, unlike
     OSPF.
-
   - Is less chatty than its link-state siblings. For example, a link or
     node transition can result in a bestpath change, causing BGP to send
     updates.
-
   - Is multi-protocol and extensible.
-
   - Has many robust vendor implementations.
-
   - Is very mature as a protocol and comes with many years of
     operational experience.
 
@@ -520,6 +516,7 @@ recommendations in the Internet draft
   - Interface-based peering with separate IPv4 and IPv6 sessions is not
     supported.
   - ENHE is sent for IPv6 link-local peerings only.
+  - BGP unnumbered only works with two switches at a time, as it is meant to work with PTP (point-to-point protocol).
   - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4
     peering is used over IPv6 link-local peering.
   - If the default router lifetime in the generated IPv6 route

@@ -360,6 +360,7 @@ The above rules imply that there are scenarios where a generated update has two 
 
 - Interface-based peering with separate IPv4 and IPv6 sessions is not supported.
 - In Cumulus Linux 3.7.1 and earlier, ENHE is sent for IPv6 link-local peerings only. In Cumulus Linux 3.7.2 and later, ENHE can also be also sent for IPv6 GUA peerings (see below).
+- BGP unnumbered only works with two switches at a time, as it is meant to work with PTP (point-to-point protocol).
 - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
 - If the default router lifetime in the generated IPv6 route advertisements (RA) is set to *0*, the receiving FRRouting instance drops the RA if it is on a Cumulus Linux **2.5.z** switch. To work around this issue, either:
     - Explicitly configure the switch to advertise a router lifetime of 0, unless a value is specifically set by the operator — with the assumption that the host is running Cumulus Linux 3.y.z version of FRRouting. When hosts see an IPv6 RA with a router lifetime of 0, they do not make that router a default router.

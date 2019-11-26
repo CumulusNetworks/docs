@@ -611,6 +611,7 @@ recommendations in the Internet draft [draft-kato-bgp-ipv6-link-local-00.txt](ht
 
 - Interface-based peering with separate IPv4 and IPv6 sessions is not supported.
 - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
+- BGP unnumbered only works with two switches at a time, as it is meant to work with PTP (point-to-point protocol).
 
 ## RFC 5549 Support with Global IPv6 Peers
 

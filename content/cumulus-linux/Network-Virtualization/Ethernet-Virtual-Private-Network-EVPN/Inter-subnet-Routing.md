@@ -462,7 +462,7 @@ In EVPN symmetric routing configurations with MLAG in Cumulus Linux 3.7 and earl
 
 To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
-- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address instead of the anycast IP address and the system MAC address of the VTEP is used as the router MAC instead of the anycast MAC address.
+- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC.
 - For type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
 
 #### Configure Advertise Primary IP Address
@@ -482,7 +482,7 @@ Run these commands on both switches in the MLAG pair.
 Run the `address-virtual <anycast-mac>` command under the SVI:
 
 ```
-cumulus@leaf01:~$ net add vlan 4001 address-virtual 44:39:39:FF:40:94
+cumulus@leaf01:~$ net add vlan 4001 address-virtual 44:38:39:FF:40:94
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -500,7 +500,7 @@ cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
 auto vlan4001
 iface vlan4001
-    address-virtual 44:39:39:FF:40:94
+    address-virtual 44:38:39:FF:40:94
     vlan-id 4001
     vlan-raw-device bridge
     vrf turtle
@@ -517,14 +517,14 @@ In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the
 
 If you do not want Cumulus Linux to derive the system IP address automatically, you can provide the system IP address and system MAC address under each tenant VRF BGP instance.
 
-The following example commands add the system IP address 10.0.0.11 and the system MAC address A0:00:00:00:00:11:
+The following example commands add the system IP address 10.0.0.11 and the system MAC address 44:38:39:ff:00:00:
 
 <details>
 
 <summary> NCLU commands</summary>
 
 ```
-cumulus@switch:~$ net add bgp vrf vrf1 l2vpn evpn advertise-pip ip 10.0.0.11 mac A0:00:00:00:00:11  
+cumulus@switch:~$ net add bgp vrf vrf1 l2vpn evpn advertise-pip ip 10.0.0.11 mac 44:38:39:ff:00:00  
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -541,7 +541,7 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65000 vrf vrf1
 switch(config)# address-family l2vpn evpn
-switch(config)# advertise-pip ip 10.0.0.11 mac A0:00:00:00:00:11 
+switch(config)# advertise-pip ip 10.0.0.11 mac 44:38:39:ff:00:00
 switch(config-router-af)# end
 switch# write memory
 switch# exit
@@ -604,7 +604,7 @@ VNI: 4001 (known to the kernel)
  Advertise-gw-macip : n/a
  Advertise-pip: Yes
  System-IP: 10.0.0.11
- System-MAC: A0:00:00:00:00:11
+ System-MAC: 44:38:39:ff:00:00
  Router-MAC: 44:01:02:ff:ff:01
  Import Route Target:
   5586:4002
@@ -622,12 +622,12 @@ switch# show bgp l2vpn evpn route
 Route Distinguisher: 10.0.0.11:2
 *> [5]:[0]:[24]:[81.6.1.0]
                     10.0.0.11                0             0 5541 i
-                    ET:8 RT:5586:4002 Rmac:A0:00:00:00:00:11
+                    ET:8 RT:5586:4002 Rmac:44:38:39:ff:00:00
 …
 Route Distinguisher: 10.0.0.11:3
 *> [2]:[0]:[48]:[00:02:00:00:00:2e]:[32]:[45.0.4.2]
                     10.0.0.11                          32768 i
-                    ET:8 RT:5586:1004 RT:5546:4002 Rmac:A0:00:00:00:00:11
+                    ET:8 RT:5586:1004 RT:5546:4002 Rmac:44:38:39:ff:00:00
 
 ```
 

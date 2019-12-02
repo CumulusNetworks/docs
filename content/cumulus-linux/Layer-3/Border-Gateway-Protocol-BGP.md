@@ -28,6 +28,12 @@ The ASN is central to how BGP builds a forwarding topology. A BGP route advertis
 
 ASNs were originally 16-bit numbers, but were later modified to be 32-bit. FRRouting supports both 16-bit and 32-bit ASNs, but most implementations still run with 16-bit ASNs.
 
+{{%notice note%}}
+
+In a VRF-lite deployment (where multiple independent routing tables working simultaneously on the same switch), Cumulus Linux supports multiple ASNs.
+
+{{%/notice%}}
+
 ## eBGP and iBGP
 
 When BGP is used to peer between autonomous systems, the peering is referred to as *external BGP* or eBGP. When BGP is used within an autonomous system, the peering used is referred to as *internal BGP* or iBGP. eBGP peers have different ASNs while iBGP peers have the same ASN.
@@ -72,7 +78,7 @@ The order of the BGP algorithm process is as follows:
 
 ### BGP Path Selection Reason
 
- Cumulus Linux provides the reason it is selecting one path over another in output of the NCLU `net show bgp` and vtysh `show ip bgp`commands for a specific prefix.
+ Cumulus Linux provides the reason it is selecting one path over another in output of the NCLU `net show bgp` and vtysh `show ip bgp` commands for a specific prefix.
 
  When BGP multipath is in use, if multiple paths are equal, BGP still selects a single best path to advertise to peers. This path is indicated as best with the reason, although multiple paths might be installed into the routing table.
 
@@ -3148,7 +3154,7 @@ INGRESS_INTF = swp1
     INGRESS_CHAIN = INPUT, FORWARD
 
     [iptables]
-    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -m ttl --ttl 255 POLICE --set-mode pkt --set-rate 2000 --set-burst 1000 
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -m ttl --ttl 255 POLICE --set-mode pkt --set-rate 2000 --set-burst 1000
 -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp DROP
 ```
 

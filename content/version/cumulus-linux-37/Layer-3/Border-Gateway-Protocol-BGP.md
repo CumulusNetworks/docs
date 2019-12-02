@@ -30,6 +30,12 @@ The ASN is central to how BGP builds a forwarding topology. A BGP route advertis
 
 ASNs were originally 16-bit numbers, but were later modified to be 32-bit. FRRouting supports both 16-bit and  32-bit ASNs, but most implementations still run with 16-bit ASNs.
 
+{{%notice note%}}
+
+In a VRF-lite deployment (where multiple independent routing tables working simultaneously on the same switch), Cumulus Linux supports multiple ASNs.
+
+{{%/notice%}}
+
 ## eBGP and iBGP
 
 When BGP is used to peer between autonomous systems, the peering is referred to as *external BGP* or eBGP. When BGP is used within an autonomous system, the peering used is referred to as *internal BGP* or iBGP. eBGP peers have different ASNs while iBGP peers have the same ASN.

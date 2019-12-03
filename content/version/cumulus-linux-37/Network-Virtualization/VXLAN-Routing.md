@@ -265,9 +265,12 @@ for the change to take effect.
 {{%notice warning%}}
 
 Setting `hal.bcm.per_vlan_router_mac_lookup = TRUE` limits the Trident
-II switch to a configurable 512 local IP addresses (SVIs and so on). Use
-this only as a last resort. This is only a limitation on this specific
-ASIC.
+II switch to a configurable 512 local IP addresses (SVIs and so forth),
+so you should use this only as a last resort. This is only a limitation
+on this specific ASIC type.
+
+The `hal.bcm.per_vlan_router_mac_lookup` option is meant only for external
+hyperloops. This option is not recommended for any other purpose or use case.
 
 {{%/notice%}}
 

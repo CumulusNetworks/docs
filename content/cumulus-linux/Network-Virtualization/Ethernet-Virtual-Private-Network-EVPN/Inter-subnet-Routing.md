@@ -462,8 +462,8 @@ In EVPN symmetric routing configurations with MLAG in Cumulus Linux 3.7 and earl
 
 To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
-- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC.
 - For type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
+- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC.
 
 #### Configure Advertise Primary IP Address
 
@@ -475,11 +475,13 @@ Run these commands on both switches in the MLAG pair.
 
 {{%/notice%}}
 
+Run the following commands under the SVI, where `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
+
 <details>
 
 <summary> NCLU commands</summary>
 
-Run the `address-virtual <anycast-mac>` command under the SVI:
+Run the `address-virtual <anycast-mac>` command under the SVI.
 
 ```
 cumulus@leaf01:~$ net add vlan 4001 address-virtual 44:38:39:FF:40:94
@@ -511,11 +513,15 @@ iface vlan4001
 
 {{%notice note%}}
 
-In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgraded from Cumulus Linux 3.7 to 4.0 and have a previous symmetric routing with VXLAN active-active mode configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
+In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 and have a previous symmetric routing with VXLAN active-active mode configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
 
 {{%/notice%}}
 
+#### Optional Configuration
+
 If you do not want Cumulus Linux to derive the system IP address automatically, you can provide the system IP address and system MAC address under each tenant VRF BGP instance.
+
+The system MAC address must be the layer 3 SVI MAC address (not the clad-sys-mac).
 
 The following example commands add the system IP address 10.0.0.11 and the system MAC address 44:38:39:ff:00:00:
 

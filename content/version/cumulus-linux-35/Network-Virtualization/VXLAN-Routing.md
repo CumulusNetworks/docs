@@ -261,6 +261,9 @@ II switch to a configurable 512 local IP addresses (SVIs and so on). Use
 this only as a last resort. This is only a limitation on this specific
 ASIC.
 
+The `hal.bcm.per_vlan_router_mac_lookup` option is meant only for external
+hyperloops. This option is not recommended for any other purpose or use case.
+
 {{%/notice%}}
 
 ## VXLAN Routing Data Plane and the Mellanox Spectrum Platform

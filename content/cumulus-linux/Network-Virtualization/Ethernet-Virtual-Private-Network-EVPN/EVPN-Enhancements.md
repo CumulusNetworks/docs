@@ -104,7 +104,8 @@ In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multi
 
 {{%notice note%}}
 
-When you enable the `advertise-svi-ip` option, the anycast IP/MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP/MAC address. See [Advertising the Default Gateway](../Inter-subnet-Routing#centralized-routing).
+- When you enable the `advertise-svi-ip` option, the anycast IP/MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP/MAC address. See [Advertising the Default Gateway](../Inter-subnet-Routing#centralized-routing).
+- If your switch is in an MLAG configuration, refer to [Advertise Primary IP Address](../Inter-subnet-Routing/#advertise-primary-ip-address).
 
 {{%/notice%}}
 

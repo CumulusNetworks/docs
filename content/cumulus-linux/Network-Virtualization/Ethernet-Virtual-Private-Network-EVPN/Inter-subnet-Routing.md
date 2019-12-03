@@ -462,8 +462,8 @@ In EVPN symmetric routing configurations with MLAG in Cumulus Linux 3.7 and earl
 
 To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
-- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC.
 - For type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
+- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC.
 
 #### Configure Advertise Primary IP Address
 
@@ -475,7 +475,7 @@ Run these commands on both switches in the MLAG pair.
 
 {{%/notice%}}
 
-Run the following commands under the SVI, where `<anycast-mac>` is the MLAG system MAC address (clagd-sys-mac).
+Run the following commands under the SVI, where `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
 
 <details>
 

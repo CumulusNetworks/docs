@@ -519,7 +519,7 @@ In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the
 
 #### Optional Configuration
 
-If you do not want Cumulus Linux to derive the system IP address automatically, you can provide the system IP address and system MAC address under each tenant VRF BGP instance.
+If you do not want Cumulus Linux to derive the system IP address automatically, you can provide the system IP address and system MAC address under each BGP VRF instance.
 
 The system MAC address must be the layer 3 SVI MAC address (not the clad-sys-mac).
 
@@ -530,6 +530,7 @@ The following example commands add the system IP address 10.0.0.11 and the syste
 <summary> NCLU commands</summary>
 
 ```
+cumulus@switch:~$ net add vlan 4001 hwaddress 44:38:39:ff:00:00
 cumulus@switch:~$ net add bgp vrf vrf1 l2vpn evpn advertise-pip ip 10.0.0.11 mac 44:38:39:ff:00:00  
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit

@@ -2204,6 +2204,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
 - You must configure the overlay (tenants) in a specific VRF(s) and
     separate from the underlay, which resides in the default VRF. A
     layer 3 VNI mapping for the default VRF is not supported.
+- In an EVPN deployment, Cumulus Linux supports a single BGP ASN which represents the ASN of the core as well as the ASN for any tenant VRFs if they have BGP peerings. If you need to change the ASN, you must first remove the layer 3 VNI in the `/etc/frr/frr.conf` file, modify the BGP ASN, then add back the layer 3 VNI in the `/etc/frr/frr.conf` file.
 - On Broadcom Trident II+ and Maverick-based switches,
   when a lookup is done after VXLAN decapsulation on the
   external-facing switch (exit/border leaf), the switch does not

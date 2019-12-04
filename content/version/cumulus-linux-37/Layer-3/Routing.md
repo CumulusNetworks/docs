@@ -239,7 +239,7 @@ The values in the following tables reflect results from our testing on the diffe
 | l2-heavy-1     | 180K          | 8k (IPv4) and 8k (IPv6)   | 8k (IPv4) and 8k (IPv6-long)   |
 | v4-lpm-heavy   | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long) |
 | v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
-| v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4) and 64k (IPv6-long)  |
+| v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4) and 32k (IPv6-long) and 32K (IPv6/64)  |
 
 #### Broadcom Tomahawk/Tomahawk+ Switches
 

@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ User Docs
+title: Cumulus NetQ 2.1 User Docs
 author: Cumulus Networks
 weight: -18
 aliases:

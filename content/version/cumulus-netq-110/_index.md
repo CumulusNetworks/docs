@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ
+title: Cumulus NetQ 1.1
 author: Cumulus Networks
 weight: -11
 aliases:

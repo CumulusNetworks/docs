@@ -49,12 +49,9 @@ Mellanox Spectrum chipset.
 
 {{%notice note%}}
 
-VXLAN encapsulation over layer 3 subinterfaces (for example, swp3.111)
-is not supported. Likewise, forwarding of transit VXLAN traffic over layer 3 subinterfaces is not supported either.  Only configure interfaces that are responsible for forwarding VXLAN traffic as either SVIs or layer 3 interfaces
-without any subinterfaces (for example, swp3).
+VXLAN encapsulation over layer 3 subinterfaces (for example, swp3.111) or SVIs is not supported as traffic transiting through the switch may get dropped; even if the subinterface is used only for underlay traffic and does not perform VXLAN encapsulation, traffic may still get dropped. Only configure VXLAN uplinks as layer 3 interfaces without any subinterfaces (for example, swp3).
 
-The VXLAN tunnel endpoints cannot share a common subnet; there must be
-at least one layer 3 hop between the VXLAN source and destination.
+The VXLAN tunnel endpoints cannot share a common subnet; there must be at least one layer 3 hop between the VXLAN source and destination.
 
 {{%/notice%}}
 

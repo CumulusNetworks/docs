@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux User Guide
+title: Cumulus Linux 3.2 User Guide
 author: Cumulus Networks
 weight: -32
 aliases:
@@ -12,7 +12,7 @@ imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 subsection: true
 ---
-## Introducing Cumulus Linux</span>
+## Introducing Cumulus Linux
 
 Cumulus Linux is the networking industry's first full-featured Linux
 operating system. The [Debian
@@ -36,23 +36,20 @@ Read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115002201048)
 for new features and known issues in this release.
 
-### What's New in Cumulus Linux 3.2.1</span>
+### What's New in Cumulus Linux 3.2.1
 
 Cumulus Linux 3.2.1 adds these new features and platforms, including:
 
   - **Network Command Line Utility**: We've improved the syntax so it's
     even easier for network operators to configure Cumulus Linux with
     [NCLU](/version/cumulus-linux-321/System-Configuration/Network-Command-Line-Utility).
-
   - **Platform Independent Multicast (PIM)**: We've improved [multicast
     latency](/version/cumulus-linux-321/Layer-Three/Protocol-Independent-Multicast-PIM)
     on Mellanox switches.
-
   - **Explicit Congestion Notification (ECN)**: We've expanded support
     for
     [ECN](Buffer-and-Queue-Management.html#src-5127004_BufferandQueueManagement-ecn)
     to Tomahawk switches.
-
   - **New 100G platform**: Early access support for the [Edge-Core
     AS7412-32X](https://cumulusnetworks.com/HCL), which uses the
     Mellanox Spectrum ASIC.
@@ -62,7 +59,7 @@ information regarding bug fixes and known issues present in this
 release, refer to the [product release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115002201048).
 
-### Open Source Contributions</span>
+### Open Source Contributions
 
 Cumulus Networks has forked various software projects, like CFEngine,
 `Netdev` and some Puppet Labs packages in order to implement various
@@ -75,18 +72,10 @@ applications as well.
 The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com/) page.
 
-### Hardware Compatibility List</span>
+### Hardware Compatibility List
 
 You can find the most up to date hardware compatibility list (HCL)
 [here](http://cumulusnetworks.com/hcl/). Use the HCL to confirm that
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

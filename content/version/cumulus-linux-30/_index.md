@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux User Guide
+title: Cumulus Linux 3.0 User Guide
 author: Cumulus Networks
 weight: -30
 aliases:
@@ -36,34 +36,12 @@ Please visit the [Cumulus Networks Web
 site](http://docs.cumulusnetworks.com) for the most up to date
 documentation.
 
-  - [Release Notes for Cumulus
-    Linux 3.0.1](https://support.cumulusnetworks.com/hc/en-us/articles/222822047)
-
-  - [What's New in Cumulus Linux
-    3.0.1](/version/cumulus-linux-30/Whats-New-in-Cumulus-Linux-3.0.1)
-
+  - [Release Notes for Cumulus Linux 3.0.1](https://support.cumulusnetworks.com/hc/en-us/articles/222822047)
+  - [What's New in Cumulus Linux 3.0.1](/version/cumulus-linux-30/Whats-New-in-Cumulus-Linux-3.0.1)
   - [Quick Start Guide](/version/cumulus-linux-30/Quick-Start-Guide)
-
-  - [Installation, Upgrading and Package
-    Management](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/)
-
+  - [Installation, Upgrading and Package Management](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/)
   - [System Management](/version/cumulus-linux-30/System-Management/)
-
-  - [Configuring and Managing Network
-    Interfaces](/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/)
-
-  - [Layer 2
-    Features](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/)
-
+  - [Configuring and Managing Network Interfaces](/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/)
+  - [Layer 2 Features](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/)
   - [Layer 3 Features](/version/cumulus-linux-30/Layer-3-Features/)
-
-  - [Monitoring and
-    Troubleshooting](/version/cumulus-linux-30/Monitoring-and-Troubleshooting/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Monitoring and Troubleshooting](/version/cumulus-linux-30/Monitoring-and-Troubleshooting/)

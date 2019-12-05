@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ
+title: Cumulus NetQ 2.2
 author: Cumulus Networks
 weight: -22
 product: Cumulus NetQ

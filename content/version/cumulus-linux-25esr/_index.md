@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux User Guide
+title: Cumulus Linux 2.5 ESR User Guide
 author: Cumulus Networks
 weight: -25
 aliases:

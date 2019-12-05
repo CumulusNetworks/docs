@@ -24,7 +24,7 @@ VXLAN is supported only on switches in the [Cumulus Linux HCL](http://cumulusnet
 
 {{%notice note%}}
 
-VXLAN encapsulation over layer 3 subinterfaces (for example, swp3.111) is not supported. Only configure VXLAN uplinks as layer 3 interfaces without any subinterfaces (for example, swp3).
+VXLAN encapsulation over layer 3 subinterfaces (for example, swp3.111) or SVIs is not supported as traffic transiting through the switch may get dropped; even if the subinterface is used only for underlay traffic and does not perform VXLAN encapsulation, traffic may still get dropped. Only configure VXLAN uplinks as layer 3 interfaces without any subinterfaces (for example, swp3).
 
 The VXLAN tunnel endpoints cannot share a common subnet; there must be at least one layer 3 hop between the VXLAN source and destination.
 

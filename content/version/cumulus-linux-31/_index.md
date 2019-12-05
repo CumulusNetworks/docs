@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux User Guide
+title: Cumulus Linux 3.1 User Guide
 author: Cumulus Networks
 weight: -31
 aliases:
@@ -30,36 +30,14 @@ Please visit the [Cumulus Networks Web
 site](http://docs.cumulusnetworks.com) for the most up to date
 documentation.
 
-  - [Release Notes for Cumulus
-    Linux 3.1.2](https://support.cumulusnetworks.com/hc/en-us/articles/231974068)
-
+  - [Release Notes for Cumulus Linux 3.1.2](https://support.cumulusnetworks.com/hc/en-us/articles/231974068)
   - [What's New in Cumulus Linux
     3.1.2](/version/cumulus-linux-31/What's-New-in-Cumulus-Linux-3.1)
-
   - [Quick Start Guide](/version/cumulus-linux-31/Quick-Start-Guide)
-
-  - [Installation, Upgrading and Package
-    Management](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/)
-
+  - [Installation, Upgrading and Package Management](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/)
   - [System Management](/version/cumulus-linux-31/System-Management/)
-
-  - [Configuring and Managing Network
-    Interfaces](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/)
-
-  - [Layer 1 and Layer 2
-    Features](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/)
-
+  - [Configuring and Managing Network Interfaces](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/)
+  - [Layer 1 and Layer 2 Features](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/)
   - [Layer 3 Features](/version/cumulus-linux-31/Layer-3-Features/)
-
-  - [Monitoring and
-    Troubleshooting](/version/cumulus-linux-31/Monitoring-and-Troubleshooting/)
-
+  - [Monitoring and Troubleshooting](/version/cumulus-linux-31/Monitoring-and-Troubleshooting/)
   - [Network Solutions](/version/cumulus-linux-31/Network-Solutions/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

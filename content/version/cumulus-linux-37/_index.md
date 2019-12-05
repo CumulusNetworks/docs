@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux User Guide
+title: Cumulus Linux 3.7 User Guide
 author: Cumulus Networks
 weight: -37
 aliases:

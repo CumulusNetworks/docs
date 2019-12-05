@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux User Guide
+title: Cumulus Linux 3.4 User Guide
 author: Cumulus Networks
 weight: -34
 aliases:
@@ -73,12 +73,12 @@ improvements:
   [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU)
   and the
   [OpenStack ML2 driver](/version/cumulus-linux-343/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)
-  - [QinQ with VXLANs](/version/cumulus-linux-343/Network-Virtualization/Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs)
+- [QinQ with VXLANs](/version/cumulus-linux-343/Network-Virtualization/Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs)
     is now generally available
-  - [PIM support](/version/cumulus-linux-343/Layer-Three/Protocol-Independent-Multicast-PIM)
+- [PIM support](/version/cumulus-linux-343/Layer-Three/Protocol-Independent-Multicast-PIM)
     expanded to include virtual routing and forwarding (VRF) and
     bidirectional forwarding detection (BFD) for PIM neighbors
-  - The default [MAC ageing time](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/#mac-address-ageing)
+- The default [MAC ageing time](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/#mac-address-ageing)
     has been set to 30 minutes and the default 
     [ARP base\_reachable time](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/#configuring-arp-timers)
     has been set to 18 minutes

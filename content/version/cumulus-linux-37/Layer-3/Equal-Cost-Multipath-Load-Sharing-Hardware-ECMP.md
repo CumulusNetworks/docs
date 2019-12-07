@@ -195,7 +195,7 @@ You can also enable/disable these Inner header fields:
 To configure custom hashing, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
 
 1. Enable custom hashing by uncommenting the line `hash_config.enable = true`.
-2. To enable a field, set the field to true. To disable a field, set the field to false.
+2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
 3. Restart the `switchd` service:
 
 ```

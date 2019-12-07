@@ -51,6 +51,62 @@ over available slaves.
 
 {{%/notice%}}
 
+### Custom Hashing
+
+Custom hashing is supported on Mellanox switches running Cumulus Linux 3.7.11 and later.
+
+You can configure the following fields on which to hash:  
+
+- Source MAC
+- Destination
+- Source IP
+- Destination IP
+- Ether type
+- Vlan ID
+- Source port
+- Destination port
+- L3 protocol
+
+To configure custom hash, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
+
+1. Enable custom hashing by uncommenting the line `lag_hash_config.enable = true`.
+2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
+3. Restart the `switchd` service:
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+The following shows an example `datapath.conf` file:
+
+```
+cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf
+...
+#LAG HASH config
+#HASH config for LACP to enable custom fields
+#Fields will be applicable for LAG hash
+#calculation
+#Uncomment to enable custom fields configured below
+#lag_hash_config.enable = true
+
+lag_hash_config.smac = true
+lag_hash_config.dmac = true
+lag_hash_config.sip  = true
+lag_hash_config.dip  = true
+lag_hash_config.ether_type = true
+lag_hash_config.vlan_id = true
+lag_hash_config.sport = true
+lag_hash_config.dport = true
+lag_hash_config.ip_prot = true
+...
+```
+
+{{%notice note%}}
+
+Symmetric hashing is enabled by default on Mellanox switches running Cumulus Linux 3.7.11 and later. Make sure that the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields, or the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields have the same setting; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+
+{{%/notice%}}
+
 ## Create a Bond
 
 You can create and configure a bond with the Network Command Line

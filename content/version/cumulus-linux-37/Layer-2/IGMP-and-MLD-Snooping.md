@@ -73,6 +73,33 @@ Add the following lines to the `/etc/cumulus/acl/policy.d/23_acl_test.rules` fil
 -A FORWARD -p IPv4 -o #<swp> --ip-proto igmp -j DROP
 ```
 
+## DIP-based Multicast Forwarding
+
+Cumulus Linux 3.7.10 and earlier performs layer 2 multicast bridging using the destination MAC address (DMAC) of the packet that is programmed in the layer 2 table of the ASIC. Cumulus Linux 3.7.11 and later provides the option of using IP-based layer 2 multicast forwarding (DIP), where layer 2 multicast packets are forwarded based on the layer 3 forwarding table, using the VLAN as the key.
+
+DIP-based multicast forwarding is a good solution if you want to have a separate bridge domain and multicast flood domain for two groups that map to the same MAC address. In multicast, there can be multiple group addresses that map to the same MAC address as the address is derived from the three octets of the group; out of the allowed multicast range, you have 16 group addresses with the same MAC address.  
+
+DIP-based multicast forwarding is also a good solution if you use a group that falls in to the link local address range (for example, 228.0.0.1), which is not forwarded with DMAC-based multicast forwarding.
+
+{{%notice note%}}
+
+- DIP-based multicast forwarding is supported on Broadcom switches for IPv4 addresses.
+- DIP-based multicast forwarding is not supported with IGMP Snooping over VXLAN or on a switch with PIM enabled.
+
+{{%/notice%}}
+
+To enable DIP-based multicast forwarding:
+
+Edit the `/etc/cumulus/switchd.conf` file to set the `bridge.dip_based_l2multicast` field to `TRUE` and uncomment the line. For example:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+# configure IP based forwarding for L2 Multicast
+bridge.dip_based_l2multicast = TRUE
+...
+```
+
 ## Configure IGMP/MLD Querier
 
 If no multicast router is sending queries to configure IGMP/MLD querier

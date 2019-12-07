@@ -1568,7 +1568,7 @@ information from this output includes:
     ...
     ```
 
-A sample output of `ip neigh show` (NCLU `net show neighbor`) is shown below. Some interesting
+A sample output of `ip neigh show` is shown below. Some interesting
 information from this output includes:
 
 - 172.16.120.11 is a locally-attached host on VLAN 100. It is shown
@@ -1586,6 +1586,8 @@ information from this output includes:
     172.16.120.11 dev vlan100 lladdr 00:02:00:00:00:01 REACHABLE
     ...
     ```
+
+In Cumulus Linux 3.7.11 and later, you can use the NCLU `net show neighbor` command.
 
 ### General BGP Operational Commands Relevant to EVPN
 

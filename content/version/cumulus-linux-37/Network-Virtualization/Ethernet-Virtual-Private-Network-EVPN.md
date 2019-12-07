@@ -1568,7 +1568,7 @@ information from this output includes:
     ...
     ```
 
-A sample output of `ip neigh show` is shown below. Some interesting
+A sample output of `ip neigh show` (NCLU `net show neighbor`) is shown below. Some interesting
 information from this output includes:
 
 - 172.16.120.11 is a locally-attached host on VLAN 100. It is shown

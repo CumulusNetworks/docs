@@ -75,6 +75,8 @@ Add the following lines to the `/etc/cumulus/acl/policy.d/23_acl_test.rules` fil
 
 ## DIP-based Multicast Forwarding
 
+DIP-based multicast forwarding is supported on Broadcom switches only.
+
 Cumulus Linux 3.7.10 and earlier performs layer 2 multicast bridging using the destination MAC address (DMAC) of the packet, which is programmed in the layer 2 table of the ASIC. Cumulus Linux 3.7.11 and later provides the option of using IP-based layer 2 multicast forwarding (DIP), where layer 2 multicast packets are forwarded based on the layer 3 forwarding table, using the VLAN as the key.
 
 DIP-based multicast forwarding is a good solution if you want to have a separate bridge domain and multicast flood domain for two groups that map to the same MAC address. In multicast, there can be multiple group addresses that map to the same MAC address as the address is derived from the three octets of the group; out of the allowed multicast range, you have 16 group addresses with the same MAC address.  
@@ -83,8 +85,8 @@ DIP-based multicast forwarding is also a good solution if you use a group that f
 
 {{%notice note%}}
 
-- DIP-based multicast forwarding is supported on Broadcom switches for IPv4 addresses.
-- DIP-based multicast forwarding is not supported with IGMP Snooping over VXLAN or on a switch with PIM enabled.
+- DIP-based multicast forwarding is supported with IPv4 addresses.
+- DIP-based multicast forwarding is *not* supported with IGMP Snooping over VXLAN or on a switch with PIM enabled.
 
 {{%/notice%}}
 

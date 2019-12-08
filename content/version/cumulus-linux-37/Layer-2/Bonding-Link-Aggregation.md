@@ -53,23 +53,25 @@ over available slaves.
 
 ### Custom Hashing
 
-Custom hashing is supported on Mellanox switches running Cumulus Linux 3.7.11 and later.
+Custom hashing is supported on Mellanox switches.
 
-You can configure the following fields on which to hash:  
+In Cumulus Linux 3.7.11 and later, you can configure which fields are used in the packet hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the Source port and Destination port fields.
+
+You can configure the following fields:  
 
 - Source MAC
 - Destination
 - Source IP
 - Destination IP
 - Ether type
-- Vlan ID
+- VLAN ID
 - Source port
 - Destination port
 - L3 protocol
 
 To configure custom hash, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
 
-1. Enable custom hashing by uncommenting the line `lag_hash_config.enable = true`.
+1. To enable custom hashing, uncomment the `lag_hash_config.enable = true` line.
 2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
 3. Restart the `switchd` service:
 

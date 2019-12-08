@@ -174,7 +174,6 @@ Custom hashing is supported on Mellanox switches.
 In Cumulus Linux 3.7.11 and later, you can configure the set of fields used to hash upon during ECMP load balancing. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the Source Port and Destination Port fields.
 You can enable/disable the following fields:
 
-
 - IP Protocol
 - Source IP
 - Destination IP
@@ -194,7 +193,7 @@ You can also enable/disable these Inner header fields:
 
 To configure custom hashing, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
 
-1. Enable custom hashing by uncommenting the line `hash_config.enable = true`.
+1. To enable custom hashing, uncomment the `hash_config.enable = true` line.
 2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
 3. Restart the `switchd` service:
 

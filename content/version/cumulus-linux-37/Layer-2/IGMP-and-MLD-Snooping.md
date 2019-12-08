@@ -85,14 +85,20 @@ DIP-based multicast forwarding is also a good solution if you use a group that f
 
 {{%notice note%}}
 
-- DIP-based multicast forwarding is supported with IPv4 addresses.
-- DIP-based multicast forwarding is *not* supported with IGMP Snooping over VXLAN or on a switch with PIM enabled.
+DIP-based multicast forwarding is *not* supported with IGMP Snooping over VXLAN or with IPv6 addresses (DMAC-based forwarding is used for IPv6 addresses).
 
 {{%/notice%}}
 
 To enable DIP-based multicast forwarding:
 
-Edit the `/etc/cumulus/switchd.conf` file to set the `bridge.dip_based_l2multicast` field to `TRUE` and uncomment the line. For example:
+1. Edit the `/etc/cumulus/switchd.conf` file to set the `bridge.dip_based_l2multicast` field to `TRUE`, then uncomment the line.
+2. Restart the `switchd` service:
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+The following example shows that the `bridge.dip_based_l2multicast` field is set to `TRUE` and the line is uncommented in the `/etc/cumulus/switchd.conf` file:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf

@@ -67,7 +67,7 @@ You can configure the following fields:
 - VLAN ID
 - Source port
 - Destination port
-- L3 protocol
+- Layer 3 protocol
 
 To configure custom hash, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
 

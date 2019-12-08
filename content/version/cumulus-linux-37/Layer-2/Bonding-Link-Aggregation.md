@@ -103,7 +103,7 @@ lag_hash_config.ip_prot = true
 
 {{%notice note%}}
 
-Symmetric hashing is enabled by default on Mellanox switches running Cumulus Linux 3.7.11 and later. Make sure that the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields, or the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields have the same setting; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+Symmetric hashing is enabled by default on Mellanox switches running Cumulus Linux 3.7.11 and later. Make sure that the settings for the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields match, and that the settings for  the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 
 {{%/notice%}}
 

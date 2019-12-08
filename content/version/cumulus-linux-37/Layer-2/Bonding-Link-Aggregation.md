@@ -55,7 +55,7 @@ over available slaves.
 
 Custom hashing is supported on Mellanox switches.
 
-In Cumulus Linux 3.7.11 and later, you can configure which fields are used in the packet hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the Source port and Destination port fields.
+In Cumulus Linux 3.7.11 and later, you can configure which fields are used in the packet hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
 
 You can configure the following fields:  
 

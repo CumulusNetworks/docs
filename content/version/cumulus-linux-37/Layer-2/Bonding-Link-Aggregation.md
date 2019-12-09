@@ -51,11 +51,11 @@ over available slaves.
 
 {{%/notice%}}
 
-### Custom Hashing
+### LAG Custom Hashing
 
-Custom hashing is supported on Mellanox switches.
+LAG custom hashing is supported on Mellanox switches.
 
-In Cumulus Linux 3.7.11 and later, you can configure which fields are used in the packet hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
+In Cumulus Linux 3.7.11 and later, you can configure which fields are used in the LAG hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
 
 You can configure the following fields:  
 
@@ -108,6 +108,8 @@ lag_hash_config.ip_prot = true
 Symmetric hashing is enabled by default on Mellanox switches running Cumulus Linux 3.7.11 and later. Make sure that the settings for the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields match, and that the settings for  the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 
 {{%/notice%}}
+
+You can set a unique hash seed for each switch to help avoid hash polarization. See [Configure a Hash Seed to Avoid Hash Polarization](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#configure-a-hash-seed-to-avoid-hash-polarization).
 
 ## Create a Bond
 

@@ -286,6 +286,51 @@ cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 
 </details>
 
+## VLAN (dot1) TLV
+
+LLDPD in Cumulus Linux is compiled to `not` share VLAN information with peers. Cumulus Linux 3.7.11 and later provides the VLAN (dot1) TLV runtime option to enable advertisement of VLAN TLVs (Type, Length, Value) to LLDP peers.
+
+To enable the VLAN (dot1) TLV option, run the following command:
+
+```
+cumulus@switch:~$ sudo lldpcli configure lldp dot1-tlv
+```
+
+Optionally, you can add the `configure lldp dot1-tlv` line to the `/etc/lldpd.d/README.conf` file, then restart `lldpd`.
+
+When enabled, you see `DOT1 TLV advertise: yes` in the `sudo lldpcli show running-configuration` command output:
+
+```
+cumulus@switch:~$ sudo lldpcli show running-configuration
+----------------------------------------------------------
+Global configuration:
+----------------------------------------------------------
+Configuration:
+  Transmit delay: 30
+  Transmit hold: 4
+  Maximum number of neighbors: 32
+  ...
+  DOT1 TLV advertise: yes
+  ...
+```
+
+To disable the VLAN (dot1) TLV option, run the `lldpcli unconfigure lldp dot1-tlv` command. When disabled, the `sudo lldpcli show running-configuration` command output shows `DOT1 TLV advertise: no`.
+
+**Scale Considerations**
+
+The number of VLAN TLVs that an LLDP frame can contain depends on the interface MTU and the number or other organizational TLVs. Because Cumulus Linux does not fragment LLDP frames, if the LLDP frame size (inclusive of all VLAN TLVs) exceeds the MTU, frames are dropped, which leads to an LLDP peering failure.
+
+Use the following as guidance:
+
+- With an interface MTU of 1500 bytes, LLDP frames can carry approximately 50 VLAN TLVs.
+- With an interface MTU of 9216 bytes, LLDP frames can carry approximately 350 VLAN TLVs.
+
+If you enable the VLAN (dot1) TLV option with a high number of VLANs resulting in LLDP frames that are larger than the MTU, the frames are dropped and following message is recorded in `/var/log/syslog`:
+
+```
+2019-12-09T00:23:39.183653+00:00 act-5812-11 lldpd[8585]: Cannot send LLDP packet for swpX, Too big message
+```
+
 ## Enable the SNMP Subagent in LLDP
 
 LLDP does not enable the SNMP subagent by default. You need to edit

@@ -116,8 +116,7 @@ To verify that the value changed, use `grep`:
 
 {{%notice note%}}
 
-You can get some of this information by running `cl-resource-query`;
-though you cannot update the `switchd` configuration with it.
+You can show some of this information by running `cl-resource-query`. In Cumulus Linux 3.7.11 and later, you can run the NCLU command equivalent: `net show system asic`.
 
 {{%/notice%}}
 

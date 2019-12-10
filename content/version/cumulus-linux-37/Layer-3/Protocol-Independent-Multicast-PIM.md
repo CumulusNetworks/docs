@@ -1242,11 +1242,16 @@ the `show ip pim upstream` command:
 
 ### No mroute Entry Present in Hardware
 
-Use the `cl-resource-query` command to verify that the hardware IP
-multicast entry is the maximum value:
+Use the `cl-resource-query` command to verify that the hardware IP multicast entry is the maximum value: 
 
     cumulus@switch:~$ cl-resource-query  | grep Mcast
        Total Mcast Routes:         450,   0% of maximum value    450
+
+{{%notice note%}}
+
+In Cumulus Linux 3.7.11 and later, you can run the NCLU command equivalent:`net show system asic | grep Mcast`.
+
+{{%/notice%}}
 
 For Spectrum chipsets, refer to
 [TCAM Resource Profiles for Spectrum Switches](../Routing/#tcam-resource-profiles-for-spectrum-switches).

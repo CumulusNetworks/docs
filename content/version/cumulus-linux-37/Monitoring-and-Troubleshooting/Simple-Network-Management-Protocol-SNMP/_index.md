@@ -13,7 +13,7 @@ imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
 Cumulus Linux uses the open source Net-SNMP agent `snmpd`, version 5.7,
-which provides support for most of the common industry+wide MIBs,
+which provides support for most of the common industry-wide MIBs,
 including interface counters and TCP/UDP IP stack data.
 
 ## History
@@ -1503,11 +1503,14 @@ pass_persist .1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py</code></pr
 </tr>
 <tr class="even">
 <td><p><a href="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" class="external-link">IF-MIB</a></p></td>
-<td><p>Interface description, type, MTU, speed, MAC, admin, operation status, counters</p>
+<td><p>Interface description, type, MTU, speed, MAC, admin, operation status, counters.</p>
+<p>By default, IF-MIB can handle a maximum of 500 interfaces. You can change this setting by editing the value for the <code>ifmib_max_num_ifaces</code> setting in the default SNMP configuration file, <code>/etc/snmp/snmpd.conf</code>.
+</p>
 <p>{{%notice note%}}</p>
-<p>The IF-MIB cache is disabled by default. The non-caching code path in the IF-MIB treats 64-bit counters like 32-bit counters (a 64-bit counter rolls over after the value increments to a value that extends beyond 32 bits). To enable the counter to reflect traffic statistics using 64-bit counters, remove the <code>-y</code> option from the <code>SNMPDOPTS</code> line in the <code>/etc/default/snmpd</code> file. The example below first shows the original line, commented out, then the modified line without the <code>-y</code> option:</p>
+<p>As of Cumulus Linux 3.7.11, the IF-MIB cache is enabled by default. To disable the IF-MIB caching for any reason, add the <code>-y</code> option to the SNMPDOPTS line in the <code>/etc/default/snmpd</code> file. Once disabled, the IF-MIB counters and other values will not be accurate. The example below first shows the original line, commented out, then the modified line with the <code>-y</code> option:</p>
 <pre><code>cumulus@switch:~$ cat /etc/default/snmpd
-SNMPDOPTS=&#39;-LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid&#39;</code></pre>
+\# SNMPDOPTS=&#39;-LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid&#39;
+SNMPDOPTS=&#39;-y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid&#39;</code></pre>
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr class="odd">

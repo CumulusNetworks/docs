@@ -319,7 +319,7 @@ Configuration:
   ...
 ```
 
-The following example shows `lldpctl show neighbors` command output when the VLAN (dot1) TLV option is enabled:
+The following example shows the `lldpctl show neighbors` command output when the VLAN (dot1) TLV option is enabled:
 
 ```
 cumulus@switch:~$ sudo lldpctl show neighbors

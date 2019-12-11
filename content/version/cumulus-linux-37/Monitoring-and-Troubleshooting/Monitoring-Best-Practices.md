@@ -913,6 +913,12 @@ cumulus@switch:~$ cl-resource-query -k</code></pre></td>
 </tbody>
 </table>
 
+{{%notice note%}}
+
+In Cumulus Linux 3.7.11 and later, you can run the `net show system asic` command, which is the NCLU command equivalent of `cl-resource-query`.
+
+{{%/notice%}}
+
 ### Routing Logs
 
 <table>

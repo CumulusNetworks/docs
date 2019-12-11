@@ -227,6 +227,11 @@ cumulus@switch:~$ sudo cl-license -i
 ^+d
 ```
 
+Check that your license is installed with the `cl-license` command.
+
+    cumulus@switch:~$ cl-license 
+    user@example.com|$ampleL1cen$et3xt
+
 {{%notice note%}}
 
 It is not necessary to reboot the switch to activate the switch ports. After you install the license, restart the `switchd` service. All front panel ports become active and show up as swp1, swp2, and so on.

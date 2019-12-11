@@ -267,6 +267,11 @@ There are three ways to install the license onto the switch:
         <paste license key>
         ^+d
 
+Check that your license is installed with the `cl-license` command.
+
+    cumulus@switch:~$ cl-license 
+    user@example.com|$ampleL1cen$et3xt
+
 {{%notice note%}}
 
 It is not necessary to reboot the switch to activate the switch ports.

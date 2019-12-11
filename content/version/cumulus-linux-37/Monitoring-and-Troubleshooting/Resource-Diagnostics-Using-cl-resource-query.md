@@ -107,16 +107,9 @@ Trident II switch:
 
 {{%notice note%}}
 
-Ingress ACL and Egress ACL entries show the counts in single wide (*not*
-double-wide). For information about ACL entries, see
+- Ingress ACL and Egress ACL entries show the counts in single wide (*not* double-wide). For information about ACL entries, see
 [Estimate the Number of ACL Rules](../../System-Configuration/Netfilter-ACLs/#estimate-the-number-of-rules).
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-On a Spectrum switch in Cumulus Linux 3.7.4, the `cl-resource-query`
-command shows the number of TCAM entries used by the different types of
-ACL resources.
+- On a Spectrum switch in Cumulus Linux 3.7.4, the `cl-resource-query` command shows the number of TCAM entries used by the different types of ACL resources.
+- Cumulus Linux 3.7.11 and later provides the `net show system asic` command, which is the NCLU command equivalent of `cl-resource-query`.
 
 {{%/notice%}}

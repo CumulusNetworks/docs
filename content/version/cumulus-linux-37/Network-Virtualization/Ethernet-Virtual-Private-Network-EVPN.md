@@ -1587,6 +1587,8 @@ information from this output includes:
     ...
     ```
 
+In Cumulus Linux 3.7.11 and later, you can use the NCLU `net show neighbor` command.
+
 ### General BGP Operational Commands Relevant to EVPN
 
 The following commands are not unique to EVPN but help troubleshoot

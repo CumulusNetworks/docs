@@ -175,7 +175,7 @@ Cumulus Linux — via `switchd` — advertises the maximum number of route table
 
 In addition, switches on the Tomahawk, Trident II, Trident II+, and Trident3 platforms are configured to manage route table entries using Algorithm Longest Prefix Match (ALPM). In ALPM mode, the hardware can store significantly more route entries.
 
-You can use [`cl-resource-query`](../../Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/) to determine the current table sizes on a given switch.
+You can use [`cl-resource-query`](../../Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/) to determine the current table sizes on a given switch. In Cumulus Linux 3.7.11 and later, you can run the NCLU command equivalent: `net show system asic`.
 
 {{%notice info%}}
 
@@ -206,7 +206,7 @@ cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf | grep forwarding_table
 forwarding_table.profile = default
 ```
 
-After you specify a different profile, [restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd) for the change to take effect. You can see the forwarding table profile when you run `cl-resource-query`.
+After you specify a different profile, [restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd) for the change to take effect. You can see the forwarding table profile when you run the `cl-resource-query` command. In Cumulus Linux 3.7.11 and later, you can run the NCLU command equivalent `net show sytem asic` to see the forwarding table profile.
 
 {{%notice note%}}
 
@@ -239,7 +239,7 @@ The values in the following tables reflect results from our testing on the diffe
 | l2-heavy-1     | 180K          | 8k (IPv4) and 8k (IPv6)   | 8k (IPv4) and 8k (IPv6-long)   |
 | v4-lpm-heavy   | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long) |
 | v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
-| v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4) and 64k (IPv6-long)  |
+| v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4) and 32k (IPv6-long) and 32K (IPv6/64)  |
 
 #### Broadcom Tomahawk/Tomahawk+ Switches
 

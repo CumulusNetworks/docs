@@ -163,6 +163,94 @@ ecmp_hash_seed = 50
 cumulus@leaf01:~$
 ```
 
+### ECMP Custom Hashing
+
+{{%notice note%}}
+
+Custom hashing is supported on Mellanox switches.
+
+{{%/notice%}}
+
+In Cumulus Linux 3.7.11 and later, you can configure the set of fields used to hash upon during ECMP load balancing. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
+
+You can enable/disable the following fields:
+
+- IP Protocol
+- Source IP
+- Destination IP
+- Source port
+- Destination port
+- IPv6 flow label
+- Ingress interface
+
+You can also enable/disable these Inner header fields:
+
+- Inner IP protocol
+- Inner source IP
+- Inner destination IP
+- Inner source port
+- Inner destination port
+- Inner IPv6 flow label
+
+To configure custom hashing, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
+
+1. To enable custom hashing, uncomment the `hash_config.enable = true` line.
+2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
+3. Restart the `switchd` service:
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+The following shows an example `datapath.conf` file:
+
+```
+cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf
+...
+# HASH config for ECMP to enable custom fields
+# Fields will be applicable for ECMP hash
+# calculation
+#Note: Hash seed can be configured in traffic.conf
+#/etc/cumulus/datapath/traffic.conf
+#
+# Uncomment to enable custom fields configured below
+hash_config.enable = true
+
+#symmetric hash will get disabled
+#if sip/dip or sport/dport are not enabled in pair
+#hash Fields available ( assign true to enable)
+#ip protocol
+hash_config.ip_prot = true
+#source ip
+hash_config.sip = true
+#destination ip
+hash_config.dip = true
+#source port
+hash_config.sport = false
+#destination port
+hash_config.dport = false
+#ipv6 flow label
+hash_config.ip6_label = true
+#ingress interface
+hash_config.ing_intf = false
+
+#inner fields for  IPv4-over-IPv6 and IPv6-over-IPv6
+hash_config.inner_ip_prot = false
+hash_config.inner_sip = false
+hash_config.inner_dip = false
+hash_config.inner_sport = false
+hash_config.inner_dport = false
+hash_config.inner_ip6_label = false
+# Hash config end #
+...
+```
+
+{{%notice note%}}
+
+Symmetric hashing is enabled by default on Mellanox switches running Cumulus Linux 3.7.11 and later. Make sure that the settings for the source IP (`hash_config.sip`) and destination IP (`hash_config.dip`) fields match, and that the settings for the source port (`hash_config.sport`) and destination port (`hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+
+{{%/notice%}}
+
 ## Resilient Hashing
 
 In Cumulus Linux, when a next hop fails or is removed from an ECMP pool, the hashing or hash bucket assignment can change. For deployments where there is a need for flows to always use the same next hop, like TCP anycast deployments, this can create session failures.

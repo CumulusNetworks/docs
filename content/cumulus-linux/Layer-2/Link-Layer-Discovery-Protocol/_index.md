@@ -39,6 +39,11 @@ cumulus@switch:~$ sudo nano /etc/default/lldpd
 DAEMON_ARGS="-c -I *, !swp43"
 ```
 
+`lldpd` has two timers defined by the `tx-interval` setting that affect each switch port:
+
+- The first timer catches any port-related changes.
+- The second is a system-based refresh timer on each port that looks for other changes like hostname. This timer uses the `tx-interval` value multiplied by 20.
+
 `lldpd` logs to `/var/log/daemon.log` with the *lldpd* prefix:
 
 ```

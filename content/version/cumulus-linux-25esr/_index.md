@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: -25
 aliases:
  - /display/CL25ESR/Cumulus+Linux+User+Guide
+ - /version/cumulus-linux-25esr/Cumulus-Linux-Index
  - /pages/viewpage.action?pageId=5115887
 pageID: 5115887
 product: Cumulus Linux

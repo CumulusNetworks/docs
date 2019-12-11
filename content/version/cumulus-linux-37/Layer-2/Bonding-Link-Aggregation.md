@@ -51,6 +51,66 @@ over available slaves.
 
 {{%/notice%}}
 
+### LAG Custom Hashing
+
+LAG custom hashing is supported on Mellanox switches.
+
+In Cumulus Linux 3.7.11 and later, you can configure which fields are used in the LAG hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
+
+You can configure the following fields:  
+
+- Source MAC
+- Destination
+- Source IP
+- Destination IP
+- Ether type
+- VLAN ID
+- Source port
+- Destination port
+- Layer 3 protocol
+
+To configure custom hash, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
+
+1. To enable custom hashing, uncomment the `lag_hash_config.enable = true` line.
+2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
+3. Restart the `switchd` service:
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+The following shows an example `datapath.conf` file:
+
+```
+cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf
+...
+#LAG HASH config
+#HASH config for LACP to enable custom fields
+#Fields will be applicable for LAG hash
+#calculation
+#Uncomment to enable custom fields configured below
+lag_hash_config.enable = true
+
+lag_hash_config.smac = true
+lag_hash_config.dmac = true
+lag_hash_config.sip  = true
+lag_hash_config.dip  = true
+lag_hash_config.ether_type = true
+lag_hash_config.vlan_id = true
+lag_hash_config.sport = false
+lag_hash_config.dport = false
+lag_hash_config.ip_prot = true
+...
+```
+
+{{%notice note%}}
+
+Symmetric hashing is enabled by default on Mellanox switches running Cumulus Linux 3.7.11 and later. Make sure that the settings for the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields match, and that the settings for  the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+
+{{%/notice%}}
+
+You can set a unique hash seed for each switch to help avoid hash polarization. See [Configure a Hash Seed to Avoid Hash Polarization](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#configure-a-hash-seed-to-avoid-hash-polarization).
+
 ## Create a Bond
 
 You can create and configure a bond with the Network Command Line

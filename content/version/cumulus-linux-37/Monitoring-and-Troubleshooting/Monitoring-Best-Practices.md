@@ -123,7 +123,7 @@ cumulus@switch:~$ smonctl -j -s Volt[X]</code></pre></td>
 <tr class="odd">
 <td><p>Front Panel LED</p></td>
 <td><pre><code>cumulus@switch:~$ ledmgrd -d
-cumulus@switch:~$ ledmgrd -j</code></pre></td>
+cumulus@switch:~$ ledmgrd -j</code></pre><p>In Cumulus Linux 3.7.11 and later, you can run <code>net show system leds</code>, which is the NCLU command equivalent of <code>ledmgrd -d</code>. </p></td>
 <td><p>5 seconds</p></td>
 </tr>
 </tbody>
@@ -912,6 +912,12 @@ cumulus@switch:~$ cl-resource-query -k</code></pre></td>
 </tr>
 </tbody>
 </table>
+
+{{%notice note%}}
+
+In Cumulus Linux 3.7.11 and later, you can run the `net show system asic` command, which is the NCLU command equivalent of `cl-resource-query`.
+
+{{%/notice%}}
 
 ### Routing Logs
 

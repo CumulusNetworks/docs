@@ -73,6 +73,41 @@ Add the following lines to the `/etc/cumulus/acl/policy.d/23_acl_test.rules` fil
 -A FORWARD -p IPv4 -o #<swp> --ip-proto igmp -j DROP
 ```
 
+## DIP-based Multicast Forwarding
+
+DIP-based multicast forwarding is supported on Broadcom switches only.
+
+Cumulus Linux 3.7.10 and earlier performs layer 2 multicast bridging using the destination MAC address (DMAC) of the packet, which is programmed in the layer 2 table of the ASIC. Cumulus Linux 3.7.11 and later provides the option of using IP-based layer 2 multicast forwarding (DIP), where layer 2 multicast packets are forwarded based on the layer 3 forwarding table, using the VLAN as the key.
+
+DIP-based multicast forwarding is a good solution if you want to have a separate bridge domain and multicast flood domain for two groups that map to the same MAC address. In multicast, there can be multiple group addresses that map to the same MAC address as the address is derived from the three octets of the group; out of the allowed multicast range, you have 16 group addresses with the same MAC address.  
+
+DIP-based multicast forwarding is also a good solution if you use a group that falls in to the link local address range (for example, 228.0.0.1), which is not forwarded with DMAC-based multicast forwarding.
+
+{{%notice note%}}
+
+DIP-based multicast forwarding is *not* supported with IGMP Snooping over VXLAN or with IPv6 addresses (DMAC-based forwarding is used for IPv6 addresses).
+
+{{%/notice%}}
+
+To enable DIP-based multicast forwarding:
+
+1. Edit the `/etc/cumulus/switchd.conf` file to set the `bridge.dip_based_l2multicast` field to `TRUE`, then uncomment the line.
+2. Restart the `switchd` service:
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+The following example shows that the `bridge.dip_based_l2multicast` field is set to `TRUE` and the line is uncommented in the `/etc/cumulus/switchd.conf` file:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+# configure IP based forwarding for L2 Multicast
+bridge.dip_based_l2multicast = TRUE
+...
+```
+
 ## Configure IGMP/MLD Querier
 
 If no multicast router is sending queries to configure IGMP/MLD querier

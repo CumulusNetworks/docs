@@ -144,6 +144,12 @@ Usage: `smonctl [OPTION]... [CHIP]...`
 
 For more information, read `man smond` and `man smonctl`.
 
+{{%notice note%}}
+
+In Cumulus Linux 3.7.11 and later, you can run these NCLU commands to show sensor information: `net show system sensors`, `net show system sensors detail`, and `net show system sensors json`.
+
+{{%/notice%}}
+
 ## Monitor Hardware Health Using sensors
 
 The `sensors` command provides a method for monitoring the health of

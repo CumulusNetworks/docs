@@ -226,9 +226,9 @@ hash_config.sip = true
 #destination ip
 hash_config.dip = true
 #source port
-hash_config.sport = true
+hash_config.sport = false
 #destination port
-hash_config.dport = true
+hash_config.dport = false
 #ipv6 flow label
 hash_config.ip6_label = true
 #ingress interface

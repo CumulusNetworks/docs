@@ -89,7 +89,7 @@ cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_conf
 #Fields will be applicable for LAG hash
 #calculation
 #Uncomment to enable custom fields configured below
-#lag_hash_config.enable = true
+lag_hash_config.enable = true
 
 lag_hash_config.smac = true
 lag_hash_config.dmac = true
@@ -97,8 +97,8 @@ lag_hash_config.sip  = true
 lag_hash_config.dip  = true
 lag_hash_config.ether_type = true
 lag_hash_config.vlan_id = true
-lag_hash_config.sport = true
-lag_hash_config.dport = true
+lag_hash_config.sport = false
+lag_hash_config.dport = false
 lag_hash_config.ip_prot = true
 ...
 ```

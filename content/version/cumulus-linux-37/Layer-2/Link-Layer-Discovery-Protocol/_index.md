@@ -319,6 +319,22 @@ Configuration:
   ...
 ```
 
+The following example shows `lldpctl show` command output when the VLAN (dot1) TLV option is enabled:
+
+```
+cumulus@switch:~$ sudo lldpctl show neighbors
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+Interface:    swp4, via: LLDP, RID: 17, Time: 0 day, 00:04:32
+  Chassis:
+    ChassisID:    mac 52:54:00:f1:f4:2a
+    SysName:      leaf04
+...
+  VLAN:         10, pvid: yes
+...
+```
+
 To disable the VLAN (dot1) TLV option, run the `lldpcli unconfigure lldp dot1-tlv` command. When disabled, the `sudo lldpcli show running-configuration` command output shows `DOT1 TLV advertise: no`.
 
 **Scale Considerations**

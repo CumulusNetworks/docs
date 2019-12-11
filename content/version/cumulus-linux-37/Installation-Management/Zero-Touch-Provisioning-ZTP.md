@@ -606,6 +606,8 @@ Method Switch manually configured
 URL None
 ```
 
+In Cumulus Linux 3.7.11 and later, you can run the NCLU `net show system ztp script` or `net show system ztp json` command to see the current `ztp` state.
+
 ## Notes
 
 - During the development of a provisioning script, the switch might need to be rebooted.

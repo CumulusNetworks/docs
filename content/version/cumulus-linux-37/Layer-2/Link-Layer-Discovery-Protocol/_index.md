@@ -293,7 +293,7 @@ cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 
 ## VLAN (dot1) TLV
 
-LLDPD in Cumulus Linux is compiled to `not` share VLAN information with peers. Cumulus Linux 3.7.11 and later provides the VLAN (dot1) TLV runtime option to enable advertisement of VLAN TLVs (Type, Length, Value) to LLDP peers.
+LLDPD in Cumulus Linux is compiled to `not` share VLAN information with peers. Cumulus Linux 3.7.11 and later provides the VLAN (dot1) TLV runtime option to enable advertisement of VLAN TLVs to LLDP peers.
 
 To enable the VLAN (dot1) TLV option, run the following command:
 

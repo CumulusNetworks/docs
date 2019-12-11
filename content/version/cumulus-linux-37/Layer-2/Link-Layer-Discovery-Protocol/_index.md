@@ -301,7 +301,7 @@ To enable the VLAN (dot1) TLV option, run the following command:
 cumulus@switch:~$ sudo lldpcli configure lldp dot1-tlv
 ```
 
-Optionally, you can add the `configure lldp dot1-tlv` line to the `/etc/lldpd.d/README.conf` file, then restart `lldpd`.
+Alternatively, you can add the `configure lldp dot1-tlv` line to the `/etc/lldpd.d/README.conf` file, then restart `lldpd`.
 
 When enabled, you see `DOT1 TLV advertise: yes` in the `sudo lldpcli show running-configuration` command output:
 

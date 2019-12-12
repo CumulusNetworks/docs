@@ -29,7 +29,7 @@ and configuration examples, refer to
 
 VXLAN routing supports full layer 3 multi-tenancy; all routing occurs in
 the context of a
-[VRF](/../../Layer-3/Virtual-Routing-and-Forwarding-VRF/).
+[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/).
 Also, VXLAN routing is supported for dual-attached hosts where the
 associated VTEPs function in [active-active mode](../VXLAN-Active-Active-Mode/).
 

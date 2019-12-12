@@ -28,7 +28,7 @@ Cumulus Linux is fully featured networking software providing the entire suite o
 - Layer 1 diagnostics with [TDR](/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/TDR-Cable-Diagnostics/)
 - Layer 3 [OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/), [BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/) and [multicast](/cumulus-linux/Layer-3/Routing/#static-multicast-routes)
 - [VXLAN](/cumulus-linux/Network-Virtualization/) and [BGP-EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#enable-evpn-between-bgp-neighbors)
-- [TACACS](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus/), [LDAP](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/) and [RADIUS](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA/) authentication
+- [TACACS](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS+/), [LDAP](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/) and [RADIUS](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA/) authentication
 - [802.1X interfaces](/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/) with [change of authorization](/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/#radius-change-of-authorization-and-disconnect-requests) (CoA)
 - Port security
 - [SNMPv2c/v3](/cumulus-linux/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/)

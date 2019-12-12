@@ -216,18 +216,10 @@ These commands create the following configuration snippet in the
 The default NTP configuration comprises the following servers, which are
 listed in the `/etc/ntpd.conf` file:
 
-- server
-    [0.cumulusnetworks.pool.ntp.org](http://0.cumulusnetworks.pool.ntp.org)
-    iburst
-- server
-    [1.cumulusnetworks.pool.ntp.org](http://1.cumulusnetworks.pool.ntp.org)
-    iburst
-- server
-    [2.cumulusnetworks.pool.ntp.org](http://2.cumulusnetworks.pool.ntp.org)
-    iburst
-- server
-    [3.cumulusnetworks.pool.ntp.org](http://3.cumulusnetworks.pool.ntp.org)
-    iburst
+- server 0.cumulusnetworks.pool.ntp.org iburst
+- server 1.cumulusnetworks.pool.ntp.org iburst
+- server 2.cumulusnetworks.pool.ntp.org iburst
+- server 3.cumulusnetworks.pool.ntp.org iburst
 
 The contents of the `/etc/ntpd.conf` file are listed below.
 <details>

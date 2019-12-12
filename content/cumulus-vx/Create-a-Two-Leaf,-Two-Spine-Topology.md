@@ -136,8 +136,7 @@ To edit the configuration files directly as the sudo user, copy the
 ## Configure the Remaining VMs
 
 The configuration steps for CumulusVX-leaf2, CumulusVX-spine1, and
-CumulusVX-spine2 are the same as
-[CumulusVX-leaf1](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5124773#CreateaTwo-Leaf/Two-SpineTopology-ConfigureCumulusVX-leaf1);
+CumulusVX-spine2 are the same as [CumulusVX-leaf1](#configure-cumulusvx-leaf1);
 however, the file configurations are different. Listed below are the
 configurations for each additional VM:
 
@@ -367,15 +366,15 @@ Make sure that the VM is powered off.
 After you restart the VMs, ping across VMs to test the connections:
 
 1.  Run the following commands from CumulusVX-leaf1:
-    
+
       - Ping CumulusVX-leaf2:
-        
+
             cumulus@CumulusVX-leaf1:~$ ping 10.2.1.2
-    
+
       - Ping CumulusVX-spine1:
-        
+
             cumulus@CumulusVX-leaf1:~$ ping 10.2.1.3
-    
+
       - Ping CumulusVX-spine2:
-        
+
             cumulus@CumulusVX-leaf1:~$ ping 10.2.1.4

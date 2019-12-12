@@ -1376,7 +1376,7 @@ Scaling this example out to a full rack, when planning for link failures, you ne
 
 ### Failover Redundancy Scenarios
 
-To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles 217942577-Understanding-MLAG-Redundancy-Scenarios).
+To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/217942577-Understanding-MLAG-Redundancy-Scenarios).
 
 ## STP Interoperability with MLAG
 

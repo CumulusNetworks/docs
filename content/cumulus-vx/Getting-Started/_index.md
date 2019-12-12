@@ -53,8 +53,8 @@ instructions are available on the download websites:
 | VirtualBox                | <https://www.virtualbox.org/wiki/Downloads> |
 | KVM                       | For package installation instructions, refer to <http://www.qemu-project.org/download/> |
 
-&nbsp; 
- 
+&nbsp;
+
 | Development Environment | Download Location                          | Supported Hypervisors |
 | ----------------------- | ------------------------------------------ | --------------------- |
 | Vagrant                 | <https://www.vagrantup.com/downloads.html> | VirtualBox            |
@@ -66,11 +66,11 @@ After you have downloaded the hypervisor or development environment and
 the Cumulus VX image, follow the relevant link below for detailed setup
 instructions:
 
-  - [VMware vSphere - ESXi 5.5](/cumulus-vx/Getting-Started/VMware-vSphere-ESXi-5.5)
-  - [VMware Fusion](/cumulus-vx/Getting-Started/VMware-Fusion)
-  - [VMware Workstation](/cumulus-vx/Getting-Started/VMware-Workstation)
-  - [VirtualBox](/cumulus-vx/Getting-Started/VirtualBox)
-  - [Libvirt and KVM - QEMU](/cumulus-vx/Getting-Started/Libvirt-and-KVM-QEMU)
+  - [VMware vSphere - ESXi 5.5](VMware-vSphere-ESXi-5.5/)
+  - [VMware Fusion](VMware-Fusion/)
+  - [VMware Workstation](VMware-Workstation/)
+  - [VirtualBox](VirtualBox/)
+  - [Libvirt and KVM - QEMU](Libvirt-and-KVM-QEMU/)
 
 ## Log in to the VM
 

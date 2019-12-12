@@ -25,8 +25,7 @@ lookup). As of Cumulus Linux 3.2.1 even ASICs that are capable of VXLAN
 routing (such as the Broadcom Trident II+ or Mellanox Spectrum) also
 require a hyperloop. Please contact your [sales
 team](mailto:sales@cumulusnetworks.com) if there is any confusion. Refer
-to the [Cumulus Networks Hardware Compatibility
-List](https://wiki.cumulusnetworks.com/cumulusnetworks.com/hcl) to
+to the [Cumulus Networks Hardware Compatibility List](https://cumulusnetworks.com/hcl) to
 determine which ASIC is running on the switch.
 
 **This limitation will not exist in future ASICs.** For example, the

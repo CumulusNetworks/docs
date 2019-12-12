@@ -60,7 +60,7 @@ but is not scalable.
 
   - You can name your Cumulus Linux installer binary using any of the
     [ONIE naming schemes mentioned
-    here](http://opencomputeproject.github.io/onie/docs/design-spec/discovery.html#default-file-name-search-order).
+    here](https://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
 
   - In the examples below, \[PLATFORM\] can be any supported Cumulus
     Linux platform, such as *x86\_64*, or *arm*.
@@ -133,7 +133,7 @@ Use the following method if your laptop is on the same network as the
 switch eth0 interface but no DHCP server is available.
 
 One thing to note is ONIE is in [*discovery
-mode*](http://opencomputeproject.github.io/onie/docs/design-spec/discovery.html#installer-discovery-methods)
+mode*](https://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods)
 , so if you are setting a static IPv4 address for the eth0 management
 port, you need to disable discovery mode or else ONIE may get confused.
 
@@ -270,7 +270,7 @@ configuration of your switch after the installation finishes.
     {{%notice note%}}
     
     You can also use any of the [ONIE naming schemes mentioned
-    here](http://opencomputeproject.github.io/onie/docs/design-spec/discovery.html#default-file-name-search-order).
+    here](https://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
     
     {{%/notice%}}
     

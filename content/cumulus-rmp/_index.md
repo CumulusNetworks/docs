@@ -45,7 +45,7 @@ features:
 
 - [RADIUS Change of Authorization (CoA) requests](/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/#radius-change-of-authorization-and-disconnect-requests)
 - [RADIUS AAA local fallback authentication](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA/#local-fallback-authentication)
-- [TACACS+ local fallback authentication](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus/#local-fallback-authentication)
+- [TACACS+ local fallback authentication](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/TACACS+/#local-fallback-authentication)
 - New NCLU commands:
   - [Show the version of a package](/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/#display-the-version-of-a-package)
   - [Show the interface description (alias)](/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#add-descriptions-to-interfaces)

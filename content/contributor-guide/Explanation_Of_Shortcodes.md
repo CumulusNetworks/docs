@@ -38,7 +38,7 @@ shortcode called `pageref`:
 
 This shortcode takes two parameters:
 
-- The _siteSlug_, which is defined in the page's [front matter](Adding_New_Content/#front-matter);
+- The _siteSlug_, which is defined in the page's [front matter](../Adding_New_Content/#front-matter);
   it is the name of the subdirectory in /content or /content/version, like _cumulus-linux_.
 - The page title, which is also defined in the page's front matter.
 

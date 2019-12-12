@@ -234,9 +234,8 @@ To show the IGMP/MLD snooping bridge state, run `brctl showstp <bridge>`:
      mc router                 1                    mc fast leave              0
      flags
 
-To show the groups and bridge port state, use the `bridge mdb show`
-command. To show router ports and group information use the `bridge -d
--s mdb show` command:
+To show the groups and bridge port state, run the NCLU `net show bridge mdb` command or the Linux `bridge mdb show`
+command. To show detailed router ports and group information, run the `bridge -d -s mdb show` command:
 
     cumulus@switch:~$ sudo bridge -d -s mdb show
      dev bridge port swp2 grp 234.10.10.10 temp 241.67

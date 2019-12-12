@@ -385,7 +385,7 @@ Doing so can cause the `rdnbrd` service to crash.
     Read more information on [Linux route
     tables](http://linux-ip.net/html/routing-tables.html), or you can
     read the [Ubuntu man pages for ip
-    route](http://manpages.ubuntu.com/manpages/quantal/man8/ip-route.8.html).
+    route](https://manpages.ubuntu.com/manpages/eoan/en/man8/ip-route.8.html).
 
   - **How do I determine that the /32 redistribute neighbor routes are
     being advertised to my neighbor?**

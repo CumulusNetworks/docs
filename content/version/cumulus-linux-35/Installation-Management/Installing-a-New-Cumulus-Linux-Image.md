@@ -46,7 +46,7 @@ but is not scalable.
 
   - You can name your Cumulus Linux installer binary using any of the
     [ONIE naming schemes mentioned
-    here](http://opencomputeproject.github.io/onie/docs/design-spec/discovery.html#default-file-name-search-order).
+    here](https://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
 
   - In the examples below, \[PLATFORM\] can be any supported Cumulus
     Linux platform, such as *x86\_64*, or *arm*.
@@ -294,7 +294,7 @@ configuration of your switch after the installation finishes.
     {{%notice note%}}
     
 You can also use any of the [ONIE naming schemes mentioned
-    here](http://opencomputeproject.github.io/onie/docs/design-spec/discovery.html#default-file-name-search-order).
+    here](https://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
     
     {{%/notice%}}
     

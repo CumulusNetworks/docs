@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-The [`cl-support`](../Understanding-the-cl-support-Output-File/) script replicates the /`etc` directory, however, it deliberately excludes certain files, such as `/etc/nologin`, which prevents unprivileged users from logging into the system.
+The [`cl-support`](../../Understanding-the-cl-support-Output-File/) script replicates the /`etc` directory, however, it deliberately excludes certain files, such as `/etc/nologin`, which prevents unprivileged users from logging into the system.
 
 This is the alphabetical list of the output from running `ls -l` on the `/etc` directory structure created by `cl-support`.
 

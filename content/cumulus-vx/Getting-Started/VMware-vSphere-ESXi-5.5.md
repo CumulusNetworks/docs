@@ -19,7 +19,7 @@ two-leaf/two-spine Cumulus VX topology with VMware vSphere.
 
 These sections assume a basic level of VMware vSphere experience. For
 detailed instructions, refer to the 
-[VMware vSphere documentation](https://pubs.vmware.com/vsphere-55/index.jsp).
+[VMware vSphere documentation](https://docs.vmware.com/en/VMware-vSphere/index.html).
 
 {{%/notice%}}
 

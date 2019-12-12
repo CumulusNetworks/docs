@@ -260,6 +260,6 @@ The following table lists the most important services in Cumulus Linux.
 |ntp|[Network time protocol](../Setting-Date-and-Time/).|NO|
 |ledmgrd|[LED manager](../../Monitoring-and-Troubleshooting/Monitoring-System-Hardware/Network-Switch-Port-LED-and-Status-LED-Guidelines/). Reads the state of system LEDs.|NO|
 |sysmonitor|Watches and logs critical system load (free memory, disk, CPU).|NO|
-|lldpd|Handles Tx/Rx of [LLDP](../../Link-Layer-Discovery-Protocol/) information.|NO|
+|lldpd|Handles Tx/Rx of [LLDP](../../Layer-2/Link-Layer-Discovery-Protocol/) information.|NO|
 |smond|Reads [platform sensors and fan information](../../Monitoring-and-Troubleshooting/Monitoring-System-Hardware/) from pwmd.|NO|
 |pwmd|Reads and sets fan speeds.|NO|

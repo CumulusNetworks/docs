@@ -18,9 +18,9 @@ Hosts on a given virtual network are joined together through an overlay protocol
 
 Cumulus Linux can initiate and terminate VTEPs in hardware and supports wire-rate VXLAN. VXLAN provides an efficient hashing scheme across the IP fabric during the encapsulation process; the source UDP port is unique, with the hash based on layer 2 through layer 4 information from the original frame. The UDP destination port is the standard port 4789.
 
-Cumulus Linux includes the native Linux VXLAN kernel support and integrates with controller-based overlay solutions like [VMware NSX](../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH/) and [Midokura MidoNet](../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/).
+Cumulus Linux includes the native Linux VXLAN kernel support and integrates with controller-based overlay solutions like [VMware NSX](Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH/) and [Midokura MidoNet](Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/).
 
-VXLAN is supported only on switches in the [Cumulus Linux HCL](http://cumulusnetworks.com/support/hcl/) using the Broadcom Tomahawk, Trident II, Trident II+ and Trident3 chipsets, as well as the Mellanox Spectrum chipset.
+VXLAN is supported only on switches in the [Cumulus Linux HCL](https://www.cumulusnetworks.com/hcl/) using the Broadcom Tomahawk, Trident II, Trident II+ and Trident3 chipsets, as well as the Mellanox Spectrum chipset.
 
 {{%notice note%}}
 
@@ -40,7 +40,7 @@ On switches using Mellanox Spectrum ASICs, Cumulus Linux supports cut-through mo
 
 ### MTU Size for Virtual Network Interfaces
 
-The maximum transmission unit (MTU) size for a virtual network interface should be 50 bytes smaller than the MTU for the physical interfaces on the switch. For more information on setting MTU, read [Layer 1 and Switch Port Attributes](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/).
+The maximum transmission unit (MTU) size for a virtual network interface should be 50 bytes smaller than the MTU for the physical interfaces on the switch. For more information on setting MTU, read [Layer 1 and Switch Port Attributes](../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/).
 
 ### VLANs and VXLANs Cannot Share the Same ID
 

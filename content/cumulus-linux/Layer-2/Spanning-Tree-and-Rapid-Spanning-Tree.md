@@ -662,7 +662,7 @@ cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1
 
 ### Spanning Tree Parameter List
 
-Spanning tree parameters are defined in the IEEE [802.1D](http://standards.ieee.org/findstds/standard/802.1D-2004.html), [802.1Q](http://standards.ieee.org/findstds/standard/802.1Q-2018.html) specifications.
+Spanning tree parameters are defined in the IEEE [802.1D](https://standards.ieee.org/standard/802_1D-2004.html), [802.1Q](https://standards.ieee.org/standard/802_1Q-2018.html) specifications.
 
 The table below describes the STP configuration parameters available in Cumulus Linux. For a comparison of STP parameter configuration between `mstpctl` and other vendors, [read this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/206908397).
 

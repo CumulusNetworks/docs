@@ -70,7 +70,7 @@ A workbench is comprised of a given set of cards. In this release, a
 preconfigured default workbench, Cumulus Workbench, is available to get
 you started. It contains Device Inventory, Switch Inventory, Alarm and
 Info Events, and Network Health cards. On initial login, this workbench
-is opened. You can create your own workbenches by adding or removing cards available cards to meet your particular needs. For more detail about managing your data using workbenches, refer to [Focus Your Monitoring Using Workbenches](../Focus-Your-Monitoring-Using-Workbenches/).
+is opened. You can create your own workbenches by adding or removing cards available cards to meet your particular needs. For more detail about managing your data using workbenches, refer to [Focus Your Monitoring Using Workbenches](../Focus-Your-Montoring-Using-Workbenches/).
 
 ## Cards
 

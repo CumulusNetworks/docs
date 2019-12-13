@@ -34,9 +34,9 @@ Platform.
 {{%/notice%}}
 
 To upgrade from NetQ 1.x to NetQ 2.1.0, please follow the instructions
-in [here](../Upgrade-from-NetQ-1.x-to-NetQ-2.1.0).
+in [here](../Upgrade-from-NetQ-1.x-to-NetQ-2.1.x/).
 Instructions for installing NetQ 2.1.0 for the first time can be found
-in [here](../Install-NetQ).
+in [here](../Install-NetQ/).
 
 ## Prerequisites
 
@@ -509,8 +509,8 @@ nodes.
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the NetQ Platform only via a
-[VRF](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding+-+VRF/),
-including a [management VRF](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Management-VRF/).
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/),
+including a [management VRF](/cumulus-linux/Layer-3/Management-VRF/).
 To do so, you need to specify the VRF name when configuring the NetQ
 Agent. For example, if the management VRF is configured and you want the
 agent to communicate with the NetQ Platform over it, configure the agent

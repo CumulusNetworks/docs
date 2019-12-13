@@ -205,8 +205,6 @@ cron.service                           enabled
 cryptdisks-early.service               masked  
 cryptdisks.service                     masked  
 cumulus-aclcheck.service               static  
-cumulus-chassis-ssh.service            disabled
-cumulus-chassisd.service               disabled
 cumulus-core.service                   static  
 cumulus-fastfailover.service           enabled
 cumulus-firstboot.service              disabled

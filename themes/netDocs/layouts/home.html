@@ -364,6 +364,15 @@
    </script>
 
    <script>
+      var siteNav = document.getElementById('site-nav');
+      var burgerMenu = document.querySelector('.burger-menu');
+ 
+      burgerMenu.addEventListener('click', function() {
+        siteNav.classList.toggle('menu-opened');
+      });
+   </script>
+
+   <script>
     window.onload = function(){
       document.getElementById('gsc-i-id1').placeholder = 'Search the docs. For better results, include your version number in your query.';
     };

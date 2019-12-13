@@ -29,19 +29,12 @@ This user guide covers Cumulus Linux 3.0.0 through 3.0.1.
 
 {{%/notice%}}
 
-{{% imgOld 0 %}}
-
-This documentation is current as of August 26, 2016 for version 3.0.1.
-Please visit the [Cumulus Networks Web
-site](http://docs.cumulusnetworks.com) for the most up to date
-documentation.
-
   - [Release Notes for Cumulus Linux 3.0.1](https://support.cumulusnetworks.com/hc/en-us/articles/222822047)
-  - [What's New in Cumulus Linux 3.0.1](/version/cumulus-linux-30/Whats-New-in-Cumulus-Linux-3.0.1)
-  - [Quick Start Guide](/version/cumulus-linux-30/Quick-Start-Guide)
-  - [Installation, Upgrading and Package Management](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/)
-  - [System Management](/version/cumulus-linux-30/System-Management/)
-  - [Configuring and Managing Network Interfaces](/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/)
-  - [Layer 2 Features](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/)
-  - [Layer 3 Features](/version/cumulus-linux-30/Layer-3-Features/)
-  - [Monitoring and Troubleshooting](/version/cumulus-linux-30/Monitoring-and-Troubleshooting/)
+  - [What's New in Cumulus Linux 3.0.1](Whats-New-in-Cumulus-Linux-3.0.1/)
+  - [Quick Start Guide](Quick-Start-Guide/)
+  - [Installation, Upgrading and Package Management](Installation-Upgrading-and-Package-Management/)
+  - [System Management](System-Management/)
+  - [Configuring and Managing Network Interfaces](Configuring-and-Managing-Network-Interfaces/)
+  - [Layer 2 Features](Layer-1-and-Layer-2-Features/)
+  - [Layer 3 Features](Layer-3-Features/)
+  - [Monitoring and Troubleshooting](Monitoring-and-Troubleshooting/)

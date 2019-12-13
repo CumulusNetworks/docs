@@ -837,7 +837,7 @@ You can query the interface description using NCLU:
     hypervisor_port_1
 
 Interface descriptions also appear in the
-[SNMP](/version/cumulus-linux-36/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/)
+[SNMP](../../Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/)
 OID
 [IF-MIB::ifAlias](https://cumulusnetworks.com/static/mibs/IF-MIB.txt).
 

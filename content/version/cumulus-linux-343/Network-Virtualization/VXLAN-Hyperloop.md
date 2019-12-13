@@ -24,7 +24,7 @@ reading the IP address lookup (for example, VXLAN lookup happens before
 IP address lookup). Please contact your
 [sales team](mailto:sales@cumulusnetworks.com) if there is any confusion. Refer
 to the 
-[Cumulus Networks Hardware Compatibility List](https://wiki.cumulusnetworks.com/cumulusnetworks.com/hcl)
+[Cumulus Networks Hardware Compatibility List](https://cumulusnetworks.com/hcl)
 to determine which ASIC is running on the switch.
 
 **This limitation does not exist in some ASICs.** For example, the

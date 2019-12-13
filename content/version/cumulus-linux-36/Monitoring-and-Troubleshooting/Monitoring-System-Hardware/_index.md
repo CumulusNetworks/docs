@@ -130,8 +130,7 @@ printed. Example chip names include:
 
 ## Monitoring Switch Hardware Using SNMP
 
-The Net-SNMP documentation is discussed
-[here](/version/cumulus-linux-36/Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-\(SNMP\)-Monitoring/).
+The Net-SNMP documentation is discussed [here](../Simple-Network-Management-Protocol-SNMP/).
 
 ## Monitoring System Units Using smond
 

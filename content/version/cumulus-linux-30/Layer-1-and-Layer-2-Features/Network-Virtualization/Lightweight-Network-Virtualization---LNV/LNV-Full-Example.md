@@ -30,7 +30,7 @@ Cumulus Linux.
 
 {{%/notice%}}
 
-## Example LNV Configuration</span>
+## Example LNV Configuration
 
 The following images illustrate the configuration:
 
@@ -44,7 +44,7 @@ The following images illustrate the configuration:
 <td><p>Physical Cabling Diagram</p>
 <p>{{% imgOld 0 %}}</p></td>
 <td><p>Network Virtualization Diagram</p>
-<h5 id="src-5118326_LNVFullExample-" class="heading"></span></h5></td>
+<p><img src="/images/download/thumbnails/5122058/Screen-Shot-2015-04-22-at-1.58.50-PM.png" /></p></td>
 </tr>
 </tbody>
 </table>
@@ -60,15 +60,13 @@ this exact topology.
 
 {{%notice tip%}}
 
-{{% imgOld 1 %}}
+{{< img src="/images/download/thumbnails/8362715/turtle_training.png" width="40">}} 
 
-Feeling Overwhelmed? Come join a [Cumulus Boot
-Camp](http://cumulusnetworks.com/education/instructor-led-training/) and
-get instructor-led training\!
+Feeling overwhelmed? Come join a [Cumulus Boot Camp](https://education.cumulusnetworks.com/series/bootcamps/) and get instructor-led training\!
 
 {{%/notice%}}
 
-### Layer 3 IP Addressing</span>
+### Layer 3 IP Addressing
 
 Here is the configuration for the IP addressing information used in this
 example:
@@ -238,7 +236,7 @@ iface br-30
 </tbody>
 </table>
 
-### Quagga Configuration</span>
+### Quagga Configuration
 
 The service nodes and registration nodes must all be routable between
 each other. The L3 fabric on Cumulus Linux can either be
@@ -370,7 +368,7 @@ router ospf
 </tbody>
 </table>
 
-### Host Configuration</span>
+### Host Configuration
 
 In this example, the servers are running Ubuntu 14.04. A trunk must be
 mapped from server1 and server2 to the respective switch. In Ubuntu this
@@ -411,7 +409,7 @@ iface eth3.30 inet static
 </tbody>
 </table>
 
-### Service Node Configuration</span>
+### Service Node Configuration
 
 <table>
 <colgroup>
@@ -508,7 +506,7 @@ svcnode_peers = 10.2.1.3
 </tbody>
 </table>
 
-## See Also</span>
+## See Also
 
   - <https://tools.ietf.org/html/rfc7348>
 

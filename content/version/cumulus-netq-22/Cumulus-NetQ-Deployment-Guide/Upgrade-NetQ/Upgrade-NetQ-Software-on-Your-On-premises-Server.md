@@ -115,7 +115,7 @@ The first step in upgrading your on-premises NetQ Server is to obtain the VM upg
 
      {{%notice note%}}
 
-For customers with VMware/ESXi OVA deployments, Cumulus Networks recommends deploying a fresh installation of NetQ 2.2.2, rather than performing the upgrade from 2.1.x or 2.2.0, to take advantage of the performance improvements available with the new vmxnet3 and Paravirtualization SCSI drivers. Customers with on-premises deployments must backup their NetQ data prior to the fresh installation to retain their data, and then follow the installation with a restoration. Follow the instructions in [Backup and Restore NetQ](/cumulus-netq/cumulus-netq-deployment-guide/backup-and-restore-netq) and [Install NetQ Software on Your Server](/cumulus-netq/cumulus-netq-deployment-guide/install-netq/#install-netq-software-on-your-server).
+For customers with VMware/ESXi OVA deployments, Cumulus Networks recommends deploying a fresh installation of NetQ 2.2.2, rather than performing the upgrade from 2.1.x or 2.2.0, to take advantage of the performance improvements available with the new vmxnet3 and Paravirtualization SCSI drivers. Customers with on-premises deployments must backup their NetQ data prior to the fresh installation to retain their data, and then follow the installation with a restoration. Follow the instructions in [Backup and Restore NetQ](../../Backup-and-Restore-NetQ/) and [Install NetQ Software on Your Server](../../Install-NetQ/Install-NetQ-Software-on-Your-Server/).
 
         {{%/notice%}}
 
@@ -387,10 +387,7 @@ Upgrading NetQ using a disk image involves backing up your NetQ data, downloadin
 
 Please follow the instructions in the following topics in this order:
 
-1. [Backup Your NetQ Data](../Backup-and-Restore-NetQ/Backup-NetQ/)
-
-2. [Download and Install the New Software](../Install-NetQ/Install-NetQ-Software-on-Your-Server/)
-
-3. [Restore Your NetQ Data](../Backup-and-Restore-NetQ/Restore-NetQ/)
-
-4. [Install and Configure NetQ Agent and CLI on Switches and Hosts](../Install-NetQ/Install-NetQ-Software-on-Your-Server/#install-and-configure-the-netq-agent-and-cli-access)
+1. [Backup Your NetQ Data](../../Backup-and-Restore-NetQ/Backup-NetQ/)
+2. [Download and Install the New Software](../../Install-NetQ/Install-NetQ-Software-on-Your-Server/)
+3. [Restore Your NetQ Data](../../Backup-and-Restore-NetQ/Restore-NetQ/)
+4. [Install and Configure NetQ Agent and CLI on Switches and Hosts](../../Install-NetQ/Install-NetQ-Software-on-Your-Server/#install-and-configure-the-netq-agent-and-cli-access)

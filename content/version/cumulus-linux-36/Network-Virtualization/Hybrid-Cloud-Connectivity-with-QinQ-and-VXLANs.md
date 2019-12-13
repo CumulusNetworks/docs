@@ -319,7 +319,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
         bridge-ports swp3.10  swp4  swp5.100.10
         bridge-vlan-aware no
 
-{{% imgOld 2 %}}
+{{< figure src="/images/download/attachments/8362276/qinq-double-tagged-no-vxlan.png" height="250" >}}
 
 {{%/notice%}}
 

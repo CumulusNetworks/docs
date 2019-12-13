@@ -394,7 +394,7 @@ To always start `switchd` with nonatomic updates:
         acl.non_atomic_update_mode = TRUE 
 
 3.  [Restart
-    `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5114824):
+    `switchd`](../Configuring-switchd/#restarting-switchd):
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
@@ -1483,7 +1483,7 @@ To do so, enable non-atomic update mode by setting the value for
 
     acl.non_atomic_update_mode = TRUE
 
-Then [restart `switchd`](/version/cumulus-linux-35/System-Configuration/Configuring-switchd/#restarting-switchd).
+Then [restart `switchd`](../Configuring-switchd/#restarting-switchd).
 
 #### Packets Undercounted during ACL Updates
 

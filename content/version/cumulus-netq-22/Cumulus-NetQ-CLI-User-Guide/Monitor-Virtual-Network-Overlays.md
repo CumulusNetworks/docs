@@ -352,5 +352,5 @@ example shows the status of LNV about 30 minutes ago.
     leaf22            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
 
 For more information about and configuration of LNV, refer to the
-[Cumulus Linux LNV Overview](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
+[Cumulus Linux LNV Overview](/version/cumulus-linux-37/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 topic.

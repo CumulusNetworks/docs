@@ -764,7 +764,7 @@ The medium Scheduled Trace Results card displays:
 </tr>
 <tr class="odd">
 <td><p>Charts</p></td>
-<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Monitor-Network-Connectivity/#granularity-of-data-shown-based-on-time-period" class="external-link">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
+<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
 <p><strong>Unique Bad Nodes</strong>: Distribution of unique nodes that generated the indicated warnings and/or failures</p></td>
 </tr>
 </tbody>
@@ -812,7 +812,7 @@ The *Results* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Charts</p></td>
-<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="#src-10465155_MonitorNetworkConnectivity-DataGran">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
+<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
 <p><strong>Small charts</strong>: Display counts for each item during the same time period, for the purpose of correlating with the warnings and errors shown in the heat map.</p></td>
 </tr>
 <tr class="even">

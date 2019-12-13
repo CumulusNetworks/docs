@@ -10,7 +10,7 @@ version: '4.0'
 ---
 Switches running Cumulus Linux can integrate with VMware NSX Multi-Hypervisor (MH) to act as hardware VTEP gateways. The VMware NSX-MH controller provides consistent provisioning across virtual and physical server infrastructures.
 
-{{< img src = "/images/cumulus-linux/virtualization-integrations-nsx.png" >}}
+{{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv.png" >}}
 
 Cumulus Linux also supports integration with VMware NSX in high availability mode. Refer to [OVSDB Server High Availability](../OVSDB-Server-High-Availability/).
 

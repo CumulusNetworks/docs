@@ -488,7 +488,7 @@ protocol, so we call it MLAG.
 {{%/notice%}}
 
 For instructions on configuring MLAG, refer to the
-[MLAG](https://docs.cumulusnetworks.com//cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
+[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
 topic in the Cumulus Linux User Guide.
 
 With NetQ, you can view the configuration and operation of devices using

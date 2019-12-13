@@ -8,7 +8,7 @@ imgData: cumulus-netq-22
 siteSlug: cumulus-netq-22
 ---
 
-You can restore NetQ data using the backup file you created in [Backup Your NetQ Instance](cumulus-netq/Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ/). You can restore your instance to the same NetQ Platform or NetQ Appliance or to a new platform or appliance. You do not need to stop the server where the backup file resides to perform the restoration, but logins to the NetQ UI will fail during the restoration process.The restore option of the backup script, copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. You should not see any data loss as a result of a restore operation.
+You can restore NetQ data using the backup file you created in [Backup Your NetQ Instance](../Backup-NetQ/). You can restore your instance to the same NetQ Platform or NetQ Appliance or to a new platform or appliance. You do not need to stop the server where the backup file resides to perform the restoration, but logins to the NetQ UI will fail during the restoration process.The restore option of the backup script, copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. You should not see any data loss as a result of a restore operation.
 
 To restore NetQ on the same hardware where the backup file resides:
 

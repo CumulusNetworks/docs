@@ -218,7 +218,7 @@ same unit of measure.
 {{%/notice%}}
 
 For more information about and configuration of EVPN in your data
-center, refer to the [Cumulus Linux EVPN](https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network+-+EVPN/)
+center, refer to the [Cumulus Linux EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/)
 topic.
 
 ### View the Status of EVPN
@@ -299,9 +299,8 @@ shows the events that have occurred in the last 48 hours.
 
 ## Monitor LNV
 
-Lightweight Network Virtualization (LNV) is a technique for deploying
-[VXLANs](https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
-without a central controller on bare metal switches. LNV enables data
+[Lightweight Network Virtualization](/version/cumulus-linux-37/Network-Virtualization/Lightweight-Network-Virtualization-Overview/) (LNV) is a technique for deploying
+VXLANs without a central controller on bare metal switches. LNV enables data
 center network administrators and operators to create a data path
 between bridges on top of a layer 3 fabric. With NetQ, you can monitor
 the configuration and status of the LNV setup using the `netq show lnv`

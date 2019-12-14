@@ -55,15 +55,73 @@ Alternatively, these parameters can be pre-seeded using the
 `debconf-utils`. To use this method, run `apt-get install debconf-utils`
 and create the pre-seeded parameters using `debconf-set-selections` with
 the appropriate answers. Run `debconf-show <pkg>` to check the settings.
-Here is an [example of how to preseed answers to the installer questions
-using `debconf-set-selections`](attachments_8357337_1_kb_debconf.txt) .
+Here is an example of how to preseed answers to the installer questions
+using `debconf-set-selections`:
+
+<details><summary>Click to expand ...</summary>
+
+```
+root# debconf-set-selections <<'zzzEndOfFilezzz'
+
+# LDAP database user. Leave blank will be populated later!
+# This way of setting binddn and bindpw doesn't seem to work.
+# So have to manually do it. But interactive apt-get mode works.
+nslcd nslcd/ldap-binddn  string 
+
+# LDAP user password. Leave blank!
+nslcd nslcd/ldap-bindpw   password 
+
+# LDAP server search base:
+nslcd nslcd/ldap-base string  ou=support,dc=rtp,dc=example,dc=test
+
+# LDAP server URI. Using ldap over ssl.
+nslcd nslcd/ldap-uris string  ldaps://myadserver.rtp.example.test
+
+# New to 0.9. restart cron, exim and others libraries without asking
+nslcd libraries/restart-without-asking: boolean true
+
+# LDAP authentication to use:
+# Choices: none, simple, SASL
+# Using simple because its easy to configure. Security comes by using LDAP over SSL
+# keep /etc/nslcd.conf 'rw' to root for basic security of bindDN password
+nslcd nslcd/ldap-auth-type    select  simple
+
+# Don't set starttls to true
+nslcd nslcd/ldap-starttls     boolean false
+
+# Check server's SSL certificate:
+# Choices: never, allow, try, demand
+nslcd nslcd/ldap-reqcert      select  never
+
+# Choices: Ccreds credential caching - password saving, Unix authentication, LDAP Authentication , Create home directory on first time login, Ccreds credential caching - password checking
+# This is where "mkhomedir" pam config is activated that allows automatic creation of home directory
+libpam-runtime        libpam-runtime/profiles multiselect     ccreds-save, unix, ldap, mkhomedir , ccreds-check
+
+# for internal use; can be preseeded
+man-db        man-db/auto-update      boolean true
+
+# Name services to configure:
+# Choices: aliases, ethers, group, hosts, netgroup, networks, passwd, protocols, rpc, services,  shadow
+libnss-ldapd  libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
+libnss-ldapd  libnss-ldapd/clean_nsswitch     boolean false
+
+## define platform specific libnss-ldapd debconf questions/answers. 
+## For demo used amd64.
+libnss-ldapd:amd64    libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
+libnss-ldapd:amd64    libnss-ldapd/clean_nsswitch     boolean false
+# libnss-ldapd:powerpc   libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
+# libnss-ldapd:powerpc    libnss-ldapd/clean_nsswitch     boolean false
+
+zzzEndOfFilezzz
+```
+</details>
 
 {{%/notice%}}
 
 Once the install is complete, the *name service LDAP caching daemon*
 (`nslcd`) will be running. This is the service that handles all of the
 LDAP protocol interactions, and caches the information returned from the
-LDAP server. In `/etc/nsswitch.conf`, ` ldap  `has been appended and is
+LDAP server. In `/etc/nsswitch.conf`, `ldap` has been appended and is
 the secondary information source for *passwd*, *group* and *shadow*. The
 local files (`/etc/passwd`, `/etc/groups` and `/etc/shadow`) are used
 first, as specified by the `compat` source.

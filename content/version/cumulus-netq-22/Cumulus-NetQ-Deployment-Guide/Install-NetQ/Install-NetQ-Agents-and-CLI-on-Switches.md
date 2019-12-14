@@ -40,7 +40,7 @@ included here:
 {{%notice note%}}
 
 If your network uses a proxy server for external connections, you should
-first [configure a global proxy](../../../../cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/)
+first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/)
 so `apt-get` can access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}

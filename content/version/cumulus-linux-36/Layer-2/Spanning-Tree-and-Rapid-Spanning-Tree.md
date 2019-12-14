@@ -60,7 +60,7 @@ is no need to specify `bridge-stp on` for the bridge any more.
 {{%notice note%}}
 
 When connecting a 
-[VLAN-aware bridge](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
+[VLAN-aware bridge](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
 to a proprietary PVST+ switch using STP, VLAN 1 must be allowed on all
 802.1Q trunks that interconnect them, regardless of the configured
 "native" VLAN. This is because only VLAN 1 enables the switches to address
@@ -605,8 +605,8 @@ following:
 ### Configuring Other Spanning Tree Parameters
 
 Spanning tree parameters are defined in the IEEE
-[802.1D](http://standards.ieee.org/findstds/standard/802.1D-2004.html),
-[802.1Q](http://standards.ieee.org/findstds/standard/802.1Q-2018.html)
+[802.1D](https://standards.ieee.org/standard/802_1D-2004.html),
+[802.1Q](https://standards.ieee.org/standard/802_1Q-2018.html)
 specifications and in the table below.
 
 For a comparison of STP parameter configuration between `mstpctl` and
@@ -769,7 +769,7 @@ below.
 
   - [Sourceforge - mstpd project](https://github.com/mstpd/mstpd)
   - [Wikipedia - Spanning Tree Protocol](http://en.wikipedia.org/wiki/Spanning_Tree_Protocol)
-  - [IEEE 802.1Q-2018 specification](https://standards.ieee.org/findstds/standard/802.1Q-2018.html)
+  - [IEEE 802.1Q-2018 specification](https://standards.ieee.org/standard/802_1Q-2018.html)
   - brctl(8)
   - bridge-utils-interfaces(5)
   - ifupdown-addons-interfaces(5)

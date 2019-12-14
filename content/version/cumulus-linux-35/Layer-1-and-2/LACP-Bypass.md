@@ -36,7 +36,7 @@ Keep in the mind the following caveats with all-active mode:
     slave interfaces when the LACP bond is in all-active mode.
     Therefore, only use all-active mode on host-facing LACP bonds.
     Cumulus Networks highly recommends you configure 
-    [STP BPDU guard](/version/cumulus-linux-35/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard)
+    [STP BPDU guard](../Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard)
     along with all-active mode.
 
 {{%notice note%}}

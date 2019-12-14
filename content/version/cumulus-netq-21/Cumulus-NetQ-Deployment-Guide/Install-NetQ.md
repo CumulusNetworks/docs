@@ -707,8 +707,8 @@ relevant additional instructions after the basic configuration steps:
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the NetQ Platform only via a
-[VRF](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding+-+VRF/),
-including a [management VRF](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Management-VRF).
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/),
+including a [management VRF](/cumulus-linux/Layer-3/Management-VRF).
 To do so, you need to specify the VRF name when configuring the NetQ
 Agent. For example, if the management VRF is configured and you want the
 agent to communicate with the NetQ Platform over it, configure the agent

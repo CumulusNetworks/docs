@@ -142,6 +142,20 @@ the `/usr/share/pam-configs/radius` file. After you edit the file, you
 must run the `pam-auth-update --package` command. PAM configuration
 keywords are described in the `pam_radius_auth (8)` man page.
 
+{{%notice note%}}
+
+The privilege level for the user on the switch is determined by the value of the VSA (Vendor Specific Attribute)  `shell:priv-lvl`. If the attribute is not returned, the user is unprivileged. The following shows an example using the freeradius server for a fully-privileged user.
+
+```
+Service-Type = Administrative-User,
+Cisco-AVPair = "shell:roles=network-administrator",
+Cisco-AVPair += "shell:priv-lvl=15"
+```
+
+The VSA vendor name (Cisco-AVPair in the example above) can have any content. The RADIUS client only checks for the string `shell:priv-lvl`.
+
+{{%/notice%}}
+
 ## Enable Login without Local Accounts
 
 Because LDAP is not commonly used with switches and adding accounts

@@ -1466,3 +1466,4 @@ cumulus@switch:~$ sudo traceroute -i turtle
 - Table selection is based on the incoming interface only; currently, packet attributes or output-interface-based selection are not available.
 - Setting the router ID outside of BGP using the `router-id` option causes all BGP instances to get the same router ID. If you want each BGP instance to have its own router ID, specify the `router-id` under the BGP instance using `bgp router-id`. If both are specified, the one under the BGP instance overrides the one provided outside BGP.
 - You cannot configure [EVPN address families](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/) within a VRF.
+- When you take down a VRF using `ifdown`, Cumulus Linux removes all routes associated with that VRF from FRR but it does *not* remove the routes from the kernel.

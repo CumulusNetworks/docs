@@ -1489,3 +1489,4 @@ To run `traceroute` on a VRF from the default VRF, run the
 - When [EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/)
   is configured, FRRouting supports only a single autonomous system number (ASN) for
   all VRFs configured with BGP on the system.
+- When you take down a VRF using `ifdown`, Cumulus Linux removes all routes associated with that VRF from FRR but it does *not* remove the routes from the kernel.

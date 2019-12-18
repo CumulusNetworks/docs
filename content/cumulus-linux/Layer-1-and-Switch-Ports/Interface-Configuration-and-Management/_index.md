@@ -872,9 +872,15 @@ iface br1
 
  </details>
 
-## Use Templates
+## Mako Templates
 
 `ifupdown2` supports [Mako-style templates](http://www.makotemplates.org/). The Mako template engine is run over the `interfaces` file before parsing.
+
+{{%notice warning%}}
+
+While `ifupdown2` supports Mako templates, NCLU does not understand them. As a result, NCLU cannot read or write to the `/etc/network/interfaces` file.
+
+{{%/notice%}}
 
 Use the template to declare cookie-cutter bridges in the `interfaces` file:
 

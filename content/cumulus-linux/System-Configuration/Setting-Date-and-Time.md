@@ -402,7 +402,7 @@ ind assid status  conf reach auth condition  last_event cnt
   1 40828  f014   yes   yes   ok     reject   reachable  1
 ```
 
-After authorization is accepted, you see the following command output:
+    After authorization is accepted, you see the following command output:
 
 ```
 cumulus@switch:~$ ntpq -c as

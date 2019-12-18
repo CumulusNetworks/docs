@@ -315,7 +315,7 @@ When you use the above procedure to specify your NTP servers, the NCLU commands 
 
 {{%/notice%}}
 
-### Configure NTP With Authorization Keys
+### Configure NTP with Authorization Keys
 
 For added security, you can configure NTP to use authorization keys.
 

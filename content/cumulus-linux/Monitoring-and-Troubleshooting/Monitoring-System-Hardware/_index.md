@@ -204,27 +204,36 @@ The Net-SNMP documentation is discussed [here](../Simple-Network-Management-Prot
 
 ## Keep the Switch Alive Using the Hardware Watchdog
 
-Cumulus Linux includes a simplified version of the `wd_keepalive(8)` daemon from the standard `watchdog` Debian package. `wd_keepalive` writes to a file called `/dev/watchdog` periodically to keep the switch from resetting, at least once per minute. Each write delays the reboot time by another minute. After one minute of inactivity where `wd_keepalive` does not write to `/dev/watchdog`, the switch resets itself. The watchdog is enabled by default on all supported switches, and starts when you boot the switch, before `switchd` starts.
+Cumulus Linux includes a simplified version of the `wd_keepalive(8)` daemon from the standard `watchdog` Debian package. `wd_keepalive` writes to a file called `/dev/watchdog` periodically to keep the switch from resetting, at least once per minute. Each write delays the reboot time by another minute. After one minute of inactivity where `wd_keepalive` doesn't write to `/dev/watchdog`, the switch resets itself.
 
-To enable the hardware watchdog, edit the `/etc/watchdog.d/<your_platform>` file and set `run_watchdog` to *1*:
+The watchdog is enabled by default on all supported switches, and starts when you boot the switch, before `switchd` starts.
 
-```
-run_watchdog=1
-```
+To disable the watchdog, disable and stop the `wd_keepalive` service:
 
-To disable the watchdog, edit the `/etc/watchdog.d/<your_platform>` file and set `run_watchdog` to *0*:
+    cumulus@switch:~$ sudo systemctl disable wd_keepalive ; systemctl stop wd_keepalive 
 
-```
-run_watchdog=0
-```
-
-Then stop the daemon:
+You can modify the settings for the watchdog &mdash; like the timeout setting and scheduler priority &mdash; in the configuration file, `/etc/watchdog.conf`. Here is the default configuration file:
 
 ```
-cumulus@switch:~$ sudo systemctl stop wd_keepalive.service
-```
+cumulus@switch:~$ cat /etc/watchdog.conf
 
-You can modify the settings for the watchdog, such as the timeout setting and scheduler priority in its configuration file, `/etc/watchdog.conf`.
+watchdog-device	= /dev/watchdog
+
+# Set the hardware watchdog timeout in seconds
+watchdog-timeout = 30
+
+# Kick the hardware watchdog every 'interval' seconds
+interval = 5
+
+# Log a status message every (interval * logtick) seconds.  Requires
+# --verbose option to enable.
+logtick = 240
+
+# Run the daemon using default scheduler SCHED_OTHER with slightly
+# elevated process priority.  See man setpriority(2).
+realtime = no
+priority = -2
+```
 
 ## Related Information
 

@@ -716,10 +716,15 @@ These commands produce the following snippet in the
     auto swp12
     iface swp12
 
-## Use Templates
+## Mako Templates
 
-`ifupdown2` supports [Mako-style templates](http://www.makotemplates.org/).
-The Mako template engine is run over the `interfaces` file before parsing.
+`ifupdown2` supports [Mako-style templates](http://www.makotemplates.org/). The Mako template engine is run over the `interfaces` file before parsing.
+
+{{%notice warning%}}
+
+While `ifupdown2` supports Mako templates, NCLU does not understand them. As a result, NCLU cannot read or write to the `/etc/network/interfaces` file.
+
+{{%/notice%}}
 
 Use the template to declare cookie-cutter bridges in the `interfaces`
 file:

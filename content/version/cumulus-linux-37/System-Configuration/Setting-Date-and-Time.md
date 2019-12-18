@@ -284,6 +284,104 @@ The contents of the `/etc/ntpd.conf` file are listed below.
     # Specify interfaces, don't listen on switch ports
     interface listen eth0
 </details>
+
+## Configure NTP with Authorization Keys
+
+For added security, you can configure NTP to use authorization keys.
+
+Configure the NTP server:
+
+1. Create a `.keys` file, such as `/etc/ntp.keys`. Specify a key identifier (a number from 1-65535), an encryption method (M for MD5), and the password. The following provides an example:
+
+```
+#
+# PLEASE DO NOT USE THE DEFAULT VALUES HERE.
+#
+#65535  M  akey
+#1      M  pass
+
+1  M  CumulusLinux!
+```
+
+2. In the `/etc/ntp/ntp.conf` file, add a pointer to the `/etc/ntp.keys` file you created above and specify the key identifier. For example:
+
+```
+keys /etc/ntp/ntp.keys
+trustedkey 1
+controlkey 1
+requestkey 1
+```
+
+3. Restart NTP with the `sudo systemctl restart ntp` command.
+
+Configure the NTP client (the Cumulus Linux switch):
+
+1. Create the same `.keys` file you created on the NTP server (`/etc/ntp.keys`). For example:
+
+```
+cumulus@switch:~$  sudo nano /etc/ntp.keys
+#
+# PLEASE DO NOT USE THE DEFAULT VALUES HERE.
+#
+#65535  M  akey
+#1      M  pass
+
+1  M  CumulusLinux!
+```
+
+2. Edit the `/etc/ntp.conf` file to specify the server you want to use, the key identifier, and a pointer to the `/etc/ntp.keys` file you created in step 1. For example:
+
+```
+cumulus@switch:~$ sudo nano /etc/ntp.conf
+...
+# You do need to talk to an NTP server or two (or three).
+#pool ntp.your-provider.example
+# OR
+#server ntp.your-provider.example
+
+# pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
+# pick a different set every time it starts up.  Please consider joining the
+# pool: <http://www.pool.ntp.org/join.html>
+#server 0.cumulusnetworks.pool.ntp.org iburst
+#server 1.cumulusnetworks.pool.ntp.org iburst
+#server 2.cumulusnetworks.pool.ntp.org iburst
+#server 3.cumulusnetworks.pool.ntp.org iburst
+server 10.50.23.121 key 1
+
+#keys
+keys /etc/ntp.keys
+trustedkey 1
+controlkey 1
+requestkey 1
+...
+```
+
+3. Restart NTP in the active VRF (default or management). For example:
+
+```
+cumulus@switch:~$ systemctl restart ntp@mgmt.service
+```
+
+4. Wait a few minutes, then run the `ntpq -c as` command to verify the configuration:
+
+```
+cumulus@switch:~$ ntpq -c as
+
+ind assid status  conf reach auth condition  last_event cnt
+===========================================================
+  1 40828  f014   yes   yes   ok     reject   reachable  1
+```
+
+    After authorization is accepted, you see the following command output:
+
+```
+cumulus@switch:~$ ntpq -c as
+
+ind assid status  conf reach auth condition  last_event cnt
+===========================================================
+  1 40828  f61a   yes   yes   ok   sys.peer    sys_peer  1
+```
+
 ## Precision Time Protocol (PTP) Boundary Clock
 
 With the growth of low latency and high performance applications,

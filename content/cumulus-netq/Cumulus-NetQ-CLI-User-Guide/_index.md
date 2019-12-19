@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=10977536
 pageID: 10977536
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---

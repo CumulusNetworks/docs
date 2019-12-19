@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321049
 pageID: 12321049
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
@@ -1032,10 +1032,21 @@ VLAN is configured, so the related fields are left blank.
         3   leaf03          swp51                                        swp51           default         lo
     --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
 
-<article id="html-search-results" class="ht-content" style="display: none;">
+### View Paths between Two Switches with Drops Detected
 
-</article>
+If you have a Mellanox switch, the What Just Happened feature detects various drop statistics. These are visible in the results of trace requests. This example shows the available paths between a switch with IP address 6.0.2.66 and a switch with IP address 6.0.2.70, where drops have been detected on path 1.
 
-<footer id="ht-footer">
-
-</footer>
+```
+cumulus@mlx-2700:~$ netq trace 6.0.2.66 from 6.0.2.70
+Number of Paths: 1
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Top packet drops along the paths in the last hour:
+  Path: 1 at mlx-2700:swp3s1, type: L2, reason: Source MAC equals destination MAC, flow: src_ip: 6.0.2.70, dst_ip: 6.0.2.66, protocol: 0, src_port: 0, dst_port: 0
+Path MTU: 9152
+Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
+--- --- ----------- --------------- --------------- --------------- ---------------
+1   1   hosts-11                                                    swp1.1008
+    2   mlx-2700-03 swp3s1
+--- --- ----------- --------------- --------------- --------------- ---------------
+```

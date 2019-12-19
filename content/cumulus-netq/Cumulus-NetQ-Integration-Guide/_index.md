@@ -3,7 +3,7 @@ title: Cumulus NetQ Integration Guide
 author: Cumulus Networks
 weight: 15
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---

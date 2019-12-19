@@ -14,17 +14,6 @@ After installing or upgrading your Cumulus NetQ software, you should install the
 
 This topic describes how to perform the installation and configuration. If you are upgrading, you can skip some of the steps which do not need to be performed a second time.
 
-Repo prepwork steps (before installation can begin, since its different for CL4 vs CL3, Ub16/18)
-Installing the Agent (should include checking if everything installed properly)
-Installing the CLI (optional)
-Installing both via meta-pack (optional)
-Configuring the Agent (via file and CLI)
-Configuring the CLI (via file and CLI)
-Advanced Configuration of Agent (vrf, port)
-Advanced Configuration of CLI (vrf, port, proxy)
-
-## Prepare for Installation
-
 ## Install a NetQ Agent
 
 To install the NetQ Agent you need to install the OS-specific meta

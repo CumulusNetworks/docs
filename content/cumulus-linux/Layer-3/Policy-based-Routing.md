@@ -319,7 +319,7 @@ A new Linux routing table ID is used for each next hop and next hop group.
 
 ## Modifying Existing PBR Rules
 
-When you want to change or extend an existing PBR rule, you must first delete the rule so that it is removed from hardware, then you can add the modified rule.
+When you want to change or extend an existing PBR rule, you must first delete the conditions in the rule, then add the modified rule.
 
 <details>
 
@@ -344,7 +344,7 @@ cumulus@switch:~$ net add pbr-map pbr-policy seq 4 match dst-ip 10.1.2.0/24
 cumulus@switch:~$ net add pbr-map pbr-policy seq 4 set nexthop 192.168.0.21
 ```
 
-To change the match `src-ip` condition from 10.1.4.**1**/24 to 10.1.4.**2**/24, you must delete the existing sequence by explicitly specifying the match/set condition. For example:
+To change the source IP match from 10.1.4.**1**/24 to 10.1.4.**2**/24, you must delete the existing sequence by explicitly specifying the match/set condition. For example:
 
 ```
 cumulus@switch:~$ net del pbr-map pbr-policy seq 4 match src-ip 10.1.4.1/24
@@ -395,12 +395,12 @@ cumulus@switch:~$ sudo cat /cumulus/switchd/run/iprule/show | grep 303 -A 1
 
 <summary>Add a match condition to an existing rule </summary>
 
-The example below shows an existing configuration, where only one match src-ip condition is configured:
+The example below shows an existing configuration, where only one match source IP condition is configured:
 
 ```
 Seq: 3 rule: 302 Installed: 1(9) Reason: Valid
 	SRC Match: 10.1.4.1/24
-     nexthop 192.168.0.21
+nexthop 192.168.0.21
 	Installed: 1(1) Tableid: 10008
 ```
 
@@ -411,7 +411,7 @@ net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
 net add pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
 ```
 
-To add an additional match dst-ip condition, you must delete the existing rule sequence:
+To add a match destination IP condition to the rule, you must delete the existing rule sequence:
 
 ```
 net del pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
@@ -419,7 +419,7 @@ net del pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
 net commit
 ```
 
-Add an additional match dst-ip condition (dst-ip 10.1.2.0/24):
+Add back the match source IP and nexthop condition, and add the new match destination IP condition (dst-ip 10.1.2.0/24):
 
 ```
 net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
@@ -545,7 +545,7 @@ The following examples show how to delete a next hop group:
 ```
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
-switch(config)# no set nexthop-group group1 
+switch(config)# no set nexthop-group group1
 switch(config)# end
 switch# write memory
 switch# exit
@@ -578,3 +578,50 @@ cumulus@switch:~$
 ```
 
 </details>
+
+{{%notice note%}}
+
+If a PBR rule has both multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the conditions you want to keep.
+
+<details>
+
+<summary>Example configuration </summary>
+
+The example below shows an existing configuration that has a source IP match, a destination IP match, and a nexthop condition.
+
+```
+Seq: 6 rule: 305 Installed: 1(12) Reason: Valid
+   SRC Match: 60.60.60.60/32
+   DST Match: 88.88.88.88/32
+nexthop 6.6.6.6
+   Installed: 1(1) Tableid: 10011
+```
+
+The NCLU commands for the above configuration are:
+
+```
+net add pbr-map pbr-policy seq 6 match src-ip 60.60.60.60/32
+net add pbr-map pbr-policy seq 6 match dst-ip 88.88.88.88/32
+net add pbr-map pbr-policy seq 6 set nexthop 6.6.6.6
+```
+
+To remove the destination IP match, you must first delete all existing conditions defined under this sequence:
+
+```
+net del pbr-map pbr-policy seq 6 match src-ip 60.60.60.60/32
+net del pbr-map pbr-policy seq 6 match dst-ip 88.88.88.88/32
+net del pbr-map pbr-policy seq 6 set nexthop 6.6.6.6
+net commit
+```
+
+Then, add back the conditions you want to keep (the source IP match and the nethop):
+
+```
+net add pbr-map pbr-policy seq 6 match src-ip 60.60.60.60/32
+net add pbr-map pbr-policy seq 6 set nexthop 6.6.6.6
+net commit
+```
+
+</details>
+
+{{%/notice%}}

@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321950
 pageID: 12321950
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
@@ -19,7 +19,7 @@ It is simple to capture the state of your network using the snapshot feature.
 
 To create a snapshot:
 
-1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
+1. From any workbench, click <img src="/images/netq/camera.svg" width="22.5" height="18"> in the workbench header.
 
 2. Click **Create Snapshot**.
 
@@ -64,7 +64,7 @@ To compare network snapshots:
         {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-231.png" width="250">}}
 
     - If you have closed one or both of the cards (you may have created them some time before):
-        - Click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}}.
+        - Click <img src="/images/netq/camera.svg" width="22.5" height="18">.
         - Click **Compare Snapshots**.
         - Click on the two snapshots you want to compare.
         - Click **Finish**. Note that two snapshots must be selected before **Finish** is active.
@@ -75,13 +75,13 @@ To compare network snapshots:
 
     {{<figure src="/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
 
-    {{<figure src="/images/netq/snapshot-large-compare-from-modal-231.png" width="500">}}
+    {{<figure src="/images/netq/snapshot-large-compare-from-modal-240.png" width="500">}}
 
 ### Interpreting the Comparison Data
 
 For each network element that is compared, count values and changes are shown:
 
-{{<figure src="/images/netq/snapshot-large-compare-data-interpretation-230.png" width="300">}}
+{{<figure src="/images/netq/snapshot-large-compare-data-interpretation-240.png" width="300">}}
 
 For example, if the snapshot taken first had a total count of 110 interfaces, changes were made that added 40 interfaces and removed 32 interfaces before the second snapshot was taken, the second snapshot total count of interfaces would be eight more than in the first snapshot, or 118.
 
@@ -120,7 +120,7 @@ You can create as many snapshots as you like and view them at any time. When a s
 
 To view an existing snapshot:
 
-1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
+1. From any workbench, click <img src="/images/netq/camera.svg" width="22.5" height="18"> in the workbench header.
 
 2. Click **View/Delete Snapshots**.
 
@@ -132,7 +132,7 @@ To view an existing snapshot:
 
 To remove an existing snapshot:
 
-1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
+1. From any workbench, click <img src="/images/netq/camera.svg" width="22.5" height="18"> in the workbench header.
 
 2. Click **View/Delete Snapshots**.
 

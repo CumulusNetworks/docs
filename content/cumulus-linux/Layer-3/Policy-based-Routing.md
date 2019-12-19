@@ -587,7 +587,7 @@ If a PBR rule has both multiple conditions (for example, a source IP match and a
 
 <summary>Example configuration </summary>
 
-The example below shows an existing configuration that has a source IP match, a destination IP match, and a nexthop condition.
+The example below shows an existing configuration that has a source IP match and a destination IP match.
 
 ```
 Seq: 6 rule: 305 Installed: 1(12) Reason: Valid
@@ -614,7 +614,7 @@ net del pbr-map pbr-policy seq 6 set nexthop 6.6.6.6
 net commit
 ```
 
-Then, add back the conditions you want to keep (the source IP match and the nethop):
+Then, add back the conditions you want to keep:
 
 ```
 net add pbr-map pbr-policy seq 6 match src-ip 60.60.60.60/32

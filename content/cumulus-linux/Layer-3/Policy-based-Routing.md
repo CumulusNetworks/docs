@@ -395,7 +395,7 @@ cumulus@switch:~$ sudo cat /cumulus/switchd/run/iprule/show | grep 303 -A 1
 
 <summary>Add a match condition to an existing rule </summary>
 
-The example below shows an existing configuration, where only one match source IP condition is configured:
+The example below shows an existing configuration, where only one source IP match is configured:
 
 ```
 Seq: 3 rule: 302 Installed: 1(9) Reason: Valid
@@ -411,7 +411,7 @@ net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
 net add pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
 ```
 
-To add a match destination IP condition to the rule, you must delete the existing rule sequence:
+To add a destination IP match to the rule, you must delete the existing rule sequence:
 
 ```
 net del pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
@@ -419,7 +419,7 @@ net del pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
 net commit
 ```
 
-Add back the match source IP and nexthop condition, and add the new match destination IP condition (dst-ip 10.1.2.0/24):
+Add back the source IP match and nexthop condition, and add the new destination IP match (dst-ip 10.1.2.0/24):
 
 ```
 net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24

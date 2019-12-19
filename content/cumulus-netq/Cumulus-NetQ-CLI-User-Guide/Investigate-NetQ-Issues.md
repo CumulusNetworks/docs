@@ -5,7 +5,7 @@ weight: 51
 aliases:
  - /display/NETQ/Investigate+NetQ+Issues
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---

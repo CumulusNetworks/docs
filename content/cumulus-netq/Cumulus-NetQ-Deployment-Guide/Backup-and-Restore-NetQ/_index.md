@@ -3,7 +3,7 @@ title: Backup and Restore NetQ
 author: Cumulus Networks
 weight: 75
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---

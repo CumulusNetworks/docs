@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321771
 pageID: 12321771
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
@@ -109,19 +109,10 @@ The medium Alarms card displays:
 <td><p>Total number of alarms received during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p>Alarm trend</p></td>
-<td><p>Trend of alarm count, represented by an arrow:</p>
-<ul>
-<li><p><strong>Pointing upward and <strong>bright pink</strong></strong>: alarm count is higher than the last two time periods, an increasing trend</p></li>
-<li><p><strong>Pointing downward and <strong>green</strong></strong>: alarm count is lower than the last two time periods, a decreasing trend</p></li>
-<li><p><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady</p></li>
-</ul></td>
-</tr>
-<tr class="odd">
 <td><p>Alarm score</p></td>
 <td><p>Current count of alarms received from each category (overall, system, interface, and network services) during the designated time period</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>Chart</p></td>
 <td><p>Distribution of all alarms received from each category during the designated time period</p></td>
 </tr>
@@ -156,7 +147,8 @@ The *Alarm Summary* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Alarm Distribution</p></td>
-<td><p><strong>Chart</strong>: Distribution of all alarms received from each category (NetQ Agent, BTRFS Information, CL Support, Config Diff, CL License, Link, LLDP, MTU, Node, Package Versions, Port, Resource, Running Config Diff, Sensor, Services, and SSD Utilization) during the designated time period</p>
+<td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period: 
+<ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>CL License</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor,</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  The category with the largest number of alarms is shown at the top, followed by the next most, down to the chart with the fewest alarms.</p>
 <p><strong>Count</strong>: Total number of alarms received from each category during the designated time period</p></td>
 </tr>
 <tr class="even">
@@ -284,10 +276,9 @@ then select **Devices by event count** from the dropdown.
 
 {{< figure src="/images/netq/events-alarms-large-by-event-count-222.png" width="500" >}}
 
-#### Filter Alarms by System or Interface
+#### Filter Alarms by Category
 
-You can focus your view to include alarms for selected system or
-interface categories.
+You can focus your view to include alarms for one or more selected alarm categories.
 
 To filter for selected categories:
 
@@ -649,11 +640,11 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 
 <table>
 <colgroup>
-<col style="width: 10%" />
+<col style="width: 15%" />
 <col style="width: 30%" />
 <col style="width: 10%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1076,7 +1067,7 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 </tr>
 <tr class="odd">
 <td><p>runningconfigdiff</p></td>
-<td><p>A fan or power supply unit sensor has changed state</p></td>
+<td><p>Running configuration file has been modified</p></td>
 <td><p>Info</p></td>
 <td><p>@commandname config result was modified</p></td>
 <td><p>@commandname config result was modified</p></td>
@@ -1156,34 +1147,125 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <td><p>significant health drop : 3.0%</p></td>
 </tr>
 <tr class="even">
+<td><p>tca</p></td>
+<td><p>Percentage of CPU utilization exceeded user-defined maximum threshold on a switch</p></td>
+<td><p>Critical</p></td>
+<td><p>CPU Utilization for host @hostname exceed configured mark @cpu_utilization</p></td>
+<td><p>CPU Utilization for host leaf11 exceed configured mark 85</p></td>
+</tr>
+<tr class="odd">
+<td><p>tca</p></td>
+<td><p>Percentage of disk utilization exceeded user-defined maximum threshold on a switch</p></td>
+<td><p>Critical</p></td>
+<td><p>Disk Utilization for host @hostname exceed configured mark @disk_utilization</p></td>
+<td><p>Disk Utilization for host leaf11 exceed configured mark 90</p></td>
+</tr>
+<tr class="even">
+<td><p>tca</p></td>
+<td><p>Percentage of memory utilization exceeded user-defined maximum threshold on a switch</p></td>
+<td><p>Critical</p></td>
+<td><p>Memory Utilization for host @hostname exceed configured mark @mem_utilization</p></td>
+<td><p>Memory Utilization for host leaf11 exceed configured mark 95</p></td>
+</tr>
+<tr class="odd">
+<td><p>tca</p></td>
+<td><p>Number of transmit bytes exceeded user-defined maximum threshold on a switch interface</p></td>
+<td><p>Critical</p></td>
+<td><p>TX bytes upper threshold breached for host @hostname ifname:@ifname value: @tx_bytes</p></td>
+<td><p>TX bytes upper threshold breached for host spine02 ifname:swp4 value: 20000</p></td>
+</tr>
+<tr class="even">
+<td><p>tca</p></td>
+<td><p>Number of broadcast transmit bytes exceeded user-defined maximum threshold on a switch interface</p></td>
+<td><p>Critical</p></td>
+<td><p>TX broadcast upper threshold breached for host @hostname ifname:@ifname value: @rx_broadcast</p></td>
+<td><p>TX broadcast upper threshold breached for host leaf04 ifname:swp45 value: 40200</p></td>
+</tr>
+<tr class="odd">
+<td><p>tca</p></td>
+<td><p>Number of multicast transmit bytes exceeded user-defined maximum threshold on a switch interface</p></td>
+<td><p>Critical</p></td>
+<td><p>TX multicast upper threshold breached for host @hostname ifname:@ifname value: @rx_broadcast</p></td>
+<td><p>TX multicast upper threshold breached for host leaf04 ifname:swp45 value: 30000</p></td>
+</tr>
+<tr class="even">
+<td><p>tca</p></td>
+<td><p>Number of receive bytes exceeded user-defined maximum threshold on a switch interface</p></td>
+<td><p>Critical</p></td>
+<td><p>RX bytes upper threshold breached for host @hostname ifname:@ifname value: @tx_bytes</p></td>
+<td><p>RX bytes upper threshold breached for host spine02 ifname:swp4 value: 20000</p></td>
+</tr>
+<tr class="odd">
+<td><p>tca</p></td>
+<td><p>Number of broadcast receive bytes exceeded user-defined maximum threshold on a switch interface</p></td>
+<td><p>Critical</p></td>
+<td><p>RX broadcast upper threshold breached for host @hostname ifname:@ifname value: @rx_broadcast</p></td>
+<td><p>RX broadcast upper threshold breached for host leaf04 ifname:swp45 value: 40200</p></td>
+</tr>
+<tr class="even">
+<td><p>tca</p></td>
+<td><p>Number of multicast receive bytes exceeded user-defined maximum threshold on a switch interface</p></td>
+<td><p>Critical</p></td>
+<td><p>RX multicast upper threshold breached for host @hostname ifname:@ifname value: @rx_broadcast</p></td>
+<td><p>RX multicast upper threshold breached for host leaf04 ifname:swp45 value: 30000</p></td>
+</tr>
+<tr class="odd">
+<td><p>tca</p></td>
+<td><p>Fan speed exceeded user-defined maximum threshold on a switch</p></td>
+<td><p>Critical</p></td>
+<td><p>Sensor for @hostname exceeded threshold fan speed @s_input for sensor @s_name</p></td>
+<td><p>Sensor for spine03 exceeded threshold fan speed 700 for sensor fan2</p></td>
+</tr>
+<tr class="even">
+<td><p>tca</p></td>
+<td><p>Power supply output exceeded user-defined maximum threshold on a switch</p></td>
+<td><p>Critical</p></td>
+<td><p>Sensor for @hostname exceeded threshold power @s_input watts for sensor @s_name</p></td>
+<td><p>Sensor for leaf14 exceeded threshold power 120 watts for sensor psu1</p></td>
+</tr>
+<tr class="odd">
+<td><p>tca</p></td>
+<td><p>Temperature (&#176 C) exceeded user-defined maximum threshold on a switch</p></td>
+<td><p>Critical</p></td>
+<td><p>Sensor for @hostname exceeded threshold temperature @s_input for sensor @s_name</p></td>
+<td><p>Sensor for leaf14 exceeded threshold temperature 90 for sensor temp1</p></td>
+</tr>
+<tr class="even">
+<td><p>tca</p></td>
+<td><p>Power supply voltage exceeded user-defined maximum threshold on a switch</p></td>
+<td><p>Critical</p></td>
+<td><p>Sensor for @hostname exceeded threshold voltage @s_input volts for sensor @s_name</p></td>
+<td><p>Sensor for leaf14 exceeded threshold voltage 12 volts for sensor psu2</p></td>
+</tr>
+<tr class="odd">
 <td><p>version</p></td>
 <td><p>An unknown version of the operating system was detected</p></td>
 <td><p>Critical</p></td>
 <td><p>unexpected os version @my_ver</p></td>
 <td><p>unexpected os version cl3.2</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>version</p></td>
 <td><p>Desired version of the operating system is not available</p></td>
 <td><p>Critical</p></td>
 <td><p>os version @ver</p></td>
 <td><p>os version cl3.7.9</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>version</p></td>
 <td><p>An unknown version of a software package was detected</p></td>
 <td><p>Critical</p></td>
 <td><p>expected release version @ver</p></td>
 <td><p>expected release version cl3.6.2</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p>version</p></td>
 <td><p>Desired version of a software package is not available</p></td>
 <td><p>Critical</p></td>
 <td><p>different from version @ver</p></td>
 <td><p>different from version cl4.0</p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><p>vxlan</p></td>
 <td><p>Replication list is contains an inconsistent set of nodes</p></td>
 <td><p>Critical</p></td>

@@ -1,12 +1,14 @@
 ---
 title: Install the Cumulus NetQ Cloud Appliance
 author: Cumulus Networks
-weight: 413
+weight: 418
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+draft: true
 ---
+TO BE REMOVED
 
 The Cumulus NetQ Cloud Appliance provides secure streaming of telemetry data collected by NetQ Agents to the NetQ Cloud; the server comes preloaded with a Cumulus Linux image that includes basic Cumulus NetQ services,  Cumulus Linux license, and certified cables and optics.
 

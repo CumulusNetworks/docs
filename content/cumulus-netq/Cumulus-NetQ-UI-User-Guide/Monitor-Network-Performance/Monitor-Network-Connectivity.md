@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321680
 pageID: 12321680
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
@@ -594,7 +594,7 @@ The *On-demand Trace Settings* tab displays:
 
 The full screen On-demand Trace Results card displays:
 
-{{< figure src="/images/netq/od-trace-result-fullscr-230.png" width="700" >}}
+{{< figure src="/images/netq/od-trace-result-fullscr-240.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -704,6 +704,24 @@ the distribution chart only shows one hop count and the table indicates
 each path had a value of five hops. Similarly, you can view the MTU
 data. If there had been any warnings, the count would have been visible
 in the table.
+
+### View Detailed On-demand  Trace Results
+
+After the trace request has completed, the results are available in the corresponding medium Trace Results card.
+
+To view the more detail:
+
+1. Open the full-screen Trace Results card for the trace of interest.
+
+    {{< figure src="/images/netq/od-trace-result-fullscr-240.png" width="700" >}}
+
+2. Double-click on the trace of interest to open the detail view.
+
+    {{< figure src="/images/netq/od-trace-result-fullscr-details-wjh-240.png" width="700" >}}
+
+    The tabular view enables you to walk through the trace path, host by host, viewing the interfaces, ports, tunnels, VLANs, and so forth used to traverse the network from the source to the destination.
+
+3. If the trace was run on a Mellanox switch *and* drops were detected by the What Just Happened feature, they are identified above the path. Click the down arrow to view the list of drops and their details. Click the up arrow to close the list.
 
 ## View Scheduled Trace Results
 

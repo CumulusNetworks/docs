@@ -7,27 +7,21 @@ aliases:
  - /pages/viewpage.action?pageId=12321059
 pageID: 12321059
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-The NetQ CLI provides access to all of the network state and event
-information collected by the NetQ Agents. It behaves the same way most
-CLIs behave, with groups of commands used to display related
-information, the ability to use TAB completion when entering commands,
-and to get help for given commands and options. The commands are grouped
-into four categories: check, show, config, and trace.
+The NetQ CLI provides access to all of the network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. The commands are grouped into four categories: check, show, config, and trace.
 
 {{%notice note%}}
 
-The NetQ command line interface only runs on switches and server hosts
-implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus [Hardware Compatibility List](https://cumulusnetworks.com/products/hardware-compatibility-list/) and verify the value in the **Platforms** tab \> **CPU** column.
+The NetQ command line interface only runs on switches and server  hosts implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus [Hardware Compatibility List](https://cumulusnetworks.com/products/hardware-compatibility-list/) and verify the value in the **Platforms** tab \> **CPU** column.
 
 {{%/notice%}}
 
 ## CLI Access
 
-When NetQ is installed or upgraded, the CLI may also be installed and enabled on your NetQ server or appliance and hosts. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ) and [Upgrade NetQ](../../Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ) topics for details.
+When NetQ is installed or upgraded, the CLI may also be installed  and enabled on your NetQ server or appliance and hosts. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ) and [Upgrade NetQ](../../Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ) topics for details.
 
 To access the CLI from a switch or server:
 
@@ -55,13 +49,13 @@ To access the CLI from a switch or server:
 
 This section describes the core structure and behavior of the NetQ CLI. It includes the following:
 
-  - [Command Line Structure](#command-line-structure)
-  - [Command Syntax](#command-syntax)
-  - [Command Output](#commnad-output)
-  - [Command Prompts](#command-prompts)
-  - [Command Completion](#command-completion)
-  - [Command Help](#command-help)
-  - [Command History](#command-history)
+- [Command Line Structure](#command-line-structure)
+- [Command Syntax](#command-syntax)
+- [Command Output](#commnad-output)
+- [Command Prompts](#command-prompts)
+- [Command Completion](#command-completion)
+- [Command Help](#command-help)
+- [Command History](#command-history)
 
 ### Command Line Structure
 
@@ -85,20 +79,18 @@ NetQ CLI commands all begin with `netq`. Cumulus NetQ commands fall into one of 
 
 For example, in the `netq check` command:
 
-  - \[\<hostname\>\] is an optional parameter with a variable value named *hostname*
+- \[\<hostname\>\] is an optional parameter with a variable value named *hostname*
 
-  - \<network-protocol-or-service\> represents a number of possible key
-    words, such as *agents*, *bgp*, *evpn,* and so forth
+- \<network-protocol-or-service\> represents a number of possible key words, such as *agents*, *bgp*, *evpn,* and so forth
 
-  - \<options\> represents a number of possible conditions for the given
-    object, such as *around*, *vrf,* or *json*
+- \<options\> represents a number of possible conditions for the given object, such as *around*, *vrf,* or *json*
 
 Thus some valid commands are:
 
-  - `netq leaf02 check agents json`
-  - `netq show bgp`
-  - `netq config restart cli`
-  - `netq trace 10.0.0.5 from 10.0.0.35`
+- `netq leaf02 check agents json`
+- `netq show bgp`
+- `netq config restart cli`
+- `netq trace 10.0.0.5 from 10.0.0.35`
 
 ### Command Output
 
@@ -110,16 +102,11 @@ All check and show commands are run with a default timeframe of now to one hour 
 
 NetQ code examples use the following prompts:
 
-  - `cumulus@switch:~$` Indicates the user *cumulus* is logged in to a
-    switch to run the example command
-  - `cumulus@host:~$` Indicates the user *cumulus* is logged in to a
-    host to run the example command
-  - `cumulus@netq-appliance:~$` Indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
+- `cumulus@switch:~$` Indicates the user *cumulus* is logged in to a switch to run the example command
+- `cumulus@host:~$` Indicates the user *cumulus* is logged in to a host to run the example command
+- `cumulus@netq-appliance:~$` Indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
 
-The switches must be running the Cumulus Linux operating system (OS),
-NetQ Platform software, and the NetQ Agent. The hosts must be running
-CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ)
-topic for details.
+The switches must be running the Cumulus Linux operating system (OS), NetQ Platform software, and the NetQ Agent. The hosts must be running CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ) topic for details.
 
 ### Command Completion
 
@@ -134,7 +121,6 @@ cumulus@switch:~$ netq check <<press Tab>>
     evpn        :  EVPN
     interfaces  :  network interface port
     license     :  License information
-    lnv         :  Lightweight Network Virtualization info
     mtu         :  Link MTU
     ntp         :  NTP
     ospf        :  OSPF info
@@ -159,50 +145,39 @@ To see an exhaustive list of commands, run:
 
 ### Command History
 
-The CLI stores commands issued within a session, which enables you to
-review and rerun commands that have already been run. At the command
-prompt, press the **Up Arrow** and **Down Arrow** keys to move back and
-forth through the list of commands previously entered. When you have
-found a given command, you can run the command by pressing **Enter**,
-just as you would if you had entered it manually. Optionally you can
-modify the command before you run it.
+The CLI stores commands issued within a session, which enables you to review and rerun commands that have already been run. At the command prompt, press the **Up Arrow** and **Down Arrow** keys to move back and forth through the list of commands previously entered. When you have found a given command, you can run the command by pressing **Enter**, just as you would if you had entered it manually. Optionally you can modify the command before you run it.
 
 ## Command Categories
 
 While the CLI has a flat structure, the commands can be conceptually grouped into four functional categories:
 
-  - [Validation Commands](#validation-commands)
-  - [Monitoring Commands](#monitoring-commands)
-  - [Configuration Commands](#configuration-commands)
-  - [Trace Commands](#trace-commands)
+- [Validation Commands](#validation-commands)
+- [Monitoring Commands](#monitoring-commands)
+- [Configuration Commands](#configuration-commands)
+- [Trace Commands](#trace-commands)
 
 ### Validation Commands
 
 The `netq` `check` commands enable the network administrator to validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. Validation checks can be performed for the following:
 
-  - **agents**: NetQ Agents operation on all switches and hosts
-  - **bgp**: BGP (Border Gateway Protocol) operation across the network
-    fabric
-  - **clag**: Cumulus Multi-chassis LAG (link aggregation) operation
-  - **cl-version**: Cumulus Linux version
-  - **evpn**: EVPN (Ethernet Virtual Private Network) operation
-  - **interfaces**: network interface port operation
-  - **license**: License status
-  - **lnv**: Lightweight Network Virtualization operation
-  - **mtu**: Link MTU (maximum transmission unit) consistency across paths
-  - **ntp**: NTP (Network Time Protocol) operation
-  - **ospf**: OSPF (Open Shortest Path First) operation
-  - **sensors**: Temperature/Fan/PSU sensor operation
-  - **vlan**: VLAN (Virtual Local Area Network) operation
-  - **vxlan**: VXLAN (Virtual Extensible LAN) data path operation
+- **agents**: NetQ Agents operation on all switches and hosts
+- **bgp**: BGP (Border Gateway Protocol) operation across the network
+  fabric
+- **clag**: Cumulus Multi-chassis LAG (link aggregation) operation
+- **cl-version**: Cumulus Linux version
+- **evpn**: EVPN (Ethernet Virtual Private Network) operation
+- **interfaces**: network interface port operation
+- **license**: License status
+- **mtu**: Link MTU (maximum transmission unit) consistency across paths
+- **ntp**: NTP (Network Time Protocol) operation
+- **ospf**: OSPF (Open Shortest Path First) operation
+- **sensors**: Temperature/Fan/PSU sensor operation
+- **vlan**: VLAN (Virtual Local Area Network) operation
+- **vxlan**: VXLAN (Virtual Extensible LAN) data path operation
 
-The commands take the form of `netq check <network-protocol-or-service>
-[options]`, where the options vary according to the protocol or service.
+The commands take the form of `netq check <network-protocol-or-service> [options]`, where the options vary according to the protocol or service.
 
-This example shows the output for the `netq check bgp` command, followed
-by the same command using the `json` option. If there had been any
-failures, they would be have been listed below the summary results or in
-the *failedNodes* section, respectively.
+This example shows the output for the `netq check bgp` command, followed by the same command using the `json` option. If there had been any failures, they would be have been listed below the summary results or in the *failedNodes* section, respectively.
 
 ```
 cumulus@switch:~$ netq check bgp
@@ -228,40 +203,33 @@ details about the current or historical configuration and status of the
 various protocols or services. The configuration and status can be shown
 for the following:
 
-  - **agents**: NetQ Agents status on switches and hosts
-  - **bgp**: BGP status across the network fabric
-  - **clag**: CLAG status
-  - **events**: Display changes over time
-  - **evpn**: EVPN status
-  - **interface-stats**: Interface statistics
-  - **interface-utils**: Interface statistics plus utilization
-  - **interfaces**: network interface port status
-  - **inventory**: hardware component information
-  - **ip**: IPv4 status
-  - **ipv6**: IPv6 status
-  - **kubernetes**: Kubernetes cluster, daemon, pod, node, service and
-    replication status
-  - **lldp**: LLDP status
-  - **lnv**: Lightweight Network Virtualization status
-  - **macs**: MAC table or address information
-  - **notification**: Slack or PagerDuty notification configurations
-  - **ntp**: NTP status
-  - **opta-health**: Display health of apps on the OPTA
-  - **ospf**: OSPF status
-  - **platform** Appliance version info
-  - **sensors**: Temperature/Fan/PSU sensor status
-  - **services**: System services status
-  - **vlan**: VLAN status
-  - **vxlan**: VXLAN data path status
+- **agents**: NetQ Agents status on switches and hosts
+- **bgp**: BGP status across the network fabric
+- **clag**: CLAG status
+- **events**: Display changes over time
+- **evpn**: EVPN status
+- **interface-stats**: Interface statistics
+- **interface-utils**: Interface statistics plus utilization
+- **interfaces**: network interface port status
+- **inventory**: hardware component information
+- **ip**: IPv4 status
+- **ipv6**: IPv6 status
+- **kubernetes**: Kubernetes cluster, daemon, pod, node, service and replication status
+- **lldp**: LLDP status
+- **macs**: MAC table or address information
+- **notification**: Slack or PagerDuty notification configurations
+- **ntp**: NTP status
+- **opta-health**: Display health of apps on the OPTA
+- **ospf**: OSPF status
+- **platform** Appliance version info
+- **sensors**: Temperature/Fan/PSU sensor status
+- **services**: System services status
+- **vlan**: VLAN status
+- **vxlan**: VXLAN data path status
 
-The commands take the form of `netq [<hostname>] show
-<network-protocol-or-service> [options]`, where the options vary
-according to the protocol or service. The commands can be restricted
-from showing the information for *all* devices to showing information
-for a selected device using the `hostname` option.
+The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. The commands can be restricted from showing the information for *all* devices to showing information for a selected device using the `hostname` option.
 
-This example shows the standard and restricted output for the `netq show
-agents` command.
+This example shows the standard and restricted output for the  `netq show agents` command.
 
 ```
 cumulus@switch:~$ netq show agents
@@ -331,18 +299,13 @@ The `netq config` and `netq notification` commands enable the network administra
 
 #### NetQ Agent Configuration
 
-The agent commands enable the network administrator to configure
-individual NetQ Agents. Refer to [Cumulus NetQ Components](../../Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components) for a description of NetQ Agents, to [Manage NetQ Agents](../Manage-NetQ-Agents), or to [Install NetQ Agents and CLI on Switches](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches/) for more detailed usage examples.
+The agent commands enable the network administrator to configure individual NetQ Agents. Refer to [Cumulus NetQ Components](../../Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components) for a description of NetQ Agents, to [Manage NetQ Agents](../Manage-NetQ-Agents), or to [Install NetQ Agents and CLI on Switches](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches/) for more detailed usage examples.
 
-The agent configuration commands enable you to add and remove agents
-from switches and hosts, start and stop agent operations, add and remove
-Kubernetes container monitoring, add or remove sensors, debug the agent,
-and add or remove FRR (FRRouting).
+The agent configuration commands enable you to add and remove agents from switches and hosts, start and stop agent operations, add and remove Kubernetes container monitoring, add or remove sensors, debug the agent, and add or remove FRR (FRRouting).
 
 {{%notice note%}}
 
-Commands apply to one agent at a time, and are run from the switch or host where
-the NetQ Agent resides.
+Commands apply to one agent at a time, and are run from the switch or host where the NetQ Agent resides.
 
 {{%/notice%}}
 
@@ -375,18 +338,14 @@ This example shows how to view the NetQ Agent configuration.
 
 {{%notice note%}}
 
-After making configuration changes to your agents, you must restart the
-agent for the changes to take effect. Use the `netq config restart
-agent` command.
+After making configuration changes to your agents, you must restart the agent for the changes to take effect. Use the `netq config restart agent` command.
 
 {{%/notice%}}
 
 #### CLI Configuration
 
 The CLI commands enable the network administrator to configure and
-manage the CLI component. These commands enable you to add or remove CLI
-(essentially enabling/disabling the service), start and restart it, and
-view the configuration of the service.
+manage the CLI component. These commands enable you to add or remove CLI (essentially enabling/disabling the service), start and restart it, and view the configuration of the service.
 
 {{%notice note%}}
 
@@ -511,147 +470,3 @@ The trace command syntax is:
               bond1.1001 -- swp7 <vlan1001> Leaf01 vni: 34 swp5 -- swp3 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
                                                            swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
                                                            swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-
-## Command Changes
-
-A number of commands have changed in this release to accommodate the
-addition of new keywords and options or to simplify their syntax.
-Additionally, new commands have been added and others have been removed.
-A summary of those changes is provided here.
-
-### New Commands
-
-The following table summarizes the new commands available with this
-release.
-
-<table>
-<colgroup>
-<col style="width: 42.5%" />
-<col style="width: 42.5%" />
-<col style="width: 15%" />
-</colgroup>
-<tbody>
-<tr>
-  <th>Command</th>
-  <th>Summary</th>
-  <th>Version</th>
-</tr>
-<tr>
-  <td>netq [&lt;hostname&gt;] show cl-btrfs-info [around &lt;text-time&gt;] [json]</td>
-  <td>Displays status about disk utilization on all devices with BTRFS and Cumulus Linux 3.x installed.</td>
-  <td>2.3.1</td>
-</tr>
-<tr>
-  <td>netq [&lt;hostname&gt;] show cl-pkg-info [&lt;text-package-name&gt;] [around &lt;text-time&gt;] [json]</td>
-  <td>Displays version information for all software packages installed on a device.</td>
-  <td>2.3.1</td>
-</tr>
-<tr>
-  <td>netq [&lt;hostname&gt;] show cl-ssd-util [around &lt;text-time&gt;] [json]</td>
-  <td>Displays status for 3ME3 solid state drive (SSD) utilization on all devices.</td>
-  <td>2.3.1</td>
-</tr>
-<tr>
-  <td>netq [&lt;hostname&gt;] show mac-history &lt;mac&gt; [vlan &lt;1-4096&gt;] [diff] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [listby &lt;text-list-by&gt;] [json]</td>
-  <td>Displays where a MAC address has resided in the network, or when the <em>diff</em> option is applied,  the difference between two points in time. The <em>listby</em> option lets you determine how the output data is displayed.</td>
-  <td>2.3.1</td>
-</tr>
-<tr>
-  <td>netq check cl-version [match-version &lt;cl-ver&gt; | min-version &lt;cl-ver&gt;] [include &lt;version-number-range-list&gt; | exclude &lt;version-number-range-list&gt;] [around &lt;text-time&gt;] [json | summary]</td>
-  <td>When no options are used, validates that the Cumulus Linux version running on all of the monitored nodes is consistent. When <em>min-version</em> is provided, validates CL version is equal or greater than specified version. When <em>match-version</em> is provided, validates all nodes are using specified version.</td>
-  <td>2.3.0</td>
-</tr>
-<tr>
-  <td>netq [&lt;hostname&gt;] show interface-utils [&lt;text-port&gt;] [tx|rx] [around &lt;text-time&gt;] [json]</td>
-  <td>Similar to <code>netq show interface-stats</code>, this command displays NetQ server or appliance interface receive and transmit statistics, but it also shows utilization and port speed.</td>
-  <td>2.3.0</td>
-</tr>
-<tr>
-  <td>netq show platform [json]</td>
-  <td>Displays the NetQ software version installed on your NetQ server or appliance and how long it has been up. Note change to command in 2.3.1.</td>
-  <td>2.3.0</td>
-</tr>
-</tbody>
-</table>
-
-### Modified Commands
-
-The following table summarizes the commands that have been changed with
-this release.
-
-<table>
- <colgroup>
-  <col style="width: 30%" />
-  <col style="width: 30%" />
-  <col style="width: 30%" />
-  <col style="width: 10%" />
- </colgroup>
- <thead>
- <tr class="header">
- <th>Updated Command</th>
- <th>Old Command</th>
- <th>What Changed</th>
- <th>Version</th>
- </tr>
- </thead>
- <tbody>
-  <tr>
-    <td><p>netq install opta interface &lt;text-opta-ifname&gt; tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;) config-key &lt;text-opta-key&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;] [file &lt;text-config-file&gt;] [force]</p></td>
-    <td>netq install opta interface &lt;text-opta-ifname&gt; tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;) config-key &lt;text-opta-key&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;] [file &lt;text-config-file&gt;] [force]</td>
-    <td>Added the <em>proxy-host</em> option that lets you communicate through a proxy server versus directly with the NetQ server or appliance.</td>
-    <td>2.3.1</td>
-  </tr>
-  <tr>
-    <td><p>netq upgrade opta tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;) [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;]</p></td>
-    <td>netq upgrade opta tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;)</td>
-    <td>Added the <em>proxy-host</em> option that lets you communicate through a proxy server versus directly with the NetQ server or appliance.</td>
-    <td>2.3.1</td>
-  </tr>
-  <tr>
-  <td>netq show opta-platform [json]</td>
-  <td>netq show platform [json]</td>
-  <td>Modified the keyword name from <em>platform</em> to <em>opta-platform</em>.</td>
-  <td>2.3.1</td>
-</tr>
-  <tr>
-    <td><p>netq [&lt;hostname&gt;] show events [level info | level error | level warning | level critical | level debug] [type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type lnv | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]</p></td>
-    <td>netq [&lt;hostname&gt;] show events [level info | level error | level warning | level critical | level debug] [type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type lnv | type macs | type services | type lldp | type license | type os | type sensors] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [json]</td>
-    <td>Added the <em>cl-btrfs-info</em> type option to view events related to BTRFS disk utilization.</td>
-    <td>2.3.1</td>
-  </tr>
-  <tr>
-    <td><p>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; premises &lt;text-premises-name&gt; | cli-keys-file &lt;text-key-file&gt; premises &lt;text-premises-name&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;]</p>
-    <p>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;]</p></td>
-    <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [premise &lt;text-premise-name&gt;] [port &lt;text-gateway-port&gt;] [vrf &lt;text-vrf-name&gt;]</td>
-    <td>Adds the CLI daemon to the switch or host where this command is run. Split command into two: the first for when you want to specify the premises, the second for when you want to use the first premises in your list of premises. The <em>access-key</em>, <em>secret-key</em>, and <em>port</em> are required for cloud deployments. The <em>text-gateway-dest</em> is the only required value for on-premises deployments.</td>
-    <td>2.3.0</td>
-  </tr>
-</tbody>
-</table>
-
-### Deprecated Commands
-
-The following table summarizes the commands that have been removed and a
-recommended alternative, if appropriate.
-
-<table>
- <colgroup>
-  <col style="width: 45%" />
-  <col style="width: 45%" />
-  <col style="width: 10%" />
- </colgroup>
- <thead>
- <tr class="header">
- <th>Command</th>
- <th>Alternate Command</th>
- <th>Version</th>
- </tr>
- </thead>
- <tbody>
-  <tr>
-    <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; | cli-keys-file &lt;text-key-file&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;]</td>
-    <td>netq config add cli server &lt;text-gateway-dest&gt; [access-key &lt;text-access-key&gt; secret-key &lt;text-secret-key&gt; premises &lt;text-premises-name&gt; | cli-keys-file &lt;text-key-file&gt; premises &lt;text-premises-name&gt;] [vrf &lt;text-vrf-name&gt;] [port &lt;text-gateway-port&gt;] </td>
-    <td>2.3.1 </td>
-  </tr>
-  </body>
-  </table>

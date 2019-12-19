@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321612
 pageID: 12321612
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
@@ -719,6 +719,21 @@ To view the results:
 
     {{< figure src="/images/netq/od-valid-result-bgp-fullscr.png" width="700" >}}
 
+9. Double-click in a given result row to open details about the validation.
+
+    From this view you can:
+    - See a summary of the validation results by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-2.svg", width="14", height="14"/> in the banner under the title. Toggle the arrow to close the summary.
+
+        {{< figure src="/images/netq/od-valid-result-bgp-details-summary-fullscr.png" width="300" >}}
+
+    - See detailed results of each test run to validate the protocol or service. When errors or warnings are present, the nodes and relevant detail is provided.
+
+        {{< figure src="/images/netq/od-valid-result-bgp-tests-fullscr.png" width="700" >}}
+    
+    - Export the data by clicking **Export**.
+
+    - Return to the validation jobs list by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", width="14", height="14"/>.
+
     You may find that comparing various results gives you a clue as to
     why certain devices are experiencing more warnings or failures. For
     example, more failures occurred between certain times or on a
@@ -1100,5 +1115,23 @@ To view the results:
 15. Look for changes and patterns in the results. Scroll to the right.
     Are there more failed sessions or nodes during one or more
     validations?
-16. Return to the full screen Validation Results card to view another
-    Scheduled Validation Result.
+
+16. Double-click in a given result row to open details about the validation.
+
+    From this view you can:
+    - See a summary of the validation results by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-2.svg", width="14", height="14"/> in the banner under the title. Toggle the arrow to close the summary.
+
+        {{< figure src="/images/netq/od-valid-result-bgp-details-summary-fullscr.png" width="300" >}}
+
+    - See detailed results of each test run to validate the protocol or service. When errors or warnings are present, the nodes and relevant detail is provided.
+
+        {{< figure src="/images/netq/od-valid-result-bgp-tests-fullscr.png" width="700" >}}
+    
+    - Export the data by clicking **Export**.
+
+    - Return to the validation jobs list by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", width="14", height="14"/>.
+
+    You may find that comparing various results gives you a clue as to
+    why certain devices are experiencing more warnings or failures. For
+    example, more failures occurred between certain times or on a
+    particular device.

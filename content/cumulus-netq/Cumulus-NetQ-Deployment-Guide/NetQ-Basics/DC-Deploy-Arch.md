@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 403
 pageID: 12320801
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---

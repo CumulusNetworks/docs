@@ -1,16 +1,18 @@
 ---
 title: Install NetQ Software on Your Server
 author: Cumulus Networks
-weight: 409
+weight: 416
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
 pageID: 12320951
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+draft: true
 ---
+TO BE REMOVED
 
 The installation instructions in this topic describe how to install the Cumulus NetQ software onto your server for either an on-premises or in-cloud deployment. There are three key steps:
 
@@ -36,42 +38,12 @@ and have it run properly.
 
 The NetQ software requires a server with the following:
 
-<table>
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 30%" />
-<col style="width: 40%" />
-</colgroup>
-<thead>
-<tr>
-<th>Hardware Component</th>
-<th>Minimum Cloud Requirement</th>
-<th>Minimum On-premises Requirement</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Processor</td>
-<td>Four (4) virtual CPUs</td>
-<td>Eight (8) virtual CPUs</td>
-</tr>
-<tr>
-<td>Memory</td>
-<td>8 GB RAM</td>
-<td>64 GB RAM</td>
-</tr>
-<tr>
-<td>Local disk storage</td>
-<td>32 GB <br>(SSD not required)</td>
-<td>256 GB SSD <br>(<strong>Note</strong>: <em>This must be an SSD</em>; use of other storage options can lead to system instability and are not supported.)</td>
-</tr>
-<tr>
-<td>Network interface speed</td>
-<td>1 Gb NIC</td>
-<td>1 Gb NIC</td>
-</tr>
-</tbody>
-</table>
+| Hardware Component | Minimum On-site Requirement | Minimum Cloud Requirement |
+| ---- | ---- | ---- |
+| Processor | Eight (8) virtual CPUs | Four (4) virtual CPUs |
+| Memory  | 64 GB RAM  | 8 GB RAM |
+| Local disk storage | 256 GB SSD (**Note**: This *must* be an SSD; use of other storage options can lead to system instability and are not supported.) | 32 GB (SSD not required) |
+| Network interface speed | 1 Gb NIC | 1 Gb NIC |
 
 You must also open the following ports on your hardware to use the NetQ
 software:
@@ -107,10 +79,6 @@ systems:
 
 The NetQ CLI, UI, and RESTful API are supported on NetQ 2.1.0 and later.
 NetQ 1.4 and earlier applications are not supported in NetQ 2.x.
-
-{{%notice note%}}
-The UI is supported on Google Chrome. Other popular browsers may be used, but have not been tested and may have some presentation issues.
-{{%/notice%}}
 
 ### Install Workflow
 

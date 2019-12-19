@@ -6,7 +6,7 @@ aliases:
  - /display/NETQ/Integrate+with+Third-party+Software+and+Hardware
  - /pages/viewpage.action?pageId=12320911
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
@@ -18,16 +18,16 @@ offers. This topic describes how to integrate NetQ with an event notification ap
 
 To take advantage of the numerous event messages generated and processed
 by NetQ, you must integrate with third-party event notification
-applications. You can integrate NetQ with the PagerDuty and Slack tools.
-You may integrate with one or both of these applications.
+applications. You can integrate NetQ with Syslog, PagerDuty and Slack tools.
+You may integrate with one or more of these applications simultaneously.
 
 Each network protocol and service in the NetQ Platform receives the raw
 data stream from the NetQ Agents, processes the data and delivers events
 to the Notification function. Notification then stores, filters and
 sends messages to any configured notification applications. Filters are
-based on rules you create. You must have at least one rule per filter.
+based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold.
 
-{{<figure src="/images/netq/event-notif-arch.png">}}
+{{<figure src="/images/netq/event-notif-arch-222.png">}}
 
 {{%notice note%}}
 
@@ -42,73 +42,50 @@ NetQ with the proxy information.
 In either case, notifications are generated for the following types of
 events:
 
-  - Network Protocols
-      - BGP status and session state
-      - CLAG (MLAG) status and session state
-      - EVPN status and session state
-      - LLDP status
-      - LNV status and session state \*
-      - OSFP status and session state 
-      - VLAN status and session state \*
-      - VXLAN status and session state \*
-  - Interfaces
-      - Link status
-      - Ports and cables status
-  - Services status
-      - NetQ Agent status
-      - PTM
-      - SSH \*
-      - NTP status \*
-  - Trace status
-  - Sensors
-      - Fan status
-      - PSU (power supply unit) status
-      - Temperature status
-  - System
-      - Configuration File changes
-      - Cumulus Linux License status
-      - Cumulus Linux Support status
+| Category | Events |
+| --- | --- | 
+| Network Protocols | <ul><li>BGP status and session state</li><li>CLAG (MLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>LNV status and session state \*\*</li><li>OSPF status and session state </li><li>VLAN status and session state \*</li><li>VXLAN status and session state \*</li></ul> |
+| Interfaces | <ul><li>Link status</li><li>Ports and cables status</li><li>MTU status</li></ul> |
+| Services | <ul><li>NetQ Agent status</li><li>PTM</li><li>SSH \*</li><li>NTP status \*</li></ul> |
+| Traces | <ul><li>On-demand trace status</li><li>Scheduled trace status</li></ul> |
+| Sensors | <ul><li>Fan status</li><li>PSU (power supply unit) status</li><li>Temperature status</li></ul> |
+| System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux License status</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li></ul> |
+| System Hardware | <ul><li>Physical resources status</li><li>BTRFS status</li><li>SSD utilization status</li><li>Threshold Crossing Alerts (TCAs)</li></ul> |
 
 *\* This type of event can only be viewed in the CLI with this release.*
+
+**\* This type of event is only visible when enabled in the CLI.*
+
+Refer to the [Events Reference](../../Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Events/#events-reference) for descriptions and examples of these events.
 
 ### Event Message Format
 
 Messages have the following structure:
 `<message-type><timestamp><opid><hostname><severity><message>`
 
-| Element      | Description                                                                                                                      |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| message type | Category of event; *bgp*, *clag*, *configdiff*, *evpn*, *link*, *lldp*, *lnv*, *node*, *ntp*, *ospf*, *port*, *sensor*, *services*, *trace*, *vlan* or *vxlan* |
-| timestamp    | Date and time event occurred                                                                                                     |
-| opid         | Identifier of the service or process that generated the event                                                                    |
-| hostname     | Hostname of network device where event occurred                                                                                  |
-| severity     | Severity level in which the given event is classified; *debug*, *error*, *info*, *warning,* or *critical*                        |
-| message      | Text description of event                                                                                                        |
+| Element  | Description  |
+| ----------- | -------------- |
+| message type | Category of event; *agent*, *bgp*, *clag*, *clsupport*, *configdiff*, *evpn*, *license*, *link*, *lldp*, *lnv*, *mtu*, *node*, *ntp*, *ospf*, *packageinfo*, *ptm*, *resource*, *runningconfigdiff*, *sensor*, *services*, *ssdutil*, *tca*, *trace*, *version*, *vlan* or *vxlan* |
+| timestamp    | Date and time event occurred  |
+| opid         | Identifier of the service or process that generated the event |
+| hostname     | Hostname of network device where event occurred |
+| severity     | Severity level in which the given event is classified; *debug*, *error*, *info*, *warning,* or *critical* |
+| message      | Text description of event  |
 
 For example:
 
 {{<figure src="/images/netq/event-msg-format.png">}}
 
-To set up the integrations, you must configure NetQ with at least one
-channel. Optionally, you can define rules and filters to refine what
-messages you want to view and where to send them. You can also configure
-a proxy server to receive, process, and forward the messages. This is
-accomplished using the NetQ CLI in the following order:
+To set up the integrations, you must configure NetQ with at least one channel, one rule, and one filter. To refine what messages you want to view and where to send them, you can add additional rules and filters and set thresholds on supported event types. You can also configure a proxy server to receive, process, and forward the messages. This is accomplished using the NetQ CLI in the following order:
 
 {{<figure src="/images/netq/notif-config-wkflow.png">}}
 
 ### Notification Commands Overview
 
-The NetQ Command Line Interface (CLI) is used to filter and send
-notifications to third-party tools based on severity, service,
-event-type, and device. You can use TAB completion or the `help` option
-to assist when needed. The command syntax is:
+The NetQ Command Line Interface (CLI) is used to filter and send notifications to third-party tools based on severity, service, event-type, and device. You can use TAB completion or the `help` option to assist when needed.
 
-    ##Proxy
-    netq add notification proxy <text-proxy-hostname> [port <text-proxy-port>]
-    netq show notification proxy
-    netq del notification proxy
-     
+The command syntax for standard events is:
+
     ##Channels
     netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
     netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
@@ -123,7 +100,25 @@ to assist when needed. The command syntax is:
     netq del notification rule <text-rule-name-anchor>
     netq show notification [channel|filter|rule] [json]
 
-The options are described in the following sections where they are used.
+The command syntax for events with user-configurable thresholds is:
+
+    ##Rules
+    netq add tca event_id <event-name> scope <regex-filter> [severity <critical|info>] threshold <value>
+
+    ##Management
+    netq add tca tca_id <tca-rule-name> is_active <true|false>
+    netq add tca tca_id <tca-rule-name> channel drop <channel-name>
+    netq del tca tca_id <tca-rule-name>
+    netq show tca [tca_id <tca-rule-name>]
+
+The command syntax for a server proxy is:
+
+    ##Proxy
+    netq add notification proxy <text-proxy-hostname> [port <text-proxy-port>]
+    netq show notification proxy
+    netq del notification proxy
+
+The various command options are described in the following sections where they are used.
 
 ## Configure Basic NetQ Event Notification
 
@@ -2919,11 +2914,9 @@ For example:
         "truncatedResult":false
     }
 
-## Manage Event Notification Integrations
+## Manage NetQ Event Notification Integrations
 
-You might need to modify event
-notification configurations at some point in the lifecycle of your
-deployment. Optionally, you might want to configure a proxy.
+You might need to modify event notification configurations at some point in the lifecycle of your deployment.
 
 ### Remove an Event Notification Channel
 
@@ -2978,3 +2971,245 @@ removed:
                                                                  04
                                                                  overTemp
 
+## Configure Threshold-based Event Notifications
+
+The simplest configuration you can create is one that sends a TCA event generated by all devices and all interfaces to a single notification application. 
+
+### Supported Events
+
+The following events are supported:
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_CPU_UTILIZATION_UPPER | CPU utilization (%) greater than maximum threshold |
+| TCA_DISK_UTILIZATION_UPPER  |  Disk utilization (%) greater than maximum threshold |
+| TCA_MEMORY_UTILIZATION_UPPER  |  Memory utilization (%) greater than maximum threshold |
+| TCA_RXBROADCAST_UPPER  |  rx_broadcast bytes per second greater than maximum threshold |
+| TCA_RXBYTES_UPPER |  rx_bytes per second greater than maximum threshold |
+| TCA_RXMULTICAST_UPPER |  rx_multicast per second greater than maximum threshold |
+| TCA_SENSOR_FAN_UPPER  |  Switch sensor reported fan speed greater than maximum threshold |
+| TCA_SENSOR_POWER_UPPER|  Switch sensor reported power (Watts) greater than maximum threshold |
+| TCA_SENSOR_TEMPERATURE_UPPER  |  Switch sensor reported temperature (&deg;C) greater than maximum threshold |
+| TCA_SENSOR_VOLTAGE_UPPER  |  Switch sensor reported voltage (Volts) greater than maximum threshold |
+| TCA_TXBROADCAST_UPPER |  tx_broadcast bytes per second greater than maximum threshold |
+| TCA_TXBYTES_UPPER     |  tx_bytes per second greater than maximum threshold |
+| TCA_TXMULTICAST_UPPER |  tx_multicast bytes per second greater than maximum threshold |
+
+A notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  Note: If a rule is not associated with a channel, the event information is only reachable from the database. If you want to deliver events to one or more notification channels (syslog, Slack, or PagerDuty), create them by following the instructions in [Create Your Channel](#create-your-channel), and then return here to define your rule.
+
+### Define a Scope
+
+A scope is used to filter the events generated by a given rule. Scope values are set on a per TCA rule basis. Scope parameters must be entered in the order defined.
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_CPU_UTILIZATION_UPPER | Hostname |
+| TCA_DISK_UTILIZATION_UPPER  |  Hostname |
+| TCA_MEMORY_UTILIZATION_UPPER  |  Hostname |
+| TCA_RXBROADCAST_UPPER  |  Hostname, Interface |
+| TCA_RXBYTES_UPPER |  Hostname, Interface |
+| TCA_RXMULTICAST_UPPER |  Hostname, Interface |
+| TCA_SENSOR_FAN_UPPER  |  Hostname, Sensor Name |
+| TCA_SENSOR_POWER_UPPER|  Hostname, Sensor Name |
+| TCA_SENSOR_TEMPERATURE_UPPER  |  Hostname, Sensor Name |
+| TCA_SENSOR_VOLTAGE_UPPER  |  Hostname, Sensor Name |
+| TCA_TXBROADCAST_UPPER |  Hostname, Interface |
+| TCA_TXBYTES_UPPER  |  Hostname, Interface |
+| TCA_TXMULTICAST_UPPER |  Hostname, Interface |
+
+Scopes are defined with regular expressions, as follows. When two paramaters are used,they are separated by a comma, but no space. 
+
+| Parameters | Scope Value | Example | Result |
+| -------------- | --------------- | ---------- | -------- |
+| Hostname | \<hostname> | leaf01 | Deliver events for the specified device |
+| Hostname | \<partial-hostname>\* | leaf\* | Deliver events for devices with hostnames starting with specified text (*leaf*) |
+| Hostname | \* | \* | Deliver events for all devices |
+| Hostname, Interface | \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
+| Hostname, Interface | \<hostname>,\* | leaf01,\* | Deliver events for all interfaces on the specified device (*leaf01*) |
+| Hostname, Interface | \*,\<interface> | \*,swp9 | Deliver events for the specified interface (*swp9*) on all devices |
+| Hostname and Interface | \*,\* | \*,\* | Deliver events for all devices and all interfaces |
+| Hostname, Interface | \<partial-hostname>\*,\<interface> | leaf*,swp9 | Deliver events for the specified interface (*swp9*) on all devices with hostnames starting with the specified text (*leaf*) |
+| Hostname, Interface | \<hostname>,\<partial-interface>\* | leaf01,swp* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
+| Hostname, Sensor Name | \<hostname>,\<sensorname> | leaf01,fan1 | Deliver events for the specified sensor (*fan1*) on the specified device (*leaf01*) |
+| Hostname, Sensor Name | \*,\<sensorname> | \*,fan1 | Deliver events for the specified sensor (*fan1*) for all devices |
+| Hostname, Sensor Name |  \<hostname>,\* | leaf01,* | Deliver events for all sensors on the specified device (*leaf01*) |
+| Hostname, Sensor Name | \<partial-hostname>\*,\<interface> | leaf*,fan1 | Deliver events for the specified sensor (*fan1*) on all devices with hostnames starting with the specified text (*leaf*) |
+| Hostname, Sensor Name | \<hostname>,\<partial-sensorname>\* | leaf01,fan* | Deliver events for all sensors with names starting with the specified text (*fan*) on the specified device (*leaf01*) |
+| Hostname, Sensor Name | \*,\* | \*,\* | Deliver events for all sensors on all devices |
+
+### Create a TCA Rule
+
+Now that you know which events are supported and how to set the scope, you can create a basic rule to deliver one of the TCA events to a notification channel using the `netq add tca` command. Note that the event ID is case sensitive and must be in all caps.
+
+For example, this rule tells NetQ to deliver an event notification to the *tca_slack_ifstats*  pre-configured Slack channel when the CPU utilization exceeds 95% of its capacity on any monitored switch:
+
+```
+netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope * channel tca_slack_resources threshold 95
+```
+
+This rule tells NetQ to deliver an event notification to the *tca_pd_ifstats* PagerDuty channel when the number of transmit bytes on a the *leaf12* switch exceeds 20,000 Bytes on any interface:
+
+```
+netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,* channel tca_pd_ifstats threshold 20000
+```
+
+This rule tells NetQ to deliver an event notification to the *syslog-netq* syslog channel when the temperature on sensor *temp1* on the *leaf12* switch exceeds 32 degrees Celcius:
+
+```
+netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 channel syslog-netq threshold 32
+```
+
+For a Slack channel, the event messages should be similar to this:
+
+{{<figure src="/images/netq/tca-events-slack-example-240.png" width="500">}}
+
+### Set the Severity of a Threshold-based Event
+
+In addition to defining a scope for TCA rule, you can also set a severity of either info or critical. To add a severity to a rule, use the `severity` option. 
+
+For example, if you want add a critical severity to the CPU utilization rule you created earlier:
+
+```
+netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope * severity critical channel tca_slack_resources threshold 95
+```
+
+Or if an event is important, but not critical. Set the `severity` to *info*:
+
+```
+netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,* severity info channel tca_pd_ifstats threshold 20000
+```
+
+### Create Multiple Rules for a TCA Event
+
+You are likely to want more than one rule around a particular event. For example, you might want to:
+
+- Monitor the same event but for a different interface, sensor, or device
+- Send the event notification to more than one channel
+- Change the threshold for a particular device that you are troubleshooting
+- etc.
+
+```
+netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel syslog-netq threshold 32
+
+netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel tca_sensors threshold 32
+
+netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel syslog-netq threshold 29
+```
+
+Now you have four rules created based on the TCA_SENSOR_TEMPERATURE_UPPER event. To identify the various rules, NetQ automatically generates a TCA name for each rule. As each rule is created, an *\_#* is added to the event name. The TCA Name for the first rule created is then TCA_SENSOR_TEMPERATURE_UPPER_1, the second rule created for this event is TCA_SENSOR_TEMPERATURE_UPPER_2, and so forth.
+
+### Suppress a Rule
+
+During troubleshooting you may want to suppress a rule to allow either more or fewer events to be captured, or to remove events form a particular channel. Using the `suppress_until` option allows you to prevent the rule from being applied for a designated amout of time (in seconds).
+
+For example, to suppress the disk utilization event for an hour:
+
+```
+cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 suppress_until 3600
+Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
+```
+
+### Remove a Channel from a Rule
+
+You can stop sending events to a particular channel using the `drop` option: 
+
+```
+cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 channel drop tca_slack_resources
+Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
+```
+
+## Manage Threshold-based  Event Notifications
+
+Once you have created a bunch of rules, you will want to be able to manage them; view a list of the rules, disable a rule, delete a rule, and so forth.
+
+### Show Threshold-based Event Rules
+
+You can view all TCA rules or a particular rule using the `netq show tca` command:
+
+Example 1: Display All TCA Rules
+
+```
+cumulus@switch:~$ netq show tca
+Matching config_tca records:
+TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until
+---------------------------- -------------------- -------------------------- ---------------- ------------------ ------ ------------------ ----------------------------
+TCA_CPU_UTILIZATION_UPPER_1  TCA_CPU_UTILIZATION_ {"hostname":"leaf01"}      critical         tca_slack_resource True   1                  Sun Dec  8 14:17:18 2019
+                             UPPER                                                            s
+TCA_DISK_UTILIZATION_UPPER_1 TCA_DISK_UTILIZATION {"hostname":"leaf01"}      info                                False  80                 Mon Dec  9 05:03:46 2019
+                             _UPPER
+TCA_MEMORY_UTILIZATION_UPPER TCA_MEMORY_UTILIZATI {"hostname":"leaf01"}      info             tca_slack_resource True   1                  Sun Dec  8 11:53:15 2019
+_1                           ON_UPPER                                                         s
+TCA_RXBYTES_UPPER_1          TCA_RXBYTES_UPPER    {"ifname":"swp3","hostname info             tca-tx-bytes-slack True   100                Sun Dec  8 17:22:52 2019
+                                                  ":"leaf01"}
+TCA_RXMULTICAST_UPPER_1      TCA_RXMULTICAST_UPPE {"ifname":"swp3","hostname info             tca-tx-bytes-slack True   0                  Sun Dec  8 10:43:57 2019
+                             R                    ":"leaf01"}
+TCA_SENSOR_FAN_UPPER_1       TCA_SENSOR_FAN_UPPER {"hostname":"leaf01","s_na info             tca_slack_sensors  True   0                  Sun Dec  8 12:30:14 2019
+                                                  me":"*"}
+TCA_SENSOR_TEMPERATURE_UPPER TCA_SENSOR_TEMPERATU {"hostname":"leaf01","s_na critical         tca_slack_sensors  True   10                 Sun Dec  8 14:05:24 2019
+_1                           RE_UPPER             me":"*"}
+TCA_TXBYTES_UPPER_1          TCA_TXBYTES_UPPER    {"ifname":"swp3","hostname critical         tca-tx-bytes-slack True   100                Sun Dec  8 14:19:46 2019
+                                                  ":"leaf01"}
+TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname info             tca-tx-bytes-slack True   0                  Sun Dec  8 16:40:14 2269
+                             R                    ":"leaf01"}
+```
+
+Example 2: Display a Specific TCA Rule
+
+```
+cumulus@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1
+Matching config_tca records:
+TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until
+---------------------------- -------------------- -------------------------- ---------------- ------------------ ------ ------------------ ----------------------------
+TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname info             tca-tx-bytes-slack True   0                  Sun Dec  8 16:40:14 2269
+                             R                    ":"leaf01"}
+```
+
+### Disable a TCA Rule
+
+Where the `suppress` option temporarily disables a TCA rule, you can use the `is_active` option to disable a rule indefinitely. To disable a rule, set the option to *false*. To re-enable it, set the option to *true*.
+
+```
+cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 is_active false
+Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
+```
+
+### Delete a TCA Rule
+
+If disabling a rule is not sufficient, and you want to remove a rule altogether, you can do so using the `netq del tca` command.
+
+```
+cumulus@switch:~$ netq del tca tca_id TCA_RXBYTES_UPPER_1
+Successfully deleted TCA TCA_RXBYTES_UPPER_1
+```
+
+### Resolve Scope Conflicts
+
+There may be occasions where the scope defined by the multiple rules for a given TCA event may overlap each other. In such cases, the TCA rule with the most specific scope that is still true is used to generate the event.
+
+To clarify this, consider these examples:
+
+| Scope Parameters | TCA Scope 1 | TCA Scope 2 | TCA Scope 3 | Input Event | Scope Applied |
+| --- | --- | --- | --- | --- | --- |
+| Hostname, Interface | \*,\* | leaf\*,\* | leaf01,swp1 | leaf01,swp1 | Scope 3 |
+| Hostname, Interface | \*,\* | leaf\*,\* | leaf01,swp1 | leaf01,swp3 | Scope 2 |
+| Hostname, Interface | \*,\* | leaf\*,\* | leaf01,swp1 | spine01,swp1 | Scope 1 |
+
+Where:
+
+- The TCA event matches against hostname and interface name
+- Three TCA rules have three different scopes defined
+    - Scope 1 send events for all switches and interfaces (\*,\*)
+    - Scope 2 send events for all interfaces on switches that start with *leaf* (leaf\*,\*)
+    - Scope 3 send events for the *swp1* interface on switch *leaf01* (leaf01,swp1)
+
+Three events have occurred:
+
+- One on switch *Leaf01*, interface *swp1*
+- One on switch *leaf01*, interface *swp3*
+- One on switch *spine01*, interface *swp1*.
+
+NetQ attempts to match these three events with the three rules. The result is:
+
+- For the first event, NetQ applies the scope from rule 3 because it matches exactly
+- For the second event, NetQ applies the scope from rule 2 because it does not match scope 3, but does match scope 2
+- For the third event, NetQ applies the scope from rule 1 because it does not match either scope 3 or scope 2

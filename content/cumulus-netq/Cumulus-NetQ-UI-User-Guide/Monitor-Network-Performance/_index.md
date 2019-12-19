@@ -8,7 +8,7 @@ aliases:
  - /cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network
 pageID: 12321070
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---

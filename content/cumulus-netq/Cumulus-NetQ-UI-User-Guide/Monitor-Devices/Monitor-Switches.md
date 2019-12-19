@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321794
 pageID: 12321794
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
@@ -278,10 +278,9 @@ The *Interfaces* tab displays:
 </tbody>
 </table>
 
-The full screen Switch card provides tabs for all IP addresses, all MAC
-addresses, and all interfaces.
+The full screen Switch card provides multiple tabs.
 
-{{< figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-231.png" width="700" >}}
+{{< figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-240.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -312,6 +311,101 @@ addresses, and all interfaces.
 <td><p>Number of results found for the selected tab</p></td>
 </tr>
 <tr class="odd">
+<td><p>Alarms</p></td>
+<td><p>Displays all known critical alarms for the switch. This tab provides the following additional data about each address:</p>
+<ul>
+<li><p><strong>Hostname</strong>: User-defined name of the switch</p></li>
+<li><p><strong>Message</strong>: Description of alarm</p></li>
+<li><p><strong>Message Type</strong>: Indicates the protocol or service which generated the alarm</p></li>
+<li><p><strong>Severity</strong>: Indicates the level of importance of the event; it is always critical for NetQ alarms</p></li>
+<li><p><strong>Time</strong>: Date and time the data was collected</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>All Interfaces</p></td>
+<td><p>Displays all known interfaces on the switch. This tab provides the following additional data about each interface:</p>
+<ul>
+<li><p><strong>Details</strong>: Information about the interface, such as MTU, table number, members, protocols running, VLANs</p></li>
+<li><p><strong>Hostname</strong>: Hostname of the given event</p></li>
+<li><p><strong>IfName</strong>: Name of the interface</p></li>
+<li><p><strong>Last Changed</strong>: Data and time that the interface was last enabled, updated, deleted, or changed state to down</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>State</strong>: Indicates if the interface is <em>up</em> or <em>down</em></p></li>
+<li><p><strong>Time</strong>: Date and time the data was collected</p></li>
+<li><p><strong>Type</strong>: Kind of interface; for example, VRF, switch port, loopback, ethernet</p></li>
+<li><p><strong>VRF</strong>: Name of the associated virtual route forwarding (VRF) interface if deployed</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>MAC Addresses</p></td>
+<td><p>Displays all known MAC addresses for the switch. This tab provides the following additional data about each MAC address:</p>
+<ul>
+<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
+<li><p><strong>Egress Port</strong>: Importance of the event–critical, warning, info, or debug</p></li>
+<li><p><strong>Hostname</strong>: User-defined name of the switch</p></li>
+<li><p><strong>Last Changed</strong>: Data and time that the address was last updated or deleted</p></li>
+<li><p><strong>MAC Address</strong>: MAC address of switch</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>Origin</strong>: Indicates whether this switch owns this address (true) or if another switch owns this address (false)</p></li>
+<li><p><strong>Remote</strong>: Indicates whether this address is reachable via a VXLAN on another switch (true) or is reachable locally on the switch (false)</p></li>
+<li><p><strong>Time</strong>: Date and time the data was collected</p></li>
+<li><p><strong>VLAN Id</strong>: Identifier of an associated VLAN if deployed</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>VLANs</p></td>
+<td><p>Displays all configured VLANs on the switch. This tab provides the following additional data about each VLAN:</p>
+<ul>
+<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
+<li><p><strong>Hostname</strong>: User-defined name of the switch</p></li>
+<li><p><strong>IfName</strong>: Name of the interface</p></li>
+<li><p><strong>Last Changed</strong>: Data and time that the VLAN was last updated or deleted</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>Ports</strong>: Ports used by the VLAN</p></li>
+<li><p><strong>SVI</strong>: Indicates whether is the VLAN has a switch virtual interface (yes) or not (no)</p></li>
+<li><p><strong>Time</strong>: Date and time the data was collected</p></li>
+<li><p><strong>VLANs</strong>: Name of the VLAN</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>IP Routes</p></td>
+<td><p>Displays all known IP routes for the switch. This tab provides the following additional data about each route:</p>
+<ul>
+<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
+<li><p><strong>Hostname</strong>: User-defined name of the switch</p></li>
+<li><p><strong>Is IPv6</strong>: Indicates whether the route is based on an IPv6 address (true) or an IPv4 address (false)</p></li>
+<li><p><strong>Message Type</strong>: Service type; always route</p></li>
+<li><p><strong>NextHops</strong>: List of hops in the route</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>Origin</strong>: Indicates whether the route is owned by this switch (true) or not (false)</p></li>
+<li><p><strong>Prefix</strong>: Prefix for the address</p></li>
+<li><p><strong>Priority</strong>: Indicates the importance of the route; higher priority is used before lower priority</p></li>
+<li><p><strong>Route Type</strong>: Kind of route, where the type is dependent on the protocol</p></li>
+<li><p><strong>RT Table Id</strong>: Identifier of the routing table that contains this route</p></li>
+<li><p><strong>Source</strong>: Address of source switch; *None* if this switch is the source</p></li>
+<li><p><strong>Time</strong>: Date and time the data was collected</p></li>
+<li><p><strong>VRF</strong>: Name of the virtual route forwarding (VRF) interface if used by the route</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>IP Neighbors</p></td>
+<td><p>Displays all known IP neighbors of the switch. This tab provides the following additional data about each neighbor:</p>
+<ul>
+<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
+<li><p><strong>Hostname</strong>: User-defined name of the switch</p></li>
+<li><p><strong>IfIndex</strong>: Index of the interface</p></li>
+<li><p><strong>IfName</strong>: Name of the interface</p></li>
+<li><p><strong>IP Address</strong>: IP address of the neighbor</p></li>
+<li><p><strong>Is IPv6</strong>: Indicates whether the address is an IPv6 address (true) or an IPv4 address (false)</p></li>
+<li><p><strong>Is Remote</strong>: Indicates whether this address is reachable via a VXLAN on another switch (true) or is reachable locally on the switch (false)</p></li>
+<li><p><strong>MAC Address</strong>: MAC address of neighbor</p></li>
+<li><p><strong>Message Type</strong>: Service type; always neighbor</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>Time</strong>: Date and time the data was collected</p></li>
+<li><p><strong>VRF</strong>: Name of the virtual route forwarding (VRF) interface if deployed</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
 <td><p>IP Addresses</p></td>
 <td><p>Displays all known IP addresses for the switch. This tab provides the following additional data about each address:</p>
 <ul>
@@ -322,51 +416,8 @@ addresses, and all interfaces.
 <li><p><strong>Mask</strong>: Mask for the address</p></li>
 <li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
 <li><p><strong>Prefix</strong>: Prefix for the address</p></li>
-<li><p><strong>Time</strong>: Date and time the table was generated</p></li>
+<li><p><strong>Time</strong>: Date and time the data was collected</p></li>
 <li><p><strong>VRF</strong>: Name of the virtual route forwarding (VRF) interface if deployed</p></li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><p>MAC Addresses</p></td>
-<td><p>Displays all known MAC addresses for the switch. This tab provides the following additional data about each address:</p>
-<ul>
-<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
-<li><p><strong>Egress Port</strong>: Importance of the event–critical, warning, info, or debug</p></li>
-<li><p><strong>Hostname</strong>: User-defined name of the switch</p></li>
-<li><p><strong>Last Changed</strong>: Data and time that the address was last updated or deleted</p></li>
-<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
-<li><p><strong>Origin</strong>: Indicates whether this switch owns this address (true) or if another switch owns this address (false)</p></li>
-<li><p><strong>Remote</strong>: Indicates whether this address is reachable via a VXLAN on another switch (true) or is reachable locally on the switch (false)</p></li>
-<li><p><strong>Time</strong>: Date and time the table was generated</p></li>
-<li><p><strong>VLAN Id</strong>: Identifier of an associated VLAN if deployed</p></li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td><p>All Interfaces</p></td>
-<td><p>Displays all known interfaces on the switch. This tab provides the following additional data about each interface:</p>
-<ul>
-<li><p><strong>Details</strong>: Information about the interface, such as MTU, table number, members, protocols running, VLANs</p></li>
-<li><p><strong>Hostname</strong>: Hostname of the given event</p></li>
-<li><p><strong>IfName</strong>: Name of the interface</p></li>
-<li><p><strong>Last Changed</strong>: Data and time that the interface was last enabled, updated, deleted, or changed state to down</p></li>
-<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
-<li><p><strong>State</strong>: Indicates if the interface is <em>up</em> or <em>down</em></p></li>
-<li><p><strong>Time</strong>: Date and time the table was generated</p></li>
-<li><p><strong>Type</strong>: Kind of interface; for example, VRF, switch port, loopback, ethernet</p></li>
-<li><p><strong>VRF</strong>: Name of the associated virtual route forwarding (VRF) interface if deployed</p></li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td><p>SSD Utilization</p></td>
-<td><p>Displays overall health and utilization of a 3ME3 solid state drive (SSD). This tab provides the following data about each drive:</p>
-<ul>
-<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
-<li><p><strong>Device Name</strong>: SSD model name</p></li>
-<li><p><strong>Health</strong>: Current percentage health of the drive</p></li>
-<li><p><strong>Hostname</strong>: Hostname of the device with the 3ME3 drive installed</p></li>
-<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
-<li><p><strong>PE Cycles (Average)</strong>: Average number of program-erase (PE) cycles used in a 24 hour period</p></li>
-<li><p><strong>Time</strong>: Date and time the data was generated</p></li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -384,24 +435,118 @@ addresses, and all interfaces.
 </tr>
 <tr class="odd">
 <td><p>Installed Packages</p></td>
-<td><p>Displays all known interfaces on the switch. This tab provides the following additional data about each interface:</p>
+<td><p>Displays all known interfaces on the switch. This tab provides the following additional data about each package:</p>
 <ul>
-<li><p><strong>Details</strong>: Information about the interface, such as MTU, table number, members, protocols running, VLANs</p></li>
+<li><p><strong>CL Version</strong>: Version of Cumulus Linux associated with the package</p></li>
 <li><p><strong>Hostname</strong>: Hostname of the given event</p></li>
-<li><p><strong>IfName</strong>: Name of the interface</p></li>
 <li><p><strong>Last Changed</strong>: Data and time that the interface was last enabled, updated, deleted, or changed state to down</p></li>
-<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
-<li><p><strong>State</strong>: Indicates if the interface is <em>up</em> or <em>down</em></p></li>
-<li><p><strong>Time</strong>: Date and time the table was generated</p></li>
-<li><p><strong>Type</strong>: Kind of interface; for example, VRF, switch port, loopback, ethernet</p></li>
-<li><p><strong>VRF</strong>: Name of the associated virtual route forwarding (VRF) interface if deployed</p></li>
+<li><p><strong>Package Name</strong>: Name of the package</p></li>
+<li><p><strong>Package Status</strong>: Indicates if the package is installed</p></li>
+<li><p><strong>Version</strong>: Version of the package</p></li>
 </ul></td>
 </tr>
 <tr class="even">
+<td><p>SSD Utilization</p></td>
+<td><p>Displays overall health and utilization of a 3ME3 solid state drive (SSD). This tab provides the following data about each drive:</p>
+<ul>
+<li><p><strong>Hostname</strong>: Hostname of the device with the 3ME3 drive installed</p></li>
+<li><p><strong>Last Changed</strong>: Data and time that the SSD information was updated</p></li>
+<li><p><strong>SSD Model</strong>: SSD model name</p></li>
+<li><p><strong>Total PE Cycles Supported</strong>: PE cycle rating for the drive</p></li>
+<li><p><strong>Current PE Cycles Executed</strong>: Number of PE cycle run to date</p></li>
+<li><p><strong>% Remaining PE Cycles</strong>: Number of PE cycle available before drive needs to be replaced</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>Forwarding Resources</p></td>
+<td><p>Displays usage statistics for all forwarding resources on the switch. This tab provides the following additional data about each resource:</p>
+<ul>
+<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
+<li><p><strong>ECMP Next Hops</strong>: Maximum number of hops seen in forwarding table, number used, and the percentage of this usage versus the maximum number</p></li>
+<li><p><strong>Hostname</strong>: Hostname where forwarding resources reside</p></li>
+<li><p><strong>IPv4 Host Entries</strong>: Maximum number of hosts in forwarding table, number of hosts used, and the percentage of usage versus the maximum.</p></li>
+<li><p><strong>IPv4 Route Entries</strong>: Maximum number of routes in forwarding table, number of routes used, and the percentage of usage versus the maximum.</p></li>
+<li><p><strong>IPv6 Host Entries</strong>: Maximum number of hosts in forwarding table, number of hosts used, and the percentage of usage versus the maximum.</p></li>
+<li><p><strong>IPv6 Route Entries</strong>: Maximum number of routes in forwarding table, number of routes used, and the percentage of usage versus the maximum.</p></li>
+<li><p><strong>MAC Entries</strong>: Maximum number of MAC addresses in forwarding table, number of MAC addresses used, and the percentage of usage versus the maximum.</p></li>
+<li><p><strong>MCAST Route</strong>: Maximum number of multicast routes in forwarding table, number of multicast routes used, and the percentage of usage versus the maximum.</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>Time</strong>: Date and time the data was collected</p></li>
+<li><p><strong>Total Routes</strong>: Maximum number of total routes in forwarding table, number of total routes used, and the percentage of usage versus the maximum.</p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>ACL Resources</p></td>
+<td>Displays usage statistics for all ACLs on the switch. <br>The following is diplayed for each ACL:
+<ul><li>maximum entries in the ACL</li>
+<li>number entries used</li>
+<li>percentage of this usage versus the maximum</li>
+</ul> This tab also provides the following additional data about each ACL:</p>
+<ul>
+<li><p><strong>Hostname</strong>: Hostname where the ACLs reside</p></li>
+<li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
+<li><p><strong>OpId</strong>: Process identifier; for internal use only</p></li>
+<li><p><strong>Time</strong>: Date and time the data was collected</p></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><p>What Just Happened</p></td>
+<td><p>Displays displays events based on conditions detected in the data plane on the switch. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Elements/What-Just-Happened/">What Just Happened</a> for descriptions of the fields in this table.</p></td>
+</tr>
+<tr class="even">
+<td><p>Sensors</p></td>
+<td><p>Displays all known sensors on the switch. This tab provides a table for each type of sensor. Select the sensor type using the filter above the table.</p>
+<ul>
+<li> <strong>Fan</strong>:
+<ul><li><p>DB State: Session state of the DB; for internal use only</p></li>
+<li><p>Hostname: Hostname where the fan sensor resides</p></li>
+<li><p>Message Type: Type of sensor; always Fan</p></li>
+<li><p>Description: Text identifying the sensor</p></li>
+<li><p>Speed (RPM): Revolutions per minute of the fan</p></li>
+<li><p>Max: Maximum speed of the fan measured by sensor</p></li>
+<li><p>Min: Minimum speed of the fan measured by sensor</p></li>
+<li><p>Message: Description</p></li>
+<li><p>Sensor Name: User-defined name for the fan sensor</p></li>
+<li><p>Previous State: Operational state of the fan sensor before last update</p></li>
+<li><p>State: Current operational state of the fan sensor</p></li>
+<li><p>Time: Date and time the data was collected</p></li>
+</ul>
+<li> <strong>Temperature</strong>:
+<ul><li><p>DB State: Session state of the DB; for internal use only</p></li>
+<li><p>Hostname: Hostname where the temperature sensor resides</p></li>
+<li><p>Message Type: Type of sensor; always Temp</p></li>
+<li><p>Critical: Maximum temperature (&deg;C) threshold for the sensor</p></li>
+<li><p>Description: Text identifying the sensor</p></li>
+<li><p>Lower Critical: Minimum temperature (&deg;C) threshold for the sensor</p></li>
+<li><p>Max: Maximum temperature measured by sensor</p></li>
+<li><p>Min: Minimum temperature measured by sensor</p></li>
+<li><p>Message: Description</p></li>
+<li><p>Sensor Name: User-defined name for the temperature sensor</p></li>
+<li><p>Previous State: State of the sensor before last update</p></li>
+<li><p>State: Current state of the temperature sensor</p></li>
+<li><p>Temperature: Current temperature measured at sensor</p></li>
+<li><p>Time: Date and time the data was collected</p></li>
+</ul>
+<li> <strong>Power Supply Unit (PSU)</strong>:
+<ul><li><p>DB State: Session state of the DB; for internal use only</p></li>
+<li><p>Hostname: Hostname where the temperature sensor resides</p></li>
+<li><p>Message Type: Type of sensor; always PSU</p></li>
+<li><p>PIn: Input power (W) measured by sensor</p></li>
+<li><p>POut: Output power (W) measured by sensor</p></li>
+<li><p>Sensor Name: User-defined name for the power supply unit sensor</p></li>
+<li><p>Previous State: State of the sensor before last update</p></li>
+<li><p>State: Current state of the temperature sensor</p></li>
+<li><p>Time: Date and time the data was collected</p></li>
+<li><p>VIn: Input voltage (V) measured by sensor</p></li>
+<li><p>VOut: Output voltage (V) measured by sensor</p></li>
+</ul>
+</ul></td>
+</tr>
+<tr class="odd">
 <td><p>Export</p></td>
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>

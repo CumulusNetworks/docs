@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ 2.3
+title: Cumulus NetQ
 author: Cumulus Networks
 weight: 1
 aliases:
@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12322014
 pageID: 12322014
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 subsection: true

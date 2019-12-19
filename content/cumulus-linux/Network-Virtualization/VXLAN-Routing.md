@@ -22,7 +22,6 @@ The following ASICs support VXLAN routing:
 
 - Broadcom Trident II+, Trident3, and Maverick
 - Broadcom Tomahawk and Tomahawk+, using an internal loopback on one or more switch ports
-- Broadcom Trident II, static VXLAN routing only, using an external loopback on one or more switch ports
 - Mellanox Spectrum
 
 {{%notice note%}}

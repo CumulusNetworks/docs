@@ -3,7 +3,7 @@ title: Monitor Using Topology View
 author: Cumulus Networks
 weight: 99
 product: Cumulus NetQ
-version: 2.3
+version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
@@ -17,7 +17,7 @@ To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-
 
 This opens the full screen view of your network topology.
 
-{{<figure src="/images/netq/topo-main-page-ref-topo-231.png" width="700">}}
+{{<figure src="/images/netq/topo-main-page-ref-topo-240.png" width="700">}}
 
 This document uses the Cumulus Networks [reference topology](https://docs.cumulusnetworks.com/cumulus-linux/Network-Solutions/Cumulus-Networks-Services-Demos/#reference-topology) for all examples.
 
@@ -29,10 +29,10 @@ The topology view provides a visual representation of your Linux network, showin
 
 | Symbol | Usage |
 | :----: | ----- |
-| {{<img src="/images/netq/rocket-turtle-limed-spruce.svg" width="28" height="28">}} | Switch running Cumulus Linux OS |
+| <img src="/images/netq/rocket-turtle-limed-spruce.svg" width="28" height="28"> | Switch running Cumulus Linux OS |
 | <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> | Switch running RedHat, Ubuntu, or CentOS |
 | <img src="https://icons.cumulusnetworks.com/12-Design/08-Grids-Rulers/grid-monitor.svg", height="18", width="18"/> | Host with unknown operating system |
-| {{<img src="/images/netq/cof_white-black_hex.png" width="18" height="18">}} | Host running Ubuntu |
+| <img src="/images/netq/cof_white-black_hex.png" width="18" height="18"> | Host running Ubuntu |
 | Red <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell-ring.svg", height="18", width="18"/> | Alarm (critical) event is present on the node|
 | Yellow <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg", height="18", width="18"/> | Info event is present |
 | Lines | Physical links or connections |
@@ -99,11 +99,17 @@ You can change the time period for the data as well. This enables you to view th
 
 {{<figure src="/images/netq/topo-time-picker-230.png" width="150">}}
     
+### Hide Events on Topology Diagram
+
+You can hide the event symbols on the topology diagram. Simple move the Events toggle in the header to the left. Move the toggle to the right to show them again.
+
+{{<figure src="/images/netq/topo-hide-show-events-toggle-240.png" width="200">}}
+
 ### Export Your NetQ Topology Data
 
 The topology view  provides the option to export your topology information as a JSON file. Click **Export** in the header.
 
-{{<figure src="/images/netq/topo-export-button-230.png" width="700">}}
+{{<figure src="/images/netq/topo-export-button-240.png" width="700">}}
 
 The JSON file will be similar to this example:
 

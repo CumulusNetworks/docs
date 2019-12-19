@@ -229,28 +229,40 @@ Cumulus Linux includes a simplified version of the `wd_keepalive(8)`
 daemon from the standard `watchdog` Debian package. `wd_keepalive`
 writes to a file called `/dev/watchdog` periodically to keep the switch
 from resetting, at least once per minute. Each write delays the reboot
-time by another minute. After one minute of inactivity where
-`wd_keepalive` doesn't write to `/dev/watchdog`, the switch resets
-itself. The watchdog is enabled by default on all supported switches,
+time by another minute. After one minute of inactivity where `wd_keepalive`
+doesn't write to `/dev/watchdog`, the switch resets itself.
+
+The watchdog is enabled by default on all supported switches,
 and starts when you boot the switch, before `switchd` starts.
 
-To enable the hardware watchdog, edit the
-`/etc/watchdog.d/<your_platform>` file and set `run_watchdog` to *1*:
+To disable the watchdog, disable and stop the `wd_keepalive` service:
 
-    run_watchdog=1
+    cumulus@switch:~$ sudo systemctl disable wd_keepalive; systemctl stop wd_keepalive 
 
-To disable the watchdog, edit the `/etc/watchdog.d/<your_platform>` file
-and set `run_watchdog` to *0*:
+You can modify the settings for the watchdog &mdash; like the timeout setting
+and scheduler priority &mdash; in the configuration file, `/etc/watchdog.conf`. Here
+is the default configuration file:
 
-    run_watchdog=0
+```
+cumulus@switch:~$ cat /etc/watchdog.conf 
 
-Then stop the daemon:
+watchdog-device	= /dev/watchdog
 
-    cumulus@switch:~$ sudo systemctl stop wd_keepalive.service
+# Set the hardware watchdog timeout in seconds
+watchdog-timeout = 30
 
-You can modify the settings for the watchdog — like the timeout setting
-and scheduler priority — in its configuration file,
-`/etc/watchdog.conf`.
+# Kick the hardware watchdog every 'interval' seconds
+interval = 5
+
+# Log a status message every (interval * logtick) seconds.  Requires
+# --verbose option to enable.
+logtick = 240
+
+# Run the daemon using default scheduler SCHED_OTHER with slightly
+# elevated process priority.  See man setpriority(2).
+realtime = no
+priority = -2
+```
 
 ## Known Limitations
 

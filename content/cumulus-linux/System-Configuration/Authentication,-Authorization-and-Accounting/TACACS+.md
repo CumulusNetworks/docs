@@ -80,6 +80,17 @@ By default, TACACS+ users at privilege levels other than 15 are not allowed to r
 
 {{%/notice%}}
 
+### TACACS+ Client Sequencing
+
+Due to SSH and login processing mechanisms, Cumulus Linux needs to know the following very early in the AAA sequence:
+
+- Whether the user is a valid TACACS+ user
+- The user's privilege level
+
+The only way to do this for non-local users &mdash; that is, users not present in the local password file &mdash; is to send a TACACS+ authorization request as the first communication with the TACACS+ server, prior to the authentication and before a password is requested from the user logging in.
+
+Some TACACS+ servers need special configuration to allow authorization requests prior to authentication. [Contact Cumulus Support](https://support.cumulusnetworks.com/hc/en-us/requests/new) if your TACACS+ server does not allow the initial authorization request.
+
 ## Local Fallback Authentication
 
 If a site wants to allow local fallback authentication for a user when none of the TACACS servers can be reached you can add a privileged user account as a local account on the switch.

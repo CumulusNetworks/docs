@@ -89,18 +89,12 @@ A simple process installs the NetQ Agent on a Cumulus switch.
 
 5. Validate NetQ Agent operation......
 
-## Install Only the NetQ Agent
-
-## Install Only the NetQ CLI
-
 ## Configure the NetQ CLI
 
 Two methods are available for configuring the NetQ CLI on a switch:
 
 - Edit the configuration file on the switch, or
 - Configure and run NetQ CLI commands on the switch.
-
-### Configure NetQ CLI Using a Configuration File
 
 ### Configure NetQ CLI Using the CLI
 

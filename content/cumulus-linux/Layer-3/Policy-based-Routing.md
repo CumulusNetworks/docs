@@ -591,34 +591,34 @@ The example below shows an existing configuration that has a source IP match and
 
 ```
 Seq: 6 rule: 305 Installed: 1(12) Reason: Valid
-   SRC Match: 60.60.60.60/32
-   DST Match: 88.88.88.88/32
-nexthop 6.6.6.6
+   SRC Match: 10.1.4.1/24
+   DST Match: 10.1.2.0/24
+nexthop 192.168.0.21
    Installed: 1(1) Tableid: 10011
 ```
 
 The NCLU commands for the above configuration are:
 
 ```
-net add pbr-map pbr-policy seq 6 match src-ip 60.60.60.60/32
-net add pbr-map pbr-policy seq 6 match dst-ip 88.88.88.88/32
-net add pbr-map pbr-policy seq 6 set nexthop 6.6.6.6
+net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
+net add pbr-map pbr-policy seq 6 match dst-ip 10.1.2.0/24
+net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 ```
 
 To remove the destination IP match, you must first delete all existing conditions defined under this sequence:
 
 ```
-net del pbr-map pbr-policy seq 6 match src-ip 60.60.60.60/32
-net del pbr-map pbr-policy seq 6 match dst-ip 88.88.88.88/32
-net del pbr-map pbr-policy seq 6 set nexthop 6.6.6.6
+net del pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
+net del pbr-map pbr-policy seq 6 match dst-ip 10.1.2.0/24
+net del pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 net commit
 ```
 
 Then, add back the conditions you want to keep:
 
 ```
-net add pbr-map pbr-policy seq 6 match src-ip 60.60.60.60/32
-net add pbr-map pbr-policy seq 6 set nexthop 6.6.6.6
+net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
+net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 net commit
 ```
 

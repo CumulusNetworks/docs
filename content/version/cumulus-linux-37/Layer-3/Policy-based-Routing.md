@@ -181,6 +181,143 @@ A new Linux routing table ID is used for each nexthop and nexthop group.
 
 {{%/notice%}}
 
+## Modifying Existing PBR Rules
+
+When you want to change or extend an existing PBR rule, you must first delete the conditions in the rule, then add the rule back with the modification or addition.
+
+<details>
+
+<summary> Modify an existing match/set condition </summary>
+
+The example below shows an existing configuration.
+
+```
+cumulus@switch:~$ net show pbr map
+Seq: 4 rule: 303 Installed: 1(10) Reason: Valid
+    SRC Match: 10.1.4.1/24
+    DST Match: 10.1.2.0/24
+ nexthop 192.168.0.21
+    Installed: 1(1) Tableid: 10009
+```
+
+The NCLU commands for the above configuration are:
+
+```
+cumulus@switch:~$ net add pbr-map pbr-policy seq 4 match src-ip 10.1.4.1/24
+cumulus@switch:~$ net add pbr-map pbr-policy seq 4 match dst-ip 10.1.2.0/24
+cumulus@switch:~$ net add pbr-map pbr-policy seq 4 set nexthop 192.168.0.21
+```
+
+To change the source IP match from 10.1.4.**1**/24 to 10.1.4.**2**/24, you must delete the existing sequence by explicitly specifying the match/set condition. For example:
+
+```
+cumulus@switch:~$ net del pbr-map pbr-policy seq 4 match src-ip 10.1.4.1/24
+cumulus@switch:~$ net del pbr-map pbr-policy seq 4 match dst-ip 10.1.2.0/24
+cumulus@switch:~$ net del pbr-map pbr-policy seq 4 set nexthop 192.168.0.21
+cumulus@switch:~$ net commit
+```
+
+Add the new rule with the following NCLU commands:
+
+```
+cumulus@switch:~$ net add pbr-map pbr-policy seq 4 match src-ip 10.1.4.2/24
+cumulus@switch:~$ net add pbr-map pbr-policy seq 4 match dst-ip 10.1.2.0/24
+cumulus@switch:~$ net add pbr-map pbr-policy seq 4 set nexthop 192.168.0.21
+cumulus@switch:~$ net commit
+```
+
+Run the `net show pbr map` command to verify that the rule has the updated source IP match:
+
+```
+cumulus@switch:~$ net show pbr map
+Seq: 4 rule: 303 Installed: 1(10) Reason: Valid
+     SRC Match: 10.1.4.2/24
+     DST Match: 10.1.2.0/24
+   nexthop 192.168.0.21
+     Installed: 1(1) Tableid: 10012
+```
+
+Run the `ip rule show` command to verify the entry in the kernel:
+
+```
+cumulus@switch:~$ ip rule show
+
+303:	from 10.1.4.1/24 to 10.1.4.2 iif swp16 lookup 10012
+```
+
+Run the following command to verify `switchd`:
+
+```
+cumulus@switch:~$ sudo cat /cumulus/switchd/run/iprule/show | grep 303 -A 1
+303: from 10.1.4.1/24 to 10.1.4.2 iif swp16 lookup 10012
+     [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
+```
+
+</details>
+
+<details>
+
+<summary>Add a match condition to an existing rule </summary>
+
+The example below shows an existing configuration, where only one source IP match is configured:
+
+```
+Seq: 3 rule: 302 Installed: 1(9) Reason: Valid
+	SRC Match: 10.1.4.1/24
+nexthop 192.168.0.21
+	Installed: 1(1) Tableid: 10008
+```
+
+The NCLU commands for the above configuration are:
+
+```
+net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
+net add pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
+```
+
+To add a destination IP match to the rule, you must delete the existing rule sequence:
+
+```
+net del pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
+net del pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
+net commit
+```
+
+Add back the source IP match and nexthop condition, and add the new destination IP match (dst-ip 10.1.2.0/24):
+
+```
+net add pbr-map pbr-policy seq 3 match src-ip 10.1.4.1/24
+net add pbr-map pbr-policy seq 3 match dst-ip 10.1.2.0/24
+net add pbr-map pbr-policy seq 3 set nexthop 192.168.0.21
+net commit
+```
+
+Run the `net show pbr map` command to verify the update:
+
+```
+Seq: 3 rule: 302 Installed: 1(9) Reason: Valid
+    SRC Match: 10.1.4.1/24
+    DST Match: 10.1.2.0/24
+   nexthop 192.168.0.21
+    Installed: 1(1) Tableid: 10013
+```
+
+Run the `ip rule show` command to verify the entry in the kernel:
+
+```
+302:   from 10.1.4.1/24 to 10.1.2.0 iif swp16 lookup 10013
+```
+
+Run the following command to verify `switchd`:
+
+```
+cumulus@mlx-2400-91:~$ cat /cumulus/switchd/run/iprule/show | grep 302 -A 1
+302: from 10.1.4.1/24 to 10.1.2.0 iif swp16 lookup 10013
+     [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
+```
+
+</details>
+
 ## Delete PBR Rules and Policies
 
 You can delete a PBR rule, a nexthop group, or a policy with the `net del` command. The following commands provide examples.
@@ -230,3 +367,50 @@ cumulus@switch:~$ net del interface swp3 pbr-policy map1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
+
+{{%notice note%}}
+
+If a PBR rule has multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the ones you want to keep.
+
+<details>
+
+<summary>Example configuration </summary>
+
+The example below shows an existing configuration that has a source IP match and a destination IP match.
+
+```
+Seq: 6 rule: 305 Installed: 1(12) Reason: Valid
+   SRC Match: 10.1.4.1/24
+   DST Match: 10.1.2.0/24
+nexthop 192.168.0.21
+   Installed: 1(1) Tableid: 10011
+```
+
+The NCLU commands for the above configuration are:
+
+```
+net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
+net add pbr-map pbr-policy seq 6 match dst-ip 10.1.2.0/24
+net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
+```
+
+To remove the destination IP match, you must first delete all existing conditions defined under this sequence:
+
+```
+net del pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
+net del pbr-map pbr-policy seq 6 match dst-ip 10.1.2.0/24
+net del pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
+net commit
+```
+
+Then, add back the conditions you want to keep:
+
+```
+net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
+net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
+net commit
+```
+
+</details>
+
+{{%/notice%}}

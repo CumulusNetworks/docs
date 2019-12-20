@@ -364,23 +364,6 @@ In addition, switches on the Tomahawk, Trident II, Trident II+, and Trident3 pla
 
 You can use [`cl-resource-query`](../../Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/) to determine the current table sizes on a given switch.
 
-{{%notice info%}}
-
-In a deployment with a BGP routing table that has more than 100K paths, **avoid querying the entire routing table for JSON data**. For example, do not run the `net show bgp <afi> <safi> json` command as this might cause BGP to time out. You *can* query the routing table for non-JSON data.
-
-If you need the JSON data, increase the timeout value for the BGP daemon by specifying a non-default timeout value for the FRR daemons. The default timeout is 90 seconds; base the value you specify on the size of the BGP routing table. The following example adds a timeout of 180 seconds (`-t 180`) to the `watchfrr_options` configuration in the `/etc/frr/daemons` file:
-
-```
-watchfrr_options=(-d -r /usr/lib/frr/frrbBrestartbB%s -s /usr/lib/frr/frrbBstartbB%s -k /usr/lib/frr/frrbBstopbB%s -b bB -t 180)
-```
-
-Restart the FRR service to save the configuration:
-
-```
-systemctl restart frr.service
-```
-
-{{%/notice%}}
 
 ### Forwarding Table Profiles
 

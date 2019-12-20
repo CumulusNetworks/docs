@@ -319,7 +319,7 @@ A new Linux routing table ID is used for each next hop and next hop group.
 
 ## Modifying Existing PBR Rules
 
-When you want to change or extend an existing PBR rule, you must first delete the conditions in the rule, then add the modified rule.
+When you want to change or extend an existing PBR rule, you must first delete the conditions in the rule, then add the rule back with the modification or addition.
 
 <details>
 
@@ -581,7 +581,7 @@ cumulus@switch:~$
 
 {{%notice note%}}
 
-If a PBR rule has both multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the conditions you want to keep.
+If a PBR rule has multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the ones you want to keep.
 
 <details>
 

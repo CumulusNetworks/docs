@@ -35,7 +35,7 @@ refer to the [Monitor Switches](../../Monitor-Devices/Monitor-Switches).
 
 The small Devices Inventory card displays:
 
-{{< figure src="/images/netq/inventory-devices-small-230.png" width="200" >}}
+{{< figure src="/images/netq/inventory-devices-small-240.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -60,17 +60,12 @@ The small Devices Inventory card displays:
 <tr class="odd">
 <td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg", height="18", width="18"/></p></td>
 <td><p>Total number of hosts in inventory during the designated time period</p></td>
-</tr>
-<tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-4.svg", height="18", width="18"/></p></td>
-<td><p>Total number of chassis in inventory during the designated time period. Not monitored in this release.</p></td>
-</tr>
 </tbody>
 </table>
 
 The medium Devices Inventory card displays:
 
-{{< figure src="/images/netq/inventory-devices-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/inventory-devices-medium-240.png" width="200" >}}
 
 <table>
 <colgroup>

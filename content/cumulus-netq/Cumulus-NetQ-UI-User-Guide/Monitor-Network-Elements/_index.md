@@ -185,7 +185,7 @@ The What Just Happened view displays events based on conditions detected in the 
 <li>Source IP is loopback address: Cannot read packet as source IP address is a loopback address ( ipv4 => 127.0.0.0/8 for ipv6 => ::1/128)</li>
 <li>Source IP is unspecified: Cannot read packet as source IP address is unspecified (ipv4 = 0.0.0.0/32; for ipv6 = ::0)</li>
 <li>Checksum or IP ver or IPv4 IHL too short: Cannot read packet due to header checksum error, IP version mismatch, or IPv4 header length is too short</li>
-<li>Multicast MAC mismatch: Multicast destination MAC address is not derived from the IPv4 multicast IP address</li>
+<li>Multicast MAC mismatch:  For IPv4, destination MAC address is not equal to {0x01-00-5E-0 (25 bits), DIP[22:0]} and DIP is multicast. For IPv6, destination MAC address is not equal to {0x3333, DIP[31:0]} and DIP is multicast.</li>
 <li>Source IP equals destination IP: Packet has a source IP address equal to the destination IP address</li>
 <li>IPv4 source IP is limited broadcast: Packet has broadcast source IP address</li>
 <li>IPv4 destination IP is local network (destination = 0.0.0.0/8): Packet has IPv4 destination address that is a local network (destination=0.0.0.0/8)</li>
@@ -207,7 +207,7 @@ The What Just Happened view displays events based on conditions detected in the 
 <li><p><strong>Reason</strong>: Reason why the tunnel is down</p>
 <ul><li>Overlay switch – source MAC is multicast:  Overlay packet's source MAC address is multicast</li>
 <li>Overlay switch – source MAC equals destination MAC: Overlay packet's source MAC address is the same as the destination MAC address</li>
-<li>Decapsulation error: Decapsulation error</li>
+<li>Decapsulation error: Decapsulation produced incorrect format of packet. For example, encapsulation of packet with many VLANs or IP options on the underlay can cause decapsulation to result in a short packet.</li>
 </ul></li>
 </ul></td>
 <tr class="even">

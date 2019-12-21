@@ -1039,7 +1039,8 @@ Interface descriptions also appear in the [SNMP](../../Monitoring-and-Troublesho
 
 {{%notice note%}}
 
-Aliases are limited to 256 characters.
+- Aliases are limited to 256 characters.
+- Avoid using apostrophes or non-ASCII characters in the alias string. Cumulus Linux does not parse these characters.
 
 {{%/notice%}}
 

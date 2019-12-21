@@ -189,17 +189,10 @@ the `/etc/hostname` and `/etc/hosts` files with the desired hostname.
 
 {{%notice note%}}
 
-The command prompt in the terminal does not reflect the new hostname
-until you either log out of the switch or start a new shell.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-When you use this NCLU command to set the hostname, DHCP **does not**
-override the hostname when you reboot the switch. However, if you
-disable the hostname setting with NCLU, DHCP **does** override the
-hostname the next time you reboot the switch.
+- Do not use an underscore (\_) in the hostname; underscores are not permitted.
+- Avoid using apostrophes or non-ASCII characters in the hostname. Cumulus Linux does not parse these characters.
+- The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
+- When you use the NCLU command to set the hostname, DHCP **does not** override the hostname when you reboot the switch. However, if you disable the hostname setting with NCLU, DHCP **does** override the hostname the next time you reboot the switch.
 
 {{%/notice%}}
 

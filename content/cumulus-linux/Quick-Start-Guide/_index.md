@@ -123,7 +123,8 @@ Configure the hostname and timezone for your switch. The hostname identifies the
 
 {{%notice note%}}
 
-Do not use an underscore (\_) in the hostname; underscores are not permitted.
+- Do not use an underscore (\_) in the hostname; underscores are not permitted.
+- Avoid using apostrophes or non-ASCII characters in the hostname. Cumulus Linux does not parse these characters.
 
 {{%/notice%}}
 

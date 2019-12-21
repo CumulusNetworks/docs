@@ -3027,7 +3027,7 @@ Scopes are defined with regular expressions, as follows. When two paramaters are
 | Hostname, Interface | \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
 | Hostname, Interface | \<hostname>,\* | leaf01,\* | Deliver events for all interfaces on the specified device (*leaf01*) |
 | Hostname, Interface | \*,\<interface> | \*,swp9 | Deliver events for the specified interface (*swp9*) on all devices |
-| Hostname and Interface | \*,\* | \*,\* | Deliver events for all devices and all interfaces |
+| Hostname, Interface | \*,\* | \*,\* | Deliver events for all devices and all interfaces |
 | Hostname, Interface | \<partial-hostname>\*,\<interface> | leaf*,swp9 | Deliver events for the specified interface (*swp9*) on all devices with hostnames starting with the specified text (*leaf*) |
 | Hostname, Interface | \<hostname>,\<partial-interface>\* | leaf01,swp* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
 | Hostname, Sensor Name | \<hostname>,\<sensorname> | leaf01,fan1 | Deliver events for the specified sensor (*fan1*) on the specified device (*leaf01*) |
@@ -3044,10 +3044,10 @@ Now that you know which events are supported and how to set the scope, you can c
 For example, this rule tells NetQ to deliver an event notification to the *tca_slack_ifstats*  pre-configured Slack channel when the CPU utilization exceeds 95% of its capacity on any monitored switch:
 
 ```
-netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope * channel tca_slack_resources threshold 95
+netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope * channel tca_slack_ifstats threshold 95
 ```
 
-This rule tells NetQ to deliver an event notification to the *tca_pd_ifstats* PagerDuty channel when the number of transmit bytes on a the *leaf12* switch exceeds 20,000 Bytes on any interface:
+This rule tells NetQ to deliver an event notification to the *tca_pd_ifstats* PagerDuty channel when the number of transmit bytes per second (Bps) on the *leaf12* switch exceeds 20,000 Bps on any interface:
 
 ```
 netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,* channel tca_pd_ifstats threshold 20000
@@ -3089,14 +3089,14 @@ You are likely to want more than one rule around a particular event. For example
 - etc.
 
 ```
-netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel syslog-netq threshold 32
+netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf*,temp1 channel syslog-netq threshold 32
 
-netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel tca_sensors threshold 32
+netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope *,temp1 channel tca_sensors,tca_pd_sensors threshold 32
 
 netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel syslog-netq threshold 29
 ```
 
-Now you have four rules created based on the TCA_SENSOR_TEMPERATURE_UPPER event. To identify the various rules, NetQ automatically generates a TCA name for each rule. As each rule is created, an *\_#* is added to the event name. The TCA Name for the first rule created is then TCA_SENSOR_TEMPERATURE_UPPER_1, the second rule created for this event is TCA_SENSOR_TEMPERATURE_UPPER_2, and so forth.
+Now you have four rules created (the original one, plus these three new ones) all based on the TCA_SENSOR_TEMPERATURE_UPPER event. To identify the various rules, NetQ automatically generates a TCA name for each rule. As each rule is created, an *\_#* is added to the event name. The TCA Name for the first rule created is then TCA_SENSOR_TEMPERATURE_UPPER_1, the second rule created for this event is TCA_SENSOR_TEMPERATURE_UPPER_2, and so forth.
 
 ### Suppress a Rule
 

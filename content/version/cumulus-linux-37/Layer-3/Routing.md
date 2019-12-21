@@ -177,20 +177,6 @@ In addition, switches on the Tomahawk, Trident II, Trident II+, and Trident3 pla
 
 You can use [`cl-resource-query`](../../Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/) to determine the current table sizes on a given switch. In Cumulus Linux 3.7.11 and later, you can run the NCLU command equivalent: `net show system asic`.
 
-{{%notice info%}}
-
-In a deployment with a BGP routing table that has more than 100K paths, avoid querying the entire routing table for JSON data. For example, do not issue the command `net show bgp <afi> <safi> json`, as doing so may cause BGP to time out; you can query the routing table for non-JSON data.
-
-If you need the JSON data, you can increase the timeout value for the BGP daemon, specify a non-default timeout value for the FRR daemons by adding `-t <timeout in seconds>` to the `watchfrr_options` configuration. Then, restart the FRR service with the `systemctl restart frr.service` command. For example:
-
-```
-watchfrr_options=(-d -r /usr/lib/frr/frrbBrestartbB%s -s /usr/lib/frr/frrbBstartbB%s -k /usr/lib/frr/frrbBstopbB%s -b bB -t 180)
-```
-
-The default timeout is 90 seconds; the value you specify here should be based on the size of the BGP routing table.
-
-{{%/notice%}}
-
 ### Forwarding Table Profiles
 
 Mellanox Spectrum and some Broadcom ASICs provide the ability to configure the allocation of forwarding table resources and mechanisms. Cumulus Linux provides a number of generalized profiles for the platforms described below. These profiles work only with layer 2 and layer 3 unicast forwarding.

@@ -8,6 +8,10 @@ version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
+
+The PDFs for NetQ 2.4.0 will be available soon.
+
+<!-- 
 The following Cumulus NetQ user documentation is available in PDF for offline viewing or printing:
 
 NetQ 2.4.0
@@ -22,3 +26,4 @@ NetQ 2.4.0
 Many command line examples have very wide output which can compromise readability in the above documents.
 
 {{%/notice%}}
+-->

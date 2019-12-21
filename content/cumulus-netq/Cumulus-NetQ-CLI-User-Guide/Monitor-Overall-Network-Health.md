@@ -59,7 +59,22 @@ The validation commands have been changed in this release:
 - You can view more detail about the validation tests that are run with each command
 - You can filter these tests to run only those tests of interest
 
-The following options are added to the syntax of the `netq check` commands:
+{{%notice info%}}
+If you are running scripts based on the older version of the `netq check` commands and want to stay with the old output, edit the *netq.yml* file to include `old-check: true` in the `netq-cli` section of the file. For example:
+
+```
+netq-cli:
+  port: 32708
+  server: 127.0.0.1
+  old-check: true
+```
+  
+Then run `netq config restart cli` to apply the change.
+
+If you update your scripts to work with the new version of the commands, simply change the `old-check` value to *false* or remove it. Then restart the CLI.
+{{%/notice%}}
+
+The following new syntax of the `netq check` commands is:
 
 ```
 netq check agents [around <text-time>] [json]
@@ -81,7 +96,7 @@ configuration and connectivity issues within your network in real time.
 
 A summary of the validation results is achieved by running the `netq check` commands without any options; for example, `netq check agents` or `netq check evpn`. This summary displays such data as the total number of nodes checked, how many failed a test, total number of sessions checked, how many of these that failed, and so forth.
 
-With the NetQ 2.3.0 release, you have can view more information about the individual tests that are run as part of the validation, with the exception of agents and LNV. 
+With the NetQ 2.4.0 release, you have can view more information about the individual tests that are run as part of the validation, with the exception of agents and LNV.
 
 You can run validations for a time in the past and output the results in JSON format if desired. The `around` option enables users to view the network state at an earlier time. The `around` option value requires an integer *plus* a unit of measure (UOM), with no space between them. The following are valid UOMs:
 

@@ -11,6 +11,7 @@ documents:
     folders:
 			- cumulus-netq/Cumulus-NetQ-CLI-User-Guide/
 			- cumulus-netq/Cumulus-NetQ-CLI-User-Guide/NetQ-Command-Line-Overview
+			- cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Command-Changes
 			- cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Overall-Network-Health
 			- cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Switch-Hardware-and-Software
 			- cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Physical-Layer-Components

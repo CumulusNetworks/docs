@@ -277,6 +277,19 @@ To add a scheduled validation:
 
 4.  Configure the request. Refer to [Validate Network Protocol and Service Operations](../../Monitor-Network-Performance/Validate-Network-Protocol-and-Service-Operations) for details.
 
+### Delete Scheduled Validations
+
+You can remove a scheduled validation that you created (one of the 15 allowed) at any time. You cannot remove the default scheduled validations included with NetQ.
+
+To remove a scheduled validation:
+
+1. Click **Manage** on the Scheduled Validations card.
+2. Click the **Scheduled Validations** tab.
+3. Select one or more validations that you want to delete.
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg", height="16", width="16"/> in the Edit Menu.
+
+{{<figure src="/images/netq/netq-mgmt-fullscr-sched-valid-delete-240.png" width="700">}}
+
 ### Export Scheduled Validation Configurations
 
 You can export one or more scheduled validation configurations at any

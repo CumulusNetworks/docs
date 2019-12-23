@@ -45,7 +45,7 @@ After you unbox the appliance:
 
    {{< figure src="/images/netq/netq-cloud-appl-port-connections.png" width="475" caption="NetQ Cloud Appliance connections">}}
 
-If your network runs DHCP, you can configure Cumulus NetQ and Cumulus Linux over the network. If DHCP is not enabled, then you configure the appliance using the console cable provided.
+If your network runs DHCP, you can configure Cumulus NetQ over the network. If DHCP is not enabled, then you configure the appliance using the console cable provided.
 
 ### Configure the Password, Hostname and IP Address
 
@@ -104,15 +104,13 @@ Follow the steps below based on the type of deployment and server arrangement yo
 To prepare your standalone NetQ platform for an on-premises deployment:
 
 1. Download the installer program (`netq-bootstrap-2.4.0.tgz`) and the NetQ installation tarball (`NetQ-2.4.0.tgz`) from the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page.
-    1. Select *NetQ* from the **Product** list box.
-    2. Select *2.4* from the **Version** list box, and then select
+    1. Select *NetQ* from the **Product** list.
+    2. Select *2.4* from the **Version** list, and then select
         *2.4.0* from the submenu.
-    3. Select *Bootstrap* from the **Hypervisor/Platform** list box.
-    4. Scroll down to review the images that match your selection
-        criteria, and click **Download** for the on-premises version.
-    5. Select the hypervisor you want to use (*VMware* or *KVM*) from the **Hypervisor/Platform** list box.
-    6. Scroll down to review the images that match your selection
-        criteria, and click **Download** for the standalone image.
+    3. Select *Bootstrap* from the **Hypervisor/Platform** list.
+    4. Scroll down and click **Download**.
+    5. Select *Install*  from the  **Hypervisor/Platform** list.
+    6. Scroll down and click **Download**.
 2. Copy the files to the */mnt/installables/* directory on your server.
 3. Optionally back up your NetQ data.
     This example shows how to backup NetQ 2.3.1 data. Be sure to substitute the `backup-directory` option with the full path to your local backup directory.
@@ -138,15 +136,13 @@ If this fails for any reason, you can run `netq bootstrap reset` and then try ag
 To prepare your standalone NetQ platform for a cloud deployment:
 
 1. Download the installer program (`netq-bootstrap-2.4.0.tgz`) and the NetQ installation tarball (`NetQ-2.4.0-opta.tgz`) from the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page.
-    1. Select *NetQ* from the **Product** list box.
-    2. Select *2.4* from the **Version** list box, and then select
+    1. Select *NetQ* from the **Product** list.
+    2. Select *2.4* from the **Version** list, and then select
         *2.4.0* from the submenu.
-    3. Select *Bootstrap* from the **Hypervisor/Platform** list box.
-    4. Scroll down to review the images that match your selection
-        criteria, and click **Download** for the cloud version.
-    5. Select the hypervisor you want to use (*VMware* or *KVM*) from the **Hypervisor/Platform** list box.
-    6. Scroll down to review the images that match your selection
-        criteria, and click **Download** for the standalone image.
+    3. Select *Bootstrap* from the **Hypervisor/Platform** list.
+    4. Scroll down and click **Download**.
+    5. Select *Install (Cloud)* from the **Hypervisor/Platform** list.
+    6. Scroll down and click **Download**.
 2. Copy these files to the */mnt/installables/* directory on your server.
 3. Run the installer program on your NetQ platform server.
 
@@ -166,15 +162,13 @@ If this fails for any reason, you can run `netq bootstrap reset` and then try ag
 To prepare your NetQ server cluster for an on-premises deployment:
 
 1. Download the installer program (`netq-bootstrap-2.4.0.tgz`) and the NetQ installation tarball (`NetQ-2.4.0.tgz`) from the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page.
-    1. Select *NetQ* from the **Product** list box.
-    2. Select *2.4* from the **Version** list box, and then select
+    1. Select *NetQ* from the **Product** list.
+    2. Select *2.4* from the **Version** list, and then select
         *2.4.0* from the submenu.
-    3. Select *Bootstrap* from the **Hypervisor/Platform** list box.
-    4. Scroll down to review the images that match your selection
-        criteria, and click **Download** for the on-premises version.
-    5. Select the hypervisor you want to use (*VMware* or *KVM*) from the **Hypervisor/Platform** list box.
-    6. Scroll down to review the images that match your selection
-        criteria, and click **Download** for the cluster image.
+    3. Select *Bootstrap* from the **Hypervisor/Platform** list.
+    4. Scroll down click **Download**.
+    5. Select *Install* from the **Hypervisor/Platform** list.
+    6. Scroll down and click **Download**.
 2. Copy these files to the */mnt/installables/* directory on your master and worker nodes.
 3. Optionally back up your NetQ data.
     
@@ -210,15 +204,13 @@ If either of these steps fail for any reason, you can run `netq bootstrap reset`
 To prepare your NetQ server cluster:
 
 1. Download the installer program (`netq-bootstrap-2.4.0.tgz`) and the NetQ installation tarball (`NetQ-2.4.0-opta.tgz`) from the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page.
-    1. Select *NetQ* from the **Product** list box.
-    2. Select *2.4* from the **Version** list box, and then select
+    1. Select *NetQ* from the **Product** list.
+    2. Select *2.4* from the **Version** list, and then select
         *2.4.0* from the submenu.
-    3. Select *Bootstrap* from the **Hypervisor/Platform** list box.
-    4. Scroll down to review the images that match your selection
-        criteria, and click **Download** for the cloud version.
-    5. Select the hypervisor you want to use (*VMware* or *KVM*) from the **Hypervisor/Platform** list box.
-    6. Scroll down to review the images that match your selection
-        criteria, and click **Download** for the cluster image.
+    3. Select *Bootstrap* from the **Hypervisor/Platform** list.
+    4. Scroll down and click **Download**.
+    5. Select *Install (Cloud)* from the **Hypervisor/Platform** list.
+    6. Scroll down and click **Download**.
 2. Copy these files to the */mnt/installables/* directory on your master and worker nodes.
 3. Run the installer program on your master node.
 

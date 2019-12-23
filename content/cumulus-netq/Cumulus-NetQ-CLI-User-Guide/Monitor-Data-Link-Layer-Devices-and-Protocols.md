@@ -793,3 +793,30 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
     2   mlx-2700-03 swp3s1
 --- --- ----------- --------------- --------------- --------------- ---------------
 ```
+
+## Monitor Layer 2 Drops on Mellanox Switches
+
+The *What Just Happened* (WJH) feature, available on Mellanox switches streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems.
+
+WJH is enabled by default on Mellanox switches running Cumulus Linux 4.0.0 and NetQ 2.4.0, giving you the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
+
+- View any current or historic drop information, including the reason for the drop
+- Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
+
+View layer 2 drop statistics using the `netq show wjh-drop` NetQ CLI command. The full syntax for this command is:
+
+```
+netq [<hostname>] show wjh-drop <text-drop-type>] [ingress-port <text-ingress-port>] [reason <text-reason>] [src-ip <text-src-ip>] [dst-ip <text-dst-ip>] [proto <text-proto>] [src-port <text-src-port>] [dst-port <text-dst-port>] [src-mac <text-src-mac>] [dst-mac <text-dst-mac>] [egress-port <text-egress-port>;] [traffic-class <text-traffic-class>] [rule-id-acl <text-rule-id-acl>] [between <text-time> and <text-endtime>] [around <text-time>] [json]
+```
+
+This example shows the drops seen at layer 2 across the network:
+
+```
+cumulus@mlx-2700-03:mgmt:~$ netq show wjh-drop l2
+Matching wjh records:
+Hostname          Ingress Port             Reason                                        Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            First Timestamp                Last Timestamp
+----------------- ------------------------ --------------------------------------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ------------------------------ ----------------------------
+mlx-2700-03       swp1s2                   Port loopback filter                          10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  0c:ff:ff:ff:ff:ff  Mon Dec 16 11:54:15 2019       Mon Dec 16 11:54:15 2019
+mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:53:17 2019       Mon Dec 16 11:53:17 2019
+mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 0.0.0.0          0.0.0.0          0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:40:44 2019       Mon Dec 16 11:40:44 2019
+```

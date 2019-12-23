@@ -126,3 +126,5 @@ systems:
 
 The NetQ CLI, UI, and RESTful API are supported on NetQ 2.1.0 and later.
 NetQ 1.4 and earlier applications are not supported in NetQ 2.x.
+
+The NetQ UI is accessible in both on-site and in-cloud deployments. It is supported on Google Chrome. Other popular browsers may be used, but have not been tested and might have some presentation issues.

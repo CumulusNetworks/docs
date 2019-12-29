@@ -510,16 +510,16 @@ switches using Spectrum ASICs.
     `ping` or `ip route get <ip>` to verify that the destination IP
     address is reachable. Setting the `--ttl` option is recommended.
 
-{{%notice note%}}
+{{%notice tip%}}
 
-When using [Wireshark](https://www.wireshark.org) to review the ERSPAN
-output, Wireshark may report the message "Unknown version, please report
-or test to use fake ERSPAN preference", and the trace is unreadable. To
-resolve this, go into the General preferences for Wireshark, then go to
-**Protocols** \> **ERSPAN** and check the **Force to decode fake ERSPAN
-frame** option.
+If a SPAN destination IP address is not available, or if the interface type or types prevent using a laptop as a SPAN destination, read this [knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/360040711774) for a workaround.
 
 {{%/notice%}}
+
+#### ERSPAN and Wireshark
+
+- When using [Wireshark](https://www.wireshark.org) to review the ERSPAN output, Wireshark may report the message "Unknown version, please report or test to use fake ERSPAN preference", and the trace is unreadable. To resolve this, go into the General preferences for Wireshark, then go to **Protocols** \> **ERSPAN** and check the **Force to decode fake ERSPAN frame** option.
+- To set up a [capture filter](https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html) on the destination switch that filters for a specific IP protocol, use `ip proto gre` (to filter for GRE-encapsulated traffic) or `ip proto 49` (to filter for IP protocol 49 traffic).
 
 ### Selective Spanning
 

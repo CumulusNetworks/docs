@@ -123,6 +123,12 @@ You only need to configure a number of switch ports that must be in
 internal loopback mode based on the amount of bandwidth required. No
 additional configuration is necessary.
 
+{{%notice info%}}
+
+When one or more interfaces are used as an internal hyperloop, all front panel 25G interfaces in a port group must be configured for the same speed.
+
+{{%/notice%}}
+
 To configure one or more switch ports for loopback mode, edit the
 `/etc/cumulus/ports.conf` file and change the port speed to *loopback*.
 In the example below, swp8 and swp9 are configured for loopback mode:

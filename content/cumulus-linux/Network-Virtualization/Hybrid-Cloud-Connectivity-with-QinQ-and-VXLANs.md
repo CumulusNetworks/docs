@@ -225,7 +225,7 @@ An example configuration for single tag translation in traditional bridge mode o
 <summary>Example /etc/network/interfaces File </summary>
 
 ```
-uto swp3.11
+auto swp3.11
 iface swp3.11
     vlan-protocol 802.1ad
 

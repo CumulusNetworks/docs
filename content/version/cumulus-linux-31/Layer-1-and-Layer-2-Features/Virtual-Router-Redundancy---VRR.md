@@ -37,7 +37,7 @@ complete description of the important aspects of the VRR setup.
 
 Configuring this network is fairly straightforward. First create the
 bridge subinterface, then create the secondary address for the virtual
-router. Configure each router with a bridge; edit each router’s
+router. Configure each router with a bridge; edit each router's
 `/etc/network/interfaces` file and add a configuration similar to the
 following:
 

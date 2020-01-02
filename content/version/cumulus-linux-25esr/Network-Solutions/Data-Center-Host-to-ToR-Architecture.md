@@ -45,15 +45,15 @@ iface bridge
   bridge-ports swp1 peerlink
   bridge-vids 1-2000
   bridge-stp on
- 
+ 
 auto bridge.10
 iface bridge.10
   address 10.1.10.2/24
- 
+ 
 auto peerlink
 iface peerlink
     bond-slaves glob swp49-50
- 
+ 
 auto swp1
 iface swp1
   mstpctl-portadminedge yes
@@ -61,20 +61,20 @@ iface swp1
 <p><strong>Example Host Config (Ubuntu)</strong></p>
 <pre><code>auto eth1
 iface eth1 inet manual
- 
+ 
 auto eth1.10
 iface eth1.10 inet manual
- 
+ 
 auto eth2
 iface eth1 inet manual
- 
+ 
 auto eth2.20
 iface eth2.20 inet manual
- 
+ 
 auto br-10
 iface br-10 inet manual
   bridge-ports eth1.10 vnet0
- 
+ 
 auto br-20
 iface br-20 inet manual
   bridge-ports eth2.20 vnet1</code></pre></td>
@@ -156,23 +156,23 @@ iface bridge
   bridge-ports host-01 peerlink
   bridge-vids 1-2000
   bridge-stp on
- 
+ 
 auto bridge.10
 iface bridge.10
   address 172.16.1.2/24
   address-virtual 44:38:39:00:00:10 172.16.1.1/24
- 
+ 
 auto peerlink
 iface peerlink
     bond-slaves glob swp49-50
- 
+ 
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.1.2
     clagd-enable yes
     clagd-peer-ip 169.254.1.2
     clagd-system-mac 44:38:39:FF:40:94
- 
+ 
 auto host-01
 iface host-01
   bond-slaves swp1
@@ -183,10 +183,10 @@ iface host-01
 iface bond0 inet manual
   bond-slaves eth0 eth1
   {bond-defaults removed for brevity}
- 
+ 
 auto bond0.10
 iface bond0.10 inet manual
- 
+ 
 auto vm-br10
 iface vm-br10 inet manual
   bridge-ports bond0.10 vnet0</code></pre></td>
@@ -300,14 +300,14 @@ iface eth1 inet static
 </tr>
 <tr class="even">
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p><strong>Additional Information</strong></p></td>
 </tr>
 <tr class="odd">
 <td><ul>
 <li><p>No redundancy, uses single ToR as gateway.</p></li>
 </ul></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><ul>
 <li><p><a href="https://cumulusnetworks.com/media/cumulus/pdf/technical/validated-design-guides/Big-Data-Cumulus-Linux-Validated-Design-Guide.pdf" class="external-link">Big Data validated design guide</a> uses single attached ToR</p></li>
 </ul></td>
@@ -349,7 +349,7 @@ iface eth1 inet static
 </tr>
 <tr class="even">
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p><strong>Additional Information</strong></p></td>
 </tr>
 <tr class="odd">
@@ -357,7 +357,7 @@ iface eth1 inet static
 <li><p>Equal cost route installed on server/host/hypervisor to both ToRs to load balance evenly.</p></li>
 <li><p>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but don't distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter which pair of leafs it is cabled to.</p></li>
 </ul></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><ul>
 <li><p><a href="https://cumulusnetworks.com/blog/introducing-rdnbr/" class="external-link">Cumulus Networks blog post introducing redistribute neighbor</a></p></li>
 </ul></td>
@@ -401,7 +401,7 @@ iface eth1 inet static
 </tr>
 <tr class="even">
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p><strong>Additional Information</strong></p></td>
 </tr>
 <tr class="odd">
@@ -409,7 +409,7 @@ iface eth1 inet static
 <li><p>The first hop is still the ToR, just like redistribute neighbor</p></li>
 <li><p>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</p></li>
 </ul></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><ul>
 <li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the Host: An Introduction</a></p></li>
 <li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux Quagga Package on an Ubuntu Server</a></p></li>
@@ -447,14 +447,14 @@ iface eth1 inet static
 <p><strong><strong>Caveats</strong></strong></p>
 <ul>
 <li><p>All VMs must be capable of routing</p></li>
-<li><p>Scale considerations might need to be taken into an account —<br />
+<li><p>Scale considerations might need to be taken into an account -<br />
 instead of one routing process, there are as many as there are VMs</p></li>
 <li><p>No L2 adjacency between servers without VXLAN</p></li>
 </ul></td>
 </tr>
 <tr class="even">
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p><strong>Additional Information</strong></p></td>
 </tr>
 <tr class="odd">
@@ -462,7 +462,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 <li><p>The first hop is still the ToR, just like redistribute neighbor</p></li>
 <li><p>Multiple ToRs (2+) can be used</p></li>
 </ul></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><ul>
 <li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the host: An Introduction</a></p></li>
 <li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux Quagga Package on an Ubuntu Server</a></p></li>
@@ -503,7 +503,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </tr>
 <tr class="even">
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p><strong>Additional Information</strong></p></td>
 </tr>
 <tr class="odd">
@@ -511,7 +511,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 <li><p>The gateway would be the vRouter, which has two routes out (two ToRs)</p></li>
 <li><p>Multiple vRouters could be used</p></li>
 </ul></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><ul>
 <li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the Host: An Introduction</a></p></li>
 <li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux Quagga Package on an Ubuntu Server</a></p></li>
@@ -562,16 +562,16 @@ interface swp1
 <p><strong>Example Host Config (Ubuntu)</strong></p>
 <pre><code>auto lo
 iface lo inet loopback
- 
+ 
 auto lo:1
 iface lo:1 inet static
   address 172.16.1.2/32
   up ip route add 0.0.0.0/0 nexthop via 172.16.1.1 dev eth0 onlink nexthop via 172.16.1.1 dev eth1 onlink
- 
+ 
 auto eth1
 iface eth2 inet static
   address 172.16.1.2/32
- 
+ 
 auto eth2
 iface eth2 inet static
   address 172.16.1.2/32</code></pre></td>
@@ -591,15 +591,15 @@ iface eth2 inet static
 </tr>
 <tr class="even">
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p><strong>Additional Information</strong></p></td>
 </tr>
 <tr class="odd">
 <td><ul>
 <li><p>The gateways would be the ToRs, exactly like redistribute neighbor with an equal cost route installed</p></li>
 </ul></td>
-<td><p> </p></td>
-<td><p> </p></td>
+<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 </tbody>
 </table>
@@ -632,12 +632,12 @@ iface lo inet loopback
   vxrd-src-ip 10.0.0.11
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 36.0.0.11
- 
+ 
 auto vni-10
 iface vni-10 
   vxlan-id 10 
   vxlan-local-tunnelip 10.0.0.11
- 
+ 
 auto br-10 
 iface br-10
   bridge-ports swp1 vni-10</code></pre>
@@ -649,12 +649,12 @@ iface lo inet loopback
   Vxrd-src-ip 10.0.0.12
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 36.0.0.11
- 
+ 
 auto vni-10
 iface vni-10 
   vxlan-id 10 
   vxlan-local-tunnelip 10.0.0.12
- 
+ 
 auto br-10 
 iface br-10
   bridge-ports swp1 vni-10</code></pre></td>
@@ -687,13 +687,13 @@ iface br-10
 </ul></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
-<td><p> </p></td>
+<td><p> </p></td>
+<td><p> </p></td>
 <td><p><strong>Additional Information</strong></p></td>
 </tr>
 <tr class="odd">
-<td><p> </p></td>
-<td><p> </p></td>
+<td><p> </p></td>
+<td><p> </p></td>
 <td><ul>
 <li><p><a href="/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
 </ul></td>

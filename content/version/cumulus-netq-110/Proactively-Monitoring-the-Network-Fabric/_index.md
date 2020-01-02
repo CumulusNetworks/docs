@@ -122,9 +122,9 @@ To configure PagerDuty or Slack, you need to edit the
 `/etc/cts/netq/netq.yml` configuration file.
 
     cumulus@switch:~$ sudo nano /etc/cts/netq/netq.yml
-     
+     
     ...
-     
+     
     ## a) Filter notifications to integrations (Slack or PD) based on Severity,
     ## i.e., WARNING to PD, INFO to Slack
     # notifier-integrations:
@@ -139,7 +139,7 @@ To configure PagerDuty or Slack, you need to edit the
     #   api_access_key: "<API Key>"
     #   api_integration_key: "<API Integration Key>"
     #
-     
+     
     ...
 
 You need to do some extra steps to be able to export NetQ data to
@@ -199,9 +199,9 @@ For example, to send BGP session state notifications to particular Slack
 channel, in this case, *slack-channel-BGP*, do the following:
 
     cumulus@switch:~$ sudo nano /etc/cts/netq/netq.yml
-     
+     
     ...
-     
+     
     ## e) Send BGP Session state notifications to particular slack channel
     ## (slack-channel-BGP), rest to another one (slack-channel-catchall)
     # notifier-filters:
@@ -210,8 +210,8 @@ channel, in this case, *slack-channel-BGP*, do the following:
     # type: BgpSession
     # output:
     # - slack-channel-BGP
-     
-     
+     
+     
     ...
 
 To drop notifications, set the output to None for the given rule in the
@@ -219,9 +219,9 @@ To drop notifications, set the output to None for the given rule in the
 notifications from leaf01 by configuring the following:
 
     cumulus@switch:~$ sudo nano /etc/cts/netq/netq.yml
-     
+     
     ...
-     
+     
     ## b) Drop all notifications coming from a switch/host say, leaf01
     # notifier-filters:
     # - name: leaf01 drop
@@ -233,7 +233,7 @@ notifications from leaf01 by configuring the following:
     #   rule:
     #   output:
     #     - ALL
-     
+     
     ...
 
 ### Example netq.yml File</span>
@@ -500,8 +500,8 @@ On the server running Logstash, create a file in `/etc/logstash/conf.d/`
 called `notifier_logstash.conf`, and paste in the following text, using
 the IP address and port you specified earlier:
 
-    root@ts_host:~# vi /etc/logstash/conf.d/notifier_logstash.conf
-     
+    root@ts_host:~# vi /etc/logstash/conf.d/notifier_logstash.conf
+     
     input {
         syslog {
             type => syslog
@@ -529,7 +529,7 @@ logs to Splunk. In the following example, Splunk is on a host with the
 IP address 192.168.50.30, using port 51414:
 
     # rsyslog - splunk configuration 
-    sed -i ‘/$netq_notifier_log/a if $programname == “netq-notifier” then @@192.168.50.30:51415’ /etc/rsyslog.d\
+    sed -i '/$netq_notifier_log/a if $programname == "netq-notifier " then @@192.168.50.30:51415' /etc/rsyslog.d\
     /50-netq-notifier.conf
 
 Then restart `rsyslog`:
@@ -665,7 +665,7 @@ capability regarding `netq show services`.
     <!-- end list -->
     
         cumulus@leaf01:~$ sudo vi /etc/netq/config.d/netq-agent-commands.yml 
-         
+         
         user-commands:
           - service: 'misc'
             commands:
@@ -680,7 +680,7 @@ capability regarding `netq show services`.
               - period: "60"
                 key: "config-quagga"
                 command: ["/usr/bin/vtysh", "-c", "show running-config"]
-         
+         
           - service: "web"
             commands:
               - period: "60"

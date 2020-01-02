@@ -50,7 +50,7 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t <target>][-e][-
 
 | Option<img width="200" />| Description |
 |---------------------- |--------------------------- |
-| `-h`, `–help` | Displays the help message and exits. |
+| `-h`, `-help` | Displays the help message and exits. |
 | `-a` | Prints the base MAC address for switch interfaces. |
 | `-r` | Prints the number of MACs allocated for switch interfaces. |
 | `-s` | Sets the EEPROM content if the EEPROM is writable. args can be supplied in the command line in a comma separated list of the form `<field>=<value>`. `.` `,` and `=` are illegal characters in field names and values. Fields that are not specified default to their current values. If args are supplied in the command line, they will be written without confirmation. If args is empty, the values will be prompted interactively. |

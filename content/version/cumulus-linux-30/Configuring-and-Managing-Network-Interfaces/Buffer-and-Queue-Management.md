@@ -32,7 +32,7 @@ fail to start and return an error that it cannot find the
 {{%/notice%}}
 
 Each packet is assigned to an ASIC Class of Service (CoS) value based on
-the packet’s priority value stored in the 802.1p (Class of Service) or
+the packet's priority value stored in the 802.1p (Class of Service) or
 DSCP (Differentiated Services Code Point) header field. The packet is
 assigned to a priority group based on the CoS value.
 
@@ -212,9 +212,9 @@ You can specify one of the following targets for SETQOS:
 
 | Option                | Description                                                                                                                                                 |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| –set-cos INT          | Sets the datapath resource/queuing class value. Values are defined in [IEEE\_P802.1p](http://en.wikipedia.org/wiki/IEEE_P802.1p).                           |
-| –set-dscp value       | Sets the DSCP field in packet header to a value, which can be either a decimal or hex value.                                                                |
-| –set-dscp-class class | Sets the DSCP field in the packet header to the value represented by the DiffServ class value. This class can be EF, BE or any of the CSxx or AFxx classes. |
+| -set-cos INT          | Sets the datapath resource/queuing class value. Values are defined in [IEEE\_P802.1p](http://en.wikipedia.org/wiki/IEEE_P802.1p).                           |
+| -set-dscp value       | Sets the DSCP field in packet header to a value, which can be either a decimal or hex value.                                                                |
+| -set-dscp-class class | Sets the DSCP field in the packet header to the value represented by the DiffServ class value. This class can be EF, BE or any of the CSxx or AFxx classes. |
 
 {{%notice note%}}
 

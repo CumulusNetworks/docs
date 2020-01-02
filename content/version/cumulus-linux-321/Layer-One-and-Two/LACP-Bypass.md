@@ -92,9 +92,9 @@ These commands create the following stanzas in
         bond-slaves swp51s2 swp51s3
         clag-id 1
         mstpctl-bpduguard yes
-     
+     
     ...
-     
+     
     auto bridge
     iface bridge
         bridge-ports bond1 bond2 bond3 bond4 peer5
@@ -107,12 +107,12 @@ You can check the status of the configuration by running `net show
 interface <bond>` on the bond and its slave interfaces:
 
     cumulus@switch:~$ net show interface bond1
-     
+     
        Name   MAC               Speed   MTU   Mode
     -- ------ ----------------- ------- ----- ----------
     UP bond1  44:38:39:00:00:5b 1G      1500  Bond/Trunk
-     
-     
+     
+     
     Bond Details
     ------------------ -------------------------
     Bond Mode:         LACP
@@ -122,29 +122,29 @@ interface <bond>` on the bond and its slave interfaces:
     LACP Sys Priority:
     LACP Rate:         Fast Timeout
     LACP Bypass:       LACP Bypass Not Supported
-     
-     
+     
+     
        Port       Speed     TX   RX   Err   Link Failures
     -- --------   ------- ---- ---- ----- ---------------
     UP swp51s2(P) 1G         0    0     0               0
     UP swp51s3(P) 1G         0    0     0               0
-     
-     
+     
+     
     All VLANs on L2 Port
     ----------------------
     100-105
-     
-     
+     
+     
     Untagged
     ----------
     1
-     
-     
+     
+     
     Vlans in disabled State
     -------------------------
     100-105
-     
-     
+     
+     
     LLDP
     --------   ---- ------------------
     swp51s2(P) ==== swp1(spine01)
@@ -172,7 +172,7 @@ mode](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/Tradi
     iface bond1 
         bond-slaves swp3 swp4
         bond-lacp-bypass-allow 1
-     
+     
     auto br0
     iface br0
         bridge-ports bond1 bond2 bond3 bond4 peer5

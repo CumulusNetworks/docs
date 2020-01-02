@@ -45,7 +45,7 @@ To check the status of an interface using `ethtool`:
             Transceiver: external
             Auto-negotiation: off
             Current message level: 0x00000000 (0)
-     
+     
             Link detected: yes
 
 To query interface statistics:
@@ -92,7 +92,7 @@ information:
     eth0   1500   0          611      0      0      0          487      0      0      0   BMRU
     lo    16436   0            0      0      0      0            0      0      0      0    LRU
     swp1   1500   0            0      0      0      0            0      0      0      0    BMU
-     
+     
     cumulus@switch:~$ sudo cl-netstat -c
     Cleared counters
 

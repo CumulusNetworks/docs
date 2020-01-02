@@ -107,12 +107,12 @@ below show the output for incorrect commands:
 
     cumulus@switch[~]# net add bgp router-id 1.1.1.1/32
     ERROR: Command not found
-     
+     
     Did you mean one of the following?
-     
+     
         net add bgp router-id <ipv4>
             This command is looking for an IP address, not an IP/prefixlen
-     
+     
     cumulus@switch[~]# net add bgp router-id 1.1.1.1
     cumulus@switch[~]# net add int swp10 mtu <TAB>
         <552-9216> : 
@@ -123,7 +123,7 @@ NCLU has a comprehensive help system built in to assist usage. ` ?  `and
 `help` can be used to show available commands:
 
     cumulus@switch[~]# net help
-     
+     
     Usage:
         # net <COMMAND> [<ARGS>] [help]
         #
@@ -133,36 +133,36 @@ NCLU has a comprehensive help system built in to assist usage. ` ?  `and
         # be explored by typing "?", "TAB", and "help" anytime while using net.
         #
         # Use 'man net' for a more comprehensive overview.
-     
+     
         net abort
         net commit [verbose]
         net help [verbose]
         net pending
         net show configuration [commands|files]
-     
+     
     Options:
-     
+     
         # Help commands
         help    : context sensitive information; see section below
         example : detailed examples of common workflows
-     
+     
         # Configuration commands
         add     : add/modify configuration (staged in commit buffer)
         del     : remove configuration (staged in commit buffer)
-     
+     
         # Commit buffer commands
         commit  : apply the commit buffer to the system
         pending : show changes staged in the commit buffer
         abort   : abandon changes in the commit buffer
-     
+     
         # Status commands
         show    : show command output
         clear   : clear counters, BGP neighbors, etc
-     
+     
     cumulus@switch[~]# net help bestpath
-     
+     
     The following commands contain keyword(s) 'bestpath':
-     
+     
         net (add|del) bgp bestpath as-path multipath-relax [as-set|no-as-set]
         net add debug bgp bestpath <ip/prefixlen>
         net del debug bgp bestpath [<ip/prefixlen>]
@@ -186,11 +186,11 @@ configuration setup:
         bond
         bridge
         clag
-    …
+     ...
         ospf    :  Open Shortest Path First
-     
+     
     cumulus@switch[~]# net example bridge 
-     
+     
     Scenario
     ========
     We are configuring switch1 and would like to configure the following
@@ -203,7 +203,7 @@ configuration setup:
     - assign IP 10.0.0.1/24 to the SVI for vlan 10
     - assign IP 20.0.0.1/24 to the SVI for vlan 20
     - configure swp3 as a trunk for vlans 10, 11, 12 and 20
-     
+     
                   swp3
          *switch1 --------- switch2
             /\
@@ -211,33 +211,33 @@ configuration setup:
           /    \
          /      \
      host-11   host-12
-     
-     
+     
+     
     switch1 net commands
     ====================
     - enable vlans 10-20
     switch1# net add vlan 10-20
-     
+     
     - place host-11 in vlan 10
     - place host-12 in vlan 20
     switch1# net add int swp1 bridge-access 10
     switch1# net add int swp2 bridge-access 20
-     
+     
     - create an SVI interface for vlan 10
     - create an SVI interface for vlan 20
     - assign IP 10.0.0.1/24 to the SVI for vlan 10
     - assign IP 20.0.0.1/24 to the SVI for vlan 20
     switch1# net add vlan-interface vlan10 address 10.0.0.1/24
     switch1# net add vlan-interface vlan20 address 20.0.0.1/24
-     
+     
     - configure swp3 as a trunk for vlans 10, 11, 12 and 20
     switch1# net add int swp3 bridge-trunk vlans 10-12,20
-     
+     
     # Review and commit changes
     switch1# net pending
     switch1# net commit
-     
-     
+     
+     
     Verification
     ============
     switch1# net show bridge

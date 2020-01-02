@@ -44,7 +44,7 @@ or continue deploying it:
         sensors  :  Temperature/Fan/PSU sensors
         vlan     :  VLAN
         vxlan    :  VxLAN dataplane info
-     
+     
     Commands:
     netq check (vlan|mtu) [unverified] [around <text-time>] [json]
     netq check (agents|clag|ospf|vxlan|lnv|sensors|license) [around <text-time>] [json]
@@ -98,7 +98,7 @@ expected. The agent sends a heartbeat every 30 seconds, and if 3
 consecutive heartbeats are missed, its status changes to *Rotten*.
 
     cumulus@leaf01:~$ netq show agents 
-     
+     
     Node Name    Status   Connect Time         Last Connect  
     -----------  -------- -------------------  --------------  
     exit01       Fresh    2017-06-01 00:53:23  22s ago

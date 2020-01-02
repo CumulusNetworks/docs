@@ -58,54 +58,54 @@ Here is an example of how to pre-seed answers to the installer questions
 using `debconf-set-selections`:
 
     root# debconf-set-selections <<'zzzEndOfFilezzz'
-     
+     
     # LDAP database user. Leave blank will be populated later!
     nslcd nslcd/ldap-binddn  string
-     
+     
     # LDAP user password. Leave blank!
     nslcd nslcd/ldap-bindpw   password
-     
+     
     # LDAP server search base:
     nslcd nslcd/ldap-base string  ou=support,dc=rtp,dc=example,dc=test
-     
+     
     # LDAP server URI. Using ldap over ssl.
     nslcd nslcd/ldap-uris string  ldaps://myadserver.rtp.example.test
-     
+     
     # New to 0.9. restart cron, exim and others libraries without asking
     nslcd libraries/restart-without-asking: boolean true
-     
+     
     # LDAP authentication to use:
     # Choices: none, simple, SASL
     # Using simple because its easy to configure. Security comes by using LDAP over SSL
     # keep /etc/nslcd.conf 'rw' to root for basic security of bindDN password
     nslcd nslcd/ldap-auth-type    select  simple
-     
+     
     # Don't set starttls to true
     nslcd nslcd/ldap-starttls     boolean false
-     
+     
     # Check server's SSL certificate:
     # Choices: never, allow, try, demand
     nslcd nslcd/ldap-reqcert      select  never
-     
+     
     # Choices: Ccreds credential caching - password saving, Unix authentication, LDAP Authentication , Create home directory on first time login, Ccreds credential caching - password checking
     # This is where "mkhomedir" pam config is activated that allows automatic creation of home directory
     libpam-runtime        libpam-runtime/profiles multiselect     ccreds-save, unix, ldap, mkhomedir , ccreds-check
-     
+     
     # for internal use; can be preseeded
     man-db        man-db/auto-update      boolean true
-     
+     
     # Name services to configure:
     # Choices: aliases, ethers, group, hosts, netgroup, networks, passwd, protocols, rpc, services,  shadow
     libnss-ldapd  libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
     libnss-ldapd  libnss-ldapd/clean_nsswitch     boolean false
-     
+     
     ## define platform specific libnss-ldapd debconf questions/answers.
     ## For demo used amd64.
     libnss-ldapd:amd64    libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
     libnss-ldapd:amd64    libnss-ldapd/clean_nsswitch     boolean false
     # libnss-ldapd:powerpc   libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
     # libnss-ldapd:powerpc    libnss-ldapd/clean_nsswitch     boolean false
-     
+     
     zzzEndOfFilezzz
 
 {{%/notice%}}
@@ -230,53 +230,53 @@ the manpage for `nslcd.conf` (such as *passwd* or *group*).
     # /etc/nslcd.conf
     # nslcd configuration file. See nslcd.conf(5)
     # for details.
-     
+     
     # The user and group nslcd should run as.
     uid nslcd
     gid nslcd
-     
+     
     # The location at which the LDAP server(s) should be reachable.
     uri ldaps://myadserver.rtp.example.test
-     
+     
     # The search base that will be used for all queries.
     base ou=support,dc=rtp,dc=example,dc=test
-     
+     
     # The LDAP protocol version to use.
     #ldap_version 3
-     
+     
     # The DN to bind with for normal lookups.
     # defconf-set-selections doesn't seem to set this. so have to manually set this.
     binddn CN=cumulus admin,CN=Users,DC=rtp,DC=example,DC=test
     bindpw 1Q2w3e4r!
-     
+     
     # The DN used for password modifications by root.
     #rootpwmoddn cn=admin,dc=example,dc=com
-     
+     
     # SSL options
     #ssl off (default)
     # Not good does not prevent man in the middle attacks
     #tls_reqcert demand(default)
     tls_cacertfile /etc/ssl/certs/rtp-example-ca.crt
-     
+     
     # The search scope.
     #scope sub
-     
+     
     # Add nested group support
     # Supported in nslcd 0.9 and higher.
     # default wheezy install of nslcd supports on 0.8. wheezy-backports has 0.9
     nss_nested_groups yes
-     
+     
     # Mappings for Active Directory
     # (replace the SIDs in the objectSid mappings with the value for your domain)
     # "dsquery * -filter (samaccountname=testuser1) -attr ObjectSID" where cn == 'testuser1'
     pagesize 1000
     referrals off
     idle_timelimit 1000
-     
+     
     # Do not allow uids lower than 100 to login (aka Administrator)
     # not needed as pam already has this support
     # nss_min_uid 1000
-     
+     
     # This filter says to get all users who are part of the cumuluslnxadm group. Supports nested groups.
     # Example, mary is part of the snrnetworkadm group which is part of cumuluslnxadm group
     # Ref: http://msdn.microsoft.com/en-us/library/aa746475%28VS.85%29.aspx (LDAP_MATCHING_RULE_IN_CHAIN)
@@ -287,7 +287,7 @@ the manpage for `nslcd.conf` (such as *passwd* or *group*).
     map    passwd homeDirectory "/home/$sAMAccountName"
     map    passwd gecos         displayName
     map    passwd loginShell    "/bin/bash"
-     
+     
     # Filter for any AD group or user in the baseDN. the reason for filtering for the
     # user to make sure group listing for user files don't say '<user> <gid>'. instead will say '<user> <user>'
     # So for cosmetic reasons..nothing more.
@@ -428,7 +428,7 @@ with the group *netadmin*, you can add a rule to give those users sudo
 privileges. Refer to the sudoers manual (`man sudoers`) for a complete
 usage description. Here's an illustration of this in `/etc/sudoers`:
 
-    # The basic structure of a user specification is “who where = (as_whom) what”.
+    # The basic structure of a user specification is "who where = (as_whom) what ".
     %sudo ALL=(ALL:ALL) ALL
     %netadmin ALL=(ALL:ALL) ALL
 

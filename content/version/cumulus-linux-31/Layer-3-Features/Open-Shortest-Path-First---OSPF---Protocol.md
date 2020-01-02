@@ -29,11 +29,11 @@ graph building process on the node and triggers SPF computation. LSAs
 originated by a node are distributed to all the other nodes in the
 network through a mechanism called *flooding*. Flooding is done
 hop-by-hop. OSPF ensures reliability by using link state acknowledgement
-packets. The set of LSAs in a router’s memory is termed *link-state
+packets. The set of LSAs in a router's memory is termed *link-state
 database* (LSDB), a representation of the network graph. Thus, OSPF
 ensures a consistent view of LSDB on each node in the network in a
 distributed fashion (eventual consistency model); this is key to the
-protocol’s correctness.
+protocol's correctness.
 
 ## Scalability and Areas</span>
 
@@ -123,10 +123,10 @@ There are two ways to achieve (2) and (3) in the Quagga OSPF:
     From the `vtysh` shell:
     
         cumulus@switch:~$ sudo vtysh
-         
+         
         Hello, this is Quagga (version 0.99.23.1+cl3.0).
         Copyright 1996-2005 Kunihiro Ishiguro, et al.
-         
+         
         R3# configure terminal
         R3(config)# router ospf
         R3(config-router)# router-id 0.0.0.1
@@ -144,7 +144,7 @@ There are two ways to achieve (2) and (3) in the Quagga OSPF:
     cover the most number of interfaces on the router that should run
     OSPF.
     
-    There may be interfaces where it’s undesirable to bring up OSPF
+    There may be interfaces where it's undesirable to bring up OSPF
     adjacency. For example, in a data center topology, the host-facing
     interfaces need not run OSPF; however the corresponding IP addresses
     should still be advertised to neighbors. This can be achieved using
@@ -406,9 +406,9 @@ following:
         switch(config-if)#  ip ospf 11 area 0.0.0.0
         switch(config-if)# router ospf 11
         switch(config-router)# ospf router-id 1.1.1.1
-         
+         
         ...
-         
+         
         switch(config)# int swp2
         switch(config-if)#  ip ospf 22 area 0.0.0.0
         switch(config-if)# router ospf 11
@@ -503,9 +503,9 @@ instance ID for the other OSPF instance. For example:
     !
     service integrated-vtysh-config
     !
-     
+     
     ...
-     
+     
     !
     router ospf 11
      ospf router-id 1.1.1.1
@@ -514,8 +514,8 @@ instance ID for the other OSPF instance. For example:
      ospf router-id 1.1.1.1
      redistribute ospf 11
     !
-     
-     
+     
+     
     ...
 
 {{%notice note%}}
@@ -616,8 +616,8 @@ Unnumbered is usable for point-to-point interfaces only.
 
 If there is a `network <network number>/<mask> area <area ID>` command
 present in the Quagga configuration, the `ip ospf area <area ID>`
-command is rejected with the error “Please remove network command
-first.” This prevents you from configuring other areas on some of the
+command is rejected with the error "Please remove network command
+first. " This prevents you from configuring other areas on some of the
 unnumbered interfaces. You can use either the `network area` command or
 the `ospf area` command in the configuration, but not both.
 
@@ -641,11 +641,11 @@ unnumbered interface:
     auto lo
     iface lo inet loopback
       address 192.0.2.1/32
-     
+     
     auto swp1
     iface swp1
       address 192.0.2.1/32
-     
+     
     auto swp2
     iface swp2
       address 192.0.2.1/32
@@ -739,11 +739,11 @@ The three most important states while troubleshooting the protocol are:
 Using `cl-ospf`:
 
     cumulus@switch:~$ sudo cl-ospf neighbor show [all | detail]
-     
+     
     cumulus@switch:~$ sudo cl-ospf database show [asbr-summary | network | opaque-area |
                                           opaque-link | summary | external |
                                           nssa-external | opaque-as | router]
-     
+     
     cumulus@switch:~$ sudo cl-ospf route show
 
 [Debugging-OSPF](http://www.nongnu.org/quagga/docs/docs-info.html#Debugging-OSPF)
@@ -752,7 +752,7 @@ lists all of the OSPF debug options.
 Using `cl-ospf`:
 
     Usage: cl-ospf debug { COMMAND | help }
-     
+     
     COMMANDs
           { set | clear } (all | event | ism | ism [OBJECT] | lsa | lsa [OBJECT] |
                        nsm | nsm [OBJECT] | nssa | packet | packet [OBJECT] | 
@@ -762,7 +762,7 @@ Using `zebra` under `vtysh`:
 
     cumulus@switch:~$ sudo vtysh
     R3# show [zebra]
-     
+     
     IOBJECT := { events | status | timers }
     OOBJECT := { interface | redistribute }
     POBJECT := { all | dd | hello | ls-ack | ls-request | ls-update }

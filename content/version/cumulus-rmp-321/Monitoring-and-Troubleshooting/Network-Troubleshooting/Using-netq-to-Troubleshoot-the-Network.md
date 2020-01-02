@@ -116,7 +116,7 @@ know you are testing it.
 
 ## Installing netq</span>
 
-To install the `netq` package — `cumulus-netq` — on a switch, follow the
+To install the `netq` package - `cumulus-netq` - on a switch, follow the
 instructions below. The `cumulus-netq` package contains `netq` and the
 `netq-agent`. Cumulus Networks recommends you install the `netq-agent`
 on every Cumulus RMP switch in the network; you can also install it on
@@ -139,7 +139,7 @@ the redis server.
 
 Cumulus Networks recommends you install the `redis` server on its own
 server or VM. Ideally, you should run the `redis` server on a separate,
-powerful server for maximum usability and performance — Cumulus Networks
+powerful server for maximum usability and performance - Cumulus Networks
 recommends a system with a quad core CPU, 16GB of RAM (with 8GB for
 `redis` itself) and 512GB of storage.
 
@@ -250,7 +250,7 @@ The `netq` configuration is stored in the following files:
 ## Using netq</span>
 
 `netq` has a number of options to use with the command to return various
-kinds of data about your network — press the *Tab* key at any time to
+kinds of data about your network - press the *Tab* key at any time to
 reveal the options available to a given part of the command. Running
 `netq` on its own reveals all the options, with a brief explanation for
 each one:
@@ -281,7 +281,7 @@ following:
 <!-- end list -->
 
     cumulus@switch:~$ sudo netq check agents
-     
+     
     Node Name  Connect Time  Time Since Connect       Status
     ---------- ------------- ------------------------ --------
     leaf-1     2016-08-23    03:59:00 15 seconds ago  Fresh
@@ -302,8 +302,8 @@ You can also check the health of BGP and MLAG in the network:
 
     cumulus@switch:~$ netq check bgp
     No BGP sessions in failed state
-     
-     
+     
+     
     cumulus@switch:~$ netq check clag
     Failed Node          Reason
     -------------------- ------------------------------------------------------------
@@ -426,14 +426,14 @@ For example, to see the BGP summary for switch leaf-5, run:
     RIB entries 33, using 3960 bytes of memory
     Peers 4, using 65 KiB of memory
     Peer groups 1, using 56 bytes of memory
-     
+     
     Neighbor V AS MsgRcvd MsgSent TblVer InQ OutQ Up/Down State/PfxRcd
     spine-1(swp1) 4 65000 169503 169504 0 0 0 5d21h17m 12
     spine-2(swp2) 4 65000 169505 169508 0 0 0 5d21h17m 12
     spine-3(swp3) 4 65000 169505 169508 0 0 0 5d21h17m 12
     spine-4(swp4) 4 65000 169504 169512 0 0 0 5d21h17m 12
-     
-     
+     
+     
     Total number of neighbors 4
 
 ## Monitoring the redis Server</span>

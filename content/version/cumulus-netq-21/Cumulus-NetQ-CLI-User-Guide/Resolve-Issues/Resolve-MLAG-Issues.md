@@ -69,7 +69,7 @@ When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
     cumulus@switch:/var/log# sudo clagctl
-     
+     
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
@@ -77,7 +77,7 @@ the state:
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
-     
+     
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
@@ -102,7 +102,7 @@ messages from NetQ similar to the following:
 To begin your investigation, show the status of the `clagd` service:
 
     cumulus@switch:~$ netq spine01 show services clagd
-     
+     
     Matching services records:
     Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
     ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
@@ -122,14 +122,14 @@ You can retrieve the output in JSON format for export to another tool:
     cumulus@switch:~$ netq check clag json
     {
         "warningNodes": [
-            { 
-                "node": "spine01", 
-                "reason": "Link Down: hostbond5" 
+            { 
+                "node": "spine01", 
+                "reason": "Link Down: hostbond5" 
             }
             ,
-            { 
-                "node": "lea01", 
-                "reason": "Singly Attached Bonds: hostbond5" 
+            { 
+                "node": "lea01", 
+                "reason": "Singly Attached Bonds: hostbond5" 
             }
         ], 
         "failedNodes":[
@@ -146,7 +146,7 @@ nodes are up. The notifications from NetQ indicate all nodes are UP, and
 the `netq check` flag also indicates there are no failures.
 
     cumulus@switch:~$ netq show clag
-     
+     
     Matching clag records:
     Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
                                                                              s
@@ -162,7 +162,7 @@ When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
     cumulus@switch:/var/log# sudo clagctl
-     
+     
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
@@ -170,7 +170,7 @@ the state:
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
-     
+     
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
@@ -197,7 +197,7 @@ is down, log messages also include VXLAN and LNV checks.
 To begin your investigation, show the status of the `clagd` service:
 
     cumulus@switch:~$ netq spine01 show services clagd
-     
+     
     Matching services records:
     Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
     ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
@@ -217,20 +217,20 @@ You can retrieve the output in JSON format for export to another tool:
     cumulus@switch:~$ netq check clag json
     {
         "failedNodes": [
-            { 
-                "node": "spine01", 
-                "reason": "Protodown Bonds: vx-37:vxlan-single" 
+            { 
+                "node": "spine01", 
+                "reason": "Protodown Bonds: vx-37:vxlan-single" 
             }
             ,
-            { 
-                "node": "leaf01", 
-                "reason": "Protodown Bonds: vx-37:vxlan-single" 
+            { 
+                "node": "leaf01", 
+                "reason": "Protodown Bonds: vx-37:vxlan-single" 
             }
         ], 
-        "summary":{ 
-                "checkedNodeCount": 6, 
-                "failedNodeCount": 2, 
-                "warningNodeCount": 2 
+        "summary":{ 
+                "checkedNodeCount": 6, 
+                "failedNodeCount": 2, 
+                "warningNodeCount": 2 
         }
     }
 
@@ -253,7 +253,7 @@ When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
     cumulus@switch:/var/log# sudo clagctl
-     
+     
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
@@ -261,7 +261,7 @@ the state:
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
-     
+     
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
@@ -314,20 +314,20 @@ You can retrieve the output in JSON format for export to another tool:
     cumulus@switch:~$ netq check clag json
     {
         "failedNodes": [
-            { 
-                "node": "spine01", 
-                "reason": "Peer Connectivity failed" 
+            { 
+                "node": "spine01", 
+                "reason": "Peer Connectivity failed" 
             }
             ,
-            { 
-                "node": "leaf01", 
-                "reason": "Peer Connectivity failed" 
+            { 
+                "node": "leaf01", 
+                "reason": "Peer Connectivity failed" 
             }
         ], 
-        "summary":{ 
-            "checkedNodeCount": 6, 
-            "failedNodeCount": 2, 
-            "warningNodeCount": 1 
+        "summary":{ 
+            "checkedNodeCount": 6, 
+            "failedNodeCount": 2, 
+            "warningNodeCount": 1 
         }
     }
 
@@ -335,14 +335,14 @@ When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
     cumulus@switch:~$ sudo clagctl
-     
+     
     The peer is not alive
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 primary
     Peer Interface and IP: peerlink-3.4094 169.254.0.9 
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (inactive)
     System MAC: 44:38:39:ff:ff:01
-     
+     
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------

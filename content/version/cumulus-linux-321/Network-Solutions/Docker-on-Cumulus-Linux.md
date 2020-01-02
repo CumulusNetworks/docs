@@ -70,7 +70,7 @@ automatically, you can modify the `systemd` service startup parameters:
     it with the following:
     
         cumulus@switch:~$ sudo nano /etc/systemd/system/docker.service.d/noiptables.conf
-         
+         
         [Service]
         ExecStart=
         ExecStart=/usr/bin/docker daemon -H fd:// --iptables=false

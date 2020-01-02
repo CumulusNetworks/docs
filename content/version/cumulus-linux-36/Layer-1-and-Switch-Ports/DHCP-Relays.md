@@ -40,7 +40,7 @@ In the examples below, the DHCP server IP address is 172.16.1.102, VLAN
 {{%notice warning%}}
 
 You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not
-the parent bridge — in our example, you would specify v*lan1* as the SVI
+the parent bridge - in our example, you would specify v*lan1* as the SVI
 for VLAN 1; do not specify the bridge named *bridge* in this case.
 
 As per [RFC 3046](https://tools.ietf.org/html/rfc3046), you can specify
@@ -198,7 +198,7 @@ This option impacts all relayed packets globally.
 To enable this feature:
 
 1.  Edit the `/etc/default/isc-dhcp-relay` file adding
-    `OPTIONS=–giaddr_src`, setting it to the gateway IP address:
+    `OPTIONS=-giaddr_src`, setting it to the gateway IP address:
     
         cumulus@leaf:~$ sudo nano /etc/default/isc-dhcp-relay
         SERVERS="172.16.1.102"
@@ -303,14 +303,14 @@ These commands create the following configuration in the
 `/etc/network/interfaces` file:
 
     cumulus@switch:~$ cat /etc/network/interfaces
-     
+     
     ...
-     
+     
     auto bridge
     iface bridge
         bridge-vids 500
         bridge-vlan-aware yes
-     
+     
     auto vlan500
     iface vlan500
         address 192.0.2.252/24
@@ -328,17 +328,17 @@ They also create the following configuration in the
     #
     # This is a POSIX shell fragment
     #
-     
+     
     # What servers should the DHCP relay forward requests to?
     SERVERS="172.16.1.102"
-     
+     
     # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
     # Always include the interface towards the DHCP server.
     # This variable requires a -i for each interface configured above.
     # This will be used in the actual dhcrelay command
     # For example, "-i eth0 -i eth1"
     INTF_CMD="-i vlan500"
-     
+     
     # Additional options that are passed to the DHCP relay daemon?
     OPTIONS=""
 

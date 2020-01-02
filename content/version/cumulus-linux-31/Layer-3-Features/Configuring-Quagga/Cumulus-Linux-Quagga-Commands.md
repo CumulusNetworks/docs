@@ -130,7 +130,7 @@ switch(config-ospf6)# timer throttle spf 40 50 60</code></pre></td>
 <tr class="even">
 <td><p>Configure the OSPF Hello packet interval in number of seconds for an interface</p></td>
 <td><pre><code>switch(config)# int swp4
-switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
+switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 <td><pre><code>cumulus@switch:~$ sudo cl-ospf6 interface set swp4 hello-interval 60</code></pre></td>
 </tr>
 <tr class="odd">
@@ -141,7 +141,7 @@ switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 <tr class="even">
 <td><p>Display <a href="/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP">BGP</a> information</p></td>
 <td><pre><code>switch# show ip bgp summary</code></pre></td>
-<td><pre><code>cumulus@switch:~$ sudo cl-bgp summary </code></pre></td>
+<td><pre><code>cumulus@switch:~$ sudo cl-bgp summary </code></pre></td>
 </tr>
 </tbody>
 </table>

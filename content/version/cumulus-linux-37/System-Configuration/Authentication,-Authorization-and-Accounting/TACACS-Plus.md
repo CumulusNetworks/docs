@@ -569,7 +569,7 @@ The TACACS client on the switch and the TACACS server should have the
 same shared secret key. If this key is incorrect, the following message
 is printed to `syslog`:
 
-    2017-09-05T19:57:00.356520+00:00 leaf01 sshd[3176]: nss_tacplus: TACACS+ server 192.168.0.254:49 read failed with protocol error (incorrect shared secret?) user cumulus 
+    2017-09-05T19:57:00.356520+00:00 leaf01 sshd[3176]: nss_tacplus: TACACS+ server 192.168.0.254:49 read failed with protocol error (incorrect shared secret?) user cumulus 
 
 ### Issues with Per-command Authorization
 
@@ -587,7 +587,7 @@ command authorization conversation with the TACACS+ server:
     tacplus-auth: cmd not authorized (16)
     tacplus-auth: net not authorized from 192.168.3.189:49
     net not authorized by TACACS+ with given arguments, not executing
-     
+     
     tacuser0@switch:~$ net show version
     tacplus-auth: found matching command (/usr/bin/net) request authorization
     tacplus-auth: error connecting to 10.0.3.195:49 to request authorization for net: Transport endpoint is not connected
@@ -689,7 +689,7 @@ the `--remove-home` option will see an error about not finding the user
 in `/etc/passwd`:
 
     tacuser0@switch: deluser --remove-home USERNAME
-    userdel: cannot remove entry ‘USERNAME’ from /etc/passwd
+    userdel: cannot remove entry 'USERNAME' from /etc/passwd
     /usr/sbin/deluser: `/usr/sbin/userdel USERNAME' returned error code 1. Exiting
 
 However, the command does remove the home directory. The user can still

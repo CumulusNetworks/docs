@@ -51,31 +51,31 @@ Then navigate the menus to enable the time zone you want. The following
 example selects the US/Pacific time zone:
 
     cumulus@switch:~$ sudo dpkg-reconfigure tzdata
-     
+     
     Configuring tzdata
     ------------------
-     
+     
     Please select the geographic area in which you live. Subsequent configuration
     questions will narrow this down by presenting a list of cities, representing
     the time zones in which they are located.
-     
+     
       1. Africa      4. Australia  7. Atlantic  10. Pacific  13. Etc
       2. America     5. Arctic     8. Europe    11. SystemV
       3. Antarctica  6. Asia       9. Indian    12. US
     Geographic area: 12
-     
+     
     Please select the city or region corresponding to your time zone.
-     
+     
       1. Alaska    4. Central  7. Indiana-Starke  10. Pacific
       2. Aleutian  5. Eastern  8. Michigan        11. Pacific-New
       3. Arizona   6. Hawaii   9. Mountain        12. Samoa
     Time zone: 10
-     
+     
     Current default time zone: 'US/Pacific'
     Local time is now:      Mon Jun 17 09:27:45 PDT 2013.
     Universal Time is now:  Mon Jun 17 16:27:45 UTC 2013.
 
-For more info see the Debian [System Administrator’s Manual –
+For more info see the Debian [System Administrator's Manual -
 Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
 ## Setting the Date and Time</span>
@@ -86,7 +86,7 @@ switch is running, the Cumulus Linux operating system maintains its own
 software clock.
 
 During boot up, the time from the hardware clock is copied into the
-operating system’s software clock. The software clock is then used for
+operating system's software clock. The software clock is then used for
 all timekeeping responsibilities. During system shutdown the software
 clock is copied back to the battery backed hardware clock.
 
@@ -116,7 +116,7 @@ hardware clock using the `hwclock` command:
 See `man hwclock(8)` if you need more information.
 
 You can find a good overview of the software and hardware clocks in the
-Debian [System Administrator's Manual –
+Debian [System Administrator's Manual -
 Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html),
 specifically the section [Setting and showing hardware
 clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
@@ -150,7 +150,7 @@ To verify that `ntpd` is running on the system:
 To check the NTP peer status:
 
     cumulus@switch:~$ ntpq -p
-     
+     
          remote           refid      st t when poll reach   delay   offset  jitter
     ==============================================================================
     *level1f.cs.unc. .PPS.            1 u  225 1024  377   92.505   -1.296   1.139
@@ -169,13 +169,13 @@ entry under the **\# Specify interfaces** comment:
 
 ## Configuration Files</span>
 
-  - /etc/default/ntp — `ntpd init.d` configuration variables
+  - /etc/default/ntp - `ntpd init.d` configuration variables
 
-  - /etc/ntp.conf — default NTP configuration file
+  - /etc/ntp.conf - default NTP configuration file
 
 ## Useful Links</span>
 
-  - [Debian System Administrator’s Manual –
+  - [Debian System Administrator's Manual -
     Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
 
   - [www.ntp.org](http://www.ntp.org)

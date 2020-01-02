@@ -137,7 +137,7 @@ configuration. This example shows that no VXLAN configuration was
 present.
 
     cumulus@switch:~$ netq show vxlan around 7d
-     
+     
     No matching vxlan records found
 
 You can filter the list of VXLANs to view only those associated with a
@@ -221,22 +221,22 @@ single device.
 
     cumulus@switch:~$ netq show evpn
     Matching evpn records:
-    Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        Last Changed
+    Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        Last Changed
     ----------------- ---------- ---------------- --------- ---------------- ---------------- -------------------------
-    exit01            104001     10.0.0.41        yes       65041:104001     65041:104001     3d:17h:20m:10s
-    exit02            104001     10.0.0.42        yes       65042:104001     65042:104001     3d:17h:19m:48s
-    leaf01            13         10.0.0.112       yes       65011:13         65011:13         3d:18h:13m:12s
-    leaf01            24         10.0.0.112       yes       65011:24         65011:24         3d:18h:13m:12s
-    leaf01            104001     10.0.0.112       yes       65011:104001     65011:104001     3d:18h:13m:12s
-    leaf02            13         10.0.0.112       yes       65012:13         65012:13         3d:17h:26m:31s
-    leaf02            24         10.0.0.112       yes       65012:24         65012:24         3d:17h:26m:31s
-    leaf02            104001     10.0.0.112       yes       65012:104001     65012:104001     3d:17h:26m:31s
-    leaf03            13         10.0.0.134       yes       65013:13         65013:13         3d:17h:25m:42s
-    leaf03            24         10.0.0.134       yes       65013:24         65013:24         3d:17h:25m:42s
-    leaf03            104001     10.0.0.134       yes       65013:104001     65013:104001     3d:17h:25m:42s
-    leaf04            13         10.0.0.134       yes       65014:13         65014:13         3d:17h:22m:22s
-    leaf04            24         10.0.0.134       yes       65014:24         65014:24         3d:17h:22m:22s
-    leaf04            104001     10.0.0.134       yes       65014:104001     65014:104001     3d:17h:22m:22s
+    exit01            104001     10.0.0.41        yes       65041:104001     65041:104001     3d:17h:20m:10s
+    exit02            104001     10.0.0.42        yes       65042:104001     65042:104001     3d:17h:19m:48s
+    leaf01            13         10.0.0.112       yes       65011:13         65011:13         3d:18h:13m:12s
+    leaf01            24         10.0.0.112       yes       65011:24         65011:24         3d:18h:13m:12s
+    leaf01            104001     10.0.0.112       yes       65011:104001     65011:104001     3d:18h:13m:12s
+    leaf02            13         10.0.0.112       yes       65012:13         65012:13         3d:17h:26m:31s
+    leaf02            24         10.0.0.112       yes       65012:24         65012:24         3d:17h:26m:31s
+    leaf02            104001     10.0.0.112       yes       65012:104001     65012:104001     3d:17h:26m:31s
+    leaf03            13         10.0.0.134       yes       65013:13         65013:13         3d:17h:25m:42s
+    leaf03            24         10.0.0.134       yes       65013:24         65013:24         3d:17h:25m:42s
+    leaf03            104001     10.0.0.134       yes       65013:104001     65013:104001     3d:17h:25m:42s
+    leaf04            13         10.0.0.134       yes       65014:13         65014:13         3d:17h:22m:22s
+    leaf04            24         10.0.0.134       yes       65014:24         65014:24         3d:17h:22m:22s
+    leaf04            104001     10.0.0.134       yes       65014:104001     65014:104001     3d:17h:22m:22s
 
 ### View the Status of EVPN for a Given VNI
 
@@ -245,12 +245,12 @@ example only shows the EVPN configuration and status for VNI 24.
 
     cumulus@switch:~$ netq show evpn vni 24
     Matching evpn records:
-    Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        Last Changed
+    Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        Last Changed
     ----------------- ---------- ---------------- --------- ---------------- ---------------- -------------------------
-    leaf01            24         10.0.0.112       yes       65011:24         65011:24         3d:18h:37m:23s
-    leaf02            24         10.0.0.112       yes       65012:24         65012:24         3d:17h:50m:43s
-    leaf03            24         10.0.0.134       yes       65013:24         65013:24         3d:17h:49m:53s
-    leaf04            24         10.0.0.134       yes       65014:24         65014:24         3d:17h:46m:34s
+    leaf01            24         10.0.0.112       yes       65011:24         65011:24         3d:18h:37m:23s
+    leaf02            24         10.0.0.112       yes       65012:24         65012:24         3d:17h:50m:43s
+    leaf03            24         10.0.0.134       yes       65013:24         65013:24         3d:17h:49m:53s
+    leaf04            24         10.0.0.134       yes       65014:24         65014:24         3d:17h:46m:34s
 
 ### View Changes to the EVPN Configuration
 
@@ -264,22 +264,22 @@ the leaf switches and exit switches).
 
     cumulus@switch:~$ netq show evpn changes between now and 7d
     Matching evpn records:
-    Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        DB State   Last Changed
+    Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        DB State   Last Changed
     ----------------- ---------- ---------------- --------- ---------------- ---------------- ---------- -------------------------
-    exit02            104001     10.0.0.42        yes       65042:104001     65042:104001     Add        3d:17h:46m:59s
-    exit01            104001     10.0.0.41        yes       65041:104001     65041:104001     Add        3d:17h:47m:21s
-    leaf04            104001     10.0.0.134       yes       65014:104001     65014:104001     Add        3d:17h:49m:33s
-    leaf04            13         10.0.0.134       yes       65014:13         65014:13         Add        3d:17h:49m:33s
-    leaf04            24         10.0.0.134       yes       65014:24         65014:24         Add        3d:17h:49m:33s
-    leaf03            104001     10.0.0.134       yes       65013:104001     65013:104001     Add        3d:17h:52m:53s
-    leaf03            13         10.0.0.134       yes       65013:13         65013:13         Add        3d:17h:52m:53s
-    leaf03            24         10.0.0.134       yes       65013:24         65013:24         Add        3d:17h:52m:53s
-    leaf02            104001     10.0.0.112       yes       65012:104001     65012:104001     Add        3d:17h:53m:42s
-    leaf02            13         10.0.0.112       yes       65012:13         65012:13         Add        3d:17h:53m:42s
-    leaf02            24         10.0.0.112       yes       65012:24         65012:24         Add        3d:17h:53m:42s
-    leaf01            104001     10.0.0.112       yes       65011:104001     65011:104001     Add        3d:18h:40m:23s
-    leaf01            13         10.0.0.112       yes       65011:13         65011:13         Add        3d:18h:40m:23s
-    leaf01            24         10.0.0.112       yes       65011:24         65011:24         Add        3d:18h:40m:23s
+    exit02            104001     10.0.0.42        yes       65042:104001     65042:104001     Add        3d:17h:46m:59s
+    exit01            104001     10.0.0.41        yes       65041:104001     65041:104001     Add        3d:17h:47m:21s
+    leaf04            104001     10.0.0.134       yes       65014:104001     65014:104001     Add        3d:17h:49m:33s
+    leaf04            13         10.0.0.134       yes       65014:13         65014:13         Add        3d:17h:49m:33s
+    leaf04            24         10.0.0.134       yes       65014:24         65014:24         Add        3d:17h:49m:33s
+    leaf03            104001     10.0.0.134       yes       65013:104001     65013:104001     Add        3d:17h:52m:53s
+    leaf03            13         10.0.0.134       yes       65013:13         65013:13         Add        3d:17h:52m:53s
+    leaf03            24         10.0.0.134       yes       65013:24         65013:24         Add        3d:17h:52m:53s
+    leaf02            104001     10.0.0.112       yes       65012:104001     65012:104001     Add        3d:17h:53m:42s
+    leaf02            13         10.0.0.112       yes       65012:13         65012:13         Add        3d:17h:53m:42s
+    leaf02            24         10.0.0.112       yes       65012:24         65012:24         Add        3d:17h:53m:42s
+    leaf01            104001     10.0.0.112       yes       65011:104001     65011:104001     Add        3d:18h:40m:23s
+    leaf01            13         10.0.0.112       yes       65011:13         65011:13         Add        3d:18h:40m:23s
+    leaf01            24         10.0.0.112       yes       65011:24         65011:24         Add        3d:18h:40m:23s
 
 ## Monitor LNV
 
@@ -306,17 +306,17 @@ last time the configuration was changed.
 
     cumulus@switch:~$ netq show lnv
     Matching LNV session records are:
-    Hostname          Role       ReplMode State      #Peers #VNIs  Last Changed
+    Hostname          Role       ReplMode State      #Peers #VNIs  Last Changed
     ----------------- ---------- -------- ---------- ------ ------ -------------------------
-    spine-1           SND        HER      up         3      6      45m:26.865s
-    spine-2           SND        HER      up         3      6      45m:23.299s
-    spine-3           SND        HER      up         3      6      45m:21.847s
-    tor-1             RD         HER      up         4      6      45m:25.335s
-    tor-2             RD         HER      up         4      6      45m:6.495s
-    torc-11           RD         HER      up         0      0      17.258785s
-    torc-12           RD         HER      up         4      6      45m:16.800s
-    torc-21           RD         HER      up         4      6      45m:29.437s
-    torc-22           RD         HER      up         4      6      45m:11.440s
+    spine-1           SND        HER      up         3      6      45m:26.865s
+    spine-2           SND        HER      up         3      6      45m:23.299s
+    spine-3           SND        HER      up         3      6      45m:21.847s
+    tor-1             RD         HER      up         4      6      45m:25.335s
+    tor-2             RD         HER      up         4      6      45m:6.495s
+    torc-11           RD         HER      up         0      0      17.258785s
+    torc-12           RD         HER      up         4      6      45m:16.800s
+    torc-21           RD         HER      up         4      6      45m:29.437s
+    torc-22           RD         HER      up         4      6      45m:11.440s
 
 ### View LNV Status in the Past
 
@@ -325,17 +325,17 @@ keywords. This example shows the status of LNV about 30 minutes ago.
 
     cumulus@switch:~$ netq show lnv around 30m
     Matching LNV session records are:
-    Hostname          Role       ReplMode State      #Peers #VNIs  Last Changed
+    Hostname          Role       ReplMode State      #Peers #VNIs  Last Changed
     ----------------- ---------- -------- ---------- ------ ------ -------------------------
-    spine-1           SND        HER      up         3      6      45m:37.973s
-    spine-2           SND        HER      up         3      6      45m:34.407s
-    spine-3           SND        HER      up         3      6      45m:32.955s
-    tor-1             RD         HER      up         4      6      45m:36.443s
-    tor-2             RD         HER      up         4      6      45m:17.603s
-    torc-11           RD         HER      up         4      6      45m:46.696s
-    torc-12           RD         HER      up         4      6      45m:27.908s
-    torc-21           RD         HER      up         4      6      45m:40.546s
-    torc-22           RD         HER      up         4      6      45m:22.548s
+    spine-1           SND        HER      up         3      6      45m:37.973s
+    spine-2           SND        HER      up         3      6      45m:34.407s
+    spine-3           SND        HER      up         3      6      45m:32.955s
+    tor-1             RD         HER      up         4      6      45m:36.443s
+    tor-2             RD         HER      up         4      6      45m:17.603s
+    torc-11           RD         HER      up         4      6      45m:46.696s
+    torc-12           RD         HER      up         4      6      45m:27.908s
+    torc-21           RD         HER      up         4      6      45m:40.546s
+    torc-22           RD         HER      up         4      6      45m:22.548s
 
 For more information about and configuration of LNV, refer to the
 [Cumulus Linux LNV Overview](https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/) topic.
@@ -353,21 +353,21 @@ This example shows the available paths between leaf01 and leaf03 which
 are connected through an EVPN overlay. This example uses the default
 presentation of *detail* output.
 
-    cumulus@switch:~$ netq trace 10.0.0.13 from leaf01 
+    cumulus@switch:~$ netq trace 10.0.0.13 from leaf01 
     Number of Paths: 2
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0
     Path MTU: 9216
-     
-    Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
+     
+    Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
     --- --- ----------- --------------- --------------- --------------- ---------------
-    1   1   leaf01                                      swp52           swp52
-        2   spine02     swp1            swp1            swp3            swp3
-        3   leaf03      swp52           swp52                           lo
+    1   1   leaf01                                      swp52           swp52
+        2   spine02     swp1            swp1            swp3            swp3
+        3   leaf03      swp52           swp52                           lo
     --- --- ----------- --------------- --------------- --------------- ---------------
-    2   1   leaf01                                      swp51           swp51
-        2   spine01     swp1            swp1            swp3            swp3
-        3   leaf03      swp51           swp51                           lo
+    2   1   leaf01                                      swp51           swp51
+        2   spine01     swp1            swp1            swp3            swp3
+        3   leaf03      swp51           swp51                           lo
     --- --- ----------- --------------- --------------- --------------- ---------------
 
 You can also view the paths in both directions, to and from the two
@@ -378,39 +378,39 @@ devices, as shown in this example using the *pretty* output option.
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0
     Path MTU: 9216
-     
-     leaf01 swp52 -- swp1 spine02 swp3 -- swp52 leaf03 lo 
-     leaf01 swp51 -- swp1 spine01 swp3 -- swp51 leaf03 lo 
-     
+     
+     leaf01 swp52 -- swp1 spine02 swp3 -- swp52 leaf03 lo 
+     leaf01 swp51 -- swp1 spine01 swp3 -- swp51 leaf03 lo 
+     
     Number of Paths: 2
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0
-    Path MTU: 9216 
-     
-     leaf03 swp52 -- swp3 spine02 swp1 -- swp52 leaf01  
-     leaf03 swp51 -- swp3 spine01 swp1 -- swp51 leaf01
+    Path MTU: 9216 
+     
+     leaf03 swp52 -- swp3 spine02 swp1 -- swp52 leaf01  
+     leaf03 swp51 -- swp3 spine01 swp1 -- swp51 leaf01
 
 For more information about the trace command, run the `netq example
 trace` command.
 
     cumulus@switch:~$ netq example trace
-     
+     
     Control Path Trace
     ==================
-     
+     
     Commands
     ========
-       netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [bidir] [json|detail|pretty] [debug]
-       netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [bidir] [json|detail|pretty] [debug]
-     
+       netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [bidir] [json|detail|pretty] [debug]
+       netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [bidir] [json|detail|pretty] [debug]
+     
     Usage
     =====
     netq trace provides control path tracing (no real packets are sent) from
     a specified source to a specified destination. The trace covers complete
     end-to-end path tracing including bridged, routed and Vxlan overlay paths.
     ECMP is supported as well as checking for forwarding loops, MTU consistency
-    across all paths, and VLAN consistency across all paths.  Reverse path
+    across all paths, and VLAN consistency across all paths.  Reverse path
     trace is also available as an option.
-     
+     
     Trace output can be generated in multiple formats.
     ...

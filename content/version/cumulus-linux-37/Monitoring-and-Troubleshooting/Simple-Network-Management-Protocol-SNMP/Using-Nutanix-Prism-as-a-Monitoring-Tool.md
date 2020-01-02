@@ -26,7 +26,7 @@ take special steps within Cumulus Linux before you can configure Prism.
 
         cumulus@switch:~$ net show system
         Hostname......... celRED
-         
+         
         Build............ Cumulus Linux 3.7.4~1551312781.35d3264
         Uptime........... 8 days, 12:24:01.770000
 
@@ -235,7 +235,7 @@ To help visualize the following diagram is provided:
 3.  Use `net show` to look at `lldp` information:
 
         cumulus@switch:~$ net show lldp
-         
+         
         Local Port    Speed    Mode                 Remote Port        Remote  Host     Summary
         ------------  -------  -------------  ----  -----------------  ---------------  -------------------------
         eth0          1G       Mgmt           ====  swp6               oob-mgmt-switch  IP: 192.168.0.11/24(DHCP)

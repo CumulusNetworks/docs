@@ -229,9 +229,9 @@ You can specify one of the following targets for SETQOS:
 
 | Option                | Description                                                                                                                                                 |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| –set-cos INT          | Sets the datapath resource/queuing class value. Values are defined in [IEEE\_P802.1p](http://en.wikipedia.org/wiki/IEEE_P802.1p).                           |
-| –set-dscp value       | Sets the DSCP field in packet header to a value, which can be either a decimal or hex value.                                                                |
-| –set-dscp-class class | Sets the DSCP field in the packet header to the value represented by the DiffServ class value. This class can be EF, BE or any of the CSxx or AFxx classes. |
+| -set-cos INT          | Sets the datapath resource/queuing class value. Values are defined in [IEEE\_P802.1p](http://en.wikipedia.org/wiki/IEEE_P802.1p).                           |
+| -set-dscp value       | Sets the DSCP field in packet header to a value, which can be either a decimal or hex value.                                                                |
+| -set-dscp-class class | Sets the DSCP field in the packet header to the value represented by the DiffServ class value. This class can be EF, BE or any of the CSxx or AFxx classes. |
 
 {{%notice note%}}
 
@@ -243,7 +243,7 @@ Here are two example rules:
 
     [iptables]
     -t mangle -A FORWARD --in-interface swp+ -p tcp --dport bgp -j SETQOS --set-dscp 10 --set-cos 5
-     
+     
     [ip6tables]
     -t mangle -A FORWARD --in-interface swp+ -j SETQOS --set-dscp 10
 
@@ -277,7 +277,7 @@ PFC frames further upstream: eventually the sending server could receive
 PFC frames and stop sending traffic for a time.
 
 The PFC mechanism can be enabled for individual switch priorities on
-specific switch ports for RX and/or TX traffic. The switch port’s
+specific switch ports for RX and/or TX traffic. The switch port's
 ingress buffer occupancy is used to measure congestion. If congestion is
 present, the switch transmits flow control frames to the upstream
 switch. Packets with priority values that do not have PFC configured are
@@ -459,7 +459,7 @@ for swp1 through swp4 and swp6:
 #    -- set a pause buffer size in bytes for each port in the group
 #    -- set the xoff byte limit (buffer limit that triggers pause frames transmit to start)
 #    -- set the xon byte delta (buffer limit that triggers pause frames transmit to stop)
- 
+ 
 # link pause 
 link_pause.port_group_list = [pause_port_group]
 link_pause.pause_port_group.port_set = swp1-swp4,swp6
@@ -522,7 +522,7 @@ threshold value, the packet is always marked.
 
 The downstream switches with ECN enabled perform the same actions as the
 traffic is received. If the ECN bits are set, they remain set. The only
-way to overwrite ECN bits is to enable it — that is, set the ECN bits to
+way to overwrite ECN bits is to enable it - that is, set the ECN bits to
 *11*.
 
 ECN is supported on [Broadcom Tomahawk, Trident II+ and Trident II, and

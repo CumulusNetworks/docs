@@ -109,8 +109,8 @@ You can get a list of all the fields in a table by running this command:
     BgpSession      hostname, peer_name, asn, vrf                                                                        state, peer_router_id, peer_asn, peer_hostname, reason, ipv4_pfx_rcvd, ipv6_pfx_rcvd,
                                                                                                                          evpn_pfx_rcvd, timestamp, last_reset_time, conn_estd, conn_dropped, upd8_rx, vrfid, upd8_tx,
                                                                                                                          up_time, tx_families, objid, rx_families, active, deleted
-     
-     
+     
+     
     cumulus@switch:~$ netq query show fields Port
     Table           Key Fields                                                                                           Value Fields
     --------------- ---------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------

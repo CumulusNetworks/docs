@@ -171,7 +171,7 @@ in the manpage for `nslcd.conf` (such as *passwd* or *group*).
 ### Example Configuration</span>
 
 Here is an [example
-configuration ](attachments_5127544_1_nslcd.conf)using Cumulus RMP.
+configuration ](attachments_5127544_1_nslcd.conf)using Cumulus RMP.
 
 ## Troubleshooting</span>
 
@@ -292,8 +292,8 @@ was queried.
 
 ## Configuring LDAP Authorization</span>
 
-Linux uses the *sudo* command to allow non-administrator users — like
-the default *cumulus* user account — to perform privileged operations.
+Linux uses the *sudo* command to allow non-administrator users - like
+the default *cumulus* user account - to perform privileged operations.
 To control the users authorized to use sudo, the `/etc/sudoers` file and
 files located in the ` /etc/sudoers.d/  `directory have a series of
 rules defined. Typically, the rules are based on groups, but can also be
@@ -303,7 +303,7 @@ with the group *netadmin*, a rule can be added to give those users sudo
 privileges. Refer to the sudoers manual (`man sudoers`) for a complete
 usage description. Here's an illustration of this in `/etc/sudoers`:
 
-    # The basic structure of a user specification is “who where = (as_whom) what”.
+    # The basic structure of a user specification is "who where = (as_whom) what ".
     %sudo ALL=(ALL:ALL) ALL
     %netadmin ALL=(ALL:ALL) ALL
 

@@ -16,7 +16,7 @@ that provides the capability for multiple [VLAN tags](/version/cumulus-linux-36/
 to be inserted into a single Ethernet frame.
 
 The primary use case for QinQ with VXLAN is where a service provider who
-offers multi-tenant layer 2 connectivity between different customers’
+offers multi-tenant layer 2 connectivity between different customers'
 data centers (private clouds) may also need to connect those data
 centers to public cloud providers. Public clouds often has a mandatory
 QinQ handoff interface, where the outer tag is for the customer and the
@@ -108,7 +108,7 @@ These commands create the following configuration in the
         bridge-learning off
         vxlan-id 1000
         vxlan-local-tunnelip 10.0.0.1
-     
+     
     auto vni-3000
     iface vni-3000
         bridge-access 200
@@ -183,7 +183,7 @@ These commands create the following configuration in the
         bridge-vids 100 200
         bridge-vlan-aware yes
         bridge-vlan-protocol 802.1ad
-     
+     
 
 ### Viewing the Configuration
 
@@ -290,7 +290,7 @@ add the following:
         bridge-ports swp3.100.10 vni1000
         bridge-vlan-aware no
         bridge-learning vni1000=off
-     
+     
 
 You can check the configuration with the `brctl show` command:
 
@@ -308,7 +308,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
     auto swp5.100
     iface swp5.100
         vlan-protocol 802.1ad
-     
+     
     auto swp5.100.10
     iface swp5.100.10
         mstpctl-portbpdufilter yes
@@ -330,7 +330,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
   - `iptables` match on double-tagged interfaces is not supported.
   - Single-tagged translation supports only 
     [VLAN-aware bridge mode](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
-    with the bridge’s VLAN 802.1ad protocol.
+    with the bridge's VLAN 802.1ad protocol.
   - [MLAG](/version/cumulus-linux-36/Layer-2/Multi-Chassis-Link-Aggregation-MLAG)
     is only supported with single-tagged translation.
   - No layer 2 protocol (STP BPDU, LLDP) tunneling support.
@@ -367,12 +367,12 @@ configuration like the following:
            vlan-id 1001
            vlan-raw-device swp50s0
            vlan-protocol 802.1ad
-     
+     
     auto vlan1001-101
     iface vlan1001-101
            vlan-id 101
            vlan-raw-device vlan1001
-     
+     
     auto bridge101
     iface bridge101
         bridge-ports vlan1001-101 vxlan1000101

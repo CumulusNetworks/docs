@@ -45,12 +45,12 @@ route information from the devices. Its syntax is:
     netq [<hostname>] show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] changes [between <text-time> and <text-endtime>] [json]
     netq [<hostname>] show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
     netq [<hostname>] show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] changes [between <text-time> and <text-endtime>] [json]
-     
+     
     netq [<hostname>] show ip neighbors [<remote-interface>] [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>] [<mac>] [around <text-time>] [count] [json]
     netq [<hostname>] show ip neighbors [<remote-interface>] [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>] [<mac>] changes [between <text-time> and <text-endtime>] [json]
     netq [<hostname>] show ipv6 neighbors [<remote-interface>] [<ipv6>|<ipv6> vrf <vrf>|vrf <vrf>] [<mac>] [around <text-time>] [count] [json]
     netq [<hostname>] show ipv6 neighbors [<remote-interface>] [<ipv6>|<ipv6> vrf <vrf>|vrf <vrf>] [<mac>] changes [between <text-time> and <text-endtime>] [json]
-     
+     
     netq [<hostname>] show ip routes [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [origin] [around <text-time>] [count] [json]
     netq [<hostname>] show ip routes [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [origin] changes [between <text-time> and <text-endtime>] [json]
     netq [<hostname>] show ipv6 routes [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [origin] [around <text-time>] [count] [json]
@@ -123,46 +123,46 @@ configuration and communication issues at the layer 3 level.
 
 **Example: View IPv6 address information for all devices**
 
-    cumulus@switch:~$ netq show ipv6 addresses 
+    cumulus@switch:~$ netq show ipv6 addresses 
     Matching address records:
-    Address                   Hostname          Interface                 VRF             Last Changed
+    Address                   Hostname          Interface                 VRF             Last Changed
     ------------------------- ----------------- ------------------------- --------------- -------------------------
-    fe80::203:ff:fe11:1101/64 server01          eth1                      default         47m:55.917s
-    fe80::203:ff:fe22:2202/64 server02          eth2                      default         46m:24.908s
-    fe80::203:ff:fe33:3301/64 server03          eth1                      default         45m:58.184s
-    fe80::203:ff:fe44:4402/64 server04          eth2                      default         54m:25.264s
-    fe80::4638:39ff:fe00:18/6 leaf02            br0                       default         1h:0m:31s
-    fe80::4638:39ff:fe00:1b/6 leaf03            swp52                     default         1h:0m:32s
-    fe80::4638:39ff:fe00:1c/6 spine02           swp3                      default         1h:0m:19s
-    fe80::4638:39ff:fe00:23/6 leaf03            br0                       default         1h:0m:26s
-    fe80::4638:39ff:fe00:24/6 leaf01            swp52                     default         1h:0m:44s
-    fe80::4638:39ff:fe00:25/6 spine02           swp1                      default         1h:0m:19s
-    fe80::4638:39ff:fe00:28/6 leaf02            swp51                     default         1h:0m:42s
-    fe80::4638:39ff:fe00:29/6 spine01           swp2                      default         1h:0m:29s
-    fe80::4638:39ff:fe00:2c/6 leaf04            br0                       default         1h:0m:18s
-    fe80::4638:39ff:fe00:3/64 leaf01            br0                       default         1h:0m:39s
-    fe80::4638:39ff:fe00:3b/6 leaf04            swp51                     default         1h:0m:23s
-    fe80::4638:39ff:fe00:3c/6 spine01           swp4                      default         1h:0m:27s
-    fe80::4638:39ff:fe00:46/6 leaf04            swp52                     default         1h:0m:22s
-    fe80::4638:39ff:fe00:47/6 spine02           swp4                      default         1h:0m:19s
-    fe80::4638:39ff:fe00:4f/6 leaf03            swp51                     default         1h:0m:36s
-    fe80::4638:39ff:fe00:50/6 spine01           swp3                      default         1h:0m:29s
-    fe80::4638:39ff:fe00:53/6 leaf01            swp51                     default         1h:0m:44s
-    fe80::4638:39ff:fe00:54/6 spine01           swp1                      default         1h:0m:29s
-    fe80::4638:39ff:fe00:57/6 oob-mgmt-server   eth1                      default         22d:18h:4m:38s
-    fe80::4638:39ff:fe00:5d/6 leaf02            swp52                     default         1h:0m:40s
-    fe80::4638:39ff:fe00:5e/6 spine02           swp2                      default         1h:0m:19s
-    fe80::5054:ff:fe77:c277/6 oob-mgmt-server   eth0                      default         22d:18h:4m:38s
-    fe80::a200:ff:fe00:11/64  leaf01            eth0                      default         22d:18h:4m:33s
-    fe80::a200:ff:fe00:12/64  leaf02            eth0                      default         22d:18h:4m:46s
-    fe80::a200:ff:fe00:13/64  leaf03            eth0                      default         22d:18h:4m:41s
-    fe80::a200:ff:fe00:14/64  leaf04            eth0                      default         22d:18h:4m:36s
-    fe80::a200:ff:fe00:21/64  spine01           eth0                      default         22d:18h:4m:37s
-    fe80::a200:ff:fe00:22/64  spine02           eth0                      default         22d:18h:4m:40s
-    fe80::a200:ff:fe00:31/64  server01          eth0                      default         18h:7m:58s
-    fe80::a200:ff:fe00:32/64  server02          eth0                      default         18h:6m:23s
-    fe80::a200:ff:fe00:33/64  server03          eth0                      default         18h:6m:1s
-    fe80::a200:ff:fe00:34/64  server04          eth0                      default         22d:18h:4m:36s
+    fe80::203:ff:fe11:1101/64 server01          eth1                      default         47m:55.917s
+    fe80::203:ff:fe22:2202/64 server02          eth2                      default         46m:24.908s
+    fe80::203:ff:fe33:3301/64 server03          eth1                      default         45m:58.184s
+    fe80::203:ff:fe44:4402/64 server04          eth2                      default         54m:25.264s
+    fe80::4638:39ff:fe00:18/6 leaf02            br0                       default         1h:0m:31s
+    fe80::4638:39ff:fe00:1b/6 leaf03            swp52                     default         1h:0m:32s
+    fe80::4638:39ff:fe00:1c/6 spine02           swp3                      default         1h:0m:19s
+    fe80::4638:39ff:fe00:23/6 leaf03            br0                       default         1h:0m:26s
+    fe80::4638:39ff:fe00:24/6 leaf01            swp52                     default         1h:0m:44s
+    fe80::4638:39ff:fe00:25/6 spine02           swp1                      default         1h:0m:19s
+    fe80::4638:39ff:fe00:28/6 leaf02            swp51                     default         1h:0m:42s
+    fe80::4638:39ff:fe00:29/6 spine01           swp2                      default         1h:0m:29s
+    fe80::4638:39ff:fe00:2c/6 leaf04            br0                       default         1h:0m:18s
+    fe80::4638:39ff:fe00:3/64 leaf01            br0                       default         1h:0m:39s
+    fe80::4638:39ff:fe00:3b/6 leaf04            swp51                     default         1h:0m:23s
+    fe80::4638:39ff:fe00:3c/6 spine01           swp4                      default         1h:0m:27s
+    fe80::4638:39ff:fe00:46/6 leaf04            swp52                     default         1h:0m:22s
+    fe80::4638:39ff:fe00:47/6 spine02           swp4                      default         1h:0m:19s
+    fe80::4638:39ff:fe00:4f/6 leaf03            swp51                     default         1h:0m:36s
+    fe80::4638:39ff:fe00:50/6 spine01           swp3                      default         1h:0m:29s
+    fe80::4638:39ff:fe00:53/6 leaf01            swp51                     default         1h:0m:44s
+    fe80::4638:39ff:fe00:54/6 spine01           swp1                      default         1h:0m:29s
+    fe80::4638:39ff:fe00:57/6 oob-mgmt-server   eth1                      default         22d:18h:4m:38s
+    fe80::4638:39ff:fe00:5d/6 leaf02            swp52                     default         1h:0m:40s
+    fe80::4638:39ff:fe00:5e/6 spine02           swp2                      default         1h:0m:19s
+    fe80::5054:ff:fe77:c277/6 oob-mgmt-server   eth0                      default         22d:18h:4m:38s
+    fe80::a200:ff:fe00:11/64  leaf01            eth0                      default         22d:18h:4m:33s
+    fe80::a200:ff:fe00:12/64  leaf02            eth0                      default         22d:18h:4m:46s
+    fe80::a200:ff:fe00:13/64  leaf03            eth0                      default         22d:18h:4m:41s
+    fe80::a200:ff:fe00:14/64  leaf04            eth0                      default         22d:18h:4m:36s
+    fe80::a200:ff:fe00:21/64  spine01           eth0                      default         22d:18h:4m:37s
+    fe80::a200:ff:fe00:22/64  spine02           eth0                      default         22d:18h:4m:40s
+    fe80::a200:ff:fe00:31/64  server01          eth0                      default         18h:7m:58s
+    fe80::a200:ff:fe00:32/64  server02          eth0                      default         18h:6m:23s
+    fe80::a200:ff:fe00:33/64  server03          eth0                      default         18h:6m:1s
+    fe80::a200:ff:fe00:34/64  server04          eth0                      default         22d:18h:4m:36s
 
 **Example: Filter IP Address Information for a Specific Interface**
 
@@ -189,37 +189,37 @@ on all devices.
 
 This example shows the IPv6 address information for the *leaf01* switch.
 
-    cumulus@switch:~$ netq leaf01 show ipv6 addresses 
+    cumulus@switch:~$ netq leaf01 show ipv6 addresses 
     Matching address records:
-    Address                   Hostname          Interface                 VRF             Last Changed
+    Address                   Hostname          Interface                 VRF             Last Changed
     ------------------------- ----------------- ------------------------- --------------- -------------------------
-    fe80::4638:39ff:fe00:24/6 leaf01            swp52                     default         4h:18m:49s
-    fe80::4638:39ff:fe00:3/64 leaf01            br0                       default         4h:18m:45s
-    fe80::4638:39ff:fe00:53/6 leaf01            swp51                     default         4h:18m:50s
-    fe80::a200:ff:fe00:11/64  leaf01            eth0                      default         22d:21h:22m:39s
+    fe80::4638:39ff:fe00:24/6 leaf01            swp52                     default         4h:18m:49s
+    fe80::4638:39ff:fe00:3/64 leaf01            br0                       default         4h:18m:45s
+    fe80::4638:39ff:fe00:53/6 leaf01            swp51                     default         4h:18m:50s
+    fe80::a200:ff:fe00:11/64  leaf01            eth0                      default         22d:21h:22m:39s
 
 **Example: View Changes to IP Address Information**
 
 This example shows the IPv4 address information that changed for all
 devices between 7 and 30 days ago.
 
-    cumulus@switch:~$ netq show ip addresses changes between 7d and 30d 
+    cumulus@switch:~$ netq show ip addresses changes between 7d and 30d 
     Matching address records:
-    Address                   Hostname          Interface                 VRF             DB State Last Changed
+    Address                   Hostname          Interface                 VRF             DB State Last Changed
     ------------------------- ----------------- ------------------------- --------------- -------- -------------------------
-    192.168.0.11/24           leaf01            eth0                      default         Add      22d:20h:52m:30s
-    10.255.5.134/24           leaf01            vagrant                   default         Add      22d:20h:52m:30s
-    192.168.0.34/24           server04          eth0                      default         Add      22d:20h:52m:33s
-    192.168.0.14/24           leaf04            eth0                      default         Add      22d:20h:52m:34s
-    192.168.0.21/24           spine01           eth0                      default         Add      22d:20h:52m:35s
-    172.17.0.1/16             oob-mgmt-server   docker0                   default         Add      22d:20h:52m:35s
-    192.168.0.254/24          oob-mgmt-server   eth1                      default         Add      22d:20h:52m:35s
-    10.255.5.226/24           oob-mgmt-server   eth0                      default         Add      22d:20h:52m:35s
-    192.168.0.22/24           spine02           eth0                      default         Add      22d:20h:52m:37s
-    192.168.0.13/24           leaf03            eth0                      default         Add      22d:20h:52m:38s
-    10.255.5.191/24           leaf03            vagrant                   default         Add      22d:20h:52m:38s
-    192.168.0.12/24           leaf02            eth0                      default         Add      22d:20h:52m:43s
-    10.255.5.32/24            leaf02            vagrant                   default         Add      22d:20h:52m:43s
+    192.168.0.11/24           leaf01            eth0                      default         Add      22d:20h:52m:30s
+    10.255.5.134/24           leaf01            vagrant                   default         Add      22d:20h:52m:30s
+    192.168.0.34/24           server04          eth0                      default         Add      22d:20h:52m:33s
+    192.168.0.14/24           leaf04            eth0                      default         Add      22d:20h:52m:34s
+    192.168.0.21/24           spine01           eth0                      default         Add      22d:20h:52m:35s
+    172.17.0.1/16             oob-mgmt-server   docker0                   default         Add      22d:20h:52m:35s
+    192.168.0.254/24          oob-mgmt-server   eth1                      default         Add      22d:20h:52m:35s
+    10.255.5.226/24           oob-mgmt-server   eth0                      default         Add      22d:20h:52m:35s
+    192.168.0.22/24           spine02           eth0                      default         Add      22d:20h:52m:37s
+    192.168.0.13/24           leaf03            eth0                      default         Add      22d:20h:52m:38s
+    10.255.5.191/24           leaf03            vagrant                   default         Add      22d:20h:52m:38s
+    192.168.0.12/24           leaf02            eth0                      default         Add      22d:20h:52m:43s
+    10.255.5.32/24            leaf02            vagrant                   default         Add      22d:20h:52m:43s
 
 **Example: Obtain a Count of IP Addresses Used in Network**
 
@@ -227,7 +227,7 @@ This example shows the number of IPv4 and IPv6 addresses in the network.
 
     cumulus@switch:~$ netq show ip addresses count
     Count of matching address records: 33
-     
+     
     cumulus@switch:~$ netq show ipv6 addresses count
     Count of matching address records: 42
 
@@ -364,37 +364,37 @@ configuration and communication issues at the layer 3 level.
 This example shows the IPv4 and IPv6 routes for all devices in the
 network.
 
-    cumulus@switch:~$ netq show ipv6 routes 
+    cumulus@switch:~$ netq show ipv6 routes 
     Matching routes records:
-    Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+    Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
     ------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
-    yes    default         ::/0                           server04          lo                                  6h:1m:52s
-    yes    default         ::/0                           server03          lo                                  6h:1m:53s
-    yes    default         ::/0                           server01          lo                                  6h:1m:54s
-    yes    default         ::/0                           server02          lo                                  6h:1m:53s
-     
-    cumulus@switch:~$ netq show ip routes 
+    yes    default         ::/0                           server04          lo                                  6h:1m:52s
+    yes    default         ::/0                           server03          lo                                  6h:1m:53s
+    yes    default         ::/0                           server01          lo                                  6h:1m:54s
+    yes    default         ::/0                           server02          lo                                  6h:1m:53s
+     
+    cumulus@switch:~$ netq show ip routes 
     Matching routes records:
-    Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+    Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
     ------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
-    no     default         0.0.0.0/0                      server02          192.168.0.254: eth0                 6h:8m:55s
-    no     default         0.0.0.0/0                      server04          192.168.0.254: eth0                 6h:8m:54s
-    no     default         0.0.0.0/0                      server01          192.168.0.254: eth0                 6h:8m:55s
-    no     default         10.0.0.0/8                     server03          172.16.3.1: eth1                    6h:8m:54s
-    no     default         10.0.0.0/8                     server02          172.16.2.1: eth2                    6h:8m:55s
-    no     default         10.0.0.0/8                     server04          172.16.4.1: eth2                    6h:8m:54s
-    no     default         10.0.0.0/8                     server01          172.16.1.1: eth1                    6h:8m:55s
-    no     default         10.0.0.11/32                   leaf04            169.254.0.1: swp51,                 6h:15m:41s
-                                                                            169.254.0.1: swp52
-    no     default         10.0.0.11/32                   spine02           169.254.0.1: swp1                   6h:15m:42s
-    no     default         10.0.0.11/32                   spine01           169.254.0.1: swp1                   6h:15m:48s
-    no     default         10.0.0.12/32                   spine02           169.254.0.1: swp2                   6h:15m:42s
-    no     default         10.0.0.12/32                   leaf04            169.254.0.1: swp51,                 6h:15m:41s
-                                                                            169.254.0.1: swp52
-    no     default         10.0.0.12/32                   spine01           169.254.0.1: swp2                   6h:15m:48s
-    no     default         10.0.0.13/32                   leaf04            169.254.0.1: swp51,                 6h:15m:41s
-                                                                            169.254.0.1: swp52
-    no     default         10.0.0.13/32                   leaf01            169.254.0.1: swp51,                 6h:15m:41s
+    no     default         0.0.0.0/0                      server02          192.168.0.254: eth0                 6h:8m:55s
+    no     default         0.0.0.0/0                      server04          192.168.0.254: eth0                 6h:8m:54s
+    no     default         0.0.0.0/0                      server01          192.168.0.254: eth0                 6h:8m:55s
+    no     default         10.0.0.0/8                     server03          172.16.3.1: eth1                    6h:8m:54s
+    no     default         10.0.0.0/8                     server02          172.16.2.1: eth2                    6h:8m:55s
+    no     default         10.0.0.0/8                     server04          172.16.4.1: eth2                    6h:8m:54s
+    no     default         10.0.0.0/8                     server01          172.16.1.1: eth1                    6h:8m:55s
+    no     default         10.0.0.11/32                   leaf04            169.254.0.1: swp51,                 6h:15m:41s
+                                                                            169.254.0.1: swp52
+    no     default         10.0.0.11/32                   spine02           169.254.0.1: swp1                   6h:15m:42s
+    no     default         10.0.0.11/32                   spine01           169.254.0.1: swp1                   6h:15m:48s
+    no     default         10.0.0.12/32                   spine02           169.254.0.1: swp2                   6h:15m:42s
+    no     default         10.0.0.12/32                   leaf04            169.254.0.1: swp51,                 6h:15m:41s
+                                                                            169.254.0.1: swp52
+    no     default         10.0.0.12/32                   spine01           169.254.0.1: swp2                   6h:15m:48s
+    no     default         10.0.0.13/32                   leaf04            169.254.0.1: swp51,                 6h:15m:41s
+                                                                            169.254.0.1: swp52
+    no     default         10.0.0.13/32                   leaf01            169.254.0.1: swp51,                 6h:15m:41s
     ...
 
 **Example: View IP Routes for a Given IP Address**
@@ -404,7 +404,7 @@ This example shows the routes available for an IP address of
 
     cumulus@switch:~$ netq show ip routes 10.0.0.12
     Matching routes records:
-    Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+    Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
     ------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
     no     default         10.0.0.12/32                   leaf03            10.0.0.21: swp51, 10.0.0.22: swp52  5h:39m:57s
     no     default         10.0.0.12/32                   leaf01            10.0.0.21: swp51, 10.0.0.22: swp52  5h:39m:57s
@@ -417,13 +417,13 @@ This example shows the routes available for an IP address of
 
 This example shows the IPv4 routes that are owned by spine01 switch.
 
-    cumulus@switch:~$ netq spine01 show ip routes origin 
+    cumulus@switch:~$ netq spine01 show ip routes origin 
     Matching routes records:
-    Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+    Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
     ------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
-    yes    default         10.0.0.21/32                   spine01           lo                                  23h:47m:23s
-    yes    default         192.168.0.0/24                 spine01           eth0                                23d:16h:51m:28s
-    yes    default         192.168.0.21/32                spine01           eth0                                23d:16h:51m:28s
+    yes    default         10.0.0.21/32                   spine01           lo                                  23h:47m:23s
+    yes    default         192.168.0.0/24                 spine01           eth0                                23d:16h:51m:28s
+    yes    default         192.168.0.21/32                spine01           eth0                                23d:16h:51m:28s
 
 **Example: View IP Routes for a Given Device at a Prior Time**
 
@@ -431,19 +431,19 @@ This example show the IPv4 routes for spine01 switch about 24 hours ago.
 
     cumulus@switch:~$ netq spine01 show ip routes around 24h
     Matching routes records:
-    Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+    Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
     ------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
-    no     default         10.0.0.11/32                   spine01           169.254.0.1: swp1                   3h:30m:12s
-    no     default         10.0.0.12/32                   spine01           169.254.0.1: swp2                   3h:30m:12s
-    no     default         10.0.0.13/32                   spine01           169.254.0.1: swp3                   3h:30m:11s
-    no     default         10.0.0.14/32                   spine01           169.254.0.1: swp4                   3h:30m:11s
-    no     default         172.16.1.0/24                  spine01           169.254.0.1: swp1                   3h:30m:13s
-    no     default         172.16.2.0/24                  spine01           169.254.0.1: swp2                   3h:30m:13s
-    no     default         172.16.3.0/24                  spine01           169.254.0.1: swp3                   3h:30m:13s
-    no     default         172.16.4.0/24                  spine01           169.254.0.1: swp4                   3h:30m:13s
-    yes    default         10.0.0.21/32                   spine01           lo                                  3h:46m:28s
-    yes    default         192.168.0.0/24                 spine01           eth0                                22d:20h:50m:33s
-    yes    default         192.168.0.21/32                spine01           eth0                                22d:20h:50m:33s
+    no     default         10.0.0.11/32                   spine01           169.254.0.1: swp1                   3h:30m:12s
+    no     default         10.0.0.12/32                   spine01           169.254.0.1: swp2                   3h:30m:12s
+    no     default         10.0.0.13/32                   spine01           169.254.0.1: swp3                   3h:30m:11s
+    no     default         10.0.0.14/32                   spine01           169.254.0.1: swp4                   3h:30m:11s
+    no     default         172.16.1.0/24                  spine01           169.254.0.1: swp1                   3h:30m:13s
+    no     default         172.16.2.0/24                  spine01           169.254.0.1: swp2                   3h:30m:13s
+    no     default         172.16.3.0/24                  spine01           169.254.0.1: swp3                   3h:30m:13s
+    no     default         172.16.4.0/24                  spine01           169.254.0.1: swp4                   3h:30m:13s
+    yes    default         10.0.0.21/32                   spine01           lo                                  3h:46m:28s
+    yes    default         192.168.0.0/24                 spine01           eth0                                22d:20h:50m:33s
+    yes    default         192.168.0.21/32                spine01           eth0                                22d:20h:50m:33s
 
 **Example: View the Number of IP Routes in Network**
 
@@ -452,7 +452,7 @@ network.
 
     cumulus@switch:~$ netq show ip routes count
     Count of matching routes records: 125
-     
+     
     cumulus@switch:~$ netq show ipv6 routes count
     Count of matching routes records: 5
 
@@ -474,7 +474,7 @@ validate the configuration. The syntax of these commands is:
 
     netq [<hostname>] show bgp [<bgp-session>|asn <number-asn>] [vrf <vrf>] [around <text-time>] [json]
     netq [<hostname>] show bgp [<bgp-session>|asn <number-asn>] [vrf <vrf>] changes [between <text-time> and <text-endtime>] [json]
-     
+     
     netq check bgp [vrf <vrf>] [around <text-time>] [json]
 
 {{%notice note%}}
@@ -514,24 +514,24 @@ just over one day ago.
 
     cumulus@switch:~$ netq show bgp
     Matching bgp records:
-    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
+    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
     ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
-    leaf01            swp51(spine01)               default         65011      65020      7/-/-        1d:3h:53m:22s
-    leaf01            swp52(spine02)               default         65011      65020      7/-/-        1d:3h:37m:20s
-    leaf02            swp51(spine01)               default         65012      65020      7/-/-        1d:3h:37m:30s
-    leaf02            swp52(spine02)               default         65012      65020      7/-/-        1d:3h:37m:21s
-    leaf03            swp51(spine01)               default         65013      65020      7/-/-        1d:3h:37m:30s
-    leaf03            swp52(spine02)               default         65013      65020      7/-/-        1d:3h:37m:21s
-    leaf04            swp51(spine01)               default         65014      65020      7/-/-        1d:3h:37m:29s
-    leaf04            swp52(spine02)               default         65014      65020      7/-/-        1d:3h:37m:20s
-    spine01           swp1(leaf01)                 default         65020      65011      2/-/-        1d:3h:53m:22s
-    spine01           swp2(leaf02)                 default         65020      65012      2/-/-        1d:3h:53m:22s
-    spine01           swp3(leaf03)                 default         65020      65013      2/-/-        1d:3h:53m:22s
-    spine01           swp4(leaf04)                 default         65020      65014      2/-/-        1d:3h:53m:22s
-    spine02           swp1(leaf01)                 default         65020      65011      2/-/-        1d:3h:37m:20s
-    spine02           swp2(leaf02)                 default         65020      65012      2/-/-        1d:3h:37m:20s
-    spine02           swp3(leaf03)                 default         65020      65013      2/-/-        1d:3h:37m:20s
-    spine02           swp4(leaf04)                 default         65020      65014      2/-/-        1d:3h:37m:19s
+    leaf01            swp51(spine01)               default         65011      65020      7/-/-        1d:3h:53m:22s
+    leaf01            swp52(spine02)               default         65011      65020      7/-/-        1d:3h:37m:20s
+    leaf02            swp51(spine01)               default         65012      65020      7/-/-        1d:3h:37m:30s
+    leaf02            swp52(spine02)               default         65012      65020      7/-/-        1d:3h:37m:21s
+    leaf03            swp51(spine01)               default         65013      65020      7/-/-        1d:3h:37m:30s
+    leaf03            swp52(spine02)               default         65013      65020      7/-/-        1d:3h:37m:21s
+    leaf04            swp51(spine01)               default         65014      65020      7/-/-        1d:3h:37m:29s
+    leaf04            swp52(spine02)               default         65014      65020      7/-/-        1d:3h:37m:20s
+    spine01           swp1(leaf01)                 default         65020      65011      2/-/-        1d:3h:53m:22s
+    spine01           swp2(leaf02)                 default         65020      65012      2/-/-        1d:3h:53m:22s
+    spine01           swp3(leaf03)                 default         65020      65013      2/-/-        1d:3h:53m:22s
+    spine01           swp4(leaf04)                 default         65020      65014      2/-/-        1d:3h:53m:22s
+    spine02           swp1(leaf01)                 default         65020      65011      2/-/-        1d:3h:37m:20s
+    spine02           swp2(leaf02)                 default         65020      65012      2/-/-        1d:3h:37m:20s
+    spine02           swp3(leaf03)                 default         65020      65013      2/-/-        1d:3h:37m:20s
+    spine02           swp4(leaf04)                 default         65020      65014      2/-/-        1d:3h:37m:19s
 
 **Example: View BGP Configuration Information for a Given Device**
 
@@ -539,14 +539,14 @@ This example shows the BGP configuration information for the spine02
 switch. The switch is peered with swp1 on leaf01, swp2 on leaf02, and so
 on. Spine02 has an ASN of 65020 and each of the leafs have unique ASNs.
 
-    cumulus@switch:~$ netq spine02 show bgp 
+    cumulus@switch:~$ netq spine02 show bgp 
     Matching bgp records:
-    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
+    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
     ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
-    spine02           swp1(leaf01)                 default         65020      65011      2/-/-        1d:4h:55m:0s
-    spine02           swp2(leaf02)                 default         65020      65012      2/-/-        1d:4h:55m:0s
-    spine02           swp3(leaf03)                 default         65020      65013      2/-/-        1d:4h:55m:0s
-    spine02           swp4(leaf04)                 default         65020      65014      2/-/-        1d:4h:54m:59s
+    spine02           swp1(leaf01)                 default         65020      65011      2/-/-        1d:4h:55m:0s
+    spine02           swp2(leaf02)                 default         65020      65012      2/-/-        1d:4h:55m:0s
+    spine02           swp3(leaf03)                 default         65020      65013      2/-/-        1d:4h:55m:0s
+    spine02           swp4(leaf04)                 default         65020      65014      2/-/-        1d:4h:54m:59s
 
 **Example: View BGP Configuration Information for a Given ASN**
 
@@ -554,12 +554,12 @@ This example shows the BGP configuration information for ASN of *65013*.
 This ASN is associated with leaf03 and so the results show the BGP
 neighbors for that switch.
 
-    cumulus@switch:~$ netq show bgp asn 65013 
+    cumulus@switch:~$ netq show bgp asn 65013 
     Matching bgp records:
-    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
+    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
     ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
-    leaf03            swp51(spine01)               default         65013      65020      7/-/-        1d:4h:54m:31s
-    leaf03            swp52(spine02)               default         65013      65020      7/-/-        1d:4h:54m:22s
+    leaf03            swp51(spine01)               default         65013      65020      7/-/-        1d:4h:54m:31s
+    leaf03            swp52(spine02)               default         65013      65020      7/-/-        1d:4h:54m:22s
 
 **Example: View BGP Configuration Information for a Prior Time**
 
@@ -568,24 +568,24 @@ earlier.
 
     cumulus@switch:~$ netq show bgp around 12h
     Matching bgp records:
-    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
+    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
     ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
-    leaf01            swp51(spine01)               default         65011      65020      7/-/-        17h:29m:26s
-    leaf01            swp52(spine02)               default         65011      65020      7/-/-        17h:13m:24s
-    leaf02            swp51(spine01)               default         65012      65020      7/-/-        17h:13m:34s
-    leaf02            swp52(spine02)               default         65012      65020      7/-/-        17h:13m:25s
-    leaf03            swp51(spine01)               default         65013      65020      7/-/-        17h:13m:34s
-    leaf03            swp52(spine02)               default         65013      65020      7/-/-        17h:13m:25s
-    leaf04            swp51(spine01)               default         65014      65020      7/-/-        17h:13m:33s
-    leaf04            swp52(spine02)               default         65014      65020      7/-/-        17h:13m:24s
-    spine01           swp1(leaf01)                 default         65020      65011      2/-/-        17h:29m:26s
-    spine01           swp2(leaf02)                 default         65020      65012      2/-/-        17h:29m:26s
-    spine01           swp3(leaf03)                 default         65020      65013      2/-/-        17h:29m:26s
-    spine01           swp4(leaf04)                 default         65020      65014      2/-/-        17h:29m:26s
-    spine02           swp1(leaf01)                 default         65020      65011      2/-/-        17h:13m:24s
-    spine02           swp2(leaf02)                 default         65020      65012      2/-/-        17h:13m:24s
-    spine02           swp3(leaf03)                 default         65020      65013      2/-/-        17h:13m:24s
-    spine02           swp4(leaf04)                 default         65020      65014      2/-/-        17h:13m:23s
+    leaf01            swp51(spine01)               default         65011      65020      7/-/-        17h:29m:26s
+    leaf01            swp52(spine02)               default         65011      65020      7/-/-        17h:13m:24s
+    leaf02            swp51(spine01)               default         65012      65020      7/-/-        17h:13m:34s
+    leaf02            swp52(spine02)               default         65012      65020      7/-/-        17h:13m:25s
+    leaf03            swp51(spine01)               default         65013      65020      7/-/-        17h:13m:34s
+    leaf03            swp52(spine02)               default         65013      65020      7/-/-        17h:13m:25s
+    leaf04            swp51(spine01)               default         65014      65020      7/-/-        17h:13m:33s
+    leaf04            swp52(spine02)               default         65014      65020      7/-/-        17h:13m:24s
+    spine01           swp1(leaf01)                 default         65020      65011      2/-/-        17h:29m:26s
+    spine01           swp2(leaf02)                 default         65020      65012      2/-/-        17h:29m:26s
+    spine01           swp3(leaf03)                 default         65020      65013      2/-/-        17h:29m:26s
+    spine01           swp4(leaf04)                 default         65020      65014      2/-/-        17h:29m:26s
+    spine02           swp1(leaf01)                 default         65020      65011      2/-/-        17h:13m:24s
+    spine02           swp2(leaf02)                 default         65020      65012      2/-/-        17h:13m:24s
+    spine02           swp3(leaf03)                 default         65020      65013      2/-/-        17h:13m:24s
+    spine02           swp4(leaf04)                 default         65020      65014      2/-/-        17h:13m:23s
 
 **Example: View BGP Configuration Changes**
 
@@ -634,32 +634,32 @@ on spine01.
 
     cumulus@switch:~$ netq check bgp
     Total Sessions: 8 , Failed Sessions: 2
-    Node     Neighbor    Peer ID    Reason              Time
-    -------  ----------  ---------  ------------------  -------
-    leaf03   swp51       spine01    Interface down      4m ago
-    spine01  swp3        leaf03     Hold Timer Expired  4m ago
+    Node     Neighbor    Peer ID    Reason              Time
+    -------  ----------  ---------  ------------------  -------
+    leaf03   swp51       spine01    Interface down      4m ago
+    spine01  swp3        leaf03     Hold Timer Expired  4m ago
 
 This example shows two failed BGP sessions because an interface is down
 and possibly because an RA was not configured.
 
     cumulus@switch:~$ netq check bgp
-    Total Nodes: 10, Failed Nodes: 2, Total Sessions: 28 , Failed Sessions: 2, 
-    Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
+    Total Nodes: 10, Failed Nodes: 2, Total Sessions: 28 , Failed Sessions: 2, 
+    Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
     ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
-    mlx-2700-03       default         uplink-1          spine-1           RA not configured(?)                          0.116739s
-    spine-1           default         downlink-5        mlx-2700-03       Interface down                                0.116793s
+    mlx-2700-03       default         uplink-1          spine-1           RA not configured(?)                          0.116739s
+    spine-1           default         downlink-5        mlx-2700-03       Interface down                                0.116793s
 
 This example shows four failed BGP sessions because peers are not
 configured and possibly because an RA was not configured.
 
     cumulus@switch:~$ netq check bgp
-    Total Nodes: 10, Failed Nodes: 3, Total Sessions: 28 , Failed Sessions: 4, 
-    Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
+    Total Nodes: 10, Failed Nodes: 3, Total Sessions: 28 , Failed Sessions: 4, 
+    Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
     ----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
-    mlx-2700-03       default         uplink-1          spine-1           Peer not configured                           4.59256s
-    mlx-2700-03       default         uplink-2          unknown           RA not configured(?)                          4.63093s
-    spine-1           default         downlink-5        mlx-2700-03       Peer not configured                           0.155377s
-    spine-2           default         downlink-5        mlx-2700-03       Peer not configured                           0.155410s
+    mlx-2700-03       default         uplink-1          spine-1           Peer not configured                           4.59256s
+    mlx-2700-03       default         uplink-2          unknown           RA not configured(?)                          4.63093s
+    spine-1           default         downlink-5        mlx-2700-03       Peer not configured                           0.155377s
+    spine-2           default         downlink-5        mlx-2700-03       Peer not configured                           0.155410s
 
 ## Monitor OSPF Configuration
 
@@ -679,8 +679,8 @@ validate the configuration. The syntax of these commands is:
 
     netq [<hostname>] show ospf [<remote-interface>] [area <area-id>] [around <text-time>] [json]
     netq [<hostname>] show ospf [<remote-interface>] [area <area-id>] changes [between <text-time> and <text-endtime>] [json]
-     
-    netq check ospf [around <text-time>] [json] 
+     
+    netq check ospf [around <text-time>] [json] 
 
 {{%notice note%}}
 
@@ -713,26 +713,26 @@ assigned areas, state, peer and interface, and the last time this
 information was changed.
 
     cumulus@switch:~$ netq show ospf
-     
+     
     Matching ospf records:
-    Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
+    Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
     ----------------- ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
-    leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      27.914477s
-    leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      27.910094s
-    leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      36.816204s
-    leaf02            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp2                      36.815804s
-    leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      34.547961s
-    leaf03            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp3                      34.547727s
-    leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      27.332121s
-    leaf04            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp4                      27.331475s
-    spine01           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp51                     37.647986s
-    spine01           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp51                     37.647565s
-    spine01           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp51                     37.647786s
-    spine01           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp51                     37.648211s
-    spine02           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp52                     37.840344s
-    spine02           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp52                     37.839967s
-    spine02           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp52                     37.840188s
-    spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     37.840626s
+    leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      27.914477s
+    leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      27.910094s
+    leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      36.816204s
+    leaf02            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp2                      36.815804s
+    leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      34.547961s
+    leaf03            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp3                      34.547727s
+    leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      27.332121s
+    leaf04            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp4                      27.331475s
+    spine01           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp51                     37.647986s
+    spine01           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp51                     37.647565s
+    spine01           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp51                     37.647786s
+    spine01           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp51                     37.648211s
+    spine02           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp52                     37.840344s
+    spine02           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp52                     37.839967s
+    spine02           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp52                     37.840188s
+    spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     37.840626s
 
 **Example: View OSPF Configuration Information for a Given Device>**
 
@@ -740,27 +740,27 @@ This example show the OSPF configuration
 information for leaf01.
 
     cumulus@switch:~$ netq leaf01 show ospf
-     
+     
     Matching ospf records:
-    Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
+    Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
     ----------------- ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
-    leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      8m:58.461s
-    leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      8m:58.457s
+    leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      8m:58.461s
+    leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      8m:58.457s
 
 **Example: View OSPF Configuration Information for a Given Interface**
 
 This example shows the OSPF configuration for all devices with the swp51
 interface.
 
-    cumulus@switch:~$ netq show ospf swp51 
-     
+    cumulus@switch:~$ netq show ospf swp51 
+     
     Matching ospf records:
-    Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
+    Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
     ----------------- ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
-    leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      11m:10.639s
-    leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      11m:19.540s
-    leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      11m:17.272s
-    leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      11m:10.567s
+    leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      11m:10.639s
+    leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      11m:19.540s
+    leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      11m:17.272s
+    leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      11m:10.567s
 
 **Example: View OSPF Configuration Information at a Prior Time**
 
@@ -768,18 +768,18 @@ This example shows the OSPF configuration
 for all leaf switches about five minutes ago.
 
     cumulus@switch:~$ netq leaf* show ospf around 5m
-     
+     
     Matching ospf records:
-    Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
+    Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
     ----------------- ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
-    leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      9m:10.128s
-    leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      9m:10.124s
-    leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      9m:19.305s
-    leaf02            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp2                      9m:19.301s
-    leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      9m:16.762s
-    leaf03            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp3                      9m:16.762s
-    leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      9m:9.546s
-    leaf04            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp4                      9m:9.545s
+    leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      9m:10.128s
+    leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      9m:10.124s
+    leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      9m:19.305s
+    leaf02            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp2                      9m:19.301s
+    leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      9m:16.762s
+    leaf03            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp3                      9m:16.762s
+    leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      9m:9.546s
+    leaf04            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp4                      9m:9.545s
 
 ### Validate OSPF Operation
 
@@ -869,7 +869,7 @@ Address                   Hostname          Interface                 VRF       
 10.0.0.11/32              leaf01            swp52                     default         27m:3.877s
 172.16.1.1/24             leaf01            br0                       default         27m:3.653s
 192.168.0.11/24           leaf01            eth0                      default         33m:59.368s
- 
+ 
 cumulus@switch:~$ netq leaf03 show ip addresses
 Matching address records:
 Address                   Hostname          Interface                 VRF             Last Changed
@@ -879,13 +879,13 @@ Address                   Hostname          Interface                 VRF       
 10.0.0.13/32              leaf03            swp52                     default         55m:43.230s
 172.16.3.1/24             leaf03            br0                       default         55m:43.754s
 192.168.0.13/24           leaf03            eth0                      default         1h:2m:47s
- 
+ 
 cumulus@switch:~$ netq trace 10.0.0.13 from 10.0.0.11 pretty
 Number of Paths: 2
 Number of Paths with Errors: 0
 Number of Paths with Warnings: 0
 Path MTU: 1500
- 
+ 
  leaf01 swp52 -- swp1 spine02 swp3 -- swp52 leaf03 <lo>  
         swp51 -- swp1 spine01 swp3 -- swp51 leaf03 <lo>  
 ```
@@ -902,17 +902,17 @@ hostname to achieve the same results.
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0
     Path MTU: 1500
-     
-     leaf01 swp52 -- swp1 spine02 swp3 -- swp52 leaf03 <lo>  
-            swp51 -- swp1 spine01 swp3 -- swp51 leaf03 <lo>  
-     
+     
+     leaf01 swp52 -- swp1 spine02 swp3 -- swp52 leaf03 <lo>  
+            swp51 -- swp1 spine01 swp3 -- swp51 leaf03 <lo>  
+     
     Number of Paths: 2
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0
     Path MTU: 1500
-     
-     leaf03 swp52 -- swp3 spine02 swp1 -- swp52 leaf01 <lo>  
-            swp51 -- swp3 spine01 swp1 -- swp51 leaf01 <lo>  
+     
+     leaf03 swp52 -- swp3 spine02 swp1 -- swp52 leaf01 <lo>  
+            swp51 -- swp3 spine01 swp1 -- swp51 leaf01 <lo>  
 
 ### View Paths between Two Switches with Detailed Output
 
@@ -925,14 +925,14 @@ VLAN is configured, so the related fields are left blank.
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0
     Path MTU: 1500
-     
-    Id  Hop Hostname        InPort          InVlan InTunnel              InRtrIf         InVRF           OutRtrIf        OutVRF          OutTunnel             OutPort         OutVlan
+     
+    Id  Hop Hostname        InPort          InVlan InTunnel              InRtrIf         InVRF           OutRtrIf        OutVRF          OutTunnel             OutPort         OutVlan
     --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
-    1   1   leaf01                                                                                       swp52           default                               swp52
-        2   spine02         swp1                                         swp1            default         swp3            default                               swp3
-        3   leaf03          swp52                                        swp52           default         lo
+    1   1   leaf01                                                                                       swp52           default                               swp52
+        2   spine02         swp1                                         swp1            default         swp3            default                               swp3
+        3   leaf03          swp52                                        swp52           default         lo
     --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
-    2   1   leaf01                                                                                       swp51           default                               swp51
-        2   spine01         swp1                                         swp1            default         swp3            default                               swp3
-        3   leaf03          swp51                                        swp51           default         lo
+    2   1   leaf01                                                                                       swp51           default                               swp51
+        2   spine01         swp1                                         swp1            default         swp3            default                               swp3
+        3   leaf03          swp51                                        swp51           default         lo
     --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------

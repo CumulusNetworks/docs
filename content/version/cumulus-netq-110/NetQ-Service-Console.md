@@ -62,7 +62,7 @@ information about
 ## Accessing the NetQ Command Line</span>
 
 The service console provides access to a standard Bash shell, so you can
-run NetQ commands — or any Linux command — directly on a given node.
+run NetQ commands - or any Linux command - directly on a given node.
 
 {{%notice tip%}}
 

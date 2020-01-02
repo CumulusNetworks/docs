@@ -123,11 +123,11 @@ These commands create the following configuration in the `/etc/network/interface
 cumulus@switch:~$ cat /etc/network/interfaces
 
 ...
-     
+     
 auto bridge
 iface bridge
     bridge-ageing 600
- 
+ 
 ...
 ```
 
@@ -191,7 +191,7 @@ iface bridge
     bridge-ports swp1 swp2
     bridge-vids 10
     bridge-vlan-aware yes
-     
+     
 auto bridge.10
 iface bridge.10
     address 10.100.100.1/24
@@ -241,11 +241,11 @@ Now add the dummy interface to your network configuration:
 ```
     cumulus@switch:~$ sudo nano /etc/network/interfaces
     ...
-         
+         
     auto dummy
     iface dummy
         link-type dummy
-         
+         
     auto bridge
     iface bridge
     ...
@@ -362,7 +362,7 @@ explanation:
 
 - **self**: the Linux kernel FDB entry flag indicating the FDB entry belongs to the FDB on the device referenced by the device. For example, this FDB entry belongs to the VXLAN device vx-1000: `"00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self"`
 - **master**: the Linux kernel FDB entry flag indicating the FDB entry belongs to the FDB on the device's master, and the FDB entry is pointing to a master's port. For example, this FDB entry is from the master device named *bridge* and is pointing to the VXLAN bridge port vx-1001: `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge`
-- **offload**: the Linux kernel FDB entry flag indicating the FDB entry is managed (or offloaded) by an external control plane — for example, the BGP control plane for EVPN.
+- **offload**: the Linux kernel FDB entry flag indicating the FDB entry is managed (or offloaded) by an external control plane - for example, the BGP control plane for EVPN.
 
 Consider the following output of the `bridge fdb show` command:
 

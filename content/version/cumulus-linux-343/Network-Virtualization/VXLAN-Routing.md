@@ -64,7 +64,7 @@ VXLAN routing works on these switches.
 
 ### Trident II+
 
-For Trident II+ switches, you can specify a VXLAN routing (RIOT —
+For Trident II+ switches, you can specify a VXLAN routing (RIOT -
 routing in and out of tunnels) profile in the
 `vxlan_routing_overlay.profile` field in the
 `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf`
@@ -110,15 +110,15 @@ To configure one or more switch ports for loopback mode, edit the
 In the example below, swp8 and swp9 are configured for loopback mode:
 
     cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-     
+     
     ...
-     
+     
     7=4x10G
     8=loopback
     9=loopback
     10=100G
-     
-     
+     
+     
     ...
 
 After you save your changes to the `ports.conf` file, you must 
@@ -196,7 +196,7 @@ anycast gateway.
     leaf01:
     
         cumulus@leaf01:~$ net show route
-         
+         
         show ip route
         =============
         Codes: K - kernel route, C - connected, S - static, R - RIP,
@@ -213,7 +213,7 @@ anycast gateway.
     leaf03:
     
         cumulus@leaf03:~$ net show route
-         
+         
         show ip route
         =============
         Codes: K - kernel route, C - connected, S - static, R - RIP,
@@ -293,13 +293,13 @@ virtual address can be reused as the anycast gateway.
     leaf01:
     
         cumulus@leaf01:~$ net show bgp l2vpn evpn route
-         
+         
         BGP table version is 0, local router ID is 10.200.0.2
         Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
         Origin codes: i - IGP, e - EGP, ? - incomplete
         EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
         EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
-         
+         
            Network          Next Hop            Metric LocPrf Weight Path
         Route Distinguisher: 10.0.0.13:1
         *> [3]:[0]:[32]:[10.0.0.13]
@@ -317,19 +317,19 @@ virtual address can be reused as the anycast gateway.
         Route Distinguisher: 10.200.0.2:2
         *> [3]:[0]:[32]:[10.0.0.11]
                             10.0.0.11                          32768 i
-         
+         
         Displayed 6 prefixes (6 paths)
     
     leaf03:
     
         cumulus@leaf03:~$ net show bgp l2vpn evpn route
-         
+         
         BGP table version is 0, local router ID is 10.0.0.13
         Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
         Origin codes: i - IGP, e - EGP, ? - incomplete
         EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
         EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
-         
+         
            Network          Next Hop            Metric LocPrf Weight Path
         Route Distinguisher: 10.0.0.13:1
         *> [3]:[0]:[32]:[10.0.0.13]
@@ -347,7 +347,7 @@ virtual address can be reused as the anycast gateway.
         Route Distinguisher: 10.200.0.2:2
         *> [3]:[0]:[32]:[10.0.0.11]
                             10.0.0.11                              0 65020 65011 i
-         
+         
         Displayed 6 prefixes (6 paths)
 
 ### Configuring the VXLANs
@@ -400,13 +400,13 @@ virtual address can be reused as the anycast gateway.
     leaf01:
     
         cumulus@leaf01:~$ net show bgp l2vpn evpn route
-         
+         
         BGP table version is 0, local router ID is 10.200.0.2
         Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
         Origin codes: i - IGP, e - EGP, ? - incomplete
         EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
         EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
-         
+         
            Network          Next Hop            Metric LocPrf Weight Path
         Route Distinguisher: 10.0.0.13:1
         *> [3]:[0]:[32]:[10.0.0.13]
@@ -430,19 +430,19 @@ virtual address can be reused as the anycast gateway.
         Route Distinguisher: 10.200.0.2:2
         *> [3]:[0]:[32]:[10.0.0.11]
                             10.0.0.11                          32768 i
-         
+         
         Displayed 9 prefixes (9 paths)
     
     leaf03:
     
-        cumulus@leaf03:~$ net show bgp l2vpn evpn route
-         
+        cumulus@leaf03:~$ net show bgp l2vpn evpn route
+         
         BGP table version is 0, local router ID is 10.0.0.13
         Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
         Origin codes: i - IGP, e - EGP, ? - incomplete
         EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
         EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
-         
+         
            Network          Next Hop            Metric LocPrf Weight Path
         Route Distinguisher: 10.0.0.13:1
         *> [3]:[0]:[32]:[10.0.0.13]
@@ -466,7 +466,7 @@ virtual address can be reused as the anycast gateway.
         Route Distinguisher: 10.200.0.2:2
         *> [3]:[0]:[32]:[10.0.0.11]
                             10.0.0.11                              0 65020 65011 i
-         
+         
         Displayed 9 prefixes (9 paths)
 
 4.  Verify the VXLAN entries are programmed into the bridge table.

@@ -117,13 +117,13 @@ These commands create the following configuration in the
 `/etc/network/interfaces` file:
 
     cumulus@switch:~$ cat /etc/network/interfaces
-     
+     
     ...
-     
+     
     auto bridge
     iface bridge
         bridge-ageing 600
-     
+     
     ...
 
 ## Configuring an SVI (Switch VLAN Interface)
@@ -158,7 +158,7 @@ These commands create the following SVI configuration in the
         bridge-ports swp1 swp2
         bridge-vids 10
         bridge-vlan-aware yes
-     
+     
     auto vlan10
     iface vlan10
         address 10.100.100.1/24
@@ -182,7 +182,7 @@ configuration:
         bridge-ports swp1 swp2
         bridge-vids 10
         bridge-vlan-aware yes
-     
+     
     auto bridge.10
     iface bridge.10
         address 10.100.100.1/24
@@ -204,14 +204,14 @@ bridge:
 
     cumulus@switch:~$ cat /etc/network/interfaces
     ...
-     
+     
     auto bridge
     iface bridge
         bridge-vlan-aware yes
         bridge-ports swp3
         bridge-vids 100
         bridge-pvid 1
-     
+     
     ...
 
 With this configuration, when swp3 is down, the SVI is also down:
@@ -231,11 +231,11 @@ Now add the dummy interface to your network configuration:
     
         cumulus@switch:~$ sudo nano /etc/network/interfaces
         ...
-         
+         
         auto dummy
         iface dummy
             link-type dummy
-         
+         
         auto bridge
         iface bridge
         ...

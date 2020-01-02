@@ -27,10 +27,10 @@ The command syntax is:
     tipctl add dhcp load [--dry-run|--mac <TEXT>|--hostname <TEXT>|--ip <TEXT>|--with-column|--without-column] [-h|--help]
     tipctl add dhcp pool [-h|--help] START_IP END_IP
     tipctl add dhcp reservation [-h|--help] MAC IP [HOSTNAME]
-     
+     
     tipctl del dhcp pool [-h|--help]
     tipctl del dhcp reservation [-h|--help] MAC
-     
+     
     tipctl show dhcp config [-h|--help]
     tipctl show dhcp leases [MAC] [-h|--help]
     tipctl show dhcp reservations [MAC] [-h|--help]
@@ -45,17 +45,17 @@ the parameters configured by default on initial start up. Your settings
 should reflect the IP addressing scheme of your network.
 
     cumulus@ts:~$ tipctl show dhcp config
-    Config                 Setting
-    ---------------------  ----------------------------------------------
-    interface              eth0
-    subnet                 10.255.0.0/24
-    default-ip-ttl         0xf0
-    cumulus-provision-url  http://10.255.0.92:9300/default/ztp-default.sh
-    default-url            http://10.255.0.92:9300/default/onie-installer
-    domain-name            cltips
-    domain-name-servers    10.255.0.92
-    ntp-servers            10.255.0.92
-    www-server             10.255.0.92
+    Config                 Setting
+    ---------------------  ----------------------------------------------
+    interface              eth0
+    subnet                 10.255.0.0/24
+    default-ip-ttl         0xf0
+    cumulus-provision-url  http://10.255.0.92:9300/default/ztp-default.sh
+    default-url            http://10.255.0.92:9300/default/onie-installer
+    domain-name            cltips
+    domain-name-servers    10.255.0.92
+    ntp-servers            10.255.0.92
+    www-server             10.255.0.92
 
 ## Configure DHCP Address Pool
 
@@ -85,7 +85,7 @@ Then it shows the updated configuration with the newly created pool,
 *pool 0*, and confirms the application is still running properly.
 
     cumulus@ts:~$ tipctl add dhcp pool 10.255.0.100 10.255.0.200
-     
+     
     cumulus@ts:~$ tipctl show dhcp config
     Config                 Setting
     ---------------------  ----------------------------------------------
@@ -99,7 +99,7 @@ Then it shows the updated configuration with the newly created pool,
     ntp-servers            10.255.0.92
     www-server             10.255.0.92
     pool 0                 10.255.0.100 - 10.255.0.200
-     
+     
     cumulus@ts:~$ tipctl config verify
     The TIPS application is running as expected.
 
@@ -126,7 +126,7 @@ Then it shows the updated configuration with the newly modified pool,
 *pool 0*, and confirms the application is still running properly.
 
     cumulus@ts:~$ tipctl add dhcp pool 10.255.0.100 10.255.0.225
-     
+     
     cumulus@ts:~$ tipctl show dhcp config
     Config                 Setting
     ---------------------  ----------------------------------------------
@@ -140,7 +140,7 @@ Then it shows the updated configuration with the newly modified pool,
     ntp-servers            10.255.0.92
     www-server             10.255.0.92
     pool 0                 10.255.0.100 - 10.255.0.225
-     
+     
     cumulus@ts:~$ tipctl config verify
     The TIPS application is running as expected.
 
@@ -162,7 +162,7 @@ has been removed, and then verifies the application is still running
 properly.
 
     cumulus@ts:~$ tipctl del dhcp pool
-     
+     
     cumulus@ts:~$ tipctl show dhcp config
     Config                 Setting
     ---------------------  ----------------------------------------------
@@ -175,7 +175,7 @@ properly.
     domain-name-servers    10.255.0.92
     ntp-servers            10.255.0.92
     www-server             10.255.0.92
-     
+     
     cumulus@ts:~$ tipctl config verify
     The TIPS application is running as expected.
 
@@ -274,7 +274,7 @@ This example shows how to import the
 above sample file. We have named the file *reservations.csv* and have
 used column names to identify the locations of the data.
 
-    cumulus@ts:~$ tipctl add dhcp load < <path/reservations.csv> --mac MACaddr --hostname Hostname --ip IPaddr --with-column 
+    cumulus@ts:~$ tipctl add dhcp load < <path/reservations.csv> --mac MACaddr --hostname Hostname --ip IPaddr --with-column 
     cumulus@ts:~$ tipctl show dhcp reservations
     mac                ip            hostname
     -----------------  ------------  ----------
@@ -285,7 +285,7 @@ used column names to identify the locations of the data.
 This example shows how to import the *reservations.csv* file using a
 numeric offset to identify the locations of the data.
 
-    cumulus@ts:~$ tipctl add dhcp load < <path/reservations.csv> --mac 0 --hostname 1 --ip 2 --without-column 
+    cumulus@ts:~$ tipctl add dhcp load < <path/reservations.csv> --mac 0 --hostname 1 --ip 2 --without-column 
     cumulus@ts:~$ tipctl show dhcp reservations
     mac                ip            hostname
     -----------------  ------------  ----------
@@ -303,7 +303,7 @@ time using the `tipctl` `del dhcp` command with the *reservation*
 keyword. This example shows how to remove the reservation for the switch
 with a MAC address of *A0:00:00:00:00:22*.
 
-    cumulus@ts:~$ tipctl del dhcp reservation a0:00:00:00:00:22 
+    cumulus@ts:~$ tipctl del dhcp reservation a0:00:00:00:00:22 
     cumulus@ts:~$ tipctl show dhcp reservations
     mac                ip            hostname
     -----------------  ------------  ----------
@@ -314,7 +314,7 @@ with a MAC address of *A0:00:00:00:00:22*.
 It can be useful to view the leases
 currently being used by the DHCP server when you are troubleshooting.
 You might need to determine why certain clients are not able to
-connect–all of your leases are in use–or confirm whether a switch has
+connect-all of your leases are in use-or confirm whether a switch has
 the expected address.
 
 To view leases, use the `tipctl show

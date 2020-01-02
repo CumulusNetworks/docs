@@ -200,19 +200,19 @@ to run the `net` command. Edit the `/etc/netd.conf` file, then:
 
       ```
       cumulus@switch:~$ sudo nano /etc/netd.conf
-     
+     
       ...
-     
+     
       # Control which users/groups are allowed to run 'add', 'del',
       # 'clear', 'net abort', 'net commit' and restart services
       # to apply those changes
       users_with_edit = root, cumulus, TACACS_USER
       groups_with_edit = netedit
-     
+     
       # Control which users/groups are allowed to run 'show' commands
       users_with_show = root, cumulus, TACACS_USER
       groups_with_show = netshow, tacacs
-     
+     
       ...
       ```
 
@@ -325,17 +325,17 @@ file, provides the `getpwnam()` and `getpwuid()`entry point,s and uses
 the TACACS+ authentication functions.
 
 The plugin asks the TACACS+ server if the user is known, and then for
-relevant attributes to determine the user’s privilege level. When the
+relevant attributes to determine the user's privilege level. When the
 `libnss_tacplus` package is installed, `nsswitch.conf` is be modified to
 set `tacplus` as the first lookup method for `passwd`. If the order is
 changed, lookups will return the local accounts such as `tacacs0`
 
 If the user is not found, a mapped lookup is performed using the
 ` libtacplus_map.so  `exported functions. The privilege level is
-appended to “tacacs”, and the lookup searches for the name in the local
+appended to "tacacs ", and the lookup searches for the name in the local
 password file. For example, privilege level 15 will search for the
 tacacs15 user. If the user is found, the password structure is filled in
-with the user’s information.
+with the user's information.
 
 If it is not found, the privilege level is decremented and checked
 again, until privilege level 0 (user t`acacs0`) is reached. This allows
@@ -480,7 +480,7 @@ The TACACS client on the switch and the TACACS server should have the
 same shared secret key. If this key is incorrect, the following messages
 is printed to `syslog`:
 
-    2017-09-05T19:57:00.356520+00:00 leaf01 sshd[3176]: nss_tacplus: TACACS+ server 192.168.0.254:49 read failed with protocol error (incorrect shared secret?) user cumulus 
+    2017-09-05T19:57:00.356520+00:00 leaf01 sshd[3176]: nss_tacplus: TACACS+ server 192.168.0.254:49 read failed with protocol error (incorrect shared secret?) user cumulus 
 
 ### Debugging Issues with Per-command Authorization
 
@@ -498,7 +498,7 @@ command authorization conversation with the TACACS+ server:
     tacplus-auth: cmd not authorized (16)
     tacplus-auth: net not authorized from 192.168.3.189:49
     net not authorized by TACACS+ with given arguments, not executing
-     
+     
     tacuser0@switch:~$ net show version
     tacplus-auth: found matching command (/usr/bin/net) request authorization
     tacplus-auth: error connecting to 10.0.3.195:49 to request authorization for net: Transport endpoint is not connected
@@ -543,7 +543,7 @@ Provided below is a brief description of their functionalities.
 | libpam-tacplus\_1.4.0-1-cl3u2   | A modified version of the standard Debian package. |
 | libtacplus-map1\_1.0.0-cl3u2    | The mapping functionality between local and TACACS+ users on the server. Sets the immutable `sessionid` and auditing UID to ensure the original user can be tracked through multiple processes and privilege changes. Sets the auditing `loginuid` as immutable if supported. Creates and maintains a status database in `/run/tacacs_client_map` to manage and lookup mappings. |
 | libsimple-tacacct1\_1.0.0-cl3u2 | Provides an interface for programs to send accounting records to the TACACS+ server. Used by `audisp-tacplus`.                    |
-| libtac2-bin\_1.4.0-cl3u2        | Provides the “tacc” testing program and TACACS+ man page. |
+| libtac2-bin\_1.4.0-cl3u2        | Provides the "tacc " testing program and TACACS+ man page. |
 
 ## Limitations
 
@@ -574,7 +574,7 @@ mapping file; this could be the first or second user that logged in.
 
 {{%/notice%}}
 
-To work around this issue, the switch’s audit log or the TACACS server
+To work around this issue, the switch's audit log or the TACACS server
 accounting logs can be used to determine which processes and files were
 created by each user.
 
@@ -589,7 +589,7 @@ created by each user.
 The Linux `auditd` system does not always generate audit events for
 processes when terminated with a signal (via the `kill` system call or
 internal errors such as SIGSEGV). As a result, processes that exit on a
-signal that isn’t caught and handled may not generate a STOP accounting
+signal that isn't caught and handled may not generate a STOP accounting
 record.
 
 ### Issues with deluser Command
@@ -599,7 +599,7 @@ the `--remove-home` option will see an error about not finding the user
 in `/etc/passwd`:
 
     tacuser0@switch: deluser --remove-home USERNAME
-    userdel: cannot remove entry ‘USERNAME’ from /etc/passwd
+    userdel: cannot remove entry 'USERNAME' from /etc/passwd
     /usr/sbin/deluser: `/usr/sbin/userdel USERNAME' returned error code 1. Exiting
 
 However, the command does remove the home directory. The user can still

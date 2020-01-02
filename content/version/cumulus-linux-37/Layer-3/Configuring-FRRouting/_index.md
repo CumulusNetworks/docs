@@ -15,7 +15,7 @@ This section provides an overview of configuring FRRouting, the routing software
 
 ## Configure FRRouting
 
-FRRouting does not start by default in Cumulus Linux. Before you run FRRouting, make sure all you have enabled relevant daemons that you intend to use — `zebra`, `bgpd`, `ospfd`, `ospf6d` or `pimd` — in the `/etc/frr/daemons` file.
+FRRouting does not start by default in Cumulus Linux. Before you run FRRouting, make sure all you have enabled relevant daemons that you intend to use - `zebra`, `bgpd`, `ospfd`, `ospf6d` or `pimd` - in the `/etc/frr/daemons` file.
 
 {{%notice warning%}}
 
@@ -66,7 +66,7 @@ By default in Cumulus Linux, FRRouting saves the configuration of all daemons in
 You can disable this mode by running the following command in the [`vtysh` FRRouting CLI](#frrouting-vtysh-modal-cli):
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# no service integrated-vtysh-config
 ```
@@ -141,7 +141,7 @@ FRRouting inherits the IP addresses and any associated routing tables for the ne
 
 ## FRRouting vtysh Modal CLI
 
-FRRouting provides a CLI – `vtysh` – for configuring and displaying the state of the protocols. It is invoked by running:
+FRRouting provides a CLI - `vtysh` - for configuring and displaying the state of the protocols. It is invoked by running:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -289,7 +289,7 @@ cumulus@switch:~$ sudo vtysh -c 'sh ip r'
 A command or feature can be disabled in FRRouting by prepending the command with `no`. For example:
 
 ```
-cumulus@switch:~$ sudo vtysh 
+cumulus@switch:~$ sudo vtysh 
 switch# configure terminal
 switch(config)# router ospf
 switch(config-router)# no area 0.0.0.1 range 10.10.10.0/24

@@ -55,11 +55,11 @@ AC400 module.
 | 16-QAM               | QPSK                 | Independent         |
 | 8-QAM                | 8-QAM                | Coupled             |
 
-QPSK—[Quadrature phase shift keying](https://www.allaboutcircuits.com/technical-articles/quadrature-phase-shift-keying-qpsk-modulation/).
+QPSK-[Quadrature phase shift keying](https://www.allaboutcircuits.com/technical-articles/quadrature-phase-shift-keying-qpsk-modulation/).
 When a network interface is using QPSK modulation, it carries 100Gbps
 and is therefore connected to only one client interface.
 
-16-QAM—[Quadrature amplitude modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
+16-QAM-[Quadrature amplitude modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
 with 4 bits per symbol. When a network interface is using 16-QAM
 modulation, it carries 200Gbps and is therefore connected to two client
 interfaces. Each of the two client interfaces carried on a network
@@ -67,7 +67,7 @@ interface is called a tributary. The AC400 adds extra information so
 that these tributaries can be sorted out at the far end and delivered to
 the appropriate client interface.
 
-8-QAM—[Quadrature amplitude modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
+8-QAM-[Quadrature amplitude modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
 with 3 bits per symbol. When a network interface is using 8-QAM
 modulation, it carries 150Gbps. In this case, the two network interfaces
 in an AC400 module must be coupled, so that the total bandwidth carried
@@ -472,7 +472,7 @@ the system.
     cumulus@switch:~$ net show transponder
     Module: 1 ready Acacia Comm Inc. AC400-004-330 S/N:170212599 53.88C 11.89V
         Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
-     
+     
                                                Network Interfaces                    
                                          L3                           L4             
                            ---------------------------  ---------------------------  
@@ -486,10 +486,10 @@ the system.
                   FEC Mode 25%                          25%                          
     Uncorrectable FEC Errs 0                            0                          
              TX/RX Turn-up power_adjusted/locked        power_adjusted/locked        
-     
+     
     Module: 2 ready Acacia Comm Inc. AC400-004-330 S/N:170212585 55.00C 11.90V
         Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
-     
+     
                                                Network Interfaces                    
                                          L1                           L2             
                            ---------------------------  ---------------------------  
@@ -512,7 +512,7 @@ The following example command displays the status of transponder module 1:
 cumulus@switch:~$ net show transponder module 1
 Module: 1 ready Acacia Comm Inc. AC400-004-330 S/N:170212599 53.75C 11.89V
     Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
- 
+ 
                                            Network Interfaces                    
                                      L3                           L4             
                        ---------------------------  --------------------------- 
@@ -646,7 +646,7 @@ To display the current configuration state of the transponders, run the
 following command:
 
     cumulus@switch:~$ net show configuration transponders
-     
+     
     transponders
       
       AC400_1
@@ -736,21 +736,21 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     #
     [Modules]
     Names=AC400_1,AC400_2
-     
+     
     [AC400_1]
     Location=1
     NetworkMode=independent
     NetworkInterfaces=L3,L4
     HostInterfaces=Client0,Client1,Client2,Client3
     OperStatus=ready
-     
+     
     [AC400_2]
     Location=2
     NetworkMode=independent
     NetworkInterfaces=L1,L2
     HostInterfaces=Client4,Client5,Client6,Client7
     OperStatus=ready
-     
+     
     [L1]
     Location=0
     TxEnable=true
@@ -764,7 +764,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     FecMode=25%
     TxTributaryIndependent=0,1
     TxTributaryCoupled=0,1,2,15
-     
+     
     [L2]
     Location=1
     TxEnable=true
@@ -778,7 +778,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     FecMode=25%
     TxTributaryIndependent=2,3
     TxTributaryCoupled=0,1,2,15
-     
+     
     [L3]
     Location=0
     TxEnable=true
@@ -792,7 +792,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     FecMode=25%
     TxTributaryIndependent=0,1
     TxTributaryCoupled=0,1,2,15
-     
+     
     [L4]
     Location=1
     TxEnable=true
@@ -806,7 +806,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     FecMode=25%
     TxTributaryIndependent=2,3
     TxTributaryCoupled=0,1,2,15
-     
+     
     [Client0]
     Location=0
     Rate=100ge
@@ -823,7 +823,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     SerialTap2Delay=6
     RxTributaryIndependent=0
     RxTributaryCoupled=0
-     
+     
     [Client1]
     Location=1
     Rate=100ge
@@ -840,7 +840,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     SerialTap2Delay=6
     RxTributaryIndependent=1
     RxTributaryCoupled=1
-     
+     
     [Client2]
     Location=2
     Rate=100ge
@@ -857,7 +857,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     SerialTap2Delay=6
     RxTributaryIndependent=2
     RxTributaryCoupled=2
-     
+     
     [Client3]
     Location=3
     Rate=100ge
@@ -874,7 +874,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     SerialTap2Delay=6
     RxTributaryIndependent=3
     RxTributaryCoupled=65535
-     
+     
     [Client4]
     Location=0
     Rate=100ge
@@ -891,7 +891,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     SerialTap2Delay=5
     RxTributaryIndependent=0
     RxTributaryCoupled=0
-     
+     
     [Client5]
     Location=1
     Rate=100ge
@@ -908,7 +908,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     SerialTap2Delay=5
     RxTributaryIndependent=1
     RxTributaryCoupled=1
-     
+     
     [Client6]
     Location=2
     Rate=100ge
@@ -925,7 +925,7 @@ Here is an example `/etc/cumulus/transponders.ini` file:
     SerialTap2Delay=5
     RxTributaryIndependent=2
     RxTributaryCoupled=2
-     
+     
     [Client7]
     Location=3
     Rate=100ge

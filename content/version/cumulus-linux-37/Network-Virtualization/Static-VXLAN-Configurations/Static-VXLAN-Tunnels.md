@@ -99,23 +99,23 @@ These commands create the following configuration in the
     auto lo
     iface lo inet loopback
         address 10.0.0.11/32
-     
+     
     # The primary network interface
     auto eth0
     iface eth0 inet dhcp
-     
+     
     auto swp1
     iface swp1
-     
+     
     auto swp2
     iface swp2
-     
+     
     auto bridge
     iface bridge
         bridge-ports vni-10
         bridge-vids 10
         bridge-vlan-aware yes
-     
+     
     auto vni-10
     iface vni-10
         bridge-access 10
@@ -158,23 +158,23 @@ cumulus@leaf02:~$ net commit</code></pre></td>
 auto lo
 iface lo inet loopback
     address 10.0.0.12/32
- 
+ 
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 auto bridge
 iface bridge
     bridge-ports vni-10
     bridge-vids 10
     bridge-vlan-aware yes
- 
+ 
 auto vni-10
 iface vni-10
     bridge-access 10
@@ -201,23 +201,23 @@ cumulus@leaf03:~$ net commit</code></pre></td>
 auto lo
 iface lo inet loopback
     address 10.0.0.13/32
- 
+ 
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 auto bridge
 iface bridge
     bridge-ports vni-10
     bridge-vids 10
     bridge-vlan-aware yes
- 
+ 
 auto vni-10
 iface vni-10
     bridge-access 10
@@ -244,23 +244,23 @@ cumulus@leaf04:~$ net commit</code></pre></td>
 auto lo
 iface lo inet loopback
     address 10.0.0.14/32
- 
+ 
 # The primary network interface
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 auto bridge
 iface bridge
     bridge-ports vni-10
     bridge-vids 10
     bridge-vlan-aware yes
- 
+ 
 auto vni-10
 iface vni-10
     bridge-access 10
@@ -299,7 +299,7 @@ supported.
     vxlan-local-tunnelip 10.252.255.58
     vxlan-remoteip 10.250.255.161
     mtu 9000
-     
+     
     auto vni258
     iface vni258
     vxlan-id 258

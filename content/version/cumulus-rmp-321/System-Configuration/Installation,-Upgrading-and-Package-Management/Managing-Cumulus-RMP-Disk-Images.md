@@ -170,7 +170,7 @@ port, you need to disable discovery mode or else ONIE may get confused.
     commands (`tftp` for TFTP or `ftp` for FTP):
     
         ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
-         
+         
         ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 
 ## <span id="src-5127549_ManagingCumulusRMPDiskImages-local" class="confluence-anchor-link"></span>Installing via a Local File</span>
@@ -311,7 +311,7 @@ finishes.
     of Cumulus RMP should begin. Here is some sample output:
     
         ONIE: OS Install Mode  ...
-         
+         
         Version : penguin_arctica-2014.05.05-6919d98-201410171013
         Build  Date: 2014-10-17T10:13+0800
         Info: Mounting kernel filesystems...  done.
@@ -322,9 +322,9 @@ finishes.
         sd 6:0:0:0: [sdb] Write Protect is off
         sd 6:0:0:0: [sdb] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
         sd 6:0:0:0: [sdb] Attached SCSI disk
-         
+         
         <...snip...>
-         
+         
         ONIE:  Executing installer: file://dev/sdb1/onie-installer-x86_64
         Verifying image checksum ... OK.
         Preparing image archive ... OK.

@@ -56,7 +56,7 @@ First, on management-station, generate the SSH keys:
        +-----------------+
 
 Next, append the public key in `~/.ssh/id_rsa.pub` into
-`~/.ssh/authorized_keys` in the target user’s home directory:
+`~/.ssh/authorized_keys` in the target user's home directory:
 
     cumulus@management-station:~$ scp .ssh/id_rsa.pub cumulus@cumulus-switch1:.ssh/authorized_keys
         Enter passphrase for key '/home/cumulus/.ssh/id_rsa':

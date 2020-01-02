@@ -487,9 +487,9 @@ configuration on the connected end-station has not been rectified.
       clag ISL           no                      clag ISL Oper UP     no
       clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
       clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
-     
+     
     cumulus@leaf2$ sudo ifup bond0
-     
+     
     cumulus@leaf2$ mstpctl showportdetail bridge bond0
     bridge:bond0 CIST info
       enabled            yes                     role                 Root
@@ -600,7 +600,7 @@ following:
 
     cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
     cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
-     
+     
 
 ### Configuring Other Spanning Tree Parameters
 

@@ -46,7 +46,7 @@ You may
 start anywhere in the documentation or read it from start to finish
 depending on your role and familiarity with the NetQ software and Linux
 networking. If you are
-new to NetQ, you may want to read the [Cumulus NetQ Primer](/version/cumulus-netq-141/) before reading the other
+new to NetQ, you may want to read the [Cumulus NetQ Primer](/version/cumulus-netq-141/) before reading the other
 available documents to gain a high-level understanding of the product
 capabilities and operation.
 
@@ -55,7 +55,7 @@ The following NetQ-related documents are available:
   - [Cumulus NetQ Primer](/version/cumulus-netq-141/)
   - Cumulus NetQ Image and Provisioning Management User Guide (this guide)
   - [Cumulus NetQ Deployment Guide](/version/cumulus-netq-141/Cumulus-NetQ-Deployment-Guide/)
-  - [Cumulus NetQ Telemetry User Guide](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/)
+  - [Cumulus NetQ Telemetry User Guide](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/)
   - [Cumulus NetQ Data Sheet](https://cumulusnetworks.com/learn/web-scale-networking-resources/product-collateral/netq-data-sheet/)
   - [Cumulus NetQ Release Notes](https://support.cumulusnetworks.com/hc/en-us/articles/360005898274)
 
@@ -74,7 +74,7 @@ used to convey contextual information about the content.
 | <span style="color: #008000;"> Green text </span>                        | Link to additional content within the topic or to another topic                                                                                                                                                          |
 | `Text in Monospace font`                                                 |  Filename, directory and path names, and command usage                                                                                                                             |
 | \[`Text within square brackets`\]  |  Optional command parameters; may be presented in mixed case or all caps text                                                                                                       |
-| \<`Text within angle brackets`\>   | Required command parameter values–variables that are to be replaced with a relevant value;  may be presented in mixed case or all caps text  |
+| \<`Text within angle brackets`\>   | Required command parameter values-variables that are to be replaced with a relevant value;  may be presented in mixed case or all caps text  |
 
 ### Note Conventions
 

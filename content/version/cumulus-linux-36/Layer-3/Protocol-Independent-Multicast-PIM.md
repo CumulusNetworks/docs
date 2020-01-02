@@ -57,7 +57,7 @@ Cumulus Linux supports only PIM Sparse Mode.
 <td><p>Rendezvous Point (RP)</p></td>
 <td><p>The RP allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable.</p>
 <p>{{%notice warning%}}</p>
-<p>Do not use a spine switch as an RP. If you are running <a href="/version/cumulus-linux-36/Layer-3/Border-Gateway-Protocol-BGP">BGP</a> on a spine switch and it is configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP — see below).</p>
+<p>Do not use a spine switch as an RP. If you are running <a href="/version/cumulus-linux-36/Layer-3/Border-Gateway-Protocol-BGP">BGP</a> on a spine switch and it is configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP - see below).</p>
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr class="even">
@@ -519,7 +519,7 @@ PIM must be enabled on all interfaces facing multicast sources or
     to use IGMP version 2:
     
         cumulus# configure terminal
-        cumulus(config)# int swp1 
+        cumulus(config)# int swp1 
         cumulus(config-if)# ip igmp 
         cumulus(config-if)# ip igmp version 2 #skip this step if you are using version 3
     
@@ -869,7 +869,7 @@ detailed output for the FHR:
     Uptime    : --:--:--
     Elections : 2
     Changes   : 0
-     
+     
     FHR - First Hop Router
     ----------------------
     239.1.1.1 : 172.16.5.105 is a source, uptime is 00:27:43
@@ -1017,58 +1017,58 @@ These commands create the following configuration in the
     auto purple
     iface purple
          vrf-table auto
-     
+     
     auto blue
     iface blue
         vrf-table auto
-     
+     
     auto swp1
     iface swp1
           vrf purple
-     
+     
     auto swp49.1
     iface swp49.1
          vrf purple
-     
+     
     auto swp2
     iface swp2
           vrf blue
-     
+     
     auto swp49.2
     iface swp49.2
          vrf blue
-     
+     
     ...
 
     ip pim rp 192.168.0.1 224.0.0.0/4
-     
+     
     vrf purple
       ip pim rp 192.168.0.1 224.0.0.0/4
     !
     vrf blue 
       ip pim rp 192.168.0.1 224.0.0.0/4 
     !
-     
+     
     int swp1 vrf purple
        ip pim sm
       ip igmp version 2
-     
+     
     int swp2 vrf blue
        ip pim sm
        ip igmp version 3
-     
+     
     int swp49.1 vrf purple
         ip pim sm
        
     int swp49.2
        ip pim sm
-     
+     
     router bgp 65000 vrf purple
         Bgp router-id 10.1.1.1
         Neighbor PURPLE peer-group
         Neighbor PURPLE remote-as external
         neighbor swp49.1 interface peer-group PURPLE
-     
+     
     router bgp 65001 vrf blue
         bgp router-id 10.1.1.2
         neighbor BLUE peer-group
@@ -1150,7 +1150,7 @@ To troubleshoot the issue:
     
         cumulus@fhr:~$ sudo vtysh -c "debug pim packets"
         PIM Packet debugging is on
-         
+         
         cumulus@rp01:~$ sudo tail /var/log/frr/frr.log
         2016/10/19 23:46:51 PIM: Recv PIM REGISTER packet from 172.16.5.1 to 10.0.0.21 on swp30: ttl=255 pim_version=2 pim_msg_size=64 checksum=a681
 
@@ -1160,10 +1160,10 @@ To troubleshoot the issue:
         cumulus@fhr:~$ sudo tcpdump -i swp51
         23:58:59.841625 IP 172.16.5.1 > 10.0.0.21: PIMv2, Register, length 28
         23:58:59.842466 IP 10.0.0.21 > 172.16.5.1: PIMv2, Register Stop, length 18
-         
+         
         cumulus@fhr:~$ sudo vtysh -c "debug pim packets"
         PIM Packet debugging is on
-         
+         
         cumulus@fhr:~$ sudo tail -f /var/log/frr/frr.log
         2016/10/19 23:59:38 PIM: Recv PIM REGSTOP packet from 10.0.0.21 to 172.16.5.1 on swp51: ttl=255 pim_version=2 pim_msg_size=18 checksum=5a39
 

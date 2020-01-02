@@ -135,8 +135,8 @@ You must first store the downloaded file in a location where the installation sc
     credentials.
 
         <computer>:~<username>$ ssh cumulus@netq-platform
-        cumulus@netq-platform's password: 
-        cumulus@netq-platform:~$ 
+        cumulus@netq-platform's password: 
+        cumulus@netq-platform:~$ 
 
 2.  Change to the root user.
 
@@ -151,7 +151,7 @@ You must first store the downloaded file in a location where the installation sc
 4.  Copy the upgrade image file, `NetQ-2.3.0.tgz`, into your new directory.
 
         root@netq-platform:~# cd /mnt/installables/
-        root@netq-platform:/mnt/installables# cp /home/usr/dir/NetQ-2.3.0.tgz ./ 
+        root@netq-platform:/mnt/installables# cp /home/usr/dir/NetQ-2.3.0.tgz ./ 
 
 5.  Export the installer script.
 

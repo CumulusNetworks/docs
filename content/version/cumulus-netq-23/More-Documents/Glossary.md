@@ -154,7 +154,7 @@ user documentation.
 | ECMP | Equal Cost Multi-Path routing |
 | EVPN | Ethernet Virtual Private Network |
 | FDB | Forwarding Data Base |
-| GNU | GNU’s Not Linux |
+| GNU | GNU's Not Linux |
 | HA | High Availability |
 | IGMP | Internet Group Management Protocol |
 | IPv4/IPv6 | Internet Protocol, version 4 or 6 |

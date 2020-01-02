@@ -47,15 +47,15 @@ iface bridge
   bridge-ports swp1 peerlink
   bridge-vids 1-2000
   bridge-stp on
- 
+ 
 auto bridge.10
 iface bridge.10
   address 10.1.10.2/24
- 
+ 
 auto peerlink
 iface peerlink
     bond-slaves glob swp49-50
- 
+ 
 auto swp1
 iface swp1
   mstpctl-portadminedge yes
@@ -63,20 +63,20 @@ iface swp1
 <p><strong>Example Host Config (Ubuntu)</strong></p>
 <pre><code>auto eth1
 iface eth1 inet manual
- 
+ 
 auto eth1.10
 iface eth1.10 inet manual
- 
+ 
 auto eth2
 iface eth1 inet manual
- 
+ 
 auto eth2.20
 iface eth2.20 inet manual
- 
+ 
 auto br-10
 iface br-10 inet manual
   bridge-ports eth1.10 vnet0
- 
+ 
 auto br-20
 iface br-20 inet manual
   bridge-ports eth2.20 vnet1</code></pre></td>
@@ -170,23 +170,23 @@ iface bridge
   bridge-ports host-01 peerlink
   bridge-vids 1-2000
   bridge-stp on
- 
+ 
 auto bridge.10
 iface bridge.10
   address 172.16.1.2/24
   address-virtual 44:38:39:00:00:10 172.16.1.1/24
- 
+ 
 auto peerlink
 iface peerlink
     bond-slaves glob swp49-50
- 
+ 
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.1.2
     clagd-enable yes
     clagd-peer-ip 169.254.1.2
     clagd-system-mac 44:38:39:FF:40:94
- 
+ 
 auto host-01
 iface host-01
   bond-slaves swp1
@@ -197,10 +197,10 @@ iface host-01
 iface bond0 inet manual
   bond-slaves eth0 eth1
   {bond-defaults removed for brevity}
- 
+ 
 auto bond0.10
 iface bond0.10 inet manual
- 
+ 
 auto vm-br10
 iface vm-br10 inet manual
   bridge-ports bond0.10 vnet0</code></pre></td>
@@ -466,7 +466,7 @@ iface eth1 inet static
 <p><strong><strong>Caveats</strong></strong></p>
 <ul>
 <li><p>All VMs must be capable of routing</p></li>
-<li><p>Scale considerations might need to be taken into an account —<br />
+<li><p>Scale considerations might need to be taken into an account -<br />
 instead of one routing process, there are as many as there are VMs</p></li>
 <li><p>No L2 adjacency between servers without VXLAN</p></li>
 </ul></td>
@@ -577,17 +577,17 @@ interface swp1
 <p><strong>Example Host Config (Ubuntu)</strong></p>
 <pre><code>auto lo
 iface lo inet loopback
- 
+ 
 auto lo:1
 iface lo:1 inet static
   address 172.16.1.2/32
   up ip route add 0.0.0.0/0 nexthop via 172.16.1.1 dev eth0 onlink \
     nexthop via 172.16.1.1 dev eth1 onlink
- 
+ 
 auto eth1
 iface eth2 inet static
   address 172.16.1.2/32
- 
+ 
 auto eth2
 iface eth2 inet static
   address 172.16.1.2/32</code></pre></td>
@@ -613,7 +613,7 @@ iface eth2 inet static
 <td><ul>
 <li><p>The gateways would be the ToRs, exactly like redistribute neighbor with an equal cost route installed</p></li>
 </ul></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 </tbody>
 </table>
@@ -648,12 +648,12 @@ iface lo inet loopback
   vxrd-src-ip 10.0.0.11
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 36.0.0.11
- 
+ 
 auto vni-10
 iface vni-10
   vxlan-id 10
   vxlan-local-tunnelip 10.0.0.11
- 
+ 
 auto br-10
 iface br-10
   bridge-ports swp1 vni-10</code></pre>
@@ -665,12 +665,12 @@ iface lo inet loopback
   Vxrd-src-ip 10.0.0.12
   vxrd-svcnode-ip 10.10.10.10
   clagd-vxlan-anycast-ip 36.0.0.11
- 
+ 
 auto vni-10
 iface vni-10
   vxlan-id 10
   vxlan-local-tunnelip 10.0.0.12
- 
+ 
 auto br-10
 iface br-10
   bridge-ports swp1 vni-10</code></pre></td>
@@ -713,13 +713,13 @@ iface br-10
 </ul></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
-<td><p> </p></td>
+<td><p> </p></td>
+<td><p> </p></td>
 <td><p><strong>More Information</strong></p></td>
 </tr>
 <tr class="odd">
-<td><p> </p></td>
-<td><p> </p></td>
+<td><p> </p></td>
+<td><p> </p></td>
 <td><ul>
 <li><p><a href="../../Network-Virtualization/Lightweight-Network-Virtualization-Overview/">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
 </ul></td>

@@ -413,7 +413,7 @@ To install the NetQ Agent on an Ubuntu server:
 The use of `netq-latest` in this example means that a get to the
 repository always retrieves the last version of NetQ, even in the
 case where a major version update has been made. If you want to keep
-the repository on a specific version — such as `netq-1.4` — use that
+the repository on a specific version - such as `netq-1.4` - use that
 instead.
 
     {{%/notice%}}
@@ -564,10 +564,10 @@ telemetry server or the server wasn't configured:
 5.  Verify NetQ Agent can reach the TS.
 
         cumulus@switch:~$ netq config show server
-         
+         
         Server         Port    Vrf    Status
         -------------  ------  -----  --------
-        198.168.1.254  6379    mgmt   ok 
+        198.168.1.254  6379    mgmt   ok 
 
 ### Configure the Agent to Use a VRF
 

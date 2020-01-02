@@ -28,7 +28,7 @@ that provides the capability for multiple
 to be inserted into a single Ethernet frame.
 
 The primary use case for QinQ with VXLAN is where a service provider who
-offers multi-tenant layer 2 connectivity between different customers’
+offers multi-tenant layer 2 connectivity between different customers'
 data centers (private clouds) may also need to connect those data
 centers to public cloud providers. Public clouds often has a mandatory
 QinQ handoff interface, where the outer tag is for the customer and the
@@ -132,13 +132,13 @@ These commands create the following configuration in the
         address 10.0.0.1/24
         bridge-access 100
         vxlan-id 1000
-     
+     
     auto vni-3000
     iface vni-3000
         address 10.0.0.3/24
         bridge-access 200
         vlan-id 3000
-     
+     
     auto bridge
     iface bridge
         bridge-ports swp3 vni-1000 vni-3000
@@ -180,7 +180,7 @@ These commands create the following configuration in the
         address 10.0.0.1
         bridge-access 100
         vxlan-id 1000
-     
+     
     auto vni-3000
     iface vni-3000
         address 10.0.0.3
@@ -189,11 +189,11 @@ These commands create the following configuration in the
     auto swp3
     iface swp3
         bridge-access 100
-     
+     
     auto swp4
     iface swp4
         bridge-access 200
-     
+     
     auto bridge
     iface bridge
         bridge-ports swp3 swp4 vni-1000 vni-3000
@@ -208,7 +208,7 @@ on VLAN 200 (S-TAG).
 To check the public cloud-facing switch, use `net show bridge vlan`:
 
     cumulus@switch:~$ net show bridge vlan
-     
+     
     Interface      VLAN  Flags                  VNI
     -----------  ------  ---------------------  -----
     swp7            100  PVID Egress Untagged
@@ -291,19 +291,19 @@ add the following:
     auto swp3.100
     iface swp3.100
         vlan_protocol 802.1ad
-     
+     
     auto swp3.100.10
     iface swp3.100.10
         mstpctl-portbpdufilter yes
         mstpctl-bpduguard yes
-     
+     
     auto vni1000
     iface vni1000
         address 10.0.0.1
         mstpctl-portbpdufilter yes
         mstpctl-bpduguard yes
         vxlan-id 1000
-     
+     
     auto custA-10-azr
     iface custA-10-azr
         bridge-ports swp3.100.10, vni1000
@@ -327,7 +327,7 @@ configuration would look something like this:
     iface swp5.100.10
         mstpctl-portbpdufilter yes
         mstpctl-bpduguard yes
-     
+     
     auto br10
     iface br10
         bridge-ports swp3.10  swp4  swp5.100.10
@@ -374,14 +374,14 @@ configuration like the following:
            vlan-id 1001
            vlan-raw-device swp50s0
            vlan-protocol 802.1ad
-     
-     
+     
+     
     auto vlan1001-101
     iface vlan1001-101
            vlan-id 101
            vlan-raw-device vlan1001
-     
-     
+     
+     
     auto bridge101
     iface bridge101
         bridge-ports vlan1001-101 vxlan1000101

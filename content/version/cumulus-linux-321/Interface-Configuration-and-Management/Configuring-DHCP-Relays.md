@@ -42,7 +42,7 @@ In the examples below, the DHCP server IP address is 172.16.1.102, VLAN
 {{%notice warning%}}
 
 You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not
-the parent bridge — in our example, you would specify v*lan1* as the SVI
+the parent bridge - in our example, you would specify v*lan1* as the SVI
 for VLAN 1; do not specify the bridge named *bridge* in this case.
 
 As per [RFC 3046](https://tools.ietf.org/html/rfc3046), you can specify

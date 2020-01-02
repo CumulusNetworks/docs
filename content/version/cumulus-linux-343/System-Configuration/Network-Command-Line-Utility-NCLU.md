@@ -20,16 +20,16 @@ configuration process for all users.
 
 NCLU resides in the Linux user space, as seen below. It provides
 consistent access to networking commands directly via bash, thereby
-making configuration and troubleshooting simple and easy — no need to
+making configuration and troubleshooting simple and easy - no need to
 edit files or enter modes and sub-modes. In addition, NCLU does more
 than traditional command line interfaces by:
 
 - Embedding help, examples and automatic command checking with
-    suggestions in case you’ve entered a typo
+    suggestions in case you've entered a typo
 - Running directly from and integrating with bash, while being
     interoperable with the regular way of accessing underlying
     configuration files and automation
-- Automatically configuring dependent features so you don’t have to
+- Automatically configuring dependent features so you don't have to
 
 {{% imgOld 0 %}}
 
@@ -130,18 +130,18 @@ below show the output for incorrect commands:
 
     cumulus@switch:~$ net add bgp router-id 1.1.1.1/32
     ERROR: Command not found
-     
+     
     Did you mean one of the following?
-     
+     
         net add bgp router-id <ipv4>
             This command is looking for an IP address, not an IP/prefixlen
-     
+     
     cumulus@switch:~$ net add bgp router-id 1.1.1.1
     cumulus@switch:~$ net add int swp10 mtu <TAB>
         <552-9216> : 
     cumulus@switch:~$ net add int swp10 mtu 9300
     ERROR: Command not found
-     
+     
     Did you mean one of the following?
         net add interface <interface> mtu <552-9216>
 
@@ -150,7 +150,7 @@ addition to the net man page, you can use `?` and `help` to display
 available commands:
 
     cumulus@switch:~$ net help
-     
+     
     Usage:
         # net <COMMAND> [<ARGS>] [help]
         #
@@ -160,8 +160,8 @@ available commands:
         # be explored by typing "<TAB>" or "help" anytime while using net.
         #
         # Use 'man net' for a more comprehensive overview.
-     
-     
+     
+     
         net abort
         net commit [verbose] [confirm] [description <wildcard>]
         net commit delete (<number>|<number-range>)
@@ -171,34 +171,34 @@ available commands:
         net show commit (history|<number>|<number-range>|last)
         net show rollback (<number>|last)
         net show configuration [commands|files|acl|bgp|ospf|ospf6|interface <interface>]
-     
-     
+     
+     
     Options:
-     
+     
         # Help commands
         help     : context sensitive information; see section below
         example  : detailed examples of common workflows
-     
-     
+     
+     
         # Configuration commands
         add      : add/modify configuration
         del      : remove configuration
-     
-     
+     
+     
         # Commit buffer commands
         abort    : abandon changes in the commit buffer
         commit   : apply the commit buffer to the system
         pending  : show changes staged in the commit buffer
         rollback : revert to a previous configuration state
-     
-     
+     
+     
         # Status commands
         show     : show command output
         clear    : clear counters, BGP neighbors, etc
-     
+     
     cumulus@switch:~$ net help bestpath
     The following commands contain keyword(s) 'bestpath'
-     
+     
         net (add|del) bgp bestpath as-path multipath-relax [as-set|no-as-set]
         net (add|del) bgp bestpath compare-routerid
         net (add|del) bgp bestpath med missing-as-worst
@@ -280,9 +280,9 @@ configuration setup:
         mlag             :  Multi-Chassis Link Aggregation
         ospf             :  Open Shortest Path First (OSPFv2)
         vlan-interfaces  :  IP interfaces for VLANs
-     
+     
     cumulus@switch:~$ net example bridge 
-     
+     
     Scenario
     ========
     We are configuring switch1 and would like to configure the following
@@ -302,7 +302,7 @@ configuration setup:
           /    \
          /      \
      host-11   host-12
-     
+     
     switch1 net commands
     ====================
     - enable vlans 10-20
@@ -322,7 +322,7 @@ configuration setup:
     # Review and commit changes
     switch1# net pending
     switch1# net commit
-     
+     
     Verification
     ============
     switch1# net show interface
@@ -342,14 +342,14 @@ edit and show commands, add the user to the `users_with_edit` and
 `groups_with_edit` lines in the `/etc/netd.conf` file:
 
     cumulus@switch:~$ sudo nano /etc/netd.conf
-     
+     
     # Control which users/groups are allowed to run 'add', 'del',
     # 'clear', 'net abort', 'net commit' and restart services
     # to apply those changes
     users_with_edit = root, cumulus, netoperator
     groups_with_edit = root, cumulus
-     
-     
+     
+     
     # Control which users/groups are allowed to run 'show' commands
     users_with_show = root, cumulus, netoperator
     groups_with_show = root, cumulus

@@ -11,7 +11,7 @@ version: 1.2.1
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
 ---
-NetQ supports high availability — that is, the ability to continue
+NetQ supports high availability - that is, the ability to continue
 functioning even in the absence of a single failure of the telemetry
 server node. To make the NetQ Telemetry Server highly available (*HA
 mode*), you need to run three instances of the telemetry server.
@@ -205,7 +205,7 @@ are the replicas. You want to replace ts03 with ts04 (10.0.0.8):
         --------  -------  --------  ------------------  --------  --------------
         10.0.0.5  master   10.0.0.5  10.0.0.6, 10.0.0.8  ok        5m:10s
         10.0.0.6  replica  10.0.0.5  -                   ok        5m:10s
-        10.0.0.8  replica  10.0.0.5  -                   ok        5m:10s 
+        10.0.0.8  replica  10.0.0.5  -                   ok        5m:10s 
 
 5.  Update the agent on each switch and server node to point to the new
     HA cluster, and restart the NetQ Agent on each node:

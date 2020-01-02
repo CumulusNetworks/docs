@@ -589,7 +589,7 @@ This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ([m
     - If reflecting the route, two next hops are sent only if the peer has `nexthop-local unchanged` configured and the attribute of the received route has an IPv6 link-local next hop  otherwise, only one next hop is sent.
     - If not reflecting the route, two next hops are sent if explicitly configured (`nexthop-local unchanged`) or the peer is directly connected (either peering is on link-local address or the global IPv4 or IPv6 address is *directly connected*) and the route is either a local/self-originated route or the peer is an eBGP peer.
     - In all other cases, only one next hop is sent, unless an outbound route map adds another next hop.
-- `route-map` can impose two next hops in scenarios where Cumulus Linux only sends one next hop — by specifying `set ipv6 nexthop link-local`.
+- `route-map` can impose two next hops in scenarios where Cumulus Linux only sends one next hop - by specifying `set ipv6 nexthop link-local`.
 - For all routes to eBGP peers and self-originated routes to iBGP peers, the global next hop (first value) is the peering address of the local system. If the peering is on the link-local address, thisis the global IPv6 address on the peering interface, if present; otherwise, it is the link-local IPv6 address on the peering interface.
 - For other routes to iBGP peers (eBGP to iBGP or reflected), the global next hop will be the global next hop in the received attribute.
 
@@ -599,7 +599,7 @@ If this address is a link-local IPv6 address, it is reset so that the link-local
 
 {{%/notice%}}
 
-- `route-map` and/or the peer configuration can change the above behavior. For example, `route-map` can set the global IPv6 next hop or the peer configuration can set it to *self* — which is relevant for *iBGP* peers. The route map or peer configuration can also set the next hop to unchanged, which ensures the source IPv6 global next hop is passed around — which is relevant for *eBGP* peers.
+- `route-map` and/or the peer configuration can change the above behavior. For example, `route-map` can set the global IPv6 next hop or the peer configuration can set it to *self* - which is relevant for *iBGP* peers. The route map or peer configuration can also set the next hop to unchanged, which ensures the source IPv6 global next hop is passed around - which is relevant for *eBGP* peers.
 - Whenever two next hops are being sent, the link-local next hop (the second value of the two) is the link-local IPv6 address on the peering interface unless it is due to `nh-local-unchanged` or `route-map` has set the link-local next hop.
 - Network administrators cannot set [martian values](http://en.wikipedia.org/wiki/Martian_packet) for IPv6 next hops in `route-map`. Also, global and link-local next hops are validated to ensure they match the respective address types.
 - In a received update, a martian check is imposed for the IPv6 global next hop. If the check fails, it gets treated as an implicit withdraw.
@@ -1550,7 +1550,7 @@ cumulus@switch:~$
 
 </details>
 
-By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Cumulus Networks recommends you adjust the interval of the router advertisement to a shorter value to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor’s link-local address to BGP. The `interval` is measured in seconds and defaults to 10 seconds. The following example commands set the router advertisement to 5 seconds.
+By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Cumulus Networks recommends you adjust the interval of the router advertisement to a shorter value to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor's link-local address to BGP. The `interval` is measured in seconds and defaults to 10 seconds. The following example commands set the router advertisement to 5 seconds.
 
 <details>
 
@@ -3188,7 +3188,7 @@ FRR does not add BGP `ttl-security` to either the running configuration or to th
 - [RFC 2918, Route Refresh Capability for BGP-4](https://tools.ietf.org/html/rfc2918)
 - [RFC 4271, A Border Gateway Protocol 4 (BGP-4)](https://tools.ietf.org/html/rfc4271)
 - [RFC 4360, BGP Extended Communities Attribute](https://tools.ietf.org/html/rfc4360)
-- [RFC 4456, BGP Route Reflection – An Alternative to Full Mesh Internal BGP (iBGP)](https://tools.ietf.org/html/rfc4456)
+- [RFC 4456, BGP Route Reflection - An Alternative to Full Mesh Internal BGP (iBGP)](https://tools.ietf.org/html/rfc4456)
 - [RFC 4760, Multiprotocol Extensions for BGP-4](https://tools.ietf.org/html/rfc4760)
 - [RFC 5004, Avoid BGP Best Path Transitions from One External to Another](https://tools.ietf.org/html/rfc5004)
 - [RFC 5065, Autonomous System Confederations for BGP](https://tools.ietf.org/html/rfc5065)

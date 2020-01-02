@@ -51,7 +51,7 @@ consider cloning them first.
     
     {{<figure src="/images/cumulus-vx/VX_GNS3_VBox_VMs.png">}}
 
-6.  Enable GNS3 to work with the VirtualBox VMs’ network interfaces.
+6.  Enable GNS3 to work with the VirtualBox VMs' network interfaces.
     Configure each VM's network settings, using the GNS3 interface:
     
       - Select a VM in the center pane, then click **Edit**.

@@ -93,33 +93,33 @@ To edit the configuration files directly as the sudo user, copy the
         auto lo
         iface lo inet loopback
             address 10.2.1.1/32
-         
+         
         # The primary network interface
         auto eth0
         iface eth0 inet dhcp
-         
+         
         auto swp1
         iface swp1
             address 10.2.1.1/32
-         
+         
         auto swp2
         iface swp2
             address 10.2.1.1/32
-         
+         
         auto swp3
         iface swp3
             address 10.4.1.1/24
     
         service integrated-vtysh-config
-         
+         
         interface swp1
           ip ospf network point-to-point
-         
+         
         interface swp2
           ip ospf network point-to-point
-         
+         
         router-id 10.2.1.1
-         
+         
         router ospf
           ospf router-id 10.2.1.1
           network 10.2.1.1/32 area 0.0.0.0
@@ -158,33 +158,33 @@ configurations for each additional VM:
         auto lo
         iface lo inet loopback
             address 10.2.1.2/32
-         
+         
         # The primary network interface
         auto eth0
         iface eth0 inet dhcp
-         
+         
         auto swp1
         iface swp1
             address 10.2.1.2/32
-         
+         
         auto swp2
         iface swp2
             address 10.2.1.2/32
-         
+         
         auto swp3
         iface swp3
             address 10.4.2.1/24
     
         service integrated-vtysh-config 
-         
+         
         interface swp1
           ip ospf network point-to-point
-         
+         
         interface swp2
           ip ospf network point-to-point
-         
+         
         router-id 10.2.1.2
-         
+         
         router ospf
           ospf router-id 10.2.1.2                                                           
           network 10.2.1.2/32 area 0.0.0.0  
@@ -208,33 +208,33 @@ configurations for each additional VM:
         auto lo
         iface lo inet loopback
             address 10.2.1.3/32
-         
+         
         # The primary network interface
         auto eth0
         iface eth0 inet dhcp
-         
+         
         auto swp1
         iface swp1
             address 10.2.1.3/32
-         
+         
         auto swp2
         iface swp2
             address 10.2.1.3/32
-         
+         
         auto swp3
         iface swp3
             address 10.4.3.1/24
     
         service integrated-vtysh-config 
-         
+         
         interface swp1
           ip ospf network point-to-point
-         
+         
         interface swp2
           ip ospf network point-to-point
-         
+         
         router-id 10.2.1.3
-         
+         
         router ospf
           ospf router-id 10.2.1.3
           network 10.2.1.3/32 area 0.0.0.0
@@ -258,33 +258,33 @@ configurations for each additional VM:
         auto lo
         iface lo inet loopback
             address 10.2.1.4/32
-         
+         
         # The primary network interface
         auto eth0
         iface eth0 inet dhcp
-         
+         
         auto swp1
         iface swp1
             address 10.2.1.4/32
-         
+         
         auto swp2
         iface swp2
             address 10.2.1.4/32
-         
+         
         auto swp3
         iface swp3
             address 10.4.4.1/24
     
         service integrated-vtysh-config 
-         
+         
         interface swp1
           ip ospf network point-to-point
-         
+         
         interface swp2
           ip ospf network point-to-point
-         
+         
         router-id 10.2.1.4
-         
+         
         router ospf
           ospf router-id 10.2.1.4
           network 10.2.1.4/32 area 0.0.0.0

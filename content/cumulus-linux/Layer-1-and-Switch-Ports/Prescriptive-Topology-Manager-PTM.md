@@ -487,7 +487,7 @@ cumulus@switch:~$ sudo ptmctl
 cmd         error
 -------------------------------------------------------------------------
 get-status  Topology file error [/etc/ptm.d/topology.dot]
-            [cannot open file (errno 2)] - please check /var/log/ptmd.log 
+            [cannot open file (errno 2)] - please check /var/log/ptmd.log 
             for more info
 ```
 

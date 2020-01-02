@@ -25,18 +25,18 @@ instructions for Docker.
     `/etc/apt/sources.list.d/jessie.list` in a text editor, and save the
     file:
     
-        cumulus@switch:mgmt-vrf:~$ sudo nano /etc/apt/sources.list.d/jessie.list
-         
+        cumulus@switch:mgmt-vrf:~$ sudo nano /etc/apt/sources.list.d/jessie.list
+         
         ...
-         
+         
         deb http://httpredir.debian.org/debian jessie main contrib non-free
         deb-src http://httpredir.debian.org/debian jessie main contrib non-free
 
 2.  Create the `/etc/apt/sources.list.d/docker.list` file, add the
     following line in a text editor, and save the file:
     
-        cumulus@switch:mgmt-vrf:~$ sudo nano /etc/apt/sources.list.d/docker.list
-         
+        cumulus@switch:mgmt-vrf:~$ sudo nano /etc/apt/sources.list.d/docker.list
+         
         deb https://apt.dockerproject.org/repo debian-jessie main
 
 ### Install the Authentication Key
@@ -58,9 +58,9 @@ instructions for Docker.
     and save the file.
     
         cumulus@switch:mgmt-vrf:~$ sudo nano /etc/vrf/systemd.conf
-         
+         
         ...
-         
+         
         docker
 
 2.  Create a directory for the `systemd` configuration file for Docker:
@@ -72,7 +72,7 @@ instructions for Docker.
     the following lines to it, then save the file:
     
         cumulus@switch:mgmt-vrf:~$ sudo nano /etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf
-         
+         
         [Service]
         ExecStart=
         ExecStart=/usr/bin/docker daemon --iptables=false --ip-masq=false --ip-forward=false

@@ -146,7 +146,7 @@ the addresses. For more information, see
 
 ## Using the vtysh Modal CLI
 
-Quagga provides a CLI – `vtysh` – for configuring and displaying the
+Quagga provides a CLI - `vtysh` - for configuring and displaying the
 state of the protocols. It is invoked by running:
 
     cumulus@switch:~$ sudo vtysh
@@ -180,7 +180,7 @@ changes to:
     quagga(config)# router ospf
     quagga(config-router)#
 
-At any level, ”?” displays the list of available top-level commands at
+At any level,  "? " displays the list of available top-level commands at
 that level:
 
     quagga(config-if)# ?

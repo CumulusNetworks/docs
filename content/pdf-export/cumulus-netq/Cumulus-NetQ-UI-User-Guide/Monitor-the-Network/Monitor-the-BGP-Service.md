@@ -171,8 +171,8 @@ The *Sessions Summary* tab displays:
 </tr>
 <tr class="even">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>Switches with Most Sessions</strong> filter option is selected, the table displays the switches and hosts running BGP sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
-<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter option is selected, the table switches and hosts running BGP sessions in decreasing order of unestablished sessions—devices with the largest number of unestablished sessions are listed first</p></td>
+<td><p>When the <strong>Switches with Most Sessions</strong> filter option is selected, the table displays the switches and hosts running BGP sessions in decreasing order of session count-devices with the largest number of sessions are listed first</p>
+<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter option is selected, the table switches and hosts running BGP sessions in decreasing order of unestablished sessions-devices with the largest number of unestablished sessions are listed first</p></td>
 </tr>
 <tr class="odd">
 <td><p>Show All Sessions</p></td>
@@ -223,7 +223,7 @@ The *Alarms* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the selected filter option is <strong>Switches with Most Alarms</strong>, the table displays <strong></strong> switches and hosts running BGP in decreasing order of the count of alarms—devices with the largest number of BGP alarms are listed first</p></td>
+<td><p>When the selected filter option is <strong>Switches with Most Alarms</strong>, the table displays <strong></strong> switches and hosts running BGP in decreasing order of the count of alarms-devices with the largest number of BGP alarms are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
@@ -662,7 +662,7 @@ The small BGP Session card displays:
 <td><p>BGP Session</p></td>
 </tr>
 <tr class="odd">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Hostnames of the two devices in a session. Arrow points from the host to the peer.</p></td>
 </tr>
 <tr class="even">
@@ -701,7 +701,7 @@ The medium BGP Session card displays:
 <td><p>Network Services | BGP Session</p></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Hostnames of the two devices in a session. Arrow points in the direction of the session.</p></td>
 </tr>
 <tr class="odd">
@@ -843,7 +843,7 @@ of the session.
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-Current status of the session—either established
+Current status of the session-either established
 
 {{% imgOld 55 %}}
 

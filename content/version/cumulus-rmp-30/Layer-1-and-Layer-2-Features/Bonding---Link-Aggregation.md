@@ -82,7 +82,7 @@ for bond0:
         bond-slaves swp1 swp2 swp3 swp4
 
 However, if you are intending that the bond become part of a bridge, you
-don’t need to specify an IP address. The configuration would look like
+don't need to specify an IP address. The configuration would look like
 this:
 
     auto bond0
@@ -113,7 +113,7 @@ And
 
 All slave interfaces within a bond will have the same MAC address as the
 bond. Typically, the first slave added to the bond donates its MAC
-address for the bond. The other slaves’ MAC addresses are set to the
+address for the bond. The other slaves' MAC addresses are set to the
 bond MAC address. The bond MAC address is used as source MAC address for
 all traffic leaving the bond, and provides a single destination MAC
 address to address traffic to the bond.
@@ -152,7 +152,7 @@ calculation is adjusted to steer traffic over available slaves.
   - An interface cannot belong to multiple bonds.
 
   - Slave ports within a bond should all be set to the same
-    speed/duplex, and should match the link partner’s slave ports.
+    speed/duplex, and should match the link partner's slave ports.
 
   - A bond cannot enslave VLAN subinterfaces. A bond can have
     subinterfaces, but not the other way around.

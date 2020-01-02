@@ -149,10 +149,10 @@ for authentication.
         Creating controllerca...
         Creating switchca...
         cumulus@switch:~$ sudo ovs-pki req+sign cumulus
-         
+         
         cumulus-req.pem Wed Oct 23 05:32:49 UTC 2013
                 fingerprint b587c9fe36f09fb371750ab50c430485d33a174a
-         
+         
         cumulus@switch:~$ ls -l
         total 12
         -rw-r--r-- 1 root root 4028 Oct 23 05:32 cumulus-cert.pem
@@ -174,7 +174,7 @@ for authentication.
         set "$@" --private-key=/root/cumulus-privkey.pem
         set "$@" --certificate=/root/cumulus-cert.pem
         set "$@" --bootstrap-ca-cert=/root/controller.cacert
-        set “$@” --ssl-protocols=TLSv1,TLSv1.1,TLSv1.2
+        set "$@ " --ssl-protocols=TLSv1,TLSv1.1,TLSv1.2
 
     If files have been moved or regenerated, restart the OVSDB server
     and VTEPd:
@@ -212,9 +212,9 @@ VTEPs, edit the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file and
 uncomment the `--enable-vlan-aware-mode` line:
 
     # Start ovs-vtepd
-    set ovs-vtepd unix:“$DB_SOCK”
-    set “$@” -vconsole:emer -vsyslog:err -vfile:info
-    #set “$@” --enable-vlan-aware-mode
+    set ovs-vtepd unix:"$DB_SOCK "
+    set "$@ " -vconsole:emer -vsyslog:err -vfile:info
+    #set "$@ " --enable-vlan-aware-mode
 
 Then restart the OVSDB server and VTEPd:
 
@@ -404,4 +404,4 @@ controller, run the ` ovsdb-client dump Manager  `command:
     Manager table
     _uuid                                inactivity_probe is_connected max_backoff other_config status                                 target
     ------------------------------------ ---------------- ------------ ----------- ------------ -------------------------------------- -------------------
-    e700ad21-8fd8-4f09-96dc-fa7cc6e498d8 30000            true         []          {}           {sec_since_connect=“68”, state=ACTIVE} “ssl:54.0.0.2:6632"
+    e700ad21-8fd8-4f09-96dc-fa7cc6e498d8 30000            true         []          {}           {sec_since_connect="68 ", state=ACTIVE} "ssl:54.0.0.2:6632"

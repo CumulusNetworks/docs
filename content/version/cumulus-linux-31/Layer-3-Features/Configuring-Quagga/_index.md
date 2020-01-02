@@ -45,11 +45,11 @@ below](#src-5122123_ConfiguringQuagga-integrated_cfg) for details.
 
 Cumulus Quagga does not start by default in Cumulus Linux. Before you
 run Cumulus Quagga, make sure all you have enabled relevant daemons that
-you intend to use — `zebra`, `bgpd`, `ospfd`, `ospf6d`, `ripd`,
-`ripngd`, `isisd` — in the `/etc/quagga/daemons` file.
+you intend to use - `zebra`, `bgpd`, `ospfd`, `ospf6d`, `ripd`,
+`ripngd`, `isisd` - in the `/etc/quagga/daemons` file.
 
 The `zebra` daemon must always be enabled. The others you can enable
-according to how you plan to route your network — using
+according to how you plan to route your network - using
 [BGP](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP)
 for example, instead of
 [OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol).
@@ -176,14 +176,14 @@ VRF](/version/cumulus-linux-31/Layer-3-Features/Virtual-Routing-and-Forwarding-V
 
 ## Using the vtysh Modal CLI</span>
 
-Quagga provides a CLI – `vtysh` – for configuring and displaying the
+Quagga provides a CLI - `vtysh` - for configuring and displaying the
 state of the protocols. It is invoked by running:
 
     cumulus@switch:~$ sudo vtysh
-     
+     
     Hello, this is Quagga (version 0.99.23.1+cl3u2).
     Copyright 1996-2005 Kunihiro Ishiguro, et al.
-     
+     
     switch#
 
 `vtysh` provides a Cisco-like modal CLI, and many of the commands are
@@ -207,7 +207,7 @@ changes to:
     switch(config)# router ospf
     switch(config-router)#
 
-At any level, ”?” displays the list of available top-level commands at
+At any level,  "? " displays the list of available top-level commands at
 that level:
 
     switch(config-if)# ?
@@ -291,7 +291,7 @@ of `vtysh`:
     Codes: K - kernel route, C - connected, S - static, R - RIP,
            O - OSPF, I - IS-IS, B - BGP, A - Babel,
            > - selected route, * - FIB route
-     
+     
     K>* 0.0.0.0/0 via 192.168.0.2, eth0
     C>* 192.0.2.11/24 is directly connected, swp1
     C>* 192.0.2.12/24 is directly connected, swp2
@@ -321,7 +321,7 @@ running-config` command:
 
     switch# show running-config
     Building configuration...
-     
+     
     Current configuration:
     !
     username cumulus nopassword

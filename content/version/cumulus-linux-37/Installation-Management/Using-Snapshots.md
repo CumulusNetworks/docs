@@ -15,10 +15,10 @@ Cumulus Linux supports the ability to take snapshots of the complete file system
 
 The primary snapshot components include:
 
-- [btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page) — an underlying file system in Cumulus Linux, which supports snapshots.
-- [snapper](http://snapper.io/documentation.html) — a userspace utility to create and manage snapshots on demand as well as taking snapshots automatically before and after running `apt-get upgrade|install|remove|dist-upgrade`. You can use `snapper` to roll back to earlier snapshots, view existing snapshots, or delete one or more snapshots.
+- [btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page) - an underlying file system in Cumulus Linux, which supports snapshots.
+- [snapper](http://snapper.io/documentation.html) - a userspace utility to create and manage snapshots on demand as well as taking snapshots automatically before and after running `apt-get upgrade|install|remove|dist-upgrade`. You can use `snapper` to roll back to earlier snapshots, view existing snapshots, or delete one or more snapshots.
 - [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/)
- — takes snapshots automatically before and after committing network configurations. You can use NCLU to roll back to earlier snapshots, view existing snapshots, or delete one or more snapshots.
+ - takes snapshots automatically before and after committing network configurations. You can use NCLU to roll back to earlier snapshots, view existing snapshots, or delete one or more snapshots.
 
 ## Install the Snapshot Package
 

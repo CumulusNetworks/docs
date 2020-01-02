@@ -192,7 +192,7 @@ To get the `mstpd` bridge port state, use:
      E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
        swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
      E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
-     
+     
     cumulus@switch:~$ sudo mstpctl showportdetail br2 swp1
      br2:swp1 CIST info
       enabled            yes                     role                 Designated
@@ -366,11 +366,11 @@ configuration on the connected end-station has not been rectified.
       clag ISL           no                      clag ISL Oper UP     no
       clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
       clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
-     
-     
+     
+     
     cumulus@leaf2$ sudo ifup bond0
-     
-     
+     
+     
     cumulus@leaf2$ mstpctl showportdetail bridge bond0
     bridge:bond0 CIST info
       enabled            yes                     role                 Root

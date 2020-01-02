@@ -1265,7 +1265,7 @@ show clag`:
               Peer Interface and IP: peerlink.4090 169.254.255.2
                           Backup IP: 192.168.0.22 (active)
                          System MAC: 44:39:39:ff:40:90
-     
+     
     CLAG Interfaces
     Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
     ----------------   ----------------   -------   --------------------   -----------------
@@ -1423,7 +1423,7 @@ You can see the backup IP address if you run `net show clag`:
               Peer Interface and IP: peerlink.4090 169.254.255.2
                           Backup IP: 192.168.0.22 (active)
                          System MAC: 44:39:39:ff:40:90
-     
+     
     CLAG Interfaces
     Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
     ----------------   ----------------   -------   --------------------   -----------------
@@ -1486,18 +1486,18 @@ A sample configuration where the backup interface is in a VRF could be
 as follows:
 
     cumulus@leaf01:~$ net show configuration
-     
+     
     ...
-     
+     
     auto swp52s0
     iface swp52s0
         address 192.0.2.1/24
         vrf green
-     
+     
     auto green
     iface green
         vrf-table auto
-     
+     
     auto peer5.4000
     iface peer5.4000
             address 192.0.2.15/24
@@ -1515,7 +1515,7 @@ Which you can verify with `net show clag status verbose`:
               Peer Interface and IP: peer5.4000 192.0.2.16
                           Backup IP: 192.0.2.2 vrf green (active)
                          System MAC: 44:38:39:01:01:01
-     
+     
     CLAG Interfaces
     Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
     ----------------   ----------------   -------   --------------------   -----------------
@@ -1523,7 +1523,7 @@ Which you can verify with `net show clag status verbose`:
                bond1   bond1              1         -                      -              
                bond2   bond2              2         -                      -              
                bond3   bond3              3         -                      -     
-     
+     
     ...
 
 {{%/notice%}}
@@ -1595,11 +1595,11 @@ active/active forwarding.
 
 Then, to connect the spine switches to the core switches, you need to
 determine whether the routing is static or dynamic. If it's dynamic, you
-must choose which protocol —
+must choose which protocol -
 [OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol)
 or
 [BGP](/version/cumulus-linux-321/Layer-Three/Border-Gateway-Protocol-BGP)
-— to use. When enabling a routing protocol in an MLAG environment it is
+- to use. When enabling a routing protocol in an MLAG environment it is
 also necessary to manage the uplinks, because by default MLAG is not
 aware of layer 3 uplink interfaces. In the event of a peer link failure
 MLAG does not remove static routes or bring down a BGP or OSPF adjacency
@@ -1662,11 +1662,11 @@ You can check the status of `clagd` monitoring by using the
 
     cumulus@switch:~$ sudo cl-service-summary summary
     The systemctl daemon 5.4 uptime: 15m
-     
+     
     ...
-     
+     
     Service clagd        enabled    active 
-     
+     
     ...
 
 Or the `systemctl status` command:
@@ -1680,8 +1680,8 @@ Or the `systemctl status` command:
        CGroup: /system.slice/clagd.service
                ├─1235 /usr/bin/python /usr/sbin/clagd --daemon 169.254.255.2 peerlink.4090 44:39:39:FF:40:90 --prior...
                └─1307 /sbin/bridge monitor fdb
-     
-     
+     
+     
     Feb 01 23:19:30 leaf01 clagd[1717]: Cleanup is executing.
     Feb 01 23:19:31 leaf01 clagd[1717]: Cleanup is finished
     Feb 01 23:19:31 leaf01 clagd[1717]: Beginning execution of clagd version 1.3.0
@@ -1823,7 +1823,7 @@ servers and two switches in it. You may plan for, say, 4 to 6 servers to
 lose connectivity to a single switch and become single connected before
 you respond to the event. So expanding upon our previous example, if you
 have 40 hosts each with 20G of bandwidth dual-connected to the MLAG
-pair, you might allocate 20G to 30G of bandwidth to the peerlink — which
+pair, you might allocate 20G to 30G of bandwidth to the peerlink - which
 accounts for half of the single-connected bandwidth for 4 to 6 hosts.
 
 ## STP Interoperability with MLAG</span>
@@ -1907,8 +1907,8 @@ Using
 the number of dropped packets is displayed in the RX\_DRP column when
 you run `net show counters`:
 
-    cumulus@switch:~$ net show counters 
-     
+    cumulus@switch:~$ net show counters 
+     
     Kernel Interface table
     Iface              MTU    Met    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
     ---------------  -----  -----    -------  --------  --------  --------  -------  --------  --------  ------  -----

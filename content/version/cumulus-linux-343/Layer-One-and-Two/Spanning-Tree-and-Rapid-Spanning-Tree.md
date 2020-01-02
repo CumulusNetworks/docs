@@ -447,11 +447,11 @@ configuration on the connected end-station has not been rectified.
       clag ISL           no                      clag ISL Oper UP     no
       clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
       clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
-     
-     
+     
+     
     cumulus@leaf2$ sudo ifup bond0
-     
-     
+     
+     
     cumulus@leaf2$ mstpctl showportdetail bridge bond0
     bridge:bond0 CIST info
       enabled            yes                     role                 Root

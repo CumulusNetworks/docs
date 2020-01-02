@@ -522,7 +522,7 @@ mstpd: one_clag_cmd: setting system-mac 44:38:39:ff:40:94
 mstpd: one_clag_cmd: setting clag-role secondary</code></pre></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><pre><code>/var/log/clagd.log</code></pre></td>
 <td><pre><code>clagd[14003]: Cleanup is executing.
 clagd[14003]: Cannot open file &quot;/tmp/pre-clagd.q7XiO
@@ -554,7 +554,7 @@ mstpd: one_clag_cmd: setting system-mac 44:38:39:ff:40:94
 mstpd: one_clag_cmd: setting clag-role secondary</code></pre></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><pre><code>/var/log/clagd.log</code></pre></td>
 <td><pre><code>clagd[26916]: Cleanup is executing.
 clagd[26916]: Cannot open file &quot;/tmp/pre-clagd.6M527vvGX0/brbatch&quot; for reading: No such file or directory
@@ -584,7 +584,7 @@ kernel: [77421.491811] IPv6: ADDRCONF(NETDEV_CHANGE): server01: link becomes rea
 mstpd: one_clag_cmd: setting (1) mac 44:38:39:00:00:17 &lt;server01, None&gt;</code></pre></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><pre><code>/var/log/clagd.log</code></pre></td>
 <td><pre><code>clagd[14003]: server01 is now dual connected.</code></pre></td>
 </tr>
@@ -605,7 +605,7 @@ kernel: [79290.375033] server01: link status definitely up for interface swp1, 1
 kernel: [79290.375037] server01: now running without any active interface!</code></pre></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><pre><code>/var/log/clagd.log</code></pre></td>
 <td><pre><code>clagd[14291]: Conflict (server01): matching clag-id (1) not configured on peer
 ...
@@ -621,7 +621,7 @@ clagd[14291]: Conflict cleared (server01): matching clag-id (1) detected on peer
 mstpd: one_clag_cmd: setting (1) mac 44:38:39:00:00:03 &lt;server01, None&gt;</code></pre></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><pre><code>/var/log/clagd.log</code></pre></td>
 <td><pre><code>clagd[14291]: server01 is no longer dual connected
 clagd[14291]: server01 is now dual connected.</code></pre></td>

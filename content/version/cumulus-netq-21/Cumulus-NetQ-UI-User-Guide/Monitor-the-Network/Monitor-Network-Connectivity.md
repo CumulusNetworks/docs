@@ -20,7 +20,7 @@ On-demand Trace Results, and Scheduled Trace Results.
 
 ## Create a Trace Request
 
-Two types of connectivity checks can be run–an immediate trace and a
+Two types of connectivity checks can be run-an immediate trace and a
 scheduled trace. The Trace Request card workflow is used to configure
 and run both of these trace types.
 
@@ -424,7 +424,7 @@ displays:
 <td><p>Indicates an on-demand trace result</p></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</p></td>
 </tr>
 <tr class="odd">
@@ -463,7 +463,7 @@ displays:
 <td><p>On-demand Trace Result</p></td>
 </tr>
 <tr class="odd">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</p></td>
 </tr>
 <tr class="even">
@@ -526,7 +526,7 @@ displays:
 <td><p>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</p></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</p></td>
 </tr>
 <tr class="odd">
@@ -709,7 +709,7 @@ The small Scheduled Trace Results card displays:
 <td><p>Indicates a scheduled trace result</p></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Source and destination of the trace, identified by their address or hostname. Source is listed on left with arrow pointing to destination.</p></td>
 </tr>
 <tr class="odd">

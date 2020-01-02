@@ -74,10 +74,10 @@ To start the IPM application and all of its services:
 4.  Verify the application is running using the `status` option of the
     command.
 
-        <machine-name>:~<username>$ ssh cumulus@<telemetry-server-name-or-ip-address>   
+        <machine-name>:~<username>$ ssh cumulus@<telemetry-server-name-or-ip-address>   
         cumulus@ts:~$ sudo systemctl start tips-appliance
-         
-        cumulus@ts:~$ sudo systemctl enable tips-appliance  
+         
+        cumulus@ts:~$ sudo systemctl enable tips-appliance  
         Created symlink from /etc/systemd/system/multi-user.target.wants/tips-appliance.service to /lib/systemd/system/tips-appliance.service.
 
         cumulus@oob-mgmt-server:~$ sudo systemctl status tips-appliance
@@ -129,14 +129,14 @@ To perform the initial configuration in prompt mode:
 
         cumulus@ts:~$ tipctl config setup
         [?] Select local network configuration: eth0:10.255.0.92
-         > eth0:10.255.0.92
+         > eth0:10.255.0.92
            eth1:192.168.0.254
            Quit
-         
+         
         Using eth0 10.255.0.92 to finish the configuration
-         
+         
         cumulus@ts:~$ tipctl config verify
-        The TIPS application is running as expected. 
+        The TIPS application is running as expected. 
 
     If the application is not running as expected, the output indicates
     the problem. For example:  
@@ -145,7 +145,7 @@ To perform the initial configuration in prompt mode:
         Status      Service
         ----------  ---------
         restarting  DHCP missing     
-         
+         
         DB Status   Issue
         --------    --------------------------
         error       Cannot connect to backend.
@@ -161,9 +161,9 @@ To perform the initial configuration in traditional command line mode:
 
         cumulus@ts:~$ tipctl config setup --interface eth1
         Using eth1 192.168.0.254 to finish the configuration
-         
+         
         cumulus@ts:~$ tipctl config setup --ip 10.255.0.92
         Using eth0 10.255.0.92 to finish the configuration
-         
-        cumulus@ts:~$ tipscl config verify
+         
+        cumulus@ts:~$ tipscl config verify
         The TIPS application is running as expected.

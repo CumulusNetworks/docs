@@ -141,7 +141,7 @@ targets.
 When a local VNI is learned by Quagga and there is no explicit
 configuration for that VNI in Quagga, the route distinguisher (RD) and
 import and export route targets (RTs) for this VNI are automatically
-derived — the RD uses “RouterId:VNI-Index” and both RTs use “AS:VNI”.
+derived - the RD uses "RouterId:VNI-Index " and both RTs use "AS:VNI ".
 The RD and RTs are used in the EVPN route exchange, with the former to
 disambiguate EVPN routes in different VNIs (as they may have the same
 MAC and/or IP address) while the latter describes the VPN membership for
@@ -170,8 +170,8 @@ This configuration is only needed on leaf switches that are VTEPs.
 To build upon the previous example, run the following commands to
 advertise all VNIs:
 
-    cumulus@switch:~$ net add bgp autonomous-system 65000
-    cumulus@switch:~$ net add bgp evpn neighbor swp1 activate 
+    cumulus@switch:~$ net add bgp autonomous-system 65000
+    cumulus@switch:~$ net add bgp evpn neighbor swp1 activate 
     cumulus@switch:~$ net add bgp evpn advertise-all-vni
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
@@ -269,13 +269,13 @@ to their loopback addresses, which are advertised in OSPF. The receiving
 VTEP imports routes into a specific VNI with a matching route target
 community.
 
-    cumulus@switch:~$ net add bgp autonomous-system 65020
+    cumulus@switch:~$ net add bgp autonomous-system 65020
     cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.2 remote-as internal
     cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.3 remote-as internal
     cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.4 remote-as internal
-    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.2 activate 
-    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.3 activate 
-    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.4 activate 
+    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.2 activate 
+    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.3 activate 
+    cumulus@switch:~$ net add bgp evpn neighbor 10.1.1.4 activate 
     cumulus@switch:~$ net add bgp evpn advertise-all-vni
     cumulus@switch:~$ net add ospf router-id 10.1.1.1
     cumulus@switch:~$ net add loopback lo ospf area 0.0.0.0
@@ -296,7 +296,7 @@ These commands create the following configuration snippet in
     interface swp50
      ip ospf area 0.0.0.0
      ip ospf network point-to-point
-     
+     
     interface swp51
      ip ospf area 0.0.0.0
      ip ospf network point-to-point
@@ -371,7 +371,7 @@ To configure ARP suppression, use
 Here's an example configuration using 2 VXLANs, 10100 and 10200, and 2
 VLANs, 100 and 200:
 
-    cumulus@switch:~$ net add bridge bridge ports vtep100,vtep200
+    cumulus@switch:~$ net add bridge bridge ports vtep100,vtep200
     cumulus@switch:~$ net add bridge bridge vids 100,200
     cumulus@switch:~$ net add vxlan vtep100 vxlan id 10100
     cumulus@switch:~$ net add vxlan vtep200 vxlan id 10200
@@ -399,21 +399,21 @@ These commands create the following configuration in the
         bridge-stp on
         bridge-vids 100 200
         bridge-vlan-aware yes
-     
+     
     auto vlan100
     iface vlan100
         ip6-forward off
         ip-forward off
         vlan-id 100
         vlan-raw-device bridge
-     
+     
     auto vlan200
     iface vlan200
         ip6-forward off
         ip-forward off
         vlan-id 200
         vlan-raw-device bridge
-     
+     
     auto vtep100
     iface vtep100
         bridge-access 100
@@ -999,35 +999,35 @@ end</code></pre></details></td>
 <tr class="odd">
 <td><pre><code>#configuration is for Cumulus VX
 #in real life this is a server OS
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto eth1
 iface eth1
     address 172.16.1.101/24
- 
+ 
 auto eth1.100
 iface eth1.100
     address 172.16.100.101/24
- 
+ 
 auto eth1.200
 iface eth1.200
     address 172.16.200.101/24</code></pre></td>
 <td><pre><code>#configuration is for Cumulus VX
 #in real life this is a server OS
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto eth2
 iface eth2
     address 172.16.1.102/24
- 
+ 
 auto eth2.100
 iface eth2.100
     address 172.16.100.102/24
- 
+ 
 auto eth2.200
 iface eth2.200
     address 172.16.200.102/24</code></pre></td>
@@ -1332,44 +1332,44 @@ end</code></pre></details></td>
 auto lo
 iface lo inet loopback
     address 10.0.0.21/32
- 
- 
+ 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 # downlinks
 auto swp1
 iface swp1
- 
- 
+ 
+ 
 auto swp2
 iface swp2
- 
- 
+ 
+ 
 auto swp3
 iface swp3
- 
- 
+ 
+ 
 auto swp4
 iface swp4</code></pre></td>
 <td><pre><code>cumulus@spine01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.0.0.22/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 # downlinks
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 auto swp3
 iface swp3
- 
+ 
 auto swp4
 iface swp4</code></pre></td>
 </tr>
@@ -1494,43 +1494,43 @@ end</code></pre></details></td>
 <tbody>
 <tr class="odd">
 <td><pre><code>cumulus@server01:~$ cat /etc/network/interfaces
- 
- 
+ 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
- 
+ 
+ 
 auto bond0
 iface bond0
     bond-slaves eth1 eth2
     address 172.16.1.101/24
- 
- 
+ 
+ 
 auto bond0.100
 iface bond0.100
     address 172.16.100.101/24
- 
- 
+ 
+ 
 auto bond0.200
 iface bond0.200
     address 172.16.200.101/24</code></pre></td>
 <td><pre><code>cumulus@server03:~$ cat /etc/network/interfaces
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
- 
+ 
+ 
 auto bond0
 iface bond0
     bond-slaves eth1 eth2
     address 172.16.1.103/24
- 
- 
+ 
+ 
 auto bond0.100
 iface bond0.100
     address 172.16.100.103/24
- 
- 
+ 
+ 
 auto bond0.200
 iface bond0.200
     address 172.16.200.103/24</code></pre></td>
@@ -1578,7 +1578,7 @@ reveals information relevant only for a VTEP.
   - MAC address 00:02:00:00:00:03 is a local MAC learned over a bond
     interface while MAC address 00:02:00:00:00:08 is a remote MAC from
     VTEP 80.80.80.2 for VNI 10100 (vtep100).
-  - The entries with MAC “00:00:00:00:00:00” are for BUM traffic
+  - The entries with MAC "00:00:00:00:00:00 " are for BUM traffic
     replication.
 
     ```
@@ -1617,17 +1617,17 @@ running `net show bgp summary` command on one of the spines:
     RIB entries 11, using 1496 bytes of memory
     Peers 2, using 42 KiB of memory
     Peer groups 1, using 72 bytes of memory
-     
-     
+     
+     
     Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
     s1(swp49s0)     4      65100      43      49        0    0    0 02:04:00            4
     s2(swp49s1)     4      65100      43      49        0    0    0 02:03:59            4
     Total number of neighbors 2
-     
+     
     show bgp ipv6 unicast summary
     =============================
     No IPv6 neighbor is configured
-     
+     
     show bgp evpn summary
     =====================
     BGP router identifier 110.0.0.1, local AS number 65001 vrf-id 0
@@ -1635,8 +1635,8 @@ running `net show bgp summary` command on one of the spines:
     RIB entries 15, using 2040 bytes of memory
     Peers 2, using 42 KiB of memory
     Peer groups 1, using 72 bytes of memory
-     
-     
+     
+     
     Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
     s1(swp49s0)     4      65100      43      49        0    0    0 02:04:00           30
     s2(swp49s1)     4      65100      43      49        0    0    0 02:03:59           30
@@ -1646,7 +1646,7 @@ You can see the loopback addresses for all the network devices
 participating in BGP by running the `net show bgp` command:
 
     cumulus@spine01:~$ net show bgp
-     
+     
     show bgp ipv4 unicast
     =====================
     BGP table version is 9, local router ID is 110.0.0.1
@@ -1672,7 +1672,7 @@ participating in BGP by running the `net show bgp` command:
     *>                  swp49s0
                                                                         0 65100 65004 i
     Displayed  6 out of 9 total prefixes
-     
+     
     show bgp ipv6 unicast
     =====================
     No BGP prefixes displayed, 0 exist
@@ -1705,7 +1705,7 @@ You can display the configured VNIs on a network device participating in
 BGP EVPN by running the `show bgp evpn vni` command. This command works
 only when run on a VTEP.
 
-The following example examines leaf01, where 2 VNIs are configured —
+The following example examines leaf01, where 2 VNIs are configured -
 10100 and 10200. It identifies the VTEPs that are part of each VNI,
 their IP addresses and the number of MAC addresses and neighbors
 associated with them:
@@ -1734,9 +1734,9 @@ The corresponding BGP configuration for VNI 10200 is as follows (only
 the EVPN section is shown):
 
     cumulus@switch:~$ net show configuration files 
-     
+     
     ...
-     
+     
      address-family ipv4 unicast
       network 110.0.0.1/32
      exit-address-family
@@ -1744,7 +1744,7 @@ the EVPN section is shown):
       neighbor SPINE activate
       advertise-all-vni
      exit-address-family
-     
+     
     ...
 
 ### Examining Local and Remote MAC Addresses for a VNI in Quagga
@@ -1769,10 +1769,10 @@ all`:
 
 ``` 
 cumulus@leaf01:~$ net show evpn mac vni all
- 
+ 
 VNI 10200 #MACs (local and remote) 8
- 
- 
+ 
+ 
 MAC               Type   Intf/Remote VTEP      VLAN 
 00:02:00:00:00:01 local  swp49s2               200  
 00:02:00:00:00:02 local  swp49s3               200  
@@ -1782,11 +1782,11 @@ MAC               Type   Intf/Remote VTEP      VLAN
 00:02:00:00:00:06 remote 110.0.0.3            
 00:02:00:00:00:07 remote 110.0.0.4            
 00:02:00:00:00:08 remote 110.0.0.4            
- 
- 
+ 
+ 
 VNI 10100 #MACs (local and remote) 8
- 
- 
+ 
+ 
 MAC               Type   Intf/Remote VTEP      VLAN 
 00:02:00:00:00:01 local  swp49s2               100  
 00:02:00:00:00:02 local  swp49s3               100  
@@ -1859,9 +1859,9 @@ the same time:
                         110.0.0.2                              0 65100 65002 i
     *> [3]:[0]:[32]:[110.0.0.2]
                         110.0.0.2                              0 65100 65002 i
-     
+     
     ... ## output truncated
-     
+     
     Displayed 29 prefixes (47 paths)
 
 The output ` *> [3]:[0]:[32]:[110.0.0.2]  `(the last line above) is
@@ -1931,9 +1931,9 @@ type-specific fields:
                         110.0.0.2                              0 65100 65002 i
     *> [2]:[0]:[0]:[48]:[00:02:00:00:00:04]:[32]:[50.1.1.22]
                         110.0.0.2                              0 65100 65002 i
-     
+     
     ... ## output truncated
-     
+     
     Displayed 21 prefixes (33 paths) (of requested type)
 
 ### Displaying a Specific EVPN Route
@@ -1949,8 +1949,8 @@ VNI (10100).
     cumulus@leaf01:~$ net show bgp evpn route rd 110.0.0.2:1
     EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]
     EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
-     
-     
+     
+     
     BGP routing table entry for 110.0.0.2:1:[2]:[0]:[0]:[48]:[00:02:00:00:00:03]
     Paths: (2 available, best #2)
       Advertised to non peer-group peers:
@@ -1962,8 +1962,8 @@ VNI (10100).
           Extended Community: RT:65002:10100 ET:8
           AddPath ID: RX 0, TX 179
           Last update: Wed Apr 26 20:03:55 2017
-     
-     
+     
+     
       Route [2]:[0]:[0]:[48]:[00:02:00:00:00:03] VNI 10100
       65100 65002
         110.0.0.2 from s1(swp49s0) (20.0.0.1)
@@ -1971,8 +1971,8 @@ VNI (10100).
           Extended Community: RT:65002:10100 ET:8
           AddPath ID: RX 0, TX 177
           Last update: Wed Apr 26 20:03:55 2017
-     
-     
+     
+     
     BGP routing table entry for 110.0.0.2:1:[2]:[0]:[0]:[48]:[00:02:00:00:00:03]:[32]:[50.1.1.21]
     Paths: (2 available, best #2)
       Advertised to non peer-group peers:
@@ -1984,8 +1984,8 @@ VNI (10100).
           Extended Community: RT:65002:10100 ET:8
           AddPath ID: RX 0, TX 112
           Last update: Wed Apr 26 19:04:20 2017
-     
-     
+     
+     
       Route [2]:[0]:[0]:[48]:[00:02:00:00:00:03]:[32]:[50.1.1.21] VNI 10100
       65100 65002
         110.0.0.2 from s1(swp49s0) (20.0.0.1)
@@ -1993,9 +1993,9 @@ VNI (10100).
           Extended Community: RT:65002:10100 ET:8
           AddPath ID: RX 0, TX 91
           Last update: Wed Apr 26 19:04:19 2017
-     
+     
     ...
-     
+     
     BGP routing table entry for 110.0.0.2:1:[3]:[0]:[32]:[110.0.0.2]
     Paths: (2 available, best #2)
       Advertised to non peer-group peers:
@@ -2007,8 +2007,8 @@ VNI (10100).
           Extended Community: RT:65002:10100 ET:8
           AddPath ID: RX 0, TX 118
           Last update: Wed Apr 26 19:04:20 2017
-     
-     
+     
+     
       Route [3]:[0]:[32]:[110.0.0.2]
       65100 65002
         110.0.0.2 from s1(swp49s0) (20.0.0.1)
@@ -2016,7 +2016,7 @@ VNI (10100).
           Extended Community: RT:65002:10100 ET:8
           AddPath ID: RX 0, TX 97
           Last update: Wed Apr 26 19:04:19 2017
-     
+     
     Displayed 5 prefixes (10 paths) with this RD
 
 {{%notice note%}}
@@ -2024,7 +2024,7 @@ VNI (10100).
   - Though the local VNI is included in the type-2 route, the receiver
     does not use it. It uses the received RT to match the route to an
     appropriate local VNI and then assumes the remote VTEP uses the same
-    VNI value — that is, global VNIs are in use.
+    VNI value - that is, global VNIs are in use.
   - If MAC mobility extended community is exchanged, it gets shown in
     the above output.
   - If the remote MAC is dual attached, the next hop for the EVPN route
@@ -2068,10 +2068,10 @@ routing table can be examined using `net show bgp evpn route vni <vni>`:
                         110.0.0.2                              0 65100 65002 i
     *> [2]:[0]:[0]:[48]:[00:02:00:00:00:03]:[128]:[fe80::202:ff:fe00:3]
                         110.0.0.2                              0 65100 65002 i
-     
-     
+     
+     
     ... ## output truncated
-     
+     
     Displayed 24 prefixes (45 paths)
 
 ### Displaying a Specific MAC or Remote VTEP
@@ -2090,8 +2090,8 @@ You can examine a specific MAC or IP (remote VTEP):
           Extended Community: RT:65002:10100 ET:8
           AddPath ID: RX 0, TX 180
           Last update: Wed Apr 26 20:03:55 2017
-     
-     
+     
+     
       Route [2]:[0]:[0]:[48]:[00:02:00:00:00:03] VNI 10100
       Imported from 110.0.0.2:1:[2]:[0]:[0]:[48]:[00:02:00:00:00:03]
       65100 65002
@@ -2100,16 +2100,16 @@ You can examine a specific MAC or IP (remote VTEP):
           Extended Community: RT:65002:10100 ET:8
           AddPath ID: RX 0, TX 178
           Last update: Wed Apr 26 20:03:55 2017
-     
+     
     Displayed 2 paths for requested prefix
 
 To display the VNI routing table for all VNIs, run `net show bgp evpn
 route vni all`:
 
     cumulus@leaf01:~$ net show bgp evpn route vni all
-     
+     
     VNI: 10200
-     
+     
     BGP table version is 0, local router ID is 110.0.0.1
     Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
     Origin codes: i - IGP, e - EGP, ? - incomplete
@@ -2133,7 +2133,7 @@ route vni all`:
     *> [2]:[0]:[0]:[48]:[00:02:00:00:00:03]:[32]:[60.1.1.21]
                         110.0.0.2                              0 65100 65002 i
     ...
-     
+     
     *> [3]:[0]:[32]:[110.0.0.1]
                         110.0.0.1                          32768 i
     *  [3]:[0]:[32]:[110.0.0.2]
@@ -2148,14 +2148,14 @@ route vni all`:
                         110.0.0.4                              0 65100 65004 i
     *> [3]:[0]:[32]:[110.0.0.4]
                         110.0.0.4                              0 65100 65004 i
-     
-     
+     
+     
     Displayed 20 prefixes (35 paths)
-     
-     
-     
+     
+     
+     
     VNI: 10100
-     
+     
     BGP table version is 0, local router ID is 110.0.0.1
     Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
     Origin codes: i - IGP, e - EGP, ? - incomplete
@@ -2180,9 +2180,9 @@ route vni all`:
                         110.0.0.2                              0 65100 65002 i
     *> [2]:[0]:[0]:[48]:[00:02:00:00:00:03]:[32]:[50.1.1.21]
                         110.0.0.2                              0 65100 65002 i
-     
+     
     ...
-     
+     
     *> [3]:[0]:[32]:[110.0.0.1]
                         110.0.0.1                          32768 i
     *  [3]:[0]:[32]:[110.0.0.2]
@@ -2197,8 +2197,8 @@ route vni all`:
                         110.0.0.4                              0 65100 65004 i
     *> [3]:[0]:[32]:[110.0.0.4]
                         110.0.0.4                              0 65100 65004 i
-     
-     
+     
+     
     Displayed 21 prefixes (36 paths)
 
 ### Examining MAC Moves
@@ -2222,8 +2222,8 @@ below shows the type-2 route for a MAC that has moved three times:
     Extended Community: RT:650184:10109 ET:8 MM:3
     AddPath ID: RX 0, TX 10350121
     Last update: Tue Feb 14 18:40:37 2017
-     
-     
+     
+     
     Displayed 1 paths for requested prefix
 
 ### Examining Sticky MAC Addresses
@@ -2243,7 +2243,7 @@ You can identify static or "sticky" MACs in Quagga by the presence of
           Extended Community: ET:8 RT:60176:10101 MM:0, sticky MAC
           AddPath ID: RX 0, TX 46
           Last update: Tue Apr 11 21:44:02 2017
-     
+     
     Displayed 1 paths for requested prefix
 
 ## Troubleshooting EVPN
@@ -2251,14 +2251,14 @@ You can identify static or "sticky" MACs in Quagga by the presence of
 The primary way to troubleshoot EVPN is by enabling Quagga debug logs.
 The relevant debug options are:
 
-  - `debug zebra vxlan` — which traces VNI addition and deletion (local
+  - `debug zebra vxlan` - which traces VNI addition and deletion (local
     and remote) as well as MAC and neighbor addition and deletion (local
     and remote).
-  - `debug zebra kernel` — which traces actual netlink messages
+  - `debug zebra kernel` - which traces actual netlink messages
     exchanged with the kernel, which includes everything, not just EVPN.
-  - `debug bgp updates` — which traces BGP update exchanges, including
+  - `debug bgp updates` - which traces BGP update exchanges, including
     all updates. Output is extended to show EVPN specific information.
-  - `debug bgp zebra` — which traces interactions between BGP and zebra
+  - `debug bgp zebra` - which traces interactions between BGP and zebra
     for EVPN (and other) routes.
 
 ## Caveats

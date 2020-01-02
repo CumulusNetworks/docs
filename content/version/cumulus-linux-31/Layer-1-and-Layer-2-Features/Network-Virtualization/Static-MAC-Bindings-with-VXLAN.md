@@ -69,7 +69,7 @@ switch1:
     iface vtep1000
         vxlan-id 1000
         vxlan-local-tunnelip 172.10.1.1
-     
+     
     auto br-100
     iface br-100
         bridge-ports swp1.100 swp2.100 vtep1000
@@ -82,7 +82,7 @@ switch2:
     iface vtep1000
         vxlan-id 1000
         vxlan-local-tunnelip 172.20.1.1
-     
+     
     auto br-100
     iface br-100
         bridge-ports swp1.100 swp2.100 vtep1000
@@ -122,7 +122,7 @@ run the following commands in a terminal connected to the switch:
 
 4.  Show VXLAN link and FDB:
     
-        cumulus@switch1:~$ ip –d link show
+        cumulus@switch1:~$ ip -d link show
         cumulus@switch1:~$ bridge fdb show
 
 To create a runtime configuration that matches the image above, do the
@@ -178,24 +178,24 @@ following:
 
 7.  Verify the configuration on switch1, then on switch2:
     
-        cumulus@switch1:~$ ip –d link show
+        cumulus@switch1:~$ ip -d link show
         cumulus@switch1:~$ bridge fdb show
          
-        cumulus@switch2:~$ ip –d link show
+        cumulus@switch2:~$ ip -d link show
         cumulus@switch2:~$ bridge fdb show
 
 8.  Set the static `arp` for hosts B and C on host A:
     
-        root@hostA:~# sudo arp –s 10.1.1.3 00:00:10:00:00:0C
+        root@hostA:~# sudo arp -s 10.1.1.3 00:00:10:00:00:0C
 
 9.  Set the static `arp` for hosts A and C on host B:
     
-        root@hostB:~# sudo arp –s 10.1.1.3 00:00:10:00:00:0C
+        root@hostB:~# sudo arp -s 10.1.1.3 00:00:10:00:00:0C
 
 10. Set the static `arp` for hosts A and B on host C:
     
-        root@hostC:~# arp –s 10.1.1.1 00:00:10:00:00:0A
-        root@hostC:~# arp –s 10.1.1.2 00:00:10:00:00:0B
+        root@hostC:~# arp -s 10.1.1.1 00:00:10:00:00:0A
+        root@hostC:~# arp -s 10.1.1.2 00:00:10:00:00:0B
 
 ## Troubleshooting VXLANs in Cumulus Linux</span>
 
@@ -221,17 +221,17 @@ Use the following commands to troubleshoot issues on the switch:
 
   - `ip -d link show`: Displays information about the VXLAN link:
     
-        cumulus@switch1:~$ ip –d link show vxln100
-        71: vxln100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln100 state UP 
+        cumulus@switch1:~$ ip -d link show vxln100
+        71: vxln100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln100 state UP 
             mode DEFAULT group default 
-            link/ether d2:ca:78:bb:7c:9b brd ff:ff:ff:ff:ff:ff promiscuity 1 
+            link/ether d2:ca:78:bb:7c:9b brd ff:ff:ff:ff:ff:ff promiscuity 1 
             vxlan id 100 local 36.0.0.11 srcport 0 0 dstport 4789 ageing 300 
-            bridge_slave state forwarding priority 32 cost 100 hairpin off guard off root_block off 
-            fastleave off learning on flood on port_id 0x8001 port_no 0x1 designated_port 32769 
-            designated_cost 0 designated_bridge 8000.c4:54:44:bd:1:71 designated_root 8000.c4:54:44:bd:1:71 
-            hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 
-            topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 
-            mcast_fast_leave off addrgenmode eui64 
+            bridge_slave state forwarding priority 32 cost 100 hairpin off guard off root_block off 
+            fastleave off learning on flood on port_id 0x8001 port_no 0x1 designated_port 32769 
+            designated_cost 0 designated_bridge 8000.c4:54:44:bd:1:71 designated_root 8000.c4:54:44:bd:1:71 
+            hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 
+            topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 
+            mcast_fast_leave off addrgenmode eui64 
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

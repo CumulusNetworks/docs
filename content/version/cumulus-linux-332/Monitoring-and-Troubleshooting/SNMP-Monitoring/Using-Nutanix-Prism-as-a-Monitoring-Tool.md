@@ -25,17 +25,17 @@ take special steps within Cumulus Linux before you can configure Prism.
 2.  Confirm the switch is running Cumulus Linux 2.5.5 or newer:
     
         cumulus@switch:~$ net show system
-         
+         
         Penguin Arctica 4806XP
         Cumulus Version 3.3.2
         Build: Cumulus Linux 3.3.2
-         
+         
         Chipset: Broadcom Trident2 BCM56854
-         
+         
         Port Config: 48 x 10G-SFP+ & 6 x 40G-QSFP+
-         
+         
         CPU: (x86_64) Intel Atom C2558 2.40GHz
-         
+         
         Uptime: 4 days, 20:53:49
 
 3.  Open the `/etc/snmp/snmpd.conf` file in an editor.
@@ -226,7 +226,7 @@ To help visualize the following diagram is provided:
 3.  Use `net show` to look at `lldp` information:
     
         cumulus@switch:~$ net show lldp
-         
+         
         Local Port    Speed    Mode                 Remote Port        Remote  Host     Summary
         ------------  -------  -------------  ----  -----------------  ---------------  -------------------------
         eth0          1G       Mgmt           ====  swp6               oob-mgmt-switch  IP: 192.168.0.11/24(DHCP)

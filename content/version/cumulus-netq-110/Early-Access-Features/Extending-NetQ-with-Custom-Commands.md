@@ -217,14 +217,14 @@ via `show ip routes`. The code to do so is shown below.
     """
     from __future__ import absolute_import
     from collections import OrderedDict
-     
+     
     from netq_apps.modules import NetqModule, RC_SUCCESS
     from netq_apps.cmd.netq import netq_show
-     
+     
     from netq_lib.orm.redisdb.models import Route
-     
+     
     app = NetqModule()
-     
+     
     @app.route('show myroutes')
     @netq_show
     def cli_show_myroutes(cli, netq, context):
@@ -247,7 +247,7 @@ via `show ip routes`. The code to do so is shown below.
                 '%s: %s' % (nh[0], nh[1]) if nh[0] != 'None' else '%s' % nh[1]
                 for nh in sorted(route.nexthops)
             )
-     
+     
             out['Hostname'] = route.hostname
             out['Protocol'] = route.protocol
             out['Prefix'] = route.prefix

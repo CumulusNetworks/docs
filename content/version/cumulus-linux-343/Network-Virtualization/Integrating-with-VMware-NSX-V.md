@@ -84,16 +84,16 @@ information, read `man vtep-bootstrap`.
                           [--credentials-path CREDENTIALS_PATH]
                           [--pki-path PKI_PATH]
                           switch_name tunnel_ip management_ip
-     
-     
+     
+     
     positional arguments:
       switch_name         Switch name
       tunnel_ip           local VTEP IP address for tunnel termination (data
                           plane)
       management_ip       local management interface IP address for OVSDB
                           conection (control plane)
-     
-     
+     
+     
     optional arguments:
       -h, --help            show this help message and exit
       --controller_ip CONTROLLER_IP
@@ -145,7 +145,7 @@ below.
 
 ### Manually Bootstrapping the NSX-V Integration
 
-If you don’t use the script, then you must:
+If you don't use the script, then you must:
 
 - Initialize the OVS database instance
 - Generate a certificate and key pair for authentication by NSX-V
@@ -165,10 +165,10 @@ controller uses for authentication.
         Creating controllerca...
         Creating switchca...
         cumulus@switch:~$ sudo ovs-pki req+sign cumulus
-         
+         
         cumulus-req.pem Wed Oct 23 05:32:49 UTC 2013
                 fingerprint b587c9fe36f09fb371750ab50c430485d33a174a
-         
+         
         cumulus@switch:~$ ls -l
         total 12
         -rw-r--r-- 1 root root 4028 Oct 23 05:32 cumulus-cert.pem

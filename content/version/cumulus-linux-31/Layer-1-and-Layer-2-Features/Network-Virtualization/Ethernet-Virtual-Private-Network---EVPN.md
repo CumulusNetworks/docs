@@ -534,11 +534,11 @@ for these two provisioning options:
 
     router bgp 65011
      bgp router-id 10.0.0.11
-     
-     
+     
+     
     ... #code removed for brevity
-     
-     
+     
+     
      !
      address-family evpn
       neighbor fabric activate
@@ -716,7 +716,7 @@ same time:
     BGP table version is 0, local router ID is 10.0.0.11
     Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
     Origin codes: i - IGP, e - EGP, ? - incomplete
-     
+     
        Network          Next Hop            Metric LocPrf Weight Path
     Route Distinguisher: 10.0.0.11:10001
     *> [3]:[0]:[4]:[10.0.0.11]
@@ -772,7 +772,7 @@ same time:
                                                0 65020 65014 i
     *> [3]:[0]:[4]:[10.0.0.14]
                                                0 65020 65014 i
-     
+     
     Displayed 21 out of 21 total prefixes
 
 #### Output Explained</span>
@@ -826,7 +826,7 @@ bgp evpn route rd <VTEP:VXLAN>` command:
 
 The following caveats are in place for the early access release:
 
-  - EVPN is only supported on platforms with Broadcom chipsets — same as
+  - EVPN is only supported on platforms with Broadcom chipsets - same as
     for VXLAN itself.
 
   - [VXLAN active-active

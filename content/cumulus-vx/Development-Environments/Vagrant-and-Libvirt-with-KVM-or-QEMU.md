@@ -139,9 +139,9 @@ later is recommended.
         Connecting to releases.hashicorp.com (releases.hashicorp.com)|151.101.57.183|:443... connected.
         HTTP request sent, awaiting response... 200 OK
         Length: 43678320 (42M) [application/x-debian-package]
-        Saving to: ‘vagrant_2.0.2_x86_64.deb’
+        Saving to: 'vagrant_2.0.2_x86_64.deb'
         vagrant_2.0.2_x86_6 100%[===================>]  41.65M  33.1MB/s    in 1.3s    
-        2018-05-04 09:36:23 (33.1 MB/s) - ‘vagrant_2.0.2_x86_64.deb’ saved [43678320/43678320]
+        2018-05-04 09:36:23 (33.1 MB/s) - 'vagrant_2.0.2_x86_64.deb' saved [43678320/43678320]
 
 2.  Install Vagrant using `dpkg`:
     
@@ -162,7 +162,7 @@ later is recommended.
         user@ubuntubox# vagrant plugin install vagrant-libvirt
         Installing the 'vagrant-libvirt' plugin. This can take a few minutes...
         Installed the plugin 'vagrant-libvirt (0.0.43)'!
-         
+         
         user@ubuntubox# vagrant plugin install vagrant-mutate
         Installing the 'vagrant-mutate' plugin. This can take a few minutes...
         Installed the plugin 'vagrant-mutate (1.2.0)'!
@@ -189,9 +189,9 @@ Vagrant box image installation is unique to each user; make sure to
     
         user@ubuntubox:~$ mkdir ./testdir ; cd ./testdir
         user@ubuntubox:~/testdir$ vagrant init CumulusCommunity/cumulus-vx
-         
+         
         A `Vagrantfile` has been placed in this directory. You are now ready to `vagrant up` your first virtual environment! Please readthe comments in the Vagrantfile as well as documentation on`vagrantup.com` for more information on using Vagrant.
-         
+         
         user@ubuntubox:~/testdir$ vagrant up --provider=libvirt
         <...snip...>
         user@ubuntubox:~/testdir$ vagrant status
@@ -201,11 +201,11 @@ Vagrant box image installation is unique to each user; make sure to
 7.  To show all running KVM/`libvirt` VMs:  
     
         user@ubuntubox:~/testdir$ virsh list --all 
-         
+         
         Id    Name                           State 
         ---------------------------------------------------- 
         2     test_default                   running 
-         
+         
         #Look at libvirt's XML definition of the VM used to create the VM:
         user@ubuntubox:~/testdir$ virsh dumpxml [name of domain]
 
@@ -327,7 +327,7 @@ All Vagrant commands performed against a simulation such as `vagrant up` or
          `._:^   ||   :>     | (__| |_| | | | | | | |_| | | |_| \__ \
              ^T~~~~~~T'       \___|\__,_|_| |_| |_|\__,_|_|\__,_|___/
              ~"     ~"
-         
+         
         ############################################################################
         #
         #                     Out Of Band Management Station

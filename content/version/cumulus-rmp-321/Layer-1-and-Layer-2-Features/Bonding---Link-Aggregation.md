@@ -206,7 +206,7 @@ show` command:
 
     cumulus@switch:~$ ip link show
     ...
-     
+     
     3: swp1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
     4: swp2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
@@ -215,9 +215,9 @@ show` command:
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
     6: swp4: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
-     
+     
     ...
-     
+     
     55: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 
@@ -225,7 +225,7 @@ show` command:
 
 All slave interfaces within a bond have the same MAC address as the
 bond. Typically, the first slave added to the bond donates its MAC
-address as the bond MAC address, while the other slaves’ MAC addresses
+address as the bond MAC address, while the other slaves' MAC addresses
 are set to the bond MAC address.
 
 The bond MAC address is used as source MAC address for all traffic
@@ -243,7 +243,7 @@ address traffic to the bond.
   - A bond cannot enslave VLAN subinterfaces.
 
   - Slave ports within a bond should all be set to the same
-    speed/duplex, and should match the link partner’s slave ports.
+    speed/duplex, and should match the link partner's slave ports.
 
 ## Related Information</span>
 

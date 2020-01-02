@@ -118,7 +118,7 @@ below.
 
 ### Manually Bootstrapping the NSX Integration</span>
 
-If you don’t use the script, then you must:
+If you don't use the script, then you must:
 
   - Initialize the OVS database instance
 
@@ -237,7 +237,7 @@ IP address of the NSX manager is 192.168.100.12.
     transport zone for the connector, or click **Create** to create a
     new transport zone.
 
-7.  Define the connector’s IP address (that is, the underlay IP address
+7.  Define the connector's IP address (that is, the underlay IP address
     on the switch for tunnel termination).
 
 8.  Click **OK** to save the connector, then click **Save** to save the
@@ -387,7 +387,7 @@ To define the logical switch ports, do the following:
 Once configured, you can verify the VXLAN configuration using these
 Cumulus Linux commands in a terminal connected to the switch:
 
-    cumulus@switch1:~$ sudo ip –d link show vxln100
+    cumulus@switch1:~$ sudo ip -d link show vxln100
     71: vxln100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln100 state UNKNOWN mode DEFAULT
         link/ether d2:ca:78:bb:7c:9b brd ff:ff:ff:ff:ff:ff
         vxlan id 100 local 172.16.20.157 port 32768 61000 nolearning ageing 300 svcnode 172.16.21.125

@@ -61,7 +61,7 @@ example selects the US/Pacific time zone:
     Universal Time is now:  Mon Jun 17 16:27:45 UTC 2013.
 
 For more info see the Debian 
-[System Administrator’s Manual – Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
+[System Administrator's Manual - Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
 ## Setting the Date and Time
 
@@ -71,7 +71,7 @@ switch is running, the Cumulus Linux operating system maintains its own
 software clock.
 
 During boot up, the time from the hardware clock is copied into the
-operating system’s software clock. The software clock is then used for
+operating system's software clock. The software clock is then used for
 all timekeeping responsibilities. During system shutdown the software
 clock is copied back to the battery backed hardware clock.
 
@@ -101,7 +101,7 @@ hardware clock using the `hwclock` command:
 See `man hwclock(8)` if you need more information.
 
 You can find a good overview of the software and hardware clocks in the Debian 
-[System Administrator's Manual – Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html),
+[System Administrator's Manual - Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html),
 specifically the section 
 [Setting and showing hardware clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
 
@@ -151,13 +151,13 @@ entry under the **\# Specify interfaces** comment:
 
 ## Configuration Files
 
-  - /etc/default/ntp — `ntpd init.d` configuration variables
-  - /etc/ntp.conf — default NTP configuration file
-  - /etc/init.d/ntp — `ntpd init` script
+  - /etc/default/ntp - `ntpd init.d` configuration variables
+  - /etc/ntp.conf - default NTP configuration file
+  - /etc/init.d/ntp - `ntpd init` script
 
 ## Useful Links
 
-  - [Debian System Administrator’s Manual –
+  - [Debian System Administrator's Manual -
     Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
   - <http://www.ntp.org>
   - <http://en.wikipedia.org/wiki/Network_Time_Protocol>

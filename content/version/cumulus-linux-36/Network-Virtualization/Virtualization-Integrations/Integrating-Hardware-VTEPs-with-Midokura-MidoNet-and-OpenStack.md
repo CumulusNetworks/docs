@@ -422,7 +422,7 @@ as well as the OVSDB.
     swp11s0     00:e0:ec:27:49:a2   0       yes         0.00
     swp11s0     64:ae:0c:32:f1:41   0       no          0.01
     vxln10006   72:94:eb:b6:6c:c3   0       yes         0.00
-     
+     
     cumulus@switch12:~$ sudo bridge fdb show br-vxln10006
     fa:16:3e:14:04:2e dev vxln10004 dst 10.111.0.182 vlan 65535 self permanent
     00:e0:ec:27:49:a2 dev swp11s0 vlan 0 master br-vxln10004 permanent
@@ -522,7 +522,7 @@ flooding of unknown unicast and are important for learning.
       64:ae:0c:32:f1:41 -> vxlan_over_ipv4/10.111.1.2
     mcast-mac-local
       unknown-dst -> vxlan_over_ipv4/10.111.1.2
-     
+     
     cumulus@switch12:~$ vtep-ctl list-remote-macs mn-6c9826da-6655-4fe3-a826-4dcba6477d2d
     ucast-mac-remote
       fa:16:3e:14:04:2e -> vxlan_over_ipv4/10.111.0.182

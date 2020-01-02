@@ -411,7 +411,7 @@ passwd:       ldap compat
 Linux uses the *sudo* command to allow non-administrator users (such as the default *cumulus* user account) to perform privileged operations. To control the users authorized to use sudo, the `/etc/sudoers` file and files located in the `/etc/sudoers.d/` directory define a series of rules. Typically, the rules are based on groups, but can also be defined for specific users. You can add sudo rules using the group names from LDAP. For example, if a group of users are associated with the group *netadmin*, you can add a rule to give those users sudo privileges. Refer to the sudoers manual (`man sudoers`) for a complete usage description. The following shows an example in the `/etc/sudoers` file:
 
 ```
-# The basic structure of a user specification is “who where = (as_whom) what”.
+# The basic structure of a user specification is "who where = (as_whom) what ".
 %sudo ALL=(ALL:ALL) ALL
 %netadmin ALL=(ALL:ALL) ALL
 ```

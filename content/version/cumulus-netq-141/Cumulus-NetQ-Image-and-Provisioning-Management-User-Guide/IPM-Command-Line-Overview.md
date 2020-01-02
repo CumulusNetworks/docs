@@ -14,7 +14,7 @@ siteSlug: cumulus-netq-141
 The IPM CLI (TIPCTL) behaves in a similar manner to the other
 Cumulus CLIs. It provides help for
 commands and options, but it does not support TAB completion of commands. The commands support four
-functional categories–configuration, DHCP (dynamic host control
+functional categories-configuration, DHCP (dynamic host control
 protocol), network OS (operating system), and ZTP (zero-touch
 provisioning):
 
@@ -29,8 +29,8 @@ provisioning):
     meta-information the
     [ZTP](/display/NETQ141/Zero+Touch+Provisioning+-+ZTP) tool sends.
 
-The TIPCTL syntax is organized around the command actions–add, delete,
-show, configure, import, sync, and reset–for each of the functions, as
+The TIPCTL syntax is organized around the command actions-add, delete,
+show, configure, import, sync, and reset-for each of the functions, as
 appropriate.
 
 {{%notice note%}}
@@ -60,18 +60,18 @@ To access the CLI from TS:
 2.  Enter your password, if required, to
     reach the command prompt. For example:
 
-        Enter passphrase for key '/Users/<username>/.ssh/id_rsa': 
+        Enter passphrase for key '/Users/<username>/.ssh/id_rsa': 
         Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
-         * Documentation:  https://help.ubuntu.com
-         * Management:     https://landscape.canonical.com
-         * Support:        https://ubuntu.com/advantage
+         * Documentation:  https://help.ubuntu.com
+         * Management:     https://landscape.canonical.com
+         * Support:        https://ubuntu.com/advantage
         Last login: Thu Aug 16 06:28:12 2018 from 10.50.11.103
-        Cumulus@ts:~$ 
+        Cumulus@ts:~$ 
 
 3.  Run commands. For example:  
 
         Cumulus@ts:~$ tipctl config setup
-        Cumulus@ts:~$ tipctl add ztp 
+        Cumulus@ts:~$ tipctl add ztp 
 
 ## Command Line Structure
 
@@ -90,7 +90,7 @@ run all of its commands at the same level.
 ## Command Syntax
 
 IPM CLI commands all begin with `tipctl`.
-The TIPCTL syntax is organized around the command actions–add,
+The TIPCTL syntax is organized around the command actions-add,
 delete, show, configure, import, sync, and reset. The syntax is as
 follows:
 
@@ -128,18 +128,18 @@ add dhcp` command. In this example, you can see that there are three
 possible commands related to DHCP configuration.
 
     cumulus@ts:~$ tipctl add dhcp -h
-     
+     
     Usage: tipctl add dhcp [OPTIONS] COMMAND [ARGS]...
       Add reservations and subnet pools
-     
+     
     Options:
       -h, --help  Show this message and exit.
-     
+     
     Commands:
       load         Load reservations from a CSV file via stdin
       pool         Add DHCP subnet pool
       reservation  Add DHCP reservation
-     
+     
     cumulus@ts:~$
 
 ## Command History

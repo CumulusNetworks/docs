@@ -146,7 +146,7 @@ snippet:
     iface bridge
         bridge-vids 500
         bridge-vlan-aware yes
-     
+     
     auto vlan500
     iface vlan500
         address 192.168.0.252/24

@@ -70,7 +70,7 @@ By default in Cumulus Linux, FRRouting saves all daemon configurations in a sing
 You can disable this mode by running the following command in the [`vtysh` FRRouting CLI](#frrouting-vtysh-modal-cli):
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# no service integrated-vtysh-config
 ```

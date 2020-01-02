@@ -26,7 +26,7 @@ QinQ is available on switches with the following ASCIs:
 
 Single tag translation adheres to the traditional QinQ service model. The customer-facing interface is a QinQ access port with the outer S-tag being the PVID, representing the customer. The S-tag is translated to a VXLAN VNI. The inner C-tag, which represents the service, is transparent to the provider. The public cloud handoff interface is a QinQ trunk where packets on the wire carry both the S-tag and the C-tag.
 
-Single tag translation works with both [VLAN-aware bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) and [traditional bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/). However, single tag translation with *VLAN-aware bridge mode* is more scalable.
+Single tag translation works with both [VLAN-aware bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) and [traditional bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/). However, single tag translation with *VLAN-aware bridge mode* is more scalable.
 
 An example configuration in VLAN-aware bridge mode looks like this:
 

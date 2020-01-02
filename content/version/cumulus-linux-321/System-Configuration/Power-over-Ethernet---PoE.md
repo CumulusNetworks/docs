@@ -208,7 +208,7 @@ To display PoE information for a set of switch ports, run `poectl -i
     swp11   searching              n/a           low      IEEE802.3at   none        0.0 V      0 mA    0.0 W 
     swp12   connected              n/a           low      IEEE802.3at   2          53.5 V     25 mA    1.4 W 
     swp13   connected              51.0 W        low      IEEE802.3at   4          53.6 V     72 mA    3.8 W 
-     
+     
 
 The **Status** can be one of the following:
 

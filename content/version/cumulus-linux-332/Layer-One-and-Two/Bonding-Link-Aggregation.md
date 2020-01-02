@@ -221,22 +221,22 @@ To view the bond, use
         Name    MAC                Speed    MTU    Mode
     --  ------  -----------------  -------  -----  ------
     UP  bond1   00:02:00:00:00:12  20G      1500   Bond
-     
-     
+     
+     
     Bond Details
     ---------------  -------------
     Bond Mode:       Balance-XOR
     Load Balancing:  Layer3+4
     Minimum Links:   1
     In CLAG:         CLAG Inactive
-     
-     
+     
+     
         Port     Speed      TX    RX    Err    Link Failures
     --  -------  -------  ----  ----  -----  ---------------
     UP  swp3(P)  10G         0     0      0                0
     UP  swp4(P)  10G         0     0      0                0
-     
-     
+     
+     
     LLDP
     -------  ----  ------------
     swp3(P)  ====  swp1(p1c1h1)
@@ -295,7 +295,7 @@ show` command:
 
     cumulus@switch:~$ ip link show
     ...
-     
+     
     3: swp1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
     4: swp2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
@@ -304,9 +304,9 @@ show` command:
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
     6: swp4: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
-     
+     
     ...
-     
+     
     55: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 
@@ -314,7 +314,7 @@ show` command:
 
 All slave interfaces within a bond have the same MAC address as the
 bond. Typically, the first slave added to the bond donates its MAC
-address as the bond MAC address, while the other slaves’ MAC addresses
+address as the bond MAC address, while the other slaves' MAC addresses
 are set to the bond MAC address.
 
 The bond MAC address is used as source MAC address for all traffic
@@ -329,7 +329,7 @@ address traffic to the bond.
   - A bond can have subinterfaces, but not the other way around.
   - A bond cannot enslave VLAN subinterfaces.
   - Slave ports within a bond should all be set to the same
-    speed/duplex, and should match the link partner’s slave ports.
+    speed/duplex, and should match the link partner's slave ports.
 
 ## Related Information
 

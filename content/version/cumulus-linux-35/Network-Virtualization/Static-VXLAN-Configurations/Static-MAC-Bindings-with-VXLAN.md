@@ -56,7 +56,7 @@ configuration on switch1:
     cumulus@switch1:~$ net add vxlan vtep1000 vxlan local-tunnelip 172.10.1.1
     cumulus@switch1:~$ net add vxlan vtep1000 bridge access 10
     cumulus@switch1:~$ net pending 
-    cumulus@switch1:~$ net commit 
+    cumulus@switch1:~$ net commit 
 
 These commands create the following configuration in the
 `/etc/network/interfaces` file:
@@ -65,7 +65,7 @@ These commands create the following configuration in the
     iface vtep1000
         vxlan-id 1000
         vxlan-local-tunnelip 172.10.1.1
-     
+     
     auto bridge
     iface bridge
         bridge-ports swp1 swp2 vtep1000
@@ -93,7 +93,7 @@ These commands create the following configuration in the
     iface vtep1000
         vxlan-id 1000
         vxlan-local-tunnelip 172.20.1.1
-     
+     
     auto bridge
     iface bridge
         bridge-ports swp1 swp2 vtep1000
@@ -125,7 +125,7 @@ Use the following commands to troubleshoot issues on the switch:
 
   - `ip -d link show`: Displays information about the VXLAN link:
     
-        cumulus@switch1:~$ ip –d link show vni-10
+        cumulus@switch1:~$ ip -d link show vni-10
         15: vni-10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default 
             link/ether 9a:e8:ef:a1:9d:6f brd ff:ff:ff:ff:ff:ff promiscuity 1 
             vxlan id 10 remote 10.2.1.3 local 10.2.1.1 srcport 0 0 dstport 4789 ageing 1800 

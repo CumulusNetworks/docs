@@ -228,7 +228,7 @@ cumulus@switch:~$ sudo ovsdb-client dump Manager
 Manager table
 _uuid                                inactivity_probe is_connected max_backoff other_config status                                 target
 ------------------------------------ ---------------- ------------ ----------- ------------ -------------------------------------- -------------------
-e700ad21-8fd8-4f09-96dc-fa7cc6e498d8 30000            true         []          {}           {sec_since_connect=“68”, state=ACTIVE} “ssl:54.0.0.2:6632"
+e700ad21-8fd8-4f09-96dc-fa7cc6e498d8 30000            true         []          {}           {sec_since_connect="68 ", state=ACTIVE} "ssl:54.0.0.2:6632"
 ```
 
 To make sure the MLAG configuration is correct, run the `clagctl` command:

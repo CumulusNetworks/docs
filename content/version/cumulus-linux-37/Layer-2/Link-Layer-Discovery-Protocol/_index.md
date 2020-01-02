@@ -260,7 +260,7 @@ To show the `lldpd` running configuration:
 
 {{%notice warning%}}
 
-A runtime configuration does not persist when you reboot the switch —
+A runtime configuration does not persist when you reboot the switch -
 all changes are lost.
 
 {{%/notice%}}

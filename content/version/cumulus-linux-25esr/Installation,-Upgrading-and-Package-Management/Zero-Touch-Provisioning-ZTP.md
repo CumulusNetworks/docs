@@ -106,7 +106,7 @@ For example, the `/etc/dhcp/dhcpd.conf` file for an ISC DHCP server
 would look like:
 
     option cumulus-provision-url code 239 = text;
-     
+     
     subnet 192.168.0.0 netmask 255.255.255.0 {
      range 192.168.0.100 192.168.0.200;
      option cumulus-provision-url "http://192.168.0.2/demo.sh";
@@ -159,7 +159,7 @@ Cumulus Linux supports the use of a FAT32, FAT16, or VFAT-formatted USB
 drive as an installation source for ZTP scripts. A daemon called
 `ztp-usb` runs by default in Cumulus Linux (you can disable it by
 specifying `START=no` in `/etc/default/ztp-usb`).You can plug in a USB
-stick at any time — when you power up a switch or even when the switch
+stick at any time - when you power up a switch or even when the switch
 has been running for some time. This is useful for performing a full
 installation of the operating system for cases like fresh installs or
 disaster recovery.
@@ -307,38 +307,38 @@ applies a configuration:
       echo -e "\e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m" >&2
       exit 1
     }
-     
+     
     # Log all output from this script
     exec >/var/log/autoprovision 2>&1
-     
+     
     trap error ERR
-     
+     
     #Add Debian Repositories
     echo "deb http://http.us.debian.org/debian wheezy main" >> /etc/apt/sources.list
     echo "deb http://security.debian.org/ wheezy/updates main" >> /etc/apt/sources.list
-     
+     
     #Update Package Cache
     apt-get update -y
-     
+     
     #Install netshow diagnostics commands
     apt-get install -y netshow htop nmap
-     
+     
     #Load interface config from usb
     cp /mnt/usb/interfaces /etc/network/interfaces
-     
+     
     #Load port config from usb
     #   (if breakout cables are used for certain interfaces)
     cp /mnt/usb/ports.conf /etc/cumulus/ports.conf
-     
+     
     #Install a License from usb and restart switchd
     cl-license -i /mnt/usb/license.txt && service switchd restart
-     
+     
     #Reload interfaces to apply loaded config
     ifreload -a
-     
+     
     #Output state of interfaces
     netshow interface
-     
+     
     # CUMULUS-AUTOPROVISIONING
     exit 0
 
@@ -397,8 +397,8 @@ Be sure to specify the full path to the `autoprovision` command.
 All forms of ZTP use the `autoprovision` command on the backend to
 execute a provided provisioning script, whether that script is sourced
 from a URL over the network or locally via a file from a USB drive. One
-of the benefits of using the `autoprovision` command — instead of simply
-scheduling a cronjob to run your script — is that `autoprovision` tracks
+of the benefits of using the `autoprovision` command - instead of simply
+scheduling a cronjob to run your script - is that `autoprovision` tracks
 whether or not a script has already been executed (and when) in its
 configuration file `/var/lib/cumulus/autoprovision.conf`, ensuring that
 a switch that has already been provisioned is not accidentally

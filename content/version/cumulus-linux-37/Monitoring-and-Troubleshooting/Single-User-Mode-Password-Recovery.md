@@ -28,7 +28,7 @@ A console connection is required to perform the following procedure.
 
     ```
                            GNU GRUB  version 2.02-cl3u3
-     
+     
      +----------------------------------------------------------------------------+
      |*Cumulus Linux GNU/Linux                                                    |
      | Advanced options for Cumulus Linux GNU/Linux                               |
@@ -42,7 +42,7 @@ A console connection is required to perform the following procedure.
 
     ```
                            GNU GRUB  version 2.02-cl3u3
-     
+     
      +----------------------------------------------------------------------------+
      | Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-7-amd64                       |
      |*Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-7-amd64 (recovery mode)       |

@@ -168,8 +168,8 @@ The *Sessions Summary* tab which displays:
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>SWITCHES WITH MOST SESSIONS</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
-<p>When the <strong>SWITCHES WITH MOST UNESTABLISHED SESSIONS</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of unestablished session count—devices with the largest number of unestablished sessions are listed first</p></td>
+<td><p>When the <strong>SWITCHES WITH MOST SESSIONS</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of session count-devices with the largest number of sessions are listed first</p>
+<p>When the <strong>SWITCHES WITH MOST UNESTABLISHED SESSIONS</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of unestablished session count-devices with the largest number of unestablished sessions are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
@@ -220,7 +220,7 @@ The *Alarms* tab which displays:
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>EVENTS BY MOST ACTIVE DEVICE</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of alarm count—devices with the largest number of sessions are listed first</p></td>
+<td><p>When the <strong>EVENTS BY MOST ACTIVE DEVICE</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of alarm count-devices with the largest number of sessions are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
@@ -666,7 +666,7 @@ The small LLDP Session card displays:
 <td><p>LLDP Session</p></td>
 </tr>
 <tr class="odd">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Host and peer devices in session. Arrow points from host to peer.</p></td>
 </tr>
 <tr class="even">
@@ -713,7 +713,7 @@ The medium LLDP Session card displays:
 <td><p>LLDP Session</p></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Host and peer devices in session. Arrow points from host to peer.</p></td>
 </tr>
 <tr class="odd">
@@ -767,7 +767,7 @@ The *Session Summary* tab displays:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p> </p></th>
+<th><p> </p></th>
 <th><p>Description</p></th>
 </tr>
 </thead>
@@ -785,7 +785,7 @@ The *Session Summary* tab displays:
 <td><p><strong>Summary Session</strong> (Network Services | LLDP Session)</p></td>
 </tr>
 <tr class="even">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Host and peer devices in session. Arrow points from host to peer.</p></td>
 </tr>
 <tr class="odd">

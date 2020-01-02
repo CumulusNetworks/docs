@@ -166,10 +166,10 @@ Because network devices are reachable via the IP addresses on the front
 panel ports, many network admins of small-to-medium sized networks use
 *in-band* networks to manage their switches. In this design, management
 traffic like SSH, SNMP, and console server connections use the same
-networks that regular network traffic traverses — there is no separation
+networks that regular network traffic traverses - there is no separation
 between the *management plane* and the *data plane*. Larger data centers
 create a separate *out-of-band* network with a completely separate
-subnet and reachability path to attach to the management ports — that is
+subnet and reachability path to attach to the management ports - that is
 accessible via eth0 and the serial console.
 
 This is a situation where smaller companies should learn from the big
@@ -390,9 +390,9 @@ To upgrade the switch by updating the packages:
 
         cumulus@switch$ sudo -E apt-get upgrade
               ... upgrade messages here ...
-         
+         
         *** System restart required ***
-         
+         
         cumulus@switch$ sudo reboot
 
 5. Verify correct operation with the old configurations on new version.
@@ -460,7 +460,7 @@ To upgrade the switch by running a binary install:
 2. Install the binary image, following the instructions at 
    [Installing a New Cumulus Linux Image](/version/cumulus-linux-343/Installation-Management/Installing-a-New-Cumulus-Linux-Image).
 
-3. Restore the configuration files to the new version — ideally via
+3. Restore the configuration files to the new version - ideally via
     automation.
 
 4. Verify correct operation with the old configurations on the new
@@ -515,8 +515,8 @@ The huge advantage of this approach is that all switch configuration
 files remain untouched, or in rare cases merged (using the Debian merge
 function) during the package upgrade.
 
-However, when upgrading a switch from a previous release train — for
-example, Cumulus Linux 2.5 — a mechanism is required to migrate the
+However, when upgrading a switch from a previous release train - for
+example, Cumulus Linux 2.5 - a mechanism is required to migrate the
 configuration files over to the new installation. This is the perfect
 opportunity to use automation and orchestration tools to backup the
 configuration files, examine them to verify correctness with the new
@@ -599,7 +599,7 @@ The following example excludes `/etc/apt`, `/etc/passwd` and
 3. Reinstall the files from the config file archive to the newly
     installed switch.
 
-        # On the switch, copy the config file archive back from the server:
+        # On the switch, copy the config file archive back from the server:
         scp user@my_external_server:PATH/SWITCHNAME-config-archive-DATE_TIME.tar.gz .
         # Untar the archive to the root of the box
         sudo tar -C / -xvf SWITCHNAME-config-archive-DATE_TIME.tar.gz
@@ -623,7 +623,7 @@ hardware. Included with the
 [Config Migration Script](https://github.com/CumulusNetworks/config-backup-upgrade-helper)
 is an Ansible playbook that can be used to create a backup archive of
 Cumulus Linux 2.5.z switch configuration files and to retrieve them to a
-central server — automating step 1 of the previous section for all
+central server - automating step 1 of the previous section for all
 deployed Cumulus Linux 2.5.z switches. This is a quick start on the road
 to setting up automated configuration and control for your deployment.
 For more details on integrating automation into your Cumulus Linux

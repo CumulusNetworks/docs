@@ -67,7 +67,7 @@ Vagrant downloads and installs the latest Cumulus VX VirtualBox
         2) virtualbox
         Enter your choice: 2
         ==> box: Adding box 'CumulusCommunity/cumulus-vx' (v3.3.0) for provider: virtual box
-         
+         
         ...
 
 {{%notice note%}}
@@ -96,7 +96,7 @@ and install [Ansible 1.7 or newer](https://pypi.python.org/pypi/ansible).
     created `Vagrantfile` to configure the VMs, then save the file:
     
         local@host:~/vagrant$ sudo vi Vagrantfile 
-         
+         
         Vagrant.configure(2) do |config|
           config.vm.box = "CumulusCommunity/cumulus-vx"
         end
@@ -179,7 +179,7 @@ network:
 
     Vagrant.configure(2) do |config|
       config.vm.box = "CumulusCommunity/cumulus-vx"
-     
+     
       config.vm.network "private_network", virtualbox__intnet: "swp1", auto_config: false
       config.vm.network "private_network", virtualbox__intnet: "swp2", auto_config: false
       config.vm.network "private_network", virtualbox__intnet: "swp3", auto_config: false
@@ -202,27 +202,27 @@ the interfaces swp1 through swp4 are connected together via separate
 private networks:
 
     Vagrant.configure(2) do |config|
-     
+     
       config.vm.define "leaf1" do |leaf1|
         leaf1.vm.box = "CumulusCommunity/cumulus-vx"
-     
+     
         # Internal network for swp* interfaces.
         leaf1.vm.network "private_network", virtualbox__intnet: "swp1", auto_config: false
         leaf1.vm.network "private_network", virtualbox__intnet: "swp2", auto_config: false
         leaf1.vm.network "private_network", virtualbox__intnet: "swp3", auto_config: false
         leaf1.vm.network "private_network", virtualbox__intnet: "swp4", auto_config: false
       end
-     
+     
       config.vm.define "leaf2" do |leaf2|
         leaf2.vm.box = "CumulusCommunity/cumulus-vx"
-     
+     
         # Internal network for swp* interfaces.
         leaf2.vm.network "private_network", virtualbox__intnet: "swp1", auto_config: false
         leaf2.vm.network "private_network", virtualbox__intnet: "swp2", auto_config: false
         leaf2.vm.network "private_network", virtualbox__intnet: "swp3", auto_config: false
         leaf2.vm.network "private_network", virtualbox__intnet: "swp4", auto_config: false
       end
-     
+     
     end
 
 When you run `vagrant up`, both VMs are created. You can log in to each

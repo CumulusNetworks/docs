@@ -428,7 +428,7 @@ with the group *netadmin*, you can add a rule to give those users sudo
 privileges. Refer to the sudoers manual (`man sudoers`) for a complete
 usage description. Here's an illustration of this in `/etc/sudoers`:
 
-    # The basic structure of a user specification is “who where = (as_whom) what”.
+    # The basic structure of a user specification is "who where = (as_whom) what ".
     %sudo ALL=(ALL:ALL) ALL
     %netadmin ALL=(ALL:ALL) ALL
 

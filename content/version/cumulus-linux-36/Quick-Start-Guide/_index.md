@@ -441,7 +441,7 @@ The commands above produce the following snippet in the
     iface bridge
         bridge-vids 100
         bridge-vlan-aware yes
-     
+     
     auto vlan100
     iface vlan100
         address 192.168.10.1/24
@@ -450,14 +450,14 @@ The commands above produce the following snippet in the
 
 To view the changes in the kernel, use the `ip addr show` command:
 
-    cumulus@switch:~$ ip addr show
+    cumulus@switch:~$ ip addr show
     ...
-     
+     
     4. swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bridge state UP group default qlen 1000
         link/ether 44:38:39:00:6e:fe brd ff:ff:ff:ff:ff:ff
-     
+     
     ...
-     
+     
     14: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
         link/ether 44:38:39:00:00:04 brd ff:ff:ff:ff:ff:ff
         inet6 fe80::4638:39ff:fe00:4/64 scope link 
@@ -485,7 +485,7 @@ interface lo` command:
         Name    MAC                Speed      MTU  Mode
     --  ------  -----------------  -------  -----  --------
     UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
-     
+     
     IP Details
     -------------------------  --------------------
     IP:                        127.0.0.1/8, ::1/128

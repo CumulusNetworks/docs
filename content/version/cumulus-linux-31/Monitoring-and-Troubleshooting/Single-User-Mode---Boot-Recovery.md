@@ -22,7 +22,7 @@ appropriate steps for your x86 or ARM switch.
     
     ``` 
                            GNU GRUB  version 2.02~beta2-22+deb8u1
-     
+     
      +----------------------------------------------------------------------------+
      |*Cumulus Linux GNU/Linux                                                    | 
      | Advanced options for Cumulus Linux GNU/Linux                               |
@@ -36,7 +36,7 @@ appropriate steps for your x86 or ARM switch.
     
     ``` 
                            GNU GRUB  version 2.02~beta2-22+deb8u1
-     
+     
      +----------------------------------------------------------------------------+
      | Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-1-amd64                       | 
      | Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-1-amd64 (sysvinit)            |

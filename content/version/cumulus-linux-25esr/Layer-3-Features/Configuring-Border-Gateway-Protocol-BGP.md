@@ -61,7 +61,7 @@ relies on either using this number space or else using the single ASN
 you own.
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route
-advertisement carries with it not only the originator’s ASN, but also
+advertisement carries with it not only the originator's ASN, but also
 the list of ASNs that this route advertisement has passed through. When
 forwarding a route advertisement, a BGP speaker adds itself to this
 list. This list of ASNs is called the *AS path*. BGP uses the AS path to
@@ -93,7 +93,7 @@ popular method to avoid this problem is to introduce a *route reflector*.
 Route reflectors are quite easy to understand in a Clos topology. In a
 two-tier Clos network, the leaf (or tier 1) switches are the only ones
 connected to end stations. Subsequently, this means that the spines
-themselves do not have any routes to announce. They’re merely
+themselves do not have any routes to announce. They're merely
 **reflecting** the routes announced by one leaf to the other leaves.
 Thus, the spine switches function as route reflectors while the leaf
 switches serve as route reflector clients.
@@ -222,8 +222,8 @@ single IPv4 session or over a single IPv6 session.
     
         R7(config-router)# neighbor 10.0.0.2 remote-as 65000
     
-    Specifying the peer’s IP address allows BGP to set up a TCP socket
-    with this peer, but it doesn’t distribute any prefixes to it, unless
+    Specifying the peer's IP address allows BGP to set up a TCP socket
+    with this peer, but it doesn't distribute any prefixes to it, unless
     it is explicitly told that it must via the `activate` command:
     
         R7(config-router)# address-family ipv4 unicast
@@ -414,7 +414,7 @@ This section describes how the IPv6 next-hops are set in the
 MP\_REACH\_NLRI ([multiprotocol reachable
 NLRI](https://www.ietf.org/rfc/rfc2858.txt)) initiated by the system,
 which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with
-ENHE. There are two main aspects to determine — how many IPv6 next-hops
+ENHE. There are two main aspects to determine - how many IPv6 next-hops
 are included in the MP\_REACH\_NLRI (since the RFC allows either one or
 two next-hops) and the values of the next-hop(s). This section also
 describes how a received MP\_REACH\_NLRI is handled as far as processing
@@ -440,7 +440,7 @@ IPv6 next-hops.
         outbound route map adds another next-hop.
 
   - `route-map` can impose two next-hops in scenarios where Cumulus
-    Linux would only send one next-hop — by specifying `set ipv6 nexthop
+    Linux would only send one next-hop - by specifying `set ipv6 nexthop
     link-local`.
   - For all routes to eBGP peers and self-originated routes to iBGP
     peers, the global next-hop (first value) is the peering address of
@@ -461,10 +461,10 @@ If this address were a link-local IPv6 address, it would get reset
     {{%/notice%}}
   - `route-map` and/or the peer configuration can change the above
     behavior. For example, `route-map` can set the global IPv6 next-hop
-    or the peer configuration can set it to *self* — which is relevant
+    or the peer configuration can set it to *self* - which is relevant
     for *iBGP* peers. The route map or peer configuration can also set
     the next-hop to unchanged, which ensures the source IPv6 global
-    next-hop is passed around — which is relevant for *eBGP* peers.
+    next-hop is passed around - which is relevant for *eBGP* peers.
   - Whenever two next-hops are being sent, the link-local next-hop (the
     second value of the two) is the link-local IPv6 address on the
     peering interface unless it is due to `nh-local-unchanged` or
@@ -556,7 +556,7 @@ nd suppress-ra` to remove router suppression.
 Cumulus Networks recommends you adjust the router advertisement's
 interval to a shorter value (`ipv6 nd ra-interval <interval>`) to
 address scenarios when nodes come up and miss router advertisement
-processing to relay the neighbor’s link-local address to BGP. The
+processing to relay the neighbor's link-local address to BGP. The
 `interval` is measured in seconds and defaults to 600 seconds.
 
 {{%/notice%}}
@@ -880,7 +880,7 @@ To enable read-only mode:
 
     cumulus@switch:$ sudo bgp update-delay <max-delay in seconds> [<establish-wait in seconds>]
 
-The default `<max-delay>` is 0 — the feature is off by default.
+The default `<max-delay>` is 0 - the feature is off by default.
 
 Use output from `show ip bgp summary` for information about the state of
 the update delay.
@@ -944,7 +944,7 @@ Here is an example:
 ### Converging Quickly On Soft Failures
 
 It is possible that the link is up, but the neighboring BGP process is
-hung or has crashed. If a BGP process crashes, Quagga’s `watchquagga`
+hung or has crashed. If a BGP process crashes, Quagga's `watchquagga`
 daemon, which monitors the various `quagga` daemons, will attempt to
 restart it. If the process is also hung, `watchquagga` will attempt to
 restart the process. BGP itself has a keepalive timer that is exchanged
@@ -994,7 +994,7 @@ To modify this value, use:
 
     R7(config-router)# neighbor 10.0.0.2 timers connect 30
 
-This command has to be specified per each neighbor, peer-group doesn’t
+This command has to be specified per each neighbor, peer-group doesn't
 support this option in `quagga`.
 
 ### Advertisement Interval
@@ -1003,7 +1003,7 @@ BGP by default chooses stability over fast convergence. This is very
 useful when routing for the Internet. For example, unlike link-state
 protocols, BGP typically waits for a duration of
 `advertisement-interval` seconds between sending consecutive updates to
-a neighbor. This ensures that an unstable neighbor flapping routes won’t
+a neighbor. This ensures that an unstable neighbor flapping routes won't
 be propagated throughout the network. By default, this is set to 30
 seconds for an eBGP session and 5 seconds for an iBGP session. For very
 fast convergence, set the timer to 0 seconds. You can modify this as

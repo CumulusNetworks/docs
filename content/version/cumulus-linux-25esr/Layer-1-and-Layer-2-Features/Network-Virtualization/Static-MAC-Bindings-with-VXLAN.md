@@ -58,7 +58,7 @@ switch1:
     iface vtep1000
         vxlan-id 1000
         vxlan-local-tunnelip 172.10.1.1
-     
+     
     auto br-100
     iface br-100
         bridge-ports swp1.100 swp2.100 vtep1000
@@ -71,7 +71,7 @@ switch2:
     iface vtep1000
         vxlan-id 1000
         vxlan-local-tunnelip 172.20.1.1
-     
+     
     auto br-100
     iface br-100
         bridge-ports swp1.100 swp2.100 vtep1000
@@ -112,7 +112,7 @@ If you are specifying `ageing`, you **must** specify the service
 
 4.  Show VXLAN link and FDB:
     
-        cumulus@switch1:~$ sudo ip –d link show
+        cumulus@switch1:~$ sudo ip -d link show
         
         cumulus@switch1:~$ sudo bridge fdb show
 
@@ -169,24 +169,24 @@ following:
 
 7.  Verify the configuration on switch1, then on switch2:
     
-        cumulus@switch1:~$ sudo ip –d link show
+        cumulus@switch1:~$ sudo ip -d link show
         cumulus@switch1:~$ sudo bridge fdb show
         
-        cumulus@switch2:~$ sudo ip –d link show
+        cumulus@switch2:~$ sudo ip -d link show
         cumulus@switch2:~$ sudo bridge fdb show
 
 8.  Set the static `arp` for hosts B and C on host A:
     
-        root@hostA:~# sudo arp –s 10.1.1.3 00:00:10:00:00:0C
+        root@hostA:~# sudo arp -s 10.1.1.3 00:00:10:00:00:0C
 
 9.  Set the static `arp` for hosts A and C on host B:
     
-        root@hostB:~# sudo arp –s 10.1.1.3 00:00:10:00:00:0C
+        root@hostB:~# sudo arp -s 10.1.1.3 00:00:10:00:00:0C
 
 10. Set the static `arp` for hosts A and B on host C:
     
-        root@hostC:~# arp –s 10.1.1.1 00:00:10:00:00:0A
-        root@hostC:~# arp –s 10.1.1.2 00:00:10:00:00:0B
+        root@hostC:~# arp -s 10.1.1.1 00:00:10:00:00:0A
+        root@hostC:~# arp -s 10.1.1.2 00:00:10:00:00:0B
 
 </details>
 
@@ -212,7 +212,7 @@ Use the following commands to troubleshoot issues on the switch:
         44:38:39:00:48:0d dev swp2s0.100 permanent
   - `ip -d link show`: Displays information about the VXLAN link:
     
-        cumulus@switch1:~$ sudo ip –d link show vxln100
+        cumulus@switch1:~$ sudo ip -d link show vxln100
         71: vxln100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln100 state UNKNOWN mode DEFAULT
             link/ether d2:ca:78:bb:7c:9b brd ff:ff:ff:ff:ff:ff
             vxlan id 100 local 172.16.20.103 port 32768 61000 nolearning ageing 300 svcnode 172.16.21.125

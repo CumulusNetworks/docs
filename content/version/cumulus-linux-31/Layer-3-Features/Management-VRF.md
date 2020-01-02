@@ -11,9 +11,9 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-*Management VRF* — a subset of
+*Management VRF* - a subset of
 [VRF](/version/cumulus-linux-31/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF)
-(virtual routing tables and forwarding) — provides a separation between
+(virtual routing tables and forwarding) - provides a separation between
 the out-of-band management network and the in-band data plane network.
 For all VRFs, the *main* routing table is the default table for all of
 the data plane switch ports. With management VRF, a second table,
@@ -53,7 +53,7 @@ To enable management VRF on eth0, complete the following steps:
         iface mgmt
             address 127.0.0.1/8
             vrf-table auto
-         
+         
         auto eth0
         iface eth0 inet dhcp
             vrf mgmt
@@ -136,7 +136,7 @@ To enable `snmpd` to run in the mgmt VRF:
         iface mgmt
             address 127.0.0.1/8
             vrf-table auto
-         
+         
         auto eth0
         iface eth0 inet dhcp
             vrf mgmt
@@ -251,7 +251,7 @@ in this way (for both BGP and OSPF):
 
     <routing protocol> 
     redistribute connected route-map redistribute-connected
-     
+     
     route-map redistribute-connected deny 100
      match interface eth0
     !
@@ -282,7 +282,7 @@ ssh <ip_address_of_swp_port>`. For example:
         inet 10.23.23.2/24 scope global swp17
         inet6 fe80::eef4:bbff:fefc:1923/64 scope link
            valid_lft forever preferred_lft forever
-     
+     
     cumulus@switch:~$ sudo vrf exec default ssh 10.23.23.2 10.3.3.3
 
 ## Viewing the Routing Tables</span>
@@ -296,7 +296,7 @@ To look at information about eth0 (the management routing table), use
 
     cumulus@switch:~$ ip route show table mgmt
     default via 192.168.0.1 dev eth0
-     
+     
     cumulus@switch:~$ ip route show
     default via 10.23.23.3 dev swp17  proto zebra  metric 20
     10.3.3.3 via 10.23.23.3 dev swp17
@@ -339,12 +339,12 @@ stanzas are added to the *mgmt* interface class:
 
     auto lo
     iface lo inet loopback 
-     
+     
       
     allow-mgmt eth0
     iface eth0 inet dhcp
         vrf mgmt
-     
+     
       
     allow-mgmt mgmt
     iface mgmt

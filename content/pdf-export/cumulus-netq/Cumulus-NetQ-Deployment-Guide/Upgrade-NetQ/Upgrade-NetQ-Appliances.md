@@ -71,8 +71,8 @@ To upgrade the NetQ software on your NetQ or NetQ Cloud Appliance:
     *cumulus/CumulusLinux\!* credentials, on a NetQ Appliance.
 
         <computer>:~<username>$ ssh cumulus@netq-appliance
-        cumulus@netq-appliance's password: 
-        cumulus@netq-appliance:~$ 
+        cumulus@netq-appliance's password: 
+        cumulus@netq-appliance:~$ 
 
 3.  Change to the root user.
 
@@ -83,7 +83,7 @@ To upgrade the NetQ software on your NetQ or NetQ Cloud Appliance:
 4.  Copy the upgrade package (`NetQ-2.2.x-opta.tgz`) into your new directory.
 
         root@netq-appliance:~# cd /mnt/installables/
-        root@netq-appliance:/mnt/installables# cp /home/usr/dir/NetQ-2.2.x-opta.tgz ./ 
+        root@netq-appliance:/mnt/installables# cp /home/usr/dir/NetQ-2.2.x-opta.tgz ./ 
 
 5.  Export the installer script.
 
@@ -452,7 +452,7 @@ To install the NetQ Agent on an Ubuntu server:
 The use of `netq-latest` in this example means that a `get` to the
             repository always retrieves the latest version of NetQ, even in the
             case where a major version update has been made. If you want to keep
-            the repository on a specific version — such as `netq-2.2` — use that
+            the repository on a specific version - such as `netq-2.2` - use that
             instead.
 
       {{%/notice%}}
@@ -571,15 +571,15 @@ If you intend to use VRF, skip to [Configure the Agent to Use VRF](#configure-th
 
          root@rhel7:~# netq config add agent server 192.168.1.254
          Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
-         root@rhel7:~# netq config restart agent
+         root@rhel7:~# netq config restart agent
 
 6.  If you have not already configured CLI access for this host, you can do so at this time.
       - For on-premises deployments:
 
          ```
-         root@rhel7:~# netq config add cli server 192.168.1.254
+         root@rhel7:~# netq config add cli server 192.168.1.254
          Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
-         root@rhel7:~# netq config restart cli
+         root@rhel7:~# netq config restart cli
          ```
 
       - For in-cloud deployment:

@@ -47,10 +47,10 @@ similar to the following:
 
     cumulus@switch:~$ cat /etc/dhcp/dhcpd.conf
     ddns-update-style none;
-     
+     
     default-lease-time 600;
     max-lease-time 7200;
-     
+     
     subnet 10.0.100.0 netmask 255.255.255.0 {
     }
     subnet 10.0.1.0 netmask 255.255.255.0 {
@@ -63,7 +63,7 @@ boots. Here is a sample configuration:
 
     cumulus@switch:~$ cat /etc/default/isc-dhcp-server
     DHCPD_CONF="-cf /etc/dhcp/dhcpd.conf"
-     
+     
     INTERFACES="swp1"
 
 After you've finished configuring the DHCP server, enable the ` dhcpd
@@ -78,10 +78,10 @@ similar to the following:
 
     cumulus@switch:~$ cat /etc/dhcp/dhcpd6.conf
     ddns-update-style none;
-     
+     
     default-lease-time 600;
     max-lease-time 7200;
-     
+     
     subnet6 2001:db8:100::/64 {
     }
     subnet6 2001:db8:1::/64 {
@@ -94,7 +94,7 @@ boots. Here is a sample configuration:
 
     cumulus@switch:~$ cat /etc/default/isc-dhcp-server6
     DHCPD_CONF="-cf /etc/dhcp/dhcpd6.conf"
-     
+     
     INTERFACES="swp1"
 
 {{%notice note%}}

@@ -46,46 +46,46 @@ command. The syntax for this command is:
 This example shows the interface and peer
 information that is advertised for each device.
 
-    cumulus@switch:~$ netq show lldp 
-     
+    cumulus@switch:~$ netq show lldp 
+     
     Matching lldp records:
-    Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
+    Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
     ----------------- ------------------------- ----------------- ------------------------- -------------------------
-    leaf01            eth0                      oob-mgmt-switch   swp6                      4h:22m:57s
-    leaf01            swp1                      server01          eth1                      4h:15m:40s
-    leaf01            swp51                     spine01           swp1                      4h:16m:12s
-    leaf01            swp52                     spine02           swp1                      4h:16m:12s
-    leaf02            eth0                      oob-mgmt-switch   swp7                      4h:22m:53s
-    leaf02            swp2                      server02          eth2                      4h:15m:38s
-    leaf02            swp51                     spine01           swp2                      4h:16m:9s
-    leaf02            swp52                     spine02           swp2                      4h:16m:9s
-    leaf03            eth0                      oob-mgmt-switch   swp8                      4h:23m:5s
-    leaf03            swp1                      server03          eth1                      4h:15m:50s
-    leaf03            swp51                     spine01           swp3                      4h:16m:21s
-    leaf03            swp52                     spine02           swp3                      4h:16m:21s
-    leaf04            eth0                      oob-mgmt-switch   swp9                      4h:23m:1s
-    leaf04            swp2                      server04          eth2                      4h:15m:46s
-    leaf04            swp51                     spine01           swp4                      4h:16m:17s
-    leaf04            swp52                     spine02           swp4                      4h:16m:17s
-    oob-mgmt-server   eth1                      oob-mgmt-switch   swp1                      4h:23m:4s
-    server01          eth0                      oob-mgmt-switch   swp2                      4h:23m:8s
-    server01          eth1                      leaf01            swp1                      4h:15m:28s
-    server02          eth0                      oob-mgmt-switch   swp3                      4h:22m:59s
-    server02          eth2                      leaf02            swp2                      4h:15m:29s
-    server03          eth0                      oob-mgmt-switch   swp4                      4h:23m:5s
-    server03          eth1                      leaf03            swp1                      4h:15m:28s
-    server04          eth0                      oob-mgmt-switch   swp5                      4h:23m:2s
-    server04          eth2                      leaf04            swp2                      4h:15m:28s
-    spine01           eth0                      oob-mgmt-switch   swp10                     4h:23m:6s
-    spine01           swp1                      leaf01            swp51                     4h:16m:22s
-    spine01           swp2                      leaf02            swp51                     4h:16m:22s
-    spine01           swp3                      leaf03            swp51                     4h:16m:22s
-    spine01           swp4                      leaf04            swp51                     4h:16m:22s
-    spine02           eth0                      oob-mgmt-switch   swp11                     4h:23m:7s
-    spine02           swp1                      leaf01            swp52                     4h:16m:22s
-    spine02           swp2                      leaf02            swp52                     4h:16m:22s
-    spine02           swp3                      leaf03            swp52                     4h:16m:22s
-    spine02           swp4                      leaf04            swp52                     4h:16m:22s
+    leaf01            eth0                      oob-mgmt-switch   swp6                      4h:22m:57s
+    leaf01            swp1                      server01          eth1                      4h:15m:40s
+    leaf01            swp51                     spine01           swp1                      4h:16m:12s
+    leaf01            swp52                     spine02           swp1                      4h:16m:12s
+    leaf02            eth0                      oob-mgmt-switch   swp7                      4h:22m:53s
+    leaf02            swp2                      server02          eth2                      4h:15m:38s
+    leaf02            swp51                     spine01           swp2                      4h:16m:9s
+    leaf02            swp52                     spine02           swp2                      4h:16m:9s
+    leaf03            eth0                      oob-mgmt-switch   swp8                      4h:23m:5s
+    leaf03            swp1                      server03          eth1                      4h:15m:50s
+    leaf03            swp51                     spine01           swp3                      4h:16m:21s
+    leaf03            swp52                     spine02           swp3                      4h:16m:21s
+    leaf04            eth0                      oob-mgmt-switch   swp9                      4h:23m:1s
+    leaf04            swp2                      server04          eth2                      4h:15m:46s
+    leaf04            swp51                     spine01           swp4                      4h:16m:17s
+    leaf04            swp52                     spine02           swp4                      4h:16m:17s
+    oob-mgmt-server   eth1                      oob-mgmt-switch   swp1                      4h:23m:4s
+    server01          eth0                      oob-mgmt-switch   swp2                      4h:23m:8s
+    server01          eth1                      leaf01            swp1                      4h:15m:28s
+    server02          eth0                      oob-mgmt-switch   swp3                      4h:22m:59s
+    server02          eth2                      leaf02            swp2                      4h:15m:29s
+    server03          eth0                      oob-mgmt-switch   swp4                      4h:23m:5s
+    server03          eth1                      leaf03            swp1                      4h:15m:28s
+    server04          eth0                      oob-mgmt-switch   swp5                      4h:23m:2s
+    server04          eth2                      leaf04            swp2                      4h:15m:28s
+    spine01           eth0                      oob-mgmt-switch   swp10                     4h:23m:6s
+    spine01           swp1                      leaf01            swp51                     4h:16m:22s
+    spine01           swp2                      leaf02            swp51                     4h:16m:22s
+    spine01           swp3                      leaf03            swp51                     4h:16m:22s
+    spine01           swp4                      leaf04            swp51                     4h:16m:22s
+    spine02           eth0                      oob-mgmt-switch   swp11                     4h:23m:7s
+    spine02           swp1                      leaf01            swp52                     4h:16m:22s
+    spine02           swp2                      leaf02            swp52                     4h:16m:22s
+    spine02           swp3                      leaf03            swp52                     4h:16m:22s
+    spine02           swp4                      leaf04            swp52                     4h:16m:22s
 
 ### View Changes to LLDP Information
 
@@ -101,38 +101,38 @@ for *tor-1*.
 
     cumulus@switch:~$ netq tor-1 show lldp
     Matching lldp records:
-    Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
+    Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
     ----------------- ------------------------- ----------------- ------------------------- -------------------------
-    tor-1             swp1                      noc-pr            swp4                      30m:21.735s
-    tor-1             swp2                      noc-se            swp4                      30m:21.735s
-    tor-1             swp3                      spine-1           swp7                      30m:21.735s
-    tor-1             swp4                      spine-2           swp7                      30m:21.735s
-    tor-1             swp5                      spine-3           swp7                      30m:21.735s
-    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     25m:42.653s
-    tor-1             swp7                      hosts-12          swp1                      30m:21.734s
-    tor-1             swp8                      hosts-13          mac:00:02:00:00:00:2d     25m:42.651s
-     
+    tor-1             swp1                      noc-pr            swp4                      30m:21.735s
+    tor-1             swp2                      noc-se            swp4                      30m:21.735s
+    tor-1             swp3                      spine-1           swp7                      30m:21.735s
+    tor-1             swp4                      spine-2           swp7                      30m:21.735s
+    tor-1             swp5                      spine-3           swp7                      30m:21.735s
+    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     25m:42.653s
+    tor-1             swp7                      hosts-12          swp1                      30m:21.734s
+    tor-1             swp8                      hosts-13          mac:00:02:00:00:00:2d     25m:42.651s
+     
     cumulus@switch:~$ netq tor-1 show lldp changes
     Matching lldp records:
-    Hostname          Interface                 Peer Hostname     Peer Interface            DB State   Last Changed
+    Hostname          Interface                 Peer Hostname     Peer Interface            DB State   Last Changed
     ----------------- ------------------------- ----------------- ------------------------- ---------- -------------------------
-    tor-1             swp8                      hosts-13          mac:00:02:00:00:00:2d     Add        25m:45.593s
-    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Add        25m:45.595s
-    tor-1             swp8                      hosts-13          mac:00:02:00:00:00:2d     Del        26m:17.954s
-    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Del        26m:17.965s
-    tor-1             swp8                      hosts-13          mac:00:02:00:00:00:2d     Add        26m:17.100s
-    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Add        26m:17.101s
-    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Add        27m:19.630s
-    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Del        27m:49.517s
-    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Add        27m:49.522s
-    tor-1             swp8                      hosts-13          mac:00:02:00:00:00:2d     Add        30m:24.676s
-    tor-1             swp7                      hosts-12          swp1                      Add        30m:24.677s
-    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Add        30m:24.677s
-    tor-1             swp5                      spine-3           swp7                      Add        30m:24.677s
-    tor-1             swp4                      spine-2           swp7                      Add        30m:24.677s
-    tor-1             swp3                      spine-1           swp7                      Add        30m:24.677s
-    tor-1             swp2                      noc-se            swp4                      Add        30m:24.678s
-    tor-1             swp1                      noc-pr            swp4                      Add        30m:24.678s
+    tor-1             swp8                      hosts-13          mac:00:02:00:00:00:2d     Add        25m:45.593s
+    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Add        25m:45.595s
+    tor-1             swp8                      hosts-13          mac:00:02:00:00:00:2d     Del        26m:17.954s
+    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Del        26m:17.965s
+    tor-1             swp8                      hosts-13          mac:00:02:00:00:00:2d     Add        26m:17.100s
+    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Add        26m:17.101s
+    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Add        27m:19.630s
+    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Del        27m:49.517s
+    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Add        27m:49.522s
+    tor-1             swp8                      hosts-13          mac:00:02:00:00:00:2d     Add        30m:24.676s
+    tor-1             swp7                      hosts-12          swp1                      Add        30m:24.677s
+    tor-1             swp6                      hosts-11          mac:00:02:00:00:00:27     Add        30m:24.677s
+    tor-1             swp5                      spine-3           swp7                      Add        30m:24.677s
+    tor-1             swp4                      spine-2           swp7                      Add        30m:24.677s
+    tor-1             swp3                      spine-1           swp7                      Add        30m:24.677s
+    tor-1             swp2                      noc-se            swp4                      Add        30m:24.678s
+    tor-1             swp1                      noc-pr            swp4                      Add        30m:24.678s
 
 ## Check for MTU Inconsistencies
 
@@ -150,16 +150,16 @@ misconfiguration.
     cumulus@switch:~$ netq check mtu
     Checked Nodes: 15, Checked Links: 215, Failed Nodes: 4, Failed Links: 8
     MTU mismatch found on following links
-    Hostname          Interface                 MTU    Peer              Peer Interface            Peer MTU Error
+    Hostname          Interface                 MTU    Peer              Peer Interface            Peer MTU Error
     ----------------- ------------------------- ------ ----------------- ------------------------- -------- ---------------
-    spine01           swp30                     9216   exit01            swp51                     1500     MTU Mismatch
-    exit01            swp51                     1500   spine01           swp30                     9216     MTU Mismatch
-    spine01           swp29                     9216   exit02            swp51                     1500     MTU Mismatch
-    exit02            swp51                     1500   spine01           swp29                     9216     MTU Mismatch
-    exit01            swp52                     1500   spine02           swp30                     9216     MTU Mismatch
-    spine02           swp30                     9216   exit01            swp52                     1500     MTU Mismatch
-    spine02           swp29                     9216   exit02            swp52                     1500     MTU Mismatch
-    exit02            swp52                     1500   spine02           swp29                     9216     MTU Mismatch
+    spine01           swp30                     9216   exit01            swp51                     1500     MTU Mismatch
+    exit01            swp51                     1500   spine01           swp30                     9216     MTU Mismatch
+    spine01           swp29                     9216   exit02            swp51                     1500     MTU Mismatch
+    exit02            swp51                     1500   spine01           swp29                     9216     MTU Mismatch
+    exit01            swp52                     1500   spine02           swp30                     9216     MTU Mismatch
+    spine02           swp30                     9216   exit01            swp52                     1500     MTU Mismatch
+    spine02           swp29                     9216   exit02            swp52                     1500     MTU Mismatch
+    exit02            swp52                     1500   spine02           swp29                     9216     MTU Mismatch
 
 ## Monitor VLAN Configurations
 
@@ -260,28 +260,28 @@ VLANs using the `netq show interfaces` command. This provides the status
 of the interface, its specified MTU, whether it is running over a VRF,
 and the last time it was changed.
 
-    cumulus@switch:~$ netq show interfaces type vlan 
+    cumulus@switch:~$ netq show interfaces type vlan 
     Matching link records:
-    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
     ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
-    exit01            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:35m:46s
-    exit02            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:35m:23s
-    leaf01            peerlink.4094             vlan             up         default         MTU:9000                            20h:28m:47s
-    leaf01            vlan13                    vlan             up         vrf1            MTU:1500                            20h:28m:47s
-    leaf01            vlan24                    vlan             up         vrf1            MTU:1500                            20h:28m:47s
-    leaf01            vlan4001                  vlan             up         vrf1            MTU:1500                            20h:28m:47s
-    leaf02            peerlink.4094             vlan             up         default         MTU:9000                            19h:42m:7s
-    leaf02            vlan13                    vlan             up         vrf1            MTU:1500                            19h:42m:7s
-    leaf02            vlan24                    vlan             up         vrf1            MTU:1500                            19h:42m:7s
-    leaf02            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:42m:7s
-    leaf03            peerlink.4094             vlan             up         default         MTU:9000                            19h:41m:18s
-    leaf03            vlan13                    vlan             up         vrf1            MTU:1500                            19h:41m:18s
-    leaf03            vlan24                    vlan             up         vrf1            MTU:1500                            19h:41m:18s
-    leaf03            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:41m:18s
-    leaf04            peerlink.4094             vlan             up         default         MTU:9000                            19h:37m:58s
-    leaf04            vlan13                    vlan             up         vrf1            MTU:1500                            19h:37m:58s
-    leaf04            vlan24                    vlan             up         vrf1            MTU:1500                            19h:37m:58s
-    leaf04            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:37m:58s
+    exit01            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:35m:46s
+    exit02            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:35m:23s
+    leaf01            peerlink.4094             vlan             up         default         MTU:9000                            20h:28m:47s
+    leaf01            vlan13                    vlan             up         vrf1            MTU:1500                            20h:28m:47s
+    leaf01            vlan24                    vlan             up         vrf1            MTU:1500                            20h:28m:47s
+    leaf01            vlan4001                  vlan             up         vrf1            MTU:1500                            20h:28m:47s
+    leaf02            peerlink.4094             vlan             up         default         MTU:9000                            19h:42m:7s
+    leaf02            vlan13                    vlan             up         vrf1            MTU:1500                            19h:42m:7s
+    leaf02            vlan24                    vlan             up         vrf1            MTU:1500                            19h:42m:7s
+    leaf02            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:42m:7s
+    leaf03            peerlink.4094             vlan             up         default         MTU:9000                            19h:41m:18s
+    leaf03            vlan13                    vlan             up         vrf1            MTU:1500                            19h:41m:18s
+    leaf03            vlan24                    vlan             up         vrf1            MTU:1500                            19h:41m:18s
+    leaf03            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:41m:18s
+    leaf04            peerlink.4094             vlan             up         default         MTU:9000                            19h:37m:58s
+    leaf04            vlan13                    vlan             up         vrf1            MTU:1500                            19h:37m:58s
+    leaf04            vlan24                    vlan             up         vrf1            MTU:1500                            19h:37m:58s
+    leaf04            vlan4001                  vlan             up         vrf1            MTU:1500                            19h:37m:58s
 
 ### View MAC Addresses Associated with a VLAN
 
@@ -294,42 +294,42 @@ was changed.
 
 This example shows the MAC addresses associated with *VLAN13*.
 
-    cumulus@switch:~$ netq show macs vlan 13 
+    cumulus@switch:~$ netq show macs vlan 13 
     Matching mac records:
-    Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
+    Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
     ------ ------------------ ------ ----------------- -------------------- ------ -------------------------
-    no     00:03:00:11:11:01  13     leaf01            bond01:server01      no     20h:31m:23s
-    no     00:03:00:11:11:01  13     leaf02            bond01:server01      no     19h:44m:44s
-    no     00:03:00:11:11:01  13     leaf03            vni13:leaf01         yes    19h:43m:55s
-    no     00:03:00:11:11:01  13     leaf04            vni13:leaf01         yes    19h:40m:34s
-    no     00:03:00:33:33:01  13     leaf01            vni13:10.0.0.134     yes    20h:31m:23s
-    no     00:03:00:33:33:01  13     leaf02            vni13:10.0.0.134     yes    19h:44m:44s
-    no     00:03:00:33:33:01  13     leaf03            bond03:server03      no     19h:43m:55s
-    no     00:03:00:33:33:01  13     leaf04            bond03:server03      no     19h:40m:34s
-    no     02:03:00:11:11:01  13     leaf01            bond01:server01      no     20h:31m:23s
-    no     02:03:00:11:11:01  13     leaf02            bond01:server01      no     19h:44m:44s
-    no     02:03:00:11:11:01  13     leaf03            vni13:leaf01         yes    19h:43m:55s
-    no     02:03:00:11:11:01  13     leaf04            vni13:leaf01         yes    19h:40m:34s
-    no     02:03:00:11:11:02  13     leaf01            bond01:server01      no     20h:31m:23s
-    no     02:03:00:11:11:02  13     leaf02            bond01:server01      no     19h:44m:44s
-    no     02:03:00:11:11:02  13     leaf03            vni13:leaf01         yes    19h:43m:55s
-    no     02:03:00:11:11:02  13     leaf04            vni13:leaf01         yes    19h:40m:34s
-    no     02:03:00:33:33:01  13     leaf01            vni13:10.0.0.134     yes    20h:31m:23s
-    no     02:03:00:33:33:01  13     leaf02            vni13:10.0.0.134     yes    19h:44m:44s
-    no     02:03:00:33:33:01  13     leaf03            bond03:server03      no     19h:43m:55s
-    no     02:03:00:33:33:01  13     leaf04            bond03:server03      no     19h:40m:34s
-    no     02:03:00:33:33:02  13     leaf01            vni13:10.0.0.134     yes    20h:31m:23s
-    no     02:03:00:33:33:02  13     leaf02            vni13:10.0.0.134     yes    19h:44m:44s
-    no     02:03:00:33:33:02  13     leaf03            bond03:server03      no     19h:43m:55s
-    no     02:03:00:33:33:02  13     leaf04            bond03:server03      no     19h:40m:34s
-    yes    44:38:39:00:00:03  13     leaf01            bridge               no     20h:31m:23s
-    yes    44:38:39:00:00:15  13     leaf02            bridge               no     19h:44m:44s
-    yes    44:38:39:00:00:23  13     leaf03            bridge               no     19h:43m:55s
-    yes    44:38:39:00:00:5c  13     leaf04            bridge               no     19h:40m:34s
-    yes    44:39:39:ff:00:13  13     leaf01            bridge               no     20h:31m:23s
-    yes    44:39:39:ff:00:13  13     leaf02            bridge               no     19h:44m:44s
-    yes    44:39:39:ff:00:13  13     leaf03            bridge               no     19h:43m:55s
-    yes    44:39:39:ff:00:13  13     leaf04            bridge               no     19h:40m:34s
+    no     00:03:00:11:11:01  13     leaf01            bond01:server01      no     20h:31m:23s
+    no     00:03:00:11:11:01  13     leaf02            bond01:server01      no     19h:44m:44s
+    no     00:03:00:11:11:01  13     leaf03            vni13:leaf01         yes    19h:43m:55s
+    no     00:03:00:11:11:01  13     leaf04            vni13:leaf01         yes    19h:40m:34s
+    no     00:03:00:33:33:01  13     leaf01            vni13:10.0.0.134     yes    20h:31m:23s
+    no     00:03:00:33:33:01  13     leaf02            vni13:10.0.0.134     yes    19h:44m:44s
+    no     00:03:00:33:33:01  13     leaf03            bond03:server03      no     19h:43m:55s
+    no     00:03:00:33:33:01  13     leaf04            bond03:server03      no     19h:40m:34s
+    no     02:03:00:11:11:01  13     leaf01            bond01:server01      no     20h:31m:23s
+    no     02:03:00:11:11:01  13     leaf02            bond01:server01      no     19h:44m:44s
+    no     02:03:00:11:11:01  13     leaf03            vni13:leaf01         yes    19h:43m:55s
+    no     02:03:00:11:11:01  13     leaf04            vni13:leaf01         yes    19h:40m:34s
+    no     02:03:00:11:11:02  13     leaf01            bond01:server01      no     20h:31m:23s
+    no     02:03:00:11:11:02  13     leaf02            bond01:server01      no     19h:44m:44s
+    no     02:03:00:11:11:02  13     leaf03            vni13:leaf01         yes    19h:43m:55s
+    no     02:03:00:11:11:02  13     leaf04            vni13:leaf01         yes    19h:40m:34s
+    no     02:03:00:33:33:01  13     leaf01            vni13:10.0.0.134     yes    20h:31m:23s
+    no     02:03:00:33:33:01  13     leaf02            vni13:10.0.0.134     yes    19h:44m:44s
+    no     02:03:00:33:33:01  13     leaf03            bond03:server03      no     19h:43m:55s
+    no     02:03:00:33:33:01  13     leaf04            bond03:server03      no     19h:40m:34s
+    no     02:03:00:33:33:02  13     leaf01            vni13:10.0.0.134     yes    20h:31m:23s
+    no     02:03:00:33:33:02  13     leaf02            vni13:10.0.0.134     yes    19h:44m:44s
+    no     02:03:00:33:33:02  13     leaf03            bond03:server03      no     19h:43m:55s
+    no     02:03:00:33:33:02  13     leaf04            bond03:server03      no     19h:40m:34s
+    yes    44:38:39:00:00:03  13     leaf01            bridge               no     20h:31m:23s
+    yes    44:38:39:00:00:15  13     leaf02            bridge               no     19h:44m:44s
+    yes    44:38:39:00:00:23  13     leaf03            bridge               no     19h:43m:55s
+    yes    44:38:39:00:00:5c  13     leaf04            bridge               no     19h:40m:34s
+    yes    44:39:39:ff:00:13  13     leaf01            bridge               no     20h:31m:23s
+    yes    44:39:39:ff:00:13  13     leaf02            bridge               no     19h:44m:44s
+    yes    44:39:39:ff:00:13  13     leaf03            bridge               no     19h:43m:55s
+    yes    44:39:39:ff:00:13  13     leaf04            bridge               no     19h:40m:34s
 
 ### View MAC Addresses Associated with an Egress Port
 
@@ -340,10 +340,10 @@ example shows MAC addresses associated with the *leaf03* switch and
 
     cumulus@switch:~$ netq leaf03 show macs egress-port bridge vlan 13
     Matching mac records:
-    Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
+    Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
     ------ ------------------ ------ ----------------- -------------------- ------ -------------------------
-    yes    44:38:39:00:00:23  13     leaf03            bridge               no     20h:46m:17s
-    yes    44:39:39:ff:00:13  13     leaf03            bridge               no     20h:46m:17s
+    yes    44:38:39:00:00:23  13     leaf03            bridge               no     20h:46m:17s
+    yes    44:39:39:ff:00:13  13     leaf03            bridge               no     20h:46m:17s
 
 ### View the MAC Addresses Associated with VRR Configurations
 
@@ -355,24 +355,24 @@ VRR configuration.
 
     cumulus@switch:~$ netq show interfaces type macvlan
     Matching link records:
-    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
     ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
-    leaf01            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             21h:37m:14s
-                                                                                            Mode: Private
-    leaf01            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             21h:37m:14s
-                                                                                            Mode: Private
-    leaf02            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             20h:50m:35s
-                                                                                            Mode: Private
-    leaf02            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             20h:50m:35s
-                                                                                            Mode: Private
-    leaf03            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             20h:49m:45s
-                                                                                            Mode: Private
-    leaf03            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             20h:49m:45s
-                                                                                            Mode: Private
-    leaf04            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             20h:46m:25s
-                                                                                            Mode: Private
-    leaf04            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             20h:46m:25s
-                                                                                            Mode: Private
+    leaf01            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             21h:37m:14s
+                                                                                            Mode: Private
+    leaf01            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             21h:37m:14s
+                                                                                            Mode: Private
+    leaf02            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             20h:50m:35s
+                                                                                            Mode: Private
+    leaf02            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             20h:50m:35s
+                                                                                            Mode: Private
+    leaf03            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             20h:49m:45s
+                                                                                            Mode: Private
+    leaf03            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             20h:49m:45s
+                                                                                            Mode: Private
+    leaf04            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             20h:46m:25s
+                                                                                            Mode: Private
+    leaf04            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             20h:46m:25s
+                                                                                            Mode: Private
 
 ## Monitor MLAG Configurations
 
@@ -435,15 +435,15 @@ the last five minutes.
 
     cumulus@switch:~$ netq show clag around 5m
     Matching clag records:
-    Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
-                                                                             s
+    Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
+                                                                             s
     ----------------- ----------------- ------------------ ---------- ------ ----- ----- -------------------------
-    noc-pr(P)         noc-se            00:01:01:10:00:01  up         up     25    25    30m:40.399s
-    noc-se            noc-pr(P)         00:01:01:10:00:01  up         up     25    25    30m:37.267s
-    torc-11(P)        torc-12           44:38:39:ff:ff:01  up         up     8     8     30m:27.250s
-    torc-12           torc-11(P)        44:38:39:ff:ff:01  up         up     8     8     30m:23.552s
-    torc-21(P)        torc-22           44:38:39:ff:ff:02  up         up     8     8     30m:20.856s
-    torc-22           torc-21(P)        44:38:39:ff:ff:02  up         up     8     8     30m:18.583s
+    noc-pr(P)         noc-se            00:01:01:10:00:01  up         up     25    25    30m:40.399s
+    noc-se            noc-pr(P)         00:01:01:10:00:01  up         up     25    25    30m:37.267s
+    torc-11(P)        torc-12           44:38:39:ff:ff:01  up         up     8     8     30m:27.250s
+    torc-12           torc-11(P)        44:38:39:ff:ff:01  up         up     8     8     30m:23.552s
+    torc-21(P)        torc-22           44:38:39:ff:ff:02  up         up     8     8     30m:20.856s
+    torc-22           torc-21(P)        44:38:39:ff:ff:02  up         up     8     8     30m:18.583s
 
 ### View MLAG Configuration and Status for Given Devices
 
@@ -461,7 +461,7 @@ When you're directly on the switch, you can run `clagctl` to get the
 state:
 
     cumulus@mlx-2700-03:/var/log# sudo clagctl
-     
+     
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
@@ -469,7 +469,7 @@ state:
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
-     
+     
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
@@ -498,44 +498,44 @@ This example shows the time synchronization status for all devices in
 the network.
 
     cumulus@switch:~$ netq show ntp
-     
+     
     Matching ntp records:
-    Hostname          NTP Sync Current Server    Stratum NTP App
+    Hostname          NTP Sync Current Server    Stratum NTP App
     ----------------- -------- ----------------- ------- ---------------------
-    edge01            yes      oob-mgmt-server   3       ntpq
-    exit01            yes      christensenplac   2       ntpq
-    exit02            yes      owners.kjsl.com   2       ntpq
-    internet          no       -                 16      ntpq
-    leaf01            yes      christensenplac   2       ntpq
-    leaf02            yes      owners.kjsl.com   2       ntpq
-    leaf03            yes      107.181.191.189   2       ntpq
-    leaf04            yes      grom.polpo.org    2       ntpq
-    oob-mgmt-server   yes      linode227395.st   2       ntpq
-    server01          yes      192.168.0.254     3       ntpq
-    server02          yes      192.168.0.254     3       ntpq
-    server03          yes      192.168.0.254     3       ntpq
-    server04          yes      192.168.0.254     3       ntpq
-    spine01           yes      107.181.191.189   2       ntpq
-    spine02           yes      t2.time.bf1.yah   2       ntpq
+    edge01            yes      oob-mgmt-server   3       ntpq
+    exit01            yes      christensenplac   2       ntpq
+    exit02            yes      owners.kjsl.com   2       ntpq
+    internet          no       -                 16      ntpq
+    leaf01            yes      christensenplac   2       ntpq
+    leaf02            yes      owners.kjsl.com   2       ntpq
+    leaf03            yes      107.181.191.189   2       ntpq
+    leaf04            yes      grom.polpo.org    2       ntpq
+    oob-mgmt-server   yes      linode227395.st   2       ntpq
+    server01          yes      192.168.0.254     3       ntpq
+    server02          yes      192.168.0.254     3       ntpq
+    server03          yes      192.168.0.254     3       ntpq
+    server04          yes      192.168.0.254     3       ntpq
+    spine01           yes      107.181.191.189   2       ntpq
+    spine02           yes      t2.time.bf1.yah   2       ntpq
 
 This example shows all devices in the network that are out of time
 synchronization, and consequently might need to be investigated.
 
     cumulus@switch:~$ netq show ntp out-of-sync
-     
+     
     Matching ntp records:
-    Hostname          NTP Sync Current Server    Stratum NTP App
+    Hostname          NTP Sync Current Server    Stratum NTP App
     ----------------- -------- ----------------- ------- ---------------------
-    internet          no       -                 16      ntpq
+    internet          no       -                 16      ntpq
 
 This example shows the time synchronization status for *leaf01*.
 
     cumulus@switch:~$ netq leaf01 show ntp
-     
+     
     Matching ntp records:
-    Hostname          NTP Sync Current Server    Stratum NTP App
+    Hostname          NTP Sync Current Server    Stratum NTP App
     ----------------- -------- ----------------- ------- ---------------------
-    leaf01            yes      kilimanjaro       2       ntpq
+    leaf01            yes      kilimanjaro       2       ntpq
 
 ## Monitor Spanning Tree Protocol Configuration
 
@@ -549,7 +549,7 @@ the topology information for a prior point in time to see if there have
 been changes from that point until now. The syntax for the show command
 is:
 
-    netq <hostname> show stp topology [json]   
+    netq <hostname> show stp topology [json]   
     netq <hostname> show stp topology around <text-time> [json]
 
 This example shows the STP topology as
@@ -557,39 +557,39 @@ viewed from the *spine1* switch.
 
     cumulus@switch:~$ netq spine1 show stp topology
     Root(spine1) -- spine1:sw_clag200 -- leaf2:EdgeIntf(sng_hst2) -- hsleaf21
-                                      -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
-                                      -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
-                                      -- leaf2:ClagIsl(peer-bond1) -- leaf1
-                                      -- leaf1:EdgeIntf(sng_hst2) -- hsleaf11
-                                      -- leaf1:EdgeIntf(dual_host2) -- hdleaf2
-                                      -- leaf1:EdgeIntf(dual_host1) -- hdleaf1
-                                      -- leaf1:ClagIsl(peer-bond1) -- leaf2
-                 -- spine1:ClagIsl(peer-bond1) -- spine2
-                 -- spine1:sw_clag300 -- edge1:EdgeIntf(sng_hst2) -- hsedge11
-                                      -- edge1:EdgeIntf(dual_host2) -- hdedge2
-                                      -- edge1:EdgeIntf(dual_host1) -- hdedge1
-                                      -- edge1:ClagIsl(peer-bond1) -- edge2
-                                      -- edge2:EdgeIntf(sng_hst2) -- hsedge21
-                                      -- edge2:EdgeIntf(dual_host2) -- hdedge2
-                                      -- edge2:EdgeIntf(dual_host1) -- hdedge1
-                                      -- edge2:ClagIsl(peer-bond1) -- edge1
+                                      -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
+                                      -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
+                                      -- leaf2:ClagIsl(peer-bond1) -- leaf1
+                                      -- leaf1:EdgeIntf(sng_hst2) -- hsleaf11
+                                      -- leaf1:EdgeIntf(dual_host2) -- hdleaf2
+                                      -- leaf1:EdgeIntf(dual_host1) -- hdleaf1
+                                      -- leaf1:ClagIsl(peer-bond1) -- leaf2
+                 -- spine1:ClagIsl(peer-bond1) -- spine2
+                 -- spine1:sw_clag300 -- edge1:EdgeIntf(sng_hst2) -- hsedge11
+                                      -- edge1:EdgeIntf(dual_host2) -- hdedge2
+                                      -- edge1:EdgeIntf(dual_host1) -- hdedge1
+                                      -- edge1:ClagIsl(peer-bond1) -- edge2
+                                      -- edge2:EdgeIntf(sng_hst2) -- hsedge21
+                                      -- edge2:EdgeIntf(dual_host2) -- hdedge2
+                                      -- edge2:EdgeIntf(dual_host1) -- hdedge1
+                                      -- edge2:ClagIsl(peer-bond1) -- edge1
     Root(spine2) -- spine2:sw_clag200 -- leaf2:EdgeIntf(sng_hst2) -- hsleaf21
-                                      -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
-                                      -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
-                                      -- leaf2:ClagIsl(peer-bond1) -- leaf1
-                                      -- leaf1:EdgeIntf(sng_hst2) -- hsleaf11
-                                      -- leaf1:EdgeIntf(dual_host2) -- hdleaf2
-                                      -- leaf1:EdgeIntf(dual_host1) -- hdleaf1
-                                      -- leaf1:ClagIsl(peer-bond1) -- leaf2
-                 -- spine2:ClagIsl(peer-bond1) -- spine1
-                 -- spine2:sw_clag300 -- edge2:EdgeIntf(sng_hst2) -- hsedge21
-                                      -- edge2:EdgeIntf(dual_host2) -- hdedge2
-                                      -- edge2:EdgeIntf(dual_host1) -- hdedge1
-                                      -- edge2:ClagIsl(peer-bond1) -- edge1
-                                      -- edge1:EdgeIntf(sng_hst2) -- hsedge11
-                                      -- edge1:EdgeIntf(dual_host2) -- hdedge2
-                                      -- edge1:EdgeIntf(dual_host1) -- hdedge1
-                                      -- edge1:ClagIsl(peer-bond1) -- edge2
+                                      -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
+                                      -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
+                                      -- leaf2:ClagIsl(peer-bond1) -- leaf1
+                                      -- leaf1:EdgeIntf(sng_hst2) -- hsleaf11
+                                      -- leaf1:EdgeIntf(dual_host2) -- hdleaf2
+                                      -- leaf1:EdgeIntf(dual_host1) -- hdleaf1
+                                      -- leaf1:ClagIsl(peer-bond1) -- leaf2
+                 -- spine2:ClagIsl(peer-bond1) -- spine1
+                 -- spine2:sw_clag300 -- edge2:EdgeIntf(sng_hst2) -- hsedge21
+                                      -- edge2:EdgeIntf(dual_host2) -- hdedge2
+                                      -- edge2:EdgeIntf(dual_host1) -- hdedge1
+                                      -- edge2:ClagIsl(peer-bond1) -- edge1
+                                      -- edge1:EdgeIntf(sng_hst2) -- hsedge11
+                                      -- edge1:EdgeIntf(dual_host2) -- hdedge2
+                                      -- edge1:EdgeIntf(dual_host1) -- hdedge1
+                                      -- edge1:ClagIsl(peer-bond1) -- edge2
 
 ## Validate Paths between Devices
 
@@ -677,7 +677,7 @@ hostname to achieve the same results.
                    uplink-2 -- downlink-5 spine-2 downlink-1 -- uplink-2 vni: 34 torc-11 hostbond4 -- swp1 hostd-11  
      tor-1 vni: 34 uplink-1 -- downlink-5 spine-1 downlink-2 -- uplink-1 vni: 34 torc-12 hostbond4 -- swp2 hostd-11  
                    uplink-1 -- downlink-5 spine-1 downlink-1 -- uplink-1 vni: 34 torc-11 hostbond4 -- swp1 hostd-11    
-     
+     
     Number of Paths: 4
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0

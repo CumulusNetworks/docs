@@ -238,7 +238,7 @@ To configure multiple bridges, edit `/etc/network/interfaces`:
     iface bridge-A
         bridge-ports swp1 swp2
         bridge-stp on
-     
+     
     auto bridge-B
     iface bridge-B
         bridge-ports swp3 swp4
@@ -304,8 +304,8 @@ your network configuration.
 ## Configuring an SVI (Switch VLAN Interface)</span>
 
 A bridge creates a layer 2 forwarding domain for hosts to communicate. A
-bridge can be assigned an IP address — typically of the same subnet as
-the hosts that are members of the bridge — and participate in routing
+bridge can be assigned an IP address - typically of the same subnet as
+the hosts that are members of the bridge - and participate in routing
 topologies. This enables hosts within a bridge to communicate with other
 hosts outside the bridge through layer 3 routing.
 
@@ -325,7 +325,7 @@ The configuration for the two bridges example looks like the following:
     iface swp5
      address 192.168.1.1/24
      address 2001:db8:1::1/64
-     
+     
     auto bridge-A
     iface bridge-A
      address 192.168.2.1/24

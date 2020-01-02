@@ -52,12 +52,12 @@ Then configure the relevant settings in `/etc/restapi.conf`:
     [ML2]
     #local_bind = 10.40.10.122
     #service_node = 10.40.10.1
-     
+     
     # Add the list of inter switch links that
     # need to have the vlan included on it by default
     # Not needed if doing Hierarchical port binding
     #trunk_interfaces = uplink 
-     
+     
     #For persistency across reboots use "net" command
     #use_net = True
 
@@ -80,7 +80,7 @@ repository](https://github.com/CumulusNetworks/cumulus-ml2/tree/master/images).
 
   - To install the Debian image, run
     
-        root@neutron:~# dpkg –i cumulus-ml2-driver_1.0.0-cl3eau1_all.deb
+        root@neutron:~# dpkg -i cumulus-ml2-driver_1.0.0-cl3eau1_all.deb
 
   - To install the RPM image, run:
     

@@ -139,7 +139,7 @@ To get the IGMP/MLD snooping bridge state, run `brctl showstp <bridge>`:
      mc response interval     10.00                 mc init query interval    31.25
      mc querier                0                    mc query ifaddr            0
      flags
-     
+     
     swp1 (1)
      port id                8001                    state                forwarding
      designated root        8000.7072cf8c272c       path cost                  2
@@ -148,7 +148,7 @@ To get the IGMP/MLD snooping bridge state, run `brctl showstp <bridge>`:
      designated cost           0                    hold timer                 0.00
      mc router                 1                    mc fast leave              0
      flags
-     
+     
     swp2 (2)
      port id                8002                    state                forwarding
      designated root        8000.7072cf8c272c       path cost                  2
@@ -157,7 +157,7 @@ To get the IGMP/MLD snooping bridge state, run `brctl showstp <bridge>`:
      designated cost           0                    hold timer                 0.00
      mc router                 1                    mc fast leave              0
      flags
-     
+     
     swp3 (3)
      port id                8003                    state                forwarding
      designated root        8000.7072cf8c272c       path cost                  2

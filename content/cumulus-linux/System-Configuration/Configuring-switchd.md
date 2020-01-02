@@ -20,57 +20,57 @@ The `switchd` configuration is stored in `/etc/cumulus/switchd.conf`.
 cumulus@switch:~$ sudo tree /cumulus/switchd/
 /cumulus/switchd/
 ├── clear
-│   └── stats
-│       ├── vlan
-│       └── vxlan
+│   └── stats
+│       ├── vlan
+│       └── vxlan
 ├── config
-│   ├── acl
-│   │   ├── flow_based_mirroring
-│   │   ├── non_atomic_update_mode
-│   │   ├── optimize_hw
-│   │   └── vxlan_tnl_arp_punt_disable
-│   ├── arp
-│   │   ├── drop_during_failed_state
-│   │   └── next_hops
-│   ├── bridge
-│   │   ├── broadcast_frame_to_cpu
-│   │   └── optimized_mcast_flood
-│   ├── buf_util
-│   │   ├── measure_interval
-│   │   └── poll_interval
-│   ├── coalesce
-│   │   ├── offset
-│   │   ├── reducer
-│   │   └── timeout
-│   ├── disable_internal_hw_err_restart
-│   ├── disable_internal_parity_restart
-│   ├── hal
-│   │   └── bcm
-│   │       ├── l3
-│   │       │   └── per_vlan_router_mac_lookup_for_vrrp
-│   │       ├── linkscan_interval
-│   │       ├── logging
-│   │       │   └── l3mc
-│   │       ├── per_vlan_router_mac_lookup
-│   │       └── vxlan_support
-│   ├── ignore_non_swps
-│   ├── interface
-│   │   ├── swp1
-│   │   │   ├── ethtool_mode
-│   │   │   ├── interface_mode
-│   │   │   ├── port_security
-│   │   │   │   ├── enable
-│   │   │   │   ├── mac_limit
-│   │   │   │   ├── static_mac
-│   │   │   │   ├── sticky_aging
-│   │   │   │   ├── sticky_mac
-│   │   │   │   ├── sticky_timeout
-│   │   │   │   ├── violation_mode
-│   │   │   │   └── violation_timeout
-│   │   │   └── storm_control
-│   │   │       ├── broadcast
-│   │   │       ├── multicast
-│   │   │       └── unknown_unicast
+│   ├── acl
+│   │   ├── flow_based_mirroring
+│   │   ├── non_atomic_update_mode
+│   │   ├── optimize_hw
+│   │   └── vxlan_tnl_arp_punt_disable
+│   ├── arp
+│   │   ├── drop_during_failed_state
+│   │   └── next_hops
+│   ├── bridge
+│   │   ├── broadcast_frame_to_cpu
+│   │   └── optimized_mcast_flood
+│   ├── buf_util
+│   │   ├── measure_interval
+│   │   └── poll_interval
+│   ├── coalesce
+│   │   ├── offset
+│   │   ├── reducer
+│   │   └── timeout
+│   ├── disable_internal_hw_err_restart
+│   ├── disable_internal_parity_restart
+│   ├── hal
+│   │   └── bcm
+│   │       ├── l3
+│   │       │   └── per_vlan_router_mac_lookup_for_vrrp
+│   │       ├── linkscan_interval
+│   │       ├── logging
+│   │       │   └── l3mc
+│   │       ├── per_vlan_router_mac_lookup
+│   │       └── vxlan_support
+│   ├── ignore_non_swps
+│   ├── interface
+│   │   ├── swp1
+│   │   │   ├── ethtool_mode
+│   │   │   ├── interface_mode
+│   │   │   ├── port_security
+│   │   │   │   ├── enable
+│   │   │   │   ├── mac_limit
+│   │   │   │   ├── static_mac
+│   │   │   │   ├── sticky_aging
+│   │   │   │   ├── sticky_mac
+│   │   │   │   ├── sticky_timeout
+│   │   │   │   ├── violation_mode
+│   │   │   │   └── violation_timeout
+│   │   │   └── storm_control
+│   │   │       ├── broadcast
+│   │   │       ├── multicast
+│   │   │       └── unknown_unicast
 ...
 ```
 

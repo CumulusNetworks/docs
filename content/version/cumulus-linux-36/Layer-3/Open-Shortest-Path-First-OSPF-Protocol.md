@@ -30,11 +30,11 @@ graph building process on the node and triggers SPF computation. LSAs
 originated by a node are distributed to all the other nodes in the
 network through a mechanism called *flooding*. Flooding is done
 hop-by-hop. OSPF ensures reliability by using link state acknowledgement
-packets. The set of LSAs in a router’s memory is termed 
+packets. The set of LSAs in a router's memory is termed 
 *link-state database* (LSDB), a representation of the network graph. Thus, 
 OSPF ensures a consistent view of LSDB on each node in the network in a
 distributed fashion (eventual consistency model); this is key to the
-protocol’s correctness.
+protocol's correctness.
 
 ## Scalability and Areas
 
@@ -122,7 +122,7 @@ There are two ways to achieve (2) and (3) in FRRouting OSPF:
     The subnets can be as coarse as possible to cover the most number of
     interfaces on the router that should run OSPF.
     
-    There may be interfaces where it’s undesirable to bring up OSPF
+    There may be interfaces where it's undesirable to bring up OSPF
     adjacency. For example, in a data center topology, the host-facing
     interfaces need not run OSPF; however the corresponding IP addresses
     should still be advertised to neighbors. This can be achieved using
@@ -183,7 +183,7 @@ To see the list of options, type `net add interface swp1 ospf`, then
 press **Tab**.
 
     cumulus@switch:~$ net add interface swp1 ospf network point-to-point
-    cumulus@switch:~$ net add interface swp1 ospf hello-interval 5
+    cumulus@switch:~$ net add interface swp1 ospf hello-interval 5
 
 The OSPF configuration is saved in `/etc/frr/ospfd.conf`.
 
@@ -350,7 +350,7 @@ To configure multi-instance OSPF, do the following:
 
 3.  Configure each instance:
     
-        cumulus@switch:~$ net add interface swp1 ospf instance-id 11 
+        cumulus@switch:~$ net add interface swp1 ospf instance-id 11 
         cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0 
         cumulus@switch:~$ net add ospf router-id 1.1.1.1
         cumulus@switch:~$ net add interface swp2 ospf instance-id 22
@@ -360,66 +360,66 @@ To configure multi-instance OSPF, do the following:
 4.  Confirm the configuration:
     
         cumulus@switch:~$ net show configuration ospf
-         
+         
         hostname zebra
         log file /var/log/frr/zebra.log
         username cumulus nopassword
-         
+         
         service integrated-vtysh-config
-         
+         
         interface eth0
          ipv6 nd suppress-ra
          link-detect
-         
+         
         interface lo
          link-detect
-         
+         
         interface swp1
          ip ospf 11 area 0.0.0.0
          link-detect
-         
+         
         interface swp2
          ip ospf 22 area 0.0.0.0
          link-detect
-         
+         
         interface swp45
          link-detect
-         
+         
         interface swp46
          link-detect
-         
+         
         interface swp47
          link-detect
-         
+         
         interface swp48
          link-detect
-         
+         
         interface swp49
          link-detect
-         
+         
         interface swp50
          link-detect
-         
+         
         interface swp51
          link-detect
-         
+         
         interface swp52
          link-detect
-         
+         
         interface vagrant
          link-detect
-         
+         
         router ospf 11
          ospf router-id 1.1.1.1
-         
+         
         router ospf 22
          ospf router-id 1.1.1.1
-         
+         
         ip forwarding
         ipv6 forwarding
-         
+         
         line vty
-         
+         
         end
 
 5.  Confirm that all the OSPF instances are running:
@@ -443,9 +443,9 @@ ID for the other OSPF instance. For example:
     !
     service integrated-vtysh-config
     !
-     
+     
     ...
-     
+     
     !
     router ospf 11
      ospf router-id 1.1.1.1
@@ -454,7 +454,7 @@ ID for the other OSPF instance. For example:
      ospf router-id 1.1.1.1
      redistribute ospf 11
     !
-     
+     
     ...
 
 {{%notice note%}}
@@ -563,12 +563,12 @@ These commands create the following configuration in the
 `/etc/frr/frr.conf` file:
 
     cumulus@switch:~$ cat /etc/frr/frr.conf
-     
+     
     ...
-     
+     
     router ospf
     auto-cost reference-bandwidth 90000
-     
+     
     ...
 
 ## Unnumbered Interfaces
@@ -590,8 +590,8 @@ Unnumbered is usable for point-to-point interfaces only.
 
 If there is a `network <network number>/<mask> area <area ID>` command
 present in the FRRouting configuration, the `ip ospf area <area ID>`
-command is rejected with the error “Please remove network command
-first.” This prevents you from configuring other areas on some of the
+command is rejected with the error "Please remove network command
+first. " This prevents you from configuring other areas on some of the
 unnumbered interfaces. You can use either the `network area` command or
 the `ospf area` command in the configuration, but not both.
 
@@ -622,11 +622,11 @@ These commands create the following configuration in the
     auto lo
     iface lo inet loopback
       address 192.0.2.1/32
-     
+     
     auto swp1
     iface swp1
       address 192.0.2.1/32
-     
+     
     auto swp2
     iface swp2
       address 192.0.2.1/32

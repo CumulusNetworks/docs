@@ -412,7 +412,7 @@ Appears to work, and the rule appears when you run `cl-acltool -L`:
     -------------------------------
     Listing rules of type iptables: 
     ------------------------------- 
-     
+     
     TABLE filter :
     Chain INPUT (policy ACCEPT 72 packets, 5236 bytes) 
     pkts bytes target prot opt in out source destination 
@@ -487,7 +487,7 @@ Following are example rules for a VLAN-aware bridge:
     [ebtables]
     -A FORWARD -i br0.100 -p IPv4 --ip-protocol icmp -j DROP
     -A FORWARD -o br0.100 -p IPv4 --ip-protocol icmp -j ACCEPT
-     
+     
     [iptables]
     -A FORWARD -i br0.100 -p icmp -j DROP
     -A FORWARD --out-interface br0.100 -p icmp -j ACCEPT
@@ -498,8 +498,8 @@ And here are example rules for a traditional mode bridge:
     [ebtables]
     -A FORWARD -i br0 -p IPv4 --ip-protocol icmp -j DROP
     -A FORWARD -o br0 -p IPv4 --ip-protocol icmp -j ACCEPT
-     
-     
+     
+     
     [iptables]
     -A FORWARD -i br0 -p icmp -j DROP
     -A FORWARD --out-interface br0 -p icmp -j ACCEPT
@@ -541,7 +541,7 @@ Otherwise, new rules get appended to the end of the list of rules in the
 
 {{%notice note%}}
 
-If you need to hand edit a rule, don’t edit the `50_nclu_acl.rules`
+If you need to hand edit a rule, don't edit the `50_nclu_acl.rules`
 file. Instead, edit the `nclu_acl.conf` file.
 
 {{%/notice%}}
@@ -559,7 +559,7 @@ NCLU by running `net show configuration acl`:
 
     cumulus@switch:~$ net show configuration acl 
     acl ipv4 EXAMPLEv4 priority 10 accept tcp source-ip 10.0.14.2/32 source-port any dest-ip 10.0.15.8/32 dest-port any
-     
+     
     interface swp1
       acl ipv4 EXAMPLE1 inbound
 
@@ -597,7 +597,7 @@ hardware via `switchd`.
 
 Use `iptables`/`ip6tables`/`ebtables` and `cl-acltool` to manage rules
 in the default files, `00control_plane.rules` and
-`99control_plane_catch_all.rules`; they’re not aware of rules created
+`99control_plane_catch_all.rules`; they're not aware of rules created
 using NCLU.
 
 {{%/notice%}}
@@ -609,7 +609,7 @@ run:
     ------------------------------- 
     Listing rules of type iptables: 
     ------------------------------- 
-     
+     
     TABLE filter : 
     Chain INPUT (policy ACCEPT 90 packets, 14456 bytes) 
     pkts bytes target prot opt in out source destination 
@@ -674,7 +674,7 @@ Here is an example ACL policy file:
     [iptables] 
     -A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
     -A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
-     
+     
     [ip6tables] 
     -A INPUT --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
     -A FORWARD --in-interface swp1 -p tcp --dport 80 -j ACCEPT 
@@ -698,13 +698,13 @@ may be kernel restrictions in supporting more complex wildcards likes
 
     INGRESS = swp+ 
     INPUT_PORT_CHAIN = INPUT,FORWARD 
-     
+     
     [iptables] 
     -A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT 
       
     [ip6tables] 
     -A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT 
-     
+     
     [ebtables] 
     -A INPUT -p IPv4 -j ACCEPT
 
@@ -716,7 +716,7 @@ file names.
 Use multiple files to stack rules. The example below shows two rules
 files separating rules for management and datapath traffic:
 
-    cumulus@switch:~$ ls /etc/cumulus/acl/policy.d/ 
+    cumulus@switch:~$ ls /etc/cumulus/acl/policy.d/ 
     00sample_mgmt.rules 01sample_datapath.rules 
     cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/00sample_mgmt.rules 
       
@@ -728,11 +728,11 @@ files separating rules for management and datapath traffic:
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.14.2 -d 10.0.15.8 -p tcp -j ACCEPT 
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 10.0.11.2 -d 10.0.12.8 -p tcp -j ACCEPT 
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -d 10.0.16.8 -p udp -j DROP 
-     
+     
     cumulus@switch:~$ cat /etc/cumulus/acl/policy.d/01sample_datapath.rules 
     INGRESS_INTF = swp+ 
     INGRESS_CHAIN = INPUT, FORWARD 
-     
+     
     [iptables] 
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.5 -p icmp -j ACCEPT 
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -s 192.0.2.6 -d 192.0.2.4 -j DROP 
@@ -763,7 +763,7 @@ would add `include /etc/cumulus/acl/policy.d/01_new.rules` to
 `policy.conf`, as in this example:
 
     cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.conf 
-     
+     
     # 
     # This file is a master file for acl policy file inclusion 
     # 
@@ -776,7 +776,7 @@ would add `include /etc/cumulus/acl/policy.d/01_new.rules` to
     # 
     # see manpage cl-acltool(5) and cl-acltool(8) for how to write policy files 
     # 
-     
+     
     include /etc/cumulus/acl/policy.d/01_new.datapathacl
 
 ## Hardware Limitations on Number of Rules
@@ -784,7 +784,7 @@ would add `include /etc/cumulus/acl/policy.d/01_new.rules` to
 The maximum number of rules that can be handled in hardware is a
 function of the following factors:
 
-- The platform type (switch silicon, like Tomahawk or Spectrum — see
+- The platform type (switch silicon, like Tomahawk or Spectrum - see
     the [HCL](http://cumulusnetworks.com/support/hcl) to determine which
     platform type applies to a particular switch)
 - The mix of IPv4 and/or IPv6 rules; Cumulus Linux doesn't support the
@@ -954,7 +954,7 @@ for `ip6tables` and `ebtables`.
 <li><p>TRICOLORPOLICE</p></li>
 <li><p>SETCLASS</p></li>
 </ul></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 </tbody>
 </table>
@@ -1015,7 +1015,7 @@ for `ip6tables` and `ebtables`.
 <li><p>tricolorpolice</p></li>
 <li><p>setclass</p></li>
 </ul></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 </tbody>
 </table>
@@ -1113,16 +1113,16 @@ transits the switch. DSCP is expressed in
 in the examples below.
 
     [iptables]
-     
+     
     #Set SSH as high priority traffic.
     -t mangle -A FORWARD -p tcp --dport 22  -j DSCP --set-dscp 46 
-     
+     
     #Set everything coming in SWP1 as AF13
     -t mangle -A FORWARD --in-interface swp1 -j DSCP --set-dscp 14
-     
+     
     #Set Packets destined for 10.0.100.27 as best effort
     -t mangle -A FORWARD -d 10.0.100.27/32 -j DSCP --set-dscp 0
-     
+     
     #Example using a range of ports for TCP traffic
     -t mangle -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -j DSCP --set-dscp 34
 
@@ -1133,15 +1133,15 @@ IP, TCP and interface matches to identify traffic and count the number
 of packets.
 
     [iptables]
-     
+     
     #Match and count the packets that match SSH traffic with DSCP EF
     -A FORWARD -p tcp --dport 22 -m dscp --dscp 46 -j ACCEPT
-     
+     
     #Match and count the packets coming in SWP1 as AF13
     -A FORWARD --in-interface swp1 -m dscp --dscp 14 -j ACCEPT
     #Match and count the packets with a destination 10.0.0.17 marked best effort
     -A FORWARD -d 10.0.100.27/32 -m dscp --dscp 0 -j ACCEPT
-     
+     
     #Match and count the packets in a port range with DSCP AF41
     -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -m dscp --dscp 34 -j ACCEPT
 
@@ -1155,15 +1155,15 @@ traffic is sent to validate the counters, they are matched on switch1
 use `cl-acltool`.
 
     # Send 100 TCP packets on host1 with a DSCP value of EF with a destination of host2 TCP port 22:
-     
+     
     cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t tcp "dp=22,dscp=46"
      IP:  ver=4, len=40, tos=184, id=0, frag=0, ttl=255, proto=6, sum=0, SA=10.0.0.17, DA=10.0.100.27,
           payload=[see next layer]
      TCP: sp=0, dp=22, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
-     
+     
     # Verify the 100 packets are matched on switch1
-     
+     
     cumulus@switch1$ sudo cl-acltool -L ip
     -------------------------------
     Listing rules of type iptables:
@@ -1179,13 +1179,13 @@ use `cl-acltool`.
         0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002
 
     # Send 100 packets with a small payload on host1 with a DSCP value of AF13 with a destination of host2:
-     
+     
     cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t ip
      IP:  ver=4, len=20, tos=0, id=0, frag=0, ttl=255, proto=0, sum=0, SA=10.0.0.17, DA=10.0.100.27,
           payload=
-     
+     
     # Verify the 100 packets are matched on switch1
-     
+     
     cumulus@switch1$ sudo cl-acltool -L ip
     -------------------------------
     Listing rules of type iptables:
@@ -1201,13 +1201,13 @@ use `cl-acltool`.
         0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002
 
     # Send 100 packets on host1 with a destination of host2:
-     
+     
     cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t ip
      IP:  ver=4, len=20, tos=56, id=0, frag=0, ttl=255, proto=0, sum=0, SA=10.0.0.17, DA=10.0.100.27,
           payload=
-     
+     
     # Verify the 100 packets are matched on switch1
-     
+     
     cumulus@switch1$ sudo cl-acltool -L ip
     -------------------------------
     Listing rules of type iptables:
@@ -1233,7 +1233,7 @@ originate from ingress ports swp20 and swp21 will not be allowed. TCP
 sessions that originate from any other port are allowed.
 
     INGRESS_INTF = swp20,swp21
-     
+     
     [iptables]
     -A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --syn -j DROP
     [ip6tables]
@@ -1260,74 +1260,74 @@ examples. The configuration for each switch appears in
 ### Switch 1 Configuration
 
     cumulus@switch1:~$ net show configuration files
-     
+     
     ...
-     
+     
     /etc/network/interfaces
     =======================
-     
-     
-    auto swp1 
-    iface swp1 
-     
-    auto swp2 
-    iface swp2 
-     
-    auto swp3 
-    iface swp3 
-     
-    auto swp4 
-    iface swp4 
-     
-    auto bond2 
-    iface bond2 
-        bond-slaves swp3 swp4 
-     
-    auto br-untagged 
-    iface br-untagged 
+     
+     
+    auto swp1 
+    iface swp1 
+     
+    auto swp2 
+    iface swp2 
+     
+    auto swp3 
+    iface swp3 
+     
+    auto swp4 
+    iface swp4 
+     
+    auto bond2 
+    iface bond2 
+        bond-slaves swp3 swp4 
+     
+    auto br-untagged 
+    iface br-untagged 
         address 10.0.0.1/24
-        bridge_ports swp1 bond2 
+        bridge_ports swp1 bond2 
         bridge_stp on
-     
-    auto br-tag100 
-    iface br-tag100 
+     
+    auto br-tag100 
+    iface br-tag100 
         address 10.0.100.1/24
-        bridge_ports swp2.100 bond2.100 
+        bridge_ports swp2.100 bond2.100 
         bridge_stp on 
-     
+     
     ...
 
 ### Switch 2 Configuration
 
     cumulus@switch2:~$ net show configuration files
-     
+     
     ...
-     
+     
     /etc/network/interfaces
     =======================
-     
-    auto swp3 
-    iface swp3 
-     
-    auto swp4 
-    iface swp4 
-     
-    auto br-untagged 
-    iface br-untagged 
+     
+    auto swp3 
+    iface swp3 
+     
+    auto swp4 
+    iface swp4 
+     
+    auto br-untagged 
+    iface br-untagged 
         address 10.0.0.2/24
-        bridge_ports bond2 
-        bridge_stp on 
-     
-    auto br-tag100 
-    iface br-tag100 
-        address 10.0.100.2/24 
-        bridge_ports bond2.100 
-        bridge_stp on 
-     
-    auto bond2 
-    iface bond2 
-        bond-slaves swp3 swp4 
-     
+        bridge_ports bond2 
+        bridge_stp on 
+     
+    auto br-tag100 
+    iface br-tag100 
+        address 10.0.100.2/24 
+        bridge_ports bond2.100 
+        bridge_stp on 
+     
+    auto bond2 
+    iface bond2 
+        bond-slaves swp3 swp4 
+     
     ...
 
 ### Egress Rule
@@ -1374,7 +1374,7 @@ diagram above).
 This also becomes 2 ACLs, and is effectively the same as:
 
     [iptables]
-    -A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
+    -A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
     -A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
 
 ### Layer 2-only Rules/ebtables
@@ -1492,7 +1492,7 @@ can be used directly and does work. However, you should consider using
         TABLE filter :
         Chain INPUT (policy ACCEPT 72 packets, 5236 bytes)
          pkts bytes target  prot opt in   out   source    destination
-         
+         
             0     0 DROP    icmp --  any  any   anywhere  anywhere      icmp echo-request
 
   However, running `cl-acltool -i` or `reboot` removes them. To ensure
@@ -1506,7 +1506,7 @@ can be used directly and does work. However, you should consider using
 - When using the OUTPUT chain, rules must be assigned to the source.
     For example, if a rule is assigned to the switch port in the
     direction of traffic but the source is a bridge (VLAN), the traffic
-    won’t be affected by the rule and must be applied to the bridge.
+    won't be affected by the rule and must be applied to the bridge.
 - If all transit traffic needs to have a rule applied, use the FORWARD
     chain, not the OUTPUT chain.
 

@@ -148,7 +148,7 @@ configuration. This example shows that no VXLAN configuration was
 present.
 
     cumulus@switch:~$ netq show vxlan around 7d
-     
+     
     No matching vxlan records found
 
 You can filter the list of VXLANs to view only those associated with a
@@ -233,7 +233,7 @@ single device.
 
     cumulus@switch:~$ netq show evpn
     Matching evpn records:
-    Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        Last Changed
+    Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        Last Changed
     ----------------- ---------- ---------------- --------- ---------------- ---------------- -------------------------
     leaf01            33         27.0.0.22        yes       197:33           197:33           Fri Feb  8 01:48:27 2019
     leaf01            34         27.0.0.22        yes       197:34           197:34           Fri Feb  8 01:48:27 2019
@@ -322,17 +322,17 @@ last time the configuration was changed.
 
     cumulus@switch:~$ netq show lnv
     Matching LNV session records are:
-    Hostname          Role       ReplMode State      #Peers #VNIs  Last Changed
+    Hostname          Role       ReplMode State      #Peers #VNIs  Last Changed
     ----------------- ---------- -------- ---------- ------ ------ -------------------------
-    spine01           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
-    spine02           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
-    spine03           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
-    leaf01            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
-    leaf02            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
-    leaf11            RD         HER      up         0      0      Thu Feb  7 18:31:31 2019
-    leaf12            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
-    leaf21            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
-    leaf22            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    spine01           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+    spine02           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+    spine03           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+    leaf01            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    leaf02            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    leaf11            RD         HER      up         0      0      Thu Feb  7 18:31:31 2019
+    leaf12            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    leaf21            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    leaf22            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
 
 ### View LNV Status in the Past
 
@@ -341,14 +341,14 @@ example shows the status of LNV about 30 minutes ago.
 
     cumulus@switch:~$ netq show lnv around 30m
     Matching LNV session records are:
-    Hostname          Role       ReplMode State      #Peers #VNIs  Last Changed
+    Hostname          Role       ReplMode State      #Peers #VNIs  Last Changed
     ----------------- ---------- -------- ---------- ------ ------ -------------------------
-    spine01           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
-    spine02           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
-    spine03           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
-    leaf01            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
-    leaf02            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
-    leaf11            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
-    leaf12            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
-    leaf21            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
-    leaf22            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    spine01           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+    spine02           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+    spine03           SND        HER      up         3      6      Thu Feb  7 18:31:31 2019
+    leaf01            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    leaf02            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    leaf11            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    leaf12            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    leaf21            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019
+    leaf22            RD         HER      up         4      6      Thu Feb  7 18:31:31 2019

@@ -73,8 +73,8 @@ The following is a real-world example:
     leaf01      swp4             spine02          655536  655435      Established
     leaf01      swp5             spine03          655536  655435      Established
     leaf01      swp6.4           firewall01       655536  655538      Established
-     
-     
+     
+     
     ...
 
 The keywords are not case sensitive, so you can use *SELECT*, *Select*
@@ -105,7 +105,7 @@ command:
     ClagSession          hostname, clag_sysmac
     Description          hostname, objtype, descrid
     Disk                 hostname, name, size, d_type, vendor, transport, rev, model
-     
+     
     ...
 
 You can get a list of all the fields in a table by running this command:
@@ -130,7 +130,7 @@ An example query on a single table is:
     exit01      swp4             spine02          655536  655435      Established
     exit01      swp5             spine03          655536  655435      Established
     exit01      swp6.4           firewall01       655536  655538      Established
-     
+     
     ...
 
 NetQL displays the values of the specified fields in tabular output.

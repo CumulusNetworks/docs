@@ -336,7 +336,7 @@ This creates the following `/etc/network/interfaces` snippet:
     iface bridge
         bridge-vids 100
         bridge-vlan-aware yes
-     
+     
     auto vlan100
     iface vlan100
         address 192.168.10.1/24
@@ -376,11 +376,11 @@ To see the status of the loopback interface (lo), use the `net show
 interface lo` command:
 
     cumulus@switch:~$ net show interface lo
-     
+     
         Name    MAC                Speed      MTU  Mode
     --  ------  -----------------  -------  -----  --------
     UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
-     
+     
     IP Details
     -------------------------  --------------------
     IP:                        127.0.0.1/8, ::1/128

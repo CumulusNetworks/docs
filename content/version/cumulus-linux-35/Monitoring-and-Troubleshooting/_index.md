@@ -16,7 +16,7 @@ This chapter introduces monitoring and troubleshooting Cumulus Linux.
 ## Using the Serial Console
 
 The serial console can be a useful tool for debugging issues, especially
-when you find yourself rebooting the switch often or if you don’t have a
+when you find yourself rebooting the switch often or if you don't have a
 reliable network connection.
 
 The default serial console baud rate is 115200, which is the baud rate
@@ -115,17 +115,17 @@ gathers information about the switch from a number of files in the
 system:
 
     cumulus@switch:~$ net show system
-     
+     
     Penguin Arctica 4806XP
     Cumulus Version 3.4.0
     Build: Cumulus Linux 3.4.0
-     
+     
     Chipset: Broadcom Trident2 BCM56854
-     
+     
     Port Config: 48 x 10G-SFP+ & 6 x 40G-QSFP+
-     
+     
     CPU: (x86_64) Intel Atom C2558 2.40GHz
-     
+     
     Uptime: 4 days, 20:53:49
 
 ## Diagnostics Using cl-support
@@ -141,7 +141,7 @@ Cumulus Networks as this file helps in the investigation of issues.
 
     cumulus@switch:~$ sudo cl-support -h
     Usage: cl-support [-h] [-s] [-t] [-v] [reason]...
-     
+     
     Args:
     [reason]: Optional reason to give for invoking cl-support.
              Saved into tarball's cmdline.args file.
@@ -231,7 +231,7 @@ Files](/version/cumulus-linux-35/Monitoring-and-Troubleshooting/Understanding-th
 
 ### Enabling Remote syslog
 
-If you need to send other log files — such as `switchd` logs — to a
+If you need to send other log files - such as `switchd` logs - to a
 `syslog` server, do the following:
 
 1.  Create a file in `/etc/rsyslog.d/`. Make sure it starts with a
@@ -241,7 +241,7 @@ If you need to send other log files — such as `switchd` logs — to a
     content similar to the following:
     
         ## Logging switchd messages to remote syslog server
-         
+         
         @192.168.1.2:514
     
     This configuration sends log messages to a remote `syslog` server
@@ -370,7 +370,7 @@ You can use the following commands to troubleshoot `syslog` issues.
 To verify that the `rsyslog` service is running, use the `sudo systemctl
 status rsyslog.service` command:
 
-     cumulus@leaf01:mgmt-vrf:~$ sudo systemctl status rsyslog.service
+     cumulus@leaf01:mgmt-vrf:~$ sudo systemctl status rsyslog.service
      rsyslog.service - System Logging Service
        Loaded: loaded (/lib/systemd/system/rsyslog.service; enabled)
        Active: active (running) since Sat 2017-12-09 00:48:58 UTC; 7min ago
@@ -379,7 +379,7 @@ status rsyslog.service` command:
      Main PID: 11751 (rsyslogd)
        CGroup: /system.slice/rsyslog.service
                └─11751 /usr/sbin/rsyslogd -n
-     
+     
     Dec 09 00:48:58 leaf01 systemd[1]: Started System Logging Service.
 
 #### Verifying your rsyslog Configuration
@@ -395,7 +395,7 @@ management VRF:
 
     cumulus@leaf01:mgmt-vrf:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
     action(type="omfwd" Target="192.168.0.254" Device="mgmt" Port="514" Protocol="udp"
-     
+     
     cumulus@leaf01:mgmt-vrf:~$ sudo rsyslogd -N1
     rsyslogd: version 8.4.2, config validation run (level 1), master config /etc/rsyslog.conf
     rsyslogd: error during parsing file /etc/rsyslog.d/15-crit.conf, on or before line 3: invalid character '$' in object definition - is there an invalid escape sequence somewhere? [try http://www.rsyslog.com/e/2207 ]

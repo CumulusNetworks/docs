@@ -38,13 +38,13 @@ To access the CLI from a switch or server:
 2.  Enter your password to reach the command prompt. The default password is
     *CumulusLinux\!* For example:
 
-        Enter passphrase for key '/Users/<username>/.ssh/id_rsa': <enter CumulusLinux! here>
+        Enter passphrase for key '/Users/<username>/.ssh/id_rsa': <enter CumulusLinux! here>
         Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
-         * Documentation:  https://help.ubuntu.com
-         * Management:     https://landscape.canonical.com
-         * Support:        https://ubuntu.com/advantage
+         * Documentation:  https://help.ubuntu.com
+         * Management:     https://landscape.canonical.com
+         * Support:        https://ubuntu.com/advantage
         Last login: Tue Sep 15 09:28:12 2019 from 10.0.0.14
-        cumulus@switch:~$ 
+        cumulus@switch:~$ 
 
 3.  Run commands. For example:
 
@@ -150,7 +150,7 @@ As you enter commands, you can get help with command syntax by entering `help` a
 
     cumulus@switch:~$ netq check bgp help
     Commands:
-       netq check bgp [vrf <vrf>] [around <text-time>] [json]
+       netq check bgp [vrf <vrf>] [around <text-time>] [json]
     cumulus@switch:~$
 
 To see an exhaustive list of commands, run:
@@ -207,7 +207,7 @@ the *failedNodes* section, respectively.
 ```
 cumulus@switch:~$ netq check bgp
 Total Nodes: 8, Failed Nodes: 0, Total Sessions: 30, Failed Sessions: 0
- 
+ 
 cumulus@switch:~$ netq check bgp json
 {
     "failedNodes":[
@@ -441,7 +441,7 @@ The `trace` commands enable the network administrator to view the available path
 The trace command syntax is:
 
     netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
-    netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug] 
+    netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug] 
 
 **Example** Running a trace based on the destination IP address, in *pretty* output with a small number of resulting paths:
 
@@ -504,13 +504,13 @@ The trace command syntax is:
     Number of Paths with Errors: 0
     Number of Paths with Warnings: 0
     Path MTU: 9152
-     
-     Server03 bond1.1001 -- swp7 <vlan1001> Leaf02 vni: 34 swp5 -- swp4 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-                                                           swp4 -- swp4 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-                                                           swp3 -- swp4 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-              bond1.1001 -- swp7 <vlan1001> Leaf01 vni: 34 swp5 -- swp3 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-                                                           swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-                                                           swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+     
+     Server03 bond1.1001 -- swp7 <vlan1001> Leaf02 vni: 34 swp5 -- swp4 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+                                                           swp4 -- swp4 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+                                                           swp3 -- swp4 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+              bond1.1001 -- swp7 <vlan1001> Leaf01 vni: 34 swp5 -- swp3 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+                                                           swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+                                                           swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
 
 ## Command Changes
 

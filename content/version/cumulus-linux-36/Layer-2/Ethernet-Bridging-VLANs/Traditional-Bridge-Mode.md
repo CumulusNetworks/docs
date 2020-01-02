@@ -73,23 +73,23 @@ These commands create the following configuration snippet in the
 `/etc/network/interfaces` file:
 
     cumulus@switch:~$ cat /etc/network/interfaces
-     
+     
     ...
-     
+     
     auto swp1
     iface swp1
         mstpctl-portautoedge no
-     
+     
     auto swp2
     iface swp2
         mstpctl-portrestrrole yes
-     
+     
     auto swp3
     iface swp3
-     
+     
     auto swp4
     iface swp4
-     
+     
     ...
     auto my_bridge_A 
     iface my_bridge_A 
@@ -182,7 +182,7 @@ This example configuration looks like this in the
     iface bridge-A
         bridge-ports swp1 swp2
         bridge-stp on
-     
+     
     auto bridge-B
     iface bridge-B
         bridge-ports swp3 swp4
@@ -240,8 +240,8 @@ To create the above example, add the following configuration to the
     iface br-VLAN100
      bridge-ports swp1.100 swp2.100
      bridge-stp on
-     
-     
+     
+     
     auto br-VLAN200
     iface br-VLAN200
      bridge-ports swp1.200 swp2.200

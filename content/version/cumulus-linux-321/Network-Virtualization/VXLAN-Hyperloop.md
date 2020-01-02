@@ -101,9 +101,9 @@ vni-10, you could configure the following on exit01:
     auto lo
     iface lo inet loopback
      address 10.0.0.11/32
-     
+     
     ***some output removed for brevity (e.g. peerlink and host facing bonds)***
-     
+     
     auto bridge
     iface bridge
       bridge-vlan-aware yes
@@ -111,14 +111,14 @@ vni-10, you could configure the following on exit01:
       bridge-vids 100 200
       bridge-pvid 1
       mstpctl-treeprio 8192
-     
+     
     auto outside
     iface outside
       bond-slaves swp45 swp47
       alias hyperloop outside 
       mstpctl-bpduguard yes
       mstpctl-portbpdufilter yes
-     
+     
     auto inside
     iface inside
       bond-slaves swp46 swp48
@@ -132,20 +132,20 @@ vni-10, you could configure the following on exit01:
      address 172.16.100.2/24
      alias VXLAN GW 100 Linux Bridge
      address-virtual 44:39:39:FF:01:90 172.16.100.1/24
-     
+     
     auto VLAN200GW
     iface VLAN200GW
      bridge_ports outside.200
      address 172.16.200.2/24
      alias VXLAN GW 200 Linux Bridge
-     address-virtual 44:39:39:FF:02:90 172.16.200.1/24 
-     
+     address-virtual 44:39:39:FF:02:90 172.16.200.1/24 
+     
     auto vni-10
     iface vni-10
         vxlan-id 10
         vxlan-local-tunnelip 10.0.0.11
         bridge-access 100
-     
+     
     auto vni-20
     iface vni-20
         vxlan-id 20
@@ -206,7 +206,7 @@ limitation on this specific ASIC type.
   - **Are you running the newest code?** This guide and testing was done
     on Cumulus Linux 3.2.1. [Please upgrade the code on the Cumulus
     Linux
-    system. ](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
+    system. ](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
     
         cumulus@leaf01:mgmt-vrf:~$ cat /etc/lsb-release
         DISTRIB_ID="Cumulus Linux"

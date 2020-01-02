@@ -20,7 +20,7 @@ on your switch.
 
 Cumulus Quagga does not start by default in Cumulus Linux. Before you
 run Cumulus Quagga, make sure all you have enabled relevant daemons that
-you intend to use — `zebra`, `bgpd`, `ospfd`, `ospf6d` or `pimd` — in
+you intend to use - `zebra`, `bgpd`, `ospfd`, `ospf6d` or `pimd` - in
 the `/etc/quagga/daemons` file.
 
 {{%notice warning%}}
@@ -30,7 +30,7 @@ Cumulus Networks has not tested RIP, RIPv6, IS-IS and Babel.
 {{%/notice%}}
 
 The `zebra` daemon must always be enabled. The others you can enable
-according to how you plan to route your network — using
+according to how you plan to route your network - using
 [BGP](/version/cumulus-linux-332/Layer-Three/Border-Gateway-Protocol-BGP)
 for example, instead of
 [OSPF](/version/cumulus-linux-332/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol).
@@ -85,7 +85,7 @@ daemons in a single integrated configuration file, `Quagga.conf`.
 You can disable this mode by running the following command in the
 [`vtysh` Quagga CLI](#using-the-quagga-vtysh-modal-cli):
 
-    cumulus@switch:~$ sudo vtysh
+    cumulus@switch:~$ sudo vtysh
     switch# configure terminal
     switch(config)# no service integrated-vtysh-config
 
@@ -164,14 +164,14 @@ and
 
 ## Using the Quagga vtysh Modal CLI
 
-Quagga provides a CLI – `vtysh` – for configuring and displaying the
+Quagga provides a CLI - `vtysh` - for configuring and displaying the
 state of the protocols. It is invoked by running:
 
     cumulus@switch:~$ sudo vtysh
-     
+     
     Hello, this is Quagga (version 0.99.23.1+cl3u2).
     Copyright 1996-2005 Kunihiro Ishiguro, et al.
-     
+     
     switch#
 
 `vtysh` provides a Cisco-like modal CLI, and many of the commands are
@@ -195,7 +195,7 @@ changes to:
     switch(config)# router ospf
     switch(config-router)#
 
-At any level, ”?” displays the list of available top-level commands at
+At any level,  "? " displays the list of available top-level commands at
 that level:
 
     switch(config-if)# ?
@@ -279,7 +279,7 @@ of `vtysh`:
     Codes: K - kernel route, C - connected, S - static, R - RIP,
            O - OSPF, I - IS-IS, B - BGP, A - Babel,
            > - selected route, * - FIB route
-     
+     
     K>* 0.0.0.0/0 via 192.168.0.2, eth0
     C>* 192.0.2.11/24 is directly connected, swp1
     C>* 192.0.2.12/24 is directly connected, swp2
@@ -302,7 +302,7 @@ Notice that the commands also take a partial command name (for example,
 A command or feature can be disabled in Quagga by prepending the command
 with `no`. For example:
 
-    cumulus@switch:~$ sudo vtysh 
+    cumulus@switch:~$ sudo vtysh 
     switch# configure terminal
     switch(config)# router ospf
     switch(config-router)# no area 0.0.0.1 range 10.10.10.0/24
@@ -317,7 +317,7 @@ running-config` command:
 
     switch# show running-config
     Building configuration...
-     
+     
     Current configuration:
     !
     username cumulus nopassword

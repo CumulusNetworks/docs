@@ -147,7 +147,7 @@ The *Switches* tab displays:
 </tr>
 <tr class="even">
 <td><p>Component</p></td>
-<td><p>Switch components monitored–ASIC, Operating System (OS), Cumulus Linux license, NetQ Agent version, and Platform</p></td>
+<td><p>Switch components monitored-ASIC, Operating System (OS), Cumulus Linux license, NetQ Agent version, and Platform</p></td>
 </tr>
 <tr class="odd">
 <td><p>Distribution charts</p></td>

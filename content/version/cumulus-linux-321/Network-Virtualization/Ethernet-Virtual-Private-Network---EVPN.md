@@ -164,7 +164,7 @@ community.
     interface swp50
      ip ospf area 0.0.0.0
      ip ospf network point-to-point
-     
+     
     interface swp51
      ip ospf area 0.0.0.0
      ip ospf network point-to-point
@@ -226,8 +226,8 @@ VNIs can be configured in Quagga either prior to or after enabling EVPN
 to advertise all VNIs (through `advertise-all-vni`, as described above).
 When a local VNI is learned and there is no explicit configuration for
 that VNI, the route distinguisher (RD) and import and export route
-targets (RTs) for this VNI are automatically derived — the RD uses
-“RouterId:VNI” and both RTs use “AS:VNI”.
+targets (RTs) for this VNI are automatically derived - the RD uses
+"RouterId:VNI " and both RTs use "AS:VNI ".
 
 For eBGP EVPN peering, since the peers are in a different AS, using an
 automatic RT of "AS:VNI" does not work for route import. Thus, the
@@ -807,7 +807,7 @@ reveals information relevant only for a VTEP.
     interface while MAC address 00:02:00:00:00:08 is a remote MAC from
     VTEP 80.80.80.2 for VNI 10100 (vtep100).
 
-  - The entries with MAC “00:00:00:00:00:00” are for BUM traffic
+  - The entries with MAC "00:00:00:00:00:00 " are for BUM traffic
     replication.
 
 <!-- end list -->
@@ -887,11 +887,11 @@ using the ` show bgp evpn summary  `command
     RIB entries 15, using 1920 bytes of memory
     Peers 2, using 42 KiB of memory
     Peer groups 1, using 72 bytes of memory
-     
+     
     Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
     s1(swp1)        4 65100      16      22        0    0    0 00:01:29        6
     s2(swp2)        4 65100      16      22        0    0    0 00:01:28        6
-     
+     
     Total number of neighbors 2
 
 {{%notice note%}}
@@ -923,7 +923,7 @@ RD and export RT, but does not yet exist in the kernel:
     * 10200      80.80.80.1      10.0.0.1:10200        65001:10200           65001:10200          
       20100      10.0.0.1        65001:20100           65001:20100           1:20100              
     * 10100      80.80.80.1      10.0.0.1:10100        65001:10100           65001:10100
-     
+     
 
     leaf01# show bgp evpn vni 10100
     VNI: 10100 (known to the kernel)
@@ -999,8 +999,8 @@ You can examine all local and remote MAC addresses for a VNI by running
 cumulus@leaf01:~$ sudo vtysh
 leaf01# show evpn mac vni 10100
 Number of MACs (local and remote) known for this VNI: 2
- 
- 
+ 
+ 
 MAC               Type   Intf/Remote VTEP      VLAN 
 00:02:00:00:00:03 local  bond0                 100  
 00:02:00:00:00:08 remote 80.80.80.2  
@@ -1012,16 +1012,16 @@ You can examine MAC addresses across VNIs using `show evpn mac vni all`:
 cumulus@leaf01:~$ sudo vtysh
 leaf01# show evpn mac vni all
 VNI 10200 #MACs (local and remote) 2
- 
- 
+ 
+ 
 MAC               Type   Intf/Remote VTEP      VLAN 
 00:02:00:00:00:01 local  swp3                  200  
 00:02:00:00:00:0b remote 10.0.0.6             
- 
- 
+ 
+ 
 VNI 10100 #MACs (local and remote) 2
- 
- 
+ 
+ 
 MAC               Type   Intf/Remote VTEP      VLAN 
 00:02:00:00:00:03 local  bond0                 100  
 00:02:00:00:00:08 remote 80.80.80.2    
@@ -1034,7 +1034,7 @@ MAC address. This command only works when run on a VTEP:
     leaf01# show evpn mac vni 10100 mac 00:02:00:00:00:08
     MAC: 00:02:00:00:00:08
      Remote VTEP: 80.80.80.2
-     
+     
     leadf01# show evpn mac vni 10100 vtep 80.80.80.2
     MAC               Type   Intf/Remote VTEP      VLAN 
     00:02:00:00:00:08 remote 80.80.80.2 
@@ -1085,9 +1085,9 @@ display all EVPN routes at the same time:
                         80.80.80.2                             0 65100 65004 i
     *> [3]:[0]:[32]:[80.80.80.2]
                         80.80.80.2                             0 65100 65004 i
-     
+     
     (truncated)
-     
+     
     Displayed 15 prefixes (26 paths)
 
 #### Output Explained</span>
@@ -1170,8 +1170,8 @@ carries the VNI (10100).
     leaf01# show bgp evpn route rd 10.0.0.4:10100
     EVPN type-2 prefix: [2]:[ESI]:[EthTag]:[MAClen]:[MAC]
     EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
-     
-     
+     
+     
     BGP routing table entry for 10.0.0.4:10100:[2]:[0]:[0]:[48]:[00:02:00:00:00:08]
     Paths: (2 available, best #1)
       Advertised to non peer-group peers:
@@ -1190,8 +1190,8 @@ carries the VNI (10100).
           Extended Community: RT:65004:10100 ET:8
           AddPath ID: RX 0, TX 44
           Last update: Thu Jan 12 19:42:58 2017
-     
-     
+     
+     
     BGP routing table entry for 10.0.0.4:10100:[3]:[0]:[32]:[80.80.80.2]
     Paths: (2 available, best #2)
       Advertised to non peer-group peers:
@@ -1210,7 +1210,7 @@ carries the VNI (10100).
           Extended Community: RT:65004:10100 ET:8
           AddPath ID: RX 0, TX 28
           Last update: Thu Jan 12 19:04:35 2017
-     
+     
     Displayed 2 prefixes (4 paths) with this RD
 
 {{%notice note%}}
@@ -1218,7 +1218,7 @@ carries the VNI (10100).
   - Though the local VNI is included in the type-2 route, the receiver
     does not use it. It uses the received RT to match the route to an
     appropriate local VNI and then assumes the remote VTEP uses the same
-    VNI value — that is, global VNIs are in use.
+    VNI value - that is, global VNIs are in use.
 
   - If MAC mobility extended community is exchanged, it gets shown in
     the above output.
@@ -1261,7 +1261,7 @@ routing table can be examined using `show bgp evpn route vni <vni> [type
     *  [3]:[0]:[32]:[10.0.0.2]
                         10.0.0.2                               0 121000 120002 i
     ...
-     
+     
     Displayed 6 prefixes (10 paths)
 
 ### Displaying a Specific MAC or Remote VTEP</span>
@@ -1281,7 +1281,7 @@ You can examine a specific MAC or IP (remote VTEP):
           Extended Community: RT:120003:10100 ET:8
           AddPath ID: RX 0, TX 44
           Last update: Thu Feb  9 08:16:57 2017
-     
+     
       Route [2]:[0]:[0]:[48]:[00:02:00:00:00:05] VNI 10100
       Imported from 10.0.0.3:10100:[2]:[0]:[0]:[48]:[00:02:00:00:00:05]
       121000 120003
@@ -1290,7 +1290,7 @@ You can examine a specific MAC or IP (remote VTEP):
           Extended Community: RT:120003:10100 ET:8
           AddPath ID: RX 0, TX 42
           Last update: Thu Feb  9 08:16:57 2017
-     
+     
     Displayed 2 paths for requested prefix
 
 To display the VNI routing table for all VNIs, run `show bgp evpn route
@@ -1316,10 +1316,10 @@ vni all`:
     *  [3]:[0]:[32]:[10.0.0.2]
                         10.0.0.2                               0 65100 65002 i
     ...
-     
+     
     Displayed 6 prefixes (10 paths)
-     
-     
+     
+     
     VNI: 10100
     BGP table version is 0, local router ID is 10.0.0.1
     Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
@@ -1332,12 +1332,12 @@ vni all`:
     *  [2]:[0]:[0]:[48]:[00:02:00:00:00:07]
                         10.0.0.4                               0 65100 65004 i
     ...
-     
-     
+     
+     
     *> [3]:[0]:[32]:[10.0.0.4]
                         10.0.0.4                               0 65100 65004 i
-     
-     
+     
+     
     Displayed 6 prefixes (10 paths)
 
 ## Troubleshooting EVPN</span>
@@ -1345,14 +1345,14 @@ vni all`:
 The primary way to troubleshoot EVPN is by enabling Quagga debug logs.
 The relevant debug options are:
 
-  - `debug zebra vxlan` — which traces VNI addition and deletion (local
+  - `debug zebra vxlan` - which traces VNI addition and deletion (local
     and remote) as well as MAC and neighbor addition and deletion (local
     and remote).
 
-  - `debug zebra kernel` — which traces actual netlink messages
+  - `debug zebra kernel` - which traces actual netlink messages
     exchanged with the kernel, which includes everything, not just EVPN.
 
-  - `debug bgp updates` — which traces BGP update exchanges, including
+  - `debug bgp updates` - which traces BGP update exchanges, including
     all updates. Output is extended to show EVPN specific information.
 
   - `debug bgp zebra` - which traces interactions between BGP and zebra

@@ -33,14 +33,14 @@ options for:
 The `cl-chassis` commands use a REST API on the back end.
 
     cumulus@chassis:~$ sudo cl-chassis --help
-     
+     
     Usage:
         cl-chassis [<ipv6>|all] license-install path <text>
         cl-chassis [<ipv6>|all] reboot
         cl-chassis [<ipv6>|all] nos-install path <text>
         cl-chassis [<ipv6>|all] daemon restart <text>
         cl-chassis [<ipv6>|all] cl-support
-     
+     
     Options:
         <ipv6> : Link local IPv6 address of an endpoint
         all : All endpoints within a chassis
@@ -50,9 +50,9 @@ The `cl-chassis` commands use a REST API on the back end.
         nos-install : Install a new Cumulus Linux binary image (Destructive!!!! Please backup important files)
         daemon: Cumulus Linux Daemon related operations
         restart : Systemd restart of a service
-     
+     
     The following commands contain keyword(s) 'run'
-     
+     
         net run [<ipv6>|all] cl-support
         net run [<ipv6>|all] daemon restart <text>
         net run [<ipv6>|all] license-install path <text>

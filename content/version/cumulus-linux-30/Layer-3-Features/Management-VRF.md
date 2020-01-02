@@ -11,9 +11,9 @@ version: 3.0.1
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
 ---
-*Management VRF* — a subset of
+*Management VRF* - a subset of
 [VRF](/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF)
-(virtual routing tables and forwarding) — provides a separation between
+(virtual routing tables and forwarding) - provides a separation between
 the out-of-band management network and the in-band data plane network.
 For all VRFs, the *main* routing table is the default table for all of
 the data plane switch ports. With management VRF, a second table,

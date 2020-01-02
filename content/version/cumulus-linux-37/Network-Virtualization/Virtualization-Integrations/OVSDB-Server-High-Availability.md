@@ -90,7 +90,7 @@ configurations are provisioned by the NSX controller.
        bond-lacp-rate 1
        mtu  9202
        alias Local Node/s leaf01 and Ports swp5 swp6 <==> Remote  Node/s leaf02 and Ports swp5 swp6
-     
+     
     auto peerlink-3.4094
     iface peerlink-3.4094
        address 10.0.0.24/32
@@ -103,7 +103,7 @@ configurations are provisioned by the NSX controller.
        clagd-args --vm --debug 0x0
        # post-up sysctl -w net.ipv4.conf.peerlink-3/4094.accept_local=1
        clagd-backup-ip 10.0.0.25
-     
+     
     auto hostbond4
     iface hostbond4
        bond-slaves swp7
@@ -304,7 +304,7 @@ controller, run the ` ovsdb-client dump Manager  `command:
     Manager table
     _uuid                                inactivity_probe is_connected max_backoff other_config status                                 target
     ------------------------------------ ---------------- ------------ ----------- ------------ -------------------------------------- -------------------
-    e700ad21-8fd8-4f09-96dc-fa7cc6e498d8 30000            true         []          {}           {sec_since_connect=“68”, state=ACTIVE} “ssl:54.0.0.2:6632"
+    e700ad21-8fd8-4f09-96dc-fa7cc6e498d8 30000            true         []          {}           {sec_since_connect="68 ", state=ACTIVE} "ssl:54.0.0.2:6632"
 
 To make sure the MLAG configuration is correct, run the `clagctl`
 command:
@@ -348,7 +348,7 @@ To make sure that the BFD sessions are up and running, run the `ptmctl
 -b` command.
 
     cumulus@switch:~$ sudo ptmctl -b
-     
+     
     --------------------------------------------------------
     port   peer      state  local     type       diag  vrf
     --------------------------------------------------------

@@ -126,7 +126,7 @@ switch.
     cumulus@switch:~$ netq leaf02 show interfaces physical module
     Matching cables records are:
     Hostname          Interface                 Module    Vendor               Part No          Serial No                 Transceiver      Connector        Length Last Changed
-     
+     
     ----------------- ------------------------- --------- -------------------- ---------------- ------------------------- ---------------- ---------------- ------ -------------------------
     leaf02            swp1                      RJ45      n/a                  n/a              n/a                       n/a              n/a              n/a    15d:22h:49m:25s
     leaf02            swp2                      SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     15d:22h:36m:25s
@@ -231,7 +231,7 @@ and then those devices with a part number of QSFP-H40G-CU1M installed.
         QSFP-H40G-CU1M    :  QSFP-H40G-CU1M
         QSFP-H40G-CU1MUS  :  QSFP-H40G-CU1MUS
         n/a               :  n/a
-     
+     
     cumulus@switch:~$ netq show interfaces physical model QSFP-H40G-CU1M
     Matching cables records:
     Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
@@ -281,7 +281,7 @@ scenarios for all devices in the network.
     ...
     oob-mgmt-server   swp1                      up         1G         off     RJ45      n/a                  n/a              15d:22h:21m:4s
     oob-mgmt-server   swp2                      up         1G         off     RJ45      n/a                  n/a              15d:22h:21m:4s
-     
+     
     cumulus@switch:~$ netq show interfaces physical changes between 6d and 16d
     Matching cables records:
     Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
@@ -295,7 +295,7 @@ scenarios for all devices in the network.
     leaf01            swp51                     up         1G         off     SFP       FINISAR CORP.        FTLF1318P3BTL    15d:22h:22m:5s
     leaf01            swp52                     down       1G         off     SFP       CISCO-AGILENT        QFBR-5766LP      15d:22h:21m:59s
     ...
-     
+     
     cumulus@switch:~$ netq show interfaces physical changes between 0s and 5h
     No matching cables records found
 
@@ -386,7 +386,7 @@ state, the message would have been *Admin state mismatch (up, down)* or
 cumulus@switch:~$ netq check interfaces
 Checked Nodes: 18, Failed Nodes: 8
 Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
- 
+ 
 cumulus@switch:~$ netq show interfaces physical peer
 Matching cables records:
 Hostname          Interface                 Peer Hostname     Peer Interface            State      Message
@@ -414,13 +414,13 @@ errors.
     Checked Nodes: 1, Failed Nodes: 1
     Checked Ports: 1, Failed Ports: 1, Unverified Ports: 0
     cumulus@switch:~$ netq show interfaces physical peer
-     
+     
     Matching cables records:
     Hostname          Interface                 Peer Hostname     Peer Interface            State      Message
     ----------------- ------------------------- ----------------- ------------------------- ---------- -----------------------------------
     leaf01            swp50                     leaf04            swp49                                Incorrect peer specified. Real peer
                                                                                                        is leaf04 swp50      
-     
+     
     cumulus@switch:~$ netq check interfaces leaf01 swp50 and leaf02 swp50
     Checked Nodes: 1, Failed Nodes: 0
     Checked Ports: 1, Failed Ports: 0, Unverified Ports: 0
@@ -434,10 +434,10 @@ peer port swp50 is *unspecified*.
     cumulus@switch:~$ netq check interfaces
     Checked Nodes: 10, Failed Nodes: 1
     Checked Ports: 125, Failed Ports: 2, Unverified Ports: 35
-    Hostname          Interface                 Peer Hostname     Peer Interface            Message
+    Hostname          Interface                 Peer Hostname     Peer Interface            Message
     ----------------- ------------------------- ----------------- ------------------------- -----------------------------------
-    server03          swp49                     server03          swp50                     Speed mismatch (40G, Unknown)      
-    server03          swp50                     server03          swp49                     Speed mismatch (Unknown, 40G)  
+    server03          swp49                     server03          swp50                     Speed mismatch (40G, Unknown)      
+    server03          swp50                     server03          swp49                     Speed mismatch (Unknown, 40G)  
 
 **Example: Find Mismatched Auto-negotiation Settings**
 
@@ -448,16 +448,16 @@ Auto-negotiation is *off* on the leafs, but *on* on the servers.
     cumulus@switch:~$ netq check interfaces
     Checked Nodes: 15, Failed Nodes: 8
     Checked Ports: 118, Failed Ports: 8, Unverified Ports: 94
-    Hostname          Interface                 Peer Hostname     Peer Interface            Message
+    Hostname          Interface                 Peer Hostname     Peer Interface            Message
     ----------------- ------------------------- ----------------- ------------------------- -----------------------------------
-    leaf01            swp1                      server01          eth1                      Autoneg mismatch (off, on)         
-    leaf02            swp2                      server02          eth2                      Autoneg mismatch (off, on)         
-    leaf03            swp1                      server03          eth1                      Autoneg mismatch (off, on)         
-    leaf04            swp2                      server04          eth2                      Autoneg mismatch (off, on)         
-    server01          eth1                      leaf01            swp1                      Autoneg mismatch (on, off)         
-    server02          eth2                      leaf02            swp2                      Autoneg mismatch (on, off)         
-    server03          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)         
-    server04          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)         
+    leaf01            swp1                      server01          eth1                      Autoneg mismatch (off, on)         
+    leaf02            swp2                      server02          eth2                      Autoneg mismatch (off, on)         
+    leaf03            swp1                      server03          eth1                      Autoneg mismatch (off, on)         
+    leaf04            swp2                      server04          eth2                      Autoneg mismatch (off, on)         
+    server01          eth1                      leaf01            swp1                      Autoneg mismatch (on, off)         
+    server02          eth2                      leaf02            swp2                      Autoneg mismatch (on, off)         
+    server03          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)         
+    server04          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)         
 
 ### Identify Flapping Links
 
@@ -469,7 +469,7 @@ is flapping, NetQ indicates this in a message:
 cumulus@switch:~$ netq check interfaces
 Checked Nodes: 18, Failed Nodes: 8
 Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
- 
+ 
 cumulus@switch:~$ netq show interfaces physical peer
 Matching cables records:
 Hostname          Interface                 Peer Hostname     Peer Interface            State      Message

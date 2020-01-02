@@ -51,7 +51,7 @@ same information.) The output looks like this:
         netshow l3 [all] [--mac | -m ] [--oneline | -1  | -l | --legend ]
         netshow trunks [all] [--mac | -m ] [--oneline | -1 | -l | --legend ]
         netshow (--version | -V)
-     
+     
     Help:
         * default is to show intefaces only in the UP state.
         counters                  summary of physical port counters.
@@ -68,7 +68,7 @@ same information.) The output looks like this:
         lldp                      physical device neighbor information
         interface <iface>         list summary of a single interface
         system                    system information
-     
+     
     Options:
         all        show all ports include those are down or admin down
         --mac      show inteface MAC in output
@@ -160,17 +160,17 @@ You can get information about the switch itself by running `netshow
 system`:
 
     cumulus@switch:~$ netshow system
-     
+     
     Arctica 4804IP
     Cumulus Version 3.0.0~1462473422.02602ac
     Build: Cumulus RMP 3.0.0~1462473422.02602ac
-     
+     
     Chipset: Broadcom Hurricane2
-     
+     
     Port Config: 48 x 10G-SFP+ & 4 x 40G-QSFP+
-     
+     
     CPU: (x86_64) Intel Atom C2758 2.40GHz
-     
+     
     Uptime: 2 days, 21:31:00
 
 ## Other Useful netshow Features</span>

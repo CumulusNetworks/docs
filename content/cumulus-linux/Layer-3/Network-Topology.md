@@ -44,6 +44,6 @@ To support a fairly large network with just two spine switches also means that t
 
 In a Clos network, traffic is load balanced across the multiple links using equal cost multi-pathing (ECMP).
 
-Routing algorithms compute shortest paths between two end stations where shortest is typically the lowest path cost. Each link is assigned a metric or cost. By default, a link’s cost is a function of the link speed. The higher the link speed, the lower its cost. A 10G link has a higher cost than a 40G or 100G link, but a lower cost than a 1G link. The link cost is a measure of its traffic carrying capacity.
+Routing algorithms compute shortest paths between two end stations where shortest is typically the lowest path cost. Each link is assigned a metric or cost. By default, a link's cost is a function of the link speed. The higher the link speed, the lower its cost. A 10G link has a higher cost than a 40G or 100G link, but a lower cost than a 1G link. The link cost is a measure of its traffic carrying capacity.
 
 In the modern data center, the links between tiers of the network are homogeneous; they have the same characteristics (same speed and therefore link cost) as the other links. As a result, the first hop router can pick any of the spine switches to forward a packet to its destination (assuming that there is no link failure between the spine and the destination switch). Most routing protocols recognize that there are multiple equal-cost paths to a destination and enable any of them to be selected for a given traffic flow.

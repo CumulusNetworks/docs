@@ -45,11 +45,11 @@ below](#src-5118386_ConfiguringQuagga-integrated_cfg) for details.
 
 Cumulus Quagga does not start by default in Cumulus Linux. Before you
 run Cumulus Quagga, make sure all you have enabled relevant daemons that
-you intend to use — `zebra`, `bgpd`, `ospfd`, `ospf6d`, `ripd`,
-`ripngd`, `isisd` — in the `/etc/quagga/daemons` file.
+you intend to use - `zebra`, `bgpd`, `ospfd`, `ospf6d`, `ripd`,
+`ripngd`, `isisd` - in the `/etc/quagga/daemons` file.
 
 The `zebra` daemon must always be enabled. The others you can enable
-according to how you plan to route your network — using
+according to how you plan to route your network - using
 [BGP](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP)
 for example, instead of
 [OSPF](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol).
@@ -176,7 +176,7 @@ VRF](/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-V
 
 ## Using the vtysh Modal CLI</span>
 
-Quagga provides a CLI – `vtysh` – for configuring and displaying the
+Quagga provides a CLI - `vtysh` - for configuring and displaying the
 state of the protocols. It is invoked by running:
 
     cumulus@switch:~$ sudo vtysh
@@ -207,7 +207,7 @@ changes to:
     switch(config)# router ospf
     switch(config-router)#
 
-At any level, ”?” displays the list of available top-level commands at
+At any level,  "? " displays the list of available top-level commands at
 that level:
 
     switch(config-if)# ?

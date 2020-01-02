@@ -255,23 +255,23 @@ iface lo inet loopback
     
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 # downlinks
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 auto swp3
 iface swp3
- 
+ 
 auto swp4
 iface swp4
- 
+ 
 auto swp29
 iface swp29
- 
+ 
 auto swp30
 iface swp30</code></pre></td>
 <td><p><strong>spine02:</strong> <code>/etc/network/interfaces</code></p>
@@ -279,26 +279,26 @@ iface swp30</code></pre></td>
 iface lo inet loopback
     address 10.0.0.22/32
     address 10.10.10.10/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 # downlinks
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 auto swp3
 iface swp3
- 
+ 
 auto swp4
 iface swp4
- 
+ 
 auto swp29
 iface swp29
- 
+ 
 auto swp30
 iface swp30</code></pre></td>
 </tr>
@@ -313,14 +313,14 @@ iface lo inet loopback
        
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 # peerlinks
 auto swp49
 iface swp49
- 
+ 
 auto swp50
 iface swp50
- 
+ 
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
@@ -337,11 +337,11 @@ iface peerlink.4094
   clagd-peer-ip 169.254.1.2
   clagd-backup-ip 10.0.0.12 
   clagd-sys-mac 44:39:39:FF:40:94
- 
+ 
 # Downlinks
 auto swp1
 iface swp1
- 
+ 
   
 auto bond0 
 iface bond0
@@ -352,9 +352,9 @@ iface bond0
     bond-mode 802.3ad
     bond-xmit-hash-policy layer3+4
     bond-lacp-rate 1       
- 
+ 
 # bridges / vlan that contain peerlink and downlinks for L2 connectivity
- 
+ 
 auto native
 iface native
   bridge-ports peerlink bond0 vxlan1
@@ -368,14 +368,14 @@ iface vlan10
   bridge-stp on
   mstpctl-portbpdufilter vxlan10=yes
   mstpctl-bpduguard vxlan10=yes      
- 
+ 
 auto vlan20
 iface vlan20
   bridge-ports peerlink.20 bond0.20 vxlan20
   bridge-stp on
   mstpctl-portbpdufilter vxlan20=yes
   mstpctl-bpduguard vxlan20=yes
- 
+ 
 #vxlan config
 auto vxlan1
 iface vxlan1
@@ -395,7 +395,7 @@ iface vxlan20
 # uplinks
 auto swp51
 iface swp51
- 
+ 
 auto swp52
 iface swp52  </code></pre></td>
 <td><p><strong>leaf02:</strong> <code>/etc/network/interfaces</code></p>
@@ -408,14 +408,14 @@ iface lo inet loopback
        
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 # peerlinks
 auto swp49
 iface swp49
- 
+ 
 auto swp50
 iface swp50
- 
+ 
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
@@ -432,11 +432,11 @@ iface peerlink.4094
   clagd-peer-ip 169.254.1.1
   clagd-backup-ip 10.0.0.11
   clagd-sys-mac 44:39:39:FF:40:94
- 
+ 
 # Downlinks
 auto swp1
 iface swp1
- 
+ 
   
 auto bond0 
 iface bond0
@@ -447,9 +447,9 @@ iface bond0
     bond-mode 802.3ad
     bond-xmit-hash-policy layer3+4
     bond-lacp-rate 1       
- 
+ 
 # bridges / vlan that contain peerlink and downlinks for L2 connectivity
- 
+ 
 auto native
 iface native
   bridge-ports peerlink bond0 vxlan1
@@ -463,14 +463,14 @@ iface vlan10
   bridge-stp on
   mstpctl-portbpdufilter vxlan10=yes
   mstpctl-bpduguard vxlan10=yes      
- 
+ 
 auto vlan20
 iface vlan20
   bridge-ports peerlink.20 bond0.20 vxlan20
   bridge-stp on
   mstpctl-portbpdufilter vxlan20=yes
   mstpctl-bpduguard vxlan20=yes
- 
+ 
 #vxlan config
 auto vxlan1
 iface vxlan1
@@ -490,7 +490,7 @@ iface vxlan20
 # uplinks
 auto swp51
 iface swp51
- 
+ 
 auto swp52
 iface swp52  </code></pre></td>
 </tr>
@@ -505,14 +505,14 @@ iface lo inet loopback
        
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 # peerlinks
 auto swp49
 iface swp49
- 
+ 
 auto swp50
 iface sw50p
- 
+ 
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
@@ -529,7 +529,7 @@ iface peerlink.4094
   clagd-peer-ip 169.254.1.2
   clagd-backup-ip 10.0.0.14
   clagd-sys-mac 44:39:39:FF:40:95
- 
+ 
 # Downlinks
 auto swp1
 iface swp1
@@ -543,9 +543,9 @@ iface bond0
     bond-mode 802.3ad
     bond-xmit-hash-policy layer3+4
     bond-lacp-rate 1       
- 
+ 
 # bridges / vlan that contain peerlink and downlinks for L2 connectivity
- 
+ 
 auto native
 iface native
   bridge-ports peerlink bond0 vxlan1
@@ -559,14 +559,14 @@ iface vlan10
   bridge-stp on
   mstpctl-portbpdufilter vxlan10=yes
   mstpctl-bpduguard vxlan10=yes      
- 
+ 
 auto vlan20
 iface vlan20
   bridge-ports peerlink.20 bond0.20 vxlan20
   bridge-stp on
   mstpctl-portbpdufilter vxlan20=yes
   mstpctl-bpduguard vxlan20=yes
- 
+ 
 #vxlan config
 auto vxlan1
 iface vxlan1
@@ -586,7 +586,7 @@ iface vxlan20
 # uplinks
 auto swp51
 iface swp51
- 
+ 
 auto swp52
 iface swp52    </code></pre></td>
 <td><p><strong>leaf4:</strong> <code>/etc/network/interfaces</code></p>
@@ -599,14 +599,14 @@ iface lo inet loopback
        
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 # peerlinks
 auto swp49
 iface swp49
- 
+ 
 auto swp50
 iface swp50
- 
+ 
 auto peerlink
 iface peerlink
   bond-slaves swp49 swp50
@@ -623,7 +623,7 @@ iface peerlink.4094
   clagd-peer-ip 169.254.1.1
   clagd-backup-ip 10.0.0.13
   clagd-sys-mac 44:39:39:FF:40:95
- 
+ 
 # Downlinks
 auto swp1
 iface swp1
@@ -637,9 +637,9 @@ iface bond0
     bond-mode 802.3ad
     bond-xmit-hash-policy layer3+4
     bond-lacp-rate 1       
- 
+ 
 # bridges / vlan that contain peerlink and downlinks for L2 connectivity
- 
+ 
 auto native
 iface native
   bridge-ports peerlink bond0 vxlan1
@@ -653,14 +653,14 @@ iface vlan10
   bridge-stp on
   mstpctl-portbpdufilter vxlan10=yes
   mstpctl-bpduguard vxlan10=yes      
- 
+ 
 auto vlan20
 iface vlan20
   bridge-ports peerlink.20 bond0.20 vxlan20
   bridge-stp on
   mstpctl-portbpdufilter vxlan20=yes
   mstpctl-bpduguard vxlan20=yes
- 
+ 
 #vxlan config
 auto vxlan1
 iface vxlan1
@@ -680,7 +680,7 @@ iface vxlan20
 # uplinks
 auto swp51
 iface swp51
- 
+ 
 auto swp52
 iface swp52    </code></pre></td>
 </tr>
@@ -986,14 +986,14 @@ Ubuntu this is done with subinterfaces.
 <td><p><strong>server01</strong></p>
 <pre><code>auto lo
 iface lo inet loopback
- 
+ 
 auto lo
 iface lo inet static
   address 10.0.0.31/32
   
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto eth1
 iface eth1 inet manual
     bond-master bond0
@@ -1011,7 +1011,7 @@ iface bond0 inet static
   bond-xmit-hash-policy layer3+4
   bond-lacp-rate 1
   address 172.16.1.101/24
- 
+ 
 auto bond0.10
 iface bond0.10 inet static
   address 172.16.10.101/24
@@ -1022,14 +1022,14 @@ iface bond0.20 inet static
 <td><p><strong>server03</strong></p>
 <pre><code>auto lo
 iface lo inet loopback
- 
+ 
 auto lo
 iface lo inet static
   address 10.0.0.33/32
   
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto eth1
 iface eth1 inet manual
     bond-master bond0
@@ -1047,7 +1047,7 @@ iface bond0 inet static
   bond-xmit-hash-policy layer3+4
   bond-lacp-rate 1
   address 172.16.1.103/24
- 
+ 
 auto bond0.10
 iface bond0.10 inet static
   address 172.16.10.103/24
@@ -1109,9 +1109,9 @@ configuration file:
 <td><details>
 <p><strong>spine01:</strong> /etc/vxsnd.conf</p>
 <pre><code>svcnode_ip = 10.10.10.10
- 
+ 
 src_ip = 10.0.0.21
- 
+ 
 svcnode_peers = 10.0.0.21 10.0.0.22</code></pre>
 <summary>Full configuration of vxsnd.conf </summary>
 <pre><code>[common]
@@ -1172,9 +1172,9 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 <td><details>
 <p><strong>spine02:</strong> /etc/vxsnd.conf</p>
 <pre><code>svcnode_ip = 10.10.10.10
- 
+ 
 src_ip = 10.0.0.22
- 
+ 
 svcnode_peers = 10.0.0.21 10.0.0.22</code></pre>
 <summary>Full configuration of vxsnd.conf </summary>
 <pre><code>[common]
@@ -2131,7 +2131,7 @@ topologies only, and is not needed on real hardware.
     iface swp49
       #for vagrant so bonds work correctly
       post-up ip link set $IFACE promisc on
-     
+     
     auto swp50
     iface swp50
       #for vagrant so bonds work correctly

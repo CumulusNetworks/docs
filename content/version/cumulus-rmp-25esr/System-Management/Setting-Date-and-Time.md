@@ -65,7 +65,7 @@ example selects the US/Pacific time zone:
     Local time is now:      Mon Jun 17 09:27:45 PDT 2013.
     Universal Time is now:  Mon Jun 17 16:27:45 UTC 2013.
 
-For more info see the Debian [System Administrator’s Manual –
+For more info see the Debian [System Administrator's Manual -
 Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
 ## Setting the Date and Time</span>
@@ -76,7 +76,7 @@ switch is running, the Cumulus RMP operating system maintains its own
 software clock.
 
 During boot up, the time from the hardware clock is copied into the
-operating system’s software clock. The software clock is then used for
+operating system's software clock. The software clock is then used for
 all timekeeping responsibilities. During system shutdown the software
 clock is copied back to the battery backed hardware clock.
 
@@ -87,7 +87,7 @@ You can set the date and time on the hardware clock using the `hwclock`
 command. See man `hwclock(8)` for details.
 
 A good overview of the software and hardware clocks can be found in the
-Debian [System Administrator’s Manual –
+Debian [System Administrator's Manual -
 Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html),
 specifically the section [Setting and showing hardware
 clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
@@ -120,15 +120,15 @@ To verify that `ntpd` is running on the system:
 
 ## Configuration Files</span>
 
-  - /etc/default/ntp — `ntpd init.d` configuration variables
+  - /etc/default/ntp - `ntpd init.d` configuration variables
 
-  - /etc/ntp.conf — default NTP configuration file
+  - /etc/ntp.conf - default NTP configuration file
 
-  - /etc/init.d/ntp — `ntpd init` script
+  - /etc/init.d/ntp - `ntpd init` script
 
 ## Useful Links</span>
 
-  - [Debian System Administrator’s Manual –
+  - [Debian System Administrator's Manual -
     Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
 
   - <http://www.ntp.org>

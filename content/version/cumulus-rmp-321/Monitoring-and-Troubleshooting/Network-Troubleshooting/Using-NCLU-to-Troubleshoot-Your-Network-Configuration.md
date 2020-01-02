@@ -52,7 +52,7 @@ To show all available interfaces that are physically UP, run `netshow
 interface`:
 
     cumulus@switch:~$ net show interface
-     
+     
         Name    Speed    MTU    Mode           Summary
     --  ------  -------  -----  -------------  --------------------------------------
     UP  lo      N/A      65536  Loopback       IP: 10.0.0.11/32, 127.0.0.1/8, ::1/128

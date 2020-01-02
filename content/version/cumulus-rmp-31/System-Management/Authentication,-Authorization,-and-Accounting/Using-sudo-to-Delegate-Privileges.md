@@ -58,13 +58,13 @@ The example below shows how to use `sudo` as a non-privileged user
     cumulus@switch:~$ ip link show dev swp1
     3: swp1: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master br0 state DOWN mode DEFAULT qlen 500
     link/ether 44:38:39:00:27:9f brd ff:ff:ff:ff:ff:ff
-     
+     
     cumulus@switch:~$ ip link set dev swp1 up
     RTNETLINK answers: Operation not permitted
-     
+     
     cumulus@switch:~$ sudo ip link set dev swp1 up
     Password:
-     
+     
     cumulus@switch:~$ ip link show dev swp1
     3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master br0 state UP mode DEFAULT qlen 500
     link/ether 44:38:39:00:27:9f brd ff:ff:ff:ff:ff:ff

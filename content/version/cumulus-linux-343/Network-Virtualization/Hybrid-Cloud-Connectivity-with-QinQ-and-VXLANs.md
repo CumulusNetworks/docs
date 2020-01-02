@@ -18,7 +18,7 @@ the capability for multiple
 to be inserted into a single Ethernet frame.
 
 The primary use case for QinQ with VXLAN is where a service provider who
-offers multi-tenant layer 2 connectivity between different customers’
+offers multi-tenant layer 2 connectivity between different customers'
 data centers (private clouds) may also need to connect those data
 centers to public cloud providers. Public clouds often has a mandatory
 QinQ handoff interface, where the outer tag is for the customer and the
@@ -110,7 +110,7 @@ These commands create the following configuration in the
         bridge-learning off
         vxlan-id 1000
         vxlan-local-tunnelip 10.0.0.1
-     
+     
     auto vni-3000
     iface vni-3000
         bridge-access 200
@@ -312,7 +312,7 @@ configuration would look something like this:
     iface swp5.100.10
         mstpctl-portbpdufilter yes
         mstpctl-bpduguard yes
-     
+     
     auto br10
     iface br10
         bridge-ports swp3.10  swp4  swp5.100.10
@@ -327,7 +327,7 @@ configuration would look something like this:
 - `iptables` match on double-tagged interfaces is not supported.
 - Single-tagged translation supports only 
   [VLAN-aware bridge mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
-  with the bridge’s VLAN 802.1ad protocol.
+  with the bridge's VLAN 802.1ad protocol.
 - [MLAG](/version/cumulus-linux-343/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG)
   is only supported with single-tagged translation.
 - No layer 2 protocol (STP BPDU, LLDP) tunneling support.
@@ -366,12 +366,12 @@ configuration like the following:
            vlan-id 1001
            vlan-raw-device swp50s0
            vlan-protocol 802.1ad
-     
+     
     auto vlan1001-101
     iface vlan1001-101
            vlan-id 101
            vlan-raw-device vlan1001
-     
+     
     auto bridge101
     iface bridge101
         bridge-ports vlan1001-101 vxlan1000101

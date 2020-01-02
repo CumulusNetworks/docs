@@ -197,14 +197,14 @@ this one is quite simple:
     /proc/sys/net/ipv4/conf/all/arp_filter:0
     /proc/sys/net/ipv4/conf/all/arp_ignore:0
     /proc/sys/net/ipv4/conf/all/arp_notify:0
-     
+     
     cumulus@switch:~$ sudo grep . /proc/sys/net/ipv4/conf/default/arp*
     /proc/sys/net/ipv4/conf/default/arp_accept:0
     /proc/sys/net/ipv4/conf/default/arp_announce:2
     /proc/sys/net/ipv4/conf/default/arp_filter:0
     /proc/sys/net/ipv4/conf/default/arp_ignore:1
     /proc/sys/net/ipv4/conf/default/arp_notify:1
-     
+     
     cumulus@switch:~$ sudo grep . /proc/sys/net/ipv4/conf/swp1/arp*
     /proc/sys/net/ipv4/conf/swp1/arp_accept:0
     /proc/sys/net/ipv4/conf/swp1/arp_announce:2
@@ -279,7 +279,7 @@ These commands create the following snippet in the `/etc/network/interfaces` fil
     iface swp1
         post-up echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp
         post-up echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id
-     
+     
     auto swp1-v0
     iface swp1-v0
         post-up echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp

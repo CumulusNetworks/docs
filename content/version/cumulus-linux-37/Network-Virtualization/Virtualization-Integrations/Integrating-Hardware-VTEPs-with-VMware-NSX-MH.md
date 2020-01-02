@@ -148,10 +148,10 @@ for authentication.
         Creating controllerca...
         Creating switchca...
         cumulus@switch:~$ sudo ovs-pki req+sign cumulus
-         
+         
         cumulus-req.pem Wed Oct 23 05:32:49 UTC 2013
                 fingerprint b587c9fe36f09fb371750ab50c430485d33a174a
-         
+         
         cumulus@switch:~$ ls -l
         total 12
         -rw-r--r-- 1 root root 4028 Oct 23 05:32 cumulus-cert.pem
@@ -210,9 +210,9 @@ VTEPs, edit the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file and
 uncomment the `--enable-vlan-aware-mode` line:
 
     # Start ovs-vtepd
-    set ovs-vtepd unix:“$DB_SOCK”
-    set “$@” -vconsole:emer -vsyslog:err -vfile:info
-    #set “$@” --enable-vlan-aware-mode
+    set ovs-vtepd unix:"$DB_SOCK "
+    set "$@ " -vconsole:emer -vsyslog:err -vfile:info
+    #set "$@ " --enable-vlan-aware-mode
 
 Then restart the OVSDB server and VTEPd:
 
@@ -413,7 +413,7 @@ To define the logical switch ports:
 After configuration is complete, verify the VXLAN configuration in a
 terminal connected to the switch using these Cumulus Linux commands:
 
-    cumulus@switch1:~$ sudo ip –d link show vxln100
+    cumulus@switch1:~$ sudo ip -d link show vxln100
     71: vxln100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln100 state UNKNOWN mode DEFAULT
         link/ether d2:ca:78:bb:7c:9b brd ff:ff:ff:ff:ff:ff
         vxlan id 100 local 172.16.20.157 port 32768 61000 nolearning ageing 1800 svcnode 172.16.21.125

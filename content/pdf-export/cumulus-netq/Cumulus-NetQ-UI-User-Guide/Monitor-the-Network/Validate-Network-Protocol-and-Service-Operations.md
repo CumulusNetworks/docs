@@ -578,7 +578,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="even">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>Most Active</strong> filter option is selected, the table displays switches and hosts running the given service or protocol in decreasing order of alarm counts—devices with the largest number of warnings and failures are listed first.</p>
+<td><p>When the <strong>Most Active</strong> filter option is selected, the table displays switches and hosts running the given service or protocol in decreasing order of alarm counts-devices with the largest number of warnings and failures are listed first.</p>
 <p>When the <strong>Most Recent</strong> filter option is selected, the table displays switches and hosts running the given service or protocol sorted by <strong>timestamp</strong>, with the device with the most recent warning or failure listed first. The table provides the following additional information:</p>
 <ul>
 <li><p><strong>Hostname</strong>: User-defined name for switch or host</p></li>
@@ -907,7 +907,7 @@ The large Validation Result card contains two tabs.
 </tr>
 <tr class="even">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>Most Active</strong> filter option is selected, the table displays switches and hosts running the given service or protocol in decreasing order of alarm counts—devices with the largest number of warnings and failures are listed first.</p>
+<td><p>When the <strong>Most Active</strong> filter option is selected, the table displays switches and hosts running the given service or protocol in decreasing order of alarm counts-devices with the largest number of warnings and failures are listed first.</p>
 <p>When the <strong>Most Recent</strong> filter option is selected, the table displays switches and hosts running the given service or protocol sorted by <strong>timestamp</strong>, with the device with the most recent warning or failure listed first. The table provides the following additional information:</p>
 <ul>
 <li><p><strong>Hostname</strong>: User-defined name for switch or host</p></li>

@@ -13,7 +13,7 @@ siteSlug: cumulus-netq-110
 ---
 Running NetQ on Linux hosts provides unprecedented network visibility,
 giving the network operator a complete view of the entire
-infastrucutre’s network connectivity instead of just from the network
+infastrucutre's network connectivity instead of just from the network
 devices.
 
 The NetQ Agent is supported on the following Linux hosts:

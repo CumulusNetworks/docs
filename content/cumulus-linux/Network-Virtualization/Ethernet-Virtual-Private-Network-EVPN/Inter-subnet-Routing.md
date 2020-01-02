@@ -79,7 +79,7 @@ When centralized routing is in use, even if the source host and destination host
 
 ## Asymmetric Routing
 
-In distributed asymmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts. The routing is called asymmetric because only the ingress VTEP performs routing, the egress VTEP only performs bridging. Asymmetric routing can be achieved with only host routing and does not involve any interconnecting VNIs. However, you must provision each VTEP with all VLANs/VNIs — the subnets between which communication can take place; this is required even if there are no locally-attached hosts for a particular VLAN.
+In distributed asymmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts. The routing is called asymmetric because only the ingress VTEP performs routing, the egress VTEP only performs bridging. Asymmetric routing can be achieved with only host routing and does not involve any interconnecting VNIs. However, you must provision each VTEP with all VLANs/VNIs - the subnets between which communication can take place; this is required even if there are no locally-attached hosts for a particular VLAN.
 
 {{%notice tip%}}
 
@@ -281,7 +281,7 @@ Symmetric routing presents a problem in the presence of silent hosts. If the ing
 
 To advertise locally attached subnets:
 
-1. Enable advertisement of EVPN prefix (type-5) routes. Refer to [Prefix-based Routing — EVPN Type-5 Routes](#prefix-based-routing-evpn-type-5-routes), below.
+1. Enable advertisement of EVPN prefix (type-5) routes. Refer to [Prefix-based Routing - EVPN Type-5 Routes](#prefix-based-routing-evpn-type-5-routes), below.
 2. Ensure that the routes corresponding to the connected subnets are known in the BGP VRF routing table by injecting them using the `network` command or redistributing them using the `redistribute connected` command.
 
 {{%notice note%}}
@@ -625,12 +625,12 @@ To show EVPN routes with Primary IP Advertisement, run the NCLU `net show bgp l2
 ```
 cumulus@switch:~$ sudo vtysh
 switch# show bgp l2vpn evpn route
-…
+ ...
 Route Distinguisher: 10.0.0.11:2
 *> [5]:[0]:[24]:[81.6.1.0]
                     10.0.0.11                0             0 5541 i
                     ET:8 RT:5586:4002 Rmac:44:38:39:ff:00:00
-…
+ ...
 Route Distinguisher: 10.0.0.11:3
 *> [2]:[0]:[48]:[00:02:00:00:00:2e]:[32]:[45.0.4.2]
                     10.0.0.11                          32768 i

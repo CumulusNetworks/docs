@@ -280,8 +280,8 @@ function init_ztp(){
 CUMULUS_TARGET_RELEASE=3.5.3
 CUMULUS_CURRENT_RELEASE=$(cat /etc/lsb-release  | grep RELEASE | cut -d "=" -f2)
 IMAGE_SERVER_HOSTNAME=webserver.example.com
-IMAGE_SERVER=”http://”$IMAGE_SERVER_HOSTNAME”/”$CUMULUS_TARGET_RELEASE”.bin”
-ZTP_URL=”http://”$IMAGE_SERVER_HOSTNAME”/ztp.sh”
+IMAGE_SERVER= "http:// "$IMAGE_SERVER_HOSTNAME "/ "$CUMULUS_TARGET_RELEASE ".bin "
+ZTP_URL= "http:// "$IMAGE_SERVER_HOSTNAME "/ztp.sh "
 
 if [ "$CUMULUS_TARGET_RELEASE" != "$CUMULUS_CURRENT_RELEASE" ]; then
 ping_until_reachable $IMAGE_SERVER_HOSTNAME
@@ -365,7 +365,7 @@ error: Script returned failure
 To see if ZTP is enabled and to see results of the most recent execution, you can run the `ztp -s` command.
 
 ```
-cumulus@switch:~$ ztp -s
+cumulus@switch:~$ ztp -s
 ZTP INFO:
 
 State              enabled

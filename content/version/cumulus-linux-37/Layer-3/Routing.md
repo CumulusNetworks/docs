@@ -153,7 +153,7 @@ cumulus@switch:$ net add routing protocol static route-map <route-map-name>
 
 On each switch, it's a good idea to create a *gateway* or *default route* for traffic destined outside the switch's subnet, or local network. All such traffic passes through the gateway, which is a host on the same network that routes packets to their destination beyond the local network.
 
-In the following example, you create a default route in the routing table — 0.0.0.0/0 — which indicates any IP address can get sent to the gateway, which is another switch with the IP address 10.1.0.1.
+In the following example, you create a default route in the routing table - 0.0.0.0/0 - which indicates any IP address can get sent to the gateway, which is another switch with the IP address 10.1.0.1.
 
 ```
 cumulus@switch:~$ net add routing route 0.0.0.0/0 10.1.0.1
@@ -163,7 +163,7 @@ cumulus@switch:~$ net commit
 
 ## Supported Route Table Entries
 
-Cumulus Linux — via `switchd` — advertises the maximum number of route table entries that are supported on a given switch architecture, including:
+Cumulus Linux - via `switchd` - advertises the maximum number of route table entries that are supported on a given switch architecture, including:
 
 - L3 IPv4 LPM (longest prefix match) entries, which have a mask that is less than /32
 - L3 IPv6 LPM entries, which have a mask that is /64 or less

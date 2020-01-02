@@ -336,10 +336,10 @@ output of a port in "admin down", "down" and "up" mode, respectively:
 
     # Administratively Down
     swp1: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 1000
-     
+     
     # Administratively Up but Layer 2 protocol is Down
     swp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN mode DEFAULT qlen 500
-     
+     
     # Administratively Up, Layer 2 protocol is Up
     swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
 
@@ -374,7 +374,7 @@ To activate or apply the configuration to the kernel:
 
     # First, check for typos:
     cumulus@switch:~$ sudo ifquery -a
-     
+     
     # Then activate the change if no errors are found:
     cumulus@switch:~$ sudo ifup -a
 
@@ -417,7 +417,7 @@ To activate or apply the configuration to the kernel:
 
     # First check for typos:
     cumulus@switch:~$ sudo ifquery -a
-     
+     
     # Then activate the change if no errors are found:
     cumulus@switch:~$ sudo ifup -a
 
@@ -426,7 +426,7 @@ To view the changes in the kernel use the `ip addr show` command:
     br0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP
     link/ether 00:02:00:00:00:28 brd ff:ff:ff:ff:ff:ff
     inet 10.2.2.1/24 scope global br0
-     
+     
     swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP
     link/ether 44:38:39:00:6e:fe brd ff:ff:ff:ff:ff:ff
     inet 10.1.1.1/30 scope global swp1

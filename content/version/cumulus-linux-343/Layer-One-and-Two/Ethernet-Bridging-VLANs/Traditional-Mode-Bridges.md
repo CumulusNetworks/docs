@@ -117,7 +117,7 @@ This example configuration looks like this in the
     iface bridge-A
         bridge-ports swp1 swp2
         bridge-stp on
-     
+     
     auto bridge-B
     iface bridge-B
         bridge-ports swp3 swp4
@@ -175,7 +175,7 @@ To create the above example, add the following configuration to the
     iface br-VLAN100
      bridge-ports swp1.100 swp2.100
      bridge-stp on
-     
+     
     auto br-VLAN200
     iface br-VLAN200
      bridge-ports swp1.200 swp2.200

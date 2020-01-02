@@ -137,11 +137,11 @@ You can see the label-index when you show the BGP configuration on a
 router.
 
     cumulus@r4:~$ net show configuration bgp
-     
+     
     ...
     router bgp 400
      bgp router-id 10.1.1.4
-     
+     
      address-family ipv4 unicast
       network 10.1.1.4/32 label-index 4
 
@@ -169,7 +169,7 @@ packet with label 104. Its outbound label is 3, which appears as
 swp3, the interface to r4:
 
     cumulus@r1:~$ net show mpls table
-     
+     
      Inbound                                Outbound
        Label     Type              Nexthop     Label
     --------  -------  -------------------  --------
@@ -179,7 +179,7 @@ swp3, the interface to r4:
          105      BGP  fe80::202:ff:fe00:c       105
          106      BGP  fe80::202:ff:fe00:1         3
          107      BGP  fe80::202:ff:fe00:6       107
-     
+     
     cumulus@r1:~$ 
     cumulus@r1:~$ 
     cumulus@r1:~$ net show mpls table 104

@@ -58,7 +58,7 @@ To enable the IPM application:
 
         cumulus@ts:~$ sudo systemctl enable tips-appliance  
         Created symlink from /etc/systemd/system/multi-user.target.wants/tips-appliance.service to /lib/systemd/system/tips-appliance.service.
-         
+         
         cumulus@ts:~$ sudo systemctl start tips-appliance
 
     Once the IPM application is running, the IPM Command Line Interface,
@@ -199,18 +199,18 @@ The command syntax is:
     ##Integrations
     netq config ts add notifier integration slack <text-integration-name> webhook <text-webhook-url> [severity <debug|info|warning|error>] [tag @<text-slack-tag>]
     netq config ts add notifier integration pagerduty <text-integration-name> api-access-key <text-api-access-key> api-integration-key <text-api-integration-key> [severity <debug|info|warning|error>]
-     
+     
     ##Filters
     netq config ts add notifier filter <text-filter-name> [before <text-filter-name-anchor>] [after <text-filter-name-anchor>] [rule <text-rule-key> <text-rule-value>] [output <text-integration-name-anchor>]
-     
+     
     ##Logging
     netq config ts add notifier loglevel [debug|error|info|warning] [json]
-     
+     
     ##Management
     netq config ts del notifier (slack|pagerduty) <text-integration-name-anchor>
     netq config ts del notifier filter <text-filter-name-anchor>
     netq config ts del notifier loglevel
-     
+     
     netq config ts (start|stop|restart|status) notifier
     netq config ts show notifier [<ip-server>|<text-server-name>|config] [json]
     netq config ts reset-cluster
@@ -268,9 +268,9 @@ use the notification applications for easier viewing.
 3.  Verify connection to Telemetry Server.
 
         cumulus@ts:~$ netq config ts show server
-        Server            Role       Master                             Replicas                           Status           Last Changed
+        Server            Role       Master                             Replicas                           Status           Last Changed
         ----------------- ---------- ---------------------------------- ---------------------------------- ---------------- ----------------
-        192.168.1.254     master     192.168.1.254                      -                                  ok               -
+        192.168.1.254     master     192.168.1.254                      -                                  ok               -
 
 **Example: Configure warning-level logging**
 
@@ -288,12 +288,12 @@ logging altogether when you are finished troubleshooting.
 To change the logging level, run the
 following command and restart the agent service:
 
-    cumulus@switch:~$ netq config ts add notifier loglevel <LOG_LEVEL> 
+    cumulus@switch:~$ netq config ts add notifier loglevel <LOG_LEVEL> 
     cumulus@switch:~$ netq config ts restart notifier
 
 To disable all logging:
 
-    cumulus@switch:~$ netq config ts del notifier loglevel 
+    cumulus@switch:~$ netq config ts del notifier loglevel 
     cumulus@switch:~$ netq config ts restart notifier
 
 ### Configure PagerDuty Using NetQ Notifier CLI
@@ -595,7 +595,7 @@ For example:
                         type                 pagerduty
                         severity             info
                         api_access_key       1234567890
-     
+     
     Filter Name    Attribute    Value
     -------------  -----------  -------
     default        output       ALL
@@ -631,8 +631,8 @@ To configure NetQ Notifier to send data to ELK through Logstash:
     `notifier_logstash.conf`. Then add the following definition, using
     the port you specified earlier.
 
-        root@ts:~# vi /etc/logstash/conf.d/notifier_logstash.conf
-         
+        root@ts:~# vi /etc/logstash/conf.d/notifier_logstash.conf
+         
         input {
             syslog {
                 type => syslog
@@ -669,7 +669,7 @@ To configure NetQ Notifier to send data to Splunk for display:
     192.168.50.30, using port 51414.
 
         # rsyslog - splunk configuration
-        sed -i ‘/$netq_notifier_log/a if $programname == “netq-notifier” then @@192.168.50.30:51415’ /etc/rsyslog.d\
+        sed -i '/$netq_notifier_log/a if $programname == "netq-notifier " then @@192.168.50.30:51415' /etc/rsyslog.d\
         /50-netq-notifier.conf
 
 2.  Restart `rsyslog`.
@@ -886,8 +886,8 @@ those host names is filtered to the *slack-channel-leaf-alerts* channel.
     slack-channel-leaf-alerts  type         slack
                                webhook      https://hooks.slack.com/services/text/moretext/evenmoretext
                                severity     info
-     
-     
+     
+     
     Filter Name    Attribute    Value
     -------------  -----------  -------------------------
     leaf-filter    output       slack-channel-leaf-alerts
@@ -916,7 +916,7 @@ notifications from a particular link.
     Integration Name           Attribute    Value
     -------------------------  -----------  -----------------------------------------------------------
     None
-     
+     
     Filter Name       Attribute    Value
     -------------     -----------  -------------------------
     leaf01-swp1-drop  output       None
@@ -947,7 +947,7 @@ take effect. Verify the configuration using the `show` command.
     slack-channel-if-alerts    type         slack
                                webhook      https://hooks.slack.com/services/text/moretext/evenmoretext
                                severity     info
-     
+     
     Filter Name    Attribute    Value
     -------------  -----------  -------------------------
     bgp-filter     output       slack-channel-bgp-alerts
@@ -971,7 +971,7 @@ following integrations and filters:
         type: slack
         webhook: "https://hooks.slack.com/services/sometext/moretext/evenmoretext"
         severity: INFO
-     
+     
     notifier-filters:
       - name: bgp-filter
         rule:
@@ -1027,15 +1027,15 @@ Notifier for this configuration change to take effect.
 or
 
     notifier-filters:
-      - name: BGPslackchannel
-        rule:
-          type: BgpSession
-        output:
-          - slack-channel-BGP
-     - name: default
-       rule:
-       output:
-         - slack-channel-catchall
+      - name: BGPslackchannel
+        rule:
+          type: BgpSession
+        output:
+          - slack-channel-BGP
+     - name: default
+       rule:
+       output:
+         - slack-channel-catchall
 
 ### Example: Create a Filter to Drop All Temperature-Related Event Notifications
 
@@ -1061,7 +1061,7 @@ take effect.
     cumulus@ts:~$ netq config ts add notifier filter license-valid rule License spine01
     cumulus@ts:~$ netq config ts add notifier filter license-valid output pager-duty-license
     cumulus@ts:~$ netq config ts restart notifier
-     
+     
     cumulus@ts:~$ netq config ts show notifier integration
     Integration Name    Attribute    Value
     ------------------  -----------  -----------------------------------------------------------
@@ -1069,7 +1069,7 @@ take effect.
                         type                 pagerduty
                         severity             info
                         api_access_key       1234567890
-     
+     
     Filter Name     Attribute    Value
     -------------   -----------  -------
     license-expired output      pager-duty-license
@@ -1079,7 +1079,7 @@ take effect.
 
 ## Configure High Availability Mode
 
-NetQ supports high availability — that is, the ability to continue
+NetQ supports high availability - that is, the ability to continue
 functioning even in the absence of a single failure of a Telemetry
 Server node. To make the NetQ Telemetry Server highly available (*HA
 mode*), you need to run three instances of the Telemetry Server.
@@ -1279,7 +1279,7 @@ In our example, you want to replace ts03 with ts04 (10.0.0.8):
         --------  -------  --------  ------------------  --------  --------------
         10.0.0.5  master   10.0.0.5  10.0.0.6, 10.0.0.8  ok        5m:10s
         10.0.0.6  replica  10.0.0.5  -                   ok        5m:10s
-        10.0.0.8  replica  10.0.0.5  -                   ok        5m:10s 
+        10.0.0.8  replica  10.0.0.5  -                   ok        5m:10s 
 
 5.  Update the agent on each switch and server node to point to the new
     HA cluster, and restart the NetQ Agent on each node:
@@ -1405,7 +1405,7 @@ chassis:
     duplication of data in the NetQ database.
 
         cumulus@chassis-lc101:~$ sudo nano /etc/netq/netq.yml
-         
+         
         ...
         netq-agent:
           send_chassis_sensor_data: true
@@ -1440,7 +1440,7 @@ capability regarding `netq show services`.
     <!-- end list -->
 
         cumulus@leaf01:~$ sudo vi /etc/netq/config.d/netq-agent-commands.yml
-         
+         
         user-commands:
           - service: 'misc'
             commands:
@@ -1455,7 +1455,7 @@ capability regarding `netq show services`.
               - period: "60"
                 key: "config-quagga"
                 command: ["/usr/bin/vtysh", "-c", "show running-config"]
-         
+         
           - service: "web"
             commands:
               - period: "60"

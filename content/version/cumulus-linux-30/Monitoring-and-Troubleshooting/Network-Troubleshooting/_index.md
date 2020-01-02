@@ -69,7 +69,7 @@ To track the route to an IPv4 host:
 
 ## Manipulating the System ARP Cache</span>
 
-`arp` manipulates or displays the kernel’s IPv4 network neighbor cache.
+`arp` manipulates or displays the kernel's IPv4 network neighbor cache.
 See `man arp` for details.
 
 To display the ARP cache:
@@ -508,7 +508,7 @@ To verify that the SPAN rules were removed:
 
 ## Monitoring Control Plane Traffic with tcpdump</span>
 
-You can use `tcpdump` to monitor control plane traffic — traffic sent to
+You can use `tcpdump` to monitor control plane traffic - traffic sent to
 and coming from the switch CPUs. `tcpdump` does **not** monitor data
 plane traffic; use `cl-acltool` instead (see above).
 

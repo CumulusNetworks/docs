@@ -57,7 +57,7 @@ similar manner, checking for connectivity, configuration, and other
 problems, indicating the number of nodes that they have checked and
 indicating the number that have failed.
 
-Some additional examples—
+Some additional examples-
 
 Validate that EVPN is running correctly on all nodes:
 
@@ -77,17 +77,17 @@ Validate that all corresponding interface links have matching MTUs:
 
 Validate that VXLANs are configured and operating properly:
 
-    cumulus@switch:~$ netq check vxlan 
+    cumulus@switch:~$ netq check vxlan 
     Checked Nodes: 6, Warning Nodes: 0, Failed Nodes: 6
     Nodes with error
-    Hostname         Reason
+    Hostname         Reason
     ---------------- ----------------------------------------------------------------
-    exit01           inconsistent replication list for vni 104001                    
-    exit02           inconsistent replication list for vni 104001                    
-    leaf01           inconsistent replication list for vni 104001                    
-    leaf02           inconsistent replication list for vni 104001                    
-    leaf03           inconsistent replication list for vni 104001                    
-    leaf04           inconsistent replication list for vni 104001                    
+    exit01           inconsistent replication list for vni 104001                    
+    exit02           inconsistent replication list for vni 104001                    
+    leaf01           inconsistent replication list for vni 104001                    
+    leaf02           inconsistent replication list for vni 104001                    
+    leaf03           inconsistent replication list for vni 104001                    
+    leaf04           inconsistent replication list for vni 104001                    
 
 {{%notice tip%}}
 
@@ -130,16 +130,16 @@ synchronization, run:
 
     cumulus@switch:~$ netq check ntp
     Total Nodes: 15, Checked Nodes: 15, Rotten Nodes: 0, Unknown Nodes: 0, failed NTP Nodes: 8
-    Hostname          NTP Sync Connect Time
+    Hostname          NTP Sync Connect Time
     ----------------- -------- -------------------------
-    exit01            no       2018-09-12 16:30:39      
-    exit02            no       2018-09-12 16:30:45      
-    leaf01            no       2018-09-12 16:30:43      
-    leaf02            no       2018-09-12 16:30:36      
-    leaf03            no       2018-09-12 16:30:36      
-    leaf04            no       2018-09-12 16:30:34      
-    spine01           no       2018-09-12 16:30:44      
-    spine02           no       2018-09-12 16:30:40      
+    exit01            no       2018-09-12 16:30:39      
+    exit02            no       2018-09-12 16:30:45      
+    leaf01            no       2018-09-12 16:30:43      
+    leaf02            no       2018-09-12 16:30:36      
+    leaf03            no       2018-09-12 16:30:36      
+    leaf04            no       2018-09-12 16:30:34      
+    spine01           no       2018-09-12 16:30:44      
+    spine02           no       2018-09-12 16:30:40      
 
 This example shows eight nodes that are not in time synchronization. You
 can now continue to investigate these nodes, validating that the NetQ
@@ -177,19 +177,19 @@ checked.
 As with other netq check commands, you can validate the proper operation
 of your interfaces across the network:
 
-    cumulus@switch:~$ netq check interfaces 
+    cumulus@switch:~$ netq check interfaces 
     Checked Nodes: 15, Failed Nodes: 8
     Checked Ports: 118, Failed Ports: 8, Unverified Ports: 94
-    Hostname          Interface                 Peer Hostname     Peer Interface            Message
+    Hostname          Interface                 Peer Hostname     Peer Interface            Message
     ----------------- ------------------------- ----------------- ------------------------- -----------------------------------
-    leaf01            swp1                      server01          eth1                      Autoneg mismatch (off, on)         
-    leaf02            swp2                      server02          eth2                      Autoneg mismatch (off, on)         
-    leaf03            swp1                      server03          eth1                      Autoneg mismatch (off, on)         
-    leaf04            swp2                      server04          eth2                      Autoneg mismatch (off, on)         
-    server01          eth1                      leaf01            swp1                      Autoneg mismatch (on, off)         
-    server02          eth2                      leaf02            swp2                      Autoneg mismatch (on, off)         
-    server03          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)         
-    server04          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)         
+    leaf01            swp1                      server01          eth1                      Autoneg mismatch (off, on)         
+    leaf02            swp2                      server02          eth2                      Autoneg mismatch (off, on)         
+    leaf03            swp1                      server03          eth1                      Autoneg mismatch (off, on)         
+    leaf04            swp2                      server04          eth2                      Autoneg mismatch (off, on)         
+    server01          eth1                      leaf01            swp1                      Autoneg mismatch (on, off)         
+    server02          eth2                      leaf02            swp2                      Autoneg mismatch (on, off)         
+    server03          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)         
+    server04          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)         
 
 When failures are seen, additional information is provided to start your
 investigation. In this example, some reconfiguration is required for
@@ -230,7 +230,7 @@ and if three consecutive heartbeats are missed, its status changes to
 *Rotten*.
 
     cumulus@leaf01:~$ netq show agents
-     
+     
     Node             Status    Sys Uptime    Agent Uptime
     ---------------  --------  ------------  --------------
     leaf01           Fresh     2h ago        2h ago
@@ -251,78 +251,78 @@ View the status of BGP:
 
     cumulus@switch:~$ netq show bgp
     Matching bgp records:
-    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
+    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
     ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
-    exit01            swp44(internet)              vrf1            65041      25253      2/-/-        5d:1h:8m:59s
-    exit01            swp51(spine01)               default         65041      65020      8/-/42       5d:1h:8m:59s
-    exit01            swp52(spine02)               default         65041      65020      8/-/42       5d:1h:8m:58s
-    exit02            swp44(internet)              vrf1            65042      25253      2/-/-        5d:1h:9m:3s
-    exit02            swp51(spine01)               default         65042      65020      8/-/42       5d:1h:9m:4s
-    exit02            swp52(spine02)               default         65042      65020      8/-/42       5d:1h:9m:3s
-    internet          swp1(exit01)                 default         25253      65041      0/-/-        5d:1h:8m:58s
-    internet          swp2(exit02)                 default         25253      65042      0/-/-        5d:1h:9m:3s
-    leaf01            swp51(spine01)               default         65011      65020      7/-/24       5d:1h:9m:0s
-    leaf01            swp52(spine02)               default         65011      65020      7/-/24       5d:1h:8m:59s
-    leaf02            swp51(spine01)               default         65012      65020      8/-/24       5d:1h:9m:0s
-    leaf02            swp52(spine02)               default         65012      65020      8/-/24       5d:1h:8m:59s
-    leaf03            swp51(spine01)               default         65013      65020      7/-/24       5d:1h:9m:0s
-    leaf03            swp52(spine02)               default         65013      65020      7/-/24       5d:1h:8m:59s
-    leaf04            swp51(spine01)               default         65014      65020      8/-/24       5d:1h:9m:0s
-    leaf04            swp52(spine02)               default         65014      65020      8/-/24       5d:1h:8m:59s
-    spine01           swp1(leaf01)                 default         65020      65011      2/-/10       5d:1h:9m:0s
-    spine01           swp2(leaf02)                 default         65020      65012      2/-/10       5d:1h:9m:0s
-    spine01           swp29(exit02)                default         65020      65042      1/-/2        5d:1h:9m:4s
-    spine01           swp3(leaf03)                 default         65020      65013      2/-/10       5d:1h:9m:0s
-    spine01           swp30(exit01)                default         65020      65041      1/-/2        5d:1h:8m:59s
-    spine01           swp4(leaf04)                 default         65020      65014      2/-/10       5d:1h:9m:0s
-    spine02           swp1(leaf01)                 default         65020      65011      2/-/10       5d:1h:8m:59s
-    spine02           swp2(leaf02)                 default         65020      65012      2/-/10       5d:1h:8m:59s
-    spine02           swp29(exit02)                default         65020      65042      1/-/2        5d:1h:9m:4s
-    spine02           swp3(leaf03)                 default         65020      65013      2/-/10       5d:1h:8m:59s
-    spine02           swp30(exit01)                default         65020      65041      1/-/2        5d:1h:8m:58s
-    spine02           swp4(leaf04)                 default         65020      65014      2/-/10       5d:1h:8m:58s
+    exit01            swp44(internet)              vrf1            65041      25253      2/-/-        5d:1h:8m:59s
+    exit01            swp51(spine01)               default         65041      65020      8/-/42       5d:1h:8m:59s
+    exit01            swp52(spine02)               default         65041      65020      8/-/42       5d:1h:8m:58s
+    exit02            swp44(internet)              vrf1            65042      25253      2/-/-        5d:1h:9m:3s
+    exit02            swp51(spine01)               default         65042      65020      8/-/42       5d:1h:9m:4s
+    exit02            swp52(spine02)               default         65042      65020      8/-/42       5d:1h:9m:3s
+    internet          swp1(exit01)                 default         25253      65041      0/-/-        5d:1h:8m:58s
+    internet          swp2(exit02)                 default         25253      65042      0/-/-        5d:1h:9m:3s
+    leaf01            swp51(spine01)               default         65011      65020      7/-/24       5d:1h:9m:0s
+    leaf01            swp52(spine02)               default         65011      65020      7/-/24       5d:1h:8m:59s
+    leaf02            swp51(spine01)               default         65012      65020      8/-/24       5d:1h:9m:0s
+    leaf02            swp52(spine02)               default         65012      65020      8/-/24       5d:1h:8m:59s
+    leaf03            swp51(spine01)               default         65013      65020      7/-/24       5d:1h:9m:0s
+    leaf03            swp52(spine02)               default         65013      65020      7/-/24       5d:1h:8m:59s
+    leaf04            swp51(spine01)               default         65014      65020      8/-/24       5d:1h:9m:0s
+    leaf04            swp52(spine02)               default         65014      65020      8/-/24       5d:1h:8m:59s
+    spine01           swp1(leaf01)                 default         65020      65011      2/-/10       5d:1h:9m:0s
+    spine01           swp2(leaf02)                 default         65020      65012      2/-/10       5d:1h:9m:0s
+    spine01           swp29(exit02)                default         65020      65042      1/-/2        5d:1h:9m:4s
+    spine01           swp3(leaf03)                 default         65020      65013      2/-/10       5d:1h:9m:0s
+    spine01           swp30(exit01)                default         65020      65041      1/-/2        5d:1h:8m:59s
+    spine01           swp4(leaf04)                 default         65020      65014      2/-/10       5d:1h:9m:0s
+    spine02           swp1(leaf01)                 default         65020      65011      2/-/10       5d:1h:8m:59s
+    spine02           swp2(leaf02)                 default         65020      65012      2/-/10       5d:1h:8m:59s
+    spine02           swp29(exit02)                default         65020      65042      1/-/2        5d:1h:9m:4s
+    spine02           swp3(leaf03)                 default         65020      65013      2/-/10       5d:1h:8m:59s
+    spine02           swp30(exit01)                default         65020      65041      1/-/2        5d:1h:8m:58s
+    spine02           swp4(leaf04)                 default         65020      65014      2/-/10       5d:1h:8m:58s
 
 View the status of your VLANs:
 
     cumulus@switch:~$ netq show vlan
     Matching vlan records:
-    Hostname          VLANs                     SVIs                      Last Changed
+    Hostname          VLANs                     SVIs                      Last Changed
     ----------------- ------------------------- ------------------------- -------------------------
-    exit01            4001                      4001                      4d:20h:10m:21s
-    exit02            4001                      4001                      4d:20h:9m:57s
-    leaf01            1,13,24,4001              13 24 4001                4d:21h:3m:21s
-    leaf02            1,13,24,4001              13 24 4001                4d:20h:16m:42s
-    leaf03            1,13,24,4001              13 24 4001                4d:20h:15m:52s
-    leaf04            1,13,24,4001              13 24 4001                4d:20h:12m:32s
+    exit01            4001                      4001                      4d:20h:10m:21s
+    exit02            4001                      4001                      4d:20h:9m:57s
+    leaf01            1,13,24,4001              13 24 4001                4d:21h:3m:21s
+    leaf02            1,13,24,4001              13 24 4001                4d:20h:16m:42s
+    leaf03            1,13,24,4001              13 24 4001                4d:20h:15m:52s
+    leaf04            1,13,24,4001              13 24 4001                4d:20h:12m:32s
 
 View the status of the hardware sensors:
 
     cumulus@switch:~$ netq show sensors all
     Matching sensors records:
-    Hostname          Name            Description                         State      Message                             Last Changed
+    Hostname          Name            Description                         State      Message                             Last Changed
     ----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
-    exit01            fan1            fan tray 1, fan 1                   ok                                             4d:20h:11m:54s
-    exit01            fan2            fan tray 1, fan 2                   ok                                             4d:20h:11m:54s
-    exit01            fan3            fan tray 2, fan 1                   ok                                             4d:20h:11m:54s
-    exit01            fan4            fan tray 2, fan 2                   ok                                             4d:20h:11m:54s
-    exit01            fan5            fan tray 3, fan 1                   ok                                             4d:20h:11m:54s
-    exit01            fan6            fan tray 3, fan 2                   ok                                             4d:20h:11m:54s
-    exit01            psu1fan1        psu1 fan                            ok                                             4d:20h:11m:54s
-    exit01            psu2fan1        psu2 fan                            ok                                             4d:20h:11m:54s
-    exit01            temp1           board sensor near cpu               ok                                             4d:20h:11m:54s
-    exit01            temp2           board sensor near virtual switch    ok                                             4d:20h:11m:54s
-    exit01            temp3           board sensor at front left corner   ok                                             4d:20h:11m:54s
-    exit01            temp5           board sensor near fan               ok                                             4d:20h:11m:54s
-    exit02            fan1            fan tray 1, fan 1                   ok                                             4d:20h:11m:30s
-    exit02            fan2            fan tray 1, fan 2                   ok                                             4d:20h:11m:30s
-    exit02            fan3            fan tray 2, fan 1                   ok                                             4d:20h:11m:30s
-    exit02            fan4            fan tray 2, fan 2                   ok                                             4d:20h:11m:30s
-    exit02            fan5            fan tray 3, fan 1                   ok                                             4d:20h:11m:30s
-    exit02            fan6            fan tray 3, fan 2                   ok                                             4d:20h:11m:30s
-    exit02            psu1fan1        psu1 fan                            ok                                             4d:20h:11m:30s
-    exit02            psu2fan1        psu2 fan                            ok                                             4d:20h:11m:30s
-    exit02            temp4           board sensor at front right corner  ok                                             4d:20h:11m:30s
-    internet          fan1            fan tray 1, fan 1                   ok                                             5d:1h:13m:12s
-    internet          fan2            fan tray 1, fan 2                   ok                                             5d:1h:13m:12s
-    internet          fan3            fan tray 2, fan 1                   ok                                             5d:1h:13m:12s
+    exit01            fan1            fan tray 1, fan 1                   ok                                             4d:20h:11m:54s
+    exit01            fan2            fan tray 1, fan 2                   ok                                             4d:20h:11m:54s
+    exit01            fan3            fan tray 2, fan 1                   ok                                             4d:20h:11m:54s
+    exit01            fan4            fan tray 2, fan 2                   ok                                             4d:20h:11m:54s
+    exit01            fan5            fan tray 3, fan 1                   ok                                             4d:20h:11m:54s
+    exit01            fan6            fan tray 3, fan 2                   ok                                             4d:20h:11m:54s
+    exit01            psu1fan1        psu1 fan                            ok                                             4d:20h:11m:54s
+    exit01            psu2fan1        psu2 fan                            ok                                             4d:20h:11m:54s
+    exit01            temp1           board sensor near cpu               ok                                             4d:20h:11m:54s
+    exit01            temp2           board sensor near virtual switch    ok                                             4d:20h:11m:54s
+    exit01            temp3           board sensor at front left corner   ok                                             4d:20h:11m:54s
+    exit01            temp5           board sensor near fan               ok                                             4d:20h:11m:54s
+    exit02            fan1            fan tray 1, fan 1                   ok                                             4d:20h:11m:30s
+    exit02            fan2            fan tray 1, fan 2                   ok                                             4d:20h:11m:30s
+    exit02            fan3            fan tray 2, fan 1                   ok                                             4d:20h:11m:30s
+    exit02            fan4            fan tray 2, fan 2                   ok                                             4d:20h:11m:30s
+    exit02            fan5            fan tray 3, fan 1                   ok                                             4d:20h:11m:30s
+    exit02            fan6            fan tray 3, fan 2                   ok                                             4d:20h:11m:30s
+    exit02            psu1fan1        psu1 fan                            ok                                             4d:20h:11m:30s
+    exit02            psu2fan1        psu2 fan                            ok                                             4d:20h:11m:30s
+    exit02            temp4           board sensor at front right corner  ok                                             4d:20h:11m:30s
+    internet          fan1            fan tray 1, fan 1                   ok                                             5d:1h:13m:12s
+    internet          fan2            fan tray 1, fan 2                   ok                                             5d:1h:13m:12s
+    internet          fan3            fan tray 2, fan 1                   ok                                             5d:1h:13m:12s
     ...

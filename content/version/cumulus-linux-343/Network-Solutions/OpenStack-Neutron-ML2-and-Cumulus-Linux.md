@@ -15,7 +15,7 @@ The Modular Layer 2 (ML2) plugin is a framework that allows OpenStack
 Networking to utilize a variety of non-vendor-specific layer 2
 networking technologies. The ML2 framework simplifies adding support for
 new layer 2 networking technologies, requiring much less initial and
-ongoing effort — specifically, it enables dynamic provisioning of
+ongoing effort - specifically, it enables dynamic provisioning of
 VLAN/VXLAN on switches in OpenStack environment instead of manually
 provisioning L2 connectivity for each VM.
 
@@ -41,7 +41,7 @@ Cumulus Linux switches, you need the following:
         [ML2]
         #local_bind = 10.40.10.122
         #service_node = 10.40.10.1
-         
+         
         # Add the list of inter switch links that
         # need to have the vlan included on it by default
         # Not needed if doing Hierarchical port binding
@@ -80,17 +80,17 @@ example:
 The ML2 mechanism driver contains the following configurable parameters.
 You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
 
-- `switches` — The list of Cumulus Linux switches connected to the
+- `switches` - The list of Cumulus Linux switches connected to the
   Neutron host. Specify a list of IP addresses.
-- `scheme` — The scheme (for example, HTTP) for the base URL for the
+- `scheme` - The scheme (for example, HTTP) for the base URL for the
   ML2 API.
-- `protocol_port` — The protocol port for the bast URL for the ML2
+- `protocol_port` - The protocol port for the bast URL for the ML2
   API. The default value is *8000*.
-- `sync_time` — A periodic time interval for polling the Cumulus Linux
+- `sync_time` - A periodic time interval for polling the Cumulus Linux
   switch. The default value is *30* seconds.
-- `spf_enable` — Enables/disables SPF for the bridge. The default
+- `spf_enable` - Enables/disables SPF for the bridge. The default
   value is *False*.
-- `new_bridge` — Enables/disables 
+- `new_bridge` - Enables/disables 
   [VLAN-aware bridge mode](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
   for the bridge configuration. The default value is *False*, so a
   traditional mode bridge is created.

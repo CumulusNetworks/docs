@@ -76,7 +76,7 @@ as the gateway between the internal VLAN (VLAN20/VNI-20) and the
 routable external VLAN 10. VLAN 10 could have an SVI (switch virtual
 interface) configured to route out of the VLAN. This also has the
 benefit in cases where a VXLAN represents a tenant (or a purposely
-separated application) — you want to keep the firewall between VXLANs so
+separated application) - you want to keep the firewall between VXLANs so
 that traffic can be filtered and sanitized to the network operator's
 specification.
 
@@ -115,13 +115,13 @@ address to be used as the gateway for vni-10, you could configure the
 following on exit01:
 
     cumulus@exit01:~$ sudo nano /etc/network/interfaces
-     
+     
     auto lo
     iface lo inet loopback
        address 10.0.0.11/32
-     
+     
     ## some output removed for brevity (such as peerlink and host-facing bonds) ##
-     
+     
     auto bridge
     iface bridge
         bridge-vlan-aware yes
@@ -129,14 +129,14 @@ following on exit01:
         bridge-vids 100 200
         bridge-pvid 1             # sets native VLAN to 1, an unused VLAN
         mstpctl-treeprio 8192
-     
+     
     auto outside
     iface outside
         bond-slaves swp45 swp47
         alias hyperloop outside 
         mstpctl-bpduguard yes
         mstpctl-portbpdufilter yes
-     
+     
     auto inside
     iface inside
         bond-slaves swp46 swp48
@@ -150,20 +150,20 @@ following on exit01:
         address 172.16.100.2/24
         alias VXLAN GW 100 Linux Bridge
         address-virtual 44:38:39:FF:01:90 172.16.100.1/24
-     
+     
     auto VLAN200GW
     iface VLAN200GW
        bridge_ports outside.200
        address 172.16.200.2/24
        alias VXLAN GW 200 Linux Bridge
-       address-virtual 44:38:39:FF:02:90 172.16.200.1/24 
-     
+       address-virtual 44:38:39:FF:02:90 172.16.200.1/24 
+     
     auto vni-10
     iface vni-10
         vxlan-id 10
         vxlan-local-tunnelip 10.0.0.11
         bridge-access 100
-     
+     
     auto vni-20
     iface vni-20
         vxlan-id 20

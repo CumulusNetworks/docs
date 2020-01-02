@@ -99,7 +99,7 @@ root account, you can do one of two things for the account:
     
     ``` 
     cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
-     
+     
     ... 
           
     # Authentication:

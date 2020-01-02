@@ -105,7 +105,7 @@ a particular switch. This example shows the ASIC information for
 
     cumulus@switch:~$ netq leaf02 show inventory asic
     Matching inventory records:
-    Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+    Hostname          Vendor               Model                          Model ID                  Core BW        Ports
     ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
     st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
 
@@ -118,22 +118,22 @@ motherboard data for all devices.
 
     cumulus@switch:~$ netq show inventory board
     Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    dell-z9100-05     DELL                 Z9100-ON                       4C:76:25:E7:42:C0  CN03GT5N779315C20001      03GT5N           A00    12/04/2015
-    mlx-2100-05       Penguin              Arctica 1600cs                 7C:FE:90:F5:61:C0  MT1623X10078              MSN2100-CB2FO    N/A    06/09/2016
-    mlx-2410a1-05     Mellanox             SN2410                         EC:0D:9A:4E:55:C0  MT1734X00067              MSN2410-CB2F_QP3 N/A    08/24/2017
-    mlx-2700-11       Penguin              Arctica 3200cs                 44:38:39:00:AB:80  MT1604X21036              MSN2700-CS2FO    N/A    01/31/2016
-    qct-ix1-08        QCT                  QuantaMesh BMS T7032-IX1       54:AB:3A:78:69:51  QTFCO7623002C             1IX1UZZ0ST6      H3B    05/30/2016
-    qct-ix7-04        QCT                  IX7                            D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
-    qct-ix7-04        QCT                  T7032-IX7                      D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
-    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l3            Penguin              Arctica 4806xp                 44:38:39:00:70:49  N/A                       N/A              N/A    N/A
-    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
-    st1-s2            Dell                 S6000-ON                       44:38:39:00:80:81  N/A                       N/A              N/A    N/A
+    dell-z9100-05     DELL                 Z9100-ON                       4C:76:25:E7:42:C0  CN03GT5N779315C20001      03GT5N           A00    12/04/2015
+    mlx-2100-05       Penguin              Arctica 1600cs                 7C:FE:90:F5:61:C0  MT1623X10078              MSN2100-CB2FO    N/A    06/09/2016
+    mlx-2410a1-05     Mellanox             SN2410                         EC:0D:9A:4E:55:C0  MT1734X00067              MSN2410-CB2F_QP3 N/A    08/24/2017
+    mlx-2700-11       Penguin              Arctica 3200cs                 44:38:39:00:AB:80  MT1604X21036              MSN2700-CS2FO    N/A    01/31/2016
+    qct-ix1-08        QCT                  QuantaMesh BMS T7032-IX1       54:AB:3A:78:69:51  QTFCO7623002C             1IX1UZZ0ST6      H3B    05/30/2016
+    qct-ix7-04        QCT                  IX7                            D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
+    qct-ix7-04        QCT                  T7032-IX7                      D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
+    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                        ne-XP
+    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                        ne-XP
+    st1-l3            Penguin              Arctica 4806xp                 44:38:39:00:70:49  N/A                       N/A              N/A    N/A
+    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+    st1-s2            Dell                 S6000-ON                       44:38:39:00:80:81  N/A                       N/A              N/A    N/A
 
 You can filter the results of the command to capture only those devices
 with a particular motherboard vendor. This example shows only the
@@ -141,12 +141,12 @@ devices with *Celestica* motherboards.
 
     cumulus@switch:~$ netq show inventory board vendor celestica
     Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
+    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                        ne-XP
+    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                        ne-XP
 
 You can filter the results of the command to view the model for a
 particular switch. This example shows the motherboard vendor for the
@@ -154,9 +154,9 @@ particular switch. This example shows the motherboard vendor for the
 
     cumulus@switch:~$ netq st1-s1 show inventory board
     Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
 
 ### View Information about the CPU on a Switch
 
@@ -187,41 +187,41 @@ and then shows all devices with an *x86\_64* architecture.
 
     cumulus@switch:~$ netq show inventory cpu arch
         x86_64  :  CPU Architecture
-     
+     
     cumulus@switch:~$ netq show inventory cpu arch x86_64
     Matching inventory records:
-    Hostname          Arch     Model                          Freq       Cores
+    Hostname          Arch     Model                          Freq       Cores
     ----------------- -------- ------------------------------ ---------- -----
-    leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
+    leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
     server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
     server03          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
     server04          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
-    spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
+    spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
 
 You can filter the results to view CPU information for a single switch,
 as shown here for *server02*.
 
     cumulus@switch:~$ netq server02 show inventory cpu
-     
+     
     Matching inventory records:
-    Hostname          Arch     Model                          Freq       Cores
+    Hostname          Arch     Model                          Freq       Cores
     ----------------- -------- ------------------------------ ---------- -----
     server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
@@ -234,19 +234,19 @@ example shows all of these disk characteristics for all devices.
 
     cumulus@switch:~$ netq show inventory disk
     Matching inventory records:
-    Hostname          Name            Type             Transport          Size       Vendor               Model
+    Hostname          Name            Type             Transport          Size       Vendor               Model
     ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
-    leaf01            vda             disk             N/A                6G         0x1af4               N/A
-    leaf02            vda             disk             N/A                6G         0x1af4               N/A
-    leaf03            vda             disk             N/A                6G         0x1af4               N/A
-    leaf04            vda             disk             N/A                6G         0x1af4               N/A
-    oob-mgmt-server   vda             disk             N/A                256G       0x1af4               N/A
+    leaf01            vda             disk             N/A                6G         0x1af4               N/A
+    leaf02            vda             disk             N/A                6G         0x1af4               N/A
+    leaf03            vda             disk             N/A                6G         0x1af4               N/A
+    leaf04            vda             disk             N/A                6G         0x1af4               N/A
+    oob-mgmt-server   vda             disk             N/A                256G       0x1af4               N/A
     server01          vda             disk             N/A                301G       0x1af4               N/A
     server02          vda             disk             N/A                301G       0x1af4               N/A
     server03          vda             disk             N/A                301G       0x1af4               N/A
-    server04          vda             disk             N/A                301G       0x1af4               N/A
-    spine01           vda             disk             N/A                6G         0x1af4               N/A
-    spine02           vda             disk             N/A                6G         0x1af4               N/A
+    server04          vda             disk             N/A                301G       0x1af4               N/A
+    spine01           vda             disk             N/A                6G         0x1af4               N/A
+    spine02           vda             disk             N/A                6G         0x1af4               N/A
 
 You can filter the results of the command to view the disk information
 for a particular device. This example shows disk information for
@@ -254,9 +254,9 @@ for a particular device. This example shows disk information for
 
     cumulus@switch:~$ netq leaf03 show inventory disk
     Matching inventory records:
-    Hostname          Name            Type             Transport          Size       Vendor               Model
+    Hostname          Name            Type             Transport          Size       Vendor               Model
     ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
-    leaf03            vda             disk             N/A                6G         0x1af4               N/A
+    leaf03            vda             disk             N/A                6G         0x1af4               N/A
 
 ### View Memory Information for a Switch
 
@@ -310,7 +310,7 @@ You can filter the results to view memory information for a single
 switch, as shown here for leaf01.
 
     cumulus@switch:~$ netq leaf01 show inventory memory
-     
+     
     Matching inventory records:
     Hostname          Name            Type             Size       Speed      Vendor               Serial No
     ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
@@ -323,21 +323,21 @@ hardware inventory is better. This example shows the basic hardware
 information for all devices.
 
     cumulus@switch:~$ netq show inventory brief
-     
+     
     Matching inventory records:
-    Hostname          Switch               OS              CPU      ASIC            Ports
+    Hostname          Switch               OS              CPU      ASIC            Ports
     ----------------- -------------------- --------------- -------- --------------- -----------------------------------
-    leaf01            VX                   Cumulus Linux   x86_64   N/A             N/A
-    leaf02            VX                   Cumulus Linux   x86_64   N/A             N/A
-    leaf03            VX                   Cumulus Linux   x86_64   N/A             N/A
-    leaf04            VX                   Cumulus Linux   x86_64   N/A             N/A
-    oob-mgmt-server   VX                   Cumulus Linux   x86_64   N/A             N/A
+    leaf01            VX                   Cumulus Linux   x86_64   N/A             N/A
+    leaf02            VX                   Cumulus Linux   x86_64   N/A             N/A
+    leaf03            VX                   Cumulus Linux   x86_64   N/A             N/A
+    leaf04            VX                   Cumulus Linux   x86_64   N/A             N/A
+    oob-mgmt-server   VX                   Cumulus Linux   x86_64   N/A             N/A
     server01          N/A                  Ubuntu          x86_64   N/A             N/A
     server02          N/A                  Ubuntu          x86_64   N/A             N/A
     server03          N/A                  Ubuntu          x86_64   N/A             N/A
-    server04          N/A                  Ubuntu          x86_64   N/A             N/A
-    spine01           VX                   Cumulus Linux   x86_64   N/A             N/A
-    spine02           VX                   Cumulus Linux   x86_64   N/A             N/A
+    server04          N/A                  Ubuntu          x86_64   N/A             N/A
+    spine01           VX                   Cumulus Linux   x86_64   N/A             N/A
+    spine02           VX                   Cumulus Linux   x86_64   N/A             N/A
 
 ## Monitor Switch Software Information
 
@@ -392,21 +392,21 @@ You can view the name and version of the OS on a switch, and when it was
 last modified. This example shows the OS information for all devices.
 
     cumulus@switch:~$ netq show inventory os
-     
+     
     Matching inventory records:
-    Hostname          Name            Version                              Last Changed
+    Hostname          Name            Version                              Last Changed
     ----------------- --------------- ------------------------------------ -------------------------
-    leaf01            Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:3s
-    leaf02            Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:15s
-    leaf03            Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:10s
-    leaf04            Cumulus Linux   3.6.1.0~1748339104.32814bc           21d:23h:26m:6s
-    oob-mgmt-server   Cumulus Linux   3.7.0~1533263174.bce9472             19d:7h:46m:24s
+    leaf01            Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:3s
+    leaf02            Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:15s
+    leaf03            Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:10s
+    leaf04            Cumulus Linux   3.6.1.0~1748339104.32814bc           21d:23h:26m:6s
+    oob-mgmt-server   Cumulus Linux   3.7.0~1533263174.bce9472             19d:7h:46m:24s
     server04          Ubuntu          16.04                                21d:23h:26m:7s
     server04          Ubuntu          16.04                                21d:23h:26m:13s
     server04          Ubuntu          16.04                                21d:23h:26m:35s
-    server04          Ubuntu          16.04                                21d:23h:26m:52s
-    spine01           Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:7s
-    spine02           Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:9s
+    server04          Ubuntu          16.04                                21d:23h:26m:52s
+    spine01           Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:7s
+    spine02           Cumulus Linux   3.6.2.1~1533263732.39254ac           21d:23h:26m:9s
 
 You can filter the results of the command to view only devices with a
 particular operating system or version. This can be especially helpful
@@ -415,11 +415,11 @@ expected. This example shows all devices with the Cumulus Linux version
 3.6.1 installed.
 
     cumulus@switch:~$ netq show inventory os version 3.6.1
-     
+     
     Matching inventory records:
-    Hostname          Name            Version                              Last Changed
+    Hostname          Name            Version                              Last Changed
     ----------------- --------------- ------------------------------------ -------------------------
-    leaf04            Cumulus Linux   3.6.1.0~1748339104.32814bc           21d:23h:26m:6s
+    leaf04            Cumulus Linux   3.6.1.0~1748339104.32814bc           21d:23h:26m:6s
 
 This example shows changes that have been made to the OS on all devices
 between 16 and 21 days ago. Remember to use measurement units on the
@@ -446,42 +446,42 @@ does not operate correctly. This example shows the license information
 for all devices.
 
     cumulus@switch:~$ netq show inventory license
-     
+     
     Matching inventory records:
-    Hostname          Name            State      Last Changed
+    Hostname          Name            State      Last Changed
     ----------------- --------------- ---------- -------------------------
-    leaf01            Cumulus Linux   ok         21d:23h:43m:4s
-    leaf02            Cumulus Linux   ok         21d:23h:43m:16s
-    leaf03            Cumulus Linux   ok         21d:23h:43m:12s
-    leaf04            Cumulus Linux   ok         21d:23h:43m:7s
-    oob-mgmt-server   Cumulus Linux   ok         19d:8h:3m:34s
+    leaf01            Cumulus Linux   ok         21d:23h:43m:4s
+    leaf02            Cumulus Linux   ok         21d:23h:43m:16s
+    leaf03            Cumulus Linux   ok         21d:23h:43m:12s
+    leaf04            Cumulus Linux   ok         21d:23h:43m:7s
+    oob-mgmt-server   Cumulus Linux   ok         19d:8h:3m:34s
     server01          Cumulus Linux   N/A        21d:23h:43m:8s
     server02          Cumulus Linux   N/A        21d:23h:43m:17s
     server03          Cumulus Linux   N/A        21d:23h:43m:25s
-    server04          Cumulus Linux   N/A        21d:23h:43m:31s
-    spine01           Cumulus Linux   ok         21d:23h:43m:8s
-    spine02           Cumulus Linux   ok         21d:23h:43m:11s
+    server04          Cumulus Linux   N/A        21d:23h:43m:31s
+    spine01           Cumulus Linux   ok         21d:23h:43m:8s
+    spine02           Cumulus Linux   ok         21d:23h:43m:11s
 
 You can view the historical state of licenses using the around and
 changes keywords. This example shows the license state for all devices
 about 7 days ago. Remember to use measurement units on the time values.
 
     cumulus@switch:~$ netq show inventory license around 7d
-     
+     
     Matching inventory records:
-    Hostname          Name            State      Last Changed
+    Hostname          Name            State      Last Changed
     ----------------- --------------- ---------- -------------------------
-    leaf01            Cumulus Linux   ok         14d:23h:43m:4s
-    leaf02            Cumulus Linux   ok         14d:23h:43m:16s
-    leaf03            Cumulus Linux   ok         14d:23h:43m:12s
-    leaf04            Cumulus Linux   ok         14d:23h:43m:7s
-    oob-mgmt-server   Cumulus Linux   ok         13d:8h:3m:34s
+    leaf01            Cumulus Linux   ok         14d:23h:43m:4s
+    leaf02            Cumulus Linux   ok         14d:23h:43m:16s
+    leaf03            Cumulus Linux   ok         14d:23h:43m:12s
+    leaf04            Cumulus Linux   ok         14d:23h:43m:7s
+    oob-mgmt-server   Cumulus Linux   ok         13d:8h:3m:34s
     server01          Cumulus Linux   N/A        14d:23h:43m:8s
     server02          Cumulus Linux   N/A        14d:23h:43m:17s
     server03          Cumulus Linux   N/A        14d:23h:43m:25s
-    server04          Cumulus Linux   N/A        14d:23h:43m:31s
-    spine01           Cumulus Linux   ok         14d:23h:43m:8s
-    spine02           Cumulus Linux   ok         14d:23h:43m:11s
+    server04          Cumulus Linux   N/A        14d:23h:43m:31s
+    spine01           Cumulus Linux   ok         14d:23h:43m:8s
+    spine02           Cumulus Linux   ok         14d:23h:43m:11s
 
 You can filter the results to show license changes during a particular
 timeframe for a particular device. This example shows that there have
@@ -498,21 +498,21 @@ information using the *brief* keyword. Specify a hostname to view the
 summary for a specific device.
 
     cumulus@switch:~$ netq show inventory brief
-     
+     
     Matching inventory records:
-    Hostname          Switch               OS              CPU      ASIC            Ports
+    Hostname          Switch               OS              CPU      ASIC            Ports
     ----------------- -------------------- --------------- -------- --------------- -----------------------------------
-    leaf01            VX                   Cumulus Linux   x86_64   N/A             N/A
-    leaf02            VX                   Cumulus Linux   x86_64   N/A             N/A
-    leaf03            VX                   Cumulus Linux   x86_64   N/A             N/A
-    leaf04            VX                   Cumulus Linux   x86_64   N/A             N/A
-    oob-mgmt-server   VX                   Cumulus Linux   x86_64   N/A             N/A
+    leaf01            VX                   Cumulus Linux   x86_64   N/A             N/A
+    leaf02            VX                   Cumulus Linux   x86_64   N/A             N/A
+    leaf03            VX                   Cumulus Linux   x86_64   N/A             N/A
+    leaf04            VX                   Cumulus Linux   x86_64   N/A             N/A
+    oob-mgmt-server   VX                   Cumulus Linux   x86_64   N/A             N/A
     server01          N/A                  Ubuntu          x86_64   N/A             N/A
     server02          N/A                  Ubuntu          x86_64   N/A             N/A
     server03          N/A                  Ubuntu          x86_64   N/A             N/A
-    server04          N/A                  Ubuntu          x86_64   N/A             N/A
-    spine01           VX                   Cumulus Linux   x86_64   N/A             N/A
-    spine02           VX                   Cumulus Linux   x86_64   N/A             N/A
+    server04          N/A                  Ubuntu          x86_64   N/A             N/A
+    spine01           VX                   Cumulus Linux   x86_64   N/A             N/A
+    spine02           VX                   Cumulus Linux   x86_64   N/A             N/A
 
 ### Validate NetQ Agents are Running
 
@@ -528,21 +528,21 @@ This example shows NetQ Agent state on all devices. You can view the
 state for a single device using the *hostname* keyword.
 
     cumulus@switch:~$ netq show agents
-     
+     
     Matching agents records:
-    Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+    Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-    leaf01            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:39m:26s            22d:4h:19m:6s             22d:0h:8m:20s              18.417234s
-    leaf02            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:33m:0s             22d:4h:18m:26s            22d:0h:8m:33s              15.413085s
-    leaf03            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:35m:14s            22d:4h:18m:56s            22d:0h:8m:28s              31.478846s
-    leaf04            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:35m:48s            22d:4h:19m:5s             22d:0h:8m:23s              17.819782s
-    oob-mgmt-server   Fresh            yes      1.4.0-cl3u10~1534306219.882a7e7      22d:0h:10m:32s            19d:8h:28m:38s            19d:8h:28m:38s             12.330358s
-    server01          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:25m:58s            11m:46.982s               11m:46.982s                11.973292s
-    server02          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:25m:57s            10m:11.888s               10m:11.888s                7.469695s
-    server03          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:26m:9s             9m:49.763s                9m:49.763s                 15.437087s
-    server04          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:26m:36s            22d:4h:21m:6s             22d:0h:8m:23s              13.428345s
-    spine01           Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:40m:8s             22d:4h:18m:53s            22d:0h:8m:24s              32.40132s
-    spine02           Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:33m:13s            22d:4h:19m:7s             22d:0h:8m:27s              23.748967s
+    leaf01            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:39m:26s            22d:4h:19m:6s             22d:0h:8m:20s              18.417234s
+    leaf02            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:33m:0s             22d:4h:18m:26s            22d:0h:8m:33s              15.413085s
+    leaf03            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:35m:14s            22d:4h:18m:56s            22d:0h:8m:28s              31.478846s
+    leaf04            Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:35m:48s            22d:4h:19m:5s             22d:0h:8m:23s              17.819782s
+    oob-mgmt-server   Fresh            yes      1.4.0-cl3u10~1534306219.882a7e7      22d:0h:10m:32s            19d:8h:28m:38s            19d:8h:28m:38s             12.330358s
+    server01          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:25m:58s            11m:46.982s               11m:46.982s                11.973292s
+    server02          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:25m:57s            10m:11.888s               10m:11.888s                7.469695s
+    server03          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:26m:9s             9m:49.763s                9m:49.763s                 15.437087s
+    server04          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   22d:4h:26m:36s            22d:4h:21m:6s             22d:0h:8m:23s              13.428345s
+    spine01           Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:40m:8s             22d:4h:18m:53s            22d:0h:8m:24s              32.40132s
+    spine02           Fresh            no       1.3.0-cl3u9~1522970647.b08ca60       22d:4h:33m:13s            22d:4h:19m:7s             22d:0h:8m:27s              23.748967s
 
 You can view the state of NetQ Agents at an earlier time using the
 *around* and *changes* keywords.
@@ -607,70 +607,70 @@ whether each is enabled, active, and monitored, along with how long the
 service has been running and the last time it was changed.
 
     cumulus@switch:~$ netq show services
-     
+     
     Matching services records:
-    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
     ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
-    leaf02            bgpd                 2013  default         yes     yes    yes       ok               5h:1m:10s                 6m:41.781s
-    leaf02            clagd                1169  default         yes     yes    yes       ok               5h:2m:0s                  6m:42.777s
-    leaf02            cumulus-chassis-ssh  n/a   default         no      no     no        n/a              2d:4h:15m:58s             2d:4h:15m:58s
-    leaf02            cumulus-chassisd     n/a   default         no      no     no        n/a              2d:4h:15m:58s             2d:4h:15m:58s
-    leaf02            ledmgrd              612   default         yes     yes    no        ok               5h:2m:15s                 6m:50.946s
-    leaf02            lldpd                1160  default         yes     yes    yes       ok               5h:2m:3s                  6m:28.313s
-    leaf02            mstpd                448   default         yes     yes    yes       ok               5h:2m:19s                 6m:42.884s
-    leaf02            neighmgrd            1094  default         yes     yes    no        ok               5h:2m:5s                  6m:50.940s
-    leaf02            netq-agent           n/a   default         no      no     yes       n/a              6m:50.943s                6m:50.943s
-    leaf02            netq-notifier        n/a   default         no      no     yes       n/a              2d:4h:15m:58s             2d:4h:15m:58s
-    leaf02            netqd                n/a   default         no      no     yes       n/a              6m:50.944s                6m:50.944s
-    leaf02            ntp                  n/a   default         no      no     yes       n/a              6m:50.936s                6m:50.936s
-    leaf02            ospf6d               n/a   default         no      no     no        n/a              2d:4h:15m:58s             2d:4h:15m:58s
-    leaf02            ospfd                n/a   default         no      no     yes       n/a              6m:41.922s                6m:41.922s
-    leaf02            ptmd                 1162  default         yes     yes    no        ok               5h:2m:3s                  6m:51.441s
-    leaf02            pwmd                 613   default         yes     yes    no        ok               5h:2m:15s                 6m:50.948s
-    leaf02            smond                609   default         yes     yes    yes       ok               5h:2m:15s                 6m:28.279s
-    leaf02            ssh                  1125  default         yes     yes    no        ok               5h:2m:5s                  6m:50.935s
-    leaf02            syslog               393   default         yes     yes    no        ok               5h:2m:19s                 6m:50.934
-    leaf02            vxrd                 n/a   default         no      no     yes       n/a              6m:9.742s                 6m:9.742s
-    leaf02            vxsnd                n/a   default         no      no     yes       n/a              6m:9.756s                 6m:9.756s
-    leaf02            zebra                2006  default         yes     yes    yes       ok               6m:28.244s                6m:28.244s
-    server01          lldpd                1359  default         yes     yes    yes       ok               2h:0m:25s                 4h:59m:45s
-    server01          netq-agent           1363  default         yes     yes    yes       ok               2h:0m:26s                 5h:0m:7s
-    server01          netq-notifier        n/a   default         no      no     yes       n/a              2d:4h:16m:1s              2d:4h:16m:1s
-    server01          netqd                1355  default         yes     yes    yes       ok               2h:0m:26s                 5h:0m:7s
-    server01          ntp                  0     default         yes     yes    yes       ok               2h:0m:20s                 5h:0m:7s
-    server01          ssh                  1358  default         yes     yes    no        ok               2h:0m:25s                 5h:0m:7s
-    server01          syslog               967   default         yes     yes    no        ok               2h:0m:27s                 5h:0m:7s
+    leaf02            bgpd                 2013  default         yes     yes    yes       ok               5h:1m:10s                 6m:41.781s
+    leaf02            clagd                1169  default         yes     yes    yes       ok               5h:2m:0s                  6m:42.777s
+    leaf02            cumulus-chassis-ssh  n/a   default         no      no     no        n/a              2d:4h:15m:58s             2d:4h:15m:58s
+    leaf02            cumulus-chassisd     n/a   default         no      no     no        n/a              2d:4h:15m:58s             2d:4h:15m:58s
+    leaf02            ledmgrd              612   default         yes     yes    no        ok               5h:2m:15s                 6m:50.946s
+    leaf02            lldpd                1160  default         yes     yes    yes       ok               5h:2m:3s                  6m:28.313s
+    leaf02            mstpd                448   default         yes     yes    yes       ok               5h:2m:19s                 6m:42.884s
+    leaf02            neighmgrd            1094  default         yes     yes    no        ok               5h:2m:5s                  6m:50.940s
+    leaf02            netq-agent           n/a   default         no      no     yes       n/a              6m:50.943s                6m:50.943s
+    leaf02            netq-notifier        n/a   default         no      no     yes       n/a              2d:4h:15m:58s             2d:4h:15m:58s
+    leaf02            netqd                n/a   default         no      no     yes       n/a              6m:50.944s                6m:50.944s
+    leaf02            ntp                  n/a   default         no      no     yes       n/a              6m:50.936s                6m:50.936s
+    leaf02            ospf6d               n/a   default         no      no     no        n/a              2d:4h:15m:58s             2d:4h:15m:58s
+    leaf02            ospfd                n/a   default         no      no     yes       n/a              6m:41.922s                6m:41.922s
+    leaf02            ptmd                 1162  default         yes     yes    no        ok               5h:2m:3s                  6m:51.441s
+    leaf02            pwmd                 613   default         yes     yes    no        ok               5h:2m:15s                 6m:50.948s
+    leaf02            smond                609   default         yes     yes    yes       ok               5h:2m:15s                 6m:28.279s
+    leaf02            ssh                  1125  default         yes     yes    no        ok               5h:2m:5s                  6m:50.935s
+    leaf02            syslog               393   default         yes     yes    no        ok               5h:2m:19s                 6m:50.934
+    leaf02            vxrd                 n/a   default         no      no     yes       n/a              6m:9.742s                 6m:9.742s
+    leaf02            vxsnd                n/a   default         no      no     yes       n/a              6m:9.756s                 6m:9.756s
+    leaf02            zebra                2006  default         yes     yes    yes       ok               6m:28.244s                6m:28.244s
+    server01          lldpd                1359  default         yes     yes    yes       ok               2h:0m:25s                 4h:59m:45s
+    server01          netq-agent           1363  default         yes     yes    yes       ok               2h:0m:26s                 5h:0m:7s
+    server01          netq-notifier        n/a   default         no      no     yes       n/a              2d:4h:16m:1s              2d:4h:16m:1s
+    server01          netqd                1355  default         yes     yes    yes       ok               2h:0m:26s                 5h:0m:7s
+    server01          ntp                  0     default         yes     yes    yes       ok               2h:0m:20s                 5h:0m:7s
+    server01          ssh                  1358  default         yes     yes    no        ok               2h:0m:25s                 5h:0m:7s
+    server01          syslog               967   default         yes     yes    no        ok               2h:0m:27s                 5h:0m:7s
     ...
 
 You can also view services information in JSON format:
 
     cumulus@switch:~$ netq show services json
     {
-        "services":[
-            {
-                "status":"ok",
-                "uptime":1537904537.0,
-                "monitored":"yes",
-                "service":"netqd",
-                "lastChanged":1537893777.617677927,
-                "pid":"1047",
-                "hostname":"edge01",
-                "enabled":"yes",
-                "vrf":"default",
-                "active":"yes"
-            },
-            {
-                "status":"ok",
-                "uptime":1537904537.0,
-                "monitored":"yes",
-                "service":"netq-agent",
-                "lastChanged":1537893777.6185410023,
-                "pid":"1052",
-                "hostname":"edge01",
-                "enabled":"yes",
-                "vrf":"default",
-                "active":"yes"
-            },
+        "services":[
+            {
+                "status":"ok",
+                "uptime":1537904537.0,
+                "monitored":"yes",
+                "service":"netqd",
+                "lastChanged":1537893777.617677927,
+                "pid":"1047",
+                "hostname":"edge01",
+                "enabled":"yes",
+                "vrf":"default",
+                "active":"yes"
+            },
+            {
+                "status":"ok",
+                "uptime":1537904537.0,
+                "monitored":"yes",
+                "service":"netq-agent",
+                "lastChanged":1537893777.6185410023,
+                "pid":"1052",
+                "hostname":"edge01",
+                "enabled":"yes",
+                "vrf":"default",
+                "active":"yes"
+            },
     ...
 
 If you want to view the service information for a given device, simply
@@ -689,48 +689,48 @@ with the other services, such as `netq-agent`, `netq-notifier`, and
 `syslog`.
 
     cumulus@switch:~$ netq show services ntp
-     
+     
     Matching services records:
-    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
     ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
-    edge01            ntp                  0     default         yes     yes    yes       ok               2d:1h:24m:10s             2d:4h:23m:36s
-    exit01            ntp                  1238  mgmt            yes     yes    yes       ok               5h:9m:8s                  8m:4.578s
-    exit01            ntp                  n/a   default         no      no     yes       n/a              8m:4.583s                 8m:4.583s
-    exit02            ntp                  1233  mgmt            yes     yes    yes       ok               5h:9m:8s                  7m:41.133s
-    exit02            ntp                  n/a   default         no      no     yes       n/a              7m:41.137s                7m:41.137s
-    internet          ntp                  n/a   default         no      no     yes       n/a              5h:9m:6s                  5h:9m:6s
-    internet          ntp                  n/a   mgmt            yes     no     yes       n/a              5h:8m:51s                 5h:8m:51s
-    leaf01            ntp                  1555  mgmt            yes     yes    yes       ok               5h:9m:10s                 1h:1m:5s
-    leaf01            ntp                  n/a   default         no      no     yes       n/a              1h:1m:5s                  1h:1m:5s
-    leaf02            ntp                  1565  mgmt            yes     yes    yes       ok               5h:9m:9s                  14m:25.774s
-    leaf02            ntp                  n/a   default         no      no     yes       n/a              14m:25.778s               14m:25.778s
-    leaf03            ntp                  1564  mgmt            yes     yes    yes       ok               5h:9m:9s                  13m:36.464s
-    leaf03            ntp                  n/a   default         no      no     yes       n/a              13m:36.469s               13m:36.469s
-    leaf04            ntp                  1551  mgmt            yes     yes    yes       ok               5h:9m:8s                  10m:15.960s
-    leaf04            ntp                  n/a   default         no      no     yes       n/a              10m:15.964s               10m:15.964s
-    oob-mgmt-server   ntp                  813   default         yes     yes    yes       ok               2d:4h:25m:35s             2d:4h:23m:9s
-    server01          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
-    server02          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
-    server03          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
-    server04          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
-    spine01           ntp                  1188  mgmt            yes     yes    yes       ok               5h:9m:8s                  9m:32.856s
-    spine01           ntp                  n/a   default         no      no     yes       n/a              9m:32.861s                9m:32.861s
-    spine02           ntp                  1188  mgmt            yes     yes    yes       ok               5h:9m:7s                  9m:4.722s
-    spine02           ntp                  n/a   default         no      no     yes       n/a              9m:4.726s                 9m:4.726s
+    edge01            ntp                  0     default         yes     yes    yes       ok               2d:1h:24m:10s             2d:4h:23m:36s
+    exit01            ntp                  1238  mgmt            yes     yes    yes       ok               5h:9m:8s                  8m:4.578s
+    exit01            ntp                  n/a   default         no      no     yes       n/a              8m:4.583s                 8m:4.583s
+    exit02            ntp                  1233  mgmt            yes     yes    yes       ok               5h:9m:8s                  7m:41.133s
+    exit02            ntp                  n/a   default         no      no     yes       n/a              7m:41.137s                7m:41.137s
+    internet          ntp                  n/a   default         no      no     yes       n/a              5h:9m:6s                  5h:9m:6s
+    internet          ntp                  n/a   mgmt            yes     no     yes       n/a              5h:8m:51s                 5h:8m:51s
+    leaf01            ntp                  1555  mgmt            yes     yes    yes       ok               5h:9m:10s                 1h:1m:5s
+    leaf01            ntp                  n/a   default         no      no     yes       n/a              1h:1m:5s                  1h:1m:5s
+    leaf02            ntp                  1565  mgmt            yes     yes    yes       ok               5h:9m:9s                  14m:25.774s
+    leaf02            ntp                  n/a   default         no      no     yes       n/a              14m:25.778s               14m:25.778s
+    leaf03            ntp                  1564  mgmt            yes     yes    yes       ok               5h:9m:9s                  13m:36.464s
+    leaf03            ntp                  n/a   default         no      no     yes       n/a              13m:36.469s               13m:36.469s
+    leaf04            ntp                  1551  mgmt            yes     yes    yes       ok               5h:9m:8s                  10m:15.960s
+    leaf04            ntp                  n/a   default         no      no     yes       n/a              10m:15.964s               10m:15.964s
+    oob-mgmt-server   ntp                  813   default         yes     yes    yes       ok               2d:4h:25m:35s             2d:4h:23m:9s
+    server01          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
+    server02          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
+    server03          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
+    server04          ntp                  0     default         yes     yes    yes       ok               2h:7m:55s                 5h:7m:42s
+    spine01           ntp                  1188  mgmt            yes     yes    yes       ok               5h:9m:8s                  9m:32.856s
+    spine01           ntp                  n/a   default         no      no     yes       n/a              9m:32.861s                9m:32.861s
+    spine02           ntp                  1188  mgmt            yes     yes    yes       ok               5h:9m:7s                  9m:4.722s
+    spine02           ntp                  n/a   default         no      no     yes       n/a              9m:4.726s                 9m:4.726s
 
 This example shows the status of the BGP daemon.
 
     cumulus@switch:~$ netq show services bgpd
-     
+     
     Matching services records:
-    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
     ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
-    exit01            bgpd                 1627  default         yes     yes    yes       ok               5h:25m:43s                24m:55.103s
-    exit02            bgpd                 1628  default         yes     yes    yes       ok               5h:25m:36s                24m:33.633s
-    internet          bgpd                 1493  default         yes     yes    yes       ok               5h:25m:34s                5h:25m:20s
-    leaf01            bgpd                 2009  default         yes     yes    yes       ok               5h:25m:44s                1h:17m:57s
-    leaf02            bgpd                 2013  default         yes     yes    yes       ok               5h:25m:44s                31m:16.166s
-    leaf03            bgpd                 2010  default         yes     yes    yes       ok               5h:25m:44s                30m:27.992s
-    leaf04            bgpd                 1998  default         yes     yes    yes       ok               5h:25m:43s                27m:7.428s
-    spine01           bgpd                 1559  default         yes     yes    yes       ok               5h:25m:35s                26m:24.326s
-    spine02           bgpd                 1553  default         yes     yes    yes       ok               5h:25m:35s                25m:56.141s
+    exit01            bgpd                 1627  default         yes     yes    yes       ok               5h:25m:43s                24m:55.103s
+    exit02            bgpd                 1628  default         yes     yes    yes       ok               5h:25m:36s                24m:33.633s
+    internet          bgpd                 1493  default         yes     yes    yes       ok               5h:25m:34s                5h:25m:20s
+    leaf01            bgpd                 2009  default         yes     yes    yes       ok               5h:25m:44s                1h:17m:57s
+    leaf02            bgpd                 2013  default         yes     yes    yes       ok               5h:25m:44s                31m:16.166s
+    leaf03            bgpd                 2010  default         yes     yes    yes       ok               5h:25m:44s                30m:27.992s
+    leaf04            bgpd                 1998  default         yes     yes    yes       ok               5h:25m:43s                27m:7.428s
+    spine01           bgpd                 1559  default         yes     yes    yes       ok               5h:25m:35s                26m:24.326s
+    spine02           bgpd                 1553  default         yes     yes    yes       ok               5h:25m:35s                25m:56.141s

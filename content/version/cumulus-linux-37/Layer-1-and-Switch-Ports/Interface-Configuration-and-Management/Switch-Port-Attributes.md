@@ -67,14 +67,14 @@ Any time you enable auto-negotiation, Cumulus Linux restores the default
 configuration settings specified in the 
 [table below](#interface-configuration-recommendations-for-broadcom-platforms).
 
-By default on a Broadcom-based switch, auto-negotiation is disabled —
+By default on a Broadcom-based switch, auto-negotiation is disabled -
 except on 10G and 1000BASE-T fixed copper switch ports, where it is
 required for links to work. For RJ-45 SFP adapters, you need to manually
 configure the desired link speed and auto-negotiation as described in
 the [default settings table below](#interface-configuration-recommendations-for-broadcom-platforms).
 
 If you disable auto-negotiation later or never enable it, then you have
-to configure any settings that deviate from the port default — such as
+to configure any settings that deviate from the port default - such as
 duplex mode, FEC, and link speed settings.
 
 {{%notice warning%}}
@@ -162,7 +162,7 @@ snippet:
 Interface MTU 
 ([maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) 
 applies to traffic traversing the management port, front panel/switch ports,
-bridge, VLAN subinterfaces and bonds — in other words, both physical and
+bridge, VLAN subinterfaces and bonds - in other words, both physical and
 logical interfaces.
 
 MTU is the only interface setting that you must set manually.
@@ -671,7 +671,7 @@ iface swp1
   link-autoneg off
   link-speed 100</pre></td>
 <td><ul>
-<li><p>The module has two sets of electronics — the port side, which communicates to the switch ASIC, and the RJ-45 adapter side.</p></li>
+<li><p>The module has two sets of electronics - the port side, which communicates to the switch ASIC, and the RJ-45 adapter side.</p></li>
 <li><p>Auto-negotiation is always used on the RJ-45 adapter side of the link by the PHY built into the module. This is independent of the switch setting. Set <code>link-autoneg</code> to off.</p></li>
 <li><p>Auto-negotiation needs to be enabled on the server side in this scenario.</p></li>
 </ul></td>
@@ -703,7 +703,7 @@ iface swp1
   link-autoneg off
   link-speed 1000</pre></td>
 <td><ul>
-<li><p>The module has two sets of electronics — the port side, which communicates to the switch ASIC, and the RJ-45 side.</p></li>
+<li><p>The module has two sets of electronics - the port side, which communicates to the switch ASIC, and the RJ-45 side.</p></li>
 <li><p>Auto-negotiation is always used on the RJ-45 side of the link by the PHY built into the module. This is independent of the switch setting. Set <code>link-autoneg</code> to off.</p></li>
 <li><p>Auto-negotiation needs to be enabled on the server side.</p></li>
 </ul></td>
@@ -718,7 +718,7 @@ $ net add interface swp1 link autoneg on</pre>
 iface swp1
   link-autoneg on
   link-speed 1000</pre></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr>
 <td><p>1000BASE-T on a 10G fixed copper port</p></td>
@@ -730,7 +730,7 @@ $ net add interface swp1 link autoneg on</pre>
 iface swp1
   link-autoneg on
   link-speed 1000</pre></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr>
 <td><p>1000BASE-SX,<br />
@@ -761,7 +761,7 @@ iface swp1
   link-autoneg off
   link-speed 10000</pre></td>
 <td><ul>
-<li><p>The module has two sets of electronics — the port side, which communicates to the switch ASIC and the RJ-45 side.</p></li>
+<li><p>The module has two sets of electronics - the port side, which communicates to the switch ASIC and the RJ-45 side.</p></li>
 <li><p>Auto-negotiation is always used on the RJ-45 side of the link by the PHY built into the module. This is independent of the switch setting. Set link-autoneg to off.</p></li>
 <li><p>Auto-negotiation needs to be enabled on the server side.</p></li>
 </ul></td>
@@ -776,7 +776,7 @@ $ net add interface swp1 link autoneg on</pre>
 iface swp1
   link-autoneg on
   link-speed 10000</pre></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr>
 <td><p>10GBASE-CR,<br />
@@ -791,7 +791,7 @@ $ net add interface swp1 link autoneg off</pre>
 iface swp1
   link-autoneg off
   link-speed 10000</pre></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr>
 <td><p>25GBASE-CR</p></td>
@@ -833,7 +833,7 @@ iface swp1
   link-autoneg off
   link-speed 25000
   link-fec off</pre></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr>
 <td><p>40GBASE-CR4</p></td>
@@ -861,7 +861,7 @@ $ net add interface swp1 link autoneg off</pre>
 iface swp1
   link-autoneg off
   link-speed 40000</pre></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr>
 <td><p>100GBASE-CR4</p></td>
@@ -873,7 +873,7 @@ $ net add interface swp1 link autoneg on</pre>
 iface swp1
   link-autoneg on
   link-speed 100000</pre></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr>
 <td><p>100GBASE-SR4,<br />
@@ -888,7 +888,7 @@ iface swp1
   link-autoneg off
   link-speed 100000
   link-fec rs</pre></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr>
 <td><p>100GBASE-LR4</p></td>
@@ -902,7 +902,7 @@ iface swp1
   link-autoneg off
   link-speed 100000
   link-fec off</pre></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 </tbody>
 </table>
@@ -991,21 +991,21 @@ reconfigure the ports and create four interfaces in the
 `/etc/network/interfaces` file named as follows:
 
     cumulus@switch:~$ cat /etc/network/interfaces
-     
+     
     ...
-     
+     
     auto swp3s0
     iface swp3s0
-     
+     
     auto swp3s1
     iface swp3s1
-     
+     
     auto swp3s2
     iface swp3s2
-     
+     
     auto swp3s3
     iface swp3s3
-     
+     
     ...
 
 {{%notice note%}}
@@ -1120,13 +1120,13 @@ To remove a breakout port, you need to do the following:
    interface for the original speed, then save your changes:
 
         cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-         
+         
         ...
-         
+         
         2=100G
         3=100G
         4=100G
-         
+         
         ...
 
 3. [Restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
@@ -1229,7 +1229,7 @@ configuration in `/etc/cumulus/ports.conf`:
 
     11=4x
     12=disabled
-     
+     
     ...
 
 There is no limitation on any port if interfaces are configured in 2x50G
@@ -1246,7 +1246,7 @@ interfaces as well as viewing and troubleshooting them.
 For example, to manually set link speed, auto-negotiation, duplex mode
 and FEC on swp1, run:
 
-    cumulus@switch:~$ sudo ethtool -s swp1 speed 25000 autoneg off duplex full
+    cumulus@switch:~$ sudo ethtool -s swp1 speed 25000 autoneg off duplex full
     cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding off
 
 To view the FEC setting on an interface, run:
@@ -1266,25 +1266,25 @@ High-level interface statistics are available with the `net show
 interface` command:
 
     cumulus@switch:~$ net show interface swp1
-     
+     
         Name    MAC                Speed      MTU  Mode
     --  ------  -----------------  -------  -----  ---------
     UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
-     
-     
+     
+     
     Vlans in disabled State
     -------------------------
     br0
-     
-     
+     
+     
     Counters      TX    RX
     ----------  ----  ----
     errors         0     0
     unicast        0     0
     broadcast      0     0
     multicast      0     0
-     
-     
+     
+     
     LLDP
     ------  ----  ---------------------------
     swp1    ====  44:38:39:00:00:03(server01)
@@ -1571,7 +1571,7 @@ For example, to set the speed to 40G using NCLU:
 
 Or using `ethtool`:
 
-    cumulus@switch:~$ sudo ethtool -s swp1 speed 40000 
+    cumulus@switch:~$ sudo ethtool -s swp1 speed 40000 
 
 ### Delay in Reporting Interface as Operational Down
 

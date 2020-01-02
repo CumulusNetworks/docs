@@ -102,7 +102,7 @@ To decommission a node from the NetQ database:
 
 2.  On the NetQ Appliance or Platform, decommission the node.
     
-        cumulus@netq-appliance:~$ netq decommission <hostname>
+        cumulus@netq-appliance:~$ netq decommission <hostname>
 
 ## Configure Logging for a NetQ Agent
 
@@ -182,10 +182,10 @@ logging altogether when you are finished troubleshooting.
 To change the logging level, run the
 following command and restart the agent service: 
 
-    cumulus@switch:~$ netq config add agent loglevel <LOG_LEVEL> 
+    cumulus@switch:~$ netq config add agent loglevel <LOG_LEVEL> 
     cumulus@switch:~$ netq config restart agent
 
 To disable all logging:
 
-    cumulus@switch:~$ netq config del agent loglevel 
+    cumulus@switch:~$ netq config del agent loglevel 
     cumulus@switch:~$ netq config restart agent

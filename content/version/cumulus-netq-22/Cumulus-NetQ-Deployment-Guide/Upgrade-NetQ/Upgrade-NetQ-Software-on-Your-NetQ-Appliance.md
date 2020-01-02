@@ -72,8 +72,8 @@ login credentials. This example uses the default
 *cumulus/CumulusLinux\!* credentials, on a NetQ Appliance.
 
         <computer>:~<username>$ ssh cumulus@netq-appliance
-        cumulus@netq-appliance's password: 
-        cumulus@netq-appliance:~$ 
+        cumulus@netq-appliance's password: 
+        cumulus@netq-appliance:~$ 
 
 2.  Change to the root user.
 
@@ -84,7 +84,7 @@ login credentials. This example uses the default
 3.  Copy the upgrade package (`NetQ-2.2.2.tgz`) into your new directory.
 
         root@netq-appliance:~# cd /mnt/installables/
-        root@netq-appliance:/mnt/installables# cp /home/usr/dir/NetQ-2.2.2.tgz ./ 
+        root@netq-appliance:/mnt/installables# cp /home/usr/dir/NetQ-2.2.2.tgz ./ 
 
 4.  Export the installer script.
 

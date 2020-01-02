@@ -38,12 +38,12 @@ Backpack chassis:
     duplication of data in the NetQ database.
     
         cumulus@backpack-lc101:~$ sudo nano /etc/cts/netq/netq.yml
-         
+         
         ...
-         
+         
         netq-agent:
           send_chassis_sensor_data: true
-         
+         
         ...
 
 <article id="html-search-results" class="ht-content" style="display: none;">

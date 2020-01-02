@@ -53,9 +53,9 @@ more than this, of course.
 ## Zebra
 
 The [Quagga documentation](http://www.nongnu.org/quagga/docs/docs-info.html#Zebra)
-defines `zebra` as the IP routing manager for `quagga` that “provides
+defines `zebra` as the IP routing manager for `quagga` that "provides
 kernel routing table updates, interface lookups, and redistribution of
-routes between different routing protocols.”
+routes between different routing protocols. "
 
 ## Configuration Files
 

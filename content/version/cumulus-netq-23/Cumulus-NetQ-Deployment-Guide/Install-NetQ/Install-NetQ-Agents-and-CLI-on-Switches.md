@@ -141,7 +141,7 @@ To install the NetQ Agent on an Ubuntu server:
 The use of `netq-latest` in this example means that a `get` to the
     repository always retrieves the latest version of NetQ, even in the
     case where a major version update has been made. If you want to keep
-    the repository on a specific version — such as `netq-2.2` — use that
+    the repository on a specific version - such as `netq-2.2` - use that
     instead.
 
     {{%/notice%}}

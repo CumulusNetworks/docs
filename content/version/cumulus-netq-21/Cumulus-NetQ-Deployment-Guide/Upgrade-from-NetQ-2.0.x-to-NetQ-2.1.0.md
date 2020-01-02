@@ -62,8 +62,8 @@ To upgrade the NetQ Platform:
     the default *cumulus/CumulusLinux\!* credentials.
     
         <computer>:~<username>$ ssh cumulus@netq-appliance
-        cumulus@netq-appliance's password: 
-        cumulus@netq-appliance:~$ 
+        cumulus@netq-appliance's password: 
+        cumulus@netq-appliance:~$ 
 
 3.  Change to the root user.
     
@@ -80,7 +80,7 @@ To upgrade the NetQ Platform:
     new directory.
     
         root@netq-appliance:~# cd /mnt/installables/
-        root@netq-appliance:/mnt/installables# cp /home/usr/dir/{NetQ-2.1.0.tgz,NetQ-2.1.0-installer.tgz} ./ 
+        root@netq-appliance:/mnt/installables# cp /home/usr/dir/{NetQ-2.1.0.tgz,NetQ-2.1.0-installer.tgz} ./ 
 
 6.  Export the installer script.
     
@@ -308,7 +308,7 @@ To upgrade the NetQ Agent on an Ubuntu server:
 The use of `netq-latest` in this example means that a `get` to the
 repository always retrieves the lastest version of NetQ, even in the
 case where a major version update has been made. If you want to keep
-the repository on a specific version — such as `netq-2.1` — use that
+the repository on a specific version - such as `netq-2.1` - use that
 instead.
     
     {{%/notice%}}

@@ -42,10 +42,10 @@ command. The syntax for this command is:
 
 This example shows the interface and peer information that is advertised for each device.
 
-    cumulus@switch:~$ netq show lldp 
-     
+    cumulus@switch:~$ netq show lldp 
+     
     Matching lldp records:
-    Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
+    Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
     ----------------- ------------------------- ----------------- ------------------------- -------------------------
     exit01            swp1                      edge01            swp5                      Thu Feb  7 18:31:53 2019
     exit01            swp2                      edge02            swp5                      Thu Feb  7 18:31:53 2019
@@ -99,27 +99,27 @@ generally when changes have been made.
 
 This example shows all interfaces network-wide.
 
-    cumulus@switch:~$ netq show interfaces 
+    cumulus@switch:~$ netq show interfaces 
     Matching link records:
-    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
     ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
-    exit01            bridge                    bridge           up         default         , Root bridge:  exit01,             Mon Apr 29 20:57:59 2019
-                                                                                            Root port: , Members:  vxlan4001,
-                                                                                            bridge,
-    exit01            eth0                      eth              up         mgmt            MTU: 1500                           Mon Apr 29 20:57:59 2019
-    exit01            lo                        loopback         up         default         MTU: 65536                          Mon Apr 29 20:57:58 2019
-    exit01            mgmt                      vrf              up                         table: 1001, MTU: 65536,            Mon Apr 29 20:57:58 2019
-                                                                                            Members:  mgmt,  eth0,
-    exit01            swp1                      swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
-    exit01            swp44                     swp              up         vrf1            VLANs: ,                            Mon Apr 29 20:57:58 2019
-                                                                                            PVID: 0 MTU: 1500 LLDP: internet:sw
-                                                                                            p1
-    exit01            swp45                     swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
-    exit01            swp46                     swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
-    exit01            swp47                     swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
-     
+    exit01            bridge                    bridge           up         default         , Root bridge:  exit01,             Mon Apr 29 20:57:59 2019
+                                                                                            Root port: , Members:  vxlan4001,
+                                                                                            bridge,
+    exit01            eth0                      eth              up         mgmt            MTU: 1500                           Mon Apr 29 20:57:59 2019
+    exit01            lo                        loopback         up         default         MTU: 65536                          Mon Apr 29 20:57:58 2019
+    exit01            mgmt                      vrf              up                         table: 1001, MTU: 65536,            Mon Apr 29 20:57:58 2019
+                                                                                            Members:  mgmt,  eth0,
+    exit01            swp1                      swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
+    exit01            swp44                     swp              up         vrf1            VLANs: ,                            Mon Apr 29 20:57:58 2019
+                                                                                            PVID: 0 MTU: 1500 LLDP: internet:sw
+                                                                                            p1
+    exit01            swp45                     swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
+    exit01            swp46                     swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
+    exit01            swp47                     swp              down       default         VLANs: , PVID: 0 MTU: 1500          Mon Apr 29 20:57:59 2019
+     
     ...
-     
+     
     leaf01            bond01                    bond             up         default         Slave:swp1 LLDP: server01:eth1      Mon Apr 29 20:57:59 2019
     leaf01            bond02                    bond             up         default         Slave:swp2 LLDP: server02:eth1      Mon Apr 29 20:57:59 2019
     leaf01            bridge                    bridge           up         default         , Root bridge:  leaf01,             Mon Apr 29 20:57:59 2019
@@ -143,36 +143,36 @@ This example shows all interfaces on the *spine01* device.
 
     cumulus@switch:~$ netq spine01 show interfaces
     Matching link records:
-    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
     ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
-    spine01           eth0                      eth              up         mgmt            MTU: 1500                           Mon Apr 29 21:12:47 2019
-    spine01           lo                        loopback         up         default         MTU: 65536                          Mon Apr 29 21:12:47 2019
-    spine01           mgmt                      vrf              up                         table: 1001, MTU: 65536,            Mon Apr 29 21:12:46 2019
-                                                                                            Members:  mgmt,  eth0,
-    spine01           swp1                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
-                                                                                            PVID: 0 MTU: 9216 LLDP: leaf01:swp5
-                                                                                            1
-    spine01           swp2                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
-                                                                                            PVID: 0 MTU: 9216 LLDP: leaf02:swp5
-                                                                                            1
-    spine01           swp29                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
-                                                                                            PVID: 0 MTU: 9216 LLDP: exit02:swp5
-                                                                                            1
-    spine01           swp3                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:46 2019
-                                                                                            PVID: 0 MTU: 9216 LLDP: leaf03:swp5
-                                                                                            1
-    spine01           swp30                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
-                                                                                            PVID: 0 MTU: 9216 LLDP: exit01:swp5
-                                                                                            1
-    spine01           swp31                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:46 2019
-                                                                                            PVID: 0 MTU: 9216 LLDP: spine02:swp
-                                                                                            31
-    spine01           swp32                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:46 2019
-                                                                                            PVID: 0 MTU: 9216 LLDP: spine02:swp
-                                                                                            32
-    spine01           swp4                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
-                                                                                            PVID: 0 MTU: 9216 LLDP: leaf04:swp5
-                                                                                            1
+    spine01           eth0                      eth              up         mgmt            MTU: 1500                           Mon Apr 29 21:12:47 2019
+    spine01           lo                        loopback         up         default         MTU: 65536                          Mon Apr 29 21:12:47 2019
+    spine01           mgmt                      vrf              up                         table: 1001, MTU: 65536,            Mon Apr 29 21:12:46 2019
+                                                                                            Members:  mgmt,  eth0,
+    spine01           swp1                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
+                                                                                            PVID: 0 MTU: 9216 LLDP: leaf01:swp5
+                                                                                            1
+    spine01           swp2                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
+                                                                                            PVID: 0 MTU: 9216 LLDP: leaf02:swp5
+                                                                                            1
+    spine01           swp29                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
+                                                                                            PVID: 0 MTU: 9216 LLDP: exit02:swp5
+                                                                                            1
+    spine01           swp3                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:46 2019
+                                                                                            PVID: 0 MTU: 9216 LLDP: leaf03:swp5
+                                                                                            1
+    spine01           swp30                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
+                                                                                            PVID: 0 MTU: 9216 LLDP: exit01:swp5
+                                                                                            1
+    spine01           swp31                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:46 2019
+                                                                                            PVID: 0 MTU: 9216 LLDP: spine02:swp
+                                                                                            31
+    spine01           swp32                     swp              up         default         VLANs: ,                            Mon Apr 29 21:12:46 2019
+                                                                                            PVID: 0 MTU: 9216 LLDP: spine02:swp
+                                                                                            32
+    spine01           swp4                      swp              up         default         VLANs: ,                            Mon Apr 29 21:12:47 2019
+                                                                                            PVID: 0 MTU: 9216 LLDP: leaf04:swp5
+                                                                                            1
 
 ### View All Interfaces of a Given Type
 
@@ -184,31 +184,31 @@ that are up.
 
     cumulus@switch:~$ netq show interfaces type bond state down
     No matching link records found
-     
+     
     cumulus@switch:~$ netq show interfaces type bond state up
     Matching link records:
-    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
     ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
-    leaf01            bond01                    bond             up         default         Slave:swp1 LLDP: server01:eth1      Mon Apr 29 21:19:07 2019
-    leaf01            bond02                    bond             up         default         Slave:swp2 LLDP: server02:eth1      Mon Apr 29 21:19:07 2019
-    leaf01            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf02:swp49 LLDP Mon Apr 29 21:19:07 2019
-                                                                                            : leaf02:swp50
-    leaf02            bond01                    bond             up         default         Slave:swp1 LLDP: server01:eth2      Mon Apr 29 21:19:07 2019
-    leaf02            bond02                    bond             up         default         Slave:swp2 LLDP: server02:eth2      Mon Apr 29 21:19:07 2019
-    leaf02            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf01:swp49 LLDP Mon Apr 29 21:19:07 2019
-                                                                                            : leaf01:swp50
-    leaf03            bond03                    bond             up         default         Slave:swp1 LLDP: server03:eth1      Mon Apr 29 21:19:07 2019
-    leaf03            bond04                    bond             up         default         Slave:swp2 LLDP: server04:eth1      Mon Apr 29 21:19:07 2019
-    leaf03            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf04:swp49 LLDP Mon Apr 29 21:19:07 2019
-                                                                                            : leaf04:swp50
-    leaf04            bond03                    bond             up         default         Slave:swp1 LLDP: server03:eth2      Mon Apr 29 21:19:07 2019
-    leaf04            bond04                    bond             up         default         Slave:swp2 LLDP: server04:eth2      Mon Apr 29 21:19:07 2019
-    leaf04            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf03:swp49 LLDP Mon Apr 29 21:19:07 2019
-                                                                                            : leaf03:swp50
-    server01          bond0                     bond             up         default         Slave:bond0 LLDP: leaf02:swp1       Mon Apr 29 21:19:07 2019
-    server02          bond0                     bond             up         default         Slave:bond0 LLDP: leaf02:swp2       Mon Apr 29 21:19:07 2019
-    server03          bond0                     bond             up         default         Slave:bond0 LLDP: leaf04:swp1       Mon Apr 29 21:19:07 2019
-    server04          bond0                     bond             up         default         Slave:bond0 LLDP: leaf04:swp2       Mon Apr 29 21:19:07 2019
+    leaf01            bond01                    bond             up         default         Slave:swp1 LLDP: server01:eth1      Mon Apr 29 21:19:07 2019
+    leaf01            bond02                    bond             up         default         Slave:swp2 LLDP: server02:eth1      Mon Apr 29 21:19:07 2019
+    leaf01            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf02:swp49 LLDP Mon Apr 29 21:19:07 2019
+                                                                                            : leaf02:swp50
+    leaf02            bond01                    bond             up         default         Slave:swp1 LLDP: server01:eth2      Mon Apr 29 21:19:07 2019
+    leaf02            bond02                    bond             up         default         Slave:swp2 LLDP: server02:eth2      Mon Apr 29 21:19:07 2019
+    leaf02            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf01:swp49 LLDP Mon Apr 29 21:19:07 2019
+                                                                                            : leaf01:swp50
+    leaf03            bond03                    bond             up         default         Slave:swp1 LLDP: server03:eth1      Mon Apr 29 21:19:07 2019
+    leaf03            bond04                    bond             up         default         Slave:swp2 LLDP: server04:eth1      Mon Apr 29 21:19:07 2019
+    leaf03            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf04:swp49 LLDP Mon Apr 29 21:19:07 2019
+                                                                                            : leaf04:swp50
+    leaf04            bond03                    bond             up         default         Slave:swp1 LLDP: server03:eth2      Mon Apr 29 21:19:07 2019
+    leaf04            bond04                    bond             up         default         Slave:swp2 LLDP: server04:eth2      Mon Apr 29 21:19:07 2019
+    leaf04            peerlink                  bond             up         default         Slave:swp50 LLDP: leaf03:swp49 LLDP Mon Apr 29 21:19:07 2019
+                                                                                            : leaf03:swp50
+    server01          bond0                     bond             up         default         Slave:bond0 LLDP: leaf02:swp1       Mon Apr 29 21:19:07 2019
+    server02          bond0                     bond             up         default         Slave:bond0 LLDP: leaf02:swp2       Mon Apr 29 21:19:07 2019
+    server03          bond0                     bond             up         default         Slave:bond0 LLDP: leaf04:swp1       Mon Apr 29 21:19:07 2019
+    server04          bond0                     bond             up         default         Slave:bond0 LLDP: leaf04:swp2       Mon Apr 29 21:19:07 2019
 
 ### View the Total Number of Interfaces
 
@@ -241,18 +241,18 @@ This example shows info level events for all interfaces in your network:
 
     cumulus@switch:~$ netq show events level info type interfaces between now and 30d
     Matching events records:
-    Hostname          Message Type             Severity         Message                             Timestamp
+    Hostname          Message Type             Severity         Message                             Timestamp
     ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-    server03          link                     info             HostName server03 changed state fro 3d:12h:8m:28s
-                                                                m down to up Interface:eth2
-    server03          link                     info             HostName server03 changed state fro 3d:12h:8m:28s
-                                                                m down to up Interface:eth1
-    server01          link                     info             HostName server01 changed state fro 3d:12h:8m:30s
-                                                                m down to up Interface:eth2
-    server01          link                     info             HostName server01 changed state fro 3d:12h:8m:30s
-                                                                m down to up Interface:eth1
-    server02          link                     info             HostName server02 changed state fro 3d:12h:8m:34s
-                                                                m down to up Interface:eth2
+    server03          link                     info             HostName server03 changed state fro 3d:12h:8m:28s
+                                                                m down to up Interface:eth2
+    server03          link                     info             HostName server03 changed state fro 3d:12h:8m:28s
+                                                                m down to up Interface:eth1
+    server01          link                     info             HostName server01 changed state fro 3d:12h:8m:30s
+                                                                m down to up Interface:eth2
+    server01          link                     info             HostName server01 changed state fro 3d:12h:8m:30s
+                                                                m down to up Interface:eth1
+    server02          link                     info             HostName server02 changed state fro 3d:12h:8m:34s
+                                                                m down to up Interface:eth2
     ...
 
 ## Check for MTU Inconsistencies
@@ -271,15 +271,15 @@ misconfiguration.
     cumulus@switch:~$ netq check mtu
     Checked Nodes: 15, Checked Links: 215, Failed Nodes: 4, Failed Links: 7
     MTU mismatch found on following links
-    Hostname          Interface                 MTU    Peer              Peer Interface            Peer MTU Error
+    Hostname          Interface                 MTU    Peer              Peer Interface            Peer MTU Error
     ----------------- ------------------------- ------ ----------------- ------------------------- -------- ---------------
-    spine01           swp30                     9216   exit01            swp51                     1500     MTU Mismatch
-    exit01            swp51                     1500   spine01           swp30                     9216     MTU Mismatch
-    spine01           swp29                     9216   exit02            swp51                     1500     MTU Mismatch
-    exit02            -                         -      -                 -                         -        Rotten Agent
-    exit01            swp52                     1500   spine02           swp30                     9216     MTU Mismatch
-    spine02           swp30                     9216   exit01            swp52                     1500     MTU Mismatch
-    spine02           swp29                     9216   exit02            swp52                     1500     MTU Mismatch
+    spine01           swp30                     9216   exit01            swp51                     1500     MTU Mismatch
+    exit01            swp51                     1500   spine01           swp30                     9216     MTU Mismatch
+    spine01           swp29                     9216   exit02            swp51                     1500     MTU Mismatch
+    exit02            -                         -      -                 -                         -        Rotten Agent
+    exit01            swp52                     1500   spine02           swp30                     9216     MTU Mismatch
+    spine02           swp30                     9216   exit01            swp52                     1500     MTU Mismatch
+    spine02           swp29                     9216   exit02            swp52                     1500     MTU Mismatch
 
 ## Monitor VLAN Configurations
 
@@ -343,28 +343,28 @@ VLANs using the `netq show interfaces` command. This provides the status
 of the interface, its specified MTU, whether it is running over a VRF,
 and the last time it was changed.
 
-    cumulus@switch:~$ netq show interfaces type vlan 
+    cumulus@switch:~$ netq show interfaces type vlan 
     Matching link records:
-    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
     ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
-    exit01            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    exit02            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf01            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
-    leaf01            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf01            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf01            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf02            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
-    leaf02            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf02            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf02            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf03            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
-    leaf03            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf03            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf03            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf04            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
-    leaf04            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf04            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
-    leaf04            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    exit01            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    exit02            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf01            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
+    leaf01            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf01            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf01            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf02            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
+    leaf02            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf02            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf02            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf03            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
+    leaf03            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf03            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf03            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf04            peerlink.4094             vlan             up         default         MTU:9000                            Fri Feb  8 00:24:28 2019
+    leaf04            vlan13                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf04            vlan24                    vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
+    leaf04            vlan4001                  vlan             up         vrf1            MTU:1500                            Fri Feb  8 00:24:28 2019
 
 ### View MAC Addresses Associated with a VLAN
 
@@ -377,42 +377,42 @@ was changed.
 
 This example shows the MAC addresses associated with *VLAN13*.
 
-    cumulus@switch:~$ netq show macs vlan 13 
+    cumulus@switch:~$ netq show macs vlan 13 
     Matching mac records:
-    Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
+    Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
     ------ ------------------ ------ ----------------- -------------------- ------ -------------------------
-    no     00:03:00:11:11:01  13     leaf01            bond01:server01      no     Fri Feb  8 00:24:28 2019
-    no     00:03:00:11:11:01  13     leaf02            bond01:server01      no     Fri Feb  8 00:24:28 2019
-    no     00:03:00:11:11:01  13     leaf03            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
-    no     00:03:00:11:11:01  13     leaf04            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
-    no     00:03:00:33:33:01  13     leaf01            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
-    no     00:03:00:33:33:01  13     leaf02            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
-    no     00:03:00:33:33:01  13     leaf03            bond03:server03      no     Fri Feb  8 00:24:28 2019
-    no     00:03:00:33:33:01  13     leaf04            bond03:server03      no     Fri Feb  8 00:24:28 2019
-    no     02:03:00:11:11:01  13     leaf01            bond01:server01      no     Fri Feb  8 00:24:28 2019
-    no     02:03:00:11:11:01  13     leaf02            bond01:server01      no     Fri Feb  8 00:24:28 2019
-    no     02:03:00:11:11:01  13     leaf03            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
-    no     02:03:00:11:11:01  13     leaf04            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
-    no     02:03:00:11:11:02  13     leaf01            bond01:server01      no     Fri Feb  8 00:24:28 2019
-    no     02:03:00:11:11:02  13     leaf02            bond01:server01      no     Fri Feb  8 00:24:28 2019
-    no     02:03:00:11:11:02  13     leaf03            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
-    no     02:03:00:11:11:02  13     leaf04            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
-    no     02:03:00:33:33:01  13     leaf01            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
-    no     02:03:00:33:33:01  13     leaf02            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
-    no     02:03:00:33:33:01  13     leaf03            bond03:server03      no     Fri Feb  8 00:24:28 2019
-    no     02:03:00:33:33:01  13     leaf04            bond03:server03      no     Fri Feb  8 00:24:28 2019
-    no     02:03:00:33:33:02  13     leaf01            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
-    no     02:03:00:33:33:02  13     leaf02            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
-    no     02:03:00:33:33:02  13     leaf03            bond03:server03      no     Fri Feb  8 00:24:28 2019
-    no     02:03:00:33:33:02  13     leaf04            bond03:server03      no     Fri Feb  8 00:24:28 2019
-    yes    44:38:39:00:00:03  13     leaf01            bridge               no     Fri Feb  8 00:24:28 2019
-    yes    44:38:39:00:00:15  13     leaf02            bridge               no     Fri Feb  8 00:24:28 2019
-    yes    44:38:39:00:00:23  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
-    yes    44:38:39:00:00:5c  13     leaf04            bridge               no     Fri Feb  8 00:24:28 2019
-    yes    44:39:39:ff:00:13  13     leaf01            bridge               no     Fri Feb  8 00:24:28 2019
-    yes    44:39:39:ff:00:13  13     leaf02            bridge               no     Fri Feb  8 00:24:28 2019
-    yes    44:39:39:ff:00:13  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
-    yes    44:39:39:ff:00:13  13     leaf04            bridge               no     Fri Feb  8 00:24:28 2019
+    no     00:03:00:11:11:01  13     leaf01            bond01:server01      no     Fri Feb  8 00:24:28 2019
+    no     00:03:00:11:11:01  13     leaf02            bond01:server01      no     Fri Feb  8 00:24:28 2019
+    no     00:03:00:11:11:01  13     leaf03            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+    no     00:03:00:11:11:01  13     leaf04            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+    no     00:03:00:33:33:01  13     leaf01            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+    no     00:03:00:33:33:01  13     leaf02            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+    no     00:03:00:33:33:01  13     leaf03            bond03:server03      no     Fri Feb  8 00:24:28 2019
+    no     00:03:00:33:33:01  13     leaf04            bond03:server03      no     Fri Feb  8 00:24:28 2019
+    no     02:03:00:11:11:01  13     leaf01            bond01:server01      no     Fri Feb  8 00:24:28 2019
+    no     02:03:00:11:11:01  13     leaf02            bond01:server01      no     Fri Feb  8 00:24:28 2019
+    no     02:03:00:11:11:01  13     leaf03            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+    no     02:03:00:11:11:01  13     leaf04            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+    no     02:03:00:11:11:02  13     leaf01            bond01:server01      no     Fri Feb  8 00:24:28 2019
+    no     02:03:00:11:11:02  13     leaf02            bond01:server01      no     Fri Feb  8 00:24:28 2019
+    no     02:03:00:11:11:02  13     leaf03            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+    no     02:03:00:11:11:02  13     leaf04            vni13:leaf01         yes    Fri Feb  8 00:24:28 2019
+    no     02:03:00:33:33:01  13     leaf01            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+    no     02:03:00:33:33:01  13     leaf02            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+    no     02:03:00:33:33:01  13     leaf03            bond03:server03      no     Fri Feb  8 00:24:28 2019
+    no     02:03:00:33:33:01  13     leaf04            bond03:server03      no     Fri Feb  8 00:24:28 2019
+    no     02:03:00:33:33:02  13     leaf01            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+    no     02:03:00:33:33:02  13     leaf02            vni13:10.0.0.134     yes    Fri Feb  8 00:24:28 2019
+    no     02:03:00:33:33:02  13     leaf03            bond03:server03      no     Fri Feb  8 00:24:28 2019
+    no     02:03:00:33:33:02  13     leaf04            bond03:server03      no     Fri Feb  8 00:24:28 2019
+    yes    44:38:39:00:00:03  13     leaf01            bridge               no     Fri Feb  8 00:24:28 2019
+    yes    44:38:39:00:00:15  13     leaf02            bridge               no     Fri Feb  8 00:24:28 2019
+    yes    44:38:39:00:00:23  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
+    yes    44:38:39:00:00:5c  13     leaf04            bridge               no     Fri Feb  8 00:24:28 2019
+    yes    44:39:39:ff:00:13  13     leaf01            bridge               no     Fri Feb  8 00:24:28 2019
+    yes    44:39:39:ff:00:13  13     leaf02            bridge               no     Fri Feb  8 00:24:28 2019
+    yes    44:39:39:ff:00:13  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
+    yes    44:39:39:ff:00:13  13     leaf04            bridge               no     Fri Feb  8 00:24:28 2019
 
 ### View MAC Addresses Associated with an Egress Port
 
@@ -423,10 +423,10 @@ example shows MAC addresses associated with the *leaf03* switch and
 
     cumulus@switch:~$ netq leaf03 show macs egress-port bridge vlan 13
     Matching mac records:
-    Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
+    Origin MAC Address        VLAN   Hostname          Egress Port          Remote Last Changed
     ------ ------------------ ------ ----------------- -------------------- ------ -------------------------
-    yes    44:38:39:00:00:23  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
-    yes    44:39:39:ff:00:13  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
+    yes    44:38:39:00:00:23  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
+    yes    44:39:39:ff:00:13  13     leaf03            bridge               no     Fri Feb  8 00:24:28 2019
 
 ### View the MAC Addresses Associated with VRR Configurations
 
@@ -438,24 +438,24 @@ VRR configuration.
 
     cumulus@switch:~$ netq show interfaces type macvlan
     Matching link records:
-    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+    Hostname          Interface                 Type             State      VRF             Details                             Last Changed
     ----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
-    leaf01            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
-                                                                                            Mode: Private
-    leaf01            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
-                                                                                            Mode: Private
-    leaf02            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
-                                                                                            Mode: Private
-    leaf02            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
-                                                                                            Mode: Private
-    leaf03            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
-                                                                                            Mode: Private
-    leaf03            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
-                                                                                            Mode: Private
-    leaf04            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
-                                                                                            Mode: Private
-    leaf04            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
-                                                                                            Mode: Private
+    leaf01            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
+                                                                                            Mode: Private
+    leaf01            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
+                                                                                            Mode: Private
+    leaf02            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
+                                                                                            Mode: Private
+    leaf02            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
+                                                                                            Mode: Private
+    leaf03            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
+                                                                                            Mode: Private
+    leaf03            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
+                                                                                            Mode: Private
+    leaf04            vlan13-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:13,             Fri Feb  8 00:28:09 2019
+                                                                                            Mode: Private
+    leaf04            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
+                                                                                            Mode: Private
 
 ## Monitor MLAG Configurations
 
@@ -518,15 +518,15 @@ the last five minutes.
 
     cumulus@switch:~$ netq show clag around 5m
     Matching clag records:
-    Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
-                                                                             s
+    Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
+                                                                             s
     ----------------- ----------------- ------------------ ---------- ------ ----- ----- -------------------------
-    edge01(P)         edge02            00:01:01:10:00:01  up         up     25    25    Thu Feb  7 18:31:30 2019
-    edge02            edge01(P)         00:01:01:10:00:01  up         up     25    25    Thu Feb  7 18:31:30 2019
-    leaf11(P)         leaf12            44:38:39:ff:ff:01  up         up     8     8     Thu Feb  7 18:31:30 2019
-    leaf12            leaf11(P)         44:38:39:ff:ff:01  up         up     8     8     Thu Feb  7 18:31:30 2019
-    leaf21(P)         leaf22            44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:30 2019
-    leaf22            leaf21(P)         44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:30 2019
+    edge01(P)         edge02            00:01:01:10:00:01  up         up     25    25    Thu Feb  7 18:31:30 2019
+    edge02            edge01(P)         00:01:01:10:00:01  up         up     25    25    Thu Feb  7 18:31:30 2019
+    leaf11(P)         leaf12            44:38:39:ff:ff:01  up         up     8     8     Thu Feb  7 18:31:30 2019
+    leaf12            leaf11(P)         44:38:39:ff:ff:01  up         up     8     8     Thu Feb  7 18:31:30 2019
+    leaf21(P)         leaf22            44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:30 2019
+    leaf22            leaf21(P)         44:38:39:ff:ff:02  up         up     8     8     Thu Feb  7 18:31:30 2019
 
 ### View MLAG Configuration and Status for Given Devices
 
@@ -544,7 +544,7 @@ When you're directly on the switch, you can run `clagctl` to get the
 state:
 
     cumulus@switch:~$ sudo clagctl
-     
+     
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
@@ -552,7 +552,7 @@ state:
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
-     
+     
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
@@ -581,44 +581,44 @@ This example shows the time synchronization status for all devices in
 the network.
 
     cumulus@switch:~$ netq show ntp
-     
+     
     Matching ntp records:
-    Hostname          NTP Sync Current Server    Stratum NTP App
+    Hostname          NTP Sync Current Server    Stratum NTP App
     ----------------- -------- ----------------- ------- ---------------------
-    edge01            yes      services01.it.c   3       ntpq
-    exit01            yes      time.tritn.com    2       ntpq
-    exit02            yes      time.tritn.com    2       ntpq
-    internet          no       -                 16      ntpq
-    leaf01            yes      services01.it.c   2       ntpq
-    leaf02            yes      services01.it.c   2       ntpq
-    leaf03            yes      107.181.191.189   2       ntpq
-    leaf04            yes      grom.polpo.org    2       ntpq
-    oob-mgmt-server   yes      linode227395.st   2       ntpq
-    server01          yes      192.168.0.254     3       ntpq
-    server02          yes      192.168.0.254     3       ntpq
-    server03          yes      192.168.0.254     3       ntpq
-    server04          yes      192.168.0.254     3       ntpq
-    spine01           yes      107.181.191.189   2       ntpq
-    spine02           yes      t2.time.bf1.yah   2       ntpq
+    edge01            yes      services01.it.c   3       ntpq
+    exit01            yes      time.tritn.com    2       ntpq
+    exit02            yes      time.tritn.com    2       ntpq
+    internet          no       -                 16      ntpq
+    leaf01            yes      services01.it.c   2       ntpq
+    leaf02            yes      services01.it.c   2       ntpq
+    leaf03            yes      107.181.191.189   2       ntpq
+    leaf04            yes      grom.polpo.org    2       ntpq
+    oob-mgmt-server   yes      linode227395.st   2       ntpq
+    server01          yes      192.168.0.254     3       ntpq
+    server02          yes      192.168.0.254     3       ntpq
+    server03          yes      192.168.0.254     3       ntpq
+    server04          yes      192.168.0.254     3       ntpq
+    spine01           yes      107.181.191.189   2       ntpq
+    spine02           yes      t2.time.bf1.yah   2       ntpq
 
 This example shows all devices in the network that are out of time
 synchronization, and consequently might need to be investigated.
 
     cumulus@switch:~$ netq show ntp out-of-sync
-     
+     
     Matching ntp records:
-    Hostname          NTP Sync Current Server    Stratum NTP App
+    Hostname          NTP Sync Current Server    Stratum NTP App
     ----------------- -------- ----------------- ------- ---------------------
-    internet          no       -                 16      ntpq
+    internet          no       -                 16      ntpq
 
 This example shows the time synchronization status for *leaf01*.
 
     cumulus@switch:~$ netq leaf01 show ntp
-     
+     
     Matching ntp records:
-    Hostname          NTP Sync Current Server    Stratum NTP App
+    Hostname          NTP Sync Current Server    Stratum NTP App
     ----------------- -------- ----------------- ------- ---------------------
-    leaf01            yes      kilimanjaro       2       ntpq
+    leaf01            yes      kilimanjaro       2       ntpq
 
 ## Monitor Spanning Tree Protocol Configuration
 
@@ -637,39 +637,39 @@ This example shows the STP topology as viewed from the *spine1* switch.
 
     cumulus@switch:~$ netq spine1 show stp topology
     Root(spine1) -- spine1:sw_clag200 -- leaf2:EdgeIntf(sng_hst2) -- hsleaf21
-                                      -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
-                                      -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
-                                      -- leaf2:ClagIsl(peer-bond1) -- leaf1
-                                      -- leaf1:EdgeIntf(sng_hst2) -- hsleaf11
-                                      -- leaf1:EdgeIntf(dual_host2) -- hdleaf2
-                                      -- leaf1:EdgeIntf(dual_host1) -- hdleaf1
-                                      -- leaf1:ClagIsl(peer-bond1) -- leaf2
-                 -- spine1:ClagIsl(peer-bond1) -- spine2
-                 -- spine1:sw_clag300 -- edge1:EdgeIntf(sng_hst2) -- hsedge11
-                                      -- edge1:EdgeIntf(dual_host2) -- hdedge2
-                                      -- edge1:EdgeIntf(dual_host1) -- hdedge1
-                                      -- edge1:ClagIsl(peer-bond1) -- edge2
-                                      -- edge2:EdgeIntf(sng_hst2) -- hsedge21
-                                      -- edge2:EdgeIntf(dual_host2) -- hdedge2
-                                      -- edge2:EdgeIntf(dual_host1) -- hdedge1
-                                      -- edge2:ClagIsl(peer-bond1) -- edge1
+                                      -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
+                                      -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
+                                      -- leaf2:ClagIsl(peer-bond1) -- leaf1
+                                      -- leaf1:EdgeIntf(sng_hst2) -- hsleaf11
+                                      -- leaf1:EdgeIntf(dual_host2) -- hdleaf2
+                                      -- leaf1:EdgeIntf(dual_host1) -- hdleaf1
+                                      -- leaf1:ClagIsl(peer-bond1) -- leaf2
+                 -- spine1:ClagIsl(peer-bond1) -- spine2
+                 -- spine1:sw_clag300 -- edge1:EdgeIntf(sng_hst2) -- hsedge11
+                                      -- edge1:EdgeIntf(dual_host2) -- hdedge2
+                                      -- edge1:EdgeIntf(dual_host1) -- hdedge1
+                                      -- edge1:ClagIsl(peer-bond1) -- edge2
+                                      -- edge2:EdgeIntf(sng_hst2) -- hsedge21
+                                      -- edge2:EdgeIntf(dual_host2) -- hdedge2
+                                      -- edge2:EdgeIntf(dual_host1) -- hdedge1
+                                      -- edge2:ClagIsl(peer-bond1) -- edge1
     Root(spine2) -- spine2:sw_clag200 -- leaf2:EdgeIntf(sng_hst2) -- hsleaf21
-                                      -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
-                                      -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
-                                      -- leaf2:ClagIsl(peer-bond1) -- leaf1
-                                      -- leaf1:EdgeIntf(sng_hst2) -- hsleaf11
-                                      -- leaf1:EdgeIntf(dual_host2) -- hdleaf2
-                                      -- leaf1:EdgeIntf(dual_host1) -- hdleaf1
-                                      -- leaf1:ClagIsl(peer-bond1) -- leaf2
-                 -- spine2:ClagIsl(peer-bond1) -- spine1
-                 -- spine2:sw_clag300 -- edge2:EdgeIntf(sng_hst2) -- hsedge21
-                                      -- edge2:EdgeIntf(dual_host2) -- hdedge2
-                                      -- edge2:EdgeIntf(dual_host1) -- hdedge1
-                                      -- edge2:ClagIsl(peer-bond1) -- edge1
-                                      -- edge1:EdgeIntf(sng_hst2) -- hsedge11
-                                      -- edge1:EdgeIntf(dual_host2) -- hdedge2
-                                      -- edge1:EdgeIntf(dual_host1) -- hdedge1
-                                      -- edge1:ClagIsl(peer-bond1) -- edge2
+                                      -- leaf2:EdgeIntf(dual_host2) -- hdleaf2
+                                      -- leaf2:EdgeIntf(dual_host1) -- hdleaf1
+                                      -- leaf2:ClagIsl(peer-bond1) -- leaf1
+                                      -- leaf1:EdgeIntf(sng_hst2) -- hsleaf11
+                                      -- leaf1:EdgeIntf(dual_host2) -- hdleaf2
+                                      -- leaf1:EdgeIntf(dual_host1) -- hdleaf1
+                                      -- leaf1:ClagIsl(peer-bond1) -- leaf2
+                 -- spine2:ClagIsl(peer-bond1) -- spine1
+                 -- spine2:sw_clag300 -- edge2:EdgeIntf(sng_hst2) -- hsedge21
+                                      -- edge2:EdgeIntf(dual_host2) -- hdedge2
+                                      -- edge2:EdgeIntf(dual_host1) -- hdedge1
+                                      -- edge2:ClagIsl(peer-bond1) -- edge1
+                                      -- edge1:EdgeIntf(sng_hst2) -- hsedge11
+                                      -- edge1:EdgeIntf(dual_host2) -- hdedge2
+                                      -- edge1:EdgeIntf(dual_host1) -- hdedge1
+                                      -- edge1:ClagIsl(peer-bond1) -- edge2
 
 ## Validate Paths between Devices
 

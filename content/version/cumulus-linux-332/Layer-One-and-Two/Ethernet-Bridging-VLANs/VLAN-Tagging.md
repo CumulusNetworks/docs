@@ -33,22 +33,22 @@ To configure the above example persistently, edit
 `/etc/network/interfaces` like this:
 
     # Config for host1
-     
+     
     auto swp1
     iface swp1
-     
+     
     auto swp1.100
     iface swp1.100
-     
+     
     # Config for host2
     # swp2 must exist to create the .1Q subinterfaces, but it is not assigned an address
-     
+     
     auto swp2
     iface swp2
-     
+     
     auto swp2.120
     iface swp2.120
-     
+     
     auto swp2.130
     iface swp2.130
 
@@ -86,71 +86,71 @@ Cumulus Linux with a traditional Cisco device:
 From `/etc/network/interfaces`:
 
     # Config for host1 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-     
+     
     # swp1 does not need an iface section unless it has a specific setting,
     # it will be picked up as a dependent of swp1.100.
     # And swp1 must exist in the system to create the .1q subinterfaces..
     # but it is not applied to any bridge..or assigned an address.
-     
+     
      auto swp1.100
      iface swp1.100
-     
+     
     # Config for host2
     # swp2 does not need an iface section unless it has a specific setting,
     # it will be picked up as a dependent of swp2.100 and swp2.120.
     # And swp2 must exist in the system to create the .1q subinterfaces..
     # but it is not applied to any bridge..or assigned an address.
-     
+     
     auto swp2.100
     iface swp2.100
-     
+     
     auto swp2.120
     iface swp2.120
-     
+     
     # Config for host3
     # swp3 does not need an iface section unless it has a specific setting,
     # it will be picked up as a dependent of swp3.120 and swp3.130.
     # And swp3 must exist in the system to create the .1q subinterfaces..
     # but it is not applied to any bridge..or assigned an address.
-     
+     
     auto swp3.120
     iface swp3.120
-     
+     
     auto swp3.130
     iface swp3.130
-     
+     
     # Configure the bond - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-     
+     
     auto bond2
     iface bond2
        bond-slaves glob swp4-7
-     
+     
     # configure the bridges  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-     
+     
     auto br-untagged
     iface br-untagged
        address 10.0.0.1/24
        bridge-ports swp1 bond2
        bridge-stp on
-     
+     
     auto br-tag100
     iface br-tag100
        address 10.0.100.1/24
        bridge-ports swp1.100 swp2.100 bond2.100
        bridge-stp on
-     
+     
     auto br-vlan120
     iface br-vlan120
        address 10.0.120.1/24
        bridge-ports swp2.120 swp3.120 bond2.120
        bridge-stp on
-     
+     
     auto v130
     iface v130
         address 10.0.130.1/24
         bridge-ports swp3.130 bond2.130
         bridge-stp on
-     
+     
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 To verify:
@@ -201,14 +201,14 @@ To verify:
 
     cumulus@switch:~$ cat /proc/net/bonding/bond2
     Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
-     
+     
     Bonding Mode: IEEE 802.3ad Dynamic link aggregation
     Transmit Hash Policy: layer3+4 (1)
     MII Status: up
     MII Polling Interval (ms): 100
     Up Delay (ms): 0
     Down Delay (ms): 0
-     
+     
     802.3ad info
     LACP rate: fast
     Min links: 0
@@ -219,7 +219,7 @@ To verify:
         Actor Key: 33
         Partner Key: 33
         Partner Mac Address: 44:38:39:00:32:cf
-     
+     
     Slave Interface: swp4
     MII Status: up
     Speed: 10000 Mbps
@@ -228,7 +228,7 @@ To verify:
     Permanent HW addr: 44:38:39:00:32:8e
     Aggregator ID: 3
     Slave queue ID: 0
-     
+     
     Slave Interface: swp5
     MII Status: up
     Speed: 10000 Mbps
@@ -237,7 +237,7 @@ To verify:
     Permanent HW addr: 44:38:39:00:32:8f
     Aggregator ID: 3
     Slave queue ID: 0
-     
+     
     Slave Interface: swp6
     MII Status: up
     Speed: 10000 Mbps
@@ -246,7 +246,7 @@ To verify:
     Permanent HW addr: 44:38:39:00:32:90
     Aggregator ID: 3
     Slave queue ID: 0
-     
+     
     Slave Interface: swp7
     MII Status: up
     Speed: 10000 Mbps
@@ -276,10 +276,10 @@ are not explicitly associated with any VLAN IDs and are exempt from this
 restriction:
 
     cumulus@switch:~$ sudo brctl addbr br_mix
-     
+     
     cumulus@switch:~$ sudo ip link add link swp10 name swp10.100 type vlan id 100
     cumulus@switch:~$ sudo ip link add link swp11 name swp11.200 type vlan id 200
-     
+     
     cumulus@switch:~$ sudo brctl addif br_mix swp10.100 swp11.200
     can't add swp11.200 to bridge br_mix: Invalid argument
 
@@ -318,7 +318,7 @@ bridge `br-mix` from swp10.100 will be bridged to swp11.200 with the
 VLAN ID translated from 100 to 200:
 
     cumulus@switch:~$ sudo brctl addif br_mix swp10.100 swp11.200
-     
+     
     cumulus@switch:~$ sudo brctl show br_mix
     bridge name     bridge id               STP enabled     interfaces
     br_mix          8000.4438390032bd       yes             swp10.100

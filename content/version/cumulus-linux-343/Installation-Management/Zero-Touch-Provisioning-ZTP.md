@@ -171,7 +171,7 @@ For example, the `/etc/dhcp/dhcpd.conf` file for an ISC DHCP server
 would look like:
 
     option cumulus-provision-url code 239 = text;
-     
+     
     subnet 192.0.2.0 netmask 255.255.255.0 {
      range 192.0.2.100 192.168.0.200;
      option cumulus-provision-url "http://192.0.2.1/demo.sh";
@@ -244,38 +244,38 @@ applies a configuration:
       echo -e "\e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m" >&2
       exit 1
     }
-     
+     
     # Log all output from this script
     exec >/var/log/autoprovision 2>&1
-     
+     
     trap error ERR
-     
+     
     #Add Debian Repositories
     echo "deb http://http.us.debian.org/debian jessie main" >> /etc/apt/sources.list
     echo "deb http://security.debian.org/ jessie/updates main" >> /etc/apt/sources.list
-     
+     
     #Update Package Cache
     apt-get update -y
-     
+     
     #Install netshow diagnostics commands
     apt-get install -y netshow htop nmap
-     
+     
     #Load interface config from usb
     cp ${ZTP_USB_MOUNTPOINT}/interfaces /etc/network/interfaces
-     
+     
     #Load port config from usb
     #   (if breakout cables are used for certain interfaces)
     cp ${ZTP_USB_MOUNTPOINT}/ports.conf /etc/cumulus/ports.conf
-     
+     
     #Install a License from usb and restart switchd
     cl-license -i ${ZTP_USB_MOUNTPOINT}/license.txt && systemctl restart switchd.service
-     
+     
     #Reload interfaces to apply loaded config
     ifreload -a
-     
+     
     #Output state of interfaces
     netshow interface
-     
+     
     # CUMULUS-AUTOPROVISIONING
     exit 0
 
@@ -304,7 +304,7 @@ failed. Include the `-v` option when you run `ztp`:
 You can also run `ztp -s` to get more information about the current
 state of ZTP.
 
-    cumulus@switch:~$ ztp -s
+    cumulus@switch:~$ ztp -s
     ZTP INFO:
      
     State              enabled
@@ -325,7 +325,7 @@ see if any failures occur:
          Docs: man:ztp(8)
       Process: 400 ExecStart=/usr/sbin/ztp -b (code=exited, status=1/FAILURE)
      Main PID: 400 (code=exited, status=1/FAILURE)
-     
+     
     May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found
     May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
     May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh

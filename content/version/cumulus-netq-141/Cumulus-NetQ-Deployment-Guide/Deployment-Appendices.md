@@ -320,12 +320,12 @@ To run the playbook in your environment, you must replace the
           shell: grep DISTRIB_RELEASE /etc/lsb-release | cut -d "=" -f2
           register: cl_version
           changed_when: false
-     
+     
         - name: Assert Cumulus Version Supports NetQ
           assert:
           that: "{{cl_version.stdout | version_compare('3.3.2', '>=') }}"
           msg: "Cumulus Linux version must be 3.3.2 or later to support NetQ. Version {{cl_version.stdout}} detected."
-     
+     
         - name: Add Cumulus Repo
           apt_repository:
             repo: deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest
@@ -333,26 +333,26 @@ To run the playbook in your environment, you must replace the
             update_cache: true
           tags:
             - netq_setup
-     
+     
         - name: Install NetQ (from Repo)
           apt:
             name: cumulus-netq
             update_cache: false
           tags:
             - netq_setup
-     
+     
         - name: Add netq server IP (VRF)
           command: netq config add server {{ netq_server }} vrf mgmt
           tags:
             - netq_setup
-     
+     
         - name: Restart Rsyslog
           service:
             name: rsyslog
             state: restarted
           tags:
             - netq_setup
-     
+     
         - name: Restart NetQ Agent
           command: netq config restart agent
           tags:

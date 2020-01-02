@@ -277,7 +277,7 @@ switches, do the following:
   interface is optional, Cumulus Networks recommends you configure
   one. More information about configuring the
   [backup link](#specify-a-backup-link) and understanding various
-  [redundancy scenarios](#failover-redundancy-scenarios) is available below.
+  [redundancy scenarios](#failover-redundancy-scenarios) is available below.
 
 For example, if *peerlink* is the inter-chassis bond, and VLAN 4094 is
 the peer link VLAN, configure *peerlink.4094* as follows:
@@ -748,7 +748,7 @@ net add clag port bond server2 interface swp2 clag-id 2
 net add bond server1-2 bridge access 100
 net add bond server1-2 stp portadminedge
 net add bond server1-2 stp bpduguard
- </code></pre>
+ </code></pre>
 <p>These commands create the following configuration in the <code>/etc/network/interfaces</code> file:</p>
 <pre><code>cumulus@leaf02:~$ cat /etc/network/interfaces
 auto lo
@@ -1351,9 +1351,9 @@ active/active forwarding.
 
 Then, to connect the spine switches to the core switches, you need to
 determine whether the routing is static or dynamic. If it is dynamic,
-you must choose which protocol —
+you must choose which protocol -
 [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/) or
-[BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) — to use.
+[BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) - to use.
 When enabling a routing protocol in an MLAG environment, it is also
 necessary to manage the uplinks, because by default MLAG is not aware of
 layer 3 uplink interfaces. In the event of a peer link failure, MLAG
@@ -1626,7 +1626,7 @@ servers and two switches. You might plan for four to six servers to lose
 connectivity to a single switch and become single connected before you
 respond to the event. So expanding upon our previous example, if you
 have 40 hosts each with 20G of bandwidth dual-connected to the MLAG
-pair, you might allocate 20G to 30G of bandwidth to the peer link —
+pair, you might allocate 20G to 30G of bandwidth to the peer link -
 which accounts for half of the single-connected bandwidth for four to
 six hosts.
 
@@ -1710,8 +1710,8 @@ You can detect this issue by running the `net show counters` or the `ethtool -S 
 Using [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/), the number of dropped packets is displayed in the RX\_DRP column when you run `net show counters`:
 
 ```
-cumulus@switch:~$ net show counters 
-     
+cumulus@switch:~$ net show counters 
+     
 Kernel Interface table
 Iface              MTU    Met    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
 ---------------  -----  -----    -------  --------  --------  --------  -------  --------  --------  ------  -----
@@ -1746,7 +1746,7 @@ bond01 bond01 52 duplicate lacp - partner mac
 ```
 
 This occurs when you have multiple LACP bonds between the same two LACP
-endpoints — for example, an MLAG switch pair is one endpoint and an ESXi
+endpoints - for example, an MLAG switch pair is one endpoint and an ESXi
 host is another. These bonds have duplicate LACP identifiers, which are
 MAC addresses. This same warning could be triggered when you have a
 cabling or configuration error.

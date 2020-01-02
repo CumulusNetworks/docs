@@ -114,7 +114,7 @@ using the `lsof` command:
     sshd 2496 0 3u IPv4 5809 0t0 TCP *:22 (LISTEN)
     jdoo 2622 0 6u IPv4 6132 0t0 TCP 127.0.0.1:2812 (LISTEN)
     sshd 31700 0 3r IPv4 187630 0t0 TCP 192.168.8.37:22->192.168.8.3:50386 (ESTABLISHED)
-     
+     
     cumulus@switch:~$ sudo lsof -Pnl +M -i6
     COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
     ntpd 1882 104 17u IPv6 3955 0t0 UDP *:123
@@ -160,7 +160,7 @@ command, then pipe the results to `grep`, using the - or + operators:
      [ + ] arp_refresh
      [ + ] auditd
      ...
-     
+     
     cumulus@switch:~$ sudo systemctl status | grep -
      [ - ] isc-dhcp-server
      [ - ] openvswitch-vtep

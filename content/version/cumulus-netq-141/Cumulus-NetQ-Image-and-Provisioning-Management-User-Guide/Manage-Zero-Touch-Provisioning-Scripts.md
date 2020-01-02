@@ -35,7 +35,7 @@ view the available ZTP scripts. The command syntax is:
     tipctl del ztp script [-h|--help] SCRIPT
     tipctl show ztp all [--with-date|-h|--help]
     tipctl show ztp mac [--with-date|-h|--help] MAC
-    tipctl show ztp script [--with-date|-h|--help] SCRIPT
+    tipctl show ztp script [--with-date|-h|--help] SCRIPT
     tipctl show repo ztp
 
 The *-h* option is a short cut for the *--help* option.
@@ -63,7 +63,7 @@ This example shows the import of a ZTP script to IPM, and then verifies
 it has been imported correctly.
 
     <username>@<hostname>:~/<directory-name>$ ssh <username>@<telemetry-server-name-or-ip-address>
-    <username>@<ts>:~$ cp /<path>/<ztp-script-name> /var/tips/www/ztp/scripts/<ztp-script-name>
+    <username>@<ts>:~$ cp /<path>/<ztp-script-name> /var/tips/www/ztp/scripts/<ztp-script-name>
     <username>@<ts>:~$ tipctl show ztp all
 
 ## View Stored Scripts
@@ -155,7 +155,7 @@ has been deleted.
 
     cumulus@<ts>:~$ cd ~/var/tips/www/ztp/scripts/
     cumulus@<ts>:~/var/tips/www/ztp/scripts/$ ls
-    cumulus@<ts>:~/var/tips/www/ztp/scripts/$ rm <script-filename> 
+    cumulus@<ts>:~/var/tips/www/ztp/scripts/$ rm <script-filename> 
     cumulus@<ts>:~/var/tips/www/ztp/scripts/$ ls
 
 ## Example Script
@@ -164,48 +164,48 @@ The following is a sample of the kinds of tasks you might perform in an
 provisioning script.
 
     #!/usr/bin/env bash
-     
+     
     function install_license(){
-        # Install license
-        echo "$(date) INFO: Installing License..."
-        echo $1 | /usr/cumulus/bin/cl-license -i
-        return_code=$?
-        if [ "$return_code" == "0" ]; then
-            echo "$(date) INFO: License Installed."
-        else
-            echo "$(date) ERROR: License not installed. Return code was: $return_code"
-            /usr/cumulus/bin/cl-license
-            exit 1
-        fi
+        # Install license
+        echo "$(date) INFO: Installing License..."
+        echo $1 | /usr/cumulus/bin/cl-license -i
+        return_code=$?
+        if [ "$return_code" == "0" ]; then
+            echo "$(date) INFO: License Installed."
+        else
+            echo "$(date) ERROR: License not installed. Return code was: $return_code"
+            /usr/cumulus/bin/cl-license
+            exit 1
+        fi
     }
-     
+     
     function ping_until_reachable(){
-        last_code=1
-        max_tries=30
-        tries=0
-        while [ "0" != "$last_code" ] && [ "$tries" -lt "$max_tries" ]; do
-            tries=$((tries+1))
-            echo "$(date) INFO: ( Attempt $tries of $max_tries ) Pinging $1 Target Until Reachable."
-            ping $1 -c2 &> /dev/null
-            last_code=$?
-                sleep 1
-        done
-        if [ "$tries" -eq "$max_tries" ] && [ "$last_code" -ne "0" ]; then
-            echo "$(date) ERROR: Reached maximum number of attempts to ping the target $1 ."
-            exit 1
-        fi
+        last_code=1
+        max_tries=30
+        tries=0
+        while [ "0" != "$last_code" ] && [ "$tries" -lt "$max_tries" ]; do
+            tries=$((tries+1))
+            echo "$(date) INFO: ( Attempt $tries of $max_tries ) Pinging $1 Target Until Reachable."
+            ping $1 -c2 &> /dev/null
+            last_code=$?
+                sleep 1
+        done
+        if [ "$tries" -eq "$max_tries" ] && [ "$last_code" -ne "0" ]; then
+            echo "$(date) ERROR: Reached maximum number of attempts to ping the target $1 ."
+            exit 1
+        fi
     }
-     
+     
     function set_hostname(){
-        # Remove DHCP Setting of Hostname
-        sed s/'SETHOSTNAME="yes"'/'SETHOSTNAME="no"'/g -i /etc/dhcp/dhclient-exit-hooks.d/dhcp-sethostname
-        hostnamectl set-hostname $1
+        # Remove DHCP Setting of Hostname
+        sed s/'SETHOSTNAME="yes"'/'SETHOSTNAME="no"'/g -i /etc/dhcp/dhclient-exit-hooks.d/dhcp-sethostname
+        hostnamectl set-hostname $1
     }
-     
+     
     ## A little something for the script to do
-     
+     
     #Output state of interfaces
     netshow interface
-     
+     
     # CUMULUS-AUTOPROVISIONING
     exit 0

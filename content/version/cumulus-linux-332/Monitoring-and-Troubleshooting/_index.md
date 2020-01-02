@@ -16,7 +16,7 @@ This chapter introduces monitoring and troubleshooting Cumulus Linux.
 ## Using the Serial Console
 
 The serial console can be a useful tool for debugging issues, especially
-when you find yourself rebooting the switch often or if you don’t have a
+when you find yourself rebooting the switch often or if you don't have a
 reliable network connection.
 
 The default serial console baud rate is 115200, which is the baud rate
@@ -115,17 +115,17 @@ gathers information about the switch from a number of files in the
 system:
 
     cumulus@switch:~$ net show system
-     
+     
     Penguin Arctica 4806XP
     Cumulus Version 3.3.2
     Build: Cumulus Linux 3.3.2
-     
+     
     Chipset: Broadcom Trident2 BCM56854
-     
+     
     Port Config: 48 x 10G-SFP+ & 6 x 40G-QSFP+
-     
+     
     CPU: (x86_64) Intel Atom C2558 2.40GHz
-     
+     
     Uptime: 4 days, 20:53:49
 
 ## Diagnostics Using cl-support
@@ -141,7 +141,7 @@ Cumulus Networks as this file helps in the investigation of issues.
 
     cumulus@switch:~$ sudo cl-support -h
     Usage: cl-support [-h] [-s] [-t] [-v] [reason]...
-     
+     
     Args:
     [reason]: Optional reason to give for invoking cl-support.
              Saved into tarball's cmdline.args file.
@@ -204,7 +204,7 @@ that do not use `rsyslog` write to their own log files within the
 
 ### Enabling Remote syslog
 
-If you need to send other log files — such as `switchd` logs — to a
+If you need to send other log files - such as `switchd` logs - to a
 `syslog` server, do the following:
 
 1.  Create a file in `/etc/rsyslog.d/`. Make sure it starts with a
@@ -214,7 +214,7 @@ If you need to send other log files — such as `switchd` logs — to a
     content similar to the following:
     
         ## Logging switchd messages to remote syslog server
-         
+         
         @192.168.1.2:514
     
     This configuration sends log messages to a remote `syslog` server

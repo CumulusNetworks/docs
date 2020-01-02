@@ -105,7 +105,7 @@ the following commands directly in the `/etc/network/interfaces` file.
         link-duplex full
         link-autoneg off
         address 10.0.0.9/24
-     
+     
     auto Tunnel-R2 #overlay interface for tunnel
     iface Tunnel-R2 inet static
         address 10.0.100.1/24
@@ -115,7 +115,7 @@ the following commands directly in the `/etc/network/interfaces` file.
         post-up ip route add 10.0.100.0/24 dev Tunnel-R2
         # Run post-down command after taking the interface down. If this command fails then ifdown aborts, marks the interface as deconfigured, and exits with status 0. This behavior may change in the future.
         post-down ip tunnel del Tunnel-R2
-     
+     
     # Tunnel-R2 configuration
     auto swp1 #underlay interface for tunnel
     iface swp1

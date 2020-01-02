@@ -52,7 +52,7 @@ To view static routes, run:
 A static route can also be created by adding ` post-up ip route add
  `command to a switch port configuration. For example:
 
-    cumulus@switch:~$ net add interface swp3 ip address 198.51.100.1/24 
+    cumulus@switch:~$ net add interface swp3 ip address 198.51.100.1/24 
     cumulus@switch:~$ net add interface swp3 post-up ip route add 203.0.113.0/24 via 198.51.100.2
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit

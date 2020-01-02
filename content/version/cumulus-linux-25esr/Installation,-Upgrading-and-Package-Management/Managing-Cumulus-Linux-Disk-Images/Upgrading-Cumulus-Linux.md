@@ -169,10 +169,10 @@ Because network devices are reachable via the IP addresses on the front
 panel ports, many network admins of small-to-medium sized networks use
 *in-band* networks to manage their switches. In this design, management
 traffic like SSH, SNMP, and console server connections use the same
-networks that regular network traffic traverses — there is no separation
+networks that regular network traffic traverses - there is no separation
 between the *management plane* and the *data plane*. Larger data centers
 create a separate *out-of-band* network with a completely separate
-subnet and reachability path to attach to the management ports — that is
+subnet and reachability path to attach to the management ports - that is
 accessible via eth0 and the serial console.
 
 This is a situation where smaller companies should learn from the big
@@ -413,14 +413,14 @@ If you don't use the `-s` flag here, you will have to run `cl-img-select
 
         cumulus@switch$ sudo reboot
 
-5.  Restore the configuration files to the new version — ideally via
-    automation — if the files were not migrated in step 3. To manually
+5.  Restore the configuration files to the new version - ideally via
+    automation - if the files were not migrated in step 3. To manually
     restore an archive created by the [Config File Migration
     script](https://github.com/CumulusNetworks/config-backup-upgrade-helper):
 
         # On the switch, copy the config file archive back from the server:
         cumulus@switch$ scp user@my_external_server:PATH/SWITCHNAME-config-archive-DATE_TIME.tar.gz .
-         
+         
         # Untar the archive to the root of the box
         cumulus@switch$ sudo tar -C / -xvf SWITCHNAME-config-archive-DATE_TIME.tar.gz
 

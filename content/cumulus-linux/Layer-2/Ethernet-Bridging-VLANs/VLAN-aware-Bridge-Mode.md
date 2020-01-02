@@ -372,7 +372,7 @@ bridge 1
 
 </details>
 
-## VLAN Layer 3 Addressing — Switch Virtual Interfaces and Other VLAN Attributes
+## VLAN Layer 3 Addressing - Switch Virtual Interfaces and Other VLAN Attributes
 
 When configuring the VLAN attributes for the bridge, specify the attributes for each VLAN interface. If you are configuring the SVI for the native VLAN, you must declare the native VLAN and specify its IP address. Specifying the IP address in the bridge stanza itself returns an error.
 

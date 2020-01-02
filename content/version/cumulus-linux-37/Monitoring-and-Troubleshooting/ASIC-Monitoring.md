@@ -128,7 +128,7 @@ To monitor queue lengths using a histogram:
 4.  Add the following line to set the data type to `histogram`. This is
     the data type for histogram monitoring.
 
-        monitor.histogram_pg.stat_type = histogram 
+        monitor.histogram_pg.stat_type = histogram 
 
 5.  Add the following line to set the trigger type to `timer`.
     Currently, the only trigger type available is timer.
@@ -313,20 +313,20 @@ In the following example:
     monitor.histogram_pg.log.queue_bytes                  = 500
     monitor.histogram_pg.collect.queue_bytes              = 500
     monitor.histogram_pg.collect.port_group_list          = [buffers_pg,all_packet_pg]
-     
-     
+     
+     
     monitor.buffers_pg.port_set                           = swp1-swp50
     monitor.buffers_pg.stat_type                          = buffer
     monitor.buffers_pg.action_list                        = [snapshot]
     monitor.buffers_pg.snapshot.file                      = /var/lib/cumulus/buffer_stats
     monitor.buffers_pg.snapshot.file_count                = 8
-     
+     
     monitor.all_packet_pg.port_set                        = swp1-swp50
     monitor.all_packet_pg.stat_type                       = packet_all
     monitor.all_packet_pg.action_list                     = [snapshot]
     monitor.all_packet_pg.snapshot.file                   = /var/lib/cumulus/all_packet_stats
     monitor.all_packet_pg.snapshot.file_count             = 8
-     
+     
     monitor.discards_pg.port_set                          = swp1-swp50
     monitor.discards_pg.stat_type                         = packet
     monitor.discards_pg.action_list                       = [snapshot,log]

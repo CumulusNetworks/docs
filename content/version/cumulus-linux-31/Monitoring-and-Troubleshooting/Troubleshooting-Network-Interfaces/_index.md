@@ -35,16 +35,16 @@ start/stop/reload the networking service.
     # Parameters for the /etc/init.d/networking script
     #
     #
-     
+     
     # Change the below to yes if you want verbose logging to be enabled
     VERBOSE="no"
-     
+     
     # Change the below to yes if you want debug logging to be enabled
     DEBUG="no"
-     
+     
     # Change the below to yes if you want logging to go to syslog
     SYSLOG="no"
-     
+     
     # Exclude interfaces
     EXCLUDE_INTERFACES=
 
@@ -129,7 +129,7 @@ An easy way to debug and get details about template errors is to use the
     # ssim2 added
     auto swp45
     iface swp45
-     
+     
     auto swp46
     iface swp46
       
@@ -145,12 +145,12 @@ was interrupted before it updated the state database. For example:
 
     cumulus@switch:~$ sudo ifdown br0
     error: cannot find interfaces: br0 (interface was probably never up ?)
-     
+     
     cumulus@switch:~$ sudo brctl show
     bridge name bridge id       STP enabled interfaces
     br0     8000.44383900279f   yes     downlink
                                 peerlink
-     
+     
     cumulus@switch:~$ sudo ifdown br0 --use-current-config 
 
 ## Removing All References to a Child Interface</span>
@@ -165,18 +165,18 @@ For example, consider the following configuration:
 
     auto lo
     iface lo inet loopback
-     
+     
     auto eth0
     iface eth0 inet dhcp
-     
+     
     auto bond1
     iface bond1
         bond-slaves swp2 swp1
-     
+     
     auto bond3
     iface bond3
         bond-slaves swp8 swp6 swp7
-     
+     
     auto br0
     iface br0
         bridge-ports swp3 swp5 bond1 swp4 bond3
@@ -206,7 +206,7 @@ as well.
     auto swp1.100 
     iface swp1.100 
         mtu 9000 
-     
+     
     auto swp1 
     iface swp1  
         mtu 9000

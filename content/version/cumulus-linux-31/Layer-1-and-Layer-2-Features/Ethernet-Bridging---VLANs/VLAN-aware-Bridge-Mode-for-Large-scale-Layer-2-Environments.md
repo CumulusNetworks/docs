@@ -28,7 +28,7 @@ for large-scale L2 environments, with **one single** **instance** of
 [Spanning
 Tree](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree).
 Each physical bridge member port is configured with the list of allowed
-VLANs as well as its port VLAN ID (either PVID or native VLAN — see
+VLANs as well as its port VLAN ID (either PVID or native VLAN - see
 below). MAC address learning, filtering and forwarding are *VLAN-aware*.
 This significantly reduces the configuration size, and eliminates the
 large overhead of managing the port/VLAN instances as subinterfaces,
@@ -160,7 +160,7 @@ iface bridge
     bridge-vids 100 200
     bridge-pvid 1
     bridge-stp on
- 
+ 
 auto swp3
 iface swp3
   bridge-vids 200</code></pre></td>
@@ -190,11 +190,11 @@ iface bridge
     bridge-vids 100 200
     bridge-pvid 1
     bridge-stp on
- 
+ 
 auto swp1
 iface swp1
     bridge-access 100
- 
+ 
 auto swp2
 iface swp2
     bridge-access 100</code></pre></td>
@@ -225,10 +225,10 @@ Here is the VLAN membership for that configuration:
     portvlan ids
     swp1 101 PVID Egress Untagged
      2-100
-     
+     
     swp9 101 PVID Egress Untagged
      2-100
-     
+     
     bridge 101
 
 To configure swp9 to drop untagged frames, add `bridge-allow-untagged
@@ -245,9 +245,9 @@ When you check VLAN membership for that port, it shows that there is
     portvlan ids
     swp1 101 PVID Egress Untagged
      2-100
-     
+     
     swp9 2-100
-     
+     
     bridge 101
 
 ## <span id="src-5122017_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-svi" class="confluence-anchor-link"></span>VLAN Layer 3 Addressing - Switch Virtual Interfaces and other VLAN Attributes </span>
@@ -263,7 +263,7 @@ IP address in the bridge stanza itself returns an error.
         address 192.168.10.1/24
         address 2001:db8::1/32
         hwaddress 44:38:39:ff:00:00
-     
+     
     # l2 attributes
     auto bridge.100
     vlan bridge.100
@@ -319,13 +319,13 @@ defined VLANs.
           bridge-ports glob swp1-52
           bridge-stp on
           bridge-vids 310 700 707 712 850 910
-     
+     
     auto swp1
     iface swp1
           mstpctl-portadminedge yes
           mstpctl-bpduguard yes
           bridge-access 310
-     
+     
     # The following is a trunk port that is "pruned".
     # native vlan is 1, but only .1q tags of 707, 712, 850 are
     # sent and received
@@ -342,7 +342,7 @@ defined VLANs.
     iface swp49
           mstpctl-portpathcost 10
           mstpctl-portnetwork yes
-     
+     
     # The following port is the trunk uplink and inherits all vlans
     # from 'bridge'; bridge assurance is enabled using 'portnetwork' attribute
     auto swp50
@@ -371,28 +371,28 @@ bonds. The bond configurations are generated from a
     # 
     auto lo
     iface lo
-     
+     
     auto eth0
     iface eth0 inet dhcp
-     
+     
     # bond interface
     auto uplink1
     iface uplink1
         bond-slaves swp32
         bridge-vids 2000-2079
-     
+     
     # bond interface
     auto peerlink
     iface peerlink
         bond-slaves swp30 swp31
         bridge-vids 2000-2079 4094
-     
+     
     # bond interface
     auto downlink
     iface downlink
         bond-slaves swp1
         bridge-vids 2000-2079
-     
+     
     #
     # Declare vlans for all swp ports
     # swp2-20 get vlans from 2004 to 2022.
@@ -403,19 +403,19 @@ bonds. The bond configurations are generated from a
         auto swp${port}
         iface swp${port}
             bridge-vids ${vlanid}
-     
+     
     %endfor
-     
+     
     # svi vlan 4094
     auto bridge.4094
     iface bridge.4094
         address 11.100.1.252/24
-     
+     
     # l2 attributes for vlan 4094
     auto bridge.4094
     vlan bridge.4094
         bridge-igmp-querier-src 172.16.101.1
-     
+     
     #
     # vlan-aware bridge
     #
@@ -424,7 +424,7 @@ bonds. The bond configurations are generated from a
         bridge-vlan-aware yes
         bridge-ports uplink1 peerlink downlink glob swp2-20
         bridge-stp on
-     
+     
     # svi peerlink vlan
     auto peerlink.4094
     iface peerlink.4094
@@ -474,7 +474,7 @@ the VLAN-aware bridge to map VLANs to VNIs.
     auto lo
     iface lo inet loopback
         address 10.35.0.10/32
-     
+     
     auto bridge
     iface bridge
         bridge-vlan-aware yes
@@ -482,7 +482,7 @@ the VLAN-aware bridge to map VLANs to VNIs.
         bridge-stp on
         bridge-vids 1-100
         bridge-pvid 1
-     
+     
     auto vni-10000
     iface vni-10000
         alias CUSTOMER X VLAN 10

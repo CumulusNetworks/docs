@@ -29,7 +29,7 @@ To install NetQ:
 
         The first step to install Cumulus NetQ is to choose which type of deployment model you want to use. If you are performing an upgrade, then select the deployment type you already have set up. Both options provide secure access to data and features useful for monitoring and troubleshooting your network.
 
-        Select the on-premises deployment model if you want to host all required hardware and software at your location(s), and you have the in-house skill set to install, configure, and maintain it—including performing data backups, acquiring and maintaining hardware and software, and integration and license management. This model is commonly chosen when you do not want to provide any access to the Internet or you have a strong desire for control of the entire network.
+        Select the on-premises deployment model if you want to host all required hardware and software at your location(s), and you have the in-house skill set to install, configure, and maintain it-including performing data backups, acquiring and maintaining hardware and software, and integration and license management. This model is commonly chosen when you do not want to provide any access to the Internet or you have a strong desire for control of the entire network.
 
         Select the cloud deployment model if you want to host only a small server on your premises and leave the details up to Cumulus Networks. In this deployment, the server connects to the NetQ Cloud service over selected ports. The NetQ application is hosted and data storage is provided in the cloud. Cumulus handles the backups and maintenance of the application and storage.
 

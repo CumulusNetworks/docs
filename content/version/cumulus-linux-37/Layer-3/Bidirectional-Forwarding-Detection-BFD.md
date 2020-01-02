@@ -51,7 +51,7 @@ You cannot specify BFD multihop sessions in the `topology.dot` file since you ca
 
 {{%/notice%}}
 
-The FRRouting CLI can track IPv4 and IPv6 peer connectivity — both single hop and multihop, and both link-local IPv6 peers and global IPv6 peers — using BFD sessions without needing the `topology.dot` file. Use FRRouting to register multihop peers with PTM and BFD as well as for monitoring the connectivity to the remote BGP multihop peer. FRRouting can dynamically register and unregister both IPv4 and IPv6 peers with BFD when the BFD-enabled peer connectivity is established or de-established, respectively. Also, you can configure BFD parameters for each BGP or OSPF peer using FRRouting.
+The FRRouting CLI can track IPv4 and IPv6 peer connectivity - both single hop and multihop, and both link-local IPv6 peers and global IPv6 peers - using BFD sessions without needing the `topology.dot` file. Use FRRouting to register multihop peers with PTM and BFD as well as for monitoring the connectivity to the remote BGP multihop peer. FRRouting can dynamically register and unregister both IPv4 and IPv6 peers with BFD when the BFD-enabled peer connectivity is established or de-established, respectively. Also, you can configure BFD parameters for each BGP or OSPF peer using FRRouting.
 
 {{%notice note%}}
 

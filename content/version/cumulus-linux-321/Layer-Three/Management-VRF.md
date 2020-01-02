@@ -11,9 +11,9 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-*Management VRF* — a subset of
+*Management VRF* - a subset of
 [VRF](/version/cumulus-linux-321/Layer-Three/Virtual-Routing-and-Forwarding-VRF)
-(virtual routing tables and forwarding) — provides a separation between
+(virtual routing tables and forwarding) - provides a separation between
 the out-of-band management network and the in-band data plane network.
 For all VRFs, the *main* routing table is the default table for all of
 the data plane switch ports. With management VRF, a second table,
@@ -80,18 +80,18 @@ The NCLU commands above create the following snippets in
 `/etc/network/interfaces:`
 
     ...
-     
+     
     auto eth0
     iface eth0 inet dhcp
         vrf mgmt
-     
+     
     ...
-     
+     
     auto mgmt
     iface mgmt
         address 127.0.0.1/8
         vrf-table auto
-     
+     
     ...
 
 <div class="confbox admonition admonition-note">
@@ -295,7 +295,7 @@ These commands produce the following configuration snippet in the
 
     <routing protocol> 
     redistribute connected route-map REDISTRIBUTE-CONNECTED
-     
+     
     route-map REDISTRIBUTE-CONNECTED deny 100
      match interface eth0
     !
@@ -333,7 +333,7 @@ To look at information about eth0 (the management routing table), use
 
     cumulus@switch:~$ net show route vrf mgmt
     default via 192.168.0.1 dev eth0
-     
+     
     cumulus@switch:~$ net show route
     default via 10.23.23.3 dev swp17  proto zebra  metric 20
     10.3.3.3 via 10.23.23.3 dev swp17
@@ -371,7 +371,7 @@ stanzas are added to the *mgmt* interface class:
 
     auto lo
     iface lo inet loopback 
-     
+     
     allow-mgmt eth0
     iface eth0 inet dhcp
         vrf mgmt

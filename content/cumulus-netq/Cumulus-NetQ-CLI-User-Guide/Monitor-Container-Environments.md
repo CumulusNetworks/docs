@@ -117,7 +117,7 @@ following on the Kubernetes master node:
         cumulus@server01:~$ netq config restart agent
 
 Next, you must enable the NetQ Agent on all the worker nodes, as
-described in the [Install NetQ Agents and CLI on Switches](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches), for complete insight into your container network.
+described in the [Install NetQ Agents and CLI on Switches](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-CL), for complete insight into your container network.
 
 ### View Status of Kubernetes Clusters
 

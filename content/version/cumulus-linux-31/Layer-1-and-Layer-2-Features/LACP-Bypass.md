@@ -73,9 +73,9 @@ mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-V
         bond-slaves swp51s2 swp51s3
         clag-id 1
         bond-lacp-bypass-allow 1
-     
+     
     ...
-     
+     
     auto br0
     iface br0
         bridge-vlan-aware yes
@@ -119,7 +119,7 @@ mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-V
     iface bond1 
         bond-slaves swp3 swp4
         bond-lacp-bypass-allow 1
-     
+     
     auto br0
     iface br0
         bridge-ports bond1 bond2 bond3 bond4 peer5

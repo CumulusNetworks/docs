@@ -92,7 +92,7 @@ monitor.histogram_pg.port_set = swp1-swp50
 4. Add the following line to set the data type to `histogram`. This is the data type for histogram monitoring.
 
 ```
-monitor.histogram_pg.stat_type = histogram 
+monitor.histogram_pg.stat_type = histogram 
 ```
 
 5. Add the following line to set the trigger type to `timer`. Currently, the only trigger type available is timer.

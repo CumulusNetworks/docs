@@ -229,7 +229,7 @@ To help visualize the following diagram is provided:
 3.  Use ` net show  `to look at `lldp` information:
     
         cumulus@switch:~$ net show lldp
-         
+         
         Local Port    Speed    Mode                 Remote Port        Remote  Host     Summary
         ------------  -------  -------------  ----  -----------------  ---------------  -------------------------
         eth0          1G       Mgmt           ====  swp6               oob-mgmt-switch  IP: 192.168.0.11/24(DHCP)

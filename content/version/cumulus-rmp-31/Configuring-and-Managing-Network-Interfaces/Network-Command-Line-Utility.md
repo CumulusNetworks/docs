@@ -61,7 +61,7 @@ users to edit configurations and run show commands.
 
 Net provides an environment variable for setting where the net output is
 directed. To only use stdout, set the NCLU\_TAB\_STDOUT environment
-variable to “true”. The value is not case sensitive.
+variable to "true ". The value is not case sensitive.
 
 {{%/notice%}}
 
@@ -91,11 +91,11 @@ below show the output for incorrect commands:
 
     cumulus@switch[~]# net add bgp router-id 1.1.1.1/32
     ERROR: Command not found
-     
+     
     Did you mean one of the following?
-     
+     
         net add bgp router-id <ipv4>
-     
+     
     cumulus@switch[~]# net add bgp router-id 1.1.1.1
     cumulus@switch[~]# net add int swp10 mtu <TAB>
         <552-9216> : 
@@ -106,7 +106,7 @@ NCLU has a comprehensive help system built in to assist usage. ? and
 help can be used to show available commands:
 
     cumulus@switch[~]# net help
-     
+     
     Usage:
         # The workflow for 'net' is
         # - stage changes via "net add" and "net del"
@@ -130,7 +130,7 @@ help can be used to show available commands:
         net help [verbose]
         net pending
         net show configuration
-     
+     
     Options:
         help    : show this screen and exit
         abort   : abandon changes since last commit
@@ -142,9 +142,9 @@ help can be used to show available commands:
         show    : show command output
 
     cumulus@switch[~]# net help bestpath
-     
+     
     The following commands contain keyword(s) 'bestpath':
-     
+     
         net (add|del) bgp bestpath as-path multipath-relax [as-set|no-as-set]
         net add debug bgp bestpath <ip/prefixlen>
         net del debug bgp bestpath [<ip/prefixlen>]
@@ -168,11 +168,11 @@ configuration setup:
         bond
         bridge
         clag
-    …
+     ...
         ospf    :  Open Shortest Path First
-     
+     
     cumulus@switch[~]# net show example bridge 
-     
+     
     Scenario
     ========
     We are configuring switch1 and would like to configure the following
@@ -185,7 +185,7 @@ configuration setup:
     - assign IP 10.0.0.1/24 to the SVI for vlan 10
     - assign IP 20.0.0.1/24 to the SVI for vlan 20
     - configure swp3 as a trunk for vlans 10, 11, 12 and 20
-     
+     
                   swp3
          *switch1 --------- switch2
             /\
@@ -193,38 +193,38 @@ configuration setup:
           /    \
          /      \
      host-11   host-12
-     
-     
+     
+     
     switch1 net commands
     ====================
     - configure switch1 as a L2 switch for host-11 and host-12
     - the bridge created here will be vlan aware
     switch1# net add interface bridge bridge-ports swp1-2
-     
+     
     - enable vlans 10-20
     switch1# net add interface bridge bridge-vids 10-20
-     
+     
     - place host-11 in vlan 10
     - place host-12 in vlan 20
     switch1# net add int swp1 bridge-access 10
     switch1# net add int swp2 bridge-access 20
-     
+     
     - create an SVI interface for vlan 10
     - create an SVI interface for vlan 20
     - assign IP 10.0.0.1/24 to the SVI for vlan 10
     - assign IP 20.0.0.1/24 to the SVI for vlan 20
     switch# net add interface bridge.10 address 10.0.0.1/24
     switch# net add interface bridge.20 address 20.0.0.1/24
-     
+     
     - configure swp3 as a trunk for vlans 10, 11, 12 and 20
     switch1# net add interface bridge bridge-ports swp3
     switch1# net add interface swp3 bridge-vids 10-12 20
-     
+     
     # Review and commit our changes
     switch1# net pending
     switch1# net commit
-     
-     
+     
+     
     Verification
     ============
     switch1# net show bridge

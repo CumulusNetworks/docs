@@ -328,9 +328,9 @@ priority_group.service.weight = 16
 
 ## Related Information
 
-- [RoCE introduction](http://www.roceinitiative.org/roce-introduction/) —
+- [RoCE introduction](http://www.roceinitiative.org/roce-introduction/) -
   roceinitiative.org
-- [RoCEv2 congestion management](https://community.mellanox.com/docs/DOC-2321) —
+- [RoCEv2 congestion management](https://community.mellanox.com/docs/DOC-2321) -
   community.mellanox.com
 - [Configuring RoCE over a DSCP-based lossless network](https://community.mellanox.com/docs/DOC-3036)
   with a Mellanox Spectrum switch

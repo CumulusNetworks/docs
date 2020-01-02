@@ -43,12 +43,12 @@ To view the switch and host information with the CLI, use the following
     netq [<hostname>] show inventory license [cumulus] [status ok | status missing] [around <text-time>] [opta] [json]
     netq [<hostname>] show inventory memory [type <memory-type>|vendor <memory-vendor>] [opta] [json]
     netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [opta] [json]
-     
+     
     netq [<hostname>] show sensors all [around <text-time>] [json]
     netq [<hostname>] show sensors psu [<psu-name>] [around <text-time>] [json]
     netq [<hostname>] show sensors temp [<temp-name>] [around <text-time>] [json]
     netq [<hostname>] show sensors fan [<fan-name>] [around <text-time>] [json]
-     
+     
     netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] [type sensors] [between <text-time> and <text-endtime>] [json]
 
 {{%notice note%}}
@@ -95,9 +95,9 @@ hardware inventory is better. This example shows the basic hardware
 information for all devices.
 
     cumulus@switch:~$ netq show inventory brief
-     
+     
     Matching inventory records:
-    Hostname          Switch               OS              CPU      ASIC            Ports
+    Hostname          Switch               OS              CPU      ASIC            Ports
     ----------------- -------------------- --------------- -------- --------------- -----------------------------------
     edge01            N/A                  Ubuntu          x86_64   N/A             N/A
     exit01            VX                   CL              x86_64   VX              N/A
@@ -159,7 +159,7 @@ a particular switch. This example shows the ASIC information for
 
     cumulus@switch:~$ netq leaf02 show inventory asic
     Matching inventory records:
-    Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+    Hostname          Vendor               Model                          Model ID                  Core BW        Ports
     ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
     st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
 
@@ -172,22 +172,22 @@ motherboard data for all devices.
 
     cumulus@switch:~$ netq show inventory board
     Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    dell-z9100-05     DELL                 Z9100-ON                       4C:76:25:E7:42:C0  CN03GT5N779315C20001      03GT5N           A00    12/04/2015
-    mlx-2100-05       Penguin              Arctica 1600cs                 7C:FE:90:F5:61:C0  MT1623X10078              MSN2100-CB2FO    N/A    06/09/2016
-    mlx-2410a1-05     Mellanox             SN2410                         EC:0D:9A:4E:55:C0  MT1734X00067              MSN2410-CB2F_QP3 N/A    08/24/2017
-    mlx-2700-11       Penguin              Arctica 3200cs                 44:38:39:00:AB:80  MT1604X21036              MSN2700-CS2FO    N/A    01/31/2016
-    qct-ix1-08        QCT                  QuantaMesh BMS T7032-IX1       54:AB:3A:78:69:51  QTFCO7623002C             1IX1UZZ0ST6      H3B    05/30/2016
-    qct-ix7-04        QCT                  IX7                            D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
-    qct-ix7-04        QCT                  T7032-IX7                      D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
-    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l3            Penguin              Arctica 4806xp                 44:38:39:00:70:49  N/A                       N/A              N/A    N/A
-    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
-    st1-s2            Dell                 S6000-ON                       44:38:39:00:80:81  N/A                       N/A              N/A    N/A
+    dell-z9100-05     DELL                 Z9100-ON                       4C:76:25:E7:42:C0  CN03GT5N779315C20001      03GT5N           A00    12/04/2015
+    mlx-2100-05       Penguin              Arctica 1600cs                 7C:FE:90:F5:61:C0  MT1623X10078              MSN2100-CB2FO    N/A    06/09/2016
+    mlx-2410a1-05     Mellanox             SN2410                         EC:0D:9A:4E:55:C0  MT1734X00067              MSN2410-CB2F_QP3 N/A    08/24/2017
+    mlx-2700-11       Penguin              Arctica 3200cs                 44:38:39:00:AB:80  MT1604X21036              MSN2700-CS2FO    N/A    01/31/2016
+    qct-ix1-08        QCT                  QuantaMesh BMS T7032-IX1       54:AB:3A:78:69:51  QTFCO7623002C             1IX1UZZ0ST6      H3B    05/30/2016
+    qct-ix7-04        QCT                  IX7                            D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
+    qct-ix7-04        QCT                  T7032-IX7                      D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
+    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                        ne-XP
+    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                        ne-XP
+    st1-l3            Penguin              Arctica 4806xp                 44:38:39:00:70:49  N/A                       N/A              N/A    N/A
+    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+    st1-s2            Dell                 S6000-ON                       44:38:39:00:80:81  N/A                       N/A              N/A    N/A
 
 You can filter the results of the command to capture only those devices
 with a particular motherboard vendor. This example shows only the
@@ -195,12 +195,12 @@ devices with *Celestica* motherboards.
 
     cumulus@switch:~$ netq show inventory board vendor celestica
     Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
+    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                        ne-XP
+    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                        ne-XP
 
 You can filter the results of the command to view the model for a
 particular switch. This example shows the motherboard vendor for the
@@ -208,9 +208,9 @@ particular switch. This example shows the motherboard vendor for the
 
     cumulus@switch:~$ netq st1-s1 show inventory board
     Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
 
 ### View Information about the CPU on a Switch
 
@@ -241,41 +241,41 @@ and then shows all devices with an *x86\_64* architecture.
 
     cumulus@switch:~$ netq show inventory cpu arch
         x86_64  :  CPU Architecture
-     
+     
     cumulus@switch:~$ netq show inventory cpu arch x86_64
     Matching inventory records:
-    Hostname          Arch     Model                          Freq       Cores
+    Hostname          Arch     Model                          Freq       Cores
     ----------------- -------- ------------------------------ ---------- -----
-    leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
+    leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
     server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
     server03          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
     server04          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
-    spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
+    spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
+    spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                               ss Core i7)
 
 You can filter the results to view CPU information for a single switch,
 as shown here for *server02*.
 
     cumulus@switch:~$ netq server02 show inventory cpu
-     
+     
     Matching inventory records:
-    Hostname          Arch     Model                          Freq       Cores
+    Hostname          Arch     Model                          Freq       Cores
     ----------------- -------- ------------------------------ ---------- -----
     server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
@@ -288,19 +288,19 @@ example shows all of these disk characteristics for all devices.
 
     cumulus@switch:~$ netq show inventory disk
     Matching inventory records:
-    Hostname          Name            Type             Transport          Size       Vendor               Model
+    Hostname          Name            Type             Transport          Size       Vendor               Model
     ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
-    leaf01            vda             disk             N/A                6G         0x1af4               N/A
-    leaf02            vda             disk             N/A                6G         0x1af4               N/A
-    leaf03            vda             disk             N/A                6G         0x1af4               N/A
-    leaf04            vda             disk             N/A                6G         0x1af4               N/A
-    oob-mgmt-server   vda             disk             N/A                256G       0x1af4               N/A
+    leaf01            vda             disk             N/A                6G         0x1af4               N/A
+    leaf02            vda             disk             N/A                6G         0x1af4               N/A
+    leaf03            vda             disk             N/A                6G         0x1af4               N/A
+    leaf04            vda             disk             N/A                6G         0x1af4               N/A
+    oob-mgmt-server   vda             disk             N/A                256G       0x1af4               N/A
     server01          vda             disk             N/A                301G       0x1af4               N/A
     server02          vda             disk             N/A                301G       0x1af4               N/A
     server03          vda             disk             N/A                301G       0x1af4               N/A
-    server04          vda             disk             N/A                301G       0x1af4               N/A
-    spine01           vda             disk             N/A                6G         0x1af4               N/A
-    spine02           vda             disk             N/A                6G         0x1af4               N/A
+    server04          vda             disk             N/A                301G       0x1af4               N/A
+    spine01           vda             disk             N/A                6G         0x1af4               N/A
+    spine02           vda             disk             N/A                6G         0x1af4               N/A
 
 You can filter the results of the command to view the disk information
 for a particular device. This example shows disk information for
@@ -308,9 +308,9 @@ for a particular device. This example shows disk information for
 
     cumulus@switch:~$ netq leaf03 show inventory disk
     Matching inventory records:
-    Hostname          Name            Type             Transport          Size       Vendor               Model
+    Hostname          Name            Type             Transport          Size       Vendor               Model
     ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
-    leaf03            vda             disk             N/A                6G         0x1af4               N/A
+    leaf03            vda             disk             N/A                6G         0x1af4               N/A
 
 ### View Memory Information for a Switch
 
@@ -364,7 +364,7 @@ You can filter the results to view memory information for a single
 switch, as shown here for leaf01.
 
     cumulus@switch:~$ netq leaf01 show inventory memory
-     
+     
     Matching inventory records:
     Hostname          Name            Type             Size       Speed      Vendor               Serial No
     ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
@@ -490,27 +490,27 @@ more information at once.
 In this example, we look at the state of all temperature sensors with
 the name *psu1temp1*.
 
-    cumulus@switch:~$ netq show sensors temp psu2temp1 
+    cumulus@switch:~$ netq show sensors temp psu2temp1 
     Matching sensors records:
-    Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
-     
+    Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
+     
     ----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
-     
-    exit01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:17 2019
+     
+    exit01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:17 2019
 
-    exit02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:33 2019
-     
-    leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Sun Apr 21 20:07:12 2019
-     
-    leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:41 2019
-     
-    leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:44 2019
-     
-    leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:36 2019
-     
-    spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:52 2019
-     
-    spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:08 2019
+    exit02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:33 2019
+     
+    leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Sun Apr 21 20:07:12 2019
+     
+    leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:41 2019
+     
+    leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:44 2019
+     
+    leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:36 2019
+     
+    spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:52 2019
+     
+    spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:08 2019
 
 {{%notice tip%}}
 
@@ -530,31 +530,31 @@ to view the full sensor data.
 
     cumulus@switch:~$ netq show sensors all
     Matching sensors records:
-    Hostname          Name            Description                         State      Message                             Last Changed
+    Hostname          Name            Description                         State      Message                             Last Changed
     ----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
-    exit01            fan1            fan tray 1, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            fan2            fan tray 1, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            fan3            fan tray 2, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            fan4            fan tray 2, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            fan5            fan tray 3, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            fan6            fan tray 3, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            psu1fan1        psu1 fan                            ok                                             Fri Apr 19 16:01:17 2019
-    exit01            psu1temp1       psu1 temp sensor                    ok                                             Fri Apr 19 16:01:17 2019
-    exit01            psu2fan1        psu2 fan                            ok                                             Fri Apr 19 16:01:17 2019
-    exit01            psu2temp1       psu2 temp sensor                    ok                                             Fri Apr 19 16:01:17 2019
-    exit01            temp1           board sensor near cpu               ok                                             Fri Apr 19 16:01:17 2019
-    exit01            temp2           board sensor near virtual switch    ok                                             Fri Apr 19 16:01:17 2019
-    exit01            temp3           board sensor at front left corner   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            temp4           board sensor at front right corner  ok                                             Fri Apr 19 16:01:17 2019
-    exit01            temp5           board sensor near fan               ok                                             Fri Apr 19 16:01:17 2019
-    exit02            fan1            fan tray 1, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            fan2            fan tray 1, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            fan3            fan tray 2, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            fan4            fan tray 2, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            fan5            fan tray 3, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            fan6            fan tray 3, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            psu1fan1        psu1 fan                            ok                                             Fri Apr 19 16:01:33 2019
-    exit02            psu1temp1       psu1 temp sensor                    ok                                             Fri Apr 19 16:01:33 2019
+    exit01            fan1            fan tray 1, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
+    exit01            fan2            fan tray 1, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
+    exit01            fan3            fan tray 2, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
+    exit01            fan4            fan tray 2, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
+    exit01            fan5            fan tray 3, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
+    exit01            fan6            fan tray 3, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
+    exit01            psu1fan1        psu1 fan                            ok                                             Fri Apr 19 16:01:17 2019
+    exit01            psu1temp1       psu1 temp sensor                    ok                                             Fri Apr 19 16:01:17 2019
+    exit01            psu2fan1        psu2 fan                            ok                                             Fri Apr 19 16:01:17 2019
+    exit01            psu2temp1       psu2 temp sensor                    ok                                             Fri Apr 19 16:01:17 2019
+    exit01            temp1           board sensor near cpu               ok                                             Fri Apr 19 16:01:17 2019
+    exit01            temp2           board sensor near virtual switch    ok                                             Fri Apr 19 16:01:17 2019
+    exit01            temp3           board sensor at front left corner   ok                                             Fri Apr 19 16:01:17 2019
+    exit01            temp4           board sensor at front right corner  ok                                             Fri Apr 19 16:01:17 2019
+    exit01            temp5           board sensor near fan               ok                                             Fri Apr 19 16:01:17 2019
+    exit02            fan1            fan tray 1, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
+    exit02            fan2            fan tray 1, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
+    exit02            fan3            fan tray 2, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
+    exit02            fan4            fan tray 2, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
+    exit02            fan5            fan tray 3, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
+    exit02            fan6            fan tray 3, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
+    exit02            psu1fan1        psu1 fan                            ok                                             Fri Apr 19 16:01:33 2019
+    exit02            psu1temp1       psu1 temp sensor                    ok                                             Fri Apr 19 16:01:33 2019
     ...
 
 ### View All Sensor-related Events
@@ -565,7 +565,7 @@ events using the severity `level` option.
 
     cumulus@switch:~$ netq show events type sensors
     No matching events records found
-     
+     
     cumulus@switch:~$ netq show events level critical type sensors
     No matching events records found
 
@@ -725,7 +725,7 @@ does not operate correctly. This example shows the license information
 for all devices.
 
     cumulus@switch:~$ netq show inventory license
-     
+     
     Matching inventory records:
     Hostname          Name            State      Last Changed
     ----------------- --------------- ---------- -------------------------
@@ -748,9 +748,9 @@ This example shows the license state for all devices about 7 days ago.
 Remember to use measurement units on the time values.
 
     cumulus@switch:~$ netq show inventory license around 7d
-     
+     
     Matching inventory records:
-    Hostname          Name            State      Last Changed
+    Hostname          Name            State      Last Changed
     ----------------- --------------- ---------- -------------------------
     edge01            Cumulus Linux   N/A        Tue Apr 2 14:01:18 2019
     exit01            Cumulus Linux   ok         Tue Apr 2 14:01:13 2019
@@ -781,7 +781,7 @@ information using the `brief` keyword. Specify a hostname to view the
 summary for a specific device.
 
     cumulus@switch:~$ netq show inventory brief
-     
+     
     Matching inventory records:
     Hostname          Switch               OS              CPU      ASIC            Ports
     ----------------- -------------------- --------------- -------- --------------- -----------------------------------

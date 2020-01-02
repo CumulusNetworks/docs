@@ -440,11 +440,11 @@ configuration on the connected end-station has not been rectified.
       clag ISL           no                      clag ISL Oper UP     no
       clag role          unknown                 clag dual conn mac   0:0:0:0:0:0
       clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
-     
-     
+     
+     
     cumulus@leaf2$ sudo ifup bond0
-     
-     
+     
+     
     cumulus@leaf2$ mstpctl showportdetail bridge bond0
     bridge:bond0 CIST info
       enabled            yes                     role                 Root
@@ -635,7 +635,7 @@ net add interface &lt;interface&gt; stp ...</p></th>
 <td><p>Sets the bridge's <em>force STP version</em> to either RSTP/STP. MSTP is not supported currently. The default is <em>RSTP</em>.</p></td>
 </tr>
 <tr class="odd">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p><code>treeprio</code></p></td>
 <td><p>Sets the bridge's <em>tree priority</em> to <code>&lt;priority&gt;</code> for an MSTI instance. The priority value is a number between 0 and 65535 and must be a multiple of 4096. The bridge with the lowest priority is elected the <em>root bridge</em>. The default is <em>32768</em>.</p>
 <p>{{%notice warning%}}</p>

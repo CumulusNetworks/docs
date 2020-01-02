@@ -124,7 +124,7 @@ These commands create the following code snippet in
     auto swp1
     iface swp1
       address 10.0.1.1/30
-     
+     
     auto swp51
     iface swp51
       address 10.0.100.1/30
@@ -156,16 +156,16 @@ These commands create the following code snippet in
     auto swp1
     iface swp1
       bridge-access 100
-     
+     
     auto swp51
     iface swp51
       address 10.0.100.1/30
-     
+     
     auto bridge
     iface bridge
       bridge-ports swp1
       bridge-vlan-aware yes
-     
+     
     auto vlan100
     iface vlan100
       address 10.0.1.1/24
@@ -183,7 +183,7 @@ below:
     auto swp51
     iface swp51
       address 10.0.100.1/30
-     
+     
     auto br100
     iface br100
       address 10.0.1.1/24
@@ -202,14 +202,14 @@ variables.
     Description=DHCPv4 Relay Agent Daemon
     Documentation=man:dhcrelay(8)
     After=network-oneline.target networking.service syslog.service
-     
+     
     [Service]
     Type=simple
     EnvironmentFile=-/etc/default/isc-dhcp-relay
     # Here, we are expecting the INTF_CMD to contain
     # the -i for each interface specified,
     ExecStart=/usr/sbin/dhcrelay -d -q $INTF_CMD $SERVERS $OPTIONS
-     
+     
     [Install]
     WantedBy=multi-user.target
 
@@ -233,9 +233,9 @@ These commands create the following configuration in the
 
     cumulus@switch:~$ cat /etc/default/isc-dhcp-relay
     SERVERS="10.0.100.2"
-     
+     
     INTF_CMD="-i swp1 -i swp51"
-     
+     
     OPTIONS=""
 
 After you've finished configuring the DHCP relay, enable the `dhcrelay`
@@ -255,12 +255,12 @@ to find launch variables.
     Description=DHCPv6 Relay Agent Daemon
     Documentation=man:dhcrelay(8)
     After=network-oneline.target networking.service syslog.service
-     
+     
     [Service]
     Type=simple
     EnvironmentFile=-/etc/default/isc-dhcp-relay6
     ExecStart=/usr/sbin/dhcrelay -6 -d -q $INTF_CMD $SERVERS $OPTIONS
-     
+     
     [Install]
     WantedBy=multi-user.target
 
@@ -270,7 +270,7 @@ Make sure to configure the variables appropriately by editing this file:
 
     cumulus@switch:$ cat /etc/default/isc-dhcp-relay6 
     SERVERS=" -u 2001:db8:100::2%swp51"
-     
+     
     INTF_CMD="-l swp1"
 
 {{%notice note%}}
@@ -302,10 +302,10 @@ similar to the following:
 
     cumulus@switch:~$ cat /etc/dhcp/dhcpd.conf
     ddns-update-style none;
-     
+     
     default-lease-time 600;
     max-lease-time 7200;
-     
+     
     subnet 10.0.100.0 netmask 255.255.255.0 {
     }
     subnet 10.0.1.0 netmask 255.255.255.0 {
@@ -318,7 +318,7 @@ boots. Here is a sample configuration:
 
     cumulus@switch:~$ cat /etc/default/isc-dhcp-server
     DHCPD_CONF="-cf /etc/dhcp/dhcpd.conf"
-     
+     
     INTERFACES="swp1"
 
 After you've finished configuring the DHCP server, enable the ` dhcpd
@@ -333,10 +333,10 @@ similar to the following:
 
     cumulus@switch:~$ cat /etc/dhcp/dhcpd6.conf
     ddns-update-style none;
-     
+     
     default-lease-time 600;
     max-lease-time 7200;
-     
+     
     subnet6 2001:db8:100::/64 {
     }
     subnet6 2001:db8:1::/64 {
@@ -349,7 +349,7 @@ boots. Here is a sample configuration:
 
     cumulus@switch:~$ cat /etc/default/isc-dhcp-server6
     DHCPD_CONF="-cf /etc/dhcp/dhcpd6.conf"
-     
+     
     INTERFACES="swp1"
 
 {{%notice note%}}

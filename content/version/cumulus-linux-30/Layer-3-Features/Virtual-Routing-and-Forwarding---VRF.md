@@ -44,7 +44,7 @@ characteristics:
     loopback*.
 
   - Applications can use existing interfaces to operate in a VRF context
-    — by binding sockets to the VRF device or passing the `ifindex`
+    - by binding sockets to the VRF device or passing the `ifindex`
     using `cmsg`.
 
   - Listen sockets used by services are VRF-global by default unless the
@@ -64,8 +64,8 @@ characteristics:
     `tcpdump`.
 
 You configure VRF by associating each subset of interfaces to a VRF
-routing table, and configuring an instance of the routing protocol — BGP
-— for each routing table.
+routing table, and configuring an instance of the routing protocol - BGP
+- for each routing table.
 
 {{% imgOld 0 %}}
 
@@ -325,7 +325,7 @@ or manually defined in `/etc/network/interfaces`:
     vrf vrf1014 id 28 table 1014
 
 Show VRFs configured in BGP, including the default. A non-zero ID is a
-VRF that has also been actually provisioned — that is, defined in
+VRF that has also been actually provisioned - that is, defined in
 `/etc/network/interfaces`:
 
     switch# show bgp vrfs
@@ -667,7 +667,7 @@ If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload`
 to generate the `systemd` instance files for the newly added service(s).
 Then you can start the service in the VRF using `systemctl start
 <service>@<vrf-name>.service`, where `<service>` is the name of the
-service — such as `dhcpd` or `dhcrelay` — and `<vrf-name>` is the name
+service - such as `dhcpd` or `dhcrelay` - and `<vrf-name>` is the name
 of the VRF.
 
 For example, to start the `dhcrelay` service after you configured a VRF

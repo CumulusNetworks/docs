@@ -210,7 +210,7 @@ The full screen Alarms card provides tabs for all events.
 <li><p><strong>Source</strong>: Hostname of the given event</p></li>
 <li><p><strong>Message</strong>: Text describing the alarm or info event that occurred</p></li>
 <li><p><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</p></li>
-<li><p><strong>Severity</strong>: Importance of the event–critical, warning, info, or debug</p></li>
+<li><p><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</p></li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -242,7 +242,7 @@ average number of alarms during this time period. This would indicate no further
 
 It is helpful to know where and when alarms are occurring in your
 network. The Alarms card workflow enables you to see the distribution of
-alarms based on its source—network services, interfaces, or other system
+alarms based on its source-network services, interfaces, or other system
 services. You can also view the trend of alarms in each source category.
 
 To view the alarm distribution, open the medium Alarms card. Scroll down
@@ -531,7 +531,7 @@ The full screen Info card provides tabs for all events.
 <li><p><strong>Source</strong>: Hostname of the given event</p></li>
 <li><p><strong>Message</strong>: Text describing the alarm or info event that occurred</p></li>
 <li><p><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</p></li>
-<li><p><strong>Severity</strong>: Importance of the event–critical, warning, info, or debug</p></li>
+<li><p><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</p></li>
 </ul></td>
 </tr>
 <tr class="even">

@@ -1183,14 +1183,14 @@ Please contact &lt;licensing@cumulusnetworks.com&gt; at your convenience so we c
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>Failed to update VRF [str] to table id [uint]</p></td>
-<td><p> </p></td>
-<td><p> </p></td>
+<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>Failed to add VRF [str] with table id [uint]</p></td>
-<td><p> </p></td>
-<td><p> </p></td>
+<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
@@ -1388,7 +1388,7 @@ Please contact &lt;licensing@cumulusnetworks.com&gt; at your convenience so we c
 <td><p>ERROR</p></td>
 <td><p>sx_api_lag_hash_flow_params_set failed: [str]</p></td>
 <td><p>Set hash flow parameters failed in the SDK.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
@@ -1400,121 +1400,121 @@ Please contact &lt;licensing@cumulusnetworks.com&gt; at your convenience so we c
 <td><p>ERROR</p></td>
 <td><p>bond_id [uint] swid [uint] lag create failed: [str]</p></td>
 <td><p>Setting a LAG port group failed in the SDK.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>bond_id [uint] lag_id 0x%x port state set failed: [str]</p></td>
 <td><p>Port state could not be set to ADMIN_UP in the SDK.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>bond_id [uint] lag_id 0x%x ingr_filter set failed: [str]</p></td>
 <td><p>Ingress filter set failed for specified bond_id and lag_id in the SDK.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>bond_id [uint] old lag_id 0x%x not cleaned up</p></td>
 <td><p>Could not find the mapping of the bond_id with the old lag_id, hence cleanup was not successful.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>lag_id 0x%x swid [uint] failed: [str]</p></td>
 <td><p>Removal of the LAG port group for the specified lag_id failed.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>cannot find bond slave port [uint]</p></td>
 <td><p>During addition of a bond slave port to a bond, the slave port entry in the software tables could not be found.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>ifp not found for bond_id [uint]</p></td>
 <td><p>Software entry for a bond_id could not be found in the database.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>[str] member [str] add failed: [str]</p></td>
 <td><p>Adding a member to a LAG group failed in the SDK.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>[str] member [str] delete failed: [str]</p></td>
 <td><p>Deleting a member in a LAG group failed in the SDK.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>invalid port_storm_ctrl_type [uint]</p></td>
 <td><p>Invalid Storm-Control-Type (invalid value) detected in the software. Internal error.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>unexpected duplicate bond if_key [str]</p></td>
 <td><p>Existing duplicate bond key found in the software table.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>lag_id 0x%x with no corresponding bond id</p></td>
 <td><p>bond_id could not be located for the given lag_id.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>[str] collector set failed for [str]: [str]</p></td>
 <td><p>Adding the specified port to the collector set for the bond failed.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>[str] distributor set failed for [str]: [str]</p></td>
 <td><p>Adding the specified port to the distributor set for the bond failed.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>cannot find base bond slave [str] for bond_id [int]</p></td>
 <td><p>During update of a bond, the slave port entry in the software tables could not be found.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>unexpected duplicate bond interface [str]</p></td>
 <td><p>Existing duplicate bond interface found in the software table.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>unexpected duplicate lag_id 0x%x</p></td>
 <td><p>Existing duplicate lag_id found in the software table.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>info not found for bond_id [uint]</p></td>
 <td><p>An expected entry could not be found for a given bond_id in a software table.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
 <td><p>[str] unexpected duplicate member [str]</p></td>
 <td><p>Duplicate entry for the specified interface found for a bond in a software table.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>ERROR</p></td>
 <td><p>info not found for bond_id [uint]</p></td>
 <td><p>An expected entry could not be found for a given bond_id in a software table.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
@@ -3554,7 +3554,7 @@ Please contact &lt;licensing@cumulusnetworks.com&gt; at your convenience so we c
 <td><p>ERROR</p></td>
 <td><p>Ignoring VRF [str]; table id 0 is reserved for default VRF</p></td>
 <td><p>Failed to add a new entry in the ARP table.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>ERROR</p></td>
@@ -5606,7 +5606,7 @@ Please contact &lt;licensing@cumulusnetworks.com&gt; at your convenience so we c
 <td><p>WARNING</p></td>
 <td><p>Detected excessive moves of mac address [str] on bridge [str],</p></td>
 <td><p>Moved MAC addresses over threshold.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>WARNING</p></td>

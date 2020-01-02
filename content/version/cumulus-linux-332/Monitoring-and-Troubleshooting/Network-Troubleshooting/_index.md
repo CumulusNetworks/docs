@@ -53,7 +53,7 @@ To track the route to an IPv4 host:
 
 ## Manipulating the System ARP Cache
 
-`arp` manipulates or displays the kernel’s IPv4 network neighbor cache.
+`arp` manipulates or displays the kernel's IPv4 network neighbor cache.
 See `man arp` for details.
 
 To display the ARP cache:
@@ -88,11 +88,11 @@ For example, to send two sets of packets to TCP port 23 and 24, with
 source IP 11.0.0.1 and destination 11.0.0.2, do the following:
 
     cumulus@switch:~$ sudo mz swp1 -A 11.0.0.1 -B 11.0.0.2 -c 2 -v -t tcp "dp=23-24"
-     
+     
     Mausezahn 0.40 - (C) 2007-2010 by Herbert Haas - http://www.perihel.at/sec/mz/
     Use at your own risk and responsibility!
     -- Verbose mode --
-     
+     
     This system supports a high resolution clock.
      The clock resolution is 4000250 nanoseconds.
     Mausezahn will send 4 frames...
@@ -100,17 +100,17 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
           payload=[see next layer]
      TCP: sp=0, dp=23, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
-     
+     
      IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
           payload=[see next layer]
      TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
-     
+     
      IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
           payload=[see next layer]
      TCP: sp=0, dp=23, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
-     
+     
      IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
           payload=[see next layer]
      TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
@@ -133,24 +133,24 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 To count all packets going to a Web server:
 
     cumulus@switch:~$ cat sample_count.rules
-     
+     
     [iptables]
     -A FORWARD -p tcp --dport 80 -j ACCEPT
-     
+     
     cumulus@switch:~$ sudo cl-acltool -i -p sample_count.rules
     Using user provided rule file sample_count.rules
     Reading rule file sample_count.rules ...
     Processing rules in file sample_count.rules ...
     Installing acl policy... done.
-     
+     
     cumulus@switch:~$ sudo iptables -L -v
     Chain INPUT (policy ACCEPT 16 packets, 2224 bytes)
     pkts bytes target     prot opt in     out     source               destination
-     
+     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
     pkts bytes target     prot opt in     out     source               destination
        2   156 ACCEPT     tcp  --  any    any     anywhere             anywhere             tcp dpt:http
-     
+     
     Chain OUTPUT (policy ACCEPT 44 packets, 8624 bytes)
     pkts bytes target     prot opt in     out     source               destination
 
@@ -273,7 +273,7 @@ Next, verify all the rules that are currently installed:
       394 41060 POLICE     all  --  swp+   any     anywhere             anywhere             ADDRTYPE match dst-type LOCAL POLICE  mode:pkt rate:1000 burst:1000 class:0
         0     0 POLICE     all  --  swp+   any     anywhere             anywhere             ADDRTYPE match dst-type IPROUTER POLICE  mode:pkt rate:400 burst:100 class:0
       988  279K SETCLASS   all  --  swp+   any     anywhere             anywhere             SETCLASS  class:0
-     
+     
     Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
      pkts bytes target     prot opt in     out     source               destination         
         0     0 DROP       all  --  swp+   any     240.0.0.0/5          anywhere            
@@ -281,10 +281,10 @@ Next, verify all the rules that are currently installed:
         0     0 DROP       all  --  swp+   any     base-address.mcast.net/8  anywhere            
         0     0 DROP       all  --  swp+   any     255.255.255.255      anywhere            
     26864 4672K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19  <---- input packets on swp4
-     
+     
     40722   47M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp19  <---- output packets on swp4
-     
-     
+     
+     
     Chain OUTPUT (policy ACCEPT 67398 packets, 5757K bytes)
      pkts bytes target     prot opt in     out     source               destination
 
@@ -507,7 +507,7 @@ To verify that the SPAN rules were removed:
 
 ## Monitoring Control Plane Traffic with tcpdump
 
-You can use `tcpdump` to monitor control plane traffic — traffic sent to
+You can use `tcpdump` to monitor control plane traffic - traffic sent to
 and coming from the switch CPUs. `tcpdump` does **not** monitor data
 plane traffic; use `cl-acltool` instead (see above).
 

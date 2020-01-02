@@ -47,7 +47,7 @@ relies on either using this number space or using the single ASN you
 own.
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route
-advertisement carries with it not only the originator’s ASN, but also
+advertisement carries with it not only the originator's ASN, but also
 the list of ASNs that this route advertisement has passed through. When
 forwarding a route advertisement, a BGP speaker adds itself to this
 list. This list of ASNs is called the *AS path*. BGP uses the AS path to
@@ -204,7 +204,7 @@ unnumbered interfaces to route maps.
         cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal
     
     Specifying the IP address of the peer, allows BGP to set up a TCP
-    socket with this peer, but it doesn’t distribute any prefixes to it,
+    socket with this peer, but it doesn't distribute any prefixes to it,
     unless it is explicitly told that it must with the `activate`
     command:
     
@@ -327,7 +327,7 @@ All the relevant BGP commands are now capable of showing IPv6 next-hops
 and/or the interface name for any IPv4 prefix:
 
     cumulus@switch:~$ net show bgp
-     
+     
     show bgp ipv4 unicast
     =====================
     BGP table version is 6, local router ID is 10.0.0.11
@@ -344,7 +344,7 @@ and/or the interface name for any IPv4 prefix:
     *> 172.16.2.0/24    swp51                         0 65020 65012 i
     *=                  swp52                         0 65020 65012 i
     Total number of prefixes 6
-     
+     
     show bgp ipv6 unicast
     =====================
     No BGP network exists
@@ -381,7 +381,7 @@ with IPv6 next-hop in the kernel:
       Last update 1d01h06m ago
       * fe80::4638:39ff:fe00:5c, via swp51
       * fe80::4638:39ff:fe00:2b, via swp52
-     
+     
     FIB entry for 10.0.0.12
     =======================
     10.0.0.12  proto zebra  metric 20 
@@ -421,7 +421,7 @@ MP\_REACH\_NLRI
 ([multiprotocol reachable NLRI](https://www.ietf.org/rfc/rfc2858.txt)) 
 initiated by the system, which applies whether IPv6 prefixes or IPv4 
 prefixes are exchanged with ENHE. There are two main aspects to 
-determine — how many IPv6 next-hops are included in the MP\_REACH\_NLRI 
+determine - how many IPv6 next-hops are included in the MP\_REACH\_NLRI 
 (since the RFC allows either one or two next-hops) and the values of the 
 next-hop(s). This section also describes how a received MP\_REACH\_NLRI is 
 handled as far as processing IPv6 next-hops.
@@ -446,7 +446,7 @@ handled as far as processing IPv6 next-hops.
         outbound route map adds another next-hop.
 
   - `route-map` can impose two next-hops in scenarios where Cumulus
-    Linux only sends one next-hop — by specifying `set ipv6 nexthop
+    Linux only sends one next-hop - by specifying `set ipv6 nexthop
     link-local`.
   - For all routes to eBGP peers and self-originated routes to iBGP
     peers, the global next-hop (first value) is the peering address of
@@ -468,10 +468,10 @@ handled as far as processing IPv6 next-hops.
 
   - `route-map` and/or the peer configuration can change the above
     behavior. For example, `route-map` can set the global IPv6 next-hop
-    or the peer configuration can set it to *self* — which is relevant
+    or the peer configuration can set it to *self* - which is relevant
     for *iBGP* peers. The route map or peer configuration can also set
     the next-hop to unchanged, which ensures the source IPv6 global
-    next-hop is passed around — which is relevant for *eBGP* peers.
+    next-hop is passed around - which is relevant for *eBGP* peers.
   - Whenever two next-hops are being sent, the link-local next-hop (the
     second value of the two) is the link-local IPv6 address on the
     peering interface unless it is due to `nh-local-unchanged` or
@@ -525,11 +525,11 @@ recommendations in the Internet draft
     around this issue, either:
     
       - Explicitly configure the switch to advertise a router lifetime
-        of 0, unless a value is specifically set by the operator — with
+        of 0, unless a value is specifically set by the operator - with
         the assumption that the host is running Cumulus Linux 3.y.z
         version of FRRouting. When hosts see an IPv6 RA with a router
         lifetime of 0, they do not make that router a default router.
-      - Use the `sysctl` on the host —
+      - Use the `sysctl` on the host -
         `net.ipv6.conf.all.accept_ra_defrtr`. However, this requires
         applying this setting on all hosts, which might mean many hosts,
         especially if FRRouting is run on the hosts.
@@ -577,7 +577,7 @@ existing capabilities are listed in the subsection *Add Path*, below
           Remote Restart timer is 120 seconds
           Address families by peer:
             none
-     
+     
     ...
 
 The example output above shows that additional BGP paths can be sent and
@@ -659,14 +659,14 @@ The output below shows the result on r8:
           Community: 1:1
           AddPath ID: RX 2, TX 4
           Last update: Thu Jun  2 00:57:14 2016
-     
+     
       700 300
         10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
           Origin IGP, localpref 100, valid, external
           Community: 3:3
           AddPath ID: RX 4, TX 3
           Last update: Thu Jun  2 00:57:14 2016
-     
+     
       700 500
         10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
           Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best
@@ -693,14 +693,14 @@ The output below shows the result on r8:
           Community: 1:1
           AddPath ID: RX 2, TX 4
           Last update: Thu Jun  2 00:57:14 2016
-     
+     
       700 300
         10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
           Origin IGP, localpref 100, valid, external
           Community: 3:3
           AddPath ID: RX 4, TX 3
           Last update: Thu Jun  2 00:57:14 2016
-     
+     
       700 500
         10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
           Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best
@@ -828,7 +828,7 @@ Collectively, a sample configuration for IPv4 looks like this:
 
 These commands produce an IPv4 configuration that looks like this:
 
-    router bgp 65001 
+    router bgp 65001 
      neighbor SPINE peer-group
      neighbor SPINE remote-as 65000
       bgp listen limit 5
@@ -955,7 +955,7 @@ connected by the link 10.0.0.100/30, with the following configurations:
     spine01(swp51)  4 65020   93587   93587        0    0    0 1d02h00m        3
     spine02(swp52)  4 65020   93587   93587        0    0    0 1d02h00m        3
     Total number of neighbors 2
-     
+     
     show bgp ipv6 unicast summary
     =============================
     No IPv6 neighbor is configured
@@ -974,11 +974,11 @@ connected by the link 10.0.0.100/30, with the following configurations:
     swp3            4     0       0       0        0    0    0 never    Idle       
     swp4            4     0       0       0        0    0    0 never    Idle       
     Total number of neighbors 4
-     
+     
     show bgp ipv6 unicast summary
     =============================
     No IPv6 neighbor is configured
-     
+     
 
 ### Manually Configuring an MD5-enabled BGP Neighbor
 
@@ -1003,7 +1003,7 @@ connected by the link 10.0.0.100/30, with the following configurations:
         spine01(swp51)  4 65020   96144   96146        0    0    0 00:30:29        3
         spine02(swp52)  4 65020   96209   96217        0    0    0 1d02h44m        3
         Total number of neighbors 2
-         
+         
         show bgp ipv6 unicast summary
         =============================
         No IPv6 neighbor is configured
@@ -1031,7 +1031,7 @@ connected by the link 10.0.0.100/30, with the following configurations:
         swp3            4     0       0       0        0    0    0 never    Idle       
         swp4            4     0       0       0        0    0    0 never    Idle       
         Total number of neighbors 4
-         
+         
         show bgp ipv6 unicast summary
         =============================
         No IPv6 neighbor is configured
@@ -1280,7 +1280,7 @@ connections. A sample output of this command is as follows:
     spine01(swp51)  4 65020     549     551        0    0    0 00:09:03        3
     spine02(swp52)  4 65020     548     550        0    0    0 00:09:02        3
     Total number of neighbors 2
-     
+     
     show bgp ipv6 unicast summary
     =============================
     No IPv6 neighbor is configured
@@ -1431,10 +1431,10 @@ no longer needed for BGP unnumbered.
 Use `vtysh` to verify the configuration:
 
     cumulus@switch:~$ sudo vtysh
-     
+     
     Hello, this is Quagga (version 0.99.23.1+cl3u2).
     Copyright 1996-2005 Kunihiro Ishiguro, et al.
-     
+     
     R7# show interface swp1
     Interface swp1 is up, line protocol is up
       Link ups:       0    last: (never)
@@ -1463,7 +1463,7 @@ the `show ip bgp summary` command and wherever else applicable:
     RIB entries 17, using 2040 bytes of memory
     Peers 6, using 97 KiB of memory
     Peer groups 1, using 56 bytes of memory
-     
+     
     Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
     leaf01(swp1)    4 65011    2834    2843        0    0    0 02:21:35        2
     leaf02(swp2)    4 65012    2834    2844        0    0    0 02:21:36        2
@@ -1471,7 +1471,7 @@ the `show ip bgp summary` command and wherever else applicable:
     leaf04(swp4)    4 65014    2834    2844        0    0    0 02:21:36        2
     edge01(swp29)   4 65051    8509    8505        0    0    0 02:21:37        3
     edge01(swp30)   4 65051    8506    8503        0    0    0 02:21:35        3
-     
+     
     Total number of neighbors 6
 
 Most of the show commands can take the interface name instead of the IP
@@ -1547,7 +1547,7 @@ To enable read-only mode:
 
     cumulus@switch:$ net add bgp update-delay <max-delay in 0-3600 seconds> [<establish-wait in 1-3600 seconds>]
 
-The default `<max-delay>` is 0 — the feature is off by default.
+The default `<max-delay>` is 0 - the feature is off by default.
 
 Use output from `show ip bgp summary` for information about the state of
 the update delay.
@@ -1617,7 +1617,7 @@ Here is an example:
 ### Converging Quickly On Soft Failures
 
 It is possible that the link is up, but the neighboring BGP process is
-hung or has crashed. If a BGP process crashes, FRRouting’s `watchquagga`
+hung or has crashed. If a BGP process crashes, FRRouting's `watchquagga`
 daemon, which monitors the various FRRouting daemons, will attempt to
 restart it. If the process is also hung, `watchquagga` will attempt to
 restart the process. BGP itself has a keepalive timer that is exchanged
@@ -1654,7 +1654,7 @@ To modify this value, use:
 
     cumulus@switch:~$ net add bgp neighbor swp51 timers connect 30
 
-This command has to be specified per each neighbor, peer-group doesn’t
+This command has to be specified per each neighbor, peer-group doesn't
 support this option in `frr`.
 
 ### Advertisement Interval
@@ -1663,7 +1663,7 @@ BGP by default chooses stability over fast convergence. This is very
 useful when routing for the Internet. For example, unlike link-state
 protocols, BGP typically waits for a duration of
 `advertisement-interval` seconds between sending consecutive updates to
-a neighbor. This ensures that an unstable neighbor flapping routes won’t
+a neighbor. This ensures that an unstable neighbor flapping routes won't
 be propagated throughout the network. By default, this is set to 0
 seconds for both eBGP and iBGP sessions, which allows for very fast
 convergence. You can modify this as follows:
@@ -1719,7 +1719,7 @@ this for TTL:
 
     INGRESS_INTF = swp1 
         INGRESS_CHAIN = INPUT, FORWARD 
-     
+     
         [iptables]
         -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -m ttl --ttl 255 POLICE --set-mode pkt --set-rate 2000 --set-burst 1000 
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp DROP
@@ -1751,7 +1751,7 @@ an already established peer, are not supported in Cumulus Linux.
   - [RFC 2918, Route Refresh Capability for BGP-4](https://tools.ietf.org/html/rfc2918)
   - [RFC 4271, A Border Gateway Protocol 4 (BGP-4)](https://tools.ietf.org/html/rfc4271)
   - [RFC 4360, BGP Extended Communities Attribute](https://tools.ietf.org/html/rfc4360)
-  - [RFC 4456, BGP Route Reflection – An Alternative to Full Mesh Internal BGP (iBGP)](https://tools.ietf.org/html/rfc4456)
+  - [RFC 4456, BGP Route Reflection - An Alternative to Full Mesh Internal BGP (iBGP)](https://tools.ietf.org/html/rfc4456)
   - [RFC 4760, Multiprotocol Extensions for BGP-4](https://tools.ietf.org/html/rfc4760)
   - [RFC 5004, Avoid BGP Best Path Transitions from One External to Another](https://tools.ietf.org/html/rfc5004)
   - [RFC 5065, Autonomous System Confederations for BGP](https://tools.ietf.org/html/rfc5065)

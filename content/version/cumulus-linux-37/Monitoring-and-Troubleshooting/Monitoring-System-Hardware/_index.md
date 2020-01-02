@@ -56,7 +56,7 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 |-h|Displays the help message and exits.|
 |-a|Prints the base MAC address for switch interfaces.|
 |-r|Prints the number of MACs allocated for switch interfaces.|
-|-s|Sets the EEPROM content if the EEPROM is writable. args can be supplied in command line in a comma separated list of the form \<field>=\<value>, .... Illegal characters in field names and values include the comma (,) and equals sign (=). Fields that are not specified default to their current values. If args are supplied in the command line, they will be written without confirmation. If args is empty, the values will be prompted interactively.|
+|-s|Sets the EEPROM content if the EEPROM is writable. args can be supplied in command line in a comma separated list of the form \<field>=\<value>, .... Illegal characters in field names and values include the comma (,) and equals sign (=). Fields that are not specified default to their current values. If args are supplied in the command line, they will be written without confirmation. If args is empty, the values will be prompted interactively.|
 |-j, --json|Displays JSON output.|
 |-t TARGET|Prints the target EEPROM (board, psu2, psu1) information. **Note**: Some systems that use a BMC to manage sensors (such as the Dell Z9264, Facebook Voyager, and Facebook Wedge-100) do not provide the PSU EEPROM contents. This is because the BMC connects to the PSUs via I2C and the main CPU of the switch has no direct access.|
 |--serial|Prints the device serial number.|
@@ -66,7 +66,7 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 ### Related Commands
 
 You can also use the `dmidecode` command to retrieve hardware
-configuration information that’s been populated in the BIOS.
+configuration information that's been populated in the BIOS.
 
 You can use `apt-get` to install the `lshw` program on the switch, which
 also retrieves hardware configuration information.
@@ -171,18 +171,18 @@ For example:
     tmp75-i2c-6-48
     Adapter: i2c-1-mux (chan_id 0)
     temp1:        +39.0 C  (high = +75.0 C, hyst = +25.0 C)
-     
+     
     tmp75-i2c-6-49
     Adapter: i2c-1-mux (chan_id 0)
     temp1:        +35.5 C  (high = +75.0 C, hyst = +25.0 C)
-     
+     
     ltc4215-i2c-7-40
     Adapter: i2c-1-mux (chan_id 1)
     in1:         +11.87 V
     in2:         +11.98 V
     power1:       12.98 W
     curr1:        +1.09 A
-     
+     
     max6651-i2c-8-48
     Adapter: i2c-1-mux (chan_id 2)
     fan1:        13320 RPM  (div = 1)

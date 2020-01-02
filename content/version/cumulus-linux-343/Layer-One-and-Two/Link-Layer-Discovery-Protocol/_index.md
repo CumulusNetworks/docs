@@ -237,7 +237,7 @@ To see the `lldpd` running configuration:
 
 {{%notice warning%}}
 
-A runtime configuration does not persist when you reboot the switch —
+A runtime configuration does not persist when you reboot the switch -
 all changes are lost.
 
 {{%/notice%}}
@@ -267,9 +267,9 @@ LLDP does not enable the SNMP subagent by default. You need to edit
 `/etc/default/lldpd` and enable the `-x` option.
 
     cumulus@switch:~$ sudo nano /etc/default/lldpd
-     
+     
     # Add "-x" to DAEMON_ARGS to start SNMP subagent
-     
+     
     # Enable CDP by default
     DAEMON_ARGS="-c"
 

@@ -279,7 +279,7 @@ You can verify SFP settings using `ethtool -m`. The following example
 shows the output for 1G and 10G modules:
 
     cumulus@switch:~# sudo ethtool -m | egrep '(swp|RXPower :|TXPower :|EthernetComplianceCode)'
-     
+     
     swp1: SFP detected
                   EthernetComplianceCodes : 1000BASE-LX
                   RXPower : -10.4479dBm

@@ -51,10 +51,10 @@ which can all use this proxy.
 
         cumulus@switch:~$ sudo nano /etc/wgetrc
         ...
-         
+         
         https_proxy = https://myproxy.domain.com:8080
         http_proxy = http://myproxy.domain.com:8080
-         
+         
         ...
 
 5.  Run the `source` command, to execute the file in the current

@@ -128,7 +128,7 @@ snippet:
     iface bridge
         bridge-vids 500
         bridge-vlan-aware yes
-     
+     
     auto vlan500
     iface vlan500
         address 192.168.0.252/24
@@ -193,14 +193,14 @@ cumulus@switch:~$ net commit</code></pre>
 <pre><code>auto eth0
 iface eth0
     address 192.168.0.21
- 
+ 
 auto bridge
 iface bridge
     bridge-ports server01 peerlink
     bridge-vids 100 200 300 400
     bridge-vlan-aware yes
     mstpctl-treeprio 4096
- 
+ 
 auto server01
 iface server01
     alias LACP etherchannel to uplink on server01
@@ -218,28 +218,28 @@ iface peerlink.4094
     clagd-backup-ip 192.168.0.22
     clagd-peer-ip 169.254.255.2
     clagd-sys-mac 44:38:39:FF:40:90
- 
+ 
 auto vlan100
 iface vlan100
     address 10.0.1.2/24
     address-virtual 44:38:39:FF:00:01 10.0.1.1/24
     vlan-id 100
     vlan-raw-device bridge
- 
+ 
 auto vlan200
 iface vlan200
     address 10.0.2.2/24
     address-virtual 44:38:39:FF:00:02 10.0.2.1/24
     vlan-id 200
     vlan-raw-device bridge
- 
+ 
 auto vlan300
 iface vlan300
     address 10.0.3.2/24
     address-virtual 44:38:39:FF:00:03 10.0.3.1/24
     vlan-id 300
     vlan-raw-device bridge
- 
+ 
 auto vlan400
 iface vlan400
     address 10.0.4.2/24
@@ -274,14 +274,14 @@ cumulus@switch:~$ net commit</code></pre>
 <pre><code>auto eth0
 iface eth0
     address 192.168.0.22
- 
+ 
 auto bridge
 iface bridge
     bridge-ports server01 peerlink
     bridge-vids 100 200 300 400
     bridge-vlan-aware yes
     mstpctl-treeprio 4096
- 
+ 
 auto server01
 iface server01
     alias LACP etherchannel to uplink on server01
@@ -299,28 +299,28 @@ iface peerlink.4094
     clagd-backup-ip 192.168.0.22
     clagd-peer-ip 169.254.255.2
     clagd-sys-mac 44:38:39:FF:40:90
- 
+ 
 auto vlan100
 iface vlan100
     address 10.0.1.3/24
     address-virtual 44:38:39:FF:00:01 10.0.1.1/24
     vlan-id 100
     vlan-raw-device bridge
- 
+ 
 auto vlan200
 iface vlan200
     address 10.0.2.3/24
     address-virtual 44:38:39:FF:00:02 10.0.2.1/24
     vlan-id 200
     vlan-raw-device bridge
- 
+ 
 auto vlan300
 iface vlan300
     address 10.0.3.3/24
     address-virtual 44:38:39:FF:00:03 10.0.3.1/24
     vlan-id 300
     vlan-raw-device bridge
- 
+ 
 auto vlan400
 iface vlan400
     address 10.0.4.3/24
@@ -333,15 +333,15 @@ iface vlan400
 <p>Create a configuration like the following on an Ubuntu host:</p>
 <pre><code>auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto eth1
 iface eth1 inet manual
     bond-master uplink
- 
+ 
 auto eth2
 iface eth2 inet manual
     bond-master uplink
- 
+ 
 auto uplink
 iface uplink inet static
     bond-slaves eth1 eth2
@@ -354,34 +354,34 @@ iface uplink inet static
     netmask 255.255.255.0
     post-up ip route add 172.16.0.0/16 via 172.16.1.1
     post-up ip route add 10.0.0.0/8 via 172.16.1.1
- 
+ 
 auto uplink:200
 iface uplink:200 inet static
     address 10.0.2.101
- 
+ 
 auto uplink:300
 iface uplink:300 inet static
     address 10.0.3.101
- 
+ 
 auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
- 
+ 
 # install ifenslave
 # modprobe bonding</code></pre></td>
 <td><p><strong>server02 Configuration</strong></p>
 <p>Create a configuration like the following on an Ubuntu host:</p>
 <pre><code>auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto eth1
 iface eth1 inet manual
     bond-master uplink
- 
+ 
 auto eth2
 iface eth2 inet manual
     bond-master uplink
- 
+ 
 auto uplink
 iface uplink inet static
     bond-slaves eth1 eth2
@@ -394,19 +394,19 @@ iface uplink inet static
     netmask 255.255.255.0
     post-up ip route add 172.16.0.0/16 via 172.16.1.1
     post-up ip route add 10.0.0.0/8 via 172.16.1.1
- 
+ 
 auto uplink:200
 iface uplink:200 inet static
     address 10.0.2.101
- 
+ 
 auto uplink:300
 iface uplink:300 inet static
     address 10.0.3.101
- 
+ 
 auto uplink:400
 iface uplink:400 inet static
     address 10.0.4.101
- 
+ 
 # install ifenslave
 # modprobe bonding</code></pre></td>
 </tr>

@@ -110,15 +110,15 @@ to assist when needed. The command syntax is:
     netq add notification proxy <text-proxy-hostname> [port <text-proxy-port>]
     netq show notification proxy
     netq del notification proxy
-     
+     
     ##Channels
     netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
     netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
-     
+     
     ##Rules and Filters
     netq add notification rule <text-rule-name> key <text-rule-key> value <text-rule-value>
     netq add notification filter <text-filter-name> [severity info|severity warning|severity error|severity debug] [rule <text-rule-name-anchor>] [channel <text-channel-name-anchor>] [before <text-filter-name-anchor>|after <text-filter-name-anchor>]
-     
+     
     ##Management
     netq del notification channel <text-channel-name-anchor>
     netq del notification filter <text-filter-name-anchor>
@@ -136,7 +136,7 @@ defaults to port 80. Only one proxy server is currently supported. To
 simplify deployment, configure your proxy server before configuring
 channels, rules, or filters.To configure the proxy server:
 
-    cumulus@switch:~$ netq add notification proxy <text-proxy-hostname> [port <text-proxy-port]
+    cumulus@switch:~$ netq add notification proxy <text-proxy-hostname> [port <text-proxy-port]
     cumulus@switch:~$ netq add notification proxy proxy4 
     Successfully configured notifier proxy proxy4:80
 
@@ -421,7 +421,7 @@ Text description
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1055,7 +1055,7 @@ lldp
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1083,7 +1083,7 @@ server02, leaf41, exit01, spine-5, tor-36
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1111,7 +1111,7 @@ eth1, swp12
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1139,7 +1139,7 @@ eth1, swp12, swp27
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1167,7 +1167,7 @@ eth1, swp12, swp27
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1195,7 +1195,7 @@ server02, leaf41, exit01, spine-5, tor-36
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1251,7 +1251,7 @@ node
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1279,7 +1279,7 @@ server02, leaf41, exit01, spine-5, tor-36
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1307,7 +1307,7 @@ in sync, not sync
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1363,7 +1363,7 @@ ntp
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1391,7 +1391,7 @@ server02, leaf-9, exit01, spine04
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1419,7 +1419,7 @@ in sync, not sync
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1475,7 +1475,7 @@ port
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1503,7 +1503,7 @@ server02, leaf13, exit01, spine-8, tor-36
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1531,7 +1531,7 @@ eth0, swp14
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1559,7 +1559,7 @@ Previous speed rating of port
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1587,7 +1587,7 @@ Previous transceiver
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1615,7 +1615,7 @@ Amphenol, OEM, Mellanox, Fiberstore, Finisar
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1643,7 +1643,7 @@ MT1507VS05177, AVE1823402U, PTN1VH2
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1671,7 +1671,7 @@ none, Base R, RS
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1699,7 +1699,7 @@ true, false, not reported
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1727,7 +1727,7 @@ none
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1755,7 +1755,7 @@ on, off
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1783,7 +1783,7 @@ Current speed rating of port
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1811,7 +1811,7 @@ Current transceiver
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1839,7 +1839,7 @@ Amphenol, OEM, Mellanox, Fiberstore, Finisar
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1867,7 +1867,7 @@ SFP-H10GB-CU1M, MC3309130-001, 603020003
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1895,7 +1895,7 @@ MT1507VS05177, AVE1823402U, PTN1VH2
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1923,7 +1923,7 @@ none, Base R, RS
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1951,7 +1951,7 @@ true, false
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1979,7 +1979,7 @@ none
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2037,7 +2037,7 @@ Temperature: psu1temp1, temp2
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2065,7 +2065,7 @@ server02, leaf-26, exit01, spine2-4
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2095,7 +2095,7 @@ Temp: ok, busted, bad, critical
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2125,7 +2125,7 @@ Temp: ok, busted, bad, critical
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2154,7 +2154,7 @@ PSU: up, down
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2183,7 +2183,7 @@ PSU: up, down
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2211,7 +2211,7 @@ Temp: 110
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2239,7 +2239,7 @@ Temp: 85
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2267,7 +2267,7 @@ Temp: -25
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2323,7 +2323,7 @@ services
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2351,7 +2351,7 @@ server02, leaf03, exit01, spine-8
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2379,7 +2379,7 @@ clagd, lldpd, ssh, ntp, netqd, net-agent
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2407,7 +2407,7 @@ Previous process or service identifier
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2435,7 +2435,7 @@ Current process or service identifier
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2463,7 +2463,7 @@ up, down
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -2508,7 +2508,7 @@ Use Tab completion to view the command options syntax.
 Create a BGP Rule Based on Hostname:
 
     cumulus@switch:~$ netq add notification rule bgpHostname key hostname value spine-01 
-    Successfully added/updated rule bgpHostname 
+    Successfully added/updated rule bgpHostname 
 
 Create a Rule Based on a Configuration File State Change:
 
@@ -2538,7 +2538,7 @@ Create a Sensor Rule Based on a Threshold:
 Create an Interface Rule Based on Port:
 
     cumulus@switch:~$ netq add notification rule swp52 key port value swp52 
-    Successfully added/updated rule swp52 
+    Successfully added/updated rule swp52 
 
 #### View the Rule Configurations
 
@@ -2546,7 +2546,7 @@ Use the `netq show notification` command to view the rules on your
 platform.
 
     cumulus@switch:~$ netq show notification rule 
-     
+     
     Matching config_notify records:
     Name            Rule Key         Rule Value
     --------------- ---------------- --------------------
@@ -2719,7 +2719,7 @@ filtered to the *pd-netq-events* ** channel.
     Successfully added/updated channel pd-netq-events
     cumulus@switch:~$ netq add notification rule bgpHostname key node value spine-01
     Successfully added/updated rule bgpHostname
-     
+     
     cumulus@switch:~$ netq add notification filter bgpSpine rule bgpHostname channel pd-netq-events
     Successfully added/updated filter bgpSpine
     cumulus@switch:~$ netq show notification channel
@@ -2734,7 +2734,7 @@ filtered to the *pd-netq-events* ** channel.
     Name            Rule Key         Rule Value
     --------------- ---------------- --------------------
     bgpHostname     hostname         spine-01
-     
+     
     cumulus@switch:~$ netq show notification filter
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
@@ -2752,13 +2752,13 @@ from VNI 42 are filtered to the *pd-netq-events* ** channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
-     
+     
     cumulus@switch:~$ netq add notification rule evpnVni key vni value 42
     Successfully added/updated rule evpnVni
-     
+     
     cumulus@switch:~$ netq add notification filter vni42 rule evpnVni channel pd-netq-events
     Successfully added/updated filter vni42
-     
+     
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info
@@ -2772,7 +2772,7 @@ from VNI 42 are filtered to the *pd-netq-events* ** channel.
     --------------- ---------------- --------------------
     bgpHostname     hostname         spine-01
     evpnVni         vni              42
-     
+     
     cumulus@switch:~$ netq show notification filter
     Matching config_notify records:
     Name            Order      Severity         Channels         Rules
@@ -2791,13 +2791,13 @@ The result is that any configuration update messages are filtered to the
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
-     
+     
     cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
     Successfully added/updated rule sysconf
-     
+     
     cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
     Successfully added/updated filter configChange
-     
+     
     cumulus@switch:~$ netq show notification channel 
     Matching config_notify records:
     Name            Type             Severity Channel Info
@@ -2805,7 +2805,7 @@ The result is that any configuration update messages are filtered to the
     slk-netq-events slack            info     webhook:https://hooks.s
                                             lack.com/services/text/
                                               moretext/evenmoretext       
-     
+     
     cumulus@switch:~$ netq show notification rule 
     Matching config_notify records:
     Name            Rule Key         Rule Value
@@ -2833,13 +2833,13 @@ messages are filtered to the *slk-netq-events* ** channel.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
-     
+     
     cumulus@switch:~$ netq add notification rule svcStatus key new_status value down
     Successfully added/updated rule svcStatus
-     
+     
     cumulus@switch:~$ netq add notification filter svcDown severity error rule svcStatus channel slk-netq-events
     Successfully added/updated filter svcDown
-     
+     
     cumulus@switch:~$ netq show notification channel 
     Matching config_notify records:
     Name            Type             Severity Channel Info
@@ -2847,7 +2847,7 @@ messages are filtered to the *slk-netq-events* ** channel.
     slk-netq-events slack            info     webhook:https://hooks.s
                                             lack.com/services/text/
                                               moretext/evenmoretext       
-     
+     
     cumulus@switch:~$ netq show notification rule 
     Matching config_notify records:
     Name            Rule Key         Rule Value
@@ -2876,13 +2876,13 @@ interface *swp52*.
 
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
-     
+     
     cumulus@switch:~$ netq add notification rule swp52 key port value swp52 
     Successfully added/updated rule swp52
-     
+     
     cumulus@switch:~$ netq add notification filter swp52Drop severity error rule swp52 before bgpSpine
     Successfully added/updated filter swp52Drop
-     
+     
     cumulus@switch:~$ netq show notification channel 
     Matching config_notify records:
     Name            Type             Severity Channel Info
@@ -2890,7 +2890,7 @@ interface *swp52*.
     slk-netq-events slack            info     webhook:https://hooks.s
                                             lack.com/services/text/
                                               moretext/evenmoretext       
-     
+     
     cumulus@switch:~$ netq show notification rule 
     Matching config_notify records:
     Name            Rule Key         Rule Value
@@ -2924,17 +2924,17 @@ identify the temperature trigger. We sent the message to the
 ``` 
 cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
 Successfully added/updated channel pd-netq-events
- 
+ 
 cumulus@switch:~$ netq add notification rule switchLeaf04 key hostname value leaf04
 Successfully added/updated rule switchLeaf04
 cumulus@switch:~$ netq add notification rule overTemp key new_s_crit value 24
 Successfully added/updated rule overTemp
- 
+ 
 cumulus@switch:~$ netq add notification filter critTemp rule switchLeaf04 channel pd-netq-events 
 Successfully added/updated filter critTemp
 cumulus@switch:~$ netq add notification filter critTemp severity critical rule overTemp channel pd-netq-events
 Successfully added/updated filter critTemp
- 
+ 
 cumulus@switch:~$ netq show notification channel 
 Matching config_notify records:
 Name            Type             Severity         Channel Info
@@ -2996,7 +2996,7 @@ For example:
         ],
         "truncatedResult":false
     }
-     
+     
     cumulus@switch:~$ netq show notification rule json
     {
         "config_notify":[
@@ -3033,7 +3033,7 @@ For example:
         ],
         "truncatedResult":false
     }
-     
+     
     cumulus@switch:~$ netq show notification filter json
     {
         "config_notify":[
@@ -3164,7 +3164,7 @@ chassis:
     duplication of data in the NetQ database.
     
         cumulus@chassis:~$ sudo nano /etc/netq/netq.yml
-         
+         
         ...
         netq-agent:
           send_chassis_sensor_data: true

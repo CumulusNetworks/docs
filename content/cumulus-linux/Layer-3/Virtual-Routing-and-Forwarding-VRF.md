@@ -443,7 +443,7 @@ You can assign switch ports to each VRF table with an interface-level configurat
 
 Because BGP is VRF-aware, per-VRF neighbors, both iBGP and eBGP, as well as numbered and unnumbered interfaces are supported. Non-interface-based VRF neighbors are bound to the VRF, which is how you can have overlapping address spaces in different VRFs. Each VRF can have its own parameters, such as address families and redistribution. Incoming connections rely on the Linux kernel for VRF-global sockets. BGP neighbors can be tracked using [BFD](../Bidirectional-Forwarding-Detection-BFD/), both for single and multiple hops. You can configure multiple BGP instances, associating each with a VRF.
 
-A VRF-aware OSPFv2 configuration also supports numbered and unnumbered interfaces. Supported layer 3 interfaces include SVIs, sub-interfaces and physical interfaces. The VRF supports types 1 through 5 (ABR/ASBR – external LSAs) and types 9 through 11 (opaque LSAs) link state advertisements, redistributing other routing protocols, connected and static routes, and route maps. As with BGP, you can track OSPF neighbors with [BFD](../Bidirectional-Forwarding-Detection-BFD/).
+A VRF-aware OSPFv2 configuration also supports numbered and unnumbered interfaces. Supported layer 3 interfaces include SVIs, sub-interfaces and physical interfaces. The VRF supports types 1 through 5 (ABR/ASBR - external LSAs) and types 9 through 11 (opaque LSAs) link state advertisements, redistributing other routing protocols, connected and static routes, and route maps. As with BGP, you can track OSPF neighbors with [BFD](../Bidirectional-Forwarding-Detection-BFD/).
 
 {{%notice note%}}
 
@@ -456,7 +456,7 @@ VRFs are provisioned using NCLU. VRFs can be pre-provisioned in FRRouting too, b
 - You pre-provision a VRF in FRRouting by running the command `vrf vrf-name`.
 - You can pre-provision a BGP instance corresponding to a VRF with the  NCLU `net add bgp vrf <vrf-name> autonomous-system <value>` command. Under this context, all existing BGP parameters can be configured: neighbors, peer-groups, address-family configuration, redistribution, and so on.
 - An OSPFv2 instance can be configured using the NCLU `net add ospf vrf <vrf-name>` command; as with BGP, you can configure all OSPFv2 parameters.
-- You can provision static routes (IPv4 and IPv6) in a VRF by specifying the VRF along with the static route configuration. For example, `ip route prefix dev vrf <vrf-name>`. The VRF has to exist for this configuration to be accepted — either already defined through `/etc/network/interfaces` or pre-provisioned in FRRouting.
+- You can provision static routes (IPv4 and IPv6) in a VRF by specifying the VRF along with the static route configuration. For example, `ip route prefix dev vrf <vrf-name>`. The VRF has to exist for this configuration to be accepted - either already defined through `/etc/network/interfaces` or pre-provisioned in FRRouting.
 
 ### Example VRF Configuration in BGP
 

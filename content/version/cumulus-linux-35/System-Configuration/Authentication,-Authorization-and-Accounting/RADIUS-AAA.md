@@ -120,19 +120,19 @@ command. Edit the `/etc/netd.conf` file, then:
 
 ```
     cumulus@switch:~$ sudo nano /etc/netd.conf
-     
+     
     ...
-     
+     
     # Control which users/groups are allowed to run 'add', 'del',
     # 'clear', 'net abort', 'net commit' and restart services (quagga, etc)
     # to apply those changes
     users_with_edit = root, cumulus, rad_user
     groups_with_edit = netedit
-     
+     
     # Control which users/groups are allowed to run 'show' commands
     users_with_show = root, cumulus, rad_user
     groups_with_show = netshow, radius_users
-     
+     
     ...
 ```
 

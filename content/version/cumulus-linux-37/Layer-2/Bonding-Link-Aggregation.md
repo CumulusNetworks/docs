@@ -288,22 +288,22 @@ To view the bond, use
         Name    MAC                Speed    MTU    Mode
     --  ------  -----------------  -------  -----  ------
     UP  bond1   00:02:00:00:00:12  20G      1500   Bond
-     
-     
+     
+     
     Bond Details
     ---------------  -------------
     Bond Mode:       Balance-XOR
     Load Balancing:  Layer3+4
     Minimum Links:   1
     In CLAG:         CLAG Inactive
-     
-     
+     
+     
         Port     Speed      TX    RX    Err    Link Failures
     --  -------  -------  ----  ----  -----  ---------------
     UP  swp3(P)  10G         0     0      0                0
     UP  swp4(P)  10G         0     0      0                0
-     
-     
+     
+     
     LLDP
     -------  ----  ------------
     swp3(P)  ====  swp1(p1c1h1)
@@ -362,7 +362,7 @@ show` command:
 
     cumulus@switch:~$ ip link show
     ...
-     
+     
     3: swp1: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
     4: swp2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
@@ -371,9 +371,9 @@ show` command:
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
     6: swp4: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 state UP mode DEFAULT qlen 500
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
-     
+     
     ...
-     
+     
     55: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT
         link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 
@@ -395,7 +395,7 @@ address traffic to the bond.
 - An interface cannot belong to multiple bonds.
 - A bond can have subinterfaces, but subinterfaces cannot have a bond.
 - A bond cannot enslave VLAN subinterfaces.
-- Set all slave ports within a bond to the same speed/duplex and make sure they match the link partner’s slave ports.
+- Set all slave ports within a bond to the same speed/duplex and make sure they match the link partner's slave ports.
 - On a [Cumulus RMP](/cumulus-rmp/) switch, if you create a bond with multiple 10G member ports, traffic gets dropped when the bond uses members of the same *unit* listed in the `/var/lib/cumulus/porttab` file. For example, traffic gets dropped if both swp49 and swp52 are in the bond because they both are in the xe0 unit (or if both swp50 and swp51 are in the same bond because they are both in xe1):  
 swp49 xe0 0 0 -1 0  
 swp50 xe1 0 0 -1 0  

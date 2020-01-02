@@ -61,8 +61,8 @@ or using
 [Quagga](/version/cumulus-linux-25esr/Layer-3-Features/Quagga-Overview).
 
 The [Quagga CLI](/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Quagga/#using-the-vtysh-modal-cli) 
-can track IPv4 and IPv6 peer connectivity — both single hop and multihop, 
-and both link-local IPv6 peers and global IPv6 peers — using BFD sessions 
+can track IPv4 and IPv6 peer connectivity - both single hop and multihop, 
+and both link-local IPv6 peers and global IPv6 peers - using BFD sessions 
 without needing the `topology.dot` file. Use Quagga to register multihop 
 peers with PTM and BFD as well as for monitoring the connectivity to the
 remote BGP multihop peer. Quagga can dynamically register and unregister

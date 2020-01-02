@@ -42,7 +42,7 @@ connected are (m\*n)/2. In a three tier network, where tier-3 nodes are
 o-port nodes, the total number of end stations that can be connected are
 (m\*n\*o)/2^(number of tiers-1).
 
-Let’s consider some practical examples. In many data centers, it is
+Let's consider some practical examples. In many data centers, it is
 typical to connect 40 servers to a top-of-rack (ToR) switch. The ToRs
 are all connected via a set of spine switches. If a ToR switch has 64
 ports, then after hooking up 40 ports to the servers, the remaining 24
@@ -85,7 +85,7 @@ in half, thereby greatly increasing network congestion and adversely
 affecting many applications. To avoid this, vendors typically try and
 make the spine switches resilient to failures by providing such features
 as dual control line cards and attempting to make the software highly
-available. However, as Douglas Adams famously noted, “\>\>\>”. In many
+available. However, as Douglas Adams famously noted, "\>\>\> ". In many
 cases, HA is among the top two or three causes of software failure (and
 thereby switch failure).
 
@@ -107,7 +107,7 @@ using equal cost multi-pathing (ECMP).
 
 Routing algorithms compute shortest paths between two end stations where
 shortest is typically the lowest path cost. Each link is assigned a
-metric or cost. By default, a link’s cost is a function of the link
+metric or cost. By default, a link's cost is a function of the link
 speed. The higher the link speed, the lower its cost. A 10G link has a
 higher cost than a 40G or 100G link, but a lower cost than a 1G link.
 Thus, the link cost is a measure of its traffic carrying capacity.

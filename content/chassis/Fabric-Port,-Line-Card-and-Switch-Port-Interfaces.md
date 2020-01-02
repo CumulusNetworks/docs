@@ -109,7 +109,7 @@ for these addresses are written to the `/etc/hosts` file by a
     fe80::302:2 fc302-v6 fc302-v6.chassis
     fe80::401:2 fc401-v6 fc401-v6.chassis
     fe80::402:2 fc402-v6 fc402-v6.chassis
-     
+     
     ...
 
 The interface configuration is stored in the

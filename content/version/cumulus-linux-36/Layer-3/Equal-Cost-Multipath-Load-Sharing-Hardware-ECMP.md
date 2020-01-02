@@ -182,12 +182,12 @@ These commands create the following configuration in the
 `/etc/cumulus/datapath/traffic.conf` file:
 
     cumulus@leaf01:~$ cat /etc/cumulus/datapath/traffic.conf
-     
+     
     ...
-     
+     
     #Specify the hash seed for Equal cost multipath entries
     ecmp_hash_seed = 50
-     
+     
     ...
     cumulus@leaf01:~$
 
@@ -240,7 +240,7 @@ number of hash buckets does not change.
 
   
 With 12 buckets assigned and four next hops, instead of reducing the
-number of buckets — which would impact flows to known good hosts — the
+number of buckets - which would impact flows to known good hosts - the
 remaining next hops replace the failed next hop.
 
 {{% imgOld 7 %}}

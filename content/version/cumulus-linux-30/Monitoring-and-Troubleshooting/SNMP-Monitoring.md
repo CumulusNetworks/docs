@@ -236,7 +236,7 @@ below, as the ones used here are for explanatory purposes only.
     rwuser user999
 
 Once you make this configuration and restart the `snmpd` daemon, the
-user access can be checked with a client — the Debian package called
+user access can be checked with a client - the Debian package called
 `snmp` contains `snmpget` and `snmpwalk`, as well as other programs that
 are useful for checking daemon functionality from the switch itself or
 from another workstation. The following commands check the access for

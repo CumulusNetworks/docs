@@ -21,8 +21,8 @@ extending layer 2 segments over that layer 3 network.
 
 VXLAN uses a VLAN-like encapsulation technique to encapsulate MAC-based
 layer 2 Ethernet frames within layer 3 UDP packets. Each virtual network
-is a VXLAN logical L2 segment. VXLAN scales to 16 million segments – a
-24-bit VXLAN network identifier (VNI ID) in the VXLAN header – for
+is a VXLAN logical L2 segment. VXLAN scales to 16 million segments - a
+24-bit VXLAN network identifier (VNI ID) in the VXLAN header - for
 multi-tenancy.
 
 Hosts on a given virtual network are joined together through an overlay
@@ -90,7 +90,7 @@ given physical port.
     SoftInFrameErrors: 0
     HwIfOutErrors: 35495749
     SoftOutErrors: 0
-     
+     
     cumulus@switch:~$ sudo ethtool -S swp50 | grep Error
     HwIfInDot3LengthErrors: 3038098
     HwIfInErrors: 297595762

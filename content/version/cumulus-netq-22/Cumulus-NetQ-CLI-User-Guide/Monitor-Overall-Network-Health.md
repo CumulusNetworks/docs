@@ -62,7 +62,7 @@ all behave in a similar manner, checking for connectivity,
 configuration, and other problems, indicating the number of nodes that
 they have checked and indicating the number that have failed.
 
-Some additional examples—
+Some additional examples-
 
 Validate that EVPN is running correctly on all nodes:
 
@@ -83,7 +83,7 @@ first shows no mismatches, the second shows an error.
     cumulus@switch:~$ netq check mtu
     Checked Nodes: 15, Checked Links: 138, Failed Nodes: 0, Failed Links: 0
     No MTU Mismatch found
-     
+     
     cumulus@switch:~$ netq check mtu
     Checked Nodes: 13, Checked Links: 173, Failed Nodes: 1, Failed Links: 1
     MTU mismatch found on following links
@@ -93,17 +93,17 @@ first shows no mismatches, the second shows an error.
 
 Validate that VXLANs are configured and operating properly:
 
-    cumulus@switch:~$ netq check vxlan 
+    cumulus@switch:~$ netq check vxlan 
     Checked Nodes: 6, Warning Nodes: 0, Failed Nodes: 6
     Nodes with error
-    Hostname         Reason
+    Hostname         Reason
     ---------------- ----------------------------------------------------------------
-    exit01           inconsistent replication list for vni 104001                    
-    exit02           inconsistent replication list for vni 104001                    
-    leaf01           inconsistent replication list for vni 104001                    
-    leaf02           inconsistent replication list for vni 104001                    
-    leaf03           inconsistent replication list for vni 104001                    
-    leaf04           inconsistent replication list for vni 104001                    
+    exit01           inconsistent replication list for vni 104001                    
+    exit02           inconsistent replication list for vni 104001                    
+    leaf01           inconsistent replication list for vni 104001                    
+    leaf02           inconsistent replication list for vni 104001                    
+    leaf03           inconsistent replication list for vni 104001                    
+    leaf04           inconsistent replication list for vni 104001                    
 
 {{%notice tip%}}
 
@@ -154,16 +154,16 @@ synchronization, run:
 
     cumulus@switch:~$ netq check ntp
     Total Nodes: 15, Checked Nodes: 15, Rotten Nodes: 0, Unknown Nodes: 0, failed NTP Nodes: 8
-    Hostname          NTP Sync Connect Time
+    Hostname          NTP Sync Connect Time
     ----------------- -------- -------------------------
-    exit01            no       2018-09-12 16:30:39      
-    exit02            no       2018-09-12 16:30:45      
-    leaf01            no       2018-09-12 16:30:43      
-    leaf02            no       2018-09-12 16:30:36      
-    leaf03            no       2018-09-12 16:30:36      
-    leaf04            no       2018-09-12 16:30:34      
-    spine01           no       2018-09-12 16:30:44      
-    spine02           no       2018-09-12 16:30:40      
+    exit01            no       2018-09-12 16:30:39      
+    exit02            no       2018-09-12 16:30:45      
+    leaf01            no       2018-09-12 16:30:43      
+    leaf02            no       2018-09-12 16:30:36      
+    leaf03            no       2018-09-12 16:30:36      
+    leaf04            no       2018-09-12 16:30:34      
+    spine01           no       2018-09-12 16:30:44      
+    spine02           no       2018-09-12 16:30:40      
 
 This example shows eight nodes that are not in time synchronization. You
 can now continue to investigate these nodes, validating that the NetQ
@@ -201,20 +201,20 @@ checked.
 As with other `netq check` commands, you can validate the proper
 operation of your interfaces across the network:
 
-    cumulus@switch:~$ netq check interfaces 
+    cumulus@switch:~$ netq check interfaces 
     Checked Nodes: 15, Failed Nodes: 8
     Checked Ports: 118, Failed Ports: 8, Unverified Ports: 94
-    Hostname          Interface                 Peer Hostname     Peer Interface            Message
+    Hostname          Interface                 Peer Hostname     Peer Interface            Message
     ----------------- ------------------------- ----------------- ------------------------- -----------------------------------
-    leaf01            swp7                      firewall02        swp3                      Speed mismatch (10G, n/a),         
-                                                                                            Autoneg mismatch (off, n/a)          
-    leaf02            swp2                      server02          eth2                      Autoneg mismatch (off, on)         
-    leaf03            swp1                      server03          eth1                      Autoneg mismatch (off, on)         
-    leaf04            swp2                      server04          eth2                      Autoneg mismatch (off, on)         
-    server01          eth1                      leaf01            swp1                      Autoneg mismatch (on, off)         
-    server02          eth2                      leaf02            swp2                      Autoneg mismatch (on, off)         
-    server03          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)         
-    server04          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)         
+    leaf01            swp7                      firewall02        swp3                      Speed mismatch (10G, n/a),         
+                                                                                            Autoneg mismatch (off, n/a)          
+    leaf02            swp2                      server02          eth2                      Autoneg mismatch (off, on)         
+    leaf03            swp1                      server03          eth1                      Autoneg mismatch (off, on)         
+    leaf04            swp2                      server04          eth2                      Autoneg mismatch (off, on)         
+    server01          eth1                      leaf01            swp1                      Autoneg mismatch (on, off)         
+    server02          eth2                      leaf02            swp2                      Autoneg mismatch (on, off)         
+    server03          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)         
+    server04          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)         
 
 When failures are seen, additional information is provided to start your
 investigation. In this example, some reconfiguration is required for
@@ -332,7 +332,7 @@ View the status of your VLANs:
 View the status of the hardware sensors:
 
     cumulus@switch:~$ netq show sensors all
-     
+     
     Matching sensors records:
     Hostname          Name            Description                         State      Message                             Last Changed
     ----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------

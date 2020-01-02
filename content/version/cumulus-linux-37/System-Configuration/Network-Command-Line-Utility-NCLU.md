@@ -133,18 +133,18 @@ commands:
 
     cumulus@switch:~$ net add bgp router-id 1.1.1.1/32
     ERROR: Command not found
-     
+     
     Did you mean one of the following?
-     
+     
         net add bgp router-id <ipv4>
             This command is looking for an IP address, not an IP/prefixlen
-     
+     
     cumulus@switch:~$ net add bgp router-id 1.1.1.1
     cumulus@switch:~$ net add int swp10 mtu <TAB>
         <552-9216> :
     cumulus@switch:~$ net add int swp10 mtu 9300
     ERROR: Command not found
-     
+     
     Did you mean one of the following?
         net add interface <interface> mtu <552-9216>
 
@@ -152,7 +152,7 @@ NCLU has a comprehensive built in help system. In addition to the net
 man page, you can use `?` and `help` to display available commands:
 
     cumulus@switch:~$ net help
-     
+     
     Usage:
         # net <COMMAND> [<ARGS>] [help]
         #
@@ -162,8 +162,8 @@ man page, you can use `?` and `help` to display available commands:
         # be explored by typing "<TAB>" or "help" anytime while using net.
         #
         # Use 'man net' for a more comprehensive overview.
-     
-     
+     
+     
         net abort
         net commit [verbose] [confirm] [description <wildcard>]
         net commit delete (<number>|<number-range>)
@@ -173,34 +173,34 @@ man page, you can use `?` and `help` to display available commands:
         net show commit (history|<number>|<number-range>|last)
         net show rollback (<number>|last)
         net show configuration [commands|files|acl|bgp|ospf|ospf6|interface <interface>]
-     
-     
+     
+     
     Options:
-     
+     
         # Help commands
         help     : context sensitive information; see section below
         example  : detailed examples of common workflows
-     
-     
+     
+     
         # Configuration commands
         add      : add/modify configuration
         del      : remove configuration
-     
-     
+     
+     
         # Commit buffer commands
         abort    : abandon changes in the commit buffer
         commit   : apply the commit buffer to the system
         pending  : show changes staged in the commit buffer
         rollback : revert to a previous configuration state
-     
-     
+     
+     
         # Status commands
         show     : show command output
         clear    : clear counters, BGP neighbors, etc
-     
+     
     cumulus@switch:~$ net help bestpath
     The following commands contain keyword(s) 'bestpath'
-     
+     
         net (add|del) bgp bestpath as-path multipath-relax [as-set|no-as-set]
         net (add|del) bgp bestpath compare-routerid
         net (add|del) bgp bestpath med missing-as-worst
@@ -358,7 +358,7 @@ To add a new user account with NCLU show permissions:
 ``` 
 cumulus@switch:~$ sudo adduser --ingroup netshow myuser
 Adding user `myuser' ...
-Adding new user `myuser' (1001) with group `netshow' …
+Adding new user `myuser' (1001) with group `netshow'  ...
 ```
 
 To add NCLU show permissions to a user account that already exists:
@@ -375,7 +375,7 @@ To add a new user account with NCLU edit permissions:
 ``` 
 cumulus@switch:~$ sudo adduser --ingroup netedit myuser
 Adding user `myuser' ...
-Adding new user `myuser' (1001) with group `netedit' …
+Adding new user `myuser' (1001) with group `netedit'  ...
 ```
 
 To add NCLU edit permissions to a user account that already exists:
@@ -419,14 +419,14 @@ edit and show commands, add the user to the `users_with_edit` and
 `users_with_show` lines in the `/etc/netd.conf` file:
 
     cumulus@switch:~$ sudo nano /etc/netd.conf
-     
+     
     # Control which users/groups are allowed to run 'add', 'del',
     # 'clear', 'net abort', 'net commit' and restart services
     # to apply those changes
     users_with_edit = root, cumulus, netoperator
     groups_with_edit = root, cumulus
-     
-     
+     
+     
     # Control which users/groups are allowed to run 'show' commands
     users_with_show = root, cumulus, netoperator
     groups_with_show = root, cumulus

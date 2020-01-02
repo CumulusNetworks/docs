@@ -167,9 +167,9 @@ The *Sessions Summary* tab which displays:
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>Top Switches with Most Sessions</strong> filter is selected, the table displays devices running EVPN sessions in decreasing order of session count—devices with the largest number of sessions are listed first.</p>
-<p>When the <strong>Switches with Most L2 EVPN</strong> filter is selected, the table displays devices running layer 2 EVPN sessions in decreasing order of session count—devices with the largest number of sessions are listed first.</p>
-<p>When the <strong>Switches with</strong> <strong>Most L3 EVPN</strong> filter is selected, the table displays devices running layer 3 EVPN sessions in decreasing order of session count—devices with the largest number of sessions are listed first.</p></td>
+<td><p>When the <strong>Top Switches with Most Sessions</strong> filter is selected, the table displays devices running EVPN sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p>
+<p>When the <strong>Switches with Most L2 EVPN</strong> filter is selected, the table displays devices running layer 2 EVPN sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p>
+<p>When the <strong>Switches with</strong> <strong>Most L3 EVPN</strong> filter is selected, the table displays devices running layer 3 EVPN sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
@@ -220,7 +220,7 @@ The *Alarms* tab which displays:
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays devices running EVPN sessions in decreasing order of alarm count—devices with the largest number of alarms are listed first</p></td>
+<td><p>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays devices running EVPN sessions in decreasing order of alarm count-devices with the largest number of alarms are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>

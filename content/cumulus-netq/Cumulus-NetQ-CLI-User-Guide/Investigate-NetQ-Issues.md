@@ -112,7 +112,7 @@ then use `netq trace` to track the connection between the nodes.
 The `netq trace` command traces the route of an IP or MAC address from
 one endpoint to another. It works across bridged, routed and VXLAN
 connections, computing the path using available data instead of sending
-real traffic — this way, it can be run from anywhere. It performs MTU
+real traffic - this way, it can be run from anywhere. It performs MTU
 and VLAN consistency checks for every link along the path.
 
 For example, say you get an alert about a BGP session failure. You can

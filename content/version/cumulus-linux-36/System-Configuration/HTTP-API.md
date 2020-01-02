@@ -161,7 +161,7 @@ and keys, and installing them to the switch, refer to the
 {{%notice warning%}}
 
 Do not copy the `cumulus.pem` or `cumulus.key` files. After
-installation, edit the “ssl\_certificate” and “ssl\_certificate\_key”
+installation, edit the "ssl\_certificate " and "ssl\_certificate\_key "
 values in the configuration file for your hardware.
 
 {{%/notice%}}
@@ -186,7 +186,7 @@ set to `application/json`.
 
 {{%notice info%}}
 
-cURL’s `-k` flag is necessary when the server uses a self-signed
+cURL's `-k` flag is necessary when the server uses a self-signed
 certificate. This is the default configuration (see the  [Security section](#security)). 
 To display the response headers, include `-D` flag in the command.
 

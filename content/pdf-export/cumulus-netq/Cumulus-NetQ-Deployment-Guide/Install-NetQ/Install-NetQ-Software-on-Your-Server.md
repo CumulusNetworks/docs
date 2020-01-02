@@ -326,17 +326,17 @@ If you are installing an on-premises solution, continue with the steps here. If 
             <computer>:~<username>$ ssh cumulus@<netq-platform-ipaddress>
             Warning: Permanently added '<netq-platform-hostname>,192.168.1.254' (ECDSA) to the list of known hosts.
             cumulus@<netq-platform-hostname>'s password: <enter CumulusLinux! here>
-             
+             
             Welcome to Cumulus (R) Linux (R)
-             
+             
             For support and online technical documentation, visit
             http://www.cumulusnetworks.com/support
-             
+             
             The registered trademark Linux (R) is used pursuant to a sublicense from LMI,
             the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide
             basis.
-             
-            cumulus@<netq-platform-hostname>:~$ 
+             
+            cumulus@<netq-platform-hostname>:~$ 
 
     2.  Run the following command to verify all applications are
         operating properly. *Note*: Please allow 10-15 minutes for
@@ -389,7 +389,7 @@ If you are installing an on-premises solution, continue with the steps here. If 
             netq-app-customermgmt          UP        true                      7250354     Mon Jun  3 20:20:34 2019
             netq-app-node                  UP        true      up              f676c9a     Mon Jun  3 20:20:34 2019
             netq-app-route                 UP        true      up              6e31f98     Mon Jun  3 20:20:35 2019
-             
+             
             cumulus@<netq-platform-hostname>:~$
 
         {{%notice note%}}
@@ -716,7 +716,7 @@ To install the NetQ Agent on an Ubuntu server:
 The use of `netq-latest` in this example means that a `get` to the
     repository always retrieves the latest version of NetQ, even in the
     case where a major version update has been made. If you want to keep
-    the repository on a specific version — such as `netq-2.2` — use that
+    the repository on a specific version - such as `netq-2.2` - use that
     instead.
 
     {{%/notice%}}

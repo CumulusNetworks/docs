@@ -127,7 +127,7 @@ the switch it's running on:
     }
 
 However, in this next example, PTM will compare using the FQDN and look
-for *switch05.cumulusnetworks.com*, which is the FQDN of the switch it’s
+for *switch05.cumulusnetworks.com*, which is the FQDN of the switch it's
 running on:
 
     graph G {
@@ -475,7 +475,7 @@ running state of `ptmd`.
 
 ## Using ptmctl Commands</span>
 
-`ptmctl` is a client of `ptmd`; it retrieves the daemon’s operational
+`ptmctl` is a client of `ptmd`; it retrieves the daemon's operational
 state. It connects to `ptmd` over a Unix socket and listens for
 notifications. `ptmctl` parses the CSV notifications sent by `ptmd`.
 
@@ -585,7 +585,7 @@ cumulus@switch:~$ sudo ptmctl -j
 
 ### ptmctl Error Outputs</span>
 
-If there are errors in the topology file or there isn’t a session, PTM
+If there are errors in the topology file or there isn't a session, PTM
 will return appropriate outputs. Typical error strings are:
 
     Topology file error [/etc/ptm.d/topology.dot] [cannot find node cumulus] -

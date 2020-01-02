@@ -67,7 +67,7 @@ To track the route to an IPv4 host:
 
 ## Manipulating the System ARP Cache</span>
 
-`arp` manipulates or displays the kernel’s IPv4 network neighbor cache.
+`arp` manipulates or displays the kernel's IPv4 network neighbor cache.
 See `man arp` for details.
 
 To display the ARP cache:
@@ -102,11 +102,11 @@ For example, to send two sets of packets to TCP port 23 and 24, with
 source IP 11.0.0.1 and destination 11.0.0.2, do the following:
 
     cumulus@switch:~$ sudo mz swp1 -A 11.0.0.1 -B 11.0.0.2 -c 2 -v -t tcp "dp=23-24"
-     
+     
     Mausezahn 0.40 - (C) 2007-2010 by Herbert Haas - http://www.perihel.at/sec/mz/
     Use at your own risk and responsibility!
     -- Verbose mode --
-     
+     
     This system supports a high resolution clock.
      The clock resolution is 4000250 nanoseconds.
     Mausezahn will send 4 frames...
@@ -114,17 +114,17 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
           payload=[see next layer]
      TCP: sp=0, dp=23, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
-     
+     
      IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
           payload=[see next layer]
      TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
-     
+     
      IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
           payload=[see next layer]
      TCP: sp=0, dp=23, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
-     
+     
      IP:  ver=4, len=40, tos=0, id=0, frag=0, ttl=255, proto=6, sum=0, SA=11.0.0.1, DA=11.0.0.2,
           payload=[see next layer]
      TCP: sp=0, dp=24, S=42, A=42, flags=0, win=10000, len=20, sum=0,

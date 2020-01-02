@@ -27,11 +27,11 @@ into `/etc/network/interfaces`. For example:
     cumulus@switch:~$ cat /etc/network/interfaces
     # This file describes the network interfaces available on your system
     # and how to activate them. For more information, see interfaces(5).
-     
+     
     # The loopback network interface
     auto lo
     iface lo inet loopback
-     
+     
     auto swp3
     iface swp3
         address 198.51.100.1/24
@@ -154,10 +154,10 @@ configuration so it persists between reboots, run `write mem` in the
 To add a static route in Quagga (does not persist across reboot):
 
     cumulus@switch:~$ sudo vtysh
-     
+     
     Hello, this is Quagga (version 0.99.23.1+cl3.0).
     Copyright 1996-2005 Kunihiro Ishiguro, et al.
-     
+     
     switch# conf t
     switch(config)# ip route 203.0.113.0/24 198.51.100.2
     switch(config)# end
@@ -165,7 +165,7 @@ To add a static route in Quagga (does not persist across reboot):
     Codes: K - kernel route, C - connected, S - static, R - RIP,
            O - OSPF, I - IS-IS, B - BGP, A - Babel,
            > - selected route, * - FIB route
-     
+     
     K>* 0.0.0.0/0 via 10.0.1.2, eth0
     C>* 10.0.1.0/24 is directly connected, eth0
     O   192.0.2.0/24 [110/10] is directly connected, swp1, 00:13:25
@@ -192,10 +192,10 @@ To add a static route in Quagga (does not persist across reboot):
 To delete a static route in Quagga (does not persist across reboot):
 
     cumulus@switch:~$ sudo vtysh
-     
+     
     Hello, this is Quagga (version 0.99.23.1+cl3.0).
     Copyright 1996-2005 Kunihiro Ishiguro, et al.
-     
+     
     switch# conf t
     switch(config)# no ip route 203.0.113.0/24 198.51.100.2
     switch(config)# end
@@ -203,7 +203,7 @@ To delete a static route in Quagga (does not persist across reboot):
     Codes: K - kernel route, C - connected, S - static, R - RIP,
            O - OSPF, I - IS-IS, B - BGP, A - Babel,
            > - selected route, * - FIB route
-     
+     
     K>* 0.0.0.0/0 via 10.0.1.2, eth0
     C>* 10.0.1.0/24 is directly connected, eth0
     O   192.0.2.0/24 [110/10] is directly connected, swp1, 00:13:55
@@ -229,7 +229,7 @@ To delete a static route in Quagga (does not persist across reboot):
 
 ## Supported Route Table Entries</span>
 
-Cumulus Linux — via `switchd` — advertises the maximum number of route
+Cumulus Linux - via `switchd` - advertises the maximum number of route
 table entries that are supported on a given switch architecture,
 including:
 

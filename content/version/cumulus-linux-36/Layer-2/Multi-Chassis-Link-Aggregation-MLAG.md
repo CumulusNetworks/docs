@@ -404,7 +404,7 @@ The above commands produce the following configuration in the
     auto peerlink
     iface peerlink
       bond-slaves swp49 swp50
-     
+     
     auto peerlink.4094
     iface peerlink.4094
       address 169.254.1.1/30
@@ -560,20 +560,20 @@ cumulus@spine01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.0.0.21/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 # downlinks
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 auto swp3
 iface swp3
- 
+ 
 auto swp4
 iface swp4
 ```
@@ -594,20 +594,20 @@ cumulus@spine02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.0.0.22/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 # downlinks
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 auto swp3
 iface swp3
- 
+ 
 auto swp4
 iface swp4
 ```
@@ -650,43 +650,43 @@ cumulus@leaf01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.0.0.11/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 # peerlink
 auto swp49
 iface swp49
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+ 
 auto swp50
 iface swp50
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+ 
 # uplinks
 auto swp51
 iface swp51
- 
+ 
 auto swp52
 iface swp52
- 
+ 
 # bridge to hosts
 auto bridge
 iface bridge
     bridge-ports peerlink server1 server2
     bridge-vids 100
     bridge-vlan-aware yes
- 
+ 
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
- 
+ 
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.1.1/30
@@ -694,7 +694,7 @@ iface peerlink.4094
     clagd-peer-ip 169.254.1.2
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:01
- 
+ 
 auto server1
 iface server1
     bond-slaves swp1
@@ -702,7 +702,7 @@ iface server1
     clag-id 1
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+ 
 auto server2
 iface server2
     bond-slaves swp2
@@ -710,7 +710,7 @@ iface server2
     clag-id 2
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+ 
 auto vlan100
 iface vlan100
     address 172.16.1.1/24
@@ -752,50 +752,50 @@ cumulus@leaf02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.0.0.12/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 # peerlink
 auto swp49
 iface swp49
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+ 
 auto swp50
 iface swp50
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+ 
 # uplinks
 auto swp51
 iface swp51
- 
+ 
 auto swp52
 iface swp52
- 
+ 
 # bridge to hosts
 auto bridge
 iface bridge
     bridge-ports peerlink server1 server2
     bridge-vids 100
     bridge-vlan-aware yes
- 
+ 
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
- 
+ 
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.1.2/30
     clagd-backup-ip 192.168.1.11
     clagd-peer-ip 169.254.1.1
     clagd-sys-mac 44:38:39:FF:00:01
- 
+ 
 auto server1
 iface server1
     bond-slaves swp1
@@ -803,7 +803,7 @@ iface server1
     clag-id 1
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+ 
 auto server2
 iface server2
     bond-slaves swp2
@@ -811,7 +811,7 @@ iface server2
     clag-id 2
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+ 
 auto vlan100
 iface vlan100
     address 172.16.1.2/24
@@ -853,43 +853,43 @@ cumulus@leaf03:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.0.0.13/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 # peerlink
 auto swp49
 iface swp49
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+ 
 auto swp50
 iface swp50
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+ 
 # uplinks
 auto swp51
 iface swp51
- 
+ 
 auto swp52
 iface swp52
- 
+ 
 # bridge to hosts
 auto bridge
 iface bridge
     bridge-ports peerlink server3 server4
     bridge-vids 100
     bridge-vlan-aware yes
- 
+ 
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
- 
+ 
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.1.1/30
@@ -897,7 +897,7 @@ iface peerlink.4094
     clagd-peer-ip 169.254.1.2
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:02
- 
+ 
 auto server3
 iface server3
     bond-slaves swp1
@@ -905,7 +905,7 @@ iface server3
     clag-id 3
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+ 
 auto server4
 iface server4
     bond-slaves swp2
@@ -955,50 +955,50 @@ cumulus@leaf04:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.0.0.14/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 # peerlink
 auto swp49
 iface swp49
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+ 
 auto swp50
 iface swp50
     post-up ip link set $IFACE promisc on     # Only required on VX
- 
+ 
 # uplinks
 auto swp51
 iface swp51
- 
+ 
 auto swp52
 iface swp52
- 
+ 
 # bridge to hosts
 auto bridge
 iface bridge
     bridge-ports peerlink server3 server4
     bridge-vids 100
     bridge-vlan-aware yes
- 
+ 
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
- 
+ 
 auto peerlink.4094
 iface peerlink.4094
     address 169.254.1.2/30
     clagd-backup-ip 192.168.1.13
     clagd-peer-ip 169.254.1.1
     clagd-sys-mac 44:38:39:FF:00:02
- 
+ 
 auto server3
 iface server3
     bond-slaves swp1
@@ -1006,7 +1006,7 @@ iface server3
     clag-id 3
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+ 
 auto server4
 iface server4
     bond-slaves swp2
@@ -1052,8 +1052,8 @@ The peer is alive
           Peer Interface and IP: peerlink.4094 169.254.1.1 
                       Backup IP: 192.168.1.12 (inactive)
                      System MAC: 44:38:39:FF:00:01
- 
- 
+ 
+ 
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
@@ -1199,7 +1199,7 @@ To see the backup IP address, run the `net show clag` command:
               Peer Interface and IP: peerlink.4094 169.254.255.2
                           Backup IP: 192.168.0.22 (active)
                          System MAC: 44:38:39:FF:40:90
-     
+     
     CLAG Interfaces
     Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
     ----------------   ----------------   -------   --------------------   -----------------
@@ -1251,18 +1251,18 @@ The following example shows a configuration where the backup interface
 is in a VRF:
 
     cumulus@leaf01:~$ net show configuration
-     
+     
     ...
-     
+     
     auto swp52s0
     iface swp52s0
         address 192.0.2.1/24
         vrf green
-     
+     
     auto green
     iface green
         vrf-table auto
-     
+     
     auto peer5.4000
     iface peer5.4000
             address 192.0.2.15/24
@@ -1281,7 +1281,7 @@ command:
               Peer Interface and IP: peer5.4000 192.0.2.16
                           Backup IP: 192.0.2.2 vrf green (active)
                          System MAC: 44:38:39:01:01:01
-     
+     
     CLAG Interfaces
     Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
     ----------------   ----------------   -------   --------------------   -----------------
@@ -1289,7 +1289,7 @@ command:
                bond1   bond1              1         -                      -              
                bond2   bond2              2         -                      -              
                bond3   bond3              3         -                      -     
-     
+     
     ...
 
 {{%/notice%}}
@@ -1361,10 +1361,10 @@ active/active forwarding.
 
 Then, to connect the spine switches to the core switches, you need to
 determine whether the routing is static or dynamic. If it is dynamic,
-you must choose which protocol —
+you must choose which protocol -
 [OSPF](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-OSPF---Protocol)
 or
-[BGP](/version/cumulus-linux-36/Layer-3/Border-Gateway-Protocol-BGP) —
+[BGP](/version/cumulus-linux-36/Layer-3/Border-Gateway-Protocol-BGP) -
 to use. When enabling a routing protocol in an MLAG environment, it is
 also necessary to manage the uplinks, because by default MLAG is not
 aware of layer 3 uplink interfaces. In the event of a peer link failure,
@@ -1423,11 +1423,11 @@ You can check the status of `clagd` monitoring by using the
 
     cumulus@switch:~$ sudo cl-service-summary summary
     The systemctl daemon 5.4 uptime: 15m
-     
+     
     ...
-     
+     
     Service clagd        enabled    active 
-     
+     
     ...
 
 Or the `systemctl status` command:
@@ -1441,8 +1441,8 @@ Or the `systemctl status` command:
        CGroup: /system.slice/clagd.service
                ├─1235 /usr/bin/python /usr/sbin/clagd --daemon 169.254.255.2 peerlink.4094 44:38:39:FF:40:90 --prior...
                └─1307 /sbin/bridge monitor fdb
-     
-     
+     
+     
     Feb 01 23:19:30 leaf01 clagd[1717]: Cleanup is executing.
     Feb 01 23:19:31 leaf01 clagd[1717]: Cleanup is finished
     Feb 01 23:19:31 leaf01 clagd[1717]: Beginning execution of clagd version 1.3.0
@@ -1495,16 +1495,16 @@ The above commands produce the following configuration in the
     auto bridge
     iface bridge
       bridge-ports peerlink uplink server01
-     
-     
+     
+     
     auto peerlink
     iface peerlink
         mtu 9216
-     
+     
     auto server01
     iface server01
         mtu 9216
-     
+     
     auto uplink
     iface uplink
         mtu 9216
@@ -1528,21 +1528,21 @@ The above commands produce the following configuration in the
     auto bridge
     iface bridge
       bridge-ports leaf01-02 leaf03-04 exit01-02 peerlink
-     
-     
+     
+     
     auto exit01-02
     iface exit01-02
         mtu 9216
-     
+     
     auto leaf01-02
     iface leaf01-02
         mtu 9216
-     
+     
     auto leaf03-04
     iface leaf03-04
         mtu 9216
-     
-     
+     
+     
     auto peerlink
     iface peerlink
         mtu 9216
@@ -1600,7 +1600,7 @@ servers and two switches. You might plan for four to six servers to lose
 connectivity to a single switch and become single connected before you
 respond to the event. So expanding upon our previous example, if you
 have 40 hosts each with 20G of bandwidth dual-connected to the MLAG
-pair, you might allocate 20G to 30G of bandwidth to the peerlink — which
+pair, you might allocate 20G to 30G of bandwidth to the peerlink - which
 accounts for half of the single-connected bandwidth for four to six
 hosts.
 
@@ -1687,8 +1687,8 @@ Using
 the number of dropped packets is displayed in the RX\_DRP column when
 you run `net show counters`:
 
-    cumulus@switch:~$ net show counters 
-     
+    cumulus@switch:~$ net show counters 
+     
     Kernel Interface table
     Iface              MTU    Met    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
     ---------------  -----  -----    -------  --------  --------  --------  -------  --------  --------  ------  -----
@@ -1719,7 +1719,7 @@ When you run `clagctl`, you may see output like this:
     bond01 bond01 52 duplicate lacp - partner mac
 
 This occurs when you have multiple LACP bonds between the same two LACP
-endpoints — for example, an MLAG switch pair is one endpoint and an ESXi
+endpoints - for example, an MLAG switch pair is one endpoint and an ESXi
 host is another. These bonds have duplicate LACP identifiers, which are
 MAC addresses. This same warning could be triggered when you have a
 cabling or configuration error.

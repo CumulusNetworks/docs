@@ -491,7 +491,7 @@ cumulus@switch:~$ sudo ifup -a
 To view the changes in the kernel, use the `ip addr show` command:
 
 ```
-cumulus@switch:~$ ip addr show
+cumulus@switch:~$ ip addr show
 ...
 4. swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bridge state UP group default qlen 1000
         link/ether 44:38:39:00:6e:fe brd ff:ff:ff:ff:ff:ff

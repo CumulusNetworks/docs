@@ -11,7 +11,7 @@ version: 1.2.1
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
 ---
-NetQ provides the ability to monitor at layer 1 — the physical cabling
+NetQ provides the ability to monitor at layer 1 - the physical cabling
 connecting the nodes of the network fabric. This includes the ability
 to:
 
@@ -59,7 +59,7 @@ NetQ provides detailed information about the cabling on a given node:
     act-5712-12      swp2      down  1G      off     SFP       FINISAR CORP.    FCLF8520P2BTL    13:04:25 ago
     act-5712-12      swp41     up    1G      off     SFP       FINISAR CORP.    FCLF8522P2BTL    17:13:17 ago
     act-5712-12      swp50s3   up    10G     off     QSFP+     Mellanox         MC2609130-003    17:13:40 ago
-     
+     
     ...
 
 By running the `netq NODE show interfaces physical module` command, you
@@ -156,8 +156,8 @@ physical plugged` command:
     act-5712-12      swp43     up    10G     off     SFP       OEM              SFP-H10GB-CU1M   17:20:02 ago
     act-5712-12      swp40     up    1G      off     SFP       FINISAR CORP.    FCLF8522P2BTL    17:20:00 ago
     act-5712-12      swp24     up    1G      off     SFP       FINISAR CORP.    FTLF1318P3BTL    17:20:08 ago
-     
-     
+     
+     
     ...
 
 By searching on specific vendors, you can run a cost analysis of your
@@ -197,10 +197,10 @@ even if the link is not UP.
     act-5712-12      swp34                                     down  Port cage empty             
     act-5712-12      swp37     dell-s4000-10    swp37          up                                
     act-5712-12      swp17     cel-red-08       swp1           up                                
-     
-     
+     
+     
     ...
-     
+     
     act-5712-12      swp11     act-5712-12      swp51s1        up                                
     act-5712-12      swp10     act-5712-12      swp51s2        up                                
     act-5712-12      swp3                                      down  Port cage empty             

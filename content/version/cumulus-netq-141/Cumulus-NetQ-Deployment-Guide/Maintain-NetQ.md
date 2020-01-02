@@ -46,7 +46,7 @@ the configuration:
                         type                 pagerduty
                         severity             info
                         api_access_key       1234567890
-     
+     
     Filter Name    Attribute    Value
     -------------  -----------  -------
     default        output       ALL
@@ -92,7 +92,7 @@ To decommission a node from the NetQ database, first disable the Agent
 on that node and then run the following command on the TS:
 
     cumulus@hostname:~$ netq config stop agent
-     
+     
     cumulus@ts:~$ netq ts decommission [hostname] purge
 
 ### Disable NetQ Agent on a Node
@@ -183,12 +183,12 @@ logging altogether when you are finished troubleshooting.
 To change the logging level, run the
 following command and restart the agent service:
 
-    cumulus@switch:~$ netq config add agent loglevel <LOG_LEVEL> 
+    cumulus@switch:~$ netq config add agent loglevel <LOG_LEVEL> 
     cumulus@switch:~$ netq config restart agent
 
 To disable all logging:
 
-    cumulus@switch:~$ netq config del agent loglevel 
+    cumulus@switch:~$ netq config del agent loglevel 
     cumulus@switch:~$ netq config restart agent
 
 ## Restore NetQ from Backup Files
@@ -434,13 +434,13 @@ To upgrade the NetQ Agent on a Red Hat or CentOS host, do the following:
         baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/$releasever/netq-1.4/$basearch
         gpgcheck=1
         enabled=1
-         
+         
         [cumulus-noarch]
         name=Architecture-independent Cumulus packages for RHEL
         baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/$releasever/netq-1.4/noarch
         gpgcheck=1
         enabled=1
-         
+         
         [cumulus-src]
         name=Cumulus source packages for RHEL
         baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/$releasever/netq-1.4/src
@@ -480,7 +480,7 @@ To upgrade the NetQ Agent on a Red Hat or CentOS host, do the following:
         server04          Fresh            yes      1.3.0-ub16.04u9~1522971904.b08ca60   5d:5h:53m:13s             5d:5h:53m:3s              5d:5h:53m:3s               12.524579s
         spine01           Fresh            yes      1.3.0-cl3u9~1522970647.b08ca60       5d:5h:55m:3s              5d:0h:54m:55s             5d:0h:54m:55s              18.648519s
         spine02           Fresh            yes      1.3.0-cl3u9~1522970647.b08ca60       5d:5h:54m:56s             5d:0h:54m:27s             5d:0h:54m:27s              5.712222s
-         
+         
         cumulus@ts:~$ cat /etc/app-release
         APPLIANCE_VERSION=1.4.0
         APPLIANCE_MANIFEST_HASH=23b30cc

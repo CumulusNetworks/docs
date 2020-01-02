@@ -48,7 +48,7 @@ port interfaces connecting to the servers as well as the logical VXLAN
 interface associated with the bridge. By creating a logical VXLAN
 interface on both leaf switches, the switches become *VTEPs* (virtual
 tunnel end points). The IP address associated with this VTEP is most
-commonly configured as its loopback address — in the image above, the
+commonly configured as its loopback address - in the image above, the
 loopback address is 10.2.1.1 for leaf1 and 10.2.1.2 for leaf2.
 
 ### Acquiring the Forwarding Database at the Service Node</span>
@@ -96,7 +96,7 @@ Head end replication is enabled by default in Cumulus Linux.
 {{%notice warning%}}
 
 You cannot have both service node and head end replication configured
-simultaneously, as this causes the BUM traffic to be duplicated — both
+simultaneously, as this causes the BUM traffic to be duplicated - both
 the source VTEP and the service node sending their own copy of each
 packet to every remote VTEP.
 
@@ -105,7 +105,7 @@ packet to every remote VTEP.
 #### <span id="src-5126910_LightweightNetworkVirtualization-LNVOverview-head-end" class="confluence-anchor-link"></span>Head End Replication</span>
 
 The Broadcom Tomahawk, Trident II+ and Trident II chipsets and Mellanox
-Spectrum chipsets are capable of head end replication (HER) — the
+Spectrum chipsets are capable of head end replication (HER) - the
 ability to generate all the BUM traffic in hardware. The most scalable
 solution available with LNV is to have each VTEP (top of rack switch)
 generate all of its own BUM traffic rather than relying on an external
@@ -247,11 +247,11 @@ example.
 <tbody>
 <tr class="odd">
 <td><p><strong>spine1:</strong></p>
-<pre><code>cumulus@spine1:~$ net add interface swp49 ip address 10.1.1.2/30
-cumulus@spine1:~$ net add interface swp50 ip address 10.1.1.6/30
-cumulus@spine1:~$ net add interface swp51 ip address 10.1.1.50/30
-cumulus@spine1:~$ net add interface swp52 ip address 10.1.1.54/30
-cumulus@spine1:~$ net add loopback lo ip address 10.2.1.3/32
+<pre><code>cumulus@spine1:~$ net add interface swp49 ip address 10.1.1.2/30
+cumulus@spine1:~$ net add interface swp50 ip address 10.1.1.6/30
+cumulus@spine1:~$ net add interface swp51 ip address 10.1.1.50/30
+cumulus@spine1:~$ net add interface swp52 ip address 10.1.1.54/30
+cumulus@spine1:~$ net add loopback lo ip address 10.2.1.3/32
 cumulus@spine1:~$ net pending
 cumulus@spine1:~$ net commit</code></pre>
 <p>These commands create the following configuration:</p>
@@ -259,10 +259,10 @@ cumulus@spine1:~$ net commit</code></pre>
 auto lo
 iface lo inet loopback
   address 10.2.1.3/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp49
 iface swp49
   address 10.1.1.2/30
@@ -294,7 +294,7 @@ iface lo inet loopback
  
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp49
 iface swp49 
  address 10.1.1.18/30
@@ -326,22 +326,22 @@ cumulus@leaf1:~$ net commit</code></pre>
 auto lo
 iface lo inet loopback
   address 10.2.1.1/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1s0
 iface swp1s0
   address 10.1.1.1/30
- 
+ 
 auto swp1s1
 iface swp1s1
   address 10.1.1.5/30
- 
+ 
 auto swp1s2
 iface swp1s2
   address 10.1.1.33/30
- 
+ 
 auto swp1s3
 iface swp1s3
   address 10.1.1.37/30</code></pre></td>
@@ -359,10 +359,10 @@ cumulus@leaf2:~$ net commit </code></pre>
 auto lo
 iface lo inet loopback
   address 10.2.1.2/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1s0
 iface swp1s0
  address 10.1.1.17/30
@@ -637,21 +637,21 @@ cumulus@leaf1:~$ net commit</code></pre>
 iface lo 
   address 10.2.1.1/32
   vxrd-src-ip 10.2.1.1
- 
+ 
 auto bridge
 iface bridge
   bridge-ports vni-10 vni-2000 vni-30
   bridge-vids 10 20 30
   bridge-vlan-aware yes
- 
+ 
 auto vni-10
 iface vni-10
   bridge-access 10
   mstpctl-bpduguard yes
-  mstpctl-portbpdufilter yes 
+  mstpctl-portbpdufilter yes 
   vxlan-id 10
   vxlan-local-tunnelip 10.2.1.1
- 
+ 
 auto vni-2000
 iface vni-2000
   bridge-access 20
@@ -659,7 +659,7 @@ iface vni-2000
   mstpctl-portbpdufilter yes
   vxlan-id 2000
   vxlan-local-tunnelip 10.2.1.1
- 
+ 
 auto vni-30
 iface vni-30
   bridge-access 30
@@ -687,13 +687,13 @@ cumulus@leaf2:~$ net commit</code></pre>
 iface lo
   address 10.2.1.2/32 
   vxrd-src-ip 10.2.1.2
- 
+ 
 auto bridge
 iface bridge
   bridge-ports vni-10 vni-2000 vni-30
   bridge-vids 10 20 30
   bridge-vlan-aware yes
- 
+ 
 auto vni-10
 iface vni-10
   bridge-access 10
@@ -701,7 +701,7 @@ iface vni-10
   mstpctl-portbpdufilter yes
   vxlan-id 10
   vxlan-local-tunnelip 10.2.1.2
- 
+ 
 auto vni-2000
 iface vni-2000
   bridge-access 20
@@ -811,7 +811,7 @@ For the service node daemon:
      Main PID: 774 (vxsnd)
        CGroup: /system.slice/vxsnd.service
                └─774 /usr/bin/python /usr/bin/vxsnd
-     
+     
     May 11 11:42:55 cumulus vxsnd[774]: INFO: Starting (pid 774) ...
 
 For the registration daemon:
@@ -823,7 +823,7 @@ For the registration daemon:
      Main PID: 929 (vxrd)
        CGroup: /system.slice/vxrd.service
                └─929 /usr/bin/python /usr/bin/vxrd
-     
+     
     May 11 11:42:55 cumulus vxrd[929]: INFO: Starting (pid 929) ...
 
 ## <span id="src-5126910_LightweightNetworkVirtualization-LNVOverview-regnode" class="confluence-anchor-link"></span>Configuring the Registration Node</span>
@@ -1264,9 +1264,9 @@ iface lo inet loopback
 <pre><code>cumulus@spine1:~$ sudo nano /etc/vxsnd.conf</code></pre>
 <p>Change the following values:</p>
 <pre><code>svcnode_ip = 10.10.10.10
- 
+ 
 svcnode_peers = 10.2.1.4
- 
+ 
 src_ip = 10.2.1.3</code></pre>
 <p>This sets the address on which the service node listens to VXLAN messages to the configured Anycast address and sets it to sync with spine2.</p>
 <p>Enable, then restart the <code>vxsnd</code> daemon:</p>
@@ -1277,9 +1277,9 @@ cumulus@spine1:~$ sudo systemctl restart vxsnd.service</code></pre></td>
 <pre><code>cumulus@spine2:~$ sudo nano /etc/vxsnd.conf</code></pre>
 <p>Change the following values:</p>
 <pre><code>svcnode_ip = 10.10.10.10
- 
+ 
 svcnode_peers = 10.2.1.3
- 
+ 
 src_ip = 10.2.1.4</code></pre>
 <p>This sets the address on which the service node listens to VXLAN messages to the configured Anycast address and sets it to sync with spine1.</p>
 <p>Enable, then restart the <code>vxsnd</code> daemon:</p>
@@ -1314,13 +1314,13 @@ iface lo inet loopback
     link/ether 46:c6:57:fc:1f:54 brd ff:ff:ff:ff:ff:ff
     vxlan id 10 remote 10.10.10.10 local 10.2.1.1 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.10.10.10
     bridge_slave
- 
+ 
 cumulus@leaf1:~$ ip -d link show vni-2000
 39: vni-2000: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master br-20 state UNKNOWN mode DEFAULT
     link/ether 4a:fd:88:c3:fa:df brd ff:ff:ff:ff:ff:ff
     vxlan id 2000 remote 10.10.10.10 local 10.2.1.1 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.10.10.10
     bridge_slave
- 
+ 
 cumulus@leaf1:~$ ip -d link show vni-30
 37: vni-30: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master br-30 state UNKNOWN mode DEFAULT
     link/ether 3e:b3:dc:f3:bd:2b brd ff:ff:ff:ff:ff:ff
@@ -1352,13 +1352,13 @@ iface lo inet loopback
     link/ether 4e:03:a7:47:a7:9d brd ff:ff:ff:ff:ff:ff
     vxlan id 10 remote 10.10.10.10 local 10.2.1.2 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.10.10.10
     bridge_slave
- 
+ 
 cumulus@leaf2:~$ ip -d link show vni-2000
 39: vni-2000: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master br-20 state UNKNOWN mode DEFAULT
     link/ether 72:3a:bd:06:00:b7 brd ff:ff:ff:ff:ff:ff
     vxlan id 2000 remote 10.10.10.10 local 10.2.1.2 srcport 32768 61000 dstport 4789 ageing 300 svcnode 10.10.10.10
     bridge_slave
- 
+ 
 cumulus@leaf2:~$ ip -d link show vni-30
 37: vni-30: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master br-30 state UNKNOWN mode DEFAULT
     link/ether 22:65:3f:63:08:bd brd ff:ff:ff:ff:ff:ff
@@ -1397,7 +1397,7 @@ for reference:
     --- 10.10.10.2 ping statistics ---
     2 packets transmitted, 2 received, 0% packet loss, time 1001ms
     rtt min/avg/max/mdev = 0.206/2.767/5.329/2.562 ms
-     
+     
     PING 10.10.20.2 (10.10.20.2) 56(84) bytes of data.
     64 bytes from 10.10.20.2: icmp_seq=1 ttl=64 time=1.64 ms
     64 bytes from 10.10.20.2: icmp_seq=2 ttl=64 time=0.187 ms
@@ -1405,7 +1405,7 @@ for reference:
     --- 10.10.20.2 ping statistics ---
     2 packets transmitted, 2 received, 0% packet loss, time 1001ms
     rtt min/avg/max/mdev = 0.187/0.914/1.642/0.728 ms
-     
+     
     cumulus@server1:~$ ping 10.10.30.2
     PING 10.10.30.2 (10.10.30.2) 56(84) bytes of data.
     64 bytes from 10.10.30.2: icmp_seq=1 ttl=64 time=1.63 ms

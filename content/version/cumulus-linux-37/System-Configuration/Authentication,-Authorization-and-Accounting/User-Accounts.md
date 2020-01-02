@@ -100,7 +100,7 @@ following:
 
     ```
     cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
-     
+     
     ...
 
     # Authentication:

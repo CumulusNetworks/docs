@@ -143,7 +143,7 @@ set "$@" --remote=ptcp:6633:$LOCALIP
 set "$@" --private-key=/root/cumulus-privkey.pem
 set "$@" --certificate=/root/cumulus-cert.pem
 set "$@" --bootstrap-ca-cert=/root/controller.cacert
-set “$@” --ssl-protocols=TLSv1,TLSv1.1,TLSv1.2
+set "$@ " --ssl-protocols=TLSv1,TLSv1.1,TLSv1.2
 ```
 
     If files have been moved or regenerated, restart the OVSDB server and VTEPd:
@@ -179,9 +179,9 @@ By default, in stand-alone mode, the ovs-vtep daemon creates traditional bridges
 
 ```
 # Start ovs-vtepd
-set ovs-vtepd unix:“$DB_SOCK”
-set “$@” -vconsole:emer -vsyslog:err -vfile:info
-#set “$@” --enable-vlan-aware-mode
+set ovs-vtepd unix:"$DB_SOCK "
+set "$@ " -vconsole:emer -vsyslog:err -vfile:info
+#set "$@ " --enable-vlan-aware-mode
 ```
 
 Then restart the OVSDB server and VTEPd:
@@ -338,5 +338,5 @@ cumulus@switch:~$ sudo ovsdb-client dump Manager
 Manager table
 _uuid                                inactivity_probe is_connected max_backoff other_config status                                 target
 ------------------------------------ ---------------- ------------ ----------- ------------ -------------------------------------- -------------------
-e700ad21-8fd8-4f09-96dc-fa7cc6e498d8 30000            true         []          {}           {sec_since_connect=“68”, state=ACTIVE} “ssl:54.0.0.2:6632"
+e700ad21-8fd8-4f09-96dc-fa7cc6e498d8 30000            true         []          {}           {sec_since_connect="68 ", state=ACTIVE} "ssl:54.0.0.2:6632"
 ```

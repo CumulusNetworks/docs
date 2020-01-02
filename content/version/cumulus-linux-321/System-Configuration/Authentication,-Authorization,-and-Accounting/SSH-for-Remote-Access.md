@@ -62,7 +62,7 @@ functionality. The section below covers how to generate a SSH key pair.
         /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
         /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
         cumulus@leaf01's password:
-         
+         
         Number of key(s) added: 1
     
     {{%notice warning%}}
@@ -81,14 +81,14 @@ functionality. The section below covers how to generate a SSH key pair.
     in place:
     
         cumulus@leaf04:~$ ssh cumulus@leaf02
-         
+         
         Welcome to Cumulus VX (TM)
-         
+         
         Cumulus VX (TM) is a community supported virtual appliance designed for
         experiencing, testing and prototyping Cumulus Networks' latest technology.
         For any questions or technical support, visit our community site at:
         http://community.cumulusnetworks.com
-         
+         
         The registered trademark Linux (R) is used pursuant to a sublicense from LMI,
         the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide
         basis.

@@ -35,9 +35,9 @@ This topic describes the auto-negotiation, link speed, duplex mode, MTU, and FEC
 
 ## Auto-negotiation
 
-By default on a Broadcom-based switch, auto-negotiation is disabled — except on 10G and 1000BASE-T fixed copper switch ports, where it is required for links to work. For RJ-45 SFP adapters, you need to manually configure the desired link speed and auto-negotiation as described in the [default settings table](#interface-configuration-recommendations-for-broadcom-platforms) below.
+By default on a Broadcom-based switch, auto-negotiation is disabled - except on 10G and 1000BASE-T fixed copper switch ports, where it is required for links to work. For RJ-45 SFP adapters, you need to manually configure the desired link speed and auto-negotiation as described in the [default settings table](#interface-configuration-recommendations-for-broadcom-platforms) below.
 
-If you disable auto-negotiation later or never enable it, then you have to configure any settings that deviate from the port default — such as duplex mode, FEC, and link speed settings.
+If you disable auto-negotiation later or never enable it, then you have to configure any settings that deviate from the port default - such as duplex mode, FEC, and link speed settings.
 
 {{%notice warning%}}
 
@@ -826,7 +826,7 @@ Spectrum switches automatically configure these settings following a predefined 
 | 1000BASE-T on a 1G fixed copper port | On | N/A | **NCLU commands**<pre>$ net add interface swp1 link speed 1000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 1000</pre> | |
 | 1000BASE-T on a 10G fixed copper port | On | N/A |**NCLU commands**<pre>$ net add interface swp1 link speed 1000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 1000</pre>| |
 | 1000BASE-SX 1000BASE-LX (1G Fiber) | Recommended On | N/A |**NCLU commands**<pre>$ net add interface swp1 link speed 1000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 1000</pre> |Without auto-negotiation, the link stays up when there is a single fiber break.<br><br>See the limitation discussed in [10G and 1G SFPs Inserted in a 25G Port](#10g-and-1g-sfps-inserted-in-a-25g-port), below. |
-| 10GBASE-T (RJ-45 SFP Module) | Off | N/A | **NCLU commands**<pre>$ net add interface swp1 link speed 10000<br>$ net add interface swp1 link autoneg off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 10000</pre> |The module has two sets of electronics — the port side, which communicates to the switch ASIC and the RJ-45 side.<br><br>Auto-negotiation is always used on the RJ-45 side of the link by the PHY built into the module. This is independent of the switch setting. Set link-autoneg to off.<br><br>Auto-negotiation needs to be enabled on the server side. |
+| 10GBASE-T (RJ-45 SFP Module) | Off | N/A | **NCLU commands**<pre>$ net add interface swp1 link speed 10000<br>$ net add interface swp1 link autoneg off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 10000</pre> |The module has two sets of electronics - the port side, which communicates to the switch ASIC and the RJ-45 side.<br><br>Auto-negotiation is always used on the RJ-45 side of the link by the PHY built into the module. This is independent of the switch setting. Set link-autoneg to off.<br><br>Auto-negotiation needs to be enabled on the server side. |
 | 10GBASE-T fixed copper port | On | N/A |**NCLU commands**<pre>$ net add interface swp1 link speed 10000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 10000</pre> | |
 | 10GBASE-CR<br>10GBASE-LR<br>10GBASE-SR<br>10G AOC | Off | N/A | **NCLU commands**<pre>$ net add interface swp1 link speed 10000<br>$ net add interface swp1 link autoneg off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 10000</pre> ||
 | 40GBASE-CR4 | Recommended On | Disable | **NCLU commands**<pre>$ net add interface swp1 link speed 40000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 40000</pre>|40G standards mandate auto-negotiation be enabled for DAC connections. |
@@ -986,9 +986,9 @@ cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
 #         2x50G, 4x25G, or 4x10G ports.
 #
 # NOTE:  You must restart switchd for any changes to take effect.
-# Only “odd-numbered” port can be split into 4 interfaces and if an odd-numbered
+# Only "odd-numbered " port can be split into 4 interfaces and if an odd-numbered
 # port is split in a 4X configuration, the port adjacent to it (even-numbered port)
-# has to be set to “disabled” in this file. When splitting a port into two
+# has to be set to "disabled " in this file. When splitting a port into two
 # interfaces, like 2x50G, it is NOT required that the adjacent port be
 # disabled. For example, when splitting port 11 into 4 10G interfaces, port
 # 12 must be configured as "disabled" like this:
@@ -1284,9 +1284,9 @@ The following example shows the logical port limitation provided in the Dell Z92
 #         2x50G, 4x25G, or 4x10G ports.
 #
 # NOTE:  You must restart switchd for any changes to take effect.
-# Only “odd-numbered” port can be split into 4 interfaces and if an odd-numbered
+# Only "odd-numbered " port can be split into 4 interfaces and if an odd-numbered
 # port is split in a 4X configuration, the port adjacent to it (even-numbered port)
-# has to be set to “disabled” in this file. When splitting a port into two
+# has to be set to "disabled " in this file. When splitting a port into two
 # interfaces, like 2x50G, it is NOT required that the adjacent port be
 # disabled. For example, when splitting port 11 into 4 10G interfaces, port
 # 12 must be configured as "disabled" like this:

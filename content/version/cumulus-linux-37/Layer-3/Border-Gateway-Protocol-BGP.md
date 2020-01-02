@@ -26,7 +26,7 @@ BGP is the routing protocol that runs the Internet. It is an increasingly popula
 
 One of the key concepts in BGP is an *autonomous system number* or ASN. An [autonomous system](https://en.wikipedia.org/wiki/Autonomous_System_%28Internet%29) is defined as a set of routers under a common administration. Because BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called its ASN. ASNs are handed out by a central authority (ICANN). However, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
 
-The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries with it not only the originator’s ASN, but also the list of ASNs that this route advertisement has passed through. When forwarding a route advertisement, a BGP speaker adds itself to this list. This list of ASNs is called the *AS path*. BGP uses the AS path to detect and avoid loops.
+The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries with it not only the originator's ASN, but also the list of ASNs that this route advertisement has passed through. When forwarding a route advertisement, a BGP speaker adds itself to this list. This list of ASNs is called the *AS path*. BGP uses the AS path to detect and avoid loops.
 
 ASNs were originally 16-bit numbers, but were later modified to be 32-bit. FRRouting supports both 16-bit and  32-bit ASNs, but most implementations still run with 16-bit ASNs.
 
@@ -331,7 +331,7 @@ Assigning an IP address to the loopback device is essential.
 
 ### Advanced: How Next Hop Fields Are Set
 
-This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ([multiprotocol reachable NLRI](https://www.ietf.org/rfc/rfc2858.txt)) initiated by the system, which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with ENHE. There are two main aspects to determine — how many IPv6 next hops are included in the MP\_REACH\_NLRI (since the RFC allows either one or two next hops) and the values of the nexthop(s). This section also describes how a received MP\_REACH\_NLRI is handled as far as processing IPv6 next hops.
+This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ([multiprotocol reachable NLRI](https://www.ietf.org/rfc/rfc2858.txt)) initiated by the system, which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with ENHE. There are two main aspects to determine - how many IPv6 next hops are included in the MP\_REACH\_NLRI (since the RFC allows either one or two next hops) and the values of the nexthop(s). This section also describes how a received MP\_REACH\_NLRI is handled as far as processing IPv6 next hops.
 
 - Whether peering to a global IPv6 address or link-local IPv6 address, the determination whether to send one or two next hops is as follows:
 
@@ -341,7 +341,7 @@ This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ([m
 
     3. In all other cases, only one next hop gets sent, unless an outbound route map adds another next hop.
 
-- `route-map` can impose two next hops in scenarios where Cumulus Linux only sends one next hop — by specifying `set ipv6 nexthop link-local`.
+- `route-map` can impose two next hops in scenarios where Cumulus Linux only sends one next hop - by specifying `set ipv6 nexthop link-local`.
 - For all routes to eBGP peers and self-originated routes to iBGP peers, the global next hop (first value) is the peering address of the local system. If the peering is on the link-local address, this is the global IPv6 address on the peering interface, if present; otherwise, it is the link-local IPv6 address on the peering interface.
 - For other routes to iBGP peers (eBGP to iBGP or reflected), the global next hop will be the global next hop in the received attribute.
 
@@ -351,7 +351,7 @@ If this address is a link-local IPv6 address, it is reset so that the link-local
 
 {{%/notice%}}
 
-- `route-map` and/or the peer configuration can change the above behavior. For example, `route-map` can set the global IPv6 next hop or the peer configuration can set it to *self* — which is relevant for *iBGP* peers. The route map or peer configuration can also set the next hop to unchanged, which ensures the source IPv6 global next hop is passed around — which is relevant for *eBGP* peers.
+- `route-map` and/or the peer configuration can change the above behavior. For example, `route-map` can set the global IPv6 next hop or the peer configuration can set it to *self* - which is relevant for *iBGP* peers. The route map or peer configuration can also set the next hop to unchanged, which ensures the source IPv6 global next hop is passed around - which is relevant for *eBGP* peers.
 - Whenever two next hops are being sent, the link-local next hop (the second value of the two) is the link-local IPv6 address on the peering interface unless it is due to `nh-local-unchanged` or `route-map` has set the link-local next hop.
 - Network administrators cannot set [martian values](http://en.wikipedia.org/wiki/Martian_packet) for IPv6 next hops in `route-map`. Also, global and link-local next hops are validated to ensure they match the respective address types.
 - In a received update, a martian check is imposed for the IPv6 global next hop. If the check fails, it gets treated as an implicit withdraw.
@@ -369,8 +369,8 @@ The above rules imply that there are scenarios where a generated update has two 
 - BGP unnumbered only works with two switches at a time, as it is meant to work with PTP (point-to-point protocol).
 - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
 - If the default router lifetime in the generated IPv6 route advertisements (RA) is set to *0*, the receiving FRRouting instance drops the RA if it is on a Cumulus Linux **2.5.z** switch. To work around this issue, either:
-    - Explicitly configure the switch to advertise a router lifetime of 0, unless a value is specifically set by the operator — with the assumption that the host is running Cumulus Linux 3.y.z version of FRRouting. When hosts see an IPv6 RA with a router lifetime of 0, they do not make that router a default router.
-    - Use the `sysctl` on the host — `net.ipv6.conf.all.accept_ra_defrtr`. However, this requires applying this setting on all hosts, which might mean many hosts, especially if FRRouting is run on the hosts.
+    - Explicitly configure the switch to advertise a router lifetime of 0, unless a value is specifically set by the operator - with the assumption that the host is running Cumulus Linux 3.y.z version of FRRouting. When hosts see an IPv6 RA with a router lifetime of 0, they do not make that router a default router.
+    - Use the `sysctl` on the host - `net.ipv6.conf.all.accept_ra_defrtr`. However, this requires applying this setting on all hosts, which might mean many hosts, especially if FRRouting is run on the hosts.
 
 ## RFC 5549 Support with Global IPv6 Peers (Cumulus Linux 3.7.2 and later)
 
@@ -804,7 +804,7 @@ cumulus@switch:~$ net add bgp ipv6 unicast neighbor swp1 activate
 
 {{%notice note%}}
 
-By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Cumulus Networks recommends you adjust the interval of the router advertisement to a shorter value (`net add interface <interface> ipv6 nd ra-interval <interval>`) to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor’s link-local address to BGP. The `interval` is measured in seconds and defaults to 10 seconds.
+By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Cumulus Networks recommends you adjust the interval of the router advertisement to a shorter value (`net add interface <interface> ipv6 nd ra-interval <interval>`) to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor's link-local address to BGP. The `interval` is measured in seconds and defaults to 10 seconds.
 
 {{%/notice%}}
 
@@ -861,7 +861,7 @@ cumulus@switch:~$ net add bgp listen range 10.1.1.0/24 peer-group SPINE
 These commands produce an IPv4 configuration that looks like this:
 
 ```
-router bgp 65001 
+router bgp 65001 
   neighbor SPINE peer-group
   neighbor SPINE remote-as 65000
   bgp listen limit 5
@@ -1786,7 +1786,7 @@ To work around this issue, only advertise the spine to leaf addresses from the s
 - [RFC 2918, Route Refresh Capability for BGP-4](https://tools.ietf.org/html/rfc2918)
 - [RFC 4271, A Border Gateway Protocol 4 (BGP-4)](https://tools.ietf.org/html/rfc4271)
 - [RFC 4360, BGP Extended Communities Attribute](https://tools.ietf.org/html/rfc4360)
-- [RFC 4456, BGP Route Reflection – An Alternative to Full Mesh Internal BGP (iBGP)](https://tools.ietf.org/html/rfc4456)
+- [RFC 4456, BGP Route Reflection - An Alternative to Full Mesh Internal BGP (iBGP)](https://tools.ietf.org/html/rfc4456)
 - [RFC 4760, Multiprotocol Extensions for BGP-4](https://tools.ietf.org/html/rfc4760)
 - [RFC 5004, Avoid BGP Best Path Transitions from One External to Another](https://tools.ietf.org/html/rfc5004)
 - [RFC 5065, Autonomous System Confederations for BGP](https://tools.ietf.org/html/rfc5065)

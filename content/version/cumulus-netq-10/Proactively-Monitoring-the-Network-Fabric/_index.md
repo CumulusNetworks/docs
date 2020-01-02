@@ -137,8 +137,8 @@ On the server running Logstash, create a file in `/etc/logstash/conf.d/`
 called `notifier_logstash.conf`, and paste in the following text, using
 the IP address and port you specified earlier:
 
-    root@ts_host:~# vi /etc/logstash/conf.d/notifier_logstash.conf
-     
+    root@ts_host:~# vi /etc/logstash/conf.d/notifier_logstash.conf
+     
     input {
         syslog {
             type => syslog
@@ -166,7 +166,7 @@ logs to Splunk. In the following example, Splunk is on a host with the
 IP address 192.168.50.30, using port 51414:
 
     # rsyslog - splunk configuration 
-    sed -i ‘/$netq_notifier_log/a if $programname == “netq-notifier” then @@192.168.50.30:51415’ /etc/rsyslog.d\
+    sed -i '/$netq_notifier_log/a if $programname == "netq-notifier " then @@192.168.50.30:51415' /etc/rsyslog.d\
     /50-netq-notifier.conf
 
 Then restart `rsyslog`:
@@ -233,7 +233,7 @@ capability regarding `netq show services`.
     <!-- end list -->
     
         cumulus@leaf01:~$ sudo vi /etc/netq/config.d/netq-agent-commands.yml 
-         
+         
         user-commands:
           - service: 'misc'
             commands:
@@ -248,7 +248,7 @@ capability regarding `netq show services`.
               - period: "60"
                 key: "config-quagga"
                 command: ["/usr/bin/vtysh", "-c", "show running-config"]
-         
+         
           - service: "web"
             commands:
               - period: "60"
@@ -266,9 +266,9 @@ capability regarding `netq show services`.
         cumulus@leaf01: sudo cat /var/run/netq-agent-running.json
         cumulus@leaf01:mgmt-vrf:~$ cat /var/run/netq-agent-running.json 
         {"commands": [{"callback": null, "service": "web", "command": "/usr/bin/curl https://cumulusnetworks.com/ -o /dev/null", "period": 60, "key": "webping"},  #this is the output
-         
+         
         {"service": "smond", "always": false, "period": 30, "callback": {}, "command": "/usr/sbin/smonctl -j", "key": "smonctl-json"}, {"service": "zebra", "always": false, "period": 60, "callback": null, "command": ["/usr/bin/vtysh", "-c", "show running-config"], "key": "config-quagga"}, {"service": "clagd", "always": false, "period": 15, "callback": {}, "command": "/usr/bin/clagctl -j", "key": "clagctl-json"}, {"service": "bgpd", "always": false, "period": 15, "callback": {}, "command": ["/usr/bin/vtysh", "-c", "show ip bgp vrf all neighbors json"], "key": "bgp-neighbors"}, {"service": "misc", "always": false, "period": 30, "callback": {}, "command": "/usr/sbin/switchd -lic", "key": "cl-license"}, {"service": "misc", "always": false, "period": 60, "callback": null, "command": "/bin/cat /etc/network/interfaces", "key": "config-interfaces"}, {"service": "misc", "always": false, "period": 60, "callback": null, "command": "/bin/cat /etc/ntp.conf", "key": "config-ntp"}, {"service": "lldpd", "always": false, "period": 30, "callback": {}, "command": "/usr/sbin/lldpctl -f json", "key": "lldp-neighbor-json"}, {"service": "mstpd", "always": false, "period": 15, "callback": {}, "command": "/sbin/mstpctl showall json", "key": "mstpctl-bridge-json"}], "backend": {"server": "192.168.0.254", "vrf": "mgmt", "port": 6379}}
-        cumulus@leaf01:mgmt-vrf:~$  
+        cumulus@leaf01:mgmt-vrf:~$  
 
 5.  And you can see the service is running on the host when you run netq
     show services:

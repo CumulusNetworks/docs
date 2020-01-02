@@ -397,7 +397,7 @@ address is configured.
     version 2:
     
         cumulus# configure terminal
-        cumulus(config)# int swp1 
+        cumulus(config)# int swp1 
         cumulus(config-if)# ip igmp 
         cumulus(config-if)# ip igmp version 2 #skip this step if you are using version 3
     
@@ -717,7 +717,7 @@ Use the `show ip mroute` command to review detailed output for the FHR:
     Uptime    : --:--:--
     Elections : 2
     Changes   : 0
-     
+     
     FHR - First Hop Router
     ----------------------
     239.1.1.1 : 172.16.5.105 is a source, uptime is 00:27:43
@@ -866,7 +866,7 @@ To troubleshoot the issue:
     
         cumulus@spine01:~$ sudo vtysh -c "debug pim packets"
         PIM Packet debugging is on
-         
+         
         cumulus@spine01:~$ sudo tail /var/log/quagga/quagga.log
         2016/10/19 23:46:51 PIM: Recv PIM REGISTER packet from 172.16.5.1 to 10.0.0.21 on swp30: ttl=255 pim_version=2 pim_msg_size=64 checksum=a681
 
@@ -876,10 +876,10 @@ To troubleshoot the issue:
         cumulus@exit01:~$ sudo tcpdump -i swp51
         23:58:59.841625 IP 172.16.5.1 > 10.0.0.21: PIMv2, Register, length 28
         23:58:59.842466 IP 10.0.0.21 > 172.16.5.1: PIMv2, Register Stop, length 18
-         
+         
         cumulus@exit01:~$ sudo vtysh -c "debug pim packets"
         PIM Packet debugging is on
-         
+         
         cumulus@exit01:~$ sudo tail -f /var/log/quagga/quagga.log
         2016/10/19 23:59:38 PIM: Recv PIM REGSTOP packet from 10.0.0.21 to 172.16.5.1 on swp51: ttl=255 pim_version=2 pim_msg_size=18 checksum=5a39
 

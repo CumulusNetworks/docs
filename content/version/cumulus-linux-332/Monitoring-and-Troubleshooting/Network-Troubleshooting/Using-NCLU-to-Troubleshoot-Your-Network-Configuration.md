@@ -51,7 +51,7 @@ To show all available interfaces that are physically UP, run `net show
 interface`:
 
     cumulus@switch:~$ net show interface
-     
+     
         Name    Speed    MTU    Mode           Summary
     --  ------  -------  -----  -------------  --------------------------------------
     UP  lo      N/A      65536  Loopback       IP: 10.0.0.11/32, 127.0.0.1/8, ::1/128
@@ -97,17 +97,17 @@ You can get information about the switch itself by running `net show
 system`:
 
     cumulus@switch:~$ net show system
-     
+     
     Penguin Arctica 4806XP
-     
+     
     Cumulus Version 3.3.2
-     
+     
     Build: Cumulus Linux 3.3.2
-     
+     
     Chipset: Broadcom Trident2 BCM56854
-     
+     
     Port Config: 48 x 10G-SFP+ & 6 x 40G-QSFP+
-     
+     
     CPU: (x86_64) Intel Atom C2558 2.40GHz
     Uptime: 8 days, 0:45:29
 

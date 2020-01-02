@@ -42,12 +42,12 @@ chassis:
     database.
     
         cumulus@chassis-lc101:~$ sudo nano /etc/netq/netq.yml
-         
+         
         ...
-         
+         
         netq-agent:
           send_chassis_sensor_data: true
-         
+         
         ...
 
 <article id="html-search-results" class="ht-content" style="display: none;">

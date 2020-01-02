@@ -42,14 +42,14 @@ These commands create the following configuration snippet in the
       bridge-pvid 1
       bridge-vids 1-1000
       bridge-vlan-aware yes
-     
+     
     auto swp1
     iface swp1
        bridge-pvid 100
        bridge-vids 200
        mstpctl-bpduguard yes
        mstpctl-portadminedge yes
-     
+     
     auto swp2
     iface swp2
        bridge-pvid 100
@@ -61,15 +61,15 @@ The `bridge-vids` can be reviewed with the `net show bridge vlan`
 command:
 
     cumulus@ig-spine-01:~$ net show bridge vlan
-     
+     
     Interface    VLAN      Flags
     -----------  --------  ---------------------
     swp1         100       PVID, Egress Untagged
                  200
-     
+     
     swp2         100       PVID, Egress Untagged
                  200
-     
+     
     swp3         1         PVID, Egress Untagged
                  2-1000
 

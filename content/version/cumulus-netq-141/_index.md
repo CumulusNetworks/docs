@@ -14,12 +14,12 @@ subsection: true
 ---
 Cumulus® NetQ is a network operations tool set that provides actionable
 insight into and operational intelligence about the health of the entire
-Linux-based data center — from the container, virtual machine, or host,
+Linux-based data center - from the container, virtual machine, or host,
 all the way to the switch and port. Working hand-in-hand with Cumulus
 Linux, NetQ enables organizations to validate network state, both during
 regular operations and for post-mortem diagnostic analysis. Running on
-Cumulus Linux switches and other certified systems — such as Ubuntu®,
-Red Hat®, and CentOS hosts — NetQ captures network data and other state
+Cumulus Linux switches and other certified systems - such as Ubuntu®,
+Red Hat®, and CentOS hosts - NetQ captures network data and other state
 information in real time, providing cloud architects and network
 operations teams the ability to operate with visibility into the entire
 network. It is integrated with container orchestrators and the Netlink
@@ -91,7 +91,7 @@ about the network state are described here.
 ### NetQ Agents
 
 NetQ Agents are back-end Python software installed on every monitored
-*node* in the network — including Cumulus® Linux® switches, Linux
+*node* in the network - including Cumulus® Linux® switches, Linux
 bare-metal hosts and virtual machines, and Docker containers. The NetQ
 Agents push network data every 15 seconds and event information
 immediately to the NetQ Telemetry Server.
@@ -388,13 +388,13 @@ between server02 and server03, all with an MTU of 9152.
     Number of Paths with Warnings: 0
     Path MTU: 9152
          server02:eth1 -- leaf01:swp51 -- spine01:swp3 -- leaf03:swp1 -- server03:cali320be3ff5dd
-                                       -- spine01:swp4 -- leaf04:swp1 -- server03:cali320be3ff5dd
-                       -- leaf01:swp52 -- spine02:swp3 -- leaf03:swp1 -- server03:cali320be3ff5dd
-                                       -- spine02:swp4 -- leaf04:swp1 -- server03:cali320be3ff5dd
-         server02:eth2 -- leaf02:swp51 -- spine01:swp3 -- leaf03:swp1 -- server03:cali320be3ff5dd
-                                       -- spine01:swp4 -- leaf04:swp1 -- server03:cali320be3ff5dd
-                       -- leaf02:swp52 -- spine02:swp3 -- leaf03:swp1 -- server03:cali320be3ff5dd
-                                       -- spine02:swp4 -- leaf04:swp1 -- server03:cali320be3ff5dd
+                                       -- spine01:swp4 -- leaf04:swp1 -- server03:cali320be3ff5dd
+                       -- leaf01:swp52 -- spine02:swp3 -- leaf03:swp1 -- server03:cali320be3ff5dd
+                                       -- spine02:swp4 -- leaf04:swp1 -- server03:cali320be3ff5dd
+         server02:eth2 -- leaf02:swp51 -- spine01:swp3 -- leaf03:swp1 -- server03:cali320be3ff5dd
+                                       -- spine01:swp4 -- leaf04:swp1 -- server03:cali320be3ff5dd
+                       -- leaf02:swp52 -- spine02:swp3 -- leaf03:swp1 -- server03:cali320be3ff5dd
+                                       -- spine02:swp4 -- leaf04:swp1 -- server03:cali320be3ff5dd
 
 This output is read as:
 
@@ -458,20 +458,20 @@ last night and that they can be run from any switch in the network.
 
     cumulus@switch:~$ netq spine01 check bgp around 10h
     Total Sessions: 16, Failed Sessions: 2
-    Node     Neighbor    Peer ID    Reason              Time
-    -------  ----------  ---------  ------------------  -------
-    leaf03   swp51       spine01    Interface down      10h ago
-    spine01  swp3        leaf03     Hold Timer Expired  10h ago
-     
-    cumulus@switch:~$ netq spine01 show bgp around 10h
-     
+    Node     Neighbor    Peer ID    Reason              Time
+    -------  ----------  ---------  ------------------  -------
+    leaf03   swp51       spine01    Interface down      10h ago
+    spine01  swp3        leaf03     Hold Timer Expired  10h ago
+     
+    cumulus@switch:~$ netq spine01 show bgp around 10h
+     
     Matching bgp records:
-    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
+    Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
     ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
-    Spine01           swp1(leaf01)                 default         65020      65011      2/-/-        1d:4h:55m:0s
-    Spine01           swp2(leaf02)                 default         65020      65012      2/-/-        1d:4h:55m:0s
-    Spine01           swp3(leaf03)                 default         65020      65013      2/-/-        1d:4h:55m:0s
-    Spine01           swp4(leaf04)                 default         65020      65014      2/-/-        1d:4h:54m:59s
+    Spine01           swp1(leaf01)                 default         65020      65011      2/-/-        1d:4h:55m:0s
+    Spine01           swp2(leaf02)                 default         65020      65012      2/-/-        1d:4h:55m:0s
+    Spine01           swp3(leaf03)                 default         65020      65013      2/-/-        1d:4h:55m:0s
+    Spine01           swp4(leaf04)                 default         65020      65014      2/-/-        1d:4h:54m:59s
 
 **Manage Network Events**
 
@@ -508,7 +508,7 @@ that occurred at a particular time or within a time window.
 Interface state, IP addresses, routes, ARP/ND table (IP neighbor)
 entries and MAC table entries carry a timestamp that represents the time
 the event happened (such as when a route is deleted or an interface
-comes up) — *except* the first time the NetQ agent is run. If the
+comes up) - *except* the first time the NetQ agent is run. If the
 network has been running and stable when a NetQ agent is brought up for
 the first time, then this time reflects when the agent was started.
 Subsequent changes to these objects are captured with an accurate time

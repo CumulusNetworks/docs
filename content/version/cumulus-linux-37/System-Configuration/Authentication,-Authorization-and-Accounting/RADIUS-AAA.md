@@ -226,7 +226,7 @@ To configure local fallback authentication:
     the `radius_priv_user` line:
 
         cumulus@switch:~$ sudo vi /etc/passwd
-         
+         
         ...
         johnadmin:x:1002:1001::/home/johnadmin:/sbin/radius_shell
         radius_priv_user:x:1002:1001::/home/radius_priv_user:/sbin/radius_shell
@@ -256,13 +256,13 @@ privilege level 15) so is able to add interface swp1.
     --- /etc/network/interfaces    2018-04-06 14:49:33.099331830 +0000
     +++ /var/run/nclu/iface/interfaces.tmp    2018-04-06 16:01:16.057639999 +0000
     @@ -3,10 +3,13 @@
-     
+     
      source /etc/network/interfaces.d/*.intf
-     
+     
      # The loopback network interface
      auto lo
      iface lo inet loopback
-     
+     
      # The primary network interface
      auto eth0
      iface eth0 inet dhcp

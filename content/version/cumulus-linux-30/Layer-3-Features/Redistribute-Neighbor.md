@@ -122,7 +122,7 @@ steps can be applied to any of the leafs.
         auto swp1
         iface swp1
           address 10.0.0.11/32
-         
+         
         auto swp2
         iface swp2
           address 10.0.0.11/32
@@ -427,13 +427,13 @@ This release of redistribute neighbor does not support
         Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
                       i internal, r RIB-failure, S Stale, R Removed
         Origin codes: i - IGP, e - EGP, ? - incomplete
-         
+         
            Network          Next Hop            Metric LocPrf Weight Path
         *> 10.0.0.11/32     0.0.0.0                  0         32768 i
         *> 10.0.0.12/32     ::                                     0 65020 65012 i
         *> 10.0.0.21/32     ::                                     0 65020 i
         *> 10.0.0.22/32     ::                                     0 65020 i
-         
+         
         Total number of prefixes 4
 
 ### Verification</span>

@@ -132,7 +132,7 @@ the switch it's running on:
 
 {{%notice tip%}}
 
-It’s a good idea to always wrap the hostname in double quotes, like
+It's a good idea to always wrap the hostname in double quotes, like
 *"www.example.com"*. Otherwise, `ptmd` can fail if you specify a
 fully-qualified domain name as the hostname and do not wrap it in double
 quotes.
@@ -151,7 +151,7 @@ using in the `topology.dot` file.
     }
 
 However, in this next example, PTM will compare using the FQDN and look
-for *switch05.cumulusnetworks.com*, which is the FQDN of the switch it’s
+for *switch05.cumulusnetworks.com*, which is the FQDN of the switch it's
 running on:
 
     graph G {
@@ -473,7 +473,7 @@ running state of `ptmd`.
 
 ## Using ptmctl Commands
 
-`ptmctl` is a client of `ptmd`; it retrieves the daemon’s operational
+`ptmctl` is a client of `ptmd`; it retrieves the daemon's operational
 state. It connects to `ptmd` over a Unix socket and listens for
 notifications. `ptmctl` parses the CSV notifications sent by `ptmd`.
 
@@ -549,7 +549,7 @@ swp1  3101:abc:bcad::2     Up     N/A    singlehop  N/A   3     300         900 
 
 ### ptmctl Error Outputs
 
-If there are errors in the topology file or there isn’t a session, PTM
+If there are errors in the topology file or there isn't a session, PTM
 will return appropriate outputs. Typical error strings are:
 
     Topology file error [/etc/ptm.d/topology.dot] [cannot find node cumulus] -

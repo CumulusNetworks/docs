@@ -101,6 +101,6 @@ It also enables drop behaviors and Random Early Detection (RED). RED identifies 
 
 ## Related Information
 
-- [RoCE introduction](http://www.roceinitiative.org/roce-introduction/) — roceinitiative.org
-- [RoCEv2 congestion management](https://community.mellanox.com/docs/DOC-2321) — community.mellanox.com
+- [RoCE introduction](http://www.roceinitiative.org/roce-introduction/) - roceinitiative.org
+- [RoCEv2 congestion management](https://community.mellanox.com/docs/DOC-2321) - community.mellanox.com
 - [Configuring RoCE over a DSCP-based lossless network](https://community.mellanox.com/docs/DOC-3036) on a switch with a Mellanox Spectrum ASIC

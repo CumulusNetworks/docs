@@ -181,7 +181,7 @@ To install without DHCP options using ONIE, do the following:
     (`tftp` for TFTP or `ftp` for FTP):
 
         ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
-         
+         
         ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 
 ## Installing through a Local File
@@ -455,7 +455,7 @@ you need to monitor the console specifically to complete the next step.
         L1: D-cache 32 kB enabled
          I-cache 32 kB enabled
          
-        <...snip…>
+        <...snip ...>
          
         USB: USB2513 hub OK
         Hit any key to stop autoboot: 0
@@ -469,11 +469,11 @@ you need to monitor the console specifically to complete the next step.
     file is located and automatic installation of Cumulus Linux begins.
     Here is some sample output:
 
-        Loading Open Network Install Environment …
+        Loading Open Network Install Environment  ...
         Platform: arm-as4610_54p-r0
         Version : 1.6.1.3
         WARNING: adjusting available memory to 30000000
-        ## Booting kernel from Legacy Image at ec040000 …
+        ## Booting kernel from Legacy Image at ec040000  ...
            Image Name:   as6701_32x.1.6.1.3
            Image Type:   ARM Linux Multi-File Image (gzip compressed)
            Data Size:    4456555 Bytes = 4.3 MiB
@@ -484,7 +484,7 @@ you need to monitor the console specifically to complete the next step.
               Image 1: 706440 Bytes = 689.9 KiB
               Image 2: 11555 Bytes = 11.3 KiB
            Verifying Checksum ... OK
-        ## Loading init Ramdisk from multi component Legacy Image at ec040000 …
+        ## Loading init Ramdisk from multi component Legacy Image at ec040000  ...
         ## Flattened Device Tree from multi component Image at EC040000
            Booting using the fdt at 0xec47d388
            Uncompressing Multi-File Image ... OK
@@ -497,7 +497,7 @@ you need to monitor the console specifically to complete the next step.
         ONIE: Executing installer: file://dev/sdb1/onie-installer-arm
         Verifying image checksum ... OK.
         Preparing image archive ... OK.
-        Dumping image info…
+        Dumping image info ...
         Control File Contents
         =====================
         Description: Cumulus Linux

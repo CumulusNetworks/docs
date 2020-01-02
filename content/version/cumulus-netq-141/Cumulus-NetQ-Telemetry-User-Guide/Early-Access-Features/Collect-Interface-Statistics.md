@@ -95,14 +95,14 @@ To set up Grafana to view NetQ interface statistics:
 
         cumulus@ts:~$ sudo vi /etc/apt/sources.list
         [sudo] password for cumulus:**********
-         
+         
         ...
         deb https://packagecloud.io/grafana/stable/debian/ jessie main
         ...
 
 2.  Install the package cloud key.
 
-        cumulus@ts:~$ curl https://packagecloud.io/gpg.key | sudo apt-key add -
+        cumulus@ts:~$ curl https://packagecloud.io/gpg.key | sudo apt-key add -
 
 3.  Install, start, and enable the package.
 
@@ -116,12 +116,12 @@ To set up Grafana to view NetQ interface statistics:
 
         cumulus@ts:~$ sudo systemctl status grafana-server
         ● grafana-server.service - Grafana instance
-           Loaded: loaded (/usr/lib/systemd/system/grafana-server.service; disabled)
-           Active: active (running) since Mon 2018-06-18 20:14:38 UTC; 7s ago
-             Docs: http://docs.grafana.org
+           Loaded: loaded (/usr/lib/systemd/system/grafana-server.service; disabled)
+           Active: active (running) since Mon 2018-06-18 20:14:38 UTC; 7s ago
+             Docs: http://docs.grafana.org
         Main PID: 5755 (grafana-server)
-          CGroup: /system.slice/grafana-server.service
-                  └─5755 /usr/sbin/grafana-server --config=/etc/grafana/grafana.ini --pidfile=/var/...
+          CGroup: /system.slice/grafana-server.service
+                  └─5755 /usr/sbin/grafana-server --config=/etc/grafana/grafana.ini --pidfile=/var/...
 
     {{%notice note%}}
 
@@ -364,12 +364,12 @@ On each node, check the NetQ Agent log file `/var/log/netq-agent.log`.
 1.  Validate the database is up.
 
         cumulus@ts:~$ sudo docker ps
-        CONTAINER ID     IMAGE           COMMAND                   CREATED       STATUS      PORTS  NAMES
-        dacbf4f234e9     cumulus-netq    "/tini -g -- /usr/sb…"    2 hours ago   Up 2 hours         netq_netq_1
-        9cfd1e768be4     redis           "docker-entrypoint.s…"    2 hours ago   Up 2 hours         netq_redis_snt1_1
-        5ad5e17a0089     redis           "docker-entrypoint.s…"    2 hours ago   Up 2 hours         netq_redis_master_1
-        9bb544d9bb1b     influxdb        "/entrypoint.sh infl…"    2 hours ago   Up 2 hours         netq_influxdb_1
-        77a7478bb6dc     cumulus-tsgui   "/portainer"              2 hours ago   Up 2 hours         netq_tsgui_1
+        CONTAINER ID     IMAGE           COMMAND                   CREATED       STATUS      PORTS  NAMES
+        dacbf4f234e9     cumulus-netq    "/tini -g -- /usr/sb ..."    2 hours ago   Up 2 hours         netq_netq_1
+        9cfd1e768be4     redis           "docker-entrypoint.s ..."    2 hours ago   Up 2 hours         netq_redis_snt1_1
+        5ad5e17a0089     redis           "docker-entrypoint.s ..."    2 hours ago   Up 2 hours         netq_redis_master_1
+        9bb544d9bb1b     influxdb        "/entrypoint.sh infl ..."    2 hours ago   Up 2 hours         netq_influxdb_1
+        77a7478bb6dc     cumulus-tsgui   "/portainer"              2 hours ago   Up 2 hours         netq_tsgui_1
 
 2.  Validate the statistics being collected on which nodes and
     interfaces.
@@ -380,21 +380,21 @@ On each node, check the NetQ Agent log file `/var/log/netq-agent.log`.
         InfluxDB shell version: 1.3.6
         > SHOW FIELD KEYS ON "netq"
         name: procnetdev
-        fieldKey    fieldType
-        --------    ---------
-        rxBytes     integer
-        rxDrop      integer
-        rxErrs      integer
-        rxFrame     integer
+        fieldKey    fieldType
+        --------    ---------
+        rxBytes     integer
+        rxDrop      integer
+        rxErrs      integer
+        rxFrame     integer
         rxMulticast integer
-        rxPackets   integer
-        txBytes     integer
-        txCarrier   integer
-        txColls     integer
-        txDrop      integer
-        txErrs      integer
-        txPackets   integer
-         
+        rxPackets   integer
+        txBytes     integer
+        txCarrier   integer
+        txColls     integer
+        txDrop      integer
+        txErrs      integer
+        txPackets   integer
+         
         > SHOW SERIES
         key
         ...

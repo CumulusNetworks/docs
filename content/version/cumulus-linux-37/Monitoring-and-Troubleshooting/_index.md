@@ -149,7 +149,7 @@ system:
 ```
 cumulus@switch:~$ net show system
 Hostname......... celRED
-     
+     
 Build............ Cumulus Linux 3.7.4~1551312781.35d3264
 Uptime........... 8 days, 12:24:01.770000
 
@@ -177,7 +177,7 @@ Cumulus Networks as this file helps in the investigation of issues.
 ```
 cumulus@switch:~$ sudo cl-support -h
 Usage: cl-support [-h] [-s] [-t] [-v] [reason]...
-     
+     
 Args:
 [reason]: Optional reason to give for invoking cl-support.
              Saved into tarball's cmdline.args file.
@@ -271,7 +271,7 @@ that do not use `rsyslog` write to their own log files within the
 
 ### Enable Remote syslog
 
-If you need to send other log files — such as `switchd` logs — to a
+If you need to send other log files - such as `switchd` logs - to a
 `syslog` server, do the following:
 
 1.  Create a file in `/etc/rsyslog.d/`. Make sure it starts with a
@@ -281,7 +281,7 @@ If you need to send other log files — such as `switchd` logs — to a
     content similar to the following:
 
         ## Logging switchd messages to remote syslog server
-         
+         
         @192.168.1.2:514
 
     This configuration sends log messages to a remote `syslog` server

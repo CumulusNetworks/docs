@@ -71,7 +71,7 @@ Linux:
 | audisp-tacplus\_1.0.0-1\_amd64.deb     | This package uses auditing data from `auditd` to send accounting records to the TACACS+ server.                                                                                                                                                                                                                                                                                  |
 | libtac2\_1.3.9-1\_amd64.deb            | Basic TACACS+ server utility and communications routines.                                                                                                                                                                                                                                                                                                                        |
 | libnss-tacplus\_1.0.1-1\_amd64.deb     | Provides an interface between `libc` username lookups, the mapping functions, and the TACACS+ server.                                                                                                                                                                                                                                                                            |
-| libtac2-bin\_1.3.9-1\_amd64.deb        | Provides the “tacc” testing program and TACACS+ man page.                                                                                                                                                                                                                                                                                                                        |
+| libtac2-bin\_1.3.9-1\_amd64.deb        | Provides the "tacc " testing program and TACACS+ man page.                                                                                                                                                                                                                                                                                                                        |
 | libpam-tacplus\_1.4.0-1\_amd64.deb     | A modified version of the standard Debian package.                                                                                                                                                                                                                                                                                                                               |
 | libtacplus-map1\_1.0.0-1\_amd64.deb    | The mapping functionality between local and TACACS+ users on the server. Sets the immutable `sessionid` and auditing UID to ensure the original user can be tracked through multiple processes and privilege changes. Sets the auditing `loginuid` as immutable if supported. Creates and maintains a status database in `/run/tacacs_client_map` to manage and lookup mappings. |
 | libsimple-tacacct1\_1.0.0-1\_amd64.deb | Provides an interface for programs to send accounting records to the TACACS+ server. Used by `audisp-tacplus`.                                                                                                                                                                                                                                                                   |
@@ -111,17 +111,17 @@ provides the `getpwnam()` entry point, and uses the TACACS+
 authentication and accounting functions.
 
 The plugin asks the TACACS+ server if the user is known, and then for
-relevant attributes to determine the user’s privilege level. When the
+relevant attributes to determine the user's privilege level. When the
 `libnss_tacplus` package is installed, `nsswitch.conf` can be modified
 to set `tacplus` as the first lookup method for `passwd`, though it
 works in any position.
 
 If the user is not found, a mapped lookup is performed using the
 ` libtacplus_map.so  `exported functions. The privilege level is
-appended to “tacacs”, and the lookup searches for the name in the local
+appended to "tacacs ", and the lookup searches for the name in the local
 password file. For example, privilege level 15 will search for the
 tacacs15 user. If the user is found, the password structure is filled in
-with the user’s information.
+with the user's information.
 
 If it is not found, the privilege level is decremented and checked
 again, until tacacs0 is reached.
@@ -344,28 +344,28 @@ options available:
 </tr>
 <tr class="even">
 <td><p>timeout=SECONDS</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>TACACS+ server(s) communication timeout. The default value is 5 seconds.</p></td>
 </tr>
 <tr class="odd">
 <td><p>login=STRING</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>TACACS+ authentication service (pap, chap, or login). The default value is <em>pap</em>.</p></td>
 </tr>
 <tr class="even">
 <td><p>acct_all=1</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Configuration option for <code>audisp_tacplus</code> and <code>pam_tacplus</code> sending accounting records to all supplied servers (1), or the first server to respond (0). The default value is <em>1</em>.</p></td>
 </tr>
 <tr class="odd">
 <td><p>service</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>TACACS+ accounting and authorization service. Examples include shell, pap, raccess, ppp, and slip.</p>
 <p>The default value is <em>shell</em>.</p></td>
 </tr>
 <tr class="even">
 <td><p>protocol</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>TACACS+ protocol field. This option is use dependent.</p>
 <p>PAM uses the SSH protocol.</p></td>
 </tr>
@@ -444,7 +444,7 @@ mapping file; this could be the first or second user that logged in.
 
 {{%/notice%}}
 
-To workaround this issue, the switch’s audit log or the TACACS server
+To workaround this issue, the switch's audit log or the TACACS server
 accounting logs can be used to determine which processes and files were
 created by each user.
 
@@ -460,7 +460,7 @@ created by each user.
 The Linux `auditd` system does not generate audit events for processes
 when terminated with a signal (via the `kill` system call or internal
 errors such as SIGSEGV). As a result, processes that exit on a signal
-that isn’t caught and handled may not generate a STOP accounting record.
+that isn't caught and handled may not generate a STOP accounting record.
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

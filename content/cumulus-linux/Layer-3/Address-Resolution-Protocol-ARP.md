@@ -87,7 +87,7 @@ cumulus@switch:~$ sudo grep . /proc/sys/net/ipv4/conf/default/arp*
 /proc/sys/net/ipv4/conf/default/arp_notify:1
 ```
 
-``` 
+``` 
 cumulus@switch:~$ sudo grep . /proc/sys/net/ipv4/conf/swp1/arp*
 /proc/sys/net/ipv4/conf/swp1/arp_accept:0
 /proc/sys/net/ipv4/conf/swp1/arp_announce:2

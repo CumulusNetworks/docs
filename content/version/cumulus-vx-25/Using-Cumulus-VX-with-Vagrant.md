@@ -46,7 +46,7 @@ repository](https://github.com/CumulusNetworks/cumulus-vx-vagrant).
 5.  Download and add the Cumulus VX Vagrant box file. Include the full
     path to the Box file:
     
-        $ vagrant box add cumulus-vx-2.5.3 /Users/cumulus/Desktop/vagrant/CumulusVX-2.5.3-4eb681f3df86c478.box      ✘
+        $ vagrant box add cumulus-vx-2.5.3 /Users/cumulus/Desktop/vagrant/CumulusVX-2.5.3-4eb681f3df86c478.box      
         ==> box: Box file was not detected as metadata. Adding it directly...
         ==> box: Adding box 'cumulus-vx-2.5.3' (v0) for provider:
             box: Unpacking necessary files from: file:///Users/cumulus/Desktop/vagrant/CumulusVX-2.5.3-4eb681f3df86c478.box
@@ -131,7 +131,7 @@ pre-configured private network:
 
     Vagrant.configure(2) do |config|
       config.vm.box = "cumulus-vx-2.5.3"
-     
+     
       config.vm.network "private_network", virtualbox__intnet: true # swp1
       config.vm.network "private_network", virtualbox__intnet: true # swp2
       config.vm.network "private_network", virtualbox__intnet: true # swp3
@@ -155,28 +155,28 @@ leaf2, where the interfaces swp1 through swp4 are connected together via
 separate private networks:
 
     Vagrant.configure(2) do |config|
-     
+     
       config.vm.define "leaf1" do |leaf1|
         leaf1.vm.box = "cumulus-vx-2.5.3"
-     
-     
+     
+     
         # Internal network for swp* interfaces.
         leaf1.vm.network "private_network", virtualbox__intnet: "swp1"
         leaf1.vm.network "private_network", virtualbox__intnet: "swp2"
         leaf1.vm.network "private_network", virtualbox__intnet: "swp3"
         leaf1.vm.network "private_network", virtualbox__intnet: "swp4"
       end
-     
+     
       config.vm.define "leaf2" do |leaf2|
         leaf2.vm.box = "cumulus-vx-2.5.3"
-     
+     
         # Internal network for swp* interfaces.
         leaf2.vm.network "private_network", virtualbox__intnet: "swp1"
         leaf2.vm.network "private_network", virtualbox__intnet: "swp2"
         leaf2.vm.network "private_network", virtualbox__intnet: "swp3"
         leaf2.vm.network "private_network", virtualbox__intnet: "swp4"
       end
-     
+     
     end
 
 When you run `vagrant up`, both virtual machines are created. You can
@@ -222,13 +222,13 @@ Cumulus VX for Vagrant has been tested in the following environments:
 1.7.4</p></td>
 <td><p>4.3<br />
 5.0</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>Ubuntu 14.04</p></td>
 <td><p>1.7.4</p></td>
 <td><p>4.3</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>Windows 7</p></td>
@@ -310,7 +310,7 @@ You can modify the two leaf/two spine topology by changing the
 
     :numLeaves: 2
     :numSpines: 2
-     
+     
     # IP Address Base for loopback
     :ipAddrPrefix: "10.0.1."
 

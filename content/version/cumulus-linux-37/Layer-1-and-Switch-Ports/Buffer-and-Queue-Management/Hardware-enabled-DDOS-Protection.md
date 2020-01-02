@@ -11,8 +11,8 @@ version: 3.7
 imgData: cumulus-linux
 siteSlug: cumulus-linux
 ---
-It is crucial to also protect a switch’s control plane to ensure the
-proper control plane applications have access to the switch’s CPU.
+It is crucial to also protect a switch's control plane to ensure the
+proper control plane applications have access to the switch's CPU.
 Failure to do so could increase vulnerabilities to a Denial of Service
 (DOS) attack. Cumulus Linux provides control plane protection by
 default. It also offers a DDOS protection mechanism, which protects data

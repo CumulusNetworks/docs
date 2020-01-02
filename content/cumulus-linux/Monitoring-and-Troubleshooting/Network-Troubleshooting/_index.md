@@ -62,7 +62,7 @@ The full syntax is `ip vrf exec <vrf-name> <command> <arguments>`. For example:
 cumulus@switch:~$ sudo ip vrf exec Tenant1 nslookup google.com - 8.8.8.8
 ```
 
-By default, `ping`/`ping6` and `traceroute`/`traceroute6` all use the default VRF. This is done using a mechanism that checks the VRF context of the current shell — which can be seen when you run `ip vrf id` — at the time one of these commands is run. If the shell's VRF context is *mgmt*, then these commands are run in the default VRF context.
+By default, `ping`/`ping6` and `traceroute`/`traceroute6` all use the default VRF. This is done using a mechanism that checks the VRF context of the current shell - which can be seen when you run `ip vrf id` - at the time one of these commands is run. If the shell's VRF context is *mgmt*, then these commands are run in the default VRF context.
 
 `ping` and `traceroute` have additional arguments that you can use to specify an egress interface and/or a source address. In the default VRF, the source interface flag (`ping -I` or `traceroute -i`) specifies the egress interface for the `ping`/`traceroute` operation. However, you can use the source interface flag instead to specify a non-default VRF to use for the command. Doing so causes the routing lookup for the destination address to occur in that VRF.
 
@@ -98,11 +98,11 @@ cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute -i swp1 -s 192.0.1.1 8.8.8
 cumulus@switch:~$ sudo ip vrf exec Tenant1 traceroute6 -i swp1 -s 2001:db8::1 2001:4860:4860::8888
 ```
 
-Because the VRF context for `ping` and `traceroute` commands is automatically shifted to the default VRF context, you must use the source interface flag to specify the management VRF. Typically, this is not an issue since there is only a single interface in the management VRF — eth0 — and in most situations only a single IPv4 address or IPv6 global unicast address is assigned to it. But it is worth mentioning since, as stated earlier, you cannot specify both a source interface and a source IP address with `ping -I`.
+Because the VRF context for `ping` and `traceroute` commands is automatically shifted to the default VRF context, you must use the source interface flag to specify the management VRF. Typically, this is not an issue since there is only a single interface in the management VRF - eth0 - and in most situations only a single IPv4 address or IPv6 global unicast address is assigned to it. But it is worth mentioning since, as stated earlier, you cannot specify both a source interface and a source IP address with `ping -I`.
 
 ## Manipulate the System ARP Cache
 
-`arp` manipulates or displays the kernel’s IPv4 network neighbor cache. See `man arp` for details.
+`arp` manipulates or displays the kernel's IPv4 network neighbor cache. See `man arp` for details.
 
 To display the ARP cache:
 
@@ -575,7 +575,7 @@ cumulus@switch:~$
 
 ### Monitor Control Plane Traffic with tcpdump
 
-You can use `tcpdump` to monitor control plane traffic — traffic sent to and coming from the switch CPUs. `tcpdump` does **not** monitor data plane traffic; use `cl-acltool` instead (see above).
+You can use `tcpdump` to monitor control plane traffic - traffic sent to and coming from the switch CPUs. `tcpdump` does **not** monitor data plane traffic; use `cl-acltool` instead (see above).
 
 For more information on tcpdump, read [the `tcpdump` documentation](http://www.tcpdump.org/#documentation) and the [`tcpdump` man page](http://www.tcpdump.org/manpages/tcpdump.1.html).
 

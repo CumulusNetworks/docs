@@ -184,8 +184,8 @@ The *All CLAG Sessions Summary* tab which displays:
 </tr>
 <tr class="odd">
 <td><p>Table/Filter options</p></td>
-<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of session count—devices with the largest number of sessions are listed first</p>
-<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of unestablished session count—devices with the largest number of unestablished sessions are listed first</p></td>
+<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of session count-devices with the largest number of sessions are listed first</p>
+<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running CLAG sessions in decreasing order of unestablished session count-devices with the largest number of unestablished sessions are listed first</p></td>
 </tr>
 <tr class="even">
 <td><p>Show All Sessions</p></td>
@@ -608,7 +608,7 @@ The small CLAG Session card displays:
 <td><p>CLAG Session</p></td>
 </tr>
 <tr class="odd">
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Device identifiers (hostname, IP address, or MAC address) for host and peer in session.</p></td>
 </tr>
 <tr class="even">

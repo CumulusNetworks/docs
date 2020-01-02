@@ -85,7 +85,7 @@ with `apt-get update`:
 
 Cumulus Networks recommends you use the `-E` option with `sudo` whenever
 you run any `apt-get` command. This option preserves your environment
-variables — such as HTTP proxies — before you install new packages or
+variables - such as HTTP proxies - before you install new packages or
 upgrade your distribution.
 
 {{%/notice%}}
@@ -152,8 +152,8 @@ installed in the system:
 
     cumulus@switch:~$ dpkg -l | grep {name of package}
 
-If the package is installed already, ensure it’s the version you need.
-If it’s an older version, then update the package from the Cumulus Linux
+If the package is installed already, ensure it's the version you need.
+If it's an older version, then update the package from the Cumulus Linux
 repository:
 
     cumulus@switch:~$ sudo -E apt-get upgrade

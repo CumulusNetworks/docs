@@ -44,7 +44,7 @@ characteristics:
     loopback*.
 
   - Applications can use existing interfaces to operate in a VRF context
-    — by binding sockets to the VRF device or passing the `ifindex`
+    - by binding sockets to the VRF device or passing the `ifindex`
     using `cmsg`.
 
   - Listen sockets used by services are VRF-global by default unless the
@@ -64,8 +64,8 @@ characteristics:
     `tcpdump`.
 
 You configure VRF by associating each subset of interfaces to a VRF
-routing table, and configuring an instance of the routing protocol — BGP
-— for each routing table.
+routing table, and configuring an instance of the routing protocol - BGP
+- for each routing table.
 
 {{% imgOld 0 %}}
 
@@ -164,7 +164,7 @@ To see a list of routes associated with a particular VRF table, run `vrf
 route list <vrf-name>`. For example:
 
     cumulus@switch:~$ vrf route list red
-     
+     
     VRF: red           
     --------------------
     unreachable default  metric 8192 
@@ -178,7 +178,7 @@ route list <vrf-name>`. For example:
     10.99.1.0/30 dev swp1.10  proto kernel  scope link  src 10.99.1.1 
     local 10.99.1.1 dev swp1.10  proto kernel  scope host  src 10.99.1.1 
     broadcast 10.99.1.3 dev swp1.10  proto kernel  scope link  src 10.99.1.1 
-     
+     
     local fe80:: dev lo  proto none  metric 0  pref medium
     local fe80:: dev lo  proto none  metric 0  pref medium
     local fe80::6e64:1aff:fe00:5a0c dev lo  proto none  metric 0  pref medium
@@ -220,7 +220,7 @@ To return a list of processes and PIDs associated with a specific VRF
 table, run `vrf task list <vrf-name>`. For example:
 
     cumulus@switch:~$ vrf task list red
-     
+     
     VRF: red            
     -----------------------
     dhclient           2508
@@ -234,7 +234,7 @@ To determine which VRF table is associated with a particular PID, run
 `vrf task identify <pid>`. For example:
 
     cumulus@switch:~$ vrf task identify 2829
-     
+     
     red
 
 ## Quagga Operation in a VRF</span>
@@ -332,7 +332,7 @@ or manually defined in `/etc/network/interfaces`:
     vrf vrf1014 id 28 table 1014
 
 Show VRFs configured in BGP, including the default. A non-zero ID is a
-VRF that has also been actually provisioned — that is, defined in
+VRF that has also been actually provisioned - that is, defined in
 `/etc/network/interfaces`:
 
     switch# show bgp vrfs
@@ -341,7 +341,7 @@ VRF that has also been actually provisioned — that is, defined in
      VRF  14     6.0.2.7                   6           6  vrf1012
      VRF  21     6.0.3.7                   6           6  vrf1013
      VRF  28     6.0.4.7                   6           6  vrf1014
-     
+     
     Total number of VRFs (including default): 4
 
 Display interfaces known to Quagga and attached to this VRF:
@@ -353,7 +353,7 @@ Display interfaces known to Quagga and attached to this VRF:
       index 13 metric 0 mtu 1500
       flags: <UP,BROADCAST,MULTICAST>
       inet 20.7.2.1/24
-     
+     
       inet6 fe80::202:ff:fe00:a/64
       ND advertised reachable time is 0 milliseconds
       ND advertised retransmit interval is 0 milliseconds
@@ -440,7 +440,7 @@ To show the routes in the VRF:
     Codes: K - kernel route, C - connected, S - static, R - RIP,
            O - OSPF, I - IS-IS, B - BGP, T - Table,
            > - selected route, * - FIB route
-     
+     
     C>* 169.254.2.8/30 is directly connected, swp1.2
     C>* 169.254.2.12/30 is directly connected, swp2.2
     C>* 169.254.2.16/30 is directly connected, swp3.2
@@ -453,7 +453,7 @@ To show the BGP summary for the VRF:
     RIB entries 1, using 120 bytes of memory
     Peers 6, using 97 KiB of memory
     Peer groups 2, using 112 bytes of memory
-     
+     
     Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
     s3(169.254.2.18)
                     4 65000  102039  102040        0    0    0 3d13h03m        0
@@ -461,7 +461,7 @@ To show the BGP summary for the VRF:
                     4 65000  102039  102040        0    0    0 3d13h03m        0
     s2(169.254.2.14)
                     4 65000  102039  102040        0    0    0 3d13h03m        0
-     
+     
     Total number of neighbors 3
 
 To show BGP (IPv4) routes in the VRF:
@@ -471,10 +471,10 @@ To show BGP (IPv4) routes in the VRF:
     Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
                   i internal, r RIB-failure, S Stale, R Removed
     Origin codes: i - IGP, e - EGP, ? - incomplete
-     
+     
        Network          Next Hop            Metric LocPrf Weight Path
        20.7.2.0/24      0.0.0.0                  0         32768 i
-     
+     
     Total number of prefixes 1
 
 BGP IPv6 routes in the VRF:
@@ -484,10 +484,10 @@ BGP IPv6 routes in the VRF:
     Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
                   i internal, r RIB-failure, S Stale, R Removed
     Origin codes: i - IGP, e - EGP, ? - incomplete
-     
+     
        Network          Next Hop            Metric LocPrf Weight Path
        2003:7:2::/125   ::                       0         32768 i
-     
+     
     Total number of prefixes 1
     switch# 
     switch# 
@@ -618,14 +618,14 @@ as the dummy (loopback-like) interface for that VRF.
             vrf-table auto
             address 6.1.0.6/32
             address 2001:6:1::6/128
-         
+         
         auto swp1.101
         iface swp1.101
             link-speed 10000
             link-duplex full
             link-autoneg off
             vrf vrf1
-         
+         
         auto br101
         iface br101
             address 20.1.6.1/24
@@ -672,7 +672,7 @@ If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload`
 to generate the `systemd` instance files for the newly added service(s).
 Then you can start the service in the VRF using `systemctl start
 <service>@<vrf-name>.service`, where `<service>` is the name of the
-service — such as `dhcpd` or `dhcrelay` — and `<vrf-name>` is the name
+service - such as `dhcpd` or `dhcrelay` - and `<vrf-name>` is the name
 of the VRF.
 
 For example, to start the `dhcrelay` service after you configured a VRF
@@ -887,7 +887,7 @@ If you wish to use `ping` or `traceroute` on a VRF, use the `-I <vrf>`
 flag for ping and `-i <vrf>` for `traceroute`.
 
     cumulus@switch:~$ ping -I blue
-     
+     
 
 Or:
 

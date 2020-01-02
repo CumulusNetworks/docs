@@ -224,7 +224,7 @@ To upgrade the switch with a new disk image using ONIE:
 cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-3.7.1-mlx-amd64.bin && sudo reboot
 ```
 
-4. Restore the configuration files to the new release — ideally with automation.
+4. Restore the configuration files to the new release - ideally with automation.
 
 5. Verify correct operation with the old configurations on the new release.
 
@@ -472,7 +472,7 @@ cumulus@switch:~$ sudo ifreload -a
 13. Bring up all the front panel ports:
 
 ```
-cumulus@switch:~$ sudo ip link set swp<#> up 
+cumulus@switch:~$ sudo ip link set swp<#> up 
 ```
 
     The two switches are dual-connected again and traffic flows to both switches.

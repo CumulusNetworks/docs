@@ -21,7 +21,7 @@ This chapter introduces monitoring and troubleshooting Cumulus Linux.
 ## Using the Serial Console
 
 The serial console can be a useful tool for debugging issues, especially
-when you find yourself rebooting the switch often or if you don’t have a
+when you find yourself rebooting the switch often or if you don't have a
 reliable network connection.
 
 The default serial console baud rate is 115200, which is the baud rate
@@ -142,10 +142,10 @@ The directory contains the following elements:
 | Directory | Description                                                                                                                                                                                                                                                                                                                                                 |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | core      | Contains the core files generated from Cumulus Linux HAL process, `switchd`.                                                                                                                                                                                                                                                                                |
-| etc       | Is a replica of the switch’s `/etc` directory. `/etc` contains all the general Linux configuration files, as well as configurations for the system’s network interfaces, `quagga`, `jdoo`, and other packages.                                                                                                                                              |
+| etc       | Is a replica of the switch's `/etc` directory. `/etc` contains all the general Linux configuration files, as well as configurations for the system's network interfaces, `quagga`, `jdoo`, and other packages.                                                                                                                                              |
 | log       | Is a replica of the switch's `/var/log` directory. Most Cumulus Linux log files are located in this directory. Notable log files include `switchd.log`, `daemon.log`, `quagga` log files, and `syslog`. For more information, read this [knowledge base article](https://support.cumulusnetworks.com/entries/24125147-Relevant-Log-Files-in-Cumulus-Linux). |
-| proc      | Is a replica of the switch’s `/proc` directory. In Linux, `/proc` contains runtime system information (like system memory, devices mounted, and hardware configuration). These files are not actual files but the current state of the system.                                                                                                              |
-| support   | Is a set of files containing further system information, which is obtained by `cl-support` running commands such as `ps -aux`, `netstat -i`, and so forth — even the routing tables.                                                                                                                                                                        |
+| proc      | Is a replica of the switch's `/proc` directory. In Linux, `/proc` contains runtime system information (like system memory, devices mounted, and hardware configuration). These files are not actual files but the current state of the system.                                                                                                              |
+| support   | Is a set of files containing further system information, which is obtained by `cl-support` running commands such as `ps -aux`, `netstat -i`, and so forth - even the routing tables.                                                                                                                                                                        |
 
 `cl-support`, when untarred, contains a `reason.txt` file. This file
 indicates what reason triggered it. When contacting Cumulus Networks
@@ -204,7 +204,7 @@ Files](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Understanding
 
 ### Enabling Remote syslog
 
-If you need to send other log files — such as `switchd` logs — to a
+If you need to send other log files - such as `switchd` logs - to a
 `syslog` server, do the following:
 
 1.  Create a file in `/etc/rsyslog.d/`. Make sure it starts with a
@@ -222,7 +222,7 @@ If you need to send other log files — such as `switchd` logs — to a
         $InputFileFacility local7
         $InputFilePollInterval 5
         $InputRunFileMonitor
-         
+         
         if $programname == 'switchd' then @192.168.1.2:514
     
     This configuration sends log messages to a remote `syslog` server

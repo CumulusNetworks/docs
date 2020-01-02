@@ -65,7 +65,7 @@ The following table describes how Cumulus VX differs from
 </colgroup>
 <thead>
 <tr class="header">
-<th><p> </p></th>
+<th><p> </p></th>
 <th><p>Cumulus Workbench</p></th>
 <th><p>Cumulus VX</p></th>
 </tr>

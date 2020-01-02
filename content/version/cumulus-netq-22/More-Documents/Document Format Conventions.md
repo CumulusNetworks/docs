@@ -19,7 +19,7 @@ Throughout the guide, text formatting is used to convey contextual information a
 | <span style="color: #008000;"> Green text </span>                        | Link to additional content within the topic or to another topic |
 | `Text in Monospace font`                                 |  Filename, directory and path names, and command usage   |
 | \[`Text within square brackets`\] | Optional command parameters; may be presented in mixed case or all caps text  |
-| \<`Text within angle brackets`\> | Required command parameter values–variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text |
+| \<`Text within angle brackets`\> | Required command parameter values-variables that are to be replaced with a relevant value; may be presented in mixed case or all caps text |
 
 ## Note Conventions
 

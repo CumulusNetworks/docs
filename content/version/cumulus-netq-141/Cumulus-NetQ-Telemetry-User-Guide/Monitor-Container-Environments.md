@@ -84,27 +84,27 @@ daemon-set, deployment, pods, replication, and services:
     netq [<hostname>] show kubernetes cluster [name <kube-cluster-name>] [around <text-time>] [json]
     netq [<hostname>] show kubernetes cluster [name <kube-cluster-name>] changes [between <text-time> and <text-endtime>] [json]
     netq [<hostname>] show kubernetes node [components] [name <kube-node-name>] [cluster <kube-cluster-name> ] [label <kube-node-label>] [around <text-time>] [json]
-    netq [<hostname>] show kubernetes node [components] [name <kube-node-name>] [cluster <kube-cluster-name> ] [label <kube-node-label>] changes [between <text-time> and <text-endtime>] [json]
-     
+    netq [<hostname>] show kubernetes node [components] [name <kube-node-name>] [cluster <kube-cluster-name> ] [label <kube-node-label>] changes [between <text-time> and <text-endtime>] [json]
+     
     netq [<hostname>] show kubernetes daemon-set [name <kube-ds-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-ds-label>] [around <text-time>] [json]
     netq [<hostname>] show kubernetes daemon-set [name <kube-ds-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-ds-label>] connectivity [around <text-time>] [json]
     netq [<hostname>] show kubernetes daemon-set [name <kube-ds-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-ds-label>] changes [between <text-time> and <text-endtime>] [json]
-     
+     
     netq [<hostname>] show kubernetes deployment [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] [around <text-time>] [json]
     netq [<hostname>] show kubernetes deployment [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] connectivity [around <text-time>] [json]
     netq [<hostname>] show kubernetes deployment [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] changes [between <text-time> and <text-endtime>] [json]
     netq <hostname> show impact kubernetes deployment [master <kube-master-node>] [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] [around <text-time>] [json]Requirements
-     
+     
     netq [<hostname>] show kubernetes pod [name <kube-pod-name>] [cluster <kube-cluster-name> ] [namespace <namespace>] [label <kube-pod-label>] [pod-ip <kube-pod-ipaddress>] [node <kube-node-name>] [around <text-time>] [json]
     netq [<hostname>] show kubernetes pod [name <kube-pod-name>] [cluster <kube-cluster-name> ] [namespace <namespace>] [label <kube-pod-label>] [pod-ip <kube-pod-ipaddress>] [node <kube-node-name>] changes [between <text-time> and <text-endtime>] [json]
-     
+     
     netq [<hostname>] show kubernetes replication-controller [name <kube-rc-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rc-label>] [around <text-time>] [json]
     netq [<hostname>] show kubernetes replication-controller [name <kube-rc-name>] [cluster <kube-cluster-name>] [namespace <namespace>]  [label <kube-rc-label>] changes [between <text-time> and <text-endtime>] [json]
     netq [<hostname>] show kubernetes replica-set [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] [around <text-time>] [json]
     netq [<hostname>] show kubernetes replica-set [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] connectivity [around <text-time>] [json]
     netq [<hostname>] show kubernetes replica-set [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] changes [between <text-time> and <text-endtime>] [json]
     netq <hostname> show impact kubernetes replica-set [master <kube-master-node>] [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] [around <text-time>] [json]
-     
+     
     netq [<hostname>] show kubernetes service [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] [around <text-time>] [json]
     netq [<hostname>] show kubernetes service [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] connectivity [around <text-time>] [json]
     netq [<hostname>] show kubernetes service [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] changes [between <text-time> and <text-endtime>] [json]
@@ -516,7 +516,7 @@ and kubelet status.
 
 To display the kubelet or Docker version, append `components` to the
 above command. This example lists all the details of all master and
-worker nodes because the master's hostname — *hostd-11* in this case —
+worker nodes because the master's hostname - *hostd-11* in this case -
 was included in the query.
 
     cumulus@hostd-11:~$ netq hostd-11 show kubernetes node components
@@ -572,7 +572,7 @@ You can view information about the pod:
     hostd-11:3.0.0.68        default      nginx-8586cf59-26pj5 10.244.9.193     hosts-24     run:nginx            Running  nginx:6e2b65070c86       14h:25m:24s
     hostd-11:3.0.0.68        default      nginx-8586cf59-c82ns 10.244.40.128    hosts-12     run:nginx            Running  nginx:01b017c26725       14h:25m:24s
     hostd-11:3.0.0.68        default      nginx-8586cf59-wjwgp 10.244.49.64     hostd-22     run:nginx            Running  nginx:ed2b4254e328       14h:25m:24s
-     
+     
     cumulus@hostd-11:~$ netq hostd-11 show kubernetes pod namespace default label app
     Matching kube_pod records:
     Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
@@ -714,7 +714,7 @@ present, whereas *hostd-22* **was** present:
           -- nginx-8586cf59-8g487 -- hosts-24:swp2:NetQBond-1 -- swp29:NetQBond-29:noc-pr
                                   -- hosts-24:swp3:NetQBond-1 -- swp29:NetQBond-29:noc-se
                                   -- hosts-24:swp1:swp1 -- swp8:VlanA-1:tor-2
-     
+     
 
 You can determine the impact on the Kubernetes deployment in the event a
 host or switch goes down. The output is color coded (not shown in the
@@ -774,7 +774,7 @@ including the ability to monitor network, service, Swarm cluster,
 network, and nodes:
 
     netq <hostname> show docker container adjacent [interfaces <remote-physical-interface>] [around <text-time>] [json]
-     
+     
     netq [<hostname>] show docker summary [<docker-version>] [around <text-time>] [json]
     netq [<hostname>] show docker summary [<docker-version>] changes [between <text-time> and <text-endtime>] [json]
     netq [<hostname>] show docker network [name <network-name> | <ipv4/prefixlen>] [brief] [around <text-time>] [json]
@@ -784,15 +784,15 @@ network, and nodes:
     netq [<hostname>] show docker service [name <swarm-service-name> | mode <mode>] [around <text-time>] [json]
     netq [<hostname>] show docker service [name <swarm-service-name> | mode <mode>] connectivity [vrf <vrf>] [around <text-time>] [json]
     netq <hostname> show impact docker service [<swarm-service-name>] [vrf <vrf>] [around <text-time>] [json]
-     
+     
     netq [<hostname>] show docker swarm cluster [node-name <cluster-node>] [around <text-time>] [json]
     netq [<hostname>] show docker swarm cluster [<cluster-name>] [node-name <cluster-node>] [around <text-time>] [json]
-    netq <hostname> show docker swarm cluster changes [between <text-time> and <text-endtime>] [json]
-    netq <hostname> show docker swarm cluster [<cluster-name>] changes [between <text-time> and <text-endtime>] [json]
+    netq <hostname> show docker swarm cluster changes [between <text-time> and <text-endtime>] [json]
+    netq <hostname> show docker swarm cluster [<cluster-name>] changes [between <text-time> and <text-endtime>] [json]
     netq [<hostname>] show docker swarm network [<swarm-service-name>] [around <text-time>] [json]
-    netq <hostname> show docker swarm network [<swarm-service-name>] changes [between <text-time> and <text-endtime>] [json]
+    netq <hostname> show docker swarm network [<swarm-service-name>] changes [between <text-time> and <text-endtime>] [json]
     netq [<hostname>] show docker swarm node [<node-name> | role <role>] [cluster <cluster-name>] [around <text-time>] [json]
-    netq <hostname> show docker swarm node [<node-name> | role <role>] [cluster <cluster-name>] changes [between <text-time> and <text-endtime>] [json]
+    netq <hostname> show docker swarm node [<node-name> | role <role>] [cluster <cluster-name>] changes [between <text-time> and <text-endtime>] [json]
 
 ### Enable Docker Container Monitoring
 

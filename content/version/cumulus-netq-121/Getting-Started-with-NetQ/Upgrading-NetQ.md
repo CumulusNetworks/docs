@@ -162,13 +162,13 @@ To install the NetQ Agent on a Red Hat or CentOS host, do the following:
         baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/$releasever/netq-1.2/$basearch
         gpgcheck=1
         enabled=1
-         
+         
         [cumulus-noarch]
         name=Architecture-independent Cumulus packages for RHEL
         baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/$releasever/netq-1.2/noarch
         gpgcheck=1
         enabled=1
-         
+         
         [cumulus-src]
         name=Cumulus source packages for RHEL
         baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/$releasever/netq-1.2/src

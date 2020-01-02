@@ -56,7 +56,7 @@ If the VM is already running:
 
         cumulus@switch:~$ sed -i 's/^#//' /etc/default/grub.d/00-installer-defaults.cfg
         cumulus@switch:~$ sed -r -i '/^GRUB_CMDLINE_LINUX=/ s/(console=ttyS0,115200n8) (console=tty0)/\2 \1/' /etc/default/grub
-        cumulus@switch:~$ update-grub 
+        cumulus@switch:~$ update-grub 
 
 2.  Restart the VM to implement the change.
 
@@ -94,7 +94,7 @@ show interface` command:
     ADMDN  swp4              N/A      1500   NotConfigured
     ADMDN  swp5              N/A      1500   NotConfigured
     ADMDN  swp6              N/A      1500   NotConfigured
-    ADMDN  swp7              N/A      1500   NotConfigured 
+    ADMDN  swp7              N/A      1500   NotConfigured 
 
 To get topology verification, run the `net show lldp` command.
 

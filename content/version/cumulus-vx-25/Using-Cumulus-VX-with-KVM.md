@@ -437,7 +437,7 @@ Otherwise, you may see this error:
 1.  Create the appropriate VagrantFile. This can be done using topology
     converter.
 
-2.  Installing most recent version of vagrant-libvirt plugin – Required
+2.  Installing most recent version of vagrant-libvirt plugin - Required
     for best KVM support:
 
         cumulus@switch:~$ git clone https://github.com/pradels/vagrant-libvirt

@@ -18,7 +18,7 @@ provides the capability for multiple
 be inserted into a single Ethernet frame.
 
 The primary use case for QinQ with VXLAN is where a service provider who
-offers multi-tenant layer 2 connectivity between different customers’
+offers multi-tenant layer 2 connectivity between different customers'
 data centers (private clouds) may also need to connect those data
 centers to public cloud providers. Public clouds often has a mandatory
 QinQ handoff interface, where the outer tag is for the customer and the
@@ -55,7 +55,7 @@ VXLAN VNI. The inner C-tag, which represents the service, is transparent
 to the provider. The public cloud handoff interface is a QinQ trunk
 where packets on the wire carry both the S-tag and the C-tag.
 
-Single tag translation works with both [VLAN-aware bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) and [traditional bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/). However, single tag translation with *VLAN-aware bridge mode* is more scalable.
+Single tag translation works with both [VLAN-aware bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) and [traditional bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/). However, single tag translation with *VLAN-aware bridge mode* is more scalable.
 
 An example configuration with VLAN-aware bridge mode looks like this:
 
@@ -107,7 +107,7 @@ These commands create the following configuration in the
         bridge-learning off
         vxlan-id 1000
         vxlan-local-tunnelip 10.0.0.1
-     
+     
     auto vni-3000
     iface vni-3000
         bridge-access 200
@@ -327,7 +327,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
     auto swp5.100
     iface swp5.100
         vlan-protocol 802.1ad
-     
+     
     auto swp5.100.10
     iface swp5.100.10
         mstpctl-portbpdufilter yes
@@ -348,7 +348,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
 
 - `iptables` match on double-tagged interfaces is not supported.
 - Single-tagged translation supports only VLAN-aware bridge mode with
-  the bridge’s VLAN 802.1ad protocol.
+  the bridge's VLAN 802.1ad protocol.
 - [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
   is only supported with single-tagged translation.
 - Mixing 802.1Q and 802.1ad subinterfaces on the same switch port is
@@ -390,12 +390,12 @@ configuration like the following:
            vlan-id 1001
            vlan-raw-device swp50s0
            vlan-protocol 802.1ad
-     
+     
     auto vlan1001-101
     iface vlan1001-101
            vlan-id 101
            vlan-raw-device vlan1001
-     
+     
     auto bridge101
     iface bridge101
         bridge-ports vlan1001-101 vxlan1000101

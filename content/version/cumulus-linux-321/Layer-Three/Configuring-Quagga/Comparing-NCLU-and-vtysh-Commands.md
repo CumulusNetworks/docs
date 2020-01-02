@@ -58,7 +58,7 @@ switch(config-router)# redistribute static</code></pre></td>
 <tr class="even">
 <td><p>Define a <a href="/version/cumulus-linux-321/Layer-Three/Routing">static route</a></p></td>
 <td><pre><code>cumulus@switch:~$ net add routing route 155.1.2.20/24 bridge 45
- </code></pre></td>
+ </code></pre></td>
 <td><pre><code>switch(config)# ip route 155.1.2.20/24 bridge 45</code></pre></td>
 </tr>
 <tr class="odd">
@@ -92,9 +92,9 @@ switch(config-ospf6)# timer throttle spf 40 50 60</code></pre></td>
 </tr>
 <tr class="even">
 <td><p>Configure the OSPF Hello packet interval in number of seconds for an interface</p></td>
-<td><pre><code>cumulus@switch:~$ net add interface swp4 ospf6 hello-interval 60</code></pre></td>
+<td><pre><code>cumulus@switch:~$ net add interface swp4 ospf6 hello-interval 60</code></pre></td>
 <td><pre><code>switch(config)# int swp4
-switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
+switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 </tr>
 <tr class="odd">
 <td><p>Display <a href="/version/cumulus-linux-321/Layer-Three/Border-Gateway-Protocol-BGP">BGP</a> information</p></td>

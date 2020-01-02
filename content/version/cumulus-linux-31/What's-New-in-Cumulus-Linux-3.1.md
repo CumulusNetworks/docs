@@ -27,15 +27,15 @@ features](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
 
   - [Priority flow
     control](Buffer-and-Queue-Management.html#src-5122108_BufferandQueueManagement-BufferandQueueManagement-pfc)
-    (PFC) — Mellanox switches only
+    (PFC) - Mellanox switches only
 
   - [Explicit congestion
     notification](http://Buffer%20and%20Queue%20Management#BufferandQueueManagement-ecn)
-    (ECN) — Mellanox switches only
+    (ECN) - Mellanox switches only
 
   - [Ethernet virtual private
     networks](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
-    (EVPN) — Broadcom switches only
+    (EVPN) - Broadcom switches only
 
 No special steps are needed to enable PFC and ECN, and you do not need
 to enable the Early Access repository to use them. You need to install
@@ -53,20 +53,20 @@ to learn about known issues with this release.
   - Mellanox platform enhancements:
     
       - [ACL](/version/cumulus-linux-31/System-Management/Netfilter-ACLs/)
-        — 512 ACLs, line rate: 128 byte
+        - 512 ACLs, line rate: 128 byte
     
       - [LACP
         Bypass](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/LACP-Bypass)
     
       - [sFlow](/version/cumulus-linux-31/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow)
-        — 32G sampling rate
+        - 32G sampling rate
     
       - [VRF](/version/cumulus-linux-31/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF)
 
   - [PoE+](/version/cumulus-linux-31/System-Management/Power-over-Ethernet-PoE)
     (Power over Ethernet)
 
-  - [VXLAN with VLAN-aware
+  - [VXLAN with VLAN-aware
     bridges](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-5122017_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-VXLANswithVLAN-awareBridges)
     ([Broadcom switches](https://cumulusnetworks.com/hcl) only)
 

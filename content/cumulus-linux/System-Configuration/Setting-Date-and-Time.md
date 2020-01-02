@@ -44,13 +44,13 @@ cumulus@switch:~$ sudo dpkg-reconfigure tzdata
 
 {{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
 
-For more info see the Debian [System Administrator’s Manual – Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
+For more info see the Debian [System Administrator's Manual - Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
 
 ## Set the Date and Time
 
 The switch contains a battery backed hardware clock that maintains the time while the switch is powered off and in between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
 
-During boot up, the time from the hardware clock is copied into the operating system’s software clock. The software clock is then used for all timekeeping responsibilities. During system shutdown, the software clock is copied back to the battery backed hardware clock.
+During boot up, the time from the hardware clock is copied into the operating system's software clock. The software clock is then used for all timekeeping responsibilities. During system shutdown, the software clock is copied back to the battery backed hardware clock.
 
 You can set the date and time on the software clock using the `date` command. First, determine your current time zone:
 
@@ -639,7 +639,7 @@ cumulus@switch:~$ net commit
 
 ## Related Information
 
-- [Debian System Administrator’s Manual – Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
+- [Debian System Administrator's Manual - Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
 - [www.ntp.org](http://www.ntp.org)
 - [en.wikipedia.org/wiki/Network\_Time\_Protocol](http://en.wikipedia.org/wiki/Network_Time_Protocol)
 - [wiki.debian.org/NTP](http://wiki.debian.org/NTP)

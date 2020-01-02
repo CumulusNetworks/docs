@@ -203,7 +203,7 @@ Unlike default ECMP hashing, when a next hop needs to be removed, the number of 
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-failure.png" >}}
 
-With 12 buckets assigned and four next hops, instead of reducing the number of buckets — which would impact flows to known good hosts — the remaining next hops replace the failed next hop.
+With 12 buckets assigned and four next hops, instead of reducing the number of buckets - which would impact flows to known good hosts - the remaining next hops replace the failed next hop.
 
 {{< img src = "/images/cumulus-linux/ecmp-reshash-restore.png" >}}
 

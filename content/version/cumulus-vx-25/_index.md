@@ -14,7 +14,7 @@ subsection: true
 ---
 Cumulus VX is free, open source software that provides a virtual
 experience enabling cloud and network admins to evaluate Cumulus
-Networks’ latest technology easily and risk free. Cumulus VX removes all
+Networks' latest technology easily and risk free. Cumulus VX removes all
 organizational and economic barriers for you to get started with open
 networking on your own time, at your own pace and in your own
 environment.

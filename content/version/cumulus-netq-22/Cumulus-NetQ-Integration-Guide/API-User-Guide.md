@@ -121,8 +121,8 @@ responses, refer to [View the API](#view-the-api).
 Make your request to the *bgp* endpoint to obtain status information
 from all nodes running the BGP service, as follows:
 
-    curl --insecure -X GET “<https://<netq.domain>:32708/netq/telemetry/v1/object/bgp” -H “Content-Type: application/json” -H “Authorization: <auth-token>” | python -m json.tool
-     
+    curl --insecure -X GET "<https://<netq.domain>:32708/netq/telemetry/v1/object/bgp " -H "Content-Type: application/json " -H "Authorization: <auth-token> " | python -m json.tool
+     
     [
       {
         "ipv6_pfx_rcvd": 0,
@@ -222,7 +222,7 @@ all EVPN sessions running on that node. This example uses the *server01*
 node.
 
     curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/evpn/hostname/server01" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
-     
+     
     [
       {
         "import_rt": "[\"197:42\"]",
@@ -279,7 +279,7 @@ and time in epoch format, you indicate the data for that time (versus in
 the last hour by default), as follows:
 
     curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/interface?eq_timestamp=1556046250" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
-     
+     
     [
       {
         "hostname": "exit-1",
@@ -333,7 +333,7 @@ Make your request to the *inventory* endpoint to get a listing of all
 monitored nodes and their configuration information, as follows:
 
     curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/inventory" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
-     
+     
     [
       {
         "hostname": "exit-1",

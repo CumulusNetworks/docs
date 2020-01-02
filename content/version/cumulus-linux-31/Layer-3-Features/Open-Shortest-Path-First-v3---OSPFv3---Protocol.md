@@ -50,10 +50,10 @@ Configuring OSPFv3 involves the following tasks:
     shell:
     
         cumulus@switch:~$ sudo vtysh
-         
+         
         Hello, this is Quagga (version 0.99.23.1+cl3.0).
         Copyright 1996-2005 Kunihiro Ishiguro, et al.
-         
+         
         switch# conf t
         switch# configure  terminal
         switch(config)# router ospf6

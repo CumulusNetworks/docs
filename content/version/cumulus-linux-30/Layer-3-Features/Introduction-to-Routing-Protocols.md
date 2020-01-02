@@ -75,8 +75,8 @@ convergence during changes.
 
 Wikipedia defines
 [convergence](http://en.wikipedia.org/wiki/Convergence_%28routing%29) as
-the “state of a set of routers that have the same topological
-information about the network in which they operate”. It is imperative
+the "state of a set of routers that have the same topological
+information about the network in which they operate ". It is imperative
 that the routers in a network have the same topological state for the
 proper functioning of a network. Without this, traffic can be
 blackholed, and thus not reach its destination. It is normal for
@@ -89,7 +89,7 @@ A key factor that governs how quickly a routing protocol converges is
 the time it takes to detect the change. For example, how quickly can a
 routing protocol be expected to act when there is a link failure.
 Routing protocols classify changes into two kinds: hard changes such as
-link failures, and soft changes such as a peer dying silently. They’re
+link failures, and soft changes such as a peer dying silently. They're
 classified differently because protocols provide different mechanisms
 for dealing with these failures.
 
@@ -97,7 +97,7 @@ It is important to configure the protocols to be notified immediately on
 link changes. This is also true when a node goes down, causing all of
 its links to go down.
 
-Even if a link doesn’t fail, a routing peer can crash. This causes that
+Even if a link doesn't fail, a routing peer can crash. This causes that
 router to usually delete the routes it has computed or worse, it makes
 that router impervious to changes in the network, causing it to go out
 of sync with the other routers in the network because it no longer
@@ -105,7 +105,7 @@ shares the same topological information as its peers.
 
 The most common way to detect a protocol peer dying is to detect the
 absence of a heartbeat. All routing protocols send a heartbeat (or
-“hello”) packet periodically. When a node does not see a consecutive
+"hello ") packet periodically. When a node does not see a consecutive
 set of these hello packets from a peer, it declares its peer dead and
 informs other routers in the network about this. The period of each
 heartbeat and the number of heartbeats that need to be missed before a

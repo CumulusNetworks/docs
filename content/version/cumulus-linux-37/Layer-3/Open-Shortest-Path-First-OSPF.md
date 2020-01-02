@@ -16,7 +16,7 @@ siteSlug: cumulus-linux
 ---
 OSPF maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge and each link has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table. The computation is generally referred to as *SPF computation* and the resultant tree as the *SPF tree*.
 
-An LSA (*link-state advertisement*) is the fundamental quantum of information that OSPF routers exchange with each other. It seeds the graph building process on the node and triggers SPF computation. LSAs originated by a node are distributed to all the other nodes in the network through a mechanism called *flooding*. Flooding is done hop-by-hop. OSPF ensures reliability by using link state acknowledgement packets. The set of LSAs in a router’s memory is termed *link-state database* (LSDB), a representation of the network graph. Therefore, OSPF ensures a consistent view of LSDB on each node in the network in a distributed fashion (eventual consistency model); this is key to the protocol’s correctness.
+An LSA (*link-state advertisement*) is the fundamental quantum of information that OSPF routers exchange with each other. It seeds the graph building process on the node and triggers SPF computation. LSAs originated by a node are distributed to all the other nodes in the network through a mechanism called *flooding*. Flooding is done hop-by-hop. OSPF ensures reliability by using link state acknowledgement packets. The set of LSAs in a router's memory is termed *link-state database* (LSDB), a representation of the network graph. Therefore, OSPF ensures a consistent view of LSDB on each node in the network in a distributed fashion (eventual consistency model); this is key to the protocol's correctness.
 
 This topic describes OSPFv2, which is a [link-state routing protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for IPv4. For IPv6 commands, refer to [Open Shortest Path First v3 - OSPFv3](../Open-Shortest-Path-First-v3-OSPFv3/)
 
@@ -113,7 +113,7 @@ You can define additional custom parameters for OSPF, such as the network type (
 
 ```
 cumulus@switch:~$ net add interface swp1 ospf network point-to-point
-cumulus@switch:~$ net add interface swp1 ospf hello-interval 5
+cumulus@switch:~$ net add interface swp1 ospf hello-interval 5
 ```
 
 The OSPF configuration is saved in the `/etc/frr/frr.conf` file.
@@ -496,7 +496,7 @@ Unnumbered is usable for point-to-point interfaces only.
 
 {{%notice warning%}}
 
-If there is a `network <network number>/<mask> area <area ID>` command present in the FRRouting configuration, the `ip ospf area <area ID>` command is rejected with the error “Please remove network command first.” This prevents you from configuring other areas on some of the unnumbered interfaces. You can use either the `network area` command or the `ospf area` command in the configuration, but not both.
+If there is a `network <network number>/<mask> area <area ID>` command present in the FRRouting configuration, the `ip ospf area <area ID>` command is rejected with the error "Please remove network command first. " This prevents you from configuring other areas on some of the unnumbered interfaces. You can use either the `network area` command or the `ospf area` command in the configuration, but not both.
 
 {{%/notice%}}
 

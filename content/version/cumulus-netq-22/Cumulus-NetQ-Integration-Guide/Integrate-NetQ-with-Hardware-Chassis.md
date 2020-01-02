@@ -35,7 +35,7 @@ chassis:
     duplication of data in the NetQ database.
 
         cumulus@chassis:~$ sudo nano /etc/netq/netq.yml
-         
+         
         ...
         netq-agent:
           send_chassis_sensor_data: true

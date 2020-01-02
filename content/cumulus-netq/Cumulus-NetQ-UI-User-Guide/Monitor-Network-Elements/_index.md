@@ -205,8 +205,8 @@ The What Just Happened view displays events based on conditions detected in the 
 <ul>
 <li><p><strong>Hostname</strong>: Name of the Mellanox server</p></li>
 <li><p><strong>Reason</strong>: Reason why the tunnel is down</p>
-<ul><li>Overlay switch – source MAC is multicast:  Overlay packet's source MAC address is multicast</li>
-<li>Overlay switch – source MAC equals destination MAC: Overlay packet's source MAC address is the same as the destination MAC address</li>
+<ul><li>Overlay switch - source MAC is multicast:  Overlay packet's source MAC address is multicast</li>
+<li>Overlay switch - source MAC equals destination MAC: Overlay packet's source MAC address is the same as the destination MAC address</li>
 <li>Decapsulation error: Decapsulation produced incorrect format of packet. For example, encapsulation of packet with many VLANs or IP options on the underlay can cause decapsulation to result in a short packet.</li>
 </ul></li>
 </ul></td>

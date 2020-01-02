@@ -51,7 +51,7 @@ histogram with 10 bins, where each bin represents a range of queue
 lengths.
 
 You configure the histogram with a minimum size boundary (*Min*) and a
-histogram size — the
+histogram size - the
 *monitor.histogram\_pg.histogram.minimum\_bytes\_boundary* and
 *monitor.histogram\_pg.histogram.bin\_size\_bytes* settings, which are
 described in the table below.
@@ -147,7 +147,7 @@ table:
 </tr>
 <tr class="odd">
 <td><p>monitor.histogram_pg.action_list</p></td>
-<td><p>State collection is initiated when triggered by the <code>asic-monitor</code> service. The state collection may result in one or more actions — <em>snapshot</em>, <em>collect</em> and <em>log</em> — in response.</p></td>
+<td><p>State collection is initiated when triggered by the <code>asic-monitor</code> service. The state collection may result in one or more actions - <em>snapshot</em>, <em>collect</em> and <em>log</em> - in response.</p></td>
 </tr>
 <tr class="even">
 <td><p>monitor.histogram_pg.snapshot.file</p></td>
@@ -191,9 +191,9 @@ file. You edit the settings in the file directly with a text editor.
 There is no default configuration. Here is a sample configuration:
 
     cumulus@switch:~$ cat /etc/cumulus/datapath/monitor.conf
-     
+     
     monitor.port_group_list = [discards_pg,histogram_pg,all_packet_pg,buffers_pg]
-     
+     
     # The queue length histograms are collected every second
     # and the results are written to a snapshot file.
     # Sixty-four snapshot files will be maintained.
@@ -209,7 +209,7 @@ There is no default configuration. Here is a sample configuration:
     monitor.histogram_pg.histogram.bin_size_bytes = 1024
     monitor.histogram_pg.histogram.sample_time_ns = 1024
     monitor.histogram_pg.log.queue_bytes = 500
-    monitor.histogram_pg.collect.queue_bytes = 500                              
+    monitor.histogram_pg.collect.queue_bytes = 500                              
     monitor.histogram_pg.collect.port_group_list = [buffers_pg,all_packet_pg]
 
 ## Restarting the asic-monitor Service
@@ -262,14 +262,14 @@ A *log* action writes out the state to `syslog`. For example:
 
 A *snapshot* action takes a snapshot of the current state that was
 collected and writes it out to a file. You specify the prefix for the
-snapshot file name — including the path, like `/var/lib/cumulus/` for
-example — and the number of snapshots that can be taken before the
+snapshot file name - including the path, like `/var/lib/cumulus/` for
+example - and the number of snapshots that can be taken before the
 system starts overwriting the earliest snapshot files. For example, if
 the snapshot file is called `/var/lib/cumulus/snapshot` and the snapshot
 file count is set to 64, then the first snapshot file is named
 snapshot\_0 and the 64th snapshot is named snapshot\_63. When the 65th
-snapshot has taken, the original snapshot file —
-`/var/lib/cumulus/snapshot_0` — is overwritten and the files are
+snapshot has taken, the original snapshot file -
+`/var/lib/cumulus/snapshot_0` - is overwritten and the files are
 overwritten in sequence..
 
 ## Caveats and Errata
@@ -277,4 +277,4 @@ overwritten in sequence..
 Keep in mind that a lot of overhead is involved in collecting this data,
 hitting the CPU and SDK process, which can affect execution of
 `switchd`. Snapshots and logging can occupy a lot of disk space if
-you’re not limiting the number of files to copy.
+you're not limiting the number of files to copy.

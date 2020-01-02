@@ -72,16 +72,16 @@ of the most important keywords are defined in the following table.
 <td><p><strong>Required.</strong> This command defines the password that is required for SNMP version 1 or 2c requests for GET or GETNEXT. By default, this provides access to the full OID tree for such requests, regardless of from where they were sent. There is no default password set, so that <code>snmpd</code> does not respond to any requests that arrive. Users often specify a source IP address token to restrict access to only that host or network given. Users also specify a view name (as defined above) to restrict the subset of the OID tree.</p>
 <p>Some examples of <code>rocommunity</code> commands are shown below. The first command sets the read only community string to "simplepassword" for SNMP requests sourced from the 10.10.10.0/24 subnet and restricts viewing to the <em>systemonly</em> view name defined previously with the <code>view</code> command. The second example simply creates a read-only community password that allows access to the entire OID tree from any source IP address.</p>
 <pre><code>rocommunity simplepassword 10.10.10.0/24 -V systemonly
- 
+ 
 rocommunity cumulustestpassword</code></pre></td>
 </tr>
 <tr class="odd">
 <td><p><strong>view</strong></p></td>
 <td><p>This commands defines a view name that specifies a subset of the overall OID tree. This restricted view can then be referenced by name in the <code>rocommunity</code> command to link the view to a password that is used to see this restricted OID subset. By default, the <code>snmpd.conf</code> file contains numerous views with the <em>systemonly</em> view name:</p>
 <pre><code>view   systemonly  included   .1.3.6.1.2.1.1 
- 
+ 
 view   systemonly  included   .1.3.6.1.2.1.2
- 
+ 
 view   systemonly  included   .1.3.6.1.2.1.3 </code></pre>
 <p>The <em>systemonly</em> view is used by <code>rocommunity</code> to create a password for access to only these branches of the OID tree.</p></td>
 </tr>
@@ -96,35 +96,35 @@ view   systemonly  included   .1.3.6.1.2.1.3 </code></pre>
 <p><strong>rouser</strong></p></td>
 <td><p>These three commands define an internal SNMPv3 username that is required in order for <code>snmpd</code> to send traps. This username is required to authorize the DisMan service even though SNMPv3 is not being configured for use. The example <code>snmpd.conf</code> configuration shown below creates <em>snmptrapusernameX</em> as the username (this is just an example username) using the <code>createUser</code> command. <code>iquerySecName</code> defines the default SNMPv3 username to be used when making internal queries to retrieve monitored expressions. <code>rouser</code> specifies which username should be used for these SNMPv3 queries. All three are required for <code>snmpd</code> to retrieve information and send built-in traps or for those configured with the <code>monitor</code> command shown below in the examples.</p>
 <pre><code>createUser snmptrapusernameX
- 
+ 
 iquerySecName snmptrapusernameX
- 
+ 
 rouser snmptrapusernameX</code></pre></td>
 </tr>
 <tr class="even">
 <td><p><strong>linkUpDownNotifications yes</strong></p></td>
 <td><p>This command enables link up and link down trap notifications, assuming the other trap configurations settings are set. This command configures the Event MIB tables to monitor the ifTable for network interfaces being taken up or down, and triggering a <em>linkUp</em> or <em>linkDown</em> notification as appropriate. This is exactly equivalent to the following configuration:</p>
 <pre><code>notificationEvent  linkUpTrap    linkUp   ifIndex ifAdminStatus ifOperStatus
- 
+ 
 notificationEvent  linkDownTrap  linkDown ifIndex ifAdminStatus ifOperStatus 
- 
+ 
 monitor  -r 60 -e linkUpTrap   &quot;Generate linkUp&quot; ifOperStatus != 2
- 
+ 
 monitor  -r 60 -e linkDownTrap &quot;Generate linkDown&quot; ifOperStatus == 2</code></pre></td>
 </tr>
 <tr class="odd">
 <td><p><strong>defaultMonitors yes</strong></p></td>
 <td><p>This command configures the Event MIB tables to monitor the various UCD-SNMP-MIB tables for problems (as indicated by the appropriate xxErrFlag column objects) and send a trap. This assumes the user has downloaded the <code>snmp-mibs-downloader</code> Debian package and comments out "mibs" from <code>/etc/snmp/snmp.conf</code> (as in: "#mibs"). This command is exactly equivalent to the following configuration:</p>
 <pre><code>monitor   -o prNames -o prErrMessage &quot;process table&quot; prErrorFlag != 0
- 
+ 
 monitor   -o memErrorName -o memSwapErrorMsg &quot;memory&quot; memSwapError != 0
- 
+ 
 monitor   -o extNames -o extOutput &quot;extTable&quot; extResult != 0
- 
+ 
 monitor   -o dskPath -o dskErrorMsg &quot;dskTable&quot; dskErrorFlag != 0
- 
+ 
 monitor   -o laNames -o laErrMessage  &quot;laTable&quot; laErrorFlag != 0
- 
+ 
 monitor   -o fileName -o fileErrorMsg  &quot;fileTable&quot; fileErrorFlag != 0</code></pre></td>
 </tr>
 </tbody>
@@ -373,7 +373,7 @@ shows how to stop `snmpd` and restart it in the management VRF.
        Active: active (running) since Thu 2017-12-07 20:05:41 UTC; 2min 22s ago                                                                                                                                                                                                                                                                                  Main PID: 30880 (snmpd)
        CGroup: /system.slice/system-snmpd.slice/snmpd@mgmt.service                                                                                                                                                                                                                                                                                                         └─30880 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
                                                                                                                                                                                                                                                                                                                                                                 Dec 07 20:05:41 cel-redxp-01 systemd[1]: Started Simple Network Management Protocol (SNMP) Daemon..
-     
+     
     cumulus@switch:mgmt-vrf:~$ ps aux | grep snmpd
     snmp     30880  0.4  0.3  57176 12276 ?        Ss   20:05   0:00 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
 
@@ -517,8 +517,8 @@ To enable SNMP support for FRRouting, do the following:
     add the following lines:
     
         agentAddress udp:161  
-        rocommunity public default   
-         
+        rocommunity public default   
+         
         # these next three lines configure agentx and allows FRRouting to respond to snmp requests.
         master  agentx 
         agentXSocket /run/agentx/master 
@@ -615,7 +615,7 @@ To enable the .1.3.6.1.2.1 range:
         #
         #  ACCESS CONTROL 
         #
-         
+         
         # system
         view   systemonly  included   .1.3.6.1.2.1
         # frrouting ospf6
@@ -660,19 +660,19 @@ combination of authentication and encryption:
 
     # simple no auth user
     #createUser user1
-     
+     
     # user with MD5 authentication
     #createUser user2 MD5 user2password
-     
+     
     # user with MD5 for auth and DES for encryption
     #createUser user3 MD5 user3password DES user3encryption
-     
+     
     # user666 with SHA for authentication and AES for encryption
     createUser user666 SHA user666password AES user666encryption
-     
+     
     # user999 with MD5 for authentication and DES for encryption
     createUser user999 MD5 user999password DES user999encryption
-     
+     
     # restrict users to certain OIDs
     # (Note: creating rouser or rwuser will give
     # access regardless of the createUser command above. However,
@@ -700,7 +700,7 @@ the localhost:
     # check user1 which has no authentication or encryption (NoauthNoPriv)
     snmpget -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1.1.0
     snmpwalk -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1
-     
+     
     # check user2 which has authentication but no encryption (authNoPriv)
     snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.1.1.0
     snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.2.1.0
@@ -922,7 +922,7 @@ below in the examples). Add the following lines to your
 {{%notice note%}}
 
 `iquerySecName` specifies the default SNMPv3 username to be used when
-making internal queries to retrieve any necessary information — either
+making internal queries to retrieve any necessary information - either
 for evaluating the monitored expression or building a notification
 payload. These internal queries always use SNMPv3, even if normal
 querying of the agent is done using SNMPv1 or SNMPv2c. Note that this
@@ -1013,8 +1013,8 @@ bind to this address.
 For more information, read the the `snmp.conf` man page:
 
     clientaddr [<transport-specifier>:]<transport-address>
-      specifies the source address to be used by command-line applica‐
-      tions when sending SNMP requests. See snmpcmd(1) for more infor‐
+      specifies the source address to be used by command-line applica-
+      tions when sending SNMP requests. See snmpcmd(1) for more infor-
       mation about the format of addresses.
       This value is also used by snmpd when generating notifications.
 
@@ -1031,7 +1031,7 @@ From the `snmpd.conf` man page, the `monitor` command is defined this
 way:
 
     monitor [OPTIONS] NAME EXPRESSION
-     
+     
       defines  a  MIB  object to monitor.  If the EXPRESSION condition holds then 
       this will trigger the corresponding event, and either send a notification or
       apply a SET assignment (or both).  Note that the event will only be triggered once,
@@ -1041,43 +1041,43 @@ way:
       Note also that such monitors use an internal SNMPv3 request to retrieve the values
       being monitored (even  if  normal  agent  queries  typically  use SNMPv1 or SNMPv2c).
       See the iquerySecName token described above.
-     
+     
     EXPRESSION
       There are three types of monitor expression supported by the Event MIB - existence, 
       boolean and threshold tests.
-     
+     
     OID | ! OID | != OID
-     
+     
       defines  an  existence(0)  monitor  test.  A bare OID specifies a present(0) test,
       which will fire when (an instance of) the monitored OID is created.  An expression
       of the form ! OID specifies an absent(1) test, which will fire when the monitored
       OID is delected.  An expression of the form != OID specifies a changed(2) test,
       which will fire whenever the monitored value(s) change.  Note that there must be
       whitespace before the OID token.
-     
+     
     OID OP VALUE
-     
+     
       defines a boolean(1) monitor test.  OP should be one of the defined comparison operators
       (!=, ==, <, <=, >, >=) and VALUE should be an integer value to compare against.  Note that
       there must be whitespace around the OP token.  A comparison such as OID !=0 will not be
       handled correctly.
-     
+     
     OID MIN MAX [DMIN DMAX]
-     
+     
       defines a threshold(2) monitor test.  MIN and MAX are integer values, specifying
       lower and upper thresholds.  If the value of the monitored OID falls below the lower
       threshold (MIN) or rises above the upper threshold (MAX), then the monitor entry will
       trigger the corresponding event.
-     
+     
       Note that the rising threshold event will only be re-armed when the monitored value
       falls below the lower threshold (MIN).  Similarly, the falling threshold event will
       be re-armed by the upper threshold (MAX).
-     
+     
       The optional parameters DMIN and DMAX configure a pair of similar threshold tests,
       but working with the delta differences between successive sample values.
-     
+     
     OPTIONS
-     
+     
       There are various options to control the behaviour of the monitored expression.  These include:
       -D    indicates that the expression should be evaluated using delta differences between sample
             values (rather than the values themselves).
@@ -1208,7 +1208,7 @@ enabling traps. This greatly improves the readability of the
     line is commented out:
     
         # This file controls the activity of snmpd and snmptrapd
-         
+         
         # Don't load any MIBs by default.
         # You might comment this lines once you have the MIBs Downloaded.
         #export MIBS=
@@ -1355,7 +1355,7 @@ about specific configuration options within the file, look at the
     #
     # All lines beginning with a '#' are comments and are intended for you
     # to read.  All other lines are configuration commands for the agent.
-     
+     
     #
     # PLEASE: read the snmptrapd.conf(5) manual page as well!
     #
@@ -1487,7 +1487,7 @@ SNMPDOPTS=&#39;-LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pi
 </tr>
 <tr class="even">
 <td><p><a href="http://www.net-snmp.org/docs/mibs/snmpTargetMIB.html" class="external-link">SNMP-TARGET</a></p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p><a href="http://net-snmp.sourceforge.net/docs/mibs/snmpUsmMIB.html" class="external-link">SNMP-USER-BASED-SM</a></p></td>

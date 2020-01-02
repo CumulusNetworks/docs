@@ -25,7 +25,7 @@ The command syntax is:
 
     tipctl add nos [-h|--help] MAC NOS
     tipctl del nos [-h|--help] mac MAC
-    tipctl del nos [-h|--help] nos NOS 
+    tipctl del nos [-h|--help] nos NOS 
     tipctl reset nos [-h|--help]
     tipctl show nos all [--with-date|-h|--help]
     tipctl show nos mac [--with-date|-h|--help] MAC
@@ -158,7 +158,7 @@ how to remove an image from your local repository.
 
     cumulus@<ts>:~$ cd ~/var/tips/www/onie/images/
     cumulus@<ts>:~/var/tips/www/onie/images/$ ls
-    cumulus@<ts>:~/var/tips/www/onie/images/$ rm <image-filename> 
+    cumulus@<ts>:~/var/tips/www/onie/images/$ rm <image-filename> 
 
 <article id="html-search-results" class="ht-content" style="display: none;">
 

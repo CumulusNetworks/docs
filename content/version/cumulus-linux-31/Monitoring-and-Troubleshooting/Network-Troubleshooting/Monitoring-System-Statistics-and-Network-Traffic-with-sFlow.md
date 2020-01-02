@@ -92,19 +92,19 @@ Then set up your collectors and sampling rates in `/etc/hsflowd.conf`:
 
     # Manual Configuration (requires DNSSD=off above)
       #################################################
-     
+     
       # Typical configuration is to send every 30 seconds
       polling = 20
-     
+     
       sampling.1G=2048
       sampling.10G=4096
       sampling.40G=8192
-     
+     
       collector {
         ip = 192.0.2.100
         udpport = 6343
       }
-     
+     
       collector {
         ip = 192.0.2.200
         udpport = 6344

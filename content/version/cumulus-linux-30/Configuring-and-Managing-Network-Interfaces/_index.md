@@ -205,7 +205,7 @@ The loopback interface *lo* must always be specified in
 ### ifupdown Behavior with Child Interfaces
 
 By default, `ifupdown` recognizes and uses any interface present on the
-system — whether a VLAN, bond or physical interface — that is listed as
+system - whether a VLAN, bond or physical interface - that is listed as
 a dependent of an interface. You are not required to list them in the
 `interfaces` file unless they need a specific configuration, for [MTU,
 link speed, and so
@@ -227,10 +227,10 @@ For this example, swp1 and swp2 below do not need an entry in the
 <td><p><strong>With Child Interfaces Defined</strong></p>
 <pre><code>auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 auto bridge
 iface bridge
     bridge-vlan-aware yes

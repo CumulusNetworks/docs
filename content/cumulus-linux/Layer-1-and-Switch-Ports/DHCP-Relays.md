@@ -127,7 +127,7 @@ OPTIONS="-a"
 cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
 ...
 # Additional options that are passed to the DHCP relay daemon?
-OPTIONS="-a --use-pif-circuit-id" 
+OPTIONS="-a --use-pif-circuit-id" 
 ```
 
 - To customize the Remote ID sub-option, edit the the `/etc/default/isc-dhcp-relay` file and add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters that is used for the Remote ID. For example:

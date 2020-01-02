@@ -91,7 +91,7 @@ These commands create the following configuration in the
         bridge-ports VNI-11000 VNI-11001
         bridge-vids 1000-1001
         bridge-vlan-aware yes
-     
+     
     auto vlan1000
     iface vlan1000
         address 45.0.0.16/26
@@ -99,7 +99,7 @@ These commands create the following configuration in the
         vlan-id 1000
         vlan-raw-device bridge
         vrf vrf1001
-     
+     
     auto vlan1001
     iface vlan1001
         address 45.0.0.80/26
@@ -107,11 +107,11 @@ These commands create the following configuration in the
         vlan-id 1001
         vlan-raw-device bridge
         vrf vrf1001
-     
+     
     auto vrf1001
     iface vrf1001
         vrf-table auto
-     
+     
     auto VNI-11000
     iface VNI-11000
         bridge-access 1000
@@ -120,7 +120,7 @@ These commands create the following configuration in the
         mtu 9152
         vxlan-id 11000
         vxlan-local-tunnelip 27.0.0.15
-     
+     
     auto VNI-11001
     iface VNI-11001
         bridge-access 1001

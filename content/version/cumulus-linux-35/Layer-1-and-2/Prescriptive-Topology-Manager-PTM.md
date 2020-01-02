@@ -125,7 +125,7 @@ the switch it's running on:
 
 {{%notice tip%}}
 
-It’s a good idea to always wrap the hostname in double quotes, like
+It's a good idea to always wrap the hostname in double quotes, like
 *"www.example.com"*. Otherwise, `ptmd` can fail if you specify a
 fully-qualified domain name as the hostname and do not wrap it in double
 quotes.
@@ -144,7 +144,7 @@ using in the `topology.dot` file.
     }
 
 However, in this next example, PTM will compare using the FQDN and look
-for *switch05.cumulusnetworks.com*, which is the FQDN of the switch it’s
+for *switch05.cumulusnetworks.com*, which is the FQDN of the switch it's
 running on:
 
     graph G {
@@ -312,7 +312,7 @@ interface, `ptmd` sends notifications to `zebra`. Zebra maintains a
 this flag. To check the per-interface `ptm-status`:
 
     cumulus@switch:~$ net show interface swp1
-     
+     
     Interface swp1 is up, line protocol is up
       Link ups:       0    last: (never)
       Link downs:     0    last: (never)
@@ -386,7 +386,7 @@ For basic output, use `ptmctl` without any options:
 
 ``` 
 cumulus@switch:~$ sudo ptmctl
- 
+ 
 -------------------------------------------------------------
 port  cbl     BFD     BFD                  BFD    BFD       
       status  status  peer                 local  type      
@@ -399,14 +399,14 @@ swp3  pass    N/A     N/A                  N/A    N/A
 For more detailed output, use the `-d` option:
 
     cumulus@switch:~$ sudo ptmctl -d
-     
+     
     --------------------------------------------------------------------------------------
     port  cbl    exp     act      sysname  portID  portDescr  match  last    BFD   BFD    
           status nbr     nbr                                  on     upd     Type  state  
     --------------------------------------------------------------------------------------
     swp45 pass   h1:swp1 h1:swp1  h1       swp1    swp1       IfName 5m: 5s  N/A   N/A    
     swp46 fail   h2:swp1 h2:swp1  h2       swp1    swp1       IfName 5m: 5s  N/A   N/A    
-     
+     
     #continuation of the output
     -------------------------------------------------------------------------------------------------
     BFD   BFD       det_mult  tx_timeout  rx_timeout  echo_tx_timeout  echo_rx_timeout  max_hop_cnt
@@ -414,14 +414,14 @@ For more detailed output, use the `-d` option:
     -------------------------------------------------------------------------------------------------
     N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
     N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
-     
+     
 
 To return information on active BFD sessions `ptmd` is tracking, use the
 `-b` option:
 
 ``` 
 cumulus@switch:~$ sudo ptmctl -b
- 
+ 
 ----------------------------------------------------------
 port  peer        state  local         type       diag 
                                                          
@@ -434,7 +434,7 @@ To return LLDP information, use the `-l` option. It returns only the
 active neighbors currently being tracked by `ptmd`.
 
     cumulus@switch:~$ sudo ptmctl -l
-     
+     
     ---------------------------------------------
     port  sysname  portID  port   match  last
                            descr  on     upd
@@ -448,14 +448,14 @@ IPv6-connected peer):
 
 ``` 
 cumulus@switch:~$ sudo ptmctl -b -d
- 
+ 
 ----------------------------------------------------------------------------------------
 port  peer                 state  local  type       diag  det   tx_timeout  rx_timeout  
                                                           mult                          
 ----------------------------------------------------------------------------------------
 swp1  fe80::202:ff:fe00:1  Up     N/A    singlehop  N/A   3     300         900         
 swp1  3101:abc:bcad::2     Up     N/A    singlehop  N/A   3     300         900         
- 
+ 
 #continuation of output
 ---------------------------------------------------------------------
 echo        echo        max      rx_ctrl  tx_ctrl  rx_echo  tx_echo 
@@ -467,22 +467,22 @@ tx_timeout  rx_timeout  hop_cnt
 
 ### ptmctl Error Outputs
 
-If there are errors in the topology file or there isn’t a session, PTM
+If there are errors in the topology file or there isn't a session, PTM
 will return appropriate outputs. Typical error strings are:
 
     Topology file error [/etc/ptm.d/topology.dot] [cannot find node cumulus] -
     please check /var/log/ptmd.log for more info
-     
+     
     Topology file error [/etc/ptm.d/topology.dot] [cannot open file (errno 2)] -
     please check /var/log/ptmd.log for more info
-     
+     
     No Hostname/MgmtIP found [Check LLDPD daemon status] -
     please check /var/log/ptmd.log for more info
-     
+     
     No BFD sessions . Check connections
-     
+     
     No LLDP ports detected. Check connections
-     
+     
     Unsupported command
 
 For example:
@@ -491,8 +491,8 @@ For example:
     -------------------------------------------------------------------------
     cmd         error
     -------------------------------------------------------------------------
-    get-status  Topology file error [/etc/ptm.d/topology.dot] 
-                [cannot open file (errno 2)] - please check /var/log/ptmd.log 
+    get-status  Topology file error [/etc/ptm.d/topology.dot] 
+                [cannot open file (errno 2)] - please check /var/log/ptmd.log 
                 for more info
 
 {{%notice tip%}}

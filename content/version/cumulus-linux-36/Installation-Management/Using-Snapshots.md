@@ -23,16 +23,16 @@ files.
 
 The primary snapshot components are:
 
-  - [btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page) — an
+  - [btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page) - an
     underlying file system in Cumulus Linux, which supports snapshots.
-  - [snapper](http://snapper.io/documentation.html) — a userspace
+  - [snapper](http://snapper.io/documentation.html) - a userspace
     utility to create and manage snapshots on demand as well as taking
     snapshots automatically before and after running 
     `apt-get upgrade|install|remove|dist-upgrade`. You can use `snapper` to roll
     back to earlier snapshots, view existing snapshots, or delete one or
     more snapshots.
   - [NCLU](/version/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility-NCLU/)
-    — takes snapshots automatically before and after committing network
+    - takes snapshots automatically before and after committing network
     configurations. You can use NCLU to roll back to earlier snapshots,
     view existing snapshots, or delete one or more snapshots.
 

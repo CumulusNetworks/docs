@@ -1,5 +1,5 @@
 ---
-title: "Monitoring Interfaces and Transceivers Using ethtool — ethtool Counter Definitions"
+title: "Monitoring Interfaces and Transceivers Using ethtool - ethtool Counter Definitions"
 author: Cumulus Networks
 weight: 459
 aliases:
@@ -40,7 +40,7 @@ To check the status of an interface using `ethtool`:
             Transceiver: external
             Auto-negotiation: off
             Current message level: 0x00000000 (0)
-     
+     
             Link detected: yes
 
 To query interface statistics:
@@ -87,7 +87,7 @@ information:
     eth0   1500   0          611      0      0      0          487      0      0      0   BMRU
     lo    16436   0            0      0      0      0            0      0      0      0    LRU
     swp1   1500   0            0      0      0      0            0      0      0      0    BMU
-     
+     
     cumulus@switch:~$ sudo cl-netstat -c
     Cleared counters
 
@@ -308,19 +308,19 @@ and alarm threshold settings.
 <tr class="even">
 <td><p>HwIfInErrors</p></td>
 <td><p>For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol. For character-oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol.</p>
-<p>This is the total of all “in” or Rx errors such as frame/FCS errors as outlined below</p></td>
+<p>This is the total of all "in " or Rx errors such as frame/FCS errors as outlined below</p></td>
 </tr>
 <tr class="odd">
 <td><p>SoftInErrors</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>SoftInDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>SoftInFrameErrors</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfOutDiscards</p></td>
@@ -333,23 +333,23 @@ and alarm threshold settings.
 </tr>
 <tr class="even">
 <td><p>HwIfOutQDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutNonQDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>SoftOutErrors</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>SoftOutDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>SoftOutTxFifoFull</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutQLen</p></td>
@@ -369,111 +369,111 @@ and alarm threshold settings.
 </tr>
 <tr class="even">
 <td><p>HwIfInPfc0Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutPfc0Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfInPfc1Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutPfc1Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfInPfc2Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutPfc2Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfInPfc3Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutPfc3Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfInPfc4Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutPfc4Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfInPfc5Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutPfc5Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfInPfc6Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutPfc6Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfInPfc7Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutPfc7Pkt</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfOutWredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutQ0WredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfOutQ1WredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutQ2WredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfOutQ3WredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutQ4WredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfOutQ5WredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutQ6WredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfOutQ7WredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="odd">
 <td><p>HwIfOutQ8WredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 <tr class="even">
 <td><p>HwIfOutQ9WredDrops</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 </tbody>
 </table>

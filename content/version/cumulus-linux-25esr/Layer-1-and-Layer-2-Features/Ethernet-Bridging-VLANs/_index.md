@@ -312,8 +312,8 @@ network configuration.
 ## Configuring an SVI (Switch VLAN Interface)
 
 A bridge creates a layer 2 forwarding domain for hosts to communicate. A
-bridge can be assigned an IP address — typically of the same subnet as
-the hosts that are members of the bridge — and participate in routing
+bridge can be assigned an IP address - typically of the same subnet as
+the hosts that are members of the bridge - and participate in routing
 topologies. This enables hosts within a bridge to communicate with other
 hosts outside the bridge through layer 3 routing.
 

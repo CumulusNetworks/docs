@@ -27,11 +27,11 @@ into `/etc/network/interfaces`. For example:
     cumulus@switch:~$ cat /etc/network/interfaces
     # This file describes the network interfaces available on your system
     # and how to activate them. For more information, see interfaces(5).
-     
+     
     # The loopback network interface
     auto lo
     iface lo inet loopback
-     
+     
     auto swp3
     iface swp3
         address 198.51.100.1/24

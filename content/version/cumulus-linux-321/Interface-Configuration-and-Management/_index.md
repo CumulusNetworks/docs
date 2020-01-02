@@ -77,7 +77,7 @@ called *uplinks:*
     allow-uplink swp1
     iface swp1 inet static
         address 10.1.1.1/31
-     
+     
     auto swp2
     allow-uplink swp2
     iface swp2 inet static
@@ -149,7 +149,7 @@ The loopback interface *lo* must always be specified in
 ## <span id="src-5126993_InterfaceConfigurationandManagement-ip" class="confluence-anchor-link"></span>ifupdown Behavior with Child Interfaces</span>
 
 By default, `ifupdown` recognizes and uses any interface present on the
-system — whether a VLAN, bond or physical interface — that is listed as
+system - whether a VLAN, bond or physical interface - that is listed as
 a dependent of an interface. You are not required to list them in the
 `interfaces` file unless they need a specific configuration, for [MTU,
 link speed, and so
@@ -171,10 +171,10 @@ For this example, swp1 and swp2 below do not need an entry in the
 <td><p><strong>With Child Interfaces Defined</strong></p>
 <pre><code>auto swp1
 iface swp1
- 
+ 
 auto swp2
 iface swp2
- 
+ 
 auto bridge
 iface bridge
     bridge-vlan-aware yes
@@ -252,12 +252,12 @@ following example configuration:
     iface bond1
         address 100.0.0.2/16
         bond-slaves swp29 swp30
-     
+     
     auto bond2
     iface bond2
         address 100.0.0.5/16
         bond-slaves swp31 swp32
-     
+     
     auto br2001
     iface br2001
         address 12.0.1.3/24
@@ -375,7 +375,7 @@ Consider this example configuration:
     auto br100
     iface br100
         bridge-ports bond1.100 bond2.100
-     
+     
     auto bond1
     iface bond1
         bond-slaves swp1 swp2
@@ -526,7 +526,7 @@ These commands create the following code snippet in the
 
     auto swp6
     iface swp6
-        post-up ip address add 71.21.21.20/32 dev swp6 scope site
+        post-up ip address add 71.21.21.20/32 dev swp6 scope site
 
 {{%/notice%}}
 
@@ -638,11 +638,11 @@ file. For example:
     # The loopback network interface
     auto lo
     iface lo inet loopback
-     
+     
     # The primary network interface
     auto eth0
     iface eth0 inet dhcp
-     
+     
     source /etc/network/interfaces.d/bond0
 
 The contents of the sourced file used above are:
@@ -668,28 +668,28 @@ These commands produce the following snippet in the
 `/etc/network/interfaces` file:
 
     ...
-     
+     
     auto swp1
     iface swp1
-     
+     
     auto swp2
     iface swp2
-     
+     
     auto swp3
     iface swp3
-     
+     
     auto swp4
     iface swp4
-     
+     
     auto swp6
     iface swp6
-     
+     
     auto swp10
     iface swp10
-     
+     
     auto swp11
     iface swp11
-     
+     
     auto swp12
     iface swp12
 
@@ -809,9 +809,9 @@ Otherwise, unexpected behavior can result.
 For example, swp1 is configured in two places:
 
     cumulus@switch:~$ cat /etc/network/interfaces
-     
+     
     source /etc/interfaces.d/speed_settings
-     
+     
     auto swp1
     iface swp1
       address 10.0.14.2/24
@@ -819,7 +819,7 @@ For example, swp1 is configured in two places:
 As well as `/etc/interfaces.d/speed_settings`
 
     cumulus@switch:~$ cat /etc/interfaces.d/speed_settings
-     
+     
     auto swp1
     iface swp1
       link-speed 1000

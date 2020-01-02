@@ -127,14 +127,14 @@ To configure one or more switch ports for loopback mode, edit the
 In the example below, swp8 and swp9 are configured for loopback mode:
 
     cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-     
+     
     ...
-     
+     
     7=4x10G
     8=loopback
     9=loopback
     10=100G
-     
+     
     ...
 
 After you save your changes to the `ports.conf` file, 
@@ -195,7 +195,7 @@ configuration, they use a virtual IP address as the gateway IP. The
 relevant interface configuration on *exit01* is as follows:
 
     ## some output removed for brevity (such as peerlink and host-facing bonds) ##
-     
+     
     auto bridge
     iface bridge
         bridge-vlan-aware yes
@@ -203,14 +203,14 @@ relevant interface configuration on *exit01* is as follows:
         bridge-vids 100 200
         bridge-pvid 1             # sets native VLAN to 1, an unused VLAN
         mstpctl-treeprio 8192
-     
+     
     auto outside
     iface outside
         bond-slaves swp45 swp47
         alias hyperloop outside 
         mstpctl-bpduguard yes
         mstpctl-portbpdufilter yes
-     
+     
     auto inside
     iface inside
         bond-slaves swp46 swp48
@@ -223,19 +223,19 @@ relevant interface configuration on *exit01* is as follows:
         bridge_ports outside.100
         address 172.16.100.2/24
         address-virtual 44:38:39:FF:01:90 172.16.100.1/24
-     
+     
     auto VLAN200GW
     iface VLAN200GW
        bridge_ports outside.200
        address 172.16.200.2/24
-       address-virtual 44:38:39:FF:02:90 172.16.200.1/24 
-     
+       address-virtual 44:38:39:FF:02:90 172.16.200.1/24 
+     
     auto vni-10
     iface vni-10
         vxlan-id 10
         vxlan-local-tunnelip 10.0.0.11
         bridge-access 100
-     
+     
     auto vni-20
     iface vni-20
         vxlan-id 20

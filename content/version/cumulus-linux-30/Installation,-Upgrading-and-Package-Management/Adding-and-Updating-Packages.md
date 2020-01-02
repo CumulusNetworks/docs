@@ -122,8 +122,8 @@ installed in the system:
 
     cumulus@switch:~$ dpkg -l | grep {name of package}
 
-If the package is installed already, ensure it’s the version you need.
-If it’s an older version, then update the package from the Cumulus Linux
+If the package is installed already, ensure it's the version you need.
+If it's an older version, then update the package from the Cumulus Linux
 repository:
 
     cumulus@switch:~$ sudo apt-get update

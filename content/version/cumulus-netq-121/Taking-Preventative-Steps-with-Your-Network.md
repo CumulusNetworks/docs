@@ -89,7 +89,7 @@ expected. The agent sends a heartbeat every 30 seconds, and if 3
 consecutive heartbeats are missed, its status changes to *Rotten*.
 
     cumulus@leaf01:~$ netq show agents 
-     
+     
     Node             Status    Sys Uptime    Agent Uptime
     ---------------  --------  ------------  --------------
     leaf01           Fresh     2h ago        2h ago

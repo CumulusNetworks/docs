@@ -450,7 +450,7 @@ and kubelet status.
 
 To display the kubelet or Docker version, use the `components` option on the
 above command. This example lists all the details of all master and
-worker nodes because the master's hostname — *server11* in this case —
+worker nodes because the master's hostname - *server11* in this case -
 was included in the query.
 
     cumulus@server11:~$ netq server11 show kubernetes node components
@@ -506,7 +506,7 @@ You can view information about the pod:
     server11:3.0.0.68        default      nginx-8586cf59-26pj5 10.244.9.193     server24     run:nginx            Running  nginx:6e2b65070c86       14h:25m:24s
     server11:3.0.0.68        default      nginx-8586cf59-c82ns 10.244.40.128    server12     run:nginx            Running  nginx:01b017c26725       14h:25m:24s
     server11:3.0.0.68        default      nginx-8586cf59-wjwgp 10.244.49.64     server22     run:nginx            Running  nginx:ed2b4254e328       14h:25m:24s
-     
+     
     cumulus@server11:~$ netq server11 show kubernetes pod namespace default label app
     Matching kube_pod records:
     Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed

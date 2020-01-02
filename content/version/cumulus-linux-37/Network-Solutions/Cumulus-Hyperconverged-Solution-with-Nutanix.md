@@ -191,7 +191,7 @@ In both configurations the `pvid` value of *1* indicates the native
     this file to authenticate and communicate with the Nutanix cluster.
 
         cumulus@leaf02:~$ sudo nano /etc/default/cumulus-hyperconverged
-         
+         
         ### /etc/default/cumulus-hyperconverged config file
         # username for Prism (required)
         USERNAME=admin

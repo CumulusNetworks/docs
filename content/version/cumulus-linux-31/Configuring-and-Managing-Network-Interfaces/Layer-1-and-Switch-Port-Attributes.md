@@ -572,7 +572,7 @@ limitation like this:
     #     per pipeline, with the remaining three 40G ports set to
     #     "disabled". The 13 40G ports become 52 unganged 10G ports, which
     #     totals 52 logical ports for that pipeline.
-    # 
+    # 
 
 The means the maximum number of ports for this Dell S6000 is 104.
 
@@ -633,7 +633,7 @@ You can verify SFP settings using ` ethtool -m  `. The following example
 shows the output for 1G and 10G modules:
 
     cumulus@switch:~# sudo ethtool -m | egrep '(swp|RXPower :|TXPower :|EthernetComplianceCode)'
-     
+     
     swp1: SFP detected
                   EthernetComplianceCodes : 1000BASE-LX
                   RXPower : -10.4479dBm

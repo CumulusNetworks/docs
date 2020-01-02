@@ -47,8 +47,8 @@ experience with Cumulus Linux.
 
     cumulus@switch:~$ sudo cl-support -h
     Usage: cl-support [-h] [-s] [-t] [-v] [reason]...
-     
-     
+     
+     
     Args:
     [reason]: Optional reason to give for invoking cl-support.
               Saved into tarball's cmdline.args file.
@@ -65,13 +65,13 @@ file:
 
   - [Troubleshooting the etc
     Directory](/version/cumulus-linux-321/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory)
-    — In terms of sheer numbers of files, `/etc` contains the largest
+    - In terms of sheer numbers of files, `/etc` contains the largest
     number of files to send to Cumulus Networks by far. However, log
     files could be significantly larger in file size.
 
   - [Troubleshooting Log
     Files](/version/cumulus-linux-321/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files)
-    — This guide highlights the most important log files to look at.
+    - This guide highlights the most important log files to look at.
     Keep in mind, `cl-support` includes all of the log files.
 
 <article id="html-search-results" class="ht-content" style="display: none;">

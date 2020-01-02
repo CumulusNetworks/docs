@@ -14,7 +14,7 @@ siteSlug: cumulus-netq-21
 Cumulus® NetQ is a highly-scalable, modern network operations tool set
 that provides visibility and troubleshooting of your overlay and
 underlay networks in real-time. NetQ delivers actionable insights and
-operational intelligence about the health of your data center — from the
+operational intelligence about the health of your data center - from the
 container, virtual machine, or host, all the way to the switch and port.
 NetQ correlates configuration and operational status, and instantly
 identifies and tracks state changes while simplifying management for the
@@ -188,7 +188,7 @@ the network state are described here.
 ## NetQ Agents
 
 NetQ Agents are software installed and running on every monitored *node*
-in the network — including Cumulus® Linux® switches, Linux bare-metal
+in the network - including Cumulus® Linux® switches, Linux bare-metal
 hosts, and virtual machines. The NetQ Agents push network data regularly
 and event information immediately to the NetQ Platform.
 
@@ -494,8 +494,8 @@ command show the same output as a tree.
     2   1   server12                                                    bond1.1002
         2   leaf11      swp8                                            vlan1002
     --- --- ----------- --------------- --------------- --------------- ---------------
-     
-     
+     
+     
     cumulus@switch:~$ netq trace 10.0.0.13 from 10.0.0.21 pretty
     Number of Paths: 2
     Number of Paths with Errors: 0
@@ -560,7 +560,7 @@ last night and that they can be run from any switch in the network.
                                                                           FI evpn not activated on peer                
     exit-1            default         swp7              firewall-2        BGP session with peer firewall-2 (swp7 vrf de 1d:1h:59m:43s
     ...
-     
+     
     cumulus@switch:~$ netq exit-1 show bgp
     Matching bgp records:
     Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
@@ -621,7 +621,7 @@ that occurred at a particular time or within a time window.
 Interface state, IP addresses, routes, ARP/ND table (IP neighbor)
 entries and MAC table entries carry a timestamp that represents the time
 the event happened (such as when a route is deleted or an interface
-comes up) — *except* the first time the NetQ agent is run. If the
+comes up) - *except* the first time the NetQ agent is run. If the
 network has been running and stable when a NetQ agent is brought up for
 the first time, then this time reflects when the agent was started.
 Subsequent changes to these objects are captured with an accurate time
@@ -663,7 +663,7 @@ This example shows the difference between the timestamp displays.
     exit-1            swp4.3(spine-2)              DataVrf1081     655537     655435     14/12/0      Fri Feb 15 17:20:00 2019
     exit-1            swp4.4(spine-2)              DataVrf1082     655537     655435     13/12/0      Fri Feb 15 17:20:00 2019
     ...
-     
+     
     cumulus@switch:~$ netq show agents
     Matching agents records:
     Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
@@ -677,7 +677,7 @@ This example shows the difference between the timestamp displays.
     spine01           Fresh            yes      2.0.0-cl3u11~1549993210.e902a94      2h:32m:33s                2h:27m:11s                2h:27m:11s                 Tue Feb 12 18:13:06 2019
     spine02           Fresh            yes      2.0.0-cl3u11~1549993210.e902a94      2h:32m:33s                2h:27m:6s                 2h:27m:6s                  Tue Feb 12 18:13:11 2019
     ...
-     
+     
     cumulus@switch:~$ netq show agents json
     {
         "agents":[
@@ -841,7 +841,7 @@ this:
                 "vrf":"DataVrf1081"
             },
     ...
-     
+     
         ], 
         "summary": {
             "checkedNodeCount": 25, 

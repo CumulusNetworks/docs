@@ -187,13 +187,13 @@ privilege level 15) so is able to add interface swp1.
     --- /etc/network/interfaces    2018-04-06 14:49:33.099331830 +0000
     +++ /var/run/nclu/iface/interfaces.tmp    2018-04-06 16:01:16.057639999 +0000
     @@ -3,10 +3,13 @@
-     
+     
      source /etc/network/interfaces.d/*.intf
-     
+     
      # The loopback network interface
      auto lo
      iface lo inet loopback
-     
+     
      # The primary network interface
      auto eth0
      iface eth0 inet dhcp

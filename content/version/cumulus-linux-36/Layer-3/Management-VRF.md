@@ -70,18 +70,18 @@ The NCLU commands above create the following snippets in the
 `/etc/network/interfaces` file:
 
     ...
-     
+     
     auto eth0
     iface eth0 inet dhcp
         vrf mgmt
-     
+     
     ...
-     
+     
     auto mgmt
     iface mgmt
         address 127.0.0.1/8
         vrf-table auto
-     
+     
     ...
 
 {{%notice info%}}
@@ -294,15 +294,15 @@ the original service file.
     can find it under *\[Service\]*.
     
         cumulus@switch:~$ sudo nano /etc/systemd/system/myservice.service 
-         
+         
         [Unit]
         Description=Example
         Documentation=https://www.example.io/
-         
+         
         [Service]
         #User=username
         ExecStart=/usr/local/bin/myservice agent -data-dir=/tmp/myservice -bind=192.168.0.11
-         
+         
         [Install]
         WantedBy=multi-user.target
 
@@ -313,11 +313,11 @@ the original service file.
         [Unit]
         Description=Example
         Documentation=https://www.example.io/
-         
+         
         [Service]
         #User=username
         ExecStart=/usr/bin/vrf task exec mgmt /sbin/runuser -u cumulus -- foocommand
-         
+         
         [Install]
         WantedBy=multi-user.target
 
@@ -370,7 +370,7 @@ These commands produce the following configuration snippet in the
 
     <routing protocol> 
     redistribute connected route-map REDISTRIBUTE-CONNECTED
-     
+     
     route-map REDISTRIBUTE-CONNECTED deny 100
      match interface eth0
     !
@@ -395,7 +395,7 @@ To look at information about eth0 (the management routing table), use
 
     cumulus@switch:~$ net show route vrf mgmt
     default via 192.168.0.1 dev eth0
-     
+     
     cumulus@switch:~$ net show route
     default via 10.23.23.3 dev swp17  proto zebra  metric 20
     10.3.3.3 via 10.23.23.3 dev swp17
@@ -440,7 +440,7 @@ management VRF stanzas are added to the *mgmt* interface class:
 
     auto lo
     iface lo inet loopback 
-     
+     
     allow-mgmt eth0
     iface eth0 inet dhcp
         vrf mgmt

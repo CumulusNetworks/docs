@@ -52,13 +52,13 @@ These commands create the following configuration in the
 
     auto swp1
     iface swp1
-     
+     
     auto swp2
     iface swp2
-     
+     
     auto swp3
     iface swp3
-     
+     
     auto bridge
     iface bridge
         bridge-ports swp1 swp2 swp3
@@ -82,7 +82,7 @@ address you need to configure:
     bridge fdb add 00:00:00:00:00:44 dev swp4 master static vlan 400
     bridge fdb add 00:00:00:00:00:55 dev swp5 master static vlan 500
     bridge fdb add 00:00:00:00:00:66 dev swp6 master static vlan 600
-     
+     
 
 Then create the configuration using
 [NCLU](/version/cumulus-linux-343/System-Configuration/Network-Command-Line-Utility-NCLU):
@@ -99,22 +99,22 @@ These commands create the following configuration in the
 
     auto swp1
     iface swp1
-     
+     
     auto swp2
     iface swp2
-     
+     
     auto swp3
     iface swp3
-     
+     
     auto swp4
-    iface swp4 
-     
+    iface swp4 
+     
     auto swp5
     iface swp5
-     
+     
     auto swp6
     iface swp6
-     
+     
     auto bridge
     iface bridge
         bridge-ports swp1 swp2 swp3 swp4 swp5 swp6

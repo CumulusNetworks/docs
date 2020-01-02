@@ -29,11 +29,11 @@ graph building process on the node and triggers SPF computation. LSAs
 originated by a node are distributed to all the other nodes in the
 network through a mechanism called *flooding*. Flooding is done
 hop-by-hop. OSPF ensures reliability by using link state acknowledgement
-packets. The set of LSAs in a router’s memory is termed *link-state
+packets. The set of LSAs in a router's memory is termed *link-state
 database* (LSDB), a representation of the network graph. Thus, OSPF
 ensures a consistent view of LSDB on each node in the network in a
 distributed fashion (eventual consistency model); this is key to the
-protocol’s correctness.
+protocol's correctness.
 
 ## Scalability and Areas</span>
 
@@ -145,7 +145,7 @@ There are two ways to achieve (2) and (3) in the Quagga OSPF:
     cover the most number of interfaces on the router that should run
     OSPF.
     
-    There may be interfaces where it’s undesirable to bring up OSPF
+    There may be interfaces where it's undesirable to bring up OSPF
     adjacency. For example, in a data center topology, the host-facing
     interfaces need not run OSPF; however the corresponding IP addresses
     should still be advertised to neighbors. This can be achieved using
@@ -311,8 +311,8 @@ Unnumbered is usable for point-to-point interfaces only.
 
 If there is a `network <network number>/<mask> area <area ID>` command
 present in the Quagga configuration, the `ip ospf area <area ID>`
-command is rejected with the error “Please remove network command
-first.” This prevents you from configuring other areas on some of the
+command is rejected with the error "Please remove network command
+first. " This prevents you from configuring other areas on some of the
 unnumbered interfaces. You can use either the `network area` command or
 the `ospf area` command in the configuration, but not both.
 

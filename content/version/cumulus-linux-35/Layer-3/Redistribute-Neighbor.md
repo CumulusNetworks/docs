@@ -122,7 +122,7 @@ steps can be applied to any of the leafs.
         auto swp1
         iface swp1
           address 10.0.0.11/32
-         
+         
         auto swp2
         iface swp2
           address 10.0.0.11/32
@@ -235,11 +235,11 @@ via eth2. You should note:
         # The loopback network interface
         auto lo
         iface lo inet loopback
-         
+         
         auto lo:1
         iface lo:1
           address 10.1.0.101/32
-         
+         
         auto eth1
         iface eth1
           address 10.1.0.101/32
@@ -400,13 +400,13 @@ Doing so can cause the `rdnbrd` service to crash.
         Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
                       i internal, r RIB-failure, S Stale, R Removed
         Origin codes: i - IGP, e - EGP, ? - incomplete
-         
+         
            Network          Next Hop            Metric LocPrf Weight Path
         *> 10.0.0.11/32     0.0.0.0                  0         32768 i
         *> 10.0.0.12/32     ::                                     0 65020 65012 i
         *> 10.0.0.21/32     ::                                     0 65020 i
         *> 10.0.0.22/32     ::                                     0 65020 i
-         
+         
         Total number of prefixes 4
 
 ### Verification
@@ -433,7 +433,7 @@ imported/advertised:
         cumulus@switch:~$ sudo vtysh
         Hello, this is Quagga (version 0.99.23.1+cl3u2).
         Copyright 1996-2005 Kunihiro Ishiguro, et al.
-         
+         
         switch# show ip route table
         Codes: K - kernel route, C - connected, S - static, R - RIP,
                O - OSPF, I - IS-IS, B - BGP, A - Babel, T - Table,

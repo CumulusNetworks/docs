@@ -80,7 +80,7 @@ documentation](https://www.debian.org/releases/stable/amd64/release-notes/ch-inf
 </colgroup>
 <thead>
 <tr class="header">
-<th><p> </p></th>
+<th><p> </p></th>
 <th><p><strong>Description</strong></p></th>
 <th><p><strong>2.5.x Default Configuration</strong></p></th>
 <th><p><strong>3.x Default Configuration</strong></p></th>
@@ -90,7 +90,7 @@ documentation](https://www.debian.org/releases/stable/amd64/release-notes/ch-inf
 <tr class="odd">
 <td><p>ospf log-adjacency-changes</p></td>
 <td><p>Logs a single message when a peer transitions to/from FULL state</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>On</p></td>
 </tr>
 <tr class="even">
@@ -115,36 +115,36 @@ documentation](https://www.debian.org/releases/stable/amd64/release-notes/ch-inf
 <tr class="odd">
 <td><p>bgp log-neighbor-changes</p></td>
 <td><p>Logs a single message when a peer transitions to/from Established state</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>On</p></td>
 </tr>
 <tr class="even">
 <td><p>bgp deterministic-med</p></td>
 <td><p>Ensures path ordering no longer impactrs bestpath selection</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Enabled</p></td>
 </tr>
 <tr class="odd">
 <td><p>bgp default show-hostname</p></td>
 <td><p>Displays the hostname in show command output.</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Enabled</p></td>
 </tr>
 <tr class="even">
 <td><p>bgp network import-check</p></td>
-<td><p> </p></td>
-<td><p> </p></td>
+<td><p> </p></td>
+<td><p> </p></td>
 <td><p>Enabled</p></td>
 </tr>
 <tr class="odd">
 <td><p>bgp keepalive timers</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>60s</p></td>
 <td><p>3s</p></td>
 </tr>
 <tr class="even">
 <td><p>bgp hold timers</p></td>
-<td><p> </p></td>
+<td><p> </p></td>
 <td><p>180s</p></td>
 <td><p>9s</p></td>
 </tr>
@@ -184,7 +184,7 @@ Additional configuration changes:
   - BGP multipath is enabled by default; the number of maximum paths
     defaults to 64.
 
-  - Simplified BGP unnumbered configuration — a single command can
+  - Simplified BGP unnumbered configuration - a single command can
     configure a neighbor and attach to peer-group:  
     `neighbor <swpX> interface peer-group <group name>`
 
@@ -472,7 +472,7 @@ X
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -518,7 +518,7 @@ X
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -564,7 +564,7 @@ SFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -574,43 +574,43 @@ SFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -712,7 +712,7 @@ X
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -758,7 +758,7 @@ X
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -804,7 +804,7 @@ X
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -850,7 +850,7 @@ QSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -896,7 +896,7 @@ QSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -942,7 +942,7 @@ QSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -958,7 +958,7 @@ JDSU
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-JQP—04SWAA1
+JQP-04SWAA1
 
 </td>
 
@@ -988,7 +988,7 @@ X
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -998,43 +998,43 @@ X
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1136,7 +1136,7 @@ QSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1182,7 +1182,7 @@ X
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1228,7 +1228,7 @@ QSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1274,7 +1274,7 @@ QSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1284,43 +1284,43 @@ QSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1422,7 +1422,7 @@ QSFP to 4xSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1468,7 +1468,7 @@ QSFP to 4xSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1478,43 +1478,43 @@ QSFP to 4xSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1616,7 +1616,7 @@ QSFP to 4xSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1662,7 +1662,7 @@ QSFP to 4xSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1672,43 +1672,43 @@ QSFP to 4xSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1810,7 +1810,7 @@ QSFP to 1xSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
@@ -1820,43 +1820,43 @@ QSFP to 1xSFP
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
- 
+ 
 
 </td>
 

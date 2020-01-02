@@ -98,7 +98,7 @@ Notifier, refer to the [Configure Optional NetQ Capabilities](/version/cumulus-n
 <td><p>LnvSession</p></td>
 <td><p>LNV session state changed state from bad to up</p></td>
 <td><p>INFO</p></td>
-<td><p>&lt;hostname&gt; &lt;role&gt;: session state changed from &lt;old state != up&gt; to &lt;new state != ‘bad’&gt;</p></td>
+<td><p>&lt;hostname&gt; &lt;role&gt;: session state changed from &lt;old state != up&gt; to &lt;new state != 'bad'&gt;</p></td>
 <td><p>Torc-11 vxsnd: session state changed from bad to up</p></td>
 <td><p>No user action required.</p></td>
 </tr>
@@ -115,7 +115,7 @@ Notifier, refer to the [Configure Optional NetQ Capabilities](/version/cumulus-n
 <td><p>LnvSession</p></td>
 <td><p>LNV session state is bad</p></td>
 <td><p>WARNING</p></td>
-<td><p>&lt;hostname&gt; &lt;role&gt;: session state is &lt;state != ‘up’&gt;</p></td>
+<td><p>&lt;hostname&gt; &lt;role&gt;: session state is &lt;state != 'up'&gt;</p></td>
 <td><p>Torc-11 vxrd: session state is down</p></td>
 <td><p>Investigate reason for current state:</p>
 <p><code>netq &lt;hostname&gt; show lnv</code></p></td>

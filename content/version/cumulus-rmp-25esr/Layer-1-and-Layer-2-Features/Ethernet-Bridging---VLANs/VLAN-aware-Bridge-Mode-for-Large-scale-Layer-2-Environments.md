@@ -30,7 +30,7 @@ large-scale L2 environments, with **one single** **instance** of
 [Spanning
 Tree](/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree).
 Each physical bridge member port is configured with the list of allowed
-VLANs as well as its port VLAN ID (either PVID or native VLAN — see
+VLANs as well as its port VLAN ID (either PVID or native VLAN - see
 below). MAC address learning, filtering and forwarding are *VLAN-aware*.
 This significantly reduces the configuration size, and eliminates the
 large overhead of managing the port/VLAN instances as subinterfaces,

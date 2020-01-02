@@ -65,7 +65,7 @@ When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
     cumulus@mlx-2700-03:/var/log# sudo clagctl
-     
+     
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
@@ -73,7 +73,7 @@ the state:
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
-     
+     
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
@@ -98,7 +98,7 @@ messages from NetQ Notifier similar to the following:
 To begin your investigation, show the status of the `clagd` service:
 
     cumulus@switch:~$ netq mlx-2700-03 show services clagd
-     
+     
     Matching services records are:
     Hostname    Service   PID   VRF     Enabled   Active   Monitored   Status   Up Time   Last Changed
     ----------- --------- ----- ------- --------- -------- ----------- -------- --------- --------------
@@ -146,7 +146,7 @@ When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
     cumulus@mlx-2700-03:/var/log# sudo clagctl
-     
+     
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
@@ -154,7 +154,7 @@ the state:
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
-     
+     
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
@@ -226,7 +226,7 @@ When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
     cumulus@mlx-2700-03:/var/log# sudo clagctl
-     
+     
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 secondary
@@ -234,7 +234,7 @@ the state:
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (active)
     System MAC: 44:38:39:ff:ff:01
-     
+     
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------
@@ -300,14 +300,14 @@ When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
     root@mlx-2700-03:/var/log# clagctl
-     
+     
     The peer is not alive
     Our Priority, ID, and Role: 8192 44:38:39:00:a5:38 primary
     Peer Interface and IP: peerlink-3.4094 169.254.0.9
     VxLAN Anycast IP: 36.0.0.20
     Backup IP: 27.0.0.20 (inactive)
     System MAC: 44:38:39:ff:ff:01
-     
+     
     CLAG Interfaces
     Our Interface    Peer Interface   CLAG Id Conflicts            Proto-Down Reason
     ---------------- ---------------- ------- -------------------- -----------------

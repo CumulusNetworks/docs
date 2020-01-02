@@ -114,7 +114,7 @@ know you are testing it.
 
 ## Installing netq</span>
 
-To install the `netq` package — `cumulus-netq` — on a switch, follow the
+To install the `netq` package - `cumulus-netq` - on a switch, follow the
 instructions below. The `cumulus-netq` package contains `netq` and the
 `netq-agent`. Cumulus Networks recommends you install the `netq-agent`
 on every Cumulus Linux switch in the network; you can also install it on
@@ -137,7 +137,7 @@ the redis server.
 
 Cumulus Networks recommends you install the `redis` server on its own
 server or VM. Ideally, you should run the `redis` server on a separate,
-powerful server for maximum usability and performance — Cumulus Networks
+powerful server for maximum usability and performance - Cumulus Networks
 recommends a system with a quad core CPU, 16GB of RAM (with 8GB for
 `redis` itself) and 512GB of storage.
 
@@ -262,7 +262,7 @@ Only one instance of `netq-agent` can run at a time. If the
 ## Using netq</span>
 
 `netq` has a number of options to use with the command to return various
-kinds of data about your network — press the *Tab* key at any time to
+kinds of data about your network - press the *Tab* key at any time to
 reveal the options available to a given part of the command. Running
 `netq` on its own reveals all the options, with a brief explanation for
 each one:
@@ -311,8 +311,8 @@ You can also check the health of BGP and MLAG in the network:
 
     cumulus@leaf-1:~$ netq check bgp
     Total Sessions: 28, Failed Sessions: 0
-     
-     
+     
+     
     cumulus@leaf-1$ netq check clag
     Checked Nodes: 5, Failed Nodes: 1
     Node             Reason
@@ -461,7 +461,7 @@ the network. The available options are:
 For example, to see the `top` output on leaf-2, run:
 
     cumulus@leaf-1:~$ netq view leaf-2 top
-     
+     
     Output retrieved from 48s ago
     top - 21:57:08 up 13 min,  0 users,  load average: 0.04, 0.07, 0.03
     Tasks:  89 total,   1 running,  88 sleeping,   0 stopped,   0 zombie

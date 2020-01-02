@@ -30,7 +30,7 @@ large-scale L2 environments, with **one single** **instance** of
 [Spanning
 Tree](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree).
 Each physical bridge member port is configured with the list of allowed
-VLANs as well as its port VLAN ID (either PVID or native VLAN — see
+VLANs as well as its port VLAN ID (either PVID or native VLAN - see
 below). MAC address learning, filtering and forwarding are *VLAN-aware*.
 This significantly reduces the configuration size, and eliminates the
 large overhead of managing the port/VLAN instances as subinterfaces,
@@ -51,7 +51,7 @@ Utility
 ([NCLU](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120643)).
 The example below shows the NCLU commands required to create a
 VLAN-aware bridge configured for STP, that contains two switch ports,
-and includes 3 VLANs — the tagged VLANs 100 and 200 and the untagged
+and includes 3 VLANs - the tagged VLANs 100 and 200 and the untagged
 (native) VLAN of 1:
 
 <table>
@@ -62,15 +62,15 @@ and includes 3 VLANs — the tagged VLANs 100 and 200 and the untagged
 <tbody>
 <tr class="odd">
 <td><p>{{% imgOld 0 %}}</p></td>
-<td><pre><code>cumulus@switch:~$ net add bridge bridge ports swp1-2 
-cumulus@switch:~$ net add bridge bridge vids 100,200 
+<td><pre><code>cumulus@switch:~$ net add bridge bridge ports swp1-2 
+cumulus@switch:~$ net add bridge bridge vids 100,200 
 cumulus@switch:~$ net add bridge bridge pvid 1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 cumulus@switch:~$ net show configuration files
- 
+ 
 ...
- 
+ 
 auto bridge
 iface bridge
     bridge-ports swp1 swp2
@@ -160,14 +160,14 @@ attribute:
 <tbody>
 <tr class="odd">
 <td><p>{{% imgOld 1 %}}</p></td>
-<td><pre><code>cumulus@switch:~$ net add bridge bridge ports swp1-3 
-cumulus@switch:~$ net add bridge bridge vids 100,200 
+<td><pre><code>cumulus@switch:~$ net add bridge bridge ports swp1-3 
+cumulus@switch:~$ net add bridge bridge vids 100,200 
 cumulus@switch:~$ net add bridge bridge pvid 1
 cumulus@switch:~$ net add interface swp3 bridge-vids 200
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 cumulus@switch:~$ net show configuration files
- 
+ 
 ...
 auto bridge
 iface bridge
@@ -175,7 +175,7 @@ iface bridge
     bridge-pvid 1
     bridge-vids 100 200
     bridge-vlan-aware yes
- 
+ 
 auto swp3
 iface swp3
   bridge-vids 200</code></pre></td>
@@ -197,15 +197,15 @@ to VLAN 100 as specified in the example below:
 <tbody>
 <tr class="odd">
 <td><p>{{% imgOld 2 %}}</p></td>
-<td><pre><code>cumulus@switch:~$ net add bridge bridge ports swp1-2 
-cumulus@switch:~$ net add bridge bridge vids 100,200 
+<td><pre><code>cumulus@switch:~$ net add bridge bridge ports swp1-2 
+cumulus@switch:~$ net add bridge bridge vids 100,200 
 cumulus@switch:~$ net add bridge bridge pvid 1
 cumulus@switch:~$ net add interface swp1 bridge access 100
 cumulus@switch:~$ net add interface swp2 bridge access 100
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 cumulus@switch:~$ net show configuration files
- 
+ 
 ...
 auto bridge
 iface bridge
@@ -213,11 +213,11 @@ iface bridge
     bridge-pvid 1
     bridge-vids 100 200
     bridge-vlan-aware yes
- 
+ 
 auto swp1
 iface swp1
     bridge-access 100
- 
+ 
 auto swp2
 iface swp2
     bridge-access 100
@@ -241,7 +241,7 @@ Consider the following example bridge:
       bridge-vids 2-100
       bridge-pvid 101
       bridge-vlan-aware yes
-     
+     
 
 Here is the VLAN membership for that configuration:
 
@@ -267,7 +267,7 @@ When you check VLAN membership for that port, it shows that there is
 **no** untagged VLAN.
 
     cumulus@switch$ net show bridge vlan
-     
+     
     Interface      VLAN  Flags
     -----------  ------  ---------------------
     swp1              1  PVID, Egress Untagged
@@ -351,9 +351,9 @@ attribute. It also contains other switch ports that send and receive
 traffic from all the defined VLANs.
 
     cumulus@switch:~$ net show configuration files
-     
+     
     ...
-     
+     
     # ports swp3-swp48 are trunk ports which inherit vlans from the 'bridge'
     # ie vlans 310,700,707,712,850,910
     #
@@ -362,7 +362,7 @@ traffic from all the defined VLANs.
           bridge-ports glob swp1-52
           bridge-vids 310 700 707 712 850 910
           bridge-vlan-aware yes
-     
+     
     auto swp1
     iface swp1
           bridge-access 310
@@ -384,7 +384,7 @@ traffic from all the defined VLANs.
     iface swp49
           mstpctl-portnetwork yes
           mstpctl-portpathcost 10
-     
+     
     # The following port is the trunk uplink and inherits all vlans
     # from 'bridge'; bridge assurance is enabled using 'portnetwork' attribute
     auto swp50
@@ -399,7 +399,7 @@ set of bonds. The bond configurations are generated from a
 [Mako](http://www.makotemplates.org/) template.
 
     cumulus@switch:~$ net show configuration files
-     
+     
     ...
     #
     # vlan-aware bridge with bonds example
@@ -416,28 +416,28 @@ set of bonds. The bond configurations are generated from a
     # 
     auto lo
     iface lo
-     
+     
     auto eth0
     iface eth0 inet dhcp
-     
+     
     # bond interface
     auto uplink1
     iface uplink1
         bond-slaves swp32
         bridge-vids 2000-2079
-     
+     
     # bond interface
     auto peerlink
     iface peerlink
         bond-slaves swp30 swp31
         bridge-vids 2000-2079 4094
-     
+     
     # bond interface
     auto downlink
     iface downlink
         bond-slaves swp1
         bridge-vids 2000-2079
-     
+     
     #
     # Declare vlans for all swp ports
     # swp2-20 get vlans from 2004 to 2022.
@@ -448,19 +448,19 @@ set of bonds. The bond configurations are generated from a
         auto swp${port}
         iface swp${port}
             bridge-vids ${vlanid}
-     
+     
     %endfor
-     
+     
     # svi vlan 4094
     auto bridge.4094
     iface bridge.4094
         address 11.100.1.252/24
-     
+     
     # l2 attributes for vlan 4094
     auto bridge.4094
     vlan bridge.4094
         bridge-igmp-querier-src 172.16.101.1
-     
+     
     #
     # vlan-aware bridge
     #
@@ -468,7 +468,7 @@ set of bonds. The bond configurations are generated from a
     iface bridge
         bridge-ports uplink1 peerlink downlink glob swp2-20
         bridge-vlan-aware yes
-     
+     
     # svi peerlink vlan
     auto peerlink.4094
     iface peerlink.4094

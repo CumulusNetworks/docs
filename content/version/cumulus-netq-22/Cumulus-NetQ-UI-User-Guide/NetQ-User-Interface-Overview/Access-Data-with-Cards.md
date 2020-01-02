@@ -393,7 +393,7 @@ The card is removed from the workbench, but not from the application.
 
 The UI provides a number of card workflows. Card workflows focus on a
 particular aspect of your network and are a linked set of each size
-card—a small card, a medium card, one or more large cards, and one or
+card-a small card, a medium card, one or more large cards, and one or
 more full screen cards. The following card workflows are available:
 
   - **Network Health**: network-wide view of network health

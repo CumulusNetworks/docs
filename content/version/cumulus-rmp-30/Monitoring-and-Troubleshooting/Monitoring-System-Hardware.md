@@ -75,7 +75,7 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 
 | Option        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \-h, –help    | Displays the help message and exits.                                                                                                                                                                                                                                                                                                                                                                                                                |
+| \-h, -help    | Displays the help message and exits.                                                                                                                                                                                                                                                                                                                                                                                                                |
 | \-a           | Prints the base MAC address for switch interfaces.                                                                                                                                                                                                                                                                                                                                                                                                  |
 | \-r           | Prints the number of MACs allocated for switch interfaces.                                                                                                                                                                                                                                                                                                                                                                                          |
 | \-s           | Sets the EEPROM content if the EEPROM is writable. `args` can be supplied in command line in a comma separated list of the form `'<field>=<value>, ...'. ','` and `'='` are illegal characters in field names and values. Fields that are not specified will default to their current values. If `args` are supplied in the command line, they will be written without confirmation. If `args` is empty, the values will be prompted interactively. |
@@ -86,7 +86,7 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 ### Related Commands</span>
 
 You can also use the `dmidecode` command to retrieve hardware
-configuration information that’s been populated in the BIOS.
+configuration information that's been populated in the BIOS.
 
 You can use `apt-get` to install the `lshw` program on the switch, which
 also retrieves hardware configuration information.
@@ -115,11 +115,11 @@ Usage: `sensors [OPTION]... [CHIP]...`
 
 | Option            | Description                                                                                                                                                 |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \-c, –config-file | Specify a config file; use - after `-c` to read the config file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
-| \-s, –set         | Executes set statements in the config file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers.             |
-| \-f, –fahrenheit  | Show temperatures in degrees Fahrenheit.                                                                                                                    |
-| \-A, –no-adapter  | Do not show the adapter for each chip.                                                                                                                      |
-| –bus-list         | Generate bus statements for `sensors.conf`.                                                                                                                 |
+| \-c, -config-file | Specify a config file; use - after `-c` to read the config file from `stdin`; by default, `sensors` references the configuration file in `/etc/sensors.d/`. |
+| \-s, -set         | Executes set statements in the config file (root only); `sensors -s` is run once at boot time and applies all the settings to the boot drivers.             |
+| \-f, -fahrenheit  | Show temperatures in degrees Fahrenheit.                                                                                                                    |
+| \-A, -no-adapter  | Do not show the adapter for each chip.                                                                                                                      |
+| -bus-list         | Generate bus statements for `sensors.conf`.                                                                                                                 |
 
 If `[CHIP]` is not specified in the command, all chip info will be
 printed. Example chip names include:
@@ -210,8 +210,8 @@ Then stop the daemon:
 
     cumulus@switch:~$ sudo systemctl stop wd_keepalive.service
 
-You can modify the settings for the watchdog — like the timeout setting
-and scheduler priority — in its configuration file,
+You can modify the settings for the watchdog - like the timeout setting
+and scheduler priority - in its configuration file,
 `/etc/watchdog.conf`.
 
 ## Configuration Files</span>

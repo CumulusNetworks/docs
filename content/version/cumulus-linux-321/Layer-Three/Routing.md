@@ -116,7 +116,7 @@ to filter route updates from Zebra into the Linux kernel:
 
 ## Supported Route Table Entries</span>
 
-Cumulus Linux — via `switchd` — advertises the maximum number of route
+Cumulus Linux - via `switchd` - advertises the maximum number of route
 table entries that are supported on a given switch architecture,
 including:
 

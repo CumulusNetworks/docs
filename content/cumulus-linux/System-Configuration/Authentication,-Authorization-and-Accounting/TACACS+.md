@@ -455,7 +455,7 @@ TACACS+ and other non-local users that run the `deluser` command with the `--rem
 
 ```
 tacuser0@switch: deluser --remove-home USERNAME
-userdel: cannot remove entry ‘USERNAME’ from /etc/passwd
+userdel: cannot remove entry 'USERNAME' from /etc/passwd
 /usr/sbin/deluser: `/usr/sbin/userdel USERNAME' returned error code 1. Exiting
 ```
 

@@ -70,7 +70,7 @@ Any time you enable auto-negotiation, Cumulus RMP restores the default
 configuration settings specified in the [table
 below](#src-5127618_Layer1andSwitchPortAttributes-sett).
 
-By default, auto-negotiation is disabled — except on 10G and 1G BASE-T
+By default, auto-negotiation is disabled - except on 10G and 1G BASE-T
 switches, where it's required for links to work at all. And for RJ45-SFP
 converters, you need to manually configure the settings as described in
 the [default settings table
@@ -79,7 +79,7 @@ below](#src-5127618_Layer1andSwitchPortAttributes-sett).
 If you disable it later or never enable it, then you have to configure
 the duplex and link speed settings manually using
 [NCLU](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120643)
-— see the relevant sections below. The default speed if you disable
+- see the relevant sections below. The default speed if you disable
 auto-negotiation depends on the type of connector used with the port.
 For example, SFP+ optics default to 10G.
 
@@ -140,7 +140,7 @@ iface swp1
   link-autoneg off
   link-speed 1000</code></pre></td>
 <td><ul>
-<li><p>The module has two sets of electronics — the port side, which communicates to the switch ASIC, and the RJ45 side.</p></li>
+<li><p>The module has two sets of electronics - the port side, which communicates to the switch ASIC, and the RJ45 side.</p></li>
 <li><p>Auto-negotiation is always used on the RJ45 side of the link by the PHY built into the module. This is independent of the switch setting. Set <code>link-autoneg</code> to off.</p></li>
 <li><p>Auto-negotiation needs to be enabled on the server side in this scenario.</p></li>
 </ul></td>
@@ -157,7 +157,7 @@ $ net add interface swp1 link autoneg off</code></pre>
 iface swp1
   link-autoneg off
   link-speed 10000</code></pre></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 </tbody>
 </table>
@@ -207,7 +207,7 @@ Ports can be configured to one speed less than their maximum speed.
 Interface MTU ([maximum transmission
 unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) applies
 to traffic traversing the management port, front panel/switch ports,
-bridge, VLAN subinterfaces and bonds — in other words, both physical and
+bridge, VLAN subinterfaces and bonds - in other words, both physical and
 logical interfaces.
 
 MTU is the only interface setting that must be set manually.
@@ -317,25 +317,25 @@ High-level interface statistics are available with the `net show
 interface` command:
 
     cumulus@switch:~$ net show interface swp1
-     
+     
         Name    MAC                Speed      MTU  Mode
     --  ------  -----------------  -------  -----  ---------
     UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
-     
-     
+     
+     
     Vlans in disabled State
     -------------------------
     br0
-     
-     
+     
+     
     Counters      TX    RX
     ----------  ----  ----
     errors         0     0
     unicast        0     0
     broadcast      0     0
     multicast      0     0
-     
-     
+     
+     
     LLDP
     ------  ----  ---------------------------
     swp1    ====  44:38:39:00:00:03(server01)
@@ -377,7 +377,7 @@ You can verify SFP settings using ` ethtool -m  `. The following example
 shows the output for 1G and 10G modules:
 
     cumulus@switch:~# sudo ethtool -m | egrep '(swp|RXPower :|TXPower :|EthernetComplianceCode)'
-     
+     
     swp1: SFP detected
                   EthernetComplianceCodes : 1000BASE-LX
                   RXPower : -10.4479dBm

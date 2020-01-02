@@ -69,7 +69,7 @@ To track the route to an IPv4 host:
 
 ## Manipulating the System ARP Cache</span>
 
-` arp  `manipulates or displays the kernel’s IPv4 network neighbor
+` arp  `manipulates or displays the kernel's IPv4 network neighbor
 cache. See ` man arp  `for details.
 
 To display the ARP cache:

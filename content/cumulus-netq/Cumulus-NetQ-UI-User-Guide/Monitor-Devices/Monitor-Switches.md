@@ -341,7 +341,7 @@ The full screen Switch card provides multiple tabs.
 <td><p>Displays all known MAC addresses for the switch. This tab provides the following additional data about each MAC address:</p>
 <ul>
 <li><p><strong>DB State</strong>: Session state of the DB; for internal use only</p></li>
-<li><p><strong>Egress Port</strong>: Importance of the event–critical, warning, info, or debug</p></li>
+<li><p><strong>Egress Port</strong>: Importance of the event-critical, warning, info, or debug</p></li>
 <li><p><strong>Hostname</strong>: User-defined name of the switch</p></li>
 <li><p><strong>Last Changed</strong>: Data and time that the address was last updated or deleted</p></li>
 <li><p><strong>MAC Address</strong>: MAC address of switch</p></li>

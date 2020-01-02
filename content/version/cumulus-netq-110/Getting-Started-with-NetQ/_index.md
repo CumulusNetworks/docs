@@ -67,7 +67,7 @@ NetQ containers will not overwrite the host containers and vice versa.
 1.  Download the NetQ Telemetry Server virtual machine. On the
     [Downloads](https://cumulusnetworks.com/downloads/) page, select
     *NetQ* from the **Product** menu, then click **Download** for the
-    appropriate hypervisor — KVM or VMware.
+    appropriate hypervisor - KVM or VMware.
 
 2.  Import the virtual machine into your
     [KVM](/cumulus-vx/Getting-Started/Libvirt-and-KVM-QEMU/) or
@@ -280,18 +280,18 @@ To configure alerts and integrations on the NetQ Telemetry Server:
             
                 netq-notifier:
                   log_level: info
-                 
+                 
                 ...
-                 
+                 
                 notifier-integrations:
                   - name: notifier-slack-channel-1
                     type: slack
                     webhook: "https://hooks.slack.com/services/sometext/moretext/evenmoretext"
                     severity: INFO,
                     tag: "@netqts-sys"
-                 
+                 
                 ...
-                 
+                 
                 notifier-filters:
                   - name: default
                     rule:
@@ -325,16 +325,16 @@ would be uncommented and listed).
     ## Netq configuration File.
     ## Configuration is also read from files in /etc/netq/config.d/ and have
     ## precedence over config in /etc/cts/netq/netq.yml.
-     
+     
     ## ----- Common configurations -----
-     
+     
     ## Backend Configuration for all netq agents and apps on this host.
     ##
     #backend:
     #  server: 
     #  port: 6379
     ## ----- netq-agent configurations -----
-     
+     
     ## Netq Agent Configuration
     ##
     ## log_level: Could be debug, info, warning or error. Default is info.
@@ -357,7 +357,7 @@ would be uncommented and listed).
     #netqd:
     #  log_level: info
     ## ----- netq-notifier configurations -----
-     
+     
     ## Netq Notifier configuration
     ##
     ## log_level: Could be debug, info, warning or error. Default is info.

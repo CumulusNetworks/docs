@@ -643,7 +643,7 @@ include /etc/cumulus/acl/policy.d/01_new.datapathacl
 
 The maximum number of rules that can be handled in hardware is a function of the following factors:
 
-- The platform type (switch silicon, like Tomahawk or Spectrum — see the [HCL](http://cumulusnetworks.com/support/hcl) to determine which platform type applies to a particular switch).
+- The platform type (switch silicon, like Tomahawk or Spectrum - see the [HCL](http://cumulusnetworks.com/support/hcl) to determine which platform type applies to a particular switch).
 - The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously. 
 - The number of default rules provided by Cumulus Linux.
 - Whether the rules are applied on ingress or egress.
@@ -1180,7 +1180,7 @@ This also becomes two ACLs and is the same as:
 
 ```
 [iptables]
--A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
+-A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
 -A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
 ```
 

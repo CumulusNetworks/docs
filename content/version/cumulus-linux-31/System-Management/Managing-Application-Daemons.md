@@ -174,7 +174,7 @@ command, then pipe the results to `grep`, using the - or + operators:
      [ + ] arp_refresh
      [ + ] auditd
      ...
-     
+     
     cumulus@switch:~$ sudo systemctl status | grep -
      [ - ] isc-dhcp-server
      [ - ] openvswitch-vtep

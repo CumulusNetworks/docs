@@ -20,7 +20,7 @@ for password recovery.
     
     ``` 
                            GNU GRUB  version 2.02~beta2-22+deb8u1
-     
+     
      +----------------------------------------------------------------------------+
      |*Cumulus RMP GNU/Linux                                                      | 
      | Advanced options for Cumulus RMP GNU/Linux                                 |
@@ -34,7 +34,7 @@ for password recovery.
     
     ``` 
                            GNU GRUB  version 2.02~beta2-22+deb8u1
-     
+     
      +----------------------------------------------------------------------------+
      | Cumulus RMP GNU/Linux, with Linux 4.1.0-cl-1-amd64                         | 
      | Cumulus RMP GNU/Linux, with Linux 4.1.0-cl-1-amd64 (sysvinit)              |

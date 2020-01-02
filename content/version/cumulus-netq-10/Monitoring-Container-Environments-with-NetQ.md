@@ -122,7 +122,7 @@ server, the last three lines enable Docker:
         key: config-quagga
         period: '60'
       service: zebra
-     
+     
     docker:
       enable: true
       poll_period: 15

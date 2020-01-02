@@ -68,7 +68,7 @@ NetQ containers will not overwrite the host containers and vice versa.
 1.  Download the NetQ Telemetry Server virtual machine. On the
     [Downloads](https://cumulusnetworks.com/downloads/) page, select
     *NetQ* from the **Product** menu, then click **Download** for the
-    appropriate hypervisor — KVM or VMware.
+    appropriate hypervisor - KVM or VMware.
 
 2.  Import the virtual machine into your
     [KVM](/cumulus-vx/Getting-Started/Libvirt-and-KVM-QEMU/) or
@@ -202,7 +202,7 @@ monitor that node on your network.
     reach the server by running the following command:
     
         cumulus@switch:~$ netq config show server
-         
+         
         Server         Port    Vrf    Status
         -------------  ------  -----  --------
         198.51.100.10  6379    mgmt   ok
@@ -387,18 +387,18 @@ To configure alerts and integrations on the NetQ Telemetry Server:
             
                 netq-notifier:
                   log_level: info
-                 
+                 
                 ...
-                 
+                 
                 notifier-integrations:
                   - name: notifier-slack-channel-1
                     type: slack
                     webhook: "https://hooks.slack.com/services/sometext/moretext/evenmoretext"
                     severity: INFO,
                     tag: "@netqts-sys"
-                 
+                 
                 ...
-                 
+                 
                 notifier-filters:
                   - name: default
                     rule:

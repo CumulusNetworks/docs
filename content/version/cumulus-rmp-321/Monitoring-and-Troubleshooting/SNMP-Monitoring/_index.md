@@ -159,7 +159,7 @@ To enable the .1.3.6.1.2.1 range:
         #
         #  ACCESS CONTROL 
         #
-         
+         
         # system
         view   systemonly  included   .1.3.6.1.2.1
         # lldpd (Note: lldpd must be restarted with the -x option
@@ -227,7 +227,7 @@ below, as the ones used here are for explanatory purposes only.
       
     createUser user666 SHA user666password AES user666encryption
     createUser user999 MD5 user999password DES user999encryption
-     
+     
     # restrict users to certain OIDs
     # (Note: creating rouser or rwuser will give
     # access regardless of the createUser command above. However,
@@ -239,7 +239,7 @@ below, as the ones used here are for explanatory purposes only.
     rwuser user999
 
 Once you make this configuration and restart the `snmpd` daemon, the
-user access can be checked with a client — the Debian package called
+user access can be checked with a client - the Debian package called
 `snmp` contains `snmpget` and `snmpwalk`, as well as other programs that
 are useful for checking daemon functionality from the switch itself or
 from another workstation. The following commands check the access for
@@ -248,7 +248,7 @@ each user defined above from the localhost (the switch itself):
     # check user1 which has no authentication or encryption (NoauthNoPriv)
     snmpget -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1.1.0
     snmpwalk -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1
-     
+     
     # check user2 which has authentication but no encryption (authNoPriv)
     snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.1.1.0
     snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.2.1.0
@@ -424,9 +424,9 @@ information about specific configuration options within the file, run
 the following command:
 
     cumulus@switch:~$ man 5 snmptrapd.conf
-     
+     
       ###############################################################################
-     
+     
     #
     # EXAMPLE-trap.conf:
     #   An example configuration file for configuring the Net-SNMP snmptrapd agent.
@@ -439,7 +439,7 @@ the following command:
     #
     # All lines beginning with a '#' are comments and are intended for you
     # to read.  All other lines are configuration commands for the agent.
-     
+     
     #
     # PLEASE: read the snmptrapd.conf(5) manual page as well!
     #
@@ -546,7 +546,7 @@ enabling traps. This greatly improves the readability of the
     line is commented out:
     
         # This file controls the activity of snmpd and snmptrapd
-         
+         
         # Don't load any MIBs by default.
         # You might comment this lines once you have the MIBs Downloaded.
         #export MIBS=

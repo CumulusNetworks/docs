@@ -359,7 +359,7 @@ to ease administration of rules.
 
 {{%notice note%}}
 
-**Interface Wildcards** – Currently only *swp+* and *bond+* are
+**Interface Wildcards** - Currently only *swp+* and *bond+* are
 supported as wildcard names. There may be kernel restrictions in
 supporting more complex wildcards likes *swp1+ etc*.
 
@@ -580,7 +580,7 @@ for `ip6tables` and `ebtables`.
 <li><p>TRICOLORPOLICE</p></li>
 <li><p>SETCLASS</p></li>
 </ul></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 </tbody>
 </table>
@@ -646,7 +646,7 @@ User-defined IP management rules require a SETCLASS action.
 <li><p>tricolorpolice</p></li>
 <li><p>setclass</p></li>
 </ul></td>
-<td><p> </p></td>
+<td><p> </p></td>
 </tr>
 </tbody>
 </table>
@@ -738,16 +738,16 @@ notation](https://en.wikipedia.org/wiki/Differentiated_services#Commonly_used_DS
 in the examples below.
 
     [iptables]
-     
+     
     #Set SSH as high priority traffic.
     -t mangle -A FORWARD -p tcp --dport 22  -j DSCP --set-dscp 46 
-     
+     
     #Set everything coming in SWP1 as AF13
     -t mangle -A FORWARD --in-interface swp1 -j DSCP --set-dscp 14
-     
+     
     #Set Packets destined for 10.0.100.27 as best effort
     -t mangle -A FORWARD -d 10.0.100.27/32 -j DSCP --set-dscp 0
-     
+     
     #Example using a range of ports for TCP traffic
     -t mangle -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -j DSCP --set-dscp 34
 
@@ -758,15 +758,15 @@ IP, TCP and interface matches to identify traffic and count the number
 of packets.
 
     [iptables]
-     
+     
     #Match and count the packets that match SSH traffic with DSCP EF
     -A FORWARD -p tcp --dport 22 -m dscp --dscp 46 -j ACCEPT
-     
+     
     #Match and count the packets coming in SWP1 as AF13
     -A FORWARD --in-interface swp1 -m dscp --dscp 14 -j ACCEPT
     #Match and count the packets with a destination 10.0.0.17 marked best effort
     -A FORWARD -d 10.0.100.27/32 -m dscp --dscp 0 -j ACCEPT
-     
+     
     #Match and count the packets in a port range with DSCP AF41
     -A FORWARD -p tcp -s 10.0.0.17/32 --sport 10000:20000 -d 10.0.100.27/32 --dport 10000:20000 -m dscp --dscp 34 -j ACCEPT
 
@@ -780,13 +780,13 @@ traffic is sent to validate the counters, they are matched on switch1
 use `cl-acltool`.
 
     # Send 100 TCP packets on Host1 with a DSCP value of EF with a destination of Host2 TCP port 22:
-     
+     
     cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t tcp "dp=22,dscp=46"
      IP:  ver=4, len=40, tos=184, id=0, frag=0, ttl=255, proto=6, sum=0, SA=10.0.0.17, DA=10.0.100.27,
           payload=[see next layer]
      TCP: sp=0, dp=22, S=42, A=42, flags=0, win=10000, len=20, sum=0,
           payload=
-     
+     
     # Verify the 100 packets are matched on switch1
     cumulus@switch1$ sudo cl-acltool -L ip
     -------------------------------
@@ -803,11 +803,11 @@ use `cl-acltool`.
         0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002
 
     # Send 100 packets with a small payload on Host1 with a DSCP value of AF13 with a destination of Host2:
-     
+     
     cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t ip
      IP:  ver=4, len=20, tos=0, id=0, frag=0, ttl=255, proto=0, sum=0, SA=10.0.0.17, DA=10.0.100.27,
           payload=
-     
+     
     # Verify the 100 packets are matched on switch1
     cumulus@switch1$ sudo cl-acltool -L ip
     -------------------------------
@@ -824,11 +824,11 @@ use `cl-acltool`.
         0     0 ACCEPT     tcp  --  any    any     10.0.0.17            10.0.100.27          tcp spts:webmin:20000 dpts:webmin:2002
 
     # Send 100 packets on Host1 with a destination of Host2:
-     
+     
     cumulus@host1$ mz eth1 -A 10.0.0.17 -B 10.0.100.27 -c 100 -v -t ip
      IP:  ver=4, len=20, tos=56, id=0, frag=0, ttl=255, proto=0, sum=0, SA=10.0.0.17, DA=10.0.100.27,
           payload=
-     
+     
     # Verify the 100 packets are matched on switch1
     cumulus@switch1$ sudo cl-acltool -L ip
     -------------------------------
@@ -855,7 +855,7 @@ originate from ingress ports swp20 and swp21 will not be allowed. TCP
 sessions that originate from any other port are allowed.
 
     INGRESS_INTF = swp20,swp21
-     
+     
     [iptables]
     -A INPUT,FORWARD --in-interface $INGRESS_INTF -p tcp --syn -j DROP
     [ip6tables]
@@ -881,57 +881,57 @@ examples. The configuration for each switch appears in
 
 ### Switch 1 Configuration
 
-    auto swp1 
-    iface swp1 
-     
-    auto swp2 
-    iface swp2 
-     
-    auto swp3 
-    iface swp3 
-     
-    auto swp4 
-    iface swp4 
-     
-    auto bond2 
-    iface bond2 
-        bond-slaves swp3 swp4 
-     
-    auto br-untagged 
-    iface br-untagged 
+    auto swp1 
+    iface swp1 
+     
+    auto swp2 
+    iface swp2 
+     
+    auto swp3 
+    iface swp3 
+     
+    auto swp4 
+    iface swp4 
+     
+    auto bond2 
+    iface bond2 
+        bond-slaves swp3 swp4 
+     
+    auto br-untagged 
+    iface br-untagged 
         address 10.0.0.1/24
-        bridge_ports swp1 bond2 
+        bridge_ports swp1 bond2 
         bridge_stp on
-     
-    auto br-tag100 
-    iface br-tag100 
+     
+    auto br-tag100 
+    iface br-tag100 
         address 10.0.100.1/24
-        bridge_ports swp2.100 bond2.100 
+        bridge_ports swp2.100 bond2.100 
         bridge_stp on 
 
 ### Switch 2 Configuration
 
-    auto swp3 
-    iface swp3 
-     
-    auto swp4 
-    iface swp4 
-     
-    auto br-untagged 
-    iface br-untagged 
+    auto swp3 
+    iface swp3 
+     
+    auto swp4 
+    iface swp4 
+     
+    auto br-untagged 
+    iface br-untagged 
         address 10.0.0.2/24
-        bridge_ports bond2 
-        bridge_stp on 
-     
-    auto br-tag100 
-    iface br-tag100 
-        address 10.0.100.2/24 
-        bridge_ports bond2.100 
-        bridge_stp on 
-     
-    auto bond2 
-    iface bond2 
-        bond-slaves swp3 swp4 
+        bridge_ports bond2 
+        bridge_stp on 
+     
+    auto br-tag100 
+    iface br-tag100 
+        address 10.0.100.2/24 
+        bridge_ports bond2.100 
+        bridge_stp on 
+     
+    auto bond2 
+    iface bond2 
+        bond-slaves swp3 swp4 
 
 ### Egress Rule
 
@@ -977,7 +977,7 @@ diagram above).
 This also becomes 2 ACLs, and is effectively the same as:
 
     [iptables]
-    -A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
+    -A FORWARD -o swp+ -p tcp --sport 123 --dport 123 -j DROP 
     -A OUTPUT -o swp+ -p tcp --sport 123 --dport 123 -j DROP
 
 ### Layer 2-only Rules/ebtables

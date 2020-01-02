@@ -52,13 +52,13 @@ These commands create the following configuration in the
 
     auto swp1
     iface swp1
-     
+     
     auto swp2
     iface swp2
-     
+     
     auto swp3
     iface swp3
-     
+     
     auto bridge
     iface bridge
         bridge-ports swp1 swp2 swp3
@@ -98,22 +98,22 @@ These commands create the following configuration in the
 
     auto swp1
     iface swp1
-     
+     
     auto swp2
     iface swp2
-     
+     
     auto swp3
     iface swp3
-     
+     
     auto swp4
-    iface swp4 
-     
+    iface swp4 
+     
     auto swp5
     iface swp5
-     
+     
     auto swp6
     iface swp6
-     
+     
     auto bridge
     iface bridge
         bridge-ports swp1 swp2 swp3 swp4 swp5 swp6

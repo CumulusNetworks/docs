@@ -32,11 +32,11 @@ Linux on the nodes. These following actions are also performed:
   - Create the following two files in the `/etc/network/interfaces.d`
     directory, which are sourced by the `/etc/network/interfaces` file:
     
-      - The first file — called `chassismgmt.intf` — creates the
+      - The first file - called `chassismgmt.intf` - creates the
         eth0.4088 interface and assigns it IPv4 and IPv6 link local
         addresses via a post-up script. This interface is used for
         intra-chassis communication.
-      - The second file — called `fabric.intf` — configures the fabric
+      - The second file - called `fabric.intf` - configures the fabric
         interfaces. It uses Mako templates to iterate over all of the
         fabric interfaces and set the interface properties. The
         parameters of the `range` function vary, depending on whether
@@ -88,19 +88,19 @@ cards and fabric cards.
     cumulus@omp-800-fc402:~$ cat /etc/network/interfaces
     # This file describes the network interfaces available on your system
     # and how to activate them. For more information, see interfaces(5).
-     
+     
     source /etc/network/interfaces.d/*.intf
-     
+     
     # The loopback network interface
     auto lo
     iface lo inet loopback
-     
+     
     # The primary network interface
     auto eth0
     iface eth0 inet dhcp
-     
+     
     iface eth1 inet dhcp
-     
+     
     iface eth2 inet dhcp
 
 ### chassismgmt.intf File
@@ -113,7 +113,7 @@ content on both line cards and fabric cards.
     # This file contains the interface configuration of the chassis management VLAN
     # interface. The traffic on this VLAN is not ever forwarded out of the chassis.
     #
-     
+     
     auto eth0.4088
     iface eth0.4088
         post-up /usr/lib/cumulus/setchassismgmtipaddr $IFACE
@@ -130,7 +130,7 @@ line card is *0,16*.
     # This file contains the interface configuration of the fabric ports. All fabric
     # ports are brought up.
     #
-     
+     
     #
     # The defaults for fabric interfaces
     #
@@ -140,7 +140,7 @@ line card is *0,16*.
         link-autoneg off
         mtu 9216
     </%def>
-     
+     
     #
     # All of the fabric interfaces
     #
@@ -273,7 +273,7 @@ card 1:
     #
     # If you make changes to this file, you must restart switchd for the
     # changes to take effect.
-     
+     
     # QSFP28 ports
     #
     # <port label 1-16> = [4x10G|4x25G|2x50G|40G|50G|100G|disabled]
@@ -307,7 +307,7 @@ Here is the configuration for line card 2:
     #
     # If you make changes to this file, you must restart switchd for the
     # changes to take effect.
-     
+     
     # QSFP28 ports
     #
     # <port label 17-32> = [4x10G|4x25G|2x50G|40G|50G|100G|disabled]

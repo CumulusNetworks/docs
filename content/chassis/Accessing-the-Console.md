@@ -14,7 +14,7 @@ siteSlug: chassis
 ---
 Each fabric card has 2 RJ45 console ports, one for each of the CPUs.
 Each line card also has 2 console ports, one for each CPU that connect
-via a USB type A jack — this requires a special cable from Edgecore in
+via a USB type A jack - this requires a special cable from Edgecore in
 order to access the line card console ports. By default, the console
 connects at 115200 baud 8N1.
 

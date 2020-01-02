@@ -13,7 +13,7 @@ siteSlug: cumulus-netq
 ---
 Running NetQ on Linux hosts provides unprecedented network visibility,
 giving the network operator a complete view of the entire
-infrastructure’s network connectivity instead of just from the network
+infrastructure's network connectivity instead of just from the network
 devices.
 
 The NetQ Agent is supported on the following Linux hosts:
@@ -33,7 +33,7 @@ The NetQ Agent monitors the following on Linux hosts:
   - Layer 3: IPv4, IPv6
   - Routing on the Host: BGP, OSPF
   - systemctl for services
-  - Docker containers — refer to the [Monitor Container
+  - Docker containers - refer to the [Monitor Container
     Environments](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/Monitor-Container-Environments)
     topic
 

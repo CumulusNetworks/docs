@@ -96,7 +96,7 @@ information:
     lo       16436      0     1693         0         0         0     1693         0         0         0  LRU
     swp1      1500      0    11914         0      8948         0    20854         0      9338         0  BMRU
     swp2      1500      0    20734         0     17969         0    12033         0     13142         0  BMRU
-     
+     
     cumulus@switch:~$ sudo cl-netstat -c
     Cleared counters
 

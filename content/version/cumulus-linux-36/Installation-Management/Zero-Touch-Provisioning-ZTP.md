@@ -171,7 +171,7 @@ For example, the `/etc/dhcp/dhcpd.conf` file for an ISC DHCP server
 looks like:
 
     option cumulus-provision-url code 239 = text;
-     
+     
     subnet 192.0.2.0 netmask 255.255.255.0 {
      range 192.0.2.100 192.168.0.200;
      option cumulus-provision-url "http://192.0.2.1/demo.sh";
@@ -244,39 +244,39 @@ applies a configuration:
       echo -e "\e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m" >&2
       exit 1
     }
-     
+     
     # Log all output from this script
     exec >> /var/log/autoprovision 2>&1
     date "+%FT%T ztp starting script $0" 
-     
+     
     trap error ERR
-     
+     
     #Add Debian Repositories
     echo "deb http://http.us.debian.org/debian jessie main" >> /etc/apt/sources.list
     echo "deb http://security.debian.org/ jessie/updates main" >> /etc/apt/sources.list
-     
+     
     #Update Package Cache
     apt-get update -y
-     
+     
     #Install netshow diagnostics commands
     apt-get install -y netshow htop nmap
-     
+     
     #Load interface config from usb
     cp ${ZTP_USB_MOUNTPOINT}/interfaces /etc/network/interfaces
-     
+     
     #Load port config from usb
     #   (if breakout cables are used for certain interfaces)
     cp ${ZTP_USB_MOUNTPOINT}/ports.conf /etc/cumulus/ports.conf
-     
+     
     #Install a License from usb and restart switchd
     /usr/cumulus/bin/cl-license -i ${ZTP_USB_MOUNTPOINT}/license.txt && systemctl restart switchd.service
-     
+     
     #Reload interfaces to apply loaded config
     ifreload -a
-     
+     
     #Output state of interfaces
     netshow interface
-     
+     
     # CUMULUS-AUTOPROVISIONING
     exit 0
 
@@ -348,13 +348,13 @@ server and the ZTP script is reachable.
     function init_ztp(){
         #do normal ZTP tasks
     }
-     
+     
     CUMULUS_TARGET_RELEASE=3.5.3
     CUMULUS_CURRENT_RELEASE=$(cat /etc/lsb-release  | grep RELEASE | cut -d "=" -f2)
     IMAGE_SERVER_HOSTNAME=webserver.example.com
-    IMAGE_SERVER=”http://”$IMAGE_SERVER_HOSTNAME”/”$CUMULUS_TARGET_RELEASE”.bin”
-    ZTP_URL=”http://”$IMAGE_SERVER_HOSTNAME”/ztp.sh”
-     
+    IMAGE_SERVER= "http:// "$IMAGE_SERVER_HOSTNAME "/ "$CUMULUS_TARGET_RELEASE ".bin "
+    ZTP_URL= "http:// "$IMAGE_SERVER_HOSTNAME "/ztp.sh "
+     
     if [ "$CUMULUS_TARGET_RELEASE" != "$CUMULUS_CURRENT_RELEASE" ]; then
         ping_until_reachable $IMAGE_SERVER_HOSTNAME
         /usr/cumulus/bin/onie-install -fa -i $IMAGE_SERVER -z $ZTP_URL && reboot
@@ -411,7 +411,7 @@ NCLU has time to start up before being called.
         net show interface &> /dev/null
         last_code=$?
     done
-     
+     
     net add vrf mgmt
     net add time zone Etc/UTC
     net add time ntp server 192.168.0.254 iburst
@@ -439,7 +439,7 @@ failed. Include the `-v` option when you run `ztp`:
 To see if ZTP is enabled and to see results of the most recent
 execution, you can run the `ztp -s` command.
 
-    cumulus@switch:~$ ztp -s
+    cumulus@switch:~$ ztp -s
     ZTP INFO:
      
     State              enabled
@@ -460,7 +460,7 @@ see if any failures occur:
          Docs: man:ztp(8)
       Process: 400 ExecStart=/usr/sbin/ztp -b (code=exited, status=1/FAILURE)
      Main PID: 400 (code=exited, status=1/FAILURE)
-     
+     
     May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found
     May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
     May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh

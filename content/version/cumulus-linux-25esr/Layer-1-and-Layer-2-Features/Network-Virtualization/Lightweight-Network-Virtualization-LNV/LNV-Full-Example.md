@@ -73,10 +73,10 @@ example:
 iface lo inet loopback
   address 10.2.1.3/32
   address 10.10.10.10/32
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp49
 iface swp49
   address 10.1.1.2/30
@@ -100,7 +100,7 @@ iface lo inet loopback
  
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp49
 iface swp49 
  address 10.1.1.18/30
@@ -124,55 +124,55 @@ iface lo inet loopback
   address 10.2.1.1/32
   vxrd-src-ip 10.2.1.1
   vxrd-svcnode-ip 10.10.10.10
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1s0
 iface swp1s0
   address 10.1.1.1/30
- 
+ 
 auto swp1s1
 iface swp1s1
   address 10.1.1.5/30
- 
+ 
 auto swp1s2
 iface swp1s2
   address 10.1.1.33/30
- 
+ 
 auto swp1s3
 iface swp1s3
   address 10.1.1.37/30
- 
+ 
 auto vni-10
 iface vni-10
   vxlan-id 10
   vxlan-local-tunnelip 10.2.1.1
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
- 
+ 
 auto vni-2000
 iface vni-2000
   vxlan-id 2000
   vxlan-local-tunnelip 10.2.1.1
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
- 
+ 
 auto vni-30
 iface vni-30
   vxlan-id 30
   vxlan-local-tunnelip 10.2.1.1
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
- 
+ 
 auto br-10
 iface br-10
   bridge-ports swp32s0.10 vni-10
- 
+ 
 auto br-20
 iface br-20
   bridge-ports swp32s0.20 vni-2000
- 
+ 
 auto br-30
 iface br-30
   bridge-ports swp32s0.30 vni-30</code></pre></td>
@@ -182,55 +182,55 @@ iface lo inet loopback
   address 10.2.1.2/32
   vxrd-src-ip 10.2.1.2
   vxrd-svcnode-ip 10.10.10.10
- 
+ 
 auto eth0
 iface eth0 inet dhcp
- 
+ 
 auto swp1s0
 iface swp1s0 inet static
  address 10.1.1.17/30
- 
+ 
 auto swp1s1
 iface swp1s1 inet static
  address 10.1.1.21/30
- 
+ 
 auto swp1s2
 iface swp1s2 inet static
  address 10.1.1.49/30
- 
+ 
 auto swp1s3
 iface swp1s3 inet static
  address 10.1.1.53/30
- 
+ 
 auto vni-10
 iface vni-10
   vxlan-id 10
   vxlan-local-tunnelip 10.2.1.2
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
- 
+ 
 auto vni-2000
 iface vni-2000
   vxlan-id 2000
   vxlan-local-tunnelip 10.2.1.2
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
- 
+ 
 auto vni-30
 iface vni-30
   vxlan-id 30
   vxlan-local-tunnelip 10.2.1.2
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
- 
+ 
 auto br-10
 iface br-10
   bridge-ports swp32s0.10 vni-10
- 
+ 
 auto br-20
 iface br-20
   bridge-ports swp32s0.20 vni-2000
- 
+ 
 auto br-30
 iface br-30
   bridge-ports swp32s0.30 vni-30</code></pre></td>
@@ -383,11 +383,11 @@ is done with subinterfaces.
 <pre><code>auto eth3.10
 iface eth3.10 inet static
   address 10.10.10.1/24
- 
+ 
 auto eth3.20
 iface eth3.20 inet static
   address 10.10.20.1/24
- 
+ 
 auto eth3.30
 iface eth3.30 inet static
   address 10.10.30.1/24</code></pre></td>
@@ -395,11 +395,11 @@ iface eth3.30 inet static
 <pre><code>auto eth3.10
 iface eth3.10 inet static
   address 10.10.10.2/24
- 
+ 
 auto eth3.20
 iface eth3.20 inet static
   address 10.10.20.2/24
- 
+ 
 auto eth3.30
 iface eth3.30 inet static
   address 10.10.30.2/24</code></pre></td>

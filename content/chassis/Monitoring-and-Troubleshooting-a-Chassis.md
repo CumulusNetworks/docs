@@ -28,44 +28,44 @@ Data that applies to the whole chassis, such as fan speeds, is prefixed
 with `chassis`:
 
     ...
-     
+     
     chassis:Fan14Front-virtual-0
     Adapter: Virtual device
     Fan14 Front: 7200 RPM
-     
+     
     ...
 
 Otherwise, data is gathered for each specific line card and fabric card:
 
     ...
-     
+     
     fc301:coretemp_isa_0000-virtual-0
     Adapter: Virtual device
     Core 0:       +19.0°C  (high = +98.0°C, crit = +98.0°C)
     Core 1:       +19.0°C  (high = +98.0°C, crit = +98.0°C)
     Core 2:       +19.0°C  (high = +98.0°C, crit = +98.0°C)
     Core 3:       +19.0°C  (high = +98.0°C, crit = +98.0°C)
-     
+     
     fc202:jc42_i2c_0_1a-virtual-0
     Adapter: Virtual device
     temp1:        +22.0°C  (low  =  +5.0°C)
                            (high = +90.0°C, hyst = +90.0°C)
                            (crit = +95.0°C, hyst = +95.0°C)
-     
+     
     lc701:lm75b_temp-virtual-0
     Adapter: Virtual device
     lc701 lm75b_temp:  +25.0°C  
-     
+     
     fc201:lm75c_temp-virtual-0
     Adapter: Virtual device
     fc201 lm75c_temp:  +27.0°C  
-     
+     
     ...
 
 {{%notice note%}}
 
 Cumulus Linux has read-only access to sensor information. Cumulus Linux
-can still see temperature, PSU status and so forth, but it can’t change
+can still see temperature, PSU status and so forth, but it can't change
 any settings. You need to change these settings directly through the
 BMC.
 

@@ -52,7 +52,7 @@ To show all available interfaces that are physically UP, run `net show
 interface`:
 
     cumulus@switch:~$ net show interface
-     
+     
         Name    Speed    MTU    Mode           Summary
     --  ------  -------  -----  -------------  --------------------------------------
     UP  lo      N/A      65536  Loopback       IP: 10.0.0.11/32, 127.0.0.1/8, ::1/128
@@ -99,7 +99,7 @@ system`:
 
     cumulus@switch:~$ net show system
     Hostname......... celRED
-     
+     
     Build............ Cumulus Linux 3.7.4~1551312781.35d3264
     Uptime........... 8 days, 12:24:01.770000
 

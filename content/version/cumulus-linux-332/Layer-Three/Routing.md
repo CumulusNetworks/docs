@@ -146,7 +146,7 @@ to filter route updates from Zebra into the Linux kernel:
 
 ## Supported Route Table Entries
 
-Cumulus Linux — via `switchd` — advertises the maximum number of route
+Cumulus Linux - via `switchd` - advertises the maximum number of route
 table entries that are supported on a given switch architecture,
 including:
 
@@ -230,8 +230,8 @@ file.
 
     cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf | grep -B3 "tcam_resource"
     #TCAM resource forwarding profile
-     
-     
+     
+     
         1. Valid profiles -
         2. default, ipmc-heavy, acl-heavy, ipmc-max
            tcam_resource.profile = default

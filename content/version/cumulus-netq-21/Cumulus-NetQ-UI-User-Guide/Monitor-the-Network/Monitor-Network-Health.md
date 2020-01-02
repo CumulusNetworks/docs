@@ -344,7 +344,7 @@ The full screen Network Health card displays all events in the network.
 <li><p><strong>Source</strong>: Hostname(, IP address or MAC address?) of the given event</p></li>
 <li><p><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</p></li>
 <li><p><strong>Message</strong>: Text describing the alarm or info event that occurred</p></li>
-<li><p><strong>Severity</strong>: Importance of the event–critical, warning, info, or debug</p></li>
+<li><p><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</p></li>
 </ul></td>
 </tr>
 <tr class="even">

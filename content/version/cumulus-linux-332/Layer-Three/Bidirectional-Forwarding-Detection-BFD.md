@@ -80,8 +80,8 @@ configure multihop sessions.
 
 {{%/notice%}}
 
-The Quagga CLI can track IPv4 and IPv6 peer connectivity — both single
-hop and multihop, and both link-local IPv6 peers and global IPv6 peers —
+The Quagga CLI can track IPv4 and IPv6 peer connectivity - both single
+hop and multihop, and both link-local IPv6 peers and global IPv6 peers -
 using BFD sessions without needing the `topology.dot` file. Use Quagga
 to register multihop peers with PTM and BFD as well as for monitoring
 the connectivity to the remote BGP multihop peer. Quagga can dynamically
@@ -122,7 +122,7 @@ These commands add the `neighbor SPINE bfd` line below the last address
 family configuration in the `/etc/quagga/Quagga.conf` file:
 
     ...
-     
+     
      address-family evpn
       neighbor SPINE activate
       vni 10400
@@ -136,7 +136,7 @@ family configuration in the `/etc/quagga/Quagga.conf` file:
       advertise-all-vni
      exit-address-family
     neighbor SPINE bfd
-     
+     
     ...
 
 You can configure BFD parameters for each BGP neighbor. For example:
@@ -150,7 +150,7 @@ original BFD neighbor configuration in the `/etc/quagga/Quagga.conf`
 file:
 
     ...
-     
+     
      address-family evpn
       neighbor SPINE activate
       vni 10400
@@ -165,7 +165,7 @@ file:
      exit-address-family
     neighbor SPINE bfd
     neighbor SPINE bfd 4 400 400
-     
+     
     ...
 
 To see neighbor information in BGP, including BFD status, run 
@@ -209,7 +209,7 @@ To see neighbor information in BGP, including BFD status, run
         Capability:             0          0
         Total:              11358      11358
       Minimum time between advertisement runs is 0 seconds
-     
+     
      For address family: IPv4 Unicast
       fabric peer-group member
       Update group 1, subgroup 1
@@ -222,7 +222,7 @@ To see neighbor information in BGP, including BFD status, run
       3 accepted prefixes
       Connections established 1; dropped 0
       Last reset never
-     
+     
     Local host: fe80::4638:39ff:fe00:5b, Local port: 48390
     Foreign host: fe80::4638:39ff:fe00:5c, Foreign port: 179
     Nexthop: 10.0.0.11

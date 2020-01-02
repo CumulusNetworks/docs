@@ -156,14 +156,14 @@ Follow the steps for the relevant OS below to upgrade the NetQ Agents:
         baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/$releasever/netq-1.1/$basearch
         gpgcheck=1
         enabled=1
-         
-         
+         
+         
         [cumulus-noarch]
         name=Architecture-independent Cumulus packages for RHEL
         baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/$releasever/netq-1.1/noarch
         gpgcheck=1
         enabled=1
-         
+         
         [cumulus-src]
         name=Cumulus source packages for RHEL
         baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/$releasever/netq-1.1/src

@@ -82,9 +82,9 @@ configure multihop sessions.
 
 {{%/notice%}}
 
-The FRRouting CLI can track IPv4 and IPv6 peer connectivity — both
+The FRRouting CLI can track IPv4 and IPv6 peer connectivity - both
 single hop and multihop, and both link-local IPv6 peers and global IPv6
-peers — using BFD sessions without needing the `topology.dot` file. Use
+peers - using BFD sessions without needing the `topology.dot` file. Use
 FRRouting to register multihop peers with PTM and BFD as well as for
 monitoring the connectivity to the remote BGP multihop peer. FRRouting
 can dynamically register and unregister both IPv4 and IPv6 peers with
@@ -127,10 +127,10 @@ These commands add the `neighbor SPINE bfd` line below the last address
 family configuration in the `/etc/frr/frr.conf` file:
 
     ...
-     
+     
     router bgp 65000
      neighbor swp1 bfd
-     
+     
     ...
 
 The configuration above configures the default BFD values of intervals:
@@ -141,7 +141,7 @@ To see neighbor information in BGP, including BFD status, run
 
     cumulus@spine01:~$ net show bgp neighbor swp1
      ...
-     
+     
       BFD: Type: single hop
         Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
         Status: Down, Last update: 0:00:00:08
@@ -375,7 +375,7 @@ sessions` command:
 
 ``` 
 cumulus@switch:~$ net show bfd sessions
- 
+ 
 ----------------------------------------------------------
 port  peer        state  local         type       diag 
                                                          
@@ -389,7 +389,7 @@ To return more **detailed** information on active BFD sessions, use the
 IPv6-connected peer):
 
     cumulus@switch:~$ net show bfd sessions detail
-     
+     
     ----------------------------------------------------------------------------------------
     port  peer                 state  local  type       diag  det   tx_timeout  rx_timeout  
                                                               mult                          

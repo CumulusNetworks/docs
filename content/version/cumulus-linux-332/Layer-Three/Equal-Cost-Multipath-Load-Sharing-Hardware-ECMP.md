@@ -209,7 +209,7 @@ number of hash buckets does not change.
 {{% imgOld 6 %}}
 
 With 12 buckets assigned and four next hops, instead of reducing the
-number of buckets — which would impact flows to known good hosts — the
+number of buckets - which would impact flows to known good hosts - the
 remaining next hops replace the failed next hop.
 
 {{% imgOld 7 %}}

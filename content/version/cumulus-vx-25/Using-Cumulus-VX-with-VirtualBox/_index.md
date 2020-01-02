@@ -58,7 +58,7 @@ The virtual NIC to VM device mappings are as follows:
 
 |                        |                                         |
 | ---------------------- | --------------------------------------- |
-| **This Virtual NIC …** | **Maps to this Cumulus Linux Device …** |
+| **This Virtual NIC  ...** | **Maps to this Cumulus Linux Device  ...** |
 | Adapter 1              | eth0                                    |
 | Adapter 2              | swp1                                    |
 | Adapter 3              | swp2                                    |

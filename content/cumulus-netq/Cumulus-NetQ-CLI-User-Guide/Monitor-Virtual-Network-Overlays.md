@@ -235,7 +235,7 @@ single device.
  ```
 cumulus@switch:~$ netq show evpn
 Matching evpn records:
-Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        Last Changed
+Hostname          VNI        VTEP IP          In Kernel Export RT        Import RT        Last Changed
 ----------------- ---------- ---------------- --------- ---------------- ---------------- -------------------------
 leaf01            33         27.0.0.22        yes       197:33           197:33           Fri Feb  8 01:48:27 2019
 leaf01            34         27.0.0.22        yes       197:34           197:34           Fri Feb  8 01:48:27 2019

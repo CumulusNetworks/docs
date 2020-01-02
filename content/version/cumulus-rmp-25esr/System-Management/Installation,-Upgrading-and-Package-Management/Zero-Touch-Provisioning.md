@@ -58,7 +58,7 @@ The zero touch provisioning process involves these steps:
     headers](#src-5116322_ZeroTouchProvisioning-http_headers) containing
     details about the switch.
 
-5.  The script’s contents are parsed to ensure it contains the
+5.  The script's contents are parsed to ensure it contains the
     ` CUMULUS-AUTOPROVISIONING  `flag.
 
 6.  If the ` CUMULUS-AUTOPROVISIONING  `flag is present, then the script
@@ -216,7 +216,7 @@ the switch, use the ` -s  `option:
     
       - Plugging a cable into or unplugging it from the eth0 port
     
-      - Disconnecting then reconnecting the switch’s power cord
+      - Disconnecting then reconnecting the switch's power cord
 
 ## Configuration Files</span>
 

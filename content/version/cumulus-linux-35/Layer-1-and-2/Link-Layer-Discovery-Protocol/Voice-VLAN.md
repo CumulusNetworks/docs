@@ -65,20 +65,20 @@ These commands create the following configuration snippet in the
        bridge-vids 200
        mstpctl-bpduguard yes
        mstpctl-portadminedge yes
-     
+     
     auto swp2
     iface swp2
        bridge-pvid 10
        bridge-vids 100
        mstpctl-bpduguard yes
        mstpctl-portadminedge yes
-     
+     
     auto swp3
     iface swp3
        bridge-vids 300
        mstpctl-bpduguard yes
        mstpctl-portadminedge yes
-     
+     
     auto bridge
     iface bridge
       bridge-ports swp1 swp2 swp3
@@ -109,15 +109,15 @@ The `bridge-vids` can be reviewed with the `net show bridge vlan`
 command:
 
     cumulus@switch:~$ net show bridge vlan
-     
+     
     Interface      VLAN  Flags
     -----------  ------  ---------------------
     swp1              1  PVID, Egress Untagged
                     200
-     
+     
     swp2             10  PVID, Egress Untagged
                     200
-     
+     
     swp3              1  PVID, Egress Untagged
                     300
 
@@ -125,7 +125,7 @@ You can get MAC address information using the `net show bridge macs` command:
 
 ``` 
 cumulus@switch:~$ net show bridge macs
- 
+ 
 VLAN      Master    Interface    MAC                   TunnelDest  State      Flags    LastSeen
 --------  --------  -----------  -----------------  -------------  ---------  -------  ----------
 untagged  bridge    bridge       08:00:27:d5:00:93                 permanent           00:13:54   

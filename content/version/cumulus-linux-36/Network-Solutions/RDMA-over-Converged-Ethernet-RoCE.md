@@ -70,7 +70,7 @@ file.
 
     cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
     ...
-     
+     
     ecn_red.port_group_list = [ROCE_ECN]
     pfc.ROCE_PFC.port_set = swp1
     pfc.ROCE_PFC.cos_list = [1]
@@ -86,7 +86,7 @@ file.
     ecn_red.ROCE_ECN.ecn_enable = true
     ecn_red.ROCE_ECN.red_enable = true
     ecn_red.ROCE_ECN.probability = 100
-     
+     
     ...
 
 {{%/notice%}}
@@ -132,7 +132,7 @@ These commands create the following configuration in the
 
     cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
     ...
-     
+     
     ecn_red.port_group_list = [ROCE_ECN]
     ecn_red.ROCE_ECN.port_set = swp1
     ecn_red.ROCE_ECN.cos_list = [0,1]
@@ -141,7 +141,7 @@ These commands create the following configuration in the
     ecn_red.ROCE_ECN.ecn_enable = true
     ecn_red.ROCE_ECN.red_enable = true
     ecn_red.ROCE_ECN.probability = 100
-     
+     
     ...
 
 The `storage-optimized` command changes the buffer limits in the
@@ -158,9 +158,9 @@ packet to **not** be ECT-capable.
 
 ## Related Information
 
-  - [RoCE introduction](http://www.roceinitiative.org/roce-introduction/) —
+  - [RoCE introduction](http://www.roceinitiative.org/roce-introduction/) -
     roceinitiative.org
-  - [RoCEv2 congestion management](https://community.mellanox.com/docs/DOC-2321) —
+  - [RoCEv2 congestion management](https://community.mellanox.com/docs/DOC-2321) -
     community.mellanox.com
   - [Configuring RoCE over a DSCP-based lossless network](https://community.mellanox.com/docs/DOC-2884) 
     with a Mellanox Spectrum switch

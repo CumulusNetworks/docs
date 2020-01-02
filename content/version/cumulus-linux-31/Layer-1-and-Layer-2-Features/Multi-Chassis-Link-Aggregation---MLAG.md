@@ -324,11 +324,11 @@ corresponding bonds on spine1 and spine2):
 <tbody>
 <tr class="odd">
 <td><p>spine1</p>
-<pre><code> 
+<pre><code> 
 # The loopback network interface auto lo
 iface lo 
 inet loopback
- 
+ 
 # The primary network interface 
 auto eth0
 iface eth0
@@ -345,9 +345,9 @@ iface peerlink.4094
     netmask 255.255.255.0      
     clagd-priority 4096
     clagd-peer-ip 169.254.255.2
-    clagd-backup-ip 10.0.0.2
+    clagd-backup-ip 10.0.0.2
     clagd-sys-mac 44:38:39:ff:00:01
- 
+ 
   
 # ToR pair #1 
 auto downlink1 
@@ -370,11 +370,11 @@ iface br0
     bridge-pvid 1
     mstpctl-treeprio 4096</code></pre></td>
 <td><p>spine2</p>
-<pre><code> 
+<pre><code> 
 # The loopback network interface auto lo
 iface lo 
 inet loopback
- 
+ 
 # The primary network interface 
 auto eth0
 iface eth0
@@ -391,9 +391,9 @@ iface peerlink.4094
     netmask 255.255.255.0      
     clagd-priority 8192
     clagd-peer-ip 169.254.255.1
-    clagd-backup-ip 10.0.0.1
+    clagd-backup-ip 10.0.0.1
     clagd-sys-mac 44:38:39:ff:00:01
- 
+ 
   
 # ToR pair #1 
 auto downlink1 
@@ -457,7 +457,7 @@ iface peerlink.4094
     netmask 255.255.255.0
     clagd-priority 4096
     clagd-peer-ip 169.254.255.4
-    clagd-backup-ip 10.0.0.4
+    clagd-backup-ip 10.0.0.4
     clagd-sys-mac 44:38:39:ff:01:02
   
 auto host1
@@ -473,8 +473,8 @@ iface host2
     clag-id 3
     mstpctl-portadminedge yes
     mstpctl-bpduguard yes
- 
- 
+ 
+ 
 auto br0
 iface br0
     bridge-vlan-aware yes
@@ -510,7 +510,7 @@ iface peerlink.4094
     netmask 255.255.255.0
     clagd-priority 8192
     clagd-peer-ip 169.254.255.3
-    clagd-backup-ip 10.0.0.3
+    clagd-backup-ip 10.0.0.3
     clagd-sys-mac 44:38:39:ff:01:02
   
 auto host1
@@ -526,8 +526,8 @@ iface host2
     clag-id 3
     mstpctl-portadminedge yes
     mstpctl-bpduguard yes
- 
- 
+ 
+ 
 auto br0
 iface br0
     bridge-vlan-aware yes
@@ -582,7 +582,7 @@ tagged VLANs, as the following example shows:
     iface bridge
       bridge-ports peerlink host1 host2 host3
       bridge-stp on
-     
+     
     # also can configure additional tagged birdges
     auto bridge1000
     iface bridge1000
@@ -611,7 +611,7 @@ operational status displayed by the utility:
         Peer Priority, ID, and Role: 8192 00:e0:ec:27:49:f6 secondary
               Peer Interface and IP: peerlink.4094 169.254.255.2
                          System MAC: 44:38:39:ff:00:01
-     
+     
                              Dual Attached Ports
           Our Interface      Peer Interface     CLAG Id
           ----------------   ----------------   -------
@@ -704,7 +704,7 @@ You can see the backup IP address if you run `clagctl`:
               Peer Interface and IP: peerlink.4094 169.254.255.2
                           Backup IP: 192.0.2.50
                          System MAC: 44:38:39:ff:00:01
-     
+     
                              Dual Attached Ports
           Our Interface      Peer Interface     CLAG Id
           ----------------   ----------------   -------
@@ -724,11 +724,11 @@ management VRF in `/etc/network/interfaces`:
     auto eth0
     iface eth0 inet dhcp
             vrf mgmt
-     
+     
     auto mgmt
     iface mgmt
             vrf-table auto
-     
+     
     auto peer-bond.4000
     iface peer-bond.4000
             address 169.254.2.1/30
@@ -754,7 +754,7 @@ The peer is alive
           Peer Interface and IP: peer-bond.4000 169.254.2.2
                       Backup IP: 192.0.2.174 vrf mgmt (active)
                      System MAC: 44:38:39:ff:00:01
- 
+ 
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
@@ -773,11 +773,11 @@ auto swp52s0
 iface swp52s0
     address 192.0.2.1/24
     vrf green
- 
+ 
 auto green
 iface green
     vrf-table auto
- 
+ 
 auto peer5.4000
 iface peer5.4000
         address 192.0.2.15/24
@@ -792,7 +792,7 @@ The peer is alive
           Peer Interface and IP: peer5.4000 192.0.2.16
                       Backup IP: 192.0.2.2 vrf green (active)
                      System MAC: 44:38:39:01:01:01
- 
+ 
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
@@ -863,11 +863,11 @@ active/active forwarding.
 
 Then, to connect the spine switches to the core switches, you need to
 determine whether the routing is static or dynamic. If it's dynamic, you
-must choose which protocol —
+must choose which protocol -
 [OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol)
 or
 [BGP](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP)
-— to use. When enabling a routing protocol in an MLAG environment it is
+- to use. When enabling a routing protocol in an MLAG environment it is
 also necessary to manage the uplinks, because by default MLAG is not
 aware of layer 3 uplink interfaces. In the event of a peer link failure
 MLAG does not remove static routes or bring down a BGP or OSPF adjacency
@@ -1040,7 +1040,7 @@ servers and two switches in it. You may plan for, say, 4 to 6 servers to
 lose connectivity to a single switch and become single connected before
 you respond to the event. So expanding upon our previous example, if you
 have 40 hosts each with 20G of bandwidth dual-connected to the MLAG
-pair, you might allocate 20G to 30G of bandwidth to the peerlink — which
+pair, you might allocate 20G to 30G of bandwidth to the peerlink - which
 accounts for half of the single-connected bandwidth for 4 to 6 hosts.
 
 ## STP Interoperability with MLAG</span>
@@ -1070,7 +1070,7 @@ Run `mstpctl debuglevel 3` to see MLAG-related logs in
       clag role          primary                 clag dual conn mac   0:0:0:0:0:0
       clag remote portID F.FFF                   clag system mac      44:38:39:ff:0:1
     cumulus@switch:~$ 
-     
+     
     cumulus@switch:~$ sudo mstpctl showportdetail br downlink-1
     br:downlink-1 CIST info
       enabled            yes                     role                 Designated

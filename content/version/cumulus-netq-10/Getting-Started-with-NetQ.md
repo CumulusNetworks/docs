@@ -129,7 +129,7 @@ Agent on the node.
   - Reference and update the local `apt` repository, then install the
     metapackage on the server:
 
-        root@ubuntu:~# wget -O- https://hostapps3.cumulusnetworks.com/setup/cumulus-host-ubuntu.pubkey | apt-key add -
+        root@ubuntu:~# wget -O- https://hostapps3.cumulusnetworks.com/setup/cumulus-host-ubuntu.pubkey | apt-key add -
         root@ubuntu:~# wget -O- https://hostapps3.cumulusnetworks.com/setup/cumulus-host-ubuntu-xenial.list > /etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list
         root@ubuntu:~# apt-get update ; apt-get install cumulus-netq
 
@@ -138,7 +138,7 @@ Agent on the node.
   - Reference and update the local `yum` repository, then install the
     metapackage on the server:
 
-        root@rhel7:~# rpm --import https://hostapps3.cumulusnetworks.com/setup/cumulus-host-el.pubkey
+        root@rhel7:~# rpm --import https://hostapps3.cumulusnetworks.com/setup/cumulus-host-el.pubkey
         root@rhel7:~# wget -O- https://hostapps3.cumulusnetworks.com/setup/cumulus-host-el.repo > /etc/yum.repos.d/cumulus-host-el.repo
         root@rhel7:~# yum install cumulus-netq
 
@@ -175,9 +175,9 @@ Linux host) to monitor that node on your network.
     three lines to the `netq.yml` file on the container host:
 
         cumulus@server01:~$ sudo vi /etc/netq/netq.yml
-         
+         
         ...
-         
+         
         docker:
           enable: true
           poll_period: 15

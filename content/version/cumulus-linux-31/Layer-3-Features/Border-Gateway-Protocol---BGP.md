@@ -72,7 +72,7 @@ relies on either using this number space or else using the single ASN
 you own.
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route
-advertisement carries with it not only the originator’s ASN, but also
+advertisement carries with it not only the originator's ASN, but also
 the list of ASNs that this route advertisement has passed through. When
 forwarding a route advertisement, a BGP speaker adds itself to this
 list. This list of ASNs is called the *AS path*. BGP uses the AS path to
@@ -105,7 +105,7 @@ reflector*.
 Route reflectors are quite easy to understand in a Clos topology. In a
 two-tier Clos network, the leaf (or tier 1) switches are the only ones
 connected to end stations. Subsequently, this means that the spines
-themselves do not have any routes to announce. They’re merely
+themselves do not have any routes to announce. They're merely
 **reflecting** the routes announced by one leaf to the other leaves.
 Thus, the spine switches function as route reflectors while the leaf
 switches serve as route reflector clients.
@@ -185,10 +185,10 @@ single IPv4 session or over a single IPv6 session.
 2.  Identify the BGP node by assigning an ASN and `router-id`:
     
         cumulus@switch:~$ sudo vtysh
-         
+         
         Hello, this is Quagga (version 0.99.23.1+cl3u2).
         Copyright 1996-2005 Kunihiro Ishiguro, et al.
-         
+         
         R7# configure  terminal
         R7(config)# router bgp 65000
         R7(config-router)# bgp router-id 0.0.0.1
@@ -202,8 +202,8 @@ single IPv4 session or over a single IPv6 session.
     
         R7(config-router)# neighbor 10.0.0.2 remote-as internal
     
-    Specifying the peer’s IP address allows BGP to set up a TCP socket
-    with this peer, but it doesn’t distribute any prefixes to it, unless
+    Specifying the peer's IP address allows BGP to set up a TCP socket
+    with this peer, but it doesn't distribute any prefixes to it, unless
     it is explicitly told that it must via the `activate` command:
     
         R7(config-router)# address-family ipv4 unicast
@@ -402,7 +402,7 @@ This section describes how the IPv6 next-hops are set in the
 MP\_REACH\_NLRI ([multiprotocol reachable
 NLRI](https://www.ietf.org/rfc/rfc2858.txt)) initiated by the system,
 which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with
-ENHE. There are two main aspects to determine — how many IPv6 next-hops
+ENHE. There are two main aspects to determine - how many IPv6 next-hops
 are included in the MP\_REACH\_NLRI (since the RFC allows either one or
 two next-hops) and the values of the next-hop(s). This section also
 describes how a received MP\_REACH\_NLRI is handled as far as processing
@@ -428,7 +428,7 @@ IPv6 next-hops.
         outbound route map adds another next-hop.
 
   - `route-map` can impose two next-hops in scenarios where Cumulus
-    Linux would only send one next-hop — by specifying `set ipv6 nexthop
+    Linux would only send one next-hop - by specifying `set ipv6 nexthop
     link-local`.
 
   - For all routes to eBGP peers and self-originated routes to iBGP
@@ -452,10 +452,10 @@ IPv6 next-hops.
 
   - `route-map` and/or the peer configuration can change the above
     behavior. For example, `route-map` can set the global IPv6 next-hop
-    or the peer configuration can set it to *self* — which is relevant
+    or the peer configuration can set it to *self* - which is relevant
     for *iBGP* peers. The route map or peer configuration can also set
     the next-hop to unchanged, which ensures the source IPv6 global
-    next-hop is passed around — which is relevant for *eBGP* peers.
+    next-hop is passed around - which is relevant for *eBGP* peers.
 
   - Whenever two next-hops are being sent, the link-local next-hop (the
     second value of the two) is the link-local IPv6 address on the
@@ -514,12 +514,12 @@ recommendations in the Internet draft
     work around this issue, either:
     
       - Explicitly configure the switch to advertise a router lifetime
-        of 0, unless a value is specifically set by the operator — with
+        of 0, unless a value is specifically set by the operator - with
         the assumption that the host is running Cumulus Linux 3.y.z
         version of Quagga. When hosts see an IPv6 RA with a router
         lifetime of 0, they won't make that router a default router.
     
-      - Use the `sysctl` on the host —
+      - Use the `sysctl` on the host -
         `net.ipv6.conf.all.accept_ra_defrtr`. However, this requires
         applying this setting on all hosts, which may mean many hosts,
         especially if Quagga is run on the hosts.
@@ -573,7 +573,7 @@ capabilities:*.
           Remote Restart timer is 120 seconds
           Address families by peer:
             none
-     
+     
     ...
 
 The example output above shows that additional BGP paths can be sent and
@@ -593,7 +593,7 @@ TX node for receiving. All the paths have a unique AddPath ID.
           Community: 6:6
           AddPath ID: RX 0, TX 7
           Last update: Thu Jun  2 00:57:16 2016
-     
+     
       500
         10.7.5.2 from r5(10.7.5.2) (10.0.0.5)
           Origin IGP, metric 0, localpref 100, valid, external, bestpath-from-AS 500
@@ -601,14 +601,14 @@ TX node for receiving. All the paths have a unique AddPath ID.
           AddPath ID: RX 0, TX 6
           Advertised to: r8(10.7.8.2)
           Last update: Thu Jun  2 00:57:16 2016
-     
+     
       300
         10.7.4.2 from r4(10.7.4.2) (10.0.0.4)
           Origin IGP, metric 0, localpref 100, valid, external
           Community: 4:4
           AddPath ID: RX 0, TX 5
           Last update: Thu Jun  2 00:57:16 2016
-     
+     
       300
         10.7.3.2 from r3(10.7.3.2) (10.0.0.3)
           Origin IGP, metric 0, localpref 100, valid, external, bestpath-from-AS 300
@@ -616,14 +616,14 @@ TX node for receiving. All the paths have a unique AddPath ID.
           AddPath ID: RX 0, TX 4
           Advertised to: r8(10.7.8.2)
           Last update: Thu Jun  2 00:57:16 2016
-     
+     
       100
         10.7.2.2 from r2(10.7.2.2) (10.0.0.2)
           Origin IGP, metric 0, localpref 100, valid, external, multipath
           Community: 2:2
           AddPath ID: RX 0, TX 3
           Last update: Thu Jun  2 00:57:16 2016
-     
+     
       100
         10.7.1.2 from r1(10.7.1.2) (10.0.0.1)
           Origin IGP, metric 0, localpref 100, valid, external, multipath, bestpath-from-AS 100, best
@@ -687,21 +687,21 @@ The output below shows the result on r8:
           Community: 1:1
           AddPath ID: RX 2, TX 4
           Last update: Thu Jun  2 00:57:14 2016
-     
+     
       700 300
         10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
           Origin IGP, localpref 100, valid, external
           Community: 3:3
           AddPath ID: RX 4, TX 3
           Last update: Thu Jun  2 00:57:14 2016
-     
+     
       700 500
         10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
           Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best
           Community: 5:5
           AddPath ID: RX 6, TX 2
           Last update: Thu Jun  2 00:57:14 2016
-     
+     
     r8#
 
 The example below shows the results if r7 is configured to advertise all
@@ -725,22 +725,22 @@ The output below shows the result on r8:
           Community: 1:1
           AddPath ID: RX 2, TX 4
           Last update: Thu Jun  2 00:57:14 2016
-     
+     
       700 300
         10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
           Origin IGP, localpref 100, valid, external
           Community: 3:3
           AddPath ID: RX 4, TX 3
           Last update: Thu Jun  2 00:57:14 2016
-     
+     
       700 500
         10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
           Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best
           Community: 5:5
           AddPath ID: RX 6, TX 2
           Last update: Thu Jun  2 00:57:14 2016
-     
-     
+     
+     
     r8#
 
 ## Fast Convergence Design Considerations</span>
@@ -787,7 +787,7 @@ By default, Cumulus Linux sends IPv6 neighbor discovery router
 advertisements. Cumulus Networks recommends you adjust the router
 advertisement's interval to a shorter value (`ipv6 nd ra-interval
 <interval>`) to address scenarios when nodes come up and miss router
-advertisement processing to relay the neighbor’s link-local address to
+advertisement processing to relay the neighbor's link-local address to
 BGP. The `interval` is measured in seconds and defaults to 600 seconds.
 
 {{%/notice%}}
@@ -966,10 +966,10 @@ configurations:
         BGP router identifier 192.0.2.5, local AS number 65000
         RIB entries 0, using 0 bytes of memory
         Peers 1, using 6652 bytes of memory
-         
+         
         Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
         192.0.2.101     4 65001     200     227        0    0    0 00:00:03        0
-         
+         
         Total number of neighbors 1
 
 6.  SSH into `switch2`.
@@ -982,7 +982,7 @@ configurations:
         router bgp 65000
         bgp router-id 192.0.2.2
         neighbor 192.0.2.101 remote-as 65001
-        neighbor 192.0.2.101 password mypassword 
+        neighbor 192.0.2.101 password mypassword 
 
 9.  Restart Quagga:
     
@@ -1001,10 +1001,10 @@ configurations:
         BGP router identifier 192.0.2.2, local AS number 65001
         RIB entries 0, using 0 bytes of memory
         Peers 1, using 6652 bytes of memory
-         
+         
         Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
         192.0.2.102     4 65000     255     282        0    0    0 00:06:29        0
-         
+         
         Total number of neighbors 1
 
 ### Configure an MD5-enabled BGP Neighbor using vtysh</span>
@@ -1020,7 +1020,7 @@ configurations:
     
         quagga# configure terminal
         quagga(config)# router bgp 65001
-        quagga(config-router)# neighbor 192.0.2.102 password mypassword
+        quagga(config-router)# neighbor 192.0.2.102 password mypassword
 
 4.  SSH into `switch2`.
 
@@ -1043,10 +1043,10 @@ configurations:
         BGP router identifier 192.0.2.5, local AS number 65000
         RIB entries 0, using 0 bytes of memory
         Peers 1, using 6652 bytes of memory
-         
+         
         Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
         192.0.2.101     4 65001     257     284        0    0    0 00:08:11        0
-         
+         
         Total number of neighbors 1
 
 8.  Once Quagga is configured correctly, run the `write memory` command
@@ -1191,7 +1191,7 @@ connections. A sample output of this command is as follows:
     RIB entries 17, using 2040 bytes of memory
     Peers 6, using 97 KiB of memory
     Peer groups 1, using 56 bytes of memory
-     
+     
     Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
     leaf01(swp1)    4 65011    2684    2693        0    0    0 02:14:04        2
     leaf02(swp2)    4 65012    2684    2694        0    0    0 02:14:05        2
@@ -1199,7 +1199,7 @@ connections. A sample output of this command is as follows:
     leaf04(swp4)    4 65014    2684    2694        0    0    0 02:14:05        2
     edge01(swp29)   4 65051    8058    8054        0    0    0 02:14:06        3
     edge01(swp30)   4 65051    8055    8052        0    0    0 02:14:04        3
-     
+     
     Total number of neighbors 6
 
 {{%notice tip%}}
@@ -1216,7 +1216,7 @@ It is also useful to view the routing table as defined by BGP:
     Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
                   i internal, r RIB-failure, S Stale, R Removed
     Origin codes: i - IGP, e - EGP, ? - incomplete
-     
+     
        Network          Next Hop            Metric LocPrf Weight Path
     *= 0.0.0.0          swp30                         0 65051 i
     *>                  swp29                         0 65051 i
@@ -1233,7 +1233,7 @@ It is also useful to view the routing table as defined by BGP:
     *=                  swp2            0             0 65012 i
     *> 172.16.3.0/24    swp3            0             0 65013 i
     *=                  swp4            0             0 65014 i
-     
+     
     Total number of prefixes 10
 
 A more detailed breakdown of a specific neighbor can be obtained using
@@ -1260,12 +1260,12 @@ A more detailed breakdown of a specific neighbor can be obtained using
       Capability:             0          0
       Total:                 18         19
     Minimum time between advertisement runs is 5 seconds
-     
+     
     For address family: IPv4 Unicast
       NEXT_HOP is always this router
       Community attribute sent to this neighbor(both)
       3 accepted prefixes
-     
+     
       Connections established 1; dropped 0
       Last reset never
     Local host: 10.0.0.1, Local port: 35258
@@ -1349,10 +1349,10 @@ no longer needed for BGP unnumbered. The timer interval for RAs remains
 Use `vtysh` to verify the configuration:
 
     cumulus@switch:~$ sudo vtysh
-     
+     
     Hello, this is Quagga (version 0.99.23.1+cl3u2).
     Copyright 1996-2005 Kunihiro Ishiguro, et al.
-     
+     
     R7# show interface swp1
     Interface swp1 is up, line protocol is up
       Link ups:       0    last: (never)
@@ -1381,7 +1381,7 @@ the `show ip bgp summary` command and wherever else applicable:
     RIB entries 17, using 2040 bytes of memory
     Peers 6, using 97 KiB of memory
     Peer groups 1, using 56 bytes of memory
-     
+     
     Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
     leaf01(swp1)    4 65011    2834    2843        0    0    0 02:21:35        2
     leaf02(swp2)    4 65012    2834    2844        0    0    0 02:21:36        2
@@ -1389,7 +1389,7 @@ the `show ip bgp summary` command and wherever else applicable:
     leaf04(swp4)    4 65014    2834    2844        0    0    0 02:21:36        2
     edge01(swp29)   4 65051    8509    8505        0    0    0 02:21:37        3
     edge01(swp30)   4 65051    8506    8503        0    0    0 02:21:35        3
-     
+     
     Total number of neighbors 6
 
 Most of the show commands can take the interface name instead of the IP
@@ -1488,7 +1488,7 @@ To enable read-only mode:
 
     cumulus@switch:$ sudo bgp update-delay <max-delay in seconds> [<establish-wait in seconds>]
 
-The default `<max-delay>` is 0 — the feature is off by default.
+The default `<max-delay>` is 0 - the feature is off by default.
 
 Use output from `show ip bgp summary` for information about the state of
 the update delay.
@@ -1538,10 +1538,10 @@ hops`.
 Here is an example:
 
     cumulus@switch:~$ sudo vtysh
-     
+     
     Hello, this is Quagga (version 0.99.23.1+cl3u2).
     Copyright 1996-2005 Kunihiro Ishiguro, et al.
-     
+     
     R7# configure terminal
     R7(config)# interface swp1
     R7(config-if)# link-detect
@@ -1552,7 +1552,7 @@ Here is an example:
 ### Converging Quickly On Soft Failures</span>
 
 It is possible that the link is up, but the neighboring BGP process is
-hung or has crashed. If a BGP process crashes, Quagga’s `watchquagga`
+hung or has crashed. If a BGP process crashes, Quagga's `watchquagga`
 daemon, which monitors the various `quagga` daemons, will attempt to
 restart it. If the process is also hung, `watchquagga` will attempt to
 restart the process. BGP itself has a keepalive timer that is exchanged
@@ -1602,7 +1602,7 @@ To modify this value, use:
 
     R7(config-router)# neighbor 10.0.0.2 timers connect 30
 
-This command has to be specified per each neighbor, peer-group doesn’t
+This command has to be specified per each neighbor, peer-group doesn't
 support this option in `quagga`.
 
 ### Advertisement Interval</span>
@@ -1611,7 +1611,7 @@ BGP by default chooses stability over fast convergence. This is very
 useful when routing for the Internet. For example, unlike link-state
 protocols, BGP typically waits for a duration of
 `advertisement-interval` seconds between sending consecutive updates to
-a neighbor. This ensures that an unstable neighbor flapping routes won’t
+a neighbor. This ensures that an unstable neighbor flapping routes won't
 be propagated throughout the network. By default, this is set to 0
 seconds for both eBGP and iBGP sessions, which allows for very fast
 convergence. You can modify this as follows:
@@ -1689,7 +1689,7 @@ this for TTL:
 
     INGRESS_INTF = swp1 
         INGRESS_CHAIN = INPUT, FORWARD 
-     
+     
         [iptables]
         -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -m ttl --ttl 255 POLICE --set-mode pkt --set-rate 2000 --set-burst 1000 
     -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp DROP

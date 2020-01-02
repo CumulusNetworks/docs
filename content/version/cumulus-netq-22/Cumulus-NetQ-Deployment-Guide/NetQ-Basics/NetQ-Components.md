@@ -36,7 +36,7 @@ the network state are described here.
 ## NetQ Agents
 
 NetQ Agents are software installed and running on every monitored *node*
-in the network — including Cumulus® Linux® switches, Linux bare-metal
+in the network - including Cumulus® Linux® switches, Linux bare-metal
 hosts, and virtual machines. The NetQ Agents push network data regularly
 and event information immediately to the NetQ Platform.
 

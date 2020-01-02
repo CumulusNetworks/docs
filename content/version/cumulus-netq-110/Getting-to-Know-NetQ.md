@@ -22,19 +22,19 @@ pointers as to how it helps you solve issues across your network.
         resolve          :  Annotate input with names and interesting info
         startup          :  NetQ Quickstart
         trace            :  Control Path Trace
-     
+     
     cumulus@switch:~$ netq example trace 
-     
+     
     Control Path Trace
     ==================
-     
-     
+     
+     
     Commands
     ========
        netq trace <mac> [vlan <1-4096>] from <hostname> [vrf <vrf>] [around <text-time>] [json]
        netq trace <ip> from (<hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json]
-     
-     
+     
+     
     Usage
     =====
     netq trace provides control path tracing (no real packets are sent) from
@@ -43,19 +43,19 @@ pointers as to how it helps you solve issues across your network.
     ECMP is supported as well as checking for forwarding loops, MTU consistency
     across all paths, and VLAN consistency across all paths. The trace also
     covers that the path from dest to src also exists on each hop.
-     
-     
+     
+     
     cumulus@torc-12:~$ netq trace 27.0.0.22 from 27.0.0.21
     torc-12 -- torc-12:swp3 -- spine-1:swp5 -- torc-21:lo
             -- torc-12:swp4 -- spine-2:swp5 -- torc-21:lo
-     
-     
+     
+     
     When tracing data, only the egress information is shown as this information
     is gathered by looking at the routing table. In this case, there are two paths
     (one through spine01 and one through spine02) because the environment is
     leveraging equal cost routing.
-     
-     
+     
+     
     You can trace by MAC as well:
     cumulus@leaf1:~$ netq trace 00:02:00:00:00:02 vlan 1009 from leaf1
     leaf1 -- leaf1:sw_clag200 -- spine1:sw_clag300 -- edge2
@@ -63,8 +63,8 @@ pointers as to how it helps you solve issues across your network.
           -- leaf1:sw_clag200 -- spine2:sw_clag300 -- edge1:VlA-1
                               -- spine2:sw_clag300 -- edge2
     cumulus@leaf1:~$
-     
-     
+     
+     
     Legend
     ======
     Any errors are shown in red. Bridged paths are always in WHITE, routed paths
@@ -115,12 +115,12 @@ Cumulus Networks recommends you only run `netq` commands here.
     cumulus@netq-appliance:~$ netq-shell
     [<Container: a017716433>]
     Welcome to Cumulus (R) Linux (R)
-     
+     
     For support and online technical documentation, visit
     http://www.cumulusnetworks.com/support
-     
+     
     The registered trademark Linux (R) is used pursuant to a sublicense from LMI, the exclusive licensee of Linux Torvalds, owner of the mark on a worldwide basis. 
-     
+     
     TIP: Type `netq` to access NetQ CLI.
     netq@017716433d5:/$ netq show agents
     Node        Status    Sys Uptime    Agent Uptime
@@ -133,7 +133,7 @@ Cumulus Networks recommends you only run `netq` commands here.
     server02    Fresh     3h ago        3h ago
     server03    Fresh     3h ago        3h ago
     server04    Fresh     3h ago        3h ago
-     
+     
     ...
 
 ## Using the netq resolve Command</span>
@@ -355,7 +355,7 @@ or within a time window.
 Interface state, IP addresses, routes, ARP/ND table (IP neighbor)
 entries and MAC table entries carry a timestamp that represents the time
 the event happened (such as when a route is deleted or an interface
-comes up) — *except* the first time the NetQ agent is run. If the
+comes up) - *except* the first time the NetQ agent is run. If the
 network has been running and stable when a NetQ agent is brought up for
 the first time, then this time reflects when the agent was started.
 Subsequent changes to these objects are captured with an accurate time
@@ -385,7 +385,7 @@ below:
     ---------------- ---------------- -------- ----- --------------------------- --------------
     leaf01           swp51            swp      up    LLDP: spine01:swp1,         2h ago
                                                      MTU: 1500
-     
+     
     cumulus@leaf01:mgmt-vrf:~$ netq leaf01 show interfaces swp52
     Matching link records are:
     Node             Interface        Type     State Details                     Last Changed

@@ -115,8 +115,8 @@ Installing a new image is a six step process:
 
 {{%notice warning%}}
 
-Installing a new image overwrites **all files** — including
-configuration files — on the target slot. Cumulus Networks strongly
+Installing a new image overwrites **all files** - including
+configuration files - on the target slot. Cumulus Networks strongly
 recommends you create a [persistent
 configuration](#src-5116319_ManagingCumulusRMPDiskImages-persistent_config)
 to back up your important files, like your configurations; see Step 2
@@ -466,7 +466,7 @@ finishes.
     of Cumulus RMP should begin. Here is some sample output:
     
         ONIE: OS Install Mode  ...
-         
+         
         Version : quanta_common_rangeley-2014.05.05-6919d98-201410171013
         Build  Date: 2014-10-17T10:13+0800
         Info: Mounting kernel filesystems...  done.
@@ -477,9 +477,9 @@ finishes.
         sd 6:0:0:0: [sdb] Write Protect is off
         sd 6:0:0:0: [sdb] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
         sd 6:0:0:0: [sdb] Attached SCSI disk
-         
+         
         <...snip...>
-         
+         
         ONIE:  Executing installer: file://dev/sdb1/onie-installer-x86_64
         Verifying image checksum ... OK.
         Preparing image archive ... OK.

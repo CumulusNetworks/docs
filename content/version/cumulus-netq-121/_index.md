@@ -17,8 +17,8 @@ subsection: true
 Cumulus NetQ is a fabric-wide, telemetry-based validation system, that
 enables organizations to validate network state, both during regular
 operations and for post-mortem diagnostic analysis. Running on Cumulus
-Linux switches and other certified systems — such as Ubuntu, Red Hat,
-and CentOS hosts — NetQ captures network data and other state
+Linux switches and other certified systems - such as Ubuntu, Red Hat,
+and CentOS hosts - NetQ captures network data and other state
 information in real time, allowing cloud architects and network
 operations teams to operate with visibility over the entire network.
 
@@ -111,7 +111,7 @@ Each is described below.
 ### NetQ Agent</span>
 
 The back-end Python agent installed on every monitored *node* in the
-network — including Cumulus Linux switches, Linux bare-metal hosts and
+network - including Cumulus Linux switches, Linux bare-metal hosts and
 virtual machines, or Docker containers. The agent pushes out data to the
 NetQ Telemetry Server periodically, and when specific
 [`netlink`](https://wiki.linuxfoundation.org/networking/netlink) events

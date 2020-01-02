@@ -149,7 +149,7 @@ To enable communication between the `clagd` services on the peer switches, do th
 - Assign the SVI an unrouteable link-local address to give the peer switches layer 3 connectivity between each other.
 - Configure the VLAN as a [VLAN subinterface](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/) on the peer link bond instead of the VLAN-aware bridge, called *peerlink*. If you configure the subinterface with [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/), the VLAN subinterface is named 4094 by default (the subinterface named *peerlink.4094* below). If you are configuring the peer link  without NCLU, Cumulus Networks still recommends you use 4094 for the peer link VLAN if possible. This ensures that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
 - Include untagged traffic on the peer link, as this avoids issues with STP.
-- Specify a backup interface, which is any layer 3 backup interface for your peer links in case the peer link goes down. While a backup interface is optional, Cumulus Networks recommends you configure one. More information about configuring the [backup link](#specify-a-backup-link) and understanding various [redundancy scenarios](#failover-redundancy-scenarios) is available below.
+- Specify a backup interface, which is any layer 3 backup interface for your peer links in case the peer link goes down. While a backup interface is optional, Cumulus Networks recommends you configure one. More information about configuring the [backup link](#specify-a-backup-link) and understanding various [redundancy scenarios](#failover-redundancy-scenarios) is available below.
 
 For example, if *peerlink* is the inter-chassis bond, and VLAN 4094 is the peer link VLAN, configure *peerlink.4094* as follows:
 
@@ -593,7 +593,7 @@ iface server2
     clag-id 2
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
- 
+ 
 auto vlan100
 iface vlan100
     address 172.16.1.2/24
@@ -1372,7 +1372,7 @@ In the illustration below, each host has two 10G links, with each 10G link going
 
 {{< img src = "/images/cumulus-linux/mlag-peerlink-sizing.png" >}}
 
-Scaling this example out to a full rack, when planning for link failures, you need only allocate enough bandwidth to meet your site's strategy for handling failure scenarios. Imagine a full rack with 40 servers and two switches. You might plan for four to six servers to lose connectivity to a single switch and become single connected before you respond to the event. So expanding upon our previous example, if you have 40 hosts each with 20G of bandwidth dual-connected to the MLAG pair, you might allocate 20G to 30G of bandwidth to the peer link — which accounts for half of the single-connected bandwidth for four to six hosts.
+Scaling this example out to a full rack, when planning for link failures, you need only allocate enough bandwidth to meet your site's strategy for handling failure scenarios. Imagine a full rack with 40 servers and two switches. You might plan for four to six servers to lose connectivity to a single switch and become single connected before you respond to the event. So expanding upon our previous example, if you have 40 hosts each with 20G of bandwidth dual-connected to the MLAG pair, you might allocate 20G to 30G of bandwidth to the peer link - which accounts for half of the single-connected bandwidth for four to six hosts.
 
 ### Failover Redundancy Scenarios
 

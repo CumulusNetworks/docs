@@ -371,16 +371,16 @@ cumulus@switch:~$ net commit
 
 # simple no auth user
 #createuser user1
-     
+     
 # user with MD5 authentication
 #createuser user2 MD5 user2password
-     
+     
 # user with MD5 for auth and DES for encryption
 #createuser user3 MD5 user3password DES user3encryption
-     
+     
 # user666 with SHA for authentication and AES for encryption
 createuser user666 SHA user666password AES user666encryption
-     
+     
 # user999 with MD5 for authentication and DES for encryption
 createuser user999 MD5 user999password DES user999encryption
 
@@ -409,7 +409,7 @@ The following commands check the access for each user defined above from the loc
 # check user1 which has no authentication or encryption (NoauthNoPriv)
 snmpget -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1.1.0
 snmpwalk -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1
- 
+ 
 # check user2 which has authentication but no encryption (authNoPriv)
 snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.1.1.0
 snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.2.1.0
@@ -486,7 +486,7 @@ rouser trapusername
 
 {{%notice note%}}
 
-`iquerysecname` specifies the default SNMPv3 username to be used when making internal queries to retrieve any necessary information — either for evaluating the monitored expression or building a notification payload. These internal queries always use SNMPv3, even if normal querying of the agent is done using SNMPv1 or SNMPv2c. Note that this user must also be explicitly created via `createUser` and given appropriate access rights, for `rouser`, for example. The `iquerysecname` directive is purely concerned with defining which user should be used, not with actually setting this user up.
+`iquerysecname` specifies the default SNMPv3 username to be used when making internal queries to retrieve any necessary information - either for evaluating the monitored expression or building a notification payload. These internal queries always use SNMPv3, even if normal querying of the agent is done using SNMPv1 or SNMPv2c. Note that this user must also be explicitly created via `createUser` and given appropriate access rights, for `rouser`, for example. The `iquerysecname` directive is purely concerned with defining which user should be used, not with actually setting this user up.
 
 {{%/notice%}}
 
@@ -554,8 +554,8 @@ For more information, read the the `snmp.conf` man page:
 
 ```
 clientaddr [<transport-specifier>:]<transport-address>
-            specifies the source address to be used by command-line applica‐
-            tions when sending SNMP requests. See snmpcmd(1) for more infor‐
+            specifies the source address to be used by command-line applica-
+            tions when sending SNMP requests. See snmpcmd(1) for more infor-
             mation about the format of addresses.
             This value is also used by snmpd when generating notifications.
 ```
@@ -578,10 +578,10 @@ monitor [OPTIONS] NAME EXPRESSION
             Note also that such monitors use an internal SNMPv3 request to retrieve the values
             being monitored (even  if  normal  agent  queries  typically  use SNMPv1 or SNMPv2c).
             See the iquerySecName token described above.
-     
+     
       EXPRESSION
             There are three types of monitor expression supported by the Event MIB - existence, boolean and threshold tests.
-     
+     
             OID | ! OID | != OID
 
                     defines  an  existence(0)  monitor  test.  A bare OID specifies a present(0) test,
@@ -590,28 +590,28 @@ monitor [OPTIONS] NAME EXPRESSION
                     OID is delected.  An expression of the form != OID specifies a changed(2) test,
                     which will fire whenever the monitored value(s) change.  Note that there must be
                     whitespace before the OID token.
-     
+     
             OID OP VALUE
 
                     defines a boolean(1) monitor test.  OP should be one of the defined comparison operators
                     (!=, ==, <, <=, >, >=) and VALUE should be an integer value to compare against.  Note that
                     there must be whitespace around the OP token.  A comparison such as OID !=0 will not be
                     handled correctly.
-     
+     
             OID MIN MAX [DMIN DMAX]
 
                     defines a threshold(2) monitor test.  MIN and MAX are integer values, specifying
                     lower and upper thresholds.  If the value of the monitored OID falls below the lower
                     threshold (MIN) or rises above the upper threshold (MAX), then the monitor entry will
                     trigger the corresponding event.
-     
+     
                     Note that the rising threshold event will only be re-armed when the monitored value
                     falls below the lower threshold (MIN).  Similarly, the falling threshold event will
                     be re-armed by the upper threshold (MAX).
-     
+     
                     The optional parameters DMIN and DMAX configure a pair of similar threshold tests,
                     but working with the delta differences between successive sample values.
-     
+     
     OPTIONS
 
             There are various options to control the behaviour of the monitored expression.  These include:

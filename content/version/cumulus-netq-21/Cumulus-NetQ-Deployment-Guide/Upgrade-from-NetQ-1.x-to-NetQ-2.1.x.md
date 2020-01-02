@@ -306,17 +306,17 @@ running on the NetQ Appliance or Platform.
             <computer>:~<username>$ ssh cumulus@<netq-platform-ipaddress>
             Warning: Permanently added '<netq-platform-hostname>,192.168.1.254' (ECDSA) to the list of known hosts.
             cumulus@<netq-platform-hostname>'s password: <enter CumulusLinux! here>
-             
+             
             Welcome to Cumulus (R) Linux (R)
-             
+             
             For support and online technical documentation, visit
             http://www.cumulusnetworks.com/support
-             
+             
             The registered trademark Linux (R) is used pursuant to a sublicense from LMI,
             the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide
             basis.
-             
-            cumulus@<netq-platform-hostname>:~$ 
+             
+            cumulus@<netq-platform-hostname>:~$ 
     
     2.  Run the following command to verify all applications are
         operating properly. **Note**: Please allow 10-15 minutes for
@@ -369,7 +369,7 @@ running on the NetQ Appliance or Platform.
             netq-app-customermgmt          UP        true                      7250354     Mon Jun  3 20:20:34 2019
             netq-app-node                  UP        true      up              f676c9a     Mon Jun  3 20:20:34 2019
             netq-app-route                 UP        true      up              6e31f98     Mon Jun  3 20:20:35 2019
-             
+             
             cumulus@<netq-platform-hostname>:~$
         
         {{%notice info%}}
@@ -426,7 +426,7 @@ A simple process installs the NetQ Agent on a Cumulus switch.
 1.  Stop the ` netq-agent  `service and `netqd` daemon running on your
     switch.
     
-        cumulus@switch:~$ sudo systemctl stop netq-agent 
+        cumulus@switch:~$ sudo systemctl stop netq-agent 
         cumulus@switch:~$ sudo systemctl stop netqd
     
     {{%notice info%}}
@@ -527,7 +527,7 @@ To install the NetQ Agent on an Ubuntu server:
 The use of `netq-latest` in this example means that a `get` to the
 repository always retrieves the latest version of NetQ, even in the
 case where a major version update has been made. If you want to keep
-the repository on a specific version — such as `netq-2.1` — use that
+the repository on a specific version - such as `netq-2.1` - use that
 instead.
     
     {{%/notice%}}
@@ -561,16 +561,16 @@ instead.
 
 9.  Restart the NetQ Agent
     
-        user@ubuntu:~# netq config restart agent
+        user@ubuntu:~# netq config restart agent
 
 10. Optionally, configure the Ubuntu server to run the NetQ CLI.
     
-        user@ubuntu:~# netq config add cli server <netq-platform-ip-address>
+        user@ubuntu:~# netq config add cli server <netq-platform-ip-address>
         Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
 
 11. Restart the CLI.
     
-        user@ubuntu:~# netq config restart cli
+        user@ubuntu:~# netq config restart cli
 
 ### Upgrade NetQ Agent on a Red Hat or CentOS Server
 
@@ -633,16 +633,16 @@ To install the NetQ Agent on a Red Hat or CentOS server:
 
 8.  Restart the NetQ Agent
     
-        root@rhel7:~# netq config restart agent
+        root@rhel7:~# netq config restart agent
 
 9.  Optionally, configure the RHEL/CentOS server to run the NetQ CLI.
     
-        root@rhel7:~# netq config add cli server <netq-platform-ip-address>
+        root@rhel7:~# netq config add cli server <netq-platform-ip-address>
         Updated cli server 192.168.1.254 vrf default. Please restart netqd (netq config restart cli).
 
 10. Restart the CLI.
     
-        root@rhel7:~# netq config restart cli
+        root@rhel7:~# netq config restart cli
 
 ## Configure Optional NetQ Agent Settings
 

@@ -256,6 +256,10 @@ Slave queue ID: 0
 
 </details>
 
+{{%notice info%}}
+The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner LACP information. This information is not necessary and requires you to use `sudo` to view the file.
+{{%/notice%}}
+
 ## Caveats and Errata
 
 - An interface cannot belong to multiple bonds.

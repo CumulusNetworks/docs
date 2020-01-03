@@ -119,16 +119,16 @@
             v{{.Page.Params.version}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            {{range where .Site.Sections "Params.product" $currentProduct}}
-            <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{.Params.version}}</a>
-            {{ end }}
-            {{range where .Site.Pages "Section" "version"}}
-             {{ if eq .Params.product $currentProduct }}
-             {{ if .Params.subsection}}
-            <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{.Params.version}}</a>
-            {{ end }}
-            {{ end }}
-            {{ end }}
+            {{- range where .Site.Sections "Params.product" $currentProduct -}}
+            <a class = "dropdown-item" href = "{{- .RelPermalink -}}"> v{{- .Params.version -}}</a>
+            {{- end -}}
+            {{- range where .Site.Pages "Section" "version" -}}
+             {{- if eq .Params.product $currentProduct -}}
+             {{- if .Params.subsection -}}
+            <a class = "dropdown-item" href = "{{- .RelPermalink -}}"> v{{- .Params.version -}}</a>
+            {{- end -}}
+            {{- end -}}
+            {{- end -}}
           </div>
       </div>
     </div>
@@ -162,19 +162,19 @@
         <div class="version-dropdown">
           <div id="dropdown" class="dropdown">
             <button class="btn" type="button" id="dropdownMenuButton">
-              v{{.Page.Params.version}}
+              v{{- .Page.Params.version -}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {{range where .Site.Sections "Params.product" $currentProduct}}
-              <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{.Params.version}}</a>
-              {{ end }}
-              {{range where .Site.Pages "Section" "version"}}
-               {{ if eq .Params.product $currentProduct }}
-               {{ if .Params.subsection}}
-              <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{.Params.version}}</a>
-              {{ end }}
-              {{ end }}
-              {{ end }}
+              {{- range where .Site.Sections "Params.product" $currentProduct -}}
+              <a class = "dropdown-item" href = "{{- .RelPermalink -}}"> v{{- .Params.version -}}</a>
+              {{- end -}}
+              {{- range where .Site.Pages "Section" "version" -}}
+               {{- if eq .Params.product $currentProduct -}}
+               {{- if .Params.subsection -}}
+              <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{- .Params.version -}}</a>
+              {{- end -}}
+              {{- end -}}
+              {{- end -}}
             </div>
           </div> <!-- version dropdown -->
         </div>
@@ -437,3 +437,4 @@
 </body>
 
 </html>
+

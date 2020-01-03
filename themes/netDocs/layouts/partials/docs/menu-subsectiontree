@@ -12,34 +12,31 @@
   </ul>
 
 {{ define "book-section" }}
-{{ with .Section }}
+{{- with .Section }}
   <li class="cn-book-section">
-      {{ template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
+      {{- template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) -}}
 
-      {{ template "book-section-children" (dict "Section" . "CurrentPage" $.CurrentPage ) }}
+      {{- template "book-section-children" (dict "Section" . "CurrentPage" $.CurrentPage ) }}
   </li>
-{{ end }}
-{{ end }}
+{{- end }}
+{{- end }}
 
 {{ define "book-section-children" }}
-{{ with .Section }}
+{{- with .Section -}}
   <ul class="cn-book-section-container" id = "subsection">
-    {{ range .Sections }}
-      {{ template "book-section" (dict "Section" . "CurrentPage" $.CurrentPage ) }}
-    {{ end }}
-    {{ range .Pages }}
-    <li >
-      {{ template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
-    </li>
-    {{ end }}
+    {{- range .Sections }}
+      {{- template "book-section" (dict "Section" . "CurrentPage" $.CurrentPage ) }}
+    {{- end }}
+    {{- range .Pages -}}
+    <li>{{- template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}</li>
+{{- end -}}
   </ul>
+{{- end }}
+{{- end -}}
+
+{{ define "book-page-link" }}
+{{- with .Page -}}
+  <a href="{{ .RelPermalink }}" {{ if eq $.CurrentPage .Permalink }} class="active" {{ end }}>{{ .Title }}</a>
 {{ end }}
 {{ end }}
 
-{{ define "book-page-link" }}
-{{ with .Page }}
-  <a href="{{ .RelPermalink }}" {{ if eq $.CurrentPage .Permalink }} class="active" {{ end }}>
-    {{ .Title }}
-  </a>
-{{ end }}
-{{ end }}

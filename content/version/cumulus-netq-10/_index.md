@@ -110,10 +110,3 @@ NAT translations, networks and container IP and MAC addresses.
     
     The Service Console provides a browser-based window for accessing
     the NetQ CLI from anywhere.
-
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

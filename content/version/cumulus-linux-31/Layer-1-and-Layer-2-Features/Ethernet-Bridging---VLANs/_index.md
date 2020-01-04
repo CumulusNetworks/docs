@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
 
 Ethernet bridges provide a means for hosts to communicate at layer 2.
 Bridge members can be individual physical interfaces, bonds or logical

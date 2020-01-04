@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
 ---
-<details>
 
 Cumulus RMP uses Pluggable Authentication Modules (PAM) and Name Service
 Switch (NSS) for user authentication.

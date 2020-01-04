@@ -484,7 +484,7 @@ VLAN-aware one. To do the opposite, delete the VLAN-aware bridge in step
         and specify the new range.
     
     2.  [Restart
-        `switchd`](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd)
+        `switchd`](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd)
         (`sudo systemctl restart switchd.service`) for the new range to
         take effect.
         
@@ -492,7 +492,7 @@ VLAN-aware one. To do the opposite, delete the VLAN-aware bridge in step
         
         While restarting `switchd`, all running ports will flap and
         forwarding will be
-        [interrupted](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd).
+        [interrupted](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd).
         
         {{%/notice%}}
 

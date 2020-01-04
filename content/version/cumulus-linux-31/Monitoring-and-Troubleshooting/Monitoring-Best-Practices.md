@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
 
 The following monitoring processes are considered best practices for
 reviewing and troubleshooting potential issues with Cumulus Linux

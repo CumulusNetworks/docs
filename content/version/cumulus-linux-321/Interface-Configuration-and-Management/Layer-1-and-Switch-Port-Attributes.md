@@ -776,7 +776,7 @@ error occurs while removing and reinserting QSFP module.
 The QSPFx2 module cannot be removed while the switch is powered on, as
 it is not hot-swappable. However, if this occurs, you can get the link
 to come up; however, this involves [restarting
-`switchd`](Configuring-switchd.html#src-5126758_Configuringswitchd-restartswitchd),
+`switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5126758_Configuringswitchd-restartswitchd),
 which disrupts your network.
 
 On the T3048-LY9, run the following commands:

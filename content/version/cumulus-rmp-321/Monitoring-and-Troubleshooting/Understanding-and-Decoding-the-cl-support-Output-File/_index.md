@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
 ---
-<details>
 
 The `cl-support` command generates a tar archive of useful information
 for troubleshooting that can be auto-generated or manually created. To

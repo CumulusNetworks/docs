@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
 ---
-<details>
 
 `ifupdown` is the network interface manager for Cumulus RMP. Cumulus RMP
 uses an updated version of this tool, `ifupdown2`.

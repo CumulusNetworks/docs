@@ -311,7 +311,7 @@ will show up as swp1, swp2, and so forth.
 If you are using 4x10G DAC or AOC cables, edit the
 `/etc/cumulus/ports.conf` to enable support for these cables then
 [restart the `switchd`
-service](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd)
+service](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd)
 using the `sudo systemctl restart switchd.service` command. For more
 details, see [Layer 1 and Switch Port
 Attributes](/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes).

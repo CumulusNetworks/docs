@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
 ---
-<details>
 
 *LNV active-active mode* allows a pair of
 [MLAG](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)
@@ -2238,10 +2237,10 @@ indicating that there is a `vxlan-id` mis-match on VXLAN10.
 ## See Also</span>
 
   - [Lightweight Network
-    Virtualization](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/)
+    Virtualization](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/)
 
   - [LNV Full Example (Single
-    Attached)](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/LNV-Full-Example)
+    Attached)](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/LNV-Full-Example)
 
 
 </details>

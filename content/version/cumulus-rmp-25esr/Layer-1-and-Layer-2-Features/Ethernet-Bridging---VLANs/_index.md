@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 Ethernet bridges provide a means for hosts to communicate at layer 2.
 Bridge members can be individual physical interfaces, bonds or logical

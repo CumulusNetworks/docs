@@ -90,10 +90,3 @@ Server from a snapshot:
 6.  Restart the NetQ Stack:
     
         root@cumulus:~# sudo systemctl start netq-appliance
-
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

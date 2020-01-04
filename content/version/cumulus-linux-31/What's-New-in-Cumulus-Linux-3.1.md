@@ -28,7 +28,7 @@ features](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
   - [Priority flow control](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/Buffer-and-Queue-Management/#span-id-src-5122108-bufferandqueuemanagement-pfc-class-confluence-anchor-link-span-configuring-priority-flow-control-span)
     (PFC) - Mellanox switches only
 
-  - [Explicit congestion notification](http://Buffer%20and%20Queue%20Management#BufferandQueueManagement-ecn)
+  - [Explicit congestion notification](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/Buffer-and-Queue-Management/#span-idsrc-5122108-bufferandqueuemanagement-ecn-classconfluence-anchor-linkspanconfiguring-explicit-congestion-notificationspan)
     (ECN) - Mellanox switches only
 
   - [Ethernet virtual private networks](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)

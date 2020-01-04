@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 Cumulus RMP uses Pluggable Authentication Modules (PAM) and Name Service
 Switch (NSS) for user authentication.

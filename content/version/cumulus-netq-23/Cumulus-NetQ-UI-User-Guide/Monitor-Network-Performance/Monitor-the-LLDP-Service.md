@@ -23,7 +23,7 @@ With NetQ, you can monitor the number of nodes running the LLDP service,
 view nodes with the most LLDP neighbor nodes, those nodes with the least
 neighbor nodes, and view alarms triggered by the LLDP service. For an
 overview and how to configure LLDP in your data center network, refer to
-[Link Layer Discovery Protocol](../../../../cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
+[Link Layer Discovery Protocol](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
 
 ### LLDP Service Card Workflow Summary
 
@@ -606,7 +606,7 @@ With NetQ, you can monitor the number of nodes running the LLDP service,
 view neighbor state changes, and compare with events occurring at the
 same time, as well as monitor the running LLDP configuration and changes
 to the configuration file. For an overview and how to configure LLDP in
-your data center network, refer to [Link Layer Discovery Protocol](../../../../cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
+your data center network, refer to [Link Layer Discovery Protocol](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/).
 
 {{%notice note%}}
 

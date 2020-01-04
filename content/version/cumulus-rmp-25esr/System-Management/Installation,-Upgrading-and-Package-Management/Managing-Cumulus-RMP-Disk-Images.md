@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 The Cumulus RMP operating system resides on a switch as a *disk image*.
 Switches running Cumulus RMP can be configured with multiple disk

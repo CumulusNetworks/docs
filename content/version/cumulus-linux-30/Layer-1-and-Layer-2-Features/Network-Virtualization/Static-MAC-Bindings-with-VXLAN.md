@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
 ---
-<details>
 
 Cumulus Linux includes native Linux VXLAN kernel support.
 
@@ -49,11 +48,11 @@ Consider the following example:
 
 Preconfiguring remote MAC addresses does not scale. A better solution is
 to use the Cumulus Networks [Lightweight Network
-Virtualization](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722663)
+Virtualization](..)
 feature, or a controller-based option like [Midokura MidoNet and
-OpenStack](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722662)
+OpenStack](../Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
 or [VMware
-NSX](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722660).
+NSX](../Integrating-with-VMware-NSX).
 
 {{%/notice%}}
 

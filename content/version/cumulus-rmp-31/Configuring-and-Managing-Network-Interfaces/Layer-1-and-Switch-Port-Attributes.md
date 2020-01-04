@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
 ---
-<details>
 
 This chapter discusses the various network interfaces on a switch
 running Cumulus RMP.

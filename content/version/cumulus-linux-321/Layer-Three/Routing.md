@@ -170,7 +170,7 @@ your network architecture and specify the profile name for the
     forwarding_table.profile = default
 
 After you specify a different profile, [restart
-`switchd`](Configuring-switchd.html#src-5126758_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5126758_Configuringswitchd-restartswitchd)
 for the change to take effect. You can see the forwarding table profile
 when you run `cl-resource-query`.
 

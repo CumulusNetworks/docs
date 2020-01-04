@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
 ---
-<details>
 
 You manage application daemons in Cumulus RMP in the following ways:
 

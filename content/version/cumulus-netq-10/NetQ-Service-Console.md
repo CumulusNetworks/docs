@@ -93,10 +93,3 @@ agents`:
 
 When you're finished with the session, click **Disconnect** to close the
 console.
-
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

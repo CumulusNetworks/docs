@@ -66,8 +66,7 @@ use a configuration like the following:
       bridge-mcquerier 1
       bridge-mcqifaddr 1
 
-For a [VLAN-aware
-bridge](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
+For a [VLAN-aware bridge](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
 use a configuration like the following:
 
     auto br0.100

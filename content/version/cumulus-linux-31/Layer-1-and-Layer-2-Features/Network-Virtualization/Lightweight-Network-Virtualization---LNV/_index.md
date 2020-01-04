@@ -22,7 +22,7 @@ learning.
 
 To see an example of a full solution before reading the following
 background information, [please read this
-chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/LNV-Full-Example).
+chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/LNV-Full-Example).
 
 {{%notice note%}}
 

@@ -50,14 +50,13 @@ which are assigned equal scheduling weights.
 
 Datapath configuration takes effect when you initialize `switchd`.
 Changes to the `traffic.conf` file require you to [restart the
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span)
 service.
 
 ## Commands</span>
 
 If you modify the configuration in the
-`/etc/cumulus/datapath/traffic.conf` file, you must [restart
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+`/etc/cumulus/datapath/traffic.conf` file, you must [restart`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span)
 for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -379,8 +378,7 @@ sequences of contiguous ports; you can see which ports are contiguous in
         swp7
         ...
 
-[Restart
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+[Restart `switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd)
 to allow the PFC configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -427,7 +425,7 @@ link_pause.pause_port_group.tx_enable = true
 ```
 
 [Restart
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd)
 to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -478,7 +476,7 @@ through swp4 and swp6:
     ecn.ecn_port_group.port_set = swp1-swp4,swp6
 
 [Restart
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd)
 to allow the ECN configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service

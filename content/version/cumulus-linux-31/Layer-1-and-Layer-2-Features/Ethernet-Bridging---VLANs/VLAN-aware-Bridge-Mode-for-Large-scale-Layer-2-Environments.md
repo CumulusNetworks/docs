@@ -537,7 +537,7 @@ configure the VXLANs using traditional bridge mode.
         
         While restarting `switchd`, all running ports will flap and
         forwarding will be
-        [interrupted](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd).
+        [interrupted](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd).
         
         {{%/notice%}}
 

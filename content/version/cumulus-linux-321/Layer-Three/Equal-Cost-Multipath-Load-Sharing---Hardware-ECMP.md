@@ -281,7 +281,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
         # Valid values - 64, 128, 256, 512, 1024
         resilient_hash_entries_ecmp = 256
 
-3.  [Restart](Configuring-switchd.html#src-5126758_Configuringswitchd-restartswitchd)
+3.  [Restart](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5126758_Configuringswitchd-restartswitchd)
     the `switchd` service:
     
         cumulus@switch:~$ sudo systemctl restart switchd.service

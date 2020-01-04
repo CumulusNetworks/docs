@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
 ---
-<details>
 
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework
 in Cumulus Linux as well as most other Linux distributions. `iptables`,
@@ -249,9 +248,7 @@ To always start `switchd` with nonatomic updates:
     
         acl.non_atomic_update_mode = TRUE 
 
-3.  [Restart
-    `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5114824)
-    :
+3.  [Restart`switchd`](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span):
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
@@ -1114,7 +1111,7 @@ To do so, set the value for `acl.non_atomic_update_mode` to true in
     acl.non_atomic_update_mode = TRUE
 
 Then [restart
-switchd](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd).
+switchd](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd).
 
 ### iptables Interactions with cl-acltool</span>
 

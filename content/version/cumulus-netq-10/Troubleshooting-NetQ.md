@@ -118,10 +118,3 @@ that you could not solve with your own troubleshooting:
 The `netq-support` script generates a file called `cl-support`.
 
 {{%/notice%}}
-
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

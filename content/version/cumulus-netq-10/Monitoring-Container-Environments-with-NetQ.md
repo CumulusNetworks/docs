@@ -633,10 +633,3 @@ traffic using that protocol from a given port.
     netcat-9091          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
     netcat-9092          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
     netcat-9092          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
-
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

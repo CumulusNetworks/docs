@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 The Cumulus RMP bridge driver supports two configuration modes, one that
 is VLAN-aware, and one that follows a more traditional Linux bridge

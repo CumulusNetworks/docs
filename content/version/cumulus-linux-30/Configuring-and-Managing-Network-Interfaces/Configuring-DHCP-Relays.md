@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
 ---
-<details>
 
 You can configure an interface so it can make DHCP relay requests for
 IPv4 and IPv6.

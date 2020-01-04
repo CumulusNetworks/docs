@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 `ifupdown` is the network interface manager for Cumulus RMP. Cumulus RMP
 uses an updated version of this tool, `ifupdown2`.

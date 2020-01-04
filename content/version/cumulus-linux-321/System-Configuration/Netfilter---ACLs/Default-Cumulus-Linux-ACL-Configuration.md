@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 The Cumulus Linux default ACL configuration is split into three parts,
 as outlined in the [netfilter ACL

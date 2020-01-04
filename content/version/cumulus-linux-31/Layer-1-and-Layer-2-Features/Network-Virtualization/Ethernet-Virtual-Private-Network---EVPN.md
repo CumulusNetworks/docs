@@ -830,7 +830,7 @@ The following caveats are in place for the early access release:
     for VXLAN itself.
 
   - [VXLAN active-active
-    mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/LNV-VXLAN-Active-Active-Mode)
+    mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/LNV-VXLAN-Active-Active-Mode)
     is not supported.
 
   - Only VNI values less than 65535 are supported.

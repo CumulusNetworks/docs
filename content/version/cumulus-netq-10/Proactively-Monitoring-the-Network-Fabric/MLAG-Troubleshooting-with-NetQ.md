@@ -311,10 +311,3 @@ state:
     vx-36            -                -       -                    -
     vx-35            -                -       -                    -
     vx-34            -                -       -                    -
-
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

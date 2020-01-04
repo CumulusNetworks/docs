@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 *Zero *touch provisioning** allows devices to be quickly deployed in
 large-scale environments. Data center engineers only need to rack and

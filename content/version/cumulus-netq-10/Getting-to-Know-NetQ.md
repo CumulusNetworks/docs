@@ -338,10 +338,3 @@ pertain to your network fabric.
 </tr>
 </tbody>
 </table>
-
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

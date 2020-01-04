@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
 ---
-<details>
 
 Ethernet bridges provide a means for hosts to communicate at layer 2.
 Bridge members can be individual physical interfaces, bonds or logical

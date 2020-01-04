@@ -11,7 +11,6 @@ version: 1.1.0
 imgData: cumulus-netq-110
 siteSlug: cumulus-netq-110
 ---
-<details>
 
 NetQ continually and algorithmically checks for various network events
 (see below) and sends real-time alerts via *NetQ Notifier* to notify

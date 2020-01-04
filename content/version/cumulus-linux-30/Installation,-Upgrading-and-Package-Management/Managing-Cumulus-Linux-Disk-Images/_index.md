@@ -23,8 +23,7 @@ installation and upgrading.
 
 ## <span id="src-5118256_ManagingCumulusLinuxDiskImages-new_image" class="confluence-anchor-link"></span>Installing a New Cumulus Linux Image</span>
 
-For details, read the chapter, [Installing a New Cumulus Linux
-Image](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image).
+For details, read the chapter, [Installing a New Cumulus Linux Image](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image).
 
 ## <span id="src-5118256_ManagingCumulusLinuxDiskImages-upgrade" class="confluence-anchor-link"></span>Upgrading Cumulus Linux</span>
 
@@ -38,8 +37,7 @@ There are two ways you can upgrade Cumulus Linux:
     moving between major versions or if you want to install a clean
     image.
 
-The entire upgrade process is described in [Upgrading Cumulus
-Linux](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux).
+The entire upgrade process is described in [Upgrading Cumulus Linux](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux).
 
 ## x86 vs ARM Switches</span>
 
@@ -56,8 +54,7 @@ While on an ARM platform, `uname -m` outputs *armv7l*:
     cumulus@ARMswitch$ uname -m
      armv7l
 
-You can also visit the HCL ([hardware compatibility
-list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
+You can also visit the HCL ([hardware compatibility list](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
 to look at your hardware to determine the processor type.
 
 ## Reprovisioning the System (Restart Installer)</span>

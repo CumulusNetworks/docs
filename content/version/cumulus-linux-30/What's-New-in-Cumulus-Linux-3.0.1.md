@@ -33,18 +33,14 @@ Cumulus Linux 3.0 includes these new features and platforms:
 
   - New installer
 
-  - [Quagga
-    reload](/version/cumulus-linux-30/Layer-3-Features/Quagga-Overview)
+  - [Quagga reload](/version/cumulus-linux-30/Layer-3-Features/Quagga-Overview)
 
-  - [VRF: virtual routing and
-    forwarding](/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF)
+  - [VRF: virtual routing and forwarding](/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF)
 
-  - [BGP
-    add-path](Border-Gateway-Protocol-BGP.html#src-5118393_BorderGatewayProtocol-BGP-add-path)
+  - [BGP add-path](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP/#span-id-src-5118393-bordergatewayprotocol-bgp-add-path-class-confluence-anchor-link-span-bgp-add-path-span)
     (TX and RX)
 
-  - [Redistribute
-    neighbor](/version/cumulus-linux-30/Layer-3-Features/Redistribute-Neighbor)
+  - [Redistribute neighbor](/version/cumulus-linux-30/Layer-3-Features/Redistribute-Neighbor)
 
   - New ASICs and platforms
     

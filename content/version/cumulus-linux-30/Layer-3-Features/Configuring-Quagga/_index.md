@@ -36,8 +36,7 @@ configuration. The files and what they contain are specified below:
 {{%notice note%}}
 
 The individual configuration files are not present unless you disable
-`integrated-vtysh-config`; [see
-below](#src-5118386_ConfiguringQuagga-integrated_cfg) for details.
+`integrated-vtysh-config`; [see below](#src-5118386_ConfiguringQuagga-integrated_cfg) for details.
 
 {{%/notice%}}
 
@@ -52,7 +51,7 @@ The `zebra` daemon must always be enabled. The others you can enable
 according to how you plan to route your network - using
 [BGP](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP)
 for example, instead of
-[OSPF](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol).
 
 Before you start Cumulus Quagga, you need to enable the corresponding
 daemons. Edit the `/etc/quagga/daemons` file and set to *yes* each
@@ -169,10 +168,8 @@ or `ospf6d.conf`) instead of `Quagga.conf` in step 2 above.
 Quagga inherits the IP addresses and any associated routing tables for
 the network interfaces from the `/etc/network/interfaces` file. This is
 the recommended way to define the addresses; do **not** create
-interfaces using Quagga. For more information, see [Configuring IP
-Addresses](Configuring-and-Managing-Network-Interfaces.html#src-5118370_ConfiguringandManagingNetworkInterfaces-ip)
-and [Virtual Routing and Forwarding -
-VRF](/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF).
+interfaces using Quagga. For more information, see [Configuring IP Addresses](/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/#configuring-ip-addresses)
+and [Virtual Routing and Forwarding - VRF](/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF).
 
 ## Using the vtysh Modal CLI</span>
 

@@ -514,7 +514,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="#src-5127088" class="unresolved">BGP</a> or <a href="/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol">OSPF</a>.</p></td>
+<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="#src-5127088" class="unresolved">BGP</a> or <a href="/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol">OSPF</a>.</p></td>
 <td><p><strong><strong>Benefits</strong></strong></p>
 <p>In addition to routing on a host:</p>
 <ul>

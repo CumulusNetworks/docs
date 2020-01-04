@@ -78,7 +78,7 @@ below](#src-5127618_Layer1andSwitchPortAttributes-sett).
 
 If you disable it later or never enable it, then you have to configure
 the duplex and link speed settings manually using
-[NCLU](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120643)
+[NCLU](/version/cumulus-rmp-321/System-Configuration/Network-Command-Line-Utility/)
 - see the relevant sections below. The default speed if you disable
 auto-negotiation depends on the type of connector used with the port.
 For example, SFP+ optics default to 10G.
@@ -268,7 +268,7 @@ inherits swp1's MTU setting.
 In general, the policy file specified above handles default MTU settings
 for all interfaces on the switch. If you need to configure a different
 MTU setting for a subset of interfaces, use
-[NCLU](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120643).
+[NCLU](/version/cumulus-rmp-321/System-Configuration/Network-Command-Line-Utility/).
 
 The following commands configure an MTU minimum value of 9000 on swp1:
 

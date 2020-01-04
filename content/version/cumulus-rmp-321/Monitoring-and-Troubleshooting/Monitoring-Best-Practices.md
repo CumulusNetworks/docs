@@ -533,7 +533,7 @@ and associated logs are documented in the code.
 
 Peering information should be tracked through PTM. For more information,
 refer to the [Prescriptive Topology Manager
-documentation](/display/RMP321/Prescriptive+Topology+Manager+-+PTM).
+documentation](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM/).
 
 {{%/notice%}}
 
@@ -772,8 +772,3 @@ sudo: pam_unix(sudo:session): session closed for user root</code></pre></td>
 </tr>
 </tbody>
 </table>
-
-  
-
-
-</details>

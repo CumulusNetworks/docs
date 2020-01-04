@@ -77,8 +77,7 @@ need to do three things:
 
   - Restart the agent
 
-See the section on [configuring the NetQ agent on a
-node](Getting-Started-with-NetQ.html#src-6488202_GettingStartedwithNetQ-nodeconfig)
+See the section on [configuring the NetQ agent on a node](/version/cumulus-netq-10/Getting-Started-with-NetQ/#install-the-netq-agent)
 for details. In the following example `/etc/netq/netq.yml` file on the
 server, the last three lines enable Docker:
 

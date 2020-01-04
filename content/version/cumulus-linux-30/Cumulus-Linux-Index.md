@@ -405,7 +405,7 @@ siteSlug: cumulus-linux-30
     
       - [mstpd](https://docs.cumulusnetworks.com/label/CL30/mstpd)
     
-      - [mtu](https://docs.cumulusnetworks.com/label/CL30/mtu)
+      - [mtu](/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#mtu-span)
     
       - [mtu\_failures](https://docs.cumulusnetworks.com/label/CL30/mtu_failures)
     

@@ -97,7 +97,7 @@ address to interfaces between routers.
 ## Debugging OSPF</span>
 
 See [Debugging
-OSPF](Open-Shortest-Path-First-OSPF---Protocol.html#src-5122126_OpenShortestPathFirst-OSPF-Protocol-ospf_debug)
+OSPF](Open-Shortest-Path-First-OSPF-Protocol.html#src-5122126_OpenShortestPathFirst-OSPF-Protocol-ospf_debug)
 for OSPFv2 for the troubleshooting discussion. The equivalent commands
 are:
 

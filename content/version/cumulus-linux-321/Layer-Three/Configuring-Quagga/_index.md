@@ -33,7 +33,7 @@ The `zebra` daemon must always be enabled. The others you can enable
 according to how you plan to route your network - using
 [BGP](/version/cumulus-linux-321/Layer-Three/Border-Gateway-Protocol-BGP)
 for example, instead of
-[OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol).
 
 Before you start Cumulus Quagga, you need to enable the corresponding
 daemons. Edit the `/etc/quagga/daemons` file and set to *yes* each
@@ -157,10 +157,8 @@ you should remove all the configuration files (such as `zebra.conf` or
 Quagga inherits the IP addresses and any associated routing tables for
 the network interfaces from the `/etc/network/interfaces` file. This is
 the recommended way to define the addresses; do **not** create
-interfaces using Quagga. For more information, see [Configuring IP
-Addresses](Interface-Configuration-and-Management.html#src-5126993_InterfaceConfigurationandManagement-ip)
-and [Virtual Routing and Forwarding -
-VRF](/version/cumulus-linux-321/Layer-Three/Virtual-Routing-and-Forwarding-VRF).
+interfaces using Quagga. For more information, see [Configuring IP Addresses](/version/cumulus-linux-321/Interface-Configuration-and-Management/#span-id-src-5126993-interfaceconfigurationandmanagement-ip-class-confluence-anchor-link-span-configuring-ip-addresses-span)
+and [Virtual Routing and Forwarding - VRF](/version/cumulus-linux-321/Layer-Three/Virtual-Routing-and-Forwarding-VRF).
 
 ## <span id="src-5127042_ConfiguringQuagga-vtysh" class="confluence-anchor-link"></span>Using the Quagga vtysh Modal CLI</span>
 

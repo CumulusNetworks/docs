@@ -1362,7 +1362,7 @@ active/active forwarding.
 Then, to connect the spine switches to the core switches, you need to
 determine whether the routing is static or dynamic. If it is dynamic,
 you must choose which protocol -
-[OSPF](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-OSPF---Protocol)
+[OSPF](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-OSPF-Protocol)
 or
 [BGP](/version/cumulus-linux-36/Layer-3/Border-Gateway-Protocol-BGP) -
 to use. When enabling a routing protocol in an MLAG environment, it is

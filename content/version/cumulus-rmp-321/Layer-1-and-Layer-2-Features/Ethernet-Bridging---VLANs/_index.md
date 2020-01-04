@@ -116,7 +116,7 @@ unreachable.
 {{%/notice%}}
 
 To configure the SVI, use
-[NCLU](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120643):
+[NCLU](/version/cumulus-rmp-321/System-Configuration/Network-Command-Line-Utility/):
 
     cumulus@switch:~$ net add bridge bridge ports swp1-2
     cumulus@switch:~$ net add vlan 10 ip address 10.100.100.1/24

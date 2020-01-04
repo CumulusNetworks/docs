@@ -80,9 +80,6 @@ Alternatively, these parameters can be pre-seeded using the
 and create the pre-seeded parameters using `debconf-set-selections` with
 the appropriate answers. Run `debconf-show <pkg>` to check the settings.
 
-Here is an [example of how to preseed answers to the installer questions
-using `debconf-set-selections`](attachments_5118214_1_kb_debconf.txt) .
-
 {{%/notice%}}
 
 Once the install is complete, the *name service LDAP caching daemon*
@@ -188,11 +185,6 @@ ensuring the shell is *bash* and the home directory is `/home/cumulus`:
 in the manpage for `nslcd.conf` (such as *passwd* or *group*).
 
 {{%/notice%}}
-
-### Example Configuration</span>
-
-Here is an [example
-configuration ](attachments_5118216_1_nslcd.conf)using Cumulus Linux.
 
 ## Troubleshooting</span>
 

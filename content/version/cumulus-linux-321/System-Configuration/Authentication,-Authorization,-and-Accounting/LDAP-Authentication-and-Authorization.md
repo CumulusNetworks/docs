@@ -58,8 +58,6 @@ Alternatively, these parameters can be pre-seeded using the
 `debconf-utils`. To use this method, run `apt-get install debconf-utils`
 and create the pre-seeded parameters using `debconf-set-selections` with
 the appropriate answers. Run `debconf-show <pkg>` to check the settings.
-Here is an [example of how to preseed answers to the installer questions
-using `debconf-set-selections`](attachments_5126753_1_kb_debconf.txt) .
 
 {{%/notice%}}
 
@@ -166,11 +164,6 @@ ensuring the shell is *bash* and the home directory is `/home/cumulus`:
 in the manpage for `nslcd.conf` (such as *passwd* or *group*).
 
 {{%/notice%}}
-
-### Example Configuration</span>
-
-Here is an [example
-configuration ](attachments_5126755_1_nslcd.conf)using Cumulus Linux.
 
 ## Troubleshooting</span>
 

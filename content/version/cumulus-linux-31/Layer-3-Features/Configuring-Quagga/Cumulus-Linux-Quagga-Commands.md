@@ -41,7 +41,7 @@ as follows:
 </tr>
 <tr class="odd">
 <td><p>cl-ospf6</p></td>
-<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3---Protocol">OSPFv3</a> commands.</p></td>
+<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3-Protocol">OSPFv3</a> commands.</p></td>
 </tr>
 <tr class="even">
 <td><p>cl-ra</p></td>

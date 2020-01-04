@@ -268,8 +268,7 @@ clagd.service` to apply the new configuration.
 {{%notice warning%}}
 
 Do not use 169.254.0.1 as the MLAG peerlink IP address, as Cumulus Linux
-uses this address exclusively for [BGP
-unnumbered](Border-Gateway-Protocol-BGP.html#src-5118393_BorderGatewayProtocol-BGP-unnumbered)
+uses this address exclusively for [BGP unnumbered](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP/#span-id-src-5118393-bordergatewayprotocol-bgp-unnumbered-class-confluence-anchor-link-span-using-bgp-unnumbered-interfaces-span)
 interfaces.
 
 {{%/notice%}}
@@ -753,7 +752,7 @@ active/active forwarding.
 Then, to connect the spine switches to the core switches, you need to
 determine whether the routing is static or dynamic. If it's dynamic, you
 must choose which protocol -
-[OSPF](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol)
+[OSPF](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol)
 or
 [BGP](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP)
 - to use. When enabling a routing protocol in an MLAG environment it is
@@ -844,7 +843,7 @@ section.
 ### <span id="src-5118344_Multi-ChassisLinkAggregation-MLAG-mtu" class="confluence-anchor-link"></span> Understanding MTU in an MLAG Configuration</span>
 
 Note that the
-[MTU](Layer-1-and-Switch-Port-Attributes.html#src-5118373_Layer1andSwitchPortAttributes-mtu)
+[MTU](/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#mtu-span)
 in MLAG traffic is determined by the bridge MTU. Bridge MTU is
 determined by the lowest MTU setting of an interface that is a member of
 the bridge. If an MTU other than the default of 1500 bytes is desired,
@@ -854,8 +853,7 @@ that are members of the MLAG bridges in the entire bridged domain.
 For example, if an MTU of 9216 is desired through the MLAG domain in the
 example shown above:
 
-On the the leaf switches, [configure
-`mtu 9216`](Layer-1-and-Switch-Port-Attributes.html#src-5118373_Layer1andSwitchPortAttributes-mtu)
+On the the leaf switches, [configure `mtu 9216`](/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#mtu-span)
 for each of following interfaces, since they are members of bridge
 *br0*: spine1-2, peerlink, host1, host2.
 
@@ -939,8 +937,7 @@ network.
 
 Further, with MLAG, Cumulus Networks recommends you enable BPDU guard on
 the host-facing bond interfaces. (For more information about BPDU guard,
-see [BPDU Guard and Bridge
-Assurance](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-5118355_SpanningTreeandRapidSpanningTree-bpdu).)
+see [BPDU Guard and Bridge Assurance](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree/#span-id-src-5118355-spanningtreeandrapidspanningtree-bpdu-class-confluence-anchor-link-span-bpdu-guard-span).)
 
 ### Debugging STP with MLAG</span>
 

@@ -104,7 +104,7 @@ LNV requires the following underlying technologies to work correctly.
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>LNV</p></td>
@@ -112,7 +112,7 @@ LNV requires the following underlying technologies to work correctly.
 </tr>
 <tr class="even">
 <td><p>STP</p></td>
-<td><p><a href="#src-5118334_LNVVXLANActive-ActiveMode-bpdu">BPDU filter and BPDU guard</a> should be enabled in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.<br />
+<td><p> [BPDU filter and BPDU guard](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree/#span-id-src-5118355-spanningtreeandrapidspanningtree-bpdu-class-confluence-anchor-link-span-bpdu-guard-span) should be enabled in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.<br />
 Configurations for the demonstration are provided below.</p></td>
 </tr>
 </tbody>

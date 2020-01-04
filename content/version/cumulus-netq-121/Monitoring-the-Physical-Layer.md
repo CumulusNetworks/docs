@@ -24,7 +24,7 @@ to:
 
   - Investigate errors: including CRC errors
 
-NetQ uses [LLDP](/display/NETQ121/Link+Layer+Discovery+Protocol) to
+NetQ uses [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) to
 collect port information. It can also identify peer ports for DACs and
 AOCs without using LLDP or even if the link is not UP.
 

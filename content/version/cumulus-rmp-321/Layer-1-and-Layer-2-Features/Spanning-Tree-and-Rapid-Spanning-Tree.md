@@ -28,7 +28,7 @@ is in use.
 Bridges configured in
 *[VLAN-aware](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
 mode operate **only** in RSTP mode.
-[NCLU](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120643),
+[NCLU](/version/cumulus-rmp-321/System-Configuration/Network-Command-Line-Utility/),
 the network command line utility for configuring Cumulus RMP, only
 supports bridges in VLAN-aware mode.
 

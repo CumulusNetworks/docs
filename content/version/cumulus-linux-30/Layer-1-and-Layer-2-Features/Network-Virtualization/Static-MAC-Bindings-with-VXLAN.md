@@ -234,12 +234,5 @@ Use the following commands to troubleshoot issues on the switch:
             topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 
             mcast_fast_leave off addrgenmode eui64 
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

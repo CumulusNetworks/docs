@@ -200,10 +200,3 @@ find developer documentation at
 [netshow.readthedocs.org](http://netshow.readthedocs.org/). The
 documentation is still under development.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

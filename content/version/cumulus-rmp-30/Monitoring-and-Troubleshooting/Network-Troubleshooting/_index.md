@@ -496,10 +496,3 @@ Configuration Files
 
   - SPAN rules cannot match outgoing subinterfaces.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

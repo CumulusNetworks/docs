@@ -79,10 +79,3 @@ routes between different routing protocols."
 
   - <http://packages.debian.org/quagga>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

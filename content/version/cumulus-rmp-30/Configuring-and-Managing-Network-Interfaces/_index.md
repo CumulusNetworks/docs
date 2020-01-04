@@ -724,12 +724,5 @@ interfaces with multiple `iface` stanzas.
 
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

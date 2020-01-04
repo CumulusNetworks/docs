@@ -302,7 +302,7 @@ If you have installed a VM on your own server, skip to Step 3.
     cumulus@<server>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
     ```
 
-    Refer to [Back Up Your NetQ Data](../../Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ/) for more detail about this command.
+    Refer to [Back Up Your NetQ Data](../../../Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ/) for more detail about this command.
 4. Run the installer program on your NetQ platform server.
 
     ```
@@ -383,7 +383,7 @@ If you have installed a VM on your own server, skip to Step 3.
     cumulus@<hostname>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
     ```
 
-    Refer to [Back Up Your NetQ Data](../../Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ/) for more detail about this command.
+    Refer to [Back Up Your NetQ Data](../../../Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ/) for more detail about this command.
 4. Run the installer program on your master node.
 
     ```

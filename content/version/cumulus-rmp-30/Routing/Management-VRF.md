@@ -286,10 +286,3 @@ Because DNS lookups are forced out of the management interface using FIB
 rules, this could affect data plane ports if there are overlapping
 addresses.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

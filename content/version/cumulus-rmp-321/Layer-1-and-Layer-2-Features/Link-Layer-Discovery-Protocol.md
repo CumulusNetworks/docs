@@ -247,12 +247,5 @@ LLDP does not enable the SNMP subagent by default. You need to edit
   - [Wikipedia - Link Layer Discovery
     Protocol](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

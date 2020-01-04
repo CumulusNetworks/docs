@@ -121,10 +121,3 @@ Usually, the default values initialized within each protocol are good
 enough for most networks. Cumulus Networks recommends you do not adjust
 these settings.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

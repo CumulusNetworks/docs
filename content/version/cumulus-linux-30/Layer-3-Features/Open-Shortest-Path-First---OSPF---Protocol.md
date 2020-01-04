@@ -503,10 +503,3 @@ Using `tcpdump` to capture OSPF packets:
   - Moy, John T. OSPF: Anatomy of an Internet Routing Protocol.
     Addison-Wesley.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

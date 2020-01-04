@@ -358,12 +358,5 @@ For more information about and configuration of LNV, refer to the
 [Cumulus Linux LNV Overview](/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 topic.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

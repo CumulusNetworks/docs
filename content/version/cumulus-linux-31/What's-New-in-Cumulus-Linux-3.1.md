@@ -25,29 +25,24 @@ feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
 Cumulus Linux 3.1.1 contains bug fixes and the following [early access
 features](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
 
-  - [Priority flow
-    control](Buffer-and-Queue-Management.html#src-5122108_BufferandQueueManagement-BufferandQueueManagement-pfc)
+  - [Priority flow control](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/Buffer-and-Queue-Management/#span-id-src-5122108-bufferandqueuemanagement-pfc-class-confluence-anchor-link-span-configuring-priority-flow-control-span)
     (PFC) - Mellanox switches only
 
-  - [Explicit congestion
-    notification](http://Buffer%20and%20Queue%20Management#BufferandQueueManagement-ecn)
+  - [Explicit congestion notification](http://Buffer%20and%20Queue%20Management#BufferandQueueManagement-ecn)
     (ECN) - Mellanox switches only
 
-  - [Ethernet virtual private
-    networks](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
+  - [Ethernet virtual private networks](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
     (EVPN) - Broadcom switches only
 
 No special steps are needed to enable PFC and ECN, and you do not need
 to enable the Early Access repository to use them. You need to install
-the `cumulus-evpn` metapackage to use EVPN; read the [EVPN
-chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
+the `cumulus-evpn` metapackage to use EVPN; read the [EVPN chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN)
 for instructions.
 
 ## What's New in Cumulus Linux 3.1.0</span>
 
 Cumulus Linux 3.1.0 includes many new features and platforms. In
-addition to this chapter, please read the [release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/224473608)
+addition to this chapter, please read the [releas notes](https://support.cumulusnetworks.com/hc/en-us/articles/224473608)
 to learn about known issues with this release.
 
   - Mellanox platform enhancements:
@@ -55,8 +50,7 @@ to learn about known issues with this release.
       - [ACL](/version/cumulus-linux-31/System-Management/Netfilter-ACLs/)
         - 512 ACLs, line rate: 128 byte
     
-      - [LACP
-        Bypass](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/LACP-Bypass)
+      - [LACP Bypass](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/LACP-Bypass)
     
       - [sFlow](/version/cumulus-linux-31/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow)
         - 32G sampling rate
@@ -66,11 +60,10 @@ to learn about known issues with this release.
   - [PoE+](/version/cumulus-linux-31/System-Management/Power-over-Ethernet-PoE)
     (Power over Ethernet)
 
-  - [VXLAN with VLAN-aware
-    bridges](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-5122017_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-VXLANswithVLAN-awareBridges)
+  - [VXLAN with VLAN-aware bridges](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/)
     ([Broadcom switches](https://cumulusnetworks.com/hcl) only)
 
-  - [Forwarding table profiles](Routing.html#src-5122117_Routing-uft)
+  - [Forwarding table profiles](/version/cumulus-linux-31/Layer-3-Features/Routing/#span-id-src-5122117-routing-uft-class-confluence-anchor-link-span-forwarding-table-profiles-span)
 
 New platforms include:
 
@@ -116,10 +109,3 @@ are included in Cumulus Linux 3.1.0:
 
   - [TACACS+](/version/cumulus-linux-31/System-Management/Authentication-Authorization-and-Accounting/TACACS+)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

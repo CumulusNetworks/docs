@@ -552,12 +552,5 @@ mode in one of two ways, using:
         cumulus@switch:~$ sudo onie-select -i
         cumulus@switch:~$ sudo reboot
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

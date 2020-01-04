@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/version/cumulus-linux-321/Network-Virtualization/) without a
@@ -1436,13 +1435,3 @@ address.
 
   - [Network virtualization chapter, Cumulus Linux user
     guide](/version/cumulus-linux-321/Network-Virtualization/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

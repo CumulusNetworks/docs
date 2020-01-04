@@ -899,12 +899,5 @@ or<br />
 
   - It is not possible to leak routes across VRFs within Quagga.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

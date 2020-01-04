@@ -19,8 +19,7 @@ core (the underlay). The initial definition of VXLAN
 ([RFC 7348](https://tools.ietf.org/html/rfc7348)) did not include any
 control plane and relied on a flood-and-learn approach for MAC address
 learning. An alternate deployment model was to use a controller or a
-technology such as [Lightweight Network Virtualization
-(LNV)](/display/CL35/Lightweight+Network+Virtualization+-+LNV+Overview)
+technology such as [Lightweight Network Virtualization (LNV)](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 in Cumulus Linux.
 
 {{%notice note%}}
@@ -84,7 +83,7 @@ You can provision and manage EVPN using
 For Cumulus Linux 3.4 and later releases, the routing control plane
 (including EVPN) is installed as part of the
 [FRRouting](https://frrouting.org) (FRR) package. For more information
-about FRR, refer to the [FRR overview](/display/CL35/FRRouting+Overview).
+about FRR, refer to the [FRR overview](/version/cumulus-linux-35/Layer-3/FRRouting-Overview/).
 
 {{%/notice%}}
 

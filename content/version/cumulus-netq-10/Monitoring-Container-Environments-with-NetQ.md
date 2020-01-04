@@ -634,13 +634,6 @@ traffic using that protocol from a given port.
     netcat-9092          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
     netcat-9092          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 <script src="js/lunr.js"></script>
 

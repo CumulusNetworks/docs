@@ -1005,10 +1005,3 @@ CLI, refer to [Integrate with Third-party Software and Hardware](/version/cumulu
 </tbody>
 </table>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

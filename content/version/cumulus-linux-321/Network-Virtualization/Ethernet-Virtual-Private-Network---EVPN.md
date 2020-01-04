@@ -290,10 +290,10 @@ configure the `bridge-learning` value to *off*:
 
 With EVPN, the only method of handling BUM traffic is [Head End
 Replication
-(HER)](Lightweight-Network-Virtualization---LNV-Overview.html#src-5126910_LightweightNetworkVirtualization-LNVOverview-head-end).
+(HER)](version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/#handling-bum-trafficspan).
 HER is enabled by default, as it is when [Lightweight Network
 Virtualization
-(LNV)](/display/CL321/Lightweight+Network+Virtualization+-+LNV+Overview)
+(LNV)](version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 is used.
 
 ## EVPN and VXLAN Active-Active Mode</span>
@@ -1375,11 +1375,3 @@ The following caveat applies to EVPN in Cumulus Linux 3.2.x:
 
   - Support for one shot configuration of import and export RTs, using
     `route-target both <rt>` will be added in a future release.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

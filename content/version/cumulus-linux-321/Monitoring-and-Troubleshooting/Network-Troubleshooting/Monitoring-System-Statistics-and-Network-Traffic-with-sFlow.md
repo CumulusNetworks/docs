@@ -135,10 +135,3 @@ article](https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Co
 
   - [sFlow Wikipedia page](http://en.wikipedia.org/wiki/SFlow)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

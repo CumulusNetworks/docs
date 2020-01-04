@@ -289,10 +289,3 @@ dell-s6000-22              -                -              Link flapped 11 times
                                                            mins                    
 ```
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

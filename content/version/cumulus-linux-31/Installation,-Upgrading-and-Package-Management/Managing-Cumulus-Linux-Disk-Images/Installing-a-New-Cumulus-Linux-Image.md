@@ -553,12 +553,5 @@ Follow these upgrade steps for both major and minor releases, where:
 For more information, see [Upgrading Cumulus
 Linux](Upgrading-Cumulus-Linux.html#src-5121998_UpgradingCumulusLinux-binary_upgrade).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

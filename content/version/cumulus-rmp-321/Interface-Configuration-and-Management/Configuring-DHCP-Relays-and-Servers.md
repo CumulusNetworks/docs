@@ -380,10 +380,3 @@ For example:
 
 See the `man dhcrelay` for more information.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

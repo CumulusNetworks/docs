@@ -460,12 +460,5 @@ database.
 
   - [backports.debian.org/Instructions/](http://backports.debian.org/Instructions/)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

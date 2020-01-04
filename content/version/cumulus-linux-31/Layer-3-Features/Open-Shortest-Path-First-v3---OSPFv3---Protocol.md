@@ -13,7 +13,7 @@ siteSlug: cumulus-linux-31
 ---
 OSPFv3 is a revised version of OSPFv2 to support the IPv6 address
 family. Refer to [Open Shortest Path First (OSPF)
-Protocol](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol)
+Protocol](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/)
 for a discussion on the basic concepts, which remain the same between
 the two versions.
 
@@ -135,10 +135,3 @@ view.
 
   - [www.nongnu.org/quagga/docs/docs-info.html\#OSPFv3](http://www.nongnu.org/quagga/docs/docs-info.html#OSPFv3)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

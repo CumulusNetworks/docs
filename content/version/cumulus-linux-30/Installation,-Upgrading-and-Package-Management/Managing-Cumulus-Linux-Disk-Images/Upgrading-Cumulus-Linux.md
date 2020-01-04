@@ -604,10 +604,3 @@ deployment, see the [Automation Solutions section on
 cumulusnetworks.com](https://cumulusnetworks.com/solutions/automation/)
 .
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

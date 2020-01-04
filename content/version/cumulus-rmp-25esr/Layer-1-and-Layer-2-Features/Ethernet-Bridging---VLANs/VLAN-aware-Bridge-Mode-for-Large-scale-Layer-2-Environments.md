@@ -440,12 +440,5 @@ bonds. The bond configurations are generated from a
     mode](/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
     can utilize VLAN translation.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

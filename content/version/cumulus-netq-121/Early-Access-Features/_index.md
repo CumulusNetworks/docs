@@ -25,10 +25,3 @@ You enable early access features by running the ` netq config add
  `command. You disable the early access features by running the `netq
 config del` command.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

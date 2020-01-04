@@ -77,10 +77,3 @@ II chipsets.
     ECMP nexthops:              0,   0% of maximum value   4041
     MAC entries:                0,   0% of maximum value 131072
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -536,10 +536,3 @@ This creates the following snippet in `/etc/network/interfaces`:
         address 10.1.1.1/32
         address 172.16.2.1/24
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

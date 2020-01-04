@@ -79,10 +79,3 @@ command. Results vary between switches running on different chipsets.
     ECMP nexthops:              0,   0% of maximum value  16346
     MAC entries:               12,   0% of maximum value  32768
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

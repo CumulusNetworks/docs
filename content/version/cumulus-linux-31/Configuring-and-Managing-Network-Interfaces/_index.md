@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
 
 `ifupdown` is the network interface manager for Cumulus Linux. Cumulus
 Linux 2.1 and later uses an updated version of this tool, `ifupdown2`.
@@ -795,13 +794,3 @@ interfaces with multiple `iface` stanzas.
   - [www.linuxfoundation.org/collaborate/workgroups/networking/bridge](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
 
   - [www.linuxfoundation.org/collaborate/workgroups/networking/vlan](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

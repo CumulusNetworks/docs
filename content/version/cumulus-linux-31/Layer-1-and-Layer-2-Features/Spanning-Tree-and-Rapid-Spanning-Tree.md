@@ -11,8 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
-
 Spanning tree protocol (STP) is always recommended in layer 2
 topologies, as it prevents bridge loops and broadcast radiation on a
 bridged network.
@@ -31,8 +29,7 @@ default on bridges in Cumulus Linux.
 ## Supported Modes</span>
 
 The STP modes Cumulus Linux supports vary depending upon whether the
-[traditional or VLAN-aware bridge driver
-mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
+[traditional or VLAN-aware bridge driver mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
 is in use.
 
 For a bridge configured in *traditional* mode, PVST and PVRST are
@@ -62,9 +59,7 @@ interoperability.
 {{%/notice%}}
 
 To create a traditional mode bridge, configure the bridge stanza under
-`/etc/network/interfaces`. More information on configuring [bridges can
-be found
-here.](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
+`/etc/network/interfaces`. More information on configuring [bridges can be found here.](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
 To enable STP on the bridge, include the keyword `bridge-stp on`. swp1
 and swp5 are configured for tagging VLAN 100, while swp4 is configured
 to not tag a VLAN across the link.
@@ -148,8 +143,7 @@ errors are located in `/var/log/syslog`.
 `mstpd` is the preferred utility for interacting with STP on Cumulus
 Linux. `brctl` also provides certain methods for configuring STP;
 however, they are not as complete as the tools offered in `mstpd` and
-[output from brctl can be
-misleading](https://support.cumulusnetworks.com/hc/en-us/articles/212153658-brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking)
+[output from brctl can be misleading](https://support.cumulusnetworks.com/hc/en-us/articles/212153658-brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking)
 in some cases.
 
 {{%/notice%}}
@@ -237,8 +231,7 @@ simple end host, this is not mandatory. In the data center, edge ports
 typically connect to servers, which may pass both tagged and untagged
 traffic.
 
-For a bridge in [traditional
-mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/),
+For a bridge in [traditional mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/),
 configure `PortAdminEdge` under the bridge stanza in
 `/etc/network/interfaces`:
 
@@ -249,8 +242,7 @@ configure `PortAdminEdge` under the bridge stanza in
       mstpctl-bpduguard swp1=yes swp2=yes swp3=yes swp4=yes
       mstpctl-portadminedge swp1=yes swp2=yes swp3=yes swp4=yes
 
-For a [VLAN-aware
-bridge](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
+For a [VLAN-aware bridge](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
 configure PortAdminEdge and BPDU guard under the switch port interface
 stanza in `/etc/network/interfaces`:
 
@@ -503,15 +495,13 @@ You configure storm control for each physical port in one of three ways:
   - By editing `/etc/cumulus/switchd.conf`. The configuration persists
     across reboots and restarting `switchd`. If you change the storm
     control configuration in this file after rebooting the switch, you
-    must [restart
-    `switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+    must [restart`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span)
     to activate the new configuration.
 
   - By editing `/etc/network/interfaces`, which requires you to reload
     the interface configuration for the change to take effect.
 
-  - By writing directly to the [`switchd` file
-    system](/version/cumulus-linux-31/System-Management/Configuring-switchd).
+  - By writing directly to the [`switchd` file system](/version/cumulus-linux-31/System-Management/Configuring-switchd).
 
 For example, to enable broadcast and multicast storm control at 400
 packets per second (pps) and 3000 pps, respectively, for swp1 editing
@@ -829,13 +819,3 @@ sourceforge URL below.
 
   - MSTP is not supported currently. However, interoperability with MSTP
     networks can be accomplished using PVRSTP or PVSTP.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

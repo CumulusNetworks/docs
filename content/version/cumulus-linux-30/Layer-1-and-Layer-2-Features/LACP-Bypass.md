@@ -127,10 +127,3 @@ mode](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-V
         bridge-stp on
         mstpctl-bpduguard bond1=yes
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

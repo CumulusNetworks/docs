@@ -1029,10 +1029,3 @@ include:
     subset and clicking **Export Selected** in edit menu
   - Return to your workbench by clicking {{% imgOld 85 %}} in the top right corner
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

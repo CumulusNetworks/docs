@@ -325,7 +325,7 @@ included here:
 {{%notice note%}}
 
 If your network uses a proxy server for external connections, you should
-first configure a [global proxy](/display/NETQ141/Configuring+a+Global+Proxy) so
+first configure a [global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so
 `apt-get` can access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}
@@ -521,7 +521,7 @@ additional instructions after the basic configuration steps:
 This is the minimum configuration required to properly monitor your
 nodes.
 
-1.  Verify that [NTP](/display/NETQ141/Setting+Date+and+Time) is running
+1.  Verify that NTP is running
     on the host node. Nodes must be in time synchronization with the
     Telemetry Server to enable useful statistical analysis.
 
@@ -573,8 +573,8 @@ telemetry server or the server wasn't configured:
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the telemetry server only via a
-[VRF](/display/NETQ141/Virtual+Routing+and+Forwarding+-+VRF), including
-a [management VRF](/display/NETQ141/Management+VRF). To do so, you need
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including
+a [management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need
 to specify the VRF name when configuring the NetQ Agent. For example, if
 the management VRF is configured and you want the agent to communicate
 with the telemetry server over it, configure the agent like this:

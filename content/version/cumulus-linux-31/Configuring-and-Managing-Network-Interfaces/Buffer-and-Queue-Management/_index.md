@@ -11,8 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
-
 Hardware datapath configuration manages packet buffering, queueing and
 scheduling in hardware. There are two configuration input files:
 
@@ -494,13 +492,3 @@ to allow the ECN configuration changes to take effect:
 
   - You can configure Quality of Service (QoS) for 10G, 40G, and 100G
     switches on the Tomahawk, Trident II+ or Trident II platforms only.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

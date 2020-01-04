@@ -654,7 +654,7 @@ and associated logs are documented in the code.
 
 Peering information should be tracked through PTM. For more information,
 refer to the [Prescriptive Topology Manager
-documentation](/display/CL31/Prescriptive+Topology+Manager+-+PTM).
+documentation](../../Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM/).
 
 {{%/notice%}}
 
@@ -1070,12 +1070,5 @@ sudo: pam_unix(sudo:session): session closed for user root</code></pre></td>
 
   
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

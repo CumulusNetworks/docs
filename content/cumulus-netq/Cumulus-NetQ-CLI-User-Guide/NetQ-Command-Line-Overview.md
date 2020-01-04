@@ -21,7 +21,7 @@ The NetQ command line interface only runs on switches and server  hosts implemen
 
 ## CLI Access
 
-When NetQ is installed or upgraded, the CLI may also be installed  and enabled on your NetQ server or appliance and hosts. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ) and [Upgrade NetQ](../../Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ) topics for details.
+When NetQ is installed or upgraded, the CLI may also be installed  and enabled on your NetQ server or appliance and hosts. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ) topic for details.
 
 To access the CLI from a switch or server:
 
@@ -299,7 +299,7 @@ The `netq config` and `netq notification` commands enable the network administra
 
 #### NetQ Agent Configuration
 
-The agent commands enable the network administrator to configure individual NetQ Agents. Refer to [Cumulus NetQ Components](../../Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components) for a description of NetQ Agents, to [Manage NetQ Agents](../Manage-NetQ-Agents), or to [Install NetQ Agents and CLI on Switches](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches/) for more detailed usage examples.
+The agent commands enable the network administrator to configure individual NetQ Agents. Refer to [Cumulus NetQ Components](../../Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components) for a description of NetQ Agents, to [Manage NetQ Agents](../Manage-NetQ-Agents), or to [Install NetQ Agents and CLI on Switches](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-CL/) for more detailed usage examples.
 
 The agent configuration commands enable you to add and remove agents from switches and hosts, start and stop agent operations, add and remove Kubernetes container monitoring, add or remove sensors, debug the agent, and add or remove FRR (FRRouting).
 

@@ -85,10 +85,3 @@ appropriate steps for your x86 or ARM switch.
         root@switch:~# reboot
         Restarting the system.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

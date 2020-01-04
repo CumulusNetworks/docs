@@ -284,7 +284,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
         # Valid values - 64, 128, 256, 512, 1024
         resilient_hash_entries_ecmp = 256
 
-3.  [Restart](/display/CL30/Configuring+switchd#Configuringswitchd-restartswitchd)
+3.  [Restart](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span)
     the `switchd` service:
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -299,10 +299,3 @@ You can run ` netshow system  `to determine the chipset.
 
   - <http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

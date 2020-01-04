@@ -169,10 +169,3 @@ router; this default gateway address never changes.
 Configure the links between the hosts and the routers in *active-active*
 mode for First Hop Redundancy Protocol.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

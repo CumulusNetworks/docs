@@ -245,10 +245,3 @@ looping of BUM (broadcast, unknown unicast and multicast) packets. For
 more information, and how to detect these drops, read the [MLAG
 chapter](Multi-Chassis-Link-Aggregation-MLAG.html#src-5126854_Multi-ChassisLinkAggregation-MLAG-drops).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -494,12 +494,5 @@ VLAN-aware one. To do the opposite, delete the VLAN-aware bridge in step
     mode](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
     can utilize VLAN translation.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

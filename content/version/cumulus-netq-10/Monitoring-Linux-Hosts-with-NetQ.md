@@ -81,13 +81,6 @@ To get the routing table for a server:
     1      default          192.168.0.0/24   server01         eth0                       10m ago
     1      default          192.168.0.31/32  server01         eth0                       10m ago
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 <script src="js/lunr.js"></script>
 

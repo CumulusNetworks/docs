@@ -56,10 +56,3 @@ for new features and known issues in this release.
 
   - [Routing](/version/cumulus-rmp-31/Routing/)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

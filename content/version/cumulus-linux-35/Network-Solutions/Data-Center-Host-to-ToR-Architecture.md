@@ -400,7 +400,7 @@ iface eth1 inet static
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Routing on the host means there is a routing application (such as <a href="/version/cumulus-linux-35/Layer-3/FRRouting-Overview/">FRRouting</a><a href="/display/CL35/Quagga+Overview">) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</a></p></td>
+<td><p>Routing on the host means there is a routing application (such as <a href="/version/cumulus-linux-35/Layer-3/FRRouting-Overview/">FRRouting</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>No requirement for MLAG</p></li>

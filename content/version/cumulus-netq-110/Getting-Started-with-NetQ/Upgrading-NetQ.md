@@ -187,10 +187,3 @@ Follow the steps for the relevant OS below to upgrade the NetQ Agents:
     
         cumulus@switch:~$ netq show agents
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -44,10 +44,3 @@ command.
     Total Routes:              31,   0% of maximum value  32768
     MAC entries:               12,   0% of maximum value  32768
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

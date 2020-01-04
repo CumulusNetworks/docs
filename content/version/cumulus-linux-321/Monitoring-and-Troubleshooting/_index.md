@@ -386,12 +386,5 @@ upgrading packages.
 
 The links below discuss more specific monitoring topics.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

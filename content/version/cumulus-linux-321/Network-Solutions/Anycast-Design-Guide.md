@@ -249,10 +249,3 @@ anycast challenging to integrate with some applications. An anycast
 architecture is best suited for stateless applications or applications
 that are able to share session state at the application layer.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -211,10 +211,3 @@ To display BGP information with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-bgp summary
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

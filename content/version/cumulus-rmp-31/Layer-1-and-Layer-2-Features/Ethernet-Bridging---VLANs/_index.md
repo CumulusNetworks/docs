@@ -163,7 +163,7 @@ network configuration.
 ##### Bridge Interface MAC Address and MTU</span>
 
 A bridge is a logical interface with a MAC address and an
-[MTU](Layer-1-and-Switch-Port-Attributes.html#src-5122796_Layer1andSwitchPortAttributes-mtu)
+[MTU](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#span-id-src-5122107-layer1andswitchportattributes-mtu-class-confluence-anchor-link-span-mtu-span)
 (maximum transmission unit). The bridge MTU is the minimum MTU among all
 its members. The bridge's MAC address is inherited from the first
 interface that is added to the bridge as a member. The bridge MAC
@@ -524,12 +524,5 @@ chapter](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-
     **same** port as members. Attempting to apply such a configuration
     will result in an error.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

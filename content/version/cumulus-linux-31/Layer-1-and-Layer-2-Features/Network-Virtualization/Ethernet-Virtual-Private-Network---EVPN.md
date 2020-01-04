@@ -844,10 +844,3 @@ The following caveats are in place for the early access release:
     the type-3 route exchanged adheres to the RFC/draft, there is
     insufficient functionality for a successful interop.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

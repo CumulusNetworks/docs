@@ -261,12 +261,5 @@ LLDP does not enable the SNMP subagent by default. You need to edit
 
   - Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

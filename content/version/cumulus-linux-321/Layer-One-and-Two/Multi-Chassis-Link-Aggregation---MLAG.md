@@ -1939,12 +1939,5 @@ window, the switch in the secondary role misinterprets the event
 sequence, believing the peer switch is down, so it takes over as the
 primary.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

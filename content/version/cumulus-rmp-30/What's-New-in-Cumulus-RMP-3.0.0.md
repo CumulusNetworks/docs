@@ -186,10 +186,3 @@ truncated. This has been fixed in Cumulus RMP 3.0.
     [monitoring](/display/RMP30/Monitoring+and+Troubleshooting) your
     switches.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

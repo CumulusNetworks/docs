@@ -205,7 +205,7 @@ file.
     tcam_resource.profile = default
 
 After you specify a different profile, [restart
-`switchd`](/display/CL321/Configuring+switchd#Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span)
 for the change to take effect.
 
 When [nonatomic
@@ -332,10 +332,3 @@ There are two ways you can work around this issue.
   - [Quagga docs - static route
     commands](http://www.nongnu.org/quagga/docs/docs-info.html#Static-Route-Commands)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -348,10 +348,3 @@ VLAN ID translated from 100 to 200:
 
 {{% imgOld 2 %}}
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

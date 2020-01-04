@@ -166,7 +166,7 @@ repository.
 ### Installing on an Ubuntu, Red Hat or CentOS Server
 
 To install NetQ on Linux servers running Ubuntu, Red Hat or CentOS,
-please read the [current NetQ documentation](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Software-on-Your-Server/).
+please read the [current NetQ documentation](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/).
 
 ## Configuring the NetQ Agent on a Node
 

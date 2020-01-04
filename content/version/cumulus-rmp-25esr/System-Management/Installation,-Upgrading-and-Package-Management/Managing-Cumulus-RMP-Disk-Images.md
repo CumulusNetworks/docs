@@ -799,12 +799,5 @@ You can also extract the image files to the current directory with the
   - [Open Network Install Environment (ONIE) Home
     Page](http://opencomputeproject.github.io/onie/)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

@@ -1963,12 +1963,12 @@ firewall before it is allowed to go to another tenant (in the form of a
 VXLAN). This can be accomplished in multiple ways, but the two most
 popular methods are listed below:
 
-  - Use [VRF](/display/CL30/Virtual+Routing+and+Forwarding+-+VRF)
+  - Use [VRF](/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF/)
     (available on Cumulus Linux 3.0 and newer).
 
   - Force the gateway for the VXLAN to be the firewall's IP address.
     
-      - Enforce this with [cl-acltool](/display/CL30/Netfilter+-+ACLs)
+      - Enforce this with [cl-acltool](/version/cumulus-linux-30/System-Management/Netfilter-ACLs/)
         (for example, ACLs and `iptables`).
 
 In the above example, Bridge Orange and Bridge Yellow would be placed
@@ -2243,12 +2243,5 @@ indicating that there is a `vxlan-id` mis-match on VXLAN10.
   - [LNV Full Example (Single
     Attached)](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/LNV-Full-Example)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

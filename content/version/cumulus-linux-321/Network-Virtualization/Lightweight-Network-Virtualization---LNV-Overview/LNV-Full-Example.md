@@ -527,10 +527,3 @@ svcnode_peers = 10.2.1.3
   - [Network virtualization chapter, Cumulus Linux user
     guide](/version/cumulus-linux-321/Network-Virtualization/)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

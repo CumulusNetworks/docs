@@ -171,10 +171,3 @@ and alarm threshold settings.
         Laser rx power high warning threshold     : 6.5535 mW / 8.16 dBm
         Laser rx power low warning threshold      : 6.5535 mW / 8.16 dBm
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

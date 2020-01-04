@@ -197,12 +197,5 @@ specify a time period:
     Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp52
     Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp51
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

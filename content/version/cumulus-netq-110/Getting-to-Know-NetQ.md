@@ -408,10 +408,3 @@ original start time, unless the node is rebooted between the agent
 stopping and restarting; in which case, the time is once again the time
 of agent restart.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

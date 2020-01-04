@@ -303,12 +303,5 @@ shows the output for 1G and 10G modules:
 
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

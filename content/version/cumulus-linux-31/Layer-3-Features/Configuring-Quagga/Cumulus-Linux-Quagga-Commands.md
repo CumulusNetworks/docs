@@ -36,7 +36,7 @@ as follows:
 </tr>
 <tr class="even">
 <td><p>cl-ospf</p></td>
-<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol">OSPFv2</a> commands. For example:<br />
+<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/">OSPFv2</a> commands. For example:<br />
 <code>cumulus@switch:~$ sudo cl-ospf area 0.0.0.1 range 10.10.10.0/24</code></p></td>
 </tr>
 <tr class="odd">
@@ -146,10 +146,3 @@ switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 </tbody>
 </table>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

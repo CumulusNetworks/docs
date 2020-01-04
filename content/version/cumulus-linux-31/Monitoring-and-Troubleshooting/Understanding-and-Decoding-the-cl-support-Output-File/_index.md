@@ -117,12 +117,5 @@ Here is more information on the file structure:
     - This is an explanation of the `support` directory included in the
     `cl-support` output.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

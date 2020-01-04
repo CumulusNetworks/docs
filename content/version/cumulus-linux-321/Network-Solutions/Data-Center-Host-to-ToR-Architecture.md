@@ -411,7 +411,7 @@ iface eth1 inet static
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Routing on the host means there is a routing application (such as <a href="/display/CL321/Quagga+Overview">Cumulus Networks Quagga</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
+<td><p>Routing on the host means there is a routing application (such as <a href="/version/cumulus-linux-321/Layer-Three/Configuring-Quagga/">Cumulus Networks Quagga</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>No requirement for MLAG</p></li>
@@ -740,10 +740,3 @@ iface br-10
 </tbody>
 </table>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

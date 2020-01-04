@@ -920,12 +920,5 @@ MSDP peers:
   - Cumulus Linux does not currently build an S,G mroute when forwarding
     over an \*,G tree.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

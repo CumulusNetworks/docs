@@ -452,10 +452,3 @@ You must restart the NetQ Agent after you disable statistics collection.
         cumulus@ts:~$ sudo systemctl stop netq-stats-pushd.service
         cumulus@ts:~$ sudo systemctl disable netq-stats-pushd.service
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -91,10 +91,3 @@ Server from a snapshot:
     
         root@cumulus:~# sudo systemctl start netq-appliance
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

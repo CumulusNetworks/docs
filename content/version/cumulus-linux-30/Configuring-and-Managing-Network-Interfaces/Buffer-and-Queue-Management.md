@@ -321,12 +321,5 @@ to allow link pause configuration changes to take effect:
     switches only; that is, any switch on the Tomahawk, Trident II+ or
     Trident II platform.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

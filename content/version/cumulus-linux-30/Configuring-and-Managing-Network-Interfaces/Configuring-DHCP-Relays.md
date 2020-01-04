@@ -189,12 +189,5 @@ Here are sample configurations:
             range6 2001:db8:1::100 2001:db8:1::200;
     }
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

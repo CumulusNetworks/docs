@@ -136,10 +136,3 @@ view.
 
   - <http://www.nongnu.org/quagga/docs/docs-info.html#OSPFv3>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

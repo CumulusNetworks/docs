@@ -523,12 +523,5 @@ chapter](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-
     **same** port as members. Attempting to apply such a configuration
     will result in an error.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

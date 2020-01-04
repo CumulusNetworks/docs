@@ -275,10 +275,3 @@ switches:
     might not be able to clean up all its internal state completely and
     incorrect routing can occur as a result.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

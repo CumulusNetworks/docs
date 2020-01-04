@@ -282,10 +282,3 @@ Once you configure all the leaf switches, check for replication entries:
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.12 self permanent
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.13 self permanent
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

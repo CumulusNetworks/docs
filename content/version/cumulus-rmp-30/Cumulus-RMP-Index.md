@@ -469,10 +469,3 @@ siteSlug: cumulus-rmp-30
     
       - [ztp](https://docs.cumulusnetworks.com/label/RMP/ztp)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

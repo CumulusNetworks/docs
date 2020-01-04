@@ -820,12 +820,5 @@ sourceforge URL below.
   - MSTP is not supported currently. However, interoperability with MSTP
     networks can be accomplished using PVRSTP or PVSTP.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

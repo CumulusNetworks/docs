@@ -13,6 +13,10 @@ siteSlug: cumulus-netq
 ---
 After you have validated the prerequisites and performed the preparation steps, you can now install the NetQ software using the Admin UI.
 
+{{%notice info%}}
+You must perform the preparation steps before installing the NetQ software. Go to [Prepare for Install](../Prepare-for-Install/) if you have not yet completed these preparation steps.
+{{%/notice%}}
+
 To install NetQ:
 
 1. Log in to your NetQ platform server, NetQ Appliance, NetQ Cloud Appliance or the master node of your cluster.

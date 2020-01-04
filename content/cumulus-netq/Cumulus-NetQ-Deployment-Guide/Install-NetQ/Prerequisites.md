@@ -101,7 +101,7 @@ For internal cluster communication:
 Port 32666 is no longer used for the NetQ UI.
 {{%/notice%}}
 
-### NetQ Platform HyperVisor Requirements
+## NetQ Platform HyperVisor Requirements
 
 The NetQ Platform can be installed as a Virtual Machine (VM) using one
 of the following hypervisors:
@@ -111,7 +111,7 @@ of the following hypervisors:
 - KVM/QCOW (QEMU Copy on Write) image for servers running CentOS,
     Ubuntu and RedHat operating systems.
 
-### NetQ Agent Operating System Requirements
+## NetQ Agent Operating System Requirements
 
 NetQ 2.4 Agents are supported on the following switch and host operating
 systems:
@@ -122,7 +122,7 @@ systems:
 - Red Hat Enterprise Linux (RHEL) 7.1
 - CentOS 7
 
-### NetQ Application Support
+## NetQ Application Support
 
 The NetQ CLI, UI, and RESTful API are supported on NetQ 2.1.0 and later.
 NetQ 1.4 and earlier applications are not supported in NetQ 2.x.

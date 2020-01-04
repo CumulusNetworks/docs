@@ -320,6 +320,8 @@ If this fails for any reason, you can run `netq bootstrap reset` and then try ag
     cumulus@<hostname>:~$ sudo opta-check
     ```
 
+You are now ready to use the Admin UI (preferred) or NetQ CLI to complete the installation.
+
 ### Cloud Deployment, Standalone Server
 
 To prepare your standalone NetQ platform for a cloud deployment:
@@ -347,13 +349,15 @@ If you have installed a VM on your own server, skip to Step 3.
 If this fails for any reason, you can run `netq bootstrap reset` and then try again.
     {{%/notice%}}
 
-5. Verify the server is ready for installation. Fix any errors indicated before installing the NetQ software.
+4. Verify the server is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
     cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
     
-4. While this runs, locate your `config-key` provided by Cumulus Networks in an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) to have it sent to you again.
+5. While this runs, locate your `config-key` provided by Cumulus Networks in an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) to have it sent to you again.
+
+You are now ready to use the Admin UI (preferred) or NetQ CLI to complete the installation.
 
 ### On-premises Deployment,  Server Cluster
 
@@ -391,7 +395,7 @@ If you have installed a VM on your own server, skip to Step 3.
 If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
     {{%/notice%}}
 
-5. Verify the server is ready for installation. Fix any errors indicated before installing the NetQ software.
+5. Verify the master node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
     cumulus@<hostname>:~$ sudo opta-check
@@ -409,7 +413,15 @@ If this step fails for any reason, you can run `netq bootstrap reset` and then t
 If this step fails for any reason, you can run `netq bootstrap reset` on the relevant node and then try again.
     {{%/notice%}}
 
-6. Make a note of the private IP addresses for your master and worker nodes.
+7. Verify the worker nodes are ready for installation. Fix any errors indicated before installing the NetQ software.
+
+    ```
+    cumulus@<hostname>:~$ sudo opta-check
+    ```
+
+8. Make a note of the private IP addresses for your master and worker nodes.
+
+You are now ready to use the Admin UI (preferred) or NetQ CLI to complete the installation.
 
 ### Cloud  Deployment,  Server Cluster
 
@@ -439,7 +451,13 @@ If you have installed a VM on your own server, skip to Step 3.
 If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
     {{%/notice%}}
 
-4. Run the installer program on your two worker nodes, using the IP address of your master node.
+4. Verify the master node is ready for installation. Fix any errors indicated before installing the NetQ software.
+
+    ```
+    cumulus@<hostname>:~$ sudo opta-check-cloud
+    ```
+    
+5. Run the installer program on your two worker nodes, using the IP address of your master node.
 
     ```
     cumulus@<hostname>:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-2.4.0.tgz master-ip <master-ip>
@@ -448,10 +466,16 @@ If this step fails for any reason, you can run `netq bootstrap reset` and then t
     Allow about five minutes for this to complete.
 
     {{%notice tip%}}
-If either of these steps fail for any reason, you can run `netq bootstrap reset` on the relevant node and then try again.
+If this step fails for any reason, you can run `netq bootstrap reset` on the relevant node and then try again.
     {{%/notice%}}
 
-5. While this is running:
+6. Verify the worker nodes are ready for installation. Fix any errors indicated before installing the NetQ software.
+
+    ```
+    cumulus@<hostname>:~$ sudo opta-check-cloud
+    ```
+
+7. While this is running:
 
     -  Locate the `config-key` provided by Cumulus Networks in an email titled *A new site has been added to your Cumulus NetQ account*. If you have lost it, submit a [support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) to have it sent to you again.
     -  Make a note of the private IP addresses for your master and worker nodes.

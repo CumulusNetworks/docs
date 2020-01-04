@@ -13,6 +13,10 @@ siteSlug: cumulus-netq
 ---
 After you have validated the prerequisites and performed the preparation steps, you can now install the NetQ software using the CLI.
 
+{{%notice info%}}
+You must perform the preparation steps before installing the NetQ software. Go to [Prepare for Install](../Prepare-for-Install/) if you have not yet completed these preparation steps.
+{{%/notice%}}
+
 To install NetQ:
 
 1. Log in to your NetQ platform server, NetQ Appliance, NetQ Cloud Appliance or the master node of your cluster.
@@ -21,7 +25,7 @@ To install NetQ:
 
     - **For standalone server**, run the following command on your NetQ platform server or NetQ Appliance:
         ```
-        cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-2.4.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagD
+        cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-2.4.0.tgz
         ```
     - **For cloud deployments**, run the following command on your NetQ Cloud Appliance with the config-key sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account".
 
@@ -31,7 +35,7 @@ To install NetQ:
 
     - **For a server cluster in on-premises**, run the following command on your master node, using the IP addresses of your worker nodes: 
         ```
-        cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-2.4.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagD workers <worker-1-ip> <worker-2-ip>
+        cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-2.4.0.tgz workers <worker-1-ip> <worker-2-ip>
         ```
     
     - **For a server cluster in cloud deployments**, run the following command on your master node, using the IP addresses of your worker nodes: Config-key is sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account".

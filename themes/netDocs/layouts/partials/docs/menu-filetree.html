@@ -24,13 +24,13 @@
 {{ define "book-section" }}
 {{ with .Section }}
   <li {{ if .Params.bookFlatSection}} class="book-section-flat" {{ end }}>
-    {{ if .Content }}
-      {{ template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
-    {{ else }}
+    {{- if .Content }}
+      {{- template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
+    {{- else }}
       <span>{{ template "title" . }}</span>
     {{ end }}
 
-    {{ template "book-section-children" (dict "Section" . "CurrentPage" $.CurrentPage) }}
+    {{- template "book-section-children" (dict "Section" . "CurrentPage" $.CurrentPage) }}
   </li>
 {{ end }}
 {{ end }}
@@ -57,3 +57,4 @@
   </a>
 {{ end }}
 {{ end }}
+

@@ -171,6 +171,12 @@ passive-interface swp11
 ...
 ```
 
+{{%notice note%}}
+
+Cumulus Linux does not support OSPF default origination.
+
+{{%/notice%}}
+
 ### Define Custom OSPF Parameters on Interfaces
 
 You can define additional custom parameters for OSPF per interface, such as the network type (point-to-point or broadcast) and the interval between hello packets that OSPF sends on the interface.

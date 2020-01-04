@@ -38,8 +38,7 @@ states:
       - [USB](#src-5126823_InstallingaNewCumulusLinuxImage-usb)
 
   - The switch already has Cumulus Linux installed on it, so you only
-    need to [upgrade
-    it](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
+    need to [upgrade it](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
 
 {{%notice tip%}}
 

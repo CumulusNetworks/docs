@@ -518,12 +518,9 @@ svcnode_peers = 10.2.1.3
 
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
 
-  - [Detailed LNV Configuration
-    Guide](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
+  - [Detailed LNV Configuration Guide](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
 
-  - [Cumulus Networks
-    Training](http://cumulusnetworks.com/education/instructor-led-training/)
+  - [Cumulus Networks Training](http://cumulusnetworks.com/education/instructor-led-training/)
 
-  - [Network virtualization chapter, Cumulus Linux user
-    guide](/version/cumulus-linux-321/Network-Virtualization/)
+  - [Network virtualization chapter, Cumulus Linux user guide](/version/cumulus-linux-321/Network-Virtualization/)
 

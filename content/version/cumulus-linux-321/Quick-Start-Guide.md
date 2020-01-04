@@ -31,19 +31,17 @@ interacting with Cumulus Linux.
 
 <div class="confbox admonition admonition-tip">
 
-<span class="admonition-icon confluence-information-macro-icon"></span>
+<span class="admonition-icon confluence-information-macro-icon">
 
 <div class="admonition-body">
 
 {{%notice info%}}
 
 If you're a networking engineer but are unfamiliar with Linux concepts,
-refer to [this reference
-guide](https://support.cumulusnetworks.com/hc/en-us/articles/201787636)
+refer to [this reference guide](https://support.cumulusnetworks.com/hc/en-us/articles/201787636)
 for examples of the Cumulus Linux CLI and configuration options, and
 their equivalent Cisco Nexus 3000 NX-OS commands and settings for
-comparison. You can also [watch a series of short
-videos](http://cumulusnetworks.com/technical-videos/) introducing you to
+comparison. You can also [watch a series of short videos](http://cumulusnetworks.com/technical-videos/) introducing you to
 Linux in general and some Cumulus Linux-specific concepts in particular.
 
 {{%/notice%}}
@@ -54,7 +52,7 @@ Linux in general and some Cumulus Linux-specific concepts in particular.
 
 {{%/notice%}}
 
-### Installation</span>
+## Installation
 
 To install Cumulus Linux, you use
 [ONIE](https://github.com/opencomputeproject/onie/wiki) (Open Network
@@ -66,8 +64,7 @@ choice of operating system loaded, such as Cumulus Linux.
 {{%notice note%}}
 
 If Cumulus Linux 3.0.0 or later is already installed on your switch, and
-you need to upgrade the software only, you can skip to [Upgrading
-Cumulus Linux](#src-5126745_QuickStartGuide-upgrading-cumulus-linux)
+you need to upgrade the software only, you can skip to [Upgrading Cumulus Linux](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/)
 below.
 
 {{%/notice%}}
@@ -100,8 +97,7 @@ should not need a console cable. A fresh install via ONIE using a local
 web server should generally complete in less than 10 minutes.
 
 You have more options for installing Cumulus Linux with ONIE. Read
-[Installing a New Cumulus Linux
-Image](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image)
+[Installing a New Cumulus Linux Image](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image)
 to install Cumulus Linux using ONIE in the following ways:
 
   - DHCP/web server with and without DHCP options
@@ -119,8 +115,7 @@ to install Cumulus Linux using ONIE in the following ways:
 ONIE supports many other discovery mechanisms using USB (copy the
 installer to the root of the drive), DHCPv6 and DHCPv4, and image copy
 methods including HTTP, FTP, and TFTP. For more information on these
-discovery methods, refer to the [ONIE
-documentation](https://github.com/opencomputeproject/onie/wiki/Design-Spec-SW-Image-Discovery).
+discovery methods, refer to the [ONIE documentation](https://github.com/opencomputeproject/onie/wiki/Design-Spec-SW-Image-Discovery).
 
 After installing Cumulus Linux, you are ready to:
 
@@ -131,7 +126,7 @@ After installing Cumulus Linux, you are ready to:
   - Configure Cumulus Linux. This quick start guide provides
     instructions on configuring switch ports and a loopback interface.
 
-#### <span id="src-5126745_QuickStartGuide-upgrading-cumulus-linux" class="confluence-anchor-link"></span>Upgrade to the Latest Version</span>
+### <span id="src-5126745_QuickStartGuide-upgrading-cumulus-linux" class="confluence-anchor-link">Upgrade to the Latest Version
 
 If you are running a Cumulus Linux version earlier than 3.0.0, you must
 perform a complete install, as [described
@@ -141,7 +136,7 @@ Cumulus
 Linux](Managing-Cumulus-Linux-Disk-Images.html#src-5126814_ManagingCumulusLinuxDiskImages-upgrade)
 for considerations before start the process.
 
-### Getting Started</span>
+## Getting Started
 
 When bringing up Cumulus Linux for the first time, the management port
 makes a DHCPv4 request. To determine the IP address of the switch, you
@@ -149,7 +144,7 @@ can cross reference the MAC address of the switch with your DHCP server.
 The MAC address should be located on the side of the switch or on the
 box in which the unit was shipped.
 
-#### Login Credentials</span>
+### Login Credentials
 
 The default installation includes one system account, *root*, with full
 system privileges, and one user account, *cumulus*, with `sudo`
@@ -173,21 +168,19 @@ All accounts except `root` are permitted remote SSH login; `sudo` may be
 used to grant a non-root account root-level access. Commands which
 change the system configuration require this elevated level of access.
 
-For more information about sudo, read [Using sudo to Delegate
-Privileges](/version/cumulus-linux-321/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
+For more information about sudo, read [Using sudo to Delegate Privileges](/version/cumulus-linux-321/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
 
-#### Serial Console Management</span>
+### Serial Console Management
 
 Users are encouraged to perform management and configuration over the
-network, [either in band or out of
-band](Upgrading-Cumulus-Linux.html#src-5126827_UpgradingCumulusLinux-outofband).
+network, [either in band or out of band](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/).
 Use of the serial console is fully supported; however, many customers
 prefer the convenience of network-based management.
 
 Typically, switches ship from the manufacturer with a mating DB9 serial
 cable. Switches with ONIE are always set to a 115200 baud rate.
 
-#### Wired Ethernet Management</span>
+### Wired Ethernet Management
 
 Switches supported in Cumulus Linux always contain at least one
 dedicated Ethernet management port, which is named eth0. This interface
@@ -218,7 +211,7 @@ file:
 
 {{%/notice%}}
 
-#### Configuring the Hostname and Timezone</span>
+### Configuring the Hostname and Timezone
 
 To change the hostname, run `net add hostname`, which modifies both the
 ` /etc/hostname  `and `/etc/hosts` files with the desired hostname.
@@ -250,18 +243,17 @@ mode.
 
 {{%/notice%}}
 
-#### Verifying the System Time</span>
+### Verifying the System Time
 
 Before you install the license, you should verify that the switch's date
-and time are correct. You must [correct the
-time](/version/cumulus-linux-321/System-Configuration/Setting-Date-and-Time)
+and time are correct. You must [correct the time](/version/cumulus-linux-321/System-Configuration/Setting-Date-and-Time)
 if it is wrong, as the wrong date may have other impacts on the switch
 like an inability to synchronize with Puppet or return errors like this
 one after you restart `switchd`:
 
     Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload' recommended.
 
-#### Installing the License</span>
+### Installing the License
 
 Cumulus Linux is licensed on a per-instance basis. Each network system
 is fully operational, enabling any capability to be utilized on the
@@ -313,14 +305,13 @@ described above.
 
 {{%/notice%}}
 
-### Configuring Breakout Ports with Splitter Cables</span>
+## Configuring Breakout Ports with Splitter Cables
 
 If you are using 4x10G DAC or AOC cables, or want to break out 100G or
 40G switch ports, configure the breakout ports. For more details, see
-[Layer 1 and Switch Port
-Attributes](Layer-1-and-Switch-Port-Attributes.html#src-5126996_Layer1andSwitchPortAttributes-breakout).
+[Layer 1 and Switch Port Attributes](/version/cumulus-linux-321/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/#span-idsrc-5126996-layer1andswitchportattributes-breakout-classconfluence-anchor-linkspanconfiguring-breakout-portsspan).
 
-### Testing Cable Connectivity</span>
+## Testing Cable Connectivity
 
 By default, all data plane ports (every Ethernet port except the
 management interface, eth0) are disabled.
@@ -367,15 +358,15 @@ modes:
     ADMDN  rename13                  0M       1500   NotConfigured
     ADMDN  vagrant                   0M       1500   NotConfigured
 
-### Configuring Switch Ports</span>
+## Configuring Switch Ports
 
-#### Layer 2 Port Configuration</span>
+### Layer 2 Port Configuration
 
 Cumulus Linux does not put all ports into a bridge by default. To create
 a bridge and configure one or more front panel ports as members of the
 bridge, use the following examples as guides.
 
-##### Examples</span>
+### Examples
 
 {{%notice info%}}
 
@@ -427,13 +418,11 @@ To view the changes in the kernel, use the `brctl` command:
 
 {{%notice note%}}
 
-A script is available to generate a configuration that [places all
-physical ports in a single
-bridge](https://support.cumulusnetworks.com/hc/en-us/articles/203508477).
+A script is available to generate a configuration that [places all physical ports in a single bridge](https://support.cumulusnetworks.com/hc/en-us/articles/203508477).
 
 {{%/notice%}}
 
-#### Layer 3 Port Configuration</span>
+### Layer 3 Port Configuration
 
 The NCLU can also be used to configure a front panel port or bridge
 interface as a layer 3 port.
@@ -487,7 +476,7 @@ To view the changes in the kernel use the `ip addr show` command:
            valid_lft forever preferred_lft forever
     ...
 
-### Configuring a Loopback Interface</span>
+## Configuring a Loopback Interface
 
 Cumulus Linux has a loopback preconfigured in `/etc/network/interfaces`.
 When the switch boots up, it has a loopback interface, called *lo*,

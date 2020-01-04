@@ -91,7 +91,7 @@ iface br-20 inet manual
 <li><p>Ability to use <a href="/version/cumulus-linux-321/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a> commands</p>
 <ul>
 <li><p>mstpctl-portadminedge</p></li>
-<li><p><a href="Spanning-Tree-and-Rapid-Spanning-Tree.html#src-5126866_SpanningTreeandRapidSpanningTree-bpdu">BPDU guard</a></p></li>
+<li><p><a href="/version/cumulus-linux-321/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree/#span-idsrc-5126866-spanningtreeandrapidspanningtree-bpdu-classconfluence-anchor-linkspanbpdu-guardspan">BPDU guard</a></p></li>
 </ul></li>
 <li><p>Layer 2 reachability to all VMs</p></li>
 </ul>

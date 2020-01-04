@@ -304,8 +304,7 @@ communication (*peerlink.4094* in the sample configuration below).
 
 At minimum, this VLAN subinterface should not be in your Layer 2 domain,
 and you should give it a very high VLAN ID (up to 4094). Read more about
-the [range of VLAN IDs you can
-use](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-5118287_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-range).
+the [range of VLAN IDs you can use](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/).
 
 {{%/notice%}}
 
@@ -562,7 +561,7 @@ instead of [VLAN-aware
 mode](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
 In order to do so, the peer link and all dual-connected links must be
 configured as
-[untagged/native](Ethernet-Bridging-VLANs.html#src-5118277_EthernetBridging-VLANs-VLAN_tagging)
+[untagged/native](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-Tagging/)
 ports on a bridge (note the absence of any VLANs in the `bridge-ports`
 line and the lack of the `bridge-vlan-aware` parameter below):
 

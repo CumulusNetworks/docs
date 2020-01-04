@@ -11,8 +11,7 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-Cumulus Linux supports hardware-based [equal cost
-multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing)
+Cumulus Linux supports hardware-based [equal cost multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing)
 (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load
 sharing occurs automatically for all routes with multiple next hops
 installed. ECMP load sharing supports both IPv4 and IPv6 routes.
@@ -41,8 +40,7 @@ For routes to be considered equal they must:
 {{%notice info%}}
 
 As of Cumulus Linux 3.0, the BGP `maximum-paths` setting is enabled, so
-multiple routes are installed by default. See the [ECMP
-section](Border-Gateway-Protocol-BGP.html#src-5122130_BorderGatewayProtocol-BGP-ecmp)
+multiple routes are installed by default. See the [ECMP section](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP/#span-id-src-5122130-bordergatewayprotocol-bgp-ecmp-class-confluence-anchor-link-span-ecmp-with-bgp-span)
 of the BGP chapter for more information.
 
 {{%/notice%}}

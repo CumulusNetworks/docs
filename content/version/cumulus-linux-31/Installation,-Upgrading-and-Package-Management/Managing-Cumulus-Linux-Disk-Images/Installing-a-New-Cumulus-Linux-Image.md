@@ -38,8 +38,7 @@ states:
       - [USB](#src-5121994_InstallingaNewCumulusLinuxImage-usb)
 
   - The switch already has Cumulus Linux installed on it, so you only
-    need to [upgrade
-    it](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
+    need to [upgrade it](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
 
 {{%notice tip%}}
 
@@ -201,8 +200,7 @@ software installation.
 
 {{%notice note%}}
 
-Make sure to [back
-up](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
+Make sure to [back up](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
 any important configuration files that you may need to restore the
 configuration of your switch after the installation finishes.
 
@@ -549,8 +547,7 @@ Follow these upgrade steps for both major and minor releases, where:
 
   - A minor release upgrade is X.2.X to X.3.X (e.g. 2.2.0 to 2.5.5)
 
-For more information, see [Upgrading Cumulus
-Linux](Upgrading-Cumulus-Linux.html#src-5121998_UpgradingCumulusLinux-binary_upgrade).
+For more information, see [Upgrading Cumulus Linux](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux).
 
 
 </details>

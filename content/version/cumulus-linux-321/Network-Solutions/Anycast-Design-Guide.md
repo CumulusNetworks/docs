@@ -111,8 +111,7 @@ impact of network changes or failures.
 
 ## Resilient Hashing</span>
 
-[Resilient
-hashing](Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP.html#src-5127052_EqualCostMultipathLoadSharing-HardwareECMP-resilient_hashing)
+[Resilient hashing](/version/cumulus-linux-321/Layer-Three/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#resilient-hashingspan)
 provides a method to prevent failures from impacting the hash result of
 unrelated flows. However, resilient hashing does not prevent rehashing
 when new next hops are added.

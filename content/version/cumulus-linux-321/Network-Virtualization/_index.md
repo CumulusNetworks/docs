@@ -104,8 +104,7 @@ in `/etc/cumulus/datapath/traffic.conf`:
 
 The maximum transmission unit (MTU) size for a virtual network interface
 should by 50 bytes smaller than the MTU for the physical interfaces on
-the switch. For more information, read [Layer 1 and Switch Port
-Attributes](Layer-1-and-Switch-Port-Attributes.html#src-5126996_Layer1andSwitchPortAttributes-mtu_vxlan).
+the switch. For more information, read [Layer 1 and Switch Port Attributes](/version/cumulus-linux-321/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/).
 
 ## Useful Links</span>
 

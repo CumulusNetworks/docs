@@ -242,6 +242,5 @@ have a valid hardware address.
 Losing a large number of packets across an MLAG peerlink interface may
 not be a problem. Instead this could be occurring in order to prevent
 looping of BUM (broadcast, unknown unicast and multicast) packets. For
-more information, and how to detect these drops, read the [MLAG
-chapter](Multi-Chassis-Link-Aggregation-MLAG.html#src-5126854_Multi-ChassisLinkAggregation-MLAG-drops).
+more information, and how to detect these drops, read the [MLAG chapter](/version/cumulus-linux-321/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG/#troubleshooting-mlagspan).
 

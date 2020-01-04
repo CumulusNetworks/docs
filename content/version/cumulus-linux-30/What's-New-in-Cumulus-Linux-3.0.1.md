@@ -286,8 +286,7 @@ no longer present in Cumulus Linux.
 
 ### Expanded Reserved VLAN Range</span>
 
-Cumulus Linux now [reserves a
-range](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-5118287_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-range)
+Cumulus Linux now [reserves a range](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/)
 of 1000 VLAN IDs, from 3000 to 3999. Previously, the range was 700
 VLANs, numbered 3300 to 3999.
 

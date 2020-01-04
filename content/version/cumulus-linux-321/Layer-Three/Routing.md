@@ -204,12 +204,10 @@ file.
     # default, ipmc-heavy, acl-heavy
     tcam_resource.profile = default
 
-After you specify a different profile, [restart
-`switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span)
+After you specify a different profile, [restart `switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span)
 for the change to take effect.
 
-When [nonatomic
-updates](Netfilter-ACLs.html#src-5126760_Netfilter-ACLs-nonatomic) are
+When [nonatomic updates](/version/cumulus-linux-321/System-Configuration/Netfilter-ACLs/#span-idsrc-5126760-netfilter-acls-nonatomic-classconfluence-anchor-linkspanenabling-nonatomic-updatesspan) are
 enabled (that is, the `acl.non_atomic_update_mode` is set to *TRUE* in
 `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL
 entries for each profile are as follows:
@@ -220,8 +218,7 @@ entries for each profile are as follows:
 | ipmc-heavy | 6000           | 160 (IPv6) or 400 (IPv4)   |
 | acl-heavy  | 450            | 2500 (IPv6) or 6000 (IPv4) |
 
-When [nonatomic
-updates](Netfilter-ACLs.html#src-5126760_Netfilter-ACLs-nonatomic) are
+When [nonatomic updates](/version/cumulus-linux-321/System-Configuration/Netfilter-ACLs/#span-idsrc-5126760-netfilter-acls-nonatomic-classconfluence-anchor-linkspanenabling-nonatomic-updatesspan) are
 disabled (that is, the `acl.non_atomic_update_mode` is set to *FALSE* in
 `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL
 entries for each profile are as follows:

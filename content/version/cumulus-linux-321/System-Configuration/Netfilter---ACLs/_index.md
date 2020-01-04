@@ -762,7 +762,7 @@ The Mellanox Spectrum ASIC has one common
 [TCAM](https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs)
 for both ingress and egress, and it may be used for other
 non-ACL-related resources. However, the number of supported rules varies
-with the [TCAM profile](Routing.html#src-5127036_Routing-tcam) specified
+with the [TCAM profile](/version/cumulus-linux-321/Layer-Three/Routing/#supported-route-table-entriesspan) specified
 for the switch.
 
 | Profile    | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |

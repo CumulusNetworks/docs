@@ -486,8 +486,7 @@ for the IP addresses used for managing the `clagd` service.
 
 At minimum, this VLAN subinterface should not be in your layer 2 domain,
 and you should give it a very high VLAN ID (up to 4094). Read more about
-the [range of VLAN IDs you can
-use](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-range).
+the [range of VLAN IDs you can use](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/).
 
 {{%/notice%}}
 
@@ -1833,7 +1832,7 @@ network.
 Further, with MLAG, Cumulus Networks recommends you enable BPDU guard on
 the host-facing bond interfaces. (For more information about BPDU guard,
 see [BPDU Guard and Bridge
-Assurance](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-5126866_SpanningTreeandRapidSpanningTree-bpdu).)
+Assurance](/version/cumulus-linux-321/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree/#span-idsrc-5126866-spanningtreeandrapidspanningtree-bpdu-classconfluence-anchor-linkspanbpdu-guardspan).)
 
 {{%notice tip%}}
 

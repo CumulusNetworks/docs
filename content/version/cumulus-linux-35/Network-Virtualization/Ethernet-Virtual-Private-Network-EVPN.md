@@ -51,7 +51,7 @@ features include:
   - Support for host/VM mobility (MAC and IP moves) through exchange of
     the MAC Mobility Extended community.
   - Support for dual-attached hosts via 
-    [VXLAN active-active mode](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode).
+    [VXLAN active-active mode](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode).
     MAC synchronization between the peer switches is done using
     [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG).
   - Support for ARP/ND suppression, which provides VTEPs with the
@@ -1617,7 +1617,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
     that switch and other information (such as MAC addresses) pertaining
     to them will be advertised to EVPN peers. There is no provision to
     only announce certain VNIs.
-  - In a [VXLAN active-active](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode)
+  - In a [VXLAN active-active](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode)
     configuration, ARPs may sometimes not be suppressed even if ARP
     suppression is enabled. This is because the neighbor entries are not
     synced between the two switches operating in active-active mode by a

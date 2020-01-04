@@ -163,9 +163,7 @@ After installing Cumulus Linux, you are ready to:
 To install Cumulus Linux 3.0.0 or later and you're running a version
 earlier than 3.0.0, you must perform a complete install, as [described
 above](#src-5118207_QuickStartGuide-install). If you already have
-Cumulus Linux 3.0.0 or later installed on your switch, read [Upgrading
-Cumulus
-Linux](Managing-Cumulus-Linux-Disk-Images.html#src-5118256_ManagingCumulusLinuxDiskImages-upgrade)
+Cumulus Linux 3.0.0 or later installed on your switch, read [Upgrading Cumulus Linux](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/)
 for considerations before start the process.
 
 ## Configuring Cumulus Linux</span>
@@ -200,14 +198,12 @@ All accounts except `root` are permitted remote SSH login; `sudo` may be
 used to grant a non-root account root-level access. Commands which
 change the system configuration require this elevated level of access.
 
-For more information about sudo, read [Using sudo to Delegate
-Privileges](/version/cumulus-linux-30/System-Management/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
+For more information about sudo, read [Using sudo to Delegate Privileges](/version/cumulus-linux-30/System-Management/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges).
 
 ### Serial Console Management</span>
 
 Users are encouraged to perform management and configuration over the
-network, [either in band or out of
-band](Upgrading-Cumulus-Linux.html#src-5118269_UpgradingCumulusLinux-outofband).
+network, [either in band or out of band](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/).
 Use of the serial console is fully supported; however, many customers
 prefer the convenience of network-based management.
 

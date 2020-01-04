@@ -781,8 +781,7 @@ the **Name** column after the actual interface name:
     --  ------------------------  -----------------  -------  -----  ---------
     UP  swp1 (hypervisor_port_1)  44:38:39:00:00:04  1G        1500  Access/L2
 
-Interface descriptions also appear in the [SNMP
-OID](Monitoring-System-Hardware.html#src-5126776_MonitoringSystemHardware-snmp)
+Interface descriptions also appear in the [SNMP OID](/version/cumulus-linux-321/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/#span-idsrc-5126776-monitoringsystemhardware-snmp-classconfluence-anchor-linkspanmonitoring-switch-hardware-using-snmpspan)
 [IF-MIB::ifAlias](http://www.net-snmp.org/docs/mibs/ifMIBObjects.html#ifAlias).
 
 {{%notice note%}}

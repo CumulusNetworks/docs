@@ -11,11 +11,11 @@ version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-Whether you are using a single server or cluster of servers to create an on-premises or cloud deployment, there are some preparation steps to complete before using the Admin UI or the NetQ CLI to complete the installation.
-
-If you are using one of the NetQ appliances, you must first prepare these before performing these preparation steps. If you are using your own hardware, you can skip to [Preparation Steps](#preparation-steps).
+There are some preparation steps to complete before using the Admin UI or the NetQ CLI to complete the installation. Follow the instructions in the relevant preparation section based on the type of server you plan to deploy and then download the necessary files as described in the last section.
 
 {{%notice info%}}
+You must complete these steps before attempting to install the NetQ software.
+
 A fresh server or appliance is recommended for NetQ installation. Alternately, you can create a new VM or re-image an existing server with Ubuntu as the base operating system. Be sure to back up any NetQ data beforehand if you choose this alternative.
 {{%/notice%}}
 

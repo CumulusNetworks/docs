@@ -18,7 +18,6 @@ You must complete these steps before attempting to install the NetQ software.
 {{%/notice%}}
 
 A fresh server or appliance is recommended for NetQ installation. Alternately, you can create a new VM or re-image an existing server with Ubuntu as the base operating system. Be sure to back up any NetQ data beforehand if you choose this alternative.
-{{%/notice%}}
 
 ## Prepare Your NetQ Appliance
 

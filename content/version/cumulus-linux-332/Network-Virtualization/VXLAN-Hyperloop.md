@@ -88,6 +88,7 @@ separated application) - you want to keep the firewall between VXLANs so
 that traffic can be filtered and sanitized to the network operator's
 specification.
 
+{{< img src = "/images/old_doc_images/image2017-3-9-14_52_21.png" >}}
 
 With integrated VXLAN routing and bridging using a hyperloop:
 
@@ -180,6 +181,7 @@ following on exit01:
 
 ### Packet Flow Diagram
 
+{{< img src = "/images/old_doc_images/Screen-Shot-2017-03-09-at-1.32.01-PM" >}}
 
 ### Trident II and Tomahawk switchd Flag
 
@@ -282,12 +284,14 @@ Check the outputs. Often, when VXLAN is considered to be non-working,
 it's actually due to an incorrect setup on the server OS, whether it's
 Ubuntu, Microsoft Windows or RHEL.  
 
+{{< img src = "/images/old_doc_images/Screen-Shot-2017-03-29-at-10.41.39-AM.png" >}}
 
 ### Can you ping from host to host on the same VXLAN?
 
 For example, in the following network diagram, can server01 ping to
 server03 on any of the VLANs (VLAN1, VLAN100, VLAN200)?  
 
+{{< img src = "/images/old_doc_images/2017-Brand-Ref-EVPN-Demo-(1).png" >}}
 
 If you can't even ping from server to server this is not a VXLAN gateway
 problem, but a problem with the network itself. This must be fixed prior

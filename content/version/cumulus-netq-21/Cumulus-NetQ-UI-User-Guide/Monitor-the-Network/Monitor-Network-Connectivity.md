@@ -237,7 +237,7 @@ To create a layer 3 trace request:
 
 1.  Open the medium Trace Request card.
     
-    {{% imgOld 10 %}}
+    {{< img src = "/images/netq/trace-request-medium-231.png" >}}
 
 2.  In the **Source** field, enter the hostname or IP address of the
     device where you want to start the trace.

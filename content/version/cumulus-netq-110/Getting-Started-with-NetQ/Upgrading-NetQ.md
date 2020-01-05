@@ -64,9 +64,9 @@ documentation.
     
     {{%notice warning%}}
     
-    This step is required to ensure agents don't attempt to communicate
-    with the Telemetry Server during the maintenance window.
-    
+This step is required to ensure agents don't attempt to communicate
+with the Telemetry Server during the maintenance window.
+
     {{%/notice%}}
 
 3.  Shutdown the current NetQ Telemetry Server.
@@ -80,10 +80,10 @@ documentation.
     
     {{%notice info%}}
     
-    This step can be skipped, if there is no desire to retain the
-    previous data. NetQ agents will re-populate the current data once
-    they connect to the new NetQ Telemetry Server.
-    
+This step can be skipped, if there is no desire to retain the
+previous data. NetQ agents will re-populate the current data once
+they connect to the new NetQ Telemetry Server.
+
     {{%/notice%}}
 
 6.  Validate that the telemetry server is up and running:
@@ -102,7 +102,7 @@ as well.
 {{%notice warning%}}
 
 The NetQ Notifier configuration syntax has changed between versions 1.0
-and 1.1. Examples of the new syntax are in the [getting started guide](Getting-Started-with-NetQ.html#src-7111298_GettingStartedwithNetQ-notifier).
+and 1.1. Examples of the new syntax are in the [getting started guide](/version/cumulus-netq-110/Getting-Started-with-NetQ/).
 
 {{%/notice%}}
 

@@ -12,8 +12,7 @@ imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
 ---
 The NetQ Agent monitors Docker containers the same way it monitors
-[physical
-servers](/version/cumulus-netq-10/Monitoring-Linux-Hosts-with-NetQ).
+[physical servers](/version/cumulus-netq-10/Monitoring-Linux-Hosts-with-NetQ).
 There is no special implementation. The NetQ Agent pulls Docker data
 from the container as it would pull data from a Cumulus Linux switch or
 Linux host.
@@ -61,8 +60,7 @@ Currently, the NetQ Agent does not support:
 
 Due to the higher memory requirements to run containers, Cumulus
 Networks recommends you run the NetQ Telemetry Server on a host with at
-least 32G RAM. For more information, read the [Performing Network
-Diagnostics](Performing-Network-Diagnostics.html#src-6488212_PerformingNetworkDiagnostics-matrix)
+least 32G RAM. For more information, read the [Performing Network Diagnostics](/version/cumulus-netq-10/Performing-Network-Diagnostics/)
 chapter.
 
 ## <span id="src-6488224_MonitoringContainerEnvironmentswithNetQ-enable" class="confluence-anchor-link"></span>Configuring the Container Host</span>

@@ -11,12 +11,10 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-This article shows two examples of [VLAN
-tagging](Ethernet-Bridging-VLANs.html#src-5116341_EthernetBridging-VLANs-vlan_tagging),
+This article shows two examples of [VLAN tagging](/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-Tagging/),
 one basic and one more advanced. They both demonstrate the streamlined
 interface configuration from `ifupdown2`. For more information, see
-[Configuring and Managing Network
-Interfaces](/version/cumulus-rmp-25esr/Configuring-and-Managing-Network-Interfaces/).
+[Configuring and Managing Network Interfaces](/version/cumulus-rmp-25esr/Configuring-and-Managing-Network-Interfaces/).
 
 ## VLAN Tagging, a Basic Example</span>
 

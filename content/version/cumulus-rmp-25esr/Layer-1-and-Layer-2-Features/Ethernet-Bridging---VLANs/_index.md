@@ -21,7 +21,7 @@ Cumulus RMP has two modes for configuring bridges:
 and *traditional*. The bridge driver in Cumulus RMP is capable of VLAN
 filtering, which allows for configurations that are similar to incumbent
 network devices. While Cumulus RMP supports Ethernet bridges in
-traditional mode Cumulus Networks **** recommends using
+traditional mode Cumulus Networks recommends using
 [VLAN-aware](http://docs.cumulusnetworks.com/display/CL25/VLAN-aware+Bridge+Mode+for+Large-scale+Layer+2+Environments)
 mode.
 

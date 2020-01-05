@@ -346,8 +346,7 @@ Every event or entry in the NetQ database is stored with a timestamp of
 when the event was captured by the NetQ agent on the node. This
 timestamp is based on time on the node where the agent is running, and
 is pushed in UTC format. Thus, it is important to ensure that all nodes
-are [NTP
-synchronized](Proactively-Monitoring-the-Network-Fabric.html#src-7111304_ProactivelyMonitoringtheNetworkFabric-ntp).
+are [NTP synchronized](/version/cumulus-netq-110/Proactively-Monitoring-the-Network-Fabric/).
 Without this NTP sync, events may be displayed out of order or, worse,
 not displayed when looking for events that occurred at a particular time
 or within a time window.

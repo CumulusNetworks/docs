@@ -39,7 +39,7 @@ physical switches.
 
 A basic setup looks like this:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/old_doc_images/bgp-unnumbered.png" >}}}
 
 {{%notice tip%}}
 

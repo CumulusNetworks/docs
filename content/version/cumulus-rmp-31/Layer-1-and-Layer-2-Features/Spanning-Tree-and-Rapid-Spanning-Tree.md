@@ -501,15 +501,13 @@ You configure storm control for each physical port in one of three ways:
   - By editing `/etc/cumulus/switchd.conf`. The configuration persists
     across reboots and restarting `switchd`. If you change the storm
     control configuration in this file after rebooting the switch, you
-    must [restart
-    `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5117004)
+    must [restart `switchd`](/version/cumulus-rmp-31/System-Management/Configuring-switchd/#restarting-switchdspan)
     to activate the new configuration.
 
   - By editing `/etc/network/interfaces`, which requires you to reload
     the interface configuration for the change to take effect.
 
-  - By writing directly to the [`switchd` file
-    system](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5117004).
+  - By writing directly to the [`switchd` filesystem](/version/cumulus-rmp-31/System-Management/Configuring-switchd/#the-switchd-file-systemspan).
 
 For example, to enable broadcast and multicast storm control at 400
 packets per second (pps) and 3000 pps, respectively, for swp1 editing

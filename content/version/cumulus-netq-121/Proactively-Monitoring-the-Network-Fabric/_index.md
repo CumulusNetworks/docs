@@ -651,8 +651,7 @@ You can extend NetQ to monitor parameters beyond what it monitors by
 default. For example, you can create a service that runs a series of
 pings to a known host or between two known hosts to ensure that
 connectivity is valid. Or you can create a service that curls a URL and
-sends the output to `/dev/null`. This method works with the [NetQ time
-machine](Performing-Network-Diagnostics.html#src-8356555_PerformingNetworkDiagnostics-time_machine)
+sends the output to `/dev/null`. This method works with the [NetQ time machine](/version/cumulus-netq-121/Proactively-Monitoring-the-Network-Fabric/)
 capability regarding `netq show services`.
 
 1.  As the sudo user on a node running the NetQ agent, edit the

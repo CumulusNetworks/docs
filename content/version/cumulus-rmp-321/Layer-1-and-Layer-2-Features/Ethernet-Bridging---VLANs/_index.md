@@ -15,7 +15,7 @@ Ethernet bridges provide a means for hosts to communicate through layer
 2, by connecting all of the physical and logical interfaces in the
 system into a single layer 2 domain. The bridge is a logical interface
 with a MAC address and an
-[MTU](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120636)
+[MTU](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
 (maximum transmission unit). The bridge MTU is the minimum MTU among all
 its members. The bridge's MAC address is inherited from the first
 interface that is added to the bridge as a member. The bridge MAC
@@ -36,13 +36,13 @@ interfaces that traverse an 802.1Q VLAN trunk.
 {{%notice tip%}}
 
 Cumulus Networks recommends using *[VLAN-aware
-mode](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120547)*
+mode](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/)*
 bridges, rather than *traditional mode* bridges. The bridge driver in
 Cumulus RMP is capable of VLAN filtering, which allows for
 configurations that are similar to incumbent network devices. While
 Cumulus RMP supports Ethernet bridges in traditional mode, Cumulus
 Networks **** recommends using
-[VLAN-aware](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120547)
+[VLAN-aware](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/)
 mode.
 
 {{%/notice%}}

@@ -233,8 +233,7 @@ So to get the route for the mgmt VRF, run:
 
 ## Using the mgmt Interface Class</span>
 
-In `ifupdown2` [interface
-classes](Configuring-and-Managing-Network-Interfaces.html#src-5122794_ConfiguringandManagingNetworkInterfaces-classes)
+In `ifupdown2` [interface classes](/version/cumulus-rmp-31/Configuring-and-Managing-Network-Interfaces/#span-idsrc-5122794-configuringandmanagingnetworkinterfaces-classes-classconfluence-anchor-linkspanifupdown2-interface-classesspan)
 are used to create a user-defined grouping for interfaces. The special
 class *mgmt* is available to separate the switch's management interfaces
 from the data interfaces. This allows you to manage the data interfaces

@@ -15,8 +15,7 @@ siteSlug: cumulus-rmp-31
 `ifupdown` is the network interface manager for Cumulus RMP. Cumulus RMP
 uses an updated version of this tool, `ifupdown2`.
 
-For more information on network interfaces, see [Layer 1 and Switch Port
-Attributes](/version/cumulus-rmp-31/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes).
+For more information on network interfaces, see [Layer 1 and Switch Port Attributes](/version/cumulus-rmp-31/Configuring-and-Managing-Network-Interfaces/).
 
 {{%notice info%}}
 

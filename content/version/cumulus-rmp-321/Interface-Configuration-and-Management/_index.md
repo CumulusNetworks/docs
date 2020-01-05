@@ -15,8 +15,7 @@ siteSlug: cumulus-rmp-321
 `ifupdown` is the network interface manager for Cumulus RMP. Cumulus RMP
 uses an updated version of this tool, `ifupdown2`.
 
-For more information on network interfaces, see [Layer 1 and Switch Port
-Attributes](/version/cumulus-rmp-321/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes).
+For more information on network interfaces, see [Layer 1 and Switch Port Attributes](/version/cumulus-rmp-321/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes).
 
 {{%notice info%}}
 
@@ -770,8 +769,7 @@ the **Name** column after the actual interface name:
     --  ------------------------  -----------------  -------  -----  ---------
     UP  swp1 (hypervisor_port_1)  44:38:39:00:00:04  1G        1500  Access/L2
 
-Interface descriptions also appear in the [SNMP
-OID](Monitoring-System-Hardware.html#src-5127559_MonitoringSystemHardware-snmp)
+Interface descriptions also appear in the [SNMP OID](/version/cumulus-rmp-321/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/#span-idsrc-5127559-monitoringsystemhardware-snmp-classconfluence-anchor-linkspanmonitoring-switch-hardware-using-snmpspan/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/)
 [IF-MIB::ifAlias](http://www.net-snmp.org/docs/mibs/ifMIBObjects.html#ifAlias).
 
 {{%notice note%}}

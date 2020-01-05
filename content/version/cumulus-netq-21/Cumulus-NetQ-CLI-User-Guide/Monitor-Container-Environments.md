@@ -103,7 +103,7 @@ For NetQ to monitor the containers on a host, you must configure the
 following on the Kubernetes master node:
 
 1.  Configure the host to point to the NetQ Platform by its IP address.
-    See the [Install NetQ](/version/cumulus-neq-21/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
+    See the [Install NetQ](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Install-NetQ/)
     topic for details.
 
 2.  Enable Kubernetes monitoring by NetQ. You can specify a polling
@@ -117,7 +117,7 @@ following on the Kubernetes master node:
         cumulus@server01:~$ netq config restart agent
 
 Next, you must enable the NetQ Agent on all the worker nodes, as
-described in the [Install NetQ](/version/cumulus-neq-21/Cumulus-NetQ-Deployment-Guide/Install-NetQ)
+described in the [Install NetQ](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Install-NetQ/)
 topic, for complete insight into your container network.
 
 ### View Status of Kubernetes Clusters

@@ -1646,7 +1646,7 @@ repository](https://github.com/CumulusNetworks/cldemo-evpn/tree/master/config).
 Only a subset is shown here for brevity (not shown are configurations
 for leaf03, leaf04, server03, server04). Here is the topology diagram:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/old_doc_images/mlag.png" >}}}
 
 #### leaf01 and leaf02 Configurations
 
@@ -2073,7 +2073,7 @@ repository](https://github.com/CumulusNetworks/cldemo-evpn/). Only a
 subset is shown here for brevity (not shown are configurations for
 leaf03, leaf04, server02, server04). Here is the topology diagram:
 
-{{% imgOld 1 %}}
+{{< img src = "/images/old_doc_images/evpn.png" >}}}
 
 #### leaf01 and leaf02 Configurations
 

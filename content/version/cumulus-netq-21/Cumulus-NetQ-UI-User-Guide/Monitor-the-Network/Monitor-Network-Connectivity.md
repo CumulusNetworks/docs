@@ -28,7 +28,7 @@ and run both of these trace types.
 
 The small Trace Request card displays:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/uploads/trace-request-small-card.png" >}}
 
 <table>
 <colgroup>

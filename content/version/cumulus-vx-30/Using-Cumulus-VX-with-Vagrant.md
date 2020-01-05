@@ -14,7 +14,7 @@ siteSlug: cumulus-vx-30
 ## Requirements
 
   - Cumulus VX requires [Vagrant 1.7 or newer](https://www.vagrantup.com/downloads.html)
-  - Understand these [VirtualBox considerations](Using-Cumulus-VX-with-VirtualBox.html#src-5126581_UsingCumulusVXwithVirtualBox-reqs)
+  - Understand these [VirtualBox considerations](/version/cumulus-vx-30/Using-Cumulus-VX-with-VirtualBox/#virtualbox-specific-considerations)
 
 ## Setting Up the Vagrant Environment
 

@@ -99,7 +99,7 @@ Cumulus Networks recommends you install the Telemetry Server on an
 out-of-band management network to ensure it can monitor in-band network
 issues without being affected itself. Ideally, you should run the
 Telemetry Server on a separate, powerful server for maximum usability
-and performance. For more information on system requirements, [read this chapter](Methods-for-Diagnosing-Network-Issues.html#src-10453530_MethodsforDiagnosingNetworkIssues-matrix).
+and performance. For more information on system requirements, [read this chapter](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/#how-far-back-in-time-can-you-travel).
 
 {{%/notice%}}
 
@@ -136,7 +136,7 @@ To install the Telemetry Server VM:
 2.  Import the VM into your
     [KVM](https://docs.cumulusnetworks.com/display/VX/Vagrant+and+Libvirt+with+KVM+or+QEMU)
     or
-    [VMware](https://docs.cumulusnetworks.com/display/VX/VMware+vSphere+-+ESXi+5.5)
+    [VMware](/cumulus-vx/Getting-Started/VMware-vSphere-ESXi-5.5/)
     hypervisor.  
     This step is shown using KVM with Virtual Machine Manager.
 

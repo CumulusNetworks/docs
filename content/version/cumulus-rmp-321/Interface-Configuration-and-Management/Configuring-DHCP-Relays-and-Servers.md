@@ -218,7 +218,7 @@ interfaces participating in DHCP relay (facing the server and facing the
 client) and the IP address of the server. If the client-facing interface
 is a bridge port, specify the switch virtual interface (SVI) name if
 using a [VLAN-aware
-bridge](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120547)
+bridge](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/)
 (for example, bridge.100), or the bridge name if using traditional
 bridging (for example, br100).
 

@@ -156,7 +156,7 @@ service will not start. If you install the license again, start
 
 To improve security, the ability to use SSH to connect to a switch as
 the root user using a password has been disabled by default. To enable
-it, read [User Accounts](/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/).
+it, read [User Accounts](/version/cumulus-rmp-30/System-Management/Authentication-Authorization-and-Accounting/User-Accounts/).
 
 ### SSH Output No Longer Truncated</span>
 
@@ -167,15 +167,15 @@ truncated. This has been fixed in Cumulus RMP 3.0.
 ## Removed Features</span>
 
   - `cl-img-install`. The
-    [installer](/display/RMP30/Installing+a+New+Cumulus+Linux+Image) has
+    [installer](/version/cumulus-rmp-30/System-Management/Installation-Upgrading-and-Package-Management/Managing-Cumulus-RMP-Disk-Images/) has
     been replaced.
 
   - Disk image slots and `/mnt/persist`: For information and strategies
     on how to preserve your network configuration across software
-    upgrades, read the [Upgrading Cumulus Linux](/version/cumulus-linux-37/Installation-Management/Installing-a-New-Cumulus-Linux-Image/) chapter.
+    upgrades, read the [Upgrading Cumulus Linux](/version/cumulus-rmp-30/System-Management/Installation-Upgrading-and-Package-Management/Managing-Cumulus-RMP-Disk-Images/) chapter.
 
   - `cl-brctl`. This utility was simply a symlink to `brctl`, which is
-    what you should use to [configure bridges](version/cumulus-linux-37/Layer-2/Ethernet-Bridging-VLANs/), VLANs and the
+    what you should use to [configure bridges](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/), VLANs and the
     like.
 
   - `jdoo`. Use `systemd` and `systemctl` for

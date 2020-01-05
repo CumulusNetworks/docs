@@ -670,8 +670,7 @@ appears on the alias line:
         link/ether aa:aa:aa:aa:aa:bc brd ff:ff:ff:ff:ff:ff
         alias hypervisor_port_1
 
-Interface descriptions also appear in the [SNMP
-OID](Monitoring-System-Hardware.html#src-5118690_MonitoringSystemHardware-snmp)
+Interface descriptions also appear in the [SNMP OID](/version/cumulus-rmp-30/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/#span-idsrc-5118690-monitoringsystemhardware-snmp-classconfluence-anchor-linkspanmonitoring-switch-hardware-using-snmpspan)
 [IF-MIB::ifAlias](http://www.net-snmp.org/docs/mibs/ifMIBObjects.html#ifAlias).
 
 ## <span id="src-5118733_ConfiguringandManagingNetworkInterfaces-caveats" class="confluence-anchor-link"></span>Caveats and Errata</span>

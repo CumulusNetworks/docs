@@ -50,15 +50,13 @@ until the next NetQ version is released.
 
 {{%notice note%}}
 
-To install a new instance of NetQ, refer to the [Getting Started with
-NetQ](https://docs.cumulusnetworks.com/display/NETQ/Getting+Started+with+NetQ)
+To install a new instance of NetQ, refer to the [Getting Started with NetQ](https://docs.cumulusnetworks.com/display/NETQ/Getting+Started+wit/version/cumulus-netq-110/Getting-Started-with-NetQ/)
 documentation.
 
 {{%/notice%}}
 
 1.  Back up the current NetQ Telemetry Server data. For instructions,
-    refer to the [NetQ
-    Backup](https://docs.cumulusnetworks.com/display/NETQ/Restoring+from+Backups+with+NetQ)
+    refer to the [NetQ Backup](https://docs.cumulusnetworks.com/display/NETQ/Restoring+from+Backups+with+NetQ)
     documentation.
 
 2.  Shutdown the connectivity from the agents to the current NetQ

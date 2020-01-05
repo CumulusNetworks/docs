@@ -552,7 +552,7 @@ You configure storm control for each physical port by editing
 `/etc/cumulus/switchd.conf`. The configuration persists across reboots
 and restarting `switchd`. If you change the storm control configuration
 in this file after rebooting the switch, you must [restart
-`switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5117004)
+`switchd`](/version/cumulus-rmp-321/System-Configuration/Configuring-switchd/#span-idsrc-5127546-configuringswitchd-restartswitchd-classconfluence-anchor-linkspanrestarting-switchdspan)
 to activate the new configuration.
 
 To enable broadcast and multicast storm control at 400 packets per

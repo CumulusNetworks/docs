@@ -74,8 +74,7 @@ address to interfaces between routers.
 
 ## Debugging OSPF</span>
 
-See [Debugging
-OSPF](Open-Shortest-Path-First-OSPF-Protocol.html#src-5127045_OpenShortestPathFirst-OSPF-Protocol-ospf_debug)
+See [Debugging OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol/#span-idsrc-5127045-openshortestpathfirst-ospf-protocol-ospf-debug-classconfluence-anchor-linkspandebugging-ospfspan)
 for OSPFv2 for the troubleshooting discussion. The equivalent commands
 are:
 

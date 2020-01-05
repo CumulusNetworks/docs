@@ -22,7 +22,7 @@ simple service node coupled with traditional MAC address learning.
 
 To see an example of a full solution before reading the following
 background information, [please read this
-chapter](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-Full-Example).
+chapter](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-Full-Example).
 
 {{%notice note%}}
 

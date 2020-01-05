@@ -15,7 +15,7 @@ Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/version/cumulus-linux-321/Network-Virtualization/) without a
 central controller on bare metal switches. This a full example complete
 with diagram. Please reference the [Lightweight Network Virtualization
-chapter](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
+chapter](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 for more detailed information. This full example uses the **recommended
 way** of deploying LNV, which is to use Anycast to load balance the
 service nodes.
@@ -518,7 +518,7 @@ svcnode_peers = 10.2.1.3
 
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
 
-  - [Detailed LNV Configuration Guide](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
+  - [Detailed LNV Configuration Guide](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 
   - [Cumulus Networks Training](http://cumulusnetworks.com/education/instructor-led-training/)
 

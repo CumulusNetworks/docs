@@ -288,8 +288,8 @@ configure the `bridge-learning` value to *off*:
 
 ## Handling BUM Traffic</span>
 
-With EVPN, the only method of handling BUM traffic is [Head End Replication (HER)](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/#handling-bum-trafficspan).
-HER is enabled by default, as it is when [Lightweight Network Virtualization (LNV)](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
+With EVPN, the only method of handling BUM traffic is [Head End Replication (HER)](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/#handling-bum-trafficspan).
+HER is enabled by default, as it is when [Lightweight Network Virtualization (LNV)](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 is used.
 
 ## EVPN and VXLAN Active-Active Mode</span>

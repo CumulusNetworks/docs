@@ -131,9 +131,7 @@ After installing Cumulus Linux, you are ready to:
 If you are running a Cumulus Linux version earlier than 3.0.0, you must
 perform a complete install, as [described
 above](#src-5126745_QuickStartGuide-install). If you already have
-Cumulus Linux 3.0.0 or later installed on your switch, read [Upgrading
-Cumulus
-Linux](Managing-Cumulus-Linux-Disk-Images.html#src-5126814_ManagingCumulusLinuxDiskImages-upgrade)
+Cumulus Linux 3.0.0 or later installed on your switch, read [Upgrading Cumulus Linux](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/)
 for considerations before start the process.
 
 ## Getting Started

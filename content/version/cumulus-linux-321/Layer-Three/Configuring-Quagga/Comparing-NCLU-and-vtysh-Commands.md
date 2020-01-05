@@ -73,7 +73,7 @@ switch(config-if)# ipv6 address 3002:2123:1234:1abc::21/64</code></pre></td>
 <td><pre><code>switch(config)# ptm-enable</code></pre></td>
 </tr>
 <tr class="odd">
-<td><p>Configure <a href="Layer-1-and-Switch-Port-Attributes.html#src-5126996_Layer1andSwitchPortAttributes-mtu">MTU</a> in IPv6 network discovery for an interface</p></td>
+<td><p>Configure <a href="/version/cumulus-linux-321/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/#span-idsrc-5126996-layer1andswitchportattributes-mtu-classconfluence-anchor-linkspanmtuspan">MTU</a> in IPv6 network discovery for an interface</p></td>
 <td><pre><code>cumulus@switch:~$ sudo cl-ra interface swp3 set mtu 9000</code></pre></td>
 <td><pre><code>switch(config)# int swp3
 switch(config-if)# ipv6 nd mtu 9000</code></pre></td>

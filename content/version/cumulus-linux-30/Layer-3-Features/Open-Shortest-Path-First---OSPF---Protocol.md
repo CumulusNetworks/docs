@@ -428,9 +428,9 @@ The three most important states while troubleshooting the protocol are:
     
     {{%notice tip%}}
     
-    Compare the route output with kernel by using `show ip route | grep
-    zebra` and with the hardware entries using `cl-route-check -V`.
-    
+Compare the route output with kernel by using `show ip route | grep
+zebra` and with the hardware entries using `cl-route-check -V`.
+
     {{%/notice%}}
 
 Using `cl-ospf`:
@@ -475,13 +475,7 @@ Using `tcpdump` to capture OSPF packets:
 
 ## Supported RFCs</span>
 
-  - 
-    
-    <div id="src-5118389_indexterm-7EED9B36A5C39385954273E38C8565BB">
-    
-    [RFC2328](http://tools.ietf.org/rfc/rfc2328)
-    
-    </div>
+  - [RFC2328](http://tools.ietf.org/rfc/rfc2328)
 
   - [RFC3137](http://tools.ietf.org/rfc/rfc3137)
 
@@ -489,9 +483,8 @@ Using `tcpdump` to capture OSPF packets:
 
 ## Useful Links</span>
 
-  - [Bidirectional forwarding
-    detection](/version/cumulus-linux-30/Layer-3-Features/Bidirectional-Forwarding-Detection-BFD)
-    (BFD) and OSPF
+  - [Bidirectional forwarding detection](/version/cumulus-linux-30/Layer-3-Features/Bidirectional-Forwarding-Detection-BFD)
+ (BFD) and OSPF
 
   - <http://en.wikipedia.org/wiki/Open_Shortest_Path_First>
 

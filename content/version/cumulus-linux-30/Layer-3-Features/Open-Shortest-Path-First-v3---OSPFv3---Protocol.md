@@ -96,7 +96,7 @@ address to interfaces between routers.
 
 ## Debugging OSPF</span>
 
-See [Debugging OSPF](/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/#debugging-ospfspan)
+See [Debugging OSPF](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/#debugging-ospfspan)
 for OSPFv2 for the troubleshooting discussion. The equivalent commands
 are:
 

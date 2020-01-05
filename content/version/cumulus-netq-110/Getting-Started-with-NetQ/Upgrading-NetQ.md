@@ -50,7 +50,7 @@ until the next NetQ version is released.
 
 {{%notice note%}}
 
-To install a new instance of NetQ, refer to the [Getting Started with NetQ](https://docs.cumulusnetworks.com/display/NETQ/Getting+Started+wit/version/cumulus-netq-110/Getting-Started-with-NetQ/)
+To install a new instance of NetQ, refer to the [Getting Started with NetQ](/version/cumulus-netq-110/Getting-Started-with-NetQ/)
 documentation.
 
 {{%/notice%}}
@@ -102,8 +102,7 @@ as well.
 {{%notice warning%}}
 
 The NetQ Notifier configuration syntax has changed between versions 1.0
-and 1.1. Examples of the new syntax are in the [getting started
-guide](Getting-Started-with-NetQ.html#src-7111298_GettingStartedwithNetQ-notifier).
+and 1.1. Examples of the new syntax are in the [getting started guide](Getting-Started-with-NetQ.html#src-7111298_GettingStartedwithNetQ-notifier).
 
 {{%/notice%}}
 

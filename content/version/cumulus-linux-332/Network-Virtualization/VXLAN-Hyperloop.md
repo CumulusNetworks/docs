@@ -181,7 +181,7 @@ following on exit01:
 
 ### Packet Flow Diagram
 
-{{< img src = "/images/old_doc_images/Screen-Shot-2017-03-09-at-1.32.01-PM" >}}
+{{< img src = "/images/old_doc_images/Screen-Shot-2017-03-09-at-1.32.01-PM.png" >}}
 
 ### Trident II and Tomahawk switchd Flag
 

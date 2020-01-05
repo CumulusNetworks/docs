@@ -258,17 +258,17 @@ finishes.
     
     {{%notice note%}}
     
-    You can also use any of the [ONIE naming schemes mentioned
-    here](https://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
-    
+You can also use any of the [ONIE naming schemes mentioned
+here](https://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
+
     {{%/notice%}}
     
     {{%notice warning%}}
-    
-    When using a Mac or Windows computer to rename the installation file
-    the file extension may still be present. Make sure to remove the
-    file extension otherwise ONIE will not be able to detect the file\!
-    
+
+When using a Mac or Windows computer to rename the installation file
+the file extension may still be present. Make sure to remove the
+file extension otherwise ONIE will not be able to detect the file\!
+
     {{%/notice%}}
 
 4.  Insert the USB stick into the switch, then prepare the switch for
@@ -287,24 +287,22 @@ finishes.
 
 5.  {{%notice note%}}
     
-    SSH sessions to the switch get dropped after this step. To complete
-    the remaining instructions, connect to the console of the switch.
-    Cumulus RMP switches display their boot process to the console, so
-    you need to monitor the console specifically to complete the next
-    step.
+SSH sessions to the switch get dropped after this step. To complete
+the remaining instructions, connect to the console of the switch.
+Cumulus RMP switches display their boot process to the console, so
+you need to monitor the console specifically to complete the next
+step.
     
     {{%/notice%}}
 
 6.  Monitor the console and select the ONIE option from the first GRUB
     screen shown below.
     
-    {{% imgOld 1 %}}
 
 7.  Cumulus RMP uses GRUB chainloading to present a second GRUB menu
     specific to the ONIE partition. No action is necessary in this menu
     to select the default option *ONIE: Install OS*.
     
-    {{% imgOld 2 %}}
 
 8.  At this point, the USB drive should be automatically recognized and
     mounted. The image file should be located and automatic installation
@@ -348,12 +346,12 @@ finishes.
     
     {{%notice warning%}}
     
-    These instructions assume your USB drive is the `/dev/sdb` device,
-    which is typical if the USB stick was inserted after the machine was
-    already booted. However, if the USB stick was plugged in during the
-    boot process, it is possible the device could be `/dev/sda`. Make
-    sure to modify the commands below to use the proper device for your
-    USB drive\!
+These instructions assume your USB drive is the `/dev/sdb` device,
+which is typical if the USB stick was inserted after the machine was
+already booted. However, if the USB stick was plugged in during the
+boot process, it is possible the device could be `/dev/sda`. Make
+sure to modify the commands below to use the proper device for your
+USB drive\!
     
     {{%/notice%}}
 

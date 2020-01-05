@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
 ---
-<details>
 
 Cumulus RMP uses Pluggable Authentication Modules (PAM) and Name Service
 Switch (NSS) for user authentication.
@@ -80,8 +79,6 @@ Alternatively, these parameters can be pre-seeded using the
 `debconf-utils`. To use this method, run `apt-get install debconf-utils`
 and create the pre-seeded parameters using `debconf-set-selections` with
 the appropriate answers. Run `debconf-show <pkg>` to check the settings.
-Here is an [example of how to preseed answers to the installer questions
-using `debconf-set-selections`](attachments_8362555_1_kb_debconf.txt) .
 
 {{%/notice%}}
 
@@ -189,10 +186,6 @@ in the manpage for `nslcd.conf` (such as *passwd* or *group*).
 
 {{%/notice%}}
 
-### Example Configuration</span>
-
-Here is an [example
-configuration ](attachments_5122739_1_nslcd.conf)using Cumulus RMP.
 
 ## Troubleshooting</span>
 
@@ -460,12 +453,5 @@ database.
 
   - [backports.debian.org/Instructions/](http://backports.debian.org/Instructions/)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

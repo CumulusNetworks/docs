@@ -96,10 +96,3 @@ the `netq-stats-pushd` service on the telemetry server:
     cumulus@ts:~$ sudo systemctl stop netq-stats-pushd.service
     cumulus@ts:~$ sudo systemctl disable netq-stats-pushd.service
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

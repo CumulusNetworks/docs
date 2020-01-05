@@ -204,10 +204,3 @@ To create the above example, add the following configuration to the
 You can find more examples of VLAN tagging in [this
 chapter](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -30,7 +30,7 @@ Data traffic is always
 
 ## Cumulus Linux Voice VLAN Example
 
-{{% imgOld 0 %}}
+{{< img src = "/images/old_doc_images/voice-vlan.png" >}}}
 
 You can configure the topology above using the following
 [NCLU](/version/cumulus-linux-35/System-Configuration/Network-Command-Line-Utility-NCLU/)

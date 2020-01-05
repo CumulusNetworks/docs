@@ -677,10 +677,3 @@ yellow shows partial impact, and red shows full impact.
           -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
                                   -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

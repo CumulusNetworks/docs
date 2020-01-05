@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 Spanning tree protocol (STP) is always recommended in layer 2
 topologies, as it prevents bridge loops and broadcast radiation on a
@@ -621,12 +620,5 @@ sourceforge URL below.
   - MSTP is not supported currently. However, interoperability with MSTP
     networks can be accomplished using PVRSTP or PVSTP.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

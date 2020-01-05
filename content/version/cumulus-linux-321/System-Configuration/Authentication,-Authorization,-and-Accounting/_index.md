@@ -25,10 +25,3 @@ siteSlug: cumulus-linux-321
 
   - [TACACS+](/version/cumulus-linux-321/System-Configuration/Authentication-Authorization-and-Accounting/TACACS-Plus)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

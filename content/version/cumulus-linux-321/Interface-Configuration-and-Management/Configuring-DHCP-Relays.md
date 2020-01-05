@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 You can configure DHCP relays for IPv4 and IPv6.
 
@@ -197,12 +196,5 @@ specify a time period:
     Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp52
     Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp51
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

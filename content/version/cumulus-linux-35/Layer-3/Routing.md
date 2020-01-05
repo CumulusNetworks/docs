@@ -401,10 +401,3 @@ There are two ways you can work around this issue.
   - [FRRouting docs - static route
     commands](https://frrouting.org/user-guide/Static-Route-Commands.html#Static-Route-Commands)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

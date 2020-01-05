@@ -52,10 +52,3 @@ proxy is set up correctly:
         cumulus@switch:~$ echo $https_proxy
         https://myproxy.domain.com:8080
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

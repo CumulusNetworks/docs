@@ -302,10 +302,3 @@ Please refer to the section "Example 2: basic setup with three boxes" on
 the [Redis Sentinel page](https://redis.io/topics/sentinel) for more
 details.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

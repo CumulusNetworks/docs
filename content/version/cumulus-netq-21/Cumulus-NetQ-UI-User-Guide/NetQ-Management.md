@@ -16,7 +16,7 @@ application-wide settings for the NetQ UI as well as view information
 about the system server, all from a single workbench.
 
 Individual users have the ability to set preferences specific to their
-workspaces. This information is covered separately. Refer to [User Settings](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/User-Settings).
+workspaces. This information is covered separately. Refer to [User Settings](/version/cumulus-netq-21/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/#user-settings).
 
 ## NetQ Management Workbench
 

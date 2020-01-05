@@ -1032,10 +1032,3 @@ VLAN is configured, so the related fields are left blank.
         3   leaf03          swp51                                        swp51           default         lo
     --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

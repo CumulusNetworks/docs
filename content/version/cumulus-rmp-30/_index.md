@@ -56,10 +56,3 @@ notes](https://support.cumulusnetworks.com/hc/en-us/articles/220232128)
 
   - [Routing](/version/cumulus-rmp-30/Routing/)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

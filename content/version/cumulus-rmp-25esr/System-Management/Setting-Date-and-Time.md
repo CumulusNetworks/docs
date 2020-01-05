@@ -137,10 +137,3 @@ To verify that `ntpd` is running on the system:
 
   - <http://wiki.debian.org/NTP>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

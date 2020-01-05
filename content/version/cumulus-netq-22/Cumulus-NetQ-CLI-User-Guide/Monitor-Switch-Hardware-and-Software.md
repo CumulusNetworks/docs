@@ -1070,10 +1070,3 @@ In this example, we want to view changes to the bgpd service in the last
                                             4 vrf DataVrf1082 state changed fro
                                             m failed to Established
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

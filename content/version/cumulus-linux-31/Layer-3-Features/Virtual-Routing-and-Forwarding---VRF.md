@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
 
 Cumulus Linux provides *virtual* *routing and forwarding* (VRF) to allow
 for the presence of multiple independent routing tables working
@@ -915,13 +914,3 @@ Or:
     BGP.
 
   - It is not possible to leak routes across VRFs within Quagga.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

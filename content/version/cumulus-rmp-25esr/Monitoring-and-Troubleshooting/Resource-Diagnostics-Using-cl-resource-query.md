@@ -53,10 +53,3 @@ command.
     Egress ACL meters:         18,   3% of maximum value    512
     Egress ACL slices:          2,  50% of maximum value      4
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 The Cumulus RMP operating system resides on a switch as a *disk image*.
 Switches running Cumulus RMP can be configured with multiple disk
@@ -204,8 +203,7 @@ directories part of a persistent configuration.
 | ----------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | /etc/network/           | Network configuration files, most notably `/etc/network/interfaces` | [Configuring and Managing Network Interfaces](/version/cumulus-rmp-25esr/Configuring-and-Managing-Network-Interfaces/)                                                                    | [wiki.debian.org/NetworkConfiguration](https://wiki.debian.org/NetworkConfiguration)                                         |
 | /etc/resolv.conf        | DNS resolution                                                      | Not unique to Cumulus RMP: [wiki.debian.org/NetworkConfiguration\#The\_resolv.conf\_configuration\_file](https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file) | [www.debian.org/doc/manuals/debian-reference/ch05.en.html](https://www.debian.org/doc/manuals/debian-reference/ch05.en.html) |
-| /etc/hostname           | Configuration file for the hostname of the switch                   | [Quick Start Guide\#ConfiguringtheHostnameandTimeZone](Quick-Start-Guide.html#src-5116307_QuickStartGuide-ConfiguringtheHostnameandTimeZone)                                              | [wiki.debian.org/HowTo/ChangeHostname](https://wiki.debian.org/HowTo/ChangeHostname)                                         |
-| /etc/cumulus/ports.conf | Breakout cable configuration file                                   | [Configuring Switch Port Attributes\#ConfiguringBreakoutPorts](Configuring-Switch-Port-Attributes.html#src-5116358_ConfiguringSwitchPortAttributes-ConfiguringBreakoutPorts)              | N/A; please read the guide on breakout cables                                                                                |
+| /etc/hostname           | Configuration file for the hostname of the switch                   | [Quick Start Guide\#ConfiguringtheHostnameandTimeZone](/version/cumulus-rmp-25esr/Quick-Start-Guide/#configuring-the-hostname-and-time-zonespan)                                              | [wiki.debian.org/HowTo/ChangeHostname](https://wiki.debian.org/HowTo/ChangeHostname)                                         |
 
 **Additional Commonly Used Files**
 
@@ -442,11 +440,11 @@ finishes.
     
     {{%notice note%}}
     
-    SSH sessions to the switch get dropped after this step. To complete
-    the remaining instructions, connect to the console of the switch.
-    Cumulus RMP switches display their boot process to the console, so
-    you need to monitor the console specifically to complete the next
-    step.
+SSH sessions to the switch get dropped after this step. To complete
+the remaining instructions, connect to the console of the switch.
+Cumulus RMP switches display their boot process to the console, so
+you need to monitor the console specifically to complete the next
+step.
     
     {{%/notice%}}
 
@@ -588,10 +586,10 @@ expand the filesystem as needed.
     
     {{%notice note%}}
     
-    The use of `+` is very important with the `lvresize` command.
-    Issuing `lvresize` without the `+` results in the logical volume
-    size being set directly to the specified size, rather than extended.
-    
+The use of `+` is very important with the `lvresize` command.
+Issuing `lvresize` without the `+` results in the logical volume
+size being set directly to the specified size, rather than extended.
+
     {{%/notice%}}
 
 5.  Once the slot has been extended, use the `resize2fs` command to
@@ -799,12 +797,5 @@ You can also extract the image files to the current directory with the
   - [Open Network Install Environment (ONIE) Home
     Page](http://opencomputeproject.github.io/onie/)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

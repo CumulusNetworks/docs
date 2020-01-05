@@ -565,10 +565,3 @@ The following example incorporates a few `tcpdump` options:
 
   - ERSPAN rules must include `ttl` for versions 1.5.1 and earlier.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

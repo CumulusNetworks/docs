@@ -125,10 +125,3 @@ and the destination switch). Most routing protocols recognize that there
 are multiple equal-cost paths to a destination and enable any of them to
 be selected for a given traffic flow.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

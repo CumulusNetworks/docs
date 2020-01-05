@@ -29,10 +29,3 @@ updates to your network before deploying them into production. They are:
     site](https://github.com/CumulusNetworks/cldemo-netq) provides
     information on downloading and installing the hypervisor.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

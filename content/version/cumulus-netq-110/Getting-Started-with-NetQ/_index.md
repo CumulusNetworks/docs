@@ -132,7 +132,7 @@ Agent on the node.
 
 To install NetQ on Linux servers running Ubuntu, Red Hat or CentOS,
 please read the 
-[latest NetQ documentation](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Software-on-Your-Server/).
+[latest NetQ documentation](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/).
 
 ## Configuring the NetQ Agent on a Node
 

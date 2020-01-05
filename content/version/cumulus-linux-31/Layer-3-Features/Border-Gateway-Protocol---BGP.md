@@ -11,8 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
-
 BGP is the routing protocol that runs the Internet. It is an
 increasingly popular protocol for use in the data center as it lends
 itself well to the rich interconnections in a Clos topology.
@@ -1700,13 +1698,3 @@ For more information about ACLs and `cl-acltool`, see [Netfilter
 (ACLs)](/version/cumulus-linux-31/System-Management/Netfilter-ACLs/).
 
 {{%/notice%}}
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

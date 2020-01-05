@@ -124,10 +124,3 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
 
   - [en.wikipedia.org/wiki/Traceroute](https://en.wikipedia.org/wiki/Traceroute)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

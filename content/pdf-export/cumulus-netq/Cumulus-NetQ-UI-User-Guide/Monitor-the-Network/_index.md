@@ -16,10 +16,3 @@ apply across the entire network. For device-specific monitoring refer to
 [Monitor
 Switches](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Devices).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

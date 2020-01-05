@@ -30,10 +30,3 @@ switches in a large-scale environment.
   - [Zero Touch
     Provisioning](/version/cumulus-rmp-31/System-Management/Installation-Upgrading-and-Package-Management/Zero-Touch-Provisioning)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

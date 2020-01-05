@@ -69,10 +69,3 @@ applications as well.
 The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com/) page.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

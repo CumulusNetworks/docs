@@ -78,10 +78,3 @@ destination.
 
   - [ovsdb-server](http://openvswitch.org/support/dist-docs/ovsdb-server.1.html)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

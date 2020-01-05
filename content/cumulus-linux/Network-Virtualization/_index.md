@@ -34,7 +34,7 @@ The VXLAN tunnel endpoints cannot share a common subnet; there must be at least 
 
 ### Cut-through Mode and Store and Forward Switching
 
-On switches using Broadcom Tomahawk, Trident II, Trident II+, and Trident3 ASICs, Cumulus Linux supports store and forward switching for VXLANs but does **not** support [cut-through mode](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management#configure-cut-through-mode-and-store-and-forward-switching).
+On switches using Broadcom Tomahawk, Trident II, Trident II+, and Trident3 ASICs, Cumulus Linux supports store and forward switching for VXLANs but does **not** support [cut-through mode](../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management#configure-cut-through-mode-and-store-and-forward-switching).
 
 On switches using Mellanox Spectrum ASICs, Cumulus Linux supports cut-through mode for VXLANs but does **not** support store and forward switching.
 

@@ -36,12 +36,12 @@ as follows:
 </tr>
 <tr class="even">
 <td><p>cl-ospf</p></td>
-<td><p><a href="/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol">OSPFv2</a> commands. For example:<br />
+<td><p><a href="/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol">OSPFv2</a> commands. For example:<br />
 <code>cumulus@switch:~$ sudo cl-ospf area 0.0.0.1 range 10.10.10.0/24</code></p></td>
 </tr>
 <tr class="odd">
 <td><p>cl-ospf6</p></td>
-<td><p><a href="/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3---Protocol">OSPFv3</a> commands.</p></td>
+<td><p><a href="/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3-Protocol">OSPFv3</a> commands.</p></td>
 </tr>
 <tr class="even">
 <td><p>cl-ra</p></td>
@@ -130,7 +130,7 @@ To enable topology checking (PTM) with the Cumulus Linux CLI, run:
 ### Configuring MTU in IPv6 Network Discovery</span>
 
 To configure
-[MTU](Layer-1-and-Switch-Port-Attributes.html#src-5118373_Layer1andSwitchPortAttributes-mtu)
+[MTU](/version/cumulus-linux-30/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#mtu-span)
 in IPv6 network discovery for an interface under Quagga, you would run:
 
     switch(config)# int swp3
@@ -211,10 +211,3 @@ To display BGP information with the Cumulus Linux CLI, run:
 
     cumulus@switch:~$ sudo cl-bgp summary
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

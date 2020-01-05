@@ -575,7 +575,7 @@ on the switch.
 
 ### Configuring SNMP with Management VRF (used prior to Cumulus Linux 3.6)
 
-When you configure [Management VRF](/display/CL36/Management+VRF), you
+When you configure [Management VRF](/version/cumulus-linux-36/Layer-3/Management-VRF/), you
 need to be aware of the interface IP addresses on which SNMP is
 listening. If you set listening-address to all, the `snmpd` daemon
 responds to incoming requests on all interfaces that are in the default

@@ -172,10 +172,3 @@ entry under the **\# Specify interfaces** comment:
 
   - <http://wiki.debian.org/NTP>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

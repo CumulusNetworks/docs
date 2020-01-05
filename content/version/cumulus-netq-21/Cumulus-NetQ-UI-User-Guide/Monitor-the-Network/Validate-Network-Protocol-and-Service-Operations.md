@@ -1156,10 +1156,3 @@ To view the results:
 16. Return to the full screen Validation Results card to view another
     Scheduled Validation Result.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

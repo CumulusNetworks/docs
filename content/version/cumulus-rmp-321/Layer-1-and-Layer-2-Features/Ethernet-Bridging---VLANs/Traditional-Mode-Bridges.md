@@ -204,10 +204,3 @@ To create the above example, add the following configuration to the
 You can find more examples of VLAN tagging in [this
 chapter](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

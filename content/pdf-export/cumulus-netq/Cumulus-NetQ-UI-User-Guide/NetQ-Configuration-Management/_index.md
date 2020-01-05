@@ -292,10 +292,3 @@ To add a scheduled validation:
 
 4.  Configure the request. Refer to [Validate Network Protocol and Service Operations](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-the-Network/Validate-Network-Protocol-and-Service-Operations) for details.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -11,8 +11,7 @@ version: 3.2.1
 imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
 ---
-This article shows two examples of [VLAN
-tagging](Ethernet-Bridging-VLANs.html#src-5127597_EthernetBridging-VLANs-vlan_tagging),
+This article shows two examples of [VLAN tagging](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/),
 one basic and one more advanced. They both demonstrate the streamlined
 interface configuration from `ifupdown2`.
 
@@ -339,10 +338,3 @@ VLAN ID translated from 100 to 200:
 
 {{% imgOld 2 %}}
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

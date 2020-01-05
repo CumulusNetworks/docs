@@ -504,7 +504,7 @@ Don't specify a process ID unless you are using multi-instance OSPF.
 {{%notice note%}}
 
 If you disabled the
-[integrated](Configuring-Quagga.html#src-5127042_ConfiguringQuagga-integrated_cfg)
+[integrated](/version/cumulus-linux-321/Layer-Three/Configuring-Quagga/#span-idsrc-5127042-configuringquagga-integrated-cfg-classconfluence-anchor-linkspanunderstanding-integrated-configurationsspan)
 Quagga configuration, you must create a separate `ospfd` configuration
 file for each instance. The `ospfd.conf` file must include the instance
 ID in the file name. Continuing with our example, you would create
@@ -751,10 +751,3 @@ Using `tcpdump` to capture OSPF packets:
   - Moy, John T. OSPF: Anatomy of an Internet Routing Protocol.
     Addison-Wesley.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

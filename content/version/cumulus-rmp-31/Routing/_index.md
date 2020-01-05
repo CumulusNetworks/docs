@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
 ---
-<details>
 
 This chapter discusses routing on switches running Cumulus RMP.
 
@@ -132,12 +131,5 @@ Configuration Files
 
   - [www.nongnu.org/quagga/docs/docs-info.html\#Static-Route-Commands](http://www.nongnu.org/quagga/docs/docs-info.html#Static-Route-Commands)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

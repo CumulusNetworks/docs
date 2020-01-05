@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 Setting the time zone, date and time requires root privileges; use
 `sudo`.
@@ -250,12 +249,5 @@ listed below.
 
   - [wiki.debian.org/NTP](http://wiki.debian.org/NTP)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

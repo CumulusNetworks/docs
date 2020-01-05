@@ -1311,7 +1311,7 @@ For more information on using Cumulus VX and Vagrant, refer to the
 
 ## Troubleshooting with LNV Active-Active
 
-In addition to the [troubleshooting for single-attached LNV](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization-LNV/#verification-and-troubleshooting),
+In addition to the [troubleshooting for single-attached LNV](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/#verification-and-troubleshooting),
 there is now the MLAG daemon (`clagd`) to consider. The `clagctl` command
 gives the output of MLAG behavior and any inconsistencies that may arise
 between a MLAG pair.

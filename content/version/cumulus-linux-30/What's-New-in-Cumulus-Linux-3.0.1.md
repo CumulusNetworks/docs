@@ -33,18 +33,14 @@ Cumulus Linux 3.0 includes these new features and platforms:
 
   - New installer
 
-  - [Quagga
-    reload](/version/cumulus-linux-30/Layer-3-Features/Quagga-Overview)
+  - [Quagga reload](/version/cumulus-linux-30/Layer-3-Features/Quagga-Overview)
 
-  - [VRF: virtual routing and
-    forwarding](/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF)
+  - [VRF: virtual routing and forwarding](/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF)
 
-  - [BGP
-    add-path](Border-Gateway-Protocol-BGP.html#src-5118393_BorderGatewayProtocol-BGP-add-path)
+  - [BGP add-path](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP/#span-id-src-5118393-bordergatewayprotocol-bgp-add-path-class-confluence-anchor-link-span-bgp-add-path-span)
     (TX and RX)
 
-  - [Redistribute
-    neighbor](/version/cumulus-linux-30/Layer-3-Features/Redistribute-Neighbor)
+  - [Redistribute neighbor](/version/cumulus-linux-30/Layer-3-Features/Redistribute-Neighbor)
 
   - New ASICs and platforms
     
@@ -290,8 +286,7 @@ no longer present in Cumulus Linux.
 
 ### Expanded Reserved VLAN Range</span>
 
-Cumulus Linux now [reserves a
-range](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-5118287_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-range)
+Cumulus Linux now [reserves a range](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/)
 of 1000 VLAN IDs, from 3000 to 3999. Previously, the range was 700
 VLANs, numbered 3300 to 3999.
 
@@ -2015,10 +2010,3 @@ are included in Cumulus Linux 3.0:
     [monitoring](/version/cumulus-linux-30/Monitoring-and-Troubleshooting/)
     your switches.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

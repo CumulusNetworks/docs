@@ -191,10 +191,3 @@ To install the NetQ Agent on a Red Hat or CentOS host, do the following:
     
         cumulus@switch:~$ netq show agents
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

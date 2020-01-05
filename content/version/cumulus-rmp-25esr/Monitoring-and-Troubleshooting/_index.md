@@ -177,10 +177,3 @@ File](/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Understanding-an
 The links listed under Child Pages below discuss more specific
 monitoring topics.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

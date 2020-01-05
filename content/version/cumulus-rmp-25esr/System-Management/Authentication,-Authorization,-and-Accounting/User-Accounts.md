@@ -51,10 +51,3 @@ shell/user mode. [Here are the
 instructions](/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery)
 on how to do this using PowerPC and x86 switches.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

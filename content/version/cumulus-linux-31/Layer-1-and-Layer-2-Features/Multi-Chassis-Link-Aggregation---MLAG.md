@@ -11,8 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
-
 Multi-Chassis Link Aggregation, or MLAG, enables a server or switch with
 a two-port bond (such as a link aggregation group/LAG, EtherChannel,
 port group, or trunk) to connect those ports to different switches and
@@ -270,8 +268,7 @@ clagd.service` to apply the new configuration.
 
 Do not use 169.254.0.1 as the MLAG peerlink IP address, as Cumulus Linux
 uses <span style="color: #000000;"> this address </span> exclusively for
-[BGP
-unnumbered](Border-Gateway-Protocol-BGP.html#src-5122130_BorderGatewayProtocol-BGP-unnumbered)
+[BGP unnumbered](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP/#span-id-src-5122130-bordergatewayprotocol-bgp-unnumbered-class-confluence-anchor-link-span-using-bgp-unnumbered-interfaces-span)
 interfaces.
 
 {{%/notice%}}
@@ -286,8 +283,7 @@ in `/etc/network/interfaces` on each peer switch.
 {{% imgOld 5 %}}
 
 Configuring these interfaces uses syntax from ` ifupdown2  `and the
-[VLAN-aware bridge driver
-mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
+[VLAN-aware bridge driver mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/).
 The bridges use these Cumulus Linux-specific keywords:
 
   - `bridge-vids`, which defines the allowed list of tagged 802.1q VLAN
@@ -307,8 +303,7 @@ communication (*peerlink.4094* in the sample configuration below).
 
 At minimum, this VLAN subinterface should not be in your Layer 2 domain,
 and you should give it a very high VLAN ID (up to 4094). Read more about
-the [range of VLAN IDs you can
-use](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-5122017_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-range).
+the [range of VLAN IDs you can use](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/).
 
 {{%/notice%}}
 
@@ -559,13 +554,11 @@ to each MLAG pair in the network. For more details refer to `man clagd`.
 
 ### Configuring MLAG with a Traditional Mode Bridge</span>
 
-It's possible to configure MLAG with a bridge in [traditional
-mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
-instead of [VLAN-aware
-mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
+It's possible to configure MLAG with a bridge in [traditional mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
+instead of [VLAN-aware mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments).
 In order to do so, the peer link and all dual-connected links must be
 configured as
-[untagged/native](Ethernet-Bridging-VLANs.html#src-5122007_EthernetBridging-VLANs-VLAN_tagging)
+[untagged/native](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-Tagging/)
 ports on a bridge (note the absence of any VLANs in the `bridge-ports`
 line and the lack of the `bridge-vlan-aware` parameter below):
 
@@ -864,7 +857,7 @@ active/active forwarding.
 Then, to connect the spine switches to the core switches, you need to
 determine whether the routing is static or dynamic. If it's dynamic, you
 must choose which protocol -
-[OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol)
+[OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/)
 or
 [BGP](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP)
 - to use. When enabling a routing protocol in an MLAG environment it is
@@ -955,7 +948,7 @@ section.
 ### <span id="src-5122078_Multi-ChassisLinkAggregation-MLAG-mtu" class="confluence-anchor-link"></span>Understanding MTU in an MLAG Configuration</span>
 
 Note that the
-[MTU](Layer-1-and-Switch-Port-Attributes.html#src-5122107_Layer1andSwitchPortAttributes-mtu)
+[MTU](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#span-id-src-5122107-layer1andswitchportattributes-mtu-class-confluence-anchor-link-span-mtu-span)
 in MLAG traffic is determined by the bridge MTU. Bridge MTU is
 determined by the lowest MTU setting of an interface that is a member of
 the bridge. If an MTU other than the default of 1500 bytes is desired,
@@ -965,8 +958,7 @@ that are members of the MLAG bridges in the entire bridged domain.
 For example, if an MTU of 9216 is desired through the MLAG domain in the
 example shown above:
 
-On the the leaf switches, [configure
-`mtu 9216`](Layer-1-and-Switch-Port-Attributes.html#src-5122107_Layer1andSwitchPortAttributes-mtu)
+On the the leaf switches, [configure `mtu 9216`](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#span-id-src-5122107-layer1andswitchportattributes-mtu-class-confluence-anchor-link-span-mtu-span)
 for each of following interfaces, since they are members of bridge
 *br0*: spine1-2, peerlink, host1, host2.
 
@@ -1050,8 +1042,7 @@ network.
 
 Further, with MLAG, Cumulus Networks recommends you enable BPDU guard on
 the host-facing bond interfaces. (For more information about BPDU guard,
-see [BPDU Guard and Bridge
-Assurance](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-5122089_SpanningTreeandRapidSpanningTree-bpdu).)
+see [BPDU Guard and Bridge Assurance](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree/#span-id-src-5122089-spanningtreeandrapidspanningtree-bpdu-class-confluence-anchor-link-span-bpdu-guard-span).)
 
 ### Debugging STP with MLAG</span>
 
@@ -1117,12 +1108,5 @@ primary.
 
   - /etc/network/interfaces
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

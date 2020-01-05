@@ -43,11 +43,11 @@ Consider the following example:
 
 Preconfiguring remote MAC addresses does not scale. A better solution is
 to use the Cumulus Networks [Lightweight Network
-Virtualization](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722663)
+Virtualization](..)
 feature, or a controller-based option like [Midokura MidoNet and
-OpenStack](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722662)
+OpenStack](../Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
 or [VMware
-NSX](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=2722660).
+NSX](../Integrating-with-VMware-NSX).
 
 {{%/notice%}}
 
@@ -139,10 +139,3 @@ Use the following commands to troubleshoot issues on the switch:
             vxlan id 10 remote 10.2.1.3 local 10.2.1.1 srcport 0 0 dstport 4789 ageing 300 
             bridge_slave state forwarding priority 8 cost 100 hairpin off guard off root_block off fastleave off learning on flood on port_id 0x8004 port_no 0x4 designated_port 32772 designated_cost 0 designated_bridge 8000.2a:17:9a:8c:c4:71 designated_root 8000.2a:17:9a:8c:c4:71 hold_timer    0.00 message_age_timer    0.00 forward_delay_timer    0.00 topology_change_ack 0 config_pending 0 proxy_arp off proxy_arp_wifi off mcast_router 1 mcast_fast_leave off mcast_flood on addrgenmode eui64 
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

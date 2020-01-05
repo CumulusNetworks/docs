@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 Hardware datapath configuration manages packet buffering, queueing and
 scheduling in hardware. There are two configuration input files:
@@ -53,14 +52,14 @@ which are assigned equal scheduling weights.
 
 Datapath configuration takes effect when you initialize `switchd`.
 Changes to the `traffic.conf` file require you to [restart the
-`switchd`](Configuring-switchd.html#src-5126758_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5126758_Configuringswitchd-restartswitchd)
 service.
 
 ## Commands</span>
 
 If you modify the configuration in the
 `/etc/cumulus/datapath/traffic.conf` file, you must [restart
-`switchd`](Configuring-switchd.html#src-5126758_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5126758_Configuringswitchd-restartswitchd)
 for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -424,7 +423,7 @@ sequences of contiguous ports; you can see which ports are contiguous in
         ...
 
 [Restart
-`switchd`](Configuring-switchd.html#src-5126758_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5126758_Configuringswitchd-restartswitchd)
 to allow the PFC configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -471,7 +470,7 @@ link_pause.pause_port_group.tx_enable = true
 ```
 
 [Restart
-`switchd`](Configuring-switchd.html#src-5126758_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5126758_Configuringswitchd-restartswitchd)
 to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -577,7 +576,7 @@ through swp4 and swp6:
      ecn.ecn_port_group.probability = 100
 
 [Restart
-`switchd`](Configuring-switchd.html#src-5126758_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5126758_Configuringswitchd-restartswitchd)
 to allow the ECN configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -592,13 +591,3 @@ to allow the ECN configuration changes to take effect:
 
   - [iptables-extensions man
     page](http://ipset.netfilter.org/iptables-extensions.man.html)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

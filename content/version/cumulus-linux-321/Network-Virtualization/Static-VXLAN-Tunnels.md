@@ -15,7 +15,7 @@ In VXLAN-based networks, there are a range of complexities and
 challenges in determining the destination *virtual tunnel endpoints*
 (VTEPs) for any given VXLAN. At scale, various solutions, including
 [Lightweight Network
-Virtualization](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/)
+Virtualization](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 (LNV), controller-based options like [Midokura
 MidoNet](/version/cumulus-linux-321/Network-Virtualization/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack)
 or [VMware
@@ -282,10 +282,3 @@ Once you configure all the leaf switches, check for replication entries:
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.12 self permanent
     00:00:00:00:00:00 dev vni-10 dst 10.0.0.13 self permanent
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

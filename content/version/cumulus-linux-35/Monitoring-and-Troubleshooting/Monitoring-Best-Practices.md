@@ -1053,12 +1053,5 @@ sudo: pam_unix(sudo:session): session closed for user root</code></pre></td>
 </tbody>
 </table>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

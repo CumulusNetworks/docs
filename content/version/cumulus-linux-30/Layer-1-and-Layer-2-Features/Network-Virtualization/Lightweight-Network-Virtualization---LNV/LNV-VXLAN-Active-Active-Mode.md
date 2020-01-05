@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
 ---
-<details>
 
 *LNV active-active mode* allows a pair of
 [MLAG](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)
@@ -105,7 +104,7 @@ LNV requires the following underlying technologies to work correctly.
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>LNV</p></td>
@@ -113,7 +112,7 @@ LNV requires the following underlying technologies to work correctly.
 </tr>
 <tr class="even">
 <td><p>STP</p></td>
-<td><p><a href="#src-5118334_LNVVXLANActive-ActiveMode-bpdu">BPDU filter and BPDU guard</a> should be enabled in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.<br />
+<td><p> [BPDU filter and BPDU guard](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree/#span-id-src-5118355-spanningtreeandrapidspanningtree-bpdu-class-confluence-anchor-link-span-bpdu-guard-span) should be enabled in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN.<br />
 Configurations for the demonstration are provided below.</p></td>
 </tr>
 </tbody>
@@ -1963,12 +1962,12 @@ firewall before it is allowed to go to another tenant (in the form of a
 VXLAN). This can be accomplished in multiple ways, but the two most
 popular methods are listed below:
 
-  - Use [VRF](/display/CL30/Virtual+Routing+and+Forwarding+-+VRF)
+  - Use [VRF](/version/cumulus-linux-30/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF/)
     (available on Cumulus Linux 3.0 and newer).
 
   - Force the gateway for the VXLAN to be the firewall's IP address.
     
-      - Enforce this with [cl-acltool](/display/CL30/Netfilter+-+ACLs)
+      - Enforce this with [cl-acltool](/version/cumulus-linux-30/System-Management/Netfilter-ACLs/)
         (for example, ACLs and `iptables`).
 
 In the above example, Bridge Orange and Bridge Yellow would be placed
@@ -2148,8 +2147,7 @@ For more information on using Cumulus VX and Vagrant, refer to the
 
 ## Troubleshooting with LNV Active-Active</span>
 
-In addition to the [troubleshooting for single-attached
-LNV](Lightweight-Network-Virtualization---LNV.html#src-5118319_LightweightNetworkVirtualization-LNV-VerificationandTroubleshooting),
+In addition to the [troubleshooting for single-attached LNV](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/#verification-and-troubleshooting),
 there is now the MLAG daemon (`clagd`) to consider. The command
 `clagctl` gives the output of MLAG behavior and any inconsistencies that
 may arise between a MLAG pair.
@@ -2238,17 +2236,10 @@ indicating that there is a `vxlan-id` mis-match on VXLAN10.
 ## See Also</span>
 
   - [Lightweight Network
-    Virtualization](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/)
+    Virtualization](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/)
 
   - [LNV Full Example (Single
-    Attached)](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/LNV-Full-Example)
+    Attached)](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/LNV-Full-Example)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

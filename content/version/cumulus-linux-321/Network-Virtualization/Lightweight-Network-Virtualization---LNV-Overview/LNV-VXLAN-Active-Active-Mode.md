@@ -12,7 +12,7 @@ imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
 *LNV active-active mode* allows a pair of
-[MLAG](/display/CL321/Multi-Chassis+Link+Aggregation+-+MLAG) switches to
+[MLAG](/version/cumulus-linux-321/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG/) switches to
 act as a single VTEP, providing active-active VXLAN termination for bare
 metal as well as virtualized workloads.
 
@@ -99,11 +99,11 @@ LNV requires the following underlying technologies to work correctly.
 <tbody>
 <tr class="odd">
 <td><p>MLAG</p></td>
-<td><p>Refer to the <a href="#src-5126929_LNVVXLANActive-ActiveMode-configuring">MLAG chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/version/cumulus-linux-321/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG/">MLAG chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/display/CL321/Open+Shortest+Path+First+-+OSPF+-+Protocol">OSPF chapter</a> or the <a href="/display/CL321/Configuring+Border+Gateway+Protocol+-+BGP">BGP Chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol/">OSPF chapter</a> or the <a href="/version/cumulus-linux-321/Layer-Three/Border-Gateway-Protocol-BGP/">BGP Chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>LNV</p></td>
@@ -1396,10 +1396,3 @@ indicating that there is a `vxlan-id` mis-match on VXLAN10
   - [Network virtualization chapter, Cumulus Linux user
     guide](/version/cumulus-linux-321/Network-Virtualization/)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

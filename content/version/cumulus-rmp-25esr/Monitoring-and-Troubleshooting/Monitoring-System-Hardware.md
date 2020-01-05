@@ -341,10 +341,3 @@ and scheduler priority - in its configuration file,
   - [Net-SNMP
     tutorials](http://net-snmp.sourceforge.net/wiki/index.php/Tutorials)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

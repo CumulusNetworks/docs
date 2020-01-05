@@ -91,7 +91,7 @@ iface br-20 inet manual
 <li><p>Ability to use <a href="/version/cumulus-linux-321/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree">spanning tree</a> commands</p>
 <ul>
 <li><p>mstpctl-portadminedge</p></li>
-<li><p><a href="Spanning-Tree-and-Rapid-Spanning-Tree.html#src-5126866_SpanningTreeandRapidSpanningTree-bpdu">BPDU guard</a></p></li>
+<li><p><a href="/version/cumulus-linux-321/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree/#span-idsrc-5126866-spanningtreeandrapidspanningtree-bpdu-classconfluence-anchor-linkspanbpdu-guardspan">BPDU guard</a></p></li>
 </ul></li>
 <li><p>Layer 2 reachability to all VMs</p></li>
 </ul>
@@ -162,7 +162,7 @@ iface br-20 inet manual
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><a href="/version/cumulus-linux-321/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
+<td><p><a href="/version/cumulus-linux-321/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <pre><code>auto bridge
@@ -411,7 +411,7 @@ iface eth1 inet static
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Routing on the host means there is a routing application (such as <a href="/display/CL321/Quagga+Overview">Cumulus Networks Quagga</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
+<td><p>Routing on the host means there is a routing application (such as <a href="/version/cumulus-linux-321/Layer-Three/Configuring-Quagga/">Cumulus Networks Quagga</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>No requirement for MLAG</p></li>
@@ -514,7 +514,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="#src-5127088" class="unresolved">BGP</a> or <a href="/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol">OSPF</a>.</p></td>
+<td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="#src-5127088" class="unresolved">BGP</a> or <a href="/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol">OSPF</a>.</p></td>
 <td><p><strong><strong>Benefits</strong></strong></p>
 <p>In addition to routing on a host:</p>
 <ul>
@@ -649,7 +649,7 @@ iface eth2 inet static
 <tbody>
 <tr class="odd">
 <td><p> </p></td>
-<td><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
+<td><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <p><code>/etc/network/interfaces</code></p>
@@ -734,16 +734,9 @@ iface br-10
 <td><p> </p></td>
 <td><p> </p></td>
 <td><ul>
-<li><p><a href="/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
+<li><p><a href="/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/">Cumulus Linux Lightweight Network Virtualization (LNV) documentation</a></p></li>
 </ul></td>
 </tr>
 </tbody>
 </table>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

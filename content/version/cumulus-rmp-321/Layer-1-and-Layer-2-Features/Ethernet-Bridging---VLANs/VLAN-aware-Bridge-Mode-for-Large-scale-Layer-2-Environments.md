@@ -48,7 +48,7 @@ VLAN-aware bridge on a given switch.
 
 VLAN-aware bridges can be configured with the Network Command Line
 Utility
-([NCLU](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120643)).
+([NCLU](/version/cumulus-rmp-321/System-Configuration/Network-Command-Line-Utility/)).
 The example below shows the NCLU commands required to create a
 VLAN-aware bridge configured for STP, that contains two switch ports,
 and includes 3 VLANs - the tagged VLANs 100 and 200 and the untagged
@@ -541,10 +541,3 @@ the following:
     bridge. The original configuration must be deleted, and all member
     switch ports must be brought down, then a new bridge can be created.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

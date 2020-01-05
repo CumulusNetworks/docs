@@ -19,4 +19,4 @@ Installing NetQ software can be accomplished in one of three ways:
 
 In all cases you must also load the NetQ Agent software onto the switches and hosts you want to monitor.
 
-If you are upgrading from a prior version of NetQ, refer to [Upgrade NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/) instead.
+<!-- If you are upgrading from a prior version of NetQ, refer to [Upgrade NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/) instead. -->

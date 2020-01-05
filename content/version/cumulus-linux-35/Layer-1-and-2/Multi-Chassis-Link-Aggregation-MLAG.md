@@ -37,7 +37,7 @@ physical switches.
 
 A basic setup looks like this:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/old_doc_images/bgp-unnumbered.png" >}}}
 
 {{%notice tip%}}
 
@@ -1356,7 +1356,7 @@ active/active forwarding.
 Then, to connect the spine switches to the core switches, you need to
 determine whether the routing is static or dynamic. If it's dynamic, you
 must choose which protocol -
-[OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-OSPF---Protocol)
+[OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-OSPF-Protocol)
 or
 [BGP](/version/cumulus-linux-35/Layer-3/Border-Gateway-Protocol-BGP) -
 to use. When enabling a routing protocol in an MLAG environment it is

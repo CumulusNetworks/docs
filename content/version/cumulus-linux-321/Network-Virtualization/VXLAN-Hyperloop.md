@@ -366,13 +366,5 @@ limitation on this specific ASIC type.
   - **Is the VRR MAC address unique per subnet?**  
       
     Make sure that [VRR is configured
-    correctly](/display/CL321/Virtual+Router+Redundancy+-+VRR) and that
+    correctly](/version/cumulus-linux-321/Layer-One-and-Two/Virtual-Router-Redundancy-VRR/) and that
     each MAC address is unique per VLAN.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

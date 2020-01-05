@@ -11,8 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
-
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery
 Protocol, or LLDP) standard. LLDP allows you to know which ports are
 neighbors of a given port. By default, `lldpd` runs as a daemon and is
@@ -305,12 +303,5 @@ option to enable the SNMP subagent.
 
   - Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

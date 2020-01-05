@@ -11,10 +11,9 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
 
 *LNV active-active mode* allows a pair of
-[MLAG](/display/CL31/Multi-Chassis+Link+Aggregation+-+MLAG) switches to
+[MLAG](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG/) switches to
 act as a single VTEP, providing active-active VXLAN termination for bare
 metal as well as virtualized workloads.
 
@@ -105,7 +104,7 @@ LNV requires the following underlying technologies to work correctly.
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/">OSPF chapter</a> or the <a href="/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>LNV</p></td>
@@ -2142,8 +2141,7 @@ For more information on using Cumulus VX and Vagrant, refer to the
 
 ## Troubleshooting with LNV Active-Active</span>
 
-In addition to the [troubleshooting for single-attached
-LNV](Lightweight-Network-Virtualization---LNV.html#src-5122049_LightweightNetworkVirtualization-LNV-VerificationandTroubleshooting),
+In addition to the [troubleshooting for single-attached LNV](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/#verification-and-troubleshooting-span),
 there is now the MLAG daemon (clagd) to consider. The `clagctl` command
 gives the output of MLAG behavior and any inconsistencies that may arise
 between a MLAG pair.
@@ -2228,18 +2226,6 @@ indicating that there is a `vxlan-id` mis-match on VXLAN10
 
 ## See Also</span>
 
-  - [Lightweight Network
-    Virtualization](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/)
+  - [Lightweight Network Virtualization](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/)
 
-  - [LNV Full Example (Single
-    Attached)](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/LNV-Full-Example)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>
+  - [LNV Full Example](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/LNV-Full-Example/)

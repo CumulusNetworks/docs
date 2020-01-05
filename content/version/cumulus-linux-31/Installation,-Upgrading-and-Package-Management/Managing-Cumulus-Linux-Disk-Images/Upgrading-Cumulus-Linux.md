@@ -223,8 +223,8 @@ directories part of a backup strategy.
 | /etc/network/             | Network configuration files, most notably `/etc/network/interfaces` and `/etc/network/interfaces.d/` | [Configuring and Managing Network Interfaces](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/)                                                                       | [wiki.debian.org/NetworkConfiguration](https://wiki.debian.org/NetworkConfiguration)                                         |
 | /etc/resolv.conf          | DNS resolution                                                                                       | Not unique to Cumulus Linux: [wiki.debian.org/NetworkConfiguration\#The\_resolv.conf\_configuration\_file](https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file) | [www.debian.org/doc/manuals/debian-reference/ch05.en.html](https://www.debian.org/doc/manuals/debian-reference/ch05.en.html) |
 | /etc/quagga/              | Routing application (responsible for BGP and OSPF)                                                   | [Quagga Overview](/version/cumulus-linux-31/Layer-3-Features/Quagga-Overview)                                                                                                               | [packages.debian.org/wheezy/quagga](https://packages.debian.org/wheezy/quagga)                                               |
-| /etc/hostname             | Configuration file for the hostname of the switch                                                    | [Quick Start Guide\#ConfiguringtheHostnameandTimeZone](Quick-Start-Guide.html#src-5121921_QuickStartGuide-ConfiguringtheHostnameandTimeZone)                                                | [wiki.debian.org/HowTo/ChangeHostname](https://wiki.debian.org/HowTo/ChangeHostname)                                         |
-| /etc/cumulus/ports.conf   | Breakout cable configuration file                                                                    | [Layer 1 and Switch Port Attributes\#ConfiguringBreakoutPorts](Layer-1-and-Switch-Port-Attributes.html#src-5122107_Layer1andSwitchPortAttributes-ConfiguringBreakoutPorts)                  | N/A; please read the guide on breakout cables                                                                                |
+| /etc/hostname             | Configuration file for the hostname of the switch                                                    | [Quick Start Guide\#ConfiguringtheHostnameandTimeZone](/version/cumulus-linux-31/Quick-Start-Guide/#configuring-the-hostname-and-time-zonespan)                                                | [wiki.debian.org/HowTo/ChangeHostname](https://wiki.debian.org/HowTo/ChangeHostname)                                         |
+| /etc/cumulus/ports.conf   | Breakout cable configuration file                                                                    | [Layer 1 and Switch Port Attributes\#ConfiguringBreakoutPorts](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#span-idsrc-5122107-layer1andswitchportattributes-breakout-classconfluence-anchor-linkspanconfiguring-breakout-portsspan)                  | N/A; please read the guide on breakout cables                                                                                |
 | /etc/cumulus/switchd.conf | Switchd configuration                                                                                | [Configuring switchd](/version/cumulus-linux-31/System-Management/Configuring-switchd)                                                                                                      | N/A; please read the guide on switchd configuration                                                                          |
 
 #### Additional Commonly Used Files</span>
@@ -275,9 +275,7 @@ directories part of a backup strategy.
 
 ### Upgrading Switches in an MLAG Pair</span>
 
-If you have a pair of Cumulus Linux switches as part of an [MLAG
-(multi-chassis link aggregation)
-pair](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG),
+If you have a pair of Cumulus Linux switches as part of an [MLAG (multi-chassis link aggregation)pair](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG),
 you should only upgrade each switch when it is in the *secondary role*.
 The upgrade path is as follows:
 
@@ -296,9 +294,7 @@ The upgrade path is as follows:
     
         cumulus@switch:~$ sudo clagctl priority VALUE
 
-For more information about setting the priority, see [Understanding
-Switch
-Roles](Multi-Chassis-Link-Aggregation-MLAG.html#src-5122078_Multi-ChassisLinkAggregation-MLAG-roles).
+For more information about setting the priority, see [Understanding Switch Roles](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG/#span-idsrc-5122078-multi-chassislinkaggregation-mlag-roles-classconfluence-anchor-linkspanunderstanding-switch-rolesspan).
 
 {{%notice warning%}}
 
@@ -623,10 +619,3 @@ deployment, see the [Automation Solutions
 section](https://cumulusnetworks.com/solutions/automation/) on
 cumulusnetworks.com.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

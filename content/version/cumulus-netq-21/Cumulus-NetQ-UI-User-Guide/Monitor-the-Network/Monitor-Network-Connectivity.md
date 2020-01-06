@@ -404,7 +404,7 @@ large or small Trace Results card, respectively.
 The small On-demand Trace Results card
 displays:
 
-{{% imgOld 22 %}}
+{{<img src="/images/old_doc_images/sch-trace-request-small-card.png" >}}
 
 <table>
 <colgroup>

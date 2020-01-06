@@ -68,20 +68,20 @@ file. To create a traditional mode bridge:
     
     {{%notice note%}}
     
-    The name of the bridge must be:
-    
-      - Compliant with Linux interface naming conventions.
-    
-      - Unique within the switch.
+The name of the bridge must be:
+
+  - Compliant with Linux interface naming conventions.
+
+  - Unique within the switch.
     
     {{%/notice%}}
     
     {{%notice warning%}}
-    
-    Do not try to bridge the management port, eth0, with any switch
-    ports (like swp0, swp1, and so forth). For example, if you created a
-    bridge with eth0 and swp1, it will **not** work.
-    
+  
+  Do not try to bridge the management port, eth0, with any switch
+  ports (like swp0, swp1, and so forth). For example, if you created a
+  bridge with eth0 and swp1, it will **not** work.
+  
     {{%/notice%}}
 
 3.  Reload the network configuration using the `ifreload` command:
@@ -93,13 +93,7 @@ file. To create a traditional mode bridge:
 You can configure multiple bridges, in order to logically divide a
 switch into multiple layer 2 domains. This allows for hosts to
 communicate with other hosts in the same domain, while separating them
-fro hosts in other domains.
-
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
+from hosts in other domains.
 
 {{%notice info%}}
 
@@ -107,21 +101,15 @@ You can create only one VLAN-aware bridge on a switch.
 
 {{%/notice%}}
 
-</div>
-
-</div>
-
 The diagram below shows a multiple bridge configuration, where host-1
 and host-2 are connected to bridge-A, while host-3 and host-4 are
 connected to bridge-B. This means that:
 
-  - host-1 and host-2 can communicate with each other.
+- host-1 and host-2 can communicate with each other.
+- host-3 and host-4 can communicate with each other.
+- host-1 and host-2 cannot communicate with host-3 and host-4.
 
-  - host-3 and host-4 can communicate with each other.
-
-  - host-1 and host-2 cannot communicate with host-3 and host-4.
-
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/multiple-bridges.png" >}}
 
 This example configuration looks like this in the
 `/etc/network/interfaces` file:

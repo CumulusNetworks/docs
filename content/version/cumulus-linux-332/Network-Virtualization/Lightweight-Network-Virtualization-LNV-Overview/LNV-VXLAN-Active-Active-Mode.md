@@ -103,7 +103,7 @@ LNV requires the following underlying technologies to work correctly.
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/version/cumulus-linux-332/Layer-Three/Open-Shortest-Path-First-OSPP-Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-332/Layer-Three/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/version/cumulus-linux-332/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol">OSPF chapter</a> or the <a href="/version/cumulus-linux-332/Layer-Three/Border-Gateway-Protocol-BGP">BGP chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>LNV</p></td>

@@ -66,9 +66,9 @@ To filter EVPN routes based on the route-type and allow only certain types of EV
 
 <summary>NCLU Commands </summary>
 
-Use these commands `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn default-route` and the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn route-type (macip|prefix|multicast)` commands.
+Use the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn default-route` command and the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn route-type (macip|prefix|multicast)` command.
 
-The following example command configures EVPN to advertise type-5 routes only:
+The following example commands configure EVPN to advertise type-5 routes only:
 
 ```
 cumulus@switch:~$ net add routing route-map map1 permit 1 match evpn route-type prefix

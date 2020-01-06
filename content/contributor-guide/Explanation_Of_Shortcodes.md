@@ -86,4 +86,4 @@ For example, the following code:
 
 Renders this image with a caption:
 
-{{<figure src="/images/uploads/NetQAgentLogFormat.png" alt="NetQAgentLogFormat.png" caption="NetQ Agent log format" height="50px" >}}
+{{<figure src="/images/old_doc_images/NetQAgentLogFormat.png" alt="NetQAgentLogFormat.png" caption="NetQ Agent log format" height="50px" >}}

@@ -28,7 +28,7 @@ configure and run both of these trace types.
 
 The small Trace Request card displays:
 
-{{<figure src="/images/uploads/trace-request-small-card.png" width="200">}}
+{{<figure src="/images/old_doc_images/trace-request-small-card.png" width="200">}}
 
 <table>
 <colgroup>

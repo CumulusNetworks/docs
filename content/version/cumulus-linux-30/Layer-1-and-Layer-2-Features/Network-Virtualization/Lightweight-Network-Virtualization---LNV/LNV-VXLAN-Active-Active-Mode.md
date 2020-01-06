@@ -255,7 +255,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# downlinks
+#downlinks
 auto swp1
 iface swp1
  
@@ -282,7 +282,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# downlinks
+#downlinks
 auto swp1
 iface swp1
  
@@ -313,7 +313,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# peerlinks
+#peerlinks
 auto swp49
 iface swp49
  
@@ -337,7 +337,7 @@ iface peerlink.4094
   clagd-backup-ip 10.0.0.12 
   clagd-sys-mac 44:39:39:FF:40:94
  
-# Downlinks
+#Downlinks
 auto swp1
 iface swp1
  
@@ -352,7 +352,7 @@ iface bond0
     bond-xmit-hash-policy layer3+4
     bond-lacp-rate 1       
  
-# bridges / vlan that contain peerlink and downlinks for L2 connectivity
+#bridges / vlan that contain peerlink and downlinks for L2 connectivity
  
 auto native
 iface native
@@ -391,7 +391,7 @@ iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.11
   
-# uplinks
+#uplinks
 auto swp51
 iface swp51
  
@@ -408,7 +408,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# peerlinks
+#peerlinks
 auto swp49
 iface swp49
  
@@ -432,7 +432,7 @@ iface peerlink.4094
   clagd-backup-ip 10.0.0.11
   clagd-sys-mac 44:39:39:FF:40:94
  
-# Downlinks
+#Downlinks
 auto swp1
 iface swp1
  
@@ -447,7 +447,7 @@ iface bond0
     bond-xmit-hash-policy layer3+4
     bond-lacp-rate 1       
  
-# bridges / vlan that contain peerlink and downlinks for L2 connectivity
+#bridges / vlan that contain peerlink and downlinks for L2 connectivity
  
 auto native
 iface native
@@ -486,7 +486,7 @@ iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.12
   
-# uplinks
+#uplinks
 auto swp51
 iface swp51
  
@@ -505,7 +505,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# peerlinks
+#peerlinks
 auto swp49
 iface swp49
  
@@ -529,7 +529,7 @@ iface peerlink.4094
   clagd-backup-ip 10.0.0.14
   clagd-sys-mac 44:39:39:FF:40:95
  
-# Downlinks
+#Downlinks
 auto swp1
 iface swp1
   
@@ -543,7 +543,7 @@ iface bond0
     bond-xmit-hash-policy layer3+4
     bond-lacp-rate 1       
  
-# bridges / vlan that contain peerlink and downlinks for L2 connectivity
+#bridges / vlan that contain peerlink and downlinks for L2 connectivity
  
 auto native
 iface native
@@ -582,7 +582,7 @@ iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.13
   
-# uplinks
+#uplinks
 auto swp51
 iface swp51
  
@@ -599,7 +599,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# peerlinks
+#peerlinks
 auto swp49
 iface swp49
  
@@ -623,7 +623,7 @@ iface peerlink.4094
   clagd-backup-ip 10.0.0.13
   clagd-sys-mac 44:39:39:FF:40:95
  
-# Downlinks
+#Downlinks
 auto swp1
 iface swp1
   
@@ -637,7 +637,7 @@ iface bond0
     bond-xmit-hash-policy layer3+4
     bond-lacp-rate 1       
  
-# bridges / vlan that contain peerlink and downlinks for L2 connectivity
+#bridges / vlan that contain peerlink and downlinks for L2 connectivity
  
 auto native
 iface native
@@ -676,7 +676,7 @@ iface vxlan20
   vxlan-id 20
   vxlan-local-tunnelip 10.0.0.14
   
-# uplinks
+#uplinks
 auto swp51
 iface swp51
  

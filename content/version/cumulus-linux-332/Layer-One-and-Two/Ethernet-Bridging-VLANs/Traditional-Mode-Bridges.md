@@ -108,7 +108,7 @@ connected to bridge-B. This means that:
   - host-3 and host-4 can communicate with each other.
   - host-1 and host-2 cannot communicate with host-3 and host-4.
 
-{{<figure src ="/images/download/attachments/5868987/multiple-bridges.png" >}}
+{{<figure src ="/images/cumulus-linux/ethernet-bridging-multiple-bridges.png" >}}
 
 This example configuration looks like this in the
 `/etc/network/interfaces` file:
@@ -166,7 +166,7 @@ native VLAN, thus merging those two VLANs and their spanning tree state.
 
 ### Trunk Example
 
-{{% imgOld 1 %}}
+{{< figure src="/images/cumulus-linux/ethernet-bridging-trunk.png">}}
 
 To create the above example, add the following configuration to the
 `/etc/network/interfaces` file:

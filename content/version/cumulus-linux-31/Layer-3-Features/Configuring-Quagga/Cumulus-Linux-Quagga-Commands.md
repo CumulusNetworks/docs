@@ -36,12 +36,12 @@ as follows:
 </tr>
 <tr class="even">
 <td><p>cl-ospf</p></td>
-<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol">OSPFv2</a> commands. For example:<br />
+<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/">OSPFv2</a> commands. For example:<br />
 <code>cumulus@switch:~$ sudo cl-ospf area 0.0.0.1 range 10.10.10.0/24</code></p></td>
 </tr>
 <tr class="odd">
 <td><p>cl-ospf6</p></td>
-<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3---Protocol">OSPFv3</a> commands.</p></td>
+<td><p><a href="/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3-Protocol">OSPFv3</a> commands.</p></td>
 </tr>
 <tr class="even">
 <td><p>cl-ra</p></td>
@@ -110,7 +110,7 @@ switch(config-if)# ipv6 address  3002:2123:1234:1abc::21/64</code></pre></td>
 <td><pre><code>cumulus@switch:~$ sudo cl-rctl ptm-enable set</code></pre></td>
 </tr>
 <tr class="odd">
-<td><p>Configure <a href="Layer-1-and-Switch-Port-Attributes.html#src-5122107_Layer1andSwitchPortAttributes-mtu">MTU</a> in IPv6 network discovery for an interface</p></td>
+<td><p>Configure <a href="/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#span-id-src-5122107-layer1andswitchportattributes-mtu-class-confluence-anchor-link-span-mtu-span">MTU</a> in IPv6 network discovery for an interface</p></td>
 <td><pre><code>switch(config)# int swp3
 switch(config-if)# ipv6 nd mtu 9000</code></pre></td>
 <td><pre><code>cumulus@switch:~$ sudo cl-ra interface swp3 set mtu 9000</code></pre></td>
@@ -146,10 +146,3 @@ switch(config-if)# ipv6 ospf6 hello-interval  60 </code></pre></td>
 </tbody>
 </table>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

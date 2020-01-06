@@ -29,7 +29,7 @@ It helps answer questions such as:
   - Which transceivers are installed?
   - What is the peer for a given port?
 
-NetQ uses [LLDP](/display/NETQ141/Link+Layer+Discovery+Protocol) (Link
+NetQ uses LLDP (Link
 Layer Discovery Protocol) to collect port information. NetQ can also
 identify peer ports connected to DACs (Direct Attached Cables) and AOCs
 (Active Optical Cables) without using LLDP, even if the link is not UP.

@@ -100,10 +100,3 @@ above criteria, they can be individually enabled if desired.
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

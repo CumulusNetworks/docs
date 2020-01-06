@@ -203,10 +203,3 @@ hardware statistics via `switchd`:
     vlan/vxlan counters currently supported in the hardware (only rx/tx
     packets/bytes are supported currently).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

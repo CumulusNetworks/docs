@@ -332,10 +332,3 @@ state:
     vx-35            -                -       -                    -
     vx-34            -                -       -                    -
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

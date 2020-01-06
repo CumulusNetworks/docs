@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
 ---
-<details>
 
 Spanning tree protocol (STP) is always recommended in layer 2
 topologies, as it prevents bridge loops and broadcast radiation on a
@@ -613,12 +612,5 @@ sourceforge URL below.
   - MSTP is not supported currently. However, interoperability with MSTP
     networks can be accomplished using PVRSTP or PVSTP.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

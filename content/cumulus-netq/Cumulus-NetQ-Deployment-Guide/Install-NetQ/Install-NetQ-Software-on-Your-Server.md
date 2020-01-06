@@ -20,8 +20,8 @@ The installation instructions in this topic describe how to install the Cumulus 
 2. Load the software onto the switch.
 3. Load the NetQ Agent onto the switches and hosts you want to monitor.
 
-If you are upgrading from a prior version of NetQ, refer to [Upgrade NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/)
-    instead.
+<!-- If you are upgrading from a prior version of NetQ, refer to [Upgrade NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ/)
+    instead. -->
 
 ## Prerequisites
 

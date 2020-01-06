@@ -160,10 +160,3 @@ how to remove an image from your local repository.
     cumulus@<ts>:~/var/tips/www/onie/images/$ ls
     cumulus@<ts>:~/var/tips/www/onie/images/$ rm <image-filename> 
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

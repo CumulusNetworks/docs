@@ -632,10 +632,3 @@ graph from working correctly.
 
   - [PTMd GitHub repo](https://github.com/CumulusNetworks/ptm)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
 ---
-<details>
 
 The `cl-support` command generates a tar archive of useful information
 for troubleshooting that can be auto-generated or manually created. To
@@ -43,8 +42,6 @@ experience with Cumulus RMP.
     Example output:
     cumulus@switch:~$ ls /var/support
     cl_support__switch_20141204_203833
-
-<summary>This chapter covers ... </summary>
 
 ## Understanding the File Naming Scheme </span>
 
@@ -100,28 +97,16 @@ The directory contains the following elements:
 
 Here is more information on the file structure:
 
-  - [Troubleshooting the etc
-    Directory](/version/cumulus-rmp-321/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory)
+  - [Troubleshooting the etc Directory](/version/cumulus-rmp-321/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory)
     - In terms of sheer numbers of files, `/etc` contains the largest
     number of files to send to Cumulus Networks by far. However, log
     files could be significantly larger in file size.
 
-  - [Troubleshooting Log
-    Files](/version/cumulus-rmp-321/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-Log-Files)
+  - [Troubleshooting Log Files](/version/cumulus-rmp-321/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-Log-Files)
     - This guide highlights the most important log files to look at.
     Keep in mind, `cl-support` includes all of the log files.
 
-  - [Troubleshooting the support
-    Directory](/version/cumulus-rmp-321/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-the-support-Directory)
+  - [Troubleshooting the support Directory](/version/cumulus-rmp-321/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/Troubleshooting-the-support-Directory)
     - This is an explanation of the `support` directory included in the
     `cl-support` output.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

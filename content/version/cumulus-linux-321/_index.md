@@ -48,7 +48,7 @@ Cumulus Linux 3.2.1 adds these new features and platforms, including:
     on Mellanox switches.
   - **Explicit Congestion Notification (ECN)**: We've expanded support
     for
-    [ECN](Buffer-and-Queue-Management.html#src-5127004_BufferandQueueManagement-ecn)
+    [ECN](/version/cumulus-linux-321/Interface-Configuration-and-Management/Buffer-and-Queue-Management/#span-id-src-5127004-bufferandqueuemanagement-ecn-class-confluence-anchor-link-span-configuring-explicit-congestion-notification-span)
     to Tomahawk switches.
   - **New 100G platform**: Early access support for the [Edge-Core
     AS7412-32X](https://cumulusnetworks.com/HCL), which uses the

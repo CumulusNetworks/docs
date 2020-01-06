@@ -23,8 +23,8 @@ With NetQ, you can monitor the number of nodes running the OSPF service,
 view switches with the most full and unestablished OSPF sessions, and
 view alarms triggered by the OSPF service. For an overview and how to
 configure OSPF to run in your data center network, refer to
-[Open Shortest Path First - OSPF](../../../../cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/) or
-[Open Shortest Path First v3 - OSPFv3](../../../../cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/).
+[Open Shortest Path First - OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/) or
+[Open Shortest Path First v3 - OSPFv3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/).
 
 ### OSPF Service Card Workflow
 
@@ -559,8 +559,8 @@ session state changes, and compare with alarms occurring at the same
 time, as well as monitor the running OSPF configuration and changes to
 the configuration file. For an overview and how to configure OSPF to run
 in your data center network, refer to
-[Open Shortest Path First - OSPF](../../../../cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/)
-or [Open Shortest Path First v3 - OSPFv3](../../../../cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/).
+[Open Shortest Path First - OSPF](/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/)
+or [Open Shortest Path First v3 - OSPFv3](/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/).
 
 {{%notice note%}}
 

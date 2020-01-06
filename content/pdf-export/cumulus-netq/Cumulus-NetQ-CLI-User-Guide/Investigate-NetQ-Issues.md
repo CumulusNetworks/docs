@@ -235,10 +235,3 @@ command:
 
     cumulus@switch:~$ opta-support
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

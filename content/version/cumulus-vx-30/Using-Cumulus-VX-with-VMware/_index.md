@@ -38,10 +38,3 @@ The resulting configuration contains four VMs:
 
 {{% imgOld 0 %}}
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

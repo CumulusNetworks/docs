@@ -372,7 +372,7 @@ notification.
 The agent commands
 enable the network administrator to
 configure individual NetQ Agents. Refer to [Cumulus NetQ Primer](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Cumulus-NetQ-Primer)
-for a description of NetQ Agents and to [Manage NetQ Agents](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Manage-NetQ-Agents)
+for a description of NetQ Agents and to [Manage NetQ Agents](/version/cumulus-netq-21/Cumulus-NetQ-CLI-User-Guide/Manage-NetQ-Agents/)
 for more detailed usage examples.
 
 The agent
@@ -471,7 +471,7 @@ This example shows how to configure a PagerDuty channel:
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
     Successfully added/updated channel pd-netq-events
 
-Refer to [Integrate with Third-party Software and Hardware](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third+-+party-Software-and-Hardware)
+Refer to [Integrate with Third-party Software and Hardware](/version/cumulus-netq-21/Cumulus-NetQ-Deployment-Guide/Integrate-with-Third-party-Software-and-Hardware/)
 for details about using these commands and additional examples.
 
 ### Trace Commands

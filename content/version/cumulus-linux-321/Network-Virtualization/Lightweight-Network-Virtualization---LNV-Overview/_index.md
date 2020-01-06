@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/version/cumulus-linux-321/Network-Virtualization/) without a
@@ -23,7 +22,7 @@ simple service node coupled with traditional MAC address learning.
 
 To see an example of a full solution before reading the following
 background information, [please read this
-chapter](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-Full-Example).
+chapter](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-Full-Example).
 
 {{%notice note%}}
 
@@ -388,7 +387,7 @@ The service nodes and registration nodes must all be routable between
 each other. The L3 fabric on Cumulus Linux can either be
 [BGP](/version/cumulus-linux-321/Layer-Three/Border-Gateway-Protocol-BGP)
 or
-[OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol).
 In this example, OSPF is used to demonstrate full reachability. Click to
 expand the Quagga configurations below.
 
@@ -1436,13 +1435,3 @@ address.
 
   - [Network virtualization chapter, Cumulus Linux user
     guide](/version/cumulus-linux-321/Network-Virtualization/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

@@ -22,7 +22,7 @@ are described separately here.
 With NetQ, you can monitor the number of nodes running the EVPN service,
 view switches with the sessions, total number of VNIs, and alarms
 triggered by the EVPN service. For an overview and how to configure EVPN
-in your data center network, refer to [Ethernet Virtual Private Network-EVPN](../../../../cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
+in your data center network, refer to [Ethernet Virtual Private Network-EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
 
 ### EVPN Service Card Workflow Summary
 

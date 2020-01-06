@@ -11,8 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
-
 Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/)
 without a central controller on bare metal switches. This solution
@@ -24,7 +22,7 @@ learning.
 
 To see an example of a full solution before reading the following
 background information, [please read this
-chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/LNV-Full-Example).
+chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/LNV-Full-Example).
 
 {{%notice note%}}
 
@@ -340,7 +338,7 @@ The service nodes and registration nodes must all be routable between
 each other. The L3 fabric on Cumulus Linux can either be
 [BGP](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP)
 or
-[OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/).
 In this example, OSPF is used to demonstrate full reachability. Expand
 the Quagga configurations below.
 
@@ -1393,13 +1391,3 @@ For `vxrd`:
   - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
 
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

@@ -491,7 +491,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="odd">
 <td><p>What Just Happened</p></td>
-<td><p>Displays displays events based on conditions detected in the data plane on the switch. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Elements/What-Just-Happened/">What Just Happened</a> for descriptions of the fields in this table.</p></td>
+<td><p>Displays displays events based on conditions detected in the data plane on the switch. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Elements/#view-what-just-happened">What Just Happened</a> for descriptions of the fields in this table.</p></td>
 </tr>
 <tr class="even">
 <td><p>Sensors</p></td>

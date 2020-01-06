@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
 
 `ifupdown` is the network interface manager for Cumulus Linux. Cumulus
 Linux 2.1 and later uses an updated version of this tool, `ifupdown2`.
@@ -737,8 +736,7 @@ alias appears on the `alias` line:
         link/ether aa:aa:aa:aa:aa:bc brd ff:ff:ff:ff:ff:ff
         alias hypervisor_port_1
 
-Interface descriptions also appear in the [SNMP
-OID](Monitoring-System-Hardware.html#src-5121949_MonitoringSystemHardware-snmp)
+Interface descriptions also appear in the [SNMP OID](/version/cumulus-linux-31/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/#span-id-src-5121949-monitoringsystemhardware-snmp-class-confluence-anchor-link-span-monitoring-switch-hardware-using-snmp-span)
 [IF-MIB::ifAlias](http://www.net-snmp.org/docs/mibs/ifMIBObjects.html#ifAlias).
 
 {{%notice note%}}
@@ -795,13 +793,3 @@ interfaces with multiple `iface` stanzas.
   - [www.linuxfoundation.org/collaborate/workgroups/networking/bridge](http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge)
 
   - [www.linuxfoundation.org/collaborate/workgroups/networking/vlan](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

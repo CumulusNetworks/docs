@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 Spanning tree protocol (STP) is always recommended in layer 2
 topologies, as it prevents bridge loops and broadcast radiation on a
@@ -575,7 +574,7 @@ You configure storm control for each physical port by editing
 `/etc/cumulus/switchd.conf`. The configuration persists across reboots
 and restarting `switchd`. If you change the storm control configuration
 in this file after rebooting the switch, you must [restart
-`switchd`](Configuring-switchd.html#src-5126758_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5126758_Configuringswitchd-restartswitchd)
 to activate the new configuration.
 
 To enable broadcast and multicast storm control at 400 packets per
@@ -760,12 +759,5 @@ sourceforge URL below.
 
   - mstpctl-utils-interfaces(5)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

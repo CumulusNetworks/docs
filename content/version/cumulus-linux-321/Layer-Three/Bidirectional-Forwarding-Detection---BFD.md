@@ -444,10 +444,3 @@ To troubleshoot BFD, use `ptmctl -b`. For more information, see
 [Prescriptive Topology Manager -
 PTM](/version/cumulus-linux-321/Layer-One-and-Two/Prescriptive-Topology-Manager-PTM).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

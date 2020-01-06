@@ -32,7 +32,7 @@ The `zebra` daemon must always be enabled. The others you can enable
 according to how you plan to route your network - using
 [BGP](/version/cumulus-linux-36/Layer-3/Border-Gateway-Protocol-BGP)
 for example, instead of
-[OSPF](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-OSPF-Protocol).
 
 Before you start FRRouting, you need to enable the corresponding
 daemons. Edit the `/etc/frr/daemons` file and set to *yes* each daemon

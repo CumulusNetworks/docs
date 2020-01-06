@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework
 in Cumulus Linux as well as most other Linux distributions. There are a
@@ -358,9 +357,7 @@ To always start `switchd` with nonatomic updates:
     
         acl.non_atomic_update_mode = TRUE 
 
-3.  [Restart
-    `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5114824)
-    :
+3.  [Restart `switchd`](/version/cumulus-linux-321/System-Configuration/Configuring-switchd/#span-id-src-5126758-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span):
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
@@ -765,7 +762,7 @@ The Mellanox Spectrum ASIC has one common
 [TCAM](https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs)
 for both ingress and egress, and it may be used for other
 non-ACL-related resources. However, the number of supported rules varies
-with the [TCAM profile](Routing.html#src-5127036_Routing-tcam) specified
+with the [TCAM profile](/version/cumulus-linux-321/Layer-Three/Routing/#supported-route-table-entriesspan) specified
 for the switch.
 
 | Profile    | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
@@ -1423,12 +1420,5 @@ following is displayed:
 The Dell S3048-ON has a limit of 24576 MAC address entries, instead of
 32K for other 1G switches.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

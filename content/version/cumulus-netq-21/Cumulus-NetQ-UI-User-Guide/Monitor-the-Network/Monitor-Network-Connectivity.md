@@ -28,7 +28,7 @@ and run both of these trace types.
 
 The small Trace Request card displays:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/old_doc_images/trace-request-small-card.png" >}}
 
 <table>
 <colgroup>
@@ -237,7 +237,7 @@ To create a layer 3 trace request:
 
 1.  Open the medium Trace Request card.
     
-    {{% imgOld 10 %}}
+    {{< img src = "/images/netq/trace-request-medium-231.png" >}}
 
 2.  In the **Source** field, enter the hostname or IP address of the
     device where you want to start the trace.
@@ -404,7 +404,7 @@ large or small Trace Results card, respectively.
 The small On-demand Trace Results card
 displays:
 
-{{% imgOld 22 %}}
+{{<img src="/images/old_doc_images/sch-trace-request-small-card.png" >}}
 
 <table>
 <colgroup>

@@ -14,7 +14,7 @@ siteSlug: cumulus-linux-321
 Cumulus Networks' [Routing on the
 Host](https://docs.cumulusnetworks.com/display/ROH/Routing+on+the+Host)
 provides the ability to run
-[OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol)
+[OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol)
 or
 [BGP](/version/cumulus-linux-321/Layer-Three/Border-Gateway-Protocol-BGP)
 directly on server hosts. This can enable a network architecture known
@@ -111,8 +111,7 @@ impact of network changes or failures.
 
 ## Resilient Hashing</span>
 
-[Resilient
-hashing](Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP.html#src-5127052_EqualCostMultipathLoadSharing-HardwareECMP-resilient_hashing)
+[Resilient hashing](/version/cumulus-linux-321/Layer-Three/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#resilient-hashingspan)
 provides a method to prevent failures from impacting the hash result of
 unrelated flows. However, resilient hashing does not prevent rehashing
 when new next hops are added.
@@ -249,10 +248,3 @@ anycast challenging to integrate with some applications. An anycast
 architecture is best suited for stateless applications or applications
 that are able to share session state at the application layer.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

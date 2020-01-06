@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 This chapter discusses the various network interfaces on a switch
 running Cumulus RMP.
@@ -303,12 +302,5 @@ shows the output for 1G and 10G modules:
 
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

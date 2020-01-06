@@ -950,10 +950,3 @@ include:
     or some of the events and clicking **Export**.
   - Click {{% imgOld 65 %}} at the top right to return to your workbench.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

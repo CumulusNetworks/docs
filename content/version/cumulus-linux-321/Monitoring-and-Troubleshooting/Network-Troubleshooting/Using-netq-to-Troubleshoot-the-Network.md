@@ -520,10 +520,3 @@ To ensure that the `netq` agent is running, run:
     cumulus@switch:~$ netq agent status
     Running...
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

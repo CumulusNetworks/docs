@@ -25,8 +25,7 @@ times the number of VLANs becomes large.
 
 The VLAN-aware mode in Cumulus Linux implements a configuration model
 for large-scale L2 environments, with **one single** **instance** of
-[Spanning
-Tree](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree).
+[Spanning Tree](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree).
 Each physical bridge member port is configured with the list of allowed
 VLANs as well as its port VLAN ID (either PVID or native VLAN - see
 below). MAC address learning, filtering and forwarding are *VLAN-aware*.
@@ -530,8 +529,7 @@ configure the VXLANs using traditional bridge mode.
     1.  Edit `/etc/cumulus/switchd.conf`, uncomment `resv_vlan_range`
         and specify the new range.
     
-    2.  [Restart
-        `switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+    2.  [Restart `switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span)
         (`sudo systemctl restart switchd.service`) for the new range to
         take effect.
         
@@ -539,7 +537,7 @@ configure the VXLANs using traditional bridge mode.
         
         While restarting `switchd`, all running ports will flap and
         forwarding will be
-        [interrupted](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd).
+        [interrupted](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd).
         
         {{%/notice%}}
 
@@ -548,10 +546,3 @@ configure the VXLANs using traditional bridge mode.
     mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
     can utilize VLAN translation.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

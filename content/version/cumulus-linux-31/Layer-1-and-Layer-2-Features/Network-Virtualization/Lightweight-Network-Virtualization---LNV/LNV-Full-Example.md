@@ -14,17 +14,14 @@ siteSlug: cumulus-linux-31
 Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/)
 without a central controller on bare metal switches. This a full example
-complete with diagram. Please reference the [Lightweight Network
-Virtualization
-chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/)
+complete with diagram. Please reference the [Lightweight Network Virtualization chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/)
 for more detailed information. This full example uses the **recommended
 way** of deploying LNV, which is to use Anycast to load balance the
 service nodes.
 
 {{%notice note%}}
 
-LNV is a lightweight controller option. Please [contact Cumulus
-Networks](http://cumulusnetworks.com/cumulus-linux/overview/#cl-howtoBuy)
+LNV is a lightweight controller option. Please [contact Cumulus Networks](http://cumulusnetworks.com/cumulus-linux/overview/#cl-howtoBuy)
 with your scale requirements and we can make sure this is the right fit
 for you. There are also other controller options that can work on
 Cumulus Linux.
@@ -59,7 +56,7 @@ Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/) .
 
 {{%notice tip%}}
 
-{{< img src="/images/download/thumbnails/8362715/turtle_training.png" width="40">}} 
+{{< img src="/images/old_doc_images/turtle_training.png" width="40">}} 
 
 Feeling overwhelmed? Come join a [Cumulus Boot Camp](https://education.cumulusnetworks.com/series/bootcamps/) and get instructor-led training\!
 
@@ -253,7 +250,7 @@ The service nodes and registration nodes must all be routable between
 each other. The L3 fabric on Cumulus Linux can either be
 [BGP](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP)
 or
-[OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/).
 In this example, OSPF is used to demonstrate full reachability.
 
 Here is the Quagga configuration using OSPF:
@@ -519,16 +516,6 @@ svcnode_peers = 10.2.1.3
 
   - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
 
-  - [Detailed LNV Configuration
-    Guide](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization---LNV/)
+  - [Detailed LNV Configuration Guide](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Network-Virtualization/Lightweight-Network-Virtualization-LNV/)
 
-  - [Cumulus Networks
-    Training](http://cumulusnetworks.com/education/instructor-led-training/)
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
+  - [Cumulus Networks Training](http://cumulusnetworks.com/education/instructor-led-training/)

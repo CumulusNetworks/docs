@@ -338,17 +338,3 @@ pertain to your network fabric.
 </tr>
 </tbody>
 </table>
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

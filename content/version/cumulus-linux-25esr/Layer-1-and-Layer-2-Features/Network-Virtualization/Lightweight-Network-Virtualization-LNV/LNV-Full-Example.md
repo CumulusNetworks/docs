@@ -37,7 +37,7 @@ The following images illustrate the configuration:
 
 {{% imgOld 0 %}}<br />_Physical Cabling Diagram_
 
-{{< img src="/images/download/thumbnails/5122058/Screen-Shot-2015-04-22-at-1.58.50-PM.png" >}}</p></td>
+{{< img src="/images/old_doc_images/Screen-Shot-2015-04-22-at-1.58.50-PM.png" >}}</p></td>
 
 <br />_Network Virtualization Diagram_
 
@@ -50,7 +50,7 @@ Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/).
 
 {{%notice tip%}}
 
-{{< img src="/images/download/thumbnails/8362715/turtle_training.png" width="40">}} 
+{{< img src="/images/old_doc_images/turtle_training.png" width="40">}} 
 
 Feeling overwhelmed? Come join a [Cumulus Boot Camp](https://education.cumulusnetworks.com/series/bootcamps/) and get instructor-led training\!
 
@@ -244,7 +244,7 @@ The service nodes and registration nodes must all be routable between
 each other. The L3 fabric on Cumulus Linux can either be
 [BGP](/version/cumulus-linux-25esr/Layer-3-Features/Configuring-Border-Gateway-Protocol-BGP)
 or
-[OSPF](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-25esr/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol).
 In this example, OSPF is used to demonstrate full reachability.
 
 Here is the Quagga configuration using OSPF:

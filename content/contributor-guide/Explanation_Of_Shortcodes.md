@@ -57,23 +57,10 @@ folder are served to the site root path. An image added to the
 `/static/images/cumulus-linux` subdirectory &mdash; for example `voice-vlan.png`
 &mdash; is accessible at http://localhost:1313/images/cumulus-linux/voice-vlan.png.
 
-These static images can be added in one of two ways. The first is with vanilla
-Markdown, and is similar to the link syntax. The following Markdown syntax:
-
-```
-![Example Image](/images/cumulus-linux/voice-vlan.png)
-```
-
-Renders this image:
-
-![Example Image](/images/cumulus-linux/voice-vlan.png)
-
-You can also use the `img` shortcode, shown below.
+These static images can be added with the `img` shortcode, shown below.
 
 <pre>{{&lt; img src = "/images/uploads/PTPExample.png" >}}</pre>
 
-Images added with either of the two methods above do not allow for resizing or
-captioning.
 
 ### HTML figure Tag
 
@@ -99,4 +86,4 @@ For example, the following code:
 
 Renders this image with a caption:
 
-{{<figure src="/images/uploads/NetQAgentLogFormat.png" alt="NetQAgentLogFormat.png" caption="NetQ Agent log format" height="50px" >}}
+{{<figure src="/images/old_doc_images/NetQAgentLogFormat.png" alt="NetQAgentLogFormat.png" caption="NetQ Agent log format" height="50px" >}}

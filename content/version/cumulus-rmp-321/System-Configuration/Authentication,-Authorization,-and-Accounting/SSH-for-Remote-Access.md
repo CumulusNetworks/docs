@@ -17,9 +17,7 @@ access a Cumulus RMP switch remotely.
 {{%notice note%}}
 
 By default, you cannot use the root account to SSH to a Cumulus Linux
-switch unless you [generate an SSH
-key](User-Accounts.html#src-5127540_UserAccounts-ssh_key) or [set a
-password](User-Accounts.html#src-5127540_UserAccounts-root_passwd) for
+switch unless you [generate an SSH key](/version/cumulus-rmp-321/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/#span-id-src-5127540-useraccounts-ssh-key-class-confluence-anchor-link-span-generating-an-ssh-key-for-the-root-account-span) or [set a password](/version/cumulus-rmp-321/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/#span-id-src-5127540-useraccounts-root-passwd-class-confluence-anchor-link-span-setting-the-root-user-password-span) for
 the account.
 
 {{%/notice%}}
@@ -110,10 +108,3 @@ the account.
   - [Wikipedia - Secure Shell
     (SSH)](http://en.wikipedia.org/wiki/Secure_Shell)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

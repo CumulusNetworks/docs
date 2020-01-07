@@ -62,6 +62,155 @@ PIM neighbors are stateless. No confirmation of neighbor relationship is exchang
 
 {{%/notice%}}
 
+## Configure PIM
+
+To configure PIM, run the following commands:
+
+<details>
+
+<summary>NCLU Commands </summary>
+
+1. Configure the PIM interfaces:
+
+```
+cumulus@switch:~$ net add interface swp1 pim
+```
+
+    {{%notice note%}}
+
+You must enable PIM on all interfaces facing multicast sources or multicast receivers, as well as on the interface where the RP address is configured.
+
+{{%/notice%}}
+
+    {{%notice note%}}
+
+In Cumulus Linux 4.0 the *sm* keyword is no longer required. In Cumulus Linux releases 3.7 and earlier, the correct command is `net add interface swp1 pim sm`.
+
+{{%/notice%}}
+
+2. Enable IGMP on all interfaces with hosts attached. IGMP version 3 is the default. Only specify the version if you exclusively want to use IGMP version 2. SSM requires the use of IGMP version 3.
+
+```
+cumulus@switch:~$ net add interface swp1 igmp
+```
+
+    {{%notice note%}}
+
+You must configure IGMP on all interfaces where multicast receivers exist.
+
+{{%/notice%}}
+
+3. **For ASM**, configure a group mapping for a static RP:
+
+```
+cumulus@switch:~$ net add pim rp 192.168.0.1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+ ```
+
+    {{%notice note%}}
+
+Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration.
+
+IP PIM RP group ranges can overlap. Cumulus Linux performs a longest prefix match (LPM) to determine the RP. In the following example, if the group is in 224.10.2.5, RP 192.168.0.2 is selected. If the group is in 224.10.15, RP 192.168.0.1 is selected:
+
+```
+cumulus@switch:~$ net add pim rp 192.168.0.1 224.10.0.0/16
+cumulus@switch:~$ net add pim rp 192.168.0.2 224.10.2.0/24
+```
+
+{{%/notice%}}
+
+</details>
+
+<details>
+
+<summary>vtysh Commands </summary>
+
+PIM is included in the FRRouting package. For proper PIM operation, PIM depends on Zebra. PIM also relies on unicast routing to be configured and operational for RPF operations. You must configure a routing protocol or static routes.
+
+1. Edit the `/etc/frr/daemons` file and add `pimd=yes` to the end of the file:
+
+```
+cumulus@switch:~$ sudo nano /etc/frr/daemons
+...
+pimd=yes
+...
+```
+
+2. Run the `systemctl restart` command to restart FRRouting:
+
+```
+cumulus@switch:~$ sudo systemctl restart frr
+```
+
+    {{%notice warning%}}
+
+Restarting FRR impacts all routing protocols.
+
+{{%/notice%}}
+
+3. In the vtysh shell, run the following commands to configure the PIM interfaces:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp1
+switch(config-if)# ip pim
+```
+
+    {{%notice note%}}
+
+PIM must be enabled on all interfaces facing multicast sources or multicast receivers, as well as on the interface where the RP address is configured.
+
+{{%/notice%}}
+
+    {{%notice note%}}
+
+In Cumulus Linux 4.0 the *sm* keyword is no longer required.
+
+{{%/notice%}}
+
+4. Enable IGMP on all interfaces with hosts attached. IGMP version 3 is the default. Only specify the version if you exclusively want to use IGMP version 2.
+
+```
+switch(config-if)# ip igmp
+switch(config-if)# exit
+switch(config)#
+```
+
+    {{%notice note%}}
+
+You must configure IGMP on all interfaces where multicast receivers exist.
+
+{{%/notice%}}
+
+5. **For ASM**, configure a group mapping for a static RP:
+
+```
+switch(config)# ip pim rp 192.168.0.1
+switch(config)# exit
+switch# write memory
+switch#  exit
+cumulus@switch:~$
+```
+
+    {{%notice note%}}
+
+Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration.
+
+IP PIM RP group ranges can overlap. Cumulus Linux performs a longest prefix match (LPM) to determine the RP. In the following example, if the group is in 224.10.2.5, RP 192.168.0.2 is selected. If the group is in 224.10.15, RP 192.168.0.1 is selected:
+
+```
+switch(config)# ip pim rp 192.168.0.1 224.10.0.0/16
+switch(config)# ip pim rp 192.168.0.2 224.10.2.0/24
+```
+
+{{%/notice%}}
+
+</details>
+
 ## PIM Sparse Mode (PIM-SM)
 
 PIM Sparse Mode (PIM-SM) is a *pull* multicast distribution method; multicast traffic is only sent through the network if receivers explicitly ask for it. When a receiver *pulls* multicast traffic, the network must be periodically notified that the receiver wants to continue the multicast stream.
@@ -202,218 +351,14 @@ In SSM when a sender begins sending, the FHR does not have any existing mroutes.
 SSM differs from ASM multicast in the following ways:
 
 - An RP is not configured or used. SSM does not require an RP since receivers always know the addresses of the senders.
-
 - There is no *,G PIM Join message. The multicast sender is always known so the PIM Join messages used in SSM are always S,G Join messages.
-
 - There is no Shared Tree or *,G tree. The PIM join message is always sent towards the source, building the SPT along the way. There is no shared tree or *,G state.
-
 - IGMPv3 is required. ASM allows for receivers to specify only the group they want to join without knowledge of the sender. This can be done in both IGMPv2 and IGMPv3. Only IGMPv3 supports requesting a specific source for a multicast group (the sending an S,G IGMP join)
-
 - No PIM Register process or SPT Switchover. Without a shared tree or RP, there is no need for the PIM register process. S,G joins are sent directly towards the FHR.
 
 ### PIM Active-Active with MLAG
 
 For a multicast sender or receiver to be supported over a dual-attached MLAG bond, you must configure `pim active-active`.
-
-#### Multicast Sender
-
-When a multicast sender is attached to an MLAG bond, the sender hashes the outbound multicast traffic over a single member of the bond. Traffic is received on one of the MLAG enabled switches. Regardless of which switch receives the traffic, it is forwarded over the MLAG peer link to the other MLAG-enabled switch, because the peerlink is always considered a multicast router port and will always receive the multicast stream.
-
-{{%notice note%}}
-
-Traffic from multicast sources attached to an MLAG bond is always sent over the MLAG peerlink. Be sure to [size the peerlink appropriately](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#peer-link-sizing) to accommodate this traffic.
-
-{{%/notice%}}
-
-The PIM DR for the VLAN where the source resides is responsible for sending the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the Shortest Path Tree (SPT), either MLAG switch will forward traffic towards the receivers.
-
-Examples are provided below that show the flow of traffic between server02 and server03:
-
-- **Step 1**: server02 sends traffic to leaf02. leaf02 forwards traffic to leaf01 because the peerlink is a multicast router port. leaf01 also receives a PIM register from leaf02. leaf02 syncs the *,G table from leaf01 as an MLAG active-active peer.
-- **Step 2**: leaf02 has the *,G route indicating that traffic is to be forwarded toward spine01. Either leaf02 or leaf01 sends this traffic directly based on which MLAG switch receives it from the attached source. In this case, leaf02 receives the traffic on the MLAG bond and forwards it directly upstream.
-
-| Step 1 | Step 2 |
-|--------|--------|
-|{{< figure src = "/images/cumulus-linux/pim-mlag-topology1.png" >}}|{{< figure src = "/images/cumulus-linux/pim-mlag-topology2.png" >}}|
-
-To show the PIM DR, run the NCLU `net show pim interface` command or the vtysh `show ip pim interface` command. The following example shows that in Vlan12 the DR is 10.1.2.12.
-
-```
-cumulus@leaf01:mgmt:~$ net show pim interface
-Interface         State          Address  PIM Nbrs           PIM DR  FHR IfChannels
-lo                   up        10.0.0.11         0            local    0          0
-pimreg               up          0.0.0.0         0            local    0          0
-swp51                up        10.0.0.11         1        10.0.0.21    0          4
-swp52                up        10.0.0.11         1        10.0.0.22    0          0
-vlan12               up        10.1.2.11         1        10.1.2.12    0          2
-```
-
-PIM joins sent towards the source can be ECMP load shared by upstream PIM neighbors (spine01 and spine02 in the example above). Either MLAG member can receive the PIM join and forward traffic, regardless of DR status.
-
-#### Multicast Receiver
-
-A dual-attached multicast receiver sends an IGMP join on the attached VLAN. The specific interface that is used is determined based on the host. The IGMP join is received on one of the MLAG switches, and the IGMP join is added to the IGMP Join table and layer 2 MDB table. The layer 2 MDB table, like the unicast MAC address table, is synced via MLAG control messages over the peerlink. This allows both MLAG switches to program IGMP and MDB table forwarding information.
-
-Both switches send *,G PIM Join messages towards the RP. If the source is already sending, both MLAG switches receive the multicast stream.
-
-{{%notice note%}}
-
-Traditionally, the PIM DR is the only node to send the PIM *,G Join, but to provide resiliency in case of failure, both MLAG switches send PIM *,G Joins towards the RP to receive the multicast stream.
-
-{{%/notice%}}
-
-To prevent duplicate multicast packets, a Designated Forward (DF) is elected. The DF is the `primary` member of the MLAG pair. As a result, the MLAG secondary puts the VLAN in the Outgoing Interface List (OIL), preventing duplicate multicast traffic.
-
-## Configure PIM
-
-To configure PIM, run the following commands:
-
-<details>
-
-<summary>NCLU Commands </summary>
-
-1. Configure the PIM interfaces:
-
-```
-cumulus@switch:~$ net add interface swp1 pim
-```
-
-    {{%notice note%}}
-
-You must enable PIM on all interfaces facing multicast sources or multicast receivers, as well as on the interface where the RP address is configured.
-
-{{%/notice%}}
-
-    {{%notice note%}}
-
-In Cumulus Linux 4.0 the *sm* keyword is no longer required. In Cumulus Linux releases 3.7 and earlier, the correct command is `net add interface swp1 pim sm`.
-
-{{%/notice%}}
-
-2. Enable IGMP on all interfaces with hosts attached. IGMP version 3 is the default. Only specify the version if you exclusively want to use IGMP version 2. SSM requires the use of IGMP version 3.
-
- ```
-cumulus@switch:~$ net add interface swp1 igmp
-```
-
-    {{%notice note%}}
-
-You must configure IGMP on all interfaces where multicast receivers exist.
-
-{{%/notice%}}
-
-3. **For ASM**, configure a group mapping for a static RP:
-
-```
-cumulus@switch:~$ net add pim rp 192.168.0.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
- ```
-
-    {{%notice note%}}
-
-Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration.
-
-IP PIM RP group ranges can overlap. Cumulus Linux performs a longest prefix match (LPM) to determine the RP. In the following example, if the group is in 224.10.2.5, RP 192.168.0.2 is selected. If the group is in 224.10.15, RP 192.168.0.1 is selected:
-
-```
-cumulus@switch:~$ net add pim rp 192.168.0.1 224.10.0.0/16
-cumulus@switch:~$ net add pim rp 192.168.0.2 224.10.2.0/24
-```
-
-{{%/notice%}}
-
-</details>
-
-<details>
-
-<summary>vtysh Commands </summary>
-
-PIM is included in the FRRouting package. For proper PIM operation, PIM depends on Zebra. PIM also relies on unicast routing to be configured and operational for RPF operations. You must configure a routing protocol or static routes.
-
-1. Edit the `/etc/frr/daemons` file and add `pimd=yes` to the end of the file:
-
-```
-cumulus@switch:~$ sudo nano /etc/frr/daemons
-...
-pimd=yes
-...
-```
-
-2. Run the `systemctl restart` command to restart FRRouting:
-
-```
-cumulus@switch:~$ sudo systemctl restart frr
-```
-
-    {{%notice warning%}}
-
-Restarting FRR impacts all routing protocols.
-
-{{%/notice%}}
-
-3. In the vtysh shell, run the following commands to configure the PIM interfaces:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# interface swp1
-switch(config-if)# ip pim
-```
-
-    {{%notice note%}}
-
-PIM must be enabled on all interfaces facing multicast sources or multicast receivers, as well as on the interface where the RP address is configured.
-
-{{%/notice%}}
-
-    {{%notice note%}}
-
-In Cumulus Linux 4.0 the *sm* keyword is no longer required.
-
-{{%/notice%}}
-
-4. Enable IGMP on all interfaces with hosts attached. IGMP version 3 is the default. Only specify the version if you exclusively want to use IGMP version 2.
-
-```
-switch(config-if)# ip igmp
-switch(config-if)# exit
-switch(config)#
-```
-
-    {{%notice note%}}
-
-You must configure IGMP on all interfaces where multicast receivers exist.
-
-{{%/notice%}}
-
-5. **For ASM**, configure a group mapping for a static RP:
-
-```
-switch(config)# ip pim rp 192.168.0.1
-switch(config)# exit
-switch# write memory
-switch#  exit
-cumulus@switch:~$
-```
-
-    {{%notice note%}}
-
-Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration.
-
-IP PIM RP group ranges can overlap. Cumulus Linux performs a longest prefix match (LPM) to determine the RP. In the following example, if the group is in 224.10.2.5, RP 192.168.0.2 is selected. If the group is in 224.10.15, RP 192.168.0.1 is selected:
-
-```
-switch(config)# ip pim rp 192.168.0.1 224.10.0.0/16
-switch(config)# ip pim rp 192.168.0.2 224.10.2.0/24
-```
-
-{{%/notice%}}
-
-</details>
-
-### Configure PIM Active-Active with MLAG
 
 To configure PIM active-active with MLAG, run the following commands:
 
@@ -501,13 +446,62 @@ Message Statistics:
 
 </details>
 
-## Verify PIM
+#### Multicast Sender
+
+When a multicast sender is attached to an MLAG bond, the sender hashes the outbound multicast traffic over a single member of the bond. Traffic is received on one of the MLAG enabled switches. Regardless of which switch receives the traffic, it is forwarded over the MLAG peer link to the other MLAG-enabled switch, because the peerlink is always considered a multicast router port and will always receive the multicast stream.
 
 {{%notice note%}}
 
-The following outputs are based on the [Cumulus Reference Topology](https://github.com/CumulusNetworks/cldemo-vagrant) with cldemo-pim.
+Traffic from multicast sources attached to an MLAG bond is always sent over the MLAG peerlink. Be sure to [size the peerlink appropriately](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#peer-link-sizing) to accommodate this traffic.
 
 {{%/notice%}}
+
+The PIM DR for the VLAN where the source resides is responsible for sending the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the Shortest Path Tree (SPT), either MLAG switch will forward traffic towards the receivers.
+
+Examples are provided below that show the flow of traffic between server02 and server03:
+
+- **Step 1**: server02 sends traffic to leaf02. leaf02 forwards traffic to leaf01 because the peerlink is a multicast router port. leaf01 also receives a PIM register from leaf02. leaf02 syncs the *,G table from leaf01 as an MLAG active-active peer.
+- **Step 2**: leaf02 has the *,G route indicating that traffic is to be forwarded toward spine01. Either leaf02 or leaf01 sends this traffic directly based on which MLAG switch receives it from the attached source. In this case, leaf02 receives the traffic on the MLAG bond and forwards it directly upstream.
+
+| Step 1 | Step 2 |
+|--------|--------|
+|{{< figure src = "/images/cumulus-linux/pim-mlag-topology1.png" >}}|{{< figure src = "/images/cumulus-linux/pim-mlag-topology2.png" >}}|
+
+To show the PIM DR, run the NCLU `net show pim interface` command or the vtysh `show ip pim interface` command. The following example shows that in Vlan12 the DR is 10.1.2.12.
+
+```
+cumulus@leaf01:mgmt:~$ net show pim interface
+Interface         State          Address  PIM Nbrs           PIM DR  FHR IfChannels
+lo                   up        10.0.0.11         0            local    0          0
+pimreg               up          0.0.0.0         0            local    0          0
+swp51                up        10.0.0.11         1        10.0.0.21    0          4
+swp52                up        10.0.0.11         1        10.0.0.22    0          0
+vlan12               up        10.1.2.11         1        10.1.2.12    0          2
+```
+
+PIM joins sent towards the source can be ECMP load shared by upstream PIM neighbors (spine01 and spine02 in the example above). Either MLAG member can receive the PIM join and forward traffic, regardless of DR status.
+
+#### Multicast Receiver
+
+A dual-attached multicast receiver sends an IGMP join on the attached VLAN. The specific interface that is used is determined based on the host. The IGMP join is received on one of the MLAG switches, and the IGMP join is added to the IGMP Join table and layer 2 MDB table. The layer 2 MDB table, like the unicast MAC address table, is synced via MLAG control messages over the peerlink. This allows both MLAG switches to program IGMP and MDB table forwarding information.
+
+Both switches send *,G PIM Join messages towards the RP. If the source is already sending, both MLAG switches receive the multicast stream.
+
+{{%notice note%}}
+
+Traditionally, the PIM DR is the only node to send the PIM *,G Join, but to provide resiliency in case of failure, both MLAG switches send PIM *,G Joins towards the RP to receive the multicast stream.
+
+{{%/notice%}}
+
+To prevent duplicate multicast packets, a Designated Forward (DF) is elected. The DF is the `primary` member of the MLAG pair. As a result, the MLAG secondary puts the VLAN in the Outgoing Interface List (OIL), preventing duplicate multicast traffic.
+
+## Verify PIM
+
+The following outputs are based on the [Cumulus Reference Topology](https://github.com/CumulusNetworks/cldemo-vagrant) with `cldemo-pim`.
+
+<details>
+
+<summary>NCLU Commands </summary>
 
 **Source Starts First**
 
@@ -605,7 +599,7 @@ Source           Group            IIF    OIL
 
 **Receiver Joins First**
 
-**On the LHR attached to the receiver:
+On the LHR attached to the receiver:
 
 ```
 cumulus@lhr:~$ net show mroute
@@ -637,7 +631,7 @@ Interface Address         Group           Source          Timer Fwd Uptime
 br0       172.16.1.1      239.2.2.2       *               03:54   Y 00:04:21
 ```
 
-**On the RP:**
+**On the RP**
 
 ```
 cumulus@rp01:~$ net show mroute
@@ -818,6 +812,7 @@ swp1      *               239.2.2.2       no         yes   no         yes       
 </details>
 
 ## Additional PIM Features
+
 ### Custom SSM multicast group ranges
 
 PIM considers `232.0.0.0/8` the default SSM range. You can change the SSM range by defining a prefix-list and attaching it to the `ssm-range` command. You can change the default SSM group or add additional group ranges to be treated as SSM groups.

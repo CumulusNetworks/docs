@@ -179,6 +179,139 @@ exchanged between PIM endpoints.
 
 {{%/notice%}}
 
+## Configure PIM
+
+To configure PIM using NCLU:
+
+1.  Configure the PIM interface:
+
+        cumulus@switch:~$ net add interface swp1 pim sm
+
+    {{%notice note%}}
+
+PIM must be enabled on all interfaces facing multicast sources or
+    multicast receivers, as well as on the interface where the RP
+    address is configured.
+
+    {{%/notice%}}
+
+2.  **Optional:** Run the following command to enable IGMP (either
+    version 2 or 3) on the interfaces with hosts attached. IGMP version
+    3 is the default, so you only need to specify the version if you
+    want to use IGMP version 2:
+
+        cumulus@switch:~$ net add interface swp1 igmp version 2
+
+    {{%notice note%}}
+
+You must configure IGMP on all interfaces where multicast receivers
+    exist.
+
+    {{%/notice%}}
+
+3.  Configure a group mapping for a static RP:
+
+        cumulus@switch:~$ net add pim rp 192.168.0.1
+
+    {{%notice note%}}
+
+Unless you are using PIM SSM, each PIM-SM enabled device must
+    configure a static RP to a group mapping, and all PIM-SM enabled
+    devices must have the same RP to group mapping configuration.
+
+    IP PIM RP group ranges can overlap. Cumulus Linux performs a longest
+    prefix match (LPM) to determine the RP. For example:
+
+        cumulus@switch:~$ net add pim rp 192.168.0.1 224.10.0.0/16
+        cumulus@switch:~$ net add pim rp 192.168.0.2 224.10.2.0/24
+
+    In this example, if the group is in 224.10.2.5, the RP that gets
+    selected is 192.168.0.2. If the group is 224.10.15, the RP that gets
+    selected is 192.168.0.1.
+
+    {{%/notice%}}
+
+4.  Review and commit your changes:
+
+        cumulus@switch:~$ net pending
+        cumulus@switch:~$ net commit
+
+### Configure PIM Using FRRouting
+
+PIM is included in the FRRouting package. For proper PIM operation, PIM
+depends on Zebra. PIM relies on unicast routing to be configured and
+operational to do RPF operations. Therefore, you must configure some
+other routing protocol or static routes.
+
+To configure PIM on a switch using FRR:
+
+1.  Open the `/etc/frr/daemons` file in a text editor.
+
+2.  Add the following line to the end of the file to enable `pimd`, then
+    save the file:
+
+        zebra=yes
+        pimd=yes
+
+3.  Run the `systemctl restart` command to restart FRRouting:
+
+        cumulus@switch:~$ sudo systemctl restart frr
+
+4.  In a terminal, run the `vtysh` command to start the FRRouting CLI on
+    the switch.
+
+        cumulus@switch:~$ sudo vtysh
+        cumulus#
+
+5.  Run the following commands to configure the PIM interfaces:
+
+        cumulus# configure terminal
+        cumulus(config)# int swp1
+        cumulus(config-if)# ip pim sm
+
+    {{%notice note%}}
+
+PIM must be enabled on all interfaces facing multicast sources or
+    multicast receivers, as well as on the interface where the RP
+    address is configured.
+
+    {{%/notice%}}
+
+6.  **Optional:** Run the following commands to enable IGMP (either
+    version 2 or 3) on the interfaces with hosts attached. IGMP version
+    3 is the default; you only need to specify the version if you want
+    to use IGMP version 2:
+
+        cumulus# configure terminal
+        cumulus(config)# int swp1 
+        cumulus(config-if)# ip igmp
+        cumulus(config-if)# ip igmp version 2 #skip this step if you are using version 3
+
+    {{%notice note%}}
+
+You must configure IGMP on all interfaces where multicast receivers
+    exist.
+
+    {{%/notice%}}
+
+7.  Configure a group mapping for a static RP:
+
+        cumulus# configure terminal
+        cumulus(config)# ip pim rp 192.168.0.1
+
+    {{%notice note%}}
+
+Each PIM-SM enabled device must configure a static RP to a group
+    mapping, and all PIM-SM enabled devices must have the same RP to
+    group mapping configuration.
+
+    IP PIM RP group ranges can overlap. Cumulus Linux performs a longest
+    prefix match (LPM) to determine the RP. For example:
+
+        cumulus(config)# ip pim rp 10.0.0.13 224.10.0.0/16
+
+    {{%/notice%}}
+
 ## PIM Sparse Mode (PIM-SM)
 
 PIM Sparse Mode (PIM-SM) is a *pull* multicast distribution method;
@@ -203,12 +336,10 @@ Bi-directional Multicast (BiDir), and Source Specific Multicast (SSM):
     connect multicast senders and receivers that then dynamically
     determine the shortest path through the network between source and
     receiver, to efficiently send multicast traffic.
-
   - Bidirectional PIM (BiDir) forwards all traffic through the multicast
     rendezvous point (RP) instead of tracking multicast source IPs,
     allowing for greater scale while resulting in inefficient forwarding
     of network traffic.
-
   - Source Specific Multicast (SSM) requires multicast receivers to know
     exactly from which source they want to receive multicast traffic
     instead of relying on multicast rendezvous points. SSM requires the
@@ -418,252 +549,6 @@ nexthop is selected for a specific source/group:
     6.0.0.10        swp31s0        169.254.0.9
     6.0.0.10        swp31s1        169.254.0.25
 
-## Configure PIM
-
-To configure PIM using NCLU:
-
-1.  Configure the PIM interface:
-
-        cumulus@switch:~$ net add interface swp1 pim sm
-
-    {{%notice note%}}
-
-PIM must be enabled on all interfaces facing multicast sources or
-    multicast receivers, as well as on the interface where the RP
-    address is configured.
-
-    {{%/notice%}}
-
-2.  **Optional:** Run the following command to enable IGMP (either
-    version 2 or 3) on the interfaces with hosts attached. IGMP version
-    3 is the default, so you only need to specify the version if you
-    want to use IGMP version 2:
-
-        cumulus@switch:~$ net add interface swp1 igmp version 2
-
-    {{%notice note%}}
-
-You must configure IGMP on all interfaces where multicast receivers
-    exist.
-
-    {{%/notice%}}
-
-3.  Configure a group mapping for a static RP:
-
-        cumulus@switch:~$ net add pim rp 192.168.0.1
-
-    {{%notice note%}}
-
-Unless you are using PIM SSM, each PIM-SM enabled device must
-    configure a static RP to a group mapping, and all PIM-SM enabled
-    devices must have the same RP to group mapping configuration.
-
-    IP PIM RP group ranges can overlap. Cumulus Linux performs a longest
-    prefix match (LPM) to determine the RP. For example:
-
-        cumulus@switch:~$ net add pim rp 192.168.0.1 224.10.0.0/16
-        cumulus@switch:~$ net add pim rp 192.168.0.2 224.10.2.0/24
-
-    In this example, if the group is in 224.10.2.5, the RP that gets
-    selected is 192.168.0.2. If the group is 224.10.15, the RP that gets
-    selected is 192.168.0.1.
-
-    {{%/notice%}}
-
-4.  Review and commit your changes:
-
-        cumulus@switch:~$ net pending
-        cumulus@switch:~$ net commit
-
-### Configure PIM Using FRRouting
-
-PIM is included in the FRRouting package. For proper PIM operation, PIM
-depends on Zebra. PIM relies on unicast routing to be configured and
-operational to do RPF operations. Therefore, you must configure some
-other routing protocol or static routes.
-
-To configure PIM on a switch using FRR:
-
-1.  Open the `/etc/frr/daemons` file in a text editor.
-
-2.  Add the following line to the end of the file to enable `pimd`, then
-    save the file:
-
-        zebra=yes
-        pimd=yes
-
-3.  Run the `systemctl restart` command to restart FRRouting:
-
-        cumulus@switch:~$ sudo systemctl restart frr
-
-4.  In a terminal, run the `vtysh` command to start the FRRouting CLI on
-    the switch.
-
-        cumulus@switch:~$ sudo vtysh
-        cumulus#
-
-5.  Run the following commands to configure the PIM interfaces:
-
-        cumulus# configure terminal
-        cumulus(config)# int swp1
-        cumulus(config-if)# ip pim sm
-
-    {{%notice note%}}
-
-PIM must be enabled on all interfaces facing multicast sources or
-    multicast receivers, as well as on the interface where the RP
-    address is configured.
-
-    {{%/notice%}}
-
-6.  **Optional:** Run the following commands to enable IGMP (either
-    version 2 or 3) on the interfaces with hosts attached. IGMP version
-    3 is the default; you only need to specify the version if you want
-    to use IGMP version 2:
-
-        cumulus# configure terminal
-        cumulus(config)# int swp1 
-        cumulus(config-if)# ip igmp
-        cumulus(config-if)# ip igmp version 2 #skip this step if you are using version 3
-
-    {{%notice note%}}
-
-You must configure IGMP on all interfaces where multicast receivers
-    exist.
-
-    {{%/notice%}}
-
-7.  Configure a group mapping for a static RP:
-
-        cumulus# configure terminal
-        cumulus(config)# ip pim rp 192.168.0.1
-
-    {{%notice note%}}
-
-Each PIM-SM enabled device must configure a static RP to a group
-    mapping, and all PIM-SM enabled devices must have the same RP to
-    group mapping configuration.
-
-    IP PIM RP group ranges can overlap. Cumulus Linux performs a longest
-    prefix match (LPM) to determine the RP. For example:
-
-        cumulus(config)# ip pim rp 10.0.0.13 224.10.0.0/16
-
-    {{%/notice%}}
-
-### Example Configurations
-
-#### Complete Multicast Network Configuration Example
-
-The following is example configuration:
-
-    RP# show run
-    Building configuration...
-    Current configuration:
-    !
-    log syslog
-    ip multicast-routing
-    ip pim rp 192.168.0.1 224.0.0.0/4
-    username cumulus nopassword
-    !
-    !
-    interface lo
-     description RP Address interface
-     ip ospf area 0.0.0.0
-     ip pim sm
-    !
-    interface swp1
-     description interface to FHR
-     ip ospf area 0.0.0.0
-     ip ospf network point-to-point
-     ip pim sm
-    !
-    interface swp2
-     description interface to LHR
-     ip ospf area 0.0.0.0
-     ip ospf network point-to-point
-     ip pim sm
-    !
-    router ospf
-     ospf router-id 192.168.0.1
-    !
-    line vty
-    !
-    end
-
-    FHR# show run
-    !
-    log syslog
-    ip multicast-routing
-    ip pim rp 192.168.0.1 224.0.0.0/4
-    username cumulus nopassword
-    !
-    interface bridge10.1
-     description Interface to multicast source
-     ip ospf area 0.0.0.0
-     ip ospf network point-to-point
-     ip pim sm
-    !
-    interface lo
-     ip ospf area 0.0.0.0
-     ip pim sm
-    !
-    interface swp49
-     description interface to RP
-     ip ospf area 0.0.0.0
-     ip ospf network point-to-point
-     ip pim sm
-    !
-    interface swp50
-     description interface to LHR
-     ip ospf area 0.0.0.0
-     ip ospf network point-to-point
-     ip pim sm
-    !
-    router ospf
-     ospf router-id 192.168.1.1
-    !
-    line vty
-    !
-    end
-
-    LHR# show run
-    !
-    log syslog
-    ip multicast-routing
-    ip pim rp 192.168.0.1 224.0.0.0/4
-    username cumulus nopassword
-    !
-    interface bridge10.1
-     description interface to multicast receivers
-     ip igmp
-     ip ospf area 0.0.0.0
-     ip ospf network point-to-point
-     ip pim sm
-    !
-    interface lo
-     ip ospf area 0.0.0.0
-     ip pim sm
-    !
-    interface swp49
-     description interface to RP
-     ip ospf area 0.0.0.0
-     ip ospf network point-to-point
-     ip pim sm
-    !
-    interface swp50
-     description interface to FHR
-     ip ospf area 0.0.0.0
-     ip ospf network point-to-point
-     ip pim sm
-    !
-    router ospf
-     ospf router-id 192.168.2.2
-    !
-    line vty
-    !
-    end
-
 ## Source Specific Multicast Mode (SSM)
 
 The source-specific multicast method uses prefix-lists to configure a
@@ -820,11 +705,7 @@ hello source by setting the source:
 
 ## Verify PIM
 
-{{%notice note%}}
-
 The following outputs are based on the [Cumulus Reference Topology](https://github.com/CumulusNetworks/cldemo-vagrant) with `cldemo-pim`.
-
-{{%/notice%}}
 
 ### Source Starts First
 
@@ -1100,6 +981,119 @@ configure an interface, include the `pim bfd` option:
     cumulus@switch:~$ net add interface swp31s3 pim bfd
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
+
+## Example Configuration
+
+### Complete Multicast Network Configuration Example
+
+The following is an example configuration:
+
+    RP# show run
+    Building configuration...
+    Current configuration:
+    !
+    log syslog
+    ip multicast-routing
+    ip pim rp 192.168.0.1 224.0.0.0/4
+    username cumulus nopassword
+    !
+    !
+    interface lo
+     description RP Address interface
+     ip ospf area 0.0.0.0
+     ip pim sm
+    !
+    interface swp1
+     description interface to FHR
+     ip ospf area 0.0.0.0
+     ip ospf network point-to-point
+     ip pim sm
+    !
+    interface swp2
+     description interface to LHR
+     ip ospf area 0.0.0.0
+     ip ospf network point-to-point
+     ip pim sm
+    !
+    router ospf
+     ospf router-id 192.168.0.1
+    !
+    line vty
+    !
+    end
+
+    FHR# show run
+    !
+    log syslog
+    ip multicast-routing
+    ip pim rp 192.168.0.1 224.0.0.0/4
+    username cumulus nopassword
+    !
+    interface bridge10.1
+     description Interface to multicast source
+     ip ospf area 0.0.0.0
+     ip ospf network point-to-point
+     ip pim sm
+    !
+    interface lo
+     ip ospf area 0.0.0.0
+     ip pim sm
+    !
+    interface swp49
+     description interface to RP
+     ip ospf area 0.0.0.0
+     ip ospf network point-to-point
+     ip pim sm
+    !
+    interface swp50
+     description interface to LHR
+     ip ospf area 0.0.0.0
+     ip ospf network point-to-point
+     ip pim sm
+    !
+    router ospf
+     ospf router-id 192.168.1.1
+    !
+    line vty
+    !
+    end
+
+    LHR# show run
+    !
+    log syslog
+    ip multicast-routing
+    ip pim rp 192.168.0.1 224.0.0.0/4
+    username cumulus nopassword
+    !
+    interface bridge10.1
+     description interface to multicast receivers
+     ip igmp
+     ip ospf area 0.0.0.0
+     ip ospf network point-to-point
+     ip pim sm
+    !
+    interface lo
+     ip ospf area 0.0.0.0
+     ip pim sm
+    !
+    interface swp49
+     description interface to RP
+     ip ospf area 0.0.0.0
+     ip ospf network point-to-point
+     ip pim sm
+    !
+    interface swp50
+     description interface to FHR
+     ip ospf area 0.0.0.0
+     ip ospf network point-to-point
+     ip pim sm
+    !
+    router ospf
+     ospf router-id 192.168.2.2
+    !
+    line vty
+    !
+    end
 
 ## Troubleshooting
 

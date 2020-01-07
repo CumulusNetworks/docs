@@ -352,10 +352,3 @@ next releases of NetQ should provide the ability to store these modules
 under `/usr/local/lib`, to keep them from being affected by package
 management.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

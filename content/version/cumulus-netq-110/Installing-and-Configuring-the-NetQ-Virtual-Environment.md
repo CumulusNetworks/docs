@@ -23,10 +23,3 @@ requires Vagrant and a hypervisor like VirtualBox. The [GitHub
 site](https://github.com/CumulusNetworks/cldemo-netq) provides
 information on downloading and installing the hypervisor.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

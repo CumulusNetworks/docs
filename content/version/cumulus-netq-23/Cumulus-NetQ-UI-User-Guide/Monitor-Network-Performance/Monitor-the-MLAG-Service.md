@@ -30,7 +30,7 @@ as MLAG, MC-LAG or VPC. The Cumulus NetQ UI uses the MLAG terminology predominan
 With NetQ, you can monitor the number of nodes running the MLAG service,
 view sessions running, and view alarms triggered by the MLAG service.
 For an overview and how to configure MLAG in your data center network,
-refer to [Multi-Chassis Link Aggregation - MLAG](../../../../cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
+refer to [Multi-Chassis Link Aggregation - MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
 
 ### MLAG Service Card Workflow Summary
 
@@ -574,7 +574,7 @@ With NetQ, you can monitor the number of nodes running the MLAG service,
 view switches with the most peers alive and not alive, and view alarms
 triggered by the MLAG service. For an overview and how to configure MLAG
 in your data center network, refer to
-[Multi-Chassis Link Aggregation - MLAG](../../../../cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
+[Multi-Chassis Link Aggregation - MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
 
 {{%notice note%}}
 

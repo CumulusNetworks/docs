@@ -126,8 +126,7 @@ should not need a console cable. A fresh install via ONIE using a local
 Web server should generally complete in less than 10 minutes.
 
 You have more options for installing Cumulus Linux with ONIE. Read
-[Installing a New Cumulus Linux
-Image](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image)
+[Installing a New Cumulus Linux Image](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Installing-a-New-Cumulus-Linux-Image)
 to install Cumulus Linux using ONIE in the following ways:
 
   - DHCP/Web server with and without DHCP options
@@ -160,11 +159,8 @@ After installing Cumulus Linux, you are ready to:
 ## <span id="src-5121921_QuickStartGuide-upgrading-cumulus-linux" class="confluence-anchor-link"></span>Upgrading Cumulus Linux</span>
 
 To install Cumulus Linux 3.0.0 or later and you're running a version
-earlier than 3.0.0, you must perform a complete install, as [described
-above](#src-5121921_QuickStartGuide-install). If you already have
-Cumulus Linux 3.0.0 or later installed on your switch, read [Upgrading
-Cumulus
-Linux](Managing-Cumulus-Linux-Disk-Images.html#src-5121985_ManagingCumulusLinuxDiskImages-upgrade)
+earlier than 3.0.0, you must perform a complete install, as [described above](#src-5121921_QuickStartGuide-install). If you already have
+Cumulus Linux 3.0.0 or later installed on your switch, read [Upgrading Cumulus Linux](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/#span-idsrc-5121985-managingcumuluslinuxdiskimages-upgrade-classconfluence-anchor-linkspanupgrading-cumulus-linuxspan)
 for considerations before start the process.
 
 ## Configuring Cumulus Linux</span>
@@ -205,8 +201,7 @@ Privileges](/version/cumulus-linux-31/System-Management/Authentication-Authoriza
 ### Serial Console Management</span>
 
 Users are encouraged to perform management and configuration over the
-network, [either in band or out of
-band](Upgrading-Cumulus-Linux.html#src-5121998_UpgradingCumulusLinux-outofband).
+network, [either in band or out of band](/version/cumulus-linux-31/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/).
 Use of the serial console is fully supported; however, many customers
 prefer the convenience of network-based management.
 
@@ -310,7 +305,7 @@ will show up as swp1, swp2, and so forth.
 If you are using 4x10G DAC or AOC cables, edit the
 `/etc/cumulus/ports.conf` to enable support for these cables then
 [restart the `switchd`
-service](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+service](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd)
 using the `sudo systemctl restart switchd.service` command. For more
 details, see [Layer 1 and Switch Port
 Attributes](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes).
@@ -479,10 +474,3 @@ Multiple loopback addresses can be configured by adding additional
         address 10.1.1.1
         address 172.16.2.1/24
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

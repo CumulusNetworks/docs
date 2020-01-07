@@ -11,8 +11,7 @@ version: 3.2.1
 imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
 ---
-Cumulus Networks recommends you use a [VLAN-aware
-bridge](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+Cumulus Networks recommends you use a [VLAN-aware bridge](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 on your switch. You use traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.
 
@@ -93,13 +92,7 @@ file. To create a traditional mode bridge:
 You can configure multiple bridges, in order to logically divide a
 switch into multiple layer 2 domains. This allows for hosts to
 communicate with other hosts in the same domain, while separating them
-fro hosts in other domains.
-
-<div class="confbox admonition admonition-note">
-
-<span class="admonition-icon confluence-information-macro-icon"></span>
-
-<div class="admonition-body">
+from hosts in other domains.
 
 {{%notice info%}}
 
@@ -107,21 +100,15 @@ You can create only one VLAN-aware bridge on a switch.
 
 {{%/notice%}}
 
-</div>
-
-</div>
-
 The diagram below shows a multiple bridge configuration, where host-1
 and host-2 are connected to bridge-A, while host-3 and host-4 are
 connected to bridge-B. This means that:
 
-  - host-1 and host-2 can communicate with each other.
+- host-1 and host-2 can communicate with each other.
+- host-3 and host-4 can communicate with each other.
+- host-1 and host-2 cannot communicate with host-3 and host-4.
 
-  - host-3 and host-4 can communicate with each other.
-
-  - host-1 and host-2 cannot communicate with host-3 and host-4.
-
-{{% imgOld 0 %}}
+{{< img src = "/images/cumulus-linux/multiple-bridges.png" >}}
 
 This example configuration looks like this in the
 `/etc/network/interfaces` file:
@@ -204,10 +191,3 @@ To create the above example, add the following configuration to the
 You can find more examples of VLAN tagging in [this
 chapter](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-Tagging).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

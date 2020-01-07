@@ -23,10 +23,3 @@ siteSlug: cumulus-linux-30
   - [PAM and
     NSS](/version/cumulus-linux-30/System-Management/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

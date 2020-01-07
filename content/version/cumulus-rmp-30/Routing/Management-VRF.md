@@ -232,8 +232,7 @@ So to get the route for the mgmt VRF, run:
 
 ## Using the mgmt Interface Class</span>
 
-In `ifupdown2` [interface
-classes](Configuring-and-Managing-Network-Interfaces.html#src-5118733_ConfiguringandManagingNetworkInterfaces-classes)
+In `ifupdown2` [interface classes](/version/cumulus-rmp-30/Configuring-and-Managing-Network-Interfaces/#span-idsrc-5118733-configuringandmanagingnetworkinterfaces-classes-classconfluence-anchor-linkspanifupdown2-interface-classesspan)
 are used to create a user-defined grouping for interfaces. The special
 class *mgmt* is available to separate the switch's management interfaces
 from the data interfaces. This allows you to manage the data interfaces
@@ -286,10 +285,3 @@ Because DNS lookups are forced out of the management interface using FIB
 rules, this could affect data plane ports if there are overlapping
 addresses.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

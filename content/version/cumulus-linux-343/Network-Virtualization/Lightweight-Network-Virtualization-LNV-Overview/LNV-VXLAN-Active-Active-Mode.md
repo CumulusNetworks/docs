@@ -103,7 +103,7 @@ LNV requires the following underlying technologies to work correctly.
 </tr>
 <tr class="even">
 <td><p>OSPF or BGP</p></td>
-<td><p>Refer to the <a href="/display/CL34/Open+Shortest+Path+First+-+OSPF+-+Protocol">OSPF chapter</a> or the <a href="/display/CL34/Configuring+Border+Gateway+Protocol+-+BGP">BGP Chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
+<td><p>Refer to the <a href="/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol/">OSPF chapter</a> or the <a href="/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol-BGP/">BGP Chapter</a> for more detailed configuration information. Configurations for the demonstration are provided below.</p></td>
 </tr>
 <tr class="odd">
 <td><p>LNV</p></td>
@@ -1289,8 +1289,7 @@ For more information on using Cumulus VX and Vagrant, refer to the
 
 ## Troubleshooting with LNV Active-Active
 
-In addition to the [troubleshooting for single-attached
-LNV](/display/CL34/Lightweight+Network+Virtualization+-+LNV#LightweightNetworkVirtualization-LNV-VerificationandTroubleshooting),
+In addition to the [troubleshooting for single-attached LNV](/version/cumulus-linux-343/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/#verification-and-troubleshooting),
 there is now the MLAG daemon (clagd) to consider. The `clagctl` command
 gives the output of MLAG behavior and any inconsistencies that may arise
 between a MLAG pair.

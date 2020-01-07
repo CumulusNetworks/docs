@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
 
 This chapter discusses routing on switches running Cumulus Linux.
 
@@ -283,7 +282,7 @@ your network architecture and specify the profile name for the
     forwarding_table.profile = default
 
 After you specify a different profile, [restart
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd)
 for the change to take effect. You can see the forwarding table profile
 when you run `cl-resource-query`.
 
@@ -395,13 +394,3 @@ There are two ways you can work around this issue.
         2001:620:5ca1:160::/64 dev eth0  proto kernel  metric 256 
         fe80::/64 dev eth0  proto kernel  metric 256 
         default via 2001:620:5ca1:160::1 dev eth0  metric 1024 
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

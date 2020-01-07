@@ -174,7 +174,7 @@ structure:
 
 For example:
 
-{{<figure src="/images/uploads/NetQAgentLogFormat.png" height="69" width="747">}}
+{{<figure src="/images/old_doc_images/NetQAgentLogFormat.png" height="69" width="747">}}
 
 This example shows a portion of a NetQ Agent log with debug level
 logging.
@@ -230,10 +230,3 @@ To disable all logging:
 
 
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

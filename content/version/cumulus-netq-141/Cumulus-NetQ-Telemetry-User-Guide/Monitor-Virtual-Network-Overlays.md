@@ -338,7 +338,7 @@ keywords. This example shows the status of LNV about 30 minutes ago.
     torc-22           RD         HER      up         4      6      45m:22.548s
 
 For more information about and configuration of LNV, refer to the
-[Cumulus Linux LNV Overview](https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Lightweight-Network-Virtualization-Overview/) topic.
+[Cumulus Linux LNV Overview](/version/cumulus-linux-37/Network-Virtualization/Lightweight-Network-Virtualization-Overview/) topic.
 
 ## View Communication Paths between Devices
 

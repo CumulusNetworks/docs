@@ -138,10 +138,3 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
 
   - [www.perihel.at/sec/mz/mzguide.html](http://www.perihel.at/sec/mz/mzguide.html)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

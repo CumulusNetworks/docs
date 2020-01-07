@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery
 Protocol, or LLDP) standard. LLDP allows you to know which ports are
@@ -284,12 +283,5 @@ LLDP does not enable the SNMP subagent by default. You need to edit
   - [Wikipedia - Link Layer Discovery
     Protocol](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

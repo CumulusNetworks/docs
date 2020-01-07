@@ -12,8 +12,7 @@ imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
 ---
 The NetQ Agent monitors Docker containers the same way it monitors
-[physical
-servers](/version/cumulus-netq-10/Monitoring-Linux-Hosts-with-NetQ).
+[physical servers](/version/cumulus-netq-10/Monitoring-Linux-Hosts-with-NetQ).
 There is no special implementation. The NetQ Agent pulls Docker data
 from the container as it would pull data from a Cumulus Linux switch or
 Linux host.
@@ -61,8 +60,7 @@ Currently, the NetQ Agent does not support:
 
 Due to the higher memory requirements to run containers, Cumulus
 Networks recommends you run the NetQ Telemetry Server on a host with at
-least 32G RAM. For more information, read the [Performing Network
-Diagnostics](Performing-Network-Diagnostics.html#src-6488212_PerformingNetworkDiagnostics-matrix)
+least 32G RAM. For more information, read the [Performing Network Diagnostics](/version/cumulus-netq-10/Performing-Network-Diagnostics/)
 chapter.
 
 ## <span id="src-6488224_MonitoringContainerEnvironmentswithNetQ-enable" class="confluence-anchor-link"></span>Configuring the Container Host</span>
@@ -77,8 +75,7 @@ need to do three things:
 
   - Restart the agent
 
-See the section on [configuring the NetQ agent on a
-node](Getting-Started-with-NetQ.html#src-6488202_GettingStartedwithNetQ-nodeconfig)
+See the section on [configuring the NetQ agent on a node](/version/cumulus-netq-10/Getting-Started-with-NetQ/#install-the-netq-agent)
 for details. In the following example `/etc/netq/netq.yml` file on the
 server, the last three lines enable Docker:
 
@@ -633,17 +630,3 @@ traffic using that protocol from a given port.
     netcat-9091          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
     netcat-9092          server01   tcp    9192                       host           6.0.1.5/26:swp1.1004  9192
     netcat-9092          server01   tcp    8182                       host           6.0.1.5/26:swp1.1004  8182
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-<script src="js/lunr.js"></script>
-
-<script src="js/lunr-extras.js"></script>
-
-<script src="assets/js/scroll-search.js"></script>

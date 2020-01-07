@@ -85,10 +85,3 @@ agents`:
 When you're finished with the session, click **Back to Services** to
 close the console.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

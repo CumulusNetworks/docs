@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
 ---
-<details>
 
 You can configure an interface so it can make DHCP relay requests for
 IPv4 and IPv6.
@@ -194,12 +193,5 @@ Here are sample configurations:
             range6 2001:db8:1::100 2001:db8:1::200;
     }
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

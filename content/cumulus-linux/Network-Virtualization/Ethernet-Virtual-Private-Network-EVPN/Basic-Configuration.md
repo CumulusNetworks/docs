@@ -47,7 +47,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65011
+switch(config)# router bgp 65000
 switch(config-router)# neighbor swp1 interface remote-as external
 switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# neighbor swp1 activate
@@ -108,7 +108,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65011
+switch(config)# router bgp 65000
 switch(config-router)# address-family l2vpn evpn 
 switch(config-router-af)# advertise-all-vni
 switch(config-router-af)# end
@@ -288,7 +288,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65011
+switch(config)# router bgp 65020
 switch(config-router)# neighbor 10.1.1.2 remote-as internal
 switch(config-router)# neighbor 10.1.1.3 remote-as internal
 switch(config-router)# neighbor 10.1.1.4 remote-as internal

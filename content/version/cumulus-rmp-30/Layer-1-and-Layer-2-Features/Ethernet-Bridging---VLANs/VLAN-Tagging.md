@@ -11,12 +11,10 @@ version: 3.0.1
 imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
 ---
-This article shows two examples of [VLAN
-tagging](Ethernet-Bridging-VLANs.html#src-5118717_EthernetBridging-VLANs-vlan_tagging),
+This article shows two examples of [VLAN tagging](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/),
 one basic and one more advanced. They both demonstrate the streamlined
 interface configuration from `ifupdown2`. For more information, see
-[Configuring and Managing Network
-Interfaces](/version/cumulus-rmp-30/Configuring-and-Managing-Network-Interfaces/).
+[Configuring and Managing Network Interfaces](/version/cumulus-rmp-30/Configuring-and-Managing-Network-Interfaces/).
 
 ## VLAN Tagging, a Basic Example</span>
 
@@ -316,8 +314,7 @@ with the VLAN ID translated.
 
 {{%notice note%}}
 
-A bridge in [VLAN-aware
-mode](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
+A bridge in [VLAN-aware mode](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 cannot have VLAN translation enabled for it; only bridges configured in
 traditional mode can utilize VLAN translation.
 
@@ -348,10 +345,3 @@ VLAN ID translated from 100 to 200:
 
 {{% imgOld 2 %}}
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

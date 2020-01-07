@@ -19,7 +19,7 @@ It is simple to capture the state of your network using the snapshot feature.
 
 To create a snapshot:
 
-1. From any workbench, click <img src="/images/netq/camera.svg" width="22.5" height="18"> in the workbench header.
+1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
 
 2. Click **Create Snapshot**.
 
@@ -64,7 +64,7 @@ To compare network snapshots:
         {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-231.png" width="250">}}
 
     - If you have closed one or both of the cards (you may have created them some time before):
-        - Click <img src="/images/netq/camera.svg" width="22.5" height="18">.
+        - Click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}}.
         - Click **Compare Snapshots**.
         - Click on the two snapshots you want to compare.
         - Click **Finish**. Note that two snapshots must be selected before **Finish** is active.
@@ -120,7 +120,7 @@ You can create as many snapshots as you like and view them at any time. When a s
 
 To view an existing snapshot:
 
-1. From any workbench, click <img src="/images/netq/camera.svg" width="22.5" height="18"> in the workbench header.
+1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
 
 2. Click **View/Delete Snapshots**.
 
@@ -132,7 +132,7 @@ To view an existing snapshot:
 
 To remove an existing snapshot:
 
-1. From any workbench, click <img src="/images/netq/camera.svg" width="22.5" height="18"> in the workbench header.
+1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
 
 2. Click **View/Delete Snapshots**.
 

@@ -23,7 +23,7 @@ With NetQ, you can monitor the number of nodes running the BGP service,
 view switches with the most established and unestablished BGP sessions,
 and view alarms triggered by the BGP service. For an overview and how to
 configure BGP to run in your data center network, refer to
-[Border Gateway Protocol - BGP](../../../../cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/).
+[Border Gateway Protocol - BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/).
 
 ### BGP Service Card Workflow
 
@@ -574,7 +574,7 @@ session state changes, and compare with alarms occurring at the same
 time, as well as monitor the running BGP configuration and changes to
 the configuration file. For an overview and how to configure BGP to run
 in your data center network, refer to
-[Border Gateway Protocol - BGP](../../../../cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/).
+[Border Gateway Protocol - BGP](/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/).
 
 {{%notice note%}}
 

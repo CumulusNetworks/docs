@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
 
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework
 in Cumulus Linux as well as most other Linux distributions. `iptables`,
@@ -270,8 +269,7 @@ To always start `switchd` with nonatomic updates:
     
         acl.non_atomic_update_mode = TRUE 
 
-3.  [Restart
-    `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5114824):
+3.  [Restart `switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span):
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
@@ -1228,12 +1226,5 @@ following is displayed:
 The Dell S3048-ON has a limit of 24576 MAC address entries, instead of
 32K for other 1G switches.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

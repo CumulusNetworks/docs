@@ -113,10 +113,3 @@ root account, you can do one of two things for the account:
     
         cumulus@switch:~$ sudo systemctl reload ssh
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

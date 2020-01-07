@@ -11,8 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
-
 This chapter discusses the various network interfaces on a switch
 running Cumulus Linux.
 
@@ -273,9 +271,9 @@ Cumulus Linux has the ability to:
 
 You configure breakout ports in the `/etc/cumulus/ports.conf` file.
 After you modify the configuration, [restart
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd)
 to push the new configuration; [this interrupts network
-services](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd).
+services](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd).
 
 {{%notice info%}}
 
@@ -419,7 +417,7 @@ In `/etc/cumulus/ports.conf`:
     ...
 
 In any case, when you finish editing `ports.conf`, make sure to [restart
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd)
 to reload your changes.
 
 ### Breaking Out a 40G Port</span>
@@ -450,7 +448,7 @@ with four 10G logical ports:
     52=40G
 
 To load the change [restart
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd)
 .
 
 Many services depend on `switchd`. It is highly recommended to restart
@@ -516,7 +514,7 @@ port:
     5=10G
 
 To load the change, [restart
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd)
 to load your changes.
 
 Many services depend on `switchd`. It is highly recommended to restart
@@ -653,7 +651,7 @@ error occurs while removing and reinserting QSFP module.
 The QSPFx2 module cannot be removed while the switch is powered on, as
 it is not hot-swappable. However, if this occurs, you can get the link
 to come up; however, this involves [restarting
-`switchd`](Configuring-switchd.html#src-5121932_Configuringswitchd-restartswitchd),
+`switchd`](/version/cumulus-linux-31/System-Management/Configuring-switchd/#span-id-src-5121932-configuringswitchd-restartswitchd-class-confluence-anchor-link-span-restarting-switchd-span#src-5121932_Configuringswitchd-restartswitchd),
 which disrupts your network.
 
 On the T3048-LY9, run the following commands:
@@ -678,12 +676,5 @@ On the T5048-LY8, run the following commands:
 
   - [www.linuxfoundation.org/collaborate/workgroups/networking/bonding](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

@@ -143,10 +143,3 @@ network configuration before deploying it into production. For more
 information, see [Using NetQ Virtual
 Environments](/version/cumulus-netq-121/Using-NetQ-Virtual-Environments).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

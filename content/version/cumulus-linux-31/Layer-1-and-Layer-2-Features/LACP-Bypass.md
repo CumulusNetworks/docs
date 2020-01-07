@@ -36,8 +36,7 @@ Keep in the mind the following caveats with all-active mode:
   - Spanning tree protocol (STP) does not run on the individual bond
     slave interfaces when the LACP bond is in all-active mode.
     Therefore, only use all-active mode on host-facing LACP bonds.
-    Cumulus Networks highly recommends you configure [STP BPDU
-    guard](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-5122089_SpanningTreeandRapidSpanningTree-bpdu)
+    Cumulus Networks highly recommends you configure [STP BPDU guard](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree/#span-id-src-5122089-spanningtreeandrapidspanningtree-bpdu-class-confluence-anchor-link-span-bpdu-guard-span)
     along with all-active mode.
 
 {{%notice note%}}
@@ -126,10 +125,3 @@ mode](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-V
         bridge-stp on
         mstpctl-bpduguard bond1=yes
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

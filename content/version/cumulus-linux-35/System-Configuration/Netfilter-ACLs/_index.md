@@ -1557,12 +1557,5 @@ following is displayed:
 The Dell S3048-ON has a limit of 24576 MAC address entries, instead of
 32K for other 1G switches.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

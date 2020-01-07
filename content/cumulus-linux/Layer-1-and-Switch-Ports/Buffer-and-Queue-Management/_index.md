@@ -45,7 +45,6 @@ The following example `/etc/cumulus/datapath/traffic.conf` datapath configuratio
 - Per-port remark packet fields and mapping apply to the designated set of ports.
 
 <details>
-
 <summary>**click to see traffic.conf file**</summary>
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf

@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 The following monitoring processes are considered best practices for
 reviewing and troubleshooting potential issues with Cumulus Linux
@@ -634,7 +633,7 @@ and associated logs are documented in the code.
 
 Peering information should be tracked through PTM. For more information,
 refer to the [Prescriptive Topology Manager
-documentation](/display/CL321/Prescriptive+Topology+Manager+-+PTM).
+documentation](/version/cumulus-linux-321/Layer-One-and-Two/Prescriptive-Topology-Manager-PTM/).
 
 {{%/notice%}}
 
@@ -1050,12 +1049,5 @@ sudo: pam_unix(sudo:session): session closed for user root</code></pre></td>
 </tbody>
 </table>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

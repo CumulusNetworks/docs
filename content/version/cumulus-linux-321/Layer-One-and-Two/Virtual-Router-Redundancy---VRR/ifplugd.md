@@ -120,10 +120,3 @@ The default shell for `ifplugd` is `dash` (`/bin/sh`), rather than
 contains less features than `bash` (such as being unable to handle
 multiple uplinks).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

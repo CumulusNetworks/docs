@@ -254,10 +254,3 @@ Finally, restart `ifplugd` for your changes to take effect:
     quick, but consequently less featureful than `bash`. For example, it
     doesn't handle multiple uplinks.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

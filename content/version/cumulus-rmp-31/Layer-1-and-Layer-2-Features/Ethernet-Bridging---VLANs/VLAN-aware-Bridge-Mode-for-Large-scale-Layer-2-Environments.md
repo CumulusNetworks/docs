@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
 ---
-<details>
 
 The Cumulus RMP bridge driver supports two configuration modes, one that
 is VLAN-aware, and one that follows a more traditional Linux bridge
@@ -27,8 +26,7 @@ times the number of VLANs becomes large.
 
 The VLAN-aware mode in Cumulus RMP implements a configuration model for
 large-scale L2 environments, with **one single** **instance** of
-[Spanning
-Tree](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree).
+[Spanning Tree](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree).
 Each physical bridge member port is configured with the list of allowed
 VLANs as well as its port VLAN ID (either PVID or native VLAN - see
 below). MAC address learning, filtering and forwarding are *VLAN-aware*.
@@ -457,8 +455,7 @@ VLAN-aware one. To do the opposite, delete the VLAN-aware bridge in step
 
 ## Caveats and Errata</span>
 
-  - **STP:** Because [Spanning Tree and Rapid Spanning
-    Tree](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree)
+  - **STP:** Because [Spanning Tree and Rapid Spanning Tree](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Spanning-Tree-and-Rapid-Spanning-Tree)
     (STP) are enabled on a per-bridge basis, VLAN-aware mode essentially
     supports a single instance of STP across all VLANs. A common
     practice when using a single STP instance for all VLANs is to define
@@ -490,16 +487,5 @@ VLAN-aware one. To do the opposite, delete the VLAN-aware bridge in step
         {{%/notice%}}
 
   - **VLAN translation:** A bridge in VLAN-aware mode cannot have VLAN
-    translation enabled for it; only bridges configured in [traditional
-    mode](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
+    translation enabled for it; only bridges configured in [traditional mode](/version/cumulus-rmp-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/)
     can utilize VLAN translation.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

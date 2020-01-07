@@ -54,7 +54,7 @@ differently.
 The way they answer these questions affects the network design and
 thereby configuration. For example, in a link-state protocol such as
 OSPF (see [Open Shortest Path First (OSPF)
-Protocol](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol))
+Protocol](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/))
 or IS-IS, complete local information (links and attached address
 prefixes) about a node is disseminated to every other node in the
 network. Since the state that a node has to keep grows rapidly in such a
@@ -125,10 +125,3 @@ these settings.
 
   - /etc/quagga/daemons
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -519,7 +519,7 @@ If a SPAN destination IP address is not available, or if the interface type or t
 #### ERSPAN and Wireshark
 
 - When using [Wireshark](https://www.wireshark.org) to review the ERSPAN output, Wireshark may report the message "Unknown version, please report or test to use fake ERSPAN preference", and the trace is unreadable. To resolve this, go into the General preferences for Wireshark, then go to **Protocols** \> **ERSPAN** and check the **Force to decode fake ERSPAN frame** option.
-- To set up a [capture filter](https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html) on the destination switch that filters for a specific IP protocol, use `ip proto gre` (to filter for GRE-encapsulated traffic) or `ip proto 49` (to filter for IP protocol 49 traffic).
+- To set up a [capture filter](https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html) on the destination switch that filters for a specific IP protocol, use `ip.proto == 49` to filter for GRE-encapsulated (IP protocol 49) traffic.
 
 ### Selective Spanning
 

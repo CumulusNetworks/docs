@@ -102,10 +102,3 @@ functionality. The section below covers how to generate a SSH key pair.
   - [Wikipedia - Secure Shell
     (SSH)](http://en.wikipedia.org/wiki/Secure_Shell)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

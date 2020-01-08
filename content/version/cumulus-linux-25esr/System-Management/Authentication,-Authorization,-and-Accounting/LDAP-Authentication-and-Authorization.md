@@ -77,9 +77,6 @@ Alternatively, these parameters can be pre-seeded using the
 and create the pre-seeded parameters using `debconf-set-selections` with
 the appropriate answers. Run `debconf-show <pkg>` to check the settings.
 
-Here is an example of how to preseed answers to the installer questions
-using `debconf-set-selections`:
-
 <details><summary>Click to expand ...</summary>
 
 ```
@@ -673,10 +670,6 @@ in the manpage for `nslcd.conf` (such as *passwd* or *group*).
 
 {{%/notice%}}
 
-### Example Configuration
-
-Here is an [example
-configuration ](attachments_5115906_1_nslcd.conf)using Cumulus Linux.
 
 ## Troubleshooting
 

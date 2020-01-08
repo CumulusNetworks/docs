@@ -527,7 +527,7 @@ Don't specify a process ID unless you are using multi-instance OSPF.
 {{%notice note%}}
 
 If you disabled the
-[integrated](Configuring-Quagga.html#src-5122123_ConfiguringQuagga-integrated_cfg)
+[integrated](/version/cumulus-linux-31/Layer-3-Features/Configuring-Quagga/#span-idsrc-5122123-configuringquagga-integrated-cfg-classconfluence-anchor-linkspanunderstanding-integrated-configurationsspan)
 Quagga configuration, you must create a separate `ospfd` configuration
 file for each instance. The `ospfd.conf` file must include the instance
 ID in the file name. Continuing with our example, you would create
@@ -731,8 +731,8 @@ The three most important states while troubleshooting the protocol are:
     
     {{%notice tip%}}
     
-    Compare the route output with kernel by using `show ip route | grep
-    zebra` and with the hardware entries using `cl-route-check -V`.
+Compare the route output with kernel by using `show ip route | grep
+zebra` and with the hardware entries using `cl-route-check -V`.
     
     {{%/notice%}}
 
@@ -778,16 +778,8 @@ Using `tcpdump` to capture OSPF packets:
 
 ## Supported RFCs</span>
 
-  - 
-    
-    <div id="src-5122126_indexterm-C3D89656A980126A2435EE2D098947FD">
-    
-    [RFC2328](http://tools.ietf.org/rfc/rfc2328)
-    
-    </div>
-
+  - [RFC2328](http://tools.ietf.org/rfc/rfc2328)
   - [RFC3137](http://tools.ietf.org/rfc/rfc3137)
-
   - [RFC5309](http://tools.ietf.org/rfc/rfc5309)
 
 ## Useful Links</span>
@@ -806,10 +798,3 @@ Using `tcpdump` to capture OSPF packets:
   - Moy, John T. OSPF: Anatomy of an Internet Routing Protocol.
     Addison-Wesley.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

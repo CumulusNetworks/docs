@@ -29,10 +29,10 @@ The topology view provides a visual representation of your Linux network, showin
 
 | Symbol | Usage |
 | :----: | ----- |
-| <img src="/images/netq/rocket-turtle-limed-spruce.svg" width="28" height="28"> | Switch running Cumulus Linux OS |
+| {{<img src="/images/netq/rocket-turtle-limed-spruce.svg" width="28" height="28">}} | Switch running Cumulus Linux OS |
 | <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> | Switch running RedHat, Ubuntu, or CentOS |
 | <img src="https://icons.cumulusnetworks.com/12-Design/08-Grids-Rulers/grid-monitor.svg", height="18", width="18"/> | Host with unknown operating system |
-| <img src="/images/netq/cof_white-black_hex.png" width="18" height="18"> | Host running Ubuntu |
+| {{<img src="/images/netq/cof_white-black_hex.png" width="18" height="18">}} | Host running Ubuntu |
 | Red <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell-ring.svg", height="18", width="18"/> | Alarm (critical) event is present on the node|
 | Yellow <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg", height="18", width="18"/> | Info event is present |
 | Lines | Physical links or connections |

@@ -66,8 +66,7 @@ use a configuration like the following:
       bridge-mcquerier 1
       bridge-mcqifaddr 1
 
-For a [VLAN-aware
-bridge](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
+For a [VLAN-aware bridge](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments),
 use a configuration like the following:
 
     auto br0.100
@@ -198,10 +197,3 @@ command. To display router ports and group information use the `bridge
 
   - [tools.ietf.org/html/rfc3810](http://tools.ietf.org/html/rfc3810)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

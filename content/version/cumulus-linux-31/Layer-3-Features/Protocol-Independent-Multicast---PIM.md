@@ -139,10 +139,3 @@ To enable PIM on an interface:
   - Non-native forwarding (register decapsulation) is not currently
     supported
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

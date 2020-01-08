@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 Multi-Chassis Link Aggregation, or MLAG, enables a server or switch with
 a two-port bond (such as a link aggregation group/LAG, EtherChannel,
@@ -487,8 +486,7 @@ for the IP addresses used for managing the `clagd` service.
 
 At minimum, this VLAN subinterface should not be in your layer 2 domain,
 and you should give it a very high VLAN ID (up to 4094). Read more about
-the [range of VLAN IDs you can
-use](VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments.html#src-5126846_VLAN-awareBridgeModeforLarge-scaleLayer2Environments-range).
+the [range of VLAN IDs you can use](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/).
 
 {{%/notice%}}
 
@@ -1596,7 +1594,7 @@ active/active forwarding.
 Then, to connect the spine switches to the core switches, you need to
 determine whether the routing is static or dynamic. If it's dynamic, you
 must choose which protocol -
-[OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol)
+[OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol)
 or
 [BGP](/version/cumulus-linux-321/Layer-Three/Border-Gateway-Protocol-BGP)
 - to use. When enabling a routing protocol in an MLAG environment it is
@@ -1834,7 +1832,7 @@ network.
 Further, with MLAG, Cumulus Networks recommends you enable BPDU guard on
 the host-facing bond interfaces. (For more information about BPDU guard,
 see [BPDU Guard and Bridge
-Assurance](Spanning-Tree-and-Rapid-Spanning-Tree.html#src-5126866_SpanningTreeandRapidSpanningTree-bpdu).)
+Assurance](/version/cumulus-linux-321/Layer-One-and-Two/Spanning-Tree-and-Rapid-Spanning-Tree/#span-idsrc-5126866-spanningtreeandrapidspanningtree-bpdu-classconfluence-anchor-linkspanbpdu-guardspan).)
 
 {{%notice tip%}}
 
@@ -1939,12 +1937,5 @@ window, the switch in the secondary role misinterprets the event
 sequence, believing the peer switch is down, so it takes over as the
 primary.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

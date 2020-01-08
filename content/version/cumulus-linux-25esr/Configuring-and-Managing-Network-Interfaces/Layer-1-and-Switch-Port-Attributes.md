@@ -233,7 +233,7 @@ To show MTU, use `ip link show`:
 #### Configuring MTU for a VXLAN Virtual Network Interface
 
 If you are working with
-[VXLANs](/display/CL25ESR/Network+Virtualization), the MTU for a virtual
+[VXLANs](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/), the MTU for a virtual
 network interface (VNI) must be 50 bytes smaller than the MTU of the
 physical interfaces on the switch, as those 50 bytes are required for
 various headers and other data. You should also consider setting the MTU

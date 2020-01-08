@@ -298,10 +298,3 @@ chipsets](http://cumulusnetworks.com/hcl/). You can run ` netshow system
 
   - <http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

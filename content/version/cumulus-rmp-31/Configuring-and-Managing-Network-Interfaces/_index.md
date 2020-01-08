@@ -11,13 +11,11 @@ version: 3.1.2
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
 ---
-<details>
 
 `ifupdown` is the network interface manager for Cumulus RMP. Cumulus RMP
 uses an updated version of this tool, `ifupdown2`.
 
-For more information on network interfaces, see [Layer 1 and Switch Port
-Attributes](/version/cumulus-rmp-31/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes).
+For more information on network interfaces, see [Layer 1 and Switch Port Attributes](/version/cumulus-rmp-31/Configuring-and-Managing-Network-Interfaces/).
 
 {{%notice info%}}
 
@@ -724,12 +722,5 @@ interfaces with multiple `iface` stanzas.
 
   - [www.linuxfoundation.org/collaborate/workgroups/networking/vlan](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

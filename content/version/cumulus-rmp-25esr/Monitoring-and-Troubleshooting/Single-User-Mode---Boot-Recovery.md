@@ -80,10 +80,3 @@ boot the switch back to a normal state:
     bash: no job control in this shell
     cumulus@switch:/# sudo reboot -f
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

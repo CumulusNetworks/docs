@@ -19,8 +19,7 @@ core (the underlay). The initial definition of VXLAN
 ([RFC 7348](https://tools.ietf.org/html/rfc7348)) did not include any
 control plane and relied on a flood-and-learn approach for MAC address
 learning. An alternate deployment model was to use a controller or a
-technology such as [Lightweight Network Virtualization
-(LNV)](/display/CL35/Lightweight+Network+Virtualization+-+LNV+Overview)
+technology such as [Lightweight Network Virtualization (LNV)](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 in Cumulus Linux.
 
 {{%notice note%}}
@@ -52,7 +51,7 @@ features include:
   - Support for host/VM mobility (MAC and IP moves) through exchange of
     the MAC Mobility Extended community.
   - Support for dual-attached hosts via 
-    [VXLAN active-active mode](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode).
+    [VXLAN active-active mode](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode).
     MAC synchronization between the peer switches is done using
     [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG).
   - Support for ARP/ND suppression, which provides VTEPs with the
@@ -84,7 +83,7 @@ You can provision and manage EVPN using
 For Cumulus Linux 3.4 and later releases, the routing control plane
 (including EVPN) is installed as part of the
 [FRRouting](https://frrouting.org) (FRR) package. For more information
-about FRR, refer to the [FRR overview](/display/CL35/FRRouting+Overview).
+about FRR, refer to the [FRR overview](/version/cumulus-linux-35/Layer-3/FRRouting-Overview/).
 
 {{%/notice%}}
 
@@ -1618,7 +1617,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
     that switch and other information (such as MAC addresses) pertaining
     to them will be advertised to EVPN peers. There is no provision to
     only announce certain VNIs.
-  - In a [VXLAN active-active](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization---LNV-Overview/LNV-VXLAN-Active-Active-Mode)
+  - In a [VXLAN active-active](/version/cumulus-linux-35/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/LNV-VXLAN-Active-Active-Mode)
     configuration, ARPs may sometimes not be suppressed even if ARP
     suppression is enabled. This is because the neighbor entries are not
     synced between the two switches operating in active-active mode by a
@@ -1647,7 +1646,7 @@ repository](https://github.com/CumulusNetworks/cldemo-evpn/tree/master/config).
 Only a subset is shown here for brevity (not shown are configurations
 for leaf03, leaf04, server03, server04). Here is the topology diagram:
 
-{{% imgOld 0 %}}
+{{< img src = "/images/old_doc_images/mlag.png" >}}}
 
 #### leaf01 and leaf02 Configurations
 
@@ -2074,7 +2073,7 @@ repository](https://github.com/CumulusNetworks/cldemo-evpn/). Only a
 subset is shown here for brevity (not shown are configurations for
 leaf03, leaf04, server02, server04). Here is the topology diagram:
 
-{{% imgOld 1 %}}
+{{< img src = "/images/old_doc_images/evpn.png" >}}}
 
 #### leaf01 and leaf02 Configurations
 

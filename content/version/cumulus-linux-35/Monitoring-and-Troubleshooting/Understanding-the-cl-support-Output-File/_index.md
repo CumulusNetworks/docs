@@ -75,10 +75,3 @@ see:
     - This guide highlights the most important log files to inspect.
     Keep in mind, `cl-support` includes all of the log files.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

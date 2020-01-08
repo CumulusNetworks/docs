@@ -38,7 +38,6 @@ are as follows:
 5.  Click **Import** to start the import process. It take couple seconds
     to import the VM into VMware Workstation and create the VMX image.
 
-    {{% imgOld 0 %}}
 
 6.  Once imported, a dialog with the current VM settings appears. Click
     **Edit virtual machine settings** and make sure to match the network

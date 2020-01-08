@@ -20,26 +20,20 @@ states:
     installation. In this case, you can install Cumulus Linux in one of
     the following ways, using:
 
-      - [DHCP/a Web server with DHCP
-        options](#src-5118265_InstallingaNewCumulusLinuxImage-dhcp_options)
+      - [DHCP/a Web server with DHCP options](#src-5118265_InstallingaNewCumulusLinuxImage-dhcp_options)
 
-      - [DHCP/a Web server without DHCP
-        options](#src-5118265_InstallingaNewCumulusLinuxImage-dhcp_noopts)
+      - [DHCP/a Web server without DHCP options](#src-5118265_InstallingaNewCumulusLinuxImage-dhcp_noopts)
 
-      - [A Web server with no
-        DHCP](#src-5118265_InstallingaNewCumulusLinuxImage-web_nodhcp)
+      - [A Web server with no DHCP](#src-5118265_InstallingaNewCumulusLinuxImage-web_nodhcp)
 
-      - [FTP or TFTP without a Web
-        server](#src-5118265_InstallingaNewCumulusLinuxImage-ftp)
+      - [FTP or TFTP without a Web server](#src-5118265_InstallingaNewCumulusLinuxImage-ftp)
 
-      - [Local file
-        installation](#src-5118265_InstallingaNewCumulusLinuxImage-local)
+      - [Local file installation](#src-5118265_InstallingaNewCumulusLinuxImage-local)
 
       - [USB](#src-5118265_InstallingaNewCumulusLinuxImage-usb)
 
   - The switch already has Cumulus Linux installed on it, so you only
-    need to [upgrade
-    it](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
+    need to [upgrade it](/version/cumulus-linux-30/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
 
 {{%notice tip%}}
 
@@ -549,4 +543,4 @@ Follow these upgrade steps for both major and minor releases, where:
 
   - A minor release upgrade is X.2.X to X.3.X (e.g. 2.2.0 to 2.5.5)
 
-For more information, see [Upgrading Cumulus Linux](Upgrading-Cumulus-Linux.html#src-5118269_UpgradingCumulusLinux-binary_upgrade).
+For more information, see [Upgrading Cumulus Linux](/version/cumulus-linux-25esr/Installation-Upgrading-and-Package-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux/).

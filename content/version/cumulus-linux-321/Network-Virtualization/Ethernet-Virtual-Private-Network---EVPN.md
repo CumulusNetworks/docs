@@ -147,7 +147,7 @@ peer-group must be activated within the EVPN address-family in Quagga:
 ### Enabling EVPN in an iBGP Environment with an OSPF Underlay</span>
 
 EVPN can be deployed with an
-[OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF---Protocol)
+[OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol)
 or static route underlay if needed. This is a more complex configuration
 than using eBGP. In this case, iBGP advertises EVPN routes directly
 between VTEPs, and the spines are unaware of EVPN or BGP.
@@ -288,12 +288,8 @@ configure the `bridge-learning` value to *off*:
 
 ## Handling BUM Traffic</span>
 
-With EVPN, the only method of handling BUM traffic is [Head End
-Replication
-(HER)](Lightweight-Network-Virtualization---LNV-Overview.html#src-5126910_LightweightNetworkVirtualization-LNVOverview-head-end).
-HER is enabled by default, as it is when [Lightweight Network
-Virtualization
-(LNV)](/display/CL321/Lightweight+Network+Virtualization+-+LNV+Overview)
+With EVPN, the only method of handling BUM traffic is [Head End Replication (HER)](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/#handling-bum-trafficspan).
+HER is enabled by default, as it is when [Lightweight Network Virtualization (LNV)](/version/cumulus-linux-321/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 is used.
 
 ## EVPN and VXLAN Active-Active Mode</span>
@@ -1375,11 +1371,3 @@ The following caveat applies to EVPN in Cumulus Linux 3.2.x:
 
   - Support for one shot configuration of import and export RTs, using
     `route-target both <rt>` will be added in a future release.
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

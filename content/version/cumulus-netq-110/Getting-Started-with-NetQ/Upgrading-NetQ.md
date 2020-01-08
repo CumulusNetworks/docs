@@ -50,15 +50,13 @@ until the next NetQ version is released.
 
 {{%notice note%}}
 
-To install a new instance of NetQ, refer to the [Getting Started with
-NetQ](https://docs.cumulusnetworks.com/display/NETQ/Getting+Started+with+NetQ)
+To install a new instance of NetQ, refer to the [Getting Started with NetQ](/version/cumulus-netq-110/Getting-Started-with-NetQ/)
 documentation.
 
 {{%/notice%}}
 
 1.  Back up the current NetQ Telemetry Server data. For instructions,
-    refer to the [NetQ
-    Backup](https://docs.cumulusnetworks.com/display/NETQ/Restoring+from+Backups+with+NetQ)
+    refer to the [NetQ Backup](https://docs.cumulusnetworks.com/display/NETQ/Restoring+from+Backups+with+NetQ)
     documentation.
 
 2.  Shutdown the connectivity from the agents to the current NetQ
@@ -66,9 +64,9 @@ documentation.
     
     {{%notice warning%}}
     
-    This step is required to ensure agents don't attempt to communicate
-    with the Telemetry Server during the maintenance window.
-    
+This step is required to ensure agents don't attempt to communicate
+with the Telemetry Server during the maintenance window.
+
     {{%/notice%}}
 
 3.  Shutdown the current NetQ Telemetry Server.
@@ -82,10 +80,10 @@ documentation.
     
     {{%notice info%}}
     
-    This step can be skipped, if there is no desire to retain the
-    previous data. NetQ agents will re-populate the current data once
-    they connect to the new NetQ Telemetry Server.
-    
+This step can be skipped, if there is no desire to retain the
+previous data. NetQ agents will re-populate the current data once
+they connect to the new NetQ Telemetry Server.
+
     {{%/notice%}}
 
 6.  Validate that the telemetry server is up and running:
@@ -104,8 +102,7 @@ as well.
 {{%notice warning%}}
 
 The NetQ Notifier configuration syntax has changed between versions 1.0
-and 1.1. Examples of the new syntax are in the [getting started
-guide](Getting-Started-with-NetQ.html#src-7111298_GettingStartedwithNetQ-notifier).
+and 1.1. Examples of the new syntax are in the [getting started guide](/version/cumulus-netq-110/Getting-Started-with-NetQ/).
 
 {{%/notice%}}
 
@@ -187,10 +184,3 @@ Follow the steps for the relevant OS below to upgrade the NetQ Agents:
     
         cumulus@switch:~$ netq show agents
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

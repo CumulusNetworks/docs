@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 Before you install Cumulus Linux, the switch can be in two different
 states:
@@ -39,8 +38,7 @@ states:
       - [USB](#src-5126823_InstallingaNewCumulusLinuxImage-usb)
 
   - The switch already has Cumulus Linux installed on it, so you only
-    need to [upgrade
-    it](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
+    need to [upgrade it](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
 
 {{%notice tip%}}
 
@@ -198,8 +196,7 @@ software installation.
 
 {{%notice note%}}
 
-Make sure to [back
-up](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
+Make sure to [back up](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux)
 any important configuration files that you may need to restore the
 configuration of your switch after the installation finishes.
 
@@ -532,8 +529,7 @@ Follow these upgrade steps for both major and minor releases, where:
   - A minor release upgrade is X.2.X to X.3.X (for example, 3.1.2 to
     3.2.0)
 
-For more information, see [Upgrading Cumulus
-Linux](Upgrading-Cumulus-Linux.html#src-5126827_UpgradingCumulusLinux-binary_upgrade).
+For more information, see [Upgrading Cumulus Linux](/version/cumulus-linux-321/Installation-Management/Managing-Cumulus-Linux-Disk-Images/Upgrading-Cumulus-Linux).
 
 ### <span id="src-5126823_InstallingaNewCumulusLinuxImage-oniemode" class="confluence-anchor-link"></span>Entering ONIE Mode from Cumulus Linux</span>
 
@@ -552,12 +548,5 @@ mode in one of two ways, using:
         cumulus@switch:~$ sudo onie-select -i
         cumulus@switch:~$ sudo reboot
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

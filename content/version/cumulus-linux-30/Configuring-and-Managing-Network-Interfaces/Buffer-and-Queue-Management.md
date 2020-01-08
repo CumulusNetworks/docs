@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
 ---
-<details>
 
 Hardware datapath configuration manages packet buffering, queueing, and
 scheduling in hardware. There are two configuration input files:
@@ -60,14 +59,14 @@ which are assigned equal scheduling weights.
 
 Datapath configuration takes effect when you initialize `switchd`.
 Changes to the `traffic.conf` file require you to [restart
-`switchd`](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd)
 .
 
 ## Commands</span>
 
 If you modify the configuration in the
 `/etc/cumulus/datapath/traffic.conf` file, you must [restart
-`switchd`](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd)
 for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -305,7 +304,7 @@ sequences of contiguous ports; you can see which ports are contiguous in
         ...
 
 [Restart
-`switchd`](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd)
 to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -321,12 +320,5 @@ to allow link pause configuration changes to take effect:
     switches only; that is, any switch on the Tomahawk, Trident II+ or
     Trident II platform.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

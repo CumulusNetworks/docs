@@ -52,7 +52,7 @@ The `zebra` daemon must always be enabled. The others you can enable
 according to how you plan to route your network - using
 [BGP](/version/cumulus-linux-31/Layer-3-Features/Border-Gateway-Protocol-BGP)
 for example, instead of
-[OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol).
+[OSPF](/version/cumulus-linux-31/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol/).
 
 Before you start Cumulus Quagga, you need to enable the corresponding
 daemons. Edit the `/etc/quagga/daemons` file and set to *yes* each
@@ -89,8 +89,7 @@ restarts any of the routing protocol daemons that are enabled and
 running.
 
 For more information on the `systemctl` command and changing the state
-of daemons, read [Managing Application
-Daemons](/version/cumulus-linux-31/System-Management/Managing-Application-Daemons).
+of daemons, read [Managing Application Daemons](/version/cumulus-linux-31/System-Management/Managing-Application-Daemons).
 
 {{%/notice%}}
 
@@ -169,10 +168,8 @@ or `ospf6d.conf`) instead of `Quagga.conf` in step 2 above.
 Quagga inherits the IP addresses and any associated routing tables for
 the network interfaces from the `/etc/network/interfaces` file. This is
 the recommended way to define the addresses; do **not** create
-interfaces using Quagga. For more information, see [Configuring IP
-Addresses](Configuring-and-Managing-Network-Interfaces.html#src-5122104_ConfiguringandManagingNetworkInterfaces-ip)
-and [Virtual Routing and Forwarding -
-VRF](/version/cumulus-linux-31/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF).
+interfaces using Quagga. For more information, see [Configuring IP Addresses](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/)
+and [Virtual Routing and Forwarding - VRF](/version/cumulus-linux-31/Layer-3-Features/Virtual-Routing-and-Forwarding-VRF).
 
 ## Using the vtysh Modal CLI</span>
 
@@ -504,10 +501,3 @@ after the `neighbor <IPV4/IPV6> activate` command; otherwise, the
 
   - [www.nongnu.org/quagga/docs/docs-info.html\#Zebra](http://www.nongnu.org/quagga/docs/docs-info.html#Zebra)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

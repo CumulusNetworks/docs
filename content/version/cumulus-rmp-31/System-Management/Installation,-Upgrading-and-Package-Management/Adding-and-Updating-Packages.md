@@ -278,10 +278,3 @@ To install a new package, please complete the following steps:
 
   - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

@@ -54,8 +54,7 @@ address of the queries to be the bridge IP address, configure
 For an explanation of the relevant parameters, see the
 `ifupdown-addons-interfaces` man page.
 
-For a bridge in [traditional
-mode](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5117064),
+For a bridge in [traditional mode](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/),
 use a configuration like the following:
 
     auto br0
@@ -66,8 +65,7 @@ use a configuration like the following:
       bridge-mcquerier 1
       bridge-mcqifaddr 1
 
-For a [VLAN-aware
-bridge](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5117074),
+For a [VLAN-aware bridge](/version/cumulus-linux-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments/),
 use a configuration like the following:
 
     auto br0.100
@@ -198,10 +196,3 @@ command. To display router ports and group information use the `bridge
 
   - <http://tools.ietf.org/html/rfc3810>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

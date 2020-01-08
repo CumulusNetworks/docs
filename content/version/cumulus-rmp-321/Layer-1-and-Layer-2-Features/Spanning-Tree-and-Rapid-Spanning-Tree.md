@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
 ---
-<details>
 
 Spanning tree protocol (STP) is always recommended in layer 2
 topologies, as it prevents bridge loops and broadcast radiation on a
@@ -29,7 +28,7 @@ is in use.
 Bridges configured in
 *[VLAN-aware](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)*
 mode operate **only** in RSTP mode.
-[NCLU](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5120643),
+[NCLU](/version/cumulus-rmp-321/System-Configuration/Network-Command-Line-Utility/),
 the network command line utility for configuring Cumulus RMP, only
 supports bridges in VLAN-aware mode.
 
@@ -553,7 +552,7 @@ You configure storm control for each physical port by editing
 `/etc/cumulus/switchd.conf`. The configuration persists across reboots
 and restarting `switchd`. If you change the storm control configuration
 in this file after rebooting the switch, you must [restart
-`switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5117004)
+`switchd`](/version/cumulus-rmp-321/System-Configuration/Configuring-switchd/#span-idsrc-5127546-configuringswitchd-restartswitchd-classconfluence-anchor-linkspanrestarting-switchdspan)
 to activate the new configuration.
 
 To enable broadcast and multicast storm control at 400 packets per
@@ -742,12 +741,5 @@ sourceforge URL below.
 
   - mstpctl-utils-interfaces(5)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

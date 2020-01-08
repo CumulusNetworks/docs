@@ -290,9 +290,9 @@ creating cleartext passwords is the following:
     
     {{%notice note%}}
     
-    The minimum password length is 8 characters and the arguments `-a`
-    and `-x` to `net-snmp-config` have different meanings than they do
-    for `snmpwalk`.
+The minimum password length is 8 characters and the arguments `-a`
+and `-x` to `net-snmp-config` have different meanings than they do
+for `snmpwalk`.
     
     {{%/notice%}}
     
@@ -483,8 +483,8 @@ adjusting the values:
     
     {{%notice note%}}
     
-    The `entPhySensorOperStatus` integer can be found by walking the
-    `entPhysicalName` table.
+The `entPhySensorOperStatus` integer can be found by walking the
+`entPhysicalName` table.
     
     {{%/notice%}}
     
@@ -518,9 +518,9 @@ adjusting the values:
         monitor  -r 10  -o entPhysicalName  "Sensor Status Failure"  entPhySensorOperStatus > 1
     
     {{%notice note%}}
-    
-    The OID name can be used if the `snmp-mibs-download` package is
-    installed.
+
+The OID name can be used if the `snmp-mibs-download` package is
+installed.
     
     {{%/notice%}}
 
@@ -778,7 +778,7 @@ pass_persist .1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py</code></pr
 </tr>
 <tr class="odd">
 <td><p><a href="http://www.mibdepot.com/cgi-bin/getmib3.cgi?i=1&amp;n=LLDP-MIB&amp;r=cisco&amp;f=LLDP-MIB-V1SMI.my&amp;v=v1&amp;t=tree" class="external-link">LLDP</a></p></td>
-<td><p>L2 neighbor info from <code>lldpd</code> (note, you need to <a href="Link-Layer-Discovery-Protocol.html#src-5126830_LinkLayerDiscoveryProtocol-snmp">enable the SNMP subagent</a> in LLDP). <code>lldpd</code> needs to be started with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
+<td><p>L2 neighbor info from <code>lldpd</code> (note, you need to <a href="/version/cumulus-linux-321/Layer-One-and-Two/Link-Layer-Discovery-Protocol/#span-idsrc-5126830-linklayerdiscoveryprotocol-snmp-classconfluence-anchor-linkspanenabling-the-snmp-subagent-in-lldpspan"> enable the SNMP subagent</a> in LLDP). <code>lldpd</code> needs to be started with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
 </tr>
 <tr class="even">
 <td><p><a href="http://support.ipmonitor.com/mibs_byoidtree.aspx?oid=.1.3.6.1.4.1.2021.13.16" class="external-link">LM-SENSORS MIB</a></p></td>
@@ -864,10 +864,3 @@ Cumulus Linux.
 
 {{%/notice%}}
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

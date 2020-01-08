@@ -21,9 +21,9 @@ Quagga provides many routing protocols, of which Cumulus Linux supports
 the following:
 
   - Open Shortest Path First
-    ([v2](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol)
+    ([v2](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol)
     and
-    [v3](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3---Protocol))
+    [v3](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-v3-OSPFv3-Protocol))
 
   - [Border Gateway
     Protocol](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP)
@@ -41,7 +41,7 @@ on the information exchanged.
 It is not uncommon to have more than one protocol daemon running at the
 same time. For example, at the edge of an enterprise, protocols internal
 to an enterprise (called IGP for Interior Gateway Protocol) such as
-[OSPF](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF---Protocol)
+[OSPF](/version/cumulus-linux-30/Layer-3-Features/Open-Shortest-Path-First-OSPF-Protocol)
 or RIP run alongside the protocols that connect an enterprise to the
 rest of the world (called EGP or Exterior Gateway Protocol) such as
 [BGP](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP).
@@ -79,10 +79,3 @@ routes between different routing protocols."
 
   - <http://packages.debian.org/quagga>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

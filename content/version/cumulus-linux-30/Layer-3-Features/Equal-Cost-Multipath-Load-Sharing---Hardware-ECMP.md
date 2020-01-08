@@ -40,8 +40,7 @@ For routes to be considered equal they must:
 {{%notice info%}}
 
 As of Cumulus Linux 3.0, the BGP `maximum-paths` setting is enabled, so
-multiple routes are installed by default. See the [ECMP
-section](Border-Gateway-Protocol-BGP.html#src-5118393_BorderGatewayProtocol-BGP-ecmp)
+multiple routes are installed by default. See the [ECMP section](/version/cumulus-linux-30/Layer-3-Features/Border-Gateway-Protocol-BGP/#span-id-src-5118393-bordergatewayprotocol-bgp-ecmp-class-confluence-anchor-link-span-ecmp-with-bgp-span)
 of the BGP chapter for more information.
 
 {{%/notice%}}
@@ -284,7 +283,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
         # Valid values - 64, 128, 256, 512, 1024
         resilient_hash_entries_ecmp = 256
 
-3.  [Restart](/display/CL30/Configuring+switchd#Configuringswitchd-restartswitchd)
+3.  [Restart](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span)
     the `switchd` service:
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -299,10 +298,3 @@ You can run ` netshow system  `to determine the chipset.
 
   - <http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

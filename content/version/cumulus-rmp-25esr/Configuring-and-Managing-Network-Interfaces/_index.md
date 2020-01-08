@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 `ifupdown` is the network interface manager for Cumulus RMP. Cumulus RMP
 uses an updated version of this tool, `ifupdown2`.
@@ -608,9 +607,7 @@ appears on the alias line:
         link/ether aa:aa:aa:aa:aa:bc brd ff:ff:ff:ff:ff:ff
         alias hypervisor_port_1
 
-Interface descriptions also appear in the [SNMP
-OID](Monitoring-System-Hardware.html#src-5116326_MonitoringSystemHardware-snmp)
-IF-MIB::ifAlias.
+Interface descriptions also appear in the [SNMP OID](/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/#monitoring-switch-hardware-using-snmpspan) IF-MIB::ifAlias.
 
 ## Caveats and Errata</span>
 
@@ -658,12 +655,5 @@ attributes are not specified in multiple `iface` stanzas.
 
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

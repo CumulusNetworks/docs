@@ -15,7 +15,7 @@ NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/20
 becomes generally available. The following features are early access in NetQ 1.4:
 
 - [Collection of interface statistics](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Collect-Interface-Statistics)
-- [Custom commands](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Extend-NetQ-with-Custom-commands)
+- [Custom commands](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Extend-NetQ-with-Custom-Commands/)
 - [Database queries](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Early-Access-Features/Query-the-NetQ-Database)
 
 In NetQ 1.4, early access features are bundled into the `netq-apps`

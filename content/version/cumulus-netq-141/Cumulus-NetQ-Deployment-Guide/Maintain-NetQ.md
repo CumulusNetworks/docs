@@ -485,10 +485,3 @@ To upgrade the NetQ Agent on a Red Hat or CentOS host, do the following:
         APPLIANCE_VERSION=1.4.0
         APPLIANCE_MANIFEST_HASH=23b30cc
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

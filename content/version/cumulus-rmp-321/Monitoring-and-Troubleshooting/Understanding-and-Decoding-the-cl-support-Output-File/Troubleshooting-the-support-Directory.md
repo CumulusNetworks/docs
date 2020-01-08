@@ -19,10 +19,3 @@ filesystem. For example:
 | --------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | support/ip.addr | `cumulus@switch:~$ ip addr show` | This shows you all the interfaces (including swp front panel ports), IP address information, admin state and physical state. |
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

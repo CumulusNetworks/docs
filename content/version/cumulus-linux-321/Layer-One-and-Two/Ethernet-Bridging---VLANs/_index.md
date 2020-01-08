@@ -15,7 +15,7 @@ Ethernet bridges provide a means for hosts to communicate through layer
 2, by connecting all of the physical and logical interfaces in the
 system into a single layer 2 domain. The bridge is a logical interface
 with a MAC address and an
-[MTU](Layer-1-and-Switch-Port-Attributes.html#src-5126996_Layer1andSwitchPortAttributes-mtu)
+[MTU](/version/cumulus-linux-321/Interface-Configuration-and-Management/Layer-1-and-Switch-Port-Attributes/#span-idsrc-5126996-layer1andswitchportattributes-mtu-classconfluence-anchor-linkspanmtuspan)
 (maximum transmission unit). The bridge MTU is the minimum MTU among all
 its members. The bridge's MAC address is inherited from the first
 interface that is added to the bridge as a member. The bridge MAC
@@ -257,10 +257,3 @@ remain up:
   - [Comparing Traditional Bridge Mode to VLAN-aware Bridge
     Mode](https://support.cumulusnetworks.com/hc/en-us/articles/204909397)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

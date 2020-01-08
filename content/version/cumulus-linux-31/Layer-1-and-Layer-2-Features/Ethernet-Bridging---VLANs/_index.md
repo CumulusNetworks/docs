@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
 ---
-<details>
 
 Ethernet bridges provide a means for hosts to communicate at layer 2.
 Bridge members can be individual physical interfaces, bonds or logical
@@ -163,7 +162,7 @@ your network configuration.
 #### Bridge Interface MAC Address and MTU</span>
 
 A bridge is a logical interface with a MAC address and an
-[MTU](Layer-1-and-Switch-Port-Attributes.html#src-5122107_Layer1andSwitchPortAttributes-mtu)
+[MTU](/version/cumulus-linux-31/Configuring-and-Managing-Network-Interfaces/Layer-1-and-Switch-Port-Attributes/#span-id-src-5122107-layer1andswitchportattributes-mtu-class-confluence-anchor-link-span-mtu-span)
 (maximum transmission unit). The bridge MTU is the minimum MTU among all
 its members. The bridge's MAC address is inherited from the first
 interface that is added to the bridge as a member. The bridge MAC
@@ -528,12 +527,5 @@ chapter](/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Ethernet-Bridgin
     traditional bridge's bond subinterface is brought down, it flaps the
     bridge.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

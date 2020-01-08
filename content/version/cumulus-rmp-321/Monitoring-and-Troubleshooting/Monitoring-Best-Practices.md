@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
 ---
-<details>
 
 The following monitoring processes are considered best practices for
 reviewing and troubleshooting potential issues with Cumulus RMP
@@ -534,7 +533,7 @@ and associated logs are documented in the code.
 
 Peering information should be tracked through PTM. For more information,
 refer to the [Prescriptive Topology Manager
-documentation](/display/RMP321/Prescriptive+Topology+Manager+-+PTM).
+documentation](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Prescriptive-Topology-Manager-PTM/).
 
 {{%/notice%}}
 
@@ -773,15 +772,3 @@ sudo: pam_unix(sudo:session): session closed for user root</code></pre></td>
 </tr>
 </tbody>
 </table>
-
-  
-
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
-
-</details>

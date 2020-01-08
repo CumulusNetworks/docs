@@ -58,7 +58,7 @@ Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/).
 
 {{%notice tip%}}
 
-{{< img src="/images/download/thumbnails/8362715/turtle_training.png" width="40">}} 
+{{< img src="/images/old_doc_images/turtle_training.png" width="40">}} 
 
 Feeling overwhelmed? Come join a [Cumulus Boot Camp](https://education.cumulusnetworks.com/series/bootcamps/) and get instructor-led training\!
 
@@ -252,7 +252,7 @@ The service nodes and registration nodes must all be routable between
 each other. The L3 fabric on Cumulus Linux can either be
 [BGP](/version/cumulus-linux-343/Layer-Three/Border-Gateway-Protocol-BGP)
 or
-[OSPF](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF-sProtocol).
+[OSPF](/version/cumulus-linux-343/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol).
 In this example, OSPF is used to demonstrate full reachability.
 
 Here is the FRRouting configuration using OSPF:

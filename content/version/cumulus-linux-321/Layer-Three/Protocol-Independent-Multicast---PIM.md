@@ -11,7 +11,6 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-<details>
 
 Protocol Independent Multicast (PIM) is a multicast control plane
 protocol, that advertises multicast sources and receivers over a routed
@@ -871,8 +870,7 @@ already, using the `cl-resource-query` command:
     cumulus@switch:~$ cl-resource-query  | grep Mcast
        Total Mcast Routes:         450,   0% of maximum value    450
 
-For Mellanox chipsets, please refer to [TCAM Resource Profiles for
-Mellanox Switches](Routing.html#src-5127036_Routing-tcam).
+For Mellanox chipsets, please refer to [TCAM Resource Profiles for Mellanox Switches](/version/cumulus-linux-321/Layer-Three/Routing/#span-idsrc-5127036-routing-tcam-classconfluence-anchor-linkspantcam-resource-profiles-for-mellanox-switchesspan).
 
 ### Verify MSDP Session State</span>
 
@@ -920,12 +918,5 @@ MSDP peers:
   - Cumulus Linux does not currently build an S,G mroute when forwarding
     over an \*,G tree.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

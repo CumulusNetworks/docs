@@ -245,7 +245,7 @@ If the results do not indicate the server is healthy after 30 minutes, open a [s
 
 2.  Verify that NTP is configured and running. NTP operation is critical to proper operation of NetQ. Refer to [Setting Date and Time](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) in the *Cumulus Linux User Guide* for details and instructions.
 
-3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to [Install the NetQ Agent and CLI on Switches](../../Install-NetQ-Agents-and-CLI-on-Switches) for instructions.
+3.  Continue the NetQ upgrade by upgrading the NetQ Agent on each switch or host you want to monitor. Refer to [Install the NetQ Agent and CLI on Switches](/version/cumulus-netq-23/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-Switches/) for instructions.
 
 ## Perform a Disk Image Upgrade of Cumulus NetQ
 

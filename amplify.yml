@@ -13,9 +13,9 @@ frontend:
       commands:
         - echo Building docs with Hugo
         - echo Now move static images and files ...
-        - aws s3 sync static $STATIC_BUCKET --delete
+        - if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete
         - echo Remove static directory
-        - rm -rf static
+        - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static
         - echo Building docs ...
         - hugo --baseURL $BASEURL
         - echo Successfully built docs

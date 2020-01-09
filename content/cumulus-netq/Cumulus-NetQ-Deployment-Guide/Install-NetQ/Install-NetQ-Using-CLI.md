@@ -30,7 +30,7 @@ To install NetQ:
     - **For cloud deployments**, run the following command on your NetQ Cloud Appliance with the config-key sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account".
 
         ```
-        cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-2.4.0.tgz config-key <your-config-key-from-email>
+        cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-2.4.0-opta.tgz config-key <your-config-key-from-email>
         ```
 
     - **For a server cluster in on-premises**, run the following command on your master node, using the IP addresses of your worker nodes: 
@@ -41,5 +41,5 @@ To install NetQ:
     - **For a server cluster in cloud deployments**, run the following command on your master node, using the IP addresses of your worker nodes: Config-key is sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account".
 
         ```
-        cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-2.4.0.tgz config-key <your-config-key-from-email> workers <worker-1-ip> <worker-2-ip>
+        cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-2.4.0-opta.tgz config-key <your-config-key-from-email> workers <worker-1-ip> <worker-2-ip>
         ```

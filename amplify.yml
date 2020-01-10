@@ -26,4 +26,4 @@ frontend:
       - '**/*'
     baseDirectory: public
   cache:
-    paths: []
+    paths: [] 

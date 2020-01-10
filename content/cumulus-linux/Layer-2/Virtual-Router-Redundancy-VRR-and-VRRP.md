@@ -61,9 +61,9 @@ The example NCLU commands below create a VLAN-aware bridge interface for a VRR-e
 ```
 cumulus@switch:~$ net add bridge
 cumulus@switch:~$ net add vlan 500 ip address 192.0.2.252/24
-cumulus@switch:~$ net add vlan 500 ip address-virtual 00:00:5e:00:01:01 192.0.2.254/24
+cumulus@switch:~$ net add vlan 500 ip address-virtual 00:00:5e:00:01:00 192.0.2.254/24
 cumulus@switch:~$ net add vlan 500 ipv6 address 2001:db8::1/32
-cumulus@switch:~$ net add vlan 500 ipv6 address-virtual 00:00:5e:00:01:01 2001:db8::f/32
+cumulus@switch:~$ net add vlan 500 ipv6 address-virtual 00:00:5e:00:01:00 2001:db8::f/32
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -88,7 +88,7 @@ auto vlan500
 iface vlan500
     address 192.0.2.252/24
     address 2001:db8::1/32
-    address-virtual 00:00:5e:00:01:01 2001:db8::f/32 192.0.2.254/24
+    address-virtual 00:00:5e:00:01:00 2001:db8::f/32 192.0.2.254/24
     vlan-id 500
     vlan-raw-device bridge
 ...
@@ -131,13 +131,13 @@ cumulus@leaf01:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:FF:40:90
 cumulus@leaf01:~$ net add bridge bridge ports server01,peerlink
 cumulus@leaf01:~$ net add bridge stp treeprio 4096
 cumulus@leaf01:~$ net add vlan 100 ip address 10.0.1.2/24
-cumulus@leaf01:~$ net add vlan 100 ip address-virtual 44:38:39:FF:00:01 10.0.1.1/24
+cumulus@leaf01:~$ net add vlan 100 ip address-virtual 00:00:5E:00:01:01 10.0.1.1/24
 cumulus@leaf01:~$ net add vlan 200 ip address 10.0.2.2/24
-cumulus@leaf01:~$ net add vlan 200 ip address-virtual 44:38:39:FF:00:02 10.0.2.1/24
+cumulus@leaf01:~$ net add vlan 200 ip address-virtual 00:00:5E:00:01:02 10.0.2.1/24
 cumulus@leaf01:~$ net add vlan 300 ip address 10.0.3.2/24
-cumulus@leaf01:~$ net add vlan 300 ip address-virtual 44:38:39:FF:00:03 10.0.3.1/24
+cumulus@leaf01:~$ net add vlan 300 ip address-virtual 00:00:5E:00:01:03 10.0.3.1/24
 cumulus@leaf01:~$ net add vlan 400 ip address 10.0.4.2/24
-cumulus@leaf01:~$ net add vlan 400 ip address-virtual 44:38:39:FF:00:04 10.0.4.1/24
+cumulus@leaf01:~$ net add vlan 400 ip address-virtual 00:00:5E:00:01:04 10.0.4.1/24
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -177,28 +177,28 @@ iface peerlink.4094
 auto vlan100
 iface vlan100
     address 10.0.1.2/24
-    address-virtual 44:38:39:FF:00:01 10.0.1.1/24
+    address-virtual 00:00:5E:00:01:01 10.0.1.1/24
     vlan-id 100
     vlan-raw-device bridge
 
 auto vlan200
 iface vlan200
     address 10.0.2.2/24
-    address-virtual 44:38:39:FF:00:02 10.0.2.1/24
+    address-virtual 00:00:5E:00:01:02 10.0.2.1/24
     vlan-id 200
     vlan-raw-device bridge
 
 auto vlan300
 iface vlan300
     address 10.0.3.2/24
-    address-virtual 44:38:39:FF:00:03 10.0.3.1/24
+    address-virtual 00:00:5E:00:01:03 10.0.3.1/24
     vlan-id 300
     vlan-raw-device bridge
 
 auto vlan400
 iface vlan400
     address 10.0.4.2/24
-    address-virtual 44:38:39:FF:00:04 10.0.4.1/24
+    address-virtual 00:00:5E:00:01:04 10.0.4.1/24
     vlan-id 400
     vlan-raw-device bridge
 ```
@@ -224,13 +224,13 @@ cumulus@leaf02:~$ net add interface peerlink.4094 clag sys-mac 44:38:39:FF:40:90
 cumulus@leaf02:~$ net add bridge bridge ports server01,peerlink
 cumulus@leaf02:~$ net add bridge stp treeprio 4096
 cumulus@leaf02:~$ net add vlan 100 ip address 10.0.1.3/24
-cumulus@leaf02:~$ net add vlan 100 ip address-virtual 44:38:39:FF:00:01 10.0.1.1/24
+cumulus@leaf02:~$ net add vlan 100 ip address-virtual 00:00:5E:00:01:01 10.0.1.1/24
 cumulus@leaf02:~$ net add vlan 200 ip address 10.0.2.3/24
-cumulus@leaf02:~$ net add vlan 200 ip address-virtual 44:38:39:FF:00:02 10.0.2.1/24
+cumulus@leaf02:~$ net add vlan 200 ip address-virtual 00:00:5E:00:01:02 10.0.2.1/24
 cumulus@leaf02:~$ net add vlan 300 ip address 10.0.3.3/24
-cumulus@leaf02:~$ net add vlan 300 ip address-virtual 44:38:39:FF:00:03 10.0.3.1/24
+cumulus@leaf02:~$ net add vlan 300 ip address-virtual 00:00:5E:00:01:03 10.0.3.1/24
 cumulus@leaf02:~$ net add vlan 400 ip address 10.0.4.3/24
-cumulus@leaf02:~$ net add vlan 400 ip address-virtual 44:38:39:FF:00:04 10.0.4.1/24
+cumulus@leaf02:~$ net add vlan 400 ip address-virtual 00:00:5E:00:01:04 10.0.4.1/24
 cumulus@leaf02:~$ net pending
 cumulus@leaf02:~$ net commit
 ```
@@ -270,28 +270,28 @@ iface peerlink.4094
 auto vlan100
 iface vlan100
     address 10.0.1.3/24
-    address-virtual 44:38:39:FF:00:01 10.0.1.1/24
+    address-virtual 00:00:5E:00:01:01 10.0.1.1/24
     vlan-id 100
     vlan-raw-device bridge
 
 auto vlan200
 iface vlan200
     address 10.0.2.3/24
-    address-virtual 44:38:39:FF:00:02 10.0.2.1/24
+    address-virtual 00:00:5E:00:01:02 10.0.2.1/24
     vlan-id 200
     vlan-raw-device bridge
 
 auto vlan300
 iface vlan300
     address 10.0.3.3/24
-    address-virtual 44:38:39:FF:00:03 10.0.3.1/24
+    address-virtual 00:00:5E:00:01:03 10.0.3.1/24
     vlan-id 300
     vlan-raw-device bridge
 
 auto vlan400
 iface vlan400
     address 10.0.4.3/24
-    address-virtual 44:38:39:FF:00:04 10.0.4.1/24
+    address-virtual 00:00:5E:00:01:04 10.0.4.1/24
     vlan-id 400
     vlan-raw-device bridge
 ```

@@ -15,20 +15,18 @@ siteSlug: cumulus-netq
 
 The complete Cumulus NetQ solution contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed in two arrangements:
 
-- All components installed locally, known hereafter as the on-premises solution
-- Only the aggregation and forwarding application installed locally and the database and all other applications installed remotely, known hereafter as the cloud solution
+- All components installed locally (the applications and database are installed as a single entity, called the NetQ Platform); known hereafter as the on-premises solution
+- Only the aggregation and forwarding application installed locally and the database and all other applications installed in the cloud; known hereafter as the cloud solution
 
 The NetQ Agents reside on the switches and hosts being monitored in your network.
 
-For the on-premises solution, the NetQ Agents collect and transmit data from the switches and/hosts back to the NetQ Platform, which in turn processes and stores the data in its database. This data is then provided for display in through several user interfaces.
+For the on-premises solution, the NetQ Agents collect and transmit data from the switches and/hosts back to the NetQ Platform, which in turn processes and stores the data in its database. This data is then provided for display through several user interfaces.
 
 {{< figure src="/images/netq/install-onprem-basic-240.png" width="600">}}
 
 For the cloud solution, the NetQ Agent function is exactly the same, transmitting collected data, but instead sends it to the NetQ Platform containing the aggregation and forwarding application. This platform then transmits this data to Cumulus Networks cloud-based infrastructure for further processing and storage. This data is then provided for display through the same user interfaces as the on-premises solution.
 
 {{< figure src="/images/netq/install-cloud-basic-240.png" width="700">}}
-
-No data is sent to Agents, only configuration and control commands.
 
 ## Installation Choices
 

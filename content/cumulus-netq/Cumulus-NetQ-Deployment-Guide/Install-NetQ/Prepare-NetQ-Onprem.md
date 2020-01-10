@@ -257,6 +257,24 @@ Replace network bridge value (br0 in the above example) with the
         $ sudo netplan apply
         ```
 
+4. Run the Installer Program on the platform.
+
+    ```
+    cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
+    ```
+
+    Allow about five minutes for this to complete,  and only then continue to the next step.
+
+    {{%notice tip%}}
+If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
+    {{%/notice%}}
+
+5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+
+    ```
+    cumulus@<hostname>:~$ sudo opta-check
+    ```
+
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).
 
 ### KVM Three-Server Cluster
@@ -270,6 +288,24 @@ To prepare the NetQ Platform using a three-server cluster:
 {{%notice note%}}
 Make a note of the private IP addresses you assign to the master and two worker nodes. They are needed for the installation steps.
 {{%/notice%}}
+
+4. Run the Installer Program on the platform.
+
+    ```
+    cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
+    ```
+
+    Allow about five minutes for this to complete,  and only then continue to the next step.
+
+    {{%notice tip%}}
+If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
+    {{%/notice%}}
+
+5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+
+    ```
+    cumulus@<hostname>:~$ sudo opta-check
+    ```
 
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).
 
@@ -355,6 +391,24 @@ To prepare your single-server NetQ Platform:
 
           {{< figure src="/images/netq/vmw-deploy-results.png" width="700" >}}
 
+4. Run the Installer Program on the platform.
+
+    ```
+    cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
+    ```
+
+    Allow about five minutes for this to complete,  and only then continue to the next step.
+
+    {{%notice tip%}}
+If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
+    {{%/notice%}}
+
+5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+
+    ```
+    cumulus@<hostname>:~$ sudo opta-check
+    ```
+
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).
 
 ### VMware Three-Server Cluster
@@ -368,6 +422,24 @@ To prepare the NetQ Platform using a three-server cluster:
 {{%notice note%}}
 Make a note of the private IP addresses you assign to the master and two worker nodes. They are needed for the installation steps.
 {{%/notice%}}
+
+4. Run the Installer Program on the platform.
+
+    ```
+    cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
+    ```
+
+    Allow about five minutes for this to complete,  and only then continue to the next step.
+
+    {{%notice tip%}}
+If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
+    {{%/notice%}}
+
+5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+
+    ```
+    cumulus@<hostname>:~$ sudo opta-check
+    ```
 
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).
 
@@ -479,6 +551,24 @@ sudo systemctl disable motd-news.{service,timer}
 sudo systemctl stop motd-news.{service,timer}
 ```
 
+4. Run the Installer Program on the appliance.
+
+    ```
+    cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
+    ```
+
+    Allow about five minutes for this to complete,  and only then continue to the next step.
+
+    {{%notice tip%}}
+If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
+    {{%/notice%}}
+
+5. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+
+    ```
+    cumulus@<hostname>:~$ sudo opta-check
+    ```
+
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).
 
 ### Three-Appliance Cluster
@@ -494,6 +584,24 @@ Make a note of the private IP addresses you assign to the master and two worker 
 
 3. Copy the *Bootstrap* and *Appliance* files downloaded for the single NetQ Appliance to this second NetQ Appliance and run the `systemctl` commands.
 
-4. Repeat these steps for the third NetQ Appliance.
+4. Run the Installer Program on the appliance.
+
+    ```
+    cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
+    ```
+
+    Allow about five minutes for this to complete,  and only then continue to the next step.
+
+    {{%notice tip%}}
+If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
+    {{%/notice%}}
+
+5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+
+    ```
+    cumulus@<hostname>:~$ sudo opta-check
+    ```
+
+6. Repeat these steps for the third NetQ Appliance.
 
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).

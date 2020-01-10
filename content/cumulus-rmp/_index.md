@@ -10,7 +10,6 @@ aliases:
 pageID: 5122807
 product: Cumulus RMP
 version: '3.7'
-imgData: cumulus-rmp
 siteSlug: cumulus-rmp
 subsection: true
 ---

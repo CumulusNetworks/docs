@@ -1,7 +1,7 @@
 ---
 title: Prerequisites
 author: Cumulus Networks
-weight: 408
+weight: 
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+draft: true
 ---
 This topic describes the hardware and software requirements for installation of the Cumulus NetQ software on your own hardware.
 

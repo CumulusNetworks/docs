@@ -7,10 +7,7 @@ version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents on each node you want to monitor. NetQ 2.4 Agents can be installed and run on:
-
-- Switches running Cumulus Linux version 3.3.2-3.3.x
-- Switches running Cumulus Linux version 4.0.x
+After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents on each node you want to monitor. NetQ 2.4 Agents can be installed and run on switches running Cumulus Linux version 3.3.2-4.0.x.
 
 This topic describes how to install and configure the NetQ Agent and CLI on Cumulus Linux switches. If you are upgrading, you can skip some of the steps which do not need to be performed a second time.
 
@@ -26,7 +23,7 @@ To install the NetQ Agent you need to install the OS-specific meta package, `cum
 If your network uses a proxy server for external connections, you should first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so `apt-get` can access the meta package on the Cumulus Networks repository.
 {{%/notice%}}
 
-### Cumulus Linux 3.3.2-3.3.x
+### Add NetQ Debian Repository
 
 Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
 
@@ -35,27 +32,12 @@ Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.3
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-2.4
 ...
 ```
 
 {{%notice tip%}}
-The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-3 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
-{{%/notice%}}
-
-### Cumulus Linux 4.x
-
-Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
-
-```
-cumulus@switch:~$ sudo nano /etc/apt/sources.list
-...
-deb http://apt.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-2.4
-...
-```
-
-{{%notice tip%}}
-The repository `http://apt.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
+The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-4 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
 {{%/notice%}}
 
 ## Install NetQ Agent and CLI

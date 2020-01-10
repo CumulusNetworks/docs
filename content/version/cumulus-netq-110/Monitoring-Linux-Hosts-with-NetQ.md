@@ -24,4 +24,4 @@ The NetQ Agent is supported on the following Linux hosts:
 
 You need to install the OS-specific NetQ metapack on every host you want
 to monitor with NetQ. For more information, see the 
-[current NetQ documentation](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Software-on-Your-Server/).
+[current NetQ documentation](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ/).

@@ -168,7 +168,7 @@ values, refer to the [Related Information](#related-information) section below.
 <td><p><code>bond mode</code></p></td>
 <td><p>The bonding mode. Cumulus Linux supports IEEE 802.3ad link aggregation mode and balance-xor mode. IEEE 802.3ad link aggregation is the default mode.</p>
 <p>You can change the bond mode using NCLU. The following example changes bond1 to balance-xor mode.</p>
-<p><strong>Note</strong>: Use balance-xor mode only if you cannot use LACP. <a href="xs#enable-balance-xor-mode">See below</a> for more information.</p>
+<p><strong>Note</strong>: Use balance-xor mode only if you cannot use LACP. <a href="#enable-balance-xor-mode">See below</a> for more information.</p>
 <pre><code>cumulus@switch:~$ net add bond bond1 bond mode balance-xor
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit</code></pre>
@@ -396,6 +396,7 @@ address traffic to the bond.
 - A bond can have subinterfaces, but subinterfaces cannot have a bond.
 - A bond cannot enslave VLAN subinterfaces.
 - Set all slave ports within a bond to the same speed/duplex and make sure they match the link partner's slave ports.
+- The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner LACP information. This information is not necessary and requires you to use `sudo` to view the file.
 - On a [Cumulus RMP](/cumulus-rmp/) switch, if you create a bond with multiple 10G member ports, traffic gets dropped when the bond uses members of the same *unit* listed in the `/var/lib/cumulus/porttab` file. For example, traffic gets dropped if both swp49 and swp52 are in the bond because they both are in the xe0 unit (or if both swp50 and swp51 are in the same bond because they are both in xe1):  
 swp49 xe0 0 0 -1 0  
 swp50 xe1 0 0 -1 0  

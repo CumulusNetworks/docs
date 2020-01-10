@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
 ---
-<details>
 
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework
 in Cumulus Linux as well as most other Linux distributions. `iptables`,
@@ -141,8 +140,7 @@ those different components.
   - **Target(s):** The *target* can be a user-defined chain (other than
     the one this rule is in), one of the special built-in targets that
     decides the fate of the packet immediately (like DROP), or an
-    extended target. See the [Supported Rule Types and Common
-    Usages](#src-5118219_Netfilter-ACLs-supported) section below for
+    extended target. See the [Supported Rule Types and Common Usages](#src-5118219_Netfilter-ACLs-supported) section below for
     examples of different targets.
 
 ### How Rules Are Parsed and Applied</span>
@@ -249,9 +247,7 @@ To always start `switchd` with nonatomic updates:
     
         acl.non_atomic_update_mode = TRUE 
 
-3.  [Restart
-    `switchd`](https://docs.cumulusnetworks.com/pages/viewpage.action?pageId=5114824)
-    :
+3.  [Restart`switchd`](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span):
     
         cumulus@switch:~$ sudo systemctl restart switchd.service
 
@@ -808,8 +804,7 @@ switch. You specify them in
 ### Setting DSCP on Transit Traffic</span>
 
 The examples here use the *mangle* table to modify the packet as it
-transits the switch. DSCP is expressed in [decimal
-notation](https://en.wikipedia.org/wiki/Differentiated_services#Commonly_used_DSCP_values)
+transits the switch. DSCP is expressed in [decima notation](https://en.wikipedia.org/wiki/Differentiated_services#Commonly_used_DSCP_values)
 in the examples below.
 
     [iptables]
@@ -1068,15 +1063,13 @@ from any switch port egress/ingress.
 
   - [www.netfilter.org](http://www.netfilter.org/)
 
-  - [Netfilter.org packet filtering
-    how-to](http://www.netfilter.org/documentation/HOWTO//packet-filtering-HOWTO-6.html)
+  - [Netfilter.org packet filtering how-to](http://www.netfilter.org/documentation/HOWTO//packet-filtering-HOWTO-6.html)
 
 ## Caveats and Errata</span>
 
 ### Not All Rules Supported</span>
 
-As mentioned in the [Supported Rules
-section](#src-5118219_Netfilter-ACLs-supported) above, not all
+As mentioned in the [Supported Rule section](#src-5118219_Netfilter-ACLs-supported) above, not all
 `iptables`, `ip6tables` or `ebtables` rules are supported. Refer to that
 section for specific rule support.
 
@@ -1113,8 +1106,7 @@ To do so, set the value for `acl.non_atomic_update_mode` to true in
 
     acl.non_atomic_update_mode = TRUE
 
-Then [restart
-switchd](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd).
+Then [restart switchd](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd).
 
 ### iptables Interactions with cl-acltool</span>
 
@@ -1175,12 +1167,5 @@ following is displayed:
     Installing acl policy... Rolling back ..
     failed.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

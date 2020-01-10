@@ -143,10 +143,3 @@ It demonstrates dynamic provisioning of VLANs using a virtual simulation
 of two Cumulus VX leaf switches and two CentOS 7 (RDO Project) servers;
 collectively they comprise an OpenStack environment.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

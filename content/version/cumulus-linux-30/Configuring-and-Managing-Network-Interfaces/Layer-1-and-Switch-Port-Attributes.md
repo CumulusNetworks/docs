@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
 ---
-<details>
 
 This chapter discusses the various network interfaces on a switch
 running Cumulus Linux.
@@ -263,9 +262,9 @@ Cumulus Linux has the ability to:
 
 You configure breakout ports in the `/etc/cumulus/ports.conf` file.
 After you modify the configuration, [restart
-`switchd`](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd)
 to push the new configuration; [this interrupts network
-services](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd).
+services](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd).
 
 {{%notice info%}}
 
@@ -409,7 +408,7 @@ In `/etc/cumulus/ports.conf`:
     ...
 
 In any case, when you finish editing `ports.conf`, make sure to [restart
-`switchd`](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd)
 to reload your changes.
 
 ### Breaking Out a 40G Port</span>
@@ -440,7 +439,7 @@ with four 10G logical ports:
     52=40G
 
 To load the change [restart
-`switchd`](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd).
+`switchd`](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd).
 
 Many services depend on `switchd`. It is highly recommended to restart
 Cumulus Linux if possible in this situation.
@@ -505,7 +504,7 @@ port:
     5=10G
 
 To load the change, [restart
-`switchd`](Configuring-switchd.html#src-5118217_Configuringswitchd-restartswitchd)
+`switchd`](/version/cumulus-linux-30/System-Management/Configuring-switchd/#restarting-switchd-span#src-5118217_Configuringswitchd-restartswitchd)
 to load your changes.
 
 Many services depend on `switchd`. It is highly recommended to restart
@@ -642,12 +641,5 @@ shows the output for 1G and 10G modules:
 
   - <http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

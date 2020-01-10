@@ -650,7 +650,7 @@ installation, connectivity testing, and specifying a hostname. You can
 create your own ZTP script to be used instead by storing it in a
 designated location. For more detail about how ZTP works and tips for
 writing your own scripts, refer to
-[ZTP](/display/NETQ141/Zero+Touch+Provisioning+-+ZTP).
+[ZTP](Cumulus-NetQ-Image-and-Provisioning-Management-User-Guide/Manage-Zero-Touch-Provisioning-Scripts/).
 
 ### Command Line Interface
 

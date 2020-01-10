@@ -27,7 +27,7 @@ implemented with Intel x86 or ARM-based architectures. If you are unsure what ar
 
 ## CLI Access
 
-When NetQ is installed or upgraded, the CLI may also be installed and enabled on your NetQ server or appliance and hosts. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ) and [Upgrade NetQ](../../Cumulus-NetQ-Deployment-Guide/Upgrade-NetQ) topics for details.
+When NetQ is installed or upgraded, the CLI may also be installed and enabled on your NetQ server or appliance and hosts. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ) topics for details.
 
 To access the CLI from a switch or server:
 

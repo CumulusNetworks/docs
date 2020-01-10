@@ -65,7 +65,7 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb
         cumulus@switch:~$ sudo apt-get update
         cumulus@switch:~$ sudo apt-get install cumulus-netq
 
-3.  Verify that [NTP](../../../../cumulus-linux/System-Configuration/Setting-Date-and-Time/)
+3.  Verify that [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
     is running on the host node. Nodes must be in time synchronization with the
     NetQ Platform to enable useful statistical analysis.
 

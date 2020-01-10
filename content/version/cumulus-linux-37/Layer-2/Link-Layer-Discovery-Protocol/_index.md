@@ -254,7 +254,6 @@ To show the `lldpd` running configuration:
       Source MAC for LLDP frames on bond slaves: local
       Portid TLV Subtype for lldp frames: ifname
     --------------------------------------------------------------------
-<details>
 
 <summary>Runtime Configuration (Advanced) </summary>
 

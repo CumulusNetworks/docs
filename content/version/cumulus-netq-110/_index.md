@@ -75,7 +75,7 @@ NetQ 1.1 includes the following new features and enhancements:
     which runs on Ubuntu 16.04 and Red Hat Enterprise Linux 7.
 
   - [Standalone
-    repository](Getting-Started-with-NetQ.html#src-7111298_GettingStartedwithNetQ-agent):
+    repository](/version/cumulus-netq-110/Getting-Started-with-NetQ/#src-7111298_GettingStartedwithNetQ-agent):
     NetQ packages are in their own separate repository.
 
   - New [check and show
@@ -165,10 +165,3 @@ NAT translations, networks and container IP and MAC addresses.
     The Service Console provides a browser-based window for accessing
     the NetQ CLI from anywhere.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

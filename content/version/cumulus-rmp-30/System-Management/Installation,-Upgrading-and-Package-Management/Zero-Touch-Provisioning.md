@@ -11,7 +11,6 @@ version: 3.0.1
 imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
 ---
-<details>
 
 *Zero touch provisioning* (ZTP) enables network devices to be quickly
 deployed in large-scale environments. Data center engineers only need to
@@ -531,12 +530,5 @@ To see the current `ztp` state, use the `-s` option:
 
   - /var/lib/cumulus/autoprovision.conf
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

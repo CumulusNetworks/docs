@@ -266,7 +266,7 @@ To always start `switchd` with nonatomic updates:
 acl.non_atomic_update_mode = TRUE
 ```
 
-3. [Restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd):
+3. [Restart `switchd`](../Configuring-switchd/#restart-switchd):
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -1239,7 +1239,7 @@ For example, your switch is set so BFD is rate limited to 2000 packets per secon
 
 In Cumulus Linux, atomic update mode is enabled by default. If you have Tomahawk switches and plan to use SPAN and/or mangle rules, you must disable atomic update mode.
 
-To do so, enable nonatomic update mode by setting the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then [restart `switchd`](../../Configuring-switchd#restart-switchd).
+To do so, enable nonatomic update mode by setting the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then [restart `switchd`](../Configuring-switchd#restart-switchd).
 
 ```
 acl.non_atomic_update_mode = TRUE

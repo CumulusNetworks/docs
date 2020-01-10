@@ -107,6 +107,12 @@ To specify what information to advertise (the prefix reachability), you can use 
  cumulus@switch:~$ net add ospf redistribute connected
 ```
 
+{{%notice note%}}
+
+Cumulus Linux does not support OSPF default origination.
+
+{{%/notice%}}
+
 ### Define Custom OSPF Parameters on the Interfaces
 
 You can define additional custom parameters for OSPF, such as the network type (point-to-point or broadcast) and the timer tuning, such as a hello interval.

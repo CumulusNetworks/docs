@@ -1063,10 +1063,3 @@ include:
   - Return to your workbench by clicking {{% imgOld 83 %}} in the top right corner
 
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

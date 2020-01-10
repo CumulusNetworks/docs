@@ -13,13 +13,12 @@ frontend:
       commands:
         - echo Building docs with Hugo
         - echo Now move static images and files ...
-        - aws s3 sync static $STATIC_BUCKET --delete
+        - if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
         - echo Remove static directory
-        - rm -rf static
+        - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
         - echo Building docs ...
         - hugo --baseURL $BASEURL
         - echo Successfully built docs
-        - du -h -d 1 public
         - find public -name '*.html' -type f -exec sed -i "s,docs-cdn.cumulusnetworks.com,$STATIC_DOMAIN,g" {} +
         - find public -name '*.xml' -type f -exec sed -i "s,docs-cdn.cumulusnetworks.com,$STATIC_DOMAIN,g" {} +
   artifacts:

@@ -772,7 +772,7 @@ for them. The overall Cumulus Linux MIB is defined in
 </tr>
 <tr class="even">
 <td><p><a href="http://www.mibdepot.com/cgi-bin/getmib3.cgi?i=1&amp;n=LLDP-MIB&amp;r=cisco&amp;f=LLDP-MIB-V1SMI.my&amp;v=v1&amp;t=tree" class="external-link">LLDP</a></p></td>
-<td><p>L2 neighbor info from <code>lldpd</code> (note, you need to <a href="Link-Layer-Discovery-Protocol.html#src-5122001_LinkLayerDiscoveryProtocol-snmp">enable the SNMP subagent</a> in LLDP). <code>lldpd</code> needs to be started with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
+<td><p>L2 neighbor info from <code>lldpd</code> (note, you need to <a href="/version/cumulus-linux-31/Layer-1-and-Layer-2-Features/Link-Layer-Discovery-Protocol/#span-id-src-5122001-linklayerdiscoveryprotocol-snmp-class-confluence-anchor-link-span-enabling-the-snmp-subagent-in-lldp-span">enable the SNMP subagent</a> in LLDP). <code>lldpd</code> needs to be started with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
 </tr>
 <tr class="odd">
 <td><p><a href="http://support.ipmonitor.com/mibs_byoidtree.aspx?oid=.1.3.6.1.4.1.2021.13.16" class="external-link">LM-SENSORS MIB</a></p></td>
@@ -858,10 +858,3 @@ Cumulus Linux 3.1.
 
 {{%/notice%}}
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

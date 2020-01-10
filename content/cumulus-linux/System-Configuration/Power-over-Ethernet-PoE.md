@@ -21,6 +21,7 @@ The [currently supported platforms](https://cumulusnetworks.com/products/hardwar
 
 - Cumulus Express CX-1048-P
 - Dell N3048EP-ON
+- Delta AG6248C PoE
 - EdgeCore AS4610-54P
 
 ## PoE Basics

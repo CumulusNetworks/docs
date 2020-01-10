@@ -18,7 +18,6 @@ There are some preparation steps to complete before using the Admin UI or the Ne
 You must complete these steps before attempting to install the NetQ software.
 
 A fresh server or appliance is recommended for NetQ installation. Alternately, you can create a new VM or re-image an existing server with Ubuntu as the base operating system. Be sure to back up any NetQ data beforehand if you choose this alternative.
-{{%/notice%}}
 
 ## Prepare Your NetQ Appliance
 
@@ -130,7 +129,9 @@ To install and configure a VM on your own hardware:
     You can use these examples for reference or use your own hypervisor
     instructions.
 
-    <details><summary>VMware example</summary>
+    <details>
+
+    <summary>VMware example</summary>
 
       This example shows the VM setup process using an OVA file with VMware
       ESXi.
@@ -188,30 +189,31 @@ To install and configure a VM on your own hardware:
 
     </details>
 
-    <details><summary>KVM example</summary>
+    <details>
+    <summary>KVM example</summary>
 
       This example shows the VM setup process for a system with Libvirt and
       KVM/QEMU installed.
 
-      1. Confirm that the SHA256 checksum matches the one posted on the Cumulus Downloads website to ensure the image download has not been corrupted.
+    1. Confirm that the SHA256 checksum matches the one posted on the Cumulus Downloads website to ensure the image download has not been corrupted.
 
 ```
 $ sha256sum ./Downloads/cumulus-netq-server-2.4.0-ts-amd64-qemu.qcow2
 $ 6fff5f2ac62930799b4e8cc7811abb6840b247e2c9e76ea9ccba03f991f42424  ./Downloads/cumulus-netq-server-2.4.0-ts-amd64-qemu.qcow2
 ```
 
-      2. Copy the QCOW2 image to a directory where you want to run it.
+    2. Copy the QCOW2 image to a directory where you want to run it.
 
-        {{%notice tip%}} 
+    {{%notice tip%}} 
 Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.
-        {{%/notice%}}
+    {{%/notice%}}
 
 ```
 $ sudo mkdir /vms
 $ sudo cp ./Downloads/cumulus-netq-server-2.4.0-ts-amd64-qemu.qcow2 /vms/ts.qcow2
 ```
 
-      3. Create the VM.
+    3. Create the VM.
 
           For a Direct VM, where the VM uses a MACVLAN interface to sit on the
           host interface for its connectivity:
@@ -303,7 +305,7 @@ If you have installed a VM on your own server, skip to Step 3.
     cumulus@<server>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
     ```
 
-    Refer to [Back Up Your NetQ Data](../../Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ/) for more detail about this command.
+    Refer to [Back Up Your NetQ Data](../../../Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ/) for more detail about this command.
 4. Run the installer program on your NetQ platform server.
 
     ```
@@ -384,7 +386,7 @@ If you have installed a VM on your own server, skip to Step 3.
     cumulus@<hostname>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
     ```
 
-    Refer to [Back Up Your NetQ Data](../../Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ/) for more detail about this command.
+    Refer to [Back Up Your NetQ Data](../../../Cumulus-NetQ-Deployment-Guide/Backup-and-Restore-NetQ/Backup-NetQ/) for more detail about this command.
 4. Run the installer program on your master node.
 
     ```

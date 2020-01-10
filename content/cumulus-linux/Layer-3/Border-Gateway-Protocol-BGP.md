@@ -116,10 +116,10 @@ cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal
 ```
 
-    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer, but it does not distribute any prefixes to it unless explicitly told that it must with the `activate` command. You must specify the `activate` command for each address family that is  being announced by the BGP session.
+    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
 ```
-cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.0.0.2 activate
+cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.0.0.2
 cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
 ```
 
@@ -180,11 +180,11 @@ switch(config-router)# neighbor 10.0.0.2 remote-as external
 switch(config-router)# neighbor 10.0.0.2 remote-as internal
 ```
 
-    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer, but it does not distribute any prefixes to it unless explicitly told that it must with the `activate` command. You must specify the `activate` command for each address family that is being announced by the BGP session.
+    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
 ```
 switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# neighbor 10.0.0.2 activate
+switch(config-router-af)# neighbor 10.0.0.2
 switch(config-router-af)# exit
 switch(config-router)# address-family ipv6
 switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
@@ -678,7 +678,7 @@ Ensure that the IPv6 peers are activated under the IPv4 unicast address family; 
 ```
 cumulus@switch:~$ net add bgp neighbor 2001:1:1::3 capability extended-nexthop
 cumulus@switch:~$ net add bgp ipv4 unicast neighbor 2001:1:1::3 activate
-cumulus@switch:~$ net pending 
+cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
@@ -1597,8 +1597,6 @@ After you attach a peer to a peer group, you need to associate an IP address wit
 
 ```
 cumulus@switch:~$ net add bgp neighbor tier-2 peer-group
-cumulus@switch:~$ net add bgp ipv4 unicast
-cumulus@switch:~$ net add bgp neighbor tier-2 activate
 cumulus@switch:~$ net add bgp neighbor tier-2 next-hop-self
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 peer-group tier-2
 cumulus@switch:~$ net add bgp neighbor 192.0.2.2 peer-group tier-2
@@ -1617,7 +1615,6 @@ switch# configure terminal
 switch(config)# router bgp 65000
 switch(config-router)# neighbor tier-2 peer-group
 switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# neighbor tier-2 activate
 switch(config-router-af)# neighbor tier-2 next-hop-self
 switch(config-router-af)# exit
 switch(config-router)# neighbor 10.0.0.2 peer-group tier-2

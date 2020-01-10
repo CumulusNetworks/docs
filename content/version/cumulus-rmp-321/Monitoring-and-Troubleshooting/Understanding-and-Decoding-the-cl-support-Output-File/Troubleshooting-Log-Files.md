@@ -182,7 +182,7 @@ debugging.
 </tr>
 <tr class="even">
 <td><p>/var/log/watchdog</p></td>
-<td><p><a href="Monitoring-System-Hardware.html#src-5127559_MonitoringSystemHardware-watchdog">Hardware watchdog</a> log files.</p></td>
+<td><p><a href="/version/cumulus-rmp-321/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/">Hardware watchdog</a> log files.</p></td>
 <td><p> </p></td>
 </tr>
 <tr class="odd">
@@ -193,10 +193,3 @@ debugging.
 </tbody>
 </table>
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

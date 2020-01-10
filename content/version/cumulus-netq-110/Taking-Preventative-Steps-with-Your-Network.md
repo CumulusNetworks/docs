@@ -146,10 +146,3 @@ network configuration before deploying it into production. For more
 information, see [Installing and Configuring the NetQ Virtual
 Environment](/version/cumulus-netq-110/Installing-and-Configuring-the-NetQ-Virtual-Environment).
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

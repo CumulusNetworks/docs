@@ -11,7 +11,6 @@ version: 2.5 ESR
 imgData: cumulus-rmp-25esr
 siteSlug: cumulus-rmp-25esr
 ---
-<details>
 
 ## The cl-support command generates a tar archive of useful information for troubleshooting that can be auto-generated or manually created. To manually create it, run the cl-support command. The cl-support file is automatically generated when:</span>
 
@@ -118,12 +117,5 @@ Here is more information on the file structure:
     - This is an explanation of the `support` directory included in the
     `cl-support` output.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

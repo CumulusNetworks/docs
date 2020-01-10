@@ -11,7 +11,6 @@ version: 3.1.2
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
 ---
-<details>
 
 This chapter discusses the various network interfaces on a switch
 running Cumulus RMP.
@@ -299,12 +298,5 @@ shows the output for 1G and 10G modules:
 
   - [www.linuxfoundation.org/collaborate/workgroups/networking/bonding](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>
 
 </details>

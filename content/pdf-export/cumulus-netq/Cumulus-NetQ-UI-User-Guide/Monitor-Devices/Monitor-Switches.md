@@ -896,10 +896,3 @@ desired. Export the data to a third-party tool, by clicking **Export**.
 
 {{% imgOld 60 %}}
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

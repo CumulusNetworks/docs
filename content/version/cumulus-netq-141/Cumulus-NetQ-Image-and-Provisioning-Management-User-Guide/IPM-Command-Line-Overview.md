@@ -27,7 +27,7 @@ provisioning):
     (network operating system) images**.**
   - **ztp:** manages mappings between ZTP scripts and the
     meta-information the
-    [ZTP](/display/NETQ141/Zero+Touch+Provisioning+-+ZTP) tool sends.
+    [ZTP](../Manage-Zero-Touch-Provisioning-Scripts/) tool sends.
 
 The TIPCTL syntax is organized around the command actions-add, delete,
 show, configure, import, sync, and reset-for each of the functions, as

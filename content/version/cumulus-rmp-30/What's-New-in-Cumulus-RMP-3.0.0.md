@@ -88,8 +88,7 @@ correctly.
 
 ### New Bond Defaults</span>
 
-In order to simplify configurations, many [bond
-settings](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation)
+In order to simplify configurations, many [bond settings](/version/cumulus-linux-37/Layer-2/Bonding-Link-Aggregation/)
 have had their defaults changed:
 
 | Setting          | 2.x Default | 3.x Default |
@@ -141,8 +140,7 @@ default.
 
 ### New ARP Refresh Rate</span>
 
-For [ARP
-timers](https://support.cumulusnetworks.com/hc/en-us/articles/202012933),
+For [ARP timers](https://support.cumulusnetworks.com/hc/en-us/articles/202012933),
 the default `base_reachable_time_ms` in Cumulus RMP 3.0 and later is
 14400000 (4 hours); in Cumulus RMP 2.5.x it is 110000 (110 seconds).
 
@@ -158,7 +156,7 @@ service will not start. If you install the license again, start
 
 To improve security, the ability to use SSH to connect to a switch as
 the root user using a password has been disabled by default. To enable
-it, read [User Accounts](/display/RMP30/User+Accounts).
+it, read [User Accounts](/version/cumulus-rmp-30/System-Management/Authentication-Authorization-and-Accounting/User-Accounts/).
 
 ### SSH Output No Longer Truncated</span>
 
@@ -169,27 +167,18 @@ truncated. This has been fixed in Cumulus RMP 3.0.
 ## Removed Features</span>
 
   - `cl-img-install`. The
-    [installer](/display/RMP30/Installing+a+New+Cumulus+Linux+Image) has
+    [installer](/version/cumulus-rmp-30/System-Management/Installation-Upgrading-and-Package-Management/Managing-Cumulus-RMP-Disk-Images/) has
     been replaced.
 
   - Disk image slots and `/mnt/persist`: For information and strategies
     on how to preserve your network configuration across software
-    upgrades, read the [Upgrading Cumulus
-    Linux](/display/RMP30/Upgrading+Cumulus+Linux) chapter.
+    upgrades, read the [Upgrading Cumulus Linux](/version/cumulus-rmp-30/System-Management/Installation-Upgrading-and-Package-Management/Managing-Cumulus-RMP-Disk-Images/) chapter.
 
   - `cl-brctl`. This utility was simply a symlink to `brctl`, which is
-    what you should use to [configure
-    bridges](/display/RMP30/Ethernet+Bridging+-+VLANs), VLANs and the
+    what you should use to [configure bridges](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/), VLANs and the
     like.
 
   - `jdoo`. Use `systemd` and `systemctl` for
-    [monitoring](/display/RMP30/Monitoring+and+Troubleshooting) your
+    [monitoring](/version/cumulus-linux-37/Monitoring-and-Troubleshooting/) your
     switches.
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

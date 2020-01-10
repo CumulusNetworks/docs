@@ -628,10 +628,3 @@ recommended alternative, if appropriate.
 | ------- | ------------------- |
 | N/A     | N/A                 |
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

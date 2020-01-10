@@ -76,10 +76,3 @@ To get the routing table for a server:
     yes    default         192.168.0.0/24                 server01          eth0                                Fri Feb  8 01:50:49 2019
     yes    default         192.168.0.31/32                server01          eth0                                Fri Feb  8 01:50:49 2019
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

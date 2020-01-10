@@ -99,7 +99,7 @@ Cumulus Networks recommends you install the Telemetry Server on an
 out-of-band management network to ensure it can monitor in-band network
 issues without being affected itself. Ideally, you should run the
 Telemetry Server on a separate, powerful server for maximum usability
-and performance. For more information on system requirements, [read this chapter](Methods-for-Diagnosing-Network-Issues.html#src-10453530_MethodsforDiagnosingNetworkIssues-matrix).
+and performance. For more information on system requirements, [read this chapter](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Resolve-Issues/Methods-for-Diagnosing-Network-Issues/#how-far-back-in-time-can-you-travel).
 
 {{%/notice%}}
 
@@ -136,7 +136,7 @@ To install the Telemetry Server VM:
 2.  Import the VM into your
     [KVM](https://docs.cumulusnetworks.com/display/VX/Vagrant+and+Libvirt+with+KVM+or+QEMU)
     or
-    [VMware](https://docs.cumulusnetworks.com/display/VX/VMware+vSphere+-+ESXi+5.5)
+    [VMware](/cumulus-vx/Getting-Started/VMware-vSphere-ESXi-5.5/)
     hypervisor.  
     This step is shown using KVM with Virtual Machine Manager.
 
@@ -325,7 +325,7 @@ included here:
 {{%notice note%}}
 
 If your network uses a proxy server for external connections, you should
-first configure a [global proxy](/display/NETQ141/Configuring+a+Global+Proxy) so
+first configure a [global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so
 `apt-get` can access the meta package on the Cumulus Networks repository.
 
 {{%/notice%}}
@@ -521,7 +521,7 @@ additional instructions after the basic configuration steps:
 This is the minimum configuration required to properly monitor your
 nodes.
 
-1.  Verify that [NTP](/display/NETQ141/Setting+Date+and+Time) is running
+1.  Verify that NTP is running
     on the host node. Nodes must be in time synchronization with the
     Telemetry Server to enable useful statistical analysis.
 
@@ -573,8 +573,8 @@ telemetry server or the server wasn't configured:
 
 While optional, Cumulus strongly recommends that you configure NetQ
 Agents to communicate with the telemetry server only via a
-[VRF](/display/NETQ141/Virtual+Routing+and+Forwarding+-+VRF), including
-a [management VRF](/display/NETQ141/Management+VRF). To do so, you need
+[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including
+a [management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need
 to specify the VRF name when configuring the NetQ Agent. For example, if
 the management VRF is configured and you want the agent to communicate
 with the telemetry server over it, configure the agent like this:

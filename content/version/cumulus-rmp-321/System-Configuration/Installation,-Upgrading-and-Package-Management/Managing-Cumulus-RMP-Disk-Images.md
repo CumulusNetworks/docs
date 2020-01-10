@@ -84,7 +84,6 @@ Once you connect the cable, the installation proceeds as follows:
 
 4.  Success\! You are now running Cumulus RMP.
     
-    {{% imgOld 0 %}}
 
 {{%notice note%}}
 
@@ -298,13 +297,11 @@ finishes.
 6.  Monitor the console and select the ONIE option from the first GRUB
     screen shown below.
     
-    {{% imgOld 1 %}}
 
 7.  Cumulus RMP uses GRUB chainloading to present a second GRUB menu
     specific to the ONIE partition. No action is necessary in this menu
     to select the default option *ONIE: Install OS*.
     
-    {{% imgOld 2 %}}
 
 8.  At this point, the USB drive should be automatically recognized and
     mounted. The image file should be located and automatic installation
@@ -391,10 +388,3 @@ To upgrade to a maintenance (X.Y.Z) release using `apt-get`:
   - [Open Network Install Environment (ONIE) Home
     Page](http://opencomputeproject.github.io/onie/)
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

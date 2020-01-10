@@ -139,10 +139,3 @@ restart `switchd` for the changes to take effect:
 
   - /etc/cumulus/switchd.conf
 
-<article id="html-search-results" class="ht-content" style="display: none;">
-
-</article>
-
-<footer id="ht-footer">
-
-</footer>

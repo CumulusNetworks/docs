@@ -1345,7 +1345,7 @@ footer {
         justify-items: flex-start;
       }
 
-      img {
+      img#rt-icon {
         max-width: 50px;
         margin: 0 auto;
         @media #{$lg-up} {

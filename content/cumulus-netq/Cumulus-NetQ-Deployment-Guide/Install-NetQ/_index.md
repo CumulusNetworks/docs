@@ -16,11 +16,11 @@ siteSlug: cumulus-netq
 The complete Cumulus NetQ solution contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed in two arrangements:
 
 - All components installed locally (the applications and database are installed as a single entity, called the NetQ Platform); known hereafter as the on-premises solution
-- Only the aggregation and forwarding application installed locally and the database and all other applications installed in the cloud; known hereafter as the cloud solution
+- Only the aggregation and forwarding application installed locally, with the database and all other applications installed in the cloud; known hereafter as the cloud solution
 
 The NetQ Agents reside on the switches and hosts being monitored in your network.
 
-For the on-premises solution, the NetQ Agents collect and transmit data from the switches and/hosts back to the NetQ Platform, which in turn processes and stores the data in its database. This data is then provided for display through several user interfaces.
+For the on-premises solution, the NetQ Agents collect and transmit data from the switches and/or hosts back to the NetQ Platform, which in turn processes and stores the data in its database. This data is then provided for display through several user interfaces.
 
 {{< figure src="/images/netq/install-onprem-basic-240.png" width="600">}}
 
@@ -44,5 +44,5 @@ No matter how you answer the questions above, the installation workflow can be s
 
 To get started, answer the on-premises or cloud question and then follow the instructions in the associated topic:
 
-- [Prepare for NetQ On-premises Installation](../Prepare-NetQ-Onprem/)
-- [Prepare for NetQ Cloud Installation](../Prepare-NetQ-Cloud)
+- [Prepare for NetQ On-premises Installation](../Install-NetQ/Prepare-NetQ-Onprem/)
+- [Prepare for NetQ Cloud Installation](../Install-NetQ/Prepare-NetQ-Cloud/)

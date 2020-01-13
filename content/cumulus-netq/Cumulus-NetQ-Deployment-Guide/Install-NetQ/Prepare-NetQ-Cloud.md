@@ -1,7 +1,7 @@
 ---
-title: Prepare for NetQ On-premises Installation
+title: Prepare for NetQ Cloud Installation
 author: Cumulus Networks
-weight: 408
+weight: 409
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -11,13 +11,13 @@ version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-This topic describes the preparation steps needed before installing the NetQ components *on your premises*.  Refer to [Prepare for NetQ Could Installation](../Prepare-NetQ-Cloud/) for preparations for cloud deployments.
+This topic describes the preparation steps needed before installing  NetQ in a cloud deployment.  Refer to [Prepare for NetQ On-premises Installation](../Install-NetQ/Prepare-NetQ-Onprem/) for preparations for on-premises deployments.
 
-There are three key steps in the preparation for on-premises installation:
+There are three key steps in the preparation for cloud installation:
 
 1. Decide whether you want to install NetQ using:
     - a virtual machine (VM) on hardware that you provide (the NetQ Platform), or
-    - the Cumulus NetQ Appliance.
+    - the Cumulus NetQ Cloud Appliance.
 
 2. Review the general requirements and, if appropriate, the VM requirements.
 
@@ -25,7 +25,7 @@ There are three key steps in the preparation for on-premises installation:
 
 ## General Requirements and Support
 
-The following general requirements and support apply to all on-premises deployments.
+The following general requirements and support apply to all cloud deployments.
 
 ### NetQ Agent Operating System Requirements
 
@@ -65,7 +65,7 @@ A fresh server is recommended for NetQ 2.4.0 installation. Alternately, you coul
 
 {{%/notice%}}
 
-The NetQ Platform requires a server with the following:
+The NetQ Cloud Platform requires a server with the following:
 
 <table>
 <colgroup>
@@ -81,15 +81,15 @@ The NetQ Platform requires a server with the following:
 <tbody>
 <tr class="even">
 <td>Processor</td>
-<td>Eight (8) virtual CPUs</td>
+<td>Four (4) virtual CPUs</td>
 </tr>
 <tr class="odd">
 <td>Memory</td>
-<td>64 GB RAM</td>
+<td>8 GB RAM</td>
 </tr>
 <tr class="even">
 <td>Local disk storage</td>
-<td>256 GB SSD <br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+<td>32 GB</td>
 </tr>
 <tr class="odd">
 <td>Network interface speed</td>
@@ -98,7 +98,7 @@ The NetQ Platform requires a server with the following:
 </tbody>
 </table>
 
-You must also open the following ports on your NetQ Platform (or platforms if you are planning to deploy a server cluster).
+You must also open the following ports on your NetQ Cloud Platform (or platforms if you are planning to deploy a server cluster).
 
 For external connections:
 
@@ -152,13 +152,13 @@ To prepare your single-server NetQ Platform:
     2.  Click *2.4* from the **Version** list, and then select
         *2.4.0* from the submenu.
 
-    3.  Select *KVM* from the **Platform/Application** list.
+    3.  Select *KVM (Cloud)* from the **Platform/Application** list.
 
         {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
     4.  Scroll down to view the image, and click **Download**.
 
-        {{< figure src="/images/netq/netq-24-vm-dwnld-kvm-240.png" width="200" >}}
+        {{< figure src="/images/netq/netq-24-vm-dwnld-kvmcld-240.png" width="200" >}}
 
 3.  Open your hypervisor and set up your VM.  
     You can use this examples for reference or use your own hypervisor
@@ -270,7 +270,7 @@ If this step fails for any reason, you can run `netq bootstrap reset` and then t
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
-    cumulus@<hostname>:~$ sudo opta-check
+    cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
 
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).
@@ -302,7 +302,7 @@ If this step fails for any reason, you can run `netq bootstrap reset` and then t
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
-    cumulus@<hostname>:~$ sudo opta-check
+    cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
 
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).
@@ -324,13 +324,13 @@ To prepare your single-server NetQ Platform:
     2.  Click *2.4* from the **Version** list, and then select
         *2.4.0* from the submenu.
 
-    3.  Select *VMware* from the **Platform/Application** list.
+    3.  Select *VMware (Cloud)* from the **Platform/Application** list.
 
         {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
     4.  Scroll down to view the image, and click **Download**.
 
-        {{< figure src="/images/netq/netq-24-vm-dwnld-vmware-240.png" width="200" >}}
+        {{< figure src="/images/netq/netq-24-vm-dwnld-vmwarecld-240.png" width="200" >}}
 
 3.  Open your hypervisor and set up your VM.  
     You can use this examples for reference or use your own hypervisor
@@ -402,7 +402,7 @@ If this step fails for any reason, you can run `netq bootstrap reset` and then t
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
-    cumulus@<hostname>:~$ sudo opta-check
+    cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
 
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).
@@ -434,26 +434,26 @@ If this step fails for any reason, you can run `netq bootstrap reset` and then t
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
-    cumulus@<hostname>:~$ sudo opta-check
+    cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
 
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).
 
-## Prepare Your Cumulus NetQ Appliance
+## Prepare Your Cumulus NetQ Cloud Appliance
 
 Follow the preparation instructions below, based on whether you intend to deploy a single server platform or a three-server cluster.
 
-### Single NetQ Appliance
+### Single NetQ Cloud Appliance
 
 To prepare your single NetQ Appliance:
 
 Inside the box that was shipped to you, you'll find:
 
-- Your Cumulus NetQ Appliance (a Supermicro 6019P-WTR server)
+- Your Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
 - Information regarding your order
 
-For more detail about hardware specifications (including LED layouts and FRUs like the power supply or fans, and accessories like included cables) or safety and environmental information, refer to the [user manual](https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf) and [quick reference guide](https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf).
+If you're looking for hardware specifications (including LED layouts and FRUs like the power supply or fans and accessories like included cables) or safety and environmental information, check out the appliance's [user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf).
 
 #### Install the Appliance
 
@@ -518,7 +518,7 @@ $ sudo netplan apply
 
 Now that the appliance is up and running, download the software for installation.
 
-To download the NetQ Appliance image and installer program.
+To download the NetQ Cloud Appliance image and installer program:
 
 1.  On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list.
 
@@ -533,11 +533,11 @@ To download the NetQ Appliance image and installer program.
 
     {{< figure src="/images/netq/netq-24-bootstrap-dwnld-240.png" width="200" >}}
 
-5. Select *Appliance* from the **Platform/Appliance** list.
+5. Select *Appliance (Cloud)* from the **Platform/Appliance** list.
 
 6. Scroll down and click **Download**.
 
-    {{< figure src="/images/netq/netq-24-appliance-dwnld-240.png" width="200" >}}
+    {{< figure src="/images/netq/netq-24-appliancecld-dwnld-240.png" width="200" >}}
 
 7. Copy these two files to the */mnt/installables/* directory on the appliance.
 
@@ -565,7 +565,7 @@ If this step fails for any reason, you can run `netq bootstrap reset` and then t
 5. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
-    cumulus@<hostname>:~$ sudo opta-check
+    cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
 
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).
@@ -574,14 +574,14 @@ You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ 
 
 To prepare a three-appliance cluster:
 
-1. Install the second NetQ Appliance using the same steps as a single NetQ Appliance.
+1. Install the second NetQ Cloud Appliance using the same steps as a single NetQ Appliance.
 
 2. Configure the IP address, hostname, and password using the same steps as a single NetQ Appliance.
     {{%notice note%}}
 Make a note of the private IP addresses you assign to the master and two worker nodes. They are needed for the installation steps.
     {{%/notice%}}
 
-3. Copy the *Bootstrap* and *Appliance* files downloaded for the single NetQ Appliance to this second NetQ Appliance and run the `systemctl` commands.
+3. Copy the *Bootstrap* and *Appliance (Cloud)* files downloaded for the single NetQ Appliance to this second NetQ Appliance and run the `systemctl` commands.
 
 4. Run the Installer Program on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
 
@@ -598,7 +598,7 @@ If this step fails for any reason, you can run `netq bootstrap reset` and then t
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
-    cumulus@<hostname>:~$ sudo opta-check
+    cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
 
 6. Repeat these steps for the third NetQ Appliance.

@@ -51,6 +51,9 @@ To view the switch and host information with the CLI, use the following
     netq [<hostname>] show sensors psu [<psu-name>] [around <text-time>] [json]
     netq [<hostname>] show sensors temp [<temp-name>] [around <text-time>] [json]
     netq [<hostname>] show sensors fan [<fan-name>] [around <text-time>] [json]
+
+    netq [<hostname>] show cl-btrfs-info [around <text-time>] [json]
+    netq [<hostname>] show cl-ssd-util [around <text-time>] [json]
      
     netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] [type sensors] [between <text-time> and <text-endtime>] [json]
 
@@ -684,7 +687,7 @@ exit01            swp1                      0                    0              
 
 For NetQ servers and appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
 
-Use the `netq-cl-ssd-util` command to view the SSD information.
+Use the `netq show cl-ssd-util` command to view the SSD information.
 
 This example shows the utilization for spine02 which has this type of SSD.
 
@@ -731,6 +734,12 @@ The syntax for the commands is:
     netq [<hostname>] show inventory brief [json]
     netq [<hostname>] show inventory license [cumulus] [status ok|status missing] [around <text-time>] [json]
     netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [json]
+
+    netq [<hostname>] show cl-manifest [json]
+    netq [<hostname>] show cl-pkg-info [<text-package-name>] [around <text-time>] [json]
+    netq [<hostname>] show cl-resource forwarding [around <text-time>] [json]
+    netq [<hostname>] show cl-resource acl [ingress | egress] [around <text-time>] [json]
+
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] [type license|type os] [between <text-time> and <text-endtime>] [json]
 
 {{%notice note%}}
@@ -901,6 +910,57 @@ summary for a specific device.
     server04          N/A                  Ubuntu          x86_64   N/A             N/A
     spine01           VX                   CL              x86_64   VX              N/A
     spine02           VX                   CL              x86_64   VX              N/A
+
+### View the Cumulus Linux Package on a Switch
+
+When you are troubleshooting an issue with a switch, you might want to know what versions of the Cumulus Linux operating system is on that switch and on a switch that is not having the same issue.
+
+This example show the installed Cumulus Linux OS version for leaf01.
+
+```
+cumulus@oob-mgmt-server:~$ netq leaf01 show cl-manifest
+
+Matching manifest records:
+Hostname          ASIC Vendor          CPU Arch             Manifest Version
+----------------- -------------------- -------------------- --------------------
+leaf01            vx                   x86_64               3.7.6.1
+leaf01            vx                   x86_64               3.7.10
+leaf01            vx                   x86_64               3.6.2.1
+leaf01            vx                   x86_64               3.7.4
+leaf01            vx                   x86_64               3.7.2.5
+leaf01            vx                   x86_64               3.7.1
+leaf01            vx                   x86_64               3.6.0
+leaf01            vx                   x86_64               3.7.0
+leaf01            vx                   x86_64               3.4.1
+leaf01            vx                   x86_64               3.7.3
+leaf01            vx                   x86_64               3.2.0
+...
+```
+
+This example shows the installed Cumulus Linux OS version for all monitored switches.
+
+```
+cumulus@oob-mgmt-server:~$ netq show cl-manifest
+
+Matching manifest records:
+Hostname          ASIC Vendor          CPU Arch             Manifest Version
+----------------- -------------------- -------------------- --------------------
+exit01            vx                   x86_64               3.7.6.1
+exit01            vx                   x86_64               3.7.10
+exit01            vx                   x86_64               3.6.2.1
+exit01            vx                   x86_64               3.7.4
+...
+exit02            vx                   x86_64               3.7.6.1
+exit02            vx                   x86_64               3.7.10
+exit02            vx                   x86_64               3.6.2.1
+exit02            vx                   x86_64               3.7.4
+...
+leaf01            vx                   x86_64               3.7.6.1
+leaf01            vx                   x86_64               3.7.10
+leaf01            vx                   x86_64               3.6.2.1
+leaf01            vx                   x86_64               3.7.4
+...
+```
 
 ### View All Software Packages Installed on Switches
 

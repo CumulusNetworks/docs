@@ -11,12 +11,14 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Use single user mode to assist in troubleshooting system boot issues or for password recovery. To enter single user mode, follow the steps below.
+Use single user mode to assist in troubleshooting system boot issues or for password recovery.
 
-1. Boot the switch as soon as you see the GRUB menu.
+To enter single user mode:
+
+1. Boot the switch, then as soon as you see the GRUB menu, use the arrow keys to select **Advanced options for Cumulus Linux GNU/Linux**.
 
 ```
-                    GNU GRUB  version 2.02-cl3u3
+                    GNU GRUB  version 2.02+dfsg1-20
 
 +----------------------------------------------------------------------------+
 |*Cumulus Linux GNU/Linux                                                    |
@@ -26,20 +28,19 @@ Use single user mode to assist in troubleshooting system boot issues or for pass
 +----------------------------------------------------------------------------+
 ```
 
-2. Use the ^ and v arrow keys to select **Advanced options for Cumulus Linux GNU/Linux**. A menu similar to the following appears:
+2. Select **Cumulus Linux GNU/Linux, with Linux 4.19.0-cl-1-amd64 (recovery mode)**.
 
 ```
-                    GNU GRUB  version 2.02-cl3u3
+                    GNU GRUB  version 2.02+dfsg1-20
 
 +----------------------------------------------------------------------------+
-| Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-7-amd64                       |
-|*Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-7-amd64 (recovery mode)       |
+| Cumulus Linux GNU/Linux, with Linux 4.19.0-cl-1-amd64                       |
+|*Cumulus Linux GNU/Linux, with Linux 4.19.0-cl-1-amd64 (recovery mode)       |
 |                                                                            |
 +----------------------------------------------------------------------------+  
 ```
 
-3. Select **Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-1-amd64 (recovery mode)**.
-4. Press ctrl-x to reboot.
+4. Press ctrl-d to reboot.
 5. After the system reboots, set a new **root** password. The root user provides complete control over the switch. Providing a new password helps in case the current password has been forgotten, which is a common problem.
 
 ```
@@ -51,7 +52,7 @@ passwd: password updated successfully
 
     {{%notice tip%}}
 
-You may want to take this opportunity to reset the password for the *cumulus* account as well.
+You can take this opportunity to reset the password for the *cumulus* account.
 
 ```
 root@switch:~# passwd cumulus
@@ -62,10 +63,10 @@ passwd: password updated successfully
 
 {{%/notice%}}
 
-6. Sync the `/etc` directory using `btrfs`, then reboot the system:
+6. Sync the `/etc` directory, then reboot the system:
 
 ```
-root@switch:~# btrfs filesystem sync /etc
+root@switch:~# sync
 root@switch:~# reboot -f
 Restarting the system.
 ```

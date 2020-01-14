@@ -21,7 +21,11 @@ To prepare your appliance:
     - NetQ Cloud Appliance: SuperMicro SYS-E300-9D ([user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf))
 
 3. For on-premises solutions using the NetQ Appliance, optionally back up your NetQ data.
-    1. Run the backup script to create a backup file in `/opt/<backup-directory>` being sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file.
+    1. Run the backup script to create a backup file in `/opt/<backup-directory>`.  
+    
+        {{%notice note%}}
+Be sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file. This location must be somewhere that is *off* of the appliance to avoid it being overwritten during these preparation steps.
+        {{%/notice%}}
 
     ```
     cumulus@<netq-appliance>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
@@ -40,15 +44,19 @@ To prepare your appliance:
     Note these tips:
     - Ignore the instructions for MAAS.
     - Ubuntu OS should be installed on the SSD disk. Select Micron SSD with ~900 GB at step#9 in the aforementioned instructions.
+ 
         {{<figure src="/images/netq/install-ubuntu-ssd-selection-240.png" width="700">}}
+
     - Set the default username to *cumulus* and password to *CumulusLinux!* while installing Ubuntu 18.04.
+
         {{<figure src="/images/netq/install-ubuntu-set-creds-240.png" width="700">}}
+
     - When prompted, select *Install SSH server*.
 
 5. Configure Netplan.
 
     Ubuntu uses Netplan for network configuration. You can give your appliance an IP address using DHCP or a static address.
-    
+
     To configure an IP address allocation using DHCP:
 
     - Create and/or edit the  */etc/netplan/01-ethernet.yaml* Netplan configuration file.
@@ -101,7 +109,7 @@ network:
 $ sudo netplan apply
 ```
 
-6. Retrieve the Ubuntu repository.
+6. Update the Ubuntu repository.
 
     1. Reference and update the local apt repository.
 
@@ -156,14 +164,16 @@ $ sudo netplan apply
 
     7. Copy these two files, *netq-bootstrap-2.4.0.tgz* and *NetQ-2.4.0.tgz* (on-premises) or *NetQ-2.4.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
 
-    8. Verify that the needed files are present by navigating to the directory and listing the contents. This example shows on-premises files.
+    8. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-2.4.0-opta.tgz* instead of *NetQ-2.4.0.tgz*.
 
         ```
-        cumulus@<hostname>:~$ cd ~mnt/installables/
-        cumulus@<hostname>:~ mnt/installables$ ls
-        netq-apps
-        netq-bootstrap-2.4.0.tgz
-        NetQ-2.4.0.tgz
+        cumulus@<hostname>:~$ dpkg -l | grep netq
+        ii  netq-agent   2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+
+        cumulus@<hostname>:~$ cd /mnt/installables/
+        cumulus@<hostname>:/mnt/installables$ ls
+        NetQ-2.4.0.tgz  netq-bootstrap-2.4.0.tgz
         ```
     
     9. Run the following commands.
@@ -184,7 +194,7 @@ $ sudo netplan apply
     Allow about five minutes for this to complete.
 
 {{%notice note%}}
-If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to [Prepare Your Cumulus NetQ Appliance](../../Install-NetQ/Prepare-NetQ-Onprem/) for a new appliance.
+If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to [Prepare Your Cumulus NetQ Appliance](../../Install-NetQ/Prepare-NetQ-Onprem/#prepare-your-cumulus-netq-appliance)  or [Prepare Your Cumulus NetQ Cloud Appliance](../../Install-NetQ/Prepare-NetQ-Cloud/#prepare-your-cumulus-netq-cloud-appliance) for a new appliance.
 {{%/notice%}}
 
-You are now ready to install the NetQ Software and restore your NetQ data. Refer to [Install NetQ Using the AdminUI](../../Install-NetQ/Install-NetQ-Using-AdminUI/).
+You are now ready to install the NetQ Software. Refer to [Install NetQ Using the AdminUI](../../Install-NetQ/Install-NetQ-Using-AdminUI/).

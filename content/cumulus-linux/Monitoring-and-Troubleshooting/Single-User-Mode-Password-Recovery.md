@@ -32,13 +32,13 @@ Use single user mode to assist in troubleshooting system boot issues or for pass
                     GNU GRUB  version 2.02-cl3u3
 
 +----------------------------------------------------------------------------+
-| Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-7-amd64                       |
-|*Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-7-amd64 (recovery mode)       |
+| Cumulus Linux GNU/Linux, with Linux 4.19.0-cl-1-amd64                       |
+|*Cumulus Linux GNU/Linux, with Linux 4.19.0-cl-1-amd64 (recovery mode)       |
 |                                                                            |
 +----------------------------------------------------------------------------+  
 ```
 
-3. Select **Cumulus Linux GNU/Linux, with Linux 4.1.0-cl-1-amd64 (recovery mode)**.
+3. Select **Cumulus Linux GNU/Linux, with Linux 4.19.0-cl-1-amd64 (recovery mode)**.
 4. Press ctrl-x to reboot.
 5. After the system reboots, set a new **root** password. The root user provides complete control over the switch. Providing a new password helps in case the current password has been forgotten, which is a common problem.
 
@@ -51,7 +51,7 @@ passwd: password updated successfully
 
     {{%notice tip%}}
 
-You may want to take this opportunity to reset the password for the *cumulus* account as well.
+You can take this opportunity to reset the password for the *cumulus* account as well.
 
 ```
 root@switch:~# passwd cumulus

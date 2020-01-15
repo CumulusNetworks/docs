@@ -539,7 +539,7 @@ To download the NetQ Cloud Appliance image and installer program:
 
     {{< figure src="/images/netq/netq-24-appliancecld-dwnld-240.png" width="200" >}}
 
-7. Copy these two files to the */mnt/installables/* directory on the appliance.
+7. Copy these two files, *netq-bootstrap-2.4.0.tgz* and *NetQ-2.4.0-opta.tgz*, to the */mnt/installables/* directory on the appliance.
 
 8. Run the following commands.
 
@@ -550,7 +550,7 @@ sudo systemctl disable motd-news.{service,timer}
 sudo systemctl stop motd-news.{service,timer}
 ```
 
-4. Run the Installer Program on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface..
+4. Run the Installer Program on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
 
     ```
     cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz

@@ -149,7 +149,7 @@ root@ubuntu:~# apt-get install cumulus-netq
 ```
 </details>
 
-<details><summary>Download the bootstrap and the NetQ installation tarballs.</summary>
+<details><summary>Download the bootstrap and NetQ installation tarballs.</summary>
 Download the software from the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page.
 
 1. Select *NetQ* from the **Product** list.

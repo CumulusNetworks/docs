@@ -1,7 +1,7 @@
 ---
 title: Install NetQ Using the Admin UI
 author: Cumulus Networks
-weight: 410
+weight: 417
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

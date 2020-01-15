@@ -1,7 +1,7 @@
 ---
 title: Install NetQ Using the CLI
 author: Cumulus Networks
-weight: 411
+weight: 418
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

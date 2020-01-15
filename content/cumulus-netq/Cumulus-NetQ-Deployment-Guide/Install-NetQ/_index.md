@@ -52,7 +52,9 @@ When you choose to purchase and install NetQ software on a Cumulus hardware appl
 
 Again, both options provide the same services and features. The biggest difference is in the number of servers to be deployed and in the continued availability of services running on those servers should hardware failures occur.
 
-A single server is easier to set up, configure and manage, but can limit your ability to scale your network monitoring quickly. Multiple servers is a bit more complicated, but you limit potential downtime and increase availability with the master and two worker nodes supported in the NetQ 2.4.0 release. For more detail about clustering, refer to [Server Clustering](tbd).
+A single server is easier to set up, configure and manage, but can limit your ability to scale your network monitoring quickly. Multiple servers is a bit more complicated, but you limit potential downtime and increase availability with the master and two worker nodes supported in the NetQ 2.4.0 release. 
+
+<!-- For more detail about clustering, refer to [Server Clustering](tbd). -->
 
 ## Installation Workflow Summary
 
@@ -62,7 +64,7 @@ No matter how you answer the questions above, the installation workflow can be s
 2. Use Admin UI (preferred) or NetQ CLI to install and configure your deployment and the NetQ software.
 3. Install NetQ Agents on switches and hosts.
 
-## Get Started
+<!-- ## Get Started
 
 Follow the instructions contained in the section identified in these tables based on your answers to the installation choices you have made.
 
@@ -74,7 +76,7 @@ Follow the instructions contained in the section identified in these tables base
 | On premises | NetQ 2.4 Appliance | [Prepare Your New NetQ Appliance for a NetQ On-premises Deployment](x) |
 | Cloud | VM + your hardware | [Prepare Your Hardware and VM for a NetQ Cloud Deployment](x) |
 | Cloud | NetQ 2.4 Cloud Appliance | [Prepare Your New NetQ Cloud Appliance for a NetQ Cloud Deployment](x) |
-| On premises, cloud | NetQ 2.3 and earlier Appliances | [Prepare Your Existing NetQ Appliance for a NetQ Deployment](x) |
+| On premises, cloud | NetQ 2.3 and earlier Appliances | [Prepare Your Existing NetQ Appliances for a NetQ 2.4 Deployment](x) |
 
 ### Server Cluster
 
@@ -84,6 +86,6 @@ Follow the instructions contained in the section identified in these tables base
 | On premises | NetQ Appliance | [Prepare Your New NetQ Appliances for a NetQ On-premises Cluster Deployment](x) |
 | Cloud | VM + your hardware | [Prepare Your Hardware and VM for a NetQ Cloud Cluster Deployment](x) |
 | Cloud | NetQ Cloud Appliance | [Prepare Your New NetQ Cloud Appliance for a NetQ Cloud Cluster Deployment](x) |
-| On premises, cloud | NetQ 2.3 and earlier Appliances | [Prepare Your Existing NetQ Appliances for a NetQ Cluster Deployment](x) |
+| On premises, cloud | NetQ 2.3 and earlier Appliances | [Prepare Your Existing NetQ Appliances for a NetQ 2.4 Cluster Deployment](x) |
 
-After you have completed the necessary preparations, you can install the NetQ software and Agents.
+After you have completed the necessary preparations, you can install the NetQ software and Agents. -->

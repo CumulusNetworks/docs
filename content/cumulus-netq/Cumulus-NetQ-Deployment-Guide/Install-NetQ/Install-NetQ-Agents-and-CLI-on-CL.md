@@ -1,7 +1,7 @@
 ---
 title: Install and Configure the NetQ Agent and CLI on Cumulus Linux Switches
 author: Cumulus Networks
-weight: 412
+weight: 419
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

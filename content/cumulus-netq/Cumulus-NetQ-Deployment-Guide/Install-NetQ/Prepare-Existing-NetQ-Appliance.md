@@ -197,9 +197,9 @@ ii  netq-apps    2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Fabric
     ```
     </details>
 
-<details><summary>Run the installer program.</summary>
+<details><summary>Run the Bootstrap CLI.</summary>
 
-Run installer program  on your appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
+Run the bootstrap CLI on your appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
 
 ```
 cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz

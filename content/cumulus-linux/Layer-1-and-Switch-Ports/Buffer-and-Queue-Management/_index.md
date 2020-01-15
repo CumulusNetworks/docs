@@ -46,6 +46,7 @@ The following example `/etc/cumulus/datapath/traffic.conf` datapath configuratio
 
 <details>
 <summary>**click to see traffic.conf file**</summary>
+
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
 #
@@ -266,7 +267,7 @@ remark.egress_remark_group.cos_7.priority_remark.dscp = [58]
 
 On Broadcom switches, if you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
 
-On Mellanox switches with the Spectrum ASIC, the following options in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`:
+On Mellanox switches with the Spectrum ASIC, the following options in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command after you change the options.
 
 - DSCP/802.1p to COS remark assignments (`traffic.*`)
 - Explicit congestion notification (ECN) settings (`ecn_red.*`)

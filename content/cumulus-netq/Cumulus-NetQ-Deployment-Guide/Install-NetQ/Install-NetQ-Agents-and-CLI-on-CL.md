@@ -216,7 +216,7 @@ number when configuring the NetQ Agent like this:
 cumulus@leaf01:~$ netq config add agent server 192.168.1.254 port 7379
 cumulus@leaf01:~$ netq config restart agent
 ```
-
+<!-- 
 ## Configure Advanced NetQ CLI Settings
 
-vrf, port, proxy
+vrf, port, proxy -->

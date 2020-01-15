@@ -9,10 +9,11 @@ imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
 
-There are two deployment types that are commonly deployed for network management in the data center:
+There are three deployment types that are commonly deployed for network management in the data center:
 
-  - Out-of-Band Management (recommended)
-  - In-band Management
+- Out-of-Band Management (recommended)
+- In-band Management
+- High Availability
 
 A summary of each type is provided here.
 
@@ -24,7 +25,7 @@ routed environments whenever possible.
 
 {{%/notice%}}
 
-### Out-of-Band Management Deployment
+## Out-of-Band Management Deployment
 
 Cumulus Networks recommends deploying NetQ on an out-of-band (OOB)
 management network to separate network management traffic from standard
@@ -76,7 +77,7 @@ through a virtual network overlay, shown with purple lines.
 
 {{< figure src="/images/netq/deploy-arch-oob-example-230.png" width="700" >}}
 
-### In-band Management Deployment
+## In-band Management Deployment
 
 While not the preferred deployment method, you might choose to implement
 NetQ within your data network. In this scenario, there is no overlay and
@@ -89,3 +90,8 @@ NetQ Platform for troubleshooting.
 
 {{< figure src="/images/netq/deploy-arch-ib-example-230.png" width="700" >}}
 
+## High Availability Deployment
+
+NetQ supports a high availability deployment for users who prefer a solution in which the collected data and processing provided by the NetQ Platform remains available through alternate equipment should the platform fail for any reason. In this configuration, three NetQ Platforms are deployed, with one as the master and two as workers (or replicas). Data from the NetQ Agents is sent to all three switches so that if the master NetQ Platform fails, one of the replicas automatically becomes the master and continues to store and provide the telemetry data. This example is based on an OOB management configuration, and modified to support high availability for NetQ.
+
+{{< figure src="/images/netq/deploy-arch-ha-example-240.png" width="700" >}}

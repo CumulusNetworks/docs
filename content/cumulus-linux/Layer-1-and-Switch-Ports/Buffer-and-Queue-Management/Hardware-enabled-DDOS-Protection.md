@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-It is crucial to protect the control plane on the switch to ensure that the proper control plane applications have access to the CPU. Failure to do so increases vulnerabilities to a Denial of Service (DOS) attack. Cumulus Linux provides control plane protection by default. It also offers a DDOS protection mechanism, which protects data plane, control plane and management plane traffic in the switch. It drops any packets that match one or more of the following criteria while incurring no performance impact:
+It is crucial to protect the control plane on the switch to ensure that the proper control plane applications have access to the CPU. Failure to do so increases vulnerabilities to a Denial of Service (DOS) attack. Cumulus Linux provides control plane protection by default. In addition, you can enable DDOS protection to protect data plane, control plane, and management plane traffic on the switch. When enabled, Cumulus Linux drops any packets that match one or more of the following criteria while incurring no performance impact:
 
 - Source IP address matches the destination address for IPv4 and IPv6 packets
 - Source MAC address matches the destination MAC address
@@ -16,29 +16,14 @@ It is crucial to protect the control plane on the switch to ensure that the prop
 - TCP packets with control flags =0 and seq number == 0
 - TCP packets with FIN, URG and PSH bits set and seq number == 0
 - TCP packets with both SYN and FIN bits set
-- TCP source PORT matches the destination PORT
-- UDP source PORT matches the destination PORT
+- TCP source PORT matches the destination port
+- UDP source PORT matches the destination port
 - First TCP fragment with partial TCP header
 - TCP header has fragment offset value of 1
 - ICMPv6 ping packets payload larger than programmed value of ICMP max size
 - ICMPv4 ping packets payload larger than programmed value of ICMP max size
 - Fragmented ICMP packet
 - IPv6 fragment lower than programmed minimum IPv6 packet size
-
-## Supported ASICs
-
-DDOS protection is available for the following Broadcom ASICs:
-
-- Helix4
-- Maverick
-- Tomahawk
-- Tomahawk+
-- Trident
-- Trident-II
-- Trident-II+
-- Trident3
-
-Cumulus Networks recommends enabling DDOS protection when deploying a switch with one of the above mentioned ASICs, as hardware-based DDOS protection is disabled by default.
 
 {{%notice note%}}
 
@@ -53,10 +38,11 @@ DDOS protection is not supported on Broadcom Hurricane2 and Mellanox Spectrum AS
 2. Enable DOS prevention checks by changing the following value to `true`, and save the file:
 
 ```
-# To turn on/off Denial of Service (DOS) prevention checks dos_enable = true
+# To turn on/off Denial of Service (DOS) prevention checks
+dos_enable = true
 ```
 
-3. Open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file in a text editor. Set the following checks to *true*, then save the file:
+3. Open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file in a text editor. Set the following DOS checks to *true*, then save the file:
 
 ```
 cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf
@@ -96,7 +82,7 @@ dos.udp_ports_eq
 
 {{%/notice%}}
 
-4. Restart `switchd` to enable DDOS protection:
+4. Restart `switchd`:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service

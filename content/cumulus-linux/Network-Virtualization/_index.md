@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Linux supports these forms of [network virtualization](http://en.wikipedia.org/wiki/Network_virtualization):
+Cumulus Linux supports a few forms of [network virtualization](http://en.wikipedia.org/wiki/Network_virtualization).
 
 *VXLAN* (Virtual Extensible LAN) is a standard overlay protocol that abstracts logical virtual networks from the physical network underneath. You can deploy simple and scalable layer 3 Clos architectures while extending layer 2 segments over that layer 3 network.
 

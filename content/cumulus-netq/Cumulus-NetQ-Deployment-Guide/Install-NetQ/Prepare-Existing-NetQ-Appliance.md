@@ -149,23 +149,23 @@ root@ubuntu:~# apt-get install cumulus-netq
 ```
 </details>
 
-<details><summary>Download the installer program and the NetQ installation tarball.</summary>
+<details><summary>Download the bootstrap and NetQ installation tarballs.</summary>
 Download the software from the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page.
 
 1. Select *NetQ* from the **Product** list.
 
 2. Select *2.4* from the **Version** list, and then select *2.4.0* from the submenu.
 
-{{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
+    {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
-3. Select *Bootstrap* from the **Platform/Appliance** list.
+3. Select *Bootstrap* from the **Hypervisor/Platform** list.
     Note that the bootstrap file is the same for both appliances.
 
     {{< figure src="/images/netq/netq-24-bootstrap-dwnld-240.png" width="200" >}}
     
 4. Scroll down and click **Download**.
 
-5. Select *Appliance* for the NetQ Appliance or *Appliance (Cloud)* for the NetQ Cloud Appliance from the **Platform/Appliance** list.
+5. Select *Appliance* for the NetQ Appliance or *Appliance (Cloud)* for the NetQ Cloud Appliance from the **Hypervisor/Platform** list.
 
     Make sure you select the right install choice based on whether you are preparing the on-premises or cloud version of the appliance.
 
@@ -197,9 +197,9 @@ ii  netq-apps    2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Fabric
     ```
     </details>
 
-<details><summary>Run the installer program.</summary>
+<details><summary>Run the Bootstrap CLI.</summary>
 
-Run installer program  on your appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
+Run the bootstrap CLI on your appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
 
 ```
 cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz

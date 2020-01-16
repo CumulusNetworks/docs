@@ -129,7 +129,7 @@ To prepare your single-server NetQ Platform:
     2.  Click *2.4* from the **Version** list, and then select
         *2.4.0* from the submenu.
 
-    3.  Select *KVM (Cloud)* from the **HyperVisor/Platform** list.
+    3.  Select *KVM (Cloud)* from the **Hypervisor/Platform** list.
 
         {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
@@ -253,17 +253,17 @@ To prepare the NetQ Platform using a three-server cluster:
 
 2. On each additional server, open your hypervisor and setup the VM in the same manner as for the single server.
 
-{{%notice note%}}
+    {{%notice note%}}
 Make a note of the private IP addresses you assign to the master and two worker nodes. They are needed for the installation steps.
-{{%/notice%}}
+    {{%/notice%}}
 
-4. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+3. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
     cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
 
-5. Run the Bootstrap CLI on each worker node for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
+4. Run the Bootstrap CLI on each worker node for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
 
     ```
     cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
@@ -294,7 +294,7 @@ To prepare your single-server NetQ Platform:
     2.  Click *2.4* from the **Version** list, and then select
         *2.4.0* from the submenu.
 
-    3.  Select *VMware (Cloud)* from the **HyperVisor/Platform** list.
+    3.  Select *VMware (Cloud)* from the **Hypervisor/Platform** list.
 
         {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
@@ -497,7 +497,7 @@ To download the NetQ Cloud Appliance image and installer program:
 2.  Click *2.4* from the **Version** list, and then select
     *2.4.0* from the submenu.
 
-3.  Select *Bootstrap* from the **HyperVisor/Platform** list.
+3.  Select *Bootstrap* from the **Hypervisor/Platform** list.
 
     {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
@@ -505,15 +505,27 @@ To download the NetQ Cloud Appliance image and installer program:
 
     {{< figure src="/images/netq/netq-24-bootstrap-dwnld-240.png" width="200" >}}
 
-5. Select *Appliance (Cloud)* from the **HyperVisor/Platform** list.
+5. Select *Appliance (Cloud)* from the **Hypervisor/Platform** list.
 
 6. Scroll down and click **Download**.
 
     {{< figure src="/images/netq/netq-24-appliancecld-dwnld-240.png" width="200" >}}
 
-7. Copy these two files to the */mnt/installables/* directory on the appliance.
+7. Copy these two files, *netq-bootstrap-2.4.0.tgz* and *NetQ-2.4.0-opta.tgz*, to the */mnt/installables/* directory on the appliance.
 
-8. Run the following commands.
+8. Verify that the needed files are present and of the correct release.
+
+    ```
+    cumulus@<hostname>:~$ dpkg -l | grep netq
+    ii  netq-agent   2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+
+    cumulus@<hostname>:~$ cd /mnt/installables/
+    cumulus@<hostname>:/mnt/installables$ ls
+    NetQ-2.4.0-opta.tgz  netq-bootstrap-2.4.0.tgz
+    ```
+
+9. Run the following commands.
 
 ```
 sudo systemctl disable apt-{daily,daily-upgrade}.{service,timer}
@@ -522,13 +534,13 @@ sudo systemctl disable motd-news.{service,timer}
 sudo systemctl stop motd-news.{service,timer}
 ```
 
-4. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+10. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
     cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
     
-5. Run the Bootstrap CLI on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface..
+11. Run the Bootstrap CLI on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface..
 
     ```
     cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
@@ -553,15 +565,17 @@ To prepare a three-appliance cluster:
 Make a note of the private IP addresses you assign to the master and two worker nodes. They are needed for the installation steps.
     {{%/notice%}}
 
-3. Copy the *Bootstrap* and *Appliance (Cloud)* files downloaded for the single NetQ Appliance to this second NetQ Appliance and run the `systemctl` commands.
+3. Copy the *netq-bootstrap-2.4.0.tgz* and *NetQ-2.4.0-opta.tgz* files downloaded for the single NetQ Appliance to this second NetQ Appliance and verify the correct files are present.
 
-4. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+4. Run the `systemctl` commands.
+
+5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
     cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
     
-5. Run the Bootstrap CLI on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
+6. Run the Bootstrap CLI on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
 
     ```
     cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
@@ -573,6 +587,6 @@ Make a note of the private IP addresses you assign to the master and two worker 
 If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
     {{%/notice%}}
 
-6. Repeat these steps for the third NetQ Appliance.
+7. Repeat these steps for the third NetQ Appliance.
 
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/).

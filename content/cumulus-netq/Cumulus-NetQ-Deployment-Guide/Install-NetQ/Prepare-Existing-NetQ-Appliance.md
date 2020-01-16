@@ -156,7 +156,7 @@ Download the software from the [Cumulus Downloads](https://cumulusnetworks.com/d
 
 2. Select *2.4* from the **Version** list, and then select *2.4.0* from the submenu.
 
-{{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
+    {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
 3. Select *Bootstrap* from the **Platform/Appliance** list.
     Note that the bootstrap file is the same for both appliances.

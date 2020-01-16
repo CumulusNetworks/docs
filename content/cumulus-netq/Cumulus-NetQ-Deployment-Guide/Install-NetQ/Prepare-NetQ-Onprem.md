@@ -513,7 +513,19 @@ To download the NetQ Appliance image and installer program.
 
 7. Copy these two files, *netq-bootstrap-2.4.0.tgz* and *NetQ-2.4.0.tgz*, to the */mnt/installables/* directory on the appliance.
 
-8. Run the following commands.
+8. Verify that the needed files are present and of the correct release.
+
+    ```
+    cumulus@<hostname>:~$ dpkg -l | grep netq
+    ii  netq-agent   2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+
+    cumulus@<hostname>:~$ cd /mnt/installables/
+    cumulus@<hostname>:/mnt/installables$ ls
+    NetQ-2.4.0.tgz  netq-bootstrap-2.4.0.tgz
+    ```
+
+9. Run the following commands.
 
 ```
 sudo systemctl disable apt-{daily,daily-upgrade}.{service,timer}
@@ -522,13 +534,13 @@ sudo systemctl disable motd-news.{service,timer}
 sudo systemctl stop motd-news.{service,timer}
 ```
 
-9. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+10. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
     cumulus@<hostname>:~$ sudo opta-check
     ```
 
-10. Run the Bootstrap CLI on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface..
+11. Run the Bootstrap CLI on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface..
 
     ```
     cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
@@ -555,13 +567,25 @@ Make a note of the private IP addresses you assign to the master and two worker 
 
 3. Copy the *netq-bootstrap-2.4.0.tgz* and *NetQ-2.4.0.tgz* files,  downloaded for the single NetQ Appliance, to the */mnt/installables/* directory on the second NetQ Appliance and run the `systemctl` commands.
 
-4. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+4. Verify that the needed files are present and of the correct release.
+
+    ```
+    cumulus@<hostname>:~$ dpkg -l | grep netq
+    ii  netq-agent   2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+
+    cumulus@<hostname>:~$ cd /mnt/installables/
+    cumulus@<hostname>:/mnt/installables$ ls
+    NetQ-2.4.0.tgz  netq-bootstrap-2.4.0.tgz
+    ```
+
+5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
     cumulus@<hostname>:~$ sudo opta-check
     ```
 
-5. Run the Bootstrap CLI on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
+6. Run the Bootstrap CLI on the appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
 
     ```
     cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz

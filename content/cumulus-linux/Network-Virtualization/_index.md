@@ -34,13 +34,13 @@ The VXLAN tunnel endpoints cannot share a common subnet; there must be at least 
 
 ### Cut-through Mode and Store and Forward Switching
 
-On switches using Broadcom Tomahawk, Trident II, Trident II+, and Trident3 ASICs, Cumulus Linux supports store and forward switching for VXLANs but does **not** support [cut-through mode](../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management#configure-cut-through-mode-and-store-and-forward-switching).
+On switches using Broadcom Tomahawk, Trident II, Trident II+, and Trident3 ASICs, Cumulus Linux supports store and forward switching for VXLANs but does **not** support [cut-through mode](../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management#cut-through-mode-and-store-and-forward-switching).
 
 On switches using Mellanox Spectrum ASICs, Cumulus Linux supports cut-through mode for VXLANs but does **not** support store and forward switching.
 
 ### MTU Size for Virtual Network Interfaces
 
-The maximum transmission unit (MTU) size for a virtual network interface should be 50 bytes smaller than the MTU for the physical interfaces on the switch. For more information on setting MTU, read [Layer 1 and Switch Port Attributes](../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/).
+The maximum transmission unit (MTU) size for a virtual network interface should be 50 bytes smaller than the MTU for the physical interfaces on the switch. For more information on setting MTU, read [Layer 1 and Switch Port Attributes](../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu).
 
 ### Layer 3 and Layer 2 VNIs Cannot Share the Same ID
 

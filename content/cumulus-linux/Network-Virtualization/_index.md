@@ -42,10 +42,10 @@ On switches using Mellanox Spectrum ASICs, Cumulus Linux supports cut-through mo
 
 The maximum transmission unit (MTU) size for a virtual network interface should be 50 bytes smaller than the MTU for the physical interfaces on the switch. For more information on setting MTU, read [Layer 1 and Switch Port Attributes](../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/).
 
-### VLANs and VXLANs Cannot Share the Same ID
+### Layer 3 and Layer 2 VNIs Cannot Share the Same ID
 
-The layer 3 VNI and layer 2 VNI cannot share the same number space; that is, you cannot have *vlan10* and *vxlan10*, for example. Otherwise, the layer 2 VNI does not get created.
-
+A layer 3 VNI and a layer 2 VNI cannot have the same ID. If the VNI IDs are the same, the layer 2 VNI does not get created.
+ 
 ## Useful Links
 
 - [VXLAN - RFC 7348](https://tools.ietf.org/html/rfc7348)

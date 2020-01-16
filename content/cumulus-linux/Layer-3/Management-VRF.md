@@ -16,7 +16,13 @@ In Cumulus Linux 4.0, management VRF is enabled by default. This is a change fro
 
 *Management VRF* is a subset of [VRF](../Virtual-Routing-and-Forwarding-VRF/) (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For all VRFs, the *main* routing table is the default table for all of the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
 
-Cumulus Linux only supports eth0 as the management interface, or eth1 depending on the switch platform. The Ethernet ports are software-only ports that are not hardware accelerated by `switchd`. VLAN subinterfaces, bonds, bridges, and the front panel switch ports are not supported as management interfaces.
+Cumulus Linux only supports eth0 (or eth1, depending on the switch platform) for *out-of-band management*. The Ethernet ports are software-only ports that are not hardware accelerated by `switchd`. VLAN subinterfaces, bonds, bridges, and the front panel switch ports are not supported as OOB management interfaces.
+
+{{%notice note%}}
+
+In band management of Cumulus Linux is possible using loopbacks and SVIs (switch virtual interfaces).
+
+{{%/notice%}}
 
 Management VRF is enabled by default in Cumulus Linux so logins to the switch are set into the management VRF context. IPv4 and IPv6 networking applications (for example, Ansible, Chef, and `apt-get`) run by an administrator communicate out the management network by default. This default context does not impact services run through `systemd` and the `systemctl` command, and does not impact commands examining the state of the switch, such as the `ip` command to list links, neighbors, or routes.
 

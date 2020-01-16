@@ -35,9 +35,7 @@ To install NetQ:
     
         Run the following commands on your *master* node, using the IP addresses of your worker nodes:
 
-        ```
-        cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-2.4.0.tgz
-        
+        ```        
         cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-2.4.0.tgz workers <worker-1-ip> <worker-2-ip>
         ```
         

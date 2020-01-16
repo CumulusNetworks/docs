@@ -129,7 +129,7 @@ To prepare your single-server NetQ Platform:
     2.  Click *2.4* from the **Version** list, and then select
         *2.4.0* from the submenu.
 
-    3.  Select *KVM (Cloud)* from the **HyperVisor/Platform** list.
+    3.  Select *KVM (Cloud)* from the **Hypervisor/Platform** list.
 
         {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
@@ -294,7 +294,7 @@ To prepare your single-server NetQ Platform:
     2.  Click *2.4* from the **Version** list, and then select
         *2.4.0* from the submenu.
 
-    3.  Select *VMware (Cloud)* from the **HyperVisor/Platform** list.
+    3.  Select *VMware (Cloud)* from the **Hypervisor/Platform** list.
 
         {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
@@ -497,7 +497,7 @@ To download the NetQ Cloud Appliance image and installer program:
 2.  Click *2.4* from the **Version** list, and then select
     *2.4.0* from the submenu.
 
-3.  Select *Bootstrap* from the **HyperVisor/Platform** list.
+3.  Select *Bootstrap* from the **Hypervisor/Platform** list.
 
     {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
@@ -505,7 +505,7 @@ To download the NetQ Cloud Appliance image and installer program:
 
     {{< figure src="/images/netq/netq-24-bootstrap-dwnld-240.png" width="200" >}}
 
-5. Select *Appliance (Cloud)* from the **HyperVisor/Platform** list.
+5. Select *Appliance (Cloud)* from the **Hypervisor/Platform** list.
 
 6. Scroll down and click **Download**.
 

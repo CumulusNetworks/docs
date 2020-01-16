@@ -253,17 +253,17 @@ To prepare the NetQ Platform using a three-server cluster:
 
 2. On each additional server, open your hypervisor and setup the VM in the same manner as for the single server.
 
-{{%notice note%}}
+    {{%notice note%}}
 Make a note of the private IP addresses you assign to the master and two worker nodes. They are needed for the installation steps.
-{{%/notice%}}
+    {{%/notice%}}
 
-4. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+3. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
     cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
 
-5. Run the Bootstrap CLI on each worker node for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
+4. Run the Bootstrap CLI on each worker node for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
 
     ```
     cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz

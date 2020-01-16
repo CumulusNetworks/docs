@@ -1,7 +1,7 @@
 ---
 title: Install NetQ Using the Admin UI
 author: Cumulus Networks
-weight: 410
+weight: 417
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -14,7 +14,7 @@ siteSlug: cumulus-netq
 After you have validated the prerequisites and performed the preparation steps, you can now install the NetQ software using the Admin UI.
 
 {{%notice info%}}
-You must perform the preparation steps before installing the NetQ software. Go to [Prepare for Install](../Prepare-for-Install/) if you have not yet completed these preparation steps.
+You must perform the preparation steps before installing the NetQ software. Go to [Prepare for NetQ On-premises Installation](../Install-NetQ/Prepare-NetQ-Onprem/) or [Prepare for NetQ Cloud Installation](../Install-NetQ/Prepare-NetQ-Cloud/) if you have not yet completed these preparation steps.
 {{%/notice%}}
 
 To install NetQ:
@@ -55,7 +55,7 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 
         \> Fresh Install
 
-        See step 4.
+        Continue with Step c.
 
     3. Select your server arrangement.
 

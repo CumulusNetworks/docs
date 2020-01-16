@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-It is crucial to protect the control plane on the switch to ensure that the proper control plane applications have access to the CPU. Failure to do so increases vulnerabilities to a Denial of Service (DOS) attack. Cumulus Linux provides control plane protection by default. In addition, you can enable DDOS protection to protect data plane, control plane, and management plane traffic on the switch. When enabled, Cumulus Linux drops any packets that match one or more of the following criteria while incurring no performance impact:
+It is crucial to protect the control plane on the switch to ensure that the proper control plane applications have access to the CPU. Failure to do so increases vulnerabilities to a Denial of Service (DOS attack. Cumulus Linux provides control plane protection by default. In addition, you can configure DDOS protection to protect data plane, control plane, and management plane traffic on the switch. You can  configure Cumulus Linux to drop packets that match one or more of the following criteria while incurring no performance impact:
 
 - Source IP address matches the destination address for IPv4 and IPv6 packets
 - Source MAC address matches the destination MAC address
@@ -31,18 +31,18 @@ DDOS protection is not supported on Broadcom Hurricane2 and Mellanox Spectrum AS
 
 {{%/notice%}}
 
-## Configure Persistent DDOS Protection
+## Configure DDOS Protection
 
 1. Open the `/etc/cumulus/datapath/traffic.conf` file in a text editor.
 
-2. Enable DOS prevention checks by changing the following value to `true`, and save the file:
+2. Enable DOS prevention checks by setting the `dos_enable` value to `true`:
 
 ```
 # To turn on/off Denial of Service (DOS) prevention checks
 dos_enable = true
 ```
 
-3. Open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file in a text editor. Set the following DOS checks to *true*, then save the file:
+3. Open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file in a text editor. Set any of the DOS checks to *true*. For example:
 
 ```
 cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf

@@ -42,14 +42,6 @@ Understanding the location of configuration data is required for successful upgr
 
 </details>
 
-{{%notice note%}}
-
-- If you are using the root user account, consider including `/root/`.
-- If you have custom user accounts, consider including `/home/<username>/`.
-- Cumulus Networks recommends you run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
-
-{{%/notice%}}
-
 <details>
 
 <summary>Additional Commonly Used Files </summary>
@@ -131,9 +123,9 @@ Understanding the location of configuration data is required for successful upgr
 
 {{%notice note%}}
 
-If you are using the root user account, consider including `/root/`.
-
-If you have custom user accounts, consider including `/home/<username>/`.
+- If you are using the root user account, consider including `/root/`.
+- If you have custom user accounts, consider including `/home/<username>/`.
+- Cumulus Networks recommends you run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
 
 {{%/notice%}}
 

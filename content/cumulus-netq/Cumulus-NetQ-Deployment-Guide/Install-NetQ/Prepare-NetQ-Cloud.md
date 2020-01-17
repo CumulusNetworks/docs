@@ -165,9 +165,7 @@ $ sudo cp ./Downloads/cumulus-netq-server-2.4.0-ts-amd64-qemu.qcow2 /vms/ts.qcow
 
           For a Direct VM, where the VM uses a MACVLAN interface to sit on the host interface for its connectivity:
 
-            $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
-            --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
-            --network=type=direct,source=eth0,model=virtio --import --noautoconsole
+            $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio -import --noautoconsole
 
           {{%notice note%}}
 Replace the disk path value with the location where the QCOW2 image is to reside. Replace network model value (eth0 in the above example) with the name of the interface where the VM is connected to the external network.
@@ -175,9 +173,7 @@ Replace the disk path value with the location where the QCOW2 image is to reside
 
           Or, for a Bridged VM, where the VM attaches to a bridge which has already been setup to allow for external access:
 
-            $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \
-            --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none \
-            --network=bridge=br0,model=virtio --import --noautoconsole
+            $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=bridge=br0,model=virtio --import --noautoconsole
 
           {{%notice note%}}
 Replace network bridge value (br0 in the above example) with the   name of the (pre-existing) bridge interface where the VM is        connected to the external network.
@@ -191,7 +187,6 @@ Replace network bridge value (br0 in the above example) with the   name of the (
 
         ```
         # This file describes the network interfaces available on your system
-        ...
         # For more information, see netplan(5).
         network:
             version: 2
@@ -203,7 +198,6 @@ Replace network bridge value (br0 in the above example) with the   name of the (
                     gateway4: 192.168.1.1
                     nameservers:
                         addresses: [8.8.8.8,8.8.4.4]
-        ...
         ```
 
         This example show that the IP address is a static address. If this is desired, exit the file without changes. If you wanted the IP address to be determined by DHCP, edit the file as follows:
@@ -465,7 +459,6 @@ You can also configure these items using the Ubuntu Netplan configuration tool. 
 
     ```
     # This file describes the network interfaces available on your system
-    ...
     # For more information, see netplan(5).
     network:
         version: 2
@@ -477,7 +470,6 @@ You can also configure these items using the Ubuntu Netplan configuration tool. 
                 gateway4: 192.168.1.1
                 nameservers:
                     addresses: [8.8.8.8,8.8.4.4]
-    ...
     ```
 
 2. Apply the settings.

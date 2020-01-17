@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 210
 siteSlug: contributor-guide
 ---
-This topic provides additional Markdown usage guidelines and more detail about selected Markdown editing capabilities already covered in the [Make a Larger Contribution](../../Make-a-Larger-Contribution/) topic.
+This topic provides additional Markdown usage guidelines and more detail about selected Markdown editing capabilities already covered in the [Make a Larger Contribution](../Make-a-Larger-Contribution/) topic.
 
 ## Inline Styling
 
@@ -74,7 +74,7 @@ Note that the reference text is not displayed.
 
 For example, this Markdown renders the following images:
 
-![Trace Request Small](/images/sch-trace-request-small-card.png)
+![Trace Request Small](/images/old_doc_images/sch-trace-request-small-card.png)
 
 ![EVPN Arch](/images/cumulus-linux/evpn-basic-clos.png)
 

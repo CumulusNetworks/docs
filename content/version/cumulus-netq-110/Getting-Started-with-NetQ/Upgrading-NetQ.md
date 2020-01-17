@@ -56,7 +56,7 @@ documentation.
 {{%/notice%}}
 
 1.  Back up the current NetQ Telemetry Server data. For instructions,
-    refer to the [NetQ Backup](https://docs.cumulusnetworks.com/display/NETQ/Restoring+from+Backups+with+NetQ)
+    refer to the [NetQ Backup](/version/cumulus-netq-110/Restoring-from-Backups-with-NetQ/)
     documentation.
 
 2.  Shutdown the connectivity from the agents to the current NetQ
@@ -75,7 +75,7 @@ with the Telemetry Server during the maintenance window.
 
 5.  Restore the data to the new NetQ Telemetry Server. For instructions,
     refer to the [NetQ
-    Backup](https://docs.cumulusnetworks.com/display/NETQ/Restoring+from+Backups+with+NetQ)
+    Backup](/version/cumulus-netq-110/Restoring-from-Backups-with-NetQ/)
     documentation.
     
     {{%notice info%}}

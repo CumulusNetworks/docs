@@ -5,7 +5,7 @@ weight: 100
 siteSlug: contributor-guide
 ---
 Now that you have installed Hugo, cloned the GitHub repository, and run the local server,
-you can add new content to the Docs site. If you came here first without performing these setup tasks, refer to [Make a Larger Contribution](../) and then return here.
+you can add new content to the Docs site. If you came here first without performing these setup tasks, refer to [Make a Larger Contribution](../Make-a-Larger-Contribution/) and then return here.
 
 You can submit new paragraphs, images, sections and whole topics for inclusion into the documentation. The first step is to understand how the documentation is organized so you can add information in the proper place. Secondly, you need to be, or become, familiar with editing in Markdown format. The basics are included here. To learn more, refer to  [Resources](../../Resources).
 
@@ -18,7 +18,7 @@ There are two directories in the Cumulus Networks documentation site that are pa
 - **content/**: Contains product documentation directories and files
 - **static/images/**: Contains referenced images
 
-The other directories are primarily used to generate the website, but if you are interested in knowing what they contain and their purpose, refer to [Hugo Constructs](../Resources/Hugo_Directory_Structure).
+The other directories are primarily used to generate the website, but if you are interested in knowing what they contain and their purpose, refer to [Hugo Constructs](../Resources/Hugo-Constructs).
 
 ## Add a New Page
 

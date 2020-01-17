@@ -7,7 +7,7 @@ version: '4.0'
 ---
 Cumulus Linux provides configuration options to control DSCP operations during VXLAN encapsulation and decapsulation, specifically for solutions that require end-to-end quality of service, such as RDMA over Converged Ethernet.
 
-The configuration options propagate explicit congestion notification (ECN) between the underlay and overlay. Because the options are based on RFC-6040, which describes how to construct the IP header of an ECN field on both ingress to and egress from an IP-in-IP tunnel, this feature is always enabled.
+The configuration options propagate explicit congestion notification (ECN) between the underlay and overlay and are based on [RFC-6040](https://tools.ietf.org/html/rfc6040), which describes how to construct the IP header of an ECN field on both ingress to and egress from an IP-in-IP tunnel.
 
 {{%notice note%}}
 
@@ -17,15 +17,15 @@ VXLAN Tunnel DSCP operations are supported on Mellanox Spectrum switches only.
 
 ## Configure DSCP Operations
 
-You can set the following DSCP operations by editing the `/etc/cumulus/switchd.conf` file.
+You can set the following DSCP operations by editing the `/etc/cumulus/switchd.conf` file. After you modify the the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
 
 | Option | Description |
 | ------ | ----------- |
-|`vxlan.def_encap_dscp_action`| The VXLAN outer DSCP action during encapsulation:<br>- `copy` (if the inner packet is IP)<br>- `set` (to a specific value)<br>- `derive` (from the switch priority).<br>The default setting is `derive`. |
+|`vxlan.def_encap_dscp_action`| Sets the VXLAN outer DSCP action during encapsulation. You can specify one of the following options:<br>- `copy` (if the inner packet is IP)<br>- `set` (to a specific value)<br>- `derive` (from the switch priority).<br>The default setting is `derive`. |
 | `vxlan.def_encap_dscp_value`| If the `vxlan.def_encap_dscp_action` option is `set`, you must specify a value. |
-| `xlan.def_decap_dscp_action` | The VXLAN decapsulation DSCP/COS action:<br>- `copy` (if the inner packet is IP)<br>- `preserve` (the inner DSCP is unchanged)<br>- `derive` (from the switch priority) |
+| `xlan.def_decap_dscp_action` | Sets the VXLAN decapsulation DSCP/COS action. You can specify one of the following options:<br>- `copy` (if the inner packet is IP)<br>- `preserve` (the inner DSCP is unchanged)<br>- `derive` (from the switch priority) |
 
-The following example shows that the VXLAN outer DSCP action during encapsulation is `set` with a value of 16 and the VXLAN decapsulation DSCP/COS action is the default setting  `derive`.
+The following example shows that the VXLAN outer DSCP action during encapsulation is `set` with a value of 16.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
@@ -49,13 +49,13 @@ vxlan.def_encap_dscp_value = 16
 ...
 ```
 
-You can also set the DSCP operations from the command line. Use the `echo` command to change the settings in the `/etc/cumulus/switchd.conf` file. For example, to change the encapsulation action to `copy`, run the following command:
+You can also set the DSCP operations from the command line. Use the `echo` command to change the settings in the `/etc/cumulus/switchd.conf` file. For example, to change the encapsulation action to `copy`:
 
 ```
 cumulus@switch:~$ echo "copy" > /cumulus/switchd/config/vxlan/def_encap_dscp_action
 ```
 
-To change the VXLAN outer DSCP action during encapsulation to `set` with a value of 32, run the following commands:
+To change the VXLAN outer DSCP action during encapsulation to `set` with a value of 32:
 
 ```
 cumulus@switch:~$ echo "32" > /cumulus/switchd/config/vxlan/def_encap_dscp_value

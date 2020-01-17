@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /version
+Sitemap: https://docs.cumulusnetworks.com/sitemap.xml

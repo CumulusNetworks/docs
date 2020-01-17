@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 210
 siteSlug: contributor-guide
 ---
-This topic provides additional Markdown usage guidelines and more detail about selected Markdown editing capabilities already covered in the [Make a Larger Contribution](../Make-a-Larger-Contribution/) topic.
+This topic provides additional Markdown usage guidelines and more detail about selected Markdown editing capabilities already covered in the [Make a Larger Contribution](../../Make-a-Larger-Contribution/) topic.
 
 ## Inline Styling
 

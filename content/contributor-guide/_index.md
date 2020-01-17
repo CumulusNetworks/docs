@@ -18,7 +18,7 @@ The first step in providing feedback on the Cumulus Networks documentation is to
 Based on the feedback you want to give:
 
 - Follow the instructions in [Give Simple Feedback](Give-Simple-Feedback) to submit smaller suggestions
-- Start by configuring a local setup as described in [Make a Larger Contribution](/Make-a-Larger-Contribution) to submit larger suggestions
+- Start by configuring a local setup as described in [Make a Larger Contribution](Make-a-Larger-Contribution) to submit larger suggestions
 
 In either case, please note the *Contributor Covenant Code of Conduct*.
 

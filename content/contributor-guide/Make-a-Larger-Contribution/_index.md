@@ -104,4 +104,4 @@ And the final setup step is to validate that you can view your local copy of the
 If the page does not appear to be updating, you may need to stop the Hugo server (press Ctrl+c) and restart it using `hugo server --gc` to rebuild the site without using cached data.
     {{%/notice%}}
 
-You are now ready to edit the documentation or create a new topic. Refer to [Adding New Content](../Adding_New_Content).
+You are now ready to edit the documentation or create a new topic. Refer to [Adding New Content](Adding_New_Content).

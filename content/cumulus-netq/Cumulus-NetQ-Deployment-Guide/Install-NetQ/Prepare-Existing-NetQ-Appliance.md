@@ -134,7 +134,7 @@ $ sudo netplan apply
 <details><summary>Install Python.</summary>
 ```
 root@ubuntu:~# apt-get update
-root@ubuntu:~# apt-get install python python-2.7 python-apt
+root@ubuntu:~# apt-get install python python2.7 python-apt
 ```
 </details>
 

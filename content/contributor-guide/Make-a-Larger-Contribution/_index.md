@@ -47,7 +47,7 @@ The next step is to obtain a local copy of the Cumulus Networks Documentation Re
 
 3. Make sure the **Branch** is on *master*, and then click **Clone or download**.
 
-    {{<figure src="/images/uploads/contrib-gde-clone-docs-repo.png" width="700">}}
+    {{<figure src="/images/old_doc_images/contrib-gde-clone-docs-repo.png" width="700">}}
 
 4. Copy the HTTPS URL.
 

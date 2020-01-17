@@ -1079,7 +1079,7 @@ To view which vendors and platforms have bad or missing licenses, open the large
 To view *which* switches have invalid or missing licenses, either:
 
   - hover over the large Switch Inventory card and click {{<img src="/images/netq/platform-icon.png" height="18" width="18">}} to open the **Platform** tab. Above the Licenses State or the Vendor chart, click **Show All**.
-      {{< figure src="https://s3-us-west-2.amazonaws.com/dev.docs.cumulusnetworks.com/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
+      {{< figure src="/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
   - open the full screen Switch Inventory card. Then sort the **All Switches** tab data table by the **License State** column to locate the switches with bad or missing licenses.
       {{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab-license-highlight.png" width="700" >}}
 

@@ -74,7 +74,7 @@ read the appropriate steps below:
   - [Using Cumulus VX with VirtualBox](/version/cumulus-vx-25/Using-Cumulus-VX-with-VirtualBox/)
   - [Using Cumulus VX with KVM](/version/cumulus-vx-25/Using-Cumulus-VX-with-KVM)
   - [Using Cumulus VX with Vagrant](/version/cumulus-vx-25/Using-Cumulus-VX-with-Vagrant)
-  - [Using Cumulus VX with GNS3](http://docs.cumulusnetworks.com/display/VX/Using+Cumulus+VX+with+GNS3)
+  - [Using Cumulus VX with GNS3](/version/cumulus-vx-25/Using-Cumulus-VX-with-GNS3/)
 
 ## Logging in to the VM
 

@@ -175,8 +175,7 @@ Follow the steps for the relevant OS below to upgrade the NetQ Agents:
 
 1.  Once the NetQ Telemetry Server and NetQ agents have been upgraded,
     connect the NetQ Telemetry Server to the network. For more
-    information, refer to the [Getting
-    Started](https://docs.cumulusnetworks.com/display/NETQ/Getting+Started+with+NetQ)
+    information, refer to the [Getting Started](/version/cumulus-netq-110/Getting-Started-with-NetQ/)
     documentation.
 
 2.  Verify the NetQ Agents are OK, and running NetQ 1.1. The output

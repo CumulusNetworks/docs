@@ -15,8 +15,7 @@ NetQ automatically takes snapshots of the NetQ Telemetry Server at five
 minute intervals. These snapshots can be used to restore to a previous
 configuration, or to diagnose existing issues with the configuration.
 For information regarding how long snapshot data is stored, refer to the
-[How Far Back in Time Can You
-Travel](https://docs.cumulusnetworks.com/display/NETQ/Performing+Network+Diagnostics#PerformingNetworkDiagnostics-matrixHowFarBackinTimeCanYouTravel?)
+[How Far Back in Time Can You Travel](/version/cumulus-netq-10/Performing-Network-Diagnostics/#how-far-back-in-time-can-you-travel)
 section.
 
 {{%notice note%}}

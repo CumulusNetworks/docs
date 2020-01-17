@@ -11,8 +11,7 @@ version: 3.2.1
 imgData: cumulus-linux-321
 siteSlug: cumulus-linux-321
 ---
-Cumulus Networks' [Routing on the
-Host](https://docs.cumulusnetworks.com/display/ROH/Routing+on+the+Host)
+Cumulus Networks' Routing on the Host
 provides the ability to run
 [OSPF](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol)
 or
@@ -23,8 +22,7 @@ needing layer 2 extensions or load balancer appliances.
 
 Anycast is not a new protocol or protocol implementation and does not
 require any additional network configuration. Anycast leverages the
-[equal cost
-multipath](/version/cumulus-linux-321/Layer-Three/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP)
+[equal cost multipath](/version/cumulus-linux-321/Layer-Three/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP)
 (ECMP) capabilities inherent in layer 3 networks to provide stateless
 load sharing services.
 

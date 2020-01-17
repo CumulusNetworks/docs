@@ -156,16 +156,16 @@ Download the software from the [Cumulus Downloads](https://cumulusnetworks.com/d
 
 2. Select *2.4* from the **Version** list, and then select *2.4.0* from the submenu.
 
-{{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
+    {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
-3. Select *Bootstrap* from the **Platform/Appliance** list.
+3. Select *Bootstrap* from the **Hypervisor/Platform** list.
     Note that the bootstrap file is the same for both appliances.
 
     {{< figure src="/images/netq/netq-24-bootstrap-dwnld-240.png" width="200" >}}
     
 4. Scroll down and click **Download**.
 
-5. Select *Appliance* for the NetQ Appliance or *Appliance (Cloud)* for the NetQ Cloud Appliance from the **Platform/Appliance** list.
+5. Select *Appliance* for the NetQ Appliance or *Appliance (Cloud)* for the NetQ Cloud Appliance from the **Hypervisor/Platform** list.
 
     Make sure you select the right install choice based on whether you are preparing the on-premises or cloud version of the appliance.
 

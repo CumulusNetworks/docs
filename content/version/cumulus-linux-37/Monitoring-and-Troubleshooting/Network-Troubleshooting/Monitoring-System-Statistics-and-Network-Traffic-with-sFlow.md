@@ -102,7 +102,7 @@ rates in `/etc/hsflowd.conf`. For example:
   #   DNS-SD { }
   # OR: manual:
   #   Counter Polling:
-  #     polling = 20
+        polling = 20
   #   default sampling N:
   #     sampling = 400
   #   sampling N on interfaces with ifSpeed:
@@ -119,10 +119,7 @@ rates in `/etc/hsflowd.conf`. For example:
   collector { ip=192.0.2.200 udpport=6344 }
 ```
 
-This configuration polls the counters every 20 seconds, samples 1 of
-every 2048 packets, and sends this information to a collector at
-192.0.2.100 on port 6343 and to another collector at 192.0.2.200 on port
-6344.
+This configuration polls the counters every 20 seconds, samples 1 of every 40000 packets for 40G interfaces, and sends this information to a collector at 192.0.2.100 on port 6343 and to another collector at 192.0.2.200 on port 6344.
 
 {{%notice note%}}
 

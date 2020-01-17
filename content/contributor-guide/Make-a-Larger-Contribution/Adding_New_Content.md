@@ -18,7 +18,7 @@ There are two directories in the Cumulus Networks documentation site that are pa
 - **content/**: Contains product documentation directories and files
 - **static/images/**: Contains referenced images
 
-The other directories are primarily used to generate the website, but if you are interested in knowing what they contain and their purpose, refer to [Hugo Constructs](../Resources/Hugo_Directory_Structure).
+The other directories are primarily used to generate the website, but if you are interested in knowing what they contain and their purpose, refer to [Hugo Constructs](../../Resources/Hugo-Constructs).
 
 ## Add a New Page
 
@@ -38,7 +38,7 @@ Don't forget to use the `.md` file extension.
 
 3.  Change the front matter `title` to reflect the new content.
 
-    For more detail about the front matter parameters, refer to the [Hugo Constructs](../Resources/Hugo_Directory_Structure).
+    For more detail about the front matter parameters, refer to the [Hugo Constructs](../../Resources/Hugo-Constructs/).
 
 4. Add your content.
 
@@ -60,7 +60,7 @@ You can also create new sections by copying and pasting an existing folder from 
 
 ## Edit Content
 
-These guidelines cover the most common formatting tasks you will encounter during your new content creation. For more details about these items and other formatting issues, refer to the [Cumulus Networks Markdown Guide](../Resources/Markdown_Guide).
+These guidelines cover the most common formatting tasks you will encounter during your new content creation. For more details about these items and other formatting issues, refer to the [Cumulus Networks Markdown Guide](../../Resources/Markdown_Guide).
 
 ### Add Text
 
@@ -92,7 +92,7 @@ If possible, do not use special characters, such as dashes and parentheses, in t
 {{%/notice%}}
 
 {{%notice note%}}
-For more detail about writing with Markdown, refer to the [Markdown Guide](../Resources/Markdown_Guide/) in the Resources section of this guide.
+For more detail about writing with Markdown, refer to the [Markdown Guide](../../Resources/Markdown_Guide/) in the Resources section of this guide.
 {{%/notice%}}
 
 ### Add Inline Style to Text
@@ -119,7 +119,7 @@ The `net show bgp` command will be rendered in special font, and highlighted.
 
 ### Add a Note
 
-You can add a note to a file with the notice shortcodes. We support four types of notes: Tip, Note, Info, and Warning.  Refer to the [Markdown Guide](../Markdown_Guide) for additional details about when to use each type and placement.
+You can add a note to a file with the notice shortcodes. We support four types of notes: Tip, Note, Info, and Warning.  Refer to the [Markdown Guide](../../Resources/Markdown_Guide) for additional details about when to use each type and placement.
 
 This example shows how to add a note:
 

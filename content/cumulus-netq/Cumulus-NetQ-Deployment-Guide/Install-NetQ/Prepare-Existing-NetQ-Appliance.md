@@ -70,7 +70,6 @@ Ubuntu uses Netplan for network configuration. You can give your appliance an IP
 
 ```
 # This file describes the network interfaces available on your system
-...
 # For more information, see netplan(5).
 network:
     version: 2
@@ -78,7 +77,6 @@ network:
     ethernets:
         eno1:
             dhcp4: yes
-... 
 ```
 
     - Apply the settings.
@@ -93,7 +91,6 @@ $ sudo netplan apply
 
 ```
 # This file describes the network interfaces available on your system
-...
 # For more information, see netplan(5).
 network:
     version: 2
@@ -105,7 +102,6 @@ network:
             gateway4: 192.168.1.1
             nameservers:
                 addresses: [8.8.8.8,8.8.4.4
-...
 ```
 
     In this example the interface, eno1, is given a static IP address of 192.168.1.222 with a gateway at 192.168.1.1 and DNS server at 8.8.8.8 and 8.8.4.4.
@@ -138,7 +134,7 @@ $ sudo netplan apply
 <details><summary>Install Python.</summary>
 ```
 root@ubuntu:~# apt-get update
-root@ubuntu:~# apt-get install python python-2.7 python-apt
+root@ubuntu:~# apt-get install python python2.7 python-apt
 ```
 </details>
 

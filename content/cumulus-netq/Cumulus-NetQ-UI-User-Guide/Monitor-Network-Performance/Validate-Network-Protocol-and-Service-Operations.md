@@ -486,7 +486,7 @@ The medium Validation Result card displays:
 </tr>
 <tr class="odd">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, where available. Refer to <a href="http://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, where available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
 </tr>
 </tbody>
 </table>
@@ -557,7 +557,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="odd">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="http://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
 </tr>
 <tr class="even">
 <td><p>Table/Filter options</p></td>
@@ -843,7 +843,7 @@ The medium Validation Result card displays:
 </tr>
 <tr class="even">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="http://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
 </tr>
 </tbody>
 </table>
@@ -897,7 +897,7 @@ The large Validation Result card contains two tabs.
 </tr>
 <tr class="odd">
 <td><p>Open &lt;Network Protocol or Service Name&gt; Service Card</p></td>
-<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="http://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
+<td><p>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/">Monitor Network Performance</a> for details about these cards and workflows.</p></td>
 </tr>
 <tr class="even">
 <td><p>Table/Filter options</p></td>

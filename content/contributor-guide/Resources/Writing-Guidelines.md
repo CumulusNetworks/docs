@@ -19,10 +19,10 @@ When we create our user documentation, we strive to provide easy-to-read, concis
     - Not so good: This topology is used throughout this guide.
 - Provide examples and graphical images to clarify your content
     - Good: {{<figure src="/images/netq/alarms-perf-rating.png" width="350">}}
-    - Not so good: {{<figure src="/images/uploads/osi-model-bad-art.png" width="400">}}
+    - Not so good: {{<figure src="/images/old_doc_images/osi-model-bad-art.png" width="400">}}
 - Chunk large topics and procedures into smaller sections
-    - Good: {{<figure src="/images/uploads/contrib-gde-chunks-good.png" width="200">}}
-    - Not so good: {{<figure src="/images/uploads/contrib-gde-chunks-bad.png" width="200">}}
+    - Good: {{<figure src="/images/old_doc_images/contrib-gde-chunks-good.png" width="200">}}
+    - Not so good: {{<figure src="/images/old_doc_images/contrib-gde-chunks-bad.png" width="200">}}
 - Use shorter and simpler sentences whenever possible
     - Good: You can submit new paragraphs, images, sections and whole topics for inclusion into the documentation.
     - Not so good: You can submit new paragraphs for a given topic, images to explain new concepts, sections that add explanation, and whole topics describing a new feature or capability for inclusion into the documentation.

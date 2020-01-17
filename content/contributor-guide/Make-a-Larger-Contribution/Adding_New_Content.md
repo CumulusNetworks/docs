@@ -18,7 +18,7 @@ There are two directories in the Cumulus Networks documentation site that are pa
 - **content/**: Contains product documentation directories and files
 - **static/images/**: Contains referenced images
 
-The other directories are primarily used to generate the website, but if you are interested in knowing what they contain and their purpose, refer to [Hugo Constructs](../../Resources/Hugo_Directory_Structure).
+The other directories are primarily used to generate the website, but if you are interested in knowing what they contain and their purpose, refer to [Hugo Constructs](../Resources/Hugo_Directory_Structure).
 
 ## Add a New Page
 
@@ -38,7 +38,7 @@ Don't forget to use the `.md` file extension.
 
 3.  Change the front matter `title` to reflect the new content.
 
-    For more detail about the front matter parameters, refer to the [Hugo Constructs](../../Resources/Hugo_Directory_Structure).
+    For more detail about the front matter parameters, refer to the [Hugo Constructs](../Resources/Hugo_Directory_Structure).
 
 4. Add your content.
 
@@ -60,7 +60,7 @@ You can also create new sections by copying and pasting an existing folder from 
 
 ## Edit Content
 
-These guidelines cover the most common formatting tasks you will encounter during your new content creation. For more details about these items and other formatting issues, refer to the [Cumulus Networks Markdown Guide](../../Resources/Markdown_Guide).
+These guidelines cover the most common formatting tasks you will encounter during your new content creation. For more details about these items and other formatting issues, refer to the [Cumulus Networks Markdown Guide](../Resources/Markdown_Guide).
 
 ### Add Text
 
@@ -69,17 +69,17 @@ To add or modify text in an existing file:
 1. Open the Docs directory in your text editor.
 
     This example shows the Docs directory in VS Code:
-    {{<figure src="/images/uploads/contrib-gde-docs-dir.png" width="500">}}
+    {{<figure src="/images/old_doc_images/contrib-gde-docs-dir.png" width="500">}}
 
 2. Expand the *content* directory to find the product of interest.
 
-    {{<figure src="/images/uploads/contrib-gde-content-dir.png" width="500">}}
+    {{<figure src="/images/old_doc_images/contrib-gde-content-dir.png" width="500">}}
 
 3. Expand the product directory and any subdirectories to find the file that contains the text you want to change or where you want to add additional text.
 
 4. Open the relevant file and add or modify the desired text.
 
-    {{<figure src="/images/uploads/contrib-gde-edit-text.png" width="700">}}
+    {{<figure src="/images/old_doc_images/contrib-gde-edit-text.png" width="700">}}
 
 ### Add a Heading
 
@@ -105,7 +105,7 @@ It is common to emphasize important text, such as a field name in the UI (bold),
 
 For example, this markdown will render the following formatted text.
 
-{{<figure src="/images/uploads/contrib-gde-italic-bold-cmd.png">}}
+{{<figure src="/images/old_doc_images/contrib-gde-italic-bold-cmd.png">}}
 
 *This text will be italicized in the rendered site.*
 
@@ -131,7 +131,7 @@ This example shows how to add a note:
 
 This shows an example note:
 
-{{<figure src="/images/uploads/contrib-gde-note-shtcode-ex.png">}}
+{{<figure src="/images/old_doc_images/contrib-gde-note-shtcode-ex.png">}}
 
 ### Add a List
 
@@ -139,7 +139,7 @@ A *bulleted* list is created using a dash (-) at the beginning of each item. Thi
 
 For example, this markdown renders the following bulleted list.
 
-{{<figure src="/images/uploads/contrib-gde-bullet-format.png">}}
+{{<figure src="/images/old_doc_images/contrib-gde-bullet-format.png">}}
 
 - First-level bullet
 - First-level bullet
@@ -151,7 +151,7 @@ A *numbered* list is created using numbers at the beginning of each item. You ca
 
 For example, either of these markdown examples render the following numbered list.
 
-{{<figure src="/images/uploads/contrib-gde-list-ex.png">}}
+{{<figure src="/images/old_doc_images/contrib-gde-list-ex.png">}}
 
 1. First-level item or step
 2. First-level item or step
@@ -169,12 +169,12 @@ If you have an image or figure (in SVG or PNG file format) that you want to add:
 
 2. In the file text, add the image or figure reference using the figure or img shortcode:
 
-    {{<figure src="/images/uploads/contrib-gde-fig-shtcode.png">}}
+    {{<figure src="/images/old_doc_images/contrib-gde-fig-shtcode.png">}}
 
     Optionally scale the image by adding the `width` option. Width value is defined in pixels.
 
     For example:
-    {{<figure src="/images/uploads/contrib-gde-fig-shtcode-ex.png">}}
+    {{<figure src="/images/old_doc_images/contrib-gde-fig-shtcode-ex.png">}}
 
     {{%notice tip%}}
 The figure shortcode places the figure on a new line. The img shortcode places the image inline with the text (unless it is too wide to do so).
@@ -186,7 +186,7 @@ A code block is used when you want to present two or more lines of code. To crea
 
 For example, this markdown renders the following code block.
 
-{{<figure src="/images/uploads/contrib-gde-codeblk-ex.png">}}
+{{<figure src="/images/old_doc_images/contrib-gde-codeblk-ex.png">}}
 
 ```
 cumulus@switch:~$ netq check bgp

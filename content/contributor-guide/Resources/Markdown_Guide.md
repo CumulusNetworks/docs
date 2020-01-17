@@ -74,7 +74,7 @@ Note that the reference text is not displayed.
 
 For example, this Markdown renders the following images:
 
-![Trace Request Small](/images/uploads/sch-trace-request-small-card.png)
+![Trace Request Small](/images/sch-trace-request-small-card.png)
 
 ![EVPN Arch](/images/cumulus-linux/evpn-basic-clos.png)
 
@@ -84,7 +84,7 @@ Creating tables in Markdown is very easy. Use three or more hyphens (---) to cre
 
 For example, this Markdown renders the following table:
 
-{{<figure src="/images/uploads/contrib-gde-table-mkdn.png" width="250">}}
+{{<figure src="/images/old_doc_images/contrib-gde-table-mkdn.png" width="250">}}
 
 | heading | description |
 | ---------  | ----------- |
@@ -97,7 +97,7 @@ Colons can be used to align column content.
 
 For example, this Markdown renders the following table:
 
-{{<figure src="/images/uploads/contrib-gde-table-alignment.png" width="300">}}
+{{<figure src="/images/old_doc_images/contrib-gde-table-alignment.png" width="300">}}
 
 | Tables | Are | Fun |
 | ------ |:---:| ---:|
@@ -111,7 +111,7 @@ You can also use inline Markdown to format your text if needed.
 
 For example, this Markdown renders the following table:
 
-{{<figure src="/images/uploads/contrib-gde-table-style.png" width="300">}}
+{{<figure src="/images/old_doc_images/contrib-gde-table-style.png" width="300">}}
 
 | Use | Inline | Markdown |
 | --- | --- | --- |

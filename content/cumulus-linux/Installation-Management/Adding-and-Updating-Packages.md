@@ -236,7 +236,7 @@ ii  vrf        1.0-cl4u1    amd64        Linux tools for VRF
 
 {{%notice note%}}
 
-You cannot upgrade to Cumulus Linux 4.0 from Cumulus 3.7 by upgrading packages. You must install a disk image using ONIE. Refer to [Upgrading Cumulus Linux](../../Upgrading-Cumulus-Linux/).
+You cannot upgrade to Cumulus Linux 4.0 from Cumulus 3.7 by upgrading packages. You must install a disk image using ONIE. Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/).
 
 {{%/notice%}}
 

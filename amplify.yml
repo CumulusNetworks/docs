@@ -42,4 +42,3 @@ frontend:
   cache:
     paths: 
       - usr/bin/*
-      - public

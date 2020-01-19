@@ -14,8 +14,6 @@ frontend:
         - echo Building docs with Hugo
         - echo Now move static images and files ...
         - if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
-        - echo Remove static directory
-        - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
         - echo Building docs ...
         - hugo --minify --baseURL $BASEURL
         - echo Successfully built docs
@@ -35,6 +33,9 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then npx wait-on http://localhost:1313 ; fi
         # 4 threads are used as that seems to be the fastest rendering based on testing with 4 vCPUs
         - if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 4 -f auth.txt http://localhost:1313/  ; fi
+        # Only delete the static directory /after/ we check links otherwise every image will be a 404
+        - echo Remove static directory
+        - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
   artifacts:
     files:
       - '**/*'

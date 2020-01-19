@@ -29,7 +29,7 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then pip install linkchecker ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then npm install wait-on ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then hugo server & ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then hugo server &  fi
         # Use npx wait-on to wait for hugo to finish rendering and start locally for urlchecker to run
         # We run against the local edition so we don't have to push live to find broken links
         - if [ "${AWS_BRANCH}" = "master" ]; then npx wait-on http://localhost:1313 ; fi

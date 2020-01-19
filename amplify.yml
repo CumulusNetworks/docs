@@ -37,8 +37,7 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 4 -f auth.txt http://localhost:1313/  ; fi
   artifacts:
     files:
-      - public/*
+      - '**/*'
     baseDirectory: public
   cache:
-    paths: 
-      - usr/bin/*
+    paths: []

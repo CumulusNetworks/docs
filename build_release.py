@@ -4,7 +4,7 @@ import requests
 import json
 import sys 
 
-URL = "https://api.github.com/repos/cumulsunetworks/docs/"
+URL = "https://api.github.com/repos/cumulusnetworks/docs/"
 
 if len(sys.argv) != 2:
     print("Github Auth token must be provided with no other arguments")
@@ -85,7 +85,6 @@ def main():
 
     pr_sha = pr_info["sha"]
     pr_message = pr_info["commit"]["message"]
-
     create_release(new_version=version_string, sha=pr_sha, message=pr_message )
 
     print("Release {} created successfully!".format(version_string))

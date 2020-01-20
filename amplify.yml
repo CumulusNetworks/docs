@@ -14,8 +14,6 @@ frontend:
         - echo Building docs with Hugo
         - echo Now move static images and files ...
         - if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
-        - echo Remove static directory
-        - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
         - echo Building docs ...
         - hugo --minify --baseURL $BASEURL
         - echo Successfully built docs
@@ -37,6 +35,9 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 4 -f auth.txt http://localhost:1313/  ; fi
         # If everything else worked, then cut a new release.
         - if [ "${AWS_BRANCH}" = "master" ]; then python build_release.py $GITHUB_TOKEN  ; fi
+        # Only delete the static directory /after/ we check links otherwise every image will be a 404
+        - echo Remove static directory
+        - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
   artifacts:
     files:
       - '**/*'

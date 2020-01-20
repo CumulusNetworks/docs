@@ -4,7 +4,7 @@ import requests
 import json
 import sys 
 
-URL = "https://api.github.com/repos/plumbis/docs/"
+URL = "https://api.github.com/repos/cumulsunetworks/docs/"
 
 if len(sys.argv) != 2:
     print("Github Auth token must be provided with no other arguments")
@@ -70,7 +70,7 @@ def create_release(new_version, sha, message):
     payload["name"] = "Cumulus Networks Docs " + new_version
     payload["body"] = message
     
-    r = requests.post("https://api.github.com/repos/plumbis/docs/releases", headers=AUTH, data=json.dumps(payload))
+    r = requests.post(URL + "releases", headers=AUTH, data=json.dumps(payload))
 
     if not r.ok:
         print("Failed to create release") 

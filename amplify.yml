@@ -35,6 +35,8 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then npx wait-on http://localhost:1313 ; fi
         # 4 threads are used as that seems to be the fastest rendering based on testing with 4 vCPUs
         - if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 4 -f auth.txt http://localhost:1313/  ; fi
+        # If everything else worked, then cut a new release.
+        - if [ "${AWS_BRANCH}" = "master" ]; then python build_release.py $GITHUB_TOKEN  ; fi
   artifacts:
     files:
       - '**/*'

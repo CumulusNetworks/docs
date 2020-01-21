@@ -469,7 +469,7 @@ See [VXLAN-Active-Active-Mode](../../VXLAN-Active-Active-Mode/) for detailed inf
 
 #### Configure Advertise Primary IP Address
 
-Cumulus Linux uses the VXLAN interface tunnel IP address as the anycast IP address for type-2 routes and **automatically** derives the system IP address from the router ID of the BGP default instance for type-5 routes; no IP address configuration is required. However, you must configure the switch to use two interfaces per layer 3 VNI; the MAC VLAN (VRR interface) with the anycast MAC address for type-2 routes and the system MAC address of the VTEP (the SVI interface with a unique MAC address) for type-5 routes.
+Cumulus Linux uses the anycast IP address for type-2 routes and **automatically** derives the system IP address from the router ID of the BGP default instance for type-5 routes; no IP address configuration is required. However, you must configure the switch to use two interfaces per layer 3 VNI; the anycast MAC address for type-2 routes and the system MAC address of the VTEP for type-5 routes.
 
 {{%notice note%}}
 

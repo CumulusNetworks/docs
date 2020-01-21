@@ -456,7 +456,7 @@ switch(config-router-af)# end
 switch# write memory
 ```
 
-### Advertise Primary IP address
+### Advertise Primary IP address (VXLAN Active-Active Mode)
 
 In EVPN symmetric routing configurations with MLAG in Cumulus Linux 3.7 and earlier, all EVPN routes are advertised with the anycast IP address (VXLAN interface tunnel IP address) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
 
@@ -464,6 +464,8 @@ To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP a
 
 - For type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
 - For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC.
+
+See [VXLAN-Active-Active-Mode](../../VXLAN-Active-Active-Mode/) for detailed information about VXLAN active-active mode.
 
 #### Configure Advertise Primary IP Address
 

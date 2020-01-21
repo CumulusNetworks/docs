@@ -463,13 +463,13 @@ In EVPN symmetric routing configurations with MLAG in Cumulus Linux 3.7 and earl
 To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
 - For type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
-- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC.
+- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC address.
 
 See [VXLAN-Active-Active-Mode](../../VXLAN-Active-Active-Mode/) for detailed information about VXLAN active-active mode.
 
 #### Configure Advertise Primary IP Address
 
-Cumulus Linux automatically derives the system IP address from the router ID of the BGP default instance and uses the VXLAN interface tunnel IP address as the anycast IP address. However, you need to configure the switch to use two interfaces per layer 3 VNI; the SVI interface with a unique MAC address and the MAC VLAN (VRR interface) with the anycast MAC address.
+Cumulus Linux uses the VXLAN interface tunnel IP address as the anycast IP address for type-2 routes and **automatically** derives the system IP address from the router ID of the BGP default instance for type-5 routes; no IP address configuration is required. However, you must configure the switch to use two interfaces per layer 3 VNI; the MAC VLAN (VRR interface) with the anycast MAC address for type-2 routes and the system MAC address of the VTEP (the SVI interface with a unique MAC address) for type-5 routes.
 
 {{%notice note%}}
 

@@ -16,6 +16,12 @@ OVSDB server high availability is an [early access feature](https://support.cumu
 
 Cumulus Linux supports integration with VMware NSX in both *standalonemode* and *OVSDB server high availability mode* (where the data plane is running in active-active mode). For information about VMware NSX in standalone mode and for a description of the components that work together to integrate VMware NSX and Cumulus Linux, see [Integrating Hardware VTEPs with VMware NSX-MH](../Integrating-Hardware-VTEPs-with-VMware-NSX-MH/) or [Integrating Hardware VTEPs with VMware NSX-V](../Integrating-Hardware-VTEPs-with-VMware-NSX-V/).
 
+{{%notice note%}}
+
+Cumulus Linux supports OVSDB service node replication only.
+
+{{%/notice%}}
+
 With OVSDB server high availability mode, you use two peer Cumulus Linux switches in an MLAG configuration. Both the MLAG primary and MLAG secondary switch contain OVSDB server and VTEPd. The OVSDB servers synchronize their databases with each other and always maintain the replicated state unless failover occurs; for example, the peer link bond breaks, a switch fails, or the OVSDB server goes down. Both of the VTEPd components talk to the active OVSDB server to read the configuration and then push the configuration to the kernel. Only the active OVSDB server communicates with the NSX controller, unless failover occurs and then the standby OVSDB server takes over automatically. Although the Cumulus switches are configured as an MLAG pair, the NSX controller sees them as a single system (the NSX controller is not aware that multiple switches exist).
 
 The following examples show OVSDB server high availability mode.

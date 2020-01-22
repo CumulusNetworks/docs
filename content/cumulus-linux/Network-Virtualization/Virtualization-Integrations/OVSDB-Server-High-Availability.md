@@ -18,7 +18,7 @@ Cumulus Linux supports integration with VMware NSX in both *standalonemode* and 
 
 {{%notice note%}}
 
-Cumulus Linux supports service node replication only.
+Cumulus Linux supports OVSDB service node replication only.
 
 {{%/notice%}}
 

@@ -246,6 +246,12 @@ The number of buckets can be configured as 64, 128, 256, 512 or 1024; the defaul
 | 512                    | 128                             |
 | 1024                   | 64                              |
 
+{{%notice info%}}
+
+Mellanox switches with the Spectrum ASIC do not support 128 or 256 hash buckets. The default number is 64.
+
+{{%/notice%}}
+
 A larger number of ECMP buckets reduces the impact on adding new next hops to an ECMP route. However, the system supports fewer ECMP routes. If the maximum number of ECMP routes have been installed, new ECMP routes log an error and are not installed.
 
 To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:

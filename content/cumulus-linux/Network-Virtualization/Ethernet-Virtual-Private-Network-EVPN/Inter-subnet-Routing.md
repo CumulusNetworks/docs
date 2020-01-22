@@ -581,9 +581,8 @@ cumulus@leaf01:~$ net commit
 
 <summary> vtysh commands</summary>
 
-cumulus@switch:~$ sudo vtysh
-
 ```
+cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65000 vrf vrf1
 switch(config)# address-family l2vpn evpn

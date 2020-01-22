@@ -456,18 +456,20 @@ switch(config-router-af)# end
 switch# write memory
 ```
 
-### Advertise Primary IP address
+### Advertise Primary IP address (VXLAN Active-Active Mode)
 
-In EVPN symmetric routing configurations with MLAG in Cumulus Linux 3.7 and earlier, all EVPN routes are advertised with the anycast IP address (VXLAN interface tunnel IP address) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
+ With Cumulus Linux 3.7 and earlier, in EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes are advertised with the anycast IP address (VXLAN interface tunnel IP address) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
 
 To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
 - For type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
-- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC.
+- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC address.
+
+See [VXLAN-Active-Active-Mode](../../VXLAN-Active-Active-Mode/) for detailed information about VXLAN active-active mode.
 
 #### Configure Advertise Primary IP Address
 
-Cumulus Linux automatically derives the system IP address from the router ID of the BGP default instance and uses the VXLAN interface tunnel IP address as the anycast IP address. However, you need to configure the switch to use two interfaces per layer 3 VNI; the SVI interface with a unique MAC address and the MAC VLAN (VRR interface) with the anycast MAC address.
+Cumulus Linux uses the anycast IP address for type-2 routes and **automatically** derives the system IP address from the router ID of the BGP default instance for type-5 routes; no IP address configuration is required. However, you must configure the switch to use two interfaces per layer 3 VNI; the anycast MAC address for type-2 routes and the system MAC address of the VTEP for type-5 routes.
 
 {{%notice note%}}
 
@@ -475,13 +477,11 @@ Run these commands on both switches in the MLAG pair.
 
 {{%/notice%}}
 
-Run the following commands under the SVI, where `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
-
 <details>
 
 <summary> NCLU commands</summary>
 
-Run the `address-virtual <anycast-mac>` command under the SVI.
+Run the `address-virtual <anycast-mac>` command under the SVI. `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
 
 ```
 cumulus@leaf01:~$ net add vlan 4001 address-virtual 44:38:39:FF:40:94
@@ -495,7 +495,7 @@ cumulus@leaf01:~$ net commit
 
 <summary> Linux commands</summary>
 
-Edit the `/etc/network/interfaces` file and add `address-virtual <anycast-mac>` under the SVI. For example:
+Edit the `/etc/network/interfaces` file and add `address-virtual <anycast-mac>` under the SVI. `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
@@ -513,7 +513,7 @@ iface vlan4001
 
 {{%notice note%}}
 
-In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 and have a previous symmetric routing with VXLAN active-active mode configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
+In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
 
 {{%/notice%}}
 

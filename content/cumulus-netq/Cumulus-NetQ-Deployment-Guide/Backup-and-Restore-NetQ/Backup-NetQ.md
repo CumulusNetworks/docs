@@ -52,4 +52,5 @@ You can abbreviate the `backup` and `localdir` options of this command to `-b` a
    cumulus@<netq-platform/netq-appliance>:~/opt/<backup-directory># ls
    netq_master_snapshot_2019-06-04_07_24_50_UTC.tar.gz
    ```
+   
 To create a scheduled backup, add `./backuprestore.sh --backup --localdir /opt/<backup-directory>` to an existing cron job, or create a new one.

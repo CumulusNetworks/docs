@@ -70,7 +70,6 @@ Ubuntu uses Netplan for network configuration. You can give your appliance an IP
 
 ```
 # This file describes the network interfaces available on your system
-...
 # For more information, see netplan(5).
 network:
     version: 2
@@ -78,7 +77,6 @@ network:
     ethernets:
         eno1:
             dhcp4: yes
-... 
 ```
 
     - Apply the settings.
@@ -93,7 +91,6 @@ $ sudo netplan apply
 
 ```
 # This file describes the network interfaces available on your system
-...
 # For more information, see netplan(5).
 network:
     version: 2
@@ -105,7 +102,6 @@ network:
             gateway4: 192.168.1.1
             nameservers:
                 addresses: [8.8.8.8,8.8.4.4
-...
 ```
 
     In this example the interface, eno1, is given a static IP address of 192.168.1.222 with a gateway at 192.168.1.1 and DNS server at 8.8.8.8 and 8.8.4.4.
@@ -138,7 +134,7 @@ $ sudo netplan apply
 <details><summary>Install Python.</summary>
 ```
 root@ubuntu:~# apt-get update
-root@ubuntu:~# apt-get install python python-2.7 python-apt
+root@ubuntu:~# apt-get install python python2.7 python-apt
 ```
 </details>
 
@@ -156,16 +152,16 @@ Download the software from the [Cumulus Downloads](https://cumulusnetworks.com/d
 
 2. Select *2.4* from the **Version** list, and then select *2.4.0* from the submenu.
 
-{{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
+    {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
 
-3. Select *Bootstrap* from the **Platform/Appliance** list.
+3. Select *Bootstrap* from the **Hypervisor/Platform** list.
     Note that the bootstrap file is the same for both appliances.
 
     {{< figure src="/images/netq/netq-24-bootstrap-dwnld-240.png" width="200" >}}
     
 4. Scroll down and click **Download**.
 
-5. Select *Appliance* for the NetQ Appliance or *Appliance (Cloud)* for the NetQ Cloud Appliance from the **Platform/Appliance** list.
+5. Select *Appliance* for the NetQ Appliance or *Appliance (Cloud)* for the NetQ Cloud Appliance from the **Hypervisor/Platform** list.
 
     Make sure you select the right install choice based on whether you are preparing the on-premises or cloud version of the appliance.
 

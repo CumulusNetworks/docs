@@ -47,7 +47,7 @@ The next step is to obtain a local copy of the Cumulus Networks Documentation Re
 
 3. Make sure the **Branch** is on *master*, and then click **Clone or download**.
 
-    {{<figure src="/images/uploads/contrib-gde-clone-docs-repo.png" width="700">}}
+    {{<figure src="/images/old_doc_images/contrib-gde-clone-docs-repo.png" width="700">}}
 
 4. Copy the HTTPS URL.
 
@@ -104,4 +104,4 @@ And the final setup step is to validate that you can view your local copy of the
 If the page does not appear to be updating, you may need to stop the Hugo server (press Ctrl+c) and restart it using `hugo server --gc` to rebuild the site without using cached data.
     {{%/notice%}}
 
-You are now ready to edit the documentation or create a new topic. Refer to [Adding New Content](../Adding_New_Content).
+You are now ready to edit the documentation or create a new topic. Refer to [Adding New Content](Adding_New_Content).

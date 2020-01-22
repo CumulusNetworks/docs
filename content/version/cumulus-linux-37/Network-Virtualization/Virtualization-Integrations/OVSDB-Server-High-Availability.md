@@ -27,6 +27,12 @@ together to integrate VMware NSX and Cumulus Linux, see
 [Integrating Hardware VTEPs with VMware NSX-MH](../Integrating-Hardware-VTEPs-with-VMware-NSX-MH/)
 or [Integrating Hardware VTEPs with VMware NSX-V](../Integrating-Hardware-VTEPs-with-VMware-NSX-V/).
 
+{{%notice note%}}
+
+Cumulus Linux supports OVSDB service node replication only.
+
+{{%/notice%}}
+
 With OVSDB server high availability mode, you use two peer Cumulus Linux
 switches in an MLAG configuration. Both the MLAG primary and MLAG
 secondary switch contain OVSDB server and VTEPd. The OVSDB servers

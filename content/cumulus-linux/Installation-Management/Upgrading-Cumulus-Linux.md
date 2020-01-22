@@ -34,17 +34,10 @@ of a backup strategy.
 | `/etc/resolv.conf` | DNS resolution|Not unique to Cumulus Linux: [wiki.debian.org/NetworkConfiguration](https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file) | [www.debian.org/doc/manuals/debian-reference/ch05.en.html](https://www.debian.org/doc/manuals/debian-reference/ch05.en.html) |
 | `/etc/frr/` | Routing application (responsible for BGP and OSPF) | [FRRouting Overview](../../Layer-3/FRRouting-Overview/)| N/A |
 | `/etc/hostname` | Configuration file for the hostname of the switch | [Quick Start Guide](../../Quick-Start-Guide/)| [wiki.debian.org/HowTo/ChangeHostname](https://wiki.debian.org/HowTo/ChangeHostname) |
+| `/etc/hosts`  | Configuration file for the hostname of the switch | [Quick Start Guide](../../Quick-Start-Guide/) | [wiki.debian.org/HowTo/ChangeHostname](https://wiki.debian.org/HowTo/ChangeHostname) |
 | `/etc/cumulus/acl/*` | Netfilter configuration | [Netfilter - ACLs](../../System-Configuration/Netfilter-ACLs/) |N/A |
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | [Switch Port Attributes](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/) | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | Switchd configuration | [Configuring switchd](../../System-Configuration/Configuring-switchd/) | N/A; read the guide on switchd configuration |
-
-{{%notice note%}}
-
-If you are using the root user account, consider including `/root/`.
-
-If you have custom user accounts, consider including `/home/<username>/`.
-
-{{%/notice%}}
 
 </details>
 
@@ -64,13 +57,15 @@ If you have custom user accounts, consider including `/home/<username>/`.
 |`/etc/ssh/` | SSH configuration files |[SSH for Remote Access](../../System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access/) | [wiki.debian.org/SSH](https://wiki.debian.org/SSH) |
 | `/etc/sudoers`, `/etc/sudoers.d` | Best practice is to place changes in `/etc/sudoers.d/` instead of `/etc/sudoers`; changes in the `/etc/sudoers.d/` directory are not lost during upgrade. | [Using sudo to Delegate Privileges](../../System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/) |
 
+</details>
+
 {{%notice note%}}
 
-If you are using the root user account, consider including `/root/`. If you have custom user accounts, consider including `/home/<username>/`.
+- If you are using the root user account, consider including `/root/`.
+- If you have custom user accounts, consider including `/home/<username>/`.
+- Cumulus Networks recommends you run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
 
 {{%/notice%}}
-
-</details>
 
 <details>
 

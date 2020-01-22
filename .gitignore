@@ -34,9 +34,14 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+venv/*
 
 # Hugo generated files #
 ######################
 resources/_gen/assets/*
 public/*
 hugo
+
+# VSCode Related # 
+##################
+.vscode/*

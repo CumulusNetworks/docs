@@ -58,8 +58,8 @@ To submit your feedback with this method:
 
 1. Access the Cumulus Forums in one of three ways:
 
-    - Open the document in the [Cumulus Docs site](docs.cumulusnetworks.com), then click the **Cumulus Forums** tab on the right side of the screen. This opens a pop-up dialog. Scroll to the bottom and click **Ask a question**.
-    - Open the document in the [Cumulus Docs site](docs.cumulusnetworks.com), then click **Forums** in the docs site header
+    - Open the document in the [Cumulus Docs site](https://docs.cumulusnetworks.com), then click the **Cumulus Forums** tab on the right side of the screen. This opens a pop-up dialog. Scroll to the bottom and click **Ask a question**.
+    - Open the document in the [Cumulus Docs site](https://docs.cumulusnetworks.com), then click **Forums** in the docs site header
     - Enter *https://forums.cumulusnetworks.com/* into your web browser address field
 
 2. Click **Ask your question** near the top on the right.

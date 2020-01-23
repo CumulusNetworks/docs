@@ -248,7 +248,7 @@ The number of buckets can be configured as 64, 128, 256, 512 or 1024; the defaul
 
 {{%notice note%}}
 
-Mellanox switches with the Spectrum ASIC do not support 128 or 256 hash buckets. The default number is 64.
+Mellanox switches with the Spectrum ASIC do not support 128 or 256 hash buckets. The default number of hash buckets is 64.
 
 {{%/notice%}}
 

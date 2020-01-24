@@ -463,20 +463,19 @@ switch# write memory
 To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
 - For host type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
-- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC address.
+- For type-5 routes, the system IP address (the primary IP address of the VTEP) is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC address.
 
-See [VXLAN-Active-Active-Mode](../../VXLAN-Active-Active-Mode/) for detailed information about VXLAN active-active mode.
+See [EVPN and VXLAN Active-Active mode](../Basic-Configuration/#evpn-and-vxlan-active-active-mode) for information about EVPN and VXLAN active-active mode.
 
 #### Configure Advertise Primary IP Address
 
-Run these commands on both switches in the MLAG pair.
-
+Run the `address-virtual <anycast-mac>` command under the SVI, where `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)). Run these commands on both switches in the MLAG pair.
 
 <details>
 
 <summary> NCLU commands</summary>
 
-Run the `address-virtual <anycast-mac>` command under the SVI. `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
+Run the `net add vlan <vlan> address-virtual <anycast-mac>` command. For example:
 
 ```
 cumulus@leaf01:~$ net add vlan 4001 address-virtual 44:38:39:FF:40:94
@@ -490,7 +489,7 @@ cumulus@leaf01:~$ net commit
 
 <summary> Linux commands</summary>
 
-Edit the `/etc/network/interfaces` file and add `address-virtual <anycast-mac>` under the SVI. `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
+Edit the `/etc/network/interfaces` file and add `address-virtual <anycast-mac>` under the SVI. For example:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces

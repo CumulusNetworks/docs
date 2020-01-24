@@ -366,7 +366,8 @@ To configure NetQ to send notifications to Slack:
     </tr>
     <tr class="even">
     <td><p>tag</p></td>
-    <td><p>Optional tag appended to the Slack notification to highlight particular channels or people. The tag value must be preceded by the @ sign. For example, <em>@netq-info</em>.</p></td>
+    <td><p>Optional tag appended to the Slack notification to highlight particular channels or people. The tag value must be preceded by the @ sign. For example, <em>@netq-info</em>.</p>
+    <p><strong>Note</strong>: If you do not set this tag value, the received messages begin with <em>@NoName</em>. See example above.</p></td>
     </tr>
     </tbody>
     </table>

@@ -469,13 +469,13 @@ See [EVPN and VXLAN Active-Active mode](../Basic-Configuration/#evpn-and-vxlan-a
 
 #### Configure Advertise Primary IP Address
 
-Run these commands on both switches in the MLAG pair.
+Run the `address-virtual <anycast-mac>` command under the SVI, where `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).. Run these commands on both switches in the MLAG pair.
 
 <details>
 
 <summary> NCLU commands</summary>
 
-Run the `address-virtual <anycast-mac>` command under the SVI. `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
+Run the `net add vlan <vlan> address-virtual <anycast-mac>` command. For example:
 
 ```
 cumulus@leaf01:~$ net add vlan 4001 address-virtual 44:38:39:FF:40:94
@@ -489,7 +489,7 @@ cumulus@leaf01:~$ net commit
 
 <summary> Linux commands</summary>
 
-Edit the `/etc/network/interfaces` file and add `address-virtual <anycast-mac>` under the SVI. `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
+Edit the `/etc/network/interfaces` file and add `address-virtual <anycast-mac>` under the SVI. For example:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces

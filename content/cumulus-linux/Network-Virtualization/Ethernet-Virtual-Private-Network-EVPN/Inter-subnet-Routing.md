@@ -465,12 +465,11 @@ To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP a
 - For host type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
 - For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC address.
 
-See [VXLAN-Active-Active-Mode](../../VXLAN-Active-Active-Mode/) for detailed information about VXLAN active-active mode.
+See [EVPN and VXLAN Active-Active mode](../Basic-Configuration/#evpn-and-vxlan-active-active-mode) for information about EVPN and VXLAN active-active mode.
 
 #### Configure Advertise Primary IP Address
 
 Run these commands on both switches in the MLAG pair.
-
 
 <details>
 

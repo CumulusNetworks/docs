@@ -10,7 +10,13 @@ version: '4.0'
 ---
 VXLAN is the de facto technology for implementing network virtualization in the data center, enabling layer 2 segments to be extended over an IP core (the underlay). The initial definition of VXLAN ([RFC 7348](https://tools.ietf.org/html/rfc7348)) did not include any control plane and relied on a flood-and-learn approach for MAC address learning.
 
+## Overview
+
 Ethernet Virtual Private Network (EVPN) is a standards-based control plane for VXLAN defined in [RFC 7432](https://tools.ietf.org/html/rfc7432) and [draft-ietf-bess-evpn-overlay](https://datatracker.ietf.org/doc/draft-ietf-bess-evpn-overlay/) that allows for building and deploying VXLANs at scale. It relies on multi-protocol BGP (MP-BGP) to exchange information and is based on BGP-MPLS IP VPNs ([RFC 4364](https://tools.ietf.org/html/rfc4364)). It enables not only bridging between end systems in the same layer 2 segment but also routing between different segments (subnets). There is also inherent support for multi-tenancy. EVPN is often referred to as the means of implementing *controller-less VXLAN*.
+
+The routing control plane (including EVPN) is installed as part of the [FRRouting](https://frrouting.org/) (FRR) package. For more information about FRR, refer to [FRR Overview](../../Layer-3/FRRouting-Overview/).
+
+## Key Features
 
 Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for both intra-subnet bridging and inter-subnet routing, and provides these key features:
 
@@ -29,11 +35,10 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
 
 The EVPN address-family is supported with both eBGP and iBGP peering. If the underlay routing is provisioned using eBGP, you can use the same eBGP session to carry EVPN routes. For example, in a typical 2-tier Clos network topology where the leaf switches are the VTEPs, if eBGP sessions are in use between the leaf and spine switches for the underlay routing, the same sessions can be used to exchange EVPN routes; the spine switches merely act as *route forwarders* and do not install any forwarding state as they are not VTEPs. When EVPN routes are exchanged over iBGP peering, OSPF can be used as the IGP or the next hops can also be resolved using iBGP.
 
+For information about VXLAN routing, including platform and hardware limitations, see [VXLAN Routing](../VXLAN-Routing/).
+
 {{%notice note%}}
 
-- The routing control plane (including EVPN) is installed as part of the [FRRouting](https://frrouting.org/) (FRR) package. For more information about FRR, refer to the [FRR Overview](../../Layer-3/FRRouting-Overview/).
-- Data plane MAC learning is disabled by default on VXLAN interfaces. Do *not* enable MAC learning on VXLAN interfaces: EVPN is responsible for installing remote MACs.
+Data plane MAC learning is disabled by default on VXLAN interfaces. Do *not* enable MAC learning on VXLAN interfaces: EVPN is responsible for installing remote MACs.
 
 {{%/notice%}}
-
-For information about VXLAN routing, including platform and hardware limitations, see [VXLAN Routing](../VXLAN-Routing/).

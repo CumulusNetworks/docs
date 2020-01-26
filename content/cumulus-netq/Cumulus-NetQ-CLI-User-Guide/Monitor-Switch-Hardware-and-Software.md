@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 3
 ---
 With NetQ, a network administrator can monitor both the switch hardware
 and software components for misconfigurations. NetQ helps answer

@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 It is helpful to verify that communications are freely flowing between
 the various devices in your network. You can verify the connectivity

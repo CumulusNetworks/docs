@@ -9,6 +9,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 3
 ---
 After you have installed the NetQ applications package and the NetQ Agents,
 you may want to configure some of the additional capabilities that NetQ

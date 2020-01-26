@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 Two event workflows, the Alarms card workflow and the Info card
 workflow, provide a view into the events occurring in the network. The

@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 3
 ---
 At various points in time, you might want to change which network nodes
 are being monitored by NetQ or look more closely at a network node for

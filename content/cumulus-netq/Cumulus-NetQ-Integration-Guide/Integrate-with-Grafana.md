@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 3
 ---
 Switches collect statistics about the performance of their interfaces.
 The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ

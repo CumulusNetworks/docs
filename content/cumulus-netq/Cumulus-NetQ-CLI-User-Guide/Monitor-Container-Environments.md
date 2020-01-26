@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 3
 ---
 The NetQ Agent monitors container environments the same way it monitors
 [physical servers](../Monitor-Linux-Hosts).

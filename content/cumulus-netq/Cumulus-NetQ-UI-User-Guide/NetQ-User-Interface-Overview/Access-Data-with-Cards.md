@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 Cards present information about your network for monitoring and
 troubleshooting. This is where you can expect to spend most of your

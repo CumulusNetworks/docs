@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 3
 ---
 NetQ provides the information you need to monitor the health of your
 network fabric, devices, and interfaces. You are able to easily validate

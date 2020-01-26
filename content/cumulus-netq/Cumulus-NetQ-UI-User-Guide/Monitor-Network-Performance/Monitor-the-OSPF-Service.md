@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 The Cumulus NetQ UI enables operators to view the health of the OSPF
 service on a network-wide and a per session basis, giving greater

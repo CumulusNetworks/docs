@@ -6,6 +6,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 2
 ---
 After you have completed the installation of Cumulus NetQ,
 you may want to configure some of the additional capabilities that NetQ

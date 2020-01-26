@@ -13,13 +13,27 @@
   <!-- Theme stylesheet, you can customize scss by creatig `assets/custom.scss` in your website -->
   <!-- WHERE Hugo pipes in and compiles book.scss-->
   {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
-  {{ if .Site.Params.pdfExport }}
-    {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify }}
-  {{ end }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}">
   
+  {{if eq .Page.Type "pdf"}}
+    <style>
+      @page { 
+        size: A4 landscape;
+        margin: 0;
+        padding: .5in;
+      }
+      .toc1 { prince-bookmark-level: 1}
+      .toc2 { prince-bookmark-level: 2}
+      .toc3 { prince-bookmark-level: 3}
+      h1 { prince-bookmark-level: none; }
+      h2 { prince-bookmark-level: none; }
+      h3 { prince-bookmark-level: none; }
+      h4 { prince-bookmark-level: none; }
+    </style>
+  {{ end }}
+
   <!-- Favicon -->
-  <link rel="icon" href="{{ "icons/favicon.png" | relURL }}" type="image/x-icon">
+  <link rel="icon" href="{{ "icons/favicon.png" | absURL }}" type="image/x-icon">
 
   <!-- RSS -->
   {{ with .OutputFormats.Get "rss" -}}
@@ -33,14 +47,35 @@
 
   <!-- clipboard.js support -->
   {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
-  <script src = "{{ $jsCodeCopy.RelPermalink }}"> </script>
+  <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  {{if eq .Page.Type "pdf"}}
+    <script>
+      function replace_url() {
+          var elems = document.getElementsByTagName("a");
+          for (var i = 0; i < elems.length; i++) {
+              path = elems[i]["href"];
+              path_parts = path.split("/");
+              if(path_parts[path_parts.length - 1] == ""){
+                elems[i]["href"] = "#" + path_parts[path_parts.length - 2];
+              }
+              else { 
+                elems[i]["href"] = "#" + path_parts[path_parts.length - 1]
+              }
+              
+            }
+      }
 
+      window.onload = function() {
+          replace_url();
+      }
+
+    </script>
+  {{ end }}
 </head>
 
 
 <body>
-  {{ if not .Site.Params.pdfExport }}
   <input type="checkbox" style="display: none" id="menu-control" />
   <!-- INSERT article page header -->
   <header id="site-nav">
@@ -65,6 +100,7 @@
       </div>
     </div>
   </header>
+{{if ne .Page.Type "pdf"}}
   <div id="product-nav" class="flex">
     <div class="menu-container">
       <!-- generates subnav memu from config.toml -->
@@ -120,12 +156,12 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {{- range where .Site.Sections "Params.product" $currentProduct -}}
-            <a class = "dropdown-item" href = "{{- .RelPermalink -}}"> v{{- .Params.version -}}</a>
+            <a class = "dropdown-item" href = "{{- .Permalink -}}"> v{{- .Params.version -}}</a>
             {{- end -}}
             {{- range where .Site.Pages "Section" "version" -}}
              {{- if eq .Params.product $currentProduct -}}
              {{- if .Params.subsection -}}
-            <a class = "dropdown-item" href = "{{- .RelPermalink -}}"> v{{- .Params.version -}}</a>
+            <a class = "dropdown-item" href = "{{- .Permalink -}}"> v{{- .Params.version -}}</a>
             {{- end -}}
             {{- end -}}
             {{- end -}}
@@ -166,12 +202,12 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {{- range where .Site.Sections "Params.product" $currentProduct -}}
-              <a class = "dropdown-item" href = "{{- .RelPermalink -}}"> v{{- .Params.version -}}</a>
+              <a class = "dropdown-item" href = "{{- .Permalink -}}"> v{{- .Params.version -}}</a>
               {{- end -}}
               {{- range where .Site.Pages "Section" "version" -}}
                {{- if eq .Params.product $currentProduct -}}
                {{- if .Params.subsection -}}
-              <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{- .Params.version -}}</a>
+              <a class = "dropdown-item" href = "{{ .Permalink }}"> v{{- .Params.version -}}</a>
               {{- end -}}
               {{- end -}}
               {{- end -}}
@@ -197,10 +233,9 @@
       </div>
     </div> <!-- search-container -->
   </div> <!-- mobile product nav -->
-  {{ end }}
+
 
   <main class="flex container">
-    {{ if not .Site.Params.pdfExport }}
     <aside class="book-menu fixed">
 
       <nav role="navigation">
@@ -222,23 +257,12 @@
       {{ $jsCustom := resources.Get "js/custom.js" }}
       {{ $jsMenu := slice $jsScroll $jsCollapse $jsCustom | resources.Concat "js/menuBundle.js"}}
 
-      <script src = "{{ $jsMenu.RelPermalink }}"> </script>
+      <script src = "{{ $jsMenu.Permalink }}"> </script>
 
 
     </aside>
-    {{ end }}
-
+{{ end }}
     <div class="book-page">
-    {{ if not .Site.Params.pdfExport }}
-
-      <!-- default mobile header from themes/book -->
-      <!-- <header class="align-center justify-between book-header">
-        <label for="menu-control">
-          <img src="{{ "svg/menu.svg" | relURL }}" alt="Menu" />
-        </label>
-        <strong>{{- .Page.Title -}}</strong>
-      </header> -->
-    {{ end }}
 
       <!-- branch to list.html or single.html -->
       {{ block "main" . }}
@@ -255,7 +279,6 @@
       {{ end }}
 
   </main>
-  {{ if not .Site.Params.pdfExport }}
   <footer class="footer-top">
     <div class="container">
       <div class="row">
@@ -432,9 +455,7 @@
   <script>
     (function(w,d,s){var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='//embeddable-widgets-usw2.insided.com/cumulusnetworks-en.insided-conversational.js';f.parentNode.insertBefore(j,f);})(window,document,'script');
   </script>
-  {{ end }}
 
 </body>
 
 </html>
-

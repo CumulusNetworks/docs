@@ -1,7 +1,7 @@
 ---
 title: Monitor the MLAG Service
 author: Cumulus Networks
-weight: 167
+weight: 410
 aliases:
  - /display/NETQ/Monitor+the+MLAG+Service
  - /pages/viewpage.action?pageId=12321372

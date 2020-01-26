@@ -1,7 +1,7 @@
 ---
 title: NetQ User Interface Overview
 author: Cumulus Networks
-weight: 89
+weight: 230
 aliases:
  - /display/NETQ/NetQ+User+Interface+Overview
  - /pages/viewpage.action?pageId=12321856

@@ -1,7 +1,7 @@
 ---
 title: What's New in Cumulus NetQ 2.4
 author: Cumulus Networks
-weight: 300
+weight: 440
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

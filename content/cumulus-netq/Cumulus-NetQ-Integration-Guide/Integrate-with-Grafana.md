@@ -1,7 +1,7 @@
 ---
 title: Integrate NetQ with Grafana
 author: Cumulus Networks
-weight: 202
+weight: 210
 aliases:
  - /display/NETQ141/Collect+Interface+Statistics
  - /pages/viewpage.action?pageId=10453499

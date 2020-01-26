@@ -1,7 +1,7 @@
 ---
 title: Preparation Your Existing NetQ Appliances for a NetQ 2.4 Deployment
 author: Cumulus Networks
-weight: 412
+weight: 90
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

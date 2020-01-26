@@ -1,7 +1,7 @@
 ---
 title: Integrate NetQ with Notification Applications
 author: Cumulus Networks
-weight: 200
+weight: 190
 aliases:
  - /display/NETQ/Integrate+with+Third-party+Software+and+Hardware
  - /pages/viewpage.action?pageId=12320911

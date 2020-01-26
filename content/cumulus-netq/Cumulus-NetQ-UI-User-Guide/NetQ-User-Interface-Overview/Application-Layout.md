@@ -1,7 +1,7 @@
 ---
 title: Application Layout
 author: Cumulus Networks
-weight: 503
+weight: 250
 aliases:
  - /display/NETQ22/NetQ-User-Interface-Overview
  - /pages/viewpage.action?pageId=12321856

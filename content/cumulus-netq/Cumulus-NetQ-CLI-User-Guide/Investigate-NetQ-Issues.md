@@ -1,7 +1,7 @@
 ---
 title: Investigate NetQ Issues
 author: Cumulus Networks
-weight: 51
+weight: 400
 aliases:
  - /display/NETQ/Investigate+NetQ+Issues
 product: Cumulus NetQ

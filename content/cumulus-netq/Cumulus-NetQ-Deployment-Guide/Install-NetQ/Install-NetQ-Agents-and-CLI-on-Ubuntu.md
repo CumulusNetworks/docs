@@ -1,7 +1,7 @@
 ---
 title: Install and Configure the NetQ Agent and CLI on Ubuntu Servers
 author: Cumulus Networks
-weight: 420
+weight: 130
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

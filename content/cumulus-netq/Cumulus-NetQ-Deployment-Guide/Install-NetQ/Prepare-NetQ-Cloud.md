@@ -1,7 +1,7 @@
 ---
 title: Prepare for NetQ Cloud Installation
 author: Cumulus Networks
-weight: 409
+weight: 80
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

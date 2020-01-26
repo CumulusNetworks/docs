@@ -1,7 +1,7 @@
 ---
 title: Monitor Network Inventory
 author: Cumulus Networks
-weight: 143
+weight: 360
 aliases:
  - /display/NETQ/Monitor+Network+Inventory
  - /pages/viewpage.action?pageId=12321095

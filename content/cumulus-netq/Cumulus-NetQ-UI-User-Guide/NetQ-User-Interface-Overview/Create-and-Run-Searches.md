@@ -1,7 +1,7 @@
 ---
 title: Create and Run Searches
 author: Cumulus Networks
-weight: 505
+weight: 260
 aliases:
  - /display/NETQ22/NetQ-User-Interface-Overview
  - /pages/viewpage.action?pageId=12321856

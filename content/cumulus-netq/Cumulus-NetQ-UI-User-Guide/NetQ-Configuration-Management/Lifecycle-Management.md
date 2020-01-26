@@ -1,7 +1,7 @@
 ---
 title: Lifecycle Management
 author: Cumulus Networks
-weight: 602
+weight: 320
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950

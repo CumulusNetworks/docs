@@ -1,7 +1,7 @@
 ---
 title: Install and Configure the NetQ Agent and CLI on RHEL and CentOS Servers
 author: Cumulus Networks
-weight: 421
+weight: 140
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

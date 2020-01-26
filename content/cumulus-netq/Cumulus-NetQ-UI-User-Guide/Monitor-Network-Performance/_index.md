@@ -1,7 +1,7 @@
 ---
 title: Monitor Network Performance
 author: Cumulus Networks
-weight: 93
+weight: 330
 aliases:
  - /display/NETQ/Monitor+the+Network
  - /pages/viewpage.action?pageId=12321070

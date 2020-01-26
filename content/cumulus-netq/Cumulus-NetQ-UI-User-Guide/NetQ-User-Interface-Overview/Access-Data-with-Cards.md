@@ -1,7 +1,7 @@
 ---
 title: Access Data with Cards
 author: Cumulus Networks
-weight: 509
+weight: 280
 aliases:
  - /display/NETQ22/NetQ-User-Interface-Overview
  - /pages/viewpage.action?pageId=12321856

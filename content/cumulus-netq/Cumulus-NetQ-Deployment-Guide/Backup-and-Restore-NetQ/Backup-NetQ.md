@@ -1,7 +1,7 @@
 ---
 title: Backup Your NetQ Instance
 author: Cumulus Networks
-weight: 431
+weight: 160
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

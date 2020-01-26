@@ -1,7 +1,7 @@
 ---
 title: Access the NetQ UI
 author: Cumulus Networks
-weight: 501
+weight: 240
 aliases:
  - /display/NETQ22/NetQ-User-Interface-Overview
  - /pages/viewpage.action?pageId=12321856

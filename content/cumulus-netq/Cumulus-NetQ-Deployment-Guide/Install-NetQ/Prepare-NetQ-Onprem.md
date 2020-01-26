@@ -1,7 +1,7 @@
 ---
 title: Prepare for NetQ On-premises Installation
 author: Cumulus Networks
-weight: 408
+weight: 70
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

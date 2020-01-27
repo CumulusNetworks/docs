@@ -196,7 +196,7 @@ ExecStart=/usr/local/bin/ssh agent -data-dir=/tmp/ssh -bind=192.168.0.11
 ...
 ```
 
-3. Modify the *ExecStart* line to `/usr/bin/vrf exec mgmt /sbin/runuser -u USER -- ssh`:
+3. Modify the *ExecStart* line to `/usr/bin/ip vrf exec mgmt /sbin/runuser -u USER -- ssh`:
 
 ```
 ...

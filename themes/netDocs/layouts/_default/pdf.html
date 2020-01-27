@@ -1,7 +1,7 @@
 {{ define "main" }}
     {{ range where $.Site.Pages "Type" "cumulus-netq"}}
     <article class="markdown">
-        <a id="{{- urlize .Title -}}"></a><h1>{{- .Title -}}</h1>
+        <span class="toc{{ .Params.toc }}"><h1><a id="{{- urlize .Title -}}"></a>{{- .Title -}}</h1></span>
     {{- .Content -}}
     </article>
     {{ end }}

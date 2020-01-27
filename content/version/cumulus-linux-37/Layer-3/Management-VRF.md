@@ -220,7 +220,7 @@ Documentation=https://www.example.io/
 
 [Service]
 #User=username
-ExecStart=/usr/bin/vrf task exec mgmt /sbin/runuser -u cumulus -- foocommand
+ExecStart=/usr/bin/ip vrf exec mgmt /sbin/runuser -u cumulus -- foocommand
 
 [Install]
 WantedBy=multi-user.target

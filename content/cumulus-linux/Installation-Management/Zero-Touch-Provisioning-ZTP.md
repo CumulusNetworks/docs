@@ -301,7 +301,7 @@ exit 0
 
 ### Apply Management VRF Configuration
 
-If you apply a management VRF in your script, either apply it last or reboot instead. If you do *not* apply a management VRF last, you need to prepend any commands that require `eth0` to communicate out with `/usr/bin/vrf task exec mgmt`; for example, `/usr/bin/vrf task exec mgmt apt-get update -y`.
+If you apply a management VRF in your script, either apply it last or reboot instead. If you do *not* apply a management VRF last, you need to prepend any commands that require `eth0` to communicate out with `/usr/bin/ip vrf exec mgmt`; for example, `/usr/bin/ip vrf exec mgmt apt-get update -y`.
 
 ### Perform Ansible Provisioning Callbacks
 

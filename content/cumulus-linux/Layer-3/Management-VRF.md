@@ -202,7 +202,7 @@ ExecStart=/usr/local/bin/ssh agent -data-dir=/tmp/ssh -bind=192.168.0.11
 ...
 [Service]
 #User=username
-ExecStart=/usr/bin/vrf task exec mgmt /sbin/runuser -u cumulus -- ssh
+ExecStart=/usr/bin/ip vrf exec mgmt /sbin/runuser -u cumulus -- ssh
 ...
 ```
 

@@ -444,7 +444,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-To add an IP address to a bridge interface, you must put it into a VLAN interface and set the bridge PVID:
+To add an IP address to a bridge interface, you must put it into a VLAN interface. If you want to use a VLAN other than the native one, set the bridge PVID:
 
 ```
 cumulus@switch:~$ net add vlan 100 ip address 10.2.2.1/24
@@ -467,7 +467,7 @@ iface swp1
   address 10.1.1.1/30
 ```
 
-To add an IP address to a bridge interface, include the address and PVID under the `iface` stanza in the `/etc/network/interfaces` file:
+To add an IP address to a bridge interface, include the address under the `iface` stanza in the `/etc/network/interfaces` file. If you want to use a VLAN other than the native one, set the bridge PVID:
 
 ```
 auto br0

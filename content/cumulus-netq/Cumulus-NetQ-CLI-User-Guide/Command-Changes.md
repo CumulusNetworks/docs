@@ -31,7 +31,7 @@ The following table summarizes the new commands available with this release. The
 </tr>
 <tr>
   <td>netq [&lt;hostname&gt;] show cl-manifest [json]</td>
-  <td>Lists installed software packages one or all devices</td>
+  <td>Lists installed Cumulus Linux software package on one or all devices</td>
   <td>2.4.0</td>
 </tr>
 <tr>
@@ -50,12 +50,12 @@ The following table summarizes the new commands available with this release. The
   <td>2.4.0</td>
 </tr>
 <tr>
-  <td>netq [&lt;hostname&gt;] show cl-resource-util [cpu|memory] [around &lt;text-time&gt;] [json]</td>
+  <td>netq [&lt;hostname&gt;] show resource-util [cpu|memory] [around &lt;text-time&gt;] [json]</td>
   <td>Displays the CPU or memory utilization for a given device or all devices, currently or at a time in the past/td>
   <td>2.4.0</td>
 </tr>
 <tr>
-  <td>netq [&lt;hostname&gt;] show show-resource-util disk [&lt;text-diskname&gt;] [around &lt;text-time&gt;] [json]</td>
+  <td>netq [&lt;hostname&gt;] show resource-util disk [&lt;text-diskname&gt;] [around &lt;text-time&gt;] [json]</td>
   <td>Displays the disk utilization for a given device or all devices, currently or at a time in the past</td>
   <td>2.4.0</td>
 </tr>

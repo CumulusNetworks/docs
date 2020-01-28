@@ -17,16 +17,15 @@
   
   {{if eq .Page.Type "pdf"}}
     <style>
-      @page { 
-        size: A4 landscape;
-        margin: 0;
-        padding: .5in;
-        @bottom-right {
-          content: counter(page)
+      @page {
+        @bottom-right-corner { 
+            content: counter(page)
         }
         @bottom {
-          content: "{{ urlize .Permalink }}"
+            content: "{{urlize .Permalink}}"
         }
+        size: A4 landscape;
+        margin: .25in;
       }
       .toc1 { prince-bookmark-level: 1; }
       .toc2 { prince-bookmark-level: 2; }

@@ -1,4 +1,9 @@
 {{ define "main" }}
+    <div id="cover">
+        <h1>Cumulus NetQ v{{.Page.Params.version}} User Documentation</h1>
+        <img src="/images/logo_cumulus_jade_reversed.png" alt="Cumulus Networks" />
+        <br />
+    </div>
     {{ range where $.Site.Pages "Type" "cumulus-netq"}}
     <article class="markdown">
         <span class="toc{{ .Params.toc }}"><h1><a id="{{- urlize .Title -}}"></a>{{- .Title -}}</h1></span>

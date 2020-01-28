@@ -1,9 +1,8 @@
 ---
 title: Cumulus NetQ
 version: 2.4
-layout: pdf
+layout: netq-pdf
 product: Cumulus NetQ
 type: pdf
-bookHidden: true
-bookToC: false
+bookhidden: true
 ---

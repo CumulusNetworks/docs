@@ -30,11 +30,17 @@
         counter-reset: page 1
       }
       #cover {
-        break-after: always;
-        margin: auto;
-        text-align: center;
+        width: 100%;
+        text-align: center; 
+        break-after: : always;
       }
-      #cover h1 { 
+      #centered {
+        break-after: always;
+        margin: 0 auto;
+        display: inline-block;
+        padding: 3px;
+      }
+      #centered h1 { 
         color:#36424a;
         font-size:2rem;
         font-weight:300;
@@ -43,10 +49,12 @@
         margin-top:0;
         margin-bottom:1.1rem
       }
-      #cover img { 
-        object-fit: contain;
+      #centered img { 
+        display: block;
+        object-fit: scale-down;
+        page-break-inside: avoid; /* or 'auto' */
       }
-      
+
       .toc1 { prince-bookmark-level: 1; }
       .toc2 { prince-bookmark-level: 2; }
       .toc3 { prince-bookmark-level: 3; }

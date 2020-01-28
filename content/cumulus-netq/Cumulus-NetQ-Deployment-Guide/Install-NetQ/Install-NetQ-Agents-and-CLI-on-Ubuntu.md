@@ -12,23 +12,23 @@ After installing or upgrading your Cumulus NetQ software, you should install the
 - Server running Ubuntu 16.04
 - Server running Ubuntu 18.04 (NetQ 2.2.2 and later)
 
-This topic describes how to perform the installation and configuration. If you are upgrading, you can skip some of the steps which do not need to be performed a second time.
-
-## Install a NetQ Agent
-
-To install the NetQ Agent you need to install the OS-specific meta
-package, `cumulus-netq`, on each switch. Optionally, you can install it
-on hosts. The meta package contains the NetQ Agent and NetQ applications.
+This topic describes how to perform the installation and configuration of the NetQ Agent.
 
 {{%notice note%}}
+Check the version of the NetQ Agent running on your server or NetQ Appliance using the `dpkg-query -W -f '${Package}\t${Version}\n' netq-agent` command. If the version installed is:
 
-If your network uses a proxy server for external connections, you should
-first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/)
-so `apt-get` can access the meta package on the Cumulus Networks repository.
-
+- Version 2.3.1-xxx, then you need to install the 2.4.0 Agent
+- Version 2.4.0-ub18.04u<24 or less>~xxx *or* 2.4.0-ub16.04u<24 or less>~xxx, then you need to install an updated 2.4.0 Agent. Follow the instructions in [Upgrade the NetQ Agent on Ubuntu Servers](../../Upgrade-NetQ/Upgrade-NetQ-Agents-on-Ubuntu-Servers/), then return here to follow the configuration steps.
+- Version 2.4.0-ub18.04u<25 or greater>~xxx *or* 2.4.0-ub16.04u<25 or greater>~xxx, then you are running the latest version. There is no need to update the NetQ 2.4.0 Agent and you can skip to [Configure Your NetQ Agents](#configure-your-netq-agents/).
 {{%/notice%}}
 
+## Install a NetQ Agent and CLI
 
+To install the NetQ Agent you need to install `netq-agent` on each server. To install the NetQ CLI you need to install `netq-apps` on each server.
+
+{{%notice note%}}
+If your network uses a proxy server for external connections, you should first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so `apt-get` can access the agent package on the Cumulus Networks repository.
+{{%/notice%}}
 
 ### Install NetQ Agent on an Ubuntu Server
 
@@ -54,7 +54,7 @@ root@ubuntu:~# systemctl start lldpd.service
 ```
     {{%/notice%}}
 
-To install the NetQ Agent on an Ubuntu server:
+To install the NetQ Agent and CLI on an Ubuntu server:
 
 1.  Reference and update the local `apt` repository.
 
@@ -63,9 +63,7 @@ To install the NetQ Agent on an Ubuntu server:
 2. Add the Ubuntu repository:
 
     <details><summary>Ubuntu 16.04</summary>
-    Create the file
-    `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add
-    the following line:
+    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
         root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
         ...
@@ -73,9 +71,7 @@ To install the NetQ Agent on an Ubuntu server:
         ...
     </details>
     <details><summary>Ubuntu 18.04</summary>
-    Create the file
-    `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
-    the following line:
+    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
 
         root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
         ...
@@ -84,11 +80,7 @@ To install the NetQ Agent on an Ubuntu server:
     </details>
     {{%notice note%}}
 
-The use of `netq-latest` in this example means that a `get` to the
-    repository always retrieves the latest version of NetQ, even in the
-    case where a major version update has been made. If you want to keep
-    the repository on a specific version - such as `netq-2.2` - use that
-    instead.
+The use of `netq-latest` in this example means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.3` - use that instead.
 
     {{%/notice%}}
 
@@ -119,14 +111,12 @@ The use of `netq-latest` in this example means that a `get` to the
          2a00:7600::41   .STEP.          16 u    - 1024    0    0.000    0.000   0.000
         \*129.250.35.250  249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
-7.  Install the meta package on the server.
+7.  Install the software packages on the server.
 
         root@ubuntu:~# apt-get update
-        root@ubuntu:~# apt-get install cumulus-netq
+        root@ubuntu:~# apt-get install netq-agent netq-apps
 
 8.  Continue with [NetQ Agent Configuration](#configure-your-netq-agents)
-
-
 
 ## Configure Your NetQ Agents
 
@@ -182,7 +172,7 @@ Configuring the CLI for *cloud* deployments also only requires two commands; how
 *For switches with Internet access* run the following commands, being sure to replace the key values with your generated keys.
 
 ```
-$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
+$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name>
 Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
 Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
@@ -193,7 +183,7 @@ Restarting NetQ CLI... Success!
 Or, if you have created a keys file as noted in the installation procedures for the NetQ Cloud server or Appliance, run the following commands. Be sure to include the *full path* the to file.
 
 ```
-$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /<full-path>/credentials.yml port 443
+$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file </full-path>/credentials-file.yml> premises <text-premises-name>
 Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
 Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
@@ -204,7 +194,7 @@ Restarting NetQ CLI... Success!
 If you have multiple premises, be sure to include which premises you want to query. Rerun this command to query a different premises.
 
 ```
-$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <premises-name> port 443
+$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name>
 Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
 Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 

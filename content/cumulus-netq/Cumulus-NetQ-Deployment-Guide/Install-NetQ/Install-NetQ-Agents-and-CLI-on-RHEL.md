@@ -12,27 +12,27 @@ After installing or upgrading your Cumulus NetQ software, you should install the
 - Server running Red Hat RHEL 7.1
 - Server running CentOS 7
 
-This topic describes how to perform the installation and configuration. If you are upgrading, you can skip some of the steps which do not need to be performed a second time.
+This topic describes how to perform the installation and configuration of the NetQ Agent.
+
+{{%notice note%}}
+Check the version of the NetQ Agent running on your switch using the `rpm -q -netq-agent` command. If the version installed is:
+
+- netq-agent-2.3.1-xxx, then you need to install the 2.4.0 Agent. Continue to the next section.
+- netq-agent-2.4.0-rh7u<24 or less>~xxx, then you need to install an updated 2.4.0 Agent. Follow the instructions in [Upgrade the NetQ Agent on RHEL or CentOS Servers](../../Upgrade-NetQ/Upgrade-NetQ-Agents-on-RHEL-or-CentOS-Servers/), then return here to follow the configuration steps.
+- netq-agent-2.4.0-rh7u<25 or greater>~xxx, then you are running the latest version. There is no need to update the NetQ 2.4.0 Agent and you can skip to [Configure Your NetQ Agents](#configure-your-netq-agents/).
+{{%/notice%}}
 
 ## Prepare for Installation
 
-To install the NetQ Agent you need to install the OS-specific meta
-package, `cumulus-netq`, on each switch. Optionally, you can install it
-on hosts. The meta package contains the NetQ Agent and NetQ applications.
+To install the NetQ Agent you need to install `netq-agent` on each switch or host.
 
 {{%notice note%}}
-
-If your network uses a proxy server for external connections, you should
-first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/)
-so `apt-get` can access the meta package on the Cumulus Networks repository.
-
+If your network uses a proxy server for external connections, you should first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so `apt-get` can access the software package in the Cumulus Networks repository.
 {{%/notice%}}
 
 ### Install NetQ Agent
 
-Before you install the NetQ Agent on a Red Hat or CentOS server, make
-sure the following packages are installed and running these minimum
-versions:
+Before you install the NetQ Agent on a Red Hat or CentOS server, make sure the following packages are installed and running these minimum versions:
 
   - iproute-3.10.0-54.el7\_2.1.x86\_64
   - lldpd-0.9.7-5.el7.x86\_64
@@ -50,6 +50,7 @@ root@rhel7:~# systemctl enable lldpd.service
 root@rhel7:~# systemctl start lldpd.service
 root@rhel7:~# yum install wget
 ```
+
     {{%/notice%}}
 
   - ntp-4.2.6p5-25.el7.centos.2.x86\_64
@@ -67,14 +68,14 @@ To install the NetQ Agent on a Red Hat or CentOS server:
 
         root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
         ...
-        [cumulus-arch-netq-2.3]
+        [cumulus-arch-netq-2.4]
         name=Cumulus netq packages
-        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.3/$basearch
+        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/$basearch
         gpgcheck=1
         enabled=1
-        [cumulus-noarch-netq-2.3]
+        [cumulus-noarch-netq-2.4]
         name=Cumulus netq architecture-independent packages
-        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.3/noarch
+        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/noarch
         gpgcheck=1
         enabled=1
         ...
@@ -105,18 +106,16 @@ To install the NetQ Agent on a Red Hat or CentOS server:
          2a00:7600::41   .STEP.          16 u    - 1024    0    0.000    0.000   0.000
         \*129.250.35.250  249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
-7.  Install the Bash completion and NetQ meta packages on the server.
+7.  Install the Bash completion and NetQ packages on the server.
 
         root@rhel7:~# yum -y install bash-completion
-        root@rhel7:~# yum install cumulus-netq
+        root@rhel7:~# yum install netq-agent netq-apps
 
 8.  Continue with [NetQ Agent Configuration](#configure-your-netq-agents).
 
 ## Configure Your NetQ Agents
 
-Once the NetQ Agents have been installed on the network nodes you want
-to monitor, the NetQ Agents must be configured to obtain useful and
-relevant data. Two methods are available for configuring a NetQ Agent:
+Once the NetQ Agents have been installed on the network nodes you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data. Two methods are available for configuring a NetQ Agent:
 
 - Edit the configuration file on the device, or
 - Configure and run NetQ CLI commands on the device.
@@ -130,7 +129,7 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 3. Set the parameters for the agent as follows:
     - port: 31980 (default configuration)
     - server: IP address of the NetQ server or appliance where the agent should send its collected data
-    - vrf: default (default configuration) 
+    - vrf: default (default configuration)
 
 Your configuration should be similar to this:
 
@@ -166,7 +165,7 @@ Configuring the CLI for *cloud* deployments also only requires two commands; how
 *For switches with Internet access* run the following commands, being sure to replace the key values with your generated keys.
 
 ```
-$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
+$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name>
 Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
 Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
@@ -177,7 +176,7 @@ Restarting NetQ CLI... Success!
 Or, if you have created a keys file as noted in the installation procedures for the NetQ Cloud server or Appliance, run the following commands. Be sure to include the *full path* the to file.
 
 ```
-$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /<full-path>/credentials.yml port 443
+$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file </full-path/credentials-file.yml> premises <text-premises-name>
 Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
 Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
@@ -188,7 +187,7 @@ Restarting NetQ CLI... Success!
 If you have multiple premises, be sure to include which premises you want to query. Rerun this command to query a different premises.
 
 ```
-$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <premises-name> port 443
+$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> port 443
 Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
 Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 

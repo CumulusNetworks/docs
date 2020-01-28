@@ -7,16 +7,26 @@ version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents on each node you want to monitor. NetQ 2.4 Agents can be installed and run on switches running Cumulus Linux version 3.3.2-4.0.x.
+After installing your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents on each node you want to monitor. NetQ 2.4 Agents can be installed and run on switches running Cumulus Linux version 3.3.2-4.0.x.
 
-This topic describes how to install and configure the NetQ Agent and CLI on Cumulus Linux switches. If you are upgrading, you can skip some of the steps which do not need to be performed a second time.
+This topic describes how to install and configure the NetQ Agent and CLI on Cumulus Linux switches.
+
+{{%notice note%}}
+You only need to install the NetQ Agent on switches running Cumulus Linux 3.3.2-3.3.x, or on switches running Cumulus Linux 4.0.x that have version 2.3.1 of the Agent pre-installed.
+
+Check the version of the NetQ Agent running on your switch using the `dpkg-query -W -f '${Package}\t${Version}\n' netq-agent` command. If the version installed is:
+
+- 2.3.1-xxx, then you need to install the 2.4.0 Agent
+- 2.4.0-cl3u<24 or less>~xxx *or* 2.4.0-cl4u<24 or less>~xxx, then you need to install an updated 2.4.0 Agent. Follow the instructions in [Upgrade the NetQ Agent on Cumulus Linux Switches](../../Upgrade-NetQ/Upgrade-NetQ-Agents-on-Cumulus-Linux-Switches/), then return here to follow the configuration steps.
+- 2.4.0-cl3u<25 or greater>~xxx *or* 2.4.0-cl4u<25 or greater>~xxx, then you are running the latest version. There is no need to update the NetQ 2.4.0 Agent and you can skip to [Configure Your NetQ Agents](#configure-your-netq-agents/).
+{{%/notice%}}
 
 ## Prepare for Installation
 
-To install the NetQ Agent you need to install the OS-specific meta package, `cumulus-netq`, on each switch. The meta package contains the NetQ Agent and CLI.
+To install the NetQ Agent you need to install `netq-agent` on each switch. To install the NetQ CLI you need to install `netq-apps` on each switch.
 
 {{%notice note%}}
-If your network uses a proxy server for external connections, you should first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so `apt-get` can access the meta package on the Cumulus Networks repository.
+If your network uses a proxy server for external connections, you should first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so `apt-get` can access the software package on the Cumulus Networks repository.
 {{%/notice%}}
 
 ### Add NetQ Debian Repository
@@ -60,13 +70,13 @@ Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux.
 
 ## Install NetQ Agent and CLI
 
-A simple process installs the NetQ Agent on a Cumulus switch.
+A simple process installs the NetQ Agent and CLI on a Cumulus switch.
 
 1.  Update the local `apt` repository, then install the NetQ meta
     package on the switch.
 
         cumulus@switch:~$ sudo apt-get update
-        cumulus@switch:~$ sudo apt-get install cumulus-netq
+        cumulus@switch:~$ sudo apt-get install netq-agent netq-apps
 
 2.  Verify that [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
     is running on the host node. Nodes must be in time synchronization with the
@@ -86,8 +96,6 @@ A simple process installs the NetQ Agent on a Cumulus switch.
         cumulus@switch:~$ sudo systemctl restart rsyslog.service
 
 <!-- 4. Continue with [Configure Your NetQ Agents](#configure-your-netq-agents). -->
-
-<!-- 5. Validate NetQ Agent operation...... -->
 
 ## Configure the NetQ CLI
 
@@ -123,7 +131,7 @@ Configuring the CLI for *cloud* deployments also only requires two commands; how
 Run the following commands, being sure to replace the key values with your generated keys.
 
 ```
-$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
+$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name>
 Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
 Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
@@ -134,7 +142,7 @@ Restarting NetQ CLI... Success!
 Or, if you have created a keys file as noted in the installation procedures for the NetQ Cloud server or Appliance, run the following commands. Be sure to include the *full path* the to file.
 
 ```
-$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /<full-path>/credentials.yml port 443
+$ netq config add cli server api.netq.cumulusnetworks.com cli-keys-file </full-path/credentials-filename.yml> premises text-premises-name>
 Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
 Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
@@ -145,7 +153,7 @@ Restarting NetQ CLI... Success!
 If you have multiple premises, be sure to include which premises you want to query. Rerun this command to query a different premises.
 
 ```
-$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <premises-name> port 443
+$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name>
 Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
 Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
@@ -241,7 +249,7 @@ number when configuring the NetQ Agent like this:
 cumulus@leaf01:~$ netq config add agent server 192.168.1.254 port 7379
 cumulus@leaf01:~$ netq config restart agent
 ```
-<!-- 
-## Configure Advanced NetQ CLI Settings
 
-vrf, port, proxy -->
+<!-- ## Configure Advanced NetQ CLI Settings
+
+proxy -->

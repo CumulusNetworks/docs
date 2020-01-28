@@ -31,8 +31,7 @@
       }
       #cover {
         break-after: always;
-        padding: .5in 0;
-        margin-top: 4in;
+        margin: auto;
         text-align: center;
       }
       #cover h1 { 
@@ -44,6 +43,10 @@
         margin-top:0;
         margin-bottom:1.1rem
       }
+      #cover img { 
+        object-fit: contain;
+      }
+      
       .toc1 { prince-bookmark-level: 1; }
       .toc2 { prince-bookmark-level: 2; }
       .toc3 { prince-bookmark-level: 3; }
@@ -103,6 +106,7 @@
 
 
 <body>
+{{if ne .Page.Type "pdf"}}
   <input type="checkbox" style="display: none" id="menu-control" />
   <!-- INSERT article page header -->
   <header id="site-nav">
@@ -127,7 +131,7 @@
       </div>
     </div>
   </header>
-{{if ne .Page.Type "pdf"}}
+
   <div id="product-nav" class="flex">
     <div class="menu-container">
       <!-- generates subnav memu from config.toml -->

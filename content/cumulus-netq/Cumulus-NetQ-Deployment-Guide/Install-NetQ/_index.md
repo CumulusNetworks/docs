@@ -10,7 +10,6 @@ version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-
 ## Overview
 
 The complete Cumulus NetQ solution contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed in two arrangements:

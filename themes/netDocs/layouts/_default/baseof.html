@@ -22,9 +22,9 @@
         margin: 0;
         padding: .5in;
       }
-      .toc1 { prince-bookmark-level: 1}
-      .toc2 { prince-bookmark-level: 2}
-      .toc3 { prince-bookmark-level: 3}
+      .toc1 { prince-bookmark-level: 1; }
+      .toc2 { prince-bookmark-level: 2; }
+      .toc3 { prince-bookmark-level: 3; }
       h1 { prince-bookmark-level: none; }
       h2 { prince-bookmark-level: none; }
       h3 { prince-bookmark-level: none; }
@@ -46,9 +46,11 @@
   {{ "-->" | safeHTML }}
 
   <!-- clipboard.js support -->
-  {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
-  <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  {{if ne .Page.Type "pdf"}}
+    {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
+    <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  {{ end }}
   {{if eq .Page.Type "pdf"}}
     <script>
       function replace_url() {
@@ -411,6 +413,7 @@
       </div>
   </div>
 
+{{if ne .Page.Type "pdf"}}
   <!-- internal Hugo template for google analytics -->
   {{ template "_internal/google_analytics_async.html" . }}
   <script type="text/javascript">
@@ -455,6 +458,7 @@
   <script>
     (function(w,d,s){var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='//embeddable-widgets-usw2.insided.com/cumulusnetworks-en.insided-conversational.js';f.parentNode.insertBefore(j,f);})(window,document,'script');
   </script>
+{{ end }}
 
 </body>
 

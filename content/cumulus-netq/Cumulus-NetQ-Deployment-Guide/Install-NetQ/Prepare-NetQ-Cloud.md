@@ -556,7 +556,7 @@ To generate access keys:
 
 3. From the Main Menu, select *Management* in the **Admin** column.
 
-      {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
+      {{< figure src="/images/netq/main-menu-mgmt-selected-240.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 5. Select your user and click **Generate AuthKeys**.

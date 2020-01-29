@@ -34,10 +34,10 @@ If your network uses a proxy server for external connections, you should first [
 
 Before you install the NetQ Agent on a Red Hat or CentOS server, make sure the following packages are installed and running these minimum versions:
 
-  - iproute-3.10.0-54.el7\_2.1.x86\_64
-  - lldpd-0.9.7-5.el7.x86\_64
+- iproute-3.10.0-54.el7\_2.1.x86\_64
+- lldpd-0.9.7-5.el7.x86\_64
 
-    {{%notice info%}}
+  {{%notice info%}}
 
 Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`, which is required for the installation.
 
@@ -51,52 +51,57 @@ root@rhel7:~# systemctl start lldpd.service
 root@rhel7:~# yum install wget
 ```
 
-    {{%/notice%}}
+  {{%/notice%}}
 
-  - ntp-4.2.6p5-25.el7.centos.2.x86\_64
-  - ntpdate-4.2.6p5-25.el7.centos.2.x86\_64
+- ntp-4.2.6p5-25.el7.centos.2.x86\_64
+- ntpdate-4.2.6p5-25.el7.centos.2.x86\_64
 
 To install the NetQ Agent on a Red Hat or CentOS server:
 
 1.  Reference and update the local `yum` repository.
 
-        root@rhel7:~# rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
-        root@rhel7:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
+```
+root@rhel7:~# rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
+root@rhel7:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
+```
 
-2.  Edit `/etc/yum.repos.d/cumulus-host-el.repo` to set the `enabled=1`
-    flag for the two NetQ repositories.
+2.  Edit `/etc/yum.repos.d/cumulus-host-el.repo` to set the `enabled=1` flag for the two NetQ repositories.
 
-        root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
-        ...
-        [cumulus-arch-netq-2.4]
-        name=Cumulus netq packages
-        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/$basearch
-        gpgcheck=1
-        enabled=1
-        [cumulus-noarch-netq-2.4]
-        name=Cumulus netq architecture-independent packages
-        baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/noarch
-        gpgcheck=1
-        enabled=1
-        ...
+```
+root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
+...
+[cumulus-arch-netq-2.4]
+name=Cumulus netq packages
+baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/$basearch
+gpgcheck=1
+enabled=1
+[cumulus-noarch-netq-2.4]
+name=Cumulus netq architecture-independent packages
+baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/noarch
+gpgcheck=1
+enabled=1
+...
+```
 
 3.  Install NTP on the server.
 
-        root@rhel7:~# yum install ntp
+```
+root@rhel7:~# yum install ntp
+```
 
 4.  Configure the NTP server.
 
     1.  Open the `/etc/ntp.conf` file in your text editor of choice.
-    2.  Under the Server section, specify the NTP server IP address or
-        hostname.
+    2.  Under the Server section, specify the NTP server IP address or  hostname.
 
 5.  Enable and start the NTP service.
 
-        root@rhel7:~# sudo systemctl enable ntpd.service
-        root@rhel7:~# sudo systemctl start ntpd.service
+```
+root@rhel7:~# sudo systemctl enable ntpd.service
+root@rhel7:~# sudo systemctl start ntpd.service
+```
 
-6.  Verify NTP is operating correctly. Look for an asterisk (\*) or a
-    plus sign (+) that indicates the clock is synchronized.
+6.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
         root@rhel7:~# ntpq -pn
              remote           refid      st t when poll reach   delay   offset  jitter
@@ -108,8 +113,10 @@ To install the NetQ Agent on a Red Hat or CentOS server:
 
 7.  Install the Bash completion and NetQ packages on the server.
 
-        root@rhel7:~# yum -y install bash-completion
-        root@rhel7:~# yum install netq-agent netq-apps
+```
+root@rhel7:~# yum -y install bash-completion
+root@rhel7:~# yum install netq-agent netq-apps
+```
 
 8.  Continue with [NetQ Agent Configuration](#configure-your-netq-agents).
 
@@ -159,8 +166,8 @@ Configuring the CLI for *cloud* deployments also only requires two commands; how
 
 - In NetQ 2.2.2 and later, if your nodes do not have Internet access, you can use the CLI proxy that is available on the NetQ cloud server or NetQ Cloud Appliance.
 - In NetQ 2.2.1 and later, you can:
-    - save your access credentials in a file and reference that file here to simplify the configuration commands
-    - specify which premises you want to query
+  - save your access credentials in a file and reference that file here to simplify the configuration commands
+  - specify which premises you want to query
 
 *For switches with Internet access* run the following commands, being sure to replace the key values with your generated keys. Refer to [Generate Access Keys](../Prepare-NetQ-Cloud/#generate-access-keys) if needed.
 
@@ -225,13 +232,7 @@ $ netq config restart agent
 
 #### Configure the Agent to Use a VRF
 
-While optional, Cumulus strongly recommends that you configure NetQ
-Agents to communicate with the NetQ Platform only via a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including a
-[management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need to
-specify the VRF name when configuring the NetQ Agent. For example, if
-the management VRF is configured and you want the agent to communicate
-with the NetQ Platform over it, configure the agent like this:
+While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Platform only via a [VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/),  including a [management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Platform over it, configure the agent like this:
 
 ```
 cumulus@leaf01:~$ netq config add agent server 192.168.1.254 vrf mgmt
@@ -240,10 +241,7 @@ cumulus@leaf01:~$ netq config restart agent
 
 #### Configure the Agent to Communicate over a Specific Port
 
-By default, NetQ uses port 31980 for communication between the NetQ
-Platform and NetQ Agents. If you want the NetQ Agent to communicate with
-the NetQ Platform via a different port, you need to specify the port
-number when configuring the NetQ Agent like this:
+By default, NetQ uses port 31980 for communication between the NetQ Platform and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ Platform via a different port, you need to specify the port number when configuring the NetQ Agent like this:
 
 ```
 cumulus@leaf01:~$ netq config add agent server 192.168.1.254 port 7379

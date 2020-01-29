@@ -47,7 +47,6 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.4
 The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-3 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
 {{%/notice%}}
 </details>
-
 <details><summary>Cumulus Linux 4.x</summary>
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
@@ -65,7 +64,9 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-
 
 Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux.
 
-    cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
+```
+cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
+```
 
 ## Install NetQ Agent and CLI
 
@@ -74,12 +75,12 @@ A simple process installs the NetQ Agent and CLI on a Cumulus switch.
 1.  Update the local `apt` repository, then install the NetQ meta
     package on the switch.
 
-        cumulus@switch:~$ sudo apt-get update
-        cumulus@switch:~$ sudo apt-get install netq-agent netq-apps
+```
+cumulus@switch:~$ sudo apt-get update
+cumulus@switch:~$ sudo apt-get install netq-agent netq-apps
+```
 
-2.  Verify that [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
-    is running on the host node. Nodes must be in time synchronization with the
-    NetQ Platform to enable useful statistical analysis.
+2.  Verify that [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) is running on the host node. Nodes must be in time synchronization with the NetQ Platform to enable useful statistical analysis.
 
         cumulus@switch:~$ sudo systemctl status ntp
         [sudo] password for cumulus:
@@ -92,9 +93,9 @@ A simple process installs the NetQ Agent and CLI on a Cumulus switch.
 
 3.  Restart `rsyslog` so log files are sent to the correct destination.
 
-        cumulus@switch:~$ sudo systemctl restart rsyslog.service
-
-<!-- 4. Continue with [Configure Your NetQ Agents](#configure-your-netq-agents). -->
+```
+cumulus@switch:~$ sudo systemctl restart rsyslog.service
+```
 
 ## Configure the NetQ CLI
 
@@ -114,7 +115,6 @@ netq config add cli server <ip-address-of-netq-server-or-appliance>
 netq config restart cli
 ```
 </details>
-
 <details><summary>Configure NetQ CLI for cloud deployments</summary>
 
 Configuring the CLI for *cloud* deployments also only requires two commands; however, there are a couple of additional options that you can apply:
@@ -123,7 +123,6 @@ Configuring the CLI for *cloud* deployments also only requires two commands; how
 - In NetQ 2.2.1 and later, you can:
     - save your access credentials in a file and reference that file here to simplify the configuration commands
     - specify which premises you want to query
-
 
 <details><summary>For Switches with Internet Access</summary>
 
@@ -160,7 +159,6 @@ $ netq config restart cli
 Restarting NetQ CLI... Success!
 ```
 </details>
-
 <details><summary>For Switches without Internet Access</summary>
 
 You can use the CLI proxy that is part of the NetQ Cloud Server or Appliance with NetQ 2.2.2 and later to manage CLI access on your nodes. To make use of the proxy, you must point each switch or host to the NetQ Cloud Server or Appliance. Run the following commands, using the IP address of the proxy:
@@ -222,15 +220,11 @@ $ netq config restart agent
 
 ## Configure Advanced NetQ Agent Settings
 
+There are a couple of additional settings that can be configured for NetQ Agents.
+
 ### Configure the Agent to Use a VRF
 
-While optional, Cumulus strongly recommends that you configure NetQ
-Agents to communicate with the NetQ Platform only via a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including a
-[management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need to
-specify the VRF name when configuring the NetQ Agent. For example, if
-the management VRF is configured and you want the agent to communicate
-with the NetQ Platform over it, configure the agent like this:
+While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Platform only via a [VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including a [management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Platform over it, configure the agent like this:
 
 ```
 cumulus@leaf01:~$ netq config add agent server 192.168.1.254 vrf mgmt
@@ -239,10 +233,7 @@ cumulus@leaf01:~$ netq config restart agent
 
 ### Configure the Agent to Communicate over a Specific Port
 
-By default, NetQ uses port 31980 for communication between the NetQ
-Platform and NetQ Agents. If you want the NetQ Agent to communicate with
-the NetQ Platform via a different port, you need to specify the port
-number when configuring the NetQ Agent like this:
+By default, NetQ uses port 31980 for communication between the NetQ Platform and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ Platform via a different port, you need to specify the port number when configuring the NetQ Agent like this:
 
 ```
 cumulus@leaf01:~$ netq config add agent server 192.168.1.254 port 7379
@@ -251,4 +242,4 @@ cumulus@leaf01:~$ netq config restart agent
 
 <!-- ## Configure Advanced NetQ CLI Settings
 
-proxy -->
+vrf, port, proxy -->

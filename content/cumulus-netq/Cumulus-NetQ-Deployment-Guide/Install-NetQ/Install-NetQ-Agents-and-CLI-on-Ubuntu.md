@@ -35,12 +35,12 @@ If your network uses a proxy server for external connections, you should first [
 Before you install the NetQ Agent on an Ubuntu server, make sure the
 following packages are installed and running these minimum versions:
 
-  - iproute 1:4.3.0-1ubuntu3.16.04.1 all
-  - iproute2 4.3.0-1ubuntu3 amd64
-  - lldpd 0.7.19-1 amd64
-  - ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
+- iproute 1:4.3.0-1ubuntu3.16.04.1 all
+- iproute2 4.3.0-1ubuntu3 amd64
+- lldpd 0.7.19-1 amd64
+- ntp 1:4.2.8p4+dfsg-3ubuntu5.6 amd64
 
-    {{%notice info%}}
+{{%notice info%}}
 
 Make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default, which is required for the installation.
 
@@ -52,56 +52,66 @@ root@ubuntu:~# apt-get install lldpd
 root@ubuntu:~# systemctl enable lldpd.service
 root@ubuntu:~# systemctl start lldpd.service
 ```
-    {{%/notice%}}
+
+{{%/notice%}}
 
 To install the NetQ Agent and CLI on an Ubuntu server:
 
-1.  Reference and update the local `apt` repository.
+1. Reference and update the local `apt` repository.
 
-        root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+```
+root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+```
 
 2. Add the Ubuntu repository:
 
     <details><summary>Ubuntu 16.04</summary>
     Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
-        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-        ...
-        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-        ...
+    ```
+    root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+    ...
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+    ...
+    ```
+
     </details>
     <details><summary>Ubuntu 18.04</summary>
     Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
 
-        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
-        ...
-        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
-        ...
+    ```
+    root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+    ...
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+    ...
+    ```
+
     </details>
+
     {{%notice note%}}
-
-The use of `netq-latest` in this example means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.3` - use that instead.
-
+The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.3` - use that instead.
     {{%/notice%}}
 
-3.  Install NTP on the server, if not already installed.
+3. Install NTP on the server, if not already installed.
 
-        root@ubuntu:~# sudo apt-get install ntp
+```
+root@ubuntu:~# sudo apt-get install ntp
+```
 
-4.  Configure the NTP server.
+4. Configure the NTP server.
 
     1.  Open the `/etc/ntp.conf` file in your text editor of choice.
 
-    2.  Under the Server section, specify the NTP server IP address or
-        hostname.
+    2.  Under the Server section, specify the NTP server IP address or hostname.
 
 5.  Enable and start the NTP service.
 
-        root@ubuntu:~# sudo systemctl enable ntp.service
-        root@ubuntu:~# sudo systemctl start ntp.service
+```
+root@ubuntu:~# sudo systemctl enable ntp.service
+root@ubuntu:~# sudo systemctl start ntp.service
+```
 
-6.  Verify NTP is operating correctly. Look for an asterisk (\*) or a
-    plus sign (+) that indicates the clock is synchronized.
+6.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
         root@ubuntu:~# ntpq -pn
              remote           refid      st t when poll reach   delay   offset  jitter
@@ -113,16 +123,16 @@ The use of `netq-latest` in this example means that a `get` to the repository al
 
 7.  Install the software packages on the server.
 
-        root@ubuntu:~# apt-get update
-        root@ubuntu:~# apt-get install netq-agent netq-apps
+```
+root@ubuntu:~# apt-get update
+root@ubuntu:~# apt-get install netq-agent netq-apps
+```
 
 8.  Continue with [NetQ Agent Configuration](#configure-your-netq-agents)
 
 ## Configure Your NetQ Agents
 
-Once the NetQ Agents have been installed on the network nodes you want
-to monitor, the NetQ Agents must be configured to obtain useful and
-relevant data. Two methods are available for configuring a NetQ Agent:
+Once the NetQ Agents have been installed on the network nodes you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data. Two methods are available for configuring a NetQ Agent:
 
 - Edit the configuration file on the device, or
 - Configure and run NetQ CLI commands on the device.
@@ -136,7 +146,7 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 3. Set the parameters for the agent as follows:
     - port: 31980 (default configuration)
     - server: IP address of the NetQ server or appliance where the agent should send its collected data
-    - vrf: default (default configuration) 
+    - vrf: default (default configuration)
 
 Your configuration should be similar to this:
 
@@ -153,7 +163,7 @@ The NetQ CLI was installed when you installed the NetQ Agent; however, to use it
 
 #### Configure the NetQ CLI
 
- Note that the steps to install the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment.
+Note that the steps to install the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment.
 
 Configuring the CLI for *on-premises* deployments requires only two commands:
 
@@ -232,13 +242,7 @@ $ netq config restart agent
 
 #### Configure the Agent to Use a VRF
 
-While optional, Cumulus strongly recommends that you configure NetQ
-Agents to communicate with the NetQ Platform only via a
-[VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including a
-[management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need to
-specify the VRF name when configuring the NetQ Agent. For example, if
-the management VRF is configured and you want the agent to communicate
-with the NetQ Platform over it, configure the agent like this:
+While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Platform only via a [VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/), including a [management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Platform over it, configure the agent like this:
 
 ```
 cumulus@leaf01:~$ netq config add agent server 192.168.1.254 vrf mgmt
@@ -247,10 +251,7 @@ cumulus@leaf01:~$ netq config restart agent
 
 #### Configure the Agent to Communicate over a Specific Port
 
-By default, NetQ uses port 31980 for communication between the NetQ
-Platform and NetQ Agents. If you want the NetQ Agent to communicate with
-the NetQ Platform via a different port, you need to specify the port
-number when configuring the NetQ Agent like this:
+By default, NetQ uses port 31980 for communication between the NetQ Platform and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ Platform via a different port, you need to specify the port number when configuring the NetQ Agent like this:
 
 ```
 cumulus@leaf01:~$ netq config add agent server 192.168.1.254 port 7379

@@ -1,7 +1,7 @@
 ---
 title: VXLAN Active-Active Mode
 author: Cumulus Networks
-weight: 145
+weight: 600
 aliases:
  - /display/DOCS/VXLAN+Active+Active+Mode
  - /pages/viewpage.action?pageId=8366448

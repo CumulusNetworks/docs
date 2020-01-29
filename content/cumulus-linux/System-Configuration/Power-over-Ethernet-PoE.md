@@ -1,7 +1,7 @@
 ---
 title: Power over Ethernet - PoE
 author: Cumulus Networks
-weight: 77
+weight: 250
 aliases:
  - /display/DOCS/Power+over+Ethernet+++PoE
  - /display/DOCS/Power+over+Ethernet+-+PoE

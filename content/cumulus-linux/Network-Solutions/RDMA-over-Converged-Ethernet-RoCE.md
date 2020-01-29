@@ -1,7 +1,7 @@
 ---
 title: RDMA over Converged Ethernet - RoCE
 author: Cumulus Networks
-weight: 257
+weight: 1200
 aliases:
  - /display/DOCS/RDMA+over+Converged+Ethernet+++RoCE
  - /display/DOCS/RDMA+over+Converged+Ethernet+RoCE

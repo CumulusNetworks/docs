@@ -1,7 +1,7 @@
 ---
 title: Campus Deployments
 author: Cumulus Networks
-weight: 250
+weight: 1160
 product: Cumulus Linux
 version: '4.0'
 imgData: cumulus-linux

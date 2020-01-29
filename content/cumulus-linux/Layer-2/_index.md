@@ -1,7 +1,7 @@
 ---
 title: Layer 2
 author: Cumulus Networks
-weight: 19
+weight: 390
 aliases:
  - /display/DOCS/Layer+2
  - /pages/viewpage.action?pageId=8366372

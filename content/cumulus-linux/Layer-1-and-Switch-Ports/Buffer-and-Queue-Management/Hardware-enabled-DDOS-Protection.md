@@ -1,7 +1,7 @@
 ---
 title: Hardware-enabled DDOS Protection
 author: Cumulus Networks
-weight: 321
+weight: 330
 aliases:
  - /display/DOCS/Hardware+enabled+DDOS+Protection
  - /pages/viewpage.action?pageId=8366756

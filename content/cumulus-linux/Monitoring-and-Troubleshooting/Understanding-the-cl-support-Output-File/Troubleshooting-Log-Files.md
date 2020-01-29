@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting Log Files
 author: Cumulus Networks
-weight: 427
+weight: 1000
 aliases:
  - /display/DOCS/Troubleshooting+Log+Files
  - /pages/viewpage.action?pageId=8366323

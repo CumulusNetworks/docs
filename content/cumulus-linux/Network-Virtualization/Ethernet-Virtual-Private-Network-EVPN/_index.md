@@ -1,7 +1,7 @@
 ---
 title: Ethernet Virtual Private Network - EVPN
 author: Cumulus Networks
-weight: 143
+weight: 530
 aliases:
  - /display/DOCS/Ethernet+Virtual+Private+Network+++EVPN
  - /pages/viewpage.action?pageId=8366455

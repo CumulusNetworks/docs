@@ -1,7 +1,7 @@
 ---
 title: EVPN BUM Traffic with PIM-SM
 author: Cumulus Networks
-weight: 356
+weight: 570
 aliases:
  - /pages/viewpage.action?pageId=12910740
 product: Cumulus Linux

@@ -1,7 +1,7 @@
 ---
 title: Bidirectional Forwarding Detection - BFD
 author: Cumulus Networks
-weight: 187
+weight: 830
 aliases:
  - /display/DOCS/Bidirectional+Forwarding+Detection+++BFD
  - /display/DOCS/Bidirectional+Forwarding+Detection+-+BFD

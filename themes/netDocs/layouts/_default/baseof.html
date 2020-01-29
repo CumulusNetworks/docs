@@ -213,7 +213,7 @@
           for (var i = 0; i < elems.length; i++) {
               path = elems[i]["href"];
               path_parts = path.split("/");
-              if(path_parts[3] != "cumulus-netq"){
+              if(path_parts[3] != "{{.Section}}"){
                 continue
               }
               if(path_parts[path_parts.length - 1] == ""){

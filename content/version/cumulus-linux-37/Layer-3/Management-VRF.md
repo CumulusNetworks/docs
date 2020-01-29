@@ -220,7 +220,7 @@ Documentation=https://www.example.io/
 
 [Service]
 #User=username
-ExecStart=/usr/bin/vrf task exec mgmt /sbin/runuser -u cumulus -- foocommand
+ExecStart=/usr/bin/ip vrf exec mgmt /sbin/runuser -u cumulus -- foocommand
 
 [Install]
 WantedBy=multi-user.target
@@ -267,10 +267,10 @@ route-map REDISTRIBUTE-CONNECTED permit 1000
 
 ## SSH within a Management VRF Context
 
-If you SSH to the switch through a switch port, SSH works as expected. If you need to SSH from the device out of a switch port, use `vrf exec default ssh <ip_address_of_swp_port>`. For example:
+If you SSH to the switch through a switch port, SSH works as expected. If you need to SSH from the device out of a switch port, use `ip vrf exec default ssh <ip_address_of_swp_port>`. For example:
 
 ```
-cumulus@switch:~$ sudo vrf exec default ssh 10.23.23.2 10.3.3.3
+cumulus@switch:~$ sudo ip vrf exec default ssh 10.23.23.2 10.3.3.3
 ```
 
 ## View the Routing Tables

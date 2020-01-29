@@ -1,7 +1,7 @@
 ---
 title: Installing a New Cumulus Linux Image
 author: Cumulus Networks
-weight: 43
+weight: 40
 aliases:
  - /display/DOCS/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=8366364

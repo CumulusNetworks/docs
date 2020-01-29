@@ -1,7 +1,7 @@
 ---
 title: Switch Port Attributes
 author: Cumulus Networks
-weight: 307
+weight: 300
 aliases:
  - /display/DOCS/Switch+Port+Attributes
  - /pages/viewpage.action?pageId=8366750

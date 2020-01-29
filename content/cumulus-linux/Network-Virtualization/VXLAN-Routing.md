@@ -1,7 +1,7 @@
 ---
 title: VXLAN Routing
 author: Cumulus Networks
-weight: 147
+weight: 610
 aliases:
  - /display/DOCS/VXLAN+Routing
  - /pages/viewpage.action?pageId=8366471
@@ -99,6 +99,10 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 VXLAN routing with internal loopback is supported only with [VLAN-aware bridges](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/); you cannot use a bridge in [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/).
 
 {{%/notice%}}
+
+## VXLAN Routing Data Plane and Broadcom Trident II Platforms
+
+VXLAN routing is not supported on Trident II switches, and the external hyperloop workaround for RIOT on Trident II switches has been removed in Cumulus Linux 4.0.0. Cumulus Networks recommends you use native VXLAN routing platforms and EVPN for network virtualization.
 
 ## VXLAN Routing Data Plane and the Mellanox Spectrum ASIC
 

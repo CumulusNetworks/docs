@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 author: Cumulus Networks
-weight: 360
+weight: 590
 aliases:
  - /pages/viewpage.action?pageId=12910740
 product: Cumulus Linux

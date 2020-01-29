@@ -1,7 +1,7 @@
 ---
 title: Basic Configuration
 author: Cumulus Networks
-weight: 350
+weight: 540
 aliases:
  - /pages/viewpage.action?pageId=12910740
 product: Cumulus Linux
@@ -525,7 +525,7 @@ For active-active configuration, make sure that:
 
 MLAG synchronizes information between the two switches in the MLAG pair; EVPN does not synchronize.
 
-For type-5 routes in an EVPN *symmetric* configuration with VXLAN active-active mode, Cumulus Linux uses Primary IP Address Advertisement. For information on configuring Primary IP Address Advertisement, see [Advertise Primary IP Address](../Inter-subnet-Routing#advertise-primary-ip-address).
+For type-5 routes in an EVPN *symmetric* configuration with VXLAN active-active mode, Cumulus Linux uses Primary IP Address Advertisement. For information on configuring Primary IP Address Advertisement, see [Advertise Primary IP Address](../Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode).
 
 For information about active-active VTEPs and anycast IP behavior, and for failure scenarios, see [VXLAN Active-Active Mode](../../VXLAN-Active-Active-Mode).
 

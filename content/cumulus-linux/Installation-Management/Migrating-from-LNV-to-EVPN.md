@@ -1,7 +1,7 @@
 ---
 title: Migrating from LNV to EVPN
 author: Cumulus Networks
-weight: 47
+weight: 60
 aliases:
  - /display/DOCS/Migrating+from+LNV+to+EVPN
  - /pages/viewpage.action?pageId=9013184

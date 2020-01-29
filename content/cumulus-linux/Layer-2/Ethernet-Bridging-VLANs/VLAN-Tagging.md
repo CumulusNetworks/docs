@@ -1,7 +1,7 @@
 ---
 title: VLAN Tagging
 author: Cumulus Networks
-weight: 349
+weight: 470
 aliases:
  - /display/DOCS/VLAN+Tagging
  - /pages/viewpage.action?pageId=8366391

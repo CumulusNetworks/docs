@@ -423,9 +423,10 @@ The commands above produce the following snippet in the
       address 10.1.1.1/30
 
 To add an IP address to a bridge interface, you must put it into a VLAN
-interface:
+interface. If you want to use a VLAN other than the native one, set the bridge PVID:
 
     cumulus@switch:~$ net add vlan 100 ip address 10.2.2.1/24
+    cumulus@switch:~$ net add bridge bridge pvid 100
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
@@ -434,7 +435,8 @@ The commands above produce the following snippet in the
 
     auto bridge
     iface bridge
-        bridge-vids 100
+        bridge-ports swp1
+        bridge-pvid 100
         bridge-vlan-aware yes
      
     auto vlan100

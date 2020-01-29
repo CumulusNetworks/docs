@@ -1,7 +1,7 @@
 ---
 title: Virtual Routing and Forwarding - VRF
 author: Cumulus Networks
-weight: 193
+weight: 860
 aliases:
  - /display/DOCS/Virtual+Routing+and+Forwarding+++VRF
  - /display/DOCS/Virtual+Routing+and+Forwarding+-+VRF
@@ -187,11 +187,15 @@ rocket
 
 You can execute non-VRF-specific Linux commands and perform other tasks against a given VRF table. This typically applies to single-use commands started from a login shell, as they affect only AF\_INET and AF\_INET6 sockets opened by the command that gets executed; it has no impact on netlink sockets, associated with the `ip` command.
 
-To execute such a command against a VRF table, run `vrf task exec <vrf-name> <command>`. For  example, to SSH from the switch to a device accessible through VRF *rocket*:
+To execute such a command against a VRF table, run `ip vrf exec <vrf-name> <command>`. For  example, to SSH from the switch to a device accessible through VRF *rocket*:
 
 ```
-cumulus@switch:~$ sudo vrf task exec rocket ssh user@host
+cumulus@switch:~$ sudo ip vrf exec rocket ssh user@host
 ```
+
+{{%notice tip%}}
+Alternately, you can use the `vrf task exec` command instead of `ip vrf exec`, but Cumulus Networks recommends you use `ip vrf exec`.
+{{%/notice%}}
 
 ### Services in VRFs
 
@@ -1285,7 +1289,7 @@ cumulus@switch:~$ sudo systemctl status dhcpd@rocket.service
 You can create this configuration using the `vrf` command (see [IPv4 and IPv6 Commands in a VRF Context](#ipv4-and-ipv6-commands-in-a-vrf-context) above for more details):
 
 ```
-cumulus@switch:~$ sudo vrf task exec rocket /usr/sbin/dhcpd -f -q -cf /
+cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcpd -f -q -cf /
     /etc/dhcp/dhcpd-rocket.conf -pf /var/run/dhcpd-rocket.pid swp2
 ```
 
@@ -1336,7 +1340,7 @@ cumulus@switch:~$ sudo systemctl status dhcpd6@turtle.service
 You can create this configuration using the `vrf` command (see [IPv4 and IPv6 Commands in a VRF Context](#ipv4-and-ipv6-commands-in-a-vrf-context) above for more details):
 
 ```
-cumulus@switch:~$ sudo vrf task exec turtle dhcpd -6 -q -cf /
+cumulus@switch:~$ sudo ip vrf exec turtle dhcpd -6 -q -cf /
     /etc/dhcp/dhcpd6-turtle.conf -pf /var/run/dhcpd6-turtle.pid swp3
 ```
 
@@ -1387,7 +1391,7 @@ cumulus@switch:~$ sudo systemctl status dhcrelay@rocket.service
 
 You can create this configuration using the `vrf` command (see [IPv4 and IPv6 Commands in a VRF Context](#ipv4-and-ipv6-commands-in-a-vrf-context) above for more details):
 ```
-cumulus@switch:~$ sudo vrf task exec rocket /usr/sbin/dhcrelay -d -q -i /
+cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcrelay -d -q -i /
     swp2s2 -i swp2s3 102.0.0.2
 ```
 
@@ -1438,7 +1442,7 @@ cumulus@switch:~$ sudo systemctl status dhcrelay6@turtle.service
 You can create this configuration using the `vrf` command (see [IPv4 and IPv6 Commands in a VRF Context](#ipv4-and-ipv6-commands-in-a-vrf-context) above for more details):
 
 ```
-cumulus@switch:~$ sudo vrf task exec turtle /usr/sbin/dhcrelay -d -q -6 -l /
+cumulus@switch:~$ sudo ip vrf exec turtle /usr/sbin/dhcrelay -d -q -6 -l /
     swp18s0 -u swp18s1 -pf /var/run/dhcrelay6@turtle.pid
 ```
 

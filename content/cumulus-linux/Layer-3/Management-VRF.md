@@ -1,7 +1,7 @@
 ---
 title: Management VRF
 author: Cumulus Networks
-weight: 195
+weight: 870
 aliases:
  - /display/DOCS/Management+VRF
  - /pages/viewpage.action?pageId=8366664
@@ -196,13 +196,13 @@ ExecStart=/usr/local/bin/ssh agent -data-dir=/tmp/ssh -bind=192.168.0.11
 ...
 ```
 
-3. Modify the *ExecStart* line to `/usr/bin/vrf exec mgmt /sbin/runuser -u USER -- ssh`:
+3. Modify the *ExecStart* line to `/usr/bin/ip vrf exec mgmt /sbin/runuser -u USER -- ssh`:
 
 ```
 ...
 [Service]
 #User=username
-ExecStart=/usr/bin/vrf task exec mgmt /sbin/runuser -u cumulus -- ssh
+ExecStart=/usr/bin/ip vrf exec mgmt /sbin/runuser -u cumulus -- ssh
 ...
 ```
 

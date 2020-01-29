@@ -1,7 +1,7 @@
 ---
 title: Inter-subnet Routing
 author: Cumulus Networks
-weight: 354
+weight: 560
 aliases:
  - /pages/viewpage.action?pageId=12910740
 product: Cumulus Linux
@@ -89,13 +89,13 @@ The only additional configuration required to implement asymmetric routing beyon
 
 ## Symmetric Routing
 
-In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts. This is the same as in asymmetric routing. However, with symmetric routing, both the ingress VTEP and egress VTEP route the packets. Therefore, it can be compared to the traditional routing behavior of routing to a next hop router. In the VXLAN encapsulated packet, the inner destination MAC address is set to the router MAC address of the egress VTEP as an indication that the egress VTEP is the next hop and also needs to perform routing. All routing happens in the context of a tenant (VRF). For a packet received by the ingress VTEP from a locally attached host, the SVI interface corresponding to the VLAN determines the VRF. For a packet received by the egress VTEP over the VXLAN tunnel, the VNI in the packet has to specify the VRF. For symmetric routing, this is a VNI corresponding to the tenant and is different from either the source VNI or the destination VNI. This VNI is referred to as the layer 3 VNI or interconnecting VNI; it has to be provisioned by the operator and is exchanged through the EVPN control plane. To make the distinction clear, the regular VNI, which is used to map a VLAN, is referred to as the layer 2 VNI.
+In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts; however, both the ingress VTEP and egress VTEP route the packets (similar to the traditional routing behavior of routing to a next hop router). In the VXLAN encapsulated packet, the inner destination MAC address is set to the router MAC address of the egress VTEP as an indication that the egress VTEP is the next hop and also needs to perform routing. All routing happens in the context of a tenant (VRF). For a packet received by the ingress VTEP from a locally attached host, the SVI interface corresponding to the VLAN determines the VRF. For a packet received by the egress VTEP over the VXLAN tunnel, the VNI in the packet has to specify the VRF. For symmetric routing, this is a VNI corresponding to the tenant and is different from either the source VNI or the destination VNI. This VNI is referred to as the layer 3 VNI or interconnecting VNI; it has to be provisioned by the operator and is exchanged through the EVPN control plane. To make the distinction clear, the regular VNI, which is used to map a VLAN, is referred to as the layer 2 VNI.
 
 {{%notice note%}}
 
 - There is a one-to-one mapping between a layer 3 VNI and a tenant (VRF).
 - The VRF to layer 3 VNI mapping has to be consistent across all VTEPs. The layer 3 VNI has to be provisioned by the operator.
-- The layer 3 VNI and layer 2 VNI cannot share the same number space; for example, you cannot have *vlan10* and *vxlan10*. Otherwise, the layer 2 VNI does not get created.
+- A layer 3 VNI and a layer 2 VNI cannot have the same ID. If the VNI IDs are the same, the layer 2 VNI does not get created.
 - In an MLAG configuration, the SVI used for the layer 3 VNI cannot be part of the bridge. This ensures that traffic tagged with that VLAN ID is not forwarded on the peer link or other trunks.
 
 {{%/notice%}}
@@ -458,30 +458,24 @@ switch# write memory
 
 ### Advertise Primary IP address (VXLAN Active-Active Mode)
 
- With Cumulus Linux 3.7 and earlier, in EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes are advertised with the anycast IP address (VXLAN interface tunnel IP address) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
+ With Cumulus Linux 3.7 and earlier, in EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes are advertised with the anycast IP address ([clagd-vxlan-anycast-ip](../../VXLAN-Active-Active-Mode/#terminology)) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
 
-To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
+To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
-- For type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
-- For type-5 routes, the primary IP address of the VTEP is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC address.
+- For host type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
+- For type-5 routes, the system IP address (the primary IP address of the VTEP) is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC address.
 
-See [VXLAN-Active-Active-Mode](../../VXLAN-Active-Active-Mode/) for detailed information about VXLAN active-active mode.
+See [EVPN and VXLAN Active-Active mode](../Basic-Configuration/#evpn-and-vxlan-active-active-mode) for information about EVPN and VXLAN active-active mode.
 
 #### Configure Advertise Primary IP Address
 
-Cumulus Linux uses the anycast IP address for type-2 routes and **automatically** derives the system IP address from the router ID of the BGP default instance for type-5 routes; no IP address configuration is required. However, you must configure the switch to use two interfaces per layer 3 VNI; the anycast MAC address for type-2 routes and the system MAC address of the VTEP for type-5 routes.
-
-{{%notice note%}}
-
-Run these commands on both switches in the MLAG pair.
-
-{{%/notice%}}
+Run the `address-virtual <anycast-mac>` command under the SVI, where `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)). Run these commands on both switches in the MLAG pair.
 
 <details>
 
 <summary> NCLU commands</summary>
 
-Run the `address-virtual <anycast-mac>` command under the SVI. `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
+Run the `net add vlan <vlan> address-virtual <anycast-mac>` command. For example:
 
 ```
 cumulus@leaf01:~$ net add vlan 4001 address-virtual 44:38:39:FF:40:94
@@ -495,7 +489,7 @@ cumulus@leaf01:~$ net commit
 
 <summary> Linux commands</summary>
 
-Edit the `/etc/network/interfaces` file and add `address-virtual <anycast-mac>` under the SVI. `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)).
+Edit the `/etc/network/interfaces` file and add `address-virtual <anycast-mac>` under the SVI. For example:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
@@ -521,7 +515,7 @@ In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the
 
 If you do not want Cumulus Linux to derive the system IP address automatically, you can provide the system IP address and system MAC address under each BGP VRF instance.
 
-The system MAC address must be the layer 3 SVI MAC address (not the clad-sys-mac).
+The system MAC address must be the layer 3 SVI MAC address (not the `clad-sys-mac`).
 
 The following example commands add the system IP address 10.0.0.11 and the system MAC address 44:38:39:ff:00:00:
 
@@ -581,9 +575,8 @@ cumulus@leaf01:~$ net commit
 
 <summary> vtysh commands</summary>
 
-cumulus@switch:~$ sudo vtysh
-
 ```
+cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65000 vrf vrf1
 switch(config)# address-family l2vpn evpn

@@ -1,7 +1,7 @@
 ---
 title: VLAN-aware Bridge Mode
 author: Cumulus Networks
-weight: 345
+weight: 450
 aliases:
  - /display/DOCS/VLAN+aware+Bridge+Mode
  - /pages/viewpage.action?pageId=8366396

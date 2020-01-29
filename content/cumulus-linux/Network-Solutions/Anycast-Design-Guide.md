@@ -1,7 +1,7 @@
 ---
 title: Anycast Design Guide
 author: Cumulus Networks
-weight: 255
+weight: 1190
 aliases:
  - /display/DOCS/Anycast+Design+Guide
  - /pages/viewpage.action?pageId=8366734

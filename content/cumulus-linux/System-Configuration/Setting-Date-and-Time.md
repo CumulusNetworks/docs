@@ -1,7 +1,7 @@
 ---
 title: Setting Date and Time
 author: Cumulus Networks
-weight: 67
+weight: 120
 aliases:
  - /display/DOCS/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=8366266

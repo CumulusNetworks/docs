@@ -1001,6 +1001,89 @@ spine01           gnupg                    1.4.18-7+deb8u5      Cumulus Linux 3.
 
 Remove the `hostname` option to view the information for all switches. Use the `text-package-name` option to narrow the results to a particular package or the `around` option to narrow the output to a particular time range.
 
+### View ACL Resources
+
+You can monitor the incoming and outgoing access control lists (ACLs) configured on one or all devices, currently or at a time in the past. Use the `netq show cl-resource acl` command to view this information. Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs. Use the `around` option to show this information for a time in the past.
+
+This example shows the ACL resources by the *leaf01* switch.
+
+```
+cumulus@switch:~$ netq leaf01 show cl-resource acl
+Matching cl_resource records:
+Hostname          In IPv4 filter       In IPv4 Mangle       In IPv6 filter       In IPv6 Mangle       In 8021x filter      In Mirror            In PBR IPv4 filter   In PBR IPv6 filter   Eg IPv4 filter       Eg IPv4 Mangle       Eg IPv6 filter       Eg IPv6 Mangle       ACL Regions          18B Rules Key        32B Rules Key        54B Rules Key        L4 Port range Checke Last Updated
+                                                                                                                                                                                                                                                                                                                                                                  rs
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            36,512(7%)           0,0(0%)              30,768(3%)           0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              29,256(11%)          0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              2,24(8%)             Mon Jan 13 03:34:11 2020
+```
+
+You can also view this same information in JSON format.
+
+```
+cumulus@switch:~$ netq leaf01 show cl-resource acl json
+{
+    "cl_resource": [
+        {
+            "egIpv4Filter": "29,256(11%)",
+            "egIpv4Mangle": "0,0(0%)",
+            "inIpv6Filter": "30,768(3%)",
+            "egIpv6Mangle": "0,0(0%)",
+            "inIpv4Mangle": "0,0(0%)",
+            "hostname": "leaf01",
+            "inMirror": "0,0(0%)",
+            "egIpv6Filter": "0,0(0%)",
+            "lastUpdated": 1578886451.885,
+            "54bRulesKey": "0,0(0%)",
+            "aclRegions": "0,0(0%)",
+            "in8021XFilter": "0,0(0%)",
+            "inIpv4Filter": "36,512(7%)",
+            "inPbrIpv6Filter": "0,0(0%)",
+            "18bRulesKey": "0,0(0%)",
+            "l4PortRangeCheckers": "2,24(8%)",
+            "inIpv6Mangle": "0,0(0%)",
+            "32bRulesKey": "0,0(0%)",
+            "inPbrIpv4Filter": "0,0(0%)"
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
+### View Forwarding Resources
+
+You can monitor the amount of forwarding resources used by one or all devices, currently or at a time in the past. Use the `netq show cl-resource forwarding` command to view this information. Use the `around` option to show this information for a time in the past.
+
+This example shows the forwarding resources used by the *spine02* switch.
+
+```
+cumulus@switch:~$ netq spine02 show cl-resource forwarding
+Matching cl_resource records:
+Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+spine02           9,16384(0%)          0,0(0%)              290,131072(0%)       173,20480(0%)        54,16330(0%)         26,32768(0%)         0,8192(0%)           Mon Jan 13 03:34:11 2020
+```
+
+You can also view this same information in JSON format.
+
+```
+cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
+{
+    "cl_resource": [
+        {
+            "macEntries": "26,32768(0%)",
+            "ecmpNexthops": "54,16330(0%)",
+            "ipv4HostEntries": "9,16384(0%)",
+            "hostname": "spine02",
+            "lastUpdated": 1578886451.884,
+            "ipv4RouteEntries": "290,131072(0%)",
+            "ipv6HostEntries": "0,0(0%)",
+            "ipv6RouteEntries": "173,20480(0%)",
+            "totalMcastRoutes": "0,8192(0%)"
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
 ### Validate NetQ Agents are Running
 
 You can confirm that NetQ Agents are running on switches and hosts (if

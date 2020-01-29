@@ -41,7 +41,7 @@ The following table summarizes the new commands available with this release. The
 </tr>
 <tr>
   <td>netq [&lt;hostname&gt;] show cl-resource forwarding [around &lt;text-time&gt;] [json]</td>
-  <td>Displays xxx on one or all devices, currently or at a time in the past</td>
+  <td>Displays the amount of forwarding resources used by one or all devices, currently or at a time in the past</td>
   <td>2.4.0</td>
 </tr>
 <tr>

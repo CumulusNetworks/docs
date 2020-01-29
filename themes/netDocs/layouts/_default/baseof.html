@@ -49,11 +49,15 @@
         }
 
         @top-right {
+            padding-bottom: 0;
+            margin: 10pt 0 30pt 0;
             border-bottom: .25pt solid #36424a;
-            content: string(section-title);
+            content: "Cumulus NetQ v{{.Page.Params.version}} User Documentation";
         }
 
         @top-left {
+            padding-bottom: 0;
+            margin: 10pt 0 30pt 0;
             content: string(chapter-title);
             border-bottom: .25pt solid #36424a;
         }
@@ -78,13 +82,17 @@
         }
 
         @top-right {
+            padding-bottom: 0;  
+            margin: 10pt 0 30pt 0;
             border-bottom: .25pt solid #36424a;
             content: string(chapter-title);
         }
 
         @top-left {
+            padding-bottom: 0;
+            margin: 10pt 0 30pt 0;
             border-bottom: .25pt solid #36424a;
-            content: string(section-title);
+            content: "Cumulus NetQ v{{.Page.Params.version}} User Documentation";
         }
 
     }
@@ -150,6 +158,7 @@
 
     .toc1 {
         prince-bookmark-level: 1;
+        string-set: chapter-title content()
     }
 
     .toc2 {
@@ -162,12 +171,10 @@
 
     h1 {
         prince-bookmark-level: none;
-        string-set: chapter-title content()
     }
 
     h2 {
         prince-bookmark-level: none;
-        string-set: section-title content()
     }
 
     h3 {

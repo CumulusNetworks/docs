@@ -51,7 +51,6 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-
 {{%/notice%}}
 </details>
 
-
 ### Add the Apt Repository Key (Cumulus Linux 4.0 Only)
 
 Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux.
@@ -120,10 +119,10 @@ Configuring the CLI for *cloud* deployments also only requires two commands; how
 
 <details><summary>For Switches with Internet Access</summary>
 
-Run the following commands, being sure to replace the key values with your generated keys.
+Run the following commands, being sure to replace the key values with your generated keys. Refer to [Generate Access Keys](../Prepare-NetQ-Cloud/#generate-access-keys) if needed.
 
 ```
-$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443
+$ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name>
 Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
 Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 

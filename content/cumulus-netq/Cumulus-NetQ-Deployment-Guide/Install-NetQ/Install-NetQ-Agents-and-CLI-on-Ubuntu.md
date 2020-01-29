@@ -126,8 +126,6 @@ The use of `netq-latest` in this example means that a `get` to the
 
 8.  Continue with [NetQ Agent Configuration](#configure-your-netq-agents)
 
-
-
 ## Configure Your NetQ Agents
 
 Once the NetQ Agents have been installed on the network nodes you want
@@ -179,7 +177,7 @@ Configuring the CLI for *cloud* deployments also only requires two commands; how
     - save your access credentials in a file and reference that file here to simplify the configuration commands
     - specify which premises you want to query
 
-*For switches with Internet access* run the following commands, being sure to replace the key values with your generated keys.
+*For switches with Internet access* run the following commands, being sure to replace the key values with your generated keys. Refer to [Generate Access Keys](../Prepare-NetQ-Cloud/#generate-access-keys) if needed.
 
 ```
 $ netq config add cli server api.netq.cumulusnetworks.com access-key <text-access-key> secret-key <text-secret-key> port 443

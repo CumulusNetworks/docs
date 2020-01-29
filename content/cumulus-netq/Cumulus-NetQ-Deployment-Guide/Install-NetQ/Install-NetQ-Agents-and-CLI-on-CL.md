@@ -18,7 +18,7 @@ Check the version of the NetQ Agent running on your switch using the `dpkg-query
 
 - 2.3.1-xxx, then you need to install the 2.4.0 Agent
 - 2.4.0-cl3u<24 or less>~xxx *or* 2.4.0-cl4u<24 or less>~xxx, then you need to install an updated 2.4.0 Agent. Follow the instructions in [Upgrade the NetQ Agent on Cumulus Linux Switches](../../Upgrade-NetQ/Upgrade-NetQ-Agents-on-Cumulus-Linux-Switches/), then return here to follow the configuration steps.
-- 2.4.0-cl3u<25 or greater>~xxx *or* 2.4.0-cl4u<25 or greater>~xxx, then you are running the latest version. There is no need to update the NetQ 2.4.0 Agent and you can skip to [Configure Your NetQ Agents](#configure-your-netq-agents/).
+- 2.4.0-cl3u<25 or greater>~xxx *or* 2.4.0-cl4u<25 or greater>~xxx, then you are running the latest version. There is no need to update the NetQ 2.4.0 Agent and you can skip to [Configure Your NetQ Agents](#configure-your-netq-agents).
 {{%/notice%}}
 
 ## Prepare for Installation

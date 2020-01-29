@@ -19,7 +19,7 @@ Check the version of the NetQ Agent running on your server or NetQ Appliance usi
 
 - Version 2.3.1-xxx, then you need to install the 2.4.0 Agent
 - Version 2.4.0-ub18.04u<24 or less>~xxx *or* 2.4.0-ub16.04u<24 or less>~xxx, then you need to install an updated 2.4.0 Agent. Follow the instructions in [Upgrade the NetQ Agent on Ubuntu Servers](../../Upgrade-NetQ/Upgrade-NetQ-Agents-on-Ubuntu-Servers/), then return here to follow the configuration steps.
-- Version 2.4.0-ub18.04u<25 or greater>~xxx *or* 2.4.0-ub16.04u<25 or greater>~xxx, then you are running the latest version. There is no need to update the NetQ 2.4.0 Agent and you can skip to [Configure Your NetQ Agents](#configure-your-netq-agents/).
+- Version 2.4.0-ub18.04u<25 or greater>~xxx *or* 2.4.0-ub16.04u<25 or greater>~xxx, then you are running the latest version. There is no need to update the NetQ 2.4.0 Agent and you can skip to [Configure Your NetQ Agents](#configure-your-netq-agents).
 {{%/notice%}}
 
 ## Install a NetQ Agent and CLI

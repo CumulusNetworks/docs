@@ -1,7 +1,7 @@
 ---
 title: Simple Network Management Protocol - SNMP
 author: Cumulus Networks
-weight: 229
+weight: 1080
 aliases:
  - /display/DOCS/Simple+Network+Management+Protocol+(SNMP)+Monitoring
  - /display/DOCS/Monitoring+and+Troubleshooting

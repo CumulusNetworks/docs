@@ -1,7 +1,7 @@
 ---
 title: Bonding - Link Aggregation
 author: Cumulus Networks
-weight: 121
+weight: 430
 aliases:
  - /display/DOCS/Bonding+++Link+Aggregation
  - /pages/viewpage.action?pageId=8366376

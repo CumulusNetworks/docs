@@ -1,7 +1,7 @@
 ---
 title: Monitoring Best Practices
 author: Cumulus Networks
-weight: 231
+weight: 1100
 aliases:
  - /display/DOCS/Monitoring+Best+Practices
  - /pages/viewpage.action?pageId=8366346

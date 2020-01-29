@@ -1,7 +1,7 @@
 ---
 title: Services and Daemons in Cumulus Linux
 author: Cumulus Networks
-weight: 73
+weight: 230
 aliases:
  - /display/DOCS/Services+and+Daemons+in+Cumulus+Linux
  - /pages/viewpage.action?pageId=8366299

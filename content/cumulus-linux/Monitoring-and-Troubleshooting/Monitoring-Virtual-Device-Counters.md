@@ -1,7 +1,7 @@
 ---
 title: Monitoring Virtual Device Counters
 author: Cumulus Networks
-weight: 219
+weight: 970
 aliases:
  - /display/DOCS/Monitoring+Virtual+Device+Counters
  - /pages/viewpage.action?pageId=8366326

@@ -1,7 +1,7 @@
 ---
 title: Basic Configuration
 author: Cumulus Networks
-weight: 350
+weight: 540
 aliases:
  - /pages/viewpage.action?pageId=12910740
 product: Cumulus Linux

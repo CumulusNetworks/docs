@@ -1,7 +1,7 @@
 ---
 title: DHCP Servers
 author: Cumulus Networks
-weight: 99
+weight: 350
 aliases:
  - /display/DOCS/DHCP+Servers
  - /pages/viewpage.action?pageId=8366764

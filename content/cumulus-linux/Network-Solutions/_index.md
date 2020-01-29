@@ -1,7 +1,7 @@
 ---
 title: Network Solutions
 author: Cumulus Networks
-weight: 27
+weight: 1130
 aliases:
  - /display/DOCS/Network+Solutions
  - /pages/viewpage.action?pageId=8366702

@@ -1,7 +1,7 @@
 ---
 title: Buffer and Queue Management
 author: Cumulus Networks
-weight: 95
+weight: 320
 aliases:
  - /display/DOCS/Buffer+and+Queue+Management
  - /pages/viewpage.action?pageId=8366755

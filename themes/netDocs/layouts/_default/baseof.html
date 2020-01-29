@@ -14,55 +14,177 @@
   <!-- WHERE Hugo pipes in and compiles book.scss-->
   {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $styles.Permalink }}">
-  
+
   {{if eq .Page.Type "pdf"}}
-    <style>
-      @page {
-        @bottom-right { 
-            content: counter(page)
+  <style type="text/css">
+    @page {
+        size: A4 landscape;
+
+        @bottom {
+            padding-top: 0;
+            margin: 10pt 0 30pt 0;
+            border-top: .25pt solid #36424a;
         }
+    }
+
+    @page:right {
         @bottom {
             content: "{{urlize .Permalink}}"
         }
-        size: A4 landscape;
-      }
-      .book-page {
+
+        @bottom-right {
+            padding-top: 0;
+            margin: 10pt 0 30pt 0;
+            border-top: .25pt solid #36424a;
+            content: counter(page);
+        }
+
+        @bottom-left {
+            padding-top: 0;
+            margin: 10pt 0 30pt 0;
+            border-top: .25pt solid #36424a;
+        }
+
+        @top-right {
+            padding-bottom: 0;
+            margin: 10pt 0 30pt 0;
+            border-bottom: .25pt solid #36424a;
+            content: string(section-title);
+        }
+
+        @top-left {
+            padding-bottom: 0;
+            margin: 10pt 0 30pt 0;
+            border-bottom: .25pt solid #36424a;
+            content: string(chapter-title);
+        }
+    }
+    
+    @page:left {
+        @bottom {
+            content: "https://docs.cumulusnetworks.com"
+        }
+
+        @bottom-right {
+            padding-top: 0;
+            margin: 10pt 0 30pt 0;
+            border-top: .25pt solid #36424a;
+            
+        }
+
+        @bottom-left {
+            padding-top: 0;
+            margin: 10pt 0 30pt 0;
+            border-top: .25pt solid #36424a;
+            content: counter(page);
+        }
+
+        @top-right {
+            padding-bottom: 0;
+            margin: 10pt 0 30pt 0;
+            border-bottom: .25pt solid #36424a;
+            content: string(chapter-title);
+        }
+
+        @top-left {
+            padding-bottom: 0;
+            margin: 10pt 0 30pt 0;
+            border-bottom: .25pt solid #36424a;
+            content: string(section-title);
+        }
+
+    }
+
+    @page:first {
+        @bottom-right { 
+            content: normal;
+        }
+        @bottom-left { 
+            content: normal;
+        }
+        @bottom { 
+            content: normal;
+        }
+        @top-right { 
+            content: normal;
+        }
+        @top-left { 
+            content: normal;
+        }
+        @top { 
+            content: normal;
+        }
+    }
+    .book-page {
         counter-reset: page 1
-      }
-      #cover {
+    }
+
+    #cover {
         width: 100%;
-        text-align: center; 
-        break-after: : always;
-      }
-      #centered {
+        text-align: center;
+        break-after: always;
+    }
+
+    #centered {
         break-after: always;
         margin: 0 auto;
         display: inline-block;
         padding: 3px;
-      }
-      #centered h1 { 
-        color:#36424a;
-        font-size:2rem;
-        font-weight:300;
-        letter-spacing:-.7px;
-        line-height:3rem;
-        margin-top:0;
-        margin-bottom:1.1rem
-      }
-      #centered img { 
+    }
+
+    #centered h1 {
+        color: #36424a;
+        font-size: 2rem;
+        font-weight: 300;
+        letter-spacing: -.7px;
+        line-height: 3rem;
+        margin-top: 0;
+        margin-bottom: 1.1rem
+    }
+
+    #centered img {
         display: block;
         object-fit: scale-down;
-        page-break-inside: avoid; /* or 'auto' */
-      }
+        page-break-inside: avoid;
+        width: 500px;
+        height: auto;
+        margin: auto;
+    }
 
-      .toc1 { prince-bookmark-level: 1; }
-      .toc2 { prince-bookmark-level: 2; }
-      .toc3 { prince-bookmark-level: 3; }
-      h1 { prince-bookmark-level: none; }
-      h2 { prince-bookmark-level: none; }
-      h3 { prince-bookmark-level: none; }
-      h4 { prince-bookmark-level: none; }
-    </style>
+    .markdown {
+        page-break-after: always;
+    }
+
+    .toc1 {
+        prince-bookmark-level: 1;
+    }
+
+    .toc2 {
+        prince-bookmark-level: 2;
+    }
+
+    .toc3 {
+        prince-bookmark-level: 3;
+    }
+
+    h1 {
+        prince-bookmark-level: none;
+        string-set: chapter-title content()
+    }
+
+    h2 {
+        prince-bookmark-level: none;
+        string-set: section-title content()
+    }
+
+    h3 {
+        prince-bookmark-level: none;
+    }
+
+    h4 {
+        prince-bookmark-level: none;
+    }
+</style>
   {{ end }}
 
   <!-- Favicon -->

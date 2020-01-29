@@ -10,10 +10,14 @@ version: '4.0'
 ---
 The `cl-support` script generates a compressed archive file of useful information for troubleshooting. The system either creates the archive file automatically or you can create the archive file manually.
 
+## Automatic cl-support File
+
 The system creates the `cl-support` archive file automatically for the following reasons:
 
 - When there is a [core file dump](http://linux.die.net/man/5/core) of any application (not specific to Cumulus Linux, but something all Linux distributions support), located in `/var/support/core`.
 - After the first failure of one of several monitored services since the switch was rebooted or power cycled.
+
+## Manual cl-support File
 
 To create the `cl-support` archive file manually, run the `cl-support` command:
 

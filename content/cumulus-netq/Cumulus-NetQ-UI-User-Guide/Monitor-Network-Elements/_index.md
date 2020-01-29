@@ -107,7 +107,7 @@ cumulus@switch:~$ netq config add agent wjh
 cumulus@switch:~$ netq config restart agent
 ```
 
-{{%notice note$}}
+{{%notice note%}}
 Using *wjh_dump.py* on a Mellanox platform that is running CumulusLinux 4.0 and the NetQ 2.4.0 agent causes the NetQ WJH client to stop receiving WJH data. If you want to use *wjh_dump.py*, disable WJH monitoring by the NetQ Agent on that switch using `netq config del agent wjh` followed by `netq config restart agent`.
 {{%/notice%}}
 

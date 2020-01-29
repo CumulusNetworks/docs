@@ -153,7 +153,13 @@ cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.0.0-
 ## Upgrade Switches in an MLAG Pair
 
 If you are using [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
-to dual connect two switches in your environment, follow the steps below to upgrade the switches:
+to dual connect two switches in your environment, follow the steps below to upgrade the switches.
+
+{{%notice warning%}}
+
+For networks with MLAG deployments, Cumulus Networks only supports upgrading to Cumulus Linux 4.0 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.0. Version 3.7.10 is available on the [downloads page](https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10) on our website.
+
+{{%/notice%}}
 
 1. Verify the switch is in the secondary role:
 

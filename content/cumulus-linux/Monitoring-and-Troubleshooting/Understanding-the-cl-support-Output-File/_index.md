@@ -27,7 +27,17 @@ If the Cumulus Networks support team requests that you submit the output from `c
 cumulus@switch:~$ sudo cl-support -s
 ```
 
+{{%notice note%}}
+
+On ARM switches, the cl-support FRR module might time out even when FRR is not running. To disable the timeout, run the `cl-support` command with the `-M` option; for example:
+
+```
+cumulus@switch:~$ sudo cl-support -M
+```
+
+{{%/notice%}}
+
 For information on the directories included in the `cl-support` archive, see:
 
-- [Troubleshooting the etc Directory](../Understanding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory/) - In terms of the sheer number of files, `/etc` contains the largest number of files to send to Cumulus Networks. However, log files might be significantly larger in file size.
-- [Troubleshooting Log Files](../Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files/) - This guide highlights the most important log files to inspect. Keep in mind, `cl-support` includes all of the log files.
+- [Troubleshooting the etc Directory](../Understanding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory/). The `/etc` directory contains the largest number of files to send to Cumulus Networks; however, log files might be significantly larger in file size.
+- [Troubleshooting Log Files](../Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files/). This guide highlights the most important log files to inspect. Keep in mind, `cl-support` includes all of the log files.

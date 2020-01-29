@@ -834,7 +834,9 @@ cumulus@switch:~$ netq config add agent wjh
 cumulus@switch:~$ netq config restart agent
 ```
 
-When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
+{{%notice note$}}
+Using *wjh_dump.py* on a Mellanox platform that is running CumulusLinux 4.0 and the NetQ 2.4.0 agent causes the NetQ WJH client to stop receiving WJH data. If you want to use *wjh_dump.py*, disable WJH monitoring by the NetQ Agent on that switch using `netq config del agent wjh` followed by `netq config restart agent`.
+{{%/notice%}}
 
 ### View What Just Happened Metrics
 
@@ -855,3 +857,5 @@ mlx-2700-03       swp1s2                   Port loopback filter                 
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:53:17 2019       Mon Dec 16 11:53:17 2019
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 0.0.0.0          0.0.0.0          0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:40:44 2019       Mon Dec 16 11:40:44 2019
 ```
+
+When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.

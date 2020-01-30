@@ -1,7 +1,7 @@
 ---
 title: Introduction to Routing Protocols
 author: Cumulus Networks
-weight: 169
+weight: 730
 aliases:
  - /display/DOCS/Introduction+to+Routing+Protocols
  - /pages/viewpage.action?pageId=8366637

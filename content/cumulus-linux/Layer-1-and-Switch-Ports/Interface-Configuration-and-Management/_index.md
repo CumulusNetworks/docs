@@ -1,7 +1,7 @@
 ---
 title: Interface Configuration and Management
 author: Cumulus Networks
-weight: 93
+weight: 290
 aliases:
  - /display/DOCS/Simple+Network+Management+Protocol+(SNMP)+Monitoring
  - /display/DOCS/SNMP+Monitoring

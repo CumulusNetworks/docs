@@ -1,7 +1,7 @@
 ---
 title: Resource Diagnostics Using cl-resource-query
 author: Cumulus Networks
-weight: 215
+weight: 930
 aliases:
  - /display/DOCS/Resource+Diagnostics+Using+cl+resource+query
  - /pages/viewpage.action?pageId=8366314

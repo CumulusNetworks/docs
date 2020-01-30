@@ -1,7 +1,7 @@
 ---
 title: Static VXLAN Tunnels
 author: Cumulus Networks
-weight: 149
+weight: 620
 aliases:
  - /display/DOCS/Static+VXLAN+Tunnels
  - /pages/viewpage.action?pageId=8366517

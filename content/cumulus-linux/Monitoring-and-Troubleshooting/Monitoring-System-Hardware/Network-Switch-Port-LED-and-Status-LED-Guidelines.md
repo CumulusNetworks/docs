@@ -1,7 +1,7 @@
 ---
 title: Network Switch Port LED and Status LED Guidelines
 author: Cumulus Networks
-weight: 415
+weight: 950
 aliases:
  - /display/DOCS/Network+Switch+Port+LED+and+Status+LED+Guidelines
  - /pages/viewpage.action?pageId=8366316

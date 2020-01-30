@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting the etc Directory
 author: Cumulus Networks
-weight: 429
+weight: 1010
 aliases:
  - /display/DOCS/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=8366322

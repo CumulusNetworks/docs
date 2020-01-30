@@ -1,7 +1,7 @@
 ---
 title: Monitoring System Hardware
 author: Cumulus Networks
-weight: 217
+weight: 940
 aliases:
  - /display/DOCS/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=8366315

@@ -1,7 +1,7 @@
 ---
 title: Managing Cumulus Linux Disk Images
 author: Cumulus Networks
-weight: 41
+weight: 30
 aliases:
  - /display/DOCS/Managing+Cumulus+Linux+Disk+Images
  - /pages/viewpage.action?pageId=8366355

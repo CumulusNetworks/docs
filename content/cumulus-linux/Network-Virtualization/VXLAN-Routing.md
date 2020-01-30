@@ -1,7 +1,7 @@
 ---
 title: VXLAN Routing
 author: Cumulus Networks
-weight: 147
+weight: 610
 aliases:
  - /display/DOCS/VXLAN+Routing
  - /pages/viewpage.action?pageId=8366471

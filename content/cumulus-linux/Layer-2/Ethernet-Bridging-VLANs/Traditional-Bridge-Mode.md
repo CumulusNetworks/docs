@@ -1,7 +1,7 @@
 ---
 title: Traditional Bridge Mode
 author: Cumulus Networks
-weight: 347
+weight: 460
 aliases:
  - /display/DOCS/Traditional+Bridge+Mode
  - /pages/viewpage.action?pageId=8366393

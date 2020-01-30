@@ -1,7 +1,7 @@
 ---
 title: Open Shortest Path First v3 - OSPFv3
 author: Cumulus Networks
-weight: 181
+weight: 800
 aliases:
  - /display/DOCS/Open+Shortest+Path+First+v3+++OSPFv3
  - /display/DOCS/Open+Shortest+Path+First+v3+OSPFv3

@@ -1,7 +1,7 @@
 ---
 title: LDAP Authentication and Authorization
 author: Cumulus Networks
-weight: 277
+weight: 170
 aliases:
  - /display/DOCS/LDAP+Authentication+and+Authorization
  - /pages/viewpage.action?pageId=8366277

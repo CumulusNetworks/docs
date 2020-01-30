@@ -1,0 +1,15 @@
+{{ .Scratch.Set "page_found" false }}
+
+
+{{ $target_page := .Get "link" }}
+
+{{ range where $.Site.Pages "Type" $.Page.Section }}
+    {{ if eq .LinkTitle  $target_page}}
+        <a href="{{.RelPermalink}}">{{ default .Page.Title ($.Get "text") }}</a>
+        {{ $.Scratch.Set "page_found" true }}
+    {{ end }}
+{{ end }}
+
+{{ if eq (.Scratch.Get "page_found") false }}
+    <a href="/404">Unable to find title of {{$target_page}}</a>
+{{ end }}

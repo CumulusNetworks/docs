@@ -12,7 +12,7 @@ After installing your Cumulus NetQ software, you should install the  NetQ 2.4.0 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later
 
-This topic describes how to install and configure the NetQ Agent and CLI on Cumulus Linux switches.
+This topic describes how to install and configure the NetQ Agent and CLI on Cumulus Linux switches. 
 
 ## Prepare for Installation
 

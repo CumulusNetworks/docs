@@ -1,7 +1,7 @@
 ---
 title: Filtering Learned MAC Addresses
 author: Cumulus Networks
-weight: 295
+weight: 220
 aliases:
  - /display/DOCS/Filtering+Learned+MAC+Addresses
  - /pages/viewpage.action?pageId=8366296

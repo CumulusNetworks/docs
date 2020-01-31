@@ -1,7 +1,7 @@
 ---
 title: TDR Cable Diagnostics
 author: Cumulus Networks
-weight: 417
+weight: 960
 aliases: 
 product: Cumulus Linux
 version: '4.0'

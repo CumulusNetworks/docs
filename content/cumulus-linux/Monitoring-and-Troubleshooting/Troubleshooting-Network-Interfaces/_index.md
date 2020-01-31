@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting Network Interfaces
 author: Cumulus Networks
-weight: 225
+weight: 1020
 aliases:
  - /display/DOCS/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=8366324

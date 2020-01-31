@@ -1,7 +1,7 @@
 ---
 title: Spanning Tree and Rapid Spanning Tree
 author: Cumulus Networks
-weight: 117
+weight: 400
 aliases:
  - /display/DOCS/Spanning+Tree+and+Rapid+Spanning+Tree
  - /pages/viewpage.action?pageId=8366412

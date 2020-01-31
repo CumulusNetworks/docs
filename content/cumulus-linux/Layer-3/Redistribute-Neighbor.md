@@ -1,7 +1,7 @@
 ---
 title: Redistribute Neighbor
 author: Cumulus Networks
-weight: 191
+weight: 850
 aliases:
  - /display/DOCS/Redistribute+Neighbor
  - /pages/viewpage.action?pageId=8366683

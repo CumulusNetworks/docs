@@ -185,10 +185,14 @@ sockets opened by the command that gets executed; it has no impact on
 netlink sockets, associated with the `ip` command.
 
 To execute such a command against a VRF table, run
-`vrf task exec <vrf-name> <command>`. For example, to SSH from the switch
+`ip vrf exec <vrf-name> <command>`. For example, to SSH from the switch
 to a device accessible through VRF *rocket*:
 
-    cumulus@switch:~$ sudo vrf task exec rocket ssh user@host
+    cumulus@switch:~$ sudo ip vrf exec rocket ssh user@host
+
+{{%notice tip%}}
+Alternately, you can use the `vrf task exec` command instead of `ip vrf exec`, but Cumulus Networks recommends you use `ip vrf exec`.
+{{%/notice%}}
 
 You should manage long-running services with `systemd` using the
 *service@vrf* notation; for example, `systemctl start ntp@mgmt`.
@@ -1350,7 +1354,7 @@ or<br />
 </ol>
 <p>{{%notice tip%}}</p>
 <p>You can create this configuration using the <code>vrf</code> command (<a href="#ipv4-and-ipv6-commands-in-a-vrf-context">see above</a> for more details):</p>
-<pre><code>cumulus@switch:~$ sudo vrf task exec rocket /usr/sbin/dhcpd -f -q -cf /
+<pre><code>cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcpd -f -q -cf /
     /etc/dhcp/dhcpd-rocket.conf -pf /var/run/dhcpd-rocket.pid swp2</code></pre>
 <p>{{%/notice%}}</p></td>
 <td><p><strong>Sample DHCP6 Server Configuration</strong></p>
@@ -1383,7 +1387,7 @@ or<br />
 </ol>
 <p>{{%notice tip%}}</p>
 <p>You can create this configuration using the <code>vrf</code> command (<a href="#ipv4-and-ipv6-commands-in-a-vrf-context">see above</a> for more details):</p>
-<pre><code>cumulus@switch:~$ sudo vrf task exec turtle dhcpd -6 -q -cf /
+<pre><code>cumulus@switch:~$ sudo ip vrf exec turtle dhcpd -6 -q -cf /
     /etc/dhcp/dhcpd6-turtle.conf -pf /var/run/dhcpd6-turtle.pid swp3</code></pre>
 <p>{{%/notice%}}</p></td>
 </tr>
@@ -1418,7 +1422,7 @@ or<br />
 </ol>
 <p>{{%notice tip%}}</p>
 <p>You can create this configuration using the <code>vrf</code> command (<a href="#ipv4-and-ipv6-commands-in-a-vrf-context">see above</a> for more details):</p>
-<pre><code>cumulus@switch:~$ sudo vrf task exec rocket /usr/sbin/dhcrelay -d -q -i /
+<pre><code>cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcrelay -d -q -i /
     swp2s2 -i swp2s3 102.0.0.2</code></pre>
 <p>{{%/notice%}}</p></td>
 <td><p><strong>Sample DHCP6 Relay Configuration</strong></p>
@@ -1451,7 +1455,7 @@ or<br />
 </ol>
 <p>{{%notice tip%}}</p>
 <p>You can create this configuration using the <code>vrf</code> command (<a href="#ipv4-and-ipv6-commands-in-a-vrf-context">see above</a> for more details):</p>
-<pre><code>cumulus@switch:~$ sudo vrf task exec turtle /usr/sbin/dhcrelay -d -q -6 -l /
+<pre><code>cumulus@switch:~$ sudo ip vrf exec turtle /usr/sbin/dhcrelay -d -q -6 -l /
     swp18s0 -u swp18s1 -pf /var/run/dhcrelay6@turtle.pid</code></pre>
 <p>{{%/notice%}}</p></td>
 </tr>

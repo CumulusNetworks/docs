@@ -1,7 +1,7 @@
 ---
 title: Configuring switchd
 author: Cumulus Networks
-weight: 75
+weight: 240
 aliases:
  - /display/DOCS/Configuring+switchd
  - /pages/viewpage.action?pageId=8366282

@@ -7,26 +7,19 @@ version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-After installing your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents on each node you want to monitor. NetQ 2.4 Agents can be installed and run on switches running Cumulus Linux version 3.3.2-4.0.x.
+After installing your Cumulus NetQ software, you should install the  NetQ 2.4.0 Agents on each switch you want to monitor. NetQ 2.4 Agents can be installed on switches running:
+
+- Cumulus Linux version 3.3.2-3.7.x
+- Cumulus Linux version 4.0.0 and later
 
 This topic describes how to install and configure the NetQ Agent and CLI on Cumulus Linux switches.
 
-{{%notice note%}}
-You only need to install the NetQ Agent on switches running Cumulus Linux 3.3.2-3.3.x, or on switches running Cumulus Linux 4.0.x that have version 2.3.1 of the Agent pre-installed.
-
-Check the version of the NetQ Agent running on your switch using the `dpkg-query -W -f '${Package}\t${Version}\n' netq-agent` command. If the version installed is:
-
-- 2.3.1-xxx, then you need to install the 2.4.0 Agent
-- 2.4.0-cl3u<24 or less>~xxx *or* 2.4.0-cl4u<24 or less>~xxx, then you need to install an updated 2.4.0 Agent. Follow the instructions in [Upgrade the NetQ Agent on Cumulus Linux Switches](../../Upgrade-NetQ/Upgrade-NetQ-Agents-on-Cumulus-Linux-Switches/), then return here to follow the configuration steps.
-- 2.4.0-cl3u<25 or greater>~xxx *or* 2.4.0-cl4u<25 or greater>~xxx, then you are running the latest version. There is no need to update the NetQ 2.4.0 Agent and you can skip to [Configure Your NetQ Agents](#configure-your-netq-agents).
-{{%/notice%}}
-
 ## Prepare for Installation
 
-To install the NetQ Agent you need to install `netq-agent` on each switch. To install the NetQ CLI you need to install `netq-apps` on each switch.
+To install the NetQ Agent and CLI you need to install `netq-agent` and `netq-apps` on each switch. These are available from the Cumulus Networks repository.
 
 {{%notice note%}}
-If your network uses a proxy server for external connections, you should first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so `apt-get` can access the software package on the Cumulus Networks repository.
+If your network uses a proxy server for external connections, you should first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so `apt-get` can access the software package in the Cumulus Networks repository.
 {{%/notice%}}
 
 ### Add NetQ Debian Repository
@@ -72,8 +65,7 @@ cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 A simple process installs the NetQ Agent and CLI on a Cumulus switch.
 
-1.  Update the local `apt` repository, then install the NetQ meta
-    package on the switch.
+1.  Update the local `apt` repository, then install the NetQ software on the switch.
 
 ```
 cumulus@switch:~$ sudo apt-get update
@@ -82,14 +74,16 @@ cumulus@switch:~$ sudo apt-get install netq-agent netq-apps
 
 2.  Verify that [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) is running on the host node. Nodes must be in time synchronization with the NetQ Platform to enable useful statistical analysis.
 
-        cumulus@switch:~$ sudo systemctl status ntp
-        [sudo] password for cumulus:
-        ● ntp.service - LSB: Start NTP daemon
-           Loaded: loaded (/etc/init.d/ntp; bad; vendor preset: enabled)
-           Active: active (running) since Fri 2018-06-01 13:49:11 EDT; 2 weeks 6 days ago
-             Docs: man:systemd-sysv-generator(8)
-           CGroup: /system.slice/ntp.service
-                   └─2873 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -c /var/lib/ntp/ntp.conf.dhcp -u 109:114
+```
+cumulus@switch:~$ sudo systemctl status ntp
+[sudo] password for cumulus:
+● ntp.service - LSB: Start NTP daemon
+        Loaded: loaded (/etc/init.d/ntp; bad; vendor preset: enabled)
+        Active: active (running) since Fri 2018-06-01 13:49:11 EDT; 2 weeks 6 days ago
+          Docs: man:systemd-sysv-generator(8)
+        CGroup: /system.slice/ntp.service
+                └─2873 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -c /var/lib/ntp/ntp.conf.dhcp -u 109:114
+```
 
 3.  Restart `rsyslog` so log files are sent to the correct destination.
 

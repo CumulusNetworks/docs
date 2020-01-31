@@ -24,7 +24,7 @@ Check the version of the NetQ Agent running on your switch using the `rpm -q -ne
 
 ## Prepare for Installation
 
-To install the NetQ Agent you need to install `netq-agent` on each switch or host.
+To install the NetQ Agent you need to install `netq-agent` on each switch or host. To install the NetQ CLI you need to install `netq-apps` on each switch or host.
 
 {{%notice note%}}
 If your network uses a proxy server for external connections, you should first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so `apt-get` can access the software package in the Cumulus Networks repository.

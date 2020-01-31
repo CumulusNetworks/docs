@@ -1,14 +1,31 @@
+{{/* By default, if the page isn't found it just doesn't print */}}
+{{/* This allows us to generate a bogus link if there is a problem */}}
+{{/* and catch it on link validation */}}
 {{ .Scratch.Set "page_found" false }}
-
 
 {{ $target_page := .Get "link" }}
 
-{{ range where $.Site.Pages "Type" $.Page.Section }}
+{{/* We need to determine if we are in the "/version" folder or the latest release */}}
+{{/* To do this we split the directory line. If there is a value in the }}
+{{ .Scratch.Set "version" ((default (index (split .Page.Dir "/") 1) (index (split .Page.Dir "/") 0))) }}
+
+{{ if eq $.Page.Section "version" }}
+    {{ range where $.Site.Pages "Type" $.Page.Section }}
+        // If the current page != the index of the scratch page, skip it.
     {{ if eq .LinkTitle  $target_page}}
         <a href="{{.RelPermalink}}">{{ default .Page.Title ($.Get "text") }}</a>
         {{ $.Scratch.Set "page_found" true }}
     {{ end }}
+
+{{ range where $.Site.Pages "Type" $.Page.Section }}
+    {{ if eq ($.Scratch.Get "version") ((default (index (split .Page.Dir "/") 1) (index (split .Page.Dir "/") 0))) }}
+        {{ if eq .LinkTitle  $target_page}}
+            <a href="{{.RelPermalink}}">{{ default .Page.Title ($.Get "text") }}</a>
+            {{ $.Scratch.Set "page_found" true }}
+        {{ end }}
+    {{ end }}
 {{ end }}
+
 
 {{ if eq (.Scratch.Get "page_found") false }}
     <a href="/404">Unable to find title of {{$target_page}}</a>

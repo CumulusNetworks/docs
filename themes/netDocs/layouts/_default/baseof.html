@@ -10,16 +10,25 @@
   <!-- Fonts for the theme -->
   <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
 
-  <!-- Theme stylesheet, you can customize scss by creatig `assets/custom.scss` in your website -->
+  <!-- Theme stylesheet, you can customize scss by creating `assets/custom.scss` in your website -->
   <!-- WHERE Hugo pipes in and compiles book.scss-->
   {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $styles.Permalink }}">
 
+<!-- The PDF page has a custom CSS sheet to control PDF output formatting -->
   {{if eq .Page.Type "pdf"}}
-  <style type="text/css">
-    @page {
-        size: A4 landscape;
+  <!-- Because of the need to dynamically set CSS settings we must include the sheet inline -->
 
+  <style type="text/css">
+      @page {
+        /* NetQ docs contain long outputs. 
+        Use landscape style to help fit */
+        {{ if eq .Section "cumulus-netq" }}
+            size: A4 landscape;
+        {{ else }}
+            size: A4 portrait;
+        {{ end }}
+        
         @bottom {
             padding-top: 0;
             margin: 10pt 0 30pt 0;
@@ -52,7 +61,7 @@
             padding-bottom: 0;
             margin: 10pt 0 30pt 0;
             border-bottom: .25pt solid #36424a;
-            content: "Cumulus NetQ v{{.Page.Params.version}} User Documentation";
+            content: "{{.Page.Params.product}} v{{.Page.Params.version}} User Documentation";
         }
 
         @top-left {
@@ -62,7 +71,7 @@
             border-bottom: .25pt solid #36424a;
         }
     }
-    
+
     @page:left {
         @bottom {
             content: "{{urlize .Permalink}}"
@@ -92,7 +101,7 @@
             padding-bottom: 0;
             margin: 10pt 0 30pt 0;
             border-bottom: .25pt solid #36424a;
-            content: "Cumulus NetQ v{{.Page.Params.version}} User Documentation";
+            content: "{{.Page.Params.product}} v{{.Page.Params.version}} User Documentation";
         }
 
     }
@@ -159,9 +168,9 @@
     .markdown {
         page-break-after: always;
     }
-    
+
     .markdown code { 
-      font-size .5rem
+      font-size: .5rem;
     }
 
     .toc1 {
@@ -192,7 +201,7 @@
     h4 {
         prince-bookmark-level: none;
     }
-</style>
+  </style>
   {{ end }}
 
   <!-- Favicon -->
@@ -214,36 +223,18 @@
     <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   {{ end }}
+  
+  <!-- Javascript to rewrite absolute links into local anchors for PDF export -->
   {{if eq .Page.Type "pdf"}}
-    <script>
-      function replace_url() {
-          var elems = document.getElementsByTagName("a");
-          for (var i = 0; i < elems.length; i++) {
-              path = elems[i]["href"];
-              path_parts = path.split("/");
-              if(path_parts[3] != "{{.Section}}"){
-                continue
-              }
-              if(path_parts[path_parts.length - 1] == ""){
-                elems[i]["href"] = "#" + path_parts[path_parts.length - 2];
-              }
-              else { 
-                elems[i]["href"] = "#" + path_parts[path_parts.length - 1]
-              }
-              
-            }
-      }
-
-      window.onload = function() {
-        replace_url();
-    }
-
-    </script>
+    {{ $jsCodeCopy := resources.Get "js/pdf_link_rewrite.js"}}
+    <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
   {{ end }}
+
 </head>
 
 
 <body>
+<!-- PDF output does not require standard menus -->
 {{if ne .Page.Type "pdf"}}
   <input type="checkbox" style="display: none" id="menu-control" />
   <!-- INSERT article page header -->
@@ -580,6 +571,7 @@
       </div>
   </div>
 
+<!-- The following Javascript does not play well with PDF output tools -->
 {{if ne .Page.Type "pdf"}}
   <!-- internal Hugo template for google analytics -->
   {{ template "_internal/google_analytics_async.html" . }}

@@ -15,7 +15,6 @@
         
 
     {{ else }}
-        {{ .Scratch.Get "anchor_set" }}
         {{ .Scratch.Set "title" (.Get "title") }}
     {{ end }}
 

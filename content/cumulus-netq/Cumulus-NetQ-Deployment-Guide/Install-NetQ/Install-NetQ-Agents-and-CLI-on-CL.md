@@ -12,7 +12,7 @@ After installing your Cumulus NetQ software, you should install the  NetQ 2.4.0 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later
 
-This topic describes how to install and configure the NetQ Agent and CLI on Cumulus Linux switches. 
+This topic describes how to install and configure the NetQ Agent and CLI on Cumulus Linux switches.
 
 ## Prepare for Installation
 
@@ -43,14 +43,14 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-
 
 A simple process installs the NetQ Agent and CLI on a Cumulus switch.
 
-1.  Update the local `apt` repository, then install the NetQ software on the switch.
+1. Update the local `apt` repository, then install the NetQ software on the switch.
 
 ```
 cumulus@switch:~$ sudo apt-get update
 cumulus@switch:~$ sudo apt-get install netq-agent netq-apps
 ```
 
-2.  Verify that [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) is running on the host node. Nodes must be in time synchronization with the NetQ Platform to enable useful statistical analysis.
+2. Verify that [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) is running on the host node. Nodes must be in time synchronization with the NetQ Platform to enable useful statistical analysis.
 
 ```
 cumulus@switch:~$ sudo systemctl status ntp
@@ -63,7 +63,7 @@ cumulus@switch:~$ sudo systemctl status ntp
                 └─2873 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -c /var/lib/ntp/ntp.conf.dhcp -u 109:114
 ```
 
-3.  Restart `rsyslog` so log files are sent to the correct destination.
+3. Restart `rsyslog` so log files are sent to the correct destination.
 
 ```
 cumulus@switch:~$ sudo systemctl restart rsyslog.service
@@ -78,7 +78,7 @@ cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     You should see version 2.4.0 and update 25 in the results. For example:
 
     - For Cumulus Linux 3.3.2-3.7.x:  **2.4.0**-cl3u**25**~xxx
-    - For Cumulus Linux 4.0.0:  **2.4.0**-cl4u**25**~xxx
+    - For Cumulus Linux 4.0.0:  **2.4.0**-cl4u**25**~xxx 
 
 5. Continue with configuration in the next section.
 

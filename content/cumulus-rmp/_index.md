@@ -134,7 +134,7 @@ For more information about each feature, follow the links below to the
 | Network virtualization (VXLAN, EVPN, etc.) |   |  ✓  |
 | [Monitoring & troubleshooting](/cumulus-linux/Monitoring-and-Troubleshooting/)  | ✓  | ✓   |
 | [AAA](/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/)  | ✓  | ✓  |
-| [ACLs](/cumulus-linux/System-Configuration/Netfilter-ACLs/)  | ✓  | ✓ |
+| [ACLs / Netfilter](/cumulus-linux/System-Configuration/Netfilter-ACLs/)  | ✓  | ✓ |
 | QoS |                 | ✓                 |
 | [Orchestration](/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/) | ✓  | ✓  |
 

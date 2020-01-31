@@ -1,11 +1,12 @@
 ---
 title: Install and Configure the NetQ Agent and CLI on Cumulus Linux Switches
 author: Cumulus Networks
-weight: 419
+weight: 120
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents on each node you want to monitor. NetQ 2.4 Agents can be installed and run on switches running Cumulus Linux version 3.3.2-4.0.x.
 

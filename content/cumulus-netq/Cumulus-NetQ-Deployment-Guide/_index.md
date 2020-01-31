@@ -1,7 +1,7 @@
 ---
 title: Cumulus NetQ Deployment Guide
 author: Cumulus Networks
-weight: 13
+weight: 10
 aliases:
  - /display/NETQ/Cumulus+NetQ+Deployment+Guide
  - /pages/viewpage.action?pageId=12320788
@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 2
 ---
 This guide is intended for network administrators who are responsible
 for installation, setup, and maintenance of Cumulus NetQ in their data

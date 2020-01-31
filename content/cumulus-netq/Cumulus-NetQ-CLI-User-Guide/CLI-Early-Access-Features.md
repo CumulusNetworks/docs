@@ -1,7 +1,7 @@
 ---
 title: CLI Early Access Features
 author: Cumulus Networks
-weight: 55
+weight: 420
 aliases:
  - /display/NETQ21/Early+Access+Features
  - /pages/viewpage.action?pageId=12321063
@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 3
 ---
 
 NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined)

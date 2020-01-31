@@ -3,10 +3,19 @@
 
 {{ if .Get "title" }}
     {{ .Scratch.Set "anchor_set" (split (.Get "title") "#") }}
+    
     {{ if eq (len (.Scratch.Get "anchor_set")) 2 }}
-        {{ .Scratch.Set "title" (index (.Scratch.Get "anchor_set") 0) }}
-        {{ .Scratch.Set "anchor" (index (.Scratch.Get "anchor_set") 1) }}
+        {{ if eq "" (index (.Scratch.Get "anchor_set") 0) }}
+            {{ .Scratch.Set "title" .Page.Title }}
+            {{ .Scratch.Set "anchor" (lower (urlize (index (.Scratch.Get "anchor_set") 1))) }} 
+        {{ else }}
+            {{ .Scratch.Set "title" (index (.Scratch.Get "anchor_set") 0) }}
+            {{ .Scratch.Set "anchor" (index (.Scratch.Get "anchor_set") 1) }}
+        {{ end }}
+        
+
     {{ else }}
+        {{ .Scratch.Get "anchor_set" }}
         {{ .Scratch.Set "title" (.Get "title") }}
     {{ end }}
 
@@ -14,11 +23,18 @@
 
 
 {{ else if .Get "url" }}
+    
     {{ .Scratch.Set "anchor_set" (split (.Get "url") "#") }}
+    
     {{ if eq (len (.Scratch.Get "anchor_set")) 2 }}
-        {{ .Scratch.Set "url" (trim (index (.Scratch.Get "anchor_set") 0) "/") }}
+        {{ if eq "" (index (.Scratch.Get "anchor_set") 0) }}
+            {{ .Scratch.Set "url" (urlize .Page.Title) }} 
+        {{ else }}
+            {{ .Scratch.Set "url" (trim (index (.Scratch.Get "anchor_set") 0) "/") }}
+        {{ end }}
         {{ .Scratch.Set "anchor" (index (.Scratch.Get "anchor_set") 1) }}
-    {{ else }}
+    
+    {{ else }}        
         {{ .Scratch.Set "url" (trim (.Get "url") "/") }}
     {{ end }}
     
@@ -34,7 +50,6 @@
 
 
 {{ range where .Site.Pages ".Page.Params.version" .Page.Params.version }}
-    
     {{ if eq ($.Scratch.Get "search_param") "title" }}
         {{ if eq ($.Scratch.Get "title") .Page.Title }}
             {{ if $.Scratch.Get "anchor" }}

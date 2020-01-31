@@ -1,12 +1,13 @@
 ---
 title: Cumulus NetQ Operation
 author: Cumulus Networks
-weight: 405
+weight: 50
 pageID: 12320801
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 
 In either in-band or out-of-band deployments, NetQ offers network-wide configuration

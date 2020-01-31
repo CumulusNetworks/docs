@@ -1,11 +1,12 @@
 ---
 title: Install and Configure the NetQ Agent and CLI on RHEL and CentOS Servers
 author: Cumulus Networks
-weight: 421
+weight: 140
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents on each node you want to monitor. The node can be a:
 

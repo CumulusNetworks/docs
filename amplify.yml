@@ -15,7 +15,9 @@ frontend:
         - echo Now move static images and files ...
         - if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
         - echo Building docs ...
-        - hugo --minify --baseURL $BASEURL
+        # Don't minify in non-prod branches to simplify troubleshooting
+        - if [ "${AWS_BRANCH}" != "master" ]; then hugo --baseURL $BASEURL ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - echo Successfully built docs
         - find public -name '*.html' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
         - find public -name '*.xml' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +

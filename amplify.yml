@@ -15,7 +15,7 @@ frontend:
         - echo Now move static images and files ...
         - if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
         - echo Building docs ...
-        - # Don't minify in non-prod branches to simplify troubleshooting
+        # Don't minify in non-prod branches to simplify troubleshooting
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo --baseURL $BASEURL ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - echo Successfully built docs

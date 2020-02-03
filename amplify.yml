@@ -13,16 +13,14 @@ frontend:
       commands:
         - echo Building docs with Hugo
         - echo Now move static images and files ...
-        - if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
+        #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
         - echo Building docs ...
         # Don't minify in non-prod branches to simplify troubleshooting
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo --baseURL $BASEURL ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - echo Successfully built docs
-        # Rewrite any local page links to conform to branch specific URLs
-        - echo "Rewriting file URLs"
-        - find public -name '*.html' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
-        - find public -name '*.xml' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
+        #- find public -name '*.html' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
+        #- find public -name '*.xml' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
         - find public -name 'robots.txt' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
         # Only install and run linkchecker on the master branch
         - if [ "${AWS_BRANCH}" = "master" ]; then echo Installing Linkchecker and dependencies ; fi
@@ -41,6 +39,7 @@ frontend:
         - echo "Creating new Github release"
         - if [ "${AWS_BRANCH}" = "master" ]; then python build_release.py $GITHUB_TOKEN  ; fi
         # Only delete the static directory /after/ we check links otherwise every image will be a 404
+        - echo Remove static directory
         - if [ "${AWS_BRANCH}" = "master" ]; then echo Remove static directory ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
     postBuild:
@@ -48,8 +47,9 @@ frontend:
         # Install docraptor and requests libraries
         - pip3 install --upgrade docraptor requests
         # Tell docraptor to build both PDFs and wait for a response
-        - python3 build_pdfs.py $DOCRAPTOR_KEY
-
+        # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS> 
+        - python3 build_pdfs.py $DOCRAPTOR_KEY $BASEURL $USERNAME $PASSWORD
+>>>>>>> origin/master
   artifacts:
     files:
       - '**/*'

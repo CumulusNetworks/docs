@@ -5,6 +5,7 @@
 *.exe
 *.o
 *.so
+*.pdf 
 
 # Packages #
 ############

@@ -12,6 +12,7 @@ frontend:
     build:
       commands:
         - echo Building docs with Hugo
+        - sed -i 's/COMMIT_ID/$AWS_COMMIT_ID/g' themes/netDocs/layouts/_default/baseof.html
         - echo Now move static images and files ...
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
         - echo Building docs ...
@@ -21,7 +22,7 @@ frontend:
         - echo Successfully built docs
         #- find public -name '*.html' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
         #- find public -name '*.xml' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
-        - find public -name 'robots.txt' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
+        #- find public -name 'robots.txt' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
         # Only install and run linkchecker on the master branch
         - if [ "${AWS_BRANCH}" = "master" ]; then echo Installing Linkchecker and dependencies ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-devel ; fi

@@ -1,7 +1,7 @@
 ---
 title: Validate Network Protocol and Service Operations
 author: Cumulus Networks
-weight: 141
+weight: 350
 aliases:
  - /display/NETQ/Validate+Network+Protocol+and+Service+Operations
  - /pages/viewpage.action?pageId=12321612
@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 With the NetQ UI, you can validate the operation of the network
 protocols and services running in your network either on demand or on a

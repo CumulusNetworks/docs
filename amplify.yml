@@ -48,7 +48,7 @@ frontend:
         # Install docraptor and requests libraries
         - pip3 install --upgrade docraptor requests
         # Tell docraptor to build both PDFs and wait for a response
-        - python build_pdfs.py $DOCRAPTOR_KEY
+        - python3 build_pdfs.py $DOCRAPTOR_KEY
 
   artifacts:
     files:

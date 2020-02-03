@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
+'''
+This script will use the DocRaptor (www.docraptor.com) API to generate the PDFs of the user docs.
 
+This is done by passing specific URLs to DocRaptor to download and render. 
+Because of this, we must run the PDF creation _after_ we deploy the updated changes.
+'''
 import requests
 import json
 import sys
@@ -29,7 +34,7 @@ try:
     # Based on API example: https://github.com/DocRaptor/docraptor-python/blob/master/examples/async.py
     # This _must_ be an async request. The filesizes of CL and NetQ are unlikely return before timeout.
     print("Sending NetQ PDF creation request")
-    create_response = doc_api.create_async_doc({
+    netq_request = doc_api.create_async_doc({
         "test": True,
         "document_url": base_url + "cumulus-netq/pdf/",
         "document_type": "pdf",
@@ -41,7 +46,7 @@ try:
     })
 
     print("Sending Cumulus Linux PDF creation request")
-    create_response = doc_api.create_async_doc({
+    cl_request = doc_api.create_async_doc({
         "test": True,
         "document_url": base_url + "cumulus-linux/pdf/",
         "document_type": "pdf",
@@ -63,8 +68,8 @@ try:
             print(".", end="")
         
         # API calls to create both NetQ and CL docs in parallel
-        netq_status_response = doc_api.get_async_doc_status(create_response.status_id)
-        cl_status_response = doc_api.get_async_doc_status(create_response.status_id)
+        netq_status_response = doc_api.get_async_doc_status(netq_request.status_id)
+        cl_status_response = doc_api.get_async_doc_status(cl_request.status_id)
         
         # If we've already downloaded NetQ but are waiting on CL,
         # Then just skip over the netq checking.
@@ -111,6 +116,7 @@ try:
             print("\nBoth PDF files successfully downloaded. Exiting.")
             exit(0)
         else:
+            #Flush the stdout buffer to print growing "..." for waiting message
             sys.stdout.flush()
             first_loop = False
             time.sleep(1)

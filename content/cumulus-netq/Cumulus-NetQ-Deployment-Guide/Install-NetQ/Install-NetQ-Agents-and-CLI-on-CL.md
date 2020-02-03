@@ -164,7 +164,7 @@ Two methods are available for configuring the NetQ CLI on a switch:
 
 The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instructions for your deployment type.
 
-<details><summary>Configuring the CLI for On-premises Deployments</summary>
+<details><summary>Configure the CLI for On-premises Deployments</summary>
 
 Use the following command to configure the CLI:
 
@@ -186,7 +186,7 @@ If you have a server cluster deployed, use the IP address of the master server.
 {{%/notice%}}
 
 </details>
-<details><summary>Configuring the CLI for Cloud Deployments</summary>
+<details><summary>Configure the CLI for Cloud Deployments</summary>
 
 Use the following command to configure the CLI:
 

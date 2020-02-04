@@ -13,7 +13,7 @@ frontend:
       commands:
         - echo Building docs with Hugo
         - echo Now move static images and files ...
-        - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" docs/themes/netDocs/layouts/_default/baseof.html
+        - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
         - echo Building docs ...
         # Don't minify in non-prod branches to simplify troubleshooting

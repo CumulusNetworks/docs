@@ -12,7 +12,6 @@ frontend:
     build:
       commands:
         - echo Building docs with Hugo
-        - sed -i 's/COMMIT_ID/{$AWS_COMMIT_ID}/g' themes/netDocs/layouts/_default/baseof.html
         - echo Now move static images and files ...
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
         - echo Building docs ...
@@ -43,13 +42,13 @@ frontend:
         - echo Remove static directory
         - if [ "${AWS_BRANCH}" = "master" ]; then echo Remove static directory ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
-    postBuild:
-      commands:
-        # Install docraptor and requests libraries
-        - pip3 install --upgrade docraptor requests
-        # Tell docraptor to build both PDFs and wait for a response
-        # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS> 
-        - python3 build_pdfs.py $DOCRAPTOR_KEY $BASEURL $USERNAME $PASSWORD
+    # postBuild:
+    #   commands:
+    #     # Install docraptor and requests libraries
+    #     - pip3 install --upgrade docraptor requests
+    #     # Tell docraptor to build both PDFs and wait for a response
+    #     # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS> 
+    #     - python3 build_pdfs.py $DOCRAPTOR_KEY $BASEURL $USERNAME $PASSWORD
   artifacts:
     files:
       - '**/*'

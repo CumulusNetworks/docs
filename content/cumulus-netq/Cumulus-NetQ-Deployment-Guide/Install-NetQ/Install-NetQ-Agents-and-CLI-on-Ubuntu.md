@@ -53,7 +53,7 @@ root@ubuntu:~# sudo systemctl start lldpd.service
 
 ### Install and Configure NTP
 
-If NTP is not already installed an configured, follow these steps:
+If NTP is not already installed and configured, follow these steps:
 
 1.  Install [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 

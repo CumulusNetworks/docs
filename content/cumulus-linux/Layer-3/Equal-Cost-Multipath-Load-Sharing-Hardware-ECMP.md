@@ -283,7 +283,7 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 
 When the next hop information for an IPv6 prefix changes (for example, when ECMP paths are added or deleted, or when the next hop IP address, interface or tunnel changes), FRR deletes the existing route to that prefix from the kernel and then adds a new route with all the relevant new information.
 
-However, in certain situations, resilient hashing (RASH) might not be maintained for IPv6 flows. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumu;lus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop. This can lead to incorrect forwarding decisions and can lead to lost traffic.
+However, in certain situations, resilient hashing (RASH) might not be maintained for IPv6 flows. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop. This can lead to incorrect forwarding decisions and can lead to lost traffic.
 
 To work around this issue, you can enable IPv6 in-place route replacement.
 

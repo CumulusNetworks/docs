@@ -21,7 +21,7 @@ frontend:
         - echo Successfully built docs
         #- find public -name '*.html' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
         #- find public -name '*.xml' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
-        - find public -name 'robots.txt' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
+        #- find public -name 'robots.txt' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
         # Only install and run linkchecker on the master branch
         - if [ "${AWS_BRANCH}" = "master" ]; then echo Installing Linkchecker and dependencies ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-devel ; fi
@@ -42,13 +42,6 @@ frontend:
         - echo Remove static directory
         - if [ "${AWS_BRANCH}" = "master" ]; then echo Remove static directory ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
-    postBuild:
-      commands:
-        # Install docraptor and requests libraries
-        - pip3 install --upgrade docraptor requests
-        # Tell docraptor to build both PDFs and wait for a response
-        # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS> 
-        - python3 build_pdfs.py $DOCRAPTOR_KEY $BASEURL $USERNAME $PASSWORD
   artifacts:
     files:
       - '**/*'

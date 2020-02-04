@@ -57,4 +57,4 @@ You should see:
 
 - netq-agent-2.4.0-rh7u25~1579642928.aeb67d8.x86_64.rpm
 
-If you do not see one of these, refer to [Upgrade NetQ Agents on RHELor CentOS Servers](../Upgrade-NetQ-Agents-on-RHEL-or_CentOS-Servers/).
+If you do not see one of these, refer to [Upgrade NetQ Agents on RHEL or CentOS Servers](../Upgrade-NetQ-Agents-on-RHEL-or-CentOS-Servers/).

@@ -804,6 +804,43 @@ WJH is enabled by default on Mellanox switches running Cumulus Linux 4.0.0 and N
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
 
+{{%notice info%}}
+By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0.
+
+```
+cumulus@<hostname>:~$ sudo apt-get update
+cumulus@<hostname>:~$ sudo apt-get install -y netq-agent
+cumulus@<hostname>:~$ netq config restart agent
+cumulus@<hostname>:~$ sudo apt-get install -y netq-apps
+cumulus@<hostname>:~$ netq config restart cli
+```
+
+{{%/notice%}}
+
+### Configure the WJH Feature
+
+WJH is enabled by default on Mellanox switches and no configuration is required in Cumulus Linux 4.0.0; however, you must enable the NetQ Agent to collect the data in NetQ 2.4.0.
+
+To enable WJH in NetQ:
+
+1. Configure the NetQ Agent on the Mellanox switch.
+
+```
+cumulus@switch:~$ netq config add agent wjh
+```
+
+2. Restart the NetQ Agent to start collecting the WJH data.
+
+```
+cumulus@switch:~$ netq config restart agent
+```
+
+{{%notice note%}}
+Using *wjh_dump.py* on a Mellanox platform that is running CumulusLinux 4.0 and the NetQ 2.4.0 agent causes the NetQ WJH client to stop receiving WJH data. If you want to use *wjh_dump.py*, disable WJH monitoring by the NetQ Agent on that switch using `netq config del agent wjh` followed by `netq config restart agent`.
+{{%/notice%}}
+
+### View What Just Happened Metrics
+
 View layer 2 drop statistics using the `netq show wjh-drop` NetQ CLI command. The full syntax for this command is:
 
 ```
@@ -821,3 +858,5 @@ mlx-2700-03       swp1s2                   Port loopback filter                 
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:53:17 2019       Mon Dec 16 11:53:17 2019
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 0.0.0.0          0.0.0.0          0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:40:44 2019       Mon Dec 16 11:40:44 2019
 ```
+
+When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.

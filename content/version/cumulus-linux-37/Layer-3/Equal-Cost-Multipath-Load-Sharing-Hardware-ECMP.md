@@ -427,7 +427,7 @@ ospfd_options=" -M snmp --daemon -A 127.0.0.1"
 cumulus@switch:~$ sudo systemctl restart frr.service
 ```
 
-To verify that the IPv6 in-place route replacement option is enabled, run the `systemctl status frr` command:
+To verify that the IPv6 route replacement option is enabled, run the `systemctl status frr` command:
 
 ```
 cumulus@switch:~$ systemctl status frr

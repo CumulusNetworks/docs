@@ -13,13 +13,15 @@ frontend:
       commands:
         - echo Building docs with Hugo
         - echo Now move static images and files ...
-        - if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
+        #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
         - echo Building docs ...
-        - hugo --minify --baseURL $BASEURL
+        # Don't minify in non-prod branches to simplify troubleshooting
+        - if [ "${AWS_BRANCH}" != "master" ]; then hugo --baseURL $BASEURL ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - echo Successfully built docs
-        - find public -name '*.html' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
-        - find public -name '*.xml' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
-        - find public -name 'robots.txt' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
+        #- find public -name '*.html' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
+        #- find public -name '*.xml' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
+        #- find public -name 'robots.txt' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
         # Only install and run linkchecker on the master branch
         - if [ "${AWS_BRANCH}" = "master" ]; then echo Installing Linkchecker and dependencies ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-devel ; fi
@@ -34,9 +36,11 @@ frontend:
         # 4 threads are used as that seems to be the fastest rendering based on testing with 4 vCPUs
         - if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 4 -f auth.txt http://localhost:1313/  ; fi
         # If everything else worked, then cut a new release.
+        - echo "Creating new Github release"
         - if [ "${AWS_BRANCH}" = "master" ]; then python build_release.py $GITHUB_TOKEN  ; fi
         # Only delete the static directory /after/ we check links otherwise every image will be a 404
         - echo Remove static directory
+        - if [ "${AWS_BRANCH}" = "master" ]; then echo Remove static directory ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
   artifacts:
     files:

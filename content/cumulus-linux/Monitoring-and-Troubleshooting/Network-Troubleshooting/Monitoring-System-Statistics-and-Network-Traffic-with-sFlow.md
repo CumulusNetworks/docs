@@ -1,7 +1,7 @@
 ---
 title: Monitoring System Statistics and Network Traffic with sFlow
 author: Cumulus Networks
-weight: 455
+weight: 1070
 aliases:
  - /display/DOCS/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow
  - /pages/viewpage.action?pageId=8366318

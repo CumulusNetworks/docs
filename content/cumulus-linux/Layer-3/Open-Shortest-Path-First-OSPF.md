@@ -1,7 +1,7 @@
 ---
 title: Open Shortest Path First - OSPF
 author: Cumulus Networks
-weight: 179
+weight: 790
 aliases:
  - /display/DOCS/Open+Shortest+Path+First+++OSPF
  - /display/DOCS/Open+Shortest+Path+First+OSPF

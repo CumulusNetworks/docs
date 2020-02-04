@@ -1,7 +1,7 @@
 ---
 title: Address Resolution Protocol - ARP
 author: Cumulus Networks
-weight: 177
+weight: 780
 aliases:
  - /display/DOCS/Address+Resolution+Protocol+++ARP
  - /display/DOCS/Address+Resolution+Protocol+-+ARP
@@ -262,3 +262,28 @@ cumulus@switch:~$ sudo ifreload -a
 ```
 
 </details>
+
+## Duplicate Address Detection (Windows Hosts)
+
+In centralized VXLAN environments, where ARP/ND suppression is enabled and SVIs exist on the leaf switches but are not assigned an address within the subnet, problems with the Duplicate Address Detection process on  Microsoft Windows hosts can occur. For example, in a pure layer 2 scenario or with SVIs that have the `ip-forward` option set to off, the IP address is not assigned to the SVI. The `neighmgrd` service selects a source IP address for an ARP probe based on the subnet match on the neighbor IP address. Because the SVI on which this neighbor is learned does not contiain an IP address, the subnet match fails. This results in `neighmgrd` using UNSPEC (0.0.0.0 for IPv4) as the source IP address in the ARP probe.
+
+To work around this issue, run the `neighmgrctl setsrcipv4 <ipaddress>` command to specify a non-0.0.0.0 address for the source; for example:
+
+```
+cumulus@switch:~$ neighmgrctl setsrcipv4 10.1.0.2
+```
+
+The configuration above takes effect immediately but does not persist if you reboot the switch. To make the changes apply persistently:
+
+1. Create a new file called `/etc/cumulus/neighmgr.conf` and add the `setsrcipv4 <ipaddress>` option; for example:
+
+```
+cumulus@switch:~$  sudo nano /etc/cumulus/neighmgr.conf
+
+setsrcipv4: 10.1.0.2
+```
+2. Reload the configuration file using `systemd`:
+
+```
+cumulus@switch:~$ sudo systemctl daemon-reload
+```

@@ -1509,7 +1509,8 @@ comment out the lines as this prevents `switchd` from restarting.
 ### Mellanox SN2100 Switch and eth0 Link Speed
 
 After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
-To work around this issue, either flap the interface or add commands to the `/etc/rc.local` file so that this occurs on boot automatically.
+
+To work around this issue, unload the igb module with the `rmmod` command, wait for approximately 20 seconds, then reload the igb module with the `modprobe` command.
 
 ### Link Speed on the EdgeCore AS7326-56X Switch
 

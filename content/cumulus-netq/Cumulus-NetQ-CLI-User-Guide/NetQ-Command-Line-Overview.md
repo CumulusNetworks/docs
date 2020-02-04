@@ -1,7 +1,7 @@
 ---
 title: NetQ Command Line Overview
 author: Cumulus Networks
-weight: 31
+weight: 290
 aliases:
  - /display/NETQ/NetQ+Command+Line+Overview
  - /pages/viewpage.action?pageId=12321059
@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 3
 ---
 The NetQ CLI provides access to all of the network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. The commands are grouped into four categories: check, show, config, and trace.
 

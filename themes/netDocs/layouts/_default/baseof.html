@@ -10,16 +10,202 @@
   <!-- Fonts for the theme -->
   <link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
 
-  <!-- Theme stylesheet, you can customize scss by creatig `assets/custom.scss` in your website -->
+  <!-- Theme stylesheet, you can customize scss by creating `assets/custom.scss` in your website -->
   <!-- WHERE Hugo pipes in and compiles book.scss-->
   {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
-  {{ if .Site.Params.pdfExport }}
-    {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}">
+
+<!-- The PDF page has a custom CSS sheet to control PDF output formatting -->
+  {{if eq .Page.Type "pdf"}}
+  <!-- Because of the need to dynamically set CSS settings we must include the sheet inline -->
+
+  <style type="text/css">
+      @page {
+        /* NetQ docs contain long outputs. 
+        Use landscape style to help fit */
+        {{ if eq .Section "cumulus-netq" }}
+            size: A4 landscape;
+        {{ else }}
+            size: A4 portrait;
+        {{ end }}
+        
+        @bottom {
+            padding-top: 0;
+            margin: 10pt 0 30pt 0;
+            border-top: .25pt solid #36424a;
+        }
+        @top-right {
+          border-bottom: .25pt solid #36424a;
+        }
+    }
+
+    @page:right {
+        @bottom {
+            content: "{{urlize .Permalink}}"
+        }
+
+        @bottom-right {
+            padding-top: 0;
+            margin: 10pt 0 30pt 0;
+            border-top: .25pt solid #36424a;
+            content: counter(page);
+        }
+
+        @bottom-left {
+            padding-top: 0;
+            margin: 10pt 0 30pt 0;
+            border-top: .25pt solid #36424a;
+        }
+
+        @top-right {
+            padding-bottom: 0;
+            margin: 10pt 0 30pt 0;
+            border-bottom: .25pt solid #36424a;
+            content: "{{.Page.Params.product}} v{{.Page.Params.version}} User Documentation";
+        }
+
+        @top-left {
+            padding-bottom: 0;
+            margin: 10pt 0 30pt 0;
+            content: string(chapter-title);
+            border-bottom: .25pt solid #36424a;
+        }
+    }
+
+    @page:left {
+        @bottom {
+            content: "{{urlize .Permalink}}"
+        }
+
+        @bottom-right {
+            padding-top: 0;
+            margin: 10pt 0 30pt 0;
+            border-top: .25pt solid #36424a;
+        }
+
+        @bottom-left {
+            padding-top: 0;
+            margin: 10pt 0 30pt 0;
+            border-top: .25pt solid #36424a;
+            content: counter(page);
+        }
+
+        @top-right {
+            padding-bottom: 0;  
+            margin: 10pt 0 30pt 0;
+            border-bottom: .25pt solid #36424a;
+            content: string(chapter-title);
+        }
+
+        @top-left {
+            padding-bottom: 0;
+            margin: 10pt 0 30pt 0;
+            border-bottom: .25pt solid #36424a;
+            content: "{{.Page.Params.product}} v{{.Page.Params.version}} User Documentation";
+        }
+
+    }
+
+    @page:first {
+        @bottom-right { 
+            content: normal;
+        }
+        @bottom-left { 
+            content: normal;
+        }
+        @bottom { 
+            content: normal;
+        }
+        @top-right { 
+            content: normal;
+        }
+        @top-left { 
+            content: normal;
+        }
+        @top { 
+            content: normal;
+        }
+    }
+    .book-page {
+        counter-reset: page 1
+    }
+
+    #cover {
+        width: 100%;
+        text-align: center;
+        break-after: always;
+    }
+
+    #centered {
+        break-after: always;
+        margin: 0 auto;
+        display: inline-block;
+        padding: 3px;
+    }
+
+    #centered h1 {
+        color: #36424a;
+        font-size: 2rem;
+        font-weight: 300;
+        letter-spacing: -.7px;
+        line-height: 3rem;
+        margin-top: 0;
+        margin-bottom: 1.1rem
+    }
+
+    #centered img {
+        display: block;
+        page-break-inside: avoid;
+        width: 500px;
+        height: auto;
+        margin: auto;
+    }
+
+    img { 
+      padding-bottom: 30px;
+    }
+
+    .markdown {
+        page-break-after: always;
+    }
+
+    .markdown code { 
+      font-size: .5rem;
+    }
+
+    .toc1 {
+        prince-bookmark-level: 1;
+    }
+
+    .toc2 {
+        prince-bookmark-level: 2;
+        string-set: chapter-title content()
+    }
+
+    .toc3 {
+        prince-bookmark-level: 3;
+    }
+
+    h1 {
+        prince-bookmark-level: none;
+    }
+
+    h2 {
+        prince-bookmark-level: none;
+    }
+
+    h3 {
+        prince-bookmark-level: none;
+    }
+
+    h4 {
+        prince-bookmark-level: none;
+    }
+  </style>
   {{ end }}
-  
+
   <!-- Favicon -->
-  <link rel="icon" href="{{ "icons/favicon.png" | relURL }}" type="image/x-icon">
+  <link rel="icon" href="{{ "icons/favicon.png" | absURL }}" type="image/x-icon">
 
   <!-- RSS -->
   {{ with .OutputFormats.Get "rss" -}}
@@ -32,15 +218,24 @@
   {{ "-->" | safeHTML }}
 
   <!-- clipboard.js support -->
-  {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
-  <script src = "{{ $jsCodeCopy.RelPermalink }}"> </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  {{if ne .Page.Type "pdf"}}
+    {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
+    <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  {{ end }}
+  
+  <!-- Javascript to rewrite absolute links into local anchors for PDF export -->
+  {{if eq .Page.Type "pdf"}}
+    {{ $jsCodeCopy := resources.Get "js/pdf_link_rewrite.js"}}
+    <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
+  {{ end }}
 
 </head>
 
 
 <body>
-  {{ if not .Site.Params.pdfExport }}
+<!-- PDF output does not require standard menus -->
+{{if ne .Page.Type "pdf"}}
   <input type="checkbox" style="display: none" id="menu-control" />
   <!-- INSERT article page header -->
   <header id="site-nav">
@@ -65,6 +260,7 @@
       </div>
     </div>
   </header>
+
   <div id="product-nav" class="flex">
     <div class="menu-container">
       <!-- generates subnav memu from config.toml -->
@@ -120,12 +316,12 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {{- range where .Site.Sections "Params.product" $currentProduct -}}
-            <a class = "dropdown-item" href = "{{- .RelPermalink -}}"> v{{- .Params.version -}}</a>
+            <a class = "dropdown-item" href = "{{- .Permalink -}}"> v{{- .Params.version -}}</a>
             {{- end -}}
             {{- range where .Site.Pages "Section" "version" -}}
              {{- if eq .Params.product $currentProduct -}}
              {{- if .Params.subsection -}}
-            <a class = "dropdown-item" href = "{{- .RelPermalink -}}"> v{{- .Params.version -}}</a>
+            <a class = "dropdown-item" href = "{{- .Permalink -}}"> v{{- .Params.version -}}</a>
             {{- end -}}
             {{- end -}}
             {{- end -}}
@@ -166,12 +362,12 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {{- range where .Site.Sections "Params.product" $currentProduct -}}
-              <a class = "dropdown-item" href = "{{- .RelPermalink -}}"> v{{- .Params.version -}}</a>
+              <a class = "dropdown-item" href = "{{- .Permalink -}}"> v{{- .Params.version -}}</a>
               {{- end -}}
               {{- range where .Site.Pages "Section" "version" -}}
                {{- if eq .Params.product $currentProduct -}}
                {{- if .Params.subsection -}}
-              <a class = "dropdown-item" href = "{{ .RelPermalink }}"> v{{- .Params.version -}}</a>
+              <a class = "dropdown-item" href = "{{ .Permalink }}"> v{{- .Params.version -}}</a>
               {{- end -}}
               {{- end -}}
               {{- end -}}
@@ -197,10 +393,9 @@
       </div>
     </div> <!-- search-container -->
   </div> <!-- mobile product nav -->
-  {{ end }}
+
 
   <main class="flex container">
-    {{ if not .Site.Params.pdfExport }}
     <aside class="book-menu fixed">
 
       <nav role="navigation">
@@ -222,23 +417,12 @@
       {{ $jsCustom := resources.Get "js/custom.js" }}
       {{ $jsMenu := slice $jsScroll $jsCollapse $jsCustom | resources.Concat "js/menuBundle.js"}}
 
-      <script src = "{{ $jsMenu.RelPermalink }}"> </script>
+      <script src = "{{ $jsMenu.Permalink }}"> </script>
 
 
     </aside>
-    {{ end }}
-
+{{ end }}
     <div class="book-page">
-    {{ if not .Site.Params.pdfExport }}
-
-      <!-- default mobile header from themes/book -->
-      <!-- <header class="align-center justify-between book-header">
-        <label for="menu-control">
-          <img src="{{ "svg/menu.svg" | relURL }}" alt="Menu" />
-        </label>
-        <strong>{{- .Page.Title -}}</strong>
-      </header> -->
-    {{ end }}
 
       <!-- branch to list.html or single.html -->
       {{ block "main" . }}
@@ -255,7 +439,6 @@
       {{ end }}
 
   </main>
-  {{ if not .Site.Params.pdfExport }}
   <footer class="footer-top">
     <div class="container">
       <div class="row">
@@ -263,8 +446,8 @@
           <div class="footer-content">
             <div class="mb-4">
                 <img id="rt-icon" src="https://static.cumulusnetworks.com/static/images/shared/cumulus-networks-rt-white-trademarked.ff839f1b2570.svg">
-                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script> Cumulus Networks.<br>
-                Site by <a href="//unomena.com/" target="_blank">Unomena</a>.</p>
+                <p>© <script type="text/javascript">document.write(new Date().getFullYear());</script>&nbsp;Cumulus Networks<br>
+                Site by <a href="//unomena.com/" target="_blank">Unomena</a></p>
                 <p><a href="/license/"><img src="https://docs-cdn.cumulusnetworks.com/images/by-nc-sa.svg" alt="Cumulus Networks CC-by-NC-SA License"></a></p>
             </div>
             <ul class="mb-4">
@@ -388,6 +571,8 @@
       </div>
   </div>
 
+<!-- The following Javascript does not play well with PDF output tools -->
+{{if ne .Page.Type "pdf"}}
   <!-- internal Hugo template for google analytics -->
   {{ template "_internal/google_analytics_async.html" . }}
   <script type="text/javascript">
@@ -432,9 +617,8 @@
   <script>
     (function(w,d,s){var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='//embeddable-widgets-usw2.insided.com/cumulusnetworks-en.insided-conversational.js';f.parentNode.insertBefore(j,f);})(window,document,'script');
   </script>
-  {{ end }}
+{{ end }}
 
 </body>
 
 </html>
-

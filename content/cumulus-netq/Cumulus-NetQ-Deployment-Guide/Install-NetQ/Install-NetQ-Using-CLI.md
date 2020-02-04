@@ -1,7 +1,7 @@
 ---
 title: Install NetQ Using the CLI
 author: Cumulus Networks
-weight: 418
+weight: 110
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 After you have validated the prerequisites and performed the preparation steps, you can now install the NetQ software using the CLI.
 

@@ -1,7 +1,7 @@
 ---
 title: Virtual Router Redundancy - VRR and VRRP
 author: Cumulus Networks
-weight: 129
+weight: 500
 aliases:
  - /display/DOCS/Virtual+Router+Redundancy+++VRR+and+VRRP
  - /pages/viewpage.action?pageId=8366414

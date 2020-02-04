@@ -1,7 +1,7 @@
 ---
 title: Voice VLAN
 author: Cumulus Networks
-weight: 333
+weight: 420
 aliases:
  - /display/DOCS/Voice+VLAN
  - /pages/viewpage.action?pageId=8366374

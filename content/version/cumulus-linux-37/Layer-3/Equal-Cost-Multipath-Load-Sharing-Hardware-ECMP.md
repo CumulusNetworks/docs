@@ -393,7 +393,7 @@ resilient_hash_entries_ecmp = 256
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
-## Caveats
+## Caveats and Errata
 
 ### IPv6 Route Replacement
 

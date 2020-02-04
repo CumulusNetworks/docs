@@ -403,7 +403,7 @@ To work around this issue in Cumulus Linux 3.7.12 and later, you can enable the 
 
 {{%notice info%}}
 
-Be aware that for certain configurations, the IPv6 route replacement option can lead to incorrect forwarding decisions and can lead to lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
+Be aware that for certain configurations, the IPv6 route replacement option can lead to incorrect forwarding decisions and lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
 
 {{%/notice%}}
 
@@ -412,7 +412,7 @@ To enable the IPv6 route replacement option:
 1. In the `/etc/frr/daemons.conf` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
 
 ```
-cumulus@switch:~$ sudo nano /etc/frr/damons.conf
+cumulus@switch:~$ sudo nano /etc/frr/daemons.conf
 ...
 vtysh_enable=yes
 zebra_options=" -M snmp -s 90000000 --v6-rr-semantics --daemon -A 127.0.0.1"

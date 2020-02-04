@@ -393,15 +393,21 @@ resilient_hash_entries_ecmp = 256
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
-## Caveats
+## Caveats and Errata
 
 ### IPv6 Route Replacement
 
-When the next hop information for an IPv6 prefix changes (for example, when ECMP paths are added or deleted, or when the next hop IP address, interface or tunnel changes), FRR deletes the existing route to that prefix from the kernel and then adds a new route with all the relevant new information.
+When the next hop information for an IPv6 prefix changes (for example, when ECMP paths are added or deleted, or when the next hop IP address, interface, or tunnel changes), FRR deletes the existing route to that prefix from the kernel and then adds a new route with all the relevant new information. However, in certain situations, resilient hashing might not be maintained for IPv6 flows.
 
-However, in certain situations, resilient hashing (RASH) might not be maintained for IPv6 flows. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop. This can lead to incorrect forwarding decisions and can lead to lost traffic.
+To work around this issue in Cumulus Linux 3.7.12 and later, you can enable the IPv6 route replacement option.
 
-In 3.7.12 and later, you can work around this issue by enabling IPv6 in-place route replacement.
+{{%notice info%}}
+
+Be aware that for certain configurations, the IPv6 route replacement option can lead to incorrect forwarding decisions and lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
+
+{{%/notice%}}
+
+To enable the IPv6 route replacement option:
 
 1. In the `/etc/frr/daemons.conf` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
 
@@ -421,7 +427,7 @@ ospfd_options=" -M snmp --daemon -A 127.0.0.1"
 cumulus@switch:~$ sudo systemctl restart frr.service
 ```
 
-To verify that the IPv6 in-place route replacement option is enabled, run the `systemctl status frr` command:
+To verify that the IPv6 route replacement option is enabled, run the `systemctl status frr` command:
 
 ```
 cumulus@switch:~$ systemctl status frr

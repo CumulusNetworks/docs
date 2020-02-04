@@ -276,3 +276,49 @@ resilient_hash_entries_ecmp = 256
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
+
+## Caveats
+
+### IPv6 Route Replacement
+
+When the next hop information for an IPv6 prefix changes (for example, when ECMP paths are added or deleted, or when the next hop IP address, interface or tunnel changes), FRR deletes the existing route to that prefix from the kernel and then adds a new route with all the relevant new information.
+
+However, in certain situations, resilient hashing (RASH) might not be maintained for IPv6 flows. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumu;lus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop. This can lead to incorrect forwarding decisions and can lead to lost traffic.
+
+To work around this issue, you can enable IPv6 in-place route replacement.
+
+1. In the `/etc/frr/daemons` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
+
+```
+cumulus@switch:~$ sudo nano /etc/frr/damons
+...
+vtysh_enable=yes
+zebra_options=" -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
+bgpd_options=" -M snmp  -A 127.0.0.1"
+ospfd_options=" -M snmp -A 127.0.0.1"
+...
+```
+
+2. Restart FRRouting:
+
+```
+cumulus@switch:~$ sudo systemctl restart frr.service
+```
+
+To verify that the IPv6 in-place route replacement option is enabled, run the `systemctl status frr` command:
+
+```
+cumulus@switch:~$ systemctl status frr
+
+● frr.service - FRRouting
+   Loaded: loaded (/lib/systemd/system/frr.service; enabled; vendor preset: enabled)
+   Active: active (running) since Mon 2020-02-03 20:02:33 UTC; 3min 8s ago
+     Docs: https://frrouting.readthedocs.io/en/latest/setup.html
+  Process: 4675 ExecStart=/usr/lib/frr/frrinit.sh start (code=exited, status=0/SUCCESS)
+   Memory: 14.4M
+   CGroup: /system.slice/frr.service
+           ├─4685 /usr/lib/frr/watchfrr -d zebra bgpd staticd
+           ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
+           ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
+           └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
+```

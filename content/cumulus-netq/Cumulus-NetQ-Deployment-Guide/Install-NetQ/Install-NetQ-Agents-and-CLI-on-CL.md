@@ -63,6 +63,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
 *Note that NetQ has a separate repository from Cumulus Linux.*
 
 <details><summary>Cumulus Linux 3.x</summary>
+
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
@@ -75,6 +76,7 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-
 {{%/notice%}}
 </details>
 <details><summary>Cumulus Linux 4.x</summary>
+
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
@@ -194,8 +196,6 @@ Use the following command to configure the CLI:
 ```
 netq config add cli server <text-gateway-dest> [vrf <text-vrf-name>] [port <text-gateway-port>]
 ```
-</details>
-<details><summary>Configure NetQ CLI for cloud deployments</summary>
 
 Restart the CLI afterward to activate the configuration.
 

@@ -406,7 +406,7 @@ In 3.7.12 and later, you can work around this issue by enabling IPv6 in-place ro
 1. In the `/etc/frr/daemons.conf` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
 
 ```
-cumulus@switch:~$ sudo nano /etc/frr/damons
+cumulus@switch:~$ sudo nano /etc/frr/daemons.conf
 ...
 vtysh_enable=yes
 zebra_options=" -M snmp -s 90000000 --v6-rr-semantics --daemon -A 127.0.0.1"

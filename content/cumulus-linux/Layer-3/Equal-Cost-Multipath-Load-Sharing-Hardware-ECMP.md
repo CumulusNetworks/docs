@@ -296,7 +296,7 @@ To enable the IPv6 route replacement option:
 1. In the `/etc/frr/daemons` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
 
 ```
-cumulus@switch:~$ sudo nano /etc/frr/damons
+cumulus@switch:~$ sudo nano /etc/frr/daemons
 ...
 vtysh_enable=yes
 zebra_options=" -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"

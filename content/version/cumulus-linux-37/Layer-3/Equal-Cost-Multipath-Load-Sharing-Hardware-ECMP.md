@@ -401,7 +401,7 @@ When the next hop information for an IPv6 prefix changes (for example, when ECMP
 
 However, in certain situations, resilient hashing (RASH) might not be maintained for IPv6 flows. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop. This can lead to incorrect forwarding decisions and can lead to lost traffic.
 
-To work around this issue, you can enable IPv6 in-place route replacement.
+In 3.7.12 and later, you can work around this issue by enabling IPv6 in-place route replacement.
 
 1. In the `/etc/frr/daemons.conf` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
 

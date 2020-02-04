@@ -12,7 +12,7 @@ frontend:
     build:
       commands:
         - echo Building docs with Hugo
-        - sed -i 's/COMMIT_ID/$AWS_COMMIT_ID/g' themes/netDocs/layouts/_default/baseof.html
+        - sed -i 's/COMMIT_ID/{$AWS_COMMIT_ID}/g' themes/netDocs/layouts/_default/baseof.html
         - echo Now move static images and files ...
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
         - echo Building docs ...

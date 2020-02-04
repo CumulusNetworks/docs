@@ -149,8 +149,8 @@ root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 
     You should see version 2.4.0 and update 25 in the results. For example:
 
-    - netq-agent_**2.4.0**-ub18.04u**25**~1579642196.aeb67d8_amd64.deb
-    - netq-agent_**2.4.0**-ub16.04u**25**~1579714730.aeb67d8_amd64.deb, or
+    - netq-agent_**2.4.0**-ub18.04u**25**~1579642196.aeb67d8_amd64.deb, or
+    - netq-agent_**2.4.0**-ub16.04u**25**~1579714730.aeb67d8_amd64.deb
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

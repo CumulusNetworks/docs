@@ -397,7 +397,7 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 
 ### IPv6 Route Replacement
 
-When the next hop information for an IPv6 prefix changes (for example, when ECMP paths are added or deleted, or when the next hop IP address, interface, or tunnel changes), FRR deletes the existing route to that prefix from the kernel and then adds a new route with all the relevant new information. However, in certain situations, resilient hashing might not be maintained for IPv6 flows.
+When the next hop information for an IPv6 prefix changes (for example, when ECMP paths are added or deleted, or when the next hop IP address, interface, or tunnel changes), FRR deletes the existing route to that prefix from the kernel and then adds a new route with all the relevant new information. Because of this process, resilient hashing might not be maintained for IPv6 flows in certain situations.
 
 To work around this issue in Cumulus Linux 3.7.12 and later, you can enable the IPv6 route replacement option.
 

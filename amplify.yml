@@ -13,7 +13,7 @@ frontend:
         - echo Successfully installed Hugo
     build:
       commands:
-        - curl -u cumulus:$PASSWORD -k $BASEURL/robots.txt
+        - curl -u cumulus:$PASSWORD -k $BASEURLrobots.txt
         - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
         - echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt
         - time linkchecker -D all -t 8 -f auth.txt $BASEURL

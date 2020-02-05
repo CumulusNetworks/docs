@@ -15,7 +15,7 @@ frontend:
       commands:
         - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
         - echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt
-        - time linkchecker -v -t 20 -f auth.txt $BASEURL
+        - time linkchecker -v -t 8 -f auth.txt $BASEURL
         # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi

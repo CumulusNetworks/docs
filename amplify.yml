@@ -3,8 +3,13 @@ frontend:
   phases:
     preBuild:
       commands:
+        - yum -yq install python-devel
+        - yum -yq install python-pip
+        - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
+        - echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt
+        - time linkchecker -t 4 -f auth.txt http://stage.docs.cumulusnetworks.com
         - echo Installing Hugo ...
-        - wget https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extended_0.55.6_Linux-64bit.tar.gz
+        - wget -q https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extended_0.55.6_Linux-64bit.tar.gz
         - tar -xf hugo_extended_0.55.6_Linux-64bit.tar.gz hugo
         - mv hugo /usr/bin/hugo
         - rm -rf hugo_extended_0.55.6_Linux-64bit.tar.gz
@@ -25,7 +30,8 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-devel ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-pip ; fi
         # Now pip install the latest linkchecker zip from source zip
-        - if [ "${AWS_BRANCH}" = "master" ]; then pip install pip install https://github.com/linkchecker/linkchecker/archive/master.zip ; fi
+        #- if [ "${AWS_BRANCH}" = "master" ]; then pip install https://github.com/linkchecker/linkchecker/archive/master.zip ; fi
+        
         # Install npm wait-on so we can later pause the build for hugo to build.
         - if [ "${AWS_BRANCH}" = "master" ]; then npm install wait-on ; fi
         # Start hugo, and render for http://localhost:1313 for linkchecker to do it's thing
@@ -35,8 +41,6 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then npx wait-on http://localhost:1313 ; fi
         # 4 threads are used as that seems to be the fastest rendering based on testing with 4 vCPUs
         #- if [ "${AWS_BRANCH}" = "master" ]; then echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt ; fi
-        - echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt
-        - time linkchecker -t 4 -f auth.txt http://stage.docs.cumulusnetworks.com
         #- if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 4 -f auth.txt http://stage.docs.cumulusnetworks.com  ; fi
         # If everything else worked, then cut a new release.
         - echo "Creating new Github release"

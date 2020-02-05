@@ -13,12 +13,11 @@ frontend:
         - echo Successfully installed Hugo
     build:
       commands:
-        - pip -q install https://github.com/linkchecker/linkchecker/archive/v9.3.1.zip
-        - echo "[authentication]" > auth.txt
-        - echo "loginuserfield=cumulus" >> auth.txt
-        - echo "loginpasswordfield=$PASSWORD" >> auth.txt
-        - cat auth.txt
-        - linkchecker -t 8 -f auth.txt $BASEURL
+        - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
+        # - echo "[authentication]" > auth.txt
+        # - echo "loginuserfield=cumulus" >> auth.txt
+        # - echo "loginpasswordfield=$PASSWORD" >> auth.txt
+        - linkchecker -t 8 https://docs.cumulusnetworks.com
         # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi

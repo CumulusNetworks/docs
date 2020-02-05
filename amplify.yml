@@ -3,11 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - yum -yq install python-devel
-        - yum -yq install python-pip
+        - yum -y -q install python-devel
+        - yum -y -q install python-pip
         - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
         - echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt
-        - time linkchecker -t 4 -f auth.txt http://stage.docs.cumulusnetworks.com
+        - time linkchecker -v -t 4 -f auth.txt http://stage.docs.cumulusnetworks.com
         - echo Installing Hugo ...
         - wget -q https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extended_0.55.6_Linux-64bit.tar.gz
         - tar -xf hugo_extended_0.55.6_Linux-64bit.tar.gz hugo

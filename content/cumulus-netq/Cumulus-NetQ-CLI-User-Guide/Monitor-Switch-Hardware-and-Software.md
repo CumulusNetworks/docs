@@ -913,12 +913,12 @@ summary for a specific device.
 
 ### View the Cumulus Linux Package on a Switch
 
-When you are troubleshooting an issue with a switch, you might want to know what versions of the Cumulus Linux operating system is on that switch and on a switch that is not having the same issue.
+When you are troubleshooting an issue with a switch, you might want to know what versions of the Cumulus Linux operating system are supported on that switch and on a switch that is not having the same issue.
 
-This example show the installed Cumulus Linux OS version for leaf01.
+This example shows the Cumulus Linux OS versions supported for the *leaf01* switch, using the *vx* ASIC vendor (virtual, so simulated) and *x86_64* CPU architecture.
 
 ```
-cumulus@oob-mgmt-server:~$ netq leaf01 show cl-manifest
+cumulus@switch:~$ netq leaf01 show cl-manifest
 
 Matching manifest records:
 Hostname          ASIC Vendor          CPU Arch             Manifest Version

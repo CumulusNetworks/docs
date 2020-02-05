@@ -1,7 +1,2 @@
 User-Agent: LinkChecker
 Allow: /
-Sitemap: {{.Site.BaseURL}}sitemap.xml
-
-User-Agent: *
-Allow: /
-Sitemap: {{.Site.BaseURL}}sitemap.xml

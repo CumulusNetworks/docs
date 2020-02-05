@@ -3,11 +3,6 @@ frontend:
   phases:
     preBuild:
       commands:
-        - yum -y -q install python-devel
-        - yum -y -q install python-pip
-        - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
-        - echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt
-        - time linkchecker -v -t 4 -f auth.txt http://stage.docs.cumulusnetworks.com
         - echo Installing Hugo ...
         - wget -q https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extended_0.55.6_Linux-64bit.tar.gz
         - tar -xf hugo_extended_0.55.6_Linux-64bit.tar.gz hugo
@@ -16,6 +11,11 @@ frontend:
         - echo Successfully installed Hugo
     build:
       commands:
+        - yum -y -q install python-devel
+        - yum -y -q install python-pip
+        - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
+        - echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt
+        - time linkchecker -v -t 4 -f auth.txt http://stage.docs.cumulusnetworks.com
         # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi

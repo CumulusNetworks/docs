@@ -13,11 +13,11 @@ frontend:
         - echo Successfully installed Hugo
     build:
       commands:
-        - curl -u cumulus:$PASSWORD -k https://plumbis-stage.dnoac3jnokmnz.amplifyapp.com/robots.txt
-        - curl -u cumulus:$PASSWORD -k "${BASEURL}robots.txt"
         - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
-        - echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt
-        - time linkchecker -D all -t 8 -f auth.txt https://plumbis-stage.dnoac3jnokmnz.amplifyapp.com/
+        - echo "[authentication]" > auth.txt
+        - echo "loginuserfield=cumulus" >> auth.txt
+        - echo "loginpasswordfield=$PASSWORD" >> auth.txt
+        - time linkchecker -D all -t 8 -f auth.txt $BASEURL
         # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi

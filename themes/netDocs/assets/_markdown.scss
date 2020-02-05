@@ -254,6 +254,7 @@ $block-border-radius: 0.15rem;
     width: 100%;
     display: block;
     overflow: auto;
+    padding-bottom: 20px;
 
     p {
       word-break: unset;
@@ -261,11 +262,15 @@ $block-border-radius: 0.15rem;
 
     tr th, tr td {
       :header{
-        background: $gray-200;
+        background: $cn-heather;
       }
       padding: $padding-8 $padding-16;
       line-height: 1.5;
-      border: 1px solid $gray-200;
+      border: 1px solid $cn-rolling-stone;
+    }
+
+    th {
+      background: $cn-heather;
     }
 
     td { 
@@ -273,7 +278,7 @@ $block-border-radius: 0.15rem;
     }
 
     tr:nth-child(2n) {
-      background: $gray-100;
+      background: $cn-athens-gray;
     }
   }
 

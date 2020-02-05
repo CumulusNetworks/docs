@@ -18,7 +18,7 @@ frontend:
         - echo "loginuserfield=cumulus" >> auth.txt
         - echo "loginpasswordfield=$PASSWORD" >> auth.txt
         - cat auth.txt
-        - linkchecker -D all --no-robots -t 8 -f auth.txt $BASEURL
+        - linkchecker -t 8 -f auth.txt $BASEURL
         # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi

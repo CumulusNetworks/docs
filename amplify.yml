@@ -11,8 +11,7 @@ frontend:
         - echo Successfully installed Hugo
     build:
       commands:
-        - echo Building docs with Hugo
-        - echo Now move static images and files ...
+        # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
         - echo Building docs ...
@@ -20,22 +19,25 @@ frontend:
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo --baseURL $BASEURL ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - echo Successfully built docs
-        #- find public -name '*.html' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
-        #- find public -name '*.xml' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
-        #- find public -name 'robots.txt' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
         # Only install and run linkchecker on the master branch
+        # First install python-pip and python-devel dependencies
         - if [ "${AWS_BRANCH}" = "master" ]; then echo Installing Linkchecker and dependencies ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-devel ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-pip ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then pip install linkchecker ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt ; fi
+        # Now pip install the latest linkchecker zip from source zip
+        - if [ "${AWS_BRANCH}" = "master" ]; then pip install pip install https://github.com/linkchecker/linkchecker/archive/master.zip ; fi
+        # Install npm wait-on so we can later pause the build for hugo to build.
         - if [ "${AWS_BRANCH}" = "master" ]; then npm install wait-on ; fi
+        # Start hugo, and render for http://localhost:1313 for linkchecker to do it's thing
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo server &  fi
         # Use npx wait-on to wait for hugo to finish rendering and start locally for urlchecker to run
         # We run against the local edition so we don't have to push live to find broken links
         - if [ "${AWS_BRANCH}" = "master" ]; then npx wait-on http://localhost:1313 ; fi
         # 4 threads are used as that seems to be the fastest rendering based on testing with 4 vCPUs
-        - if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 4 -f auth.txt http://localhost:1313  ; fi
+        #- if [ "${AWS_BRANCH}" = "master" ]; then echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt ; fi
+        - echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt
+        - time linkchecker -t 4 -f auth.txt http://stage.docs.cumulusnetworks.com
+        #- if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 4 -f auth.txt http://stage.docs.cumulusnetworks.com  ; fi
         # If everything else worked, then cut a new release.
         - echo "Creating new Github release"
         - if [ "${AWS_BRANCH}" = "master" ]; then python build_release.py $GITHUB_TOKEN  ; fi

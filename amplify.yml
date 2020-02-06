@@ -45,35 +45,9 @@ frontend:
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo --baseURL $BASEURL ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - echo Successfully built docs
-<<<<<<< HEAD
-        # If everything else worked, and we're on master, then cut a new release.
+        # If everything else worked, and this is master, then cut a new release.
         - echo "Creating new Github release"
         - if [ "${AWS_BRANCH}" = "master" ]; then python utils/build_release.py $GITHUB_TOKEN  ; fi
-=======
-        #- find public -name '*.html' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
-        #- find public -name '*.xml' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
-        #- find public -name 'robots.txt' -type f -exec sed -i "s,https://docs.cumulusnetworks.com,https://$STATIC_DOMAIN,g" {} +
-        # Only install and run linkchecker on the master branch
-        - if [ "${AWS_BRANCH}" = "master" ]; then echo Installing Linkchecker and dependencies ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-devel ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-pip ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then pip install linkchecker ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then npm install wait-on ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then hugo server &  fi
-        # Use npx wait-on to wait for hugo to finish rendering and start locally for urlchecker to run
-        # We run against the local edition so we don't have to push live to find broken links
-        - if [ "${AWS_BRANCH}" = "master" ]; then npx wait-on http://localhost:1313 ; fi
-        # 4 threads are used as that seems to be the fastest rendering based on testing with 4 vCPUs
-        - if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 4 -f auth.txt http://localhost:1313/  ; fi
-        # If everything else worked, then cut a new release.
-        - echo "Creating new Github release"
-        - if [ "${AWS_BRANCH}" = "master" ]; then python build_release.py $GITHUB_TOKEN  ; fi
-        # Only delete the static directory /after/ we check links otherwise every image will be a 404
-        - echo Remove static directory
-        - if [ "${AWS_BRANCH}" = "master" ]; then echo Remove static directory ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
->>>>>>> origin/stage
   artifacts:
     files:
       - '**/*'

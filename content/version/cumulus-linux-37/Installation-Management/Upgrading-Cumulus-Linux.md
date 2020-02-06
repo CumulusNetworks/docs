@@ -17,7 +17,7 @@ Cumulus Networks recommends that you deploy, provision, configure, and upgrade s
 
 {{%notice info%}}
 
-In Cumulus Linux 3.7.12, the default password for the cumulus user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts, before you upgrade to Cumulus Linux 3.7.12.
+In Cumulus Linux 3.7.12, the default password for the cumulus user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade to Cumulus Linux 3.7.12.
 
 {{%/notice%}}
 

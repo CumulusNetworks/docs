@@ -23,7 +23,7 @@ token = sys.argv[1]
 base_url = sys.argv[2]
 http_user = sys.argv[3]
 http_pass = sys.argv[4]
-pdf_dir = "public"
+pdf_dir = "static/pdfs"
 
 # this key works for test documents
 docraptor.configuration.username = str(token)

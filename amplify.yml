@@ -22,10 +22,16 @@ frontend:
         # But patched to allow for a password to be passed via CLI
         - cp utils/linkchecker /usr/bin/linkchecker
         # Run linkchecker with 16 threads and ignore the PDF chapter (until all PDF links are moved to shortcodes)
-        - time linkchecker -t 16 -a -u cumulus -p $PASSWORD https://stage.docs.cumulusnetworks.com --ignore-url=pdf
+        - time linkchecker -a -u cumulus -p $PASSWORD https://stage.docs.cumulusnetworks.com --ignore-url=pdf
         # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
+        - echo Building PDFs...
+        # Install docraptor and requests libraries
+        - pip3 install --upgrade docraptor requests
+        # Tell docraptor to build both PDFs and wait for a response
+        # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS> 
+        - python3 utils/build_pdfs.py $DOCRAPTOR_KEY https://stage.docs.cumulusnetworks.com $USERNAME $PASSWORD
         - echo Building docs ...
         # Don't minify in non-prod branches to simplify troubleshooting
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo --baseURL $BASEURL ; fi
@@ -34,13 +40,6 @@ frontend:
         # If everything else worked, and we're on master, then cut a new release.
         - echo "Creating new Github release"
         - if [ "${AWS_BRANCH}" = "master" ]; then python utils/build_release.py $GITHUB_TOKEN  ; fi
-    # postBuild:
-    #   commands:
-    #     # Install docraptor and requests libraries
-    #     - pip3 install --upgrade docraptor requests
-    #     # Tell docraptor to build both PDFs and wait for a response
-    #     # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS> 
-    #     - python3 build_pdfs.py $DOCRAPTOR_KEY $BASEURL $USERNAME $PASSWORD
   artifacts:
     files:
       - '**/*'

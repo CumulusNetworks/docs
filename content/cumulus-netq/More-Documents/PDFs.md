@@ -10,7 +10,7 @@ siteSlug: cumulus-netq
 toc: 3
 ---
 
-The PDFs for NetQ 2.4.0 will be available soon.
+- [Complete Cumulus NetQ Documentation PDF](/cumulus-netq.pdf)
 
 <!-- 
 The following Cumulus NetQ user documentation is available in PDF for offline viewing or printing:

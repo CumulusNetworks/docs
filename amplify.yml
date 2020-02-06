@@ -3,8 +3,6 @@ frontend:
   phases:
     preBuild:
       commands:
-        - yum -y -q install python-devel
-        - yum -y -q install python-pip
         - echo Installing Hugo ...
         - wget -q https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extended_0.55.6_Linux-64bit.tar.gz
         - tar -xf hugo_extended_0.55.6_Linux-64bit.tar.gz hugo
@@ -13,6 +11,9 @@ frontend:
         - echo Successfully installed Hugo
     build:
       commands:
+        # Install pre-reqs for linkchecker
+        - if [ "${AWS_BRANCH}" = "master" ]; then yum -y -q install python-devel ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then yum -y -q install python-pip ; fi
         # Pip install linkchecker from github for the latest version since the project lost access to pypi
         - if [ "${AWS_BRANCH}" = "master" ]; then pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip ; fi
         # Linkchecker has a bug where it can't pass an auth file

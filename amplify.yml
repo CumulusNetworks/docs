@@ -31,7 +31,7 @@ frontend:
         - pip3 install --upgrade docraptor requests
         # Tell docraptor to build both PDFs and wait for a response
         # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS> 
-        - python3 utils/build_pdfs.py $DOCRAPTOR_KEY https://stage.docs.cumulusnetworks.com $USERNAME $PASSWORD
+        - python3 utils/build_pdfs.py $DOCRAPTOR_KEY https://stage.docs.cumulusnetworks.com/ $USERNAME $PASSWORD
         - echo Building docs ...
         # Don't minify in non-prod branches to simplify troubleshooting
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo --baseURL $BASEURL ; fi

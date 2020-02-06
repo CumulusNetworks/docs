@@ -10,7 +10,7 @@ siteSlug: cumulus-netq
 toc: 3
 ---
 
-- [Complete Cumulus NetQ Documentation PDF](/cumulus-netq.pdf)
+- [Complete Cumulus NetQ Documentation PDF](/pdfs/cumulus-netq.pdf)
 
 <!-- 
 The following Cumulus NetQ user documentation is available in PDF for offline viewing or printing:

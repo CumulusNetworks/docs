@@ -14,11 +14,15 @@ frontend:
     build:
       commands:
         - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
+        # Linkchecker has a bug where it can't pass an auth file
+        # https://github.com/linkchecker/linkchecker/issues/343
+        # Older versions have an issue parsing robots.txt on https pages
+        # There is currently no version that fixes both.
+        # This is the main linkchecker file from https://github.com/linkchecker/linkchecker/blob/a83754a6c8aa7178009fc2d358ab9c17278e4178/linkchecker
+        # But patched to allow for a password to be passed via CLI
         - cp utils/linkchecker /usr/bin/linkchecker
-        # - echo "[authentication]" > auth.txt
-        # - echo "loginuserfield=cumulus" >> auth.txt
-        # - echo "loginpasswordfield=$PASSWORD" >> auth.txt
-        - time linkchecker -u cumulus -p $PASSWORD https://stage.docs.cumulusnetworks.com --ignore-url=pdf
+        # Run linkchecker with 16 threads and ignore the PDF chapter (until all PDF links are moved to shortcodes)
+        - time linkchecker -t 16 -a -u cumulus -p $PASSWORD https://stage.docs.cumulusnetworks.com --ignore-url=pdf
         # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi
@@ -27,30 +31,9 @@ frontend:
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo --baseURL $BASEURL ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - echo Successfully built docs
-        # Only install and run linkchecker on the master branch
-        # First install python-pip and python-devel dependencies
-        # - if [ "${AWS_BRANCH}" = "master" ]; then echo Installing Linkchecker and dependencies ; fi
-        # - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-devel ; fi
-        # - if [ "${AWS_BRANCH}" = "master" ]; then yum -y install python-pip ; fi
-        # Now pip install the latest linkchecker zip from source zip
-        #- if [ "${AWS_BRANCH}" = "master" ]; then pip install https://github.com/linkchecker/linkchecker/archive/master.zip ; fi
-        # Install npm wait-on so we can later pause the build for hugo to build.
-        # - if [ "${AWS_BRANCH}" = "master" ]; then npm install wait-on ; fi
-        # Start hugo, and render for http://localhost:1313 for linkchecker to do it's thing
-        # - if [ "${AWS_BRANCH}" = "master" ]; then hugo server &  fi
-        # Use npx wait-on to wait for hugo to finish rendering and start locally for urlchecker to run
-        # We run against the local edition so we don't have to push live to find broken links
-        # - if [ "${AWS_BRANCH}" = "master" ]; then npx wait-on http://localhost:1313 ; fi
-        # 4 threads are used as that seems to be the fastest rendering based on testing with 4 vCPUs
-        #- if [ "${AWS_BRANCH}" = "master" ]; then echo "[authentication]\nloginuserfield=cumulus\nloginpasswordfield=$PASSWORD" > auth.txt ; fi
-        #- if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 4 -f auth.txt http://stage.docs.cumulusnetworks.com  ; fi
-        # If everything else worked, then cut a new release.
+        # If everything else worked, and we're on master, then cut a new release.
         - echo "Creating new Github release"
         - if [ "${AWS_BRANCH}" = "master" ]; then python utils/build_release.py $GITHUB_TOKEN  ; fi
-        # Only delete the static directory /after/ we check links otherwise every image will be a 404
-        - echo Remove static directory
-        - if [ "${AWS_BRANCH}" = "master" ]; then echo Remove static directory ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then rm -rf static ; fi
     # postBuild:
     #   commands:
     #     # Install docraptor and requests libraries

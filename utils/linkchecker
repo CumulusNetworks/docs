@@ -1,4 +1,10 @@
 #!/usr/bin/python -Ru
+# This is a patched version of https://github.com/linkchecker/linkchecker/blob/a83754a6c8aa7178009fc2d358ab9c17278e4178/linkchecker
+# This edition allows a HTTP password to be passed as a commandline arg with -p
+#
+# In the upstream edition the password /must/ be provided via interactive shell
+#
+#
 # -*- coding: iso-8859-1 -*-
 # Copyright (C) 2000-2014 Bastian Kleineidam
 #

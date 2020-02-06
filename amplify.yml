@@ -14,10 +14,12 @@ frontend:
     build:
       commands:
         - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
+        - which linkchecker
+        - exit(1)
         # - echo "[authentication]" > auth.txt
         # - echo "loginuserfield=cumulus" >> auth.txt
         # - echo "loginpasswordfield=$PASSWORD" >> auth.txt
-        - time linkchecker -t 4 https://docs.cumulusnetworks.com --ignore-url=pdf
+        - time linkchecker https://docs.cumulusnetworks.com --ignore-url=pdf
         # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- if [ "${AWS_BRANCH}" = "master" ]; then aws s3 sync static $STATIC_BUCKET --delete ; fi

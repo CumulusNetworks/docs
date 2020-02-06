@@ -6,11 +6,11 @@ This is done by passing specific URLs to DocRaptor to download and render.
 Because of this, we must run the PDF creation _after_ we deploy the updated changes.
 '''
 import requests
-import json
 import sys
 import time
-import shutil
 import docraptor
+import os, os.path
+import errno
 
 
 if len(sys.argv) != 5:
@@ -29,6 +29,22 @@ pdf_dir = "static/pdfs"
 docraptor.configuration.username = str(token)
 # docraptor.configuration.debug = True
 doc_api = docraptor.DocApi()
+
+# Taken from https://stackoverflow.com/a/600612/119527
+def mkdir_p(path):
+    try:
+        os.makedirs(path)
+    except OSError as exc: # Python >2.5
+        if exc.errno == errno.EEXIST and os.path.isdir(path):
+            pass
+        else: raise
+
+def safe_open_w(path):
+    ''' Open "path" for writing, creating any parent directories as needed.
+    '''
+    mkdir_p(os.path.dirname(path))
+    return open(path, 'w')
+
 
 try:
     # Based on API example: https://github.com/DocRaptor/docraptor-python/blob/master/examples/async.py
@@ -73,11 +89,14 @@ try:
         # Then just skip over the netq checking.
         if not download_netq:
             if netq_status_response.status == "completed":
+
                 print("\nNetQ PDF successfully created. Downloading...")
                 doc_response = doc_api.get_async_doc(netq_status_response.download_id)
-                file = open(pdf_dir + "/cumulus-netq.pdf", "wb")
-                file.write(doc_response)
-                file.close
+                with safe_open_w(pdf_dir + "/cumulus-netq.pdf") as f:
+                    f.write(doc_response)
+                # file = open(pdf_dir + "/cumulus-netq.pdf", "wb")
+                # file.write(doc_response)
+                # file.close
                 print(F"Wrote PDF to {pdf_dir}/cumulus-netq.pdf")
                 download_netq = True
                 
@@ -95,9 +114,11 @@ try:
             if cl_status_response.status == "completed":
                 print("\nCumulus Linux PDF successfully created. Downloading...")
                 doc_response = doc_api.get_async_doc(cl_status_response.download_id)
-                file = open(pdf_dir + "/cumulus-linux.pdf", "wb")
-                file.write(doc_response)
-                file.close
+                with safe_open_w(pdf_dir + "/cumulus-linux.pdf") as f:
+                    f.write(doc_response)
+                # file = open(pdf_dir + "/cumulus-linux.pdf", "wb")
+                # file.write(doc_response)
+                # file.close
                 print(F"Wrote PDF to {pdf_dir}/cumulus-linux.pdf")
                 download_cl = True
 

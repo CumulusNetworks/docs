@@ -249,6 +249,15 @@ function install_license(){
 }
 ```
 
+In Cumulus Linux 3.7.12, the default password for the cumulus user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are now **required** to change this default password. You can use the following function to change the default password to CumulusLinux!:
+
+```
+function change_password(){
+    # Change default cumulus user password
+    echo "cumulus:CumulusLinux!" | chpasswd
+}
+```
+
 ### Test DNS Name Resolution
 
 DNS names are frequently used in ZTP scripts. The `ping_until_reachable` function tests that each DNS name resolves into a reachable IP address. Call this function with each DNS target used in your script before you use the DNS name elsewhere in your script.

@@ -249,7 +249,7 @@ function install_license(){
 }
 ```
 
-## Change the Default Password
+## Change Default Password
 
 In Cumulus Linux 3.7.12, the default password for the cumulus user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are now **required** to change this default password. You can use the following function to change the default password to CumulusLinux!:
 

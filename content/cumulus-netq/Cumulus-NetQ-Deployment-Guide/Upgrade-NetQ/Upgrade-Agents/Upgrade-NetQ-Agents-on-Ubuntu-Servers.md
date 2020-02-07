@@ -1,7 +1,7 @@
 ---
 title: Upgrade NetQ Agents on Ubuntu Servers
 author: Cumulus Networks
-weight: 134
+weight: 710
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -9,6 +9,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 
 ---
 The following instructions are applicable to both NetQ Platform and NetQ Appliances running Ubuntu 16.04 or 18.04 in on-premises and cloud deployments.
 

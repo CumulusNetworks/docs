@@ -1,5 +1,5 @@
 ---
-title: Restore Your NetQ Instance
+title: Restore Your NetQ Data
 author: Cumulus Networks
 weight: 170
 product: Cumulus NetQ

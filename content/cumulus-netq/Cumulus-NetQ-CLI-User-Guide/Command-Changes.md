@@ -72,7 +72,7 @@ The following table summarizes the new commands available with this release. The
 </tr>
 <tr>
   <td>netq bootstrap master interface &lt;text-opta-ifname&gt;] tarball &lt;text-tarball-name&gt;</td>
-  <td>Loads master node with the NetQ installer in a server cluster deployment</td>
+  <td>Loads master node with the bootstrap CLI and NetQ installer in a server cluster deployment</td>
   <td>2.4.0</td>
 </tr>
 <tr>

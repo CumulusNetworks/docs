@@ -14,13 +14,12 @@
   <!-- Green bar header -->
   {{ partial "top-header" . }} 
 
-
   {{ partial "version-dropdown" . }} 
 
   {{ partial "mobile-dropdown" . }} 
 
-  <main class="flex container">
-    <aside class="book-menu fixed">
+  <main class="container flex">
+    <aside class="book-menu">
 
       <nav role="navigation">
         <h2 class="book-brand"><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h2>

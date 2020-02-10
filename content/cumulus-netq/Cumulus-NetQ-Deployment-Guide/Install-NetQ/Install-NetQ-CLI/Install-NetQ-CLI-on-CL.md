@@ -129,7 +129,7 @@ To generate AuthKeys:
 
 4. Click **Manage** on the User Accounts card.
 
-5. Select your user and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/>}} above the table.
+5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> above the table.
 
 6. Copy these keys to a safe place.
 

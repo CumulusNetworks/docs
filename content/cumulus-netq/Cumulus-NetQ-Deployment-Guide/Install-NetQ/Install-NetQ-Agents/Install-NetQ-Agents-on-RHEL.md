@@ -8,7 +8,7 @@ imgData: cumulus-netq
 siteSlug: cumulus-netq
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the NetQ 2.4.0 Agents on each server you want to monitor. NetQ 2.4 Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the NetQ 2.4.1 Agents on each server you want to monitor. NetQ 2.4 Agents can be installed on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7

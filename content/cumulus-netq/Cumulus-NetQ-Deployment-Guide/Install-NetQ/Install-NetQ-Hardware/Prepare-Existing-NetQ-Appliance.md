@@ -1,5 +1,5 @@
 ---
-title: Preparation Your Existing NetQ Appliances for a NetQ 2.4 Deployment
+title: Prepare Your Existing NetQ Appliances for a NetQ 2.4 Deployment
 author: Cumulus Networks
 weight: 90
 aliases:
@@ -9,7 +9,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
+toc: 5
 ---
 This topic describes how to prepare a NetQ 2.3.x or earlier NetQ Appliance before installing NetQ 2.4.0. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ 2.4.0.
 

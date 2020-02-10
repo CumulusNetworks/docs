@@ -1,12 +1,12 @@
 ---
 title: Install and Configure the NetQ Agent on Ubuntu Servers
 author: Cumulus Networks
-weight: 130
+weight: 120
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
+toc: 5
 ---
 After installing your Cumulus NetQ software, you should install the  NetQ 2.4.1 Agents on each server you want to monitor. NetQ 2.4 Agents can be installed on servers running:
 
@@ -19,7 +19,7 @@ For servers running Ubuntu OS, you need to:
 
 - Verify the minimum service packages versions are installed
 - Verify the server is running lldpd
-- Install and configure NTP, if needed
+- Install and configure network time server, if needed
 - Obtain NetQ software packages
 
 {{%notice note%}}
@@ -175,7 +175,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 
 ### Obtain NetQ Agent Software Package
 
-To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the Cumulus Networks repository.
+To install the NetQ Agent you need to install `netq-agent` on each server. This is available from the Cumulus Networks repository.
 
 To obtain the NetQ Agent package:
 

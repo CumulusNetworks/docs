@@ -495,3 +495,13 @@ bits.
 Set class is internal to the switch. It does not set any precedence bits.
 
 {{%/notice%}}
+
+## Caveats and Errata
+
+Due to a hardware limitation on **Trident3 switches**, certain broadcast packets that are VXLAN decapsulated and sent to the CPU do not hit the normal INPUT chain ACL rules installed with `cl-acltool`. In Cumulus Linux 3.7.11 and later, you can configure policers for broadcast packets in the `/etc/cumulus/switchd.conf` file. The policer configuration format and default value is shown below:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+#hal.bcm.vxlan_policers = tunnel_arp=400,tunnel_dhcp_v4=100,tunnel_dhcp_v6=100,tunnel_ttl1=100,tunnel_rs=300,tunnel_ra=300,tunnel_ns=300,tunnel_na=300,local_arp=400,local_rs=300,local_ra=300,local_ns=300,local_na=300
+```

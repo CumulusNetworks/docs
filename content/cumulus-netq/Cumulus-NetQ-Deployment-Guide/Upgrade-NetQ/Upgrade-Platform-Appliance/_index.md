@@ -57,7 +57,7 @@ To complete the preparation:
 5. Update the NetQ debian packages.
 
 ```
-sudo dpkg --remove --force-remove-reinstreq netq-apps netq-agent
+sudo dpkg --remove --force-remove-reinstreq netq-apps netq-agent 2>/dev/null
 sudo apt-get update
 sudo apt-get install -y netq-agent netq-apps
 ```

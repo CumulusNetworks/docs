@@ -30,6 +30,22 @@ Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
 
 *Note that NetQ has a separate repository from Cumulus Linux.*
 
+<details><summary>Cumulus Linux 3.x</summary>
+
+```
+cumulus@switch:~$ sudo nano /etc/apt/sources.list
+...
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.4
+...
+```
+
+{{%notice tip%}}
+The repository `deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
+{{%/notice%}}
+
+</details>
+<details><summary>Cumulus Linux 4.x</summary>
+
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
@@ -38,8 +54,9 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-2.4
 ```
 
 {{%notice tip%}}
-The repository `deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
+The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-4 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
 {{%/notice%}}
+</details>
 
 2. Update the local `apt` repository and install the software on the switch.
 

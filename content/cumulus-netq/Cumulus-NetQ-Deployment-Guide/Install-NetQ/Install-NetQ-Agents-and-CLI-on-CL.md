@@ -7,6 +7,7 @@ version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 toc: 4
+draft: true
 ---
 After installing your Cumulus NetQ software, you should install the  NetQ 2.4.0 Agents on each switch you want to monitor. NetQ 2.4 Agents can be installed on switches running:
 

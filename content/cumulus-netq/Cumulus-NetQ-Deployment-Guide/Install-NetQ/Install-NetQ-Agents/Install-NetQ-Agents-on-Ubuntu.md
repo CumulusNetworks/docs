@@ -1,5 +1,5 @@
 ---
-title: Install and Configure the NetQ Agent and CLI on Ubuntu Servers
+title: Install and Configure the NetQ Agent on Ubuntu Servers
 author: Cumulus Networks
 weight: 130
 product: Cumulus NetQ
@@ -7,14 +7,11 @@ version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 toc: 4
-draft: true
 ---
-After installing your Cumulus NetQ software, you should install the  NetQ 2.4.0 Agents on each switch you want to monitor. NetQ 2.4 Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the  NetQ 2.4.1 Agents on each server you want to monitor. NetQ 2.4 Agents can be installed on servers running:
 
 - Ubuntu 16.04
 - Ubuntu 18.04 (NetQ 2.2.2 and later)
-
-This topic describes how to install and configure the NetQ Agent and CLI on switches running Ubuntu OS.
 
 ## Prepare for NetQ Agent Installation on an Ubuntu Server
 
@@ -52,7 +49,7 @@ root@ubuntu:~# sudo systemctl enable lldpd.service
 root@ubuntu:~# sudo systemctl start lldpd.service
 ```
 
-### Install and Configure NTP
+### Install and Configure Network Time Server
 
 If NTP is not already installed and configured, follow these steps:
 
@@ -62,24 +59,26 @@ If NTP is not already installed and configured, follow these steps:
 root@ubuntu:~# sudo apt-get install ntp
 ```
 
-2.  Configure the NTP server.
+2.  Configure the network time server.
+
+    <details><summary>Use NTP Configuration File</summary>
 
     1.  Open the `/etc/ntp.conf` file in your text editor of choice.
 
     2.  Under the *Server* section, specify the NTP server IP address or hostname.
 
-3.  Enable and start the NTP service.
+    3.  Enable and start the NTP service.
 
 ```
 root@ubuntu:~# sudo systemctl enable ntp
 root@ubuntu:~# sudo systemctl start ntp
 ```
 
-    {{%notice tip%}}
+        {{%notice tip%}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
-    {{%/notice%}}
+        {{%/notice%}}
 
-4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+    4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
 ```
 root@ubuntu:~# ntpq -pn
@@ -90,6 +89,89 @@ remote           refid            st t when poll reach   delay   offset  jitter
 2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
 \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 ```
+
+    </details>
+    <details><summary>Use Chrony (Ubuntu 18.04 only)</summary>
+
+    1. Install chrony if needed.
+
+```
+root@ubuntu:~# sudo apt install chrony
+```
+
+    2. Start the chrony service.
+    
+    ```
+    root@ubuntu:~# sudo /usr/local/sbin/chronyd
+```
+    
+    3. Verify it installed successfully.
+
+```
+root@ubuntu:~# chronyc activity
+200 OK
+8 sources online
+0 sources offline
+0 sources doing burst (return to online)
+0 sources doing burst (return to offline)
+0 sources with unknown address
+```
+
+    4. View the time servers chrony is using.
+    
+ ```
+ root@ubuntu:~# chronyc sources
+210 Number of sources = 8
+
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^+ golem.canonical.com           2   6   377    39  -1135us[-1135us] +/-   98ms
+^* clock.xmission.com            2   6   377    41  -4641ns[ +144us] +/-   41ms
+^+ ntp.ubuntu.net              2   7   377   106   -746us[ -573us] +/-   41ms
+...
+```
+    
+        Open the *chrony.conf* configuration file (by default at */etc/chrony/*) and edit if needed.
+
+        Example with individual servers specified:
+
+        ```
+        server golem.canonical.com iburst
+        server clock.xmission.com iburst
+        server ntp.ubuntu.com iburst
+        driftfile /var/lib/chrony/drift
+        makestep 1.0 3
+        rtcsync
+        ```
+
+        Example when using a pool of servers:
+
+        ```
+        pool pool.ntp.org iburst
+        driftfile /var/lib/chrony/drift
+        makestep 1.0 3
+        rtcsync
+        ```
+
+    5. View the server chrony is currently tracking.
+
+   ```
+    root@ubuntu:~# chronyc tracking
+    Reference ID    : 5BBD59C7 (golem.canonical.com)
+    Stratum         : 3
+    Ref time (UTC)  : Mon Feb 10 14:35:18 2020
+    System time     : 0.0000046340 seconds slow of NTP time
+    Last offset     : -0.000123459 seconds
+    RMS offset      : 0.007654410 seconds
+    Frequency       : 8.342 ppm slow
+    Residual freq   : -0.000 ppm
+    Skew            : 26.846 ppm
+    Root delay      : 0.031207654 seconds
+    Root dispersion : 0.001234590 seconds
+    Update interval : 115.2 seconds
+    Leap status     : Normal
+    ```
+</details>
 
 ### Obtain NetQ Agent Software Package
 
@@ -148,10 +230,10 @@ root@ubuntu:~# sudo apt-get install netq-agent
 root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-    You should see version 2.4.0 and update 25 in the results. For example:
+    You should see version 2.4.1 and update xx in the results. For example:
 
-    - netq-agent_**2.4.0**-ub18.04u**25**~1579642196.aeb67d8_amd64.deb, or
-    - netq-agent_**2.4.0**-ub16.04u**25**~1579714730.aeb67d8_amd64.deb
+    - netq-agent_**2.4.1**-ub18.04u**25**~1579642196.aeb67d8_amd64.deb, or
+    - netq-agent_**2.4.1**-ub16.04u**25**~1579714730.aeb67d8_amd64.deb
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
@@ -159,173 +241,7 @@ root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 root@ubuntu:~# sudo systemctl restart rsyslog.service
 ```
 
-4.  Continue with [NetQ Agent Configuration](#configure-your-netq-agents), or if you want to use the NetQ CLI to configure the agent, go to the next section.
-
-## Install NetQ CLI on an Ubuntu Server
-
-A simple process installs the NetQ CLI on an Ubuntu server.
-
-1.  Reference and update the local `apt` repository and key.
-
- ```
- root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
- ```
-
-2. Add the Ubuntu repository:
-
-    <details><summary>Ubuntu 16.04</summary>
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
-
-        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-        ...
-        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-        ...
-    </details>
-    <details><summary>Ubuntu 18.04</summary>
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
-
-        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
-        ...
-        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
-        ...
-    </details>
-
-    {{%notice note%}}
-The use of `netq-latest` in this example means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.3` - use that instead.
-    {{%/notice%}}
-
-3.  Install the CLI software on the server.
-
-```
-root@ubuntu:~# sudo apt-get update
-root@ubuntu:~# sudo apt-get install netq-apps
-```
-
-4. Verify you have the correct version of the CLI.
-
-```
-cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
-```
-
-    You should see version 2.4.0 and update 25 in the results. For example:
-
-    - netq-apps_**2.4.0**-ub18.04u**25**~1579642196.aeb67d8_amd64.deb, or
-    - netq-apps_**2.4.0**-ub16.04u**25**~1579714730.aeb67d8_amd64.deb5. 
-
-5. Continue with the next section.
-
-## Configure the NetQ CLI on an Ubuntu Server
-
-Two methods are available for configuring the NetQ CLI on a switch:
-
-- Run NetQ CLI commands on the switch; refer to the next section
-- Edit the configuration file on the switch; refer to [Configure CLI Using File](#configure-netq-cli-using-configuration-file)
-
-### Configure NetQ CLI Using the CLI
-
-The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instruction for your deployment type.
-
-<details><summary>Configure the CLI for On-premises Deployments</summary>
-
-Use the following command to configure the CLI:
-
-```
-netq config add cli server <text-gateway-dest> [vrf <text-vrf-name>] [port <text-gateway-port>]
-```
-
-Restart the CLI afterward to activate the configuration.
-
-This example uses an IP address of 192.168.1.0 and the default port and VRF.
-
-```
-root@ubuntu:~# sudo netq config add cli server 192.168.1.0
-root@ubuntu:~# sudo netq config restart cli
-```
-
-{{%notice tip%}}
-If you have a server cluster deployed, use the IP address of the master server.
-{{%/notice%}}
-
-</details>
-<details><summary> Configure the CLI for Cloud Deployments</summary>
-
-Use the following command to configure the CLI:
-
-```
-netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
-```
-
-Restart the CLI afterward to activate the configuration.
-
-Refer to [Generate Access Keys](../../Install-NetQ/Prepare-NetQ-Cloud/#generate-access-keys) if you have not already created your access keys.
-
-This example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Be sure to replace the key values with your generated keys if you are using this example on your server.**
-
-```
-root@ubuntu:~# sudo netq config add cli server api.netq.cumulusnetworks.com access-key 123452d9bc2850a1726f55534279dd3c8b3ec55e8b25144d4739dfddabe8149e secret-key /vAGywae2E4xVZg8F+HtS6h6yHliZbBP6HXU3J98765= premises datacenterwest
-Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
-Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
-
-root@ubuntu:~# sudo netq config restart cli
-Restarting NetQ CLI... Success!
-```
-
-This example uses an optional keys file. Refer to [Generate Access Keys](../../Install-NetQ/Prepare-NetQ-Cloud/#generate-access-keys) for information about creating this file. **Be sure to replace the keys filename and path with the *full path* and name of your keys file, and the *datacenterwest* premises name with your premises name if you are using this example on your server.**
-
-```
-root@ubuntu:~# sudo netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /home/netq/nq-cld-creds.yml premises datacenterwest
-Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
-Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
-
-root@ubuntu:~# sudo netq config restart cli
-Restarting NetQ CLI... Success!
-```
-
-{{%notice tip%}}
-Rerun this command if you have multiple premises and want to query a different premises.
-{{%/notice%}}
-
-</details>
-
-### Configure NetQ CLI Using Configuration File
-
-You can configure the NetQ CLI in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
-
-1. Open the `netq.yml` file using your text editor of choice. For example:
-
-```
-root@ubuntu:~# sudo nano /etc/netq/netq.yml
-```
-
-2. Locate the *netq-cli* section, or add it.
-
-3. Set the parameters for the CLI as follows:
-
-| Parameter | On-premises | Cloud |
-| ----| ---- | ---- |
-| netq-user | User who can access the CLI | User who can access the CLI |
-| server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
-| port (default) | 32708 | 443 |
-| premises | NA | Name of premises you want to query |
-
-An on-premises configuration should be similar to this:
-
-```
-netq-cli:
-  netq-user: admin@company.com
-  port: 32708
-  server: 192.168.0.254
-  ```
-
-A cloud configuration should be similar to this:
-
-```
-netq-cli:
-  netq-user: admin@company.com
-  port: 443
-  premises: datacenterwest
-  server: api.netq.cumulusnetworks.com
-```
+4.  Continue with NetQ Agent Configuration in the next section.
 
 ## Configure the NetQ Agent on an Ubuntu Server
 

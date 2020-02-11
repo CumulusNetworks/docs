@@ -236,7 +236,7 @@ Allow about five minutes for this to complete.
 </details>
 
 {{%notice note%}}
-If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to [Prepare Your Cumulus NetQ Appliance](../../Install-NetQ/Prepare-NetQ-Onprem/#prepare-your-cumulus-netq-appliance)  or [Prepare Your Cumulus NetQ Cloud Appliance](../../Install-NetQ/Prepare-NetQ-Cloud/#prepare-your-cumulus-netq-cloud-appliance) for a new appliance.
+If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to [Prepare Your Cumulus NetQ Appliance](../../Install-NetQ-Hardware/Prepare-NetQ-Onprem/#prepare-your-cumulus-netq-appliance)  or [Prepare Your Cumulus NetQ Cloud Appliance](../../Install-NetQ-Hardware/Prepare-NetQ-Cloud/#prepare-your-cumulus-netq-cloud-appliance) for a new appliance.
 {{%/notice%}}
 
-You are now ready to install the NetQ Software. Refer to [Install NetQ Using the AdminUI](../../Install-NetQ/Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).
+You are now ready to install the NetQ Software. Refer to [Install NetQ Using the AdminUI](../Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).

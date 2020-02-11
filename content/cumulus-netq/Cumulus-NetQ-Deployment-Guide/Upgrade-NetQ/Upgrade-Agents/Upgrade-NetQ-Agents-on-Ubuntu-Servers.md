@@ -35,4 +35,4 @@ root@ubuntu:~# sudo apt-get install -y netq-agent
 root@ubuntu:~# netq config restart agent
 ```
 
-Refer to [Configure Your NetQ Agents](../../Install-NetQ/Install-NetQ-Agents-and-CLI-on-Ubuntu/#configure-your-netq-agents/) to complete the upgrade.
+Refer to [Configure the NetQ Agent on an Ubuntu Server](../../../Install-NetQ/Install-NetQ-Agents/Install-NetQ-Agents-on-Ubuntu/#configure-the-netq-agent-on-an-ubuntu-server) to complete the upgrade.

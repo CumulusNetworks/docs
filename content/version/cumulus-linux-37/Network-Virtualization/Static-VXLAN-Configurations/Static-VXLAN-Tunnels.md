@@ -285,6 +285,18 @@ cumulus@leaf01:~$ sudo bridge fdb show | grep 00:00:00:00:00:00
 00:00:00:00:00:00 dev vni-10 dst 10.0.0.13 self permanent
 ```
 
+## Control Link-local Multicast across a Static VXLAN Tunnel
+
+By default, when you configure static VXLAN tunnels, Cumulus Linux forwards link-local multicast packets to the CPU and floods the ASIC. Cumulus Linux 3.7.12 and later provides a configuration option on Broadcom switches to disable forwarding of link-local multicast packets to the CPU so that such packets only flood the ASIC, which reduces CPU usage.
+
+To disable forwarding of link local multicast packets to the CPU, run the following command:
+
+```
+cumulus@switch:~$ echo TRUE > /cumulus/switchd/config/hal/bcm/ll_mcast_punt_disable
+```
+
+The configuration above takes effect immediately, but does not persist if you reboot the switch. 
+
 ## Caveats and Errata
 
 Cumulus Linux does not support different `bridge-learning` settings for different VNIs of VXLAN tunnels between 2 VTEPs. For example, the following configuration in the `/etc/network/interfaces` file is *not* supported.

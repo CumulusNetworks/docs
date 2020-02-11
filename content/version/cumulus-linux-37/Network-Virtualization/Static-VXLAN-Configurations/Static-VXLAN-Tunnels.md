@@ -295,7 +295,7 @@ To disable forwarding of link local multicast packets to the CPU on a Broadcom s
 cumulus@switch:~$ echo TRUE > /cumulus/switchd/config/hal/bcm/ll_mcast_punt_disable
 ```
 
-The configuration above takes effect immediately, but does not persist if you reboot the switch.
+The configuration above takes effect immediately, but does not persist if you reboot the switch. A persistent configuration will be available in a future release.
 
 ## Caveats and Errata
 

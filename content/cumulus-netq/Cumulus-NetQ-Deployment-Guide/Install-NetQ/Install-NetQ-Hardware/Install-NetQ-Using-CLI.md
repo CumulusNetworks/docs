@@ -10,7 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
+toc: 5
 ---
 After you have validated the prerequisites and performed the preparation steps, you can now install the NetQ software using the CLI.
 

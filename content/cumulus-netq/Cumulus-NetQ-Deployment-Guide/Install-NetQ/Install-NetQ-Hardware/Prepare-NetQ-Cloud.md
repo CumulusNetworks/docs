@@ -10,7 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
+toc: 5
 ---
 This topic describes the preparation steps needed before installing  NetQ in a cloud deployment.  Refer to [Prepare for NetQ On-premises Installation](../Prepare-NetQ-Onprem/) for preparations for on-premises deployments.
 
@@ -521,43 +521,6 @@ sudo systemctl stop motd-news.{service,timer}
     {{%notice tip%}}
 If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
     {{%/notice%}}
-
-#### Generate Access Keys
-
-To access and configure the CLI on your NetQ Cloud server or server cluster, you will need your username and password to access the NetQ UI to generate an access key and secret key. Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
-
-To generate access keys:
-
-1. In your Internet browser, enter **netq.cumulusnetworks.com** into the address field to open the NetQ UI login page.
-
-2. Enter your username and password.
-
-3. From the Main Menu, select *Management* in the **Admin** column.
-
-      {{< figure src="/images/netq/main-menu-mgmt-selected-240.png" width="400">}}
-
-4. Click **Manage** on the User Accounts card.
-5. Select your user and click **Generate AuthKeys**.
-
-      {{< figure src="/images/netq/generate-auth-keys.png" width="700">}}
-
-6. Copy these keys to a safe place.
-
-      {{%notice info%}}
-The secret key is only shown once. If you don't copy these, you will need to regenerate them and reconfigure CLI access.
-
-In version 2.2.1 and later, you can save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
-
-- store the file wherever you like, for example in */home/cumulus/* or */etc/netq*
-- name the file whatever you like, for example *credentials.yml*, *creds.yml*, or *keys.yml*
-
-BUT, the file must have the following format:
-
-```
-access-key: <user-access-key-value-here>
-secret-key: <user-secret-key-value-here>
-```
-      {{%/notice%}}
 
 You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).
 

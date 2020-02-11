@@ -1,7 +1,7 @@
 ---
 title: Upgrade NetQ Agents on Cumulus Linux Switches
 author: Cumulus Networks
-weight: 700
+weight: 143
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -9,7 +9,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 
+toc: 5
 ---
 The following instructions are applicable to both Cumulus Linux 3.x and 4.x, and for both on-premises and cloud deployments.
 
@@ -42,4 +42,4 @@ To upgrade the NetQ Agent:
  netq config restart agent
 ```
 
-Refer to {{<link title="Configure Your NetQ Agents">}} to complete the upgrade.
+Refer to [Configure the NetQ Agent on a Cumulus Linux Switch](../../../Install-NetQ/Install-NetQ-Agents/Install-NetQ-Agents-on-CL/#configure-the-netq-agent-on-a-cumulus-linux-switch) to complete the upgrade.

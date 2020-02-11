@@ -289,13 +289,13 @@ cumulus@leaf01:~$ sudo bridge fdb show | grep 00:00:00:00:00:00
 
 By default, when you configure static VXLAN tunnels, Cumulus Linux forwards link-local multicast packets to the CPU and floods the ASIC. Cumulus Linux 3.7.12 and later provides a configuration option on Broadcom switches to disable forwarding of link-local multicast packets to the CPU so that such packets only flood the ASIC, which reduces CPU usage.
 
-To disable forwarding of link local multicast packets to the CPU, run the following command:
+To disable forwarding of link local multicast packets to the CPU on a Broadcom switch, run the following command:
 
 ```
 cumulus@switch:~$ echo TRUE > /cumulus/switchd/config/hal/bcm/ll_mcast_punt_disable
 ```
 
-The configuration above takes effect immediately, but does not persist if you reboot the switch. 
+The configuration above takes effect immediately, but does not persist if you reboot the switch.
 
 ## Caveats and Errata
 

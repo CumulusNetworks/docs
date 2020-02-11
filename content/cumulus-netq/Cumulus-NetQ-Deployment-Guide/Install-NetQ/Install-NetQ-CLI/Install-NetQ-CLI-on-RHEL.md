@@ -171,15 +171,47 @@ If you have a server cluster deployed, use the IP address of the master server.
 </details>
 <details><summary>Configure the CLI for Cloud Deployments</summary>
 
-Use the following command to configure the CLI:
+To access and configure the CLI on your NetQ Platform or NetQ Cloud Appliance, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
+
+To generate AuthKeys:
+
+1. In your Internet browser, enter **netq.cumulusnetworks.com** into the address field to open the NetQ UI login page.
+
+2. Enter your username and password.
+
+3. From the Main Menu, select *Management* in the **Admin** column.
+
+    {{< figure src="/images/netq/main-menu-mgmt-selected-240.png" width="400">}}
+
+4. Click **Manage** on the User Accounts card.
+
+5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> above the table.
+
+6. Copy these keys to a safe place.
+
+    {{%notice info%}}
+The secret key is only shown once. If you don't copy these, you will need to regenerate them and reconfigure CLI access.
+
+You can also save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
+
+- store the file wherever you like, for example in */home/cumulus/* or */etc/netq*
+- name the file whatever you like, for example *credentials.yml*, *creds.yml*, or *keys.yml*
+
+BUT, the file must have the following format:
+
+```
+access-key: <user-access-key-value-here>
+secret-key: <user-secret-key-value-here>
+```
+    {{%/notice%}}
+
+Now that you have your AuthKeys, use the following command to configure the CLI:
 
 ```
 netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
 ```
 
 Restart the CLI afterward to activate the configuration.
-
-Refer to [Generate Access Keys](../../Install-NetQ/Prepare-NetQ-Cloud/#generate-access-keys) if you have not already created your access keys.
 
 This example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Be sure to replace the key values with your generated keys if you are using this example on your server.**
 
@@ -192,7 +224,7 @@ root@rhel7:~# sudo netq config restart cli
 Restarting NetQ CLI... Success!
 ```
 
-This example uses an optional keys file. Refer to [Generate Access Keys](../../Install-NetQ/Prepare-NetQ-Cloud/#generate-access-keys) for information about creating this file. **Be sure to replace the keys filename and path with the *full path* and name of your keys file, and the *datacenterwest* premises name with your premises name if you are using this example on your server.**
+This example uses an optional keys file. **Be sure to replace the keys filename and path with the *full path* and name of your keys file, and the *datacenterwest* premises name with your premises name if you are using this example on your server.**
 
 ```
 root@rhel7:~# sudo netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /home/netq/nq-cld-creds.yml premises datacenterwest

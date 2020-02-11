@@ -312,8 +312,6 @@ netq config add cli server <text-gateway-dest> [access-key <text-access-key> sec
 
 Restart the CLI afterward to activate the configuration.
 
-Refer to [Generate Access Keys](../../Install-NetQ/Prepare-NetQ-Cloud/#generate-access-keys) if you have not already created your access keys.
-
 This example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Be sure to replace the key values with your generated keys if you are using this example on your server.**
 
 ```

@@ -11,7 +11,7 @@ imgData: cumulus-netq
 siteSlug: cumulus-netq
 toc: 3
 ---
-This topic describes how to upgrade from your current NetQ 2.4.0 installation to the NetQ 2.4.1 release to take advantage of new capabilities and bug fixes (refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413" text="release notes">}}.
+This topic describes how to upgrade from your current NetQ 2.4.0 installation to the NetQ 2.4.1 release to take advantage of new capabilities and bug fixes (refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413" text="release notes">}}).
 
 You must upgrade your NetQ Platform(s) or NetQ/NetQ Cloud Appliance(s) and the NetQ Agents on your monitored switches and hosts. If you want access to new and updated commands, you can upgrade the CLI on the NetQ Platform(s), NetQ/NetQ Cloud Appliance(s), and monitored switches and hosts as well.
 

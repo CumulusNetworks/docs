@@ -1,5 +1,5 @@
 ---
-title: Install NetQ Hardware Platform and Appliances
+title: Install NetQ Platform
 author: Cumulus Networks
 weight: 65
 aliases:
@@ -11,4 +11,4 @@ imgData: cumulus-netq
 siteSlug: cumulus-netq
 toc: 4
 ---
-The first step to installing NetQ 2.4.1 is to install the NetQ software on your NetQ Platform(s) or NetQ Appliance(s). The following sections describe how to prepare for and install the software on these hardware platforms for both on-premises and cloud deployments.
+The first step to installing NetQ 2.4.1 is to install the NetQ Platform on a virtual machine or NetQ Appliance. The following sections describe how to prepare for and install the platform on both on-premises and cloud deployments.

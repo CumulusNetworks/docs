@@ -11,7 +11,7 @@ imgData: cumulus-netq
 siteSlug: cumulus-netq
 toc: 5
 ---
-This topic describes how to prepare a NetQ 2.3.x or earlier NetQ Appliance before installing NetQ 2.4.0. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ 2.4.0.
+This topic describes how to prepare a NetQ 2.3.x or earlier NetQ Appliance before installing NetQ 2.4.x. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ 2.4.x.
 
 To prepare your appliance:
 
@@ -181,14 +181,14 @@ Download the software from the [Cumulus Downloads](https://cumulusnetworks.com/d
 
 1. Select *NetQ* from the **Product** list.
 
-2. Select *2.4* from the **Version** list, and then select *2.4.0* from the submenu.
+2. Select *2.4* from the **Version** list, and then select *2.4.1* from the submenu.
 
-    {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
+    {{< figure src="/images/netq/netq-24-download-options-241.png" width="500" >}}
 
 3. Select *Bootstrap* from the **Hypervisor/Platform** list.
     Note that the bootstrap file is the same for both appliances.
 
-    {{< figure src="/images/netq/netq-24-bootstrap-dwnld-240.png" width="200" >}}
+    {{< figure src="/images/netq/netq-24-bootstrap-dwnld-241.png" width="200" >}}
     
 4. Scroll down and click **Download**.
 
@@ -196,22 +196,22 @@ Download the software from the [Cumulus Downloads](https://cumulusnetworks.com/d
 
     Make sure you select the right install choice based on whether you are preparing the on-premises or cloud version of the appliance.
 
-    {{< figure src="/images/netq/netq-24-appliance-onpremcld-dwnld-240.png" width="410" >}}
+    {{< figure src="/images/netq/netq-24-appliance-onpremcld-dwnld-241.png" width="410" >}}
 
 6. Scroll down and click **Download**.
 
-7. Copy these two files, *netq-bootstrap-2.4.0.tgz* and *NetQ-2.4.0.tgz* (on-premises) or *NetQ-2.4.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
+7. Copy these two files, *netq-bootstrap-2.4.1.tgz* and *NetQ-2.4.1.tgz* (on-premises) or *NetQ-2.4.1-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
 
-8. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-2.4.0-opta.tgz* instead of *NetQ-2.4.0.tgz*.
+8. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-2.4.1-opta.tgz* instead of *NetQ-2.4.1.tgz*.
 
     ```
     cumulus@<hostname>:~$ dpkg -l | grep netq
-    ii  netq-agent   2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-ii  netq-apps    2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+    ii  netq-agent   2.4.1-ub18.04u26~1581351889.c5ec3e5 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+    ii  netq-apps    2.4.1-ub18.04u26~1581351889.c5ec3e5 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
 
     cumulus@<hostname>:~$ cd /mnt/installables/
     cumulus@<hostname>:/mnt/installables$ ls
-    NetQ-2.4.0.tgz  netq-bootstrap-2.4.0.tgz
+    NetQ-2.4.1.tgz  netq-bootstrap-2.4.1.tgz
     ```
 
 9. Run the following commands.
@@ -229,7 +229,7 @@ ii  netq-apps    2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Fabric
 Run the bootstrap CLI on your appliance *for the interface you defined above* (eth0 or eth1 for example). This example uses the *eth0* interface.
 
 ```
-cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
+cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz
 ```
 
 Allow about five minutes for this to complete.

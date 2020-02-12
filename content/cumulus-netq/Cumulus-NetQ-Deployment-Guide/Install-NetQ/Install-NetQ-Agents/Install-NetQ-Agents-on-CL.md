@@ -114,14 +114,15 @@ cumulus@switch:~$ sudo apt-get install netq-agent
 cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-    You should see version 2.4.1 and update xx in the results. For example:
+    You should see version 2.4.1 and update 26 or later in the results. For example:
 
     - Cumulus Linux 3.3.2-3.7.x
-      - netq-agent_**2.4.1**-cl3u**25**~1579642196.aeb67d8_armel.deb
-      - netq-agent_**2.4.1**-cl3u**25**~1579642196.aeb67d8_amd64.deb
+      - netq-agent_**2.4.1**-cl3u**26**~1581350572.c5ec3e5_armel.deb
+      - netq-agent_**2.4.1**-cl3u**26**~1581350238.c5ec3e5a_amd64.deb
 
     - Cumulus Linux 4.0.0
-      - netq-agent_**2.4.1**-cl4u**25**~1579822727.aeb67d82_amd64.deb 
+      - netq-agent_**2.4.1**-cl4u**26**~1581350349.c5ec3e5a_armel.deb
+      - netq-agent_**2.4.1**-cl3u**26**~1581350537.c5ec3e5_amd64.deb
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

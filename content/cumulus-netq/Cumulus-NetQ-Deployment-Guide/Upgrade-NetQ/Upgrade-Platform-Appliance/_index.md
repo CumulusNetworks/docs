@@ -1,5 +1,5 @@
 ---
-title: Upgrade NetQ Hardware
+title: Upgrade the NetQ Platform
 author: Cumulus Networks
 weight: 141
 aliases:
@@ -11,11 +11,11 @@ imgData: cumulus-netq
 siteSlug: cumulus-netq
 toc: 4
 ---
-The first step in upgrading your NetQ 2.4.0 installation to NetQ 2.4.1 is to upgrade your NetQ Platform(s) or NetQ Appliance(s). This topic describes how to upgrade these hardware platforms for both on-premises and cloud deployments.
+The first step in upgrading your NetQ 2.4.0 installation to NetQ 2.4.1 is to upgrade your NetQ Platform. This topic describes how to upgrade this for both on-premises and cloud deployments.
 
 ## Prepare for Upgrade
 
-Two important steps are required to prepare your hardware for upgrade:
+Two important steps are required to prepare for upgrade of your NetQ Platform:
 
 - Download the necessary software tarballs
 - Update the Debian packages on the hardware
@@ -24,11 +24,9 @@ Optionally, you can choose to back up your NetQ Data before performing the upgra
 
 To complete the preparation:
 
-1. Log in to your NetQ Platform or Appliance.
+1. Optionally back up your NetQ 2.4.0 data. Refer to {{<link title="Back Up Your NetQ Data">}}.
 
-2. Optionally back up your NetQ 2.4.0 data. Refer to {{<link title="Back Up Your NetQ Data">}}.
-
-3. Download the relevant software.
+2. Download the relevant software.
 
     1. Go to the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page, and select *NetQ* from the **Product** list.
 
@@ -37,7 +35,7 @@ To complete the preparation:
 
     3. Select the relevant software from the **HyperVisor/Platform** list:
 
-        {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
+        {{< figure src="/images/netq/netq-24-download-options-241.png" width="500" >}}
          
         | Your Deployment Type | Hypervisor/Platform Selection | Downloaded Filename |
         | ---- | ---- | ---- |
@@ -48,13 +46,13 @@ To complete the preparation:
         | NetQ Appliance (on-premises) | Appliance | NetQ-2.4.1.tgz |
         | NetQ Cloud Appliance | Appliance (Cloud) | NetQ-2.4.1-opta.tgz |
 
-    4. Scroll down and click **Upgrade**. For example: (reviewer note: this image will be updated)
+    4. Scroll down and click **Download**. For example: The NetQ Appliance images.
 
-        {{< figure src="/images/netq/netq-24-appliance-dwnld-240.png" width="200" >}}
+        {{< figure src="/images/netq/netq-24-appliance-onpremcld-dwnld-241.png" width="420" >}}
 
-4. Copy the file to the */mnt/installables/* directory on your hardware.
+3. Copy the file to the */mnt/installables/* directory on your hardware.
 
-5. Update the NetQ debian packages.
+4. Update the NetQ debian packages.
 
 ```
 sudo dpkg --remove --force-remove-reinstreq netq-apps netq-agent 2>/dev/null
@@ -87,9 +85,9 @@ To upgrade your hardware:
 
     </details>
 
-2. Open the Admin UI by entering `https://<platform-or-appliance-ipaddress>:8443` in your browser address field.
+2. Open the Admin UI by entering `https://<hostname-or-ipaddress>:8443` in your browser address field.
 
-3. Follow the instructions in the UI. (reviewer note: need to view mirage to select some screen shots and basic steps)
+3. Click **Begin Upgrade** and follow the instructions in the UI, providing the NetQ installation tarball when requested.
 
 ## Upgrade Your Hardware Using the NetQ CLI
 
@@ -120,9 +118,9 @@ To upgrade your hardware:
 cat /etc/app-release
 ```
 
-    The output should look like this: (reviewer note: what name is used for the platform servers? user defined? is the hash the same for both on-prem upgrades, and different, but the same for both cloud upgrades?)
+    The output should look like this:
 
     |  | On-premises | Cloud |
     | ---- | ---- | ---- |
-    | <strong>NetQ Platform</strong> | APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=xxx<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;" | APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=xxx<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;" |
-    | <strong>NetQ Appliance</strong> | APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=xxx<br>APPLIANCE_NAME="NetQ Appliance" | APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=xxx<br>APPLIANCE_NAME="NetQ Cloud Appliance" |
+    | <strong>NetQ Platform</strong> | <ul><li>KVM: <br>    APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=E9361...12BE7<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;"</li><li>VMware:<br>APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=7916C...6D0EF<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;"</li></ul> | <ul><li>KVM: <br> APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=383E9...F4371<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;"</li><li>VMware: <br> APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=E6176...A3EA1<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;"</li></ul> |
+    | <strong>NetQ Appliance</strong> | APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=ADB58...E6732<br>APPLIANCE_NAME="NetQ Appliance" | APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=4F50D...57FE1<br>APPLIANCE_NAME="NetQ Cloud Appliance" |

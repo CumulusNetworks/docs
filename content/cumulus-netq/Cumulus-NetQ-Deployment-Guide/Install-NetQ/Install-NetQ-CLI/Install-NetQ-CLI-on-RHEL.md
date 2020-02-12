@@ -130,9 +130,9 @@ root@rhel7:~# sudo yum install netq-apps
 root@rhel7:~# rpm -q -netq-apps
 ```
 
-    You should see version 2.4.1 and update xx in the results. For example:
+    You should see version 2.4.1 and update 26 or later in the results. For example:
 
-    netq-apps-**2.4.1**-rh7u**25**~1579642928.aeb67d8.x86_64.rpm 
+    netq-apps-**2.4.1**-rh7u**26**~1581350236.c5ec3e5.x86_64.rpm 
 
 5. Continue with the next section.
 

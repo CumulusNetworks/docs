@@ -120,7 +120,7 @@ Two steps are needed, one to download the NetQ Platform and one to configure the
 1. On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list.
 
 2. Click *2.4* from the **Version** list, and then select
-    *2.4.0* from the submenu.
+    *2.4.1* from the submenu.
 
 3. Select *KVM (Cloud)* from the **Hypervisor/Platform** list.
 

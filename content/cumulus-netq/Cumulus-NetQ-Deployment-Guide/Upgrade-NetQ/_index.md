@@ -17,7 +17,7 @@ You must upgrade your NetQ Platform(s) or NetQ/NetQ Cloud Appliance(s) and the N
 
 To complete the upgrade for either an on-premises or a cloud deployment:
 
-- Start with {{<link title="Upgrade NetQ Hardware">}}
+- Start with {{<link title="Upgrade the NetQ Platform">}}
 - Then go to {{<link title="Upgrade NetQ Agents">}}
 - Optionally, go to {{<link title="Upgrade NetQ CLI">}}
 

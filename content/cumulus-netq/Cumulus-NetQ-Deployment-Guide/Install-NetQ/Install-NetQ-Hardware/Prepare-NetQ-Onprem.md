@@ -204,22 +204,22 @@ Replace network bridge value (br0 in the above example) with the name of the (pr
                     addresses: [8.8.8.8,8.8.4.4]
     ```
 
-    This example show that the IP address is a static address. If this is desired, exit the file without changes. If you wanted the IP address to be determined by DHCP, edit the file as follows:
+        This example show that the IP address is a static address. If this is desired, exit the file without changes. If you wanted the IP address to be determined by DHCP, edit the file as follows:
 
-    ```
-    network:
-        version: 2
-        renderer: networkd
-        ethernets:
-            eno0:
-                dhcp4: yes
-    ```
+        ```
+        network:
+            version: 2
+            renderer: networkd
+            ethernets:
+                eno0:
+                    dhcp4: yes
+        ```
 
-    Apply the settings.
+        Apply the settings.
 
-    ```
-    $ sudo netplan apply
-    ```
+        ```
+        $ sudo netplan apply
+        ```
 
     </details>
 
@@ -229,7 +229,7 @@ Replace network bridge value (br0 in the above example) with the name of the (pr
     cumulus@<hostname>:~$ sudo opta-check
     ```
     
-5. Run the Bootstrap CLI on the platform for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
+5. Run the Bootstrap CLI on the platform *for the interface you defined above* (eth0 or eth1 for example). This example uses the eth0 interface.
 
     ```
     cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz

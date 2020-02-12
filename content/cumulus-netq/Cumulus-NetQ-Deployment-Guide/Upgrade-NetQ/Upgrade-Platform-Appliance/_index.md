@@ -35,7 +35,7 @@ To complete the preparation:
 
     3. Select the relevant software from the **HyperVisor/Platform** list:
 
-        {{< figure src="/images/netq/netq-24-download-options-240b.png" width="500" >}}
+        {{< figure src="/images/netq/netq-24-download-options-241.png" width="500" >}}
          
         | Your Deployment Type | Hypervisor/Platform Selection | Downloaded Filename |
         | ---- | ---- | ---- |

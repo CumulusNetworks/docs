@@ -1,14 +1,5 @@
-{{ if .Site.IsServer }}
-  {{ if .IsNamedParams }}
+{{ if .IsNamedParams }}
   <img src="{{.Get "src" }}" alt="{{.Get "alt"}}" width = "{{.Get "width"}}" height = "{{.Get "height"}}" >
   {{ else }}
   <img src="{{.Get 0}}" alt="">
   {{ end }}
-{{ else }}
-  {{ if .IsNamedParams }}
-  <img src="https://docs-cdn.cumulusnetworks.com{{.Get "src" }}" alt="{{.Get "alt"}}" width = "{{.Get "width"}}" height = "{{.Get "height"}}" >
-  {{ else }}
-  <img src="https://docs-cdn.cumulusnetworks.com{{.Get 0}}" alt="">
-  {{ end }}
-
-{{ end }}

@@ -46,9 +46,9 @@ To complete the preparation:
         | NetQ Appliance (on-premises) | Appliance | NetQ-2.4.1.tgz |
         | NetQ Cloud Appliance | Appliance (Cloud) | NetQ-2.4.1-opta.tgz |
 
-    4. Scroll down and click **Download**. For example: The NetQ Appliance image.
+    4. Scroll down and click **Download**. For example: The NetQ Appliance images.
 
-        {{< figure src="/images/netq/netq-24-appliance-dwnld-241.png" width="200" >}}
+        {{< figure src="/images/netq/netq-24-appliance-onpremcld-dwnld-241.png" width="200" >}}
 
 3. Copy the file to the */mnt/installables/* directory on your hardware.
 

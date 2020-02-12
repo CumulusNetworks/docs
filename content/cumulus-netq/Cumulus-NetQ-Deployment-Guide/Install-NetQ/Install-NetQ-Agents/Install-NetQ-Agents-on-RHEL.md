@@ -138,9 +138,9 @@ root@rhel7:~# sudo yum install netq-agent
 root@rhel7:~# rpm -q -netq-agent
 ```
 
-    You should see version 2.4.0 and update 25 in the results. For example: 
+    You should see version 2.4.1 and update 26 or later in the results. For example: 
     
-    netq-agent-**2.4.0**-rh7u**25**~1579642928.aeb67d8.x86_64.rpm
+    netq-agent-**2.4.1**-rh7u**26**~1581350236.c5ec3e5.x86_64.rpm
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

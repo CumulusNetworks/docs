@@ -228,10 +228,10 @@ root@ubuntu:~# sudo apt-get install netq-apps
 root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
 ```
 
-    You should see version 2.4.1 and update xx in the results. For example:
+    You should see version 2.4.1 and update 26 or later in the results. For example:
 
-    - netq-apps_**2.4.1**-ub18.04u**25**~1579642196.aeb67d8_amd64.deb, or
-    - netq-apps_**2.4.1**-ub16.04u**25**~1579714730.aeb67d8_amd64.deb5. 
+    - netq-apps_**2.4.1**-ub18.04u**26**~1581351889.c5ec3e5_amd64.deb, or
+    - netq-apps_**2.4.1**-ub16.04u**26**~1581350451.c5ec3e5_amd64.deb. 
 
 5. Continue with NetQ CLI configuration in the next section.
 

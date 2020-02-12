@@ -48,7 +48,7 @@ To complete the preparation:
 
     4. Scroll down and click **Download**. For example: The NetQ Appliance images.
 
-        {{< figure src="/images/netq/netq-24-appliance-onpremcld-dwnld-241.png" width="200" >}}
+        {{< figure src="/images/netq/netq-24-appliance-onpremcld-dwnld-241.png" width="420" >}}
 
 3. Copy the file to the */mnt/installables/* directory on your hardware.
 

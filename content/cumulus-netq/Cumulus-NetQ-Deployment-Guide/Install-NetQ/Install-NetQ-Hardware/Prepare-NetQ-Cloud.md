@@ -566,13 +566,13 @@ Make a note of the private IP addresses you assign to the master and two worker 
     cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
     
-6. Run the Bootstrap CLI on the appliance *for the interface you defined above* (eth0 or eth1 for example). This example uses the *eth0* interface.
+6. Run the Bootstrap CLI on the worker appliance pointing to the master appliance IP address
 
     ```
     cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz
     ```
 
-    Allow about five minutes for this to complete,  *and only then continue to the next step*.
+    Allow about 2-3 minutes for this to complete,  *and only then continue to the next step*.
 
     {{%notice tip%}}
 If this step fails for any reason, you can run `netq bootstrap reset` and then try again.

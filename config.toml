@@ -5,12 +5,12 @@ baseURL = "/"
 relURLs = true
 googleAnalytics = "UA-40724538-3"
 
-
 #Book configuration
 disablePathToLower = true
 ## bug in local server, will enable in production
 enableGitInfo= false
 noChmod = true
+enableRobotsTXT = true
 
 [menu]
   [[menu.subnav]]

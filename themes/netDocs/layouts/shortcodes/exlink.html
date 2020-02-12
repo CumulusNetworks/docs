@@ -1,5 +1,5 @@
 {{ if .Get "url" }}
-    <a rel="canonical" href="{{ (.Get "url") }}">{{ default (.Get "url") (.Get "text")}}</a>
+    <a rel="canonical" href="{{ (.Get "url") }}">{{ default (.Get "url") (.Get "text") }}</a>
 {{- else -}}
     {{ errorf "missing url in link %s" .Position}}
 {{ end }}

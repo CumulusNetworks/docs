@@ -10,7 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
+toc: 5
 ---
 After you have validated the prerequisites and performed the preparation steps, you can now install the NetQ software using the Admin UI.
 
@@ -26,7 +26,7 @@ To install NetQ:
 
     This opens the Admin UI.
 
-    {{<figure src="/images/netq/adminui-main-page-240.png" width="700">}}
+    {{<figure src="/images/netq/adminui-main-page-241.png" width="700">}}
 
 2. Step through the UI:
 
@@ -72,7 +72,7 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
  
     4. Install NetQ software.
     
-        After the hardware has been configured, you can install the NetQ software using the installation files (`NetQ-2.4.0-tgz` for on-premises deployments or `NetQ-2.4.0-opta.tgz` for cloud deployments)  that you downloaded during the preparation steps.
+        After the hardware has been configured, you can install the NetQ software using the installation files (`NetQ-2.4.1-tgz` for on-premises deployments or `NetQ-2.4.1-opta.tgz` for cloud deployments)  that you downloaded during the preparation steps.
 
         {{<figure src="/images/netq/adminui-install-netq-240.png" width="700">}}
 

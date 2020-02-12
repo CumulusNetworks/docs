@@ -32,7 +32,7 @@ The following table summarizes the new commands available with this release. The
 </tr>
 <tr>
   <td>netq [&lt;hostname&gt;] show cl-manifest [json]</td>
-  <td>Lists installed software packages one or all devices</td>
+  <td>Lists the Cumulus Linux versions supported on one or all switches</td>
   <td>2.4.0</td>
 </tr>
 <tr>
@@ -42,42 +42,38 @@ The following table summarizes the new commands available with this release. The
 </tr>
 <tr>
   <td>netq [&lt;hostname&gt;] show cl-resource forwarding [around &lt;text-time&gt;] [json]</td>
-  <td>Displays xxx on one or all devices, currently or at a time in the past</td>
+  <td>Displays the amount of forwarding resources used by one or all devices, currently or at a time in the past</td>
   <td>2.4.0</td>
 </tr>
 <tr>
-  <td>netq [&lt;hostname&gt;] show recommended-pkg-verison [release-id &lt;test-release-id&gt;] [package-name &lt;text-package-name&gt;] [json]</td>
+  <td>netq [&lt;hostname&gt;] show recommended-pkg-version [release-id &lt;test-release-id&gt;] [package-name &lt;text-package-name&gt;] [json]</td>
   <td>Displays list of recommended packages to install/upgrade on one or all devices</td>
   <td>2.4.0</td>
 </tr>
 <tr>
-  <td>netq [&lt;hostname&gt;] show cl-resource-util [cpu|memory] [around &lt;text-time&gt;] [json]</td>
+  <td>netq [&lt;hostname&gt;] show resource-util [cpu|memory] [around &lt;text-time&gt;] [json]</td>
   <td>Displays the CPU or memory utilization for a given device or all devices, currently or at a time in the past/td>
   <td>2.4.0</td>
 </tr>
 <tr>
-  <td>netq [&lt;hostname&gt;] show show-resource-util disk [&lt;text-diskname&gt;] [around &lt;text-time&gt;] [json]</td>
+  <td>netq [&lt;hostname&gt;] show resource-util disk [&lt;text-diskname&gt;] [around &lt;text-time&gt;] [json]</td>
   <td>Displays the disk utilization for a given device or all devices, currently or at a time in the past</td>
   <td>2.4.0</td>
 </tr>
 <tr>
-  <td>netq [&lt;hostname&gt;] show wjh-drop [&lt;text-drop-type&gt;] [ingress-port &lt;text-ingress-port&gt;] [reason &lt;text-reason&gt;] [src-ip &lt;text-src-ip&gt;] [dst-ip &lt;text-dst-ip&gt;] [proto &lt;text-proto&gt;] [src-port &lt;text-src-port&gt;] [dst-port &lt;text-dst-port&gt;] [src-mac &lt;text-src-mac&gt;] [dst-mac &lt;text-dst-mac&gt;] [egress-port &lt;text-egress-port&gt;] [traffic-class &lt;text-traffic-class&gt;] [rule-id-acl &lt;text-rule-id-acl&gt;] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [around &lt;text-time&gt;] [json]</td>
-  <td>Displays status of various resource, interface, and sensor-related drops, the reason for the drop, and where they have occurred in the last 24 hours, between a set of times, or at a time in the past</td>
+  <td>netq [&lt;hostname&gt;] show wjh-drop [ingress-port &lt;text-ingress-port&gt;] [details] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [around &lt;text-time&gt;] [json]<br><br>
+  netq [&lt;hostname&gt;] show wjh-drop &lt;text-drop-type&gt; [ingress-port &lt;text-ingress-port&gt;] [reason &lt;text-reason&gt;] [src-ip &lt;text-src-ip&gt;] [dst-ip &lt;text-dst-ip&gt;] [proto &lt;text-proto&gt;] [src-port &lt;text-src-port&gt;] [dst-port &lt;text-dst-port&gt;] [src-mac &lt;text-src-mac&gt;] [dst-mac &lt;text-dst-mac&gt;] [egress-port &lt;text-egress-port&gt;] [traffic-class &lt;text-traffic-class&gt;] [rule-id-acl &lt;text-rule-id-acl&gt;] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [around &lt;text-time&gt;] [json]</td>
+  <td>Displays status of various resource, interface, and sensor-related drops, the reason for the drop, and where they have occurred in the last 24 hours, in a time range, or at a time in the past</td>
   <td>2.4.0</td>
 </tr>
 <tr>
-  <td>netq [&lt;hostname&gt;] show (agent| unit-tests [json]</td>
+  <td>netq [&lt;hostname&gt;] show (agent|unit-tests [json]</td>
   <td>Displays the CPU or memory utilization for a given device or all devices, currently or at a time in the past/td>
-  <td>2.4.0</td>
-</tr>
-<tr>
-  <td>netq [&lt;hostname&gt;] show show-resource-util disk [&lt;text-diskname&gt;] [around &lt;text-time&gt;] [json]</td>
-  <td>Displays the disk utilization for a given device or all devices, currently or at a time in the past</td>
   <td>2.4.0</td>
 </tr>
 <tr>
   <td>netq bootstrap master interface &lt;text-opta-ifname&gt;] tarball &lt;text-tarball-name&gt;</td>
-  <td>Loads master node with the NetQ installer in a server cluster deployment</td>
+  <td>Loads master node with the bootstrap CLI and NetQ installer in a server cluster deployment</td>
   <td>2.4.0</td>
 </tr>
 <tr>
@@ -168,6 +164,17 @@ The following table summarizes the new commands available with this release. The
   <td>Displays all or a given threshold-based event rules</td>
   <td>2.4.0</td>
 </tr>
+<tr>
+  <td>netq add validation name &lt;text-new-validation-name&gt; type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) interval &lt;text-time-min&gt; [alert-on-failure]</td>
+  <td>Create a scheduled validation</td>
+  <td>2.4.0</td>
+</tr>
+<tr>
+  <td>netq add validation type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) [alert-on-failure]
+  </td>
+  <td>Create an on-demand validation</td>
+  <td>2.4.0</td>
+</tr>
 </tbody>
 </table>
 
@@ -191,7 +198,7 @@ this release.
  <th>Version</th>
  </tr>
  </thead>
- <tbody>
+ <tbody>    
   <tr>
     <td>netq install cluster full interface &lt;text-opta-ifname&gt; bundle &lt;text-bundle-url&gt; config-key &lt;text-opta-key&gt;  workers &lt;text-worker-01&gt; &lt;text-worker-02&gt; <br>and <br>netq install standalone full interface &lt;text-opta-ifname&gt;  bundle &lt;text-bundle-url&gt; config-key &lt;text-opta-key&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;]</td>
     <td>netq install interface &lt;text-opta-ifname&gt; tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;) config-key &lt;text-opta-key&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;] [file &lt;text-config-file&gt;] [force]</td>
@@ -205,10 +212,10 @@ this release.
     <td>2.4.0</td>
   </tr>
   <tr>
-  <td>netq config del agent (server|agent-url|cluster-servers)</td>
-  <td>netq config del agent (server|agent-url)</td>
-  <td>Added the ability to remove the agent from servers in a clustered deployment.</td>
-  <td>2.4.0</td>
+    <td>netq config del agent (server|agent-url|cluster-servers)</td>
+    <td>netq config del agent (server|agent-url)</td>
+    <td>Added the ability to remove the agent from servers in a clustered deployment.</td>
+    <td>2.4.0</td>
   </tr>
 </tbody>
 </table>

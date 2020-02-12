@@ -1,7 +1,7 @@
 ---
 title: Upgrade NetQ
 author: Cumulus Networks
-weight: 73
+weight: 140
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -9,52 +9,18 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 3
 ---
-NetQ 2.4.0 requires a fresh installation. If you have already upgraded to NetQ 2.4.0, you may require an update to the NetQ Agent. Verify you have the latest version of the agent software. it should show a version  of 2.4.0 and an update of 25 or later.
+This topic describes how to upgrade from your current NetQ 2.4.0 installation to the NetQ 2.4.1 release to take advantage of new capabilities and bug fixes (refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413" text="release notes">}}).
 
-## For Switches Running Cumulus Linux 3.x or 4.x
+You must upgrade your NetQ Platform(s) or NetQ/NetQ Cloud Appliance(s) and the NetQ Agents on your monitored switches and hosts. If you want access to new and updated commands, you can upgrade the CLI on the NetQ Platform(s), NetQ/NetQ Cloud Appliance(s), and monitored switches and hosts as well.
 
-Run the following command to view the NetQ Agent version.
+To complete the upgrade for either an on-premises or a cloud deployment:
 
-```
-cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-```
+- Start with {{<link title="Upgrade the NetQ Platform">}}
+- Then go to {{<link title="Upgrade NetQ Agents">}}
+- Optionally, go to {{<link title="Upgrade NetQ CLI">}}
 
-You should see:
-
-- For Cumulus Linux 3.3.2-3.7.x:
-    - netq-agent_2.4.0-cl3u25~1579642196.aeb67d8_amd64.deb
-    - netq-agent_2.4.0-cl3u25~1579642196.aeb67d8_armel.deb
-- For Cumulus Linux 4.0.0:
-    - netq-agent_2.4.0-cl4u25~1579822727.aeb67d82_amd64.deb
-
-If you do not see one of these, refer to [Upgrade NetQ Agents on Cumulus Linux Switches](../Upgrade-NetQ/Upgrade-NetQ-Agents-on-Cumulus-Linux-Switches/).
-
-## For Servers Running Ubuntu 16.04 or 18.04
-
-Run the following command to view the NetQ Agent version.
-
-```
-root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-```
-
-You should see:
-
-- netq-agent_2.4.0-ub18.04u25~1579642196.aeb67d8_amd64.deb, or
-- netq-agent_2.4.0-ub16.04u25~1579714730.aeb67d8_amd64.deb
-
-If you do not see one of these, refer to [Upgrade NetQ Agents on Ubuntu Servers](../Upgrade-NetQ/Upgrade-NetQ-Agents-on-Ubuntu-Servers/).
-
-## For Servers Running RHEL7 or CentOS
-
-Run the following command to view the NetQ Agent version.
-
-```
-root@rhel7:~# rpm -q -netq-agent
-```
-
-You should see:
-
-- netq-agent-2.4.0-rh7u25~1579642928.aeb67d8.x86_64.rpm
-
-If you do not see one of these, refer to [Upgrade NetQ Agents on RHEL or CentOS Servers](../Upgrade-NetQ/Upgrade-NetQ-Agents-on-RHEL-or-CentOS-Servers/).
+{{%notice note%}}
+If you are currently running NetQ 2.4.0 and you installed the NetQ 2.4.0 Agent, you may need to update the agent. Refer to [Update NetQ 2.4.0 Agents](../Upgrade-NetQ/Upgrade-Agents/Upgrade-NetQ-240-Agents/).
+{{%/notice%}}

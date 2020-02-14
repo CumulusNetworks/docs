@@ -1,7 +1,7 @@
 ---
 title: Lifecycle Management
 author: Cumulus Networks
-weight: 602
+weight: 320
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 As an administrator, you want to manage the deployment of Cumulus NetQ software onto your network devices (servers, appliances, switches, and hosts) in the most efficient way and with the most information about the process as possible. With this release, NetQ provides the first of many features to enable you to do just that. It includes the ability to take a snapshot of the live network state and configuration before you make changes to your network, take a snapshot after you make those changes, and then compare them.
 

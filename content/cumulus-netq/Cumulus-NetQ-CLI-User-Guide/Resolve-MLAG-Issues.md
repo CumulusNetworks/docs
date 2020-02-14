@@ -1,7 +1,7 @@
 ---
 title: Resolve MLAG Issues
 author: Cumulus Networks
-weight: 53
+weight: 410
 aliases:
  - /display/NETQ/Resolve+MLAG+Issues
  - /pages/viewpage.action?pageId=12321054
@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 3
 ---
 This topic outlines a few scenarios that illustrate how you use NetQ to
 troubleshoot
@@ -37,9 +38,9 @@ message that all nodes are up:
 
     2017-05-22T23:13:09.683429+00:00 noc-pr netq-notifier[5501]: INFO: CLAG: All nodes are up
 
-Running `netq show clag` confirms this:
+Running `netq show mlag` confirms this:
 
-    cumulus@switch:~$ netq show clag
+    cumulus@switch:~$ netq show mlag
     Matching clag records:
     Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
                                                                              s
@@ -53,8 +54,8 @@ Running `netq show clag` confirms this:
 
 You can also verify a specific node is up:
 
-    cumulus@switch:~$ netq spine01 show clag
-    Matching clag records:
+    cumulus@switch:~$ netq spine01 show mlag
+    Matching mlag records:
     Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
                                                                              s
     ----------------- ----------------- ------------------ ---------- ------ ----- ----- -------------------------
@@ -62,13 +63,20 @@ You can also verify a specific node is up:
 
 Similarly, checking the MLAG state with NetQ also confirms this:
 
-    cumulus@switch:~$ netq check clag
+    cumulus@switch:~$ netq check mlag
     Checked Nodes: 6, Failed Nodes: 0
+
+{{%notice note%}}
+The `clag` keyword has been deprecated and replaced by the `mlag` keyword. The
+`clag` keyword continues to work for now, but you should start using the `mlag`
+keyword instead. Keep in mind you should also update any scripts that use the `clag`
+keyword.
+{{%/notice%}}
 
 When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
-    cumulus@switch:/var/log# sudo clagctl
+    cumulus@switch:/var/log$ sudo clagctl
      
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
@@ -110,7 +118,7 @@ To begin your investigation, show the status of the `clagd` service:
 
 Checking the MLAG status provides the reason for the failure:
 
-    cumulus@switch:~$ netq check clag
+    cumulus@switch:~$ netq check mlag
     Checked Nodes: 6, Warning Nodes: 2
     Node             Reason
     ---------------- --------------------------------------------------------------------------
@@ -119,7 +127,7 @@ Checking the MLAG status provides the reason for the failure:
 
 You can retrieve the output in JSON format for export to another tool:
 
-    cumulus@switch:~$ netq check clag json
+    cumulus@switch:~$ netq check mlag json
     {
         "warningNodes": [
             { 
@@ -145,7 +153,7 @@ After you fix the issue, you can show the MLAG state to see if all the
 nodes are up. The notifications from NetQ indicate all nodes are UP, and
 the `netq check` flag also indicates there are no failures.
 
-    cumulus@switch:~$ netq show clag
+    cumulus@switch:~$ netq show mlag
      
     Matching clag records:
     Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
@@ -161,7 +169,7 @@ the `netq check` flag also indicates there are no failures.
 When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
-    cumulus@switch:/var/log# sudo clagctl
+    cumulus@switch:/var/log$ sudo clagctl
      
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
@@ -205,7 +213,7 @@ To begin your investigation, show the status of the `clagd` service:
 
 Checking the MLAG status provides the reason for the failure:
 
-    cumulus@switch:~$ netq check clag
+    cumulus@switch:~$ netq check mlag
     Checked Nodes: 6, Warning Nodes: 2, Failed Nodes: 2
     Node             Reason
     ---------------- --------------------------------------------------------------------------
@@ -214,7 +222,7 @@ Checking the MLAG status provides the reason for the failure:
 
 You can retrieve the output in JSON format for export to another tool:
 
-    cumulus@switch:~$ netq check clag json
+    cumulus@switch:~$ netq check mlag json
     {
         "failedNodes": [
             { 
@@ -237,7 +245,7 @@ You can retrieve the output in JSON format for export to another tool:
 After you fix the issue, you can show the MLAG state to see if all the
 nodes are up:
 
-    cumulus@switch:~$ netq show clag
+    cumulus@switch:~$ netq show mlag
     Matching clag session records are:
     Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
                                                                              s
@@ -252,7 +260,7 @@ nodes are up:
 When you are logged directly into a switch, you can run `clagctl` to get
 the state:
 
-    cumulus@switch:/var/log# sudo clagctl
+    cumulus@switch:/var/log$ sudo clagctl
      
     The peer is alive
     Peer Priority, ID, and Role: 4096 00:02:00:00:00:4e primary
@@ -290,7 +298,7 @@ NetQ Notifier sends messages similar to the following:
 
 Showing the MLAG state reveals which nodes are down:
 
-    cumulus@switch:~$ netq show clag
+    cumulus@switch:~$ netq show mlag
     Matching CLAG session records are:
     Node             Peer             SysMac            State Backup #Bonds #Dual Last Changed
     ---------------- ---------------- ----------------- ----- ------ ------ ----- -------------------------
@@ -302,7 +310,7 @@ Showing the MLAG state reveals which nodes are down:
 
 Checking the MLAG status provides the reason for the failure:
 
-    cumulus@switch:~$ netq check clag
+    cumulus@switch:~$ netq check mlag
     Checked Nodes: 6, Warning Nodes: 1, Failed Nodes: 2
     Node             Reason
     ---------------- --------------------------------------------------------------------------
@@ -311,7 +319,7 @@ Checking the MLAG status provides the reason for the failure:
 
 You can retrieve the output in JSON format for export to another tool:
 
-    cumulus@switch:~$ netq check clag json
+    cumulus@switch:~$ netq check mlag json
     {
         "failedNodes": [
             { 

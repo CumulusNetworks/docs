@@ -1,7 +1,7 @@
 ---
 title: Monitor Events
 author: Cumulus Networks
-weight: 145
+weight: 370
 aliases:
  - /display/NETQ/Monitor+Events
  - /pages/viewpage.action?pageId=12321771
@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+toc: 4
 ---
 Two event workflows, the Alarms card workflow and the Info card
 workflow, provide a view into the events occurring in the network. The
@@ -1091,7 +1092,7 @@ CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-N
 <td><p>A temperature sensor has crossed the minimum threshold for that sensor</p></td>
 <td><p>Critical</p></td>
 <td><p>Sensor @sensor min value @new_s_lcrit fall behind threshold @new_s_min</p></td>
-<td><p>Sensor psu min value 10 fell below threshold 25</p></td>
+<td><p>Sensor temp min value 10 fell below threshold 25</p></td>
 </tr>
 <tr class="odd">
 <td><p>sensor</p></td>

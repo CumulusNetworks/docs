@@ -16,19 +16,17 @@ With NetQ, a network administrator can monitor OSI Layer 1 physical
 components on network devices, including interfaces, ports, links, and
 peers. NetQ provides the ability to:
 
-  - Manage physical inventory: view the performance and status of
-    various components of a switch or host server
-  - Validate configurations: verify the configuration of network peers
-    and ports
+- Manage physical inventory: view the performance and status of  various components of a switch or host server
+- Validate configurations: verify the configuration of network peers  and ports
 
 It helps answer questions such as:
 
-  - Are any individual or bonded links down?
-  - Are any links flapping?
-  - Is there a link mismatch anywhere in my network?
-  - Which interface ports are empty?
-  - Which transceivers are installed?
-  - What is the peer for a given port?
+- Are any individual or bonded links down?
+- Are any links flapping?
+- Is there a link mismatch anywhere in my network?
+- Which interface ports are empty?
+- Which transceivers are installed?
+- What is the peer for a given port?
 
 NetQ uses [LLDP](/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) (Link
 Layer Discovery Protocol) to collect port information. NetQ can also
@@ -45,13 +43,13 @@ vendor, per part number and so forth. NetQ enables you to view the
 current status and the status an earlier point in time. From this
 information, you can, among other things:
 
-  - determine which ports are empty versus which ones have cables
-    plugged in and thereby validate expected connectivity
-  - audit transceiver and cable components used by vendor, giving you
-    insights for estimated replacement costs, repair costs, overall
-    costs, and so forth to improve your maintenance and purchasing
-    processes
-  - identify changes in your physical layer, and when they occurred
+- determine which ports are empty versus which ones have cables
+  plugged in and thereby validate expected connectivity
+- audit transceiver and cable components used by vendor, giving you
+  insights for estimated replacement costs, repair costs, overall
+  costs, and so forth to improve your maintenance and purchasing
+  processes
+- identify changes in your physical layer, and when they occurred
 
 The `netq show interfaces physical` command is used to obtain the
 information from the devices. Its syntax is:
@@ -64,11 +62,11 @@ information from the devices. Its syntax is:
 When entering a time value, you must include a numeric value *and* the
 unit of measure:
 
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
+- d: day(s)
+- h: hour(s)
+- m: minute(s)
+- s: second(s)
+- now
 
 For time ranges, the `<text-time>` is the most recent time and the
 `<text-endtime>` is the oldest time. The values are not required to have the
@@ -394,7 +392,8 @@ cumulus@switch:~$ netq myswitch show ethtool-stats swp1 json
 	}
     ],
     "truncatedResult":false
-}```
+}
+```
 
 ## Validate Physical Layer Configuration
 
@@ -455,7 +454,9 @@ constructs. You can check all interfaces at once. It enables you to
 compare the current status of the interfaces, as well as their status at
 an earlier point in time. The command syntax is:
 
-    netq check interfaces [around <text-time>] [json]
+```
+netq check interfaces [around <text-time>] [json]
+```
 
 {{%notice tip%}}
 
@@ -571,7 +572,3 @@ Hostname          Interface                 Peer Hostname     Peer Interface    
 leaf02            -                         -                 -                         Link flapped 11 times in last 5
                                                                                         mins                    
 ```
-
-<span style="color: #ff0000;">  
-
-

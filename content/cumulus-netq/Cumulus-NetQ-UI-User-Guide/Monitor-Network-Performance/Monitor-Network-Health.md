@@ -356,7 +356,7 @@ Overall network health is based on successful validation results. The summary in
 
 To view a summary of your network health, open the small Network Health card.
 
-{{< figure src="/images/netq/ntwk-hlth-small-230.png" width="200" >}}
+{{<figure src="/images/netq/ntwk-hlth-small-230.png" width="200">}}
 
 In this example, the overall health is relatively good, but improving compared to recent status. Refer to the next section for viewing the key health metrics.
 
@@ -366,7 +366,7 @@ Overall network health is a calculated average of several key health metrics: Sy
 
 To view these key metrics, open the medium Network Health card. Each metric is shown with the the percentage of successful validations, a trend indicator, and a distribution of the validation results.
 
-{{< figure src="/images/netq/ntwk-hlth-medium-230.png" width="200" >}}
+{{<figure src="/images/netq/ntwk-hlth-medium-230.png" width="200">}}
 
 In this example, the health of each of the system and network services are good, but interface health is on the lower side. While it is improving, you might choose to dig further if it does not continue to improve. Refer to the following section for additional details.
 
@@ -379,7 +379,7 @@ To view information about each system component:
 1.  Open the large Network Health card.
 2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/>.
 
-    {{< figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-241.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-241.png" width="500">}}
 
     The health of each system protocol or service is represented on the left side of the card by a distribution of the health score, a trend indicator, and a percentage of successful results. The right side of the card provides a listing of devices running the services.
 
@@ -400,7 +400,7 @@ above the table on the right. Devices with the highest number of issues are list
 
 You can focus the data in the table on the right, by unselecting one or more services. Click the *checkbox* next to the service you want to remove from the data. In this example, we have unchecked Licenses.
 
-{{< figure src="/images/netq/ntwk-hlth-large-filter-sys-hlth-in-tbl-241.png" width="500" >}}
+{{<figure src="/images/netq/ntwk-hlth-large-filter-sys-hlth-in-tbl-241.png" width="500">}}
 
 This removes the checkbox next to the associated chart and grays out the title of the chart, temporarily removing the data related to that service from the table. Add it back by hovering over the chart and clicking the checkbox that appears.
 
@@ -417,7 +417,7 @@ To view information about each network protocol or service:
 1.  Open the large Network Health card.
 2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/>.
 
-{{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-241.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-241.png" width="500">}}
 
 The health of each network protocol or service is represented on the left side of the card by a distribution of the health score, a trend indicator, and a percentage of successful results. The right side of the card provides a listing of devices running the services.
 
@@ -443,7 +443,7 @@ It is useful to know which devices are experiencing the most issues with their n
 
 You can focus the data in the table on the right, by unselecting one or more services. Click the *checkbox* next to the service you want to remove. In this example, we removed NTP and are in the process of removing OSPF.
 
-{{< figure src="/images/netq/ntwk-hlth-large-filter-ntwk-hlth-in-tbl-241.png" width="500" >}}
+{{<figure src="/images/netq/ntwk-hlth-large-filter-ntwk-hlth-in-tbl-241.png" width="500">}}
 
 This grays out the chart title and removes the associated checkbox, temporarily removing the data related to that service from the table.
 
@@ -460,7 +460,7 @@ To view information about each system component:
 1.  Open the large Network Health card.
 2.  Hover over the card and click <img src="/images/netq/ntwk-health-if-health-icon.png", height="20", width="20"/>.
 
-    {{< figure src="/images/netq/ntwk-hlth-large-if-hlth-tab-241.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-hlth-large-if-hlth-tab-241.png" width="500">}}
 
     The health of each interface protocol or service is represented on the left side of the card by a distribution of the health score, a trend indicator, and a percentage of successful results. The right side of the card provides a listing of devices running the services.
 
@@ -482,7 +482,7 @@ above the table on the right. Devices with the highest number of issues are list
 
 You can focus the data in the table on the right, by unselecting one or more services. Click the *checkbox* next to the interface item you want to remove from the data. In this example, we have unchecked MTU.
 
-{{< figure src="/images/netq/ntwk-hlth-large-filter-if-hlth-in-tbl-241.png" width="500" >}}
+{{<figure src="/images/netq/ntwk-hlth-large-filter-if-hlth-in-tbl-241.png" width="500">}}
 
 This removes the checkbox next to the associated chart and grays out the title of the chart, temporarily removing the data related to that service from the table. Add it back by hovering over the chart and clicking the checkbox that appears.
 

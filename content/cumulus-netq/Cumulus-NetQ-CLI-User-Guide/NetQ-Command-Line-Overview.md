@@ -206,7 +206,13 @@ for the following:
 
 - **agents**: NetQ Agents status on switches and hosts
 - **bgp**: BGP status across the network fabric
+- **cl-btrfs-info**: BTRFS file system data for monitored Cumulus Linux switches
+- **cl-manifest**: Information about the versions of Cumulus Linux available on monitored switches
+- **cl-pkg-info**: Information about software packages installed on monitored switches
+- **cl-resource**: ACL and forwarding information
+- **cl-ssd-util**: SSD utilization information
 - **clag**: CLAG status
+- **ethtool-stats**: Interface statistics
 - **events**: Display changes over time
 - **evpn**: EVPN status
 - **interface-stats**: Interface statistics
@@ -215,18 +221,28 @@ for the following:
 - **inventory**: hardware component information
 - **ip**: IPv4 status
 - **ipv6**: IPv6 status
+- **job-status**: status of jobs running on the OPTA
 - **kubernetes**: Kubernetes cluster, daemon, pod, node, service and replication status
 - **lldp**: LLDP status
+- **mac-history**: Historical information for a MAC address
 - **macs**: MAC table or address information
+- **mlag**: MLAG status
 - **notification**: Slack or PagerDuty notification configurations
 - **ntp**: NTP status
 - **opta-health**: Display health of apps on the OPTA
+- **opta-platform**: NetQ Appliance version information and uptime
 - **ospf**: OSPF status
-- **platform** Appliance version info
+- **recommended-pkg-version**: Current host information to be considered
+- **resource-util**: Display usage of memory, CPU and disk resources
 - **sensors**: Temperature/Fan/PSU sensor status
 - **services**: System services status
+- **tca**: Threshold crossing alerts
+- **trace**: Control plane trace path across fabric
+- **unit-tests**: Show list of unit tests for `netq check`
+- **validation**: Schedule a validation check
 - **vlan**: VLAN status
 - **vxlan**: VXLAN data path status
+- **wjh-drop**: drop information from Mellanox What Just Happened
 
 The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. The commands can be restricted from showing the information for *all* devices to showing information for a selected device using the `hostname` option.
 

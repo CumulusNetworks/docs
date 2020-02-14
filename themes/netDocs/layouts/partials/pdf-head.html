@@ -1,0 +1,213 @@
+<script>
+    function replace_url() {
+        var elems = document.getElementsByTagName("a");
+        for (var i = 0; i < elems.length; i++) {
+            path = elems[i]["href"];
+            path_parts = path.split("/");
+            if(path_parts[3] != "{{.Section}}"){
+                continue
+            }
+            if(path_parts[path_parts.length - 1] == ""){
+                elems[i]["href"] = "#" + path_parts[path_parts.length - 2];
+            }
+            else { 
+                if(path_parts[path_parts.length - 1].charAt(0) == "#"){
+                    elems[i]["href"] = path_parts[path_parts.length - 1]
+                }
+                else{
+                    elems[i]["href"] = "#" + path_parts[path_parts.length - 1]
+                }
+            }
+            
+        }
+    }
+    window.onload = function() {
+        replace_url();
+    }
+</script>
+<meta name="author" content="Cumulus Networks" />
+<meta name="keywords" content="COMMIT_INFO" />
+
+<style type="text/css">
+    @page {
+      /* NetQ docs contain long outputs. 
+      Use landscape style to help fit */
+      {{ if eq .Section "cumulus-netq" }}
+          size: A4 landscape;
+      {{ else }}
+          size: A4 portrait;
+      {{ end }}
+      
+      @bottom {
+          padding-top: 0;
+          margin: 10pt 0 30pt 0;
+          border-top: .25pt solid #36424a;
+      }
+      @top-right {
+        border-bottom: .25pt solid #36424a;
+      }
+  }
+
+  @page:right {
+      @bottom {
+          content: "https://docs.cumulusnetworks.com"
+      }
+
+      @bottom-right {
+          padding-top: 0;
+          margin: 10pt 0 30pt 0;
+          border-top: .25pt solid #36424a;
+          content: counter(page);
+      }
+
+      @bottom-left {
+          padding-top: 0;
+          margin: 10pt 0 30pt 0;
+          border-top: .25pt solid #36424a;
+      }
+
+      @top-right {
+          padding-bottom: 0;
+          margin: 10pt 0 30pt 0;
+          border-bottom: .25pt solid #36424a;
+          content: "{{.Page.Params.product}} v{{.Page.Params.version}} User Documentation";
+      }
+
+      @top-left {
+          padding-bottom: 0;
+          margin: 10pt 0 30pt 0;
+          content: string(chapter-title);
+          border-bottom: .25pt solid #36424a;
+      }
+  }
+
+  @page:left {
+      @bottom {
+          content: "https://docs.cumulusnetworks.com"
+      }
+
+      @bottom-right {
+          padding-top: 0;
+          margin: 10pt 0 30pt 0;
+          border-top: .25pt solid #36424a;
+      }
+
+      @bottom-left {
+          padding-top: 0;
+          margin: 10pt 0 30pt 0;
+          border-top: .25pt solid #36424a;
+          content: counter(page);
+      }
+
+      @top-right {
+          padding-bottom: 0;  
+          margin: 10pt 0 30pt 0;
+          border-bottom: .25pt solid #36424a;
+          content: string(chapter-title);
+      }
+
+      @top-left {
+          padding-bottom: 0;
+          margin: 10pt 0 30pt 0;
+          border-bottom: .25pt solid #36424a;
+          content: "{{.Page.Params.product}} v{{.Page.Params.version}} User Documentation";
+      }
+
+  }
+
+  @page:first {
+      @bottom-right { 
+          content: normal;
+      }
+      @bottom-left { 
+          content: normal;
+      }
+      @bottom { 
+          content: normal;
+      }
+      @top-right { 
+          content: normal;
+      }
+      @top-left { 
+          content: normal;
+      }
+      @top { 
+          content: normal;
+      }
+  }
+  .book-page {
+      counter-reset: page 1
+  }
+
+  #cover {
+      width: 100%;
+      text-align: center;
+      break-after: always;
+  }
+
+  #centered {
+      break-after: always;
+      margin: 0 auto;
+      display: inline-block;
+      padding: 3px;
+  }
+
+  #centered h1 {
+      color: #36424a;
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: -.7px;
+      line-height: 3rem;
+      margin-top: 0;
+      margin-bottom: 1.1rem
+  }
+
+  #centered img {
+      display: block;
+      page-break-inside: avoid;
+      width: 500px;
+      height: auto;
+      margin: auto;
+  }
+
+  img { 
+    padding-bottom: 30px;
+  }
+
+  .markdown {
+      page-break-after: always;
+  }
+
+  .markdown code { 
+    font-size: .5rem;
+  }
+
+  .toc1 {
+      prince-bookmark-level: 1;
+  }
+
+  .toc2 {
+      prince-bookmark-level: 2;
+      string-set: chapter-title content()
+  }
+
+  .toc3 {
+      prince-bookmark-level: 3;
+  }
+
+  h1 {
+      prince-bookmark-level: none;
+  }
+
+  h2 {
+      prince-bookmark-level: none;
+  }
+
+  h3 {
+      prince-bookmark-level: none;
+  }
+
+  h4 {
+      prince-bookmark-level: none;
+  }
+</style>

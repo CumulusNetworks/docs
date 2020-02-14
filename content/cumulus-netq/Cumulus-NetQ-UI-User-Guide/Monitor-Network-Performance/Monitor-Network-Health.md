@@ -397,7 +397,7 @@ To view information about each network protocol or service:
 1.  Open the large Network Health card.
 2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/>.
 
-    {{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
 
 The health of each protocol or service is represented on the left side
 of the card by a distribution of the health score, a trend indicator,

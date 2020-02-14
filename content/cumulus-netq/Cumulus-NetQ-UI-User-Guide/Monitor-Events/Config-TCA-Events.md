@@ -1,5 +1,5 @@
 ---
-title: Configure and Monitor Threshold-based Events
+title: Configure Threshold-based Events
 author: Cumulus Networks
 weight: 326
 aliases:

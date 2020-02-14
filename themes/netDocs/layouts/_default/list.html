@@ -1,12 +1,17 @@
 {{ define "menu"}}
 
-{{ partial "menu/menu-sectiontree" . }}
+{{ partial "docs/menu-sectiontree" . }}
 
 {{ end }}
 
 {{ define "main" }}
 <article class="markdown">
+  {{ if .Site.Params.pdfExport }}
+    {{ $id := .Page.Title | lower | replaceRE "[^0-9a-z]" "-" | replaceRE "-+" "-"}}
+    <h1 id="{{ $id }}">  {{- .Page.Title -}} </h1>
+  {{else}}
     <h1>  {{- .Page.Title -}} </h1>
+  {{ end }}
   {{- .Content -}}
 </article>
 {{ end }}
@@ -16,7 +21,7 @@
 {{ $showToC := default (default true .Site.Params.BookShowToC) .Params.bookshowtoc }}
   {{ if or ($showToC) (.Page.TableOfContents) }}
 
-    {{ partial "toc" . }}
+    {{ partial "docs/toc" . }}
 
 {{ end }}
 

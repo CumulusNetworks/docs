@@ -301,10 +301,6 @@ Switches with the Hurricane2 ASIC do not support IPv6 prefixes between /65 and /
 
 Static routes added via FRRouting can be deleted via Linux shell. This operation, while possible, should be avoided. Routes added by FRRouting should only be deleted by FRRouting, otherwise FRRouting might not be able to clean up all its internal state completely and incorrect routing can occur as a result.
 
-### Using NCLU Commands to Delete Routing Configuration
-
-When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), Cumulus Networks recommends that you commit ten or fewer delete commands at a time to avoid commit failures.
-
 ### Add IPv6 Default Route with src Address on eth0 Fails without Adding Delay
 
 Attempting to install an IPv6 default route on eth0 with a source address fails at reboot or when running `ifup` on eth0.

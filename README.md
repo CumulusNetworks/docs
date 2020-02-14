@@ -57,7 +57,7 @@ The site is based off the Hugo Book theme, built by [alex-shpak](https://github.
 [theme components](https://gohugo.io/themes/theme-components/) for information on theme overrides and https://gohugo.io/templates/lookup-order/ for information on Hugo's default lookup order.
 
 
-## Resources 
+## Resources
   - [Cumulus Networks Documentation](https://docs.cumulusnetworks.com)
   - [Content Organization with Hugo](https://gohugo.io/content-management/organization/)
   - [hugo-theme-book](https://github.com/alex-shpak/hugo-book)

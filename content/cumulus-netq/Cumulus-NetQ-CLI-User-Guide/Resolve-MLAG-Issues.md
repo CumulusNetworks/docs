@@ -1,7 +1,7 @@
 ---
 title: Resolve MLAG Issues
 author: Cumulus Networks
-weight: 410
+weight: 53
 aliases:
  - /display/NETQ/Resolve+MLAG+Issues
  - /pages/viewpage.action?pageId=12321054
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 This topic outlines a few scenarios that illustrate how you use NetQ to
 troubleshoot

@@ -1,7 +1,7 @@
 ---
 title: Focus Your Monitoring Using Workbenches
 author: Cumulus Networks
-weight: 270
+weight: 507
 aliases:
  - /display/NETQ22/NetQ-User-Interface-Overview
  - /pages/viewpage.action?pageId=12321856
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 Workbenches are an integral structure of the Cumulus NetQ application. They are where you collect and view the data that is important to you.
 

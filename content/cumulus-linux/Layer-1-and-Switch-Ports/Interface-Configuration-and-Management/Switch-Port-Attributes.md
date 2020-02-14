@@ -1556,7 +1556,14 @@ The Lenovo NE2572O switch has external retimers on swp1 through swp8. Currently,
 
 ### Link Speed and Auto-negotiation on Switches with SOL
 
-Switches that use Serial over LAN technology (SOL), such as the Celestica QueStone2 and Celestica SeaStone2, do not support eth0 speed or auto-negotiation changes.
+The following switches that use Serial over LAN technology (SOL) do not support eth0 speed or auto-negotiation changes:
+
+- Celestica Pebble
+- Celestica QueStone2
+- Celestica SeaStone2
+- EdgeCore AS7816-64X
+- Penguin Arctica NX3200c
+- Penguin Arctica NX4808xxv
 
 ### ethtool Shows Incorrect Port Speed on 100G Spectrum Switches
 

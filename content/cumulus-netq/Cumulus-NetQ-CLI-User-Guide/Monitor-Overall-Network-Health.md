@@ -131,7 +131,7 @@ Output from the `netq check` commands are color-coded; green for successful resu
 
 Each of the `netq check` commands perform a set of validation tests appropriate to the protocol or element being validated. 
 
-To view the list of tests run for a given protocol or service, use either `netq show <protocol/service> unit-tests` or perform a tab completion on `netq check <protocol/service> [include|exclude]`.
+To view the list of tests run for a given protocol or service, use either `netq show unit-tests <protocol/service>` or perform a tab completion on `netq check <protocol/service> [include|exclude]`.
 
 This section describes these tests.
 

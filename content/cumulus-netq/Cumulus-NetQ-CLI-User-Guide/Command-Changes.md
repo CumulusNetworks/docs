@@ -256,11 +256,17 @@ this release.
     <td>2.4.1</td>
   </tr>
   <tr>
-  <td>netq bootstrap master (interface &lt;text-opta-ifname&gt;|ip-addr &lt;text-ip-addr&gt;] tarball &lt;text-tarball-name&gt;</td>
-  <td>Loads master node with the bootstrap CLI and NetQ installer in a server cluster deployment</td>
-  <td>You can now specify either the OPTA interface name or its IP address
-  <td>2.4.1</td>
-</tr>
+   <td>netq bootstrap master (interface &lt;text-opta-ifname&gt;|ip-addr &lt;text-ip-addr&gt;] tarball &lt;text-tarball-name&gt;</td>
+   <td>netq bootstrap master interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt;</td>
+   <td>You can now specify either the OPTA interface name or its IP address
+   <td>2.4.1</td>
+  </tr>
+  <tr>
+   <td>netq bootstrap reset [keep-db|purge-db]</td>
+   <td>netq bootstrap reset</td>
+   <td>You can now specify whether to keep or purge the NetQ database during the bootstrap process
+   <td>2.4.1</td>
+  </tr>
   <tr>
     <td>netq show unit-tests (agent|bgp|cl-version|clag|<br>evpn|interfaces|license|mlag|mtu|ntp|ospf|sensors|<br>vlan|vxlan) [json]</td>
     <td>netq show (agent|bgp|cl-version|clag|<br>evpn|interfaces|license|mlag|mtu|ntp|ospf|sensors|<br>vlan|vxlan) unit-tests [json]</td>

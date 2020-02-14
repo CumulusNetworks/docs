@@ -61,10 +61,17 @@ Hostname          Status           NTP Sync Version                             
 
 ## Modify the Configuration of the NetQ Agent on a Node
 
-The agent configuration commands enable
-you to add and remove agents from switches and hosts, start and stop
-agent operations, add and remove Kubernetes container monitoring, add or
-remove sensors, debug the agent, and add or remove FRR (FRRouting).
+The agent configuration commands enable you to do the following:
+
+- add and remove agents from switches and hosts
+- start and stop agent operations
+- add and remove Kubernetes container monitoring
+- add or remove sensors
+- debug the agent
+- add or remove FRR (FRRouting)
+- set a limit on how many CPU resources the agent can consume on a Cumulus Linux switch
+- send data to the cluster nodes
+- collect What Just Happened data on a Mellanox switch
 
 {{%notice note%}}
 
@@ -75,14 +82,16 @@ and are run from the switch or host where the NetQ Agent resides.
 
 The agent configuration commands include:
 
+    netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
+    netq config add agent cpu-limit [<text-limit-number>]
     netq config add agent frr-monitor [<text-frr-docker-name>]
     netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
     netq config add agent loglevel [debug|error|info|warning]
     netq config add agent sensors
     netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
     netq config (start|stop|status|restart) agent
-    netq config del agent (agent-url|frr-monitor|kubernetes-monitor|loglevel|sensors|server)
-    netq config show agent [frr-monitor|kubernetes-monitor|loglevel|sensors] [json]
+    netq config del agent (agent-url|cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)
+    netq config show agent [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|stats|wjh] [json]
 
 This example shows how to specify the IP address and optionally a
 specific port on the NetQ Platform where agents should send their data.
@@ -95,14 +104,22 @@ This example shows how to configure the agent to send sensor data.
 
 This example shows how to start monitoring with Kubernetes.
 
-    cumulus@switch:~$ netq config add kubernetes-monitor
+    cumulus@switch:~$ netq config add agent kubernetes-monitor
+
+This example shows how to configure the agent to send data to the cluster nodes.
+You can optionally specify a port or VRF.
+
+    cumulus@switch:~$ netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf rocket
+
+This example shows how to prevent the agent from consuming no more than 40% of
+CPU resources on a Cumulus Linux switch.
+
+    netq config add agent cpu-limit 40
 
 {{%notice note%}}
-
 After making configuration changes to your agents, you must restart the
-agent for the changes to take effect. Use the `netq config restart
-agent` command.
-
+agent for the changes to take effect. Use the `netq config restart agent`
+command.
 {{%/notice%}}
 
 ## Disable the NetQ Agent on a Node

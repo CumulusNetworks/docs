@@ -398,11 +398,15 @@ above the table on the right. Devices with the highest number of issues are list
 
 ### Filter Results by System Service
 
-You can focus the data in the table on the right, by unselecting one or more services. Click the checkbox next to the service you want to remove from the data. In this example, we have unchecked Licenses.
+You can focus the data in the table on the right, by unselecting one or more services. Click the *checkbox* next to the service you want to remove from the data. In this example, we have unchecked Licenses.
 
 {{< figure src="/images/netq/ntwk-hlth-large-filter-sys-hlth-in-tbl-241.png" width="500" >}}
 
 This removes the checkbox next to the associated chart and grays out the title of the chart, temporarily removing the data related to that service from the table. Add it back by hovering over the chart and clicking the checkbox that appears.
+
+### View Details of a Particular System Service
+
+From the System Health tab on the large Network Health card you can click on a chart to take you to the full-screen card pre-focused on that service data.
 
 ## View Network Services Health
 
@@ -437,11 +441,15 @@ It is useful to know which devices are experiencing the most issues with their n
 
 ### Filter Results by Network Service
 
-You can focus the data in the table on the right, by unselecting one or more services. Click the checkbox next to the service you want to remove. In this example, we removed NTP and are in the process of removing OSPF.
+You can focus the data in the table on the right, by unselecting one or more services. Click the *checkbox* next to the service you want to remove. In this example, we removed NTP and are in the process of removing OSPF.
 
 {{< figure src="/images/netq/ntwk-hlth-large-filter-ntwk-hlth-in-tbl-241.png" width="500" >}}
 
 This grays out the chart title and removes the associated checkbox, temporarily removing the data related to that service from the table.
+
+### View Details of a Particular Network Service
+
+From the Network Service Health tab on the large Network Health card you can click on a chart to take you to the full-screen card pre-focused on that service data.
 
 ## View Interfaces Health
 
@@ -470,13 +478,17 @@ Devices with the highest number of issues are listed at the top. Scroll down to 
 It is useful to know which devices are experiencing the most issues with their network services right now, as this can help focus troubleshooting efforts toward selected devices versus the service itself. To view devices with recent issues, select **Recent Failures** from the filter
 above the table on the right. Devices with the highest number of issues are listed at the top. Scroll down to view those with fewer issues. To further investigate the critical devices, open the Switch card or the Event cards and filter on the indicated switches.
 
-### Filter Results by System Service
+### Filter Results by Interface Service
 
-You can focus the data in the table on the right, by unselecting one or more services. Click the checkbox next to the interface item you want to remove from the data. In this example, we have unchecked MTU.
+You can focus the data in the table on the right, by unselecting one or more services. Click the *checkbox* next to the interface item you want to remove from the data. In this example, we have unchecked MTU.
 
 {{< figure src="/images/netq/ntwk-hlth-large-filter-if-hlth-in-tbl-241.png" width="500" >}}
 
 This removes the checkbox next to the associated chart and grays out the title of the chart, temporarily removing the data related to that service from the table. Add it back by hovering over the chart and clicking the checkbox that appears.
+
+### View Details of a Particular Interface Service
+
+From the Interface Health tab on the large Network Health card you can click on a chart to take you to the full-screen card pre-focused on that service data.
 
 ## View All Network Protocol and Service Validation Results
 

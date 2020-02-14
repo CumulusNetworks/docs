@@ -1552,6 +1552,10 @@ However, you can configure all other ports to run at 10G speeds.
 
 The Lenovo NE2572O switch has external retimers on swp1 through swp8. Currently, these ports only support a speed of 25G.
 
+### Link Speed and Auto-negotiation on Switches with SOL
+
+Switches that use Serial over LAN technology (SOL), such as the Celestica QueStone2 and Celestica SeaStone2, do not support eth0 speed or auto-negotiation changes.
+
 ### ethtool Shows Incorrect Port Speed on 100G Spectrum Switches
 
 After setting the interface speed to 40G by editing the `ports.conf`

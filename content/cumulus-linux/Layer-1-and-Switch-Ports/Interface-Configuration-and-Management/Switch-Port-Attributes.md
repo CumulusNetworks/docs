@@ -1553,6 +1553,10 @@ The EdgeCore AS7326-56X is a 48x25G + 8x100G + 2x10G switch. The dedicated 10G p
 
 The Lenovo NE2572O switch has external retimers on swp1 through swp8. Currently, these ports only support a speed of 25G.
 
+### Link Speed and Auto-negotiation on Switches with SOL
+
+Switches that use Serial over LAN technology (SOL), such as the Celestica QueStone2 and Celestica SeaStone2, do not support eth0 speed or auto-negotiation changes.
+
 ### ethtool Shows Incorrect Port Speed on 100G Spectrum Switches
 
 On a Spectrum switch, after you set the interface speed to 40G in the `ports.conf` file, `ethtool` still shows the speed as 100G. This is a known issue where `ethtool` does not update after restarting `switchd` and continues to display the outdated port speed.

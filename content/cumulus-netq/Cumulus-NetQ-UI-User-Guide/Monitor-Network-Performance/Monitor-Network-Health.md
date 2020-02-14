@@ -1,7 +1,7 @@
 ---
 title: Monitor Network Health
 author: Cumulus Networks
-weight: 340
+weight: 139
 aliases:
  - /display/NETQ/Monitor+Network+Health
  - /pages/viewpage.action?pageId=12321072
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 As with any network, one of the challenges is keeping track of all of
 the moving parts. With the NetQ GUI, you can view the overall health of

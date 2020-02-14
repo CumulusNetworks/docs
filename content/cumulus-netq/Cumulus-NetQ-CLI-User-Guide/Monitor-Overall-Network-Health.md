@@ -1,7 +1,7 @@
 ---
 title: Monitor Overall Network Health
 author: Cumulus Networks
-weight: 310
+weight: 33
 aliases:
  - /display/NETQ/Monitor+Overall+Network+Health
  - /pages/viewpage.action?pageId=12321047
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 NetQ provides the information you need to monitor the health of your
 network fabric, devices, and interfaces. You are able to easily validate
@@ -131,7 +130,7 @@ Output from the `netq check` commands are color-coded; green for successful resu
 
 Each of the `netq check` commands perform a set of validation tests appropriate to the protocol or element being validated. 
 
-To view the list of tests run for a given protocol or service, use either `netq show unit-tests <protocol/service>` or perform a tab completion on `netq check <protocol/service> [include|exclude]`.
+To view the list of tests run for a given protocol or service, use either `netq show <protocol/service> unit-tests` or perform a tab completion on `netq check <protocol/service> [include|exclude]`.
 
 This section describes these tests.
 

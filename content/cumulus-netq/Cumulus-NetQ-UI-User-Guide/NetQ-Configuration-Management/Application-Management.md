@@ -1,7 +1,7 @@
 ---
 title: Application Management
 author: Cumulus Networks
-weight: 310
+weight: 601
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 As an administrator, you can manage access to and various
 application-wide settings for the Cumulus NetQ UI from a single location.

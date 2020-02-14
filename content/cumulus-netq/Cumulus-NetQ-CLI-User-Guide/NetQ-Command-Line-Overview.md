@@ -1,7 +1,7 @@
 ---
 title: NetQ Command Line Overview
 author: Cumulus Networks
-weight: 290
+weight: 31
 aliases:
  - /display/NETQ/NetQ+Command+Line+Overview
  - /pages/viewpage.action?pageId=12321059
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 The NetQ CLI provides access to all of the network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. The commands are grouped into four categories: check, show, config, and trace.
 
@@ -206,13 +205,7 @@ for the following:
 
 - **agents**: NetQ Agents status on switches and hosts
 - **bgp**: BGP status across the network fabric
-- **cl-btrfs-info**: BTRFS file system data for monitored Cumulus Linux switches
-- **cl-manifest**: Information about the versions of Cumulus Linux available on monitored switches
-- **cl-pkg-info**: Information about software packages installed on monitored switches
-- **cl-resource**: ACL and forwarding information
-- **cl-ssd-util**: SSD utilization information
 - **clag**: CLAG status
-- **ethtool-stats**: Interface statistics
 - **events**: Display changes over time
 - **evpn**: EVPN status
 - **interface-stats**: Interface statistics
@@ -221,28 +214,18 @@ for the following:
 - **inventory**: hardware component information
 - **ip**: IPv4 status
 - **ipv6**: IPv6 status
-- **job-status**: status of jobs running on the OPTA
 - **kubernetes**: Kubernetes cluster, daemon, pod, node, service and replication status
 - **lldp**: LLDP status
-- **mac-history**: Historical information for a MAC address
 - **macs**: MAC table or address information
-- **mlag**: MLAG status
 - **notification**: Slack or PagerDuty notification configurations
 - **ntp**: NTP status
 - **opta-health**: Display health of apps on the OPTA
-- **opta-platform**: NetQ Appliance version information and uptime
 - **ospf**: OSPF status
-- **recommended-pkg-version**: Current host information to be considered
-- **resource-util**: Display usage of memory, CPU and disk resources
+- **platform** Appliance version info
 - **sensors**: Temperature/Fan/PSU sensor status
 - **services**: System services status
-- **tca**: Threshold crossing alerts
-- **trace**: Control plane trace path across fabric
-- **unit-tests**: Show list of unit tests for `netq check`
-- **validation**: Schedule a validation check
 - **vlan**: VLAN status
 - **vxlan**: VXLAN data path status
-- **wjh-drop**: drop information from Mellanox What Just Happened
 
 The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. The commands can be restricted from showing the information for *all* devices to showing information for a selected device using the `hostname` option.
 
@@ -316,7 +299,7 @@ The `netq config` and `netq notification` commands enable the network administra
 
 #### NetQ Agent Configuration
 
-The agent commands enable the network administrator to configure individual NetQ Agents. Refer to [Cumulus NetQ Components](../../Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components) for a description of NetQ Agents, to [Manage NetQ Agents](../Manage-NetQ-Agents), or to [Install NetQ Agents](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents/) for more detailed usage examples.
+The agent commands enable the network administrator to configure individual NetQ Agents. Refer to [Cumulus NetQ Components](../../Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components) for a description of NetQ Agents, to [Manage NetQ Agents](../Manage-NetQ-Agents), or to [Install NetQ Agents and CLI on Switches](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-CL/) for more detailed usage examples.
 
 The agent configuration commands enable you to add and remove agents from switches and hosts, start and stop agent operations, add and remove Kubernetes container monitoring, add or remove sensors, debug the agent, and add or remove FRR (FRRouting).
 

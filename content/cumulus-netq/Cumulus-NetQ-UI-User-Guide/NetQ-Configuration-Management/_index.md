@@ -1,7 +1,7 @@
 ---
 title: NetQ Management
 author: Cumulus Networks
-weight: 300
+weight: 91
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 As an administrator, you have two major tasks related to managing Cumulus NetQ:
 

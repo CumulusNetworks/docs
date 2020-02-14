@@ -1,7 +1,7 @@
 ---
 title: NetQ Command Line Overview
 author: Cumulus Networks
-weight: 290
+weight: 31
 aliases:
  - /display/NETQ/NetQ+Command+Line+Overview
  - /pages/viewpage.action?pageId=12321059
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 The NetQ CLI provides access to all of the network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. The commands are grouped into four categories: check, show, config, and trace.
 
@@ -169,6 +168,7 @@ The `netq` `check` commands enable the network administrator to validate the cur
 - **evpn**: EVPN (Ethernet Virtual Private Network) operation
 - **interfaces**: network interface port operation
 - **license**: License status
+- **mlag**: Cumulus Multi-chassis LAG (link aggregation) operation
 - **mtu**: Link MTU (maximum transmission unit) consistency across paths
 - **ntp**: NTP (Network Time Protocol) operation
 - **ospf**: OSPF (Open Shortest Path First) operation
@@ -316,7 +316,7 @@ The `netq config` and `netq notification` commands enable the network administra
 
 #### NetQ Agent Configuration
 
-The agent commands enable the network administrator to configure individual NetQ Agents. Refer to [Cumulus NetQ Components](../../Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components) for a description of NetQ Agents, to [Manage NetQ Agents](../Manage-NetQ-Agents), or to [Install NetQ Agents](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents/) for more detailed usage examples.
+The agent commands enable the network administrator to configure individual NetQ Agents. Refer to [Cumulus NetQ Components](../../Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components) for a description of NetQ Agents, to [Manage NetQ Agents](../Manage-NetQ-Agents), or to [Install NetQ Agents and CLI on Switches](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents-and-CLI-on-CL/) for more detailed usage examples.
 
 The agent configuration commands enable you to add and remove agents from switches and hosts, start and stop agent operations, add and remove Kubernetes container monitoring, add or remove sensors, debug the agent, and add or remove FRR (FRRouting).
 

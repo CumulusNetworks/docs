@@ -1,7 +1,7 @@
 ---
 title: NetQ CLI Changes
 author: Cumulus Networks
-weight: 300
+weight: 32
 aliases:
  - /display/NETQ/NetQ+Command+Line+Overview
  - /pages/viewpage.action?pageId=12321059
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 A number of commands have changed in this release to accommodate the addition of new keywords and options or to simplify their syntax. Additionally, new commands have been added and others have been removed. A summary of those changes is provided here.
 
@@ -67,7 +66,7 @@ The following table summarizes the new commands available with this release. The
 </tr>
 <tr>
   <td>netq [&lt;hostname&gt;] show cl-resource forwarding [around &lt;text-time&gt;] [json]</td>
-  <td>Displays the amount of forwarding resources used by one or all devices, currently or at a time in the past</td>
+  <td>Displays xxx on one or all devices, currently or at a time in the past</td>
   <td>2.4.0</td>
 </tr>
 <tr>
@@ -86,7 +85,7 @@ The following table summarizes the new commands available with this release. The
   <td>2.4.0</td>
 </tr>
 <tr>
-  <td>netq [&lt;hostname&gt;] show resource-util disk [&lt;text-diskname&gt;] [around &lt;text-time&gt;] [json]</td>
+  <td>netq [&lt;hostname&gt;] show show-resource-util disk [&lt;text-diskname&gt;] [around &lt;text-time&gt;] [json]</td>
   <td>Displays the disk utilization for a given device or all devices, currently or at a time in the past</td>
   <td>2.4.0</td>
 </tr>
@@ -218,7 +217,7 @@ this release.
  <th>Version</th>
  </tr>
  </thead>
- <tbody>    
+ <tbody>
   <tr>
     <td>netq config del agent (agent-url|cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)</td>
     <td>netq config del agent (agent-url|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats)</td>
@@ -296,6 +295,24 @@ this release.
     <td>netq config del agent (server | agent-url)</td>
     <td>New option to remove the cluster IP addresses from the agent configuration.</td>
     <td>2.4.0</td>
+  </tr>
+    <tr>
+    <td>netq install cluster full interface &lt;text-opta-ifname&gt; bundle &lt;text-bundle-url&gt; config-key &lt;text-opta-key&gt;  workers &lt;text-worker-01&gt; &lt;text-worker-02&gt; <br>and <br>netq install standalone full interface &lt;text-opta-ifname&gt;  bundle &lt;text-bundle-url&gt; config-key &lt;text-opta-key&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;]</td>
+    <td>netq install interface &lt;text-opta-ifname&gt; tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;) config-key &lt;text-opta-key&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;] [file &lt;text-config-file&gt;] [force]</td>
+    <td>Separated single command into two commands to support the new clustering feature for on-premises deployments. Removed <em>download</em>, <em>file</em>, and <em>force</em> options.</td>
+    <td>2.4.0</td>
+  </tr>
+  <tr>
+    <td>netq install opta cluster full interface &lt;text-opta-ifname&gt; bundle &lt;text-bundle-url&gt; config-key &lt;text-opta-key&gt;  workers &lt;text-worker-01&gt; &lt;text-worker-02&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;]<br>*and*<br>netq install opta standalone full interface &lt;text-opta-ifname&gt; bundle &lt;text-bundle-url&gt; config-key &lt;text-opta-key&gt;</td>
+    <td>netq install opta interface &lt;text-opta-ifname&gt; tarball (&lt;text-tarball-name&gt; | download | download &lt;text-opta-version&gt;) config-key &lt;text-opta-key&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;] [file &lt;text-config-file&gt;] [force]</td>
+    <td>Separated single command into two commands to support the new clustering feature for cloud deployments. Removed <em>download</em>, <em>file</em>, and <em>force</em> options.</td>
+    <td>2.4.0</td>
+  </tr>
+  <tr>
+  <td>netq config del agent (server|agent-url|cluster-servers)</td>
+  <td>netq config del agent (server|agent-url)</td>
+  <td>Added the ability to remove the agent from servers in a clustered deployment.</td>
+  <td>2.4.0</td>
   </tr>
 </tbody>
 </table>

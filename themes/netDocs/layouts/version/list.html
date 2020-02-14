@@ -1,6 +1,6 @@
 {{ define "menu"}}
 
-{{ partial "menu/menu-subsectiontree" . }}
+{{ partial "docs/menu-subsectiontree" . }}
 
 {{ end }}
 
@@ -23,7 +23,7 @@
 {{ $showToC := default (default true .Site.Params.BookShowToC) .Params.bookshowtoc }}
   {{ if or ($showToC) (.Page.TableOfContents) }}
 
-    {{ partial "toc" . }}
+    {{ partial "docs/toc" . }}
 
 {{ end }}
 

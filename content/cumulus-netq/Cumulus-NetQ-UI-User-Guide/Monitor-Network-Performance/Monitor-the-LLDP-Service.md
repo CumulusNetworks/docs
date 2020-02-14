@@ -1,7 +1,7 @@
 ---
 title: Monitor the LLDP Service
 author: Cumulus Networks
-weight: 400
+weight: 165
 aliases:
  - /display/NETQ/Monitor+the+LLDP+Service
  - /pages/viewpage.action?pageId=12321439
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 The Cumulus NetQ UI enables operators to view the health of the LLDP
 service on a network-wide and a per session basis, giving greater

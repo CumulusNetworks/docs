@@ -4,21 +4,13 @@ theme = "netDocs"
 baseURL = "/"
 relURLs = true
 googleAnalytics = "UA-40724538-3"
+
+
 #Book configuration
 disablePathToLower = true
 ## bug in local server, will enable in production
 enableGitInfo= false
 noChmod = true
-enableRobotsTXT = true
-
-[markup]
-  [markup.tableOfContents]
-    endLevel = 3
-    ordered = false
-    startLevel = 1
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
 
 [menu]
   [[menu.subnav]]
@@ -97,11 +89,13 @@ showVisitedLinks = true
   # - In blog posts
   BookDateFormat= "Jan 2, 2006"
 
+[blackfriday]
+fractions = false
+
 [taxonomies]
   tag = "tags"
   category = "categories"
   publication_type = "publication_types"
   author = "authors"
-
 [frontmatter]
   lastmod = ["lastmod", ":defaut"]

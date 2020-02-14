@@ -1459,13 +1459,17 @@ bridge:peerlink CIST info
 
 </details>
 
-### Best Practices for STP with MLAG
+{{%notice note%}}
+
+**Best Practices for STP with MLAG**
 
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports must be the same on both peer switches.
 - The STP priority must be the same on both peer switches.
 
 For additional information on STP, see [Spanning Tree Priority](../Spanning-Tree-and-Rapid-Spanning-Tree/).
+
+{{%/notice%}}
 
 ## Troubleshooting
 
@@ -1547,4 +1551,4 @@ This occurs when you have multiple LACP bonds between the same two LACP endpoint
 
 ## Caveats and Errata
 
-- If both backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, sees the peer switch as down and takes over as the primary.
+- If both the backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, sees the peer switch as down and takes over as the primary.

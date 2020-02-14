@@ -288,7 +288,6 @@ cumulus@switch:~$ sudo brctl addif br_mix swp10.100 swp11.200
 cumulus@switch:~$ sudo brctl show br_mix
 bridge name     bridge id               STP enabled     interfaces
 br_mix          8000.4438390032bd       yes             swp10.100
-                                                        swp11.200
-```
+```                                                        swp11.200
 
 {{< img src = "/images/cumulus-linux/vlan-tagging-mixed-vlans.png" >}}

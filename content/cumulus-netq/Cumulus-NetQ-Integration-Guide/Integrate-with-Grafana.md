@@ -1,7 +1,7 @@
 ---
 title: Integrate NetQ with Grafana
 author: Cumulus Networks
-weight: 210
+weight: 202
 aliases:
  - /display/NETQ141/Collect+Interface+Statistics
  - /pages/viewpage.action?pageId=10453499
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 Switches collect statistics about the performance of their interfaces.
 The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ

@@ -30,8 +30,8 @@ The syntax for these commands is:
     netq [<hostname>] show cl-manifest [json]
     netq [<hostname>] show cl-pkg-info [<text-package-name>] [around <text-time>] [json]
     netq [<hostname>] show recommended-pkg-version [release-id <text-release-id>] [package-name <text-package-name>] [json]
-    netq [<hostname>] show cl-resource forwarding [around <text-time>] [json]
     netq [<hostname>] show cl-resource acl [ingress | egress] [around <text-time>] [json]
+    netq [<hostname>] show cl-resource forwarding [around <text-time>] [json]
 
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] [type license|type os] [between <text-time> and <text-endtime>] [json]
 

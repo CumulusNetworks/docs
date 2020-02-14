@@ -488,10 +488,6 @@ On Broadcom switches with Cumulus Linux 4.0 and later, when there is a /32 IPv4 
 
 Cumulus Networks recommends that you **do not** use the Linux shell to delete static routes added via FRRouting (with `vtysh` commands). Delete the routes with the `vtysh` commands; otherwise FRRouting might not be able to clean up its internal state completely, which can result in incorrect routing.
 
-### Using NCLU Commands to Delete Routing Configuration
-
-When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), Cumulus Networks recommends that you commit ten or fewer delete commands at a time to avoid commit failures.
-
 ### Add IPv6 Default Route with src Address on eth0 Fails without Adding Delay
 
 Attempting to install an IPv6 default route on eth0 with a source address fails at reboot or when running `ifup` on eth0.
@@ -533,23 +529,6 @@ cumulus@switch:~$ ip -6 r s
 2001:620:5ca1:160::/64 dev eth0  proto kernel  metric 256
 fe80::/64 dev eth0  proto kernel  metric 256
 default via 2001:620:5ca1:160::1 dev eth0  metric 1024
-```
-
-### Use the Same Neighbor Cache Aging Timer for IPv4 and IPv6
-
-Cumulus Linux does not support different neighbor cache aging timer settings for IPv4 and IPv6.
-
-For example, see the two settings for `neigh.default.base_reachable_time_ms` in `/etc/sysctl.d/neigh.conf`:
-
-```
-cumulus@switch:~$ sudo cat /etc/sysctl.d/neigh.conf
-
-...
-
-net.ipv4.neigh.default.base_reachable_time_ms=1080000
-net.ipv6.neigh.default.base_reachable_time_ms=1080000
-
-...
 ```
 
 ## Related Information

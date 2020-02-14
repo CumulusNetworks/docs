@@ -1,7 +1,7 @@
 ---
 title: Monitor Switch Hardware
 author: Cumulus Networks
-weight: 320
+weight: 32
 aliases:
  - /display/NETQ/Monitor+Switch+Hardware+and+Software
  - /pages/viewpage.action?pageId=12321058
@@ -25,7 +25,7 @@ Layer Discovery Protocol) to collect port information. NetQ can also
 identify peer ports connected to DACs (Direct Attached Cables) and AOCs
 (Active Optical Cables) without using LLDP, even if the link is not UP.
 
-The NetQ CLI provides a number of `neta show` commands to monitor switches. The syntax of these commands is:
+The NetQ CLI provides a number of `netq show` commands to monitor switches. The syntax of these commands is:
 
 ```
 netq [<hostname>] show inventory brief [opta] [json]
@@ -82,7 +82,7 @@ would also be an option for you.
 
 {{%/notice%}}
 
-### View a Summary of Your Network Inventory
+## View a Summary of Your Network Inventory
 
 While the detail can be very helpful, sometimes a simple overview of the
 hardware inventory is better. This example shows the basic hardware
@@ -107,7 +107,7 @@ information for all devices.
     spine01           VX                   CL              x86_64   VX              N/A
     spine02           VX                   CL              x86_64   VX              N/A
 
-### View Information about the ASIC on all Switches
+## View Information about the ASIC on all Switches
 
 You can view the vendor, model, model identifier, core bandwidth
 capability, and ports of the ASIC installed on your switch motherboard.
@@ -157,7 +157,7 @@ a particular switch. This example shows the ASIC information for
     ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
     st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
 
-### View Information about the Motherboard in a Switch
+## View Information about the Motherboard in a Switch
 
 You can view the vendor, model, base MAC address, serial number, part
 number, revision, and manufacturing date for a switch motherboard on a
@@ -206,7 +206,7 @@ particular switch. This example shows the motherboard vendor for the
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
     st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
 
-### View Information about the CPU on a Switch
+## View Information about the CPU on a Switch
 
 You can view the architecture, model, operating frequency, and the
 number of cores for the CPU on a single device or for all devices. This
@@ -274,7 +274,7 @@ as shown here for *server02*.
     server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
 
-### View Information about the Disk on a Switch
+## View Information about the Disk on a Switch
 
 You can view the name or operating system, type, transport, size,
 vendor, and model of the disk on a single device or all devices. This
@@ -306,7 +306,7 @@ for a particular device. This example shows disk information for
     ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
     leaf03            vda             disk             N/A                6G         0x1af4               N/A
 
-### View Memory Information for a Switch
+## View Memory Information for a Switch
 
 You can view the name, type, size, speed, vendor, and serial number for
 the memory installed in a single device or all devices. This example
@@ -364,7 +364,7 @@ switch, as shown here for leaf01.
     ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
     leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
 
-### View a Summary of Physical Inventory for the NetQ or NetQ Cloud Appliance
+## View a Summary of Physical Inventory for the NetQ or NetQ Cloud Appliance
 
 Using the `opta` option lets you view inventory information for the NetQ or NetQ Cloud Appliance(s) rather than all network nodes. This example give you a summary of the inventory on the device.
 
@@ -378,7 +378,7 @@ Hostname          Switch               OS              CPU      ASIC            
 
 ```
 
-### View Memory for the NetQ or NetQ Cloud Appliance
+## View Memory for the NetQ or NetQ Cloud Appliance
 
 You can be specific about which inventory item you want to view for an appliance. This example shows the memory information for a NetQ Appliance, letting you verify you have sufficient memory.
 
@@ -391,7 +391,7 @@ netq-app          DIMM 0          RAM              64 GB      Unknown    QEMU   
 
 ```
 
-### View Fan Health for All Switches
+## View Fan Health for All Switches
 
 Fan, power supply unit, and temperature sensors are available to provide
 additional data about the NetQ Platform operation. To view the health of
@@ -441,7 +441,7 @@ parameter.
     ----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
     leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
 
-### View PSU Health for All Switches
+## View PSU Health for All Switches
 
 Fan, power supply unit, and temperature sensors are available to provide
 additional data about the NetQ Platform operation. To view the health of
@@ -472,7 +472,7 @@ switch.
 
 {{%/notice%}}
 
-### View the Temperature in All switches
+## View the Temperature in All Switches
 
 Fan, power supply unit, and temperature sensors are available to provide
 additional data about the NetQ Platform operation. To view the
@@ -515,7 +515,7 @@ switch.
 
 {{%/notice%}}
 
-### View All Sensor Data
+## View All Sensor Data
 
 To view all fan data, all PSU data, or
 all temperature data from the sensors, you must view all of the sensor
@@ -551,7 +551,7 @@ to view the full sensor data.
     exit02            psu1temp1       psu1 temp sensor                    ok                                             Fri Apr 19 16:01:33 2019
     ...
 
-### View All Sensor-related Events
+## View All Sensor-related Events
 
 You can view the events that are triggered by the sensors using the
 `netq show events` command. You can narrow the focus to only critical
@@ -563,7 +563,7 @@ events using the severity `level` option.
     cumulus@switch:~$ netq show events level critical type sensors
     No matching events records found
 
-### View Interface Statistics and Utilization
+## View Interface Statistics and Utilization
 
 NetQ Agents collect performance statistics every 30 seconds for the
 physical interfaces on switches and hosts in your network. The NetQ
@@ -671,7 +671,148 @@ exit01            swp1                      0                    0              
 ...
 ```
 
-### View SSD Utilization
+## View Switch Resource Utilization
+
+You can quickly determine how many compute resources &mdash; CPU, disk and
+memory &mdash; are being consumed by the switches on your network. Run the
+`netq show resource-util` command to see the percentage of CPU and memory
+being consumed as well as the amount and percentage of disk space being
+consumed.
+
+You can use the `around` option to view the information for a particular time.
+
+```
+cumulus@switch:~$ netq show resource-util
+
+Matching resource_util records:
+Hostname          CPU Utilization      Memory Utilization   Disk Name            Total                Used                 Disk Utilization     Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+exit01            9.2                  48                   /dev/vda4            6170849280           1524920320           26.8                 Wed Feb 12 03:54:10 2020
+exit02            9.6                  47.6                 /dev/vda4            6170849280           1539346432           27.1                 Wed Feb 12 03:54:22 2020
+leaf01            9.8                  50.5                 /dev/vda4            6170849280           1523818496           26.8                 Wed Feb 12 03:54:25 2020
+leaf02            10.9                 49.4                 /dev/vda4            6170849280           1535246336           27                   Wed Feb 12 03:54:11 2020
+leaf03            11.4                 49.4                 /dev/vda4            6170849280           1536798720           27                   Wed Feb 12 03:54:10 2020
+leaf04            11.4                 49.4                 /dev/vda4            6170849280           1522495488           26.8                 Wed Feb 12 03:54:03 2020
+spine01           8.4                  50.3                 /dev/vda4            6170849280           1522249728           26.8                 Wed Feb 12 03:54:19 2020
+spine02           9.8                  49                   /dev/vda4            6170849280           1522003968           26.8                 Wed Feb 12 03:54:25 2020
+```
+
+You can focus on a specific switch by including the hostname in your query:
+
+```
+cumulus@switch:~$ netq leaf01 show resource-util
+
+Matching resource_util records:
+Hostname          CPU Utilization      Memory Utilization   Disk Name            Total                Used                 Disk Utilization     Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            9.8                  49.9                 /dev/vda4            6170849280           1524314112           26.8                 Wed Feb 12 04:35:05 2020
+```
+
+### View CPU Utilization
+
+You can quickly determine what percentage of CPU resources are being consumed
+by the switches on your network. Run the `netq show resource-util cpu` command.
+
+You can use the `around` option to view the information for a particular time.
+
+```
+cumulus@switch:~$ netq show resource-util cpu
+
+Matching resource_util records:
+Hostname          CPU Utilization      Last Updated
+----------------- -------------------- ------------------------
+exit01            8.9                  Wed Feb 12 04:29:29 2020
+exit02            8.3                  Wed Feb 12 04:29:22 2020
+leaf01            10.9                 Wed Feb 12 04:29:24 2020
+leaf02            11.6                 Wed Feb 12 04:29:10 2020
+leaf03            9.8                  Wed Feb 12 04:29:33 2020
+leaf04            11.7                 Wed Feb 12 04:29:29 2020
+spine01           10.4                 Wed Feb 12 04:29:38 2020
+spine02           9.7                  Wed Feb 12 04:29:15 2020
+```
+
+You can focus on a specific switch by including the hostname in your query:
+
+```
+cumulus@switch:~$ netq leaf01 show resource-util cpu
+
+Matching resource_util records:
+Hostname          CPU Utilization      Last Updated
+----------------- -------------------- ------------------------
+leaf01            11.1                 Wed Feb 12 04:16:18 2020
+```
+
+### View Disk Utilization
+
+You can quickly determine how much storage, in bytes and in percentage of disk
+space, is being consumed by the switches on your network. Run the
+`netq show resource-util disk` command.
+
+You can use the `around` option to view the information for a particular time.
+
+```
+cumulus@switch:~$ netq show resource-util disk
+
+Matching resource_util records:
+Hostname          Disk Name            Total                Used                 Disk Utilization     Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+exit01            /dev/vda4            6170849280           1525309440           26.8                 Wed Feb 12 04:29:29 2020
+exit02            /dev/vda4            6170849280           1539776512           27.1                 Wed Feb 12 04:29:22 2020
+leaf01            /dev/vda4            6170849280           1524203520           26.8                 Wed Feb 12 04:29:24 2020
+leaf02            /dev/vda4            6170849280           1535631360           27                   Wed Feb 12 04:29:41 2020
+leaf03            /dev/vda4            6170849280           1537191936           27.1                 Wed Feb 12 04:29:33 2020
+leaf04            /dev/vda4            6170849280           1522864128           26.8                 Wed Feb 12 04:29:29 2020
+spine01           /dev/vda4            6170849280           1522688000           26.8                 Wed Feb 12 04:29:38 2020
+spine02           /dev/vda4            6170849280           1522409472           26.8                 Wed Feb 12 04:29:46 2020
+```
+
+You can focus on a specific switch and disk drive by including the hostname
+and device name in your query:
+
+```
+cumulus@switch:~$ netq leaf01 show resource-util disk /dev/vda4
+
+Matching resource_util records:
+Hostname          Disk Name            Total                Used                 Disk Utilization     Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            /dev/vda4            6170849280           1524064256           26.8                 Wed Feb 12 04:15:45 2020
+```
+
+### View Memory Utilization
+
+You can quickly determine what percentage of memory resources are being consumed
+by the switches on your network. Run the `netq show resource-util memory` command.
+
+You can use the `around` option to view the information for a particular time.
+
+```
+cumulus@switch:~$ netq show resource-util memory
+
+Matching resource_util records:
+Hostname          Memory Utilization   Last Updated
+----------------- -------------------- ------------------------
+exit01            48.8                 Wed Feb 12 04:29:29 2020
+exit02            49.7                 Wed Feb 12 04:29:22 2020
+leaf01            49.8                 Wed Feb 12 04:29:24 2020
+leaf02            49.5                 Wed Feb 12 04:29:10 2020
+leaf03            50.7                 Wed Feb 12 04:29:33 2020
+leaf04            49.3                 Wed Feb 12 04:29:29 2020
+spine01           47.5                 Wed Feb 12 04:29:07 2020
+spine02           49.2                 Wed Feb 12 04:29:15 2020
+```
+
+You can focus on a specific switch by including the hostname in your query:
+
+```
+cumulus@switch:~$ netq leaf01 show resource-util memory
+
+Matching resource_util records:
+Hostname          Memory Utilization   Last Updated
+----------------- -------------------- ------------------------
+leaf01            49.8                 Wed Feb 12 04:16:18 2020
+```
+
+## View SSD Utilization
 
 For NetQ servers and appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
 
@@ -687,7 +828,7 @@ spine02         80                      576                             2880    
 
 This output indicates that this drive is in a good state overall with 80% of its PE cycles remaining. View this information for all devices with this type of SSD by removing the `hostname` option, or add the `around` option to view this information around a particular time.
 
-### View Disk Storage Utilization After BTRFS Allocation
+## View Disk Storage Utilization After BTRFS Allocation
 
 Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. Refer to [When to Rebalance BTRFS Partitions](https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions) for details about the rules used to recommend a rebalance operation.
 
@@ -707,7 +848,6 @@ leaf03            31.16 %              3.96 GB              588.5 MB            
 leaf04            31.16 %              3.96 GB              588.5 MB             33.49 MB             no                   Wed Oct 30 19:21:15 2019
 spine01           31.16 %              3.96 GB              588.5 MB             36.9 MB              no                   Wed Oct 30 19:21:13 2019
 spine02           31.16 %              3.96 GB              588.5 MB             39.12 MB             no                   Wed Oct 30 18:52:44 2019
-
 ```
 
 Look for the **Rebalance Recommended** column. If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the output to determine if you are getting close to needing a rebalance, and come back to view this data at a later time.

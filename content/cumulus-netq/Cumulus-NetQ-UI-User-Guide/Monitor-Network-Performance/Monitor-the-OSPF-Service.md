@@ -1,7 +1,7 @@
 ---
 title: Monitor the OSPF Service
 author: Cumulus Networks
-weight: 420
+weight: 169
 aliases:
  - /display/NETQ/Monitor+the+OSPF+Service
  - /pages/viewpage.action?pageId=12321517
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 The Cumulus NetQ UI enables operators to view the health of the OSPF
 service on a network-wide and a per session basis, giving greater

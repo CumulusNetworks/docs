@@ -1,12 +1,11 @@
 ---
 title: Integrate NetQ with Your LDAP Server
 author: Cumulus Networks
-weight: 200
+weight: 201
 aliases:
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
-toc: 3
 ---
 With this release and an administrator role, you are able to integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. Currently there are two roles, admin and user. With the integration, user authentication is handled through LDAP and your directory service, such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service. A copy of each user from LDAP is stored in the local NetQ database.
 

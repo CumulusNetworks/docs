@@ -1,7 +1,7 @@
 ---
 title: Set User Preferences
 author: Cumulus Networks
-weight: 290
+weight: 511
 aliases:
  - /display/NETQ22/NetQ-User-Interface-Overview
  - /pages/viewpage.action?pageId=12321856
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 Each user can customize the NetQ application display, change his account
 password, and manage his workbenches.

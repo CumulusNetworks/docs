@@ -569,7 +569,7 @@ Make a note of the private IP addresses you assign to the master and two worker 
 6. Run the Bootstrap CLI on the worker appliance pointing to the master appliance IP address
 
     ```
-    cumulus@<hostname>:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-2.4.0.tgz master-ip 192.168.1.122
+    cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz
     ```
 
     Allow about 2-3 minutes for this to complete,  *and only then continue to the next step*.

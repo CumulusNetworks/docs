@@ -64,7 +64,7 @@ Each node requires a different port. For the second CL node,
 
         {{%notice note%}}
 
-This enables SSH to port 1401 (ssh -p 1401 cumulus@127.0.0.1).
+This enables SSH to port 1401 (`ssh -p 1401 cumulus@127.0.0.1`).
 
         {{%/notice%}}
 

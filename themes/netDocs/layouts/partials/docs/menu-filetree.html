@@ -10,14 +10,12 @@
 {{ $sections := .Scratch.Get "BookSections" }}
 {{/* If there is only one section to render then render its children, else render all sections */}}
 {{ if eq (len $sections) 1 }}
-{{ if ne  .Params.bookhidden true }}
   {{ with index $sections 0 }}
     {{ template "book-section-children" (dict "Section" . "CurrentPage" $.Permalink) }}
   {{ end }}
-{{ end }}
 {{ else }}
   <ul>
-  {{ range where $sections ne .Params.bookhidden true }}
+  {{ range where $sections "Params.bookhidden" "!=" true }}
     {{ template "book-section" (dict "Section" . "CurrentPage" $.Permalink) }}
   {{ end }}
   </ul>
@@ -25,7 +23,6 @@
 
 {{ define "book-section" }}
 {{ with .Section }}
-{{ if ne  .Params.bookhidden true }}
   <li {{ if .Params.bookFlatSection}} class="book-section-flat" {{ end }}>
     {{- if .Content }}
       {{- template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
@@ -37,12 +34,11 @@
   </li>
 {{ end }}
 {{ end }}
-{{ end }}
 
 {{ define "book-section-children" }}
 {{ with .Section }}
   <ul>
-    {{ if ne  .Params.bookhidden true }}
+    {{ range where .Sections "Params.bookhidden" "!=" true }}
       {{ template "book-section" (dict "Section" . "CurrentPage" $.CurrentPage) }}
     {{ end }}
     {{ range where .Pages "Params.bookhidden" "!=" true }}

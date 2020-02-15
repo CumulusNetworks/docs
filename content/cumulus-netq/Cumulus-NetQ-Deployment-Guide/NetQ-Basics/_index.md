@@ -1,7 +1,7 @@
 ---
 title: Cumulus NetQ Overview
 author: Cumulus Networks
-weight: 20
+weight: 67
 aliases:
  - /display/NETQ/Cumulus+NetQ+Primer
  - /pages/viewpage.action?pageId=12320801
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 Cumulus® NetQ is a highly-scalable, modern network operations tool set
 that provides visibility and troubleshooting of your overlay and

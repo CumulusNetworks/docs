@@ -1,7 +1,7 @@
 ---
 title: Monitor Data Link Layer Devices and Protocols
 author: Cumulus Networks
-weight: 340
+weight: 39
 aliases:
  - /display/NETQ/Monitor+Data+Link+Layer+Devices+and+Protocols
  - /pages/viewpage.action?pageId=12321048
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 With NetQ, a network administrator can monitor OSI Layer 2 devices and
 protocols, including switches, bridges, link control, and physical media
@@ -461,6 +460,95 @@ VRR configuration.
     leaf04            vlan24-v0                 macvlan          up         vrf1            MAC: 44:39:39:ff:00:24,             Fri Feb  8 00:28:09 2019
                                                                                             Mode: Private
 
+## View the History of a MAC Address
+
+It is useful when debugging to be able to see when a MAC address is learned, when and where it moved in the network after that, if there was a duplicate at any time, and so forth. The `netq show mac-history` command makes this information available. It enables you to see:
+
+- each change that was made chronologically
+- changes made between two points in time, using the `between` option
+- only the difference between to points in time using the `diff` option
+- to order the output by selected output fields using the `listby` option
+- each change that was made for the MAC address on a particular VLAN, using the `vlan` option
+
+And as with many NetQ commands, the default time range used is now to one hour ago. You can view the output in JSON format as well.
+
+The syntax of the command is:
+
+```
+netq [<hostname>] show mac-history <mac> [vlan <1-4096>] [diff] [between <text-time> and <text-endtime>] [listby <text-list-by>] [json]
+```
+
+{{%notice note%}}
+
+When entering a time value, you must include a numeric value *and* the
+unit of measure:
+
+- d: day(s)
+- h: hour(s)
+- m: minute(s)
+- s: second(s)
+- now
+
+For time ranges, the `<text-time>` is the most recent time and the
+`<text-endtime>` is the oldest time. The values do not have to have the
+same unit of measure.
+
+{{%/notice%}}
+
+This example shows how to view a full chronology of changes for a MAC Address. The carrot (^) notation indicates no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show mac-history 00:03:00:11:11:77 vlan 13
+
+Matching mac-history records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Mon Nov  4 20:21:13 2019  leaf01            13     no     bond01                                  no     no
+Mon Nov  4 20:21:13 2019  leaf02            13     no     bond01                                  no     no
+Mon Nov  4 20:21:13 2019  leaf04            13     no     vni13            10.0.0.112             yes    no
+Mon Nov  4 20:21:13 2019  leaf03            13     no     vni13            10.0.0.112             yes    no
+Mon Nov  4 20:22:40 2019  leaf03            ^      ^      bond03                                  no     ^
+Mon Nov  4 20:22:40 2019  leaf04            13     no     vni13            10.0.0.112             yes    no
+Mon Nov  4 20:22:40 2019  leaf02            13     no     vni13            10.0.0.134             yes    no
+Mon Nov  4 20:22:40 2019  leaf01            13     no     vni13            10.0.0.134             yes    no
+```
+
+This example shows how to view the history of a MAC address by hostname. The carrot (^) notation indicates no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show mac-history 00:03:00:11:11:77 vlan 13 listby hostname
+
+Matching mac-history records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Mon Nov  4 20:21:13 2019  leaf03            13     no     vni13            10.0.0.112             yes    no
+Mon Nov  4 20:22:40 2019  leaf03            ^      ^      bond03                                  no     ^
+Mon Nov  4 20:21:13 2019  leaf02            13     no     bond01                                  no     no
+Mon Nov  4 20:22:40 2019  leaf02            ^      ^      vni13            10.0.0.134             yes    ^
+Mon Nov  4 20:21:13 2019  leaf01            13     no     bond01                                  no     no
+Mon Nov  4 20:22:40 2019  leaf01            ^      ^      vni13            10.0.0.134             yes    ^
+Mon Nov  4 20:21:13 2019  leaf04            13     no     vni13            10.0.0.112             yes    no
+Mon Nov  4 20:22:40 2019  leaf04            ^      ^      bond03                                  no     ^
+```
+
+This example shows show to view the history of a MAC address between now and two hours ago. The carrot (^) notation indicates no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show mac-history 00:03:00:11:11:77 vlan 13 between now and 2h
+
+Matching mac-history records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Mon Nov  4 20:21:13 2019  leaf01            13     no     bond01                                  no     no
+Mon Nov  4 20:21:13 2019  leaf02            13     no     bond01                                  no     no
+Mon Nov  4 20:21:13 2019  leaf04            13     no     vni13            10.0.0.112             yes    no
+Mon Nov  4 20:21:13 2019  leaf03            13     no     vni13            10.0.0.112             yes    no
+Mon Nov  4 20:22:40 2019  leaf03            ^      ^      bond03                                  no     ^
+Mon Nov  4 20:22:40 2019  leaf04            13     no     vni13            10.0.0.112             yes    no
+Mon Nov  4 20:22:40 2019  leaf02            13     no     vni13            10.0.0.134             yes    no
+Mon Nov  4 20:22:40 2019  leaf01            13     no     vni13            10.0.0.134             yes    no
+```
+
 ## Monitor MLAG Configurations
 
 Multi-Chassis Link Aggregation (MLAG) is used to enable a server or
@@ -797,49 +885,12 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
 
 ## Monitor Layer 2 Drops on Mellanox Switches
 
-The *What Just Happened* (WJH) feature, available on Mellanox switches streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems.
+The *What Just Happened* (WJH) feature, available on Mellanox switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems.
 
 WJH is enabled by default on Mellanox switches running Cumulus Linux 4.0.0 and NetQ 2.4.0, giving you the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
 
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
-
-{{%notice info%}}
-By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0.
-
-```
-cumulus@<hostname>:~$ sudo apt-get update
-cumulus@<hostname>:~$ sudo apt-get install -y netq-agent
-cumulus@<hostname>:~$ netq config restart agent
-cumulus@<hostname>:~$ sudo apt-get install -y netq-apps
-cumulus@<hostname>:~$ netq config restart cli
-```
-
-{{%/notice%}}
-
-### Configure the WJH Feature
-
-WJH is enabled by default on Mellanox switches and no configuration is required in Cumulus Linux 4.0.0; however, you must enable the NetQ Agent to collect the data in NetQ 2.4.0.
-
-To enable WJH in NetQ:
-
-1. Configure the NetQ Agent on the Mellanox switch.
-
-```
-cumulus@switch:~$ netq config add agent wjh
-```
-
-2. Restart the NetQ Agent to start collecting the WJH data.
-
-```
-cumulus@switch:~$ netq config restart agent
-```
-
-{{%notice note%}}
-Using *wjh_dump.py* on a Mellanox platform that is running CumulusLinux 4.0 and the NetQ 2.4.0 agent causes the NetQ WJH client to stop receiving WJH data. If you want to use *wjh_dump.py*, disable WJH monitoring by the NetQ Agent on that switch using `netq config del agent wjh` followed by `netq config restart agent`.
-{{%/notice%}}
-
-### View What Just Happened Metrics
 
 View layer 2 drop statistics using the `netq show wjh-drop` NetQ CLI command. The full syntax for this command is:
 
@@ -858,5 +909,3 @@ mlx-2700-03       swp1s2                   Port loopback filter                 
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:53:17 2019       Mon Dec 16 11:53:17 2019
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 0.0.0.0          0.0.0.0          0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:40:44 2019       Mon Dec 16 11:40:44 2019
 ```
-
-When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.

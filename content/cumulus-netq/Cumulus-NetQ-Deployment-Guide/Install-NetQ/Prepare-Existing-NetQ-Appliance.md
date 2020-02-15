@@ -1,7 +1,7 @@
 ---
 title: Preparation Your Existing NetQ Appliances for a NetQ 2.4 Deployment
 author: Cumulus Networks
-weight: 90
+weight: 412
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -9,7 +9,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 This topic describes how to prepare a NetQ 2.3.x or earlier NetQ Appliance before installing NetQ 2.4.0. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ 2.4.0.
 
@@ -18,31 +17,28 @@ To prepare your appliance:
 Log in to your appliance.
 
 <details><summary>Verify that your appliance is a supported hardware model.</summary>
-
-- NetQ Appliance: SuperMicro SYS-6019P-WTR ([user manual](https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf), [quick reference guide](https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf))
-- NetQ Cloud Appliance: SuperMicro SYS-E300-9D ([user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf))
-    
-</details>
+    - **NetQ Appliance**: SuperMicro SYS-6019P-WTR ([user manual](https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf), [quick reference guide](https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf))
+    - **NetQ Cloud Appliance**: SuperMicro SYS-E300-9D ([user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf))
+    </details>
 
 <details><summary>For on-premises solutions using the NetQ Appliance, optionally back up your NetQ data.</summary>
-
-1. Run the backup script to create a backup file in `/opt/<backup-directory>`.  
-
-    {{%notice note%}}
+    1. Run the backup script to create a backup file in `/opt/<backup-directory>`.  
+    
+        {{%notice note%}}
 Be sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file. This location must be somewhere that is *off* of the appliance to avoid it being overwritten during these preparation steps.
-    {{%/notice%}}
+        {{%/notice%}}
 
-```
-cumulus@<netq-appliance>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
-```
+        ```
+        cumulus@<netq-appliance>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
+        ```
 
-2. Verify the backup file has been created.
+    2. Verify the backup file has been created.
 
-```
-cumulus@<netq-appliance>:~$ cd /opt/<backup-directory>
-cumulus@<netq-appliance>:~/opt/<backup-directory># ls
-netq_master_snapshot_2020-01-09_07_24_50_UTC.tar.gz
-```
+        ```
+        cumulus@<netq-appliance>:~$ cd /opt/<backup-directory>
+        cumulus@<netq-appliance>:~/opt/<backup-directory># ls
+        netq_master_snapshot_2020-01-09_07_24_50_UTC.tar.gz
+        ```
 
 </details>
 
@@ -64,11 +60,11 @@ Use the instructions [here](https://www.fosslinux.com/6406/how-to-install-ubuntu
 - When prompted, select *Install SSH server*.
 </details>
 
-<details><summary>Configure networking.</summary>
+<details><summary>Configure Networking.</summary>
 
 Ubuntu uses Netplan for network configuration. You can give your appliance an IP address using DHCP or a static address.
 
-### Configure an IP address allocation using DHCP
+<details><summary>Configure an IP address allocation using DHCP</summary>
 
 - Create and/or edit the  */etc/netplan/01-ethernet.yaml* Netplan configuration file.
 
@@ -83,17 +79,15 @@ network:
             dhcp4: yes
 ```
 
-- Apply the settings.
+    - Apply the settings.
 
 ```
 $ sudo netplan apply
 ```
-
-### Configure a static IP address
+</details>
+<details><summary>Configure a static IP address</summary>
 
 - Create and/or edit the  */etc/netplan/01-ethernet.yaml* Netplan configuration file.
-
-    In this example the interface, *eno1*, is given a static IP address of *192.168.1.222* with a gateway at *192.168.1.1* and DNS server at *8.8.8.8* and *8.8.4.4*.
 
 ```
 # This file describes the network interfaces available on your system
@@ -110,55 +104,31 @@ network:
                 addresses: [8.8.8.8,8.8.4.4
 ```
 
+    In this example the interface, eno1, is given a static IP address of 192.168.1.222 with a gateway at 192.168.1.1 and DNS server at 8.8.8.8 and 8.8.4.4.
+
 - Apply the settings.
-    
+        
 ```
 $ sudo netplan apply
 ```
-
+</details>
 </details>
 
 <details><summary>Update the Ubuntu repository.</summary>
-
 1. Reference and update the local apt repository.
 
-```
-root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
-```
+    ```
+    root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+    ```
 
-2. Add the Ubuntu repository.
+2. Add the Ubuntu repository, by creating the file */etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list* and adding the following line:
 
-<details><summary>Ubuntu 16.04</summary>
-
-Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
-
-```
-root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-...
-```
-</details>
-<details><summary>Ubuntu 18.04</summary>
-Create the file
-`/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
-the following line:
-
+    ```
     root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
     ...
     deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
     ...
-</details>
-    {{%notice note%}}
-
-The use of `netq-latest` in this example means that a `get` to the
-    repository always retrieves the latest version of NetQ, even in the
-    case where a major version update has been made. If you want to keep
-    the repository on a specific version - such as `netq-2.2` - use that
-    instead.
-
-    {{%/notice%}}
-
+    ```
 </details>
 
 <details><summary>Install Python.</summary>
@@ -171,12 +141,11 @@ root@ubuntu:~# apt-get install python python2.7 python-apt
 <details><summary>Obtain the latest NetQ Agent and CLI package.</summary>
 ```
 root@ubuntu:~# apt-get update
-root@ubuntu:~# apt-get install netq-agent netq-apps
+root@ubuntu:~# apt-get install cumulus-netq
 ```
 </details>
 
 <details><summary>Download the bootstrap and NetQ installation tarballs.</summary>
-
 Download the software from the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page.
 
 1. Select *NetQ* from the **Product** list.
@@ -226,7 +195,7 @@ ii  netq-apps    2.4.0-ub18.04u24~1577405296.fcf3c28 amd64   Cumulus NetQ Fabric
 
 <details><summary>Run the Bootstrap CLI.</summary>
 
-Run the bootstrap CLI on your appliance *for the interface you defined above* (eth0 or eth1 for example). This example uses the *eth0* interface.
+Run the bootstrap CLI on your appliance for the interface you defined above (eth0 or eth1 for example). This example uses the eth0 interface.
 
 ```
 cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.0.tgz
@@ -239,4 +208,4 @@ Allow about five minutes for this to complete.
 If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to [Prepare Your Cumulus NetQ Appliance](../../Install-NetQ/Prepare-NetQ-Onprem/#prepare-your-cumulus-netq-appliance)  or [Prepare Your Cumulus NetQ Cloud Appliance](../../Install-NetQ/Prepare-NetQ-Cloud/#prepare-your-cumulus-netq-cloud-appliance) for a new appliance.
 {{%/notice%}}
 
-You are now ready to install the NetQ Software. Refer to [Install NetQ Using the AdminUI](../../Install-NetQ/Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).
+You are now ready to install the NetQ Software. Refer to [Install NetQ Using the AdminUI](../../Install-NetQ/Install-NetQ-Using-AdminUI/).

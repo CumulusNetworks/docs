@@ -1,7 +1,7 @@
 ---
-title: Monitor Events
+title: Monitor Critical Events
 author: Cumulus Networks
-weight: 370
+weight: 324
 aliases:
  - /display/NETQ/Monitor+Events
  - /pages/viewpage.action?pageId=12321771

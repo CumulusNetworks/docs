@@ -1,12 +1,11 @@
 ---
 title: Glossary
 author: Cumulus Networks
-weight: 460
+weight: 304
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 
 ## Common Cumulus Linux and NetQ Terminology

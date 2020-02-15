@@ -57,7 +57,7 @@ events:
 
 **\* This type of event is only visible when enabled in the CLI.*
 
-Refer to the [Events Reference](../../Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Events/#events-reference) for descriptions and examples of these events.
+Refer to the [Events Reference](../../Cumulus-NetQ-UI-User-Guide/Monitor-Events/Events-Reference/) for descriptions and examples of these events.
 
 ### Event Message Format
 

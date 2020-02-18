@@ -1,5 +1,5 @@
 ---
-title: Backup Your NetQ Instance
+title: Back Up Your NetQ Data
 author: Cumulus Networks
 weight: 431
 product: Cumulus NetQ

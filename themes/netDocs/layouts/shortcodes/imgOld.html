@@ -6,7 +6,6 @@
 {{$curPG := index $ste $pgid}}
 {{$cur := index $curPG $ind}}
 
-{{ if .Site.IsServer }}
 <img class = "{{$cur.class}}" src = "{{$cur.src}}" alt = "{{$cur.alt}}"
 {{with $cur.height}}
 height = {{int . }}
@@ -15,13 +14,4 @@ height = {{int . }}
 width = {{int .}}
 {{end}}
  />
-{{ else }}
-<img class = "{{$cur.class}}" src = "https://docs-cdn.cumulusnetworks.com{{$cur.src}}" alt = "{{$cur.alt}}"
-{{with $cur.height}}
-height = {{int . }}
-{{end}}
-{{with $cur.width}}
-width = {{int .}}
-{{end}}
- />
-{{ end }}
+

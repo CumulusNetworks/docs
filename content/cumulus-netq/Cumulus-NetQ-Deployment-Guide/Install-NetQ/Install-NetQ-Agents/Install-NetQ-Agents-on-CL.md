@@ -167,7 +167,7 @@ netq-agent:
 
 ### Configure NetQ Agents Using the NetQ CLI
 
-If the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Platform or NetQ Appliance. To configure the NetQ CLI, refer to {{<link title="Configure the NetQ CLI on a Cumulus Linux Switch">}}
+If the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Platform or NetQ Appliance. To configure the NetQ CLI, refer to [Configure the NetQ CLI on a Cumulus Linux Switch](../../Install-NetQ-CLI/Install-NetQ-CLI-on-CL/#configure-the-netq-cli-on-a-cumulus-linux-switch)
 
 {{%notice info%}}
 If you intend to use VRF, refer to [Configure the Agent to Use VRF](#configure-the-agent-to-use-a-vrf). If you intend to specify a port for communication, refer to [Configure the Agent to Communicate over a Specific Port](#configure-the-agent-to-communicate-over-a-specific-port).

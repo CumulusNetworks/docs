@@ -1,5 +1,5 @@
 ---
-title: Backup and Restore NetQ
+title: Back Up and Restore NetQ
 author: Cumulus Networks
 weight: 75
 product: Cumulus NetQ

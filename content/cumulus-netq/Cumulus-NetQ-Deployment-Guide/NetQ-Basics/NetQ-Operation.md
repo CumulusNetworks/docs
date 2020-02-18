@@ -1,7 +1,7 @@
 ---
 title: Cumulus NetQ Operation
 author: Cumulus Networks
-weight: 405
+weight: 50
 pageID: 12320801
 product: Cumulus NetQ
 version: 2.4

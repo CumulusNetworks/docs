@@ -14,15 +14,17 @@ To restore NetQ on the same hardware where the backup file resides:
 
 1. Log in to the NetQ server.
 2. Run the restore script being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
+
    ```
    cumulus@<netq-platform/netq-appliance>:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
    ```
+
    {{%notice tip%}}
-
    You can abbreviate the `restore` and `localdir` options of this command to `-r` and `-l` to reduce typing.
-
    {{%/notice%}}
+
    This is a sample of what you see while the script is running:
+
    ```
    [Fri 26 Jul 2019 02:37:49 PM UTC] - Received Inputs for restore ...
 
@@ -30,7 +32,9 @@ To restore NetQ on the same hardware where the backup file resides:
      Once the Database is restored you loose the old data and cannot be recovered.
    "Do you like to continue with Database restore:[Y(yes)/N(no)]. (Default:N)"
    ```
+
       You must answer the above question to continue the restoration. After entering **Y** or **yes**, the output continues as follows:
+      
       ```
       [Fri 26 Jul 2019 02:37:50 PM UTC] - Able to find cassandra pod: cassandra-0
       [Fri 26 Jul 2019 02:37:50 PM UTC] - Continuing with the procedure ...

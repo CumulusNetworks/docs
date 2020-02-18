@@ -1,7 +1,7 @@
 ---
 title: Set User Preferences
 author: Cumulus Networks
-weight: 511
+weight: 290
 aliases:
  - /display/NETQ22/NetQ-User-Interface-Overview
  - /pages/viewpage.action?pageId=12321856

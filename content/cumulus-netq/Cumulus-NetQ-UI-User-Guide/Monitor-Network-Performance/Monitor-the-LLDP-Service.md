@@ -1,7 +1,7 @@
 ---
 title: Monitor the LLDP Service
 author: Cumulus Networks
-weight: 165
+weight: 390
 aliases:
  - /display/NETQ/Monitor+the+LLDP+Service
  - /pages/viewpage.action?pageId=12321439

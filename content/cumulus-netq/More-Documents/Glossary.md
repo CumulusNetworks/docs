@@ -1,7 +1,7 @@
 ---
 title: Glossary
 author: Cumulus Networks
-weight: 304
+weight: 650
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

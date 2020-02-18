@@ -1,7 +1,7 @@
 ---
 title: Monitor Switch Software
 author: Cumulus Networks
-weight: 325
+weight: 520
 aliases:
  - /display/NETQ/Monitor+Switch+Hardware+and+Software
  - /pages/viewpage.action?pageId=12321058

@@ -1,7 +1,7 @@
 ---
 title: Monitor Switches
 author: Cumulus Networks
-weight: 155
+weight: 440
 aliases:
  - /display/NETQ/Monitor+Switches
  - /pages/viewpage.action?pageId=12321794

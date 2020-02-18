@@ -1,7 +1,7 @@
 ---
 title: Monitor Events
 author: Cumulus Networks
-weight: 440
+weight: 322
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

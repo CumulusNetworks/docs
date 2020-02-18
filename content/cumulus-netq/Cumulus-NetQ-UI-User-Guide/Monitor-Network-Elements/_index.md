@@ -1,7 +1,7 @@
 ---
 title: Monitor Network Elements
 author: Cumulus Networks
-weight: 97
+weight: 450
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

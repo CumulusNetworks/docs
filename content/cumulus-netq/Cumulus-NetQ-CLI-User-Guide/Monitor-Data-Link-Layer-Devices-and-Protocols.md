@@ -887,10 +887,45 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
 
 The *What Just Happened* (WJH) feature, available on Mellanox switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems.
 
-WJH is enabled by default on Mellanox switches running Cumulus Linux 4.0.0 and NetQ 2.4.0, giving you the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
+When WJH capabilities are combined with Cumulus Linux 4.0.0 and NetQ 2.4.0, giving you the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
 
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
+
+{{%notice info%}}
+By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0 or later.
+
+```
+cumulus@<hostname>:~$ sudo apt-get update
+cumulus@<hostname>:~$ sudo apt-get install -y netq-agent
+cumulus@<hostname>:~$ netq config restart agent
+cumulus@<hostname>:~$ sudo apt-get install -y netq-apps
+cumulus@<hostname>:~$ netq config restart cli
+```
+
+{{%/notice%}}
+
+### Configure the WJH Feature
+
+WJH is enabled by default on Mellanox switches and no configuration is required in Cumulus Linux 4.0.0; however, you must enable the NetQ Agent to collect the data in NetQ 2.4.0.
+
+To enable WJH in NetQ:
+
+1. Configure the NetQ Agent on the Mellanox switch.
+
+```
+cumulus@switch:~$ netq config add agent wjh
+```
+
+2. Restart the NetQ Agent to start collecting the WJH data.
+
+```
+cumulus@switch:~$ netq config restart agent
+```
+
+When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
+
+### View What Just Happened Metrics
 
 View layer 2 drop statistics using the `netq show wjh-drop` NetQ CLI command. The full syntax for this command is:
 

@@ -47,7 +47,7 @@ cumulus@switch:~$ ip -s link show br-vxln16757104
 To show access statistics, run:
 
 ```
-cumulus@switch:~$ s0.6
+cumulus@switch:~$ ip -s link show swp2s0.6
 63: swp2s0.6@swp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln16757104 state UP mode DEFAULT
     link/ether 44:38:39:00:69:88 brd ff:ff:ff:ff:ff:ff
     RX: bytes  packets  errors  dropped overrun mcast

@@ -235,8 +235,7 @@ ii  vrf        1.0-cl4u1    amd64        Linux tools for VRF
 ## Upgrade Packages
 
 {{%notice note%}}
-
-You cannot upgrade to Cumulus Linux 4.0 from Cumulus 3.7 by upgrading packages. You must install a disk image using ONIE. Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/).
+You cannot upgrade to Cumulus Linux 4.0 from Cumulus 3.7 by upgrading packages. You must install a disk image using ONIE. Refer to {{% link url="Upgrading-Cumulus-Linux" text="Upgrading Cumulus Linux" %}}.
 
 {{%/notice%}}
 
@@ -259,7 +258,7 @@ To add a new package, first ensure the package is not already installed on the s
 cumulus@switch:~$ dpkg -l | grep <name of package>
 ```
 
-- If the package is installed already, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See [Upgrade Packages](#upgrade-packages) above.
+- If the package is installed already, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See {{<link url="#upgrade-packages" text="Upgrade Packages">}} above.
 - If the package is *not* already installed, add it by running `sudo -E apt-get install <name of package>`. This retrieves the package from the Cumulus Linux repository and installs it on your system together with any other packages on which this package might depend. The following example adds the `tcpreplay` package to the system:
 
 ```
@@ -361,7 +360,7 @@ cumulus@switch:~$ sudo -E apt-get upgrade
 
 ## Add Packages from the Cumulus Linux Local Archive
 
-Cumulus Linux contains a local archive embedded in the Cumulus Linux disk image. This archive contains the packages needed to install [`ifplugd`](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/ifplugd/), [LDAP](../../System-Configuration/Authentication-Authorization-and-Accounting/LDAP-Authentication-and-Authorization/), [RADIUS](../../System-Configuration/Authentication-Authorization-and-Accounting/RADIUS-AAA/) or [TACACS+](../../System-Configuration/Authentication-Authorization-and-Accounting/TACACS+/) without needing a network connection.
+Cumulus Linux contains a local archive embedded in the Cumulus Linux disk image. This archive contains the packages needed to install `{{<link title="ifplugd" text="ifplugd">}}`, {{<link url="LDAP-Authentication-and-Authorization" text="LDAP">}}, {{<link url="RADIUS-AAA" text="RADIUS">}} or  {{<link url="TACACS+" text="TACACS+">}} without needing a network connection.
 
 The archive is called `cumulus-local-apt-archive` and is referenced in the  `/etc/apt/cumulus-local-apt-archive-sources.list` file. It contains the following packages:
 
@@ -378,11 +377,11 @@ The archive is called `cumulus-local-apt-archive` and is referenced in the  `/et
 - libtacplus-map1
 - nslcd
 
-You add these packages normally with `apt-get update && apt-get install`, as [described above](#add-new-packages).
+You add these packages normally with `apt-get update && apt-get install`, as {{<link url="#add-new-packages" text="described above">}}.
 
 ## Related Information
 
-- [Debian GNU/Linux FAQ, Ch 8 Package management tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)
+- {{<exlink url="http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html" text="Debian GNU/Linux FAQ, Ch 8 Package management tools">}}
 - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
 
 ## Caveats and Errata

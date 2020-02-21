@@ -1271,12 +1271,7 @@ with that MAC are flagged as duplicates.
 
 {{%notice note%}}
 
-In an MLAG configuration, duplicate address detection runs independently
-on each switch in the MLAG pair. Based on the sequence in which local
-learn and/or route withdrawal from the remote VTEP occurs, an IP address
-might be flagged as duplicate only on one of the switches in the MLAG
-pair. In rare cases, neither switch might flag the IP address as a
-duplicate.
+In an MLAG configuration, MAC mobility detection runs independently on each switch in the MLAG pair. Based on the sequence in which local learning and/or route withdrawal from the remote VTEP occurs, a type-2 route might have its MAC mobility counter incremented only on one of the switches in the MLAG pair. In rare cases, it is possible for neither VTEP to increment the MAC mobility counter for the type-2 prefix.
 
 {{%/notice%}}
 

@@ -235,7 +235,7 @@ The *Alarms* tab displays:
 The full screen BGP Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsess-tab-241.png" width="700">}}
 
 <table>
 <colgroup>
@@ -824,7 +824,7 @@ The *Configuration File Evolution* tab displays:
 The full screen BGP Session card provides tabs for all BGP sessions and
 all events.
 
-{{<figure src="/images/netq/ntwk-svcs-single-bgp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-bgp-fullscr-241.png" width="700">}}
 
 <table>
 <colgroup>

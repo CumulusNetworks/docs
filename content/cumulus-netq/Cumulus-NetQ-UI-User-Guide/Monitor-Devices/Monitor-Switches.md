@@ -986,10 +986,9 @@ The *Software* tab displays:
 </tbody>
 </table>
 
-The full screen Switch Inventory card provides tabs for all components,
-ASIC, platform, CPU, memory, disk, and OS components.
+The full screen Switch Inventory card provides tabs for all components, ASIC, platform, CPU, memory, disk, and OS components.
 
-{{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab.png" width="700" >}}
+{{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab-241.png" width="700" >}}
 
 There are a multitude of ways to view and analyze the available data
 within this workflow. A few examples are provided here.

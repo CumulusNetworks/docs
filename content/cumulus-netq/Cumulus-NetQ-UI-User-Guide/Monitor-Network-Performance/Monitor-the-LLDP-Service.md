@@ -237,7 +237,7 @@ The *Alarms* tab which displays:
 The full screen LLDP Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-allsess-tab-241.png" width="700">}}
 
 <table>
 <colgroup>

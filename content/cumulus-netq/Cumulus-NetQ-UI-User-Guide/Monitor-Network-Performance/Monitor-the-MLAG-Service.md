@@ -252,7 +252,7 @@ The *All MLAG Alarms* tab which displays:
 The full screen MLAG Service card provides tabs for all switches, all
 sessions, and all alarms.
 
-{{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-all-switches-tab-230.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-allsess-tab-241.png" width="700">}}
 
 <table>
 <colgroup>

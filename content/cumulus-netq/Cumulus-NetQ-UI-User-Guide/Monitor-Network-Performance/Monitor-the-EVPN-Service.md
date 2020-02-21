@@ -237,7 +237,7 @@ The *Alarms* tab which displays:
 The full screen EVPN Service card provides tabs for all switches, all
 sessions, all alarms.
 
-{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-241.png" width="700">}}
 
 <table>
 <colgroup>

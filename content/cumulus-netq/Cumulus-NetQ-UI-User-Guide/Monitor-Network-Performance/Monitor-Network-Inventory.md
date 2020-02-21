@@ -157,7 +157,7 @@ The *Switches* tab displays:
 
 The full screen Devices Inventory card provides tabs for all switches and all hosts.
 
-{{< figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-230.png" width="700" >}}
+{{< figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700" >}}
 
 <table>
 <colgroup>

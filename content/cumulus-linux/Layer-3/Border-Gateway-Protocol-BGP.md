@@ -3140,6 +3140,10 @@ Hostname: spine01
 
 ## Caveats and Errata
 
+### Using NCLU to Remove a BGP neighbor on an Interface that Belongs to a VRF
+
+The NCLU command to remove a BGP neighbor does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.
+
 ### ttl-security Issue
 
 Enabling `ttl-security` does not program the hardware with relevant information. Therefore, frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware.

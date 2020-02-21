@@ -1739,6 +1739,10 @@ See this [IETF draft](http://tools.ietf.org/html/draft-jakma-mrai-02) for more d
 
 ## Caveats and Errata
 
+### Using NCLU to Remove a BGP neighbor on an Interface that Belongs to a VRF
+
+The NCLU command to remove a BGP neighbor does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.
+
 ### ttl-security Issue
 
 Enabling `ttl-security` does not cause the hardware to be programmed with the relevant information. This means that frames will come up to the CPU and be dropped there. It is recommended that you use the `net add acl` command to explicitly add the relevant entry to hardware.

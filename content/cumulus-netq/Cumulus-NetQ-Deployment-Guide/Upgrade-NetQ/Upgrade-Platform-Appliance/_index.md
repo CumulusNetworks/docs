@@ -89,7 +89,7 @@ To upgrade your NetQ software:
 
 3. Click **Begin Upgrade**.
 
-4. Backup?
+4. Click **Upgrade**.
 
 4. Enter *NetQ-2.4.1.tgz* or *NetQ-2.4.1-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg", height="18", width="18"/>.
 
@@ -99,11 +99,7 @@ To upgrade your NetQ software:
 The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg", height="18", width="18"/> is only visible after you enter your tar file information.
     {{%/notice%}}
 
-5. xxx
-
-6. Activate the NetQ Software.
-
-7. Restore?
+6. Activate the NetQ Software. 
 
 ## Upgrade Your Platform Using the NetQ CLI
 
@@ -140,39 +136,3 @@ cat /etc/app-release
     | ---- | ---- | ---- |
     | <strong>NetQ Platform</strong> | <ul><li>KVM: <br>    APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=E9361...12BE7<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;"</li><li>VMware:<br>APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=7916C...6D0EF<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;"</li></ul> | <ul><li>KVM: <br> APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=383E9...F4371<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;"</li><li>VMware: <br> APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=E6176...A3EA1<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;"</li></ul> |
     | <strong>NetQ Appliance</strong> | APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=ADB58...E6732<br>APPLIANCE_NAME="NetQ Appliance" | APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=4F50D...57FE1<br>APPLIANCE_NAME="NetQ Cloud Appliance" |
-
-## Add More Nodes to Your Server Cluster
-
-<!-- Post install/upgrade topic? -->
-
-When you have a three-server cluster already configured, you can add more worker nodes to your NetQ configuration, up to a total of nine worker nodes, using the Admin UI.
-
-To add more worker nodes:
-
-1. Open the Admin UI by entering `https://<master-hostname-or-ipaddress>:8443` in your browser address field.
-
-2. Click **Cluster** to view your current configuration.
-
-    {{<figure src="/images/netq/adminui-cluster-tab-241.png" width="700">}}
-
-3. Click **Add Worker Node**.
-
-4. Enter the *private* IP address of the server you want to add.
-
-5. Click **Add**.
-
-6. anything else?
-
-6. Repeat this process to add more worker nodes as needed.
-
-## Update Your Cloud Configuration Key
-
-<!-- Post install/upgrade topic? -->
-
-There are occasions where you might want to update your cloud service configuration key. For example, if you mistyped the key during installation and now your existing key does not work, or you received a new key for your premises from Cumulus Networks.
-
-To update the configuration key, run the following command with your new key.
-
-```
-cumulus@switch:~$ netq install opta activate-job config-key <text-opta-key>
-```

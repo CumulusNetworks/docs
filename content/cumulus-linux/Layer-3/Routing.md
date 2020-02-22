@@ -488,6 +488,10 @@ On Broadcom switches with Cumulus Linux 4.0 and later, when there is a /32 IPv4 
 
 Cumulus Networks recommends that you **do not** use the Linux shell to delete static routes added via FRRouting (with `vtysh` commands). Delete the routes with the `vtysh` commands; otherwise FRRouting might not be able to clean up its internal state completely, which can result in incorrect routing.
 
+### Using NCLU Commands to Delete Routing Configuration
+
+When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), Cumulus Networks recommends that you commit ten or fewer delete commands at a time to avoid commit failures.
+
 ### Add IPv6 Default Route with src Address on eth0 Fails without Adding Delay
 
 Attempting to install an IPv6 default route on eth0 with a source address fails at reboot or when running `ifup` on eth0.

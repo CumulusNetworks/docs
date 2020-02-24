@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 2
 ---
 This guide is intended for network administrators and operators who are
 responsible for monitoring and troubleshooting the network in their data

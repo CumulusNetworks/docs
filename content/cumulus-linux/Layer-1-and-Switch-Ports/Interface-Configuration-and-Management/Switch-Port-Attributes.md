@@ -1520,8 +1520,7 @@ To disable the QSFP+ ports, you must set the ports to `disabled`. Do not comment
 ### Mellanox SN2100 Switch and eth0 Link Speed
 
 After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
-
-To work around this issue, unload the igb module with the `rmmod` command, wait for approximately 20 seconds, then reload the igb module with the `modprobe` command.
+To work around this issue, either flap the interface or add commands to the `/etc/rc.local` file so that this occurs on boot automatically.
 
 ### Link Speed on the EdgeCore AS7326-56X Switch
 
@@ -1553,6 +1552,17 @@ The EdgeCore AS7326-56X is a 48x25G + 8x100G + 2x10G switch. The dedicated 10G p
 ### Link Speed on the Lenovo NE2572O Switch
 
 The Lenovo NE2572O switch has external retimers on swp1 through swp8. Currently, these ports only support a speed of 25G.
+
+### Link Speed and Auto-negotiation on Switches with SOL
+
+The following switches that use Serial over LAN technology (SOL) do not support eth0 speed or auto-negotiation changes:
+
+- Celestica Pebble
+- Celestica QueStone2
+- Celestica SeaStone2
+- EdgeCore AS7816-64X
+- Penguin Arctica NX3200c
+- Penguin Arctica NX4808xxv
 
 ### ethtool Shows Incorrect Port Speed on 100G Spectrum Switches
 

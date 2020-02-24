@@ -1,7 +1,7 @@
 ---
 title: Monitor the EVPN Service
 author: Cumulus Networks
-weight: 390
+weight: 380
 aliases:
  - /display/NETQ/Monitor+the+EVPN+Service
  - /pages/viewpage.action?pageId=12321294
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 The Cumulus NetQ UI enables operators to view the health of the EVPN
 service on a network-wide and a per session basis, giving greater
@@ -586,30 +585,7 @@ click the **All Sessions** tab.
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right.
 
-### Take Actions on Data Displayed in Results List
-
-In the full screen EVPN Service card, you can determine which results
-are displayed in the results list, and which are exported.
-
-To take actions on the data, click in the blank column at the very left
-of a row. A checkbox appears, selecting that switch, session, or alarm,
-and an edit menu is shown at the bottom of the card (shown enlarged
-here).
-
-{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-sessions-tab-2selected-222.png" width="700">}}
-
-{{<figure src="/images/netq/ntwk-svcs-edit-menu-2-selected-222.png" width="700">}}
-
-You can perform the following actions on the results list:
-
-| Option             | Action or Behavior on Click                                                                                      |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| Select All         | Selects all items in the results list                                                                            |
-| Clear All          | Clears all existing selections of items in the results list. This also hides the edit menu.                      |
-| Open Cards         | Open the corresponding validation or trace result card.                                                          |
-| Hide Selected      | Hide selected items (switches, sessions, alarms, and so forth) from the results list.                            |
-| Show Only Selected | Hide unselected items (switches, sessions, alarms, and so forth) from the results list.                          |
-| Export Selected    | Exports selected data into a .csv file. If you want to export to a .json file format, use the **Export** button. |
+Use the icons above the table to select/deselect, filter, and export items in the list. Refer to [Table Settings](../../NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings) for more detail.
 
 To return to original display of results, click the associated tab.
 

@@ -1,7 +1,7 @@
 ---
 title: Monitor Container Environments
 author: Cumulus Networks
-weight: 380
+weight: 580
 aliases:
  - /display/NETQ/Monitor+Container+Environments
  - /pages/viewpage.action?pageId=12321042
@@ -10,10 +10,9 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 The NetQ Agent monitors container environments the same way it monitors
-{{<link url="Monitor-Linux-Hosts" text="physical servers">}}.
+[physical servers](../Monitor-Linux-Hosts).
 There is no special implementation. The NetQ Agent pulls data from the
 container as it would pull data from a Cumulus Linux switch or Linux
 host. It can be installed on a Linux server or in a Linux VM. NetQ Agent
@@ -104,7 +103,8 @@ For NetQ to monitor the containers on a host, you must configure the
 following on the Kubernetes master node:
 
 1.  Configure the host to point to the NetQ Platform by its IP address.
-    See the {{<link title="Install NetQ">}} topic for details.
+    See the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ)
+    topic for details.
 
 2.  Enable Kubernetes monitoring by NetQ. You can specify a polling
     period between 10 and 120 seconds; 15 seconds is the default.
@@ -117,7 +117,7 @@ following on the Kubernetes master node:
         cumulus@server01:~$ netq config restart agent
 
 Next, you must enable the NetQ Agent on all the worker nodes, as
-described in the {{<link text="Install NetQ Agents and CLI on Switches" url="Install-NetQ-Agents-and-CLI-on-CL">}}, for complete insight into your container network.
+described in the [Install NetQ Agents](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents), for complete insight into your container network.
 
 ### View Status of Kubernetes Clusters
 
@@ -610,7 +610,7 @@ To see the impact of a given Kubernetes service, run:
 
 ### View Kubernetes Cluster Configuration in the Past
 
-You can use the {{<link text="\"time machine\" features" url="Investigate-NetQ-Issues#use-netq-as-a-time-machine">}} of NetQ on a Kubernetes cluster, using the `around` option to go back in time to check the network status and identify any changes that
+You can use the ["time machine" features](../Investigate-NetQ-Issues/#use-netq-as-a-time-machine) of NetQ on a Kubernetes cluster, using the `around` option to go back in time to check the network status and identify any changes that
 occurred on the network.
 
 This example shows the current state of the network. Notice there is a

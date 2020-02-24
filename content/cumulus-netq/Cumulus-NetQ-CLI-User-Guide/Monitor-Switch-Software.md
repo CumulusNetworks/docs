@@ -1,7 +1,7 @@
 ---
 title: Monitor Switch Software
 author: Cumulus Networks
-weight: 36
+weight: 520
 aliases:
  - /display/NETQ/Monitor+Switch+Hardware+and+Software
  - /pages/viewpage.action?pageId=12321058
@@ -530,7 +530,7 @@ the following services:
   - **ntp**: NTP service
   - **ntpd**: NTP daemon
   - **ptmd**: PTM (Prescriptive Topology Manager) daemon
-  - **pwmd**: PWM (Password <span style="color: #ff0000;"> </span> Manager)
+  - **pwmd**: PWM (Password Manager)
     daemon
   - **rsyslog**: Rocket-fast system event logging processing service
   - **smond**: System monitor daemon
@@ -711,7 +711,7 @@ This example shows the status of the BGP daemon.
 ### View Events Related to a Given Service
 
 To view changes over a given time period, use the `netq show events`
-command. For more detailed information about events, refer to [Monitor Events](../../Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/Monitor-Events).
+command. For more detailed information about events, refer to [Monitor Events](../../Cumulus-NetQ-UI-User-Guide/Monitor-Events).
 
 In this example, we want to view changes to the bgpd service in the last
 48 hours.

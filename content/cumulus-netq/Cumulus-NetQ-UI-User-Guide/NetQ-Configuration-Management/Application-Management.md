@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 As an administrator, you can manage access to and various
 application-wide settings for the Cumulus NetQ UI from a single location.

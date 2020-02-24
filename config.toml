@@ -4,6 +4,8 @@ theme = "netDocs"
 baseURL = "/"
 relURLs = true
 googleAnalytics = "UA-40724538-3"
+
+
 #Book configuration
 disablePathToLower = true
 ## bug in local server, will enable in production
@@ -11,14 +13,6 @@ enableGitInfo= false
 noChmod = true
 enableRobotsTXT = true
 
-[markup]
-  [markup.tableOfContents]
-    endLevel = 3
-    ordered = false
-    startLevel = 1
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
 
 [menu]
   [[menu.subnav]]
@@ -90,18 +84,20 @@ showVisitedLinks = true
   # Enable "Edit this page" links for 'doc' page type.
   # Disabled by default. Uncomment to enable. Requires 'BookRepo' param.
   # Path must point to 'content' directory of repo.
-  BookEditPath = "edit/master/content"
+  BookEditPath = "edit/stage/content"
 
   # Configure the date format used on the pages
   # - In git information
   # - In blog posts
   BookDateFormat= "Jan 2, 2006"
 
+[blackfriday]
+fractions = false
+
 [taxonomies]
   tag = "tags"
   category = "categories"
   publication_type = "publication_types"
   author = "authors"
-
 [frontmatter]
   lastmod = ["lastmod", ":defaut"]

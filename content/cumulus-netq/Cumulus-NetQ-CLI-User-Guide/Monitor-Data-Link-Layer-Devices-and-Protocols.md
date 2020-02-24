@@ -1,7 +1,7 @@
 ---
 title: Monitor Data Link Layer Devices and Protocols
 author: Cumulus Networks
-weight: 340
+weight: 540
 aliases:
  - /display/NETQ/Monitor+Data+Link+Layer+Devices+and+Protocols
  - /pages/viewpage.action?pageId=12321048
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 With NetQ, a network administrator can monitor OSI Layer 2 devices and
 protocols, including switches, bridges, link control, and physical media
@@ -888,13 +887,13 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
 
 The *What Just Happened* (WJH) feature, available on Mellanox switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems.
 
-WJH is enabled by default on Mellanox switches running Cumulus Linux 4.0.0 and NetQ 2.4.0, giving you the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
+When WJH capabilities are combined with Cumulus Linux 4.0.0 and NetQ 2.4.0, giving you the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
 
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
 
 {{%notice info%}}
-By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0.
+By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0 or later.
 
 ```
 cumulus@<hostname>:~$ sudo apt-get update
@@ -924,9 +923,7 @@ cumulus@switch:~$ netq config add agent wjh
 cumulus@switch:~$ netq config restart agent
 ```
 
-{{%notice note%}}
-Using *wjh_dump.py* on a Mellanox platform that is running CumulusLinux 4.0 and the NetQ 2.4.0 agent causes the NetQ WJH client to stop receiving WJH data. If you want to use *wjh_dump.py*, disable WJH monitoring by the NetQ Agent on that switch using `netq config del agent wjh` followed by `netq config restart agent`.
-{{%/notice%}}
+When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
 
 ### View What Just Happened Metrics
 
@@ -947,5 +944,3 @@ mlx-2700-03       swp1s2                   Port loopback filter                 
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:53:17 2019       Mon Dec 16 11:53:17 2019
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 0.0.0.0          0.0.0.0          0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:40:44 2019       Mon Dec 16 11:40:44 2019
 ```
-
-When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.

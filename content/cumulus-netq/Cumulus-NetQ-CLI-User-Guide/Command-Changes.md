@@ -1,7 +1,7 @@
 ---
 title: NetQ CLI Changes
 author: Cumulus Networks
-weight: 300
+weight: 490
 aliases:
  - /display/NETQ/NetQ+Command+Line+Overview
  - /pages/viewpage.action?pageId=12321059
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 A number of commands have changed in this release to accommodate the addition of new keywords and options or to simplify their syntax. Additionally, new commands have been added and others have been removed. A summary of those changes is provided here.
 
@@ -37,7 +36,7 @@ The following table summarizes the new commands available with this release. The
 </tr>
 <tr>
   <td>netq config add agent cpu-limit [&lt;text-limit-number>]</td>
-  <td>You can use this command to limit the amount of CPU resources the NetQ Agent consumes on a Cumulus Linux switch.</td>
+  <td>Limits the amount of CPU resources the NetQ Agent consumes on a Cumulus Linux switch.</td>
   <td>2.4.1</td>
 </tr>
 <tr>
@@ -67,7 +66,12 @@ The following table summarizes the new commands available with this release. The
 </tr>
 <tr>
   <td>netq [&lt;hostname&gt;] show cl-resource forwarding [around &lt;text-time&gt;] [json]</td>
-  <td>Displays the amount of forwarding resources used by one or all devices, currently or at a time in the past</td>
+  <td>Displays xxx on one or all devices, currently or at a time in the past</td>
+  <td>2.4.0</td>
+</tr>
+<tr>
+  <td>netq [&lt;hostname&gt;] show ethtool-stats [&lt;physical-port&gt;] [rx|tx|min] [around &lt;text-time&gt;] [json]</td>
+  <td>Displays interface statistics for one or all ports, transmit or receive direction or both directions, currently or at a time in the past</td>
   <td>2.4.0</td>
 </tr>
 <tr>
@@ -81,19 +85,19 @@ The following table summarizes the new commands available with this release. The
   <td>2.4.0</td>
 </tr>
 <tr>
-  <td>netq [&lt;hostname&gt;] show resource-util disk [&lt;text-diskname&gt;] [around &lt;text-time&gt;] [json]</td>
+  <td>netq [&lt;hostname&gt;] show show-resource-util disk [&lt;text-diskname&gt;] [around &lt;text-time&gt;] [json]</td>
   <td>Displays the disk utilization for a given device or all devices, currently or at a time in the past</td>
   <td>2.4.0</td>
 </tr>
 <tr>
   <td>netq [&lt;hostname&gt;] show wjh-drop [ingress-port &lt;text-ingress-port&gt;] [details] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [around &lt;text-time&gt;] [json]<br><br>
   netq [&lt;hostname&gt;] show wjh-drop &lt;text-drop-type&gt; [ingress-port &lt;text-ingress-port&gt;] [reason &lt;text-reason&gt;] [src-ip &lt;text-src-ip&gt;] [dst-ip &lt;text-dst-ip&gt;] [proto &lt;text-proto&gt;] [src-port &lt;text-src-port&gt;] [dst-port &lt;text-dst-port&gt;] [src-mac &lt;text-src-mac&gt;] [dst-mac &lt;text-dst-mac&gt;] [egress-port &lt;text-egress-port&gt;] [traffic-class &lt;text-traffic-class&gt;] [rule-id-acl &lt;text-rule-id-acl&gt;] [between &lt;text-time&gt; and &lt;text-endtime&gt;] [around &lt;text-time&gt;] [json]</td>
-  <td>Displays status of various resource, interface, and sensor-related drops, the reason for the drop, and where they have occurred in the last 24 hours, in a time range, or at a time in the past</td>
+  <td>Displays status of various resource, interface, and sensor-related drops, the reason for the drop, and where they have occurred in the last 24 hours, in a time range, or at a time in the past. Alternately, display status of a particular drop type, filtered by source or destination IP or MAC address, protocol, traffic class, or ACL rule.</td>
   <td>2.4.0</td>
 </tr>
 <tr>
   <td>netq bootstrap master interface &lt;text-opta-ifname&gt;] tarball &lt;text-tarball-name&gt;</td>
-  <td>Loads master node with the bootstrap CLI and NetQ installer in a server cluster deployment</td>
+  <td>Loads master node with the bootstrap CLI and NetQ installer in a server cluster deployment; note update to this command in release 2.4.1</td>
   <td>2.4.0</td>
 </tr>
 <tr>
@@ -131,11 +135,11 @@ The following table summarizes the new commands available with this release. The
   <td>Installs installation files on the standalone or master server</td>
   <td>2.4.0</td>
 </tr>
-<tr> -->
+<tr> 
   <td>netq install cluster join-workers &lt;text-worker-01&gt; [&lt;text-worker-02&gt;]</td>
   <td>Adds worker node(s) to the server cluster</td>
   <td>2.4.0</td>
-</tr>
+</tr>-->
 <tr>
   <td>netq show job-status &lt;text-opta-ip&gt; [json]</td>
   <td>Displays the status of running jobs on the standalone or cluster servers</td>
@@ -181,13 +185,13 @@ The following table summarizes the new commands available with this release. The
 </tr>
 <tr>
   <td>netq add validation name &lt;text-new-validation-name&gt; type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) interval &lt;text-time-min&gt; [alert-on-failure]</td>
-  <td>Create a scheduled validation</td>
+  <td>Create a scheduled validation for a protocol or service to display in the NetQ UI</td>
   <td>2.4.0</td>
 </tr>
 <tr>
   <td>netq add validation type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) [alert-on-failure]
   </td>
-  <td>Create an on-demand validation</td>
+  <td>Create an on-demand validation for a protocol or service to display in the NetQ UI</td>
   <td>2.4.0</td>
 </tr>
 </tbody>
@@ -213,7 +217,7 @@ this release.
  <th>Version</th>
  </tr>
  </thead>
- <tbody>    
+ <tbody>
   <tr>
     <td>netq config del agent (agent-url|cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)</td>
     <td>netq config del agent (agent-url|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats)</td>
@@ -227,13 +231,13 @@ this release.
     <td>2.4.1</td>
   </tr>
   <tr>
-    <td>netq install cluster full (interface &lt;text-opta-ifname>|ip-addr &lt;text-ip-addr>) bundle &lt;text-bundle-url> [config-key &lt;text-opta-key>] workers &lt;text-worker-01> &lt;text-worker-02></td>
+    <td>netq install cluster full (interface &lt;text-opta-ifname&gt;|ip-addr &lt;text-ip-addr&gt;) bundle &lt;text-bundle-url> [config-key &lt;text-opta-key&gt;] workers &lt;text-worker-01&gt; &lt;text-worker-02&gt;<br>and<br>netq install standalone full (interface &lt;text-opta-ifname&gt;|ip-addr &lt;text-ip-addr&gt;) bundle &lt;text-bundle-url&gt; [config-key &lt;text-opta-key&gt;]</td>
     <td>netq install cluster full interface &lt;text-opta-ifname&gt; bundle &lt;text-bundle-url&gt; config-key &lt;text-opta-key&gt; workers &lt;text-worker-01&gt; &lt;text-worker-02&gt; <br>and <br>netq install standalone full interface &lt;text-opta-ifname&gt;  bundle &lt;text-bundle-url&gt; config-key &lt;text-opta-key&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;]</td>
     <td>You can now specify either the OPTA interface name or its IP address; the OPTA configuration key is optional.</td>
     <td>2.4.1</td>
   </tr>
 <tr>
-    <td>netq install opta cluster full (interface &lt;text-opta-ifname>|ip-addr <text-ip-addr>) bundle <text-bundle-url> config-key <text-opta-key> workers <text-worker-01> <text-worker-02> [proxy-host <text-proxy-host> proxy-port <text-proxy-port>]</td>
+    <td>netq install opta cluster full (interface &lt;text-opta-ifname&gt;|ip-addr &lt;text-ip-addr&gt;) bundle &lt;text-bundle-url&gt; config-key &lt;text-opta-key&gt; workers &lt;text-worker-01&gt; &lt;text-worker-02&gt; [proxy-host &lt;text-proxy-host&gt; proxy-port &lt;text-proxy-port&gt;]</td>
     <td>netq install opta cluster full interface &lt;text-opta-ifname> bundle &lt;text-bundle-url> config-key &lt;text-opta-key> workers &lt;text-worker-01> &lt;text-worker-02></td>
     <td>You can now specify either the OPTA interface name or its IP address; you can choose to specify a proxy host and port.</td>
     <td>2.4.1</td>
@@ -249,6 +253,18 @@ this release.
     <td>netq install standalone full interface &lt;text-opta-ifname> bundle &lt;text-bundle-url> config-key &lt;text-opta-key></td>
     <td>You can now specify either the OPTA interface name or its IP address; the configuration key is now optional.</td>
     <td>2.4.1</td>
+  </tr>
+  <tr>
+   <td>netq bootstrap master (interface &lt;text-opta-ifname&gt;|ip-addr &lt;text-ip-addr&gt;] tarball &lt;text-tarball-name&gt;</td>
+   <td>netq bootstrap master interface &lt;text-opta-ifname&gt; tarball &lt;text-tarball-name&gt;</td>
+   <td>You can now specify either the OPTA interface name or its IP address
+   <td>2.4.1</td>
+  </tr>
+  <tr>
+   <td>netq bootstrap reset [keep-db|purge-db]</td>
+   <td>netq bootstrap reset</td>
+   <td>You can now specify whether to keep or purge the NetQ database during the bootstrap process
+   <td>2.4.1</td>
   </tr>
   <tr>
     <td>netq show unit-tests (agent|bgp|cl-version|clag|<br>evpn|interfaces|license|mlag|mtu|ntp|ospf|sensors|<br>vlan|vxlan) [json]</td>
@@ -269,7 +285,7 @@ this release.
     <td>2.4.0</td>
   </tr>
   <tr>
-    <td>netq check agents [label &lt;text-label-name>] [include &lt;agent-number-range-list> | exclude &lt;agent-number-range-list>] [around &lt;text-time>] [json]</td>
+    <td>netq check agents [include &lt;agent-number-range-list> | exclude &lt;agent-number-range-list>] [around &lt;text-time>] [json]</td>
     <td>netq check agents [around &lt;text-time>] [json]</td>
     <td>New options to filter the list of agents by including or excluding a range of agent IDs.</td>
     <td>2.4.0</td>
@@ -293,10 +309,10 @@ this release.
     <td>2.4.0</td>
   </tr>
   <tr>
-    <td>netq config del agent (server|agent-url|cluster-servers)</td>
-    <td>netq config del agent (server|agent-url)</td>
-    <td>Added the ability to remove the agent from servers in a clustered deployment.</td>
-    <td>2.4.0</td>
+  <td>netq config del agent (server|agent-url|cluster-servers)</td>
+  <td>netq config del agent (server|agent-url)</td>
+  <td>Added the ability to remove the agent from servers in a clustered deployment.</td>
+  <td>2.4.0</td>
   </tr>
 </tbody>
 </table>

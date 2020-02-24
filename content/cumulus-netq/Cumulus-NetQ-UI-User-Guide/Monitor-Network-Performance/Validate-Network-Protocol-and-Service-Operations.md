@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 With the NetQ UI, you can validate the operation of the network
 protocols and services running in your network either on demand or on a

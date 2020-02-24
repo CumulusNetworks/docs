@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 As an administrator, you want to manage the deployment of Cumulus NetQ software onto your network devices (servers, appliances, switches, and hosts) in the most efficient way and with the most information about the process as possible. With this release, NetQ provides the first of many features to enable you to do just that. It includes the ability to take a snapshot of the live network state and configuration before you make changes to your network, take a snapshot after you make those changes, and then compare them.
 
@@ -127,9 +126,9 @@ To view an existing snapshot:
 
 3. Click **View**.
 
-4. Click the snapshot you want to view, then click **Finish**.
+4. Click one or more snapshots you want to view, then click **Finish**.
 
-    Click **Back** or **Choose Action** to cancel viewing of your selected snapshot.
+    Click **Back** or **Choose Action** to cancel viewing of your selected snapshot(s).
 
 To remove an existing snapshot:
 
@@ -139,6 +138,6 @@ To remove an existing snapshot:
 
 3. Click **Delete**.
 
-4. Click the snapshot you want to remove, then click **Finish**.
+4. Click one or more snapshots you want to remove, then click **Finish**.
 
-    Click **Back** or **Choose Action** to cancel the deletion of your selected snapshot.
+    Click **Back** or **Choose Action** to cancel the deletion of your selected snapshot(s).

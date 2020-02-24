@@ -1,7 +1,7 @@
 ---
 title: Monitor Virtual Network Overlays
 author: Cumulus Networks
-weight: 360
+weight: 560
 aliases:
  - /display/NETQ/Monitor+Virtual+Network+Overlays
  - /pages/viewpage.action?pageId=12321050
@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 
 With NetQ, a network administrator can monitor virtual network components in the data center, including VXLAN and EVPN software constructs. NetQ provides the ability to:

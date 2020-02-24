@@ -10,7 +10,6 @@ product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 4
 ---
 The Global Search field in the UI header enables you to search for
 devices or cards. You can create new searches or run existing searches.

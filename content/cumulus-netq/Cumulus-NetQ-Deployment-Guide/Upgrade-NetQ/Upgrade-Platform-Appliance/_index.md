@@ -24,7 +24,7 @@ Optionally, you can choose to back up your NetQ Data before performing the upgra
 
 To complete the preparation:
 
-1. Optionally back up your NetQ 2.4.0 data. Refer to {{<link title="Back Up Your NetQ Data">}}.
+1. Optionally back up your NetQ 2.4.0 data. Refer to [Back Up Your NetQ Data](../../Backup-and-Restore-NetQ/Backup-NetQ/).
 
 2. Download the relevant software.
 

@@ -1,12 +1,11 @@
 ---
 title: Monitor Network Elements
 author: Cumulus Networks
-weight: 460
+weight: 450
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-toc: 3
 ---
 In addition to network performance monitoring, the Cumulus NetQ UI provides a view into the current status and configuration of the network elements in a tabular, network-wide view. These are helpful when you want to see all data for all of a particular element in your network for troubleshooting, or you want to export a list view.
 
@@ -72,13 +71,13 @@ The *What Just Happened* (WJH) feature, available on Mellanox switches, streams 
 If your switches are sourced from a vendor other than Mellanox, this view is blank as no data is collected.
 {{%/notice%}}
 
-When WJH capabilities are combined with Cumulus Linux 4.0.0 and Cumulus NetQ 2.4.0, you have the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
+When WJH capabilities are combined with Cumulus NetQ, you have the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
 
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
 
 {{%notice info%}}
-By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0.
+By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0 or later.
 
 ```
 cumulus@<hostname>:~$ sudo apt-get update
@@ -108,11 +107,9 @@ cumulus@switch:~$ netq config add agent wjh
 cumulus@switch:~$ netq config restart agent
 ```
 
-{{%notice note%}}
-Using *wjh_dump.py* on a Mellanox platform that is running CumulusLinux 4.0 and the NetQ 2.4.0 agent causes the NetQ WJH client to stop receiving WJH data. If you want to use *wjh_dump.py*, disable WJH monitoring by the NetQ Agent on that switch using `netq config del agent wjh` followed by `netq config restart agent`.
-{{%/notice%}}
+When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
 
-### Viewing What Just Happened Metrics
+### View What Just Happened Metrics
 
 The What Just Happened view displays events based on conditions detected in the data plane. The most recent 1000 events from the last 24 hours are presented for each drop category.
 
@@ -276,5 +273,3 @@ The What Just Happened view displays events based on conditions detected in the 
 </tr>
 </tbody>
 </table>
-
-When you are finished viewing the WJH metrics, you might want to disable WJH on the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.

@@ -12,7 +12,7 @@ Hardware datapath configuration manages packet buffering, queueing and schedulin
 
 {{%notice note%}}
 
-The `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf` assigns buffer space and egress queues. Cumulus Networks strongly recommends you [work with a Cumulus support engineer](https://support.cumulusnetworks.com/hc/en-us/requests/new) to change buffer limits in the `datapath.conf` file.
+The `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf` assigns buffer space and egress queues. Cumulus Networks strongly recommends you {{<link url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="work with a Cumulus support engineer">}} to change buffer limits in the `datapath.conf` file.
 
 {{%/notice%}}
 
@@ -37,7 +37,7 @@ You can configure Quality of Service (QoS) for switches on the following platfor
 
 ## Example Configuration File
 
-The following example `/etc/cumulus/datapath/traffic.conf` datapath configuration file applies to 10G, 40G, and 100G switches on Broadcom Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum [platforms](http://cumulusnetworks.com/hcl/) only.
+The following example `/etc/cumulus/datapath/traffic.conf` datapath configuration file applies to 10G, 40G, and 100G switches on Broadcom Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum {{<exlink url="https://cumulusnetworks.com/hcl/" text="platforms">}} only.
 
 - For the default source packet fields and mapping, each selected packet field must have a block of mapped values. Any packet field value that is not specified in the configuration is assigned to a default internal switch priority. The configuration applies to every forwarding port unless a custom remark configuration is defined for that port (see below).
 - For the default remark packet fields and mapping, each selected packet field should have a block of mapped values. Any internal switch priority value that is not specified in the configuration is assigned to a default packet field value. The configuration applies to every forwarding port unless a custom remark configuration is defined for that port (see below).
@@ -246,7 +246,7 @@ dos_enable = false
 
 {{%notice note%}}
 
-On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), you must enable packet priority remark on the **ingress** port. A packet received on a remark-enabled port is remarked according to the priority mapping configured on the **egress** port. If you configure packet priority remark the same way on every port, the default configuration example above is correct. However, per-port customized configurations require two port groups: one for the ingress ports and one for the egress ports, as below:
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you must enable packet priority remark on the **ingress** port. A packet received on a remark-enabled port is remarked according to the priority mapping configured on the **egress** port. If you configure packet priority remark the same way on every port, the default configuration example above is correct. However, per-port customized configurations require two port groups: one for the ingress ports and one for the egress ports, as below:
 
 ```
 remark.port_group_list = [ingress_remark_group, egress_remark_group]
@@ -301,7 +301,7 @@ You can specify one of the following targets for SETQOS/setqos:
 
 | Option<img width=400/>| Description<img width=400/>|
 |----------------|---------------|
-| `--set-cos INT` | Sets the datapath resource/queuing class value. Values are defined in [IEEE\_P802.1p](http://en.wikipedia.org/wiki/IEEE_P802.1p).|
+| `--set-cos INT` | Sets the datapath resource/queuing class value. Values are defined in {{<exlink url="http://en.wikipedia.org/wiki/IEEE_P802.1p" text="IEEE P802.1p">}}.|
 | `--set-dscp value`| Sets the DSCP field in packet header to a value, which can be either a decimal or hex value.|
 | `--set-dscp-class class`| Sets the DSCP field in the packet header to the value represented by the DiffServ class value. This class can be EF, BE or any of the CSxx or AFxx classes.|
 
@@ -327,7 +327,7 @@ To put the rule in the mangle table, include `-t mangle`; to put the rule in the
 
 ## Priority Flow Control
 
-*Priority flow control*, as defined in the [IEEE 802.1Qbb standard](http://www.ieee802.org/1/pages/802.1bb.html), provides a link-level flow control mechanism that can be controlled independently for each Class of Service (CoS) with the intention to ensure no data frames are lost when congestion occurs in a bridged network.
+*Priority flow control*, as defined in the {{<exlink url="http://www.ieee802.org/1/pages/802.1bb.html" text="IEEE 802.1Qbb standard">}}, provides a link-level flow control mechanism that can be controlled independently for each Class of Service (CoS) with the intention to ensure no data frames are lost when congestion occurs in a bridged network.
 
 {{%notice note%}}
 
@@ -345,9 +345,7 @@ PFC congestion detection is implemented on the switch using xoff and xon thresho
 
 After the downstream switch has sent a PFC frame upstream, it continues to receive packets until the upstream switch receives and responds to the PFC frame. The downstream ingress buffer must be large enough to store those additional packets after the xoff threshold has been reached.
 
-Priority flow control is fully supported on both
-[Broadcom](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2)
-and [Mellanox](https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox) switches.
+Priority flow control is fully supported on both {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2" text="Broadcom">}} and {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox" text="Mellanox">}} switches.
 
 PFC is disabled by default in Cumulus Linux. To enable priority flow control (PFC), you must configure the following settings in the `/etc/cumulus/datapath/traffic.conf` file on the switch:
 
@@ -422,7 +420,7 @@ The PAUSE frame is a flow control mechanism that halts the transmission of the t
 - Transmitting pause frames when its ingress buffers become congested (TX pause enable)
 - Responding to received pause frames (RX pause enable).
 
-Link pause is disabled by default. To enabling link pause, you must configure settings in the `/etc/cumulus/datapath traffic.conf`file.
+Link pause is disabled by default. To enabling link pause, you must configure settings in the `/etc/cumulus/datapath traffic.conf` file.
 
 {{%notice tip%}}
 
@@ -506,7 +504,7 @@ On switches with the Mellanox Spectrum ASIC, Cumulus Linux supports cut-through 
 
 ## Congestion Notification
 
-*Explicit Congestion Notification* (ECN) is defined by [RFC 3168](https://tools.ietf.org/html/rfc3168). ECN enables the Cumulus Linux switch to mark a packet to signal impending congestion instead of dropping the packet, which is how TCP typically behaves when ECN is not enabled.
+*Explicit Congestion Notification* (ECN) is defined by {{<exlink url="https://tools.ietf.org/html/rfc3168" text="RFC 3168">}}. ECN enables the Cumulus Linux switch to mark a packet to signal impending congestion instead of dropping the packet, which is how TCP typically behaves when ECN is not enabled.
 
 ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can be marked as *ECN-capable transport* (ECT) by the sending server. If congestion is observed by any switch while the packet is getting forwarded, the ECT-enabled packet can be marked by the switch to indicate the congestion. The end receiver can respond to the ECN-marked packets by signaling the sending server to slow down transmission. The sending server marks a packet *ECT* by setting the least 2 significant bits in an IP header `DiffServ` (ToS) field to *01* or *10*. A packet that has the least 2 significant bits set to *00* indicates a non-ECT-enabled packet.
 
@@ -522,7 +520,7 @@ ECN is implemented on the switch using minimum and maximum threshold values for 
 
 The downstream switches with ECN enabled perform the same actions as the traffic is received. If the ECN bits are set, they remain set. The only way to overwrite ECN bits is to set the ECN bits to *11*.
 
-ECN is supported on [Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum ASICs](https://cumulusnetworks.com/hcl).
+ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum ASICs">}}.
 
 <details>
 
@@ -560,9 +558,10 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 
 ## Check Interface Buffer Status
 
-- On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the [ASIC monitoring](../../Monitoring-and-Troubleshooting/ASIC-Monitoring/) for details.
+- On switches with 
+{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
 - On Broadcom switches, the buffer status is not visible currently.
 
 ## Related Information
 
-- [iptables-extensions man page](http://ipset.netfilter.org/iptables-extensions.man.html)
+- {{<exlink url="http://ipset.netfilter.org/iptables-extensions.man.html" text="iptables-extensions man page">}}

@@ -377,7 +377,7 @@ The archive is called `cumulus-local-apt-archive` and is referenced in the  `/et
 - libtacplus-map1
 - nslcd
 
-You add these packages normally with `apt-get update && apt-get install`, as {{<link url="#add-new-packages" text="described above">}}.
+You add these packages normally with `apt-get update && apt-get install`, as {{<link url="#add-packages-from-another-repository" text="described above">}}.
 
 ## Related Information
 

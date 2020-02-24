@@ -535,6 +535,23 @@ fe80::/64 dev eth0  proto kernel  metric 256
 default via 2001:620:5ca1:160::1 dev eth0  metric 1024
 ```
 
+### Use the Same Neighbor Cache Aging Timer for IPv4 and IPv6
+
+Cumulus Linux does not support different neighbor cache aging timer settings for IPv4 and IPv6.
+
+For example, see the two settings for `neigh.default.base_reachable_time_ms` in `/etc/sysctl.d/neigh.conf`:
+
+```
+cumulus@switch:~$ sudo cat /etc/sysctl.d/neigh.conf
+
+...
+
+net.ipv4.neigh.default.base_reachable_time_ms=1080000
+net.ipv6.neigh.default.base_reachable_time_ms=1080000
+
+...
+```
+
 ## Related Information
 
 - [Linux IP - ip route command](http://linux-ip.net/html/tools-ip-route.html)

@@ -90,7 +90,7 @@ showVisitedLinks = true
   # Enable "Edit this page" links for 'doc' page type.
   # Disabled by default. Uncomment to enable. Requires 'BookRepo' param.
   # Path must point to 'content' directory of repo.
-  BookEditPath = "edit/master/content"
+  BookEditPath = "edit/stage/content"
 
   # Configure the date format used on the pages
   # - In git information

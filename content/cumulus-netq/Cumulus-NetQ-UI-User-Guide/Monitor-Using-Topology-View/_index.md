@@ -1,7 +1,7 @@
 ---
 title: Monitor Using Topology View
 author: Cumulus Networks
-weight: 99
+weight: 460
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

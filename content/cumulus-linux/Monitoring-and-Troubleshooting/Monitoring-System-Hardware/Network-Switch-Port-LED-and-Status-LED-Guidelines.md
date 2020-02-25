@@ -119,3 +119,7 @@ When all of the ports are set to 1G, all the link lights are green.
 ### EdgeCore Minipack-AS8000 Port LED Blink State
 
 The port LED blink state that indicates link activity is not implemented; the ports only have ON/OFF states.
+
+### Celestica SeaStone2 Front Panel ALARM LED
+
+On the Celestica SeaStone2 switch, the front panel ALARM LED is not functional and remains off when you remove or insert a power module. The rear panel ALARM always flashes yellow.

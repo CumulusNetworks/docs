@@ -1,7 +1,7 @@
 ---
 title: Monitor Devices
 author: Cumulus Networks
-weight: 95
+weight: 430
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

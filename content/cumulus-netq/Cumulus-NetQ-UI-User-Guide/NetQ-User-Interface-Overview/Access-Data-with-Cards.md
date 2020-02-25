@@ -1,7 +1,7 @@
 ---
 title: Access Data with Cards
 author: Cumulus Networks
-weight: 509
+weight: 280
 aliases:
  - /display/NETQ22/NetQ-User-Interface-Overview
  - /pages/viewpage.action?pageId=12321856
@@ -373,6 +373,17 @@ You can manipulate the data in a data grid in a full-screen card in several ways
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg", height="18", width="18"/>, <img src="/images/netq/netq-mgmt-delete-keys-icon.png", height="18", width="18"/> | Generate/Delete AuthKeys | Creates or removes NetQ CLI authorization keys |
 | <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> | Open Cards | Opens the corresponding validation or trace card(s) |
 | <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg", height="18", width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. Refer to <a href="#export-data">Export Data</a> for more detail. |
+
+When there are numerous items in a table, NetQ loads the first 25 by default and provides the rest in additional table pages. In this case, pagination is shown under the table.
+
+{{<figure src="/images/netq/table-pagination-241.png" width="400">}}
+
+From there, you can:
+
+- View the total number of items in the list
+- Set NetQ to load 25, 50, or 100 items per page
+- Move forward or backward one page at a time (<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg", height="14", width="14"/>, <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-left-1.svg", height="14", width="14"/>)
+- Go to the first or last page in the list (<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-1.svg", height="14", width="14"/>, <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-1.svg", height="14", width="14"/>)
 
 #### Change Order of Columns
 

@@ -1,7 +1,7 @@
 ---
 title: Cumulus NetQ CLI User Guide
 author: Cumulus Networks
-weight: 19
+weight: 470
 aliases:
  - /display/NETQ/Cumulus+NetQ+CLI+User+Guide
  - /pages/viewpage.action?pageId=10977536

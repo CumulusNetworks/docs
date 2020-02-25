@@ -9,7 +9,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer address, such as a MAC address, associated with a given network layer address. ARP is defined by [RFC 826](https://tools.ietf.org/html/rfc826). The Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior in a few ways because Cumulus Linux is an operating system for routers/switches rather than servers.
+Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer address, such as a MAC address, associated with a given network layer address. ARP is defined by {{<exlink url="https://tools.ietf.org/html/rfc826" text="RFC 826">}}. The Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior in a few ways because Cumulus Linux is an operating system for routers/switches rather than servers.
 
 ## Standard Debian ARP Behavior and the Tunable ARP Parameters
 
@@ -21,7 +21,7 @@ Debian has these five tunable ARP parameters:
 - `arp_ignore`
 - `arp_notify`
 
-These parameters are described in the [Linux documentation](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt), but snippets for each parameter description are included in the table below and are highlighted in *italics*.
+These parameters are described in the {{<exlink url="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt" text="Linux documentation">}}, but snippets for each parameter description are included in the table below and are highlighted in *italics*.
 
 In a standard Debian installation, all of these ARP parameters are set to *0*, leaving the router as wide open and unrestricted as possible. These settings are based on the assertion made long ago that Linux IP addresses are a property of the device, not a property of an individual interface. Therefore, an ARP request or reply could be sent on one interface containing an address residing on a different interface. While this unrestricted behavior makes sense for a server, it is not the normal behavior of a router. Routers expect the MAC/IP address mappings supplied by ARP to match the physical topology, with the IP addresses matching the interfaces on which they reside. With these tunable ARP parameters, Cumulus Linux is able to specify the behavior to match the expectations of a router.
 
@@ -173,8 +173,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 </details>
 
-If you are running two interfaces in the same broadcast domain (typically seen when using
-[VRR](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/), which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface so that both interfaces do not respond with proxy ARP replies.
+If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface so that both interfaces do not respond with proxy ARP replies.
 
 <details>
 

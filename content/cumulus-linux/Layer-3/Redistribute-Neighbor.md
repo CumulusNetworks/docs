@@ -12,7 +12,7 @@ version: '4.0'
 
 The fundamental premise behind redistribute neighbor is to announce individual host /32 routes in the routed fabric. Other hosts on the fabric can then use this new path to access the hosts in the fabric. If multiple equal-cost paths (ECMP) are available, traffic can load balance across the available paths natively.
 
-The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly-deployed protocols are available to solve this problem. Hosts use [ARP](http://en.wikipedia.org/wiki/Address_Resolution_Protocol) to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
+The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly-deployed protocols are available to solve this problem. Hosts use {{<exlink url="http://en.wikipedia.org/wiki/Address_Resolution_Protocol" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
 
 In the case of a leaf switch, where the default gateway is deployed for hosts within the rack, the ARP cache table contains a list of all hosts that have ARP'd for their default gateway. In many scenarios, this table contains all the layer 3 information that is needed. This is where redistribute neighbor comes in, as it is a mechanism of formatting and syncing this table into the routing protocol.
 
@@ -23,7 +23,7 @@ Redistribute neighbor is distributed as `python-rdnbrd`.
 The current release of redistribute neighbor:
 
 - Supports IPv4 only.
-- Does not support [VRFs](../Virtual-Routing-and-Forwarding-VRF).
+- Does not support {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}}.
 - Supports a maximum of 1024 interfaces. Using more than 1024 interfaces might crash the `rdnbrd` service.
 
 {{%/notice%}}
@@ -34,7 +34,7 @@ Redistribute neighbor is typically used in these configurations:
 
 - Virtualized clusters
 - Hosts with service IP addresses that migrate between racks
-- Hosts that are dual connected to two leaf nodes without using proprietary protocols such as [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
+- Hosts that are dual connected to two leaf nodes without using proprietary protocols such as {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
 - Anycast services that need dynamic advertisement from multiple hosts
 
 Cumulus Networks recommends that you follow these guidelines:
@@ -60,7 +60,7 @@ Redistribute neighbor works as follows:
 
 ## Example Configuration
 
-The following example configuration is based on the [reference topology](https://github.com/cumulusnetworks/cldemo-vagrant) created by Cumulus Networks. Other configurations are possible, based on the use cases outlined above. Here is a diagram of the topology:
+The following example configuration is based on the {{<exlink url="https://github.com/cumulusnetworks/cldemo-vagrant" text="reference topology">}} created by Cumulus Networks. Other configurations are possible, based on the use cases outlined above. Here is a diagram of the topology:
 
 {{< img src = "/images/cumulus-linux/redistribute-neighbor-example.png" >}}
 
@@ -249,7 +249,7 @@ There are a few possible host configurations that range in complexity. This docu
 
 #### Configure a Dual-connected Host
 
-Configure a host with the same /32 IP address on its loopback (lo) and uplinks (in this example, eth1 and eth2). This is done so both leaf switches advertise the same /32 regardless of the interface. Cumulus Linux relies on [ECMP](../Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/) to load balance across the interfaces southbound, and an equal cost static route (see the configuration below) for load balancing northbound.
+Configure a host with the same /32 IP address on its loopback (lo) and uplinks (in this example, eth1 and eth2). This is done so both leaf switches advertise the same /32 regardless of the interface. Cumulus Linux relies on {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}} to load balance across the interfaces southbound, and an equal cost static route (see the configuration below) for load balancing northbound.
 
 The loopback hosts the primary service IP address(es) and to which you can bind services.
 
@@ -290,7 +290,7 @@ iface eth2
 
 #### Install ifplugd
 
-Additionally, install and use [ifplugd](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/ifplugd/). `ifplugd` modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). The Linux kernel by default leaves routes up even when the physical interface is unavailable (NO-CARRIER).
+Additionally, install and use `{{<link url="ifplugd">}}`. `ifplugd` modifies the behavior of the Linux routing table when an interface undergoes a link transition (carrier up/down). The Linux kernel by default leaves routes up even when the physical interface is unavailable (NO-CARRIER).
 
 After you install `ifplugd`, edit `/etc/default/ifplugd` as follows, where *eth1* and *eth2* are the interface names that your host uses to connect to the leaves.
 
@@ -302,13 +302,13 @@ ARGS="-q -f -u10 -d10 -w -I"
 SUSPEND_ACTION="stop"
 ```
 
-For full instructions on installing `ifplugd` on Ubuntu, [follow this guide](https://support.cumulusnetworks.com/hc/en-us/articles/204473717).
+For full instructions on installing `ifplugd` on Ubuntu, {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204473717" text="follow this guide">}}.
 
 ## Known Limitations
 
 ### TCAM Route Scale
 
-This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the [Cumulus Networks datasheets](http://cumulusnetworks.com/hcl/) for up to date scalability limits of your chosen hardware platforms. If in doubt, contact Cumulus Networks support or your Cumulus Networks CSE.
+This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Networks datasheets">}} for up to date scalability limits of your chosen hardware platforms. If in doubt, contact Cumulus Networks support or your Cumulus Networks CSE.
 
 ### Possible Uneven Traffic Distribution
 
@@ -386,7 +386,7 @@ cumulus@leaf01:~$ cat /etc/iproute2/rt_tables
 #1  inr.ruhep
 ```
 
-For more information, refer to [Linux route tables](http://linux-ip.net/html/routing-tables.html) or you can read the [Ubuntu man pages for ip route](https://manpages.ubuntu.com/manpages/eoan/en/man8/ip-route.8.html).
+For more information, refer to {{<exlink url="http://linux-ip.net/html/routing-tables.html" text="Linux route tables">}} or you can read the {{<exlink url="https://manpages.ubuntu.com/manpages/eoan/en/man8/ip-route.8.html" text="Ubuntu man pages for ip route">}}.
 
 ### How do I determine that the /32 redistribute neighbor routes are being advertised to my neighbor?
 

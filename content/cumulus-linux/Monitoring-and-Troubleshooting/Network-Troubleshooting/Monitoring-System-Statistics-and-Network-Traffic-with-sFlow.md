@@ -8,14 +8,14 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-[sFlow](http://www.sflow.org/index.php) is a monitoring protocol that samples network packets, application operations, and system counters. sFlow collects both interface counters and sampled 5-tuple packet information, so that you can monitor your network traffic as well as your switch state and performance metrics. An outside server, known as an *sFlow collector*, is required to collect and analyze this data.
+{{<exlink url="http://www.sflow.org/index.php" text="sFlow">}} is a monitoring protocol that samples network packets, application operations, and system counters. sFlow collects both interface counters and sampled 5-tuple packet information, so that you can monitor your network traffic as well as your switch state and performance metrics. An outside server, known as an *sFlow collector*, is required to collect and analyze this data.
 
 `hsflowd` is the daemon that samples and sends sFlow data to configured collectors. By default, `hsflowd` is disabled and does *not* start automatically when the switch boots up.
 
 {{%notice note%}}
 
-If you intend to run this service within a [VRF](../../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
-including the [management VRF](../../../Layer-3/Management-VRF/), follow [these steps](../../../Layer-3/Management-VRF#run-services-within-the-management-vrf) for configuring the service.
+If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
+including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} for configuring the service.
 
 {{%/notice%}}
 
@@ -108,13 +108,13 @@ Some collectors require each source to transmit on a different port, others list
 
 ## Configure sFlow Visualization Tools
 
-For information on configuring various sFlow visualization tools, read this [Help Center article](https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools).
+For information on configuring various sFlow visualization tools, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools" text="Help Center article">}}.
 
 ## Caveats and Errata
 
-The [EdgeCore AS4610 switch](https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=EdgeCore) occasionally sends malformed packets and does not send any flow samples; it sends only counters. This is a known limitation on this Helix4 platform.
+The {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=EdgeCore" text="EdgeCore AS4610 switch">}} occasionally sends malformed packets and does not send any flow samples; it sends only counters. This is a known limitation on this Helix4 platform.
 
 ## Related Information
 
-- [sFlow Collectors](http://www.sflow.org/products/collectors.php)
-- [sFlow Wikipedia page](http://en.wikipedia.org/wiki/SFlow)
+- {{<exlink url="http://www.sflow.org/products/collectors.php" text="sFlow Collectors">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/SFlow" text="sFlow Wikipedia page">}}

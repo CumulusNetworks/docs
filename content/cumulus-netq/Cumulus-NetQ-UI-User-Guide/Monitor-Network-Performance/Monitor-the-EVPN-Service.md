@@ -532,16 +532,10 @@ To return to original display of results, click the associated tab.
 
 ## Monitor a Single EVPN Session
 
-With NetQ, you can monitor the performance of a single EVPN session,
-including the number of associated VNI, VTEPs and type. For an overview
-and how to configure EVPN in your data center network, refer to
-[Ethernet Virtual Private Network - EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
+With NetQ, you can monitor the performance of a single EVPN session, including the number of associated VNI, VTEPs and type. For an overview and how to configure EVPN in your data center network, refer to [Ethernet Virtual Private Network - EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
 
 {{%notice note%}}
-
-To access the single session cards, you must open the full screen EVPN
-Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
-
+To access the single session cards, you must open the full screen EVPN Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
 {{%/notice%}}
 
 ### EVPN Session Card Workflow Summary
@@ -557,26 +551,26 @@ The small EVPN Session card displays:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
-<td><p>Indicates data is for an EVPN session</p></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+<td>Indicates data is for an EVPN session</td>
 </tr>
 <tr class="even">
-<td><p>Title</p></td>
-<td><p>EVPN Session</p></td>
+<td>Title</td>
+<td>EVPN Session</td>
 </tr>
 <tr class="odd">
-<td><p>VNI Name</p></td>
-<td><p>Name of the VNI (virtual network instance) used for this EVPN session</p></td>
+<td>VNI Name</td>
+<td>Name of the VNI (virtual network instance) used for this EVPN session</td>
 </tr>
 <tr class="even">
-<td><p>Current VNI Nodes</p></td>
-<td><p>Total number of VNI nodes participating in the EVPN session currently</p></td>
+<td>Current VNI Nodes</td>
+<td>Total number of VNI nodes participating in the EVPN session currently</td>
 </tr>
 </tbody>
 </table>
@@ -592,38 +586,38 @@ The medium EVPN Session card displays:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
-<td><p>Indicates data is for an EVPN session</p></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+<td>Indicates data is for an EVPN session</td>
 </tr>
 <tr class="odd">
-<td><p>Title</p></td>
-<td><p>Network Services | EVPN Session</p></td>
+<td>Title</td>
+<td>Network Services | EVPN Session</td>
 </tr>
 <tr class="even">
-<td><p>Summary bar</p></td>
-<td><p>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI nodes participating in the EVPN session currently</p></td>
+<td>Summary bar</td>
+<td>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI nodes participating in the EVPN session currently</td>
 </tr>
 <tr class="odd">
-<td><p>VTEP Count Over Time chart</p></td>
-<td><p>Distribution of VTEP counts during the designated time period</p></td>
+<td>VTEP Count Over Time chart</td>
+<td>Distribution of VTEP counts during the designated time period</td>
 </tr>
 <tr class="even">
-<td><p>VNI Name</p></td>
-<td><p>Name of the VNI used for this EVPN session</p></td>
+<td>VNI Name</td>
+<td>Name of the VNI used for this EVPN session</td>
 </tr>
 <tr class="odd">
-<td><p>Type</p></td>
-<td><p>Indicates whether the session is established as part of a layer 2 or layer 3 overlay network</p></td>
+<td>Type</td>
+<td>Indicates whether the session is established as part of a layer 2 or layer 3 overlay network</td>
 </tr>
 </tbody>
 </table>
@@ -641,42 +635,42 @@ The *Session Summary* tab displays:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></p></td>
-<td><p>Indicates data is for an EVPN session</p></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+<td>Indicates data is for an EVPN session</td>
 </tr>
 <tr class="odd">
-<td><p>Title</p></td>
-<td><p>Session Summary (Network Services | EVPN Session)</p></td>
+<td>Title</td>
+<td>Session Summary (Network Services | EVPN Session)</td>
 </tr>
 <tr class="even">
-<td><p>Summary bar</p></td>
-<td><p>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI devices participating in the EVPN session currently</p></td>
+<td>Summary bar</td>
+<td>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI devices participating in the EVPN session currently</td>
 </tr>
 <tr class="odd">
-<td><p>VTEP Count Over Time chart</p></td>
-<td><p>Distribution of VTEPs during the designated time period</p></td>
+<td>VTEP Count Over Time chart</td>
+<td>Distribution of VTEPs during the designated time period</td>
 </tr>
 <tr class="even">
-<td><p>Alarm Count chart</p></td>
-<td><p>Distribution of alarms during the designated time period</p></td>
+<td>Alarm Count chart</td>
+<td>Distribution of alarms during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><p>Info Count chart</p></td>
-<td><p>Distribution of info events during the designated time period</p></td>
+<td>Info Count chart</td>
+<td>Distribution of info events during the designated time period</td>
 </tr>
 <tr class="even">
-<td><p>Table</p></td>
-<td><p>VRF (for layer 3) or VLAN (for layer 2) identifiers by device</p></td>
+<td>Table</td>
+<td>VRF (for layer 3) or VLAN (for layer 2) identifiers by device</td>
 </tr>
 </tbody>
 </table>
@@ -692,33 +686,33 @@ The *Configuration File Evolution* tab displays:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/></p></td>
-<td><p>Indicates configuration file information for a single session of a Network Service or Protocol</p></td>
+<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/></td>
+<td>Indicates configuration file information for a single session of a Network Service or Protocol</td>
 </tr>
 <tr class="odd">
-<td><p>Title</p></td>
-<td><p>(Network Services | EVPN Session) Configuration File Evolution</p></td>
+<td>Title</td>
+<td>(Network Services | EVPN Session) Configuration File Evolution</td>
 </tr>
 <tr class="even">
-<td><p>{{<img src="/images/netq/ntwk-svcs-single-evpn-vtep-count-icon-230.png" width="24" height="24">}}</p></td>
-<td><p>VTEP count (currently)</p></td>
+<td>{{<img src="/images/netq/ntwk-svcs-single-evpn-vtep-count-icon-230.png" width="20" height="20">}}</td>
+<td>VTEP count (currently)</td>
 </tr>
 <tr class="odd">
-<td><p>Timestamps</p></td>
-<td><p>When changes to the configuration file have occurred, the date and time are indicated. Click the time to see the changed file.</p></td>
+<td>Timestamps</td>
+<td>When changes to the configuration file have occurred, the date and time are indicated. Click the time to see the changed file.</td>
 </tr>
 <tr class="even">
-<td><p>Configuration File</p></td>
+<td>Configuration File</td>
 <td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown.</p>
 <p>When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
 <p><strong>Note</strong>: If no configuration file changes have been made, only the original file date is shown.</p></td>
@@ -729,88 +723,86 @@ The *Configuration File Evolution* tab displays:
 The full screen EVPN Session card provides tabs for all EVPN sessions
 and all events.
 
-{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-allsess-tab-241.png" width="700">}}
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Title</p></td>
-<td><p>Network Services | EVPN</p></td>
+<td>Title</td>
+<td>Network Services | EVPN</td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
-<td><p>Closes full screen card and returns to workbench</p></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></td>
+<td>Closes full screen card and returns to workbench</td>
 </tr>
 <tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></p></td>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></td>
 </tr>
 <tr class="even">
-<td><p>Results</p></td>
-<td><p>Number of results found for the selected tab</p></td>
+<td>Results</td>
+<td>Number of results found for the selected tab</td>
 </tr>
 <tr class="odd">
-<td><p>All EVPN Sessions tab</p></td>
-<td><p>Displays all EVPN sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:</p>
+<td>All EVPN Sessions tab</td>
+<td>Displays all EVPN sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
 <ul>
-<li><p><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false)</p></li>
-<li><p><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false)</p></li>
-<li><p><strong>DB State</strong>: Session state of the DB</p></li>
-<li><p><strong>Export RT</strong>: IP address and port of the export route target used in the filtering mechanism for BGP route exchange</p></li>
-<li><p><strong>Import RT</strong>: IP address and port of the import route target used in the filtering mechanism for BGP route exchange</p></li>
-<li><p><strong>In Kernel</strong>: Indicates whether the associated VNI is in the kernel (in kernel) or not (not in kernel)</p></li>
-<li><p><strong>Is L3</strong>: Indicates whether the session is part of a layer 3 configuration (true) or not (false)</p></li>
-<li><p><strong>Origin Ip</strong>: Host device's local VXLAN tunnel IP address for the EVPN instance</p></li>
-<li><p><strong>OPID</strong>: LLDP service identifier</p></li>
-<li><p><strong>Rd</strong>: Route distinguisher used in the filtering mechanism for BGP route exchange</p></li>
-<li><p><strong>Timestamp</strong>: Date and time the session was started, deleted, updated or marked as dead (device is down)</p></li>
-<li><p><strong>Vni</strong>: Name of the VNI where session is running</p></li>
+<li><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false)</li>
+<li><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false)</li>
+<li><strong>DB State</strong>: Session state of the DB</li>
+<li><strong>Export RT</strong>: IP address and port of the export route target used in the filtering mechanism for BGP route exchange</li>
+<li><strong>Import RT</strong>: IP address and port of the import route target used in the filtering mechanism for BGP route exchange</li>
+<li><strong>In Kernel</strong>: Indicates whether the associated VNI is in the kernel (in kernel) or not (not in kernel)</li>
+<li><strong>Is L3</strong>: Indicates whether the session is part of a layer 3 configuration (true) or not (false)</li>
+<li><strong>Origin Ip</strong>: Host device's local VXLAN tunnel IP address for the EVPN instance</li>
+<li><strong>OPID</strong>: LLDP service identifier</li>
+<li><strong>Rd</strong>: Route distinguisher used in the filtering mechanism for BGP route exchange</li>
+<li><strong>Timestamp</strong>: Date and time the session was started, deleted, updated or marked as dead (device is down)</li>
+<li><strong>Vni</strong>: Name of the VNI where session is running</li>
 </ul></td>
 </tr>
 <tr class="even">
-<td><p>All Events tab</p></td>
-<td><p>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:</p>
+<td>All Events tab</td>
+<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
-<li><p><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up</p></li>
-<li><p><strong>Source</strong>: Hostname of network device that generated the event</p></li>
-<li><p><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</p></li>
-<li><p><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>evpn</em> in this card workflow.</p></li>
+<li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>evpn</em> in this card workflow.</li>
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Export</p></td>
-<td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
-</tr>
-<tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
-<td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
 </tr>
 </tbody>
 </table>
 
 ### View Session Status Summary
 
-A summary of the EVPN session is available from the EVPN Session card
-workflow, showing the node and its peer and current status.
+A summary of the EVPN session is available from the EVPN Session card workflow, showing the node and its peer and current status.
 
 To view the summary:
 
-1.  Add the Network Services | All EVPN Sessions card.
-2.  Switch to the full screen card.
-3.  Click the **All Sessions** tab.
-4.  Double-click the session of interest. The full screen card closes
-    automatically.
-5.  Optionally, switch to the small EVPN Session card.  
+1. Add the Network Services | All EVPN Sessions card.
+
+2. Switch to the full screen card.
+
+3. Click the **All Sessions** tab.
+
+4. Double-click the session of interest. The full screen card closes automatically.
+
+5. Optionally, switch to the small EVPN Session card.  
 
     {{<figure src="/images/netq/ntwk-svcs-single-evpn-medium-230.png" width="200">}}
 
@@ -826,29 +818,27 @@ and large EVPN Session cards.
 To view the count for a given EVPN session, on the *medium* EVPN Session
 card:
 
-1.  Add the Network Services | All EVPN Sessions card.
-2.  Switch to the full screen card.
-3.  Click the **All Sessions** tab.
-4.  Double-click the session of interest. The full screen card closes
-    automatically.
+1. Add the Network Services | All EVPN Sessions card.
+
+2. Switch to the full screen card.
+
+3. Click the **All Sessions** tab.
+
+4. Double-click the session of interest. The full screen card closes automatically.
 
     {{<figure src="/images/netq/ntwk-svcs-single-evpn-medium-vtep-count-230.png" width="200">}}
 
-To view the count for a given EVPN session on the *large* EVPN Session
-card, follow the same steps as for the medium card and then switch to
-the large card.
+To view the count for a given EVPN session on the *large* EVPN Session card, follow the same steps as for the medium card and then switch to the large card.
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-large-summary-tab-vtep-cnt-230.png" width="500">}}
 
 ### View All EVPN Session Details
 
-You can view all stored attributes of all of the EVPN sessions running
-network-wide.
+You can view all stored attributes of all of the EVPN sessions running network-wide.
 
-To view all session details, open the full screen EVPN Session card and
-click the **All EVPN Sessions** tab.
+To view all session details, open the full screen EVPN Session card and click the **All EVPN Sessions** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-allsess-tab-241.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right of the card.
 
@@ -856,17 +846,13 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 
 You can view all of the alarm and info events occurring network wide.
 
-To view all events, o pen the full screen EVPN Session card and click
-the **All Events** tab.
+To view all events, o pen the full screen EVPN Session card and click the **All Events** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-events-tab-222.png" width="700">}}
 
-Where to go next depends on what data you see, but a few options
-include:
+Where to go next depends on what data you see, but a few options include:
 
-  - Open one of the other full screen tabs in this flow to focus on
-    sessions.
-  - Sort by the **Message** or **Severity** to narrow your focus.
-  - Export the data for use in another analytics tool, by selecting all
-    or some of the events and clicking **Export**.
-  - Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right to return to your workbench.
+- Open one of the other full screen tabs in this flow to focus on sessions.
+- Sort by the **Message** or **Severity** to narrow your focus.
+- Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg", height="18", width="18"/>.
+- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right to return to your workbench.

@@ -184,7 +184,7 @@ Notice that bond1 is a member of br0. If bond1 is removed, you must remove the r
 
 ## MTU Set on a Logical Interface Fails with Error: "Numerical result out of range"
 
-This error occurs when the [MTU](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/) you are trying to set on an interface is higher than the MTU of the lower interface or dependent interface. Linux expects the upper interface to have an MTU less than or equal to the MTU on the lower interface.
+This error occurs when the {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} you are trying to set on an interface is higher than the MTU of the lower interface or dependent interface. Linux expects the upper interface to have an MTU less than or equal to the MTU on the lower interface.
 
 In the example below, the swp1.100 VLAN interface is an upper interface to physical interface swp1. If you want to change the MTU to 9000 on the VLAN interface, you must include the new MTU on the lower interface swp1 as well.
 
@@ -222,4 +222,4 @@ This occurs typically when the interface being added to the bridge is an incompl
 
 ## MLAG Peerlink Interface Drops Many Packets
 
-Losing a large number of packets across an MLAG peerlink interface might not be a problem. This can occur to prevent looping of BUM (broadcast, unknown unicast and multicast) packets. For more details, and for information on how to detect these drops, read the [MLAG chapter](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
+Losing a large number of packets across an MLAG peerlink interface might not be a problem. This can occur to prevent looping of BUM (broadcast, unknown unicast and multicast) packets. For more details, and for information on how to detect these drops, read the {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG chapter">}}.

@@ -10,20 +10,20 @@ siteSlug: cumulus-linux
 
 Cumulus Linux includes a number of features that you can use to deploy in a campus setting. These features include:
 
-- [802.1X interfaces](../../Layer-1-and-Switch-Ports/802.1X-Interfaces/)
-- [Inter-subnet routing](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#inter-subnet-routing)
-- [Power over Ethernet](../../System-Configuration/Power-over-Ethernet-PoE/)
-- [TDR - time domain reflectometer](../../Monitoring-and-Troubleshooting/Monitoring-System-Hardware/TDR-Cable-Diagnostics/)
-- [Voice VLAN](../../Layer-2/Link-Layer-Discovery-Protocol/Voice-VLAN/)
+- {{<link url="802.1X-Interfaces">}}
+- {{<link url="Inter-subnet-Routing">}}
+- {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet">}}
+- {{<link url="TDR-Cable-Diagnostics" text="TDR - time domain reflectometer">}}
+- {{<link url="Voice-VLAN">}}
 
 These features work in conjunction with the following core Cumulus Linux functionality to provide a complete campus deployment:
 
-- Automation/[zero touch provisioning](../../Installation-Management/Zero-Touch-Provisioning-ZTP/)
-- [Half duplex mode](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#port-speed-and-duplex-mode)
-- [Layer 2](../../Layer-2/), including [LLDP](../../Layer-2/Link-Layer-Discovery-Protocol/) and [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
-- [Layer 3](../../Layer-3/), including [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/), [BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) and [multicast](../../Layer-3/Routing/#static-multicast-routes)
-- [QoS](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
+- Automation/{{<link url="Zero-Touch-Provisioning-ZTP" text="zero touch provisioning">}}
+- {{<link url="Switch-Port-Attributes#port-speed-and-duplex-mode" text="Half duplex mode">}}
+- {{<link url="Layer-2">}}, including {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} and {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
+- {{<link url="Layer-3">}}, including {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}, {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} and {{<link url="Routing#static-multicast-routes" text="multicast">}}
+- {{<link url="Buffer-and-Queue-Management" text="QoS">}}
 
 ## More Information
 
-For a deep dive into campus architecture, read the [campus architecture solution guide](/guides/campus-architecture-guide).
+For a deep dive into campus architecture, read the {{<exlink url="https://docs.cumulusnetworks.com/guides/campus-architecture-guide/" text="campus architecture solution guide">}}.

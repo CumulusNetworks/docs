@@ -60,7 +60,7 @@ The `smond` process provides monitoring functionality for various switch hardwar
 
 {{%notice note%}}
 
-Not all switch models include a sensor for monitoring power consumption and voltage. See [this note](../Monitoring-System-Hardware#monitor-system-units-using-smond) for details.
+Not all switch models include a sensor for monitoring power consumption and voltage. See {{<link url="Monitoring-System-Hardware#monitor-system-units-using-smond" text="this note">}} for details.
 
 {{%/notice%}}
 
@@ -148,11 +148,11 @@ Interface counters are obtained from either querying the hardware or the Linux k
 | MLAG port negotiation Flapping | <pre>/var/log/syslog</pre>|<pre>mstpd: one_clag_cmd: setting (0) mac 00:00:00:00:00:00 <server01, None><br>mstpd: one_clag_cmd: setting (1) mac 44:38:39:00:00:03 <server01, None></pre> |
 | | <pre>/var/log/clagd.log</pre> | <pre>clagd[14291]: server01 is no longer dual connected<br>clagd[14291]: server01 is now dual connected.</pre> |
 
-Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `topology.dot` file that describes the network. It has built in alerting capabilities, so it is preferable to use PTM on box rather than polling LLDP information regularly. The PTM code is available on the Cumulus Networks [GitHub repository](https://github.com/CumulusNetworks/ptm). Additional PTM, BFD, and associated logs are documented in the code.
+Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `topology.dot` file that describes the network. It has built in alerting capabilities, so it is preferable to use PTM on box rather than polling LLDP information regularly. The PTM code is available on the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM, BFD, and associated logs are documented in the code.
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you track peering information through PTM. For more information, refer to the [Prescriptive Topology Manager documentation](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/).
+Cumulus Networks recommends that you track peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
 
 {{%/notice%}}
 

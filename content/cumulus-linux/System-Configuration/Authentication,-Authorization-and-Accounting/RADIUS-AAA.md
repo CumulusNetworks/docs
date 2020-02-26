@@ -8,11 +8,11 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Networks offers add-on packages that enable [RADIUS](https://en.wikipedia.org/wiki/RADIUS) users to log in to Cumulus Linux switches in a transparent way with minimal configuration. There is no need to create accounts or directories on the switch. Authentication is handled with PAM and includes login, `ssh`, `sudo` and `su`.
+Cumulus Networks offers add-on packages that enable {{<exlink url="https://en.wikipedia.org/wiki/RADIUS" text="RADIUS">}} users to log in to Cumulus Linux switches in a transparent way with minimal configuration. There is no need to create accounts or directories on the switch. Authentication is handled with PAM and includes login, `ssh`, `sudo` and `su`.
 
 ## Install the RADIUS Packages
 
-You can install the RADIUS packages even if the switch is not connected to the internet, as they are contained in the `cumulus-local-apt-archive` repository that is [embedded](../../../Installation-Management/Adding-and-Updating-Packages/#add-packages-from-the-cumulus-linux-local-archive) in the Cumulus Linux disk image.
+You can install the RADIUS packages even if the switch is not connected to the internet, as they are contained in the `cumulus-local-apt-archive` repository that is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux disk image.
 
 To install the RADIUS packages:
 
@@ -23,7 +23,7 @@ cumulus@switch:~$ sudo apt-get install libnss-mapuser libpam-radius-auth
 
 After installation is complete, either reboot the switch or run the `sudo systemctl restart netd` command.
 
-The `libpam-radius-auth` package supplied with the Cumulus Linux RADIUS client is a newer version than the one in [Debian buster](https://packages.debian.org/buster/libpam-radius-auth). This package contains support for IPv6, the `src_ip` option described below, as well as a number of bug fixes and minor features. The package also includes VRF support, provides man pages describing the PAM and RADIUS configuration, and sets the `SUDO_PROMPT` environment variable to the login name for RADIUS mapping support.
+The `libpam-radius-auth` package supplied with the Cumulus Linux RADIUS client is a newer version than the one in {{<exlink url="https://packages.debian.org/buster/libpam-radius-auth" text="Debian Buster">}}. This package contains support for IPv6, the `src_ip` option described below, as well as a number of bug fixes and minor features. The package also includes VRF support, provides man pages describing the PAM and RADIUS configuration, and sets the `SUDO_PROMPT` environment variable to the login name for RADIUS mapping support.
 
 The `libnss-mapuser` package is specific to Cumulus Linux and supports the `getgrent`, `getgrnam` and `getgrgid` library interfaces. These interfaces add logged in RADIUS users to the group member list for groups that contain the `mapped_user` (`radius_user`) if the RADIUS account is unprivileged, and add privileged RADIUS users to the group member list for groups that contain the `mapped_priv_user` (`radius_priv_user`) during the group lookups.
 
@@ -37,7 +37,7 @@ During package installation:
 
 To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf` file:
 
-1. Add the hostname or IP address of at least one RADIUS server (such as a [*freeradius*](http://freeradius.org/) server on Linux), and the shared secret used to authenticate and encrypt communication with each server.
+1. Add the hostname or IP address of at least one RADIUS server (such as a *{{<exlink url="http://freeradius.org/" text="freeradius">}}* server on Linux), and the shared secret used to authenticate and encrypt communication with each server.
 
     {{%notice tip%}}
 
@@ -51,7 +51,7 @@ The hostname of the switch must be resolvable to an IP address, which, in genera
 
 2. If the server is slow or latencies are high, change the `timeout` setting. The setting defaults to 3 seconds.
 3. If you want to use a specific interface to reach the RADIUS server, specify the `src_ip` option. You can specify the hostname of the interface, an IPv4, or an IPv6 address. If you specify the `src_ip` option, you must also specify the `timeout` option.
-4. Set the `vrf-name` field. This is typically set to *mgmt* if you are using a [management VRF](../../../Layer-3/Management-VRF/). You cannot specify more than one VRF.
+4. Set the `vrf-name` field. This is typically set to *mgmt* if you are using a {{<link url="Management-VRF" text="management VRF">}}. You cannot specify more than one VRF.
 
 The configuration file includes the `mapped_priv_user` field that sets the account used for privileged RADIUS users and the `priv-lvl` field that sets the minimum value for the privilege level to be considered a privileged login (the default value is 15). If you edit these fields, make sure the values match those set in the `/etc/nss_mapuser.conf` file.
 
@@ -241,6 +241,6 @@ cumulus@switch:~$ sudo delgroup radius_users
 
 ## Related Information
 
-- [TACACS+ client](../TACACS+)
-- [Cumulus Networks RADIUS demo on GitHub](https://github.com/CumulusNetworks/cldemo-radius)
-- [Cumulus Network TACACS demo on GitHub](https://github.com/CumulusNetworks/cldemo-tacacs)
+- {{<link url="TACACS+" text="TACACS+ client">}}
+- {{<exlink url="https://github.com/CumulusNetworks/cldemo-radius" text="Cumulus Networks RADIUS demo on GitHub">}}
+- {{<exlink url="https://github.com/CumulusNetworks/cldemo-tacacs" text="Cumulus Network TACACS demo on GitHub">}}

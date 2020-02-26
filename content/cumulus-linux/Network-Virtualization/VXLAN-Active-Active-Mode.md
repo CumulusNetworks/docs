@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-*VXLAN active-active mode* enables a pair of [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) switches to act as a single VTEP, providing active-active VXLAN termination for bare metal as well as virtualized workloads.
+*VXLAN active-active mode* enables a pair of {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} switches to act as a single VTEP, providing active-active VXLAN termination for bare metal as well as virtualized workloads.
 
 ## Terminology
 
@@ -17,7 +17,7 @@ version: '4.0'
 | VTEP| The virtual tunnel endpoint. This is an encapsulation and decapsulation point for VXLANs.|
 | active-active VTEP | A pair of switches acting as a single VTEP. |
 | ToR | The top of rack switch; also referred to as a leaf or access switch. |
-| spine | The aggregation switch for multiple leafs. Specifically used when a data center is using a [Clos network architecture.](https://en.wikipedia.org/wiki/Clos_network) Read more about spine-leaf architecture in this [white paper](http://go.cumulusnetworks.com/scalable-dcnetworks?utm_source=homepageslider&utm_medium=search&utm_campaign=Whitepaper-Building+Scalable+Datacenter+Networks). |
+| spine | The aggregation switch for multiple leafs. Specifically used when a data center is using a {{<exlink url="https://en.wikipedia.org/wiki/Clos_network" text="Clos network architecture">}}. Read more about spine-leaf architecture in this {{<exlink url="https://cumulusnetworks.com/learn/resources/whitepapers/building-scalable-data-center-networks" text="white paper">}}. |
 | exit leaf | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf. |
 | anycast | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches. |
 | RIOT | Routing in and out of tunnels. A Broadcom feature for routing in and out of tunnels. Allows a VXLAN bridge to have a switch VLAN interface associated with it, and traffic to exit a VXLAN into the layer 3 fabric. Also called VXLAN Routing. |
@@ -30,9 +30,9 @@ VXLAN active-active mode requires the following underlying technologies to work 
 
 | Technology | More Information |
 | -----------|----------------- |
-| MLAG|Refer to [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) for more detailed configuration information. Example configurations are provided below. |
-| OSPF or BGP |Refer to [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/) or [BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) for more detailed configuration information. Example configurations for BGP are provided below. |
-| STP | You must enable [BPDU filter and BPDU guard](../../Layer-3/Bidirectional-Forwarding-Detection-BFD/) in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN. Example configurations are provided below. |
+| MLAG|Refer to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} for more detailed configuration information. Example configurations are provided below. |
+| OSPF or BGP |Refer to {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} for more detailed configuration information. Example configurations for BGP are provided below. |
+| STP | You must enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="BPDU guard">}} in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN. Example configurations are provided below. |
 
 ### Active-active VTEP Anycast IP Behavior
 
@@ -108,8 +108,8 @@ The VXLAN interfaces are configured with individual IP addresses, which `clagd` 
 
 ### FRRouting Configuration
 
-You can configure the layer 3 fabric using [BGP](../../Layer-3/Border-Gateway-Protocol-BGP/)
-or [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF). The following example uses BGP unnumbered. The MLAG switch configuration for the topology above is:
+You can configure the layer 3 fabric using {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}
+or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}. The following example uses BGP unnumbered. The MLAG switch configuration for the topology above is:
 
 ### Layer 3 IP Addressing
 
@@ -641,7 +641,7 @@ Our Interface      Peer Interface     CLAG Id   Conflicts      Proto-Down Reason
 
 ### Use VLAN for Peer Link Only Once
 
-Do not reuse the VLAN for the peer link layer 3 subinterface for any other interface in the system. A high VLAN ID value is recommended. For more information on VLAN ID ranges, refer to the [VLAN-aware bridge chapter](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode#reserved-vlan-range).
+Do not reuse the VLAN for the peer link layer 3 subinterface for any other interface in the system. A high VLAN ID value is recommended. For more information on VLAN ID ranges, refer to the {{<link url="VLAN-aware-Bridge-Mode#reserved-vlan-range" text="VLAN-aware bridge chapter">}}.
 
 ### Bonds with Vagrant in Cumulus VX
 
@@ -659,4 +659,4 @@ iface swp50
   post-up ip link set $IFACE promisc on
 ```
 
-For more information on using Cumulus VX and Vagrant, refer to the [Cumulus VX documentation](/cumulus-vx/).
+For more information on using Cumulus VX and Vagrant, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-vx/" text="Cumulus VX documentation">}}.

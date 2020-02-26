@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Linux implements an HTTP application programing interface to [OpenStack ML2 driver](../../Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux/) and [NCLU](../Network-Command-Line-Utility-NCLU/). Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
+Cumulus Linux implements an HTTP application programing interface to {{<link url="OpenStack-Neutron-ML2-and-Cumulus-Linux" text="OpenStack ML2 driver">}} and {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
 
 ## HTTP API Basics
 
@@ -47,7 +47,7 @@ All URLs must use HTTPS instead of HTTP.
 
 {{%/notice%}}
 
-For more information on the listen directive, refer to the [NGINX documentation](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen).
+For more information on the listen directive, refer to the {{<exlink url="https://nginx.org/en/docs/http/ngx_http_core_module.html#listen" text="NGINX documentation">}}.
 
 ## Security
 
@@ -61,7 +61,7 @@ The user and password must correspond to a user on the host switch.
 
 All traffic must be secured in transport using TLSv1.2 by default. Cumulus Linux contains a self-signed certificate and private key used server-side in this application so that it works out of the box, but Cumulus Networks recommends you use your own certificates and keys. Certificates must be in the PEM format.
 
-For step by step documentation for generating self-signed certificates and keys, and installing them to the switch, refer to the [Ubuntu Certificates and Security documentation](https://help.ubuntu.com/lts/serverguide/certificates-and-security.html).
+For step by step documentation for generating self-signed certificates and keys, and installing them to the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
 {{%notice warning%}}
 
@@ -82,7 +82,7 @@ This section includes several example cURL commands you can use to send HTTP req
 
 Requests for NCLU require setting the Content-Type request header to be set to `application/json`.
 
-The cURL `-k` flag is necessary when the server uses a self-signed certificate. This is the default configuration (see the [Security section](#security)). To display the response headers, include the `-D` flag in the command.
+The cURL `-k` flag is necessary when the server uses a self-signed certificate. This is the default configuration (see the {{<link url="#security" text="Security section">}}). To display the response headers, include the `-D` flag in the command.
 
 {{%/notice%}}
 

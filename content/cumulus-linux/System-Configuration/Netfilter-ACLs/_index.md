@@ -10,10 +10,10 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-[Netfilter](http://www.netfilter.org/) is the packet filtering framework in Cumulus Linux as well as most other Linux distributions. There are a number of tools available for configuring ACLs in Cumulus Linux:
+{{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux as well as most other Linux distributions. There are a number of tools available for configuring ACLs in Cumulus Linux:
 
 - `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools used to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
-- [NCLU](../Network-Command-Line-Utility-NCLU/) is a Cumulus Linux-specific userspace tool used to configure custom ACLs.
+- {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} is a Cumulus Linux-specific userspace tool used to configure custom ACLs.
 - `cl-acltool` is a Cumulus Linux-specific userspace tool used to administer filtering rules and configure default ACLs.
 
 NCLU and `cl-acltool` operate on various configuration files and use `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, NCLU and `cl-acltool` program rules in hardware for interfaces involving switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
@@ -81,7 +81,7 @@ switch# net show configuration acl
 
 ### Chains
 
-Netfilter describes the mechanism for which packets are classified and controlled in the Linux kernel. Cumulus Linux uses the Netfilter framework to control the flow of traffic to, from, and across the switch. Netfilter does not require a separate software daemon to run; it is part of the Linux kernel itself. Netfilter asserts policies at layers 2, 3 and 4 of the [OSI model](https://en.wikipedia.org/wiki/OSI_model) by inspecting packet and frame headers based on a list of rules. Rules are defined using syntax provided by the `iptables`, `ip6tables` and `ebtables` userspace applications.
+Netfilter describes the mechanism for which packets are classified and controlled in the Linux kernel. Cumulus Linux uses the Netfilter framework to control the flow of traffic to, from, and across the switch. Netfilter does not require a separate software daemon to run; it is part of the Linux kernel itself. Netfilter asserts policies at layers 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers based on a list of rules. Rules are defined using syntax provided by the `iptables`, `ip6tables` and `ebtables` userspace applications.
 
 The rules created by these programs inspect or operate on packets at several points in the life of the packet through the system. These five points are known as *chains* and are shown here:
 
@@ -132,7 +132,7 @@ Rules have several different components; the examples below highlight those diff
 - **Chain:** The second argument is the *chain*. Each table supports several different chains. See Understanding Tables above.
 - **Matches:** The third argument(s) are called the *matches*. You can specify multiple matches in a single rule. However, the more matches you use in a rule, the more memory that rule consumes.
 - **Jump:** The *jump* specifies the target of the rule; that is, what action to take if the packet matches the rule. If this option is omitted in a rule, then matching the rule will have no effect on the packet's fate, but the counters on the rule will be incremented.
-- **Target(s):** The *target* can be a user-defined chain (other than the one this rule is in), one of the special built-in targets that decides the fate of the packet immediately (like DROP), or an extended target. See the [Supported Rule Types and Common Usages](#supported-rule-types) section below for examples of different targets.
+- **Target(s):** The *target* can be a user-defined chain (other than the one this rule is in), one of the special built-in targets that decides the fate of the packet immediately (like DROP), or an extended target. See the {{<link url="#supported-rule-types" text="Supported Rule Types">}} section below for examples of different targets.
 
 ### How Rules Are Parsed and Applied
 
@@ -154,7 +154,7 @@ The Linux packet forwarding construct is an overlay for how the silicon undernea
 -A $INGRESS_CHAIN -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000
 ```
 
-    {{%notice warning%}}
+   {{%notice warning%}}
 
 If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule gets processeand then terminates processing. This is a misconfiguration; there is no reason to have duplicate rules with different actions.
 
@@ -266,7 +266,7 @@ To always start `switchd` with nonatomic updates:
 acl.non_atomic_update_mode = TRUE
 ```
 
-3. [Restart `switchd`](../Configuring-switchd/#restart-switchd):
+3. {{<link url="Configuring-switchd#restart-switchd" text="Restart `switchd`">}}:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -330,7 +330,7 @@ By default, each entry occupies one double wide entry, except if the entry is on
 -A FORWARD --in-interface swp+ -p tcp -m multiport --dports 1050:1051,1055:1056 -j ACCEPT
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 Port ranges are only allowed for ingress rules.
 
@@ -339,8 +339,7 @@ Port ranges are only allowed for ingress rules.
 ### Match SVI and Bridged Interfaces in Rules
 
 Cumulus Linux supports matching ACL rules for both ingress and egress interfaces on both
-[VLAN-aware](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) and [traditional
-mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/) bridges, including bridge SVIs ([switch VLAN interfaces](../../Layer-2/Ethernet-Bridging-VLANs/)) for input and output. However, keep the following in mind:
+{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}} and {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} bridges, including bridge SVIs ({{<link url="Ethernet-Bridging-VLANs#configure-an-svi-switch-vlan-interface" text="switch VLAN interfaces">}}) for input and output. However, keep the following in mind:
 
 - If a traditional mode bridge has a mix of different VLANs, or has both access and trunk members, output interface matching is not supported.
 - For `iptables` rules, all IP packets in a bridge are matched, not just routed packets.
@@ -376,7 +375,7 @@ Example rules for a traditional mode bridge:
 
 ### Match on VLAN IDs on Layer 2 Interfaces
 
-On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), you can match on VLAN IDs on layer 2 interfaces for ingress rules.
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can match on VLAN IDs on layer 2 interfaces for ingress rules.
 
 The following example matches on a VLAN and DSCP class, and sets the internal class of the packet. This can be combined with ingress iptable rules to get extended matching on IP fields.
 
@@ -643,11 +642,11 @@ include /etc/cumulus/acl/policy.d/01_new.datapathacl
 
 The maximum number of rules that can be handled in hardware is a function of the following factors:
 
-- The platform type (switch silicon, like Tomahawk or Spectrum - see the [HCL](http://cumulusnetworks.com/support/hcl) to determine which platform type applies to a particular switch).
-- The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously. 
+- The platform type (switch silicon, like Tomahawk or Spectrum - see the {{<exlink url="https://cumulusnetworks.com/support/hcl" text="HCL">}} to determine which platform type applies to a particular switch).
+- The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
 - The number of default rules provided by Cumulus Linux.
 - Whether the rules are applied on ingress or egress.
-- Whether the rules are in atomic or nonatomic mode; nonatomic mode rules are used when nonatomic updates are enabled ([see above](#nonatomic-update-mode-and-atomic-update-mode)).
+- Whether the rules are in atomic or nonatomic mode; nonatomic mode rules are used when nonatomic updates are enabled ({{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="see above">}}).
 
 If the maximum number of rules for a particular table is exceeded, `cl-acltool -i` generates the following error:
 
@@ -666,7 +665,25 @@ In the tables below, the default rules count toward the limits listed. The raw l
 |Egress raw limit |256 |0 |512| 0|
 |Egress limit with default rules|256 (29 default)|0| 512 (29 default) |0|
 
-### Broadcom Trident II+ and Trident3 Limits
+### Broadcom Trident3 Limits
+
+The Trident3 ASIC is divided into 12 slices, organized into 4 groups for ACLs. Each group contains 3 slices. Each group can support a maximum of 768 rules. You cannot mix IPv4 and IPv6 rules within the same group. IPv4 and MAC rules can be programmed into the same group.
+
+| Direction                        | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
+| -------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------------------------- |
+| Ingress raw limit                | 768                    | 768                    | 2304                      | 2304                      |
+| Ingress limit with default rules | 768 (44 default)       | 768 (41 default)       | 2304 (44 default)         | 2304 (41 default)         |
+| Egress raw limit                 | 512                    | 0                      | 512                       | 0                         |
+| Egress limit with default rules  | 512 (28 default)       | 0                      | 512 (28 default)          | 0                         |
+
+### Broadcom Trident II+ Limits
+
+| Direction                        | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
+| -------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------------------------- |
+| Ingress raw limit                | 4096                   | 4096                   | 8192                      | 8192                      |
+| Ingress limit with default rules | 2048 (36 default)      | 3072 (29 default)      | 6144 (36 default)         | 6144 (29 default)         |
+| Egress raw limit                 | 256                    | 0                      | 512                       | 0                         |
+| Egress limit with default rules  | 256 (29 default)       | 0                      | 512 (29 default)          | 0                         |
 
 ### Broadcom Trident II Limits
 
@@ -688,7 +705,7 @@ In the tables below, the default rules count toward the limits listed. The raw l
 
 ### Mellanox Spectrum Limits
 
-The Mellanox Spectrum ASIC has one common [TCAM](https://en.wikipedia.org/wiki Content-addressable_memory#Ternary_CAMs) for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the [TCAM profile](../../Layer-3/Routing/) specified for the switch.
+The Mellanox Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which can be used for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Routing#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} specified for the switch.
 
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
 |------------|-------------------|-------------------|-------------------|-------------------------|
@@ -741,7 +758,7 @@ INPUT FORWARD OUTPUT
 
 |Rule Element|Supported|Unsupported|
 |--- |--- |--- |
-|**Matches**|Src/Dst, IP protocol<br>In/out interface<br>IPv4: icmp, ttl,<br>IPv6: icmp6, frag, hl,<br>IP common: tcp ([with flags](#filter-specific-tcp-flags)), udp, multiport, DSCP, addrtype|Rules with input/output Ethernet interfaces are ignored<br>Inverse matches|
+|**Matches**|Src/Dst, IP protocol<br>In/out interface<br>IPv4: icmp, ttl,<br>IPv6: icmp6, frag, hl,<br>IP common: tcp ({{<link url="#filter-specific-tcp-flags" text="with flags">}}), udp, multiport, DSCP, addrtype|Rules with input/output Ethernet interfaces are ignored<br>Inverse matches|
 |**Standard Targets**|ACCEPT, DROP|RETURN, QUEUE, STOP, Fall Thru, Jump|
 |**Extended Targets**|LOG (IPv4/IPv6); UID is not supported for LOG<br>TCP SEQ, TCP options or IP options<br>ULOG<br>SETQOS<br>DSCP<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN (IPv4/IPv6)<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS||
 
@@ -902,7 +919,7 @@ SNMP_SERVERS_4 = "192.168.0.1/32"
 
 ### Set DSCP on Transit Traffic
 
-The examples here use the *mangle* table to modify the packet as it transits the switch. DSCP is expressed in [decimal notation](https://en.wikipedia.org/wiki/Differentiated_services#Commonly_used_DSCP_values) in the examples below.
+The examples here use the *mangle* table to modify the packet as it transits the switch. DSCP is expressed in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.
 
 ```
 [iptables]
@@ -941,7 +958,7 @@ The examples here use the DSCP match criteria in combination with other IP, TCP,
 
 ### Check the Packet and Byte Counters for ACL Rules
 
-To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with [mz](http://www.perihel.at/sec/mz/), which can be installed on host servers or even on Cumulus Linux switches. After traffic is sent to validate the counters, they are matched on switch1 use `cl-acltool`.
+To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with `{{<exlink url="https://en.wikipedia.org/wiki/Mausezahn" text="mz">}}` (mausezahn), which can be installed on host servers or even on Cumulus Linux switches. After traffic is sent to validate the counters, they are matched on switch1 using `cl-acltool`.
 
 {{%notice note%}}
 
@@ -1194,14 +1211,14 @@ The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 
 
 ## Useful Links
 
-- [www.netfilter.org](http://www.netfilter.org/)
-- [Netfilter.org packet filtering how-to](http://www.netfilter.org/documentation/HOWTO//packet-filtering-HOWTO-6.html)
+- {{<exlink url="http://www.netfilter.org/" text="Netfilter website">}}
+- {{<exlink url="http://www.netfilter.org/documentation/HOWTO//packet-filtering-HOWTO-6.html" text="Netfilter.org packet filtering how-to">}}
 
 ## Caveats and Errata
 
 ### Not All Rules Supported
 
-Not all `iptables`, `ip6tables`, or `ebtables` rules are supported. Refer to the [Supported Rules section](#iptables-and-ip6tables-rule-support) above for specific rule support.
+Not all `iptables`, `ip6tables`, or `ebtables` rules are supported. Refer to the {{<link url="#iptables-and-ip6tables-rule-support" text="Supported Rules section">}} above for specific rule support.
 
 ### ACL Log Policer Limits Traffic
 
@@ -1225,7 +1242,7 @@ On Broadcom-based switches, LOG actions can only be done on inbound interfaces (
 
 ### SPAN Sessions that Reference an Outgoing Interface
 
-SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. For an example, see the [SPAN Sessions that Reference an Outgoing Interface](../../Monitoring-and-Troubleshooting/Network-Troubleshooting#span-sessions-that-reference-an-outgoing-interface) in the Network Troubleshooting chapter.
+SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. For an example, see the {{<link url="Network-Troubleshooting#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} in the Network Troubleshooting chapter.
 
 ### Tomahawk Hardware Limitations
 
@@ -1239,7 +1256,7 @@ For example, your switch is set so BFD is rate limited to 2000 packets per secon
 
 In Cumulus Linux, atomic update mode is enabled by default. If you have Tomahawk switches and plan to use SPAN and/or mangle rules, you must disable atomic update mode.
 
-To do so, enable nonatomic update mode by setting the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then [restart `switchd`](../Configuring-switchd#restart-switchd).
+To do so, enable nonatomic update mode by setting the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}}.
 
 ```
 acl.non_atomic_update_mode = TRUE
@@ -1261,7 +1278,7 @@ On a Trident3 switch, the TCAM allocation for ACLs is limited to 2048 rules in a
 
 #### Enable Nonatomic Mode
 
-On a Trident3 switch, you must enable nonatomic update mode before you can configure ERSPAN. To do so, set the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then [restart `switchd`](../Configuring-switchd#restart-switchd).
+On a Trident3 switch, you must enable nonatomic update mode before you can configure ERSPAN. To do so, set the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}}.
 
 ```
 acl.non_atomic_update_mode = TRUE
@@ -1302,7 +1319,7 @@ However, running `cl-acltool -i` or `reboot` removes them. To ensure all rules t
 
 ### Mellanox Spectrum Hardware Limitations
 
-Due to hardware limitations in the Spectrum ASIC, [BFD policers](../../Layer-3/Bidirectional-Forwarding-Detection-BFD/) are shared between all BFD-related control plane rules. Specifically the following default rules share the same policer in the `00control_plan.rules` file:
+Due to hardware limitations in the Spectrum ASIC, {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD policers">}} are shared between all BFD-related control plane rules. Specifically the following default rules share the same policer in the `00control_plan.rules` file:
 
 ```
 [iptables]

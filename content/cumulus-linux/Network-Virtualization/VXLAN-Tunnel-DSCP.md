@@ -7,7 +7,7 @@ version: '4.0'
 ---
 Cumulus Linux provides configuration options to control DSCP operations during VXLAN encapsulation and decapsulation, specifically for solutions that require end-to-end quality of service, such as RDMA over Converged Ethernet.
 
-The configuration options propagate explicit congestion notification (ECN) between the underlay and overlay and are based on [RFC-6040](https://tools.ietf.org/html/rfc6040), which describes how to construct the IP header of an ECN field on both ingress to and egress from an IP-in-IP tunnel.
+The configuration options propagate explicit congestion notification (ECN) between the underlay and overlay and are based on {{<exlink url="https://tools.ietf.org/html/rfc6040" text="RFC 6040">}}, which describes how to construct the IP header of an ECN field on both ingress to and egress from an IP-in-IP tunnel.
 
 {{%notice note%}}
 

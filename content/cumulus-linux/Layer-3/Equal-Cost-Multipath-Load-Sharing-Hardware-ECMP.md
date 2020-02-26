@@ -10,7 +10,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Linux supports hardware-based [equal cost multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
+Cumulus Linux supports hardware-based {{<exlink url="http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing" text="equal cost multipath">}} (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
 
 ## Equal Cost Routing
 
@@ -32,7 +32,7 @@ For routes to be considered equal they must:
 
 {{%notice info%}}
 
-In Cumulus Linux, the BGP `maximum-paths` setting is enabled, so multiple routes are installed by default. See the [ECMP section](../Border-Gateway-Protocol-BGP#ecmp-with-bgp) of the BGP chapter for more information.
+In Cumulus Linux, the BGP `maximum-paths` setting is enabled, so multiple routes are installed by default. See the {{<link url="Border-Gateway-Protocol-BGP#ecmp-with-bgp" text="ECMP section">}} of the BGP chapter for more information.
 
 {{%/notice%}}
 
@@ -47,7 +47,7 @@ Cumulus Linux hashes on the following fields:
 - Source IPv4 or IPv6 address
 - Destination IPv4 or IPv6 address
 
-Further, on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), Cumulus Linux hashes on these additional fields:
+Further, on switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, Cumulus Linux hashes on these additional fields:
 
 - Source MAC address
 - Destination MAC address
@@ -99,7 +99,7 @@ cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
 
 `cl-ecmpcalc` can only take input interfaces that can be converted to a single physical port in the port tab file, such as the physical switch ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces are not supported.
 
-`cl-ecmpcalc` is supported only on switches with the [Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3](http://cumulusnetworks.com/hcl/) chipsets.
+`cl-ecmpcalc` is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3">}} chipsets.
 
 ### ECMP Hash Buckets
 
@@ -163,7 +163,7 @@ ecmp_hash_seed = 50
 ...
 ```
 
-[Restart](../../System-Configuration/Configuring-switchd#restart-switchd) the `switchd` service:
+{{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -187,7 +187,7 @@ Resilient hashing prevents disruptions when next hops are removed. It does not p
 
 {{%notice note%}}
 
-Resilient hashing is supported only on switches with the [Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum](https://cumulusnetworks.com/hcl/) chipsets. You can run `net show system` to determine the chipset.
+Resilient hashing is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum">}} chipsets. You can run `net show system` to determine the chipset.
 
 {{%/notice%}}
 
@@ -271,7 +271,7 @@ resilient_hash_enable = TRUE
 resilient_hash_entries_ecmp = 256
 ```
 
-3. [Restart](../../System-Configuration/Configuring-switchd#restart-switchd) the `switchd` service:
+3. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service

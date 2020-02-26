@@ -265,7 +265,7 @@ In some cases, it may be useful to relax this restriction. For example, two serv
 
 {{%notice note%}}
 
-A bridge in [VLAN-aware mode](../../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) cannot have VLAN translation enabled for it; only bridges configured in [traditional mode](../../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/) can utilize VLAN translation.
+A bridge in {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}} cannot have VLAN translation enabled for it; only bridges configured in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} can utilize VLAN translation.
 
 {{%/notice%}}
 
@@ -273,7 +273,7 @@ The following example enables the VLAN translation `sysctl`:
 
 ```
 cumulus@switch:~$ echo net.bridge.bridge-allow-multiple-vlans = 1 | sudo tee /etc/sysctl.d/multiple_vlans.conf
-net.bridge.bridge-allow-multiple-vlans = 1 
+net.bridge.bridge-allow-multiple-vlans = 1
 cumulus@switch:~$ sudo sysctl -p /etc/sysctl.d/multiple_vlans.conf
 net.bridge.bridge-allow-multiple-vlans = 1
 ```
@@ -288,6 +288,7 @@ cumulus@switch:~$ sudo brctl addif br_mix swp10.100 swp11.200
 cumulus@switch:~$ sudo brctl show br_mix
 bridge name     bridge id               STP enabled     interfaces
 br_mix          8000.4438390032bd       yes             swp10.100
-```                                                        swp11.200
+                                                        swp11.200
+```
 
 {{< img src = "/images/cumulus-linux/vlan-tagging-mixed-vlans.png" >}}

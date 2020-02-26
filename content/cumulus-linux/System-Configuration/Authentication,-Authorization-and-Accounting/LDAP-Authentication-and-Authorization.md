@@ -33,7 +33,7 @@ To install the additional packages, run the following command:
 cumulus@switch:~$ sudo apt-get install libnss-ldapd libpam-ldapd ldap-utils nslcd
 ```
 
-You can also install these packages even if the switch is not connected to the internet, as they are contained in the `cumulus-local-apt-archive` repository that is [embedded](../../../Installation-Management/Adding-and-Updating-Packages/#add-packages-from-the-cumulus-linux-local-archive) in the Cumulus Linux disk image.
+You can also install these packages even if the switch is not connected to the internet, as they are contained in the `cumulus-local-apt-archive` repository that is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux disk image.
 
 Follow the interactive prompts to specify the LDAP URI, search base distinguished name (DN), and services that must have LDAP lookups enabled. You need to select at least the `passwd`, `group`, and `shadow` services (press space to select a service). When done, click OK. This creates a very basic LDAP configuration using anonymous bind and initiates user search under the base DN specified.
 
@@ -61,7 +61,7 @@ Cumulus Networks recommends that you keep `compat` as the first source in NSS fo
 
 Entering incorrect information during the installation process might produce configuration errors. You can correct the information after installation by editing certain configuration files.
 
-- Edit the `/etc/nslcd.conf` file to update the LDAP URI and search base DN (see [Update the nslcd.conf File](#update-the-nslcd.conf-file), below).
+- Edit the `/etc/nslcd.conf` file to update the LDAP URI and search base DN (see {{<link url="#update-the-nslcdconf-file" text="Update the nslcd.conf File">}}, below).
 - Edit the `/etc/nssswitch.conf` file to update the service selections.
 
 Be sure to restart `netd` after editing the files.
@@ -135,7 +135,7 @@ zzzEndOfFilezzz
 
 After installation, update the main configuration file (`/etc/nslcd.conf`) to accommodate the expected LDAP server settings.
 
-This section documents some of the more important options that relate to security and how queries are handled. For details on all the available configuration options, read the [nslcd.conf man page](http://linux.die.net/man/5/nslcd.conf).
+This section documents some of the more important options that relate to security and how queries are handled. For details on all the available configuration options, read the {{<exlink url="http://linux.die.net/man/5/nslcd.conf" text="nslcd.conf man page">}}.
 
 {{%notice note%}}
 
@@ -379,7 +379,7 @@ cumulus@switch:~$ sudo nscd -K
 cumulus@switch:~$ sudo systemctl restart nslcd.service
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 If you are running the `nslcd` service in a management VRF, you need to run the `systemctl restart nslcd@mgmt.service` command instead of the `systemctl restart nslcd.service` command. For example:
 
@@ -418,8 +418,7 @@ Linux uses the *sudo* command to allow non-administrator users (such as the defa
 
 ## Active Directory Configuration
 
-Active Directory (AD) is a fully featured LDAP-based NIS server create by Microsoft. It offers unique features that classic OpenLDAP servers do not have. AD can be more complicated to configure on the client and each version works a little differently with Linux-based LDAP clients. Some more advanced configuration examples, from testing LDAP clients on Cumulus Linux with Active Directory (AD/LDAP), are available in our [knowledge
-base](https://support.cumulusnetworks.com/hc/en-us/articles/204383797).
+Active Directory (AD) is a fully featured LDAP-based NIS server create by Microsoft. It offers unique features that classic OpenLDAP servers do not have. AD can be more complicated to configure on the client and each version works a little differently with Linux-based LDAP clients. Some more advanced configuration examples, from testing LDAP clients on Cumulus Linux with Active Directory (AD/LDAP), are available in our {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204383797" text="knowledge base">}}.
 
 ## LDAP Verification Tools
 
@@ -555,12 +554,12 @@ DISTRIB_DESCRIPTION="Cumulus Linux 4.0.0~1555370771.772c26b6"
 
 There are several GUI LDAP clients available that help you work with LDAP servers. These are free tools that show the structure of the LDAP database graphically.
 
-- [Apache Directory Studio](http://directory.apache.org/studio/)
-- [LDAPManager](http://ldapmanager.sourceforge.net/)
+- {{<exlink url="http://directory.apache.org/studio/" text="Apache Directory Studio">}}
+- {{<exlink url="http://ldapmanager.sourceforge.net/" text="LDAPManager">}}
 
 ## Related Information
 
-- [Debian - configuring LDAP authentication](https://wiki.debian.org/LDAP/NSS)
-- [Debian - configuring PAM to use LDAP](https://wiki.debian.org/LDAP/PAM)
-- [GitHub - Arthur de Jong nslcd.conf file](https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf)
-- [Debian backports](http://backports.debian.org/Instructions/)
+- {{<exlink url="https://wiki.debian.org/LDAP/NSS" text="Debian - configuring LDAP authentication">}}
+- {{<exlink url="https://wiki.debian.org/LDAP/PAM" text="Debian - configuring PAM to use LDAP">}}
+- {{<exlink url="https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf" text="GitHub - Arthur de Jong nslcd.conf file">}}
+- {{<exlink url="http://backports.debian.org/Instructions/" text="Debian backports">}}

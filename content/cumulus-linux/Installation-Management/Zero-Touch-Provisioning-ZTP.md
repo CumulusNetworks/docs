@@ -13,8 +13,7 @@ version: '4.0'
 *Zero touch provisioning* (ZTP) enables you to deploy network devices quickly in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.
 
 The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages, providing ample flexibility
-for you to design the provisioning scheme to meet your needs. You can also use it to add the switch to a configuration management (CM) platform such as [Puppet](http://puppetlabs.com/puppet/what-is-puppet),
-[Chef](http://www.opscode.com), [CFEngine](https://cfengine.com) or possibly a custom, proprietary tool.
+for you to design the provisioning scheme to meet your needs. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="http://puppet.com/" text="Puppet">}}, {{<exlink url="https://www.chef.io" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or possibly a custom, proprietary tool.
 
 While developing and testing the provisioning logic, you can use the `ztp` command in Cumulus Linux to manually invoke your provisioning script on a device.
 
@@ -28,8 +27,7 @@ Each method is discussed in greater detail below.
 
 ## Use a Local File
 
-ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an [ONIE](http://onie.org)-style waterfall in `/var/lib/cumulus/ztp`,
-looking for the most specific name first, and ending at the most generic:
+ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="http://onie.org" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
 
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model + '-r' + revision`
 - `'cumulus-ztp-' + architecture + '-' + vendor + '_' + model`
@@ -70,8 +68,8 @@ At minimum, the script must:
 Follow these steps to perform ZTP using a USB drive:
 
 1. Copy the Cumulus Linux license and installation image to the USB drive.
-2. The `ztp` process searches the root filesystem of the newly mounted drive for filenames matching an [ONIE-style waterfall](https://github.com/opencomputeproject/onie/wiki/Quick-Start-Guide#directly-connected-scenario) (see the patterns and examples above), looking for the most specific name first, and ending at the most generic.
-3. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see [example scripts](#write-ztp-scripts)).
+2. The `ztp` process searches the root filesystem of the newly mounted drive for filenames matching an {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#directly-connected-scenario" text="ONIE-style waterfall">}} (see the patterns and examples above), looking for the most specific name first, and ending at the most generic.
+3. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see {{<link url="#write-ztp-scripts" text="example scripts">}}).
 
 {{%notice note%}}
 
@@ -90,8 +88,8 @@ The ZTP process over DHCP follows these steps:
 1. The first time you boot Cumulus Linux, eth0 is configured for DHCP and makes a DHCP request.
 2. The DHCP server offers a lease to the switch.
 3. If option 239 is present in the response, the ZTP process starts.
-4. The ZTP process requests the contents of the script from the URL, sending additional [HTTP headers](#inspect-http-headers) containing details about the switch.
-5. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see [example scripts](#write-ztp-scripts)).
+4. The ZTP process requests the contents of the script from the URL, sending additional {{<link url="#inspect-http-headers" text="HTTP headers">}} containing details about the switch.
+5. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see {{<link url="#write-ztp-scripts" text="example scripts">}}).
 6. If provisioning is necessary, the script executes locally on the switch with root privileges.
 7. The return code of the script is examined. If it is 0, the provisioning state is marked as complete in the autoprovisioning configuration file.
 
@@ -224,7 +222,7 @@ net show interface
 exit 0
 ```
 
-Several ZTP example scripts are available in the [Cumulus GitHub repository](https://github.com/CumulusNetworks/example-ztp-scripts).
+Several ZTP example scripts are available in the {{<exlink url="https://github.com/CumulusNetworks/example-ztp-scripts" text="Cumulus GitHub repository">}}.
 
 ## Best Practices
 
@@ -305,7 +303,7 @@ If you apply a management VRF in your script, either apply it last or reboot ins
 
 ### Perform Ansible Provisioning Callbacks
 
-After initially configuring a node with ZTP, use [Provisioning Callbacks](http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#provisioning-callbacks) to inform Ansible Tower or AWX that the node is ready for more detailed provisioning. The following example demonstrates how to use a provisioning callback:
+After initially configuring a node with ZTP, use {{<exlink url="http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#provisioning-callbacks" text="Provisioning Callbacks">}} to inform Ansible Tower or AWX that the node is ready for more detailed provisioning. The following example demonstrates how to use a provisioning callback:
 
 ```
 /usr/bin/curl -H "Content-Type:application/json" -k -X POST --data '{"host_config_key":"'somekey'"}' -u username:password http://ansible.example.com/api/v2/job_templates/1111/callback/

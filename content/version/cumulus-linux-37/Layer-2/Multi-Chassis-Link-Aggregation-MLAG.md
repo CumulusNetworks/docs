@@ -443,7 +443,7 @@ performance. The relevant timers are:
   value was received from the peer, then the default is 3 times the
   currently specified `lacpPoll` value.
 - `--initDelay <SECONDS>`: The number of seconds `clagd` delays the bring up
-  of MLAG bonds and anycast IP addresses. The default is *180* seconds.
+  of MLAG bonds and anycast IP addresses. The default is *10* seconds.
 - `--sendTimeout <SECONDS>`: The number of seconds `clagd` waits until the
   sending socket times out. If it takes longer than the `sendTimeout` value
   to send data to the peer, `clagd` generates an exception. The default is

@@ -289,6 +289,66 @@ When the `clagd` service exits during switch reboot or if you stop the service o
 
 However, if the primary switch goes down without stopping the `clagd` service for any reason, or if the peer link goes down, the secondary switch does **not** change its role. In case the peer switch is determined to be not alive, the switch in the secondary role rolls back the LACP system ID to be the bond interface MAC address instead of the `clagd-sys-mac` and the switch in primary role uses the `clagd-sys-mac` as the LACP system ID on the bonds.
 
+### clagctl Timers
+
+The `clagd` service has a number of timers that you can tune for enhanced performance. The relevant timers are:
+
+- `--reloadTimer <SECONDS>`: The number of seconds to wait for the peer switch to become active. If the peer switch does not become active after the timer expires, the MLAG bonds leave the initialization ([protodown](#peer-link-interfaces-and-the-protodown-state)) state and become active. This provides `clagd` with sufficient time to determine whether the peer switch is coming up or if it is permanently unreachable. The default is *300* seconds.
+- `--peerTimeout <SECONDS>`: The number of seconds `clagd` waits without receiving any data from the peer switch before it determines that the peer is no longer active. If this parameter is not specified, `clagd` uses 3 times the last `lacpPoll` value received from the peer. If no `lacpPoll` value is received from the peer, the default is 3 times the currently specified `lacpPoll` value.
+- `--initDelay <SECONDS>`: The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. The default is *180* seconds.
+- `--sendTimeout <SECONDS>`: The number of seconds `clagd` waits until the sending socket times out. If it takes longer than the `sendTimeout` value to send data to the peer, `clagd` generates an exception. The default is *30* seconds.
+
+To set a timer, use NCLU. For example, to set the `peerTimeout` to 900 seconds:
+
+```
+cumulus@switch:~$ net add interface peerlink.4094 clag args --peerTimeout 900
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+You can run `clagctl params` to see the settings for all of the `clagd` parameters.
+
+```
+cumulus@leaf01:~$ clagctl params
+clagVersion = 1.3.0
+clagDataVersion = 1.3.0
+clagCmdVersion = 1.1.0
+peerIp = 169.254.1.2
+peerIf = peerlink.4094
+sysMac = 44:38:39:ff:00:01
+lacpPoll = 2
+currLacpPoll = 2
+peerConnect = 1
+cmdConnect = 1
+peerLinkPoll = 1
+switchdReadyTimeout = 120
+reloadTimer = 300
+periodicRun = 4
+priority = 1000
+quiet = False
+debug = 0x0
+verbose = False
+log = syslog
+vm = True
+peerPort = 5342
+peerTimeout = 20
+initDelay = 180
+sendTimeout = 30
+sendBufSize = 65536
+forceDynamic = False
+dormantDisable = False
+redirectEnable = False
+backupIp = 192.168.0.12
+backupVrf = None
+backupPort = 5342
+vxlanAnycast = None
+neighSync = True
+permanentMacSync = True
+cmdLine = /usr/sbin/clagd --daemon 169.254.1.2 peerlink.4094 44:38:39:FF:00:01 --priority 1000 --backupIp 192.168.0.12 --peerTimeout 900
+peerlinkLearnEnable = False
+cumulus@leaf01:~$
+```
+
 ## Example MLAG Configuration
 
 The example configuration below configures two bonds for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port.
@@ -1461,7 +1521,7 @@ bridge:peerlink CIST info
 
 {{%notice note%}}
 
-**Best Practices for STP with MLAG**
+### Best Practices for STP with MLAG
 
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports must be the same on both peer switches.
@@ -1551,4 +1611,4 @@ This occurs when you have multiple LACP bonds between the same two LACP endpoint
 
 ## Caveats and Errata
 
-- If both the backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, sees the peer switch as down and takes over as the primary.
+- If both backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, sees the peer switch as down and takes over as the primary.

@@ -240,6 +240,7 @@ The most common use case for VRF is to use multiple independent routing and forw
 - An interface is always assigned to only one VRF; any packets received on that interface are routed using the associated VRF routing table.
 - Route leaking is not allowed for overlapping addresses.
 - Route leaking is supported for both IPv4 and IPv6 routes.
+- Route leaking is supported with EVPN in a symmetric routing configuration only.
 - VRF route leaking is not supported between the tenant VRF and the default VRF with onlink next hops (bgp unnumbered).
 - The NCLU command to configure route leaking fails if the VRF is named `red` (lowercase letters only). This is not a problem if the VRF is named `RED` (uppercase letters) or has a name other than red. To work around this issue, rename the VRF or run the `vtysh` command instead. This is a known limitation in `network-docopt`.
 

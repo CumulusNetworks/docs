@@ -11,6 +11,9 @@
 {{ $styles := resources.Get "book.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $styles.Permalink }}">
 
+{{ $annotator_sheet := resources.Get "annotator.min.css" | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $annotator_sheet.Permalink }}">
+
 <!-- The PDF page has a custom CSS sheet to control PDF output formatting -->
 {{if eq .Page.Type "pdf"}}
     {{ partial "pdf-head" . }}

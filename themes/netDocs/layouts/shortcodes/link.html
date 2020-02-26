@@ -5,7 +5,6 @@
 <!-- If they are using the page title --> 
 {{ if .Get "title" }}
     {{ .Scratch.Set "anchor_set" (split (.Get "title") "#") }}
-    
     <!-- Determine if the anchor is set for this page or another page -->
     {{ if eq (len (.Scratch.Get "anchor_set")) 2 }}
         <!-- If the anchor is this page, then they didn't provide a page name, only the anchor -->
@@ -17,7 +16,7 @@
         <!-- This is a normal link, just containing an anchor, just capture both componeonts --> 
         {{ else }}
             {{ .Scratch.Set "title" (index (.Scratch.Get "anchor_set") 0) }}
-            {{ .Scratch.Set "anchor" (index (.Scratch.Get "anchor_set") 1) }}
+            {{ .Scratch.Set "anchor" (lower (urlize (index (.Scratch.Get "anchor_set") 1))) }}
         {{ end }}
         
     <!-- There is no anchor, simple case --> 

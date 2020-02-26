@@ -294,7 +294,7 @@ However, if the primary switch goes down without stopping the `clagd` service fo
 The `clagd` service has a number of timers that you can tune for enhanced performance. The relevant timers are:
 
 - `--reloadTimer <SECONDS>`: The number of seconds to wait for the peer switch to become active. If the peer switch does not become active after the timer expires, the MLAG bonds leave the initialization ([protodown](#peer-link-interfaces-and-the-protodown-state)) state and become active. This provides `clagd` with sufficient time to determine whether the peer switch is coming up or if it is permanently unreachable. The default is *300* seconds.
-- `--peerTimeout <SECONDS>`: The number of seconds `clagd` waits without receiving any data from the peer switch before it determines that the peer is no longer active. If this parameter is not specified, `clagd` uses 3 times the last `lacpPoll` value received from the peer. If no `lacpPoll` value is received from the peer, the default is 3 times the currently specified `lacpPoll` value.
+- `--peerTimeout <SECONDS>`: The number of seconds `clagd` waits without receiving any data from the peer switch before it determines that the peer is no longer active. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value.
 - `--initDelay <SECONDS>`: The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. The default is *180* seconds.
 - `--sendTimeout <SECONDS>`: The number of seconds `clagd` waits until the sending socket times out. If it takes longer than the `sendTimeout` value to send data to the peer, `clagd` generates an exception. The default is *30* seconds.
 

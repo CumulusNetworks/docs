@@ -15,17 +15,17 @@ This quick start guide provides an end-to-end setup process for installing and r
 
 Intermediate-level Linux knowledge is assumed for this guide. You need to be familiar with basic text editing, Unix file permissions, and process monitoring. A variety of text editors are pre-installed, including `vi` and `nano`.
 
-You must have access to a Linux or UNIX shell. If you are running Windows, use a Linux environment like [Cygwin](http://www.cygwin.com/) as your command line tool for interacting with Cumulus Linux.
+You must have access to a Linux or UNIX shell. If you are running Windows, use a Linux environment like {{<exlink url="http://www.cygwin.com/" text="Cygwin">}} as your command line tool for interacting with Cumulus Linux.
 
-If you are a networking engineer but are unfamiliar with Linux concepts, refer to [this reference guide](https://support.cumulusnetworks.com/hc/en-us/articles/201787636) to compare the Cumulus Linux CLI and configuration options, and their equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also [watch a series of short videos](http://cumulusnetworks.com/technical-videos/) introducing you to Linux and Cumulus Linux-specific concepts.
+If you are a networking engineer but are unfamiliar with Linux concepts, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/201787636" text="this reference guide">}} to compare the Cumulus Linux CLI and configuration options, and their equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also {{<exlink url="http://cumulusnetworks.com/technical-videos/" text="watch a series of short videos">}} introducing you to Linux and Cumulus Linux-specific concepts.
 
 ## Install Cumulus Linux
 
-To install Cumulus Linux, you use [ONIE](https://opencomputeproject.github.io/onie) (Open Network Install Environment), an extension to the traditional U-Boot software that allows for automatic discovery of a network installer image. This facilitates the ecosystem model of procuring switches with an operating system choice, such as Cumulus Linux. The easiest way to install Cumulus Linux with ONIE is with local HTTP discovery:
+To install Cumulus Linux, you use {{<exlink url="https://opencomputeproject.github.io/onie" text="ONIE">}} (Open Network Install Environment), an extension to the traditional U-Boot software that allows for automatic discovery of a network installer image. This facilitates the ecosystem model of procuring switches with an operating system choice, such as Cumulus Linux. The easiest way to install Cumulus Linux with ONIE is with local HTTP discovery:
 
 1. If your host (laptop or server) is IPv6-enabled, make sure it is running a web server. If the host is IPv4-enabled, make sure it is running DHCP in addition to a web server.
 
-2. [Download](http://cumulusnetworks.com/downloads/) the Cumulus Linux installation file to the root directory of the web server. Rename this file `onie-installer`.
+2. {{<exlink url="https://cumulusnetworks.com/downloads/" text="Download">}} the Cumulus Linux installation file to the root directory of the web server. Rename this file `onie-installer`.
 
 3. Connect your host using an Ethernet cable to the management Ethernet port of the switch.
 
@@ -35,7 +35,7 @@ To install Cumulus Linux, you use [ONIE](https://opencomputeproject.github.io/on
 
 These steps describe a flexible unattended installation method. You do not need a console cable. A fresh install with ONIE using a local web server typically completes in less than ten minutes.
 
-You have more options for installing Cumulus Linux with ONIE. Read [Installing a New Cumulus Linux Image](../Installation-Management/Installing-a-New-Cumulus-Linux-Image/) to install Cumulus Linux using ONIE in the following ways:
+You have more options for installing Cumulus Linux with ONIE. Read {{<link url="Installing-a-New-Cumulus-Linux-Image">}} to install Cumulus Linux using ONIE in the following ways:
 
 - DHCP/web server with and without DHCP options
 - Web server without DHCP
@@ -73,7 +73,7 @@ For optimum security, change the default password with the `passwd` command *bef
 
 All accounts except `root` are permitted remote SSH login; you can use `sudo` to grant a non-root account root-level access. Commands that change the system configuration require this elevated level of access.
 
-For more information about `sudo`, read [Using sudo to Delegate Privileges](../System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/).
+For more information about `sudo`, read {{<link url="Using-sudo-to-Delegate-Privileges">}}.
 
 ### Serial Console Management
 
@@ -83,7 +83,7 @@ Typically, switches ship from the manufacturer with a mating DB9 serial cable. S
 
 ### Wired Ethernet Management
 
-Switches supported in Cumulus Linux always contain at least one dedicated Ethernet management port, which is named eth0. This interface is geared specifically for out-of-band management use. The management interface uses DHCPv4 for addressing by default. You can set a static IP address with the Network Command Line Utility (NCLU) or by editing the [/etc/network/interfaces](http://manpages.debian.net/man/5/interfaces) file (Linux).
+Switches supported in Cumulus Linux always contain at least one dedicated Ethernet management port, which is named eth0. This interface is geared specifically for out-of-band management use. The management interface uses DHCPv4 for addressing by default. You can set a static IP address with the Network Command Line Utility (NCLU) or by editing the `{{<exlink url="http://manpages.debian.net/man/5/interfaces" text="/etc/network/interfaces">}}` file (Linux).
 
 <details>
 
@@ -189,7 +189,7 @@ Programs that are already running (including log files) and users currently logg
 
 ### Verify the System Time
 
-Before you install the license, verify that the date and time on the switch are correct, and [correct the date and time](../System-Configuration/Setting-Date-and-Time/) if necessary. If the date and time is incorrect, the switch might not be able to synchronize with Puppet or might return errors after you restart `switchd`:
+Before you install the license, verify that the date and time on the switch are correct, and {{<link url="Setting-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch might not be able to synchronize with Puppet or might return errors after you restart `switchd`:
 
 ```
 Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload' recommended.
@@ -247,7 +247,7 @@ If a license is not installed on a Cumulus Linux switch, the `switchd` service d
 
 ## Configure Breakout Ports with Splitter Cables
 
-If you are using 4x10G DAC or AOC cables, or want to break out 100G or 40G switch ports, configure the breakout ports. For more details, see [Layer 1 and Switch Port Attributes](../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/).
+If you are using 4x10G DAC or AOC cables, or want to break out 100G or 40G switch ports, configure the breakout ports. For more details, see {{<link url="Switch-Port-Attributes">}}.
 
 ## Test Cable Connectivity
 

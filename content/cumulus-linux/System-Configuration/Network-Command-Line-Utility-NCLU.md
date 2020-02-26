@@ -51,12 +51,12 @@ When you have a running configuration, you can review and update the configurati
 - `net rollback` provides a mechanism to revert back to an earlier configuration.
 - `net commit confirm` requires you to press *Enter* to commit changes using NCLU. If you run `net commit confirm` but do not press *Enter* within 10 seconds, the commit automatically reverts and no changes are made.
 - `net commit description <description>` enables you to provide a descriptive summary of the changes you are about to commit.
-- `net commit permanent` retains the [backup file](../../Installation-Management/Back-up-and-Restore/) taken when committing the change. Otherwise, the backup files created from NCLU commands are cleaned up periodically.
+- `net commit permanent` retains the {{<link url="Back-up-and-Restore" text="backup file">}} taken when committing the change. Otherwise, the backup files created from NCLU commands are cleaned up periodically.
 - `net del all` deletes all configurations and stops the IEEE 802.1X service.
 
     {{%notice note%}}
 
-The `net del all` command does not remove [management VRF](../../Layer-3/Management-VRF/) configurations; NCLU does not interact with eth0 interfaces and management VRF.
+The `net del all` command does not remove {{<link url="Management-VRF" text="management VRF">}} configurations; NCLU does not interact with eth0 interfaces and management VRF.
 
     {{%/notice%}}
 
@@ -328,8 +328,7 @@ Done
 
 {{%notice note%}}
 
-You can use the `adduser` command for local user accounts only. You can use the `addgroup` command for both local and remote user accounts. For a remote user account, you must use the mapping username, such as `tacacs3` or `radius_user`, not the [TACACS](../Authentication-Authorization-and-Accounting/TACACS+/)
-or [RADIUS](../Authentication-Authorization-and-Accounting/RADIUS-AAA/) account name.
+You can use the `adduser` command for local user accounts only. You can use the `addgroup` command for both local and remote user accounts. For a remote user account, you must use the mapping username, such as `tacacs3` or `radius_user`, not the {{<link url="TACACS+" text="TACACS">}} or {{<link url="RADIUS-AAA" text="RADIUS">}} account name.
 
 {{%/notice%}}
 
@@ -366,7 +365,7 @@ To configure a new user group to use NCLU, add that group to the `groups_with_ed
 
 {{%notice warning%}}
 
-Use caution giving edit permissions to groups. For example, do not give edit permissions to the [*tacacs* group](../Authentication-Authorization-and-Accounting/TACACS+/).
+Use caution giving edit permissions to groups. For example, do not give edit permissions to the {{<link url="TACACS+" text="*tacacs* group">}}.
 
 {{%/notice%}}
 

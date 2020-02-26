@@ -1,5 +1,11 @@
 {{ if .Get "url" }}
-    <a rel="canonical" href="{{ (.Get "url") }}">{{ default (.Get "url") (.Get "text")}}</a>
+    {{ if in (.Get "url")  "//"  }}
+        <a rel="canonical" href="{{ (.Get "url") }}">{{ default (.Get "url") (.Get "text")}}</a>
+        Has \\
+    {{ else }} 
+        <a rel="canonical" href="//{{ (.Get "url") }}">{{ default (.Get "url") (.Get "text")}}</a>
+        No \\
+    {{ end }} 
 {{- else -}}
     {{ errorf "missing url in link %s" .Position}}
 {{ end }}

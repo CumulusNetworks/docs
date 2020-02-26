@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Linux can be used to run the [Docker](https://www.docker.com/) container platform. You can install Docker Engine directly on a Cumulus Linux switch and run Docker containers natively on the switch.
+Cumulus Linux can be used to run the {{<exlink url="https://www.docker.com/" text="Docker">}} container platform. You can install Docker Engine directly on a Cumulus Linux switch and run Docker containers natively on the switch.
 
 To set up Docker on Cumulus Linux, run the following commands **as root**.
 

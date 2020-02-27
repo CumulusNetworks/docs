@@ -1,9 +1,3 @@
-{{ $annotator := resources.Get "js/annotator-full.min.js"}}
-<script src ="{{ $annotator.RelPermalink }}"> </script>
-<script>
-    var ann = new Annotator(document.body);
-</script>
-
 <!-- internal Hugo template for google analytics -->
 {{ template "_internal/google_analytics_async.html" . }}
 <script type="text/javascript">

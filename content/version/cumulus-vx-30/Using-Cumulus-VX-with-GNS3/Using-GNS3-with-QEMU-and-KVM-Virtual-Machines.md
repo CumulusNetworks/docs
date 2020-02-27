@@ -63,7 +63,7 @@ Each node needs a different port. You can do this by
         
         {{%notice note%}}
         
-This enables SSH to port 1401 (ssh -p 1401 cumulus@127.0.0.1).
+This enables SSH to port 1401 (`ssh -p 1401 cumulus@127.0.0.1`).
         
         {{%/notice%}}
     

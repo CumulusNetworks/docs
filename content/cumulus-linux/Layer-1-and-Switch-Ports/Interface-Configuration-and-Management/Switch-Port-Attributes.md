@@ -232,7 +232,7 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
 Interface MTU applies to traffic traversing the management port, front panel/switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces). MTU is the only interface setting that you must set manually.
 
-On Mellanox switches, the default MTU setting is 9248 in Cumulus Linux. On Broadcom switches, the default MTU setting is 1500. To change the setting, run the following commands:
+On Mellanox switches, the default MTU setting is 9238 in Cumulus Linux. On Broadcom switches, the default MTU setting is 1500. To change the setting, run the following commands:
 
 <details>
 
@@ -394,7 +394,7 @@ cumulus@switch:~$ ip link show dev swp1
 
 ### Bring Down an Interface for a Bridge Member
 
-When you bring down an interface for a bridge member, the MTU for the interface and the MTU for the bridge are both set to the default value of 1500 for Broadcom switches and 9248 for Mellanox switches. To work around this, run `ifdown` on the interface, then run the `sudo ip link set dev <interface> mtu` command.
+When you bring down an interface for a bridge member, the MTU for the interface and the MTU for the bridge are both set to the default value of 1500 for Broadcom switches and 9238 for Mellanox switches. To work around this, run `ifdown` on the interface, then run the `sudo ip link set dev <interface> mtu` command.
 
 For example:
 
@@ -876,7 +876,7 @@ cumulus@switch:~$ cat /etc/network/ifupdown2/policy.d/address.json
 
 {{%notice note%}}
 
-Setting the default MTU also applies to the management interface. Be sure to add the *iface\_defaults* to override the MTU for eth0, to remain at 1500 for Broadcom switches or 9248 for Mellanox switches.
+Setting the default MTU also applies to the management interface. Be sure to add the *iface\_defaults* to override the MTU for eth0, to remain at 1500 for Broadcom switches or 9238 for Mellanox switches.
 
 {{%/notice%}}
 

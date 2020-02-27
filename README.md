@@ -10,12 +10,12 @@ a command line interface.
 
 In order to build and view the live site:
 
-1. Install Hugo version 0.55.6 **extended** from https://github.com/gohugoio/hugo/releases/tag/v0.55.6.
+1. Install Hugo version 0.65.3 **extended** from https://github.com/gohugoio/hugo/releases/tag/v0.65.3.
 
-2. Verify Hugo is installed with `hugo version`. This site supports hugo version 0.55.6. The output of the `hugo version` command should read:
+2. Verify Hugo is installed with `hugo version`. This site supports hugo version 0.65.3. The output of the `hugo version` command should read:
 
 ```
-Hugo Static Site Generator v0.55.6/extended darwin/amd64 BuildDate: unknown
+Hugo Static Site Generator v0.65.3/extended darwin/amd64 BuildDate: unknown
 ```
 
 3. Clone this repository with `git clone`.
@@ -30,7 +30,7 @@ Hugo Static Site Generator v0.55.6/extended darwin/amd64 BuildDate: unknown
 
 This repository contains the documentation hosted at docs.cumulusnetworks.com. 
 
-If you would like to contribute to the site, please fork and submit a pull request. Commit your changes to the release branch, which is named *release/#.#.#*. For example, release/1.3.15.
+If you would like to contribute to the site, please fork and submit a pull request. Commit your changes to the `stage` branch.
 
 The docs team will review and, if accepted, publish any pull requests.
 

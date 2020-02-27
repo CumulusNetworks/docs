@@ -25,12 +25,15 @@
   {{- with .Section -}}
     <ul class="cn-book-section-container" id = "subsection">
       {{- range (union .Sections .Pages) }}
-        {{ if .IsPage }} 
-          <li>{{- template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}</li>
+        {{ if and .IsPage }} 
+          {{if ne .Params.bookhidden true }}
+            <li>{{- template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}</li>
+          {{ end }} 
         {{ else }} 
          {{- template "book-section" (dict "Section" . "CurrentPage" $.CurrentPage ) }}
         {{ end }} 
       {{- end }}
+
 
     </ul>
   {{- end }}

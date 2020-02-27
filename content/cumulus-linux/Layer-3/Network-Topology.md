@@ -12,7 +12,7 @@ In computer networks, *topology* refers to the structure of interconnecting vari
 
 ## Clos Topologies
 
-In the vast majority of modern data centers, [Clos or fat tree topology](http://en.wikipedia.org/wiki/Clos_network) is very popular. This topology is shown in the figure below. It is also commonly referred to as leaf-spine topology. Cumulus Networks uses this topology throughout this user guide.
+In the vast majority of modern data centers, {{<exlink url="http://en.wikipedia.org/wiki/Clos_network" text="Clos or fat tree topology">}} is very popular. This topology is shown in the figure below. It is also commonly referred to as leaf-spine topology. Cumulus Networks uses this topology throughout this user guide.
 
 {{< img src = "/images/cumulus-linux/network-topology.png" >}}
 
@@ -30,7 +30,7 @@ In a three tier network of 64-port switches, the total number of servers that ca
 
 In the above example, the network is *over-subscribed*; that is, 400G of bandwidth from end stations (40 servers \* 10GE links) is serviced by only 240G of inter-rack bandwidth. The over-subscription ratio is 0.6 (240/400).
 
-This can lead to congestion in the network and hot spots. Instead, if network operators connected 32 servers per rack, then 32 ports are left to be connected to spine switches. Now, the network is said to be [rearrangably non-blocking](http://en.wikipedia.org/wiki/Clos_network#Blocking_characteristics). Now any server in a rack can talk to any other server in any other rack without necessarily blocking traffic between other servers.
+This can lead to congestion in the network and hot spots. Instead, if network operators connected 32 servers per rack, then 32 ports are left to be connected to spine switches. Now, the network is said to be {{<exlink url="http://en.wikipedia.org/wiki/Clos_network#Blocking_characteristics" text="rearrangably non-blocking">}}. Now any server in a rack can talk to any other server in any other rack without necessarily blocking traffic between other servers.
 
 In such a network, the total number of servers that can be connected are (64\*64)/2 = 2048. Similarly, a three-tier version of the same can serve up to (64\*64\*64)/4 = 65536 servers.
 

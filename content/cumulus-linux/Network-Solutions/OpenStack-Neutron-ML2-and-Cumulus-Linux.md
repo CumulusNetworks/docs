@@ -12,7 +12,7 @@ The Modular Layer 2 (ML2) plugin is a framework that allows OpenStack Networking
 
 The plugin supports configuration caching. The cached configuration is replayed back to the Cumulus Linux switch from the Cumulus ML2 mechanism driver when a switch or process restart is detected.
 
-To deploy [OpenStack ML2](https://wiki.openstack.org/wiki/Neutron/ML2) in a network with Cumulus Linux switches, you need the following:
+To deploy {{<exlink url="https://wiki.openstack.org/wiki/Neutron/ML2" text="OpenStack ML2">}} in a network with Cumulus Linux switches, you need the following:
 
 - A REST API, which is installed with Cumulus Linux.
 - The Cumulus Networks Modular Layer 2 (ML2) mechanism driver for OpenStack, which you install on the OpenStack Neutron controller node. The driver is available as a Python package from upstream.
@@ -76,9 +76,8 @@ The ML2 mechanism driver includes the following parameters, which you can config
 | `protocol_port` | The protocol port for the bast URL for the ML2 API. The default value is *8000*. |
 | `sync_time` | A periodic time interval for polling the Cumulus Linux switch. The default value is *30* seconds.|
 | `spf_enable` | Enables and disables SPF for the bridge. The default value is *False*.|
-|`new_bridge` | Enables and disables [VLAN-aware bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) for the bridge configuration. The default value is *False*, so a traditional mode bridge is created. |
+|`new_bridge` | Enables and disables {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} for the bridge configuration. The default value is *False*, so a traditional mode bridge is created. |
 
 ## OpenStack with Cumulus in the Cloud
 
-OpenStack Neutron is available as a preconfigured option with [Cumulus in the
-Cloud](https://cumulusnetworks.com/products/cumulus-in-the-cloud/). Add the ML2 driver, described above.
+OpenStack Neutron is available as a preconfigured option with {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud" text="Cumulus in the Cloud">}}. Add the ML2 driver, described above.

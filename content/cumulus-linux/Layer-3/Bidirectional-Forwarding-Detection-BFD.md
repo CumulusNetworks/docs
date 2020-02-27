@@ -28,7 +28,7 @@ BFD multihop sessions are built over arbitrary paths between two systems, which 
 
 ## Configure BFD
 
-You can configure BFD by either using [FRRouting](../FRRouting-Overview/) (with NCLU or vtysh commands) or by specifying the configuration in the [PTM `topology.dot` file](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/). However, the topology file has some limitations:
+You can configure BFD by either using {{<link url="FRRouting-Overview" text="FRRouting">}} (with NCLU or vtysh commands) or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}. However, the topology file has some limitations:
 
 - The topology file supports BFD IPv4 and IPv6 *single* hop sessions only; you *cannot* specify IPv4 or IPv6 *multihop* sessions in the topology file.
 - The topology file supports BFD sessions for only link-local IPv6 peers; BFD sessions for global IPv6 peers discovered on the link are not created.
@@ -55,7 +55,7 @@ When you configure BFD, you can set the following parameters for both IPv4 and I
 
 ### BFD in BGP
 
-When you configure BFD in BGP, neighbors are registered and deregistered with [PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/) dynamically.
+When you configure BFD in BGP, neighbors are registered and deregistered with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} dynamically.
 
 To configure BFD in BGP, run the following commands.
 
@@ -145,7 +145,7 @@ BFD: Type: single hop
 
 ### BFD in OSPF
 
-When you enable or disable BFD in OSPF, neighbors are registered and de-registered dynamically with [PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/). When BFD is enabled on the interface, a neighbor is registered with BFD when two-way adjacency is established and deregistered when adjacency goes down. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
+When you enable or disable BFD in OSPF, neighbors are registered and de-registered dynamically with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}}. When BFD is enabled on the interface, a neighbor is registered with BFD when two-way adjacency is established and deregistered when adjacency goes down. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
 
 To configure BFD in OSPF, run the following commands.
 
@@ -315,7 +315,7 @@ You can also run the Linux `ptmctl -b` command.
 
 ## Related Information
 
-- [RFC 5880 - Bidirectional Forwarding Detection](https://tools.ietf.org/html/rfc5880)
-- [RFC 5881 - BFD for IPv4 and IPv6 (Single Hop)](https://tools.ietf.org/html/rfc5881)
-- [RFC 5882 - Generic Application of BFD](https://tools.ietf.org/html/rfc5882)
-- [RFC 5883 - Bidirectional Forwarding Detection (BFD) for Multihop Paths](https://tools.ietf.org/html/rfc5883)
+- {{<exlink url="https://tools.ietf.org/html/rfc5880" text="RFC 5880 - Bidirectional Forwarding Detection">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5881" text="RFC 5881 - BFD for IPv4 and IPv6 (Single Hop)">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5882" text="RFC 5882 - Generic Application of BFD">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5883" text="RFC 5883 - Bidirectional Forwarding Detection (BFD) for Multihop Paths">}}

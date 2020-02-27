@@ -31,7 +31,7 @@ The example commands configure swp1 to allow access to MAC address 00:02:00:00:0
 cumulus@switch:~$ net add interface swp1 port-security allowed-mac 00:02:00:00:00:05
 ```
 
-You can specify only one MAC address with the NCLU command. To specify multiple MAC addresses, set the `interface.<port>.port_security.allowed_mac` parameter in the `/etc/cumulus/switchd.d/port_security.conf` file. See [Configure Port Security Manually](#configure-port-security-manually) below.
+You can specify only one MAC address with the NCLU command. To specify multiple MAC addresses, set the `interface.<port>.port_security.allowed_mac` parameter in the `/etc/cumulus/switchd.d/port_security.conf` file. See {{<link title="#Configure Port Security Manually" text="Configure Port Security Manually">}} below.
 
 **To enable sticky MAC on a port**, where the first learned MAC address on the port is the only MAC address allowed, run the following commands.
 

@@ -17,7 +17,7 @@ Voice VLAN is part of a trunk port with two VLANs that comprises either of the f
 
 The voice traffic is an 802.1q-tagged packet with a VLAN ID (that might or might not be 0) and an 802.1p (3-bit layer 2 COS) with a specific value (typically 5 is assigned for voice traffic).
 
-Data traffic is always [untagged](../../Ethernet-Bridging-VLANs/VLAN-Tagging/).
+Data traffic is always {{<link url="VLAN-Tagging" text="untagged">}}.
 
 ## Voice VLAN Configuration Example
 

@@ -14,8 +14,9 @@ Spanning tree protocol (STP) is always recommended in layer 2 topologies as it p
 
 Cumulus Linux supports RSTP, PVST, and PVRST modes:
 
-- Bridges configured in *[VLAN-aware](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)* mode operate **only** in RSTP mode.
-- Bridges configured in [*traditional* mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/) operate in both PVST and PVRST. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
+- Bridges configured in *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}}* mode operate **only** in RSTP mode.
+- Bridges configured in 
+*{{<link url="Traditional-Bridge-Mode" text="traditional mode">}}* operate in both PVST and PVRST. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
 
 ### STP for a VLAN-aware Bridge
 
@@ -268,7 +269,7 @@ All ports configured with PortAdminEdge bypass the listening and learning states
 
 {{%notice warning%}}
 
-PortAdminEdge mode might cause loops if it is not used with the [BPDU guard](#bpdu-guard) feature.
+PortAdminEdge mode might cause loops if it is not used with the {{<link url="#bpdu-guard" text="BPDU guard">}} feature.
 
 {{%/notice%}}
 
@@ -509,7 +510,7 @@ bridge:bond0 CIST info
 
 </details>
 
-The only way to recover a port that has been placed in the disabled state is to manually bring up the port with the `sudo ifup <interface>` command. See [Interface Configuration and Management](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/) for more information about `ifupdown`.
+The only way to recover a port that has been placed in the disabled state is to manually bring up the port with the `sudo ifup <interface>` command. See {{<link title="Interface Configuration and Management">}} for more information about `ifupdown`.
 
 {{%notice note%}}
 
@@ -653,7 +654,7 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 
 Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.
 
-You configure storm control for each physical port by [configuring `switchd`](../../System-Configuration/Configuring-switchd/). For example, to enable unicast and multicast storm control at 400 packets per second (pps) and 3000 pps for swp1, run the following commands:
+You configure storm control for each physical port by {{<link url="Configuring-switchd" text="configuring `switchd`">}}. For example, to enable unicast and multicast storm control at 400 packets per second (pps) and 3000 pps for swp1, run the following commands:
 
 ```
 cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
@@ -662,13 +663,13 @@ cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1
 
 ### Spanning Tree Parameter List
 
-Spanning tree parameters are defined in the IEEE [802.1D](https://standards.ieee.org/standard/802_1D-2004.html), [802.1Q](https://standards.ieee.org/standard/802_1Q-2018.html) specifications.
+Spanning tree parameters are defined in the IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" text="802.1D">}} and {{<exlink url="https://standards.ieee.org/standard/802_1Q-2018.html" text="802.1Q">}} specifications.
 
-The table below describes the STP configuration parameters available in Cumulus Linux. For a comparison of STP parameter configuration between `mstpctl` and other vendors, [read this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/206908397).
+The table below describes the STP configuration parameters available in Cumulus Linux. For a comparison of STP parameter configuration between `mstpctl` and other vendors, {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/206908397" text="read this knowledge base article">}}.
 
 {{%notice note%}}
 
-Most of these parameters are blacklisted in the `ifupdown_blacklist` section of the `/etc/netd.conf` file. Before you configure these parameters, you must [edit the file](../../System-Configuration/Network-Command-Line-Utility-NCLU/) to remove them from the blacklist.
+Most of these parameters are blacklisted in the `ifupdown_blacklist` section of the `/etc/netd.conf` file. Before you configure these parameters, you must {{<link url="Network-Command-Line-Utility-NCLU" text="edit the file">}} to remove them from the blacklist.
 
 {{%/notice%}}
 
@@ -700,10 +701,10 @@ MSTP is not supported currently because Cumulus Linux only supports MSTI 0 (not 
 
 ## Related Information
 
-The source code for `mstpd` and `mstpctl` was written by [Vitalii Demianets](mailto:vitas%40nppfactor.kiev.ua) and is hosted at the URL below.
+The source code for `mstpd` and `mstpctl` was written by {{<exlink url="mailto:vitas%40nppfactor.kiev.ua" text="Vitalii Demianets">}} and is hosted at the URL below.
 
-- [GitHub - mstpd project](https://github.com/mstpd/mstpd)
-- [Wikipedia - Spanning Tree Protocol](http://en.wikipedia.org/wiki/Spanning_Tree_Protocol)
+- {{<exlink url="https://github.com/mstpd/mstpd" text="GitHub - mstpd project">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/Spanning_Tree_Protocol" text="Wikipedia - Spanning Tree Protocol">}}
 - brctl(8)
 - bridge-utils-interfaces(5)
 - ifupdown-addons-interfaces(5)

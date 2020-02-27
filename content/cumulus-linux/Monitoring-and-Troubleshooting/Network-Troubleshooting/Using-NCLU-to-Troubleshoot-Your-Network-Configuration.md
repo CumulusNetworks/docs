@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-The [network command line utility](../../../System-Configuration/Network-Command-Line-Utility-NCLU/) (NCLU) can quickly return a lot of information about your network configuration.
+The {{<link url="Network-Command-Line-Utility-NCLU" text="Network Command Line Utility">}} (NCLU) can quickly return a lot of information about your network configuration.
 
 ## net show Commands
 
@@ -120,4 +120,4 @@ Serial Number.... A1010B2A011212AB000001
 
 ## network-docopt Package
 
-NCLU uses the [python network-docopt](https://pypi.python.org/pypi/network-docopt) package. This is inspired by [docopt](https://github.com/docopt/docopt) and enables you to specify partial commands without tab completion or running the complete option. For example, `net show int` runs the `net show interface` command and `net show sys` runs the `net show system` command.
+NCLU uses the `{{<exlink url="https://pypi.python.org/pypi/network-docopt" text="python network-docopt">}}` package. This is inspired by `{{<exlink url="https://github.com/docopt/docopt" text="docopt">}}` and enables you to specify partial commands without tab completion or running the complete option. For example, `net show int` runs the `net show interface` command and `net show sys` runs the `net show system` command.

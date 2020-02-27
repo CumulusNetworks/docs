@@ -10,8 +10,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an [MTU](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/)
-(maximum transmission unit). The bridge MTU is the minimum MTU among all its members. By default, the [bridge's MAC address](https://support.cumulusnetworks.com/hc/en-us/articles/360005695794) is the MAC address of the first port in the `bridge-ports` list. The bridge can also be assigned an IP address, as discussed [below](#bridge-mac-addresses).
+Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} (maximum transmission unit). The bridge MTU is the minimum MTU among all its members. By default, the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360005695794" text="bridge's MAC address">}} is the MAC address of the first port in the `bridge-ports` list. The bridge can also be assigned an IP address, as discussed {{<link url="#bridge-mac-addresses" text="below">}}.
 
 {{%notice note%}}
 
@@ -23,7 +22,8 @@ Bridge members can be individual physical interfaces, bonds, or logical interfac
 
 {{%notice tip%}}
 
-Cumulus Networks recommends using *[VLAN-aware mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)* bridges instead of *traditional mode* bridges. The bridge driver in Cumulus Linux is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, read [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
+Cumulus Networks recommends using *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. The bridge driver in Cumulus Linux is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, read 
+{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204909397" text="this knowledge base article">}}.
 
 {{%/notice%}}
 
@@ -36,11 +36,11 @@ Cumulus Networks recommends using *[VLAN-aware mode](../../Layer-2/Ethernet-Brid
 
 ## Create a VLAN-aware Bridge
 
-To create a VLAN-aware bridge, see [VLAN-aware Bridge Mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/).
+To create a VLAN-aware bridge, see {{<link title="VLAN-aware Bridge Mode">}}.
 
 ## Create a Traditional Mode Bridge
 
-To create a traditional mode bridge, see [Traditional Bridge Mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/).
+To create a traditional mode bridge, see {{<link title="Traditional Bridge Mode">}}.
 
 ## Bridge MAC Addresses
 
@@ -60,7 +60,7 @@ By default, Cumulus Linux stores MAC addresses in the Ethernet switching table f
 
 {{%notice note%}}
 
-The bridge ageing option is in the [NCLU blacklist](../../System-Configuration/Network-Command-Line-Utility-NCLU/). If you want to change this setting, you need to first remove the `bridge-ageing` keyword from the `ifupdown_blacklist` section of the `/etc/netd.conf` file, then [restart the `netd` service](../../System-Configuration/Network-Command-Line-Utility-NCLU/).
+The bridge ageing option is in the {{<link url="Network-Command-Line-Utility-NCLU#advanced-configuration" text="NCLU blacklist">}}. If you want to change this setting, you need to first remove the `bridge-ageing` keyword from the `ifupdown_blacklist` section of the `/etc/netd.conf` file, then {{<link url="Network-Command-Line-Utility-NCLU/#advanced-configuration" text="restart the `netd` service">}}.
 
 {{%/notice%}}
 
@@ -245,7 +245,7 @@ cumulus@switch:~$ ip link show bridge
 
 ## IPv6 Link-local Address Generation
 
-By default, Cumulus Linux automatically generates IPv6 [link-local addresses](https://en.wikipedia.org/wiki/Link-local_address) on VLAN interfaces. If you want to use a different mechanism to assign link-local addresses, you can disable this feature. You can disable link-local automatic address generation for both regular IPv6 addresses and address-virtual (macvlan) addresses.
+By default, Cumulus Linux automatically generates IPv6 {{<exlink url="https://en.wikipedia.org/wiki/Link-local_address" text="link-local addresses">}} on VLAN interfaces. If you want to use a different mechanism to assign link-local addresses, you can disable this feature. You can disable link-local automatic address generation for both regular IPv6 addresses and address-virtual (macvlan) addresses.
 
 To disable automatic address generation for a regular IPv6 address on a VLAN:
 
@@ -351,10 +351,10 @@ cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
 - In environments where both VLAN-aware and traditional bridges are used, if a traditional bridge has a subinterface of a bond that is a normal interface in a VLAN-aware bridge, the bridge is flapped when the traditional bridge's bond subinterface is brought down.
 - You cannot enslave a VLAN raw device to a different master interface (you cannot edit the `vlan-raw-device` setting in the `/etc/network/interfaces` file). You need to delete the VLAN and recreate it.
 - Cumulus Linux supports up to 2000 VLANs. This includes the internal interfaces, bridge interfaces, logical interfaces, and so on.
-- In Cumulus Linux, MAC learning is enabled by default on traditional or VLAN-aware bridge interfaces. Cumulus Networks recommends you do not disable MAC learning unless you are using EVPN. See [Ethernet Virtual Private Network - EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
+- In Cumulus Linux, MAC learning is enabled by default on traditional or VLAN-aware bridge interfaces. Cumulus Networks recommends you do not disable MAC learning unless you are using EVPN. See {{<link title="Ethernet Virtual Private Network - EVPN">}}.
 
 ## Related Information
 
-- [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-- [Linux Journal - Linux as an Ethernet Bridge](http://www.linuxjournal.com/article/8172)
-- [Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode](https://support.cumulusnetworks.com/hc/en-us/articles/204909397)
+- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
+- {{<exlink url="http://www.linuxjournal.com/article/8172" text="Linux Journal - Linux as an Ethernet Bridge">}}
+- {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204909397" text="Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode">}}

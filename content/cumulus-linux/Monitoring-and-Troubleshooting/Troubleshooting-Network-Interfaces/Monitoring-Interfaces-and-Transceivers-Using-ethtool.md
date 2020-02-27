@@ -38,7 +38,7 @@ Link detected: yes
 
 {{%notice note%}}
 
-The switch hardware contains the [active port settings](../../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/). The output of `ethtool swpXX` shows the port settings stored in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected) when they change. However, many of the fields in `ethtool`, like Supported Link Modes and Advertised Link Modes are not updated based on the actual module inserted in the port and therefore are incorrect or misleading.
+The switch hardware contains the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool swpXX` shows the port settings stored in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected) when they change. However, many of the fields in `ethtool`, like Supported Link Modes and Advertised Link Modes are not updated based on the actual module inserted in the port and therefore are incorrect or misleading.
 
 {{%/notice%}}
 

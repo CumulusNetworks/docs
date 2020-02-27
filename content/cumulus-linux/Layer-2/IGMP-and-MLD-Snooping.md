@@ -12,7 +12,7 @@ IGMP (Internet Group Management Protocol) and MLD (Multicast Listener Discovery)
 
 {{%notice note%}}
 
-IGMP and MLD snooping is supported over VXLAN bridges; however, this feature is *not* enabled by default. To enable IGMP and MLD over VXLAN, see [Configure IGMP/MLD Snooping over VXLAN](#configure-igmp-mld-snooping-over-vxlan).
+IGMP and MLD snooping is supported over VXLAN bridges; however, this feature is *not* enabled by default. To enable IGMP and MLD over VXLAN, see {{<link url="#configure-igmpmld-snooping-over-vxlan" text="Configure IGMP/MLD Snooping over VXLAN">}}.
 
 {{%/notice%}}
 
@@ -71,13 +71,13 @@ cumulus@switch:~$ sudo ifreload -a
 
 </details>
 
-Cumulus Networks recommends that you also configure IGMP/MLD querier. See [Configure IGMP/MLD Querier](#configure-igmp-mld-querier), below.
+Cumulus Networks recommends that you also configure IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}}, below.
 
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.
 
 **Additional Configuration for Spectrum Switches**
 
-For switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), the IGMP reports received over VXLAN from remote hosts are not forwarded to the kernel, which, in certain cases, might result in local receivers not responding to the IGMP query. To workaround this issue, you need to apply certain ACL rules to avoid the IGMP report packets being sent across to the hosts:
+For switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, the IGMP reports received over VXLAN from remote hosts are not forwarded to the kernel, which, in certain cases, might result in local receivers not responding to the IGMP query. To workaround this issue, you need to apply certain ACL rules to avoid the IGMP report packets being sent across to the hosts:
 
 Add the following lines to the `/etc/cumulus/acl/policy.d/23_acl_test.rules` file (where `<swp>` is the port connected to the access host), then run the `cl-acltool -i` command:
 
@@ -93,7 +93,7 @@ If no multicast router is sending queries to configure IGMP/MLD querier on the s
 
 For an explanation of the relevant parameters, see the `ifupdown-addons-interfaces` man page.
 
-For a [VLAN-aware bridge](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/), use a configuration like the following:
+For a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, use a configuration like the following:
 
 ```
 ...
@@ -123,7 +123,7 @@ vlan bridge.[1-200]
 ...
 ```
 
-For a bridge in [traditional mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/), use a configuration like the following:
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, use a configuration like the following:
 
 ```
 ...
@@ -247,9 +247,9 @@ cumulus@switch:~$ sudo bridge -d -s mdb show
 
 ## Related Information
 
-- [tools.ietf.org/html/rfc4541](https://tools.ietf.org/html/rfc4541)
-- [en.wikipedia.org/wiki/IGMP\_snooping](http://en.wikipedia.org/wiki/IGMP_snooping)
-- [tools.ietf.org/rfc/rfc2236.txt](http://tools.ietf.org/rfc/rfc2236.txt)
-- [tools.ietf.org/html/rfc3376](http://tools.ietf.org/html/rfc3376)
-- [tools.ietf.org/search/rfc2710](http://tools.ietf.org/search/rfc2710)
-- [tools.ietf.org/html/rfc3810](http://tools.ietf.org/html/rfc3810)
+- {{<exlink url="http://en.wikipedia.org/wiki/IGMP_snooping" text="Wikipedia entry for IGMP snooping">}}
+- {{<exlink url="http://tools.ietf.org/rfc/rfc2236.txt" text="RFC 2236">}}
+- {{<exlink url="http://tools.ietf.org/search/rfc2710" text="RFC 2710">}}
+- {{<exlink url="http://tools.ietf.org/html/rfc3376" text="RFC 3376">}}
+- {{<exlink url="http://tools.ietf.org/html/rfc3810" text="RFC 3810">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc4541" text="RFC 4541">}}

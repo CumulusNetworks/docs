@@ -23,7 +23,7 @@ You cannot configure both VRR and VRRP on the same switch.
 
 ## VRR
 
-The diagram below illustrates a basic VRR-enabled network configuration. The network includes several hosts and two routers running Cumulus Linux configured with [Multi-chassis Link Aggregation](../Multi-Chassis-Link-Aggregation-MLAG/) (MLAG).
+The diagram below illustrates a basic VRR-enabled network configuration. The network includes several hosts and two routers running Cumulus Linux configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG).
 
 {{%notice note%}}
 
@@ -110,7 +110,7 @@ Configure the links between the hosts and the routers in *active-active* mode fo
 
 ### Example VRR Configuration with MLAG
 
-To create an [MLAG](../Multi-Chassis-Link-Aggregation-MLAG/) configuration that incorporates VRR, use a configuration like the following:
+To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration that incorporates VRR, use a configuration like the following:
 
 <details>
 
@@ -412,7 +412,7 @@ All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX
 
 {{%/notice%}}
 
-[RFC 5798](https://tools.ietf.org/html/rfc5798#section-4.1) describes VRRP in detail.
+{{<exlink url="https://tools.ietf.org/html/rfc5798#section-4.1" text="RFC 5798">}} describes VRRP in detail.
 
 The following example illustrates a basic VRRP configuration.
 
@@ -467,10 +467,10 @@ cumulus@spine02:~$ net commit
 
 <summary>Linux and vtysh Commands </summary>
 
-1. Enable the `vrrpd` daemon, then start the FRRouting service. See [Configuring FRRouting](../../Layer-3/Configuring-FRRouting/).
+1. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="Configuring FRRouting">}}.
 2. From the vtysh shell, configure VRRP.
 
-    **spine01**
+   **spine01**
 
 ```
 cumulus@spine01:~$ sudo vtysh
@@ -486,7 +486,7 @@ spine01# write memory
 spine01# exit
 ```
 
-    **spine02**
+   **spine02**
 
  ```
 cumulus@spine02:~$ sudo vtysh

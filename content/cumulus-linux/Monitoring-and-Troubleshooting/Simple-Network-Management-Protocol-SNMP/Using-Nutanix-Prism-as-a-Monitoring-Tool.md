@@ -145,16 +145,16 @@ To help visualize the following diagram is provided:
 
 1. Follow the directions on one of the following websites to enable CDP:
 
-    - [kb.vmware.com/selfservice/microsites/search.do?language=en\_US\&cmd=displayKC\&externalId=1003885](http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1003885)
-    - [wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/](http://wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/)
+   - {{<exlink url="https://kb.vmware.com/s/article/1003885" text="VMware knowledge base article: Configuring the Cisco Discovery Protocol (CDP) with ESX/ESXi (1003885)">}}
+   - {{<exlink url="http://wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/" text="Wahl Network: Utilizing CDP and LLDP with vSphere Networking">}}
 
-    For example, switch CDP on:
+   For example, switch CDP on:
 
 ```
 root@NX-1050-A:~] esxcli network vswitch standard set -c both -v vSwitch0
 ```
 
-    Then confirm it is running:
+   Then confirm it is running:
 
 ```
 root@NX-1050-A:~] esxcli network vswitch standard list -v vSwitch0
@@ -174,7 +174,7 @@ vSwitch0
     Portgroups: VM Network, Management Network
 ```
 
-    **both** means CDP is now running and the lldp dameon on Cumulus Linux is capable of *seeing* CDP devices.
+   **both** means CDP is now running and the lldp dameon on Cumulus Linux is capable of *seeing* CDP devices.
 
 2. After the next CDP interval, the Cumulus Linux box will pick up the interface via the `lldp` daemon:
 
@@ -209,7 +209,7 @@ swp51         1G       NotConfigured  ====  swp1               spine01
 swp52         1G       NotConfigured  ====  swp1               spine02
 ```
 
-[Nutanix Acropolis](http://www.nutanix.com/products/acropolis/) is an alternate hypervisor that Nutanix supports. **Acropolis Hypervisor** uses the yum packaging system and is capable of installing normal Linux lldp daemons to operating just like Cumulus Linux. LLDP should be enabled for each interface on the host. Refer to <https://community.mellanox.com/docs/DOC-1522> for setup instructions.
+{{<exlink url="http://www.nutanix.com/products/acropolis/" text="Nutanix Acropolis">}} is an alternate hypervisor that Nutanix supports. **Acropolis Hypervisor** uses the yum packaging system and is capable of installing normal Linux lldp daemons to operating just like Cumulus Linux. LLDP should be enabled for each interface on the host. Refer to this article from Mellanox, {{<exlink url="https://community.mellanox.com/docs/DOC-1522" text="How to Enable LLDP on Linux Servers for Link Discovery">}}, for setup instructions.
 
 ## Troubleshoot Connections without LLDP or CDP
 
@@ -257,15 +257,14 @@ swp9      8e:0f:73:1b:f8:24   0   no         2.73
 swp9      c8:1f:66:ba:60:cf   0   no        66.94
 ```
 
-    Alternatively, you can use `grep`:
+   Alternatively, you can use `grep`:
 
 ``` 
 cumulus@switch:~$ brctl showmacs br-ntnx | grep 0c:c4:7a:09:a2:43
 swp49     0c:c4:7a:09:a2:43   0   no         4.58
 ```
 
-    vmnic1 is now hooked up to swp49. This matches what is seen in
-    `lldp`:
+   vmnic1 is now hooked up to swp49. This matches what is seen in `lldp`:
 
 ```  
 cumulus@switch:~$ lldpctl show neighbor swp49

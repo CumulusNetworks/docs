@@ -26,7 +26,7 @@ cumulus@switch:~$ cat /etc/timezone
 US/Eastern
 ```
 
-Edit the file to add your desired time zone. A list of valid time zones can be found at the following [link](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+Edit the file to add your desired time zone. A list of valid time zones can be found {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="here">}}.
 
 Use the following command to apply the new time zone immediately.
 
@@ -44,7 +44,7 @@ cumulus@switch:~$ sudo dpkg-reconfigure tzdata
 
 {{< img src = "/images/cumulus-linux/date-time-wizard.png" >}}
 
-For more info see the Debian [System Administrator's Manual - Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
+For more information, see the Debian {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}.
 
 ## Set the Date and Time
 
@@ -86,7 +86,7 @@ The `ntpd` daemon running on the switch implements the NTP protocol. It synchron
 
 {{%notice note%}}
 
-If you intend to run this service within a [VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/), including the [management VRF](../../Layer-3/Management-VRF/), follow [these steps](../../Layer-3/Management-VRF/) for configuring the service.
+If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} for configuring the service.
 
 {{%/notice%}}
 
@@ -639,7 +639,7 @@ cumulus@switch:~$ net commit
 
 ## Related Information
 
-- [Debian System Administrator's Manual - Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
-- [www.ntp.org](http://www.ntp.org)
-- [en.wikipedia.org/wiki/Network\_Time\_Protocol](http://en.wikipedia.org/wiki/Network_Time_Protocol)
-- [wiki.debian.org/NTP](http://wiki.debian.org/NTP)
+- {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="Debian System Administrator's Manual - Time">}}
+- {{<exlink url="http://www.ntp.org" text="NTP website">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/Network_Time_Protocol" text="Wikipedia - Network Time Protocol">}}
+- {{<exlink url="http://wiki.debian.org/NTP" text="Debian wiki - NTP">}}

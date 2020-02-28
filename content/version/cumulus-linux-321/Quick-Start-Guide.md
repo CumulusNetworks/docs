@@ -7,9 +7,9 @@ aliases:
  - /pages/viewpage.action?pageId=5126745
 pageID: 5126745
 product: Cumulus Linux
-  version: "3.2"
-  imgData: cumulus-linux-321
-  siteSlug: cumulus-linux-321
+version: "3.2"
+imgData: cumulus-linux-321
+siteSlug: cumulus-linux-321
 ---
 This quick start guide provides an end-to-end setup process for
 installing and running Cumulus Linux, as well as a collection of example

@@ -12,12 +12,7 @@ imgData: cumulus-netq
 siteSlug: cumulus-netq
 toc: 4
 ---
-You can easily monitor critical events occurring across your network
-using the Alarms card. You can determine the number of events for the
-various system, interface, and network protocols and services components
-in the network. The content of the cards in the workflow is described
-first, and then followed by common tasks you would perform using this
-card workflow.
+You can easily monitor critical events occurring across your network using the Alarms card. You can determine the number of events for the various system, interface, and network protocols and services components in the network. The content of the cards in the workflow is described first, and then followed by common tasks you would perform using this card workflow.
 
 ## Alarms Card Workflow Summary
 
@@ -27,46 +22,46 @@ The small Alarms card displays:
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for all critical severity events in the network</p></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td>Indicates data is for all critical severity events in the network</td>
 </tr>
 <tr class="even">
-<td><p>Alarm trend</p></td>
-<td><p>Trend of alarm count, represented by an arrow:</p>
+<td>Alarm trend</td>
+<td>Trend of alarm count, represented by an arrow:
 <ul>
-<li><p><strong>Pointing upward and <strong>bright pink</strong></strong>: alarm count is higher than the last two time periods, an increasing trend</p></li>
-<li><p><strong>Pointing downward and <strong>green</strong></strong>: alarm count is lower than the last two time periods, a decreasing trend</p></li>
-<li><p><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady</p></li>
+<li><strong>Pointing upward and <strong>bright pink</strong></strong>: alarm count is higher than the last two time periods, an increasing trend</li>
+<li><strong>Pointing downward and <strong>green</strong></strong>: alarm count is lower than the last two time periods, a decreasing trend</li>
+<li><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady</li>
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Alarm score</p></td>
-<td><p>Current count of alarms during the designated time period</p></td>
+<td>Alarm score</td>
+<td>Current count of alarms during the designated time period</td>
 </tr>
 <tr class="even">
-<td><p>Alarm rating</p></td>
-<td><p>Count of alarms relative to the average count of alarms during the designated time period:</p>
+<td>Alarm rating</td>
+<td>Count of alarms relative to the average count of alarms during the designated time period:
 <ul>
-<li><p><strong>Low</strong>: Count of alarms is below the average count; a nominal count</p></li>
-<li><p><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</p></li>
-<li><p><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</p></li>
+<li><strong>Low</strong>: Count of alarms is below the average count; a nominal count</li>
+<li><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</li>
+<li><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</li>
 </ul>
 <p>{{< figure src="/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
 </tr>
 <tr class="odd">
-<td><p>Chart</p></td>
-<td><p>Distribution alarms received during the designated time period and a total count of all alarms present in the system</p></td>
+<td>Chart</td>
+<td>Distribution alarms received during the designated time period and a total count of all alarms present in the system</td>
 </tr>
 </tbody>
 </table>
@@ -77,35 +72,35 @@ The medium Alarms card displays:
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for all critical events in the network</p></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td>Indicates data is for all critical events in the network</td>
 </tr>
 <tr class="odd">
-<td><p>Count</p></td>
-<td><p>Total number of alarms received during the designated time period</p></td>
+<td>Count</td>
+<td>Total number of alarms received during the designated time period</td>
 </tr>
 <tr class="even">
-<td><p>Alarm score</p></td>
-<td><p>Current count of alarms received from each category (overall, system, interface, and network services) during the designated time period</p></td>
+<td>Alarm score</td>
+<td>Current count of alarms received from each category (overall, system, interface, and network services) during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><p>Chart</p></td>
-<td><p>Distribution of all alarms received from each category during the designated time period</p></td>
+<td>Chart</td>
+<td>Distribution of all alarms received from each category during the designated time period</td>
 </tr>
 </tbody>
 </table>
@@ -118,41 +113,42 @@ The *Alarm Summary* tab displays:
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-clock.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for all system, trace and interface critical events in the network</p></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-clock.svg", height="18", width="18"/></td>
+<td>Indicates data is for all system, trace and interface critical events in the network</td>
 </tr>
 <tr class="odd">
-<td><p>Alarm Distribution</p></td>
-<td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period: 
-<ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>CL License</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  The category with the largest number of alarms is shown at the top, followed by the next most, down to the chart with the fewest alarms.</p>
+<td>Alarm Distribution</td>
+<td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period:
+<ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>CL License</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  
+The category with the largest number of alarms is shown at the top, followed by the next most, down to the chart with the fewest alarms.</p>
 <p><strong>Count</strong>: Total number of alarms received from each category during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p>Table</p></td>
-<td><p>Listing of items that match the filter selection for the selected alarm categories:</p>
+<td>Table</td>
+<td>Listing of items that match the filter selection for the selected alarm categories:
 <ul>
-<li><p><strong>Events by Most Recent</strong>: Most recent event are listed at the top</p></li>
-<li><p><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top</p></li>
+<li><strong>Events by Most Recent</strong>: Most recent event are listed at the top</li>
+<li><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top</li>
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Show All Events</p></td>
-<td><p>Opens full screen Events | Alarms card with a listing of all events</p></td>
+<td>Show All Events</td>
+<td>Opens full screen Events | Alarms card with a listing of all events</td>
 </tr>
 </tbody>
 </table>

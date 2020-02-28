@@ -74,11 +74,11 @@ chart, local time zone, and user account information.
 status and configuration information about your network and its
 various components).
 
-{{% imgOld 4 %}}
+{{% imgOld 4 %}}svg"
 
 ## Main Menu
 
-Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the main menu which provides navigation to:
+Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the main menu which provides navigation to:
 
 - **Favorites**: contains list of links to workbenches that you have
 designated as favorites; Home is listed by default
@@ -94,11 +94,11 @@ management
 
 ## Navigation History
 
-Found in the header, the navigation history keeps track of every action
+Found in the header, the navigation history keeps track of every actionsvg"
 you take on your workbench. This enables the user to go back to a
 previous state or repeat an action.
 
-To open the navigation history, click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg", height="18", width="18"/>. Click on any of the actions to perform that action again.
+To open the navigation history, click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg" height="18" width="18"/>. Click on any of the actions to perform that action again.
 
 {{% imgOld 8 %}}
 
@@ -263,15 +263,15 @@ Events card and All Switches card, as shown here.
 #### Data Grid Settings
 
 You can manipulate the data in a data grid in a full screen card in
-several ways.
+several ways.svg"
 
 *Sort Data by Column*
 
-Hover over a column header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.
+Hover over a column header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Esvg"ial/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.
 
 *Choose Columns to Display*
 
-1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/> at the top right of the card.
+1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/> at the top right of the card.
 
 2.  Click **Change Columns** from the **Display Settings**.
 
@@ -283,15 +283,15 @@ Hover over a column header and click <img src="https://icons.cumulusnetworks.com
     
 When you have a large number of possible columns for display, you
 can search for the column name using the **Quick Filter** to find
-and select or deselect the column more quickly.
+and select or deselect the column more quickly.svg"
     
     {{%/notice%}}
 
-4.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> to close the selection box and view the updated data grid.
+4.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validationsvg"e.svg" height="18" width="18"/> to close the selection box and view the updated data grid.
 
 *Change Order of Columns*
 
-1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/> and then click **Change Columns**.
+1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/> and then click **Change Columns**.
 
 2.  Hover over a column name.
     
@@ -304,11 +304,11 @@ number of columns.
 
 3.  Point to the six dots to the left of the checkbox.
 
-4.  Click and drag the selected column up or down in the list.
+4.  Click and drag the selected column up or down in the list.svg"
     
     {{% imgOld 21 %}}
 
-5.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> to close the selection box and view the updated data grid.
+5.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/> to close the selection box and view the updated data grid.
 
 *Take Actions on Items*
 
@@ -436,11 +436,11 @@ typically the last 24 hours. You can change the time period to view the
 data during a different time range to aid analysis of previous or
 existing issues.
 
-To change the time period for a card:
+To change the time period for a card:svg"
 
 1.  Hover over any card.
 
-2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/> in the header.
+2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header.
 
 3.  Select a time period from the dropdown list.
     
@@ -509,11 +509,11 @@ To move a card:
 
 ### Add or Remove a Card
 
-You can add or remove cards from a workbench at any time.
+You can add or remove cards from a workbench at any time.svg"
 
 To add a card:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/>.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/>.
     
     {{% imgOld 36 %}}
 
@@ -524,11 +524,11 @@ workbench. You might need to scroll down to see it. By default, the
 medium size of the card is added to your workbench. You can move it to
 another location as described above.
 
-To remove a card:
+To remove a card:svg"
 
 1.  Hover over the card you want to remove.
 
-2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg", height="18", width="18"/> (*More Actions* menu).
+2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18"/> (*More Actions* menu).
 
 3.  Click **Remove**.
     
@@ -575,11 +575,11 @@ that contains the card flow
 If you have multiple cards open on your workbench already, you might
 need to scroll down to see the card you have just added.
 
-{{%/notice%}}
+{{%/notice%}}svg"
 
 To open the card workflow through an existing workbench:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="18", width="18"/> in the workbench task bar.
+1.  Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="18" width="18"/> in the workbench task bar.
 
 2.  Select the relevant workbench.
     
@@ -595,11 +595,11 @@ To open the card workflow from a prior search:
 
 3.  If it is still available, click the item.
 
-The card appears on the current workbench, at the bottom.
+The card appears on the current workbench, at the bottom.svg"
 
 To access the card workflow by adding the card:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> in the workbench task bar.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the workbench task bar.
 
 2.  Select the relevant card.
 
@@ -629,11 +629,11 @@ provided by default:
 
   - Inventory: includes the medium Inventory | Switches and Inventory |
     Devices cards
-  - Events: includes the medium Events | Alarms and Events | Info cards
+  - Events: includes the medium Events | Alarms and Events | Info cardssvg"
 
 To add a card deck:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-cards.svg", height="18", width="18"/> in the workbench task bar.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-cards.svg" height="18" width="18"/> in the workbench task bar.
 
 2.  Select the deck you want to add to your workbench.
 
@@ -651,26 +651,26 @@ document are all displayed with the Dark theme. English is the only
 language available for this release. You can choose to view data in the
 time zone where you or your data center resides. You can also select the
 date and time format, choosing words or number format and a 12- or
-24-hour clock. All changes take effect immediately.
+24-hour clock. All changes take effect immediately.svg"
 
 To configure the display settings:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
+1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
     
     {{% imgOld 45 %}}
 
 2.  Click **Profile & Preferences**.
 
-3.  Locate the Display card.
+3.  Locate the Display card.svg"
     
     {{% imgOld 46 %}}
 
-4.  In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="18", width="18"/> to select your choice of theme. This figure shows the light theme.
-    Switch back and forth as desired.
+4.  In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="18" width="18"/> to select your choice of theme. This figure shows the light theme.
+    Switch back and forth as desired.svg"
     
     {{% imgOld 48 %}}
 
-5.  In the **Time Zone** field, click<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="18", width="18"/> to change the time zone from the default.  
+5.  In the **Time Zone** field, click<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="18" width="18"/> to change the time zone from the default.  
     By default, the time zone is set to the current local time zone
     where NetQ is installed. All time values are based on this setting.
     This is displayed in the application header, and is based on
@@ -722,21 +722,21 @@ To configure the display settings:
     
     {{% imgOld 51 %}}
     
-      
+      svg"
     The four options include the date displayed in words or abbreviated
     with numbers, and either a 12- or 24-hour time representation.
 
-7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
 
 ### Change Your Password
 
 You can change your account password at any time should you suspect
 someone has hacked your account or your administrator requests you to do
-so.
+so.svg"
 
 To change your password:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
+1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
     
     {{% imgOld 54 %}}
 
@@ -753,11 +753,11 @@ To change your password:
 6.  Enter and confirm a new password.
     
     {{% imgOld 56 %}}
-
+svg"
 7.  Click **Save** to change to the new password, or click **Cancel** to
     discard your changes.
 
-8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
 
 ### Manage Your Workbenches
 
@@ -785,31 +785,31 @@ to regain access to it. Extreme caution is recommended when deleting
 all other workbenches. Once they have been deleted, they cannot be
 restored.
     
-    {{%/notice%}}
+    {{%/notice%}}svg"
 
 To manage your workbenches:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
+1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
     
     {{% imgOld 59 %}}
 
 2.  Click **Profile & Preferences**.
 
-3.  Locate the Workbenches card.
+3.  Locate the Workbenches card.svg"
     
     {{% imgOld 60 %}}
 
-4.  To specify a favorite workbench, click and drag <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg", height="18", width="18"/> next to the left of the desired workbench name.
+4.  To specify a favorite workbench, click and drag <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg" height="18" width="18"/> next to the left of the desired workbench name.
 
 5.  To search and/or sort the workbench list by name, access type, and
     cards present on the workbench, click the relevant header and begin
     typing your search criteria.
 
-6.  To delete a workbench, hover over the workbench name to view the
+6.  To delete a workbench, hover over the workbench name to view thesvg"
     **Delete** button. As an administrator, you can delete both private
     and public workbenches.
 
-7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
 
 ## Basic Terminology and Acronyms
 
@@ -1005,8 +1005,8 @@ Color is used to indicate links, options, and status within the UI.
 | Result with high severity event     | Red    |
 | Result with medium severity event   | Orange |
 | Result with low severity event      | Yellow |
-
+svg"
 ## Get Help
 
 You can access the online user documentation for the UI from the Main
-Menu. Just click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and select *Help Documentation* under the **ADMIN** category.
+Menu. Just click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select *Help Documentation* under the **ADMIN** category.

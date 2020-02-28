@@ -148,7 +148,7 @@ You must upgrade the CLI to make use of the modified upgrade command. Additional
 
     1. Open the NetQ UI.
 
-    2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", width="18", height="18"/>, then select *Management* in the **Admin** column.
+    2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>, then select *Management* in the **Admin** column.
 
         {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
 

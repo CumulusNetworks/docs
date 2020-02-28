@@ -47,19 +47,19 @@ The small Devices Inventory card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for device inventory</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg" height="18" width="18"/></p></td>
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg" height="18" width="18"/></p></td>
 <td><p>Total number of hosts in inventory during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-4.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-4.svg" height="18" width="18"/></p></td>
 <td><p>Total number of chassis in inventory during the designated time period. Not monitored in this release.</p></td>
 </tr>
 </tbody>
@@ -82,7 +82,7 @@ The medium Devices Inventory card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for device inventory</p></td>
 </tr>
 <tr class="even">
@@ -90,15 +90,15 @@ The medium Devices Inventory card displays:
 <td><p>Inventory | Devices</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg" height="18" width="18"/></p></td>
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg" height="18" width="18"/></p></td>
 <td><p>Total number of hosts in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-4.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-4.svg" height="18" width="18"/></p></td>
 <td><p>Total number of chassis in inventory during the designated time period. Not monitored in this release.</p></td>
 </tr>
 <tr class="even">
@@ -131,7 +131,7 @@ The *Switches* tab displays:
 <td><p>Always Now for inventory by default</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for device inventory</p></td>
 </tr>
 <tr class="odd">
@@ -143,7 +143,7 @@ The *Switches* tab displays:
 <td><p>Total number of switches in inventory during the designated time period</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="18" width="18"/></p></td>
 <td><p>Link to full screen listing of all switches</p></td>
 </tr>
 <tr class="even">
@@ -182,7 +182,7 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 <td><p>Inventory | Devices | Switches</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">

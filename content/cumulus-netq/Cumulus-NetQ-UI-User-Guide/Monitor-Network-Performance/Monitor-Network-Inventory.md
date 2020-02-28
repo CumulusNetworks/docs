@@ -41,15 +41,15 @@ The small Devices Inventory card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg" height="18" width="18"/></td>
 <td>Indicates data is for device inventory</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg" height="18" width="18"/></td>
 <td>Total number of switches in inventory during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg" height="18" width="18"/></td>
 <td>Total number of hosts in inventory during the designated time period</td>
 </tbody>
 </table>
@@ -71,7 +71,7 @@ The medium Devices Inventory card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg" height="18" width="18"/></td>
 <td>Indicates data is for device inventory</td>
 </tr>
 <tr class="even">
@@ -79,11 +79,11 @@ The medium Devices Inventory card displays:
 <td>Inventory | Devices</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg" height="18" width="18"/></td>
 <td>Total number of switches in inventory during the designated time period</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-choose.svg" height="18" width="18"/></td>
 <td>Total number of hosts in inventory during the designated time period</td>
 </tr>
 <tr class="odd">
@@ -116,7 +116,7 @@ The *Switches* tab displays:
 <td>Always Now for inventory by default</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg" height="18" width="18"/></td>
 <td>Indicates data is for device inventory</td>
 </tr>
 <tr class="odd">
@@ -128,7 +128,7 @@ The *Switches* tab displays:
 <td>Total number of switches in inventory during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="18" width="18"/></td>
 <td>Link to full screen listing of all switches</td>
 </tr>
 <tr class="even">
@@ -167,7 +167,7 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 <td>Inventory | Devices | Switches</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
 <td>Closes full screen card and returns to workbench</td>
 </tr>
 <tr class="odd">
@@ -283,7 +283,7 @@ To view component type data:
 
     {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight2-230.png" width="500" >}}
 
-4.  To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the filter tag.
+4.  To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
 
 ### Navigate to the Switch Inventory Workflow
 
@@ -297,7 +297,7 @@ You can view all stored attributes for all switches in your network. To view all
 
 {{< figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-230.png" width="700" >}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 ## View All Hosts
 
@@ -305,4 +305,4 @@ You can view all stored attributes for all hosts in your network. To view all ho
 
 {{< figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-230.png" width="700" >}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.

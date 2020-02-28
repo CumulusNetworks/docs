@@ -36,7 +36,7 @@ The small EVPN Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
 <td>Indicates data is for all sessions of a Network Service or Protocol</td>
 </tr>
 <tr class="even">
@@ -44,11 +44,11 @@ The small EVPN Service card displays:
 <td>EVPN: All EVPN Sessions, or the EVPN Service</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
 <td>Total number of switches and hosts with the EVPN service enabled during the designated time period</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
 <td>Total number of EVPN-related alarms received during the designated time period</td>
 </tr>
 <tr class="odd">
@@ -79,7 +79,7 @@ The medium EVPN Service card displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
 <td>Indicates data is for all sessions of a Network Service or Protocol</td>
 </tr>
 <tr class="odd">
@@ -87,11 +87,11 @@ The medium EVPN Service card displays:
 <td>Network Services | All EVPN Sessions</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
 <td>Total number of switches and hosts with the EVPN service enabled during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
 <td>Total number of EVPN-related alarms received during the designated time period</td>
 </tr>
 <tr class="even">
@@ -134,7 +134,7 @@ The *Sessions Summary* tab which displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
 <td>Indicates data is for all sessions of a Network Service or Protocol</td>
 </tr>
 <tr class="odd">
@@ -142,11 +142,11 @@ The *Sessions Summary* tab which displays:
 <td>Sessions Summary (visible when you hover over card)</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
 <td>Total number of switches and hosts with the EVPN service enabled during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
 <td>Total number of EVPN-related alarms received during the designated time period</td>
 </tr>
 <tr class="even">
@@ -196,7 +196,7 @@ The *Alarms* tab which displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in header)</td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
 <td>Indicates data is for all alarms for all sessions of a Network Service or Protocol</td>
 </tr>
 <tr class="odd">
@@ -204,11 +204,11 @@ The *Alarms* tab which displays:
 <td>Alarms (visible when you hover over card)</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
 <td>Total number of switches and hosts with the EVPN service enabled during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in summary bar)</td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
 <td>Total number of EVPN-related alarms received during the designated time period</td>
 </tr>
 <tr class="even">
@@ -248,12 +248,12 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 <td>Network Services | EVPN</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
 <td>Closes full screen card and returns to workbench</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
 </tr>
 <tr class="even">
 <td>Results</td>
@@ -388,7 +388,7 @@ To compare this data with the same data at a previous time:
 
 2. Move the new card next to the original card if needed.
 
-3. Change the time period for the data on the new card by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
+3. Change the time period for the data on the new card by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
 4.  Select the time period that you want to compare with the current time.  
 
@@ -420,7 +420,7 @@ To compare this data with the same data at a previous time:
 
 2. Move the new card next to the original card if needed.
 
-3. Change the time period for the data on the new card by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
+3. Change the time period for the data on the new card by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
 4. Select the time period that you want to compare with the current time.  
 
@@ -452,7 +452,7 @@ To compare this data with the same data at a previous time:
 
 2. Move the new card next to the original card if needed.
 
-3. Change the time period for the data on the new card by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
+3. Change the time period for the data on the new card by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
 4. Select the time period that you want to compare with the current time.  
 
@@ -472,7 +472,7 @@ To view switches with the most EVPN alarms:
 
 1. Open the large EVPN Service card.
 
-2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/>.
+2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/>.
 
 3. Select **Events by Most Active Device** from the filter above the table.
 
@@ -503,8 +503,8 @@ include:
 
 - Open one of the other full screen tabs in this flow to focus on devices or sessions.
 - Sort by the **Message** or **Severity** to narrow your focus.
-- Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg", height="18", width="18"/>.
-- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right to return to your workbench.
+- Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
+- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right to return to your workbench.
 
 ### View Details for All Devices Running EVPN
 
@@ -514,7 +514,7 @@ To view all switch and host details, open the full screen EVPN Service card, and
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-allswitches-tab-241.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right.
 
 ### View Details for All EVPN Sessions
 
@@ -524,7 +524,7 @@ To view all session details, open the full screen EVPN Service card, and click t
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-sessions-tab-241.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right.
 
 Use the icons above the table to select/deselect, filter, and export items in the list. Refer to [Table Settings](../../NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings) for more detail.
 
@@ -535,7 +535,7 @@ To return to original display of results, click the associated tab.
 With NetQ, you can monitor the performance of a single EVPN session, including the number of associated VNI, VTEPs and type. For an overview and how to configure EVPN in your data center network, refer to [Ethernet Virtual Private Network - EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
 
 {{%notice note%}}
-To access the single session cards, you must open the full screen EVPN Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
+To access the single session cards, you must open the full screen EVPN Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Cards).
 {{%/notice%}}
 
 ### EVPN Session Card Workflow Summary
@@ -557,7 +557,7 @@ The small EVPN Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
 <td>Indicates data is for an EVPN session</td>
 </tr>
 <tr class="even">
@@ -596,7 +596,7 @@ The medium EVPN Session card displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
 <td>Indicates data is for an EVPN session</td>
 </tr>
 <tr class="odd">
@@ -645,7 +645,7 @@ The *Session Summary* tab displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
 <td>Indicates data is for an EVPN session</td>
 </tr>
 <tr class="odd">
@@ -696,7 +696,7 @@ The *Configuration File Evolution* tab displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
 <td>Indicates configuration file information for a single session of a Network Service or Protocol</td>
 </tr>
 <tr class="odd">
@@ -742,12 +742,12 @@ and all events.
 <td>Network Services | EVPN</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
 <td>Closes full screen card and returns to workbench</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
 </tr>
 <tr class="even">
 <td>Results</td>
@@ -840,7 +840,7 @@ To view all session details, open the full screen EVPN Session card and click th
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-allsess-tab-241.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right of the card.
 
 ### View All Events
 
@@ -854,5 +854,5 @@ Where to go next depends on what data you see, but a few options include:
 
 - Open one of the other full screen tabs in this flow to focus on sessions.
 - Sort by the **Message** or **Severity** to narrow your focus.
-- Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg", height="18", width="18"/>.
-- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> at the top right to return to your workbench.
+- Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
+- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right to return to your workbench.

@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/VLAN+Tagging
  - /pages/viewpage.action?pageId=5116352
 pageID: 5116352
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 This article shows two examples of [VLAN tagging](/version/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/),
 one basic and one more advanced. They both demonstrate the streamlined

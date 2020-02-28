@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=5127557
 pageID: 5127557
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 This chapter introduces monitoring and troubleshooting Cumulus RMP.
 

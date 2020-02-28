@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Interface+Configuration+and+Management
  - /pages/viewpage.action?pageId=7112612
 pageID: 7112612
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 `ifupdown` is the network interface manager for Cumulus Linux. Cumulus
 Linux 2.1 and later uses an updated version of this tool, `ifupdown2`.

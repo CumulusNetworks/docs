@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Network+Troubleshooting
  - /pages/viewpage.action?pageId=5127560
 pageID: 5127560
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 Cumulus RMP contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.

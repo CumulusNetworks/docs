@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Spanning+Tree+and+Rapid+Spanning+Tree
  - /pages/viewpage.action?pageId=5116082
 pageID: 5116082
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 
 Spanning tree protocol (STP) is always recommended in layer 2

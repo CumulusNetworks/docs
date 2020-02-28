@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/User+Accounts
  - /pages/viewpage.action?pageId=5126751
 pageID: 5126751
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 By default, Cumulus Linux has two user accounts: *cumulus* and *root*.
 

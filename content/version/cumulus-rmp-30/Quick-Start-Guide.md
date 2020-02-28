@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=5118670
 pageID: 5118670
 product: Cumulus RMP
-version: 3.0.1
+version: '3.0'
 imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
 ---

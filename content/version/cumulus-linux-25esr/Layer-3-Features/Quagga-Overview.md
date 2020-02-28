@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Quagga+Overview
  - /pages/viewpage.action?pageId=5116106
 pageID: 5116106
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Cumulus Linux uses `quagga`, an open source routing software suite, to
 provide the routing protocols for dynamic routing. Cumulus Linux

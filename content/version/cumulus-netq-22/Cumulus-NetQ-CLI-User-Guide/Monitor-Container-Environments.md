@@ -3,10 +3,6 @@ title: Monitor Container Environments
 author: Cumulus Networks
 weight: 47
 pageID: 12321042
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 The NetQ Agent monitors container environments the same way it monitors
 [physical servers](../Monitor-Linux-Hosts).

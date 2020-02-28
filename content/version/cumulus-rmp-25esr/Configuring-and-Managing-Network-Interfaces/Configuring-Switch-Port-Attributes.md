@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Configuring+Switch+Port+Attributes
  - /pages/viewpage.action?pageId=5116358
 pageID: 5116358
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 
 This chapter discusses the various network interfaces on a switch

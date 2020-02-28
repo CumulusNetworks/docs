@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Routing
  - /pages/viewpage.action?pageId=5869207
 pageID: 5869207
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 This chapter discusses routing on switches running Cumulus Linux.
 

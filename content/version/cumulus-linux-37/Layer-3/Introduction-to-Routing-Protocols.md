@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Introduction+to+Routing+Protocols
  - /pages/viewpage.action?pageId=8362913
 pageID: 8362913
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 This chapter discusses the various routing protocols, and how to configure them.
 

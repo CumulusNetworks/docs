@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Resolve+MLAG+Issues
  - /pages/viewpage.action?pageId=10453528
 pageID: 10453528
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 This topic outlines a few scenarios that illustrate how you use NetQ to
 troubleshoot MLAG on Cumulus Linux switches. Each starts with a log

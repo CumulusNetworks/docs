@@ -6,10 +6,6 @@ aliases:
  - /display/VX30/Using+Cumulus+VX+with+VMware+Fusion
  - /pages/viewpage.action?pageId=5126614
 pageID: 5126614
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 ---
 The process to integrate and use the Cumulus VX OVA image with VMware
 Fusion is pretty straightforward. The procedure was tested on VMware

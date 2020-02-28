@@ -6,10 +6,6 @@ aliases:
  - /display/VX25/Using+Cumulus+VX+with+VirtualBox
  - /pages/viewpage.action?pageId=5115389
 pageID: 5115389
-product: Cumulus VX
-version: 2.5 ESR
-siteSlug: cumulus-vx-25
-imgData: cumulus-vx-25
 ---
 Once you [install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 and [download the OVA image](https://cumulusnetworks.com/cumulus-vx/download/), 

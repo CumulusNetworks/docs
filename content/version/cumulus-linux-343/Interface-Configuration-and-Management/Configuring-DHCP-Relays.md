@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Configuring+DHCP+Relays
  - /pages/viewpage.action?pageId=7112627
 pageID: 7112627
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 You can configure DHCP relays for IPv4 and IPv6.
 

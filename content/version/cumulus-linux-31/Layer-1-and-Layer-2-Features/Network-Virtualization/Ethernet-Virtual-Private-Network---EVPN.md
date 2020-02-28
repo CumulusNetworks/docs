@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Ethernet+Virtual+Private+Network+++EVPN
  - /pages/viewpage.action?pageId=5122076
 pageID: 5122076
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 {{%notice warning%}}
 

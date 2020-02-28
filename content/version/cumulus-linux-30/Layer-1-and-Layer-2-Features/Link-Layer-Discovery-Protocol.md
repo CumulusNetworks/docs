@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Link+Layer+Discovery+Protocol
  - /pages/viewpage.action?pageId=5118271
 pageID: 5118271
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery

@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Monitoring+Interfaces+and+Transceivers+Using+ethtool
  - /pages/viewpage.action?pageId=5116324
 pageID: 5116324
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 The `ethtool` command enables you to query or control the network driver
 and hardware settings. It takes the device name (like swp1) as an

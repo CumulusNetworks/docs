@@ -2,10 +2,6 @@
 title: What's New in Cumulus NetQ 2.2
 author: Cumulus Networks
 weight: 300
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 
 Cumulus NetQ is now available as a cloud service, making it even easier

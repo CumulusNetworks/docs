@@ -3,10 +3,6 @@ title: Monitor Switches
 author: Cumulus Networks
 weight: 155
 pageID: 12321794
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 With the NetQ UI, you can monitor individual switches separately from
 the network. You are able to view the status of services they are

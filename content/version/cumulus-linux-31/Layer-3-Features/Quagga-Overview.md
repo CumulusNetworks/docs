@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Quagga+Overview
  - /pages/viewpage.action?pageId=5122122
 pageID: 5122122
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 Cumulus Linux uses Cumulus Quagga, a fork of the open source routing
 software suite, to provide the routing protocols for dynamic routing.

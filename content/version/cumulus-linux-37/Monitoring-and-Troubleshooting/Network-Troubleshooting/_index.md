@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Network+Troubleshooting
  - /pages/viewpage.action?pageId=8362596
 pageID: 8362596
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 Cumulus Linux contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.

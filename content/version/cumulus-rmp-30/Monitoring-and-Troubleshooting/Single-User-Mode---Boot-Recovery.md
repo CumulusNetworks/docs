@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Single+User+Mode+++Boot+Recovery
  - /pages/viewpage.action?pageId=5118701
 pageID: 5118701
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery.

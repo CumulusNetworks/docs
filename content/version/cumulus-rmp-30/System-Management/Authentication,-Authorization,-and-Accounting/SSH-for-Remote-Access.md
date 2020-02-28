@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=5118674
 pageID: 5118674
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 You use [SSH](http://en.wikipedia.org/wiki/Secure_Shell) to securely
 access a Cumulus RMP switch remotely.

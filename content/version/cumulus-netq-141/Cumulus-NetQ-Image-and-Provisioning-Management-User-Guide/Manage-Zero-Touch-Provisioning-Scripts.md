@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Manage+Zero+Touch+Provisioning+Scripts
  - /pages/viewpage.action?pageId=10453549
 pageID: 10453549
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 You can manage your zero-touch provisioning (ZTP) scripts with the NetQ
 Image and Provisioning Management (IPM) application. IPM uses a default

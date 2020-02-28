@@ -6,11 +6,12 @@ aliases:
  - /display/CL321/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=5126727
 pageID: 5126727
-product: Cumulus Linux
-version: 3.2
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 subsection: true
+cascade:
+  product: Cumulus Linux
+  version: "3.2"
+  imgData: cumulus-linux-321
+  siteSlug: cumulus-linux-321
 ---
 ## Introducing Cumulus Linux
 

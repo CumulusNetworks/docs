@@ -3,10 +3,6 @@ title: Application Layout
 author: Cumulus Networks
 weight: 503
 pageID: 12321856
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 The NetQ UI contains two main areas:
 

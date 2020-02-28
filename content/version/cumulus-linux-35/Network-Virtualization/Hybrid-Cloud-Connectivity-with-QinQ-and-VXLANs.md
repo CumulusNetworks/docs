@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Hybrid+Cloud+Connectivity+with+QinQ+and+VXLANs
  - /pages/viewpage.action?pageId=8357550
 pageID: 8357550
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 *QinQ* is an amendment to the [IEEE 802.1Q
 specification](http://www.ieee802.org/1/pages/802.1Q.html) that provides

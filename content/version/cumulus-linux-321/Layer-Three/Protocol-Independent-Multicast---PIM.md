@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Protocol+Independent+Multicast+++PIM
  - /pages/viewpage.action?pageId=5127023
 pageID: 5127023
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
-
 Protocol Independent Multicast (PIM) is a multicast control plane
 protocol, that advertises multicast sources and receivers over a routed
 layer 3 network. Layer 3 multicast relies on PIM to advertise

@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Introduction+to+Routing+Protocols
  - /pages/viewpage.action?pageId=5116103
 pageID: 5116103
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 This chapter discusses the various routing protocols, and how to
 configure them.

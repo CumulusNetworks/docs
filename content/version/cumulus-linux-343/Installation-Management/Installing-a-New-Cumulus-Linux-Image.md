@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=7112397
 pageID: 7112397
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 Before you install Cumulus Linux, the switch can be in two different
 states:

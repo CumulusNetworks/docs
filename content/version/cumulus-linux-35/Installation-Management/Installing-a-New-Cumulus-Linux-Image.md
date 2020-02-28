@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=8357423
 pageID: 8357423
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 Before you install Cumulus Linux, the switch can be in two different
 states:

@@ -6,8 +6,4 @@ aliases:
  - /display/CL34/Layer+One+and+Two
  - /pages/viewpage.action?pageId=7112403
 pageID: 7112403
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---

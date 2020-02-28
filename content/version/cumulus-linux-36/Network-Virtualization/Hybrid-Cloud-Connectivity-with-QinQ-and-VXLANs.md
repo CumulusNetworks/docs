@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Hybrid+Cloud+Connectivity+with+QinQ+and+VXLANs
  - /pages/viewpage.action?pageId=8362276
 pageID: 8362276
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 *QinQ* is an amendment to the [IEEE 802.1Q specification](http://www.ieee802.org/1/pages/802.1Q.html) 
 that provides the capability for multiple [VLAN tags](/version/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging)

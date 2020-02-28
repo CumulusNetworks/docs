@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Docker+on+Cumulus+Linux
  - /pages/viewpage.action?pageId=5122184
 pageID: 5122184
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 Cumulus Linux 3.1 is based on Linux kernel 4.1, which supports the
 [Docker](https://www.docker.com/) engine. This means you can install

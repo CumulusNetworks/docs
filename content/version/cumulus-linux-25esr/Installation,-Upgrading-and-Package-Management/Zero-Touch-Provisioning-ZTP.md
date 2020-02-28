@@ -8,10 +8,6 @@ aliases:
  - /display/CL25ESR/Zero+Touch+Provisioning+ZTP
  - /pages/viewpage.action?pageId=5115987
 pageID: 5115987
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 *Zero touch provisioning* (ZTP) allows devices to be quickly deployed
 in large-scale environments. Data center engineers only need to rack and

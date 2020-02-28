@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=8362592
 pageID: 8362592
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 

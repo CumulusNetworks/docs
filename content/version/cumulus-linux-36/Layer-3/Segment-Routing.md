@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Segment+Routing
  - /pages/viewpage.action?pageId=8362428
 pageID: 8362428
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Cumulus Linux supports *segment routing,* also known as source routing,
 which provides the ability for a source node to specify the path a

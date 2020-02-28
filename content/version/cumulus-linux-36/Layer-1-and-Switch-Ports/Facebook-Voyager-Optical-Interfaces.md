@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Facebook+Voyager+Optical+Interfaces
  - /pages/viewpage.action?pageId=8362514
 pageID: 8362514
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Facebook Voyager is a Broadcom Tomahawk-based switch with added Dense
 Wave Division Multiplexing (DWDM) ports that can connect to another

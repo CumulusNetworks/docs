@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Voice+VLAN
  - /pages/viewpage.action?pageId=8362146
 pageID: 8362146
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 In Cumulus Linux, a *voice VLAN* is a VLAN dedicated to voice traffic on
 a switch port. However, the term can mean different things to different

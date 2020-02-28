@@ -3,10 +3,6 @@ title: Manage NetQ Agents
 author: Cumulus Networks
 weight: 49
 pageID: 12321061
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 At various points in time, you might want to change which network nodes
 are being monitored by NetQ or look more closely at a network node for

@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/User+Accounts
  - /pages/viewpage.action?pageId=5118675
 pageID: 5118675
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 By default, Cumulus RMP has two user accounts: *root* and *cumulus*.
 

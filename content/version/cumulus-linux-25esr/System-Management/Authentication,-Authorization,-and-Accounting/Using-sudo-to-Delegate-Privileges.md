@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Using+sudo+to+Delegate+Privileges
  - /pages/viewpage.action?pageId=5115903
 pageID: 5115903
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 By default, Cumulus Linux has two user accounts: *root* and *cumulus*.
 The *cumulus* account is a normal user and is in the group *sudo*.

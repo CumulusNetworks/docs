@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/NetQ+Management
  - /pages/viewpage.action?pageId=10465518
 pageID: 10465518
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 As an administrator, you can manage access to and various
 application-wide settings for the NetQ UI as well as view information

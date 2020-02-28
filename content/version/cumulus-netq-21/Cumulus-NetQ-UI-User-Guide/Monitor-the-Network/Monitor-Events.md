@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+Events
  - /pages/viewpage.action?pageId=10465243
 pageID: 10465243
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 Two event workflows, the Alarms card workflow and the Info card
 workflow, provide a view into the events occurring in the network. The

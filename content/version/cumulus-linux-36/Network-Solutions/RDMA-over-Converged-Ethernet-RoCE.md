@@ -8,10 +8,6 @@ aliases:
  - /display/CL36/RDMA+over+Converged+Ethernet+RoCE
  - /pages/viewpage.action?pageId=8362484
 pageID: 8362484
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 *RDMA over Converged Ethernet*
 ([RoCE](https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet))

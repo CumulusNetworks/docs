@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ/Monitor+the+MLAG+Service
  - /pages/viewpage.action?pageId=12321372
 pageID: 12321372
-product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 The Cumulus NetQ UI enables operators to view the health of the MLAG
 service on a network-wide and a per session basis, giving greater

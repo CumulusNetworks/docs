@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Virtual+Router+Redundancy+++VRR
  - /pages/viewpage.action?pageId=5116083
 pageID: 5116083
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 VRR provides virtualized router redundancy in network configurations,
 which enables the hosts to communicate with any redundant router

@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Static+VXLAN+Configurations
  - /pages/viewpage.action?pageId=8362280
 pageID: 8362280
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 
 This section discusses static MAC bindings with VXLAN and static VXLAN tunnels.

@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Network+Troubleshooting
  - /pages/viewpage.action?pageId=5116329
 pageID: 5116329
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 Cumulus RMP contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.

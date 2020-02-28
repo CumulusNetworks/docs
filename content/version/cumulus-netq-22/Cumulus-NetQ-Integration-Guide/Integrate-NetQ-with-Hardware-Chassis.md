@@ -3,10 +3,6 @@ title: Integrate with Hardware Chassis
 author: Cumulus Networks
 weight: 202
 pageID: 12320911
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 
 NetQ can run within a [Facebook Backpack

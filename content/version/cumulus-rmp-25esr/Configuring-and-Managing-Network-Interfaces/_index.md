@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Configuring+and+Managing+Network+Interfaces
  - /pages/viewpage.action?pageId=5116354
 pageID: 5116354
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 
 `ifupdown` is the network interface manager for Cumulus RMP. Cumulus RMP

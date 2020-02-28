@@ -3,10 +3,6 @@ title: Monitor Network Inventory
 author: Cumulus Networks
 weight: 143
 pageID: 12321095
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 With NetQ, a network administrator can monitor both the switch hardware
 and its operating system for misconfigurations or misbehaving services.

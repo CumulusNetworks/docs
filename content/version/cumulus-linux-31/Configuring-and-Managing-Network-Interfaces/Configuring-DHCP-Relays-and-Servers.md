@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Configuring+DHCP+Relays+and+Servers
  - /pages/viewpage.action?pageId=5122111
 pageID: 5122111
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 You can configure an interface so it can make DHCP relay requests for
 IPv4 and IPv6.

@@ -3,10 +3,6 @@ title: NetQ Management
 author: Cumulus Networks
 weight: 91
 pageID: 12321950
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 As an administrator, you can manage access to and various
 application-wide settings for the Cumulus NetQ UI from a single location.

@@ -2,10 +2,6 @@
 title: Install the NetQ Agent and CLI on Switches
 author: Cumulus Networks
 weight: 415
-product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 After installing or upgrading your Cumulus NetQ software, you should install the corresponding version of the NetQ Agents on each node you want to monitor. The node can be a:
 

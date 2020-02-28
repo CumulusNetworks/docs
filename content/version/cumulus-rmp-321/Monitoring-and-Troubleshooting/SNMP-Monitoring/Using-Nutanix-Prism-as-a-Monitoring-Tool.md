@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Using+Nutanix+Prism+as+a+Monitoring+Tool
  - /pages/viewpage.action?pageId=5127582
 pageID: 5127582
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 Nutanix Prism is a graphical user interface (GUI) for managing
 infrastructure and virtual environments. In order to use it, you need to

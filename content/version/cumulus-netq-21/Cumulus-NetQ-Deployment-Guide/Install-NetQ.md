@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Install+NetQ
  - /pages/viewpage.action?pageId=10464027
 pageID: 10464027
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 Installing NetQ can be accomplished in one of three ways:
 

@@ -76,13 +76,13 @@ To configure PIM, run the following commands:
 cumulus@switch:~$ net add interface swp1 pim
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 You must enable PIM on all interfaces facing multicast sources or multicast receivers, as well as on the interface where the RP address is configured.
 
 {{%/notice%}}
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 In Cumulus Linux 4.0 the *sm* keyword is no longer required. In Cumulus Linux releases 3.7 and earlier, the correct command is `net add interface swp1 pim sm`.
 
@@ -94,7 +94,7 @@ In Cumulus Linux 4.0 the *sm* keyword is no longer required. In Cumulus Linux re
 cumulus@switch:~$ net add interface swp1 igmp
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 You must configure IGMP on all interfaces where multicast receivers exist.
 
@@ -108,7 +108,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
  ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration.
 
@@ -144,7 +144,7 @@ pimd=yes
 cumulus@switch:~$ sudo systemctl restart frr
 ```
 
-    {{%notice warning%}}
+   {{%notice warning%}}
 
 Restarting FRR impacts all routing protocols.
 
@@ -160,13 +160,13 @@ switch(config)# interface swp1
 switch(config-if)# ip pim
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 PIM must be enabled on all interfaces facing multicast sources or multicast receivers, as well as on the interface where the RP address is configured.
 
 {{%/notice%}}
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 In Cumulus Linux 4.0 the *sm* keyword is no longer required.
 
@@ -180,7 +180,7 @@ switch(config-if)# exit
 switch(config)#
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 You must configure IGMP on all interfaces where multicast receivers exist.
 
@@ -196,7 +196,7 @@ switch#  exit
 cumulus@switch:~$
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 Each PIM enabled device must configure a static RP to a group mapping and all PIM-SM enabled devices must have the same RP to group mapping configuration.
 
@@ -233,7 +233,7 @@ Cumulus Linux only supports ASM and SSM. PIM BiDir is not currently supported.
 
 {{%/notice%}}
 
-For additional information, see [RFC 7761 - Protocol Independent Multicast - Sparse Mode](https://tools.ietf.org/html/rfc7761).
+For additional information, see {{<exlink url="https://tools.ietf.org/html/rfc7761" text="RFC 7761 - Protocol Independent Multicast - Sparse Mode">}}.
 
 ### Any-source Multicast Routing (ASM)
 
@@ -375,7 +375,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 Enabling PIM active-active automatically enables PIM on that interface.
 
@@ -418,7 +418,7 @@ leaf01(config-if)# ip pim active-active
 leaf01(config-if)# ip igmp
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 Enabling PIM active-active automatically enables PIM on that interface.
 
@@ -452,7 +452,8 @@ When a multicast sender is attached to an MLAG bond, the sender hashes the outbo
 
 {{%notice note%}}
 
-Traffic from multicast sources attached to an MLAG bond is always sent over the MLAG peerlink. Be sure to [size the peerlink appropriately](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#peer-link-sizing) to accommodate this traffic.
+Traffic from multicast sources attached to an MLAG bond is always sent over the MLAG peerlink. Be sure to 
+{{<link url="Multi-Chassis-Link-Aggregation-MLAG#peer-link-sizing" text="size the peerlink appropriately">}} to accommodate this traffic.
 
 {{%/notice%}}
 
@@ -497,7 +498,7 @@ To prevent duplicate multicast packets, a Designated Forward (DF) is elected. Th
 
 ## Verify PIM
 
-The following outputs are based on the [Cumulus Reference Topology](https://github.com/CumulusNetworks/cldemo-vagrant) with `cldemo-pim`.
+The following outputs are based on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Reference Topology">}} with `cldemo-pim`.
 
 <details>
 
@@ -1160,7 +1161,7 @@ cumulus@rp01:~$
 
 ### PIM in a VRF
 
-[VRFs](../Virtual-Routing-and-Forwarding-VRF/) divide the routing table on a per-tenant basis, ultimately providing for separate layer 3 networks over a single layer 3 infrastructure. With a VRF, each tenant has its own virtualized layer 3 network, so IP addresses can overlap between tenants.
+{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}} divide the routing table on a per-tenant basis, ultimately providing for separate layer 3 networks over a single layer 3 infrastructure. With a VRF, each tenant has its own virtualized layer 3 network, so IP addresses can overlap between tenants.
 
 PIM in a VRF enables PIM trees and multicast data traffic to run inside a layer 3 virtualized network, with a separate tree per domain or tenant. Each VRF has its own multicast tree with its own RP(s), sources, and so on. Therefore, you can have one tenant per corporate division, client, or product; for example.
 
@@ -1266,7 +1267,7 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 
 ### BFD for PIM Neighbors
 
-You can use [bidirectional forward detection](../Bidirectional-Forwarding-Detection-BFD/) (BFD) for PIM neighbors to quickly detect link failures. When you configure an interface, include the `pim bfd` option. For example:
+You can use {{<link url="Bidirectional-Forwarding-Detection-BFD" text="bidirectional forward detection">}} (BFD) for PIM neighbors to quickly detect link failures. When you configure an interface, include the `pim bfd` option. For example:
 
 <details>
 
@@ -1452,7 +1453,7 @@ cumulus@switch:~$ cl-resource-query  | grep Mcast
   Total Mcast Routes:         450,   0% of maximum value    450
 ```
 
-For Spectrum chipsets, refer to [TCAM Resource Profiles for Spectrum Switches](../Routing/#tcam-resource-profiles-for-spectrum-switches).
+For Spectrum chipsets, refer to {{<link url="Routing#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
 
 ### Verify MSDP Session State
 

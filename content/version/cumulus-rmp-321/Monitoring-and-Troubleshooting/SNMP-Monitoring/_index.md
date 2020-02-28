@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/SNMP+Monitoring
  - /pages/viewpage.action?pageId=5127574
 pageID: 5127574
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 Cumulus RMP utilizes the open source Net-SNMP agent `snmpd`, v5.7.3,
 which provides support for most of the common industry-wide MIBs,

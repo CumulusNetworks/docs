@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=5115899
 pageID: 5115899
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Setting the time zone, date and time requires root privileges; use `sudo`.
 

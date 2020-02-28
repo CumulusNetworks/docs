@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=5118696
 pageID: 5118696
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 The
 [`cl-support`](/version/cumulus-rmp-30/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/)

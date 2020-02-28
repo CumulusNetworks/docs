@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Monitor+Data+Link+Layer+Devices+and+Protocols
  - /pages/viewpage.action?pageId=10453521
 pageID: 10453521
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 With NetQ, a network administrator can monitor OSI Layer 2 devices and
 protocols, including switches, bridges, link control, and physical media

@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5115986
 pageID: 5115986
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 You use the Advanced Packaging Tool (APT) to manage additional
 applications (in the form of packages) and to install the latest

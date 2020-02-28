@@ -8,10 +8,6 @@ aliases:
  - /display/CL25ESR/Open+Shortest+Path+First+OSPF+Protocol
  - /pages/viewpage.action?pageId=5116109
 pageID: 5116109
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 OSPFv2 is a [link-state routing protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for
 IPv4. OSPF maintains the view of the network topology conceptually as a

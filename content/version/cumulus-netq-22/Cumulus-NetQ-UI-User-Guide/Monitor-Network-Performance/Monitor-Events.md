@@ -3,10 +3,6 @@ title: Monitor Events
 author: Cumulus Networks
 weight: 145
 pageID: 12321771
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 Two event workflows, the Alarms card workflow and the Info card
 workflow, provide a view into the events occurring in the network. The
@@ -44,7 +40,7 @@ The small Alarms card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for all critical severity events in the network</p></td>
 </tr>
 <tr class="even">
@@ -98,7 +94,7 @@ The medium Alarms card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for all critical events in the network</p></td>
 </tr>
 <tr class="odd">
@@ -148,7 +144,7 @@ The *System, Trace and Interfaces* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-clock.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-clock.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for all system, trace and interface critical events in the network</p></td>
 </tr>
 <tr class="odd">
@@ -192,7 +188,7 @@ The full screen Alarms card provides tabs for all events.
 <td><p>Events | Alarms</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -218,7 +214,7 @@ The full screen Alarms card provides tabs for all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -315,7 +311,7 @@ To compare two time periods:
 3.  Move the card to be next to the original Alarm Events card. Note
     that moving large cards can take a few extra seconds since they
     contain a large amount of data.
-4.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
+4.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
     {{< figure src="/images/netq/time-picker-popup-narrow-222.png" width="175" >}}
 
@@ -374,7 +370,7 @@ The small Info card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for all warning, info, and debug severity events in the network</p></td>
 </tr>
 <tr class="even">
@@ -413,7 +409,7 @@ The medium Info card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for all warning, info, and debug severity events in the network</p></td>
 </tr>
 <tr class="odd">
@@ -457,7 +453,7 @@ The large Info card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for all warning, info, and debug severity events in the network</p></td>
 </tr>
 <tr class="odd">
@@ -513,7 +509,7 @@ The full screen Info card provides tabs for all events.
 <td><p>Events | Info</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -539,7 +535,7 @@ The full screen Info card provides tabs for all events.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>

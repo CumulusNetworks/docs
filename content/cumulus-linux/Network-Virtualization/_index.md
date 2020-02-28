@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Linux supports a few forms of [network virtualization](http://en.wikipedia.org/wiki/Network_virtualization).
+Cumulus Linux supports a few forms of {{<exlink url="http://en.wikipedia.org/wiki/Network_virtualization" text="network virtualization">}}.
 
 *VXLAN* (Virtual Extensible LAN) is a standard overlay protocol that abstracts logical virtual networks from the physical network underneath. You can deploy simple and scalable layer 3 Clos architectures while extending layer 2 segments over that layer 3 network.
 
@@ -18,9 +18,9 @@ Hosts on a given virtual network are joined together through an overlay protocol
 
 Cumulus Linux can initiate and terminate VTEPs in hardware and supports wire-rate VXLAN. VXLAN provides an efficient hashing scheme across the IP fabric during the encapsulation process; the source UDP port is unique, with the hash based on layer 2 through layer 4 information from the original frame. The UDP destination port is the standard port 4789.
 
-Cumulus Linux includes the native Linux VXLAN kernel support and integrates with controller-based overlay solutions like [VMware NSX](Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH/) and [Midokura MidoNet](Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/).
+Cumulus Linux includes the native Linux VXLAN kernel support and integrates with controller-based overlay solutions like {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH" text="VMware NSX">}} and {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}}.
 
-VXLAN is supported only on switches in the [Cumulus Linux HCL](https://www.cumulusnetworks.com/hcl/) using the Broadcom Tomahawk, Trident II, Trident II+ and Trident3 chipsets, as well as the Mellanox Spectrum chipset.
+VXLAN is supported only on switches in the {{<exlink url="https://www.cumulusnetworks.com/hcl/" text="Cumulus Linux HCL">}} using the Broadcom Tomahawk, Trident II, Trident II+ and Trident3 chipsets, as well as the Mellanox Spectrum chipset.
 
 {{%notice note%}}
 
@@ -34,19 +34,19 @@ The VXLAN tunnel endpoints cannot share a common subnet; there must be at least 
 
 ### Cut-through Mode and Store and Forward Switching
 
-On switches using Broadcom Tomahawk, Trident II, Trident II+, and Trident3 ASICs, Cumulus Linux supports store and forward switching for VXLANs but does **not** support [cut-through mode](../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management#cut-through-mode-and-store-and-forward-switching).
+On switches using Broadcom Tomahawk, Trident II, Trident II+, and Trident3 ASICs, Cumulus Linux supports store and forward switching for VXLANs but does **not** support {{<link url="Buffer-and-Queue-Management#cut-through-mode-and-store-and-forward-switching" text="cut-through mode">}}.
 
 On switches using Mellanox Spectrum ASICs, Cumulus Linux supports cut-through mode for VXLANs but does **not** support store and forward switching.
 
 ### MTU Size for Virtual Network Interfaces
 
-The maximum transmission unit (MTU) size for a virtual network interface should be 50 bytes smaller than the MTU for the physical interfaces on the switch. For more information on setting MTU, read [Layer 1 and Switch Port Attributes](../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu).
+The maximum transmission unit (MTU) size for a virtual network interface should be 50 bytes smaller than the MTU for the physical interfaces on the switch. For more information on setting MTU, read {{<link url="Switch-Port-Attributes#mtu" text="Layer 1 and Switch Port Attributes">}}.
 
 ### Layer 3 and Layer 2 VNIs Cannot Share the Same ID
 
 A layer 3 VNI and a layer 2 VNI cannot have the same ID. If the VNI IDs are the same, the layer 2 VNI does not get created.
- 
+
 ## Useful Links
 
-- [VXLAN - RFC 7348](https://tools.ietf.org/html/rfc7348)
-- [ovsdb-server](http://openvswitch.org/support/dist-docs/ovsdb-server.1.html)
+- {{<exlink url="https://tools.ietf.org/html/rfc7348" text="VXLAN - RFC 7348">}}
+- {{<exlink url="http://openvswitch.org/support/dist-docs/ovsdb-server.1.html" text="ovsdb-server">}}

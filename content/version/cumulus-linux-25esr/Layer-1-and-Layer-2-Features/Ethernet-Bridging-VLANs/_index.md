@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Ethernet+Bridging+++VLANs
  - /pages/viewpage.action?pageId=5116009
 pageID: 5116009
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 
 Ethernet bridges provide a means for hosts to communicate at layer 2.

@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/FRRouting+Log+Message+Reference
  - /pages/viewpage.action?pageId=8362628
 pageID: 8362628
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 The following table lists the HIGH severity ERROR log messages generated
 by FRRouting. These messages appear in `/var/log/frr/frr.log`.

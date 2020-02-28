@@ -8,9 +8,9 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Networks Routing on the Host enables you to run [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/) or [BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) directly on server hosts. This can enable a network architecture known as *anycast*, where many servers can provide the same service without needing layer 2 extensions or load balancer appliances.
+Cumulus Networks Routing on the Host enables you to run {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} directly on server hosts. This can enable a network architecture known as *anycast*, where many servers can provide the same service without needing layer 2 extensions or load balancer appliances.
 
-Anycast is not a new protocol or protocol implementation and does not require any additional network configuration. Anycast leverages the [equal cost multipath](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/) (ECMP) capabilities inherent in layer 3 networks to provide stateless load sharing services.
+Anycast is not a new protocol or protocol implementation and does not require any additional network configuration. Anycast leverages the {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="equal cost multipath">}} (ECMP) capabilities inherent in layer 3 networks to provide stateless load sharing services.
 
 The following image depicts an example anycast network. Each server is advertising the 172.16.255.66/32 anycast IP address.
 
@@ -63,7 +63,7 @@ This is not to say that it is not possible to use TCP-based applications for any
 
 ## Resilient Hashing
 
-[Resilient hashing](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#resilient-hashing) provides a method to prevent failures from impacting the hash result of unrelated flows. However, resilient hashing does not prevent rehashing when new next hops are added.
+{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#resilient-hashing" text="Resilient hashing">}} provides a method to prevent failures from impacting the hash result of unrelated flows. However, resilient hashing does not prevent rehashing when new next hops are added.
 
 As previously mentioned, the hardware hashing function determines which path gets used for a given flow. The simplified version of that hash is the combination of protocol, source IP address, destination IP address, source layer 4 port and destination layer 4 port. The full hashing function includes not only these fields but also the list of possible layer 3 next hop addresses. The hash result is passed through a *modulo* of the number of next hop addresses. If the number of next hop addresses changes, through either addition or subtraction of the next hops, this changes the hash result for all traffic, including flows that have already established.
 
@@ -91,7 +91,7 @@ To help solve this issue, resilient hashing can prevent traffic flows from shift
 
 Although resilient hashing can prevent rehashing on next hop failure, it cannot prevent rehashing on next hop addition.
 
-You can read more information on resilient hashing in the [ECMP chapter](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/).
+You can read more information on resilient hashing in the {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP chapter">}}.
 
 ## Applications for Anycast
 

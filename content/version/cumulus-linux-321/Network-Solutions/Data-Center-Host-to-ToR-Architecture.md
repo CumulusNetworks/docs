@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Data+Center+Host+to+ToR+Architecture
  - /pages/viewpage.action?pageId=5127088
 pageID: 5127088
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 This chapter discusses the various architectures and strategies
 available from the top of rack (ToR) switches all the way down to the

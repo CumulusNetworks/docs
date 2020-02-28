@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Virtual+Routing+and+Forwarding+++VRF
  - /pages/viewpage.action?pageId=5127065
 pageID: 5127065
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 Cumulus Linux provides *virtual* *routing and forwarding* (VRF) to allow
 for the presence of multiple independent routing tables working

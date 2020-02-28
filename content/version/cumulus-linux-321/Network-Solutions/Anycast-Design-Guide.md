@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Anycast+Design+Guide
  - /pages/viewpage.action?pageId=5127107
 pageID: 5127107
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 Cumulus Networks' Routing on the Host
 provides the ability to run

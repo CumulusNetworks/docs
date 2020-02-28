@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/ifplugd
  - /pages/viewpage.action?pageId=5869006
 pageID: 5869006
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 `ifplugd` is an Ethernet link-state monitoring daemon, that can execute
 user-specified scripts to configure an Ethernet device when a cable is

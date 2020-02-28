@@ -302,5 +302,5 @@ Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
 
 ## Related Information
 
-- [GitHub - lldpd project](http://vincentbernat.github.io/lldpd/)
-- [Wikipedia - Link Layer Discovery Protocol](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
+- {{<exlink url="http://vincentbernat.github.io/lldpd/" text="GitHub - lldpd project">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" text="Wikipedia - Link Layer Discovery Protocol">}}

@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/GRE+Tunneling
  - /pages/viewpage.action?pageId=8362432
 pageID: 8362432
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 {{%notice warning%}}
 

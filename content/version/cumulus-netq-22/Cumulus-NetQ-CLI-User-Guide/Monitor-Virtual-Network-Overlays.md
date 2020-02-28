@@ -3,10 +3,6 @@ title: Monitor Virtual Network Overlays
 author: Cumulus Networks
 weight: 43
 pageID: 12321050
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 
 With NetQ, a network administrator can monitor virtual network

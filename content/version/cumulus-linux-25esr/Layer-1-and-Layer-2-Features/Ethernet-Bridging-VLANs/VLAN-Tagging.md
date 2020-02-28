@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/VLAN+Tagging
  - /pages/viewpage.action?pageId=5116023
 pageID: 5116023
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 This article shows two examples of [VLAN tagging](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/#using-trunks-in-traditional-bridging-mode),
 one basic and one more advanced. They both demonstrate the streamlined

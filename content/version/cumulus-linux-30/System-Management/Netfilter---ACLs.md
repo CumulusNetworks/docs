@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Netfilter+++ACLs
  - /pages/viewpage.action?pageId=5118219
 pageID: 5118219
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework

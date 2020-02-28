@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Investigate+NetQ+Issues
  - /pages/viewpage.action?pageId=10464112
 pageID: 10464112
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 There are several paths you can take to locate and investigate issues
 that occur in the NetQ software itself, including viewing configuration

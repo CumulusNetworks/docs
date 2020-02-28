@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Using+netq+to+Troubleshoot+the+Network
  - /pages/viewpage.action?pageId=5127565
 pageID: 5127565
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 {{%notice warning%}}
 

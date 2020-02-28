@@ -6,10 +6,6 @@ aliases:
  - /display/VX30/Using+GNS3+with+VirtualBox+VMs
  - /pages/viewpage.action?pageId=5126600
 pageID: 5126600
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 ---
 Before you run your virtual network under GNS3, make sure you have done
 the following:

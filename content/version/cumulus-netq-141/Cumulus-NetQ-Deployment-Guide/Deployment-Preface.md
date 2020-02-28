@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Deployment+Preface
  - /pages/viewpage.action?pageId=10453422
 pageID: 10453422
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 A variety of resources are available for you to become familiar with
 Cumulus NetQ and aid in its deployment. These are identified here along

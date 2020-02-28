@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=5126823
 pageID: 5126823
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
-
 Before you install Cumulus Linux, the switch can be in two different
 states:
 

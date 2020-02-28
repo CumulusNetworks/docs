@@ -8,13 +8,13 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-In VXLAN-based networks, there are a range of complexities and challenges in determining the destination *virtual tunnel endpoints* (VTEPs) for any given VXLAN. At scale, various solutions, including controller-based options like [Midokura MidoNet](../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/) or [VMware NSX](../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH/) and even new standards like [EVPN](../Ethernet-Virtual-Private-Network-EVPN/) try to address these complexities, however, they also have their own complexities.
+In VXLAN-based networks, there are a range of complexities and challenges in determining the destination *virtual tunnel endpoints* (VTEPs) for any given VXLAN. At scale, various solutions, including controller-based options like {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH" text="VMware NSX">}} and even new standards like {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} try to address these complexities, however, they also have their own complexities.
 
 S*tatic VXLAN tunnels* serve to connect two VTEPs in a given environment. Static VXLAN tunnels are the simplest deployment mechanism for small scale environments and are interoperable with other vendors that adhere to VXLAN standards. Because you simply map which VTEPs are in a particular VNI, you can avoid the tedious process of defining connections to every VLAN on every other VTEP on every other rack.
 
 ## Requirements
 
-Cumulus Networks supports static VXLAN tunnels only on switches in the [Cumulus Linux HCL](http://cumulusnetworks.com/hcl/) that use the Broadcom Tomahawk, Trident II+, Trident II, Trident3, and Maverick and Mellanox Spectrum ASICs.
+Cumulus Networks supports static VXLAN tunnels only on switches in the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Linux HCL">}} that use the Broadcom Tomahawk, Trident II+, Trident II, Trident3, and Maverick and Mellanox Spectrum ASICs.
 
 For a basic VXLAN configuration, make sure that:
 

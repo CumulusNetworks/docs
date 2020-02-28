@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Netfilter+++ACLs
  - /pages/viewpage.action?pageId=8362058
 pageID: 8362058
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework
 in Cumulus Linux as well as most other Linux distributions. There are a

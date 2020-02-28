@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/LNV+Full+Example
  - /pages/viewpage.action?pageId=5116058
 pageID: 5116058
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Network-Virtualization/)

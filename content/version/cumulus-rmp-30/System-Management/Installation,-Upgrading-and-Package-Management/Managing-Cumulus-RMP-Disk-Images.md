@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Managing+Cumulus+RMP+Disk+Images
  - /pages/viewpage.action?pageId=5118683
 pageID: 5118683
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 The Cumulus RMP operating system resides on a switch as a *disk image*.
 This section discusses how to manage them.

@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Configuring+a+Global+Proxy
  - /pages/viewpage.action?pageId=8362072
 pageID: 8362072
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 You configure 
 [global HTTP and HTTPS proxies](https://wiki.archlinux.org/index.php/proxy_settings) 

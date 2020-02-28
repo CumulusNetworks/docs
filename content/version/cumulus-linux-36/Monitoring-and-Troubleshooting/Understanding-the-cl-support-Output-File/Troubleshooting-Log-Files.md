@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Troubleshooting+Log+Files
  - /pages/viewpage.action?pageId=8362097
 pageID: 8362097
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 The only real unique entity for logging on Cumulus Linux compared to any
 other Linux distribution is `switchd.log`, which logs the HAL (hardware

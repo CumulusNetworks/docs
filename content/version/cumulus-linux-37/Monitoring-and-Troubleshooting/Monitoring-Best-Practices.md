@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Monitoring+Best+Practices
  - /pages/viewpage.action?pageId=8362625
 pageID: 8362625
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 The following monitoring processes are considered best practices for
 reviewing and troubleshooting potential issues with Cumulus Linux

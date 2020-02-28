@@ -6,11 +6,12 @@ aliases:
  - /display/CL30/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=5118197
 pageID: 5118197
-product: Cumulus Linux
-version: '3.0'
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 subsection: true
+cascade:
+  product: Cumulus Linux
+  version: "3.0"
+  imgData: cumulus-linux-30
+  siteSlug: cumulus-linux-30
 ---
 ## Welcome to Cumulus Networks</span>
 

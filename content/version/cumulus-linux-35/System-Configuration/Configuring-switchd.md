@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Configuring+switchd
  - /pages/viewpage.action?pageId=8357343
 pageID: 8357343
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 `switchd` is the daemon at the heart of Cumulus Linux. It communicates
 between the switch and Cumulus Linux, and all the applications running

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/NetQ+Management
  - /pages/viewpage.action?pageId=10465518
 pageID: 10465518
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 As an administrator, you can manage access to and various
 application-wide settings for the NetQ UI as well as view information
@@ -99,7 +95,7 @@ To edit the name on a user account:
 3.  Hover over the account you want to change, and click the checkbox
     next to it.
 
-4.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-2.svg", height="18", width="18"/>.
+4.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-2.svg" height="18" width="18"/>.
 
 5.  Modify the first and/or last name as needed.
 
@@ -123,7 +119,7 @@ To change a password:
 3.  Hover over the account you want to change, and click the checkbox
     next to it.
 
-4.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-2.svg", height="18", width="18"/>.
+4.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-2.svg" height="18" width="18"/>.
 
 5.  Enter your admin password.
 
@@ -253,7 +249,7 @@ To view the configurations:
 
 2.  Click the **Scheduled Validations** tab.
 
-3.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right to return to your NetQ Management cards.
+3.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/> in the top right to return to your NetQ Management cards.
 
 ### Export Scheduled Validation Configurations
 

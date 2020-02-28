@@ -8,10 +8,6 @@ aliases:
  - /display/CL25ESR/Configuring+Border+Gateway+Protocol+BGP
  - /pages/viewpage.action?pageId=5116113
 pageID: 5116113
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 BGP is the routing protocol that runs the Internet. It is an
 increasingly popular protocol for use in the data center as it lends

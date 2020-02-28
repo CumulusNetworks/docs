@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=8362138
 pageID: 8362138
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Before you install Cumulus Linux, the switch can be in two different
 states:

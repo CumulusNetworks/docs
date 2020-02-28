@@ -5,10 +5,6 @@ weight: 67
 aliases:
  - /display/NETQ/Cumulus+NetQ+Primer
 pageID: 12320801
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 Cumulus® NetQ is a highly-scalable, modern network operations tool set
 that provides visibility and troubleshooting of your overlay and

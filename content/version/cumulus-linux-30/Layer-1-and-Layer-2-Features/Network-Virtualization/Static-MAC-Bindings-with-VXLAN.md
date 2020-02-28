@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Static+MAC+Bindings+with+VXLAN
  - /pages/viewpage.action?pageId=5118341
 pageID: 5118341
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 Cumulus Linux includes native Linux VXLAN kernel support.

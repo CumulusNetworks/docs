@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=5126785
 pageID: 5126785
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 The
 [`cl-support`](/version/cumulus-linux-321/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/)

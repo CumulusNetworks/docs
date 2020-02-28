@@ -2,10 +2,6 @@
 title: Investigate NetQ Issues
 author: Cumulus Networks
 weight: 51
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 Monitoring of systems inevitably leads to the need to troubleshoot and
 resolve the issues found. In fact network management follows a common

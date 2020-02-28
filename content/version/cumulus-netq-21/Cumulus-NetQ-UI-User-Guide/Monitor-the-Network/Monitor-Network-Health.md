@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+Network+Health
  - /pages/viewpage.action?pageId=10464197
 pageID: 10464197
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 As with any network, one of the challenges is keeping track of all of
 the moving parts. With the NetQ GUI, you can view the overall health of
@@ -326,7 +322,7 @@ The full screen Network Health card displays all events in the network.
 <td><p>Network Health</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -402,7 +398,7 @@ To view information about each system component:
 
 1.  Open the large Network Health card.
 
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/laptop-heart.svg", height="18", width="18"/>.  
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/laptop-heart.svg" height="18" width="18"/>.  
     
     {{% imgOld 16 %}}
 
@@ -463,7 +459,7 @@ To view information about each network protocol or service:
 
 1.  Open the large Network Health card.
 
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/>.  
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg" height="18" width="18"/>.  
     
     {{% imgOld 20 %}}
     

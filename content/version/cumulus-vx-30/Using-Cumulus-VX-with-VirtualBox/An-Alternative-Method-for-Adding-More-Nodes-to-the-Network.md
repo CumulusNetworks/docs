@@ -6,10 +6,6 @@ aliases:
  - /display/VX30/An+Alternative+Method+for+Adding+More+Nodes+to+the+Network
  - /pages/viewpage.action?pageId=5126593
 pageID: 5126593
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 ---
 Another way you can add a VM to one or more of the internal virtual
 networks in VirtualBox is by cloning the VM. However, keep the following

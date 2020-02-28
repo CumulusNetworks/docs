@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Using+NCLU+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=8362599
 pageID: 8362599
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 The [network command line
 utility](../../../System-Configuration/Network-Command-Line-Utility-NCLU/)

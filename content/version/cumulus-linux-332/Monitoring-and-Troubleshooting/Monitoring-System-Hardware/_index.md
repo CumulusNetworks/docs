@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=5868912
 pageID: 5868912
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 You monitor system hardware in these ways, using:
 

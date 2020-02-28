@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ/Upgrade+from+NetQ+2.0\/2.1+to+NetQ+2.2.x
  - /pages/viewpage.action?pageId=12321007
 pageID: 12321007
-product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 This document describes the steps required to upgrade the NetQ Software (versions 2.0 through 2.2) installed and running on your NetQ cloud server to NetQ version 2.3.
 
@@ -148,7 +144,7 @@ You must upgrade the CLI to make use of the modified upgrade command. Additional
 
     1. Open the NetQ UI.
 
-    2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", width="18", height="18"/>, then select *Management* in the **Admin** column.
+    2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>, then select *Management* in the **Admin** column.
 
         {{< figure src="/images/netq/main-menu-mgmt-selected.png" width="400">}}
 

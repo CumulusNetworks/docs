@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Understanding+and+Decoding+the+cl+support+Output+File
  - /pages/viewpage.action?pageId=5118236
 pageID: 5118236
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 ## The cl-support command generates a tar archive of useful information for troubleshooting that can be auto-generated or manually created. To manually create it, run the cl-support command. The cl-support file is automatically generated when:</span>

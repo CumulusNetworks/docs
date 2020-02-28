@@ -11,15 +11,15 @@ The following sections provide the basic configuration needed to use EVPN as the
 
 {{%notice note%}}
 
-In Cumulus Linux 4.0, MAC learning is disabled and ARP/ND supression is enabled by default. This is a change from earlier Cumulus Linux releases, where MAC learning is *enabled* and ARP/ND suppression *disabled* by default. Be sure to update any configuration scripts, if necessary.
+In Cumulus Linux 4.0, MAC learning is disabled and ARP/ND suppression is enabled by default. This is a change from earlier Cumulus Linux releases, where MAC learning is *enabled* and ARP/ND suppression *disabled* by default. Be sure to update any configuration scripts, if necessary.
 
 {{%/notice%}}
 
 ## Enable EVPN between BGP Neighbors
 
-To enable EVPN between [BGP](../../../Layer-3/Border-Gateway-Protocol-BGP/) neighbors, add the address family *evpn* to the existing neighbor `address-family` activation command.
+To enable EVPN between {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} neighbors, add the address family *evpn* to the existing neighbor `address-family` activation command.
 
-For a non-VTEP device that is merely participating in EVPN route exchange, such as a spine switch where the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector, activating the interface for the EVPN address family is the fundamental configuration needed in [FRRouting](../../../Layer-3/FRRouting-Overview/).
+For a non-VTEP device that is merely participating in EVPN route exchange, such as a spine switch where the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector, activating the interface for the EVPN address family is the fundamental configuration needed in {{<link url="FRRouting-Overview" text="FRRouting">}}.
 
 The other BGP neighbor address family specific configurations supported for EVPN are `allowas-in` and `route-reflector-client`.
 
@@ -76,7 +76,7 @@ router bgp 65000
 ...
 ```
 
-The above configuration does not result in BGP knowing about the local VNIs defined on the system and advertising them to peers. This requires additional configuration, described in [Advertise All VNIs](#advertise-all-vnis), below.
+The above configuration does not result in BGP knowing about the local VNIs defined on the system and advertising them to peers. This requires additional configuration, described in {{<link url="#advertise-all-vnis" text="Advertise All VNIs">}}, below.
 
 ## Advertise All VNIs
 
@@ -250,7 +250,7 @@ address-family l2vpn evpn
 
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 
-You can use EVPN with an [OSPF](../../../Layer-3/Open-Shortest-Path-First-OSPF/) or static route underlay. This is a more complex configuration than using eBGP. In this case, iBGP advertises EVPN routes directly between VTEPs and the spines are unaware of EVPN or BGP.
+You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using eBGP. In this case, iBGP advertises EVPN routes directly between VTEPs and the spines are unaware of EVPN or BGP.
 
 The leaf switches peer with each other in a full mesh within the EVPN address family without using route reflectors. The leafs generally peer to their loopback addresses, which are advertised in OSPF. The receiving VTEP imports routes into a specific VNI with a matching route target community.
 
@@ -433,7 +433,7 @@ iface vni200
 
 </details>
 
-For a bridge in [traditional mode](../../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/), you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -448,7 +448,7 @@ iface bridge1
 
 {{%notice note%}}
 
-When deploying EVPN and VXLAN using a hardware profile *other* than the default [Forwarding Table Profile](../../../Layer-3/Routing#forwarding-table-profiles), ensure that the Linux kernel ARP `sysctl` settings `gc_thresh2` and `gc_thresh3` are both set to a value larger than the number of neighbor (ARP/ND) entries anticipated in the deployment. To configure these settings, edit the `/etc/sysctl.d/neigh.conf` file, then reboot the switch. If your network has more hosts than the values used in the example below, change the `sysctl` entries accordingly.
+When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Routing#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that the Linux kernel ARP `sysctl` settings `gc_thresh2` and `gc_thresh3` are both set to a value larger than the number of neighbor (ARP/ND) entries anticipated in the deployment. To configure these settings, edit the `/etc/sysctl.d/neigh.conf` file, then reboot the switch. If your network has more hosts than the values used in the example below, change the `sysctl` entries accordingly.
 
 <details>
 
@@ -525,14 +525,14 @@ For active-active configuration, make sure that:
 
 MLAG synchronizes information between the two switches in the MLAG pair; EVPN does not synchronize.
 
-For type-5 routes in an EVPN *symmetric* configuration with VXLAN active-active mode, Cumulus Linux uses Primary IP Address Advertisement. For information on configuring Primary IP Address Advertisement, see [Advertise Primary IP Address](../Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode).
+For type-5 routes in an EVPN *symmetric* configuration with VXLAN active-active mode, Cumulus Linux uses Primary IP Address Advertisement. For information on configuring Primary IP Address Advertisement, see {{<link url="Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
 
-For information about active-active VTEPs and anycast IP behavior, and for failure scenarios, see [VXLAN Active-Active Mode](../../VXLAN-Active-Active-Mode).
+For information about active-active VTEPs and anycast IP behavior, and for failure scenarios, see {{<link url="VXLAN-Active-Active-Mode">}}.
 
 ## Caveats
 
 - When EVPN is enabled on a VTEP, all locally defined VNIs on that switch and other information (such as MAC addresses) are advertised to EVPN peers. There is no provision to only announce certain VNIs.
-- On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), ND suppression only works with the Spectrum-A1 chip.
-- ARP suppression is enabled by default in Cumulus Linux. However, in a [VXLAN active-active](../../VXLAN-Active-Active-Mode/) configuration, ARPs are sometimes *not* suppressed. This is because the neighbor entries are not synchronized between the two switches operating in active-active mode by a control plane. This has no impact on forwarding.
+- On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, ND suppression only works with the Spectrum-A1 chip.
+- ARP suppression is enabled by default in Cumulus Linux. However, in a {{<link url="VXLAN-Active-Active-Mode" text="VXLAN active-active">}} configuration, ARPs are sometimes *not* suppressed. This is because the neighbor entries are not synchronized between the two switches operating in active-active mode by a control plane. This has no impact on forwarding.
 - You must configure the overlay (tenants) in a specific VRF and separate from the underlay, which resides in the default VRF. Layer 3 VNI mapping for the default VRF is not supported.
 - In an EVPN deployment, Cumulus Linux supports a single BGP ASN which represents the ASN of the core as well as the ASN for any tenant VRFs if they have BGP peerings. If you need to change the ASN, you must first remove the layer 3 VNI in the `/etc/frr/frr.conf` file, modify the BGP ASN, then add back the layer 3 VNI in the `/etc/frr/frr.conf` file.

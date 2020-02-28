@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Networks deprecated lightweight network virtualization (LNV) in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ([EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/)) to enable interoperability with switches from other manufacturers, to commit to industry standards, and because the benefits of EVPN outweigh those of LNV.
+Cumulus Networks deprecated lightweight network virtualization (LNV) in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}) to enable interoperability with switches from other manufacturers, to commit to industry standards, and because the benefits of EVPN outweigh those of LNV.
 
 If your network is configured for LNV, you need to migrate your network configuration to a BGP EVPN configuration that is functionally equivalent **before** you upgrade to Cumulus Linux 4.0 or later.
 
@@ -24,23 +24,22 @@ You *cannot* run LNV and EVPN at the same time for the following reasons:
 
 Cumulus Networks highly recommends that you use automation, such as Ansible to upgrade to EVPN. Automation ensures minimal downtime, reduces human error, and is useful at almost any scale.
 
-Cumulus Networks also recommends you use [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/)
-to update the configuration for the following reasons:
+Cumulus Networks also recommends you use {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} to update the configuration for the following reasons:
 
 - NCLU restarts services and reloads interfaces automatically so the changes can take effect.
 - With the transactional commit model of NCLU, the order in which the NCLU commands are entered is of no consequence. This further reduces complexity and hidden dependencies.
 
-The upgrade steps described here are based on the following example topology (based on the [Cumulus Networks Reference Topology](https://github.com/CumulusNetworks/cldemo-vagrant)):
+The upgrade steps described here are based on the following example topology (based on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Networks Reference Topology">}}):
 
 {{< img src = "/images/cumulus-linux/lnv-to-evpn-topo.png" >}}
 
 This topology:
 
-- Uses [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) to accommodate dual-attached servers
+- Uses {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} to accommodate dual-attached servers
 - Uses active-active (anycast) mode for VXLAN VTEPs (leaf and exit nodes)
 - LNV service nodes (`vxsnd`) run in anycast mode on all spines
 - Vlan13 and Vlan24 are extended between the two racks (leaf01 and leaf02) and (leaf03 and leaf04)
-- VXLAN routing uses [centralized routing](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/) at the exit nodes
+- VXLAN routing uses {{<link url="Inter-subnet-Routing" text="centralized routing">}} at the exit nodes
 
 The BGP EVPN configuration for a centralized routing topology is slightly different on the exit/routing leafs compared to the other ToR leaf switches.
 

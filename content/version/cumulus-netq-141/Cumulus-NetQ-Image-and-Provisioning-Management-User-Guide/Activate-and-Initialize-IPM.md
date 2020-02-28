@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Activate+and+Initialize+IPM
  - /pages/viewpage.action?pageId=10453539
 pageID: 10453539
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 There is no need to install the IPM software as it comes pre-installed
 on the NetQ Telemetry Server when NetQ is installed. However, there are

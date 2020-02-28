@@ -6,10 +6,6 @@ aliases:
  - '/display/RMP30/Authentication,+Authorization,+and+Accounting'
  - /pages/viewpage.action?pageId=5118673
 pageID: 5118673
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
   - [SSH for Remote
     Access](/version/cumulus-rmp-30/System-Management/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access)

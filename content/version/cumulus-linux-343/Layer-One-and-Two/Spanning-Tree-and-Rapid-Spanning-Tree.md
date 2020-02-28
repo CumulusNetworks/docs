@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Spanning+Tree+and+Rapid+Spanning+Tree
  - /pages/viewpage.action?pageId=7112441
 pageID: 7112441
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 Spanning tree protocol (STP) is always recommended in layer 2
 topologies, as it prevents bridge loops and broadcast radiation on a

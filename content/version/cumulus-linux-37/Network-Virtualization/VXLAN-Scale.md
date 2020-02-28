@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/VXLAN+Scale
  - /pages/viewpage.action?pageId=8362768
 pageID: 8362768
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 On Broadcom Trident II and Tomahawk switches running Cumulus Linux,
 there is a limit to the number of VXLANs you can configure

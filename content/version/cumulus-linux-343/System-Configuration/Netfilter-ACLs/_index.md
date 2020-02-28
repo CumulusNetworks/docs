@@ -8,10 +8,6 @@ aliases:
  - /display/CL34/Netfilter+ACLs
  - /pages/viewpage.action?pageId=7112321
 pageID: 7112321
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework
 in Cumulus Linux as well as most other Linux distributions. There are a

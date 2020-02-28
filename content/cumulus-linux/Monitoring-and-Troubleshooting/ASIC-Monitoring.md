@@ -17,7 +17,7 @@ Cumulus Linux provides an ASIC monitoring tool that collects and distributes dat
 
 {{%notice note%}}
 
-ASIC monitoring is currently supported on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1) only.
+ASIC monitoring is currently supported on switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}} only.
 
 {{%/notice%}}
 
@@ -145,13 +145,13 @@ monitor.histogram_pg.histogram.sample_time_ns         = 1024
 cumulus@switch:~$ systemctl restart asic-monitor.service
 ```
 
-    {{%notice note%}}
-    
+   {{%notice note%}}
+
 Restarting the `asic-monitor` service does not disrupt traffic or require you to restart `switchd`. The service is enabled by default when you boot the switch and restarts when you restart `switchd`.
 
 {{%/notice%}}
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 Overhead is involved in collecting the data, which uses both the CPU and SDK process and can affect execution of `switchd`. Snapshots and logs can occupy a lot of disk space if you do not limit their number.
 
@@ -166,7 +166,7 @@ monitor.buffers_pg.stat_type = buffer
 ...
 ```
 
-Certain settings in the procedure above (such as the histogram size, boundary size, and sampling time) only apply to the histogram monitor. All ASIC monitor settings are described in [ASIC Monitoring Settings](#asic-monitoring-settings).
+Certain settings in the procedure above (such as the histogram size, boundary size, and sampling time) only apply to the histogram monitor. All ASIC monitor settings are described in {{<link title="#ASIC Monitoring Settings">}}.
 
 ## Configuration Examples
 
@@ -272,7 +272,7 @@ monitor.discards_pg.snapshot.file_count               = 16
 
 {{%notice note%}}
 
-Certain actions require additional settings. For example, if the `snapshot` action is specified, a snapshot file is also required. If the `log` action is specified, a log threshold is also required. See [action\_list](#asic-monitoring-settings) for additional settings required for each *action*.
+Certain actions require additional settings. For example, if the `snapshot` action is specified, a snapshot file is also required. If the `log` action is specified, a log threshold is also required. See {{<link url="#asic-monitoring-settings" text="action\_list">}} for additional settings required for each *action*.
 
 {{%/notice%}}
 

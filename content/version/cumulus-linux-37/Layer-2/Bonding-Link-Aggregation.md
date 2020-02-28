@@ -7,10 +7,6 @@ aliases:
  - /display/DOCS/Bonding+-+Link+Aggregation
  - /pages/viewpage.action?pageId=8362653
 pageID: 8362653
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 Linux bonding provides a method for aggregating multiple network
 interfaces (*slaves*) into a single logical bonded interface (*bond*).

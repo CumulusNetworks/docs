@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Ethernet+Bridging+++VLANs
  - /pages/viewpage.action?pageId=5118717
 pageID: 5118717
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 
 Ethernet bridges provide a means for hosts to communicate at layer 2.

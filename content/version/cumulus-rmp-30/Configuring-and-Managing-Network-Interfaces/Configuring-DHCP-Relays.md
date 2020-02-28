@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Configuring+DHCP+Relays
  - /pages/viewpage.action?pageId=5118737
 pageID: 5118737
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 
 You can configure an interface so it can make DHCP relay requests for

@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Single+User+Mode+++Boot+Recovery
  - /pages/viewpage.action?pageId=5115975
 pageID: 5115975
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery. Entering single user mode is

@@ -26,43 +26,43 @@ The small Network Health card displays:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>
-<p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for overall Network Health</p></td>
+<img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg" height="18" width="18"/></td>
+<td>Indicates data is for overall Network Health</td>
 </tr>
 <tr class="even">
-<td><p>Health trend</p></td>
-<td><p>Trend of overall network health, represented by an arrow:</p>
+<td>Health trend</td>
+<td>Trend of overall network health, represented by an arrow:
 <ul>
-<li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
-<li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
-<li><p><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</p></li>
+<li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</li>
+<li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</li>
+<li><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</li>
 </ul>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="odd">
-<td><p>Health score</p></td>
+<td>Health score</td>
 <td><p>Average of health scores for system health, network services health, and interface health during the last data collection window. The health score for each category is calculated as the percentage of items which passed validations versus the number of items checked.</p>
 <p>The collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="even">
-<td><p>Health rating</p></td>
-<td><p>Performance rating based on the health score during the time window:</p>
+<td>Health rating</td>
+<td>Performance rating based on the health score during the time window:
 <ul>
-<li><p><strong>Low</strong>: Health score is less than 40%</p></li>
-<li><p><strong>Med</strong>: Health score is between 40% and 70%</p></li>
-<li><p><strong>High</strong>: Health score is greater than 70%</p></li>
+<li><strong>Low</strong>: Health score is less than 40%</li>
+<li><strong>Med</strong>: Health score is between 40% and 70%</li>
+<li><strong>High</strong>: Health score is greater than 70%</li>
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Chart</p></td>
-<td><p>Distribution of overall health status during the designated time period</p></td>
+<td>Chart</td>
+<td>Distribution of overall health status during the designated time period</td>
 </tr>
 </tbody>
 </table>
@@ -79,42 +79,42 @@ trend of the:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for overall Network Health</p></td>
+<td><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg" height="18" width="18"/></td>
+<td>Indicates data is for overall Network Health</td>
 </tr>
 <tr class="odd">
-<td><p>Health trend</p></td>
-<td><p>Trend of system, network service, and interface health, represented by an arrow:</p>
+<td>Health trend</td>
+<td>Trend of system, network service, and interface health, represented by an arrow:
 <ul>
-<li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
-<li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
-<li><p><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</p></li>
+<li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</li>
+<li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</li>
+<li><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</li>
 </ul>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="even">
-<td><p>Health score</p></td>
-<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for:</p>
+<td>Health score</td>
+<td>Percentage of devices which passed validation versus the number of devices checked during the time window for:
 <ul>
-<li><p><strong>System health</strong>: NetQ Agent health, Cumulus Linux license status, and sensors</p></li>
-<li><p><strong>Network services health</strong>: BGP, CLAG, EVPN, LNV, NTP, OSPF, and VXLAN health</p></li>
-<li><p><strong>Interface health</strong>: interfaces MTU, VLAN health</p></li>
+<li><strong>System health</strong>: NetQ Agent health, Cumulus Linux license status, and sensors</li>
+<li><strong>Network services health</strong>: BGP, CLAG, EVPN, LNV, NTP, OSPF, and VXLAN health</li>
+<li><strong>Interface health</strong>: interfaces MTU, VLAN health</li>
 </ul>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="odd">
-<td><p>Chart</p></td>
-<td><p>Distribution of overall health status during the designated time period</p></td>
+<td>Chart</td>
+<td>Distribution of overall health status during the designated time period</td>
 </tr>
 </tbody>
 </table>
@@ -132,49 +132,49 @@ The *System Health* tab displays:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for System Health</p></td>
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg" height="18" width="18"/></td>
+<td>Indicates data is for System Health</td>
 </tr>
 <tr class="odd">
-<td><p>Health trend</p></td>
-<td><p>Trend of NetQ Agents, Cumulus Linux licenses, and sensor health, represented by an arrow:</p>
+<td>Health trend</td>
+<td>Trend of NetQ Agents, Cumulus Linux licenses, and sensor health, represented by an arrow:
 <ul>
-<li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
-<li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
-<li><p><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</p></li>
+<li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</li>
+<li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</li>
+<li><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</li>
 </ul>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="even">
-<td><p>Health score</p></td>
+<td>Health score</td>
 <td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for NetQ Agents, Cumulus Linux license status, and platform sensors.</p>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="odd">
-<td><p>Charts</p></td>
-<td><p>Distribution of health score for NetQ Agents, Cumulus Linux license status, and platform sensors during the designated time period</p></td>
+<td>Charts</td>
+<td>Distribution of health score for NetQ Agents, Cumulus Linux license status, and platform sensors during the designated time period</td>
 </tr>
 <tr class="even">
-<td><p>Table</p></td>
-<td><p>Listing of items that match the filter selection:</p>
+<td>Table</td>
+<td>Listing of items that match the filter selection:
 <ul>
-<li><p><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top</p></li>
-<li><p><strong>Recent Failures</strong>: Most recent validation failures are listed at the top</p></li>
+<li><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top</li>
+<li><strong>Recent Failures</strong>: Most recent validation failures are listed at the top</li>
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Show All Validations</p></td>
-<td><p>Opens full screen Network Health card with a listing of validations performed by network service and protocol</p></td>
+<td>Show All Validations</td>
+<td>Opens full screen Network Health card with a listing of validations performed by network service and protocol</td>
 </tr>
 </tbody>
 </table>
@@ -190,49 +190,49 @@ The *Network Service Health* tab displays:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/></p></td>
-<td><p>Indicates data is for Network Protocols and Services Health</p></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg" height="18" width="18"/></td>
+<td>Indicates data is for Network Protocols and Services Health</td>
 </tr>
 <tr class="odd">
-<td><p>Health trend</p></td>
-<td><p>Trend of BGP, CLAG, EVPN, LNV, NTP, OSPF, and VXLAN services health, represented by an arrow:</p>
+<td>Health trend</td>
+<td>Trend of BGP, CLAG, EVPN, LNV, NTP, OSPF, and VXLAN services health, represented by an arrow:
 <ul>
-<li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
-<li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
-<li><p><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</p></li>
+<li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</li>
+<li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</li>
+<li><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</li>
 </ul>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="even">
-<td><p>Health score</p></td>
+<td>Health score</td>
 <td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for BGP, CLAG, EVPN, LNV, NTP, and VXLAN protocols and services.</p>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="odd">
-<td><p>Charts</p></td>
-<td><p>Distribution of passing validations for BGP, CLAG, EVPN, LNV, NTP, and VXLAN services during the designated time period</p></td>
+<td>Charts</td>
+<td>Distribution of passing validations for BGP, CLAG, EVPN, LNV, NTP, and VXLAN services during the designated time period</td>
 </tr>
 <tr class="even">
-<td><p>Table</p></td>
-<td><p>Listing of devices that match the filter selection:</p>
+<td>Table</td>
+<td>Listing of devices that match the filter selection:
 <ul>
-<li><p><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top</p></li>
-<li><p><strong>Recent Failures</strong>: Most recent validation failures are listed at the top</p></li>
+<li><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top</li>
+<li><strong>Recent Failures</strong>: Most recent validation failures are listed at the top</li>
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Show All Validations</p></td>
-<td><p>Opens full screen Network Health card with a listing of validations performed by network service and protocol</p></td>
+<td>Show All Validations</td>
+<td>Opens full screen Network Health card with a listing of validations performed by network service and protocol</td>
 </tr>
 </tbody>
 </table>
@@ -248,56 +248,56 @@ The *Interface Health* tab displays:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Time period</p></td>
-<td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><p><img src="/images/netq/ntwk-health-if-health-icon.png", height="20", width="20"/></p></td>
-<td><p>Indicates data is for Interface Health</p></td>
+<td><img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20"/></td>
+<td>Indicates data is for Interface Health</td>
 </tr>
 <tr class="odd">
-<td><p>Health trend</p></td>
-<td><p>Trend of interfaces, VLAN, and MTU health, represented by an arrow:</p>
+<td>Health trend</td>
+<td>Trend of interfaces, VLAN, and MTU health, represented by an arrow:
 <ul>
-<li><p><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</p></li>
-<li><p><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</p></li>
-<li><p><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</p></li>
+<li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</li>
+<li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</li>
+<li><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</li>
 </ul>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="even">
-<td><p>Health score</p></td>
+<td>Health score</td>
 <td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for interfaces, VLAN, and MTU protocols and ports.</p>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="odd">
-<td><p>Charts</p></td>
-<td><p>Distribution of passing validations for interfaces, VLAN, and MTU protocols and ports during the designated time period</p></td>
+<td>Charts</td>
+<td>Distribution of passing validations for interfaces, VLAN, and MTU protocols and ports during the designated time period</td>
 </tr>
 <tr class="even">
-<td><p>Table</p></td>
-<td><p>Listing of devices that match the filter selection:</p>
+<td>Table</td>
+<td>Listing of devices that match the filter selection:
 <ul>
-<li><p><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top</p></li>
-<li><p><strong>Recent Failures</strong>: Most recent validation failures are listed at the top</p></li>
+<li><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top</li>
+<li><strong>Recent Failures</strong>: Most recent validation failures are listed at the top</li>
 </ul></td>
 </tr>
 <tr class="odd">
-<td><p>Show All Validations</p></td>
-<td><p>Opens full screen Network Health card with a listing of validations performed by network service and protocol</p></td>
+<td>Show All Validations</td>
+<td>Opens full screen Network Health card with a listing of validations performed by network service and protocol</td>
 </tr>
 </tbody>
 </table>
 
 The full screen Network Health card displays all events in the network.
 
-{{< figure src="/images/netq/ntwk-hlth-fullscr-bgp-tab-230.png" width="700" >}}
+{{< figure src="/images/netq/ntwk-hlth-fullscr-bgp-tab-241.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -306,45 +306,73 @@ The full screen Network Health card displays all events in the network.
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Item</p></th>
-<th><p>Description</p></th>
+<th>Item</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>Title</p></td>
-<td><p>Network Health</p></td>
+<td>Title</td>
+<td>Network Health</td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
-<td><p>Closes full screen card and returns to workbench</p></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench</td>
 </tr>
 <tr class="odd">
-<td><p>Default Time</p></td>
-<td><p>Range of time in which the displayed data was collected</p></td>
+<td>Default Time</td>
+<td>Range of time in which the displayed data was collected</td>
 </tr>
 <tr class="even">
-<td><p>Results</p></td>
-<td><p>Number of results found for the selected tab</p></td>
+<td>Results</td>
+<td>Number of results found for the selected tab</td>
 </tr>
 <tr class="odd">
-<td><p>Each network protocol or service</p></td>
-<td><p>Displays results of that network protocol or service validations that occurred during the designated time period. By default, the requests list is sorted by the date and time that the validation was completed (<strong>Time</strong>). This tab provides the following additional data about each protocol and service:</p>
+<td>Network protocol or service tab</td>
+<td>Displays results of that network protocol or service validations that occurred during the designated time period. By default, the requests list is sorted by the date and time that the validation was completed (<strong>Time</strong>). This tab provides the following additional data about all protocols and services:
 <ul>
-<li><p><strong>Validation Label</strong>: User-defined name of a validation or Default validation</p></li>
-<li><p><strong>Checked Node Count</strong>: Number of nodes running the service included in the validation</p></li>
-<li><p><strong>Failed Node Count</strong>: Number of nodes that failed the validation</p></li>
-<li><p><strong>Failed Session Count</strong>: Number of sessions that failed the validation. Only applies to BGP, CLAG, EVPN, and OSPF.</p></li>
-<li><p><strong>Total Session Count</strong>: Number of sessions running the protocol or service included in the validation. Only applies to BGP, CLAG, EVPN, and OSPF.</p></li>
+<li><strong>Validation Label</strong>: User-defined name of a validation or Default validation</li>
+<li><strong>Total Node Count</strong>: Number of nodes running the protocol or service</li>
+<li><strong>Checked Node Count</strong>: Number of nodes running the protocol or service included in the validation</li>
+<li><strong>Failed Node Count</strong>: Number of nodes that failed the validation</li>
+<li><strong>Rotten Node Count</strong>: Number of nodes that were unreachable during the validation run</li>
+<li><strong>Warning Node Count</strong>: Number of nodes that had errors during the validation run</li>
+</ul>
+<p>The following protocols and services have additional data:<ul>
+<li>BGP<ul>
+<li><strong>Total Session Count</strong>: Number of sessions running BGP included in the validation</li>
+<li><strong>Failed Session Count</strong>: Number of BGP sessions that failed the validation</li></ul></li>
+<li>EVPN<ul>
+<li><strong>Total Session Count</strong>: Number of sessions running BGP included in the validation</li>
+<li><strong>Checked VNIs Count</strong>: Number of VNIs included in the validation</li>
+<li><strong>Failed BGP Session Count</strong>: Number of BGP sessions that failed the validation</li></ul></li>
+<li>Interfaces<ul>
+<li><strong>Checked Port Count</strong>: Number of ports included in the validation</li>
+<li><strong>Failed Port Count</strong>: Number of ports that failed the validation.</li>
+<li><strong>Unverified Port Count</strong>: Number of ports where a peer could not be identified</li></ul></li>
+<li>Licenses<ul>
+<li><strong>Checked License Count</strong>: Number of licenses included in the validation</li>
+<li><strong>Failed License Count</strong>: Number of licenses that failed the validation</li></ul></li>
+<li>MTU<ul>
+<li><strong>Total Link Count</strong>: Number of links included in the validation</li>
+<li><strong>Failed Link Count</strong>: Number of links that failed the validation</li></ul></li>
+<li>NTP<ul>
+<li><strong>Unknown Node Count</strong>: Number of nodes that NetQ sees but are not in its inventory an thus not included in the validation</li></ul></li>
+<li>OSPF<ul>
+<li><strong>Total Adjacent Count</strong>: Number of adjacencies included in the validation</li>
+<li><strong>Failed Adjacent Count</strong>: Number of adjacencies that failed the validation</li></ul></li>
+<li>Sensors<ul>
+<li><strong>Checked Sensor Count</strong>: Number of sensors included in the validation</li>
+<li><strong>Failed Sensor Count</strong>: Number of sensors that failed the validation</li></ul></li>
+<li>VLAN<ul>
+<li><strong>Total Link Count</strong>: Number of links included in the validation</li>
+<li><strong>Failed Link Count</strong>: Number of links that failed the validation</li></ul></li>
+</li>
 </ul></td>
 </tr>
 <tr class="even">
-<td><p>Export</p></td>
-<td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
-</tr>
-<tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
-<td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -376,7 +404,7 @@ The system health is a calculated average of the NetQ Agent, Cumulus Linux licen
 To view information about each system component:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/>.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-241.png" width="500">}}
 
@@ -414,7 +442,7 @@ The network services health is a calculated average of the individual network pr
 To view information about each network protocol or service:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/>.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-241.png" width="500">}}
 
@@ -457,7 +485,7 @@ The interface health is a calculated average of the interfaces, VLAN, and MTU he
 To view information about each system component:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="/images/netq/ntwk-health-if-health-icon.png", height="20", width="20"/>.
+2.  Hover over the card and click <img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20"/>.
 
     {{<figure src="/images/netq/ntwk-hlth-large-if-hlth-tab-241.png" width="500">}}
 
@@ -501,10 +529,10 @@ To view all the validation results:
 2. Click *\<network protocol or service name\>* tab in the navigation panel.
 3. Look for patterns in the data. For example, when did nodes, sessions, links, ports, or devices start failing validation? Was it at a specific time? Was it when you starting running the service on more nodes? Did sessions fail, but nodes were fine?
 
-    {{< figure src="/images/netq/ntwk-hlth-fullscr-bgp-tab-230.png" width="700" >}}
+    {{< figure src="/images/netq/ntwk-hlth-fullscr-bgp-tab-241.png" width="700" >}}
 
 Where to go next depends on what data you see, but a few options include:
 
 - Look for matching event information for the failure points in a given protocol or service.
 - When you find failures in one protocol, compare with higher level protocols to see if they fail at a similar time (or vice versa with supporting services).
-- Export the data for use in another analytics tool, by clicking **Export** and providing a name for the data file.
+- Export the data for use in another analytics tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/> and providing a name for the data file.

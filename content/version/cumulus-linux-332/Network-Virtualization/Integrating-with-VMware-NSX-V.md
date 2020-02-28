@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Integrating+with+VMware+NSX+V
  - /pages/viewpage.action?pageId=5869131
 pageID: 5869131
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 Switches running Cumulus Linux can integrate with VMware NSX-V to act as
 VTEP gateways. The VMware NSX-V controller provides consistent

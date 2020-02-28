@@ -1,0 +1,49 @@
+{{ $slug := .Page.Params.siteslug}}
+{{ $sections := where .Site.Sections "Section" .Page.Section}}
+
+  <ul class = "cn-book-section-container" id = "top">
+    {{ with (index $sections 0) }}
+        {{ range .Sections }}
+          {{if and .Params.subsection (eq .Params.siteslug $slug)}}
+            {{ template "book-section" (dict "Section" . "CurrentPage" $.Permalink) }}
+          {{end}}
+      {{ end }}
+    {{ end }}
+  </ul>
+
+{{ define "book-section" }}
+  {{- with .Section }}
+    <li class="cn-book-section">
+        {{- template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) -}}
+
+        {{- template "book-section-children" (dict "Section" . "CurrentPage" $.CurrentPage ) }}
+    </li>
+  {{- end }}
+{{- end }}
+
+{{ define "book-section-children" }}
+  {{- with .Section -}}
+    <ul class="cn-book-section-container" id = "subsection">
+      {{- range (union .Sections .Pages) }}
+        {{ if and .IsPage }} 
+          {{if ne .Params.bookhidden true }}
+            <li>{{- template "book-page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}</li>
+          {{ end }} 
+        {{ else }} 
+         {{- template "book-section" (dict "Section" . "CurrentPage" $.CurrentPage ) }}
+        {{ end }} 
+      {{- end }}
+
+
+    </ul>
+  {{- end }}
+{{- end -}}
+
+{{ define "book-page-link" }}
+  {{- with .Page -}}
+    {{ if ne  .Params.bookhidden true }}
+      <a href="{{ .RelPermalink }}" {{ if eq $.CurrentPage .Permalink }} class="active" {{ end }}>{{ .Title }}</a>
+    {{ end }}
+  {{ end }}
+{{ end }}
+

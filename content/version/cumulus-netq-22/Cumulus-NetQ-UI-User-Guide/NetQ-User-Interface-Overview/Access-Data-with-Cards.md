@@ -128,11 +128,11 @@ several ways.
 
 ### Sort Data by Column
 
-Hover over a column header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.
+Hover over a column header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.
 
 ### Choose Columns to Display
 
-1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/> at the top right of the card.
+1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/> at the top right of the card.
 2.  Click **Change Columns** from the **Display Settings**.
 3.  Click the checkbox next to each column name to toggle on/off the
     columns you would like displayed. Columns listed under **Active**
@@ -146,11 +146,11 @@ When you have a large number of possible columns for display, you
 
     {{%/notice%}}
 
-4.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> to close the selection box and view the updated data grid.
+4.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="16" width="16"/> to close the selection box and view the updated data grid.
 
 ### Change Order of Columns
 
-1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/> and then click **Change Columns**.
+1.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/> and then click **Change Columns**.
 2.  Hover over a column name.
 
     {{%notice tip%}}
@@ -165,7 +165,7 @@ You use the **Quick Filter** to find the column when you have a large
 
     {{< figure src="/images/netq/grids-change-column-order-222.png" width="250" >}}
 
-5.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="16", width="16"/> to close the selection box and view the updated data grid.
+5.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="16" width="16"/> to close the selection box and view the updated data grid.
 
 ### Take Actions on Items
 
@@ -253,7 +253,7 @@ existing issues.
 To change the time period for a card:
 
 1.  Hover over any card.
-2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/> in the header.
+2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header.
 3.  Select a time period from the dropdown list.
 
     {{< figure src="/images/netq/time-picker-popup-222.png" width="200" >}}
@@ -319,7 +319,7 @@ You can add one or more cards to a workbench at any time. To add Devices|Switche
 
 To add one or more cards:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open the **Cards** modal.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open the **Cards** modal.
 
     {{< figure src="/images/netq/add-card-modal-all-cards-222.png" width="700" >}}
 
@@ -329,7 +329,7 @@ To add one or more cards:
 
 3. Click on each card you want to add.
 
-      As you select each card, it is grayed out and a <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> appears on top of it. If you have selected one or more cards using the category option, you can selected another category without losing your current selection. Note that the total number of cards selected for addition to your workbench is noted at the bottom.
+      As you select each card, it is grayed out and a <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> appears on top of it. If you have selected one or more cards using the category option, you can selected another category without losing your current selection. Note that the total number of cards selected for addition to your workbench is noted at the bottom.
 
       {{< figure src="/images/netq/add-card-2-selected-222.png" width="700" >}}
 
@@ -351,7 +351,7 @@ You can add switch cards to a workbench at any time. For all other cards, follow
 
 To add a switch card:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> to open the Add Switch Card modal.
+1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> to open the Add Switch Card modal.
 
     {{< figure src="/images/netq/add-switch-card-modal-222.png" width="250" >}}
 
@@ -378,7 +378,7 @@ Removing cards is handled one card at a time.
 To remove a card:
 
 1.  Hover over the card you want to remove.
-2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg", height="18", width="18"/> (*More Actions* menu).
+2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18"/> (*More Actions* menu).
 3.  Click **Remove**.
 
     {{< figure src="/images/netq/remove-card-222.png" width="100" >}}
@@ -428,7 +428,7 @@ need to scroll down to see the card you have just added.
 
 To open the card workflow through an existing workbench:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> in the workbench task bar.
+1.  Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> in the workbench task bar.
 
 2.  Select the relevant workbench.
 
@@ -438,7 +438,7 @@ To open the card workflow through an existing workbench:
 
 To open the card workflow from Recent Actions:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg", height="18", width="18"/> in the application header.
+1.  Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg" height="18" width="18"/> in the application header.
 2.  Look for an "Add: \<card name\>" item.
 3.  If it is still available, click the item.
 
@@ -446,7 +446,7 @@ To open the card workflow from Recent Actions:
 
 To access the card workflow by adding the card:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> in the workbench task bar.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the workbench task bar.
 2.  Follow the instructions in [Add Cards to Your Workbench](#add-cards-to-your-workbench) or [Add Switch Cards to Your Workbench](#add-switch-cards-to-your-workbench).
 
     The card appears on the current workbench, at the bottom.
@@ -484,5 +484,5 @@ provided by default:
 
 To add a card deck:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-cards.svg", height="18", width="18"/> in the workbench task bar.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-cards.svg" height="18" width="18"/> in the workbench task bar.
 2.  Select the deck you want to add to your workbench.

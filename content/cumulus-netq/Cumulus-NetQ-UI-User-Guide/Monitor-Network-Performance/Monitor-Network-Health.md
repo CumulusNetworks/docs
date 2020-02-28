@@ -33,7 +33,7 @@ The small Network Health card displays:
 <tbody>
 <tr class="odd">
 <td>
-<img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></td>
+<img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg" height="18" width="18"/></td>
 <td>Indicates data is for overall Network Health</td>
 </tr>
 <tr class="even">
@@ -89,7 +89,7 @@ trend of the:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg" height="18" width="18"/></td>
 <td>Indicates data is for overall Network Health</td>
 </tr>
 <tr class="odd">
@@ -142,7 +142,7 @@ The *System Health* tab displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg" height="18" width="18"/></td>
 <td>Indicates data is for System Health</td>
 </tr>
 <tr class="odd">
@@ -200,7 +200,7 @@ The *Network Service Health* tab displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg" height="18" width="18"/></td>
 <td>Indicates data is for Network Protocols and Services Health</td>
 </tr>
 <tr class="odd">
@@ -258,7 +258,7 @@ The *Interface Health* tab displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="/images/netq/ntwk-health-if-health-icon.png", height="20", width="20"/></td>
+<td><img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20"/></td>
 <td>Indicates data is for Interface Health</td>
 </tr>
 <tr class="odd">
@@ -316,12 +316,16 @@ The full screen Network Health card displays all events in the network.
 <td>Network Health</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
 <td>Closes full screen card and returns to workbench</td>
 </tr>
 <tr class="odd">
 <td>Default Time</td>
 <td>Range of time in which the displayed data was collected</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
 </tr>
 <tr class="even">
 <td>Results</td>
@@ -404,7 +408,7 @@ The system health is a calculated average of the NetQ Agent, Cumulus Linux licen
 To view information about each system component:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/>.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-241.png" width="500">}}
 
@@ -442,16 +446,14 @@ The network services health is a calculated average of the individual network pr
 To view information about each network protocol or service:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/>.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-241.png" width="500">}}
 
 The health of each network protocol or service is represented on the left side of the card by a distribution of the health score, a trend indicator, and a percentage of successful results. The right side of the card provides a listing of devices running the services.
 
 {{%notice tip%}}
-If you have more services running than fit naturally into the chart area, a scroll bar appears for you to access their data.
-
-Use the scroll bars on the table to view more columns and rows.
+If you have more services running than fit naturally into the chart area, a scroll bar appears for you to access their data. Use the scroll bars on the table to view more columns and rows.
 {{%/notice%}}
 
 ### View Devices with the Most Issues
@@ -485,7 +487,7 @@ The interface health is a calculated average of the interfaces, VLAN, and MTU he
 To view information about each system component:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="/images/netq/ntwk-health-if-health-icon.png", height="20", width="20"/>.
+2.  Hover over the card and click <img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20"/>.
 
     {{<figure src="/images/netq/ntwk-hlth-large-if-hlth-tab-241.png" width="500">}}
 
@@ -535,4 +537,4 @@ Where to go next depends on what data you see, but a few options include:
 
 - Look for matching event information for the failure points in a given protocol or service.
 - When you find failures in one protocol, compare with higher level protocols to see if they fail at a similar time (or vice versa with supporting services).
-- Export the data for use in another analytics tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg", height="18", width="18"/> and providing a name for the data file.
+- Export the data for use in another analytics tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/> and providing a name for the data file.

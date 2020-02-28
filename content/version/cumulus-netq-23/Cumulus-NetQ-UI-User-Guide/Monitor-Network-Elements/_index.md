@@ -9,7 +9,7 @@ Some of these views provide data that is also available through the card workflo
 
 The tables can be manipulated as described in [Data Grid settings](../NetQ-User-Interface-Overview/Access-Data-with-Cards/#data-grid-settings).
 
-Access these tables through the Main Menu (<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>), under the **Network** heading.
+Access these tables through the Main Menu (<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>), under the **Network** heading.
 
 {{<figure src="/images/netq/main-menu-ntwk-choices-highlighted-222.png" width="400">}}
 

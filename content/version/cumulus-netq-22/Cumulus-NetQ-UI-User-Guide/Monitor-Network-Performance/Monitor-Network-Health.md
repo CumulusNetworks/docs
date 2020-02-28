@@ -32,7 +32,7 @@ The small Network Health card displays:
 <tbody>
 <tr class="odd">
 <td>
-<p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
+<p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="even">
@@ -88,7 +88,7 @@ trend of the:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for overall Network Health</p></td>
 </tr>
 <tr class="odd">
@@ -141,7 +141,7 @@ The *System Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for System Health</p></td>
 </tr>
 <tr class="odd">
@@ -199,7 +199,7 @@ The *Network Health* tab displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for Network Protocols and Services Health</p></td>
 </tr>
 <tr class="odd">
@@ -257,7 +257,7 @@ The full screen Network Health card displays all events in the network.
 <td><p>Network Health</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -284,7 +284,7 @@ The full screen Network Health card displays all events in the network.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -333,7 +333,7 @@ information about each component from the large Network Health card.
 To view information about each system component:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg", height="18", width="18"/>.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg" height="18" width="18"/>.
 
     {{< figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-222.png" width="500" >}}
 
@@ -391,7 +391,7 @@ card.
 To view information about each network protocol or service:
 
 1.  Open the large Network Health card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg", height="18", width="18"/>.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg" height="18" width="18"/>.
 
     {{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-222.png" width="500" >}}
 

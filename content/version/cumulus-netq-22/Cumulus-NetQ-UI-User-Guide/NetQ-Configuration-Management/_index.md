@@ -15,7 +15,7 @@ workspaces. This information is covered separately. Refer to
 
 The NetQ Management workbench is accessed from the main menu. For the user(s) responsible for maintaining the application, this is a good place to start each day.
 
-To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>, and select **Management** under the **Admin** column.
+To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and select **Management** under the **Admin** column.
 
 {{<figure src="/images/netq/netq-mgmt-wb-222.png" width="700">}}
 
@@ -64,7 +64,7 @@ Be especially careful entering the email address as you *cannot*
     {{<figure src="/images/netq/netq-mgmt-user-accts-tab-222.png" width="700">}}
 
     By default the User Accounts table is sorted by *Role*. Change
-    the sort by clicking in any of the headers, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.  
+    the sort by clicking in any of the headers, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.  
 
 8.  Repeat these steps to add all of your users.
 
@@ -77,7 +77,7 @@ To change a user name:
 
 1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
 2.  Select the account you want to change by clicking the checkbox next to it.
-3.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+3.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
 4.  Modify the first and/or last name as needed.
 5.  Enter your admin password.
 
@@ -94,7 +94,7 @@ To change a password:
 
 1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
 2.  Select the account you want to change by clicking the checkbox next to it.
-3.  In the Edit menu that appears at the bottom of the window, click click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+3.  In the Edit menu that appears at the bottom of the window, click click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
 4.  Click **Reset Password**.
 5.  Enter your admin password.
 
@@ -121,7 +121,7 @@ To change access permissions:
 
 1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
 2.  Select the account you want to change by clicking the checkbox next to it.
-3.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+3.  In the Edit menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
 4.  Enter your admin password.
 5.  Select the appropriate user type from the dropdown list.
 
@@ -160,7 +160,7 @@ To delete one or more user accounts:
 
 1.  Click **Manage** on the User Accounts card to open the **User Accounts** tab.
 2.  Select one or more accounts that you want to remove by clicking the checkbox next to them.
-3.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg", height="18", width="18"/> in the Edit menu to remove the accounts.
+3.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> in the Edit menu to remove the accounts.
 
 ## Manage Scheduled Traces
 
@@ -213,7 +213,7 @@ To delete a scheduled trace:
 
 1.  Click **Manage** on the Scheduled Trace card to open the **Scheduled Traces** tab.
 2.  Hover over and select at least one trace.
-3.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg", height="16", width="16"/>.
+3.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="16" width="16"/>.
 
 ### Export a Scheduled Trace
 
@@ -249,7 +249,7 @@ results (editing or cloning) or if it would be best to create a new one.
 To view the configurations:
 
 1.  Click **Manage** on the Scheduled Validations card to open the **Scheduled Validations** tab.
-2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right to return to your NetQ Management cards.
+2.  Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right to return to your NetQ Management cards.
 
 ### Add a Scheduled Validation
 

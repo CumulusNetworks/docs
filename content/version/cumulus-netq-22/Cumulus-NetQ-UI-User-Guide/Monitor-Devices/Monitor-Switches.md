@@ -40,7 +40,7 @@ The small Switch card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="24", width="24"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/></p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -100,7 +100,7 @@ The medium Switch card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="24", width="24"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/></p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -137,7 +137,7 @@ The *Attributes* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="24", width="24"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/></p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -216,7 +216,7 @@ The *Utilization* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg", height="24", width="24"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg" height="24" width="24"/></p></td>
 <td><p>Indicates utilization data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -264,7 +264,7 @@ addresses, and all interfaces.
 <td><p>Switches</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -325,7 +325,7 @@ addresses, and all interfaces.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -342,7 +342,7 @@ status and summary performance score and trend.
 
 To view the summary:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/>, and select Devices|Switch. A dialog box opens.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/>, and select Devices|Switch. A dialog box opens.
 
     {{< figure src="/images/netq/dev-switch-open-switch-card.png" width="250" >}}
 
@@ -407,7 +407,7 @@ performance with other switches.
 To view the resource utilization on a particular switch:
 
 1.  Open the large Switch card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg", height="18", width="18"/>.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg" height="18" width="18"/>.
 3.  The card is divided into two sections, one displaying
     hardware-related performance through a series of charts, and one
     displaying the performance of the network tables, also through a
@@ -454,7 +454,7 @@ To view all IP addresses:
     information, determine if it is an IPv4 or IPv6 address, and so
     forth.
 
-3.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
+3.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 To view all MAC addresses:
 
@@ -466,7 +466,7 @@ To view all MAC addresses:
 2.  Review the addresses for any anomalies, to see the associated egress
     port, associated VLANs, and so forth.
 
-3.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
+3.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 ### View All Interfaces on a Switch
 
@@ -489,7 +489,7 @@ To view all interfaces:
     shown in the **Type** column.
 6.  Verify the correct VRF interface is assigned to an interface, shown
     in the **VRF** column.
-7.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
+7.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 ## Monitor Switch Component Inventory
 
@@ -505,7 +505,7 @@ The small Switch Inventory card displays:
 
 | Item              | Description                                                                                  |
 | ----------------- | -------------------------------------------------------------------------------------------- |
-| <img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="22", width="22"/> | Indicates data is for switch inventory                                                       |
+| <img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="22" width="22"/> | Indicates data is for switch inventory                                                       |
 | Count             | Total number of switches in the network inventory                                            |
 | Chart             | Distribution of overall health status during the designated time period; fresh versus rotten |
 
@@ -526,7 +526,7 @@ The medium Switch Inventory card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="22", width="22"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="22" width="22"/></p></td>
 <td><p>Indicates data is for switch inventory</p></td>
 </tr>
 <tr class="even">
@@ -564,7 +564,7 @@ The *Summary* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="22", width="22"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="22" width="22"/></p></td>
 <td><p>Indicates data is for switch inventory</p></td>
 </tr>
 <tr class="even">
@@ -600,7 +600,7 @@ The *ASIC* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core-1.svg", height="20", width="20"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core-1.svg" height="20" width="20"/></p></td>
 <td><p>Indicates data is for ASIC information</p></td>
 </tr>
 <tr class="even">
@@ -639,7 +639,7 @@ The *Platform* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="/images/netq/platform-icon.png", height="20", width="20"/></p></td>
+<td><p><img src="/images/netq/platform-icon.png" height="20" width="20"/></p></td>
 <td><p>Indicates data is for platform information</p></td>
 </tr>
 <tr class="even">
@@ -682,7 +682,7 @@ The *Software* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg", height="20", width="20"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg" height="20" width="20"/></p></td>
 <td><p>Indicates data is for software information</p></td>
 </tr>
 <tr class="even">
@@ -793,11 +793,11 @@ count.
 
 {{% imgOld 46 %}}
 
-To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click <img src="/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
+To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click <img src="/images/netq/platform-icon.png" height="18" width="18"/> to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
 
 To view *which* switches have invalid or missing licenses, either:
 
-  - hover over the large Switch Inventory card and click <img src="/images/netq/platform-icon.png", height="18", width="18"/> to open the **Platform** tab. Above the Licenses State or the Vendor chart, click **Show All**.
+  - hover over the large Switch Inventory card and click <img src="/images/netq/platform-icon.png" height="18" width="18"/> to open the **Platform** tab. Above the Licenses State or the Vendor chart, click **Show All**.
 
       {{< figure src="/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
 
@@ -830,7 +830,7 @@ To view the most commonly deployed ASIC, for example:
 
 3.  If you opened the medium Switch Inventory card, switch to the large card.
 
-4.  Hover over the card, and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core-1.svg", height="18", width="18"/> to open the **ASIC** tab. Here you can more easily view the
+4.  Hover over the card, and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core-1.svg" height="18" width="18"/> to open the **ASIC** tab. Here you can more easily view the
     various vendors and platforms based on the ASIC deployed.
 
 5.  *Hover* over the **Vendor** pie chart

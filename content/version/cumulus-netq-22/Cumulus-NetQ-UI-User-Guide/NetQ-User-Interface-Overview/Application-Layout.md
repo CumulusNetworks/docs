@@ -84,7 +84,7 @@ data at the same time. For details about working with cards, refer to [Access Da
 
 ## User Settings
 
-Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> > Profile & Preferences. For details, refer to [Set User Preferences](../Set-User-Preferences).
+Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > Profile & Preferences. For details, refer to [Set User Preferences](../Set-User-Preferences).
 
 ## Format Cues
 

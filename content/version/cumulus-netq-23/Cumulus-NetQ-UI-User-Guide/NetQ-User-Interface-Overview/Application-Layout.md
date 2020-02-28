@@ -21,7 +21,7 @@ The NetQ UI contains two main areas:
 
 ## Main Menu
 
-Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the main menu which provides navigation to:
+Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the main menu which provides navigation to:
 
   - **Favorites**: contains list of links to workbenches that you have
     designated as favorites; Home is listed by default and points to the Cumulus Workbench
@@ -39,7 +39,7 @@ Found in the application header, click <img src="https://icons.cumulusnetworks.c
 
 Found in the header, Recent Actions keeps track of every action you take on your workbench and then saves each action with a timestamp. This enables you to go back to a previous state or repeat an action.
 
-To open Recent Actions, click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg", height="18", width="18"/>. Click on any of the actions to perform that action again.
+To open Recent Actions, click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg" height="18" width="18"/>. Click on any of the actions to perform that action again.
 
 {{< figure src="/images/netq/recent-actions-222.png" width="250" >}}
 
@@ -91,7 +91,7 @@ data at the same time. For details about working with cards, refer to [Access Da
 
 ## User Settings
 
-Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> > Profile & Preferences. For details, refer to [Set User Preferences](../Set-User-Preferences).
+Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > Profile & Preferences. For details, refer to [Set User Preferences](../Set-User-Preferences).
 
 ## Format Cues
 

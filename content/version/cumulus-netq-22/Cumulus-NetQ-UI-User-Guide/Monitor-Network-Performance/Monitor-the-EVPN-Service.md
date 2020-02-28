@@ -3,10 +3,6 @@ title: Monitor the EVPN Service
 author: Cumulus Networks
 weight: 163
 pageID: 12321294
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 The Cumulus NetQ UI enables operators to view the health of the EVPN
 service on a network-wide and a per session basis, giving greater

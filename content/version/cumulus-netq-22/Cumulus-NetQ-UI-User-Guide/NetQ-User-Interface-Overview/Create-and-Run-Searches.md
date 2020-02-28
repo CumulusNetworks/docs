@@ -3,10 +3,6 @@ title: Create and Run Searches
 author: Cumulus Networks
 weight: 505
 pageID: 12321856
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 The Global Search field in the UI header enables you to search for
 devices or cards. You can create new searches or run existing searches.

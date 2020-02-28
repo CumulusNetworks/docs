@@ -298,6 +298,6 @@ You can view all events in the network either by clicking the **Show All Events*
 
 OR
 
-{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab.png" width="700" >}}
+{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-241.png" width="700" >}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.

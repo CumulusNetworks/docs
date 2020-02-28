@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=5118672
 pageID: 5118672
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 Setting the time zone, date and time requires root privileges; use
 `sudo`.

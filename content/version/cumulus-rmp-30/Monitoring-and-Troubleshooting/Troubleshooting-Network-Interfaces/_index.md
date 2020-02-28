@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=5118699
 pageID: 5118699
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 The following sections describe various ways you can troubleshoot
 `ifupdown2`.

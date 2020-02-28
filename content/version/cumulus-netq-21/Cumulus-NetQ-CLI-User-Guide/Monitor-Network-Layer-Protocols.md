@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+Network+Layer+Protocols
  - /pages/viewpage.action?pageId=10464103
 pageID: 10464103
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 With NetQ, a network administrator can monitor OSI Layer 3 network
 protocols running on Linux-based hosts, including IP (Internet

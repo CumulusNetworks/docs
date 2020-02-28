@@ -6,10 +6,6 @@ aliases:
  - '/display/CL25ESR/Authentication,+Authorization,+and+Accounting'
  - /pages/viewpage.action?pageId=5115900
 pageID: 5115900
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
   - [SSH for Remote Access](/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access)
   - [User Accounts](/version/cumulus-linux-25esr/System-Management/Authentication-Authorization-and-Accounting/User-Accounts)

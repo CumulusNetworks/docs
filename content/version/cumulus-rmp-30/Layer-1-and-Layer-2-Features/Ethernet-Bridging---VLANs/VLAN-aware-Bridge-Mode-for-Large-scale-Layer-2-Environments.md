@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/VLAN+aware+Bridge+Mode+for+Large+scale+Layer+2+Environments
  - /pages/viewpage.action?pageId=5118727
 pageID: 5118727
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 
 The Cumulus RMP bridge driver supports two configuration modes, one that

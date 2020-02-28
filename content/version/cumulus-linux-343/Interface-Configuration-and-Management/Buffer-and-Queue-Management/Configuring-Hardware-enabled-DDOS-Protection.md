@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Configuring+Hardware+enabled+DDOS+Protection
  - /pages/viewpage.action?pageId=7112625
 pageID: 7112625
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 The DDOS protection mechanism protects data plane, control plane and
 management plane traffic in the switch. It drops any packets that match

@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/HTTP+API
  - /pages/viewpage.action?pageId=8362086
 pageID: 8362086
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Cumulus Linux 3.4+ implements an HTTP application programing interface
 to [OpenStack ML2 driver](/version/cumulus-linux-36/Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux)

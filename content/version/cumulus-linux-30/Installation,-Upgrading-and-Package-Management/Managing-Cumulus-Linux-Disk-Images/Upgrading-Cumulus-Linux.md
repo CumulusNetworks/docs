@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Upgrading+Cumulus+Linux
  - /pages/viewpage.action?pageId=5118269
 pageID: 5118269
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 Cumulus Networks software melds the Linux host world with the networking
 devices world. Each world comes with its own paradigm on how to upgrade

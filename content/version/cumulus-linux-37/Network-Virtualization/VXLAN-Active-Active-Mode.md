@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/VXLAN+Active+Active+Mode
  - /pages/viewpage.action?pageId=8362725
 pageID: 8362725
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 *VXLAN active-active mode* allows a pair of
 [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)

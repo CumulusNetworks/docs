@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Management+VRF
  - /pages/viewpage.action?pageId=5116126
 pageID: 5116126
-product: Cumulus Linux
-version: '2.5 ESR'
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 *Management VRF* (multiple routing tables and forwarding) provides
 routing separation between the out-of-band management network and the

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Cumulus+NetQ+Deployment+Guide
  - /pages/viewpage.action?pageId=10453397
 pageID: 10453397
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 This guide is intended for network administrators who are responsible
 for installation, setup, and maintenance of Cumulus NetQ in their data

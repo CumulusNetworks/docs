@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Routing
  - /pages/viewpage.action?pageId=5118738
 pageID: 5118738
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 This chapter discusses routing on switches running Cumulus RMP.
 

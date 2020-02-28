@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/NetQ+Command+Line+Overview
  - /pages/viewpage.action?pageId=10453454
 pageID: 10453454
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 The NetQ CLI provides access to all of the network state and event
 information collected by the NetQ Agents. It behaves the same way most

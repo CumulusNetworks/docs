@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Management+VRF
  - /pages/viewpage.action?pageId=5869234
 pageID: 5869234
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 *Management VRF* - a subset of
 [VRF](/version/cumulus-linux-332/Layer-Three/Virtual-Routing-and-Forwarding-VRF)

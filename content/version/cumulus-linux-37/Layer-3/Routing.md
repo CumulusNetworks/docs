@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Routing
  - /pages/viewpage.action?pageId=8362912
 pageID: 8362912
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 This chapter discusses routing on switches running Cumulus Linux.
 

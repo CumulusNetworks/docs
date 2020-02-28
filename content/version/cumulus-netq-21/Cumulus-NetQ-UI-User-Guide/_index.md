@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Cumulus+NetQ+UI+User+Guide
  - /pages/viewpage.action?pageId=10464126
 pageID: 10464126
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 This guide is intended for network administrators and operators who are
 responsible for monitoring and troubleshooting the network in their data

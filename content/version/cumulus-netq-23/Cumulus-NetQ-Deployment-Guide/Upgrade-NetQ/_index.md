@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ/Upgrade+NetQ
  - /pages/viewpage.action?pageId=12321005
 pageID: 12321005
-product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 Cumulus NetQ 2.0.0 through 2.2.2 can be upgraded to the newest NetQ 2.3.0 release.
 

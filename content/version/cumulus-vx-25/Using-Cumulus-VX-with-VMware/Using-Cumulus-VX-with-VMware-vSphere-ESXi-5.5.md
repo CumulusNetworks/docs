@@ -6,10 +6,6 @@ aliases:
  - /display/VX25/Using+Cumulus+VX+with+VMware+vSphere+++ESXi+5.5
  - /pages/viewpage.action?pageId=5115424
 pageID: 5115424
-product: Cumulus VX
-version: 2.5 ESR
-imgData: cumulus-vx-25
-siteSlug: cumulus-vx-25
 ---
 Follow the steps below to import the Cumulus VX VM image into vSphere
 ESXi. This configuration was tested using vSphere ESXi 5.5 and a Windows

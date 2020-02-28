@@ -6,8 +6,4 @@ aliases:
  - /display/RMP30/Layer+1+and+Layer+2+Features
  - /pages/viewpage.action?pageId=5118710
 pageID: 5118710
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---

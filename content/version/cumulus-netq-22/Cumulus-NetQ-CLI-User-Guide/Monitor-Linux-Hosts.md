@@ -3,10 +3,6 @@ title: Monitor Linux Hosts
 author: Cumulus Networks
 weight: 45
 pageID: 12321043
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 Running NetQ on Linux hosts provides unprecedented network visibility,
 giving the network operator a complete view of the entire

@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Switch+Port+Attributes
  - /pages/viewpage.action?pageId=8362492
 pageID: 8362492
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 This chapter discusses the various network interfaces on a switch
 running Cumulus Linux, how to configure various interface-level settings

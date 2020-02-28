@@ -3,10 +3,6 @@ title: Monitor Network Connectivity
 author: Cumulus Networks
 weight: 171
 pageID: 12321680
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 It is helpful to verify that communications are freely flowing between
 the various devices in your network. You can verify the connectivity

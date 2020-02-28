@@ -3,10 +3,6 @@ title: Monitor Events
 author: Cumulus Networks
 weight: 145
 pageID: 12321771
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 Two event workflows, the Alarms card workflow and the Info card
 workflow, provide a view into the events occurring in the network. The

@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Link+Layer+Discovery+Protocol
  - /pages/viewpage.action?pageId=5127591
 pageID: 5127591
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery

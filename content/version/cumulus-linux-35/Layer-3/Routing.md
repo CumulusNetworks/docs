@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Routing
  - /pages/viewpage.action?pageId=8357708
 pageID: 8357708
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 This chapter discusses routing on switches running Cumulus Linux.
 

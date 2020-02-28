@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Introduction+to+Routing+Protocols
  - /pages/viewpage.action?pageId=8357709
 pageID: 8357709
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 This chapter discusses the various routing protocols, and how to
 configure them.

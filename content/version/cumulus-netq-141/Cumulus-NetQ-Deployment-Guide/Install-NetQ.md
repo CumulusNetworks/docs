@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Install+NetQ
  - /pages/viewpage.action?pageId=10453414
 pageID: 10453414
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 This topic provides step-by-step instructions for installing Cumulus
 NetQ 1.4 with Cumulus Linux 3.3.2 or later. It provides setup

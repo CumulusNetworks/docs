@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Understanding+and+Decoding+the+cl+support+Output+File
  - /pages/viewpage.action?pageId=5127566
 pageID: 5127566
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 
 The `cl-support` command generates a tar archive of useful information

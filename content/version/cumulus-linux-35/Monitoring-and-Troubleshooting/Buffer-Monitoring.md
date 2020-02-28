@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Buffer+Monitoring
  - /pages/viewpage.action?pageId=8357408
 pageID: 8357408
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 Monitoring [packet
 buffers](/version/cumulus-linux-35/Interface-Configuration-and-Management/Buffer-and-Queue-Management/)

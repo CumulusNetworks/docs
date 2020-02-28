@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+Switches
  - /pages/viewpage.action?pageId=10465266
 pageID: 10465266
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 With the NetQ UI, you can monitor individual switches separately from
 the network. You are able to view the status of services they are

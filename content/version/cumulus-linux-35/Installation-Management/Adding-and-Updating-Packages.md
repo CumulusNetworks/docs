@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=8357411
 pageID: 8357411
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 You use the Advanced Packaging Tool (`apt`) to manage additional
 applications (in the form of packages) and to install the latest

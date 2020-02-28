@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Traditional+Mode+Bridges
  - /pages/viewpage.action?pageId=7112426
 pageID: 7112426
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 Cumulus Networks recommends you use a 
 [VLAN-aware bridge](/version/cumulus-linux-343/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)

@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Installation+Management
  - /pages/viewpage.action?pageId=8362125
 pageID: 8362125
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 You can only install one image of the operating system on a Cumulus
 Linux switch. This section discusses how to install new and update

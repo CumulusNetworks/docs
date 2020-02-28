@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Troubleshooting+the+support+Directory
  - /pages/viewpage.action?pageId=5118239
 pageID: 5118239
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 The `support` directory is unique in the fact that it is not a copy of
 the switch's filesystem. Actually, it is the output from various

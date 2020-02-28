@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=8362601
 pageID: 8362601
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 The [`cl-support`](../../Understanding-the-cl-support-Output-File/)
 script replicates the /`etc` directory.

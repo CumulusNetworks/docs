@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Policy+based+Routing
  - /pages/viewpage.action?pageId=8362440
 pageID: 8362440
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Typical routing systems and protocols forward traffic based on the
 destination address in the packet, which is used to look up an entry in

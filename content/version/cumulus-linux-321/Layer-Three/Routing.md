@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Routing
  - /pages/viewpage.action?pageId=5127036
 pageID: 5127036
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 This chapter discusses routing on switches running Cumulus Linux.
 

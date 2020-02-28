@@ -6,10 +6,6 @@ aliases:
  - '/display/CL31/Authentication,+Authorization,+and+Accounting'
  - /pages/viewpage.action?pageId=5121924
 pageID: 5121924
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
   - [SSH for Remote
     Access](/version/cumulus-linux-31/System-Management/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access)

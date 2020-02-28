@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=5115901
 pageID: 5115901
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 You use [SSH](http://en.wikipedia.org/wiki/Secure_Shell) to securely
 access a Cumulus Linux switch remotely.

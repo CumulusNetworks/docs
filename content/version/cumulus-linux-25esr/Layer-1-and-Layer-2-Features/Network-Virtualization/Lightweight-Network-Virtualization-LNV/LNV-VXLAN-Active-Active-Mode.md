@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/LNV+VXLAN+Active+Active+Mode
  - /pages/viewpage.action?pageId=5116066
 pageID: 5116066
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 *VXLAN active-active mode* allows a pair of
 [MLAG](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Multi-Chassis-Link-Aggregation-MLAG)

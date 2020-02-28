@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Collect+Interface+Statistics
  - /pages/viewpage.action?pageId=10453499
 pageID: 10453499
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 Switches collect statistics about the performance of their interfaces.
 The NetQ Agent on each switch collects these statistics every 15 seconds

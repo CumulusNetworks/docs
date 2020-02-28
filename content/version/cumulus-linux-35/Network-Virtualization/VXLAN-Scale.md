@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/VXLAN+Scale
  - /pages/viewpage.action?pageId=8357534
 pageID: 8357534
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 On Broadcom Trident II and Tomahawk (but not Trident II+ or Maverick)
 and Mellanox Spectrum switches running Cumulus Linux, there is a limit

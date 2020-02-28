@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Single+User+Mode+++Boot+Recovery
  - /pages/viewpage.action?pageId=5127572
 pageID: 5127572
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery.

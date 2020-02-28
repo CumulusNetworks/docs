@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5868946
 pageID: 5868946
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 You use the Advanced Packaging Tool (`apt`) to manage additional
 applications (in the form of packages) and to install the latest

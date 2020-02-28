@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5116321
 pageID: 5116321
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 You use the Advanced Packaging Tool (APT) to manage additional
 applications (in the form of packages) and to install the latest

@@ -3,10 +3,6 @@ title: Cumulus NetQ API User Guide
 author: Cumulus Networks
 weight: 204
 pageID: 12321983
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 The NetQ API provides access to key telemetry and system monitoring data
 gathered about the performance and operation of your data center network

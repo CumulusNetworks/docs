@@ -2,10 +2,6 @@
 title: Install NetQ
 author: Cumulus Networks
 weight: 69
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 
 Installing NetQ software can be accomplished in one of three ways:

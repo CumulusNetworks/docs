@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Understanding+and+Decoding+the+cl+support+Output+File
  - /pages/viewpage.action?pageId=5116330
 pageID: 5116330
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 
 ## The cl-support command generates a tar archive of useful information for troubleshooting that can be auto-generated or manually created. To manually create it, run the cl-support command. The cl-support file is automatically generated when:</span>

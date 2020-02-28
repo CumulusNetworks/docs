@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Investigate+NetQ+Issues
  - /pages/viewpage.action?pageId=10453531
 pageID: 10453531
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 There are several tacks you can take to locate and investigate issues
 that occur in the NeQ software itself, including viewing configuration

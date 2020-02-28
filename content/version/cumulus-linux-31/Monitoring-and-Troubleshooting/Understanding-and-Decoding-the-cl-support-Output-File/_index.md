@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Understanding+and+Decoding+the+cl+support+Output+File
  - /pages/viewpage.action?pageId=5121956
 pageID: 5121956
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 
 The `cl-support` command generates a tar archive of useful information

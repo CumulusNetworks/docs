@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Power+over+Ethernet+++PoE
  - /pages/viewpage.action?pageId=5121942
 pageID: 5121942
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 
 Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain

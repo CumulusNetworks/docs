@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Protocol+Independent+Multicast+++PIM
  - /pages/viewpage.action?pageId=5122116
 pageID: 5122116
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 {{%notice warning%}}
 

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+the+BGP+Service
  - /pages/viewpage.action?pageId=10464593
 pageID: 10464593
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 The Cumulus NetQ UI enables operators to view the health of the BGP
 service on a network-wide and a per session basis, giving greater

@@ -3,10 +3,6 @@ title: Set User Preferences
 author: Cumulus Networks
 weight: 511
 pageID: 12321856
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 Each user can customize the NetQ application display, change his account
 password, and manage his workbenches.

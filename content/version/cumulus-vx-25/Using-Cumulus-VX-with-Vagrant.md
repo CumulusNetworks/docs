@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=5115405
 pageID: 5115405
 product: Cumulus VX
-version: 2.5 ESR
+version: "2.5 ESR"
 imgData: cumulus-vx-25
 siteSlug: cumulus-vx-25
 ---

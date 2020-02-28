@@ -6,11 +6,12 @@ aliases:
  - /display/VX25/Cumulus+VX+Getting+Started+Guide
  - /pages/viewpage.action?pageId=5115387
 pageID: 5115387
-product: Cumulus VX
-version: 2.5 ESR
-imgData: cumulus-vx-25
-siteSlug: cumulus-vx-25
 subsection: true
+cascade:
+  product: Cumulus VX
+  version: "2.5 ESR"
+  imgData: cumulus-vx-25
+  siteSlug: cumulus-vx-25
 ---
 Cumulus VX is free, open source software that provides a virtual
 experience enabling cloud and network admins to evaluate Cumulus

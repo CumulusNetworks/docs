@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Network+Troubleshooting
  - /pages/viewpage.action?pageId=5118691
 pageID: 5118691
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 Cumulus RMP contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.

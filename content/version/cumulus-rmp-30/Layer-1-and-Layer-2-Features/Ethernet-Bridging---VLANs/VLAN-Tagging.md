@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/VLAN+Tagging
  - /pages/viewpage.action?pageId=5118730
 pageID: 5118730
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 This article shows two examples of [VLAN tagging](/version/cumulus-rmp-30/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/),
 one basic and one more advanced. They both demonstrate the streamlined

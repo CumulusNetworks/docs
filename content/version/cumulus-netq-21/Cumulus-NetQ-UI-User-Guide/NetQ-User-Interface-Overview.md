@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/NetQ+User+Interface+Overview
  - /pages/viewpage.action?pageId=10465424
 pageID: 10465424
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 The NetQ 2.1 graphical user interface
 (UI)  enables you to access NetQ capabilities through a web

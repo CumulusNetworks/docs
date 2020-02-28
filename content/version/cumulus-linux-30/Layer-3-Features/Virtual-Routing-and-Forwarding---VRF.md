@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Virtual+Routing+and+Forwarding+++VRF
  - /pages/viewpage.action?pageId=5118407
 pageID: 5118407
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 Cumulus Linux provides *virtual* *routing and forwarding* (VRF) to allow

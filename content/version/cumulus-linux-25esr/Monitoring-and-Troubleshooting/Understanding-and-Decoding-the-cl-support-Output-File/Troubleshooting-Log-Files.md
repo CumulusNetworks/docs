@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Troubleshooting+Log+Files
  - /pages/viewpage.action?pageId=5115971
 pageID: 5115971
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 The only real unique entity for logging on Cumulus Linux compared to any
 other Linux distribution is `switchd.log`, which logs the HAL (hardware

@@ -3,10 +3,6 @@ title: Monitor Switch Hardware and Software
 author: Cumulus Networks
 weight: 35
 pageID: 12321058
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 With NetQ, a network administrator can monitor both the switch hardware
 and software components for misconfigurations. NetQ helps answer

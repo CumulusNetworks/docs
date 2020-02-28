@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/SNMP+Monitoring
  - /pages/viewpage.action?pageId=5121965
 pageID: 5121965
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 Cumulus Linux utilizes the open source Net-SNMP agent `snmpd`, v5.7.3,
 which provides support for most of the common industry-wide MIBs,

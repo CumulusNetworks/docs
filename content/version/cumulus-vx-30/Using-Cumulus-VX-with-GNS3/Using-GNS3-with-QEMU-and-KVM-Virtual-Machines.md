@@ -6,10 +6,6 @@ aliases:
  - /display/VX30/Using+GNS3+with+QEMU+and+KVM+Virtual+Machines
  - /pages/viewpage.action?pageId=5126603
 pageID: 5126603
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 ---
 Before you run your virtual network under GNS3, make sure you have done
 the following:

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Early+Access+Features
  - /pages/viewpage.action?pageId=10464121
 pageID: 10464121
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined)
 features that provide advanced access to new functionality before it

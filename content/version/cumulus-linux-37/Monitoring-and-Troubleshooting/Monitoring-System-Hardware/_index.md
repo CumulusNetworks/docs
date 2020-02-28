@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=8362594
 pageID: 8362594
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 You monitor system hardware in these ways, using:
 

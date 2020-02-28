@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Using+Snapshots
  - /pages/viewpage.action?pageId=5127553
 pageID: 5127553
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 Cumulus RMP supports the ability to take snapshots of the complete file
 system as well as the ability to roll back to a previous snapshot.

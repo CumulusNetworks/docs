@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/LNV+Full+Example
  - /pages/viewpage.action?pageId=8362715
 pageID: 8362715
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 {{%notice warning%}}
 

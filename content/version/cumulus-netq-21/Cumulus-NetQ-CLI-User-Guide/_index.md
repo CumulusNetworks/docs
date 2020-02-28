@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Cumulus+NetQ+CLI+User+Guide
  - /pages/viewpage.action?pageId=10464091
 pageID: 10464091
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 This guide is intended for network administrators who are responsible
 for monitoring and troubleshooting the network in their data center

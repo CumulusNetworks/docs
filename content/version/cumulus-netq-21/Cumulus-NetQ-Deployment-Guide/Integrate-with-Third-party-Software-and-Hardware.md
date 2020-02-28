@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Integrate+with+Third+party+Software+and+Hardware
  - /pages/viewpage.action?pageId=10463989
 pageID: 10463989
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 After you have installed NetQ applications package and the NetQ Agents,
 you may want to configure some of the additional capabilities that NetQ

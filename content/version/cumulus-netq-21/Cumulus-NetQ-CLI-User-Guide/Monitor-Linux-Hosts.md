@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+Linux+Hosts
  - /pages/viewpage.action?pageId=10464097
 pageID: 10464097
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 Running NetQ on Linux hosts provides unprecedented network visibility,
 giving the network operator a complete view of the entire

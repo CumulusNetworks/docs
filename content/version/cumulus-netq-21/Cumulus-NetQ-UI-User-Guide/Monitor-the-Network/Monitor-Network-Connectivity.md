@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+Network+Connectivity
  - /pages/viewpage.action?pageId=10465155
 pageID: 10465155
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 It is helpful to verify that communications are freely flowing between
 the various devices in your network. You can verify the connectivity

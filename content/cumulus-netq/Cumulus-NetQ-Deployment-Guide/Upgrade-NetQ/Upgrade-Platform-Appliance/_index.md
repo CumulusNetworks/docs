@@ -52,13 +52,49 @@ To complete the preparation:
 
 3. Copy the file to the */mnt/installables/* directory on your hardware.
 
-4. Update the NetQ debian packages.
+4. Update the NetQ debian packages using the following three commands.
 
-```
-sudo dpkg --remove --force-remove-reinstreq netq-apps netq-agent 2>/dev/null
-sudo apt-get update
-sudo apt-get install -y netq-agent netq-apps
-```
+    ```
+    cumulus@<hostname>:~$ sudo dpkg --remove --force-remove-reinstreq netq-apps netq-agent 2>/dev/null
+    [sudo] password for cumulus:
+    (Reading database ... 71621 files and directories currently installed.)
+    Removing netq-apps (2.4.0-ub18.04u24~1577405296.fcf3c28) ...
+    Removing netq-agent (2.4.0-ub18.04u24~1577405296.fcf3c28) ...
+    Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+    ```
+
+    ```
+    cumulus@<hostname>:~$ sudo apt-get update
+    Get:1 http://apps3.cumulusnetworks.com/repos/deb bionic InRelease [13.8 kB]
+    Get:2 http://apps3.cumulusnetworks.com/repos/deb bionic/netq-2.4 amd64 Packages [758 B]
+    Hit:3 http://archive.ubuntu.com/ubuntu bionic InRelease
+    Get:4 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+    Get:5 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+    ...
+    Get:24 http://archive.ubuntu.com/ubuntu bionic-backports/universe Translation-en [1900 B]
+    Fetched 4651 kB in 3s (1605 kB/s)
+    Reading package lists... Done
+    ```
+
+    ```
+    cumulus@<hostname>:~$ sudo apt-get install -y netq-agent netq-apps
+    Reading package lists... Done
+    Building dependency tree
+    Reading state information... Done
+    ...
+    The following NEW packages will be installed:
+    netq-agent netq-apps
+    ...
+    Fetched 39.8 MB in 3s (13.5 MB/s)    
+    ...
+    Unpacking netq-agent (2.4.1-ub18.04u26~1581351889.c5ec3e5) ...
+    ...
+    Unpacking netq-apps (2.4.1-ub18.04u26~1581351889.c5ec3e5) ...
+    Setting up netq-apps (2.4.1-ub18.04u26~1581351889.c5ec3e5) ...
+    Setting up netq-agent (2.4.1-ub18.04u26~1581351889.c5ec3e5) ...
+    Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
+    Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+    ```
 
 You can now upgrade your platform using the NetQ Admin UI, in the next section, or the {{<link title="#Upgrade Your Hardware Using the NetQ CLI" text="NetQ CLI">}}.
 
@@ -73,7 +109,12 @@ To upgrade your NetQ software:
     <details><summary>On-premises Deployments</summary>
 
     ```
-    netq bootstrap master upgrade /mnt/installables/NetQ-2.4.1.tgz
+    cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-2.4.1.tgz
+    2020-02-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-2.4.1.tgz
+    2020-02-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
+    2020-02-28 15:47:35.667579: master-node-installer: Removing old images
+    -----------------------------------------------
+    Successfully bootstrap-upgraded the master node
     ```
 
     </details>
@@ -82,14 +123,13 @@ To upgrade your NetQ software:
     ```
     netq bootstrap master upgrade /mnt/installables/NetQ-2.4.1-opta.tgz
     ```
-
     </details>
 
-2. Open the Admin UI by entering `https://<hostname-or-ipaddress>:8443` in your browser address field.
+2. Open the Admin UI by entering `http://<hostname-or-ipaddress>:8443` in your browser address field.
 
-3. Click **Begin Upgrade**.
+3. Click **Upgrade**.
 
-4. Click **Upgrade**.
+    {{<figure src="/images/netq/adminui-upgrade-begin-241.png" width="700">}}
 
 4. Enter *NetQ-2.4.1.tgz* or *NetQ-2.4.1-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg", height="18", width="18"/>.
 
@@ -99,7 +139,11 @@ To upgrade your NetQ software:
 The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg", height="18", width="18"/> is only visible after you enter your tar file information.
     {{%/notice%}}
 
-6. Activate the NetQ Software. 
+    Monitor the progress. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg", height="18", width="18"/> to monitor each step in the jobs.
+
+    {{<figure src="/images/netq/adminui-upgrade-progress-241.png" width="700">}}
+
+6. Activate the NetQ Software.
 
 ## Upgrade Your Platform Using the NetQ CLI
 
@@ -126,13 +170,13 @@ To upgrade your hardware:
 
 2. After the upgrade is completed, confirm the upgrade was successful.
 
-```
-cat /etc/app-release
-```
+    ```
+    cat /etc/app-release
+    ```
 
     The output should look like this:
 
     |  | On-premises | Cloud |
     | ---- | ---- | ---- |
-    | <strong>NetQ Platform</strong> | <ul><li>KVM: <br>    APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=E9361...12BE7<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;"</li><li>VMware:<br>APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=7916C...6D0EF<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;"</li></ul> | <ul><li>KVM: <br> APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=383E9...F4371<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;"</li><li>VMware: <br> APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=E6176...A3EA1<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;"</li></ul> |
+    | <strong>NetQ Platform</strong> | <ul><li>KVM:<br>APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=E9361...12BE7<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;"</li><li>VMware:<br>APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=7916C...6D0EF<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;"</li></ul> | <ul><li>KVM: <br> APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=383E9...F4371<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;"</li><li>VMware: <br> APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=E6176...A3EA1<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;"</li></ul> |
     | <strong>NetQ Appliance</strong> | APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=ADB58...E6732<br>APPLIANCE_NAME="NetQ Appliance" | APPLIANCE_VERSION=2.4.1<br>APPLIANCE_MANIFEST_HASH=4F50D...57FE1<br>APPLIANCE_NAME="NetQ Cloud Appliance" |

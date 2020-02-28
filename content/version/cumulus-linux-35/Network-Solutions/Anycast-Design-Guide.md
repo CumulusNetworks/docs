@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Anycast+Design+Guide
  - /pages/viewpage.action?pageId=8357790
 pageID: 8357790
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 Cumulus Networks' Routing on the Host provides the ability to run
 [OSPF](/version/cumulus-linux-35/Layer-3/Open-Shortest-Path-First-OSPF-Protocol)

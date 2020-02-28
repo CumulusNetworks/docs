@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/RADIUS+AAA
  - /pages/viewpage.action?pageId=8357341
 pageID: 8357341
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 Cumulus Networks offers add-on packages that provide the ability for
 [RADIUS](https://en.wikipedia.org/wiki/RADIUS) users to log in to

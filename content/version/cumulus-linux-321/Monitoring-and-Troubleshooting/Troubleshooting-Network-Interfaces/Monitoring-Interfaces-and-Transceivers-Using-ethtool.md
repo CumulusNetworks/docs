@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Monitoring+Interfaces+and+Transceivers+Using+ethtool
  - /pages/viewpage.action?pageId=5126788
 pageID: 5126788
----The `ethtool` command enables you to query or control the network driver
+---
+The `ethtool` command enables you to query or control the network driver
 and hardware settings. It takes the device name (like swp1) as an
 argument. When the device name is the only argument to `ethtool`, it
 prints the current settings of the network device. See `man ethtool(8)`

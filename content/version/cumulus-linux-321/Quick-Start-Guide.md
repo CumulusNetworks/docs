@@ -6,7 +6,12 @@ aliases:
  - /display/CL321/Quick+Start+Guide
  - /pages/viewpage.action?pageId=5126745
 pageID: 5126745
----This quick start guide provides an end-to-end setup process for
+product: Cumulus Linux
+  version: "3.2"
+  imgData: cumulus-linux-321
+  siteSlug: cumulus-linux-321
+---
+This quick start guide provides an end-to-end setup process for
 installing and running Cumulus Linux, as well as a collection of example
 commands for getting started once installation is complete.
 

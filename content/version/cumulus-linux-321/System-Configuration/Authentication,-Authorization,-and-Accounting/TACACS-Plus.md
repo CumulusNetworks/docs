@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/TACACS+Plus
  - /pages/viewpage.action?pageId=5126756
 pageID: 5126756
----Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication,
+---
+Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication,
 and Authorization) in a transparent way with minimal configuration.
 There is no need to create accounts or directories on the switch.
 Authentication is handled via PAM, and includes login, ssh, sudo, and

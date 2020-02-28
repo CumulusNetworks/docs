@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/VLAN+Tagging
  - /pages/viewpage.action?pageId=5126849
 pageID: 5126849
----This article shows two examples of VLAN tagging, one basic and one more
+---
+This article shows two examples of VLAN tagging, one basic and one more
 advanced. They both demonstrate the streamlined interface configuration
 from `ifupdown2`.
 

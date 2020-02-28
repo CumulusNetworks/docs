@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Configuring+Quagga
  - /pages/viewpage.action?pageId=5127042
 pageID: 5127042
----This section provides an overview of configuring Cumulus Quagga, the
+---
+This section provides an overview of configuring Cumulus Quagga, the
 Cumulus Networks-enhanced version of the Quagga routing software package
 that provides a suite of routing protocols so you can configure routing
 on your switch.

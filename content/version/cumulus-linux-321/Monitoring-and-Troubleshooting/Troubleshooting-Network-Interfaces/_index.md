@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=5126787
 pageID: 5126787
----The following sections describe various ways you can troubleshoot
+---
+The following sections describe various ways you can troubleshoot
 `ifupdown2`.
 
 ## Enabling Logging for Networking</span>

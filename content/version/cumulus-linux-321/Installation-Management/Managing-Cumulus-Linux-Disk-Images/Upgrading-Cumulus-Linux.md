@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Upgrading+Cumulus+Linux
  - /pages/viewpage.action?pageId=5126827
 pageID: 5126827
----Cumulus Networks software melds the Linux host world with the networking
+---
+Cumulus Networks software melds the Linux host world with the networking
 devices world. Each world comes with its own paradigm on how to upgrade
 software. Before we discuss the various ways to upgrade Cumulus Linux
 switches, let's review the general considerations and strategies used to

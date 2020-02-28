@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Using+sudo+to+Delegate+Privileges
  - /pages/viewpage.action?pageId=5126752
 pageID: 5126752
----By default, Cumulus Linux has two user accounts: *root* and *cumulus*.
+---
+By default, Cumulus Linux has two user accounts: *root* and *cumulus*.
 The *cumulus* account is a normal user and is in the group *sudo*.
 
 You can add more user accounts as needed. Like the *cumulus* account,

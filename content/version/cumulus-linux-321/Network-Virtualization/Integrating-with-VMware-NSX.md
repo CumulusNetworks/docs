@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Integrating+with+VMware+NSX
  - /pages/viewpage.action?pageId=5126883
 pageID: 5126883
----Switches running Cumulus Linux can integrate with VMware NSX to act as
+---
+Switches running Cumulus Linux can integrate with VMware NSX to act as
 VTEP gateways. The VMware NSX controller provides consistent
 provisioning across virtual and physical server infrastructures.
 

@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Configuring+Hardware+enabled+DDOS+Protection
  - /pages/viewpage.action?pageId=5127006
 pageID: 5127006
----The DDOS protection mechanism protects data plane, control plane and
+---
+The DDOS protection mechanism protects data plane, control plane and
 management plane traffic in the switch. It drops any packets that match
 one or more of the following criteria while incurring no performance
 impact:

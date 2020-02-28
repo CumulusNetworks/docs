@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5126811
 pageID: 5126811
----You use the Advanced Packaging Tool (`apt`) to manage additional
+---
+You use the Advanced Packaging Tool (`apt`) to manage additional
 applications (in the form of packages) and to install the latest
 updates.
 

@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Open+Shortest+Path+First+v3+++OSPFv3+++Protocol
  - /pages/viewpage.action?pageId=5127047
 pageID: 5127047
----OSPFv3 is a revised version of OSPFv2 to support the IPv6 address
+---
+OSPFv3 is a revised version of OSPFv2 to support the IPv6 address
 family. Refer to [Open Shortest Path First (OSPF)
 Protocol](/version/cumulus-linux-321/Layer-Three/Open-Shortest-Path-First-OSPF-Protocol)
 for a discussion on the basic concepts, which remain the same between

@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/VLAN+aware+Bridge+Mode+for+Large+scale+Layer+2+Environments
  - /pages/viewpage.action?pageId=5126846
 pageID: 5126846
----The Cumulus Linux bridge driver supports two configuration modes, one
+---
+The Cumulus Linux bridge driver supports two configuration modes, one
 that is VLAN-aware, and one that follows a more traditional Linux bridge
 model.
 

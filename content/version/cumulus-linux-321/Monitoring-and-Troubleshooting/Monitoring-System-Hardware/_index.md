@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=5126776
 pageID: 5126776
----You monitor system hardware in these ways, using:
+---
+You monitor system hardware in these ways, using:
 
   - `decode-syseeprom`
 

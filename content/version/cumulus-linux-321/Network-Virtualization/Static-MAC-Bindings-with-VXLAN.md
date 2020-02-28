@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Static+MAC+Bindings+with+VXLAN
  - /pages/viewpage.action?pageId=5126936
 pageID: 5126936
----Cumulus Linux includes native Linux VXLAN kernel support.
+---
+Cumulus Linux includes native Linux VXLAN kernel support.
 
 ## Requirements</span>
 

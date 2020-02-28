@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Open+Shortest+Path+First+++OSPF+++Protocol
  - /pages/viewpage.action?pageId=5127045
 pageID: 5127045
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-OSPFv2 is a [link-state routing
+---OSPFv2 is a [link-state routing
 protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for
 IPv4. OSPF maintains the view of the network topology conceptually as a
 directed graph. Each router represents a vertex in the graph. Each link

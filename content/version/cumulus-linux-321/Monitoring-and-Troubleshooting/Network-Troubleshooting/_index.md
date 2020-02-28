@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Network+Troubleshooting
  - /pages/viewpage.action?pageId=5126778
 pageID: 5126778
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-Cumulus Linux contains a number of command line and analytical tools to
+---Cumulus Linux contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.
 
 ## Checking Reachability Using ping</span>

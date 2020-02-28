@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Using+NCLU+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=5126781
 pageID: 5126781
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-The [network command line
+---The [network command line
 utility](/version/cumulus-linux-321/System-Configuration/Network-Command-Line-Utility)
 (NCLU) can quickly return a lot of information about your network
 configuration.

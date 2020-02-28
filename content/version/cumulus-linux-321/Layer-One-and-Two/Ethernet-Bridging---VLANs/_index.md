@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Ethernet+Bridging+++VLANs
  - /pages/viewpage.action?pageId=5126836
 pageID: 5126836
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-Ethernet bridges provide a means for hosts to communicate through layer
+---Ethernet bridges provide a means for hosts to communicate through layer
 2, by connecting all of the physical and logical interfaces in the
 system into a single layer 2 domain. The bridge is a logical interface
 with a MAC address and an

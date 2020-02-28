@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Cumulus+Networks+Services+Demos
  - /pages/viewpage.action?pageId=5127084
 pageID: 5127084
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-The Cumulus Networks Services team demos provide a virtual environment
+---The Cumulus Networks Services team demos provide a virtual environment
 built using either VirtualBox or `libvirt` using Vagrant to manage the
 VMs. This environment utilizes the reference topology shown below.
 Vagrant and Cumulus VX can be used together to build virtual simulations

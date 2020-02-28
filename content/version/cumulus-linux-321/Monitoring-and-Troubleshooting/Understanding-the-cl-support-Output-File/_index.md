@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Understanding+the+cl+support+Output+File
  - /pages/viewpage.action?pageId=5126784
 pageID: 5126784
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-The `cl-support` command generates an archive of useful information for
+---The `cl-support` command generates an archive of useful information for
 troubleshooting that can be auto-generated or manually created. To
 manually create it, run the `cl-support` command. The `cl-support` file
 is automatically generated when:

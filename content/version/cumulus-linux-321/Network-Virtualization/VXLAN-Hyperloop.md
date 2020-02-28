@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/VXLAN+Hyperloop
  - /pages/viewpage.action?pageId=5126975
 pageID: 5126975
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-This chapter covers configuring VXLAN gateways using a loopback cable
+---This chapter covers configuring VXLAN gateways using a loopback cable
 (which we call a *hyperloop*) on non-RIOT (VXLAN routing) capable ASICs
 running Cumulus Linux.
 

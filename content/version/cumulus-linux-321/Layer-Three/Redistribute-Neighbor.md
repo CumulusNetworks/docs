@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Redistribute+Neighbor
  - /pages/viewpage.action?pageId=5127078
 pageID: 5127078
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-*Redistribute neighbor* provides a mechanism for IP subnets to span
+---*Redistribute neighbor* provides a mechanism for IP subnets to span
 racks without forcing the end hosts to run a routing protocol.
 
 The fundamental premise behind redistribute neighbor is to announce

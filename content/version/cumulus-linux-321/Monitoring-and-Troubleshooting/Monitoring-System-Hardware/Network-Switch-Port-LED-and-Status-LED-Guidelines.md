@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Network+Switch+Port+LED+and+Status+LED+Guidelines
  - /pages/viewpage.action?pageId=5126777
 pageID: 5126777
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-Data centers today have a large number of network switches manufactured
+---Data centers today have a large number of network switches manufactured
 by different hardware vendors running NOSes (network operating system)
 from different providers. This chapter provides a set of guidelines for
 how network port and status LEDs should appear on the front panel of a

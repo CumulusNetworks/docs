@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/LNV+VXLAN+Active+Active+Mode
  - /pages/viewpage.action?pageId=5126929
 pageID: 5126929
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-*LNV active-active mode* allows a pair of
+---*LNV active-active mode* allows a pair of
 [MLAG](/version/cumulus-linux-321/Layer-One-and-Two/Multi-Chassis-Link-Aggregation-MLAG/) switches to
 act as a single VTEP, providing active-active VXLAN termination for bare
 metal as well as virtualized workloads.

@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Using+netq+to+Troubleshoot+the+Network
  - /pages/viewpage.action?pageId=5126783
 pageID: 5126783
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-{{%notice warning%}}
+---{{%notice warning%}}
 
 **Early Access Feature**
 

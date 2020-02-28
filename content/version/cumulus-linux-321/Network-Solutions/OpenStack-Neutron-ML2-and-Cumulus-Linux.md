@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/OpenStack+Neutron+ML2+and+Cumulus+Linux
  - /pages/viewpage.action?pageId=5127086
 pageID: 5127086
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-{{%notice warning%}}
+---{{%notice warning%}}
 
 **Early Access Feature**
 

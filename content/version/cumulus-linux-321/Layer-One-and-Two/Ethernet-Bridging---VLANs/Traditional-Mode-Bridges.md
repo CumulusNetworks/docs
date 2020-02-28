@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Traditional+Mode+Bridges
  - /pages/viewpage.action?pageId=5126851
 pageID: 5126851
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-Cumulus Networks recommends you use a [VLAN-aware
+---Cumulus Networks recommends you use a [VLAN-aware
 bridge](/version/cumulus-linux-321/Layer-One-and-Two/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 on your switch. You use traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.

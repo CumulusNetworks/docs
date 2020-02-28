@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Network+Command+Line+Utility
  - /pages/viewpage.action?pageId=5126772
 pageID: 5126772
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-The Network Command Line Utility, or NCLU, is a command line interface
+---The Network Command Line Utility, or NCLU, is a command line interface
 for Cumulus Networks products, implemented in Cumulus Linux and VX 3.1
 and later releases, with the goal of simplifying the networking
 configuration process for all users.

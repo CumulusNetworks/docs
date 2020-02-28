@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Using+Nutanix+Prism+as+a+Monitoring+Tool
  - /pages/viewpage.action?pageId=5126802
 pageID: 5126802
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-Nutanix Prism is a graphical user interface (GUI) for managing
+---Nutanix Prism is a graphical user interface (GUI) for managing
 infrastructure and virtual environments. In order to use it, you need to
 take special steps within Cumulus Linux before you can configure Prism.
 

@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Comparing+NCLU+and+vtysh+Commands
  - /pages/viewpage.action?pageId=5127043
 pageID: 5127043
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-Using
+---Using
 [NCLU](/version/cumulus-linux-321/System-Configuration/Network-Command-Line-Utility)
 is the primary way to [configure
 routing](/version/cumulus-linux-321/Layer-Three/Configuring-Quagga/) in

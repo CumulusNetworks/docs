@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/LACP+Bypass
  - /pages/viewpage.action?pageId=5126871
 pageID: 5126871
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-On Cumulus Linux, *LACP Bypass* is a feature that allows a
+---On Cumulus Linux, *LACP Bypass* is a feature that allows a
 [bond](/version/cumulus-linux-321/Layer-One-and-Two/Bonding-Link-Aggregation)
 configured in 802.3ad mode to become active and forward traffic even
 when there is no LACP partner. A typical use case for this feature is to

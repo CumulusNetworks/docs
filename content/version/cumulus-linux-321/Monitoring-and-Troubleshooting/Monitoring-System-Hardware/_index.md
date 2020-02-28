@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=5126776
 pageID: 5126776
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-You monitor system hardware in these ways, using:
+---You monitor system hardware in these ways, using:
 
   - `decode-syseeprom`
 

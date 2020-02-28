@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Docker+on+Cumulus+Linux
  - /pages/viewpage.action?pageId=5127082
 pageID: 5127082
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-Cumulus Linux 3.2 is based on Linux kernel 4.1, which supports the
+---Cumulus Linux 3.2 is based on Linux kernel 4.1, which supports the
 [Docker](https://www.docker.com/) engine. This means you can install
 Docker directly on a Cumulus Linux switch and you can run Docker
 containers natively on the switch.

@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Bidirectional+Forwarding+Detection+++BFD
  - /pages/viewpage.action?pageId=5127061
 pageID: 5127061
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-*Bidirectional Forwarding Detection* (BFD) provides low overhead and
+---*Bidirectional Forwarding Detection* (BFD) provides low overhead and
 rapid detection of failures in the paths between two network devices. It
 provides a unified mechanism for link detection over all media and
 protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or

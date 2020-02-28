@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Resource+Diagnostics+Using+cl+resource+query
  - /pages/viewpage.action?pageId=5126775
 pageID: 5126775
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
----
-You can use `cl-resource-query` to retrieve information about host
+---You can use `cl-resource-query` to retrieve information about host
 entries, MAC entries, L2 and L3 routes, and ECMPs (equal-cost multi-path
 routes, see [Load Balancing](/version/cumulus-linux-321/Layer-Three/Network-Topology/#span-idsrc-5127039-networktopology-load-balancing-classconfluence-anchor-linkspanload-balancingspan))
 that are in use. This is especially useful because Cumulus Linux syncs

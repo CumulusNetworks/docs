@@ -9,7 +9,7 @@ pageID: 5121907
 subsection: true
 cascade:
   product: Cumulus Linux
-  version: 3.1
+  version: "3.1"
   imgData: cumulus-linux-31
   siteSlug: cumulus-linux-31
 ---

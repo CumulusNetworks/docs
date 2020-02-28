@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Docker+on+Cumulus+Linux
  - /pages/viewpage.action?pageId=5118419
 pageID: 5118419
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 Cumulus Linux 3.0 is based on Linux kernel 4.1, which supports the
 [Docker](https://www.docker.com/) engine. This means you can install

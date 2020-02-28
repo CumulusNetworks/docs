@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=5118211
 pageID: 5118211
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 You use [SSH](http://en.wikipedia.org/wiki/Secure_Shell) to securely
 access a Cumulus Linux switch remotely.

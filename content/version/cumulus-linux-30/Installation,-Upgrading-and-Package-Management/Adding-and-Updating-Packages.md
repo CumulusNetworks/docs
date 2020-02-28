@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5118253
 pageID: 5118253
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 You use the Advanced Packaging Tool (APT) to manage additional
 applications (in the form of packages) and to install the latest

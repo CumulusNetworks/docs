@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/LNV+VXLAN+Active+Active+Mode
  - /pages/viewpage.action?pageId=5118334
 pageID: 5118334
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 *LNV active-active mode* allows a pair of

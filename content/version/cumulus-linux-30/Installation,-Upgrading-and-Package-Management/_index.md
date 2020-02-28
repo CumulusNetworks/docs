@@ -6,10 +6,6 @@ aliases:
  - '/display/CL30/Installation,+Upgrading+and+Package+Management'
  - /pages/viewpage.action?pageId=5118252
 pageID: 5118252
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 A Cumulus Linux switch can have only one image of the operating system
 installed. This section discusses installing new and updating existing

@@ -6,10 +6,6 @@ aliases:
  - /display/VX30/Using+Cumulus+VX+with+VMware+Workstation
  - /pages/viewpage.action?pageId=5126613
 pageID: 5126613
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 ---
 The process to integrate and use the Cumulus VX OVA image with VMware
 Workstation on a Windows machine is similar to VMware Fusion, as

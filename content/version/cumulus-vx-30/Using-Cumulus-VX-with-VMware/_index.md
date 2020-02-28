@@ -6,10 +6,6 @@ aliases:
  - /display/VX30/Using+Cumulus+VX+with+VMware
  - /pages/viewpage.action?pageId=5126605
 pageID: 5126605
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 ---
 The Cumulus VX OVA image is compatible with these hypervisor platforms
 provided by VMware:

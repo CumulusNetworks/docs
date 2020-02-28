@@ -7,10 +7,6 @@ aliases:
  - /display/CL31/Whats+New+in+Cumulus+Linux+3.1
  - /pages/viewpage.action?pageId=5122208
 pageID: 5122208
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 ## What's New in Cumulus Linux 3.1.2</span>
 

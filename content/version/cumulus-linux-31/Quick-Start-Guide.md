@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Quick+Start+Guide
  - /pages/viewpage.action?pageId=5121921
 pageID: 5121921
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 This chapter helps you get up and running with Cumulus Linux quickly and
 easily.

@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Integrating+Hardware+VTEPs+with+Midokura+MidoNet+and+OpenStack
  - /pages/viewpage.action?pageId=7112474
 pageID: 7112474
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 Cumulus Linux seamlessly integrates with the MidoNet OpenStack
 infrastructure, where the switches provide the VTEP gateway for

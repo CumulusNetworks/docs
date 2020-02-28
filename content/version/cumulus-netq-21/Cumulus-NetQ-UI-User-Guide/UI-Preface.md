@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/UI+Preface
  - /pages/viewpage.action?pageId=10465539
 pageID: 10465539
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 A variety of resources are available for you to become familiar with
 Cumulus NetQ and to take advantage of its monitoring and analytic

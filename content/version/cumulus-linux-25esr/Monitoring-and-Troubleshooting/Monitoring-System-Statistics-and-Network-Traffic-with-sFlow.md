@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow
  - /pages/viewpage.action?pageId=5115966
 pageID: 5115966
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 [sFlow](http://www.sflow.org/index.php) is a monitoring protocol that
 samples network packets, application operations, and system counters.

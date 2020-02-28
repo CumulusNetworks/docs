@@ -3,10 +3,6 @@ title: Cumulus NetQ UI User Guide
 author: Cumulus Networks
 weight: 17
 pageID: 12321069
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 This guide is intended for network administrators and operators who are
 responsible for monitoring and troubleshooting the network in their data

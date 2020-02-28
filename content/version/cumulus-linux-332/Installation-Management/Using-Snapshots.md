@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Using+Snapshots
  - /pages/viewpage.action?pageId=5868963
 pageID: 5868963
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 Cumulus Linux supports the ability to take snapshots of the complete
 file system as well as the ability to roll back to a previous snapshot.

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+Network+Inventory
  - /pages/viewpage.action?pageId=10464217
 pageID: 10464217
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 With NetQ, a network administrator can monitor both the switch hardware
 and its operating system for misconfigurations or misbehaving services.
@@ -260,7 +256,7 @@ To view component type data:
     
     {{% imgOld 22 %}}
 
-4.  To return to the full complement of components, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the filter tag.
+4.  To return to the full complement of components, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/> in the filter tag.
 
 ### Navigate to Related Cards
 
@@ -293,7 +289,7 @@ click the **All Switches** tab in the navigation panel.
 
 {{% imgOld 26 %}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/> in the top right corner of the card.
 
 ## View All Hosts
 
@@ -303,4 +299,4 @@ click the **All Hosts** tab in the navigation panel.
 
 {{% imgOld 28 %}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner of the card.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/> in the top right corner of the card.

@@ -3,10 +3,6 @@ title: Set User Preferences
 author: Cumulus Networks
 weight: 511
 pageID: 12321856
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 Each user can customize the NetQ application display, change his account
 password, and manage his workbenches.
@@ -24,7 +20,7 @@ date and time format, choosing words or number format and a 12- or
 
 To configure the display settings:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
+1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
 
@@ -33,11 +29,11 @@ To configure the display settings:
 
     {{<figure src="/images/netq/user-settings-profile-prefs-display-card-222.png" width="200">}}
 
-4.  In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> to select your choice of theme. This figure shows the light theme. Switch back and forth as desired.
+4.  In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> to select your choice of theme. This figure shows the light theme. Switch back and forth as desired.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-light-theme-222.png" width="700">}}
 
-5.  In the **Time Zone** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> to change the time zone from the default.  
+5.  In the **Time Zone** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> to change the time zone from the default.  
     By default, the time zone is set to the user's local time zone. If a
     time zone has not been selected, NetQ defaults to the current local
     time zone where NetQ is installed. All time values are based on this
@@ -93,7 +89,7 @@ To configure the display settings:
     The four options include the date displayed in words or abbreviated
     with numbers, and either a 12- or 24-hour time representation. The default is the third option.
 
-7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+7.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
 
 ## Change Your Password
 
@@ -103,7 +99,7 @@ so.
 
 To change your password:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
+1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
 
@@ -120,7 +116,7 @@ To change your password:
 
 7.  Click **Save** to change to the new password, or click **Cancel** to
     discard your changes.
-8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
 
 ## Manage Your Workbenches
 
@@ -152,7 +148,7 @@ It is strongly recommended that you do not delete the default
 
 To manage your workbenches:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
+1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
 
@@ -161,12 +157,12 @@ To manage your workbenches:
 
     {{<figure src="/images/netq/user-settings-profile-prefs-wbs-card-222.png" width="500">}}
 
-4.  To specify a favorite workbench, click and drag <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg", height="18", width="18"/> next to the left of the desired workbench name.
+4.  To specify a favorite workbench, click and drag <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg" height="18" width="18"/> next to the left of the desired workbench name.
 5.  To search the workbench list by name, access type, and
     cards present on the workbench, click the relevant header and begin
     typing your search criteria.
-6. To sort the workbench list, click the relevant header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.
+6. To sort the workbench list, click the relevant header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.
 7.  To delete a workbench, hover over the workbench name to view the
     **Delete** button. As an administrator, you can delete both private
     and public workbenches.
-8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and selecting a workbench from the NetQ list.
+8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.

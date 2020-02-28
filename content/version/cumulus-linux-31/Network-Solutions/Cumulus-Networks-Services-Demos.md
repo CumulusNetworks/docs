@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Cumulus+Networks+Services+Demos
  - /pages/viewpage.action?pageId=5122186
 pageID: 5122186
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 The Cumulus Networks Services team demos provide a virtual environment
 built using either VirtualBox or `libvirt` using Vagrant to manage the

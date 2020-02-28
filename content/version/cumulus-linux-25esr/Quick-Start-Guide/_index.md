@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Quick+Start+Guide
  - /pages/viewpage.action?pageId=5115897
 pageID: 5115897
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 This chapter helps you get up and running with Cumulus Linux quickly and
 easily.

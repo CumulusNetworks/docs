@@ -3,10 +3,6 @@ title: Cumulus NetQ Deployment Guide
 author: Cumulus Networks
 weight: 13
 pageID: 12320788
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 This guide is intended for network administrators who are responsible
 for installation, setup, and maintenance of Cumulus NetQ in their data

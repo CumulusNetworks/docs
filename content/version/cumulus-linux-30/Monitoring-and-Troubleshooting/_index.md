@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=5118229
 pageID: 5118229
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 

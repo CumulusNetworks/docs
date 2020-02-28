@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Equal+Cost+Multipath+Load+Sharing+++Hardware+ECMP
  - /pages/viewpage.action?pageId=5122133
 pageID: 5122133
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 Cumulus Linux supports hardware-based [equal cost multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing)
 (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load

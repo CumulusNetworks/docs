@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/IPM+Command+Line+Overview
  - /pages/viewpage.action?pageId=10453537
 pageID: 10453537
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 The IPM CLI (TIPCTL) behaves in a similar manner to the other
 Cumulus CLIs. It provides help for

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Configure+and+Manage+DHCP+Options
  - /pages/viewpage.action?pageId=10453548
 pageID: 10453548
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 The default DHCP configuration uses the eth0 interface on which to
 listen and uses an address pool of 10.255.0.0/24. A default directory is

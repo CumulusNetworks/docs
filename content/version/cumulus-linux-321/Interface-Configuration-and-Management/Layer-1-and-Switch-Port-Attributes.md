@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Layer+1+and+Switch+Port+Attributes
  - /pages/viewpage.action?pageId=5126996
 pageID: 5126996
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 This chapter discusses the various network interfaces on a switch
 running Cumulus Linux, how to configure various interface-level settings

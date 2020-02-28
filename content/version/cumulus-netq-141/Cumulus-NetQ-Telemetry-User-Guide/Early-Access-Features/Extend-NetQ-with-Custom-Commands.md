@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Extend+NetQ+with+Custom+Commands
  - /pages/viewpage.action?pageId=10453497
 pageID: 10453497
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 NetQ provides the ability to codify playbooks and extend NetQ with
 custom commands for use cases specific to your network.

@@ -7,11 +7,12 @@ aliases:
  - /version/cumulus-linux-25esr/Cumulus-Linux-Index
  - /pages/viewpage.action?pageId=5115887
 pageID: 5115887
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 subsection: true
+cascade:
+  product: Cumulus Linux
+  version: "2.5 ESR"
+  imgData: cumulus-linux-25esr
+  siteSlug: cumulus-linux-25esr
 ---
 ## Welcome to Cumulus Networks
 

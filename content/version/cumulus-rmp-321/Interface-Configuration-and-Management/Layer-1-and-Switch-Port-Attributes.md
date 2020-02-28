@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Layer+1+and+Switch+Port+Attributes
  - /pages/viewpage.action?pageId=5127618
 pageID: 5127618
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 This chapter discusses the various network interfaces on a switch
 running Cumulus RMP, how to configure various interface-level settings

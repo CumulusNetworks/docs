@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=8357332
 pageID: 8357332
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 Authentication keys can be generated for securely accessing a Cumulus
 Linux switch with the ssh-keygen component of the Secure Shell (SSH)

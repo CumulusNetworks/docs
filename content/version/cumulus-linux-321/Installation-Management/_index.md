@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Installation+Management
  - /pages/viewpage.action?pageId=5126810
 pageID: 5126810
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 A Cumulus Linux switch can have only one image of the operating system
 installed. This section discusses installing new and updating existing

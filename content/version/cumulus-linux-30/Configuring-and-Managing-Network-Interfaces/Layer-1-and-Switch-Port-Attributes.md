@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Layer+1+and+Switch+Port+Attributes
  - /pages/viewpage.action?pageId=5118373
 pageID: 5118373
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 This chapter discusses the various network interfaces on a switch

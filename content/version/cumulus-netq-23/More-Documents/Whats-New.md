@@ -2,10 +2,6 @@
 title: What's New in Cumulus NetQ 2.3
 author: Cumulus Networks
 weight: 300
-product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 
 Cumulus NetQ 2.3 improves your operational efficiency by providing LDAP integration to work in conjunction with your enterprise management strategies and network state and configuration comparisons to reduce network downtime from unexpected behaviors due to configuration changes or upgrades.

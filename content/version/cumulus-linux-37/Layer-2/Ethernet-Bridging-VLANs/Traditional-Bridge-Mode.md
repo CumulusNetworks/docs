@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Traditional+Bridge+Mode
  - /pages/viewpage.action?pageId=8362670
 pageID: 8362670
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 Cumulus Networks recommends you use a 
 [VLAN-aware bridge](../VLAN-aware-Bridge-Mode/)

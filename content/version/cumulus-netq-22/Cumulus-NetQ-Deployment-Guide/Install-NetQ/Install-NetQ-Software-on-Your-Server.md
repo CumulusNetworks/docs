@@ -3,10 +3,6 @@ title: Install NetQ Software on Your Server
 author: Cumulus Networks
 weight: 409
 pageID: 12320951
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 
 The installation instructions in this topic describe how to install the Cumulus NetQ software onto your server for either an on-premises or in-cloud deployment. There are three key steps:

@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Integrating+Hardware+VTEPs+with+Midokura+MidoNet+and+OpenStack
  - /pages/viewpage.action?pageId=5118308
 pageID: 5118308
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 Cumulus Linux seamlessly integrates with the MidoNet OpenStack

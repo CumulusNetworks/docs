@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Data+Center+Host+to+ToR+Architecture
  - /pages/viewpage.action?pageId=5116133
 pageID: 5116133
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 This chapter discusses the various architectures and strategies
 available from the top of rack (ToR) switches all the way down to the

@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Multi+Chassis+Link+Aggregation+++MLAG
  - /pages/viewpage.action?pageId=5116071
 pageID: 5116071
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 *Host HA* is a set of L2 and L3 features supporting high availability
 for hosts, including multi-Chassis Link Aggregation (MLAG) for L2 and

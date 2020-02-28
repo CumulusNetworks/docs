@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Using+netq+to+Troubleshoot+the+Network
  - /pages/viewpage.action?pageId=5121955
 pageID: 5121955
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 {{%notice warning%}}
 

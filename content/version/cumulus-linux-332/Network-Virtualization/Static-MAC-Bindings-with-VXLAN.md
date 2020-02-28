@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Static+MAC+Bindings+with+VXLAN
  - /pages/viewpage.action?pageId=5869072
 pageID: 5869072
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 Cumulus Linux includes native Linux VXLAN kernel support.
 

@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/LACP+Bypass
  - /pages/viewpage.action?pageId=5116086
 pageID: 5116086
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 On Cumulus Linux, *LACP Bypass* is a feature that allows a
 [bond](/version/cumulus-linux-25esr/Layer-1-and-Layer-2-Features/Bonding-Link-Aggregation)

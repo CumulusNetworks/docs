@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Network+Troubleshooting
  - /pages/viewpage.action?pageId=7112353
 pageID: 7112353
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 Cumulus Linux contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.

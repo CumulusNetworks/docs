@@ -6,10 +6,6 @@ aliases:
  - /display/VX30/Using+Cumulus+VX+with+VirtualBox
  - /pages/viewpage.action?pageId=5126581
 pageID: 5126581
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 ---
 Once you [install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 and [download the OVA

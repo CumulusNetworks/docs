@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Network+Command+Line+Utility
  - /pages/viewpage.action?pageId=5127556
 pageID: 5127556
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 The Network Command Line Utility, or NCLU, is a command line interface
 for Cumulus Networks products, implemented in Cumulus RMP 3.1 and later

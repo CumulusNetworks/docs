@@ -8,10 +8,6 @@ aliases:
  - /display/CL35/Zero+Touch+Provisioning+ZTP
  - /pages/viewpage.action?pageId=8357412
 pageID: 8357412
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 *Zero touch provisioning* (ZTP) enables network devices to be quickly
 deployed in large-scale environments. On first boot, Cumulus Linux will

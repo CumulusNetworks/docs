@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Configuring+DHCP+Relays
  - /pages/viewpage.action?pageId=5118376
 pageID: 5118376
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 You can configure an interface so it can make DHCP relay requests for

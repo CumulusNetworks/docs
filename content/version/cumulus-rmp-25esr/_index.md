@@ -6,11 +6,12 @@ aliases:
  - /display/RMP25ESR/Cumulus+RMP+User+Guide
  - /pages/viewpage.action?pageId=5116301
 pageID: 5116301
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 subsection: true
+cascade:
+  product: Cumulus RMP
+  version: "2.5 ESR"
+  imgData: cumulus-rmp-25esr
+  siteSlug: cumulus-rmp-25esr
 ---
 ## Welcome to Cumulus Networks</span>
 

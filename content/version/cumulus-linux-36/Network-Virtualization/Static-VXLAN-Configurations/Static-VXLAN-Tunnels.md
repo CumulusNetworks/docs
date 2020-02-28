@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Static+VXLAN+Tunnels
  - /pages/viewpage.action?pageId=8362285
 pageID: 8362285
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 In VXLAN-based networks, there are a range of complexities and
 challenges in determining the destination *virtual tunnel endpoints*

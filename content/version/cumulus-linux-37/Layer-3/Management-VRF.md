@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Management+VRF
  - /pages/viewpage.action?pageId=8362940
 pageID: 8362940
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 *Management VRF* is a subset of [VRF](../Virtual-Routing-and-Forwarding-VRF/) (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For all VRFs, the *main* routing table is the default table for all of the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
 

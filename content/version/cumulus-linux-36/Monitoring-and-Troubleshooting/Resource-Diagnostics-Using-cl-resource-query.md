@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Resource+Diagnostics+Using+cl+resource+query
  - /pages/viewpage.action?pageId=8362088
 pageID: 8362088
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 You can use the `cl-resource-query` command to retrieve information
 about host entries, MAC entries, layer 2 and layer 3 routes, and

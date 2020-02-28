@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/IGMP+and+MLD+Snooping
  - /pages/viewpage.action?pageId=8362188
 pageID: 8362188
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 IGMP (Internet Group Management Protocol) and MLD (Multicast Listener
 Discovery) snooping are implemented in the bridge driver in the Cumulus

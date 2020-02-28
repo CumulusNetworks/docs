@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Buffer+and+Queue+Management
  - /pages/viewpage.action?pageId=5127004
 pageID: 5127004
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
-
 Hardware datapath configuration manages packet buffering, queueing and
 scheduling in hardware. There are two configuration input files:
 

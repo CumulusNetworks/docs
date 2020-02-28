@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Network+Topology
  - /pages/viewpage.action?pageId=8362385
 pageID: 8362385
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 In computer networks, *topology* refers to the structure of
 interconnecting various nodes. Some commonly used topologies in networks

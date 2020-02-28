@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Cumulus+Linux+Quagga+Commands
  - /pages/viewpage.action?pageId=5118387
 pageID: 5118387
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 Using the `vtysh` modal CLI is the primary way to [configure
 Quagga](/version/cumulus-linux-30/Layer-3-Features/Configuring-Quagga/)

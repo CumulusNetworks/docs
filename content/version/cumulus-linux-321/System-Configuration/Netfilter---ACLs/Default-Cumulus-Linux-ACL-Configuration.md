@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Default+Cumulus+Linux+ACL+Configuration
  - /pages/viewpage.action?pageId=5126767
 pageID: 5126767
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
-
 The Cumulus Linux default ACL configuration is split into three parts,
 as outlined in the [netfilter ACL
 documentation](/version/cumulus-linux-321/System-Configuration/Netfilter-ACLs/): IP tables, IPv6 tables,

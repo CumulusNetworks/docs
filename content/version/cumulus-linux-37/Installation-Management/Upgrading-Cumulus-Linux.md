@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Upgrading+Cumulus+Linux
  - /pages/viewpage.action?pageId=8362647
 pageID: 8362647
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 This topic describes how to upgrade Cumulus Linux on your switches to a more recent release.
 

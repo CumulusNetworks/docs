@@ -171,7 +171,7 @@ need to scroll down to see the card you have just added.
 
 To open the card workflow through an existing workbench:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/> in the workbench task bar.
+1.  Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> in the workbench task bar.
 
 2.  Select the relevant workbench.
 
@@ -181,7 +181,7 @@ To open the card workflow through an existing workbench:
 
 To open the card workflow from Recent Actions:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg", height="18", width="18"/> in the application header.
+1.  Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg" height="18" width="18"/> in the application header.
 2.  Look for an "Add: \<card name\>" item.
 3.  If it is still available, click the item.
 
@@ -189,7 +189,7 @@ To open the card workflow from Recent Actions:
 
 To access the card workflow by adding the card:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> in the workbench task bar.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the workbench task bar.
 2.  Follow the instructions in [Add Cards to Your Workbench](#add-cards-to-your-workbench) or [Add Switch Cards to Your Workbench](#add-switch-cards-to-your-workbench).
 
     The card appears on the current workbench, at the bottom.
@@ -226,7 +226,7 @@ You can add one or more cards to a workbench at any time. To add Devices|Switche
 
 To add one or more cards:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open the **Cards** modal.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open the **Cards** modal.
 
     {{< figure src="/images/netq/add-card-modal-all-cards-222.png" width="700" >}}
 
@@ -236,7 +236,7 @@ To add one or more cards:
 
 3. Click on each card you want to add.
 
-      As you select each card, it is grayed out and a <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> appears on top of it. If you have selected one or more cards using the category option, you can selected another category without losing your current selection. Note that the total number of cards selected for addition to your workbench is noted at the bottom.
+      As you select each card, it is grayed out and a <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> appears on top of it. If you have selected one or more cards using the category option, you can selected another category without losing your current selection. Note that the total number of cards selected for addition to your workbench is noted at the bottom.
 
       {{< figure src="/images/netq/add-card-2-selected-222.png" width="700" >}}
 
@@ -258,7 +258,7 @@ You can add switch cards to a workbench at any time. For all other cards, follow
 
 To add a switch card:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> to open the Add Switch Card modal.
+1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> to open the Add Switch Card modal.
 
     {{< figure src="/images/netq/add-switch-card-modal-222.png" width="250" >}}
 
@@ -285,7 +285,7 @@ Removing cards is handled one card at a time.
 To remove a card:
 
 1. Hover over the card you want to remove.
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg", height="18", width="18"/> (*More Actions* menu).
+2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18"/> (*More Actions* menu).
 3. Click **Remove**.
 
     {{< figure src="/images/netq/remove-card-222.png" width="100" >}}
@@ -302,7 +302,7 @@ existing issues.
 To change the time period for a card:
 
 1. Hover over any card.
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/> in the header.
+2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header.
 3. Select a time period from the dropdown list.
 
     {{< figure src="/images/netq/time-picker-popup-222.png" width="200" >}}
@@ -365,14 +365,14 @@ You can manipulate the data in a data grid in a full-screen card in several ways
 
 | Icon | Action | Description |
 | ---- | ---- | ---- |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> | Select All | Selects all items in the list |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/subtract-circle.svg", height="18", width="18"/> | Clear All | Clears all existing selections in the list. |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/> | Edit | Edits the selected item |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg", height="18", width="18"/> | Delete | Removes the selected items |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg", height="18", width="18"/> | Filter | Filters the list using available parameters. Refer to <a href="#filter-table-data">Filter Table Data</a> for more detail.  |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg", height="18", width="18"/>, <img src="/images/netq/netq-mgmt-delete-keys-icon.png", height="18", width="18"/> | Generate/Delete AuthKeys | Creates or removes NetQ CLI authorization keys |
-| <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> | Open Cards | Opens the corresponding validation or trace card(s) |
-| <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg", height="18", width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. Refer to <a href="#export-data">Export Data</a> for more detail. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> | Select All | Selects all items in the list |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/subtract-circle.svg" height="18" width="18"/> | Clear All | Clears all existing selections in the list. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> | Edit | Edits the selected item |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> | Delete | Removes the selected items |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/> | Filter | Filters the list using available parameters. Refer to <a href="#filter-table-data">Filter Table Data</a> for more detail.  |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/>, <img src="/images/netq/netq-mgmt-delete-keys-icon.png" height="18" width="18"/> | Generate/Delete AuthKeys | Creates or removes NetQ CLI authorization keys |
+| <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> | Open Cards | Opens the corresponding validation or trace card(s) |
+| <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. Refer to <a href="#export-data">Export Data</a> for more detail. |
 
 When there are numerous items in a table, NetQ loads the first 25 by default and provides the rest in additional table pages. In this case, pagination is shown under the table.
 
@@ -382,8 +382,8 @@ From there, you can:
 
 - View the total number of items in the list
 - Set NetQ to load 25, 50, or 100 items per page
-- Move forward or backward one page at a time (<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg", height="14", width="14"/>, <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-left-1.svg", height="14", width="14"/>)
-- Go to the first or last page in the list (<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-1.svg", height="14", width="14"/>, <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-1.svg", height="14", width="14"/>)
+- Move forward or backward one page at a time (<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="14" width="14"/>, <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-left-1.svg" height="14" width="14"/>)
+- Go to the first or last page in the list (<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-1.svg" height="14" width="14"/>, <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-1.svg" height="14" width="14"/>)
 
 #### Change Order of Columns
 
@@ -403,7 +403,7 @@ For example, to set the filter to show only BGP sessions using a particular VRF:
 
 2. Click the **All Sessions** tab.
 
-3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg", height="18", width="18"/> above the table.
+3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/> above the table.
 
 4. Select *VRF* from the **Field** dropdown.
 
@@ -417,21 +417,21 @@ For example, to set the filter to show only BGP sessions using a particular VRF:
 
     {{<figure src="/images/netq/table-filter-single-param-example-241.png" width="700">}}
 
-7. To remove the filter, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg", height="18", width="18"/> (with the red dot).
+7. To remove the filter, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/> (with the red dot).
 
 8. Click **Clear**.
 
-9. Close the **Filters** dialog by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/>.
+9. Close the **Filters** dialog by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/>.
 
 *Tables that Support Multiple Filters*
 
 For tables that offer filtering by multiple parameters, the Filter dialog is slightly different. For example, to filter the list of IP Addresses in your system by hostname and interface:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>.
 
 2. Select *IP Addresses* under **Network**.
 
-3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg", height="18", width="18"/> above the table.
+3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/> above the table.
 
     {{<figure src="/images/netq/table-filter-multi-param-241.png" width="700">}}
 
@@ -443,7 +443,7 @@ For tables that offer filtering by multiple parameters, the Filter dialog is sli
 
     {{<figure src="/images/netq/table-filter-multi-param-example-241.png" width="700">}}
 
-6. To remove a filter, simply click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> on the filter, or to remove all filters at once, click **Clear All Filters**.
+6. To remove a filter, simply click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> on the filter, or to remove all filters at once, click **Clear All Filters**.
 
 ### Export Data
 
@@ -452,7 +452,7 @@ JSON-formatted file.
 
 To export the *all* data:
 
-1. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg", height="18", width="18"/> above the table.
+1. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> above the table.
 
 2. Select the export format.
 
@@ -462,7 +462,7 @@ To export *selected* data:
 
 1. Select the individual items from the list by clicking in the checkbox next to each item.
 
-2. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg", height="18", width="18"/> above the table.
+2. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> above the table.
 
 3. Select the export format.
 

@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Anycast+Design+Guide
  - /pages/viewpage.action?pageId=8363010
 pageID: 8363010
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 [FRRouting](https://frrouting.org/) provides the ability to run
 [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/) or

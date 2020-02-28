@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=5116311
 pageID: 5116311
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 You use [SSH](http://en.wikipedia.org/wiki/Secure_Shell) to securely
 access a Cumulus RMP switch remotely.

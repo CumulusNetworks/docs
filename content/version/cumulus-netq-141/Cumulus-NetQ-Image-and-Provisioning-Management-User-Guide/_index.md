@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Cumulus+NetQ+Image+and+Provisioning+Management+User+Guide
  - /pages/viewpage.action?pageId=10453535
 pageID: 10453535
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 This guide is intended for network administrators who are responsible
 for provisioning switches with Cumulus Linux operating system and

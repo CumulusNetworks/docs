@@ -6,9 +6,5 @@ aliases:
  - /display/CL36/Layer+1+and+Switch+Ports
  - /pages/viewpage.action?pageId=8362485
 pageID: 8362485
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 This section describes how to configure the physical layer, including switch ports, DHCP relays and other interfaces.

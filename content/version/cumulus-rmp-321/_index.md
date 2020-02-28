@@ -6,11 +6,12 @@ aliases:
  - /display/RMP321/Cumulus+RMP+User+Guide
  - /pages/viewpage.action?pageId=5127524
 pageID: 5127524
-product: Cumulus RMP
-version: 3.2
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 subsection: true
+cascade:
+  product: Cumulus RMP
+  version: "3.2"
+  imgData: cumulus-rmp-321
+  siteSlug: cumulus-rmp-321
 ---
 ## Introducing Cumulus RMP</span>
 

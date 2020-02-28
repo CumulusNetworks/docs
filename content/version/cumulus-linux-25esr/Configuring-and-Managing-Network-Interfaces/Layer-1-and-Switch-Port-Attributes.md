@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Layer+1+and+Switch+Port+Attributes
  - /pages/viewpage.action?pageId=5116098
 pageID: 5116098
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 This chapter discusses the various network interfaces on a switch
 running Cumulus Linux.

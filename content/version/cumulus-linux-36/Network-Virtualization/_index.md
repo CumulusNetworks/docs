@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Network+Virtualization
  - /pages/viewpage.action?pageId=8362196
 pageID: 8362196
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Cumulus Linux supports these forms of 
 [network virtualization](http://en.wikipedia.org/wiki/Network_virtualization):

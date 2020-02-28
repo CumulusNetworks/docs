@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Default+Cumulus+Linux+ACL+Configuration
  - /pages/viewpage.action?pageId=7112332
 pageID: 7112332
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 The Cumulus Linux default ACL configuration is split into three parts,
 as outlined in the [netfilter ACL documentation](/version/cumulus-linux-343/System-Configuration/Netfilter-ACLs/): 

@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/VXLAN+Scale
  - /pages/viewpage.action?pageId=7112536
 pageID: 7112536
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 On Broadcom Trident II and Tomahawk hardware running Cumulus Linux,
 there is a limit on the amount of VXLANs you can configure

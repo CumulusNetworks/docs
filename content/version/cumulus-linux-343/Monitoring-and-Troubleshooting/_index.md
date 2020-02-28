@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=7112349
 pageID: 7112349
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 

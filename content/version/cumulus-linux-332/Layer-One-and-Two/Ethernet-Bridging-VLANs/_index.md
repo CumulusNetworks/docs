@@ -8,10 +8,6 @@ aliases:
  - /display/CL332/Ethernet+Bridging+-+VLANs
  - /pages/viewpage.action?pageId=5868972
 pageID: 5868972
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 Ethernet bridges provide a means for hosts to communicate through layer
 2, by connecting all of the physical and logical interfaces in the

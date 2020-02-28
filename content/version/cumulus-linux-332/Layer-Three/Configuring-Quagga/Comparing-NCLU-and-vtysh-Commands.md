@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Comparing+NCLU+and+vtysh+Commands
  - /pages/viewpage.action?pageId=5869214
 pageID: 5869214
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 Using
 [NCLU](/version/cumulus-linux-332/System-Configuration/Network-Command-Line-Utility)

@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=5868958
 pageID: 5868958
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 Before you install Cumulus Linux, the switch can be in two different
 states:

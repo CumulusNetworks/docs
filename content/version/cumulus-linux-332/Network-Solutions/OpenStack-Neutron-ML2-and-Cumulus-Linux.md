@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/OpenStack+Neutron+ML2+and+Cumulus+Linux
  - /pages/viewpage.action?pageId=5869263
 pageID: 5869263
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 {{%notice warning%}}
 

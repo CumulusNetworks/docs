@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Query+the+NetQ+Database
  - /pages/viewpage.action?pageId=10453496
 pageID: 10453496
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 You can query for even more NetQ data using the SQL-like NetQ Query
 Language (NetQL) so you can conduct your own custom analysis or

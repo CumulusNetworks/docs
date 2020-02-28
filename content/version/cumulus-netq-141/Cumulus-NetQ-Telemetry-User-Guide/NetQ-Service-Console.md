@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/NetQ+Service+Console
  - /pages/viewpage.action?pageId=10453456
 pageID: 10453456
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 The NetQ Telemetry Server provides access to the NetQ Service Console, a
 graphical user interface (GUI) for NetQ. The Service Console provides a

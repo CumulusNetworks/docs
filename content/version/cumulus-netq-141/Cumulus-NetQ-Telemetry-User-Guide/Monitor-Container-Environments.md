@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Monitor+Container+Environments
  - /pages/viewpage.action?pageId=10453489
 pageID: 10453489
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 The NetQ Agent monitors container environments the same way it monitors
 [physical servers](/version/cumulus-netq-141/Cumulus-NetQ-Telemetry-User-Guide/Monitor-Linux-Hosts).

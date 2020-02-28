@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/IPM+Preface
  - /pages/viewpage.action?pageId=10453547
 pageID: 10453547
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 A variety of resources are available for you to become familiar with
 Cumulus Linux and Cumulus NetQ applications. These resources are

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Cumulus+NetQ+Telemetry+User+Guide
  - /pages/viewpage.action?pageId=10453453
 pageID: 10453453
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 This guide is intended for network administrators who are responsible
 for monitoring and troubleshooting the network in their data center

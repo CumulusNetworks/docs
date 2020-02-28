@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Methods+for+Diagnosing+Network+Issues
  - /pages/viewpage.action?pageId=10453530
 pageID: 10453530
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 NetQ provides users with the ability to go back in time to replay the
 network state, see fabric-wide event change logs and root cause state

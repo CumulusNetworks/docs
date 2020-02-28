@@ -252,6 +252,10 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 <td>Time period</td>
 <td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
 </tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
 <tr class="even">
 <td>Results</td>
 <td>Number of results found for the selected tab</td>
@@ -460,7 +464,7 @@ To view all BGP events:
 
     By default, events are listed in most recent to least recent order.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-alarms-tab-222.png" width="700">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-alarms-tab-241.png" width="700">}}
 
 Where to go next depends on what data you see, but a couple of options
 include:
@@ -762,13 +766,25 @@ The full screen BGP Session card provides tabs for all BGP sessions and all even
 </tr>
 </thead>
 <tbody>
+<tr class="even">
+<td>Title</td>
+<td>Network Services | BGP</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench</td>
+</tr>
 <tr class="odd">
 <td>Time period</td>
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
 <tr class="even">
-<td>Title</td>
-<td>Network Services | BGP</td>
+<td>Results</td>
+<td>Number of results found for the selected tab</td>
 </tr>
 <tr class="odd">
 <td>All BGP Sessions tab</td>
@@ -905,6 +921,6 @@ You can view all of the alarm and info events for the two devices on this card.
 
 To view all events, open the full screen BGP Session card, and click the **All Events** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-fullscr-events-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-fullscr-events-tab-241.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.

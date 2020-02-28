@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ/Upgrade+from+NetQ+2.0\/2.1+to+NetQ+2.2.x
  - /pages/viewpage.action?pageId=12321007
 pageID: 12321007
-product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 This document describes the steps required to upgrade the NetQ Software (versions 2.0 through 2.2) installed and running on your NetQ cloud server to NetQ version 2.3.
 

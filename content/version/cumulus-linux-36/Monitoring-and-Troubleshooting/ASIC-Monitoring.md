@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/ASIC+Monitoring
  - /pages/viewpage.action?pageId=8362122
 pageID: 8362122
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Cumulus Linux provides an ASIC monitoring tool that collects and
 distributes data about the state of the ASIC. The monitoring tool polls

@@ -6,10 +6,6 @@ aliases:
  - /display/VX30/Using+Cumulus+VX+with+GNS3
  - /pages/viewpage.action?pageId=5126598
 pageID: 5126598
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 ---
 You can use Cumulus VX within a 
 [GNS3 environment](https://community.gns3.com/login.jspa?referer=/community/software/download),

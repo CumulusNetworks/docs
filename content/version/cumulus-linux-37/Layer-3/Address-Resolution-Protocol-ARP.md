@@ -7,10 +7,6 @@ aliases:
  - /display/DOCS/Address+Resolution+Protocol+-+ARP
  - /pages/viewpage.action?pageId=8362976
 pageID: 8362976
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer  address, such as a MAC address, associated with a given network layer  address. ARP is defined by [RFC 826](https://tools.ietf.org/html/rfc826).
 
@@ -243,4 +239,30 @@ If you are running proxy ARP on a VRR interface, add a post-up line to the VRR i
 cumulus@switch:~$ net add vlan 100 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp && echo 1 > /proc/sys/net/ipv4/conf/swp1-v0/proxy_arp && echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id && echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id"
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
+
+## Duplicate Address Detection (Windows Hosts)
+
+In centralized VXLAN environments, where ARP/ND suppression is enabled and SVIs exist on the leaf switches but are not assigned an address within the subnet, problems with the Duplicate Address Detection process on Microsoft Windows hosts can occur. For example, in a pure layer 2 scenario or with SVIs that have the `ip-forward` option set to off, the IP address is not assigned to the SVI. The `neighmgrd` service selects a source IP address for an ARP probe based on the subnet match on the neighbor IP address. Because the SVI on which this neighbor is learned does not contiain an IP address, the subnet match fails. This results in `neighmgrd` using UNSPEC (0.0.0.0 for IPv4) as the source IP address in the ARP probe.
+
+To work around this issue, run the `neighmgrctl setsrcipv4 <ipaddress>` command to specify a non-0.0.0.0 address for the source; for example:
+
+```
+cumulus@switch:~$ neighmgrctl setsrcipv4 10.1.0.2
+```
+
+The configuration above takes effect immediately but does not persist if you reboot the switch. To make the changes apply persistently:
+
+1. Create a new file called `/etc/cumulus/neighmgr.conf` and add the `setsrcipv4 <ipaddress>` option; for example:
+
+```
+cumulus@switch:~$  sudo nano /etc/cumulus/neighmgr.conf
+
+setsrcipv4: 10.1.0.2
+```
+
+2. Reload the configuration file using `systemd`:
+
+```
+cumulus@switch:~$ sudo systemctl daemon-reload
 ```

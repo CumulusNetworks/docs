@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Maintain+NetQ
  - /pages/viewpage.action?pageId=10453451
 pageID: 10453451
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 While regular maintenance of NetQ is not required, there are some tasks
 that you may want to perform in the course of everyday operations. As

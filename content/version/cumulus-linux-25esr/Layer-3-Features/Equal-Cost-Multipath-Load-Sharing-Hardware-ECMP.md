@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Equal+Cost+Multipath+Load+Sharing+++Hardware+ECMP
  - /pages/viewpage.action?pageId=5116115
 pageID: 5116115
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Cumulus Linux supports hardware-based equal cost multipath (ECMP) load
 sharing. ECMP is enabled by default in Cumulus Linux. Load sharing

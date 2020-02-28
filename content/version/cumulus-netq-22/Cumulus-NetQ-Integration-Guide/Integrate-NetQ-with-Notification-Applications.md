@@ -2,10 +2,6 @@
 title: Integrate with Event Notification Applications
 author: Cumulus Networks
 weight: 200
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 After you have installed NetQ applications package and the NetQ Agents,
 you may want to configure some of the additional capabilities that NetQ

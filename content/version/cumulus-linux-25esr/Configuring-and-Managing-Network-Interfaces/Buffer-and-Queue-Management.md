@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Buffer+and+Queue+Management
  - /pages/viewpage.action?pageId=5116100
 pageID: 5116100
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Hardware datapath configuration manages packet buffering, queueing, and
 scheduling in hardware. There are two configuration input files:

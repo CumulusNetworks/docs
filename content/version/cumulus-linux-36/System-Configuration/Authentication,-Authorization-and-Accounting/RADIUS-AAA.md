@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/RADIUS+AAA
  - /pages/viewpage.action?pageId=8362054
 pageID: 8362054
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Cumulus Networks offers add-on packages that enable
 [RADIUS](https://en.wikipedia.org/wiki/RADIUS) users to log in to

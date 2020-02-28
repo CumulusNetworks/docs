@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5127551
 pageID: 5127551
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 You use the Advanced Packaging Tool (`apt`) to manage additional
 applications (in the form of packages) and to install the latest

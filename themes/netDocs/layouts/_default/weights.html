@@ -1,0 +1,39 @@
+{{ define "menu"}}
+
+{{ partial "menu/menu-sectiontree" . }}
+
+{{ end }}
+
+
+{{ define "main" }}
+<article class="markdown">
+<table>
+    <thead>
+        <tr>
+            <th>Page name</th>
+            <th>Page Weight</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{ range where $.Site.Pages "Type" .Section }}
+            <tr>
+                <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+                <td>{{ .Weight }}</td>
+            </tr>
+        {{ end }}
+    </tbody>
+</table>
+</article>
+
+{{ end }}
+
+{{ define "toc" }}
+
+{{ $showToC := default (default true .Site.Params.BookShowToC) .Params.bookshowtoc }}
+  {{ if or ($showToC) (.Page.TableOfContents) }} 
+
+    {{ partial "toc" . }}
+
+{{ end }}
+
+{{ end }}

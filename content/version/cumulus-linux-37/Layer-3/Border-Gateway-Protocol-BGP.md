@@ -7,10 +7,6 @@ aliases:
  - /display/DOCS/Border+Gateway+Protocol+-+BGP
  - /pages/viewpage.action?pageId=8362926
 pageID: 8362926
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically, BGP:
 
@@ -1738,6 +1734,10 @@ This command is not supported with peer-groups.
 See this [IETF draft](http://tools.ietf.org/html/draft-jakma-mrai-02) for more details on the use of this value.
 
 ## Caveats and Errata
+
+### Removing a BGP neighbor on an Interface that Belongs to a VRF
+
+The NCLU command to remove a BGP neighbor does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.
 
 ### ttl-security Issue
 

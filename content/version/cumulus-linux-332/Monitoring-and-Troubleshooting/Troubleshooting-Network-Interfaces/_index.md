@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=5868921
 pageID: 5868921
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 The following sections describe various ways you can troubleshoot
 `ifupdown2`.

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ/Monitor+Network+Inventory
  - /pages/viewpage.action?pageId=12321095
 pageID: 12321095
-product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 With NetQ, a network administrator can monitor both the switch hardware
 and its operating system for misconfigurations or misbehaving services.

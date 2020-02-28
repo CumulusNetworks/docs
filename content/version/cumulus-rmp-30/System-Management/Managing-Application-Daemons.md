@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Managing+Application+Daemons
  - /pages/viewpage.action?pageId=5118687
 pageID: 5118687
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 You manage application daemons in Cumulus RMP in the following ways:
 

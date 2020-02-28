@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Traditional+Mode+Bridges
  - /pages/viewpage.action?pageId=5127612
 pageID: 5127612
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 Cumulus Networks recommends you use a [VLAN-aware bridge](/version/cumulus-rmp-321/Layer-1-and-Layer-2-Features/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode-for-Large-scale-Layer-2-Environments)
 on your switch. You use traditional mode bridges only if you need to run

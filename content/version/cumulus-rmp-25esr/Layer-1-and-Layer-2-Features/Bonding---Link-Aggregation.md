@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Bonding+++Link+Aggregation
  - /pages/viewpage.action?pageId=5116339
 pageID: 5116339
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 Linux bonding provides a method for aggregating multiple network
 interfaces (the slaves) into a single logical bonded interface (the

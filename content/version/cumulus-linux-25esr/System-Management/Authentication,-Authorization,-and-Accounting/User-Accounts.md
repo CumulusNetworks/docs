@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/User+Accounts
  - /pages/viewpage.action?pageId=5115902
 pageID: 5115902
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 By default, Cumulus Linux has two user accounts: *cumulus* and *root*.
 

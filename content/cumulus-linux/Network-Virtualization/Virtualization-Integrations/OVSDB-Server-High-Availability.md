@@ -10,11 +10,11 @@ version: '4.0'
 ---
 {{%notice warning%}}
 
-OVSDB server high availability is an [early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878).
+OVSDB server high availability is an {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202933878" text="early access feature">}}.
 
 {{%/notice%}}
 
-Cumulus Linux supports integration with VMware NSX in both *standalonemode* and *OVSDB server high availability mode* (where the data plane is running in active-active mode). For information about VMware NSX in standalone mode and for a description of the components that work together to integrate VMware NSX and Cumulus Linux, see [Integrating Hardware VTEPs with VMware NSX-MH](../Integrating-Hardware-VTEPs-with-VMware-NSX-MH/) or [Integrating Hardware VTEPs with VMware NSX-V](../Integrating-Hardware-VTEPs-with-VMware-NSX-V/).
+Cumulus Linux supports integration with VMware NSX in both *standalonemode* and *OVSDB server high availability mode* (where the data plane is running in active-active mode). For information about VMware NSX in standalone mode and for a description of the components that work together to integrate VMware NSX and Cumulus Linux, see {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V">}}.
 
 {{%notice note%}}
 
@@ -46,9 +46,9 @@ When you upgrade Cumulus Linux, both the `/usr/share/openvswitch/scripts/ovs-ctl
 
 ## Getting Started
 
-Before you configure OVSDB server high availability, make sure you have **two switches running Cumulus Linux in an MLAG configuration**. Cumulus Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support [VLAN-aware bridges](../../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/).
+Before you configure OVSDB server high availability, make sure you have **two switches running Cumulus Linux in an MLAG configuration**. Cumulus Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}.
 
-The following example configuration in the `/etc/network/interfaces` file shows the *minimum* MLAG configuration required (the MLAG peerlink configuration and the dual-connected bonds on the peer switches). The dual-connected bonds are identified in the NSX controller by their `clag-id` (single-connected bonds or ports are identified by their usual interface names prepended with the name of the particular switch to which they belong). When you create the Gateway Service for the dual-connected bonds (described in [Configuring the Transport and Logical Layers](#configure-the-transport-and-logical-layers), below), make sure to select the `clag-id` named interfaces instead of the underlying individual physical ports. All the logical network configurations are provisioned by the NSX controller.
+The following example configuration in the `/etc/network/interfaces` file shows the *minimum* MLAG configuration required (the MLAG peerlink configuration and the dual-connected bonds on the peer switches). The dual-connected bonds are identified in the NSX controller by their `clag-id` (single-connected bonds or ports are identified by their usual interface names prepended with the name of the particular switch to which they belong). When you create the Gateway Service for the dual-connected bonds (described in {{<link url="#configure-the-transport-and-logical-layers" text="Configuring the Transport and Logical Layers">}}, below), make sure to select the `clag-id` named interfaces instead of the underlying individual physical ports. All the logical network configurations are provisioned by the NSX controller.
 
 ```
 auto peerlink-3
@@ -205,7 +205,7 @@ For information about the configuration script, read `man vtep-bootstrap` or run
 
 ## Configure the Transport and Logical Layers
 
-After you finish configuring the NSX integration on both the MLAG primary and MLAG secondary switch, you need to configure the transport and logical layers from the NSX Manager. Refer to [Configuring the Transport and Logical Layers (NSX-MH)](../Integrating-Hardware-VTEPs-with-VMware-NSX-MH/) or [Configuring the Transport and Logical Layers (NSX-V](../Integrating-Hardware-VTEPs-with-VMware-NSX-V/)).
+After you finish configuring the NSX integration on both the MLAG primary and MLAG secondary switch, you need to configure the transport and logical layers from the NSX Manager. Refer to {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V">}}.
 
 ## Troubleshooting
 

@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Managing+Application+Daemons
  - /pages/viewpage.action?pageId=5116328
 pageID: 5116328
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 You manage application daemons in Cumulus RMP in the following ways:
 

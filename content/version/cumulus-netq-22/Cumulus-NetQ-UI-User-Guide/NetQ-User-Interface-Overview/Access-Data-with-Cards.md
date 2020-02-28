@@ -3,10 +3,6 @@ title: Access Data with Cards
 author: Cumulus Networks
 weight: 509
 pageID: 12321856
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 Cards present information about your network for monitoring and
 troubleshooting. This is where you can expect to spend most of your

@@ -7,10 +7,6 @@ aliases:
 - "/display/DOCS/Monitoring+Interfaces+and+Transceivers+Using+ethtool+ethtool+Counter+Definitions"
 - /pages/viewpage.action?pageId=9018051
 pageID: 9018051
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 The `ethtool` command enables you to query or control the network driver
 and hardware settings. It takes the device name (like swp1) as an

@@ -1,7 +1,7 @@
 ---
 title: Restore Your NetQ Data
 author: Cumulus Networks
-weight: 433
+weight: 170
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq

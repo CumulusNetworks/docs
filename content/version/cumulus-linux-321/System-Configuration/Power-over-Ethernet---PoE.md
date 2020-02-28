@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Power+over+Ethernet+++PoE
  - /pages/viewpage.action?pageId=5126768
 pageID: 5126768
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
-
 Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain
 Cumulus Linux switches can supply power from Ethernet switch ports to
 enabled devices over the Ethernet cables that connect them. Power over

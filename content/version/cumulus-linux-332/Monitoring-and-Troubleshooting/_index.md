@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=5868910
 pageID: 5868910
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 

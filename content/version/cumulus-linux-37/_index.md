@@ -7,11 +7,12 @@ aliases:
  - /display/DOCS/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=8362527
 pageID: 8362527
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 subsection: true
+cascade:
+    product: Cumulus Linux
+    version: "3.7"
+    imgData: cumulus-linux
+    siteSlug: cumulus-linux
 ---
 ## What is Cumulus Linux?
 

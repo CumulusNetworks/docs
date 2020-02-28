@@ -13,7 +13,7 @@ You monitor system hardware using the following commands and utilities:
 - `decode-syseeprom`
 - `smond`
 - `sensors`
-- [Net-SNMP](../Simple-Network-Management-Protocol-SNMP/)
+- {{<link url="Simple-Network-Management-Protocol-SNMP" text="Net-SNMP">}}
 - watchdog
 
 ## Retrieve Hardware Information Using decode-syseeprom
@@ -136,11 +136,11 @@ For more information, read `man smond` and `man smonctl`.
 
 ## Monitor Hardware Using sensors
 
-Use the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes [lm-sensors](https://en.wikipedia.org/wiki Lm_sensors).
+Use the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes `{{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors">}}`.
 
 {{%notice note%}}
 
-Even though you can use the `sensors` command to monitor the health of your switch hardware, the `smond` daemon is the recommended method for monitoring hardware health. See [Monitor System Units Using smond](#monitor-system-units-using-smond)
+Even though you can use the `sensors` command to monitor the health of your switch hardware, the `smond` daemon is the recommended method for monitoring hardware health. See {{<link url="#monitor-system-units-using-smond" text="Monitor System Units Using smond">}}
 above.
 
 {{%/notice%}}
@@ -200,7 +200,7 @@ If `[CHIP]` is not specified in the command, all chip information is printed. Ex
 
 ## Monitor Switch Hardware Using SNMP
 
-The Net-SNMP documentation is discussed [here](../Simple-Network-Management-Protocol-SNMP/).
+The Net-SNMP documentation is discussed {{<link url="Simple-Network-Management-Protocol-SNMP" text="here">}}.
 
 ## Keep the Switch Alive Using the Hardware Watchdog
 
@@ -237,6 +237,6 @@ priority = -2
 
 ## Related Information
 
-- [packages.debian.org/search?keywords=lshw](http://packages.debian.org/search?keywords=lshw)
-- [lm-sensors.org](https://en.wikipedia.org/wiki/Lm_sensors)
-- [Net-SNMP tutorials](http://net-snmp.sourceforge.net/wiki/index.php/Tutorials)
+- {{<exlink url="http://packages.debian.org/search?keywords=lshw" text="packages.debian.org/search?keywords=lshw">}}
+- {{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors.org">}}
+- {{<exlink url="http://net-snmp.sourceforge.net/wiki/index.php/Tutorials" text="Net-SNMP tutorials">}}

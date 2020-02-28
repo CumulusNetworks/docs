@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=8362040
 pageID: 8362040
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Setting the time zone, date and time requires root privileges; use `sudo`.
 

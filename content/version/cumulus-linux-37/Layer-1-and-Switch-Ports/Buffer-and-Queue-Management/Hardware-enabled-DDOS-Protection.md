@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Hardware+enabled+DDOS+Protection
  - /pages/viewpage.action?pageId=8363034
 pageID: 8363034
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 It is crucial to protect the control plane on the switch to ensure that the proper control plane applications have access to the CPU. Failure to do so increases vulnerabilities to a Denial of Service (DOS attack. Cumulus Linux provides control plane protection by default. In addition, you can configure DDOS protection to protect data plane, control plane, and management plane traffic on the switch. You can  configure Cumulus Linux to drop packets that match one or more of the following criteria while incurring no performance impact:
 

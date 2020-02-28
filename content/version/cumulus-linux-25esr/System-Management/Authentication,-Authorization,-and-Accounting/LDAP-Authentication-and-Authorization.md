@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/LDAP+Authentication+and+Authorization
  - /pages/viewpage.action?pageId=5115904
 pageID: 5115904
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name
 Service Switch (NSS) for user authentication.

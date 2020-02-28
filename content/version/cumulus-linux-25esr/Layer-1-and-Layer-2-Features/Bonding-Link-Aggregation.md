@@ -8,10 +8,6 @@ aliases:
  - /display/CL25ESR/Bonding+Link+Aggregation
  - /pages/viewpage.action?pageId=5116007
 pageID: 5116007
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Linux bonding provides a method for aggregating multiple network
 interfaces (the slaves) into a single logical bonded interface (the

@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5126811
 pageID: 5126811
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 You use the Advanced Packaging Tool (`apt`) to manage additional
 applications (in the form of packages) and to install the latest

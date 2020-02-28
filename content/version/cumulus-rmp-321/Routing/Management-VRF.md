@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Management+VRF
  - /pages/viewpage.action?pageId=5127624
 pageID: 5127624
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 *Management VRF* provides a separation between the out-of-band
 management network and the in-band data plane network. For all VRFs, the

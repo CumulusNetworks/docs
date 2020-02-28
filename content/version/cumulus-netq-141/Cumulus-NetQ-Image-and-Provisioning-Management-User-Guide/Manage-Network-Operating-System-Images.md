@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Manage+Network+Operating+System+Images
  - /pages/viewpage.action?pageId=10453545
 pageID: 10453545
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 You can manage your network operating system (NOS) images with the NetQ
 Image and Provisioning Management (IPM) application. On initial

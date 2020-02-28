@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Understanding+the+cl+support+Output+File
  - /pages/viewpage.action?pageId=8357382
 pageID: 8357382
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 The `cl-support` script generates a compressed archive file of useful
 information for troubleshooting. The system either creates the archive

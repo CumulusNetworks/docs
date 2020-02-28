@@ -10,7 +10,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Linux supports hardware-based [equal cost multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
+Cumulus Linux supports hardware-based {{<exlink url="http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing" text="equal cost multipath">}} (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
 
 ## Equal Cost Routing
 
@@ -32,7 +32,7 @@ For routes to be considered equal they must:
 
 {{%notice info%}}
 
-In Cumulus Linux, the BGP `maximum-paths` setting is enabled, so multiple routes are installed by default. See the [ECMP section](../Border-Gateway-Protocol-BGP#ecmp-with-bgp) of the BGP chapter for more information.
+In Cumulus Linux, the BGP `maximum-paths` setting is enabled, so multiple routes are installed by default. See the {{<link url="Border-Gateway-Protocol-BGP#ecmp-with-bgp" text="ECMP section">}} of the BGP chapter for more information.
 
 {{%/notice%}}
 
@@ -47,7 +47,7 @@ Cumulus Linux hashes on the following fields:
 - Source IPv4 or IPv6 address
 - Destination IPv4 or IPv6 address
 
-Further, on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), Cumulus Linux hashes on these additional fields:
+Further, on switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, Cumulus Linux hashes on these additional fields:
 
 - Source MAC address
 - Destination MAC address
@@ -99,7 +99,7 @@ cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
 
 `cl-ecmpcalc` can only take input interfaces that can be converted to a single physical port in the port tab file, such as the physical switch ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces are not supported.
 
-`cl-ecmpcalc` is supported only on switches with the [Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3](http://cumulusnetworks.com/hcl/) chipsets.
+`cl-ecmpcalc` is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3">}} chipsets.
 
 ### ECMP Hash Buckets
 
@@ -163,7 +163,7 @@ ecmp_hash_seed = 50
 ...
 ```
 
-[Restart](../../System-Configuration/Configuring-switchd#restart-switchd) the `switchd` service:
+{{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -187,7 +187,7 @@ Resilient hashing prevents disruptions when next hops are removed. It does not p
 
 {{%notice note%}}
 
-Resilient hashing is supported only on switches with the [Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum](https://cumulusnetworks.com/hcl/) chipsets. You can run `net show system` to determine the chipset.
+Resilient hashing is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum">}} chipsets. You can run `net show system` to determine the chipset.
 
 {{%/notice%}}
 
@@ -271,8 +271,60 @@ resilient_hash_enable = TRUE
 resilient_hash_entries_ecmp = 256
 ```
 
-3. [Restart](../../System-Configuration/Configuring-switchd#restart-switchd) the `switchd` service:
+3. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+## Caveats and Errata
+
+### IPv6 Route Replacement
+
+When the next hop information for an IPv6 prefix changes (for example, when ECMP paths are added or deleted, or when the next hop IP address, interface, or tunnel changes), FRR deletes the existing route to that prefix from the kernel and then adds a new route with all the relevant new information. Because of this process, resilient hashing might not be maintained for IPv6 flows in certain situations.
+
+To work around this issue, you can enable the IPv6 route replacement option.
+
+{{%notice info%}}
+
+Be aware that for certain configurations, the IPv6 route replacement option can lead to incorrect forwarding decisions and lost traffic. For example, it is possible for a destination to have next hops with a gateway value with the outbound interface or just the outbound interface itself, without a gateway address defined. If both types of next hops for the same destination exist, route replacement does not operate correctly; Cumulus Linux adds an additional route entry and next hop but does not delete the previous route entry and next hop.
+
+{{%/notice%}}
+
+To enable the IPv6 route replacement option:
+
+1. In the `/etc/frr/daemons` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
+
+```
+cumulus@switch:~$ sudo nano /etc/frr/daemons
+...
+vtysh_enable=yes
+zebra_options=" -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
+bgpd_options=" -M snmp  -A 127.0.0.1"
+ospfd_options=" -M snmp -A 127.0.0.1"
+...
+```
+
+2. Restart FRRouting:
+
+```
+cumulus@switch:~$ sudo systemctl restart frr.service
+```
+
+To verify that the IPv6 route replacement option is enabled, run the `systemctl status frr` command:
+
+```
+cumulus@switch:~$ systemctl status frr
+
+● frr.service - FRRouting
+   Loaded: loaded (/lib/systemd/system/frr.service; enabled; vendor preset: enabled)
+   Active: active (running) since Mon 2020-02-03 20:02:33 UTC; 3min 8s ago
+     Docs: https://frrouting.readthedocs.io/en/latest/setup.html
+  Process: 4675 ExecStart=/usr/lib/frr/frrinit.sh start (code=exited, status=0/SUCCESS)
+   Memory: 14.4M
+   CGroup: /system.slice/frr.service
+           ├─4685 /usr/lib/frr/watchfrr -d zebra bgpd staticd
+           ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
+           ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
+           └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
 ```

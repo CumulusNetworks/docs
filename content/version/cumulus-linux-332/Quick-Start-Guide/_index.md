@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Quick+Start+Guide
  - /pages/viewpage.action?pageId=5868871
 pageID: 5868871
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 This quick start guide provides an end-to-end setup process for
 installing and running Cumulus Linux, as well as a collection of example

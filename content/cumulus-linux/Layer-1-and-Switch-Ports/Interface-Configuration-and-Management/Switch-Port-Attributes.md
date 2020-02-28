@@ -18,24 +18,23 @@ Cumulus Linux exposes network interfaces for several types of physical and logic
 
 Each physical network interface (port) has a number of configurable settings:
 
-- [Auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation)
-- [Duplex Mode](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
+- {{<exlink url="http://en.wikipedia.org/wiki/Autonegotiation" text="Auto-negotiation">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29" text="Duplex Mode">}}
 - Link speed
-- [MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit), (maximum transmission unit)
-- [FEC](https://en.wikipedia.org/wiki/Forward_error_correction) (forward error correction)
+- {{<exlink url="https://en.wikipedia.org/wiki/Maximum_transmission_unit" text="MTU">}} (maximum transmission unit)
+- {{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="FEC">}} (forward error correction)
 
 Most of these settings are configured automatically for you, depending upon your switch ASIC; however, you must always set MTU manually.
 
 For **Spectrum ASICs**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
-For **Broadcom-based switches,** Cumulus Networks recommends that you enable auto-negotiation on each port. When enabled, Cumulus Linux automatically configures the best link parameter settings based on the module type (speed, duplex, auto-negotiation, and FEC, where supported).
+For **Broadcom-based switches**, Cumulus Networks recommends that you enable auto-negotiation on each port. When enabled, Cumulus Linux automatically configures the best link parameter settings based on the module type (speed, duplex, auto-negotiation, and FEC, where supported).
 
-This topic describes the auto-negotiation, link speed, duplex mode, MTU, and FEC settings and provides a
-[table](#interface-configuration-recommendations-for-broadcom-platforms) showing the default configuration for various port and cable types. Breakout port configuration, logical switch port limitations, and troubleshooting is also provided.
+This topic describes the auto-negotiation, link speed, duplex mode, MTU, and FEC settings and provides a {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table">}} showing the default configuration for various port and cable types. Breakout port configuration, logical switch port limitations, and troubleshooting is also provided.
 
 ## Auto-negotiation
 
-By default on a Broadcom-based switch, auto-negotiation is disabled - except on 10G and 1000BASE-T fixed copper switch ports, where it is required for links to work. For RJ-45 SFP adapters, you need to manually configure the desired link speed and auto-negotiation as described in the [default settings table](#interface-configuration-recommendations-for-broadcom-platforms) below.
+By default on a Broadcom-based switch, auto-negotiation is disabled - except on 10G and 1000BASE-T fixed copper switch ports, where it is required for links to work. For RJ-45 SFP adapters, you need to manually configure the desired link speed and auto-negotiation as described in the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="default settings table">}} below.
 
 If you disable auto-negotiation later or never enable it, then you have to configure any settings that deviate from the port default - such as duplex mode, FEC, and link speed settings.
 
@@ -49,11 +48,11 @@ If you do decide to disable auto-negotiation, be aware of the following:
 - Disabling auto-negotiation on a 1G optical cable prevents detection of single fiber breaks.
 - You cannot disable auto-negotiation on 1GT or 10GT fixed copper switch ports.
 
-For 1000BASE-T RJ-45 SFP adapters, auto-negotiation is automatically done on the SFP PHY, so enabling auto-negotiation on the port settings is not required. You must manually configure these ports using the [settings below](#interface-configuration-recommendations-for-broadcom-platforms).
+For 1000BASE-T RJ-45 SFP adapters, auto-negotiation is automatically done on the SFP PHY, so enabling auto-negotiation on the port settings is not required. You must manually configure these ports using the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="settings below">}}.
 
 {{%/notice%}}
 
-Depending upon the connector used for a port, enabling auto-negotiation also enables forward error correction (FEC), if the cable requires it (see the [table below](#interface-configuration-recommendations-for-broadcom-platforms)). The correct FEC mode is set based on the speed of the cable when auto-negotiation is enabled.
+Depending upon the connector used for a port, enabling auto-negotiation also enables forward error correction (FEC), if the cable requires it (see the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}). The correct FEC mode is set based on the speed of the cable when auto-negotiation is enabled.
 
 To configure auto-negotiation for a switch:
 
@@ -109,13 +108,13 @@ A runtime configuration is non-persistent; the configuration you create here doe
 
 {{%notice note%}}
 
-Any time you enable auto-negotiation, Cumulus Linux restores the default configuration settings specified in the [table below](#interface-configuration-recommendations-for-broadcom-platforms).
+Any time you enable auto-negotiation, Cumulus Linux restores the default configuration settings specified in the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}.
 
 {{%/notice%}}
 
 ## Port Speed and Duplex Mode
 
-Cumulus Linux supports both half- and [full-duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29) configurations. Half-duplex is supported only with speeds of less than 1G.
+Cumulus Linux supports both half- and {{<exlink url="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29" text="full-duplex">}} configurations. Half-duplex is supported only with speeds of less than 1G.
 
 Supported port speeds include 100M, 1G, 10G, 25G, 40G, 50G and 100G. In Cumulus Linux, you set the speed on Broadcom-based switch in Mbps, where the setting for 1G is *1000*, 40G is *40000*, and 100G is *100000*.
 
@@ -128,14 +127,14 @@ You can configure ports to one speed less than their maximum speed.
 | 40G              | 10G\*                                                     |
 | 100G             | 50G\* & 40G (with or without breakout port), 25G\*, 10G\* |
 
-\*Requires the port to be converted into a breakout port. See [Configure Breakout Ports](#breakout-ports), below.
+\*Requires the port to be converted into a breakout port. See {{<link url="#breakout-ports" text="Configure Breakout Ports">}} below.
 
 {{%notice note%}}
 
 **Platform Limitations**
 
 - On Lenovo NE2572O switches, swp1 through swp8 only support 25G speed.
-- For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must edit the `/etc/cumulus/ports.conf` file and configure the four ports in the same core to be 10G. See [Caveats and Errata](#caveats-and-errata).
+- For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must edit the `/etc/cumulus/ports.conf` file and configure the four ports in the same core to be 10G. See {{<link url="#caveats-and-errata" text="Caveats and Errata">}}.
 
 {{%/notice%}}
 
@@ -233,7 +232,7 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
 Interface MTU applies to traffic traversing the management port, front panel/switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces). MTU is the only interface setting that you must set manually.
 
-On Mellanox switches, the default MTU setting is 9248 in Cumulus Linux. On Broadcom switches, the default MTU setting is 1500. To change the setting, run the following commands:
+On Mellanox switches, the default MTU setting is 9238 in Cumulus Linux. On Broadcom switches, the default MTU setting is 1500. To change the setting, run the following commands:
 
 <details>
 
@@ -354,7 +353,7 @@ When configuring MTU for a bond, configure the MTU value directly under the bond
 
 VLAN interfaces inherit their MTU settings from their physical devices or their lower interface; for example, swp1.100 inherits its MTU setting from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100 inherits the MTU setting for swp1.
 
-If you are working with [VXLANs](../../../Network-Virtualization/), the MTU for a virtual network interface (VNI must be 50 bytes smaller than the MTU of the physical interfaces on the switch, as those 50 bytes are required for various headers and other data. Also, consider setting the MTU much higher than 1500.
+If you are working with {{<link url="Network-Virtualization" text="VXLANs">}}, the MTU for a virtual network interface (VNI must be 50 bytes smaller than the MTU of the physical interfaces on the switch, as those 50 bytes are required for various headers and other data. Also, consider setting the MTU much higher than 1500.
 
 {{%notice note%}}
 
@@ -395,7 +394,7 @@ cumulus@switch:~$ ip link show dev swp1
 
 ### Bring Down an Interface for a Bridge Member
 
-When you bring down an interface for a bridge member, the MTU for the interface and the MTU for the bridge are both set to the default value of 1500 for Broadcom switches and 9248 for Mellanox switches. To work around this, run `ifdown` on the interface, then run the `sudo ip link set dev <interface> mtu` command.
+When you bring down an interface for a bridge member, the MTU for the interface and the MTU for the bridge are both set to the default value of 1500 for Broadcom switches and 9238 for Mellanox switches. To work around this, run `ifdown` on the interface, then run the `sudo ip link set dev <interface> mtu` command.
 
 For example:
 
@@ -416,7 +415,7 @@ iface swp3
 
 ## FEC
 
-[Forward Error Correction (FEC)](https://en.wikipedia.org/wiki/Forward_error_correction) is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. Because 25G transmission speeds can introduce a higher than acceptable bit error rate (BER) on a link, FEC is required or recommended for 25G, 4x25G, and 100G link speeds.
+{{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="Forward Error Correction (FEC)">}} is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. Because 25G transmission speeds can introduce a higher than acceptable bit error rate (BER) on a link, FEC is required or recommended for 25G, 4x25G, and 100G link speeds.
 
 For the link to come up, the two interfaces on each end must use the same FEC setting.
 
@@ -452,7 +451,8 @@ For **25G DAC, 4x25G Breakouts DAC and 100G DAC cables**, the IEEE 802.3by speci
 
 The IEEE classification is based on various dB loss measurements and minimum achievable cable length. You can build longer and shorter cables if they comply to the dB loss and BER requirements.
 
-If a cable is manufactured to CA-25G-S classification and FEC is not enabled, the BER might be unacceptable in a production network. It is important to set the FEC according to the cable class (or better) to have acceptable bit error rates. See [Determining Cable Class](#determine-cable-class-of-100g-and-25g-dacs) below.
+If a cable is manufactured to CA-25G-S classification and FEC is not enabled, the BER might be unacceptable in a production network. It is important to set the FEC according to the cable class (or better) to have acceptable bit error rates. See 
+{{<link url="#determine-cable-class-of-100g-and-25g-dacs" text="Determining Cable Class">}} below.
 
 You can check bit errors using `cl-netstat` (`RX_ERR` column) or `ethtool -S` (`HwIfInErrors` counter) after a large amount of traffic has passed through the link. A non-zero value indicates bit errors.
 Expect error packets to be zero or extremely low compared to good packets. If a cable has an unacceptable rate of errors with FEC enabled, replace the cable.
@@ -825,7 +825,7 @@ Spectrum switches automatically configure these settings following a predefined 
 | 1000BASE-T (RJ-45 SFP adapter) | Off | N/A | **NCLU commands**<pre>$ net add interface swp1 link speed 1000<br>$ net add interface swp1 link autoneg off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 1000</pre> | The module has two sets of electronics: the port side, which communicates with the switch ASIC and the RJ-45 side.<br><br>Auto-negotiation is always used on the RJ-45 side of the link by the PHY built into the module. This is independent of the switch setting. Set auto-negotiation to off.<br><br>Auto-negotiation must be enabled on the server side. |
 | 1000BASE-T on a 1G fixed copper port | On | N/A | **NCLU commands**<pre>$ net add interface swp1 link speed 1000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 1000</pre> | |
 | 1000BASE-T on a 10G fixed copper port | On | N/A |**NCLU commands**<pre>$ net add interface swp1 link speed 1000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 1000</pre>| |
-| 1000BASE-SX 1000BASE-LX (1G Fiber) | Recommended On | N/A |**NCLU commands**<pre>$ net add interface swp1 link speed 1000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 1000</pre> |Without auto-negotiation, the link stays up when there is a single fiber break.<br><br>See the limitation discussed in [10G and 1G SFPs Inserted in a 25G Port](#10g-and-1g-sfps-inserted-in-a-25g-port), below. |
+| 1000BASE-SX 1000BASE-LX (1G Fiber) | Recommended On | N/A |**NCLU commands**<pre>$ net add interface swp1 link speed 1000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 1000</pre> |Without auto-negotiation, the link stays up when there is a single fiber break.<br><br>See the limitation discussed in {{<link url="#10g-and-1g-sfps-inserted-in-a-25g-port" text="10G and 1G SFPs Inserted in a 25G Port">}} below. |
 | 10GBASE-T (RJ-45 SFP Module) | Off | N/A | **NCLU commands**<pre>$ net add interface swp1 link speed 10000<br>$ net add interface swp1 link autoneg off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 10000</pre> |The module has two sets of electronics - the port side, which communicates to the switch ASIC and the RJ-45 side.<br><br>Auto-negotiation is always used on the RJ-45 side of the link by the PHY built into the module. This is independent of the switch setting. Set link-autoneg to off.<br><br>Auto-negotiation needs to be enabled on the server side. |
 | 10GBASE-T fixed copper port | On | N/A |**NCLU commands**<pre>$ net add interface swp1 link speed 10000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 10000</pre> | |
 | 10GBASE-CR<br>10GBASE-LR<br>10GBASE-SR<br>10G AOC | Off | N/A | **NCLU commands**<pre>$ net add interface swp1 link speed 10000<br>$ net add interface swp1 link autoneg off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 10000</pre> ||
@@ -876,7 +876,7 @@ cumulus@switch:~$ cat /etc/network/ifupdown2/policy.d/address.json
 
 {{%notice note%}}
 
-Setting the default MTU also applies to the management interface. Be sure to add the *iface\_defaults* to override the MTU for eth0, to remain at 1500 for Broadcom switches or 9248 for Mellanox switches.
+Setting the default MTU also applies to the management interface. Be sure to add the *iface\_defaults* to override the MTU for eth0, to remain at 1500 for Broadcom switches or 9238 for Mellanox switches.
 
 {{%/notice%}}
 
@@ -886,7 +886,7 @@ Cumulus Linux provides the ability to:
 
 - Break out 100G switch ports into 2x50G, 2x40G, 4x25G, or 4x10G with breakout cables:
 - Break out 40G switch ports into four separate 10G ports for use with breakout cables.
-- Combine (*aggregate* or *gang*) four 10G switch ports into one 40G port for use with a breakout cable ([not to be confused with a bond](../../../Layer-2/Bonding-Link-Aggregation/)).
+- Combine (*aggregate* or *gang*) four 10G switch ports into one 40G port for use with a breakout cable ({{<link url="Bonding-Link-Aggregation" text="not to be confused with a bond">}}).
 
 {{%notice note%}}
 
@@ -933,7 +933,7 @@ cumulus@switch:~$ net commit
 
 {{%/notice%}}
 
-These commands break out the 100G interfaces to 4x25G interfaces in thev`/etc/cumulus/ports.conf` file,vrestart the `switchd` process tovreconfigure the ports and create four interfaces in thev`/etc/network/interfaces` file named as follows:
+These commands break out the 100G interfaces to 4x25G interfaces in the `/etc/cumulus/ports.conf` file, restart the `switchd` process to reconfigure the ports and create four interfaces in the `/etc/network/interfaces` file named as follows:
 
 ```
 cumulus@switch:~$ cat /etc/network/interfaces
@@ -956,7 +956,7 @@ The breakout port configuration is stored in the `/etc/cumulus/ports.conf` file.
 
 {{%notice note%}}
 
-When you commit your change, `switchd` restarts to apply the changes. The restart [interrupts network services](../../../System-Configuration/Configuring-switchd/).
+When you commit your change, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
 {{%/notice%}}
 
@@ -968,9 +968,9 @@ When you commit your change, `switchd` restarts to apply the changes. The restar
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. See the examples below.
 2. Configure the breakout ports in the `/etc/network/interfaces` file. See the example below.
-3. [Restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
+3. {{<link url="Configuring-switchd/#restart-switchd" text="Restart switchd">}}.
 
-The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on [the hardware compatibility list](http://www.cumulusnetworks.com/hcl).
+The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on ({{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
 The following example shows a snippet from the `/etc/cumulus/ports.conf` file on a Dell Z9264F-ON switch (with a Tomahawk2 ASIC) where swp1 and swp63 are broken out into four 10G ports:
 
@@ -1089,7 +1089,7 @@ iface swp26s3
 
 {{%notice tip%}}
 
-Refer to [this article](https://community.mellanox.com/docs/DOC-2685) article for an example of how to configure breakout cables for the Mellanox Spectrum SN2700 switch.
+Refer to {{<exlink url="https://community.mellanox.com/docs/DOC-2685" text="this article">}} for an example of how to configure breakout cables for the Mellanox Spectrum SN2700 switch.
 
 {{%/notice%}}
 
@@ -1146,7 +1146,7 @@ iface swp25s3
 ...
 ```
 
-3. [Restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
+3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 
 </details>
 
@@ -1181,7 +1181,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 ...
 ```
 
-3. [Restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
+3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 
 </details>
 
@@ -1201,7 +1201,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 ...
 ```
 
-2. [Restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
+2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 
 </details>
 
@@ -1214,7 +1214,7 @@ You can *gang* (combine) four 10G ports into one 40G port for use with a breakou
 
 {{%notice note%}}
 
-The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on [the hardware compatibility list](http://www.cumulusnetworks.com/hcl).
+The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
 {{%/notice%}}
 
@@ -1248,7 +1248,7 @@ These commands create the following configuration snippet in the `/etc/cumulus/p
 
 <summary>Linux Commands </summary>
 
-To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` file as shown below, then  [restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
+To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` file as shown below, then {{<link url="Configuring-switchd#restart-switchd" text="restart switchd">}}.
 
 ```
 # SFP+ ports#
@@ -1267,7 +1267,7 @@ To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` fi
 100G and 40G switches can support a certain number of logical ports, depending on the manufacturer; these include:
 
 - Mellanox SN2700, SN2700B, SN2410, and SN2410B switches
-- Switches with Broadcom Tomahawk, Trident II, Trident II+, and Trident3 chipsets (check the [HCL](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
+- Switches with Broadcom Tomahawk, Trident II, Trident II+, and Trident3 chipsets (check the {{<exlink url="https://cumulusnetworks.com/hcl" text="HCL">}})
 
 Before you configure any logical/unganged ports on a switch, check the limitations listed in `/etc/cumulus/ports.conf`; this file is specific to each manufacturer.
 
@@ -1412,7 +1412,7 @@ For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must conf
 ...
 ```
 
-2. [Restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
+2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 3. If you want to set the speed of any SFPs to 1G, set the port speed to 1000 Mbps using NCLU commands; this is *not* necessary for 10G SFPs. You don't need to set the port speed to 1G for all four ports. For example, if you intend only for swp5 and swp6 to use 1G SFPs, do the following:
 
 ```
@@ -1433,7 +1433,7 @@ The auto-negotiation setting must be the same on both sides of the connection. I
 
 On Quanta T5048-LY8 and T3048-LY9 switches, an *Operation timed out* error occurs when you remove and reinsert a QSFP module.
 
-You cannot remove the QSFPx2 module while the switch is powered on; it is *not* hot-swappable. However, if an *Operation timed out* error occurs, [restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd) to bring the link up. Be aware that this disrupts your network.
+You cannot remove the QSFPx2 module while the switch is powered on; it is *not* hot-swappable. However, if an *Operation timed out* error occurs, {{<link url="Configuring-switchd#restart-switchd" text="restart switchd">}} to bring the link up. Be aware that this disrupts your network.
 
 On the T3048-LY9, run the following commands:
 
@@ -1520,7 +1520,14 @@ To disable the QSFP+ ports, you must set the ports to `disabled`. Do not comment
 ### Mellanox SN2100 Switch and eth0 Link Speed
 
 After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
-To work around this issue, either flap the interface or add commands to the `/etc/rc.local` file so that this occurs on boot automatically.
+
+To work around this issue, add the following commands to the `/etc/rc.local` file to flap the interface automatically when the switch boots:
+
+```
+modprobe -r igb
+sleep 20
+modprobe igb
+```
 
 ### Link Speed on the EdgeCore AS7326-56X Switch
 
@@ -1612,6 +1619,6 @@ To work around this issue, disable auto-negotiation on interfaces where it is no
 
 ## Related Information
 
-- [Debian - Network Configuration](http://wiki.debian.org/NetworkConfiguration)
-- [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-- [Linux Foundation - Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
+- {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}
+- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
+- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" text="Linux Foundation - Bonds">}}

@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Zero+Touch+Provisioning
  - /pages/viewpage.action?pageId=5127552
 pageID: 5127552
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 *Zero touch provisioning* (ZTP) enables network devices to be quickly
 deployed in large-scale environments. On first boot, Cumulus RMP invokes

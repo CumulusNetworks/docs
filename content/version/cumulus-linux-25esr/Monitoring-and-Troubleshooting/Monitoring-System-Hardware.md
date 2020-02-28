@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=5115965
 pageID: 5115965
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 You monitor system hardware in these ways, using:
 

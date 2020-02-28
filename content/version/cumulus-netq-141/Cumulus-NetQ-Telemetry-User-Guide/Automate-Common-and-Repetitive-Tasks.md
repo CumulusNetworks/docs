@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Automate+Common+and+Repetitive+Tasks
  - /pages/viewpage.action?pageId=10453520
 pageID: 10453520
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 NetQ commands can also be run in an automation tool, such as Ansible,
 Chef, or Puppet; depending on the outcome of the automation tests, the

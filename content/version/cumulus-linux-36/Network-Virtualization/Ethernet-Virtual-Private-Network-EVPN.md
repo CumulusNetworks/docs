@@ -8,10 +8,6 @@ aliases:
  - /display/CL36/Ethernet+Virtual+Private+Network+EVPN
  - /pages/viewpage.action?pageId=8362224
 pageID: 8362224
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 VXLAN is the de facto technology for implementing network virtualization
 in the data center, enabling layer 2 segments to be extended over an IP

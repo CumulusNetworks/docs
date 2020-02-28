@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=5118690
 pageID: 5118690
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 You monitor system hardware in these ways, using:
 

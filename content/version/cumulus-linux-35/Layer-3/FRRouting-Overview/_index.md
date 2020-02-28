@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/FRRouting+Overview
  - /pages/viewpage.action?pageId=8357713
 pageID: 8357713
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 Cumulus Linux uses FRRouting to provide the routing protocols for
 dynamic routing. FRRouting provides many routing protocols, of which

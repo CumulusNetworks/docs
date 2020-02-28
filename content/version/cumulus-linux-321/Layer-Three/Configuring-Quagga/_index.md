@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Configuring+Quagga
  - /pages/viewpage.action?pageId=5127042
 pageID: 5127042
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 This section provides an overview of configuring Cumulus Quagga, the
 Cumulus Networks-enhanced version of the Quagga routing software package

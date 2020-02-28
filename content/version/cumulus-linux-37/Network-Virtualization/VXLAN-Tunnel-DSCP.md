@@ -3,7 +3,6 @@ title: VXLAN Tunnel DSCP Operations
 author: Cumulus Networks
 weight: 154
 product: Cumulus Linux
-version: 3.7
 ---
 Cumulus Linux 3.7.4 and later provides configuration options to control DSCP operations during VXLAN encapsulation and decapsulation, specifically for solutions that require end-to-end quality of service, such as RDMA over Converged Ethernet.
 

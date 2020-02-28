@@ -2,10 +2,6 @@
 title: TDR Cable Diagnostics
 author: Cumulus Networks
 weight: 433
-aliases: 
-product: Cumulus Linux
-version: 3.7
-siteSlug: cumulus-linux
 ---
 Cumulus Linux 3.7.9 and later provides the Time Domain Reflectometer (TDR) cable diagnostic tool, which enables you to isolate cable faults on unshielded twisted pair (UTP) cable runs.
 

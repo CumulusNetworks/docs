@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Using+netshow+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=5121953
 pageID: 5121953
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 `netshow` is a tool in Cumulus Linux that quickly returns a lot of
 information about your network configuration. It's a tool designed by

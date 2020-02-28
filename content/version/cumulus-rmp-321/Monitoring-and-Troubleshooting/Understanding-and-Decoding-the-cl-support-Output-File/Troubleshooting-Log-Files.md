@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Troubleshooting+Log+Files
  - /pages/viewpage.action?pageId=5127568
 pageID: 5127568
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 The only real unique entity for logging on Cumulus RMP compared to any
 other Linux distribution is `switchd.log`, which logs the HAL (hardware

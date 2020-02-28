@@ -11,13 +11,13 @@ There are multiple models in EVPN for routing between different subnets (VLANs),
 
 Cumulus Linux supports these models:
 
-- [Centralized routing](#centralized-routing): Specific VTEPs act as designated layer 3 gateways and perform routing between subnets; other VTEPs just perform bridging.
-- [Distributed asymmetric routing](#asymmetric-routing): Every VTEP participates in routing, but all routing is done at the ingress VTEP; the egress VTEP only performs bridging.
-- [Distributed symmetric routing](#symmetric-routing): Every VTEP participates in routing and routing is done at both the ingress VTEP and the egress VTEP.
+- {{<link url="#centralized-routing" text="Centralized routing">}}: Specific VTEPs act as designated layer 3 gateways and perform routing between subnets; other VTEPs just perform bridging.
+- {{<link url="#asymmetric-routing" text="Distributed asymmetric routing">}}: Every VTEP participates in routing, but all routing is done at the ingress VTEP; the egress VTEP only performs bridging.
+- {{<link url="#symmetric-routing" text="Distributed symmetric routing">}}: Every VTEP participates in routing and routing is done at both the ingress VTEP and the egress VTEP.
 
 Distributed routing (asymmetric or symmetric) is commonly deployed with the VTEPs configured with an *anycast IP/MAC address* for each subnet; each VTEP that has a particular subnet is configured with the same IP/MAC for that subnet. Such a model facilitates easy host/VM mobility as there is no need to change the host/VM configuration when it moves from one VTEP to another.
 
-All routing occurs in the context of a tenant VRF ([virtual routing and forwarding](../../../Layer-3/Virtual-Routing-and-Forwarding-VRF/)). A VRF instance is provisioned for each tenant and the subnets of the tenant are associated with that VRF (the corresponding SVI is attached to the VRF). Inter-subnet routing for each tenant occurs within the context of the VRF for that tenant and is separate from the routing for other tenants.
+All routing occurs in the context of a tenant VRF ({{<link url="Virtual-Routing-and-Forwarding-VRF" text="virtual routing and forwarding">}}). A VRF instance is provisioned for each tenant and the subnets of the tenant are associated with that VRF (the corresponding SVI is attached to the VRF). Inter-subnet routing for each tenant occurs within the context of the VRF for that tenant and is separate from the routing for other tenants.
 
 ## Centralized Routing
 
@@ -104,11 +104,11 @@ In an EVPN symmetric routing configuration, when a type-2 (MAC/IP) route is anno
 
 For EVPN symmetric routing, additional configuration is required:
 
-- [Configure a per-tenant VXLAN interface](#configure-a-per-tenant-vxlan-interface) that specifies the layer 3 VNI for the tenant. This VXLAN interface is part of the bridge and the router MAC address of the remote VTEP is installed over this interface.
-- [Configure an SVI](#configure-an-svi-for-the-layer-3-vni) (layer 3 interface) corresponding to the per-tenant VXLAN interface. This is attached to the VRF of the tenant. Remote host routes for symmetric routing are installed over this SVI.
-- [Specify the VRF to layer 3 VNI mapping](#configure-the-vrf-to-layer-3-vni-mapping). This configuration is for the BGP control plane.
+- {{<link url="#configure-a-per-tenant-vxlan-interface" text="Configure a per-tenant VXLAN interface">}} that specifies the layer 3 VNI for the tenant. This VXLAN interface is part of the bridge and the router MAC address of the remote VTEP is installed over this interface.
+- {{<link url="#configure-an-svi-for-the-layer-3-vni" text="Configure an SVI">}} (layer 3 interface) corresponding to the per-tenant VXLAN interface. This is attached to the VRF of the tenant. Remote host routes for symmetric routing are installed over this SVI.
+- {{<link url="#configure-the-vrf-to-layer-3-vni-mapping" text="Specify the VRF to layer 3 VNI mapping">}}. This configuration is for the BGP control plane.
 
-Optional configuration includes [configuring RD and RTs for the tenant VRF](#configure-rd-and-rts-for-the-tenant-vrf) and [advertising the locally-attached subnets](#advertise-the-locally-attached-subnets).
+Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenant-vrf" text="configuring RD and RTs for the tenant VRF">}} and {{<link url="#advertise-locally-attached-subnets" text="advertising the locally-attached subnets">}}.
 
 ### Configure a Per-tenant VXLAN Interface
 
@@ -186,7 +186,7 @@ iface vlan4001
 
 {{%notice note%}}
 
-When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Cumulus Networks recommends you use the MLAG system MAC address. See [Advertise Primary IP Address](#advertise-primary-ip-address).
+When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Cumulus Networks recommends you use the MLAG system MAC address. See {{<link url="#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
 
 {{%/notice%}}
 
@@ -271,7 +271,7 @@ router bgp <as> vrf tenant1
 
 {{%notice note%}}
 
-The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See [Define RDs and RTs](../Basic-Configuration/#define-rds-and-rts).
+The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="Basic-Configuration#define-rds-and-rts" text="Define RDs and RTs">}}.
 
 {{%/notice%}}
 
@@ -281,7 +281,7 @@ Symmetric routing presents a problem in the presence of silent hosts. If the ing
 
 To advertise locally attached subnets:
 
-1. Enable advertisement of EVPN prefix (type-5) routes. Refer to [Prefix-based Routing - EVPN Type-5 Routes](#prefix-based-routing-evpn-type-5-routes), below.
+1. Enable advertisement of EVPN prefix (type-5) routes. Refer to {{<link url="#announce-evpn-type-5-routes" text="Prefix-based Routing - EVPN Type-5 Routes">}}, below.
 2. Ensure that the routes corresponding to the connected subnets are known in the BGP VRF routing table by injecting them using the `network` command or redistributing them using the `redistribute connected` command.
 
 {{%notice note%}}
@@ -300,7 +300,7 @@ EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the s
 
 - When connecting to a WAN edge router to reach destinations outside the data center, Cumulus Networks recommends that you deploy specific border/exit leaf switches to originate the type-5 routes.
 - On switches with Spectrum ASICs, centralized routing, symmetric routing, and prefix-based routing only work with the Spectrum A1 chip.
-- If you are using a Broadcom Trident II+ switch as a border/exit leaf, see the [caveats](#caveats) below for a required workaround; the workaround only applies to Trident II+ switches, not Tomahawk or Spectrum.
+- If you are using a Broadcom Trident II+ switch as a border/exit leaf, see the {{<link url="#caveats">}} below for a required workaround; the workaround only applies to Trident II+ switches, not Tomahawk or Spectrum.
 
 {{%/notice%}}
 
@@ -458,18 +458,18 @@ switch# write memory
 
 ### Advertise Primary IP address (VXLAN Active-Active Mode)
 
- With Cumulus Linux 3.7 and earlier, in EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes are advertised with the anycast IP address ([clagd-vxlan-anycast-ip](../../VXLAN-Active-Active-Mode/#terminology)) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
+ With Cumulus Linux 3.7 and earlier, in EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes are advertised with the anycast IP address ({{<link url="VXLAN-Active-Active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
 
 To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
 - For host type-2 routes, the anycast IP address is used as the next hop IP address and the anycast MAC address is used as the router MAC address.
 - For type-5 routes, the system IP address (the primary IP address of the VTEP) is used as the next hop IP address and the system MAC address of the VTEP is used as the router MAC address.
 
-See [EVPN and VXLAN Active-Active mode](../Basic-Configuration/#evpn-and-vxlan-active-active-mode) for information about EVPN and VXLAN active-active mode.
+See {{<link url="Basic-Configuration#evpn-and-vxlan-active-active-mode" text="EVPN and VXLAN Active-Active mode">}} for information about EVPN and VXLAN active-active mode.
 
 #### Configure Advertise Primary IP Address
 
-Run the `address-virtual <anycast-mac>` command under the SVI, where `<anycast-mac>` is the MLAG system MAC address ([clagd-sys-mac](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#reserved-mac-address-range)). Run these commands on both switches in the MLAG pair.
+Run the `address-virtual <anycast-mac>` command under the SVI, where `<anycast-mac>` is the MLAG system MAC address ({{<link url="Multi-Chassis-Link-Aggregation-MLAG#reserved-mac-address-range" text="clagd-sys-mac">}}). Run these commands on both switches in the MLAG pair.
 
 <details>
 

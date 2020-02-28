@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Routing
  - /pages/viewpage.action?pageId=8362912
 pageID: 8362912
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 This chapter discusses routing on switches running Cumulus Linux.
 
@@ -300,6 +296,10 @@ Switches with the Hurricane2 ASIC do not support IPv6 prefixes between /65 and /
 ### Do not Delete Routes via Linux Shell
 
 Static routes added via FRRouting can be deleted via Linux shell. This operation, while possible, should be avoided. Routes added by FRRouting should only be deleted by FRRouting, otherwise FRRouting might not be able to clean up all its internal state completely and incorrect routing can occur as a result.
+
+### Using NCLU Commands to Delete Routing Configuration
+
+When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), Cumulus Networks recommends that you commit ten or fewer delete commands at a time to avoid commit failures.
 
 ### Add IPv6 Default Route with src Address on eth0 Fails without Adding Delay
 

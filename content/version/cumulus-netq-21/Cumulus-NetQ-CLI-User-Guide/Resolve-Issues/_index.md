@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Resolve+Issues
  - /pages/viewpage.action?pageId=10464107
 pageID: 10464107
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 Monitoring of systems inevitably leads to the need to troubleshoot and
 resolve the issues found. In fact network management follows a common

@@ -8,10 +8,6 @@ aliases:
  - /display/CL36/Address+Resolution+Protocol+ARP
  - /pages/viewpage.action?pageId=8362442
 pageID: 8362442
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Address Resolution Protocol (ARP) is a communication protocol used for 
 discovering the link layer address, such as a MAC address, associated with 

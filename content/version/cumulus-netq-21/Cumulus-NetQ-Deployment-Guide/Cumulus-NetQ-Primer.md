@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Cumulus+NetQ+Primer
  - /pages/viewpage.action?pageId=10463727
 pageID: 10463727
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 Cumulus® NetQ is a highly-scalable, modern network operations tool set
 that provides visibility and troubleshooting of your overlay and

@@ -18,11 +18,11 @@ BGP is the routing protocol that runs the Internet. It is an increasingly popula
 - Has many robust vendor implementations.
 - Is very mature as a protocol and comes with many years of operational experience.
 
-[RFC 7938](https://tools.ietf.org/html/rfc7938) provides further details of the use of BGP within the data center.
+{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center.
 
 ## Autonomous System Number (ASN)
 
-An [autonomous system](https://en.wikipedia.org/wiki/Autonomous_System_%28Internet%29) is defined as a set of routers under a common administration. Because BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous* *system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
+An {{<exlink url="https://en.wikipedia.org/wiki/Autonomous_System_%28Internet%29" text="autonomous system">}} is defined as a set of routers under a common administration. Because BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous* *system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries  with it not only the ASN of the originator, but also the list of ASNs that this route advertisement passes through. When forwarding a route advertisement, a BGP speaker adds itself to this list. This list of ASNs is called the *AS path*. BGP uses the AS path to detect and avoid loops.
 
@@ -40,13 +40,13 @@ When BGP is used to peer between autonomous systems, the peering is referred to 
 
 The heart of the protocol is the same when used as eBGP or iBGP but there is a key difference in the protocol behavior between eBGP and iBGP. To prevent loops, an iBGP speaker does not forward routing information learned from one iBGP peer to another iBGP peer. eBGP prevents loops using the `AS_Path` attribute.
 
-All iBGP speakers need to be peered with each other in a full mesh. In a large network, this requirement can quickly become unscalable. The most popular method to scale iBGP networks is to introduce a *route reflector*. See [Route Reflectors](#route-reflectors) below.
+All iBGP speakers need to be peered with each other in a full mesh. In a large network, this requirement can quickly become unscalable. The most popular method to scale iBGP networks is to introduce a *route reflector*. See {{<link url="#route-reflectors" text="Route Reflectors">}} below.
 
 ## BGP Path Selection
 
-BGP is a path-vector routing algorithm and does not rely on a single routing metric to determine the lowest cost route, unlike interior gateway protocols (IGPs) like OSPF. 
+BGP is a path-vector routing algorithm and does not rely on a single routing metric to determine the lowest cost route, unlike interior gateway protocols (IGPs) like OSPF.
 
-The BGP path selection algorithm looks at multiple factors to determine exactly which path is best and only the best path is installed in the routing table and advertised to other BGP peers. If [BGP ECMP](#ecmp-with-bgp) is configured multiple equal cost routes may be installed in the routing table but only a single route will be advertised to BGP peers.
+The BGP path selection algorithm looks at multiple factors to determine exactly which path is best and only the best path is installed in the routing table and advertised to other BGP peers. If {{<link url="#ecmp-with-bgp" text="BGP ECMP">}} is configured multiple equal cost routes may be installed in the routing table but only a single route will be advertised to BGP peers.
 
 The order of the BGP algorithm process is as follows:
 
@@ -66,7 +66,7 @@ The order of the BGP algorithm process is as follows:
 
 - **Lowest IGP Cost to the next hop**: The route with the lowest IGP metric to reach the BGP next hop.
 
-- **iBGP ECMP over eBGP ECMP**: If [BGP Multipath](#ecmp-with-bgp) is configured, prefer equal iBGP routes over equal eBGP routes, unless `as-path multipath-relax` is also configured.
+- **iBGP ECMP over eBGP ECMP**: If  {{<link url="#ecmp-with-bgp" text="BGP Multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless `as-path multipath-relax` is also configured.
 
 - **Oldest Route**: Prefer the oldest route in the BGP table.
 
@@ -110,13 +110,13 @@ cumulus@switch:~$ net add bgp router-id 0.0.0.1
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external
 ```
 
-    For an iBGP session, the `remote-as` is the same as the local AS:
+   For an iBGP session, the `remote-as` is the same as the local AS:
 
  ```
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal
 ```
 
-    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+   Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
 ```
 cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.0.0.2
@@ -129,13 +129,13 @@ cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 act
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 next-hop-self
 ```
 
-    If this is a route reflector client, it can be specified as follows:
+   If this is a route reflector client, it can be specified as follows:
 
 ```
 cumulus@switchRR:~$ net add bgp neighbor 10.0.0.1 route-reflector-client
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 
@@ -156,7 +156,7 @@ cumulus@switch:~$ net commit
 
 <summary>vtysh Commands </summary>
 
-1. Enable the `bgpd` daemon as described in [Configuring FRRouting](../Configuring-FRRouting/).
+1. Enable the `bgpd` daemon as described in {{<link title="Configuring FRRouting">}}.
 
 2. Identify the BGP node by assigning an ASN and the router ID:
 
@@ -174,13 +174,13 @@ switch(config-router)# bgp router-id 0.0.0.1
 switch(config-router)# neighbor 10.0.0.2 remote-as external
 ```
 
-    For an iBGP session, the `remote-as` is the same as the local AS:
+   For an iBGP session, the `remote-as` is the same as the local AS:
 
 ```
 switch(config-router)# neighbor 10.0.0.2 remote-as internal
 ```
 
-    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+   Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
 ```
 switch(config-router)# address-family ipv4 unicast
@@ -198,13 +198,13 @@ switch(config-router)# address-family ipv4 unicast
 switch(config-router-af)# neighbor 10.0.0.2 next-hop-self
 ```
 
-    If this is a route reflector client, it can be specified as follows:
+   If this is a route reflector client, it can be specified as follows:
 
 ```
 switchRR(config-router-af)# neighbor 10.0.0.1 route-reflector-client
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 
@@ -303,7 +303,7 @@ In the following illustration, tier 2 node 2.1 is acting as a route reflector se
 
 {{%notice info%}}
 
-When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored. See [Configure BGP](#configure-bgp).
+When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored. See {{<link url="#configure-bgp" text="Configure BGP">}}.
 
 {{%/notice%}}
 
@@ -379,7 +379,7 @@ router bgp 65000
 
 ## BGP Unnumbered Interfaces
 
-Unnumbered interfaces are interfaces without unique IP addresses. In BGP, you configure unnumbered interfaces using *extended next hop encoding* (ENHE), which is defined by [RFC 5549](https://tools.ietf.org/html/rfc5549). BGP unnumbered interfaces provide a means of advertising an IPv4 route with an IPv6 next hop. Prior to RFC 5549, an IPv4 route could be advertised only with an IPv4 next hop.
+Unnumbered interfaces are interfaces without unique IP addresses. In BGP, you configure unnumbered interfaces using *extended next hop encoding* (ENHE), which is defined by {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}}. BGP unnumbered interfaces provide a means of advertising an IPv4 route with an IPv6 next hop. Prior to RFC 5549, an IPv4 route could be advertised only with an IPv4 next hop.
 
 BGP unnumbered interfaces are particularly useful in deployments where IPv4 prefixes are advertised through BGP over a section without any IPv4 address configuration on links. As a result, the routing entries are also IPv4 for destination lookup and have IPv6 next hops for forwarding purposes.
 
@@ -473,7 +473,7 @@ router bgp 65020
 ...
 ```
 
-For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a [peer group](#peer-groups-to-simplify-configuration).
+For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a {{<link url="#peer-groups-to-simplify-configuration" text="peer group">}}.
 
 <details>
 
@@ -583,14 +583,14 @@ Assigning an IP address to the loopback device is essential.
 
 <summary>Click to expand... </summary>
 
-This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ([multiprotocol reachable NLRI](https://www.ietf.org/rfc/rfc2858.txt)) initiated by the system, which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with ENHE. There are two main aspects to determine: how many IPv6 next hops are included in the MP\_REACH\_NLRI (the RFC allows either one or two next hops) and the values of the next hops. This section also describes how a received MP\_REACH\_NLRI is handled as far as processing IPv6 next hops.
+This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ({{<exlink url="https://www.ietf.org/rfc/rfc2858.txt" text="multiprotocol reachable NLRI">}}) initiated by the system, which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with ENHE. There are two main aspects to determine: how many IPv6 next hops are included in the MP\_REACH\_NLRI (the RFC allows either one or two next hops) and the values of the next hops. This section also describes how a received MP\_REACH\_NLRI is handled as far as processing IPv6 next hops.
 
 - When peering to a global IPv6 address or link-local IPv6 address, whether to send one or two next hops is determined as follows:
     - If reflecting the route, two next hops are sent only if the peer has `nexthop-local unchanged` configured and the attribute of the received route has an IPv6 link-local next hop  otherwise, only one next hop is sent.
     - If not reflecting the route, two next hops are sent if explicitly configured (`nexthop-local unchanged`) or the peer is directly connected (either peering is on link-local address or the global IPv4 or IPv6 address is *directly connected*) and the route is either a local/self-originated route or the peer is an eBGP peer.
     - In all other cases, only one next hop is sent, unless an outbound route map adds another next hop.
 - `route-map` can impose two next hops in scenarios where Cumulus Linux only sends one next hop - by specifying `set ipv6 nexthop link-local`.
-- For all routes to eBGP peers and self-originated routes to iBGP peers, the global next hop (first value) is the peering address of the local system. If the peering is on the link-local address, thisis the global IPv6 address on the peering interface, if present; otherwise, it is the link-local IPv6 address on the peering interface.
+- For all routes to eBGP peers and self-originated routes to iBGP peers, the global next hop (first value) is the peering address of the local system. If the peering is on the link-local address, this is the global IPv6 address on the peering interface, if present; otherwise, it is the link-local IPv6 address on the peering interface.
 - For other routes to iBGP peers (eBGP to iBGP or reflected), the global next hop will be the global next hop in the received attribute.
 
     {{%notice note%}}
@@ -601,15 +601,14 @@ If this address is a link-local IPv6 address, it is reset so that the link-local
 
 - `route-map` and/or the peer configuration can change the above behavior. For example, `route-map` can set the global IPv6 next hop or the peer configuration can set it to *self* - which is relevant for *iBGP* peers. The route map or peer configuration can also set the next hop to unchanged, which ensures the source IPv6 global next hop is passed around - which is relevant for *eBGP* peers.
 - Whenever two next hops are being sent, the link-local next hop (the second value of the two) is the link-local IPv6 address on the peering interface unless it is due to `nh-local-unchanged` or `route-map` has set the link-local next hop.
-- Network administrators cannot set [martian values](http://en.wikipedia.org/wiki/Martian_packet) for IPv6 next hops in `route-map`. Also, global and link-local next hops are validated to ensure they match the respective address types.
+- Network administrators cannot set {{<exlink url="http://en.wikipedia.org/wiki/Martian_packet" text="martian values">}} for IPv6 next hops in `route-map`. Also, global and link-local next hops are validated to ensure they match the respective address types.
 - In a received update, a martian check is imposed for the IPv6 global next hop. If the check fails, it gets treated as an implicit withdraw.
 - If two next hops are received in an update and the second next hop is not a link-local address, it gets ignored and the update is treated as if only one next hop was received.
 - Whenever two next hops are received in an update, the second next hop is used to install the route into `zebra`. As per the previous point, it is already assured that this is a link-local IPv6 address. Currently, this is assumed to be reachable and is not registered with NHT.
 - When `route-map` specifies the next hop as `peer-address`, the global IPv6 next hop as well as the link-local IPv6 next hop (if it's being sent) is set to the *peering address*. If the peering is on a link-local address, the former could be the link-local address on the peering interface, unless there is a global IPv6 address present on this interface.
 - When using iBGP unnumbered with IPv6 Link Local Addresses (the default), FRR rewrites the BGP next hop to be the adjacent link. This is similar behavior to eBGP next hops. However, iBGP route advertisement rules do not change and a full mesh or route reflectors is still required.
 
-The above rules imply that there are scenarios where a generated update has two IPv6 next hops, and both of them are the IPv6 link-local address of the peering interface on the local system. If you are peering with a switch or router that is not running Cumulus Linux and expects the first next hop to be a global IPv6 address, a route map can be used on the sender to specify a global IPv6 address. This conforms with the
-recommendations in the Internet draft [draft-kato-bgp-ipv6-link-local-00.txt](https://tools.ietf.org/html/draft-kato-bgp-ipv6-link-local-00), "BGP4+ Peering Using IPv6 Link-local Address".
+The above rules imply that there are scenarios where a generated update has two IPv6 next hops, and both of them are the IPv6 link-local address of the peering interface on the local system. If you are peering with a switch or router that is not running Cumulus Linux and expects the first next hop to be a global IPv6 address, a route map can be used on the sender to specify a global IPv6 address. This conforms with the recommendations in the Internet draft {{<exlink url="https://tools.ietf.org/html/draft-kato-bgp-ipv6-link-local-00" text="draft-kato-bgp-ipv6-link-local-00.txt">}}, "BGP4+ Peering Using IPv6 Link-local Address."
 
 </details>
 
@@ -621,7 +620,7 @@ recommendations in the Internet draft [draft-kato-bgp-ipv6-link-local-00.txt](ht
 
 ## RFC 5549 Support with Global IPv6 Peers
 
-[RFC 5549](https://tools.ietf.org/html/rfc5549) defines the method used for BGP to advertise IPv4 prefixes with IPv6 next hops. The RFC does not make a distinction between whether the IPv6 peering and next hop values should be global unicast addresses (GUA) or link-local addresses. Cumulus Linux supports advertising IPv4 prefixes with IPv6 global unicast and link-local next hop addresses, with either *unnumbered* or *numbered* BGP.
+{{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}} defines the method used for BGP to advertise IPv4 prefixes with IPv6 next hops. The RFC does not make a distinction between whether the IPv6 peering and next hop values should be global unicast addresses (GUA) or link-local addresses. Cumulus Linux supports advertising IPv4 prefixes with IPv6 global unicast and link-local next hop addresses, with either *unnumbered* or *numbered* BGP.
 
 When BGP peering uses IPv6 global addresses and IPv4 prefixes are being advertised and installed, IPv6 route advertisements are used to derive the MAC address of the peer so that FRR can create an IPv4 route with a link-local IPv4 next hop address (defined by RFC 3927). This is required to install the route into the kernel. These route advertisement settings are configured automatically when FRR receives an update from a BGP peer using IPv6 global addresses that contain an IPv4 prefix with an IPv6 next hop, and the enhanced-next hop capability has been negotiated.
 
@@ -2195,12 +2194,12 @@ switch(config-router)# no bgp graceful-shutdown
 switch(config-router)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 </details>
 
-When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to 0. To see the configuration, run the NCLU `net show bgp <address>` command or the vtysh `show ip bgp <address>` command. For example:
+When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to _0_. To see the configuration, run the NCLU `net show bgp <address>` command or the vtysh `show ip bgp <address>` command. For example:
 
 ```
 cumulus@switch:~$ net show bgp 10.1.3.0/24
@@ -2287,8 +2286,7 @@ command.
 
 ## Apply a Route Map for Route Updates
 
-You can apply [route maps](http://docs.frrouting.org/en/latest/routemap.html)
-in BGP in one of two ways
+You can apply {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route maps">}} in BGP in one of two ways
 
 - Filter routes from BGP into Zebra
 - Filter routes from Zebra into the Linux kernel
@@ -2381,17 +2379,17 @@ As a best practice, limit the exchange of routing information at various parts i
 
 ### Multiple Routing Tables and Forwarding
 
-You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band management plane traffic) on the same switch using [management VRF](../Management-VRF/) (multiple routing tables and forwarding).
+You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band management plane traffic) on the same switch using {{<link url="Management-VRF" text="management VRF">}} (multiple routing tables and forwarding).
 
 {{%notice note%}}
 
-BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to [Virtual Routing and Forwarding - VRF](../Virtual-Routing-and-Forwarding-VRF/).
+BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to {{<link title="Virtual Routing and Forwarding - VRF">}}.
 
 {{%/notice%}}
 
 ### BGP Community Lists
 
-You can use [*community lists*](http://docs.frrouting.org/en/latest/bgp.html#community-lists) to define a BGP community to tag one or more routes. You can then use the communities to apply route policy on either egress or ingress.
+You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply route policy on either egress or ingress.
 
 The BGP community list can be either *standard* or *expanded.* The standard BGP community list is a pair of values (such as *100:100*) that can be tagged on a specific prefix and advertised to other neighbors or applied on route ingress. Or, it can be one of four BGP default communities:
 
@@ -3066,7 +3064,7 @@ router bgp 65000
 
 ### Advertisement Interval
 
-By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see [IETF draft](http://tools.ietf.org/html/draft-jakma-mrai-02).
+By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="IETF draft">}}.
 
 To modify the advertisement interval, run the following commands:
 
@@ -3140,6 +3138,10 @@ Hostname: spine01
 
 ## Caveats and Errata
 
+### Removing a BGP neighbor on an Interface that Belongs to a VRF
+
+The NCLU command to remove a BGP neighbor does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.
+
 ### ttl-security Issue
 
 Enabling `ttl-security` does not program the hardware with relevant information. Therefore, frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware.
@@ -3155,7 +3157,7 @@ INGRESS_INTF = swp1
 -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp DROP
 ```
 
-For more information about ACLs, see [Netfilter (ACLs)](../../System-Configuration/Netfilter-ACLs/).
+For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
 
 ### BGP Dynamic Capabilities not Supported
 
@@ -3173,25 +3175,25 @@ FRR does not add BGP `ttl-security` to either the running configuration or to th
 
 ## Related Information
 
-- [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD/) (BFD) and BGP
-- [Wikipedia entry for BGP](http://en.wikipedia.org/wiki/Border_Gateway_Protocol) (includes list of useful RFCs)
-- [FRR BGP documentation](https://frrouting.org/user-guide/bgp.html)
-- [IETF draft discussing BGP use within data centers](http://tools.ietf.org/html/draft-lapukhov-bgp-routing-large-dc-04)
-- [RFC 1657, Definitions of Managed Objects for the Fourth Version of the Border Gateway Protocol (BGP-4) using SMIv2](https://tools.ietf.org/html/rfc1657)
-- [RFC 1997, BGP Communities Attribute](https://tools.ietf.org/html/rfc1997)
-- [RFC 2385, Protection of BGP Sessions via the TCP MD5 Signature Option](https://tools.ietf.org/html/rfc2385)
-- [RFC 2439, BGP Route Flap Damping](https://tools.ietf.org/html/rfc2439)
-- [RFC 2545, Use of BGP-4 Multiprotocol Extensions for IPv6 Inter-Domain Routing](https://tools.ietf.org/html/rfc2545)
-- [RFC 2918, Route Refresh Capability for BGP-4](https://tools.ietf.org/html/rfc2918)
-- [RFC 4271, A Border Gateway Protocol 4 (BGP-4)](https://tools.ietf.org/html/rfc4271)
-- [RFC 4360, BGP Extended Communities Attribute](https://tools.ietf.org/html/rfc4360)
-- [RFC 4456, BGP Route Reflection - An Alternative to Full Mesh Internal BGP (iBGP)](https://tools.ietf.org/html/rfc4456)
-- [RFC 4760, Multiprotocol Extensions for BGP-4](https://tools.ietf.org/html/rfc4760)
-- [RFC 5004, Avoid BGP Best Path Transitions from One External to Another](https://tools.ietf.org/html/rfc5004)
-- [RFC 5065, Autonomous System Confederations for BGP](https://tools.ietf.org/html/rfc5065)
-- [RFC 5291, Outbound Route Filtering Capability for BGP-4](https://tools.ietf.org/html/rfc5291)
-- [RFC 5492, Capabilities Advertisement with BGP-4](https://tools.ietf.org/html/rfc5492)
-- [RFC 5549, Advertising IPv4 Network Layer Reachability Information with an IPv6 Next Hop](https://tools.ietf.org/html/rfc5549)
-- [RFC 6793, BGP Support for Four-Octet Autonomous System (AS) Number Space](https://tools.ietf.org/html/rfc6793)
-- [RFC 7911, Advertisement of Multiple Paths in BGP](https://tools.ietf.org/html/rfc7911)
-- [draft-walton-bgp-hostname-capability-02, Hostname Capability for BGP](https://tools.ietf.org/html/draft-walton-bgp-hostname-capability-00)
+- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional forwarding detection">}} (BFD) and BGP
+- {{<exlink url="http://en.wikipedia.org/wiki/Border_Gateway_Protocol" text="Wikipedia entry for BGP">}} (includes list of useful RFCs)
+- {{<exlink url="http://docs.frrouting.org/en/latest/bgp.html" text="FRR BGP documentation">}}
+- {{<exlink url="http://tools.ietf.org/html/draft-lapukhov-bgp-routing-large-dc-04" text="IETF draft discussing BGP use within data centers">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc1657" text="RFC 1657, Definitions of Managed Objects for the Fourth Version of the Border Gateway Protocol (BGP-4) using SMIv2">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc1997" text="RFC 1997, BGP Communities Attribute">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc2385" text="RFC 2385, Protection of BGP Sessions via the TCP MD5 Signature Option">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc2439" text="RFC 2439, BGP Route Flap Damping">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc2545" text="RFC 2545, Use of BGP-4 Multiprotocol Extensions for IPv6 Inter-Domain Routing">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc2918" text="RFC 2918, Route Refresh Capability for BGP-4">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc4271" text="RFC 4271, A Border Gateway Protocol 4 (BGP-4)">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc4360" text="RFC 4360, BGP Extended Communities Attribute">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc4456" text="RFC 4456, BGP Route Reflection - An Alternative to Full Mesh Internal BGP (iBGP)">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc4760" text="RFC 4760, Multiprotocol Extensions for BGP-4">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5004" text="RFC 5004, Avoid BGP Best Path Transitions from One External to Another">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5065" text="RFC 5065, Autonomous System Confederations for BGP">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5291" text="RFC 5291, Outbound Route Filtering Capability for BGP-4">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5492" text="RFC 5492, Capabilities Advertisement with BGP-4">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549, Advertising IPv4 Network Layer Reachability Information with an IPv6 Next Hop">}}()
+- {{<exlink url="https://tools.ietf.org/html/rfc6793" text="RFC 6793, BGP Support for Four-Octet Autonomous System (AS) Number Space">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc7911" text="RFC 7911, Advertisement of Multiple Paths in BGP">}}
+- {{<exlink url="https://tools.ietf.org/html/draft-walton-bgp-hostname-capability-00" text="draft-walton-bgp-hostname-capability-02, Fully Qualified Domain Name Capability for BGP">}}

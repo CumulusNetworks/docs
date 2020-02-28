@@ -3,10 +3,6 @@ title: Monitor Physical Layer Components
 author: Cumulus Networks
 weight: 37
 pageID: 12321045
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 With NetQ, a network administrator can monitor OSI Layer 1 physical
 components on network devices, including interfaces, ports, links, and

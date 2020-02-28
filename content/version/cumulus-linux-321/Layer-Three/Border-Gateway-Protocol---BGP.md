@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Border+Gateway+Protocol+++BGP
  - /pages/viewpage.action?pageId=5127049
 pageID: 5127049
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
-
 BGP is the routing protocol that runs the Internet. It is an
 increasingly popular protocol for use in the data center as it lends
 itself well to the rich interconnections in a Clos topology.

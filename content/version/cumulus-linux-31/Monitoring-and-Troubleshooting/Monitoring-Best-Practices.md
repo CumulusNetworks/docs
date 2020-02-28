@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Monitoring+Best+Practices
  - /pages/viewpage.action?pageId=5121980
 pageID: 5121980
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 
 The following monitoring processes are considered best practices for

@@ -85,7 +85,7 @@ To complete the preparation:
     The following NEW packages will be installed:
     netq-agent netq-apps
     ...
-    Fetched 39.8 MB in 3s (13.5 MB/s)    
+    Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
     Unpacking netq-agent (2.4.1-ub18.04u26~1581351889.c5ec3e5) ...
     ...
@@ -96,7 +96,7 @@ To complete the preparation:
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
 
-You can now upgrade your platform using the NetQ Admin UI, in the next section, or the {{<link title="#Upgrade Your Hardware Using the NetQ CLI" text="NetQ CLI">}}.
+You can now upgrade your platform using the NetQ Admin UI, in the next section. Alternately, you can upgrade using the CLI here: {{<link title="#Upgrade Your Platform Using the NetQ CLI">}}.
 
 ## Upgrade Your Platform Using the NetQ Admin UI
 
@@ -139,11 +139,13 @@ To upgrade your NetQ software:
 The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg", height="18", width="18"/> is only visible after you enter your tar file information.
     {{%/notice%}}
 
-    Monitor the progress. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg", height="18", width="18"/> to monitor each step in the jobs.
+5. Monitor the progress. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg", height="18", width="18"/> to monitor each step in the jobs.
+
+    The following example is for an on-premises upgrade. The jobs for a cloud upgrade are slightly different.
 
     {{<figure src="/images/netq/adminui-upgrade-progress-241.png" width="700">}}
 
-6. Activate the NetQ Software.
+5. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg", height="18", width="18"/> to be returned to the Health dashboard.
 
 ## Upgrade Your Platform Using the NetQ CLI
 

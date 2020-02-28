@@ -6,7 +6,8 @@ aliases:
  - /display/CL321/Ethernet+Virtual+Private+Network+++EVPN
  - /pages/viewpage.action?pageId=5126939
 pageID: 5126939
----{{%notice note%}}
+---
+{{%notice note%}}
 
 EVPN requires Cumulus Linux version 3.2.1 or newer.
 

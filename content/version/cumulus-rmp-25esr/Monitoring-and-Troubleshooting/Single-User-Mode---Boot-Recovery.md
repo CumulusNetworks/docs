@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Single+User+Mode+++Boot+Recovery
  - /pages/viewpage.action?pageId=5116335
 pageID: 5116335
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery. Entering single user mode is

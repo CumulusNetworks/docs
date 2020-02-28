@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=5116331
 pageID: 5116331
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 The
 [`cl-support`](/version/cumulus-rmp-25esr/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/)

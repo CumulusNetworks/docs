@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Troubleshooting+the+support+Directory
  - /pages/viewpage.action?pageId=5116333
 pageID: 5116333
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 The `support` directory is unique in the fact that it is not a copy of
 the switch's filesystem. Actually, it is the output from various

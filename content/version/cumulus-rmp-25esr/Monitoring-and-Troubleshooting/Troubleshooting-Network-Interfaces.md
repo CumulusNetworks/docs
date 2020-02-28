@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=5116334
 pageID: 5116334
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 The following sections describe various ways you can troubleshoot
 `ifupdown2`.

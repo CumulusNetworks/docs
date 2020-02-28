@@ -131,21 +131,21 @@ To upgrade your NetQ software:
 
     {{<figure src="/images/netq/adminui-upgrade-begin-241.png" width="700">}}
 
-4. Enter *NetQ-2.4.1.tgz* or *NetQ-2.4.1-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg", height="18", width="18"/>.
+4. Enter *NetQ-2.4.1.tgz* or *NetQ-2.4.1-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/adminui-upgrade-enter-tar-241.png" width="700">}}
 
     {{%notice tip%}}
-The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg", height="18", width="18"/> is only visible after you enter your tar file information.
+The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> is only visible after you enter your tar file information.
     {{%/notice%}}
 
-5. Monitor the progress. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg", height="18", width="18"/> to monitor each step in the jobs.
+5. Monitor the progress. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg" height="18" width="18"/> to monitor each step in the jobs.
 
     The following example is for an on-premises upgrade. The jobs for a cloud upgrade are slightly different.
 
     {{<figure src="/images/netq/adminui-upgrade-progress-241.png" width="700">}}
 
-5. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg", height="18", width="18"/> to be returned to the Health dashboard.
+5. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> to be returned to the Health dashboard.
 
 ## Upgrade Your Platform Using the NetQ CLI
 

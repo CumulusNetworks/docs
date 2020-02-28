@@ -33,11 +33,11 @@ To add more worker nodes:
 
 5. Click **Add**.
 
-    Monitor the progress of the three jobs by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg", height="18", width="18"/> next to the jobs.
+    Monitor the progress of the three jobs by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg" height="18" width="18"/> next to the jobs.
 
     On completion, a card for the new node is added to the Cluster dashboard.
 
-    If the addition fails for any reason, download the log file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg", height="18", width="18"/>, run `netq bootstrap reset`, and then try again.
+    If the addition fails for any reason, download the log file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/>, run `netq bootstrap reset`, and then try again.
 
 6. Repeat this process to add more worker nodes as needed.
 

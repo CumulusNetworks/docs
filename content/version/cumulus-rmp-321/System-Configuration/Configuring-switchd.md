@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Configuring+switchd
  - /pages/viewpage.action?pageId=5127546
 pageID: 5127546
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 `switchd` is the daemon at the heart of Cumulus RMP. It communicates
 between the switch and Cumulus RMP, and all the applications running on

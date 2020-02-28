@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Quick+Start+Guide
  - /pages/viewpage.action?pageId=8362037
 pageID: 8362037
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 This quick start guide provides an end-to-end setup process for
 installing and running Cumulus Linux, as well as a collection of example

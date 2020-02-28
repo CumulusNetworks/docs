@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Default+Cumulus+Linux+ACL+Configuration
  - /pages/viewpage.action?pageId=8362069
 pageID: 8362069
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 The Cumulus Linux default ACL configuration is split into three parts,
 as outlined in the 

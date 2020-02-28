@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/TACACS+Plus
  - /pages/viewpage.action?pageId=8362053
 pageID: 8362053
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication,
 and Authorization) in a transparent way with minimal configuration. The

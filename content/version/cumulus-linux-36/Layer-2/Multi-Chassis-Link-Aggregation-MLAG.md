@@ -8,10 +8,6 @@ aliases:
  - /display/CL36/Multi+Chassis+Link+Aggregation+MLAG
  - /pages/viewpage.action?pageId=8362169
 pageID: 8362169
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Multi-Chassis Link Aggregation (MLAG), enables a server or switch with a
 two-port bond, such as a link aggregation group/LAG, EtherChannel, port

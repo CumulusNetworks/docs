@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=8362096
 pageID: 8362096
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 The
 [`cl-support`](/version/cumulus-linux-36/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/)

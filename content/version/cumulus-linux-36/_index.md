@@ -7,11 +7,12 @@ aliases:
  - /display/CL36/Cumulus+Linux+Index/
  - /pages/viewpage.action?pageId=8362022
 pageID: 8362022
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 subsection: true
+cascade:
+  product: Cumulus Linux
+  version: '3.6'
+  imgData: cumulus-linux-36
+  siteSlug: cumulus-linux-36
 ---
 ## Introducing Cumulus Linux
 

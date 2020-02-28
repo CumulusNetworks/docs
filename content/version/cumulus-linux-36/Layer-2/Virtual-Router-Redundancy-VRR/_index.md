@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Virtual+Router+Redundancy+++VRR
  - /pages/viewpage.action?pageId=8362183
 pageID: 8362183
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Virtual Router Redundancy (VRR) enables hosts to communicate with any
 redundant router without reconfiguration, running dynamic router

@@ -514,5 +514,5 @@ resides in `/etc/netq` by default.
 
 Log files are stored in `/var/logs/` by default.
 
-Refer to [Investigate NetQ Issues](../../../Cumulus-NetQ-CLI-User-Guide/Investigate-NetQ-Issues)
+Refer to {{<link url="Investigate-NetQ-Issues">}}
 for a complete listing of configuration files and logs for use in issue resolution.

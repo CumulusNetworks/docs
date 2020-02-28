@@ -305,6 +305,10 @@ The full screen Switch card provides multiple tabs.
 <td>Default Time</td>
 <td>Displayed data is current as of this moment</td>
 </tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
 <tr class="even">
 <td>Results</td>
 <td>Number of results found for the selected tab</td>

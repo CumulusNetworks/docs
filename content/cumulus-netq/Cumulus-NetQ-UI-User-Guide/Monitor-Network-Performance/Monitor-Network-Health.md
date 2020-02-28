@@ -323,6 +323,10 @@ The full screen Network Health card displays all events in the network.
 <td>Default Time</td>
 <td>Range of time in which the displayed data was collected</td>
 </tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
 <tr class="even">
 <td>Results</td>
 <td>Number of results found for the selected tab</td>
@@ -449,9 +453,7 @@ To view information about each network protocol or service:
 The health of each network protocol or service is represented on the left side of the card by a distribution of the health score, a trend indicator, and a percentage of successful results. The right side of the card provides a listing of devices running the services.
 
 {{%notice tip%}}
-If you have more services running than fit naturally into the chart area, a scroll bar appears for you to access their data.
-
-Use the scroll bars on the table to view more columns and rows.
+If you have more services running than fit naturally into the chart area, a scroll bar appears for you to access their data. Use the scroll bars on the table to view more columns and rows.
 {{%/notice%}}
 
 ### View Devices with the Most Issues

@@ -174,6 +174,8 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 <td>Time period</td>
 <td>Time period does not apply to the Inventory cards. This is always Default Time.</td>
 </tr>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
 <tr class="even">
 <td>Results</td>
 <td>Number of results found for the selected tab</td>
@@ -295,7 +297,7 @@ While the Device Inventory cards provide a network-wide view, you may want to se
 
 You can view all stored attributes for all switches in your network. To view all switch details, open the full screen Devices Inventory card and click the **All Switches** tab in the navigation panel.
 
-{{< figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-230.png" width="700" >}}
+{{< figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700" >}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
@@ -303,6 +305,6 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 
 You can view all stored attributes for all hosts in your network. To view all hosts details, open the full screen Devices Inventory card and click the **All Hosts** tab in the navigation panel.
 
-{{< figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-230.png" width="700" >}}
+{{< figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.

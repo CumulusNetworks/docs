@@ -196,6 +196,10 @@ validation requests.
 <td>Default Time</td>
 <td>No time period is displayed for this card as each validation request has its own time relationship.</td>
 </tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
 <tr class="even">
 <td>Results</td>
 <td>Number of results found for the selected tab</td>
@@ -595,6 +599,10 @@ The full screen Validation Result card provides a tab for all on-demand validati
 <td>Time period</td>
 <td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
 </tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
 <tr class="even">
 <td>Results</td>
 <td>Number of results found for the selected tab</td>
@@ -657,7 +665,7 @@ To view the results:
 
 8. To view all data available for all on-demand validation results for a given protocol, switch to the full screen card.
 
-    {{< figure src="/images/netq/od-valid-result-bgp-fullscr.png" width="700" >}}
+    {{< figure src="/images/netq/od-valid-result-bgp-fullscr-241.png" width="700" >}}
 
 9. Double-click in a given result row to open details about the validation.
 
@@ -922,6 +930,10 @@ validation results for the service.
 <td>Time period</td>
 <td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
 </tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
 <tr class="even">
 <td>Results</td>
 <td>Number of results found for the selected tab</td>
@@ -1007,11 +1019,11 @@ To view the results:
 
 13. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and     clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/>. If you want to change the configuration, click **Edit Config** to open the large Validation Request card, pre-populated with the current configuration. Follow the instructions in [Modify an Existing Scheduled Validation Request](#modify-an-existing-scheduled-validation-request) to make your changes.
 
-14. To view all data available for all scheduled validation results for the given protocol or service, click **Show All Results** or switch     to the full screen card.
+14. To view all data available for all scheduled validation results for the given protocol or service, click **Show All Results** or switch to the full screen card.
 
-    {{< figure src="/images/netq/sch-valid-result-fullscr.png" width="700" >}}
+    {{< figure src="/images/netq/sch-valid-result-fullscr-bgp-241.png" width="700" >}}
 
-15. Look for changes and patterns in the results. Scroll to the right. Are there more failed sessions or nodes during one or more     validations?
+15. Look for changes and patterns in the results. Scroll to the right. Are there more failed sessions or nodes during one or more validations?
 
 16. Double-click in a given result row to open details about the validation.
 

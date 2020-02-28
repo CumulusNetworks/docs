@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=5115970
 pageID: 5115970
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 The
 [`cl-support`](/version/cumulus-linux-25esr/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/)

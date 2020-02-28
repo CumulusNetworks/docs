@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Understanding+and+Decoding+the+cl+support+Output+File
  - /pages/viewpage.action?pageId=5115969
 pageID: 5115969
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 The `cl-support` command generates a tar archive of useful information for troubleshooting that can be auto-generated or manually created. To manually create it, run the cl-support command. The cl-support file is automatically generated when:
 

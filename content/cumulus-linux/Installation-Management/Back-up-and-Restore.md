@@ -70,7 +70,7 @@ You can restore a backup to the same switch or to a different switch. When resto
 
 To restore a backup file, run the `config-restore` command with a specific filename (`-b <filename>`), file number (`-n <number>`), *or* the `-N` option, which restores the most recent backup file.
 
-You can run the `config-restore -l` command to list the archived backup files by filename and number (see [config-restore Command Examples](#config-restore-command-examples), below).
+You can run the `config-restore -l` command to list the archived backup files by filename and number (see {{<link url="#config-restore-command-examples" text="config-restore Command Examples">}} below).
 
 ```
 cumulus@switch:~$ sudo config-restore -b config_backup-2019-04-23-21.30.47_leaf01

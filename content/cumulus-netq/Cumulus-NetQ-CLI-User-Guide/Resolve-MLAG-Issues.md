@@ -11,11 +11,7 @@ version: 2.4
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---
-This topic outlines a few scenarios that illustrate how you use NetQ to
-troubleshoot
-[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) on Cumulus
-Linux switches. Each starts with a log message that indicates the
-current MLAG state.
+This topic outlines a few scenarios that illustrate how you use NetQ to troubleshoot {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="MLAG">}} on Cumulus Linux switches. Each starts with a log message that indicates the current MLAG state.
 
 NetQ can monitor many aspects of an MLAG configuration, including:
 

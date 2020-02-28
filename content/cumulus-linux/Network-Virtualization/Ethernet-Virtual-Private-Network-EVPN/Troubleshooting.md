@@ -465,7 +465,7 @@ cumulus@leaf01:~$
 {{%notice note%}}
 
 - Only global VNIs are supported. Even though VNI values are exchanged in the type-2 and type-5 routes, the received values are not used when installing the routes into the forwarding plane; the local configuration is used. You must ensure that the VLAN to VNI mappings and the layer 3 VNI assignment for a tenant VRF are uniform throughout the network.
-- If the remote host is dual attached, the next hop for the EVPN route is the anycast IP address of the remote [MLAG](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) pair, when MLAG is active.
+- If the remote host is dual attached, the next hop for the EVPN route is the anycast IP address of the remote {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} pair, when MLAG is active.
 
 {{%/notice%}}
 

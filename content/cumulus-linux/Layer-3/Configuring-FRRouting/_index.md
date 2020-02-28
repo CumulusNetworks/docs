@@ -59,7 +59,7 @@ All the routing protocol daemons (`bgpd`, `ospfd`, `ospf6d`, `ripd`, `ripngd`, `
 
 In general, if you restart a service, its dependent services are also restarted. For example, running `systemctl restart frr.service` restarts any of the routing protocol daemons that are enabled and running.
 
-For more information on the `systemctl` command and changing the state of daemons, read [Services and Daemons in Cumulus Linux](../../System-Configuration/Services-and-Daemons-in-Cumulus-Linux/).
+For more information on the `systemctl` command and changing the state of daemons, read {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and Daemons in Cumulus Linux">}}.
 
 {{%/notice%}}
 
@@ -67,7 +67,7 @@ For more information on the `systemctl` command and changing the state of daemon
 
 By default in Cumulus Linux, FRRouting saves all daemon configurations in a single integrated configuration file, `frr.conf`.
 
-You can disable this mode by running the following command in the [`vtysh` FRRouting CLI](#frrouting-vtysh-modal-cli):
+You can disable this mode by running the following command in the {{%link url="#frrouting-vtysh-modal-cli" text="`vtysh` FRRouting CLI"%}}:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -143,7 +143,7 @@ cumulus@switch:~$ sudo systemctl restart frr.service
 
 ## Interface IP Addresses and VRFs
 
-FRRouting inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRRouting. For more information, see [Configuring IP Addresses](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/) and [Virtual Routing and Forwarding - VRF](../Virtual-Routing-and-Forwarding-VRF/).
+FRRouting inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRRouting. For more information, see {{<link url="Interface-Configuration-and-Management/#configure-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
 
 ## FRRouting vtysh Modal CLI
 
@@ -414,7 +414,7 @@ If you try to configure a routing protocol that has not been started, `vtysh` si
 
 {{%/notice%}}
 
-If you do not want to use a modal CLI to configure FRRouting, you can use a suite of [Cumulus Linux-specific commands](../Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands/) instead.
+If you do not want to use a modal CLI to configure FRRouting, you can use a suite of {{<link url="Comparing-NCLU-and-vtysh-Commands" text="Cumulus Linux-specific commands">}} instead.
 
 ## Reload the FRRouting Configuration
 
@@ -438,7 +438,7 @@ Examine the running configuration and verify that it matches the configuration i
 cumulus@switch:~$ net show configuration
 ```
 
-If the running configuration is not what you expect, [submit a support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) and supply the following information:
+If the running configuration is not what you expect, {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="submit a support request">}} and supply the following information:
 
 - The current running configuration (run `net show configuration` and output the contents to a file)
 - The contents of `/etc/frr/frr.conf`
@@ -486,6 +486,6 @@ Accidentally configuring the same numbered BGP neighbor using both the `neighbor
 
 ## Related Information
 
-- [FRR BGP documentation](https://frrouting.org/user-guide/bgp.html)
-- [FRR IPv6 support](https://frrouting.org/user-guide/ipv6.html)
-- [FRR Zebra documentation](https://frrouting.org/user-guide/zebra.html)
+- {{<exlink url="http://docs.frrouting.org/en/latest/bgp.html" text="FRR BGP documentation">}}
+- {{<exlink url="http://docs.frrouting.org/en/latest/ipv6.html" text="FRR IPv6 support">}}
+- {{<exlink url="http://docs.frrouting.org/en/latest/zebra.html" text="FRR Zebra documentation">}}

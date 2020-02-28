@@ -22,17 +22,17 @@ For more information, see `man ptmd(8)`.
 
 - Topology verification using LLDP. `ptmd` creates a client connection to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship between the nodes/ports in the network and compares them against the prescribed topology specified in the `topology.dot` file.
 - Only physical interfaces, such as swp1 or eth0, are currently supported. Cumulus Linux does not support specifying virtual interfaces, such as bonds or subinterfaces, such as eth0.200 in the topology file.
-- Forwarding path failure detection using [Bidirectional Forwarding Detection](http://tools.ietf.org/html/rfc5880) (BFD); however, demand mode is not supported. For more information on how BFD operates in Cumulus Linux, read the [Bidirectional Forwarding Detection - BFD](../../Layer-3/Bidirectional-Forwarding-Detection-BFD/) chapter and read `man ptmd(8)`.
+- Forwarding path failure detection using {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection">}} (BFD); however, demand mode is not supported. For more information on how BFD operates in Cumulus Linux, read the {{<link title="Bidirectional Forwarding Detection - BFD">}} chapter and read `man ptmd(8)`.
 - Integration with FRRouting (PTM to FRRouting notification).
 - Client management: `ptmd` creates an abstract named socket `/var/run/ptmd.socket` on startup. Other applications can connect to this socket to receive notifications and send commands.
 - Event notifications: see Scripts below.
-- User configuration via a `topology.dot` file; [see below](#configure-ptm).
+- User configuration via a `topology.dot` file; {{<link url="#configure-ptm" text="see below">}}.
 
 ## Configure PTM
 
 `ptmd` verifies the physical network topology against a DOT-specified network graph file, `/etc/ptm.d/topology.dot`.
 
-PTM supports [undirected graphs](http://en.wikipedia.org/wiki/DOT_%28graph_description_language%29).
+PTM supports {{<exlink url="http://en.wikipedia.org/wiki/DOT_%28graph_description_language%29" text="undirected graphs">}}.
 
 At startup, `ptmd` connects to `lldpd`, the LLDP daemon, over a Unix socket and retrieves the neighbor name and port information. It then compares the retrieved port information with the configuration information that it read from the topology file. If there is a match, it is a PASS, else it is a FAIL.
 
@@ -63,7 +63,7 @@ graph G {
 
 ## ptmd Scripts
 
-`ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail`for each interface that goes through a change and runs `if-topo-pass` when an LLDP or BFD check passes or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command, described in the [`ptmd` commands below](#ptmd-service-commands).
+`ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail`for each interface that goes through a change and runs `if-topo-pass` when an LLDP or BFD check passes or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command, described in the {{%link url="#ptmd-service-commands" text="`ptmd` commands below"%}}.
 
 Modify these default scripts as needed.
 
@@ -204,7 +204,7 @@ graph G {
 
 ## Bidirectional Forwarding Detection (BFD)
 
-BFD provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD using PTM, see [BFD](../../Layer-3/Bidirectional-Forwarding-Detection-BFD/).
+BFD provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD using PTM, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
 
 ## Check Link State with FRRouting
 
@@ -509,7 +509,7 @@ If the subinterface is configured on the physical interface and the physical int
 
 ## Related Information
 
-- [Bidirectional Forwarding Detection (BFD)](http://tools.ietf.org/html/rfc5880)
-- [Graphviz](http://www.graphviz.org)
-- [LLDP on Wikipedia](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
-- [PTMd GitHub repo](https://github.com/CumulusNetworks/ptm)
+- {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection (BFD)">}}
+- {{<exlink url="http://www.graphviz.org" text="Graphviz">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" text="LLDP on Wikipedia">}}
+- {{<exlink url="https://github.com/CumulusNetworks/ptm" text="PTMd GitHub repo">}}

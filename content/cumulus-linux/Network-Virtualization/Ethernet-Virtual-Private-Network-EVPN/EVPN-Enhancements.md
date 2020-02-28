@@ -22,7 +22,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-For a bridge in [traditional mode](../../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/), you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
@@ -104,8 +104,8 @@ In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multi
 
 {{%notice note%}}
 
-- When you enable the `advertise-svi-ip` option, the anycast IP/MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP/MAC address. See [Advertising the Default Gateway](../Inter-subnet-Routing#centralized-routing).
-- If your switch is in an MLAG configuration, refer to [Advertise Primary IP Address](../Inter-subnet-Routing/#advertise-primary-ip-address).
+- When you enable the `advertise-svi-ip` option, the anycast IP/MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP/MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
+- If your switch is in an MLAG configuration, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
 
 {{%/notice%}}
 
@@ -287,7 +287,7 @@ cumulus@switch:~$
 
 </details>
 
-To disable duplicate address detection, see [Disable Duplicate Address Detection](#disable-duplicate-address-detection) below.
+To disable duplicate address detection, see {{<link url="#disable-duplicate-address-detection" text="Disable Duplicate Address Detection">}} below.
 
 ### Example syslog Messages
 
@@ -312,7 +312,7 @@ When you enable the freeze option and a duplicate address is detected:
 - If the MAC or IP address is learned from a remote VTEP at the time it is frozen, the forwarding information in the kernel and hardware is not updated, leaving it in the prior state. Any future remote updates are processed but they are not reflected in the kernel entry. If the remote VTEP sends a MAC-IP route withdrawal, the local VTEP removes the frozen remote entry. Then, if the local VTEP has a locally-learned entry already present in its kernel, FRR will originate a corresponding MAC-IP route and advertise it to all remote VTEPs.
 - If the MAC or IP address is locally learned on this VTEP at the time it is frozen, the address is not advertised to remote VTEPs. Future local updates are processed but are not advertised to remote VTEPs. If FRR receives a local entry delete event, the frozen entry is removed from the FRR database. Any remote updates (from other VTEPs) change the state of the entry to remote but the entry is not installed in the kernel (until cleared).
 
-**To recover from a freeze**, shut down the faulty host or VM or fix any other misconfiguration in the network. If the address is frozen *permanently,* issue the [clear command](#clear-duplicate-addresses) on the VTEP where the address is marked as duplicate. If the address is frozen for a defined period of time, it is cleared automatically after the timer expires (you can clear the duplicate address before the timer expires with the [clear command](#clear-duplicate-addresses)).
+**To recover from a freeze**, shut down the faulty host or VM or fix any other misconfiguration in the network. If the address is frozen *permanently,* issue the {{<link url="#clear-duplicate-addresses" text="clear command">}} on the VTEP where the address is marked as duplicate. If the address is frozen for a defined period of time, it is cleared automatically after the timer expires (you can clear the duplicate address before the timer expires with the {{<link url="#clear-duplicate-addresses" text="clear command">}}).
 
 {{%notice note%}}
 
@@ -363,7 +363,7 @@ Cumulus Networks recommends you set the freeze timer to be three times the dupli
 
 {{%/notice%}}
 
-The following example command freezes duplicate addresses permanently (until you issue the [clear command](#clear-duplicate-addresses)):
+The following example command freezes duplicate addresses permanently (until you issue the {{<link url="#clear-duplicate-addresses" text="clear command">}}):
 
 <details>
 
@@ -450,7 +450,7 @@ cumulus@switch:~$
 
 {{%notice note%}}
 
-In an MLAG configuration, you need to run the [clear command](#clear-duplicate-addresses) on both the MLAG primary and secondary switch.
+In an MLAG configuration, you need to run the clear command on both the MLAG primary and secondary switch.
 
 {{%/notice%}}
 

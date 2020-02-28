@@ -58,7 +58,7 @@ cumulus@leaf01's password:
 Number of key(s) added: 1
 ```
 
-    `ssh-copy-id` does not work if the username on the remote switch is different from the username on the local switch. To work around this issue, use the `scp` command instead:
+   `ssh-copy-id` does not work if the username on the remote switch is different from the username on the local switch. To work around this issue, use the `scp` command instead:
 
 ```
 cumulus@leaf01:~$ scp .ssh/id_rsa.pub cumulus@leaf02:.ssh/authorized_keys
@@ -85,5 +85,5 @@ Last login: Thu Sep 29 16:56:54 2016
 
 ## Related Information
 
-- [Debian Documentation - Password-less logins with OpenSSH](https://debian-administration.org/article/152/Password-less_logins_with_OpenSSH)
-- [Wikipedia - Secure Shell (SSH)](http://en.wikipedia.org/wiki/Secure_Shell)
+- {{<exlink url="https://debian-administration.org/article/152/Password-less_logins_with_OpenSSH" text="Debian Documentation - Password-less logins with OpenSSH">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/Secure_Shell" text="Wikipedia - Secure Shell (SSH)">}}

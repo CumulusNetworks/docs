@@ -12,7 +12,7 @@ imgData: cumulus-netq
 siteSlug: cumulus-netq
 toc: 5
 ---
-This topic describes the preparation steps needed before installing NetQ in a cloud deployment.  Refer to [Prepare for NetQ On-premises Installation](../Prepare-NetQ-Onprem/) for preparations for on-premises deployments.
+This topic describes the preparation steps needed before installing NetQ in a cloud deployment. Refer to {{<link title="Prepare for NetQ On-premises Installation">}} for preparations for on-premises deployments.
 
 There are three key steps in the preparation for cloud installation:
 
@@ -115,9 +115,9 @@ Two steps are needed, one to download the NetQ Platform and one to configure the
 
 #### Download the KVM NetQ Platform Image
 
-**IMPORTANT**: Confirm that your server hardware meets the requirements identified in [Hardware Requirements](#hardware-requirements).
+**IMPORTANT**: Confirm that your server hardware meets the requirements identified in {{<link url="#virtual-machine-requirements" text="Virtual Machine Requirements">}}.
 
-1. On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list.
+1. On the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page, select *NetQ* from the **Product** list.
 
 2. Click *2.4* from the **Version** list, and then select
     *2.4.1* from the submenu.
@@ -239,7 +239,7 @@ Replace network bridge value (br0 in the above example) with the   name of the (
 If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
     {{%/notice%}}
 
-You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).
+You are now ready to install the Cumulus NetQ software. Refer to {{<link title="Install NetQ Using the Admin UI">}} (recommended) or {{<link title="Install NetQ Using the CLI">}}.
 
 ### KVM Three-Server Cluster
 
@@ -271,7 +271,7 @@ Make a note of the private IP addresses you assign to the master and two worker 
 If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
     {{%/notice%}}
 
-You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).
+You are now ready to install the Cumulus NetQ software. Refer to {{<link title="Install NetQ Using the Admin UI">}} (recommended) or {{<link title="Install NetQ Using the CLI">}}.
 
 ## Prepare Your VMware VM and Obtain NetQ Platform
 
@@ -283,9 +283,9 @@ Two steps are needed, one to download the NetQ Platform and one to configure the
 
 #### Download the VMware NetQ Platform Image
 
-**IMPORTANT**: Confirm that your server hardware meets the requirements identified in [Hardware Requirements](#hardware-requirements).
+**IMPORTANT**: Confirm that your server hardware meets the requirements identified in {{<link url="#virtual-machine-requirements" text="Virtual Machine Requirements">}}.
 
-1. On the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page, select *NetQ* from the **Product** list.
+1. On the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page, select *NetQ* from the **Product** list.
 
 2. Click *2.4* from the **Version** list, and then select
     *2.4.1* from the submenu.
@@ -377,7 +377,7 @@ Two steps are needed, one to download the NetQ Platform and one to configure the
 If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
     {{%/notice%}}
 
-You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).
+You are now ready to install the Cumulus NetQ software.  Refer to {{<link title="Install NetQ Using the Admin UI">}} (recommended) or {{<link title="Install NetQ Using the CLI">}}.
 
 ### VMware Three-Server Cluster
 
@@ -409,7 +409,7 @@ Make a note of the private IP addresses you assign to the master and two worker 
 If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
     {{%/notice%}}
 
-You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).
+You are now ready to install the Cumulus NetQ software.  Refer to {{<link title="Install NetQ Using the Admin UI">}} (recommended) or {{<link title="Install NetQ Using the CLI">}}.
 
 ## Prepare Your Cumulus NetQ Cloud Appliance
 
@@ -425,7 +425,7 @@ Inside the box that was shipped to you, you'll find:
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
 - Information regarding your order
 
-If you're looking for hardware specifications (including LED layouts and FRUs like the power supply or fans and accessories like included cables) or safety and environmental information, check out the appliance's [user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf).
+If you're looking for hardware specifications (including LED layouts and FRUs like the power supply or fans and accessories like included cables) or safety and environmental information, check out the appliance's {{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}}.
 
 #### Install the Appliance
 
@@ -543,7 +543,7 @@ sudo systemctl stop motd-news.{service,timer}
 If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
     {{%/notice%}}
 
-You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).
+You are now ready to install the Cumulus NetQ software.  Refer to {{<link title="Install NetQ Using the Admin UI">}} (recommended) or {{<link title="Install NetQ Using the CLI">}}.
 
 ### Three-Appliance Cluster
 
@@ -580,4 +580,4 @@ If this step fails for any reason, you can run `netq bootstrap reset` and then t
 
 7. Repeat these steps for the third NetQ Appliance.
 
-You are now ready to install the Cumulus NetQ software.  Refer to [Install NetQ Using the Admin UI](../Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).
+You are now ready to install the Cumulus NetQ software.  Refer to {{<link title="Install NetQ Using the Admin UI">}} (recommended) or {{<link title="Install NetQ Using the CLI">}}.

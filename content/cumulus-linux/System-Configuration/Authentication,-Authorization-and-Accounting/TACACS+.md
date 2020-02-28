@@ -9,19 +9,19 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication, and Authorization) in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in [this IETF document](https://tools.ietf.org/html/draft-grant-tacacs-02). There is no need to create accounts or directories on the switch. Accounting records are sent to all configured TACACS+ servers by default. Use of per-command authorization requires additional setup on the switch.
+Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication, and Authorization) in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in {{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}. There is no need to create accounts or directories on the switch. Accounting records are sent to all configured TACACS+ servers by default. Use of per-command authorization requires additional setup on the switch.
 
 ## Supported Features
 
 - Authentication using PAM; includes `login`, `ssh`, `sudo` and `su`
 - Runs over the eth0 management interface
-- Ability to run in the [management VRF](../../../Layer-3/Management-VRF/)
+- Ability to run in the {{<link url="Management-VRF" text="management VRF">}}
 - TACACS+ privilege 15 users can run any command with sudo using the `/etc/sudoers.d/tacplus` file that is installed by the `libtacplus-map1` package
 - Up to seven TACACS+ servers
 
 ## Install the TACACS+ Client Packages
 
-You can install the TACACS+ packages even if the switch is not connected to the internet, as they are contained in the `cumulus-local-apt-archive` repository that is [embedded](../../../Installation-Management/Adding-and-Updating-Packages/#add-packages-from-the-cumulus-linux-local-archive) in the Cumulus Linux disk image.
+You can install the TACACS+ packages even if the switch is not connected to the internet, as they are contained in the `cumulus-local-apt-archive` repository that is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux disk image.
 
 To install all required packages, run these commands:
 
@@ -45,7 +45,7 @@ Connections are made in the order in which they are listed in this file. In most
 
 When you add or remove TACACS+ servers, you must restart `auditd` (with the `systemctl restart auditd` command) or you must send a signal (with `killall -HUP audisp-tacplus`) before `audisp-tacplus` rereads the configuration to see the changed server list.
 
-You can also configure the IP address used as the source IP address when communicating with the TACACS+ server. See [TACACS Configuration Parameters](#tacacs-configuration-parameters) below for the full list of TACACS+ parameters.
+You can also configure the IP address used as the source IP address when communicating with the TACACS+ server. See {{<link url="#tacacs-configuration-parameters" text="TACACS Configuration Parameters">}} below for the full list of TACACS+ parameters.
 
 Following is the complete list of the TACACS+ client configuration files, and their use.
 
@@ -89,7 +89,7 @@ Due to SSH and login processing mechanisms, Cumulus Linux needs to know the foll
 
 The only way to do this for non-local users &mdash; that is, users not present in the local password file &mdash; is to send a TACACS+ authorization request as the first communication with the TACACS+ server, prior to the authentication and before a password is requested from the user logging in.
 
-Some TACACS+ servers need special configuration to allow authorization requests prior to authentication. [Contact Cumulus Support](https://support.cumulusnetworks.com/hc/en-us/requests/new) if your TACACS+ server does not allow the initial authorization request.
+Some TACACS+ servers need special configuration to allow authorization requests prior to authentication. {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="Contact Cumulus Support">}} if your TACACS+ server does not allow the initial authorization request.
 
 ## Local Fallback Authentication
 
@@ -151,7 +151,7 @@ All Linux commands result in an accounting record, including commands run as par
 
 Configure the IP address and encryption key of the server in the `/etc/tacplus_servers` file. Minimal configuration to `auditd` and `audisp` is necessary to enable the audit records necessary for accounting. These records are installed as part of the package.
 
-`audisp-tacplus` installs the audit rules for command accounting. Modifying the configuration files is not usually necessary. However, when a [management VRF](../../../Layer-3/Management-VRF/) is configured, the accounting configuration does need special modification because the `auditd` service starts prior to networking. It is necessary to add the *vrf* parameter and to signal the `audisp-tacplus` process to reread the configuration. The example below shows that the management VRF is named *mgmt*. You can place the *vrf* parameter in either the `/etc/tacplus_servers` file or in the `/etc/audisp/audisp-tac_plus.conf` file.
+`audisp-tacplus` installs the audit rules for command accounting. Modifying the configuration files is not usually necessary. However, when a {{<link url="Management-VRF" text="management VRF">}} is configured, the accounting configuration does need special modification because the `auditd` service starts prior to networking. It is necessary to add the *vrf* parameter and to signal the `audisp-tacplus` process to reread the configuration. The example below shows that the management VRF is named *mgmt*. You can place the *vrf* parameter in either the `/etc/tacplus_servers` file or in the `/etc/audisp/audisp-tac_plus.conf` file.
 
 ```
 vrf=mgmt

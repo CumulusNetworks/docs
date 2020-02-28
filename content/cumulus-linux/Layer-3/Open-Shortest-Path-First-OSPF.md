@@ -16,7 +16,7 @@ OSPF maintains the view of the network topology conceptually as a directed graph
 
 An LSA (*link-state advertisement*) is the fundamental piece of information that OSPF routers exchange with each other. It seeds the graph building process on the node and triggers SPF computation. LSAs originated by a node are distributed to all the other nodes in the network through a mechanism called *flooding*. Flooding is done hop-by-hop. OSPF ensures reliability by using link state acknowledgement packets. The set of LSAs in a router's memory is termed *link-state database* (LSDB) and is a representation of the network graph. OSPF ensures a consistent view of the LSDB on each node in the network in a distributed fashion, which is key to the protocol's correctness.
 
-This topic describes OSPFv2, which is a [link-state routing protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for IPv4. For IPv6 commands, refer to [Open Shortest Path First v3 - OSPFv3](../Open-Shortest-Path-First-v3-OSPFv3/).
+This topic describes OSPFv2, which is a {{<exlink url="http://en.wikipedia.org/wiki/Link-state_routing_protocol" text="link-state routing protocol">}} for IPv4. For IPv6 commands, refer to {{<link url="Open-Shortest-Path-First-v3-OSPFv3">}}.
 
 ## Scalability and Areas
 
@@ -102,7 +102,7 @@ cumulus@switch:~$ net commit
 
 <summary>vtysh Commands </summary>
 
-1. Enable the `ospf` daemon, then start the FRRouting service. See [Configuring FRRouting](../Configuring-FRRouting/).
+1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configuring-FRRouting">}}.
 
 2. From the vtysh shell, configure OSPF.
 
@@ -181,7 +181,7 @@ Cumulus Linux does not support OSPF default origination.
 
 You can define additional custom parameters for OSPF per interface, such as the network type (point-to-point or broadcast) and the interval between hello packets that OSPF sends on the interface.
 
-Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point has the additional advantage of a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See [RFC5309](http://tools.ietf.org/rfc/rfc5309) for a more information.
+Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point has the additional advantage of a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
 
 The following command example sets the network type to point-to-point and the hello interval to 5 seconds. The hello interval can be any value between 1 and 65535 seconds.
 
@@ -513,9 +513,9 @@ cumulus@switch:~$ sudo systemctl restart frr.service
 
 3. Assign and enable an OSPF interface for each instance:
 
-    <details>
+   <details>
 
-    <summary>NCLU Commands </summary>
+   <summary>NCLU Commands </summary>
 
 ```
 cumulus@switch:~$ net add interface swp1 ospf instance-id 11
@@ -528,11 +528,11 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-    </details>
+   </details>
 
-    <details>
+   <details>
 
-    <summary>vtysh Commands </summary>
+   <summary>vtysh Commands </summary>
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -553,7 +553,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-    </details>
+   </details>
 
 To confirm that all the OSPF instances are running:
 
@@ -589,7 +589,7 @@ router ospf 22
 
 {{%notice note%}}
 
-If you disable the [integrated](../Configuring-FRRouting/) FRRouting configuration, you must create a separate `ospfd` configuration file for each instance. The `ospfd.conf` file must include the instance ID in the file name. For example, create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
+If you disable the {{<link url="Configuring-FRRouting" text="integrated">}} FRRouting configuration, you must create a separate `ospfd` configuration file for each instance. The `ospfd.conf` file must include the instance ID in the file name. For example, create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
 
 ```
 cumulus@switch:~$ cat /etc/frr/ospfd-11.conf 
@@ -779,7 +779,7 @@ interface swp1
 
 ## Apply a Route Map for Route Updates
 
-You can apply a [route map](https://frrouting.org/user-guide/routemap.html) to filter route updates from Zebra into the Linux kernel.
+You can apply a {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route map">}} to filter route updates from Zebra into the Linux kernel.
 
 <details>
 
@@ -971,17 +971,17 @@ O>* 172.16.2.0/24 [110/210] via 10.1.0.0, swp51, 00:06:11
 O>* 172.16.3.0/24 [110/210] via 10.1.0.0, swp51, 00:06:11
   *                         via 10.1.0.2, swp52, 00:06:11
 O>* 172.16.4.0/24 [110/210] via 10.1.0.0, swp51, 00:06:11
-  *                         via 10.1.0.2, swp52, 00:06:11 
+  *                         via 10.1.0.2, swp52, 00:06:11
 ```
 
-For a list all of the OSPF debug options, refer to [Debugging-OSPF](http://docs.frrouting.org/en/latest/ospfd.html#id7).
+For a list all of the OSPF debug options, refer to {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html#id7" text="Debugging OSPF">}}.
 
 ## Related Information
 
-- [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD/) (BFD) and OSPF
-- [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)
-- [FRR OSPFv2](http://docs.frrouting.org/en/latest/ospfd.html)
+- {{<link url="Bidirectional-Forwarding-Detection-BFD#bfd-in-ospf" text="Bidirectional forwarding detection">}} (BFD) and OSPF
+- {{<exlink url="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" text="Wikipedia - Open Shortest Path First">}}
+- {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html" text="FRR OSPFv2">}}
 - Perlman, Radia (1999). Interconnections: Bridges, Routers, Switches, and Internetworking Protocols (2 ed.). Addison-Wesley.
 - Moy, John T. OSPF: Anatomy of an Internet Routing Protocol. Addison-Wesley.
-- [RFC 2328 OSPFv2](https://tools.ietf.org/html/rfc2328)
-- [RFC 3101 OSPFv2 Not-So-Stubby Area (NSSA)](https://tools.ietf.org/html/rfc3101)
+- {{<exlink url="https://tools.ietf.org/html/rfc2328" text="RFC 2328 OSPFv2">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc3101" text="RFC 3101 OSPFv2 Not-So-Stubby Area (NSSA)">}}

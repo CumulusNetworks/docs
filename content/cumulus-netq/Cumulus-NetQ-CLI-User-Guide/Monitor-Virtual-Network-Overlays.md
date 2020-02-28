@@ -220,7 +220,7 @@ For time ranges, you can specify the start and end times in either order; the mo
 
 {{%/notice%}}
 
-For more information about and configuration of EVPN in your data center, refer to the [Cumulus Linux EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/) topic.
+For more information about and configuration of EVPN in your data center, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Cumulus Linux EVPN">}} topic.
 
 ### View the Status of EVPN
 

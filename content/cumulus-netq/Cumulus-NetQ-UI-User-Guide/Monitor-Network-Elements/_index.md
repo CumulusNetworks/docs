@@ -91,7 +91,7 @@ cumulus@<hostname>:~$ netq config restart cli
 
 ### Configure the WJH Feature
 
-WJH is enabled by default on Mellanox switches and no configuration is required in Cumulus Linux 4.0.0; however, you must enable the NetQ Agent to collect the data in NetQ 2.4.0.
+WJH is enabled by default on Mellanox switches and no configuration is required in Cumulus Linux 4.0.0; however, you must enable the NetQ Agent to collect the data in NetQ 2.4.0 or later.
 
 To enable WJH in NetQ:
 
@@ -108,6 +108,10 @@ cumulus@switch:~$ netq config restart agent
 ```
 
 When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
+
+{{%notice note%}}
+Using *wjh_dump.py* on a Mellanox platform that is running Cumulus Linux 4.0 and the NetQ 2.4.0 agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run *wjh_dump.py* on a different system than the one where the NetQ Agent has WJH enabled, or disable *wjh_dump.py* and restart the NetQ Agent (run `netq config restart agent`).
+{{%/notice%}}
 
 ### View What Just Happened Metrics
 

@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-*QinQ* is an amendment to the [IEEE 802.1Q specification](http://www.ieee802.org/1/pages/802.1Q.html) that provides the capability for multiple [VLAN tags](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging/) to be inserted into a single Ethernet frame.
+*QinQ* is an amendment to the {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE 802.1Q specification">}} that provides the capability for multiple {{<link url="VLAN-Tagging" text="VLAN tags">}} to be inserted into a single Ethernet frame.
 
 QinQ with VXLAN is typically used by a service provider who offers multi-tenant layer 2 connectivity between different customer data centers (private clouds) and also needs to connect those data centers to public cloud providers. Public clouds often has a mandatory QinQ handoff interface, where the outer tag is for the customer and the inner tag is for the service.
 
@@ -20,13 +20,13 @@ In Cumulus Linux, you map QinQ packets to VXLANs through:
 QinQ is available on switches with the following ASCIs:
 
 - Broadcom Tomahawk 2, Tomahawk+, Tomahawk, Trident3, Trident II+ and Trident II.
-- Mellanox Spectrum, only with [VLAN-aware bridges](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) with 802.1ad and only with single tag translation.
+- Mellanox Spectrum, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
 
 ## Configure Single Tag Translation
 
 Single tag translation adheres to the traditional QinQ service model. The customer-facing interface is a QinQ access port with the outer S-tag being the PVID, representing the customer. The S-tag is translated to a VXLAN VNI. The inner C-tag, which represents the service, is transparent to the provider. The public cloud handoff interface is a QinQ trunk where packets on the wire carry both the S-tag and the C-tag.
 
-Single tag translation works with both [VLAN-aware bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) and [traditional bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/). However, single tag translation with *VLAN-aware bridge mode* is more scalable.
+Single tag translation works with both {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} and {{<link url="Traditional-Bridge-Mode" text="traditional bridge mode">}}. However, single tag translation with *VLAN-aware bridge mode* is more scalable.
 
 An example configuration in VLAN-aware bridge mode looks like this:
 
@@ -259,7 +259,7 @@ The outer tag or *TPID* (tagged protocol identifier) needs the `vlan_protocol` t
 
 {{%notice note%}}
 
-Double tag translation only works with bridges in [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/) (not VLAN-aware mode).
+Double tag translation only works with bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} (not VLAN-aware mode).
 
 {{%/notice%}}
 
@@ -328,9 +328,9 @@ iface br10
 ### Feature Limitations
 
 - `iptables` match on double-tagged interfaces is not supported.
-- [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) is only supported with single-tagged translation.
+- {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} is only supported with single-tagged translation.
 - Mixing 802.1Q and 802.1ad subinterfaces on the same switch port is not supported.
-- When configuring bridges in [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/), all VLANs that are members of the same switch port must use the same `vlan_protocol`.
+- When configuring bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, all VLANs that are members of the same switch port must use the same `vlan_protocol`.
 - When using switches with Mellanox Spectrum ASICs in an MLAG pair:
   - Configure the peerlink (peerlink.4094) between the MLAG pair for VLAN protocol 802.1ad.
   - You cannot use the peerlink as a backup datapath in case one of the MLAG peers loses all uplinks.

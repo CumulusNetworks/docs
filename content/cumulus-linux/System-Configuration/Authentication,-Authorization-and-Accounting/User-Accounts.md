@@ -14,8 +14,8 @@ The *cumulus* account:
 
 - Uses the default password *CumulusLinux\!*
 - Is a user account in the *sudo* group with sudo privileges.
-- Can log in to the system through all the usual channels, such as console and [SSH](../../../System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access/).
-- Along with the cumulus group, has both show and edit rights for [NCLU](../../Network-Command-Line-Utility-NCLU/).
+- Can log in to the system through all the usual channels, such as console and {{<link url="SSH-for-Remote-Access" text="SSH">}}.
+- Along with the cumulus group, has both show and edit rights for {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
 
 The *root* account:
 
@@ -25,15 +25,15 @@ The *root* account:
 
 For optimal security, change the default password with the `passwd` command before you configure Cumulus Linux on the switch.
 
-You can add additional user accounts as needed. Like the *cumulus* account, these accounts must use `sudo` to [execute privileged commands](../Using-sudo-to-Delegate-Privileges/); be sure to include them in the *sudo* group. For example:
+You can add additional user accounts as needed. Like the *cumulus* account, these accounts must use `sudo` to {{<link url="Using-sudo-to-Delegate-Privileges" text="execute privileged commands">}}; be sure to include them in the *sudo* group. For example:
 
 ```
 cumulus@switch:~$ sudo adduser NEWUSERNAME sudo
 ```
 
-To access the switch without a password, you need to [boot into a single shell/user mode](../../../Monitoring-and-Troubleshooting/Single-User-Mode-Password-Recovery/).
+To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 
-You can add and configure user accounts in Cumulus Linux with read-only or edit permissions for NCLU. For more information, see [Configure User Accounts](../../Network-Command-Line-Utility-NCLU/#configure-user-accounts).
+You can add and configure user accounts in Cumulus Linux with read-only or edit permissions for NCLU. For more information, see {{<link url="Network-Command-Line-Utility-NCLU#configure-user-accounts" text="Configure User Accounts">}}.
 
 ## Enable Remote Access for the root User
 

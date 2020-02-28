@@ -23,7 +23,7 @@ For servers running RHEL or CentOS, you need to:
 - Obtain NetQ software packages
 
 {{%notice note%}}
-If your network uses a proxy server for external connections, you should first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so `apt-get` can access the software package in the Cumulus Networks repository.
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the software package in the Cumulus Networks repository.
 {{%/notice%}}
 
 ### Verify Service Package Versions
@@ -53,7 +53,7 @@ root@rhel7:~# sudo yum install wget
 
 If NTP is not already installed and configured, follow these steps:
 
-1. Install [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1. Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
 ```
 root@rhel7:~# sudo yum install ntp
@@ -72,9 +72,9 @@ root@rhel7:~# sudo systemctl enable ntp
 root@rhel7:~# sudo systemctl start ntp
 ```
 
-    {{%notice tip%}}
+   {{%notice tip%}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
-    {{%/notice%}}
+   {{%/notice%}}
 
 4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
@@ -185,10 +185,11 @@ netq-agent:
 
 ### Configure NetQ Agents Using the NetQ CLI
 
-If the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Server or Appliance. If it is not configured, refer to [Configure the NetQ CLI](#configure-the -netq-cli-on-a-rhel-or-centos-server) and then return here.
+If the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Server or Appliance. If it is not configured, refer to {{<link title="Install and Configure the NetQ CLI on RHEL and CentOS Servers#configure-the-netq-cli-on-a-rhel-or-centos-server" text="Configure the NetQ CLI on a RHEL or CentOS Server">}} and then return here.
 
 {{%notice info%}}
-If you intend to use VRF, skip to [Configure the Agent to Use VRF] (#configure-the-netq-agent-to-use-a-vrf). If you intend to specify a port for communication, skip to [Configure the Agent to Communicate over a Specific Port](#configure-the-netq-agent-to-communicate-over-a-specific-port).
+If you intend to use VRF, skip to {{<link url="#configure-the-netq-agent-to-use-a-vrf" text="Configure the Agent to Use VRF">}}. If you intend to specify a port for communication, skip to {{<link url="#configure-the-netq-agent-to-communicate-over-a-specific-port" text="Configure the Agent to Communicate over a Specific Port">}}.
+
 {{%/notice%}}
 
 Use the following command to configure the NetQ Agent:
@@ -211,7 +212,7 @@ A couple of additional options are available for configuring the NetQ Agent. If 
 
 ### Configure the NetQ Agent to Use a VRF
 
-While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Platform only via a [VRF](/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/),  including a [management VRF](/cumulus-linux/Layer-3/Management-VRF/). To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Platform over it, configure the agent like this:
+While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Platform only via a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/" text="VRF">}}, including a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Management-VRF/" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Platform over it, configure the agent like this:
 
 ```
 root@rhel7:~# sudo netq config add agent server 192.168.1.254 vrf mgmt

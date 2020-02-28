@@ -1,7 +1,0 @@
-{{ define "main" }}
-<article class="markdown">
-  {{ $id := .Page.Title | lower | replaceRE "[^0-9a-z]" "-" | replaceRE "-+" "-"}}
-  <h1 id="{{ $id }}">  {{- .Page.Title -}} </h1>
-  {{- .Content -}}
-</article>
-{{ end }}

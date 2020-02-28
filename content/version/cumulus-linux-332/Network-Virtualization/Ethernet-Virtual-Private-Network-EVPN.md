@@ -617,7 +617,7 @@ file in a text editor:
 With EVPN, the only method of handling BUM traffic is 
 [Head End Replication (HER)](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/#head-end-replication).
 HER is enabled by default, as it is when 
-[Lightweight Network Virtualization (LNV)](http://localhost:5150/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
+[Lightweight Network Virtualization (LNV)](/version/cumulus-linux-332/Network-Virtualization/Lightweight-Network-Virtualization-LNV-Overview/)
 is used.
 
 ## Example Configuration

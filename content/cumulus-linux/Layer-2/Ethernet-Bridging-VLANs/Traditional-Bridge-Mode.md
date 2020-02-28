@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Networks recommends you use a [VLAN-aware bridge](../../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) on your switch. Use traditional mode bridges only if you need to run more than one bridge on the switch or if you need to use PVSTP+.
+Cumulus Networks recommends you use a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}} on your switch. Use traditional mode bridges only if you need to run more than one bridge on the switch or if you need to use PVSTP+.
 
 ## Configure a Traditional Mode Bridge
 
@@ -17,7 +17,7 @@ The following examples show how to create a simple traditional mode bridge confi
 - You can add an IP address to provide IP access to the bridge interface.
 - You can specify a range of interfaces.
 
-To configure spanning tree options for a bridge interface, refer to [Spanning Tree and Rapid Spanning Tree](../../Spanning-Tree-and-Rapid-Spanning-Tree/).
+To configure spanning tree options for a bridge interface, refer to {{<link title="Spanning Tree and Rapid Spanning Tree">}}.
 
 <details>
 
@@ -76,7 +76,7 @@ The name of the bridge must be:
 
 - Compliant with Linux interface naming conventions.
 - Unique within the switch.
-- Something other than *bridge*, **** as Cumulus Linux reserves that name for a single [VLAN-aware bridge](../../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/).
+- Something other than *bridge*, **** as Cumulus Linux reserves that name for a single {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}.
 
 {{%/notice%}}
 
@@ -116,7 +116,7 @@ iface bridge-B
 
 ## Trunks in Traditional Bridge Mode
 
-The [IEEE standard](http://www.ieee802.org/1/pages/802.1Q.html) for trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within the Ethernet frame that identifies the VLAN of which the frame is a member.
+The {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text=" standard">}} for trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within the Ethernet frame that identifies the VLAN of which the frame is a member.
 
 802.1Q also identifies an *untagged* frame as belonging to the *native* VLAN (most network devices default their native VLAN to 1). The concept of native, non-native, tagged or untagged has generated confusion due to mixed terminology and vendor-specific implementations. In Cumulus Linux:
 
@@ -154,13 +154,13 @@ iface br-VLAN200
 
 ### VLAN Tagging Examples
 
-You can find more examples of VLAN tagging in [the VLAN tagging chapter](../../Ethernet-Bridging-VLANs/VLAN-Tagging).
+You can find more examples of VLAN tagging in {{<link url="VLAN-Tagging" text="the VLAN tagging chapter">}}.
 
 ### Configure ARP Timers
 
-Cumulus Linux does not often interact directly with end systems as much as end systems interact with one another. Therefore, after a successful [address resolution protocol](http://linux-ip.net/html/ether-arp.html) (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding. The `neighmgrd` process only adds a neighbor if the sender's IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).
+Cumulus Linux does not often interact directly with end systems as much as end systems interact with one another. Therefore, after a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding. The `neighmgrd` process only adds a neighbor if the sender's IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).
 
-The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, follow the procedures outlined in this [knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
+The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, follow the procedures outlined in this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202012933" text="knowledge base article">}}.
 
 ## Caveats
 

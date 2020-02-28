@@ -10,9 +10,9 @@ version: '4.0'
 ---
 The Cumulus Linux bridge driver supports two configuration modes, one that is VLAN-aware, and one that follows a more traditional Linux bridge model.
 
-For [traditional Linux bridges](../../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/), the kernel supports VLANs in the form of VLAN subinterfaces. Enabling bridging on multiple VLANs means configuring a bridge for each VLAN and, for each member port on a bridge, creating one or more VLAN subinterfaces out of that port. This mode poses scalability challenges in terms of configuration size as well as boot time and run time state management, when the number of ports times the number of VLANs becomes large.
+For {{<link url="Traditional-Bridge-Mode" text="traditional Linux bridges">}}, the kernel supports VLANs in the form of VLAN subinterfaces. Enabling bridging on multiple VLANs means configuring a bridge for each VLAN and, for each member port on a bridge, creating one or more VLAN subinterfaces out of that port. This mode poses scalability challenges in terms of configuration size as well as boot time and run time state management, when the number of ports times the number of VLANs becomes large.
 
-The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of [spanning tree protocol](../../Spanning-Tree-and-Rapid-Spanning-Tree/). Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port/VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
+The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port/VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
 {{%notice tip%}}
 
@@ -145,7 +145,7 @@ resv_vlan_range
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 While restarting `switchd`, all running ports will flap, and forwarding will be interrupted.
 
@@ -426,9 +426,9 @@ In the above configuration, if your switch is configured for multicast routing, 
 
 ## Configure ARP Timers
 
-Cumulus Linux does not often interact directly with end systems as much as end systems interact with one another. Therefore, after a successful [address resolution protocol](http://linux-ip.net/html/ether-arp.html) (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding. The `neighmgrd` process only adds a neighbor if the sender's IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).
+Cumulus Linux does not often interact directly with end systems as much as end systems interact with one another. Therefore, after a successful {{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}} (ARP) places a neighbor into a reachable state, Cumulus Linux might not interact with the client again for a long enough period of time for the neighbor to move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before they are removed from the Linux kernel and from hardware forwarding. The `neighmgrd` process only adds a neighbor if the sender's IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).
 
-The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, follow the procedures outlined in this [knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
+The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, follow the procedures outlined in this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202012933" text="knowledge base article">}}.
 
 ## Configure Multiple Ports in a Range
 
@@ -522,7 +522,7 @@ iface swp49
 
 ### Large Bond Set Configuration
 
-The configuration below demonstrates a VLAN-aware bridge with a large set of bonds. The bond configurations are generated from a [Mako](http://www.makotemplates.org/) template.
+The configuration below demonstrates a VLAN-aware bridge with a large set of bonds. The bond configurations are generated from a {{<exlink url="http://www.makotemplates.org/" text="Mako">}} template.
 
 ```
 ...
@@ -610,7 +610,7 @@ The configuration example below shows the differences between a VXLAN configured
 
 {{%notice note%}}
 
-See [VXLAN Scale](../../../Network-Virtualization/VXLAN-Scale/) for information about the number of VXLANs you can configure simultaneously.
+See {{<link title="VXLAN Scale">}} for information about the number of VXLANs you can configure simultaneously.
 
 {{%/notice%}}
 
@@ -660,7 +660,7 @@ cumulus@switch:~$ sudo bridge fdb show
 
 - Because STP is enabled on a per-bridge basis, VLAN-aware mode supports a single instance of STP across all VLANs. A common practice when using a single STP instance for all VLANs is to define every VLAN on every switch in the spanning tree instance.
 - `mstpd` remains the user space protocol daemon.
-- Cumulus Linux supports [Rapid Spanning Tree Protocol (RSTP)](../../Spanning-Tree-and-Rapid-Spanning-Tree/).
+- Cumulus Linux supports {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="Rapid Spanning Tree Protocol (RSTP)">}}.
 
 ### IGMP Snooping
 

@@ -1,0 +1,15 @@
+<nav>
+    {{ if .Site.Params.BookMenuBundle }}
+        {{ partial "menu/menu-bundle" . }}
+    {{ else }}
+        {{ partial "menu/menu-filetree" . }}
+    {{ end }}
+
+</nav>
+    
+<!-- Restore menu position as soon as possible to avoid flickering -->
+{{ $script := resources.Get "menu-reset.js" | resources.Minify }}
+
+{{ with $script.Content }}
+    <script>{{ . | safeJS }}</script>
+{{ end }}

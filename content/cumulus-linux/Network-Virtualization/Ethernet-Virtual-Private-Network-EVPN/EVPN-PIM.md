@@ -31,7 +31,7 @@ To configure multicast VXLAN tunnels, you need to configure PIM-SM in the underl
 - Configure static RP on all the PIM routers.
 - Configure MSDP on the RPs for RP redundancy
 
-The configuration steps needed to configure PIM-SM in the underlay are provided in [Protocol Independent Multicast - PIM](../../../Layer-3/Protocol-Independent-Multicast-PIM/).
+The configuration steps needed to configure PIM-SM in the underlay are provided in {{<link url="Protocol-Independent-Multicast-PIM">}}.
 
 In addition to the PIM-SM configuration, you need to run the following commands on each VTEP to provide the VNI to MDT mapping.
 
@@ -312,7 +312,7 @@ The `show ip mroute count` command, often used to check multicast packet counts 
 
 {{< img src = "/images/cumulus-linux/evpn-pim-anycast-vteps.png" >}}
 
-To configure EVPN-PIM in VXLAN active-active mode, enable PIM on the peer link on each MLAG peer switch (**in addition to** the configuration described in [Configure Multicast VXLAN Tunnels](#configure-multicast-vxlan-tunnels), above).
+To configure EVPN-PIM in VXLAN active-active mode, enable PIM on the peer link on each MLAG peer switch (**in addition to** the configuration described in {{<link url="#configure-multicast-vxlan-tunnels" text="Configure Multicast VXLAN Tunnels">}}, above).
 
 <details>
 

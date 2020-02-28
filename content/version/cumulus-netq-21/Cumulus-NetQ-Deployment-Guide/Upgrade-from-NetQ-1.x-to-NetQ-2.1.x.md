@@ -381,7 +381,7 @@ after 30 minutes, open a [support ticket](https://cumulusnetworks.com/support/fi
 
 2.  Verify that NTP is configured and running. NTP operation is critical
     to proper operation of NetQ. Refer to [Setting Date and
-    Time](https://docs-rip.cumulusnetworks.com/display/NETQ21/Setting+Date+and+Time)
+    Time](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
     in the *Cumulus Linux User Guide* for details and instructions.
 
 3.  Continue the NetQ installation by loading the NetQ Agent on each

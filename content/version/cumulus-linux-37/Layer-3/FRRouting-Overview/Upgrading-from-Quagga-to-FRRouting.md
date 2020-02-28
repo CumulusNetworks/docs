@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Upgrading+from+Quagga+to+FRRouting
  - /pages/viewpage.action?pageId=8362918
 pageID: 8362918
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 Cumulus Linux 3.4 and later releases replace Quagga with FRRouting. This section outlines the upgrade process for users currently using Quagga.
 

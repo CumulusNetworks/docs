@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Services+and+Daemons+in+Cumulus+Linux
  - /pages/viewpage.action?pageId=8362578
 pageID: 8362578
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 *Services* (also known as *daemons*) and *processes* are at the heart of
 how a Linux system functions. Most of the time a service takes care of

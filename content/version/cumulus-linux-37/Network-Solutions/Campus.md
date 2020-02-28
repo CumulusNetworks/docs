@@ -2,10 +2,6 @@
 title: Campus Deployments
 author: Cumulus Networks
 weight: 250
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 
 Cumulus Linux includes a number of features that you can use to deploy in a

@@ -5,8 +5,6 @@ weight: 900
 aliases:
  - /display/DOCS/Segment+Routing
  - /pages/viewpage.action?pageId=8366686
-product: Cumulus Linux
-version: '4.0'
 ---
 {{%notice warning%}}
 

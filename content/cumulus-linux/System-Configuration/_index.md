@@ -5,8 +5,6 @@ weight: 100
 aliases:
  - /display/DOCS/System+Configuration
  - /pages/viewpage.action?pageId=8366264
-product: Cumulus Linux
-version: '4.0'
 ---
 This section describes how to configure your Cumulus Linux switch. You can set the date and time, configure authentication, authorization, and accounting and configure access control lists (ACLs), which control the traffic entering your network.
 

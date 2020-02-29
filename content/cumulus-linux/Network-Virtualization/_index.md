@@ -5,8 +5,6 @@ weight: 520
 aliases:
  - /display/DOCS/Network+Virtualization
  - /pages/viewpage.action?pageId=8366427
-product: Cumulus Linux
-version: '4.0'
 ---
 Cumulus Linux supports a few forms of {{<exlink url="http://en.wikipedia.org/wiki/Network_virtualization" text="network virtualization">}}.
 

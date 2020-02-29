@@ -5,8 +5,6 @@ weight: 50
 aliases:
  - /display/DOCS/Upgrading+Cumulus+Linux
  - /pages/viewpage.action?pageId=8366370
-product: Cumulus Linux
-version: '4.0'
 ---
 
 This topic describes how to upgrade Cumulus Linux on your switch.

@@ -5,8 +5,6 @@ weight: 40
 aliases:
  - /display/DOCS/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=8366364
-product: Cumulus Linux
-version: '4.0'
 ---
 
 You can install a new Cumulus Linux disk image using {{<exlink url="http://www.onie.org/" text="ONIE">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.

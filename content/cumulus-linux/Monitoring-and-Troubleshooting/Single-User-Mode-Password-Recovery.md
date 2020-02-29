@@ -8,8 +8,6 @@ aliases:
  - /display/DOCS/Single+User+Mode+Boot+Recovery
  - /cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery
  - /pages/viewpage.action?pageId=8366327
-product: Cumulus Linux
-version: '4.0'
 ---
 Use single user mode to assist in troubleshooting system boot issues or for password recovery.
 

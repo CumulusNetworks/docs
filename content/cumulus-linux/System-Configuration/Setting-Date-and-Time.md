@@ -5,8 +5,6 @@ weight: 120
 aliases:
  - /display/DOCS/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=8366266
-product: Cumulus Linux
-version: '4.0'
 ---
 Setting the time zone, date and time requires root privileges; use `sudo`.
 

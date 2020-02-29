@@ -5,8 +5,6 @@ weight: 320
 aliases:
  - /display/DOCS/Buffer+and+Queue+Management
  - /pages/viewpage.action?pageId=8366755
-product: Cumulus Linux
-version: '4.0'
 ---
 Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware. To configre priority groups, and assign the scheduling alogorithm and weights, you edit the `/etc/cumulus/datapath/traffic.conf`.
 

@@ -5,8 +5,6 @@ weight: 700
 aliases:
  - /display/DOCS/OVSDB+Server+High+Availability
  - /pages/viewpage.action?pageId=8366584
-product: Cumulus Linux
-version: '4.0'
 ---
 {{%notice warning%}}
 

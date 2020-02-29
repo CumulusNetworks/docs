@@ -5,8 +5,6 @@ weight: 300
 aliases:
  - /display/DOCS/Switch+Port+Attributes
  - /pages/viewpage.action?pageId=8366750
-product: Cumulus Linux
-version: '4.0'
 ---
 Cumulus Linux exposes network interfaces for several types of physical and logical devices:
 

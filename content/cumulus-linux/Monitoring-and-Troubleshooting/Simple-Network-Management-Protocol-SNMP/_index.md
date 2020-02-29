@@ -7,8 +7,6 @@ aliases:
  - /display/DOCS/Monitoring+and+Troubleshooting
  - /display/DOCS/SNMP+Monitoring
  - /pages/viewpage.action?pageId=8366329
-product: Cumulus Linux
-version: '4.0'
 ---
 Cumulus Linux uses the open source Net-SNMP agent `snmpd`, version 5.7, which provides support for most of the common industry-wide MIBs, including interface counters and TCP/UDP IP stack data.
 

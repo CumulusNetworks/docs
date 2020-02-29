@@ -5,8 +5,6 @@ weight: 1020
 aliases:
  - /display/DOCS/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=8366324
-product: Cumulus Linux
-version: '4.0'
 ---
 The following sections describe various ways you can troubleshoot `ifupdown2`.
 

@@ -3,8 +3,6 @@ title: Port Security
 author: Cumulus Networks
 weight: 380
 aliases:
-product: Cumulus Linux
-version: '4.0'
 ---
 Port security is a layer 2 traffic control feature that enables you to manage network access from end-users. Use port security to:
 

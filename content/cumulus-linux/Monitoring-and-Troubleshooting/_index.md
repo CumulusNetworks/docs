@@ -5,8 +5,6 @@ weight: 910
 aliases:
  - /display/DOCS/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=8366313
-product: Cumulus Linux
-version: '4.0'
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 

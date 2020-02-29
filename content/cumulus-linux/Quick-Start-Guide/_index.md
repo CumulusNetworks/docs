@@ -5,8 +5,6 @@ weight: 10
 aliases:
  - /display/DOCS/Quick+Start+Guide
  - /pages/viewpage.action?pageId=8366263
-product: Cumulus Linux
-version: '4.0'
 ---
 
 This quick start guide provides an end-to-end setup process for installing and running Cumulus Linux, as well as a collection of example commands for getting started after installation is complete.

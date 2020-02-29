@@ -19,20 +19,23 @@
 {{ range ($.Scratch.Get "versions") }} 
     {{ $.Scratch.Set "found" false }} 
     <!-- Loop over every page in that version --> 
+    <!-- NEEDS DOUBLE WHERE, but current filter is wrong -->
     {{ range where $.Site.Pages "Params.version" . }}
-        <!-- If the version has a page title that matches ours, then assume it's the same page --> 
-        {{ if eq .Title $.Page.Title }}
-            <!-- Set the flag that we found our page --> 
-            {{ $.Scratch.Set "found" true }}
-            <!-- Map the version to the page --> 
-            {{ $.Scratch.SetInMap "version_links" .Params.version . }}
-        {{ else }}
-            <!-- If we haven't found our page yet, see if we are the main version index (subsection == true) -->
-            {{ if (and .Params.subsection (ne ($.Scratch.Get "found"))) }} 
-                <!-- If so, then map the version to the index page -->
-                <!-- If our page doesn't exist in the other version then we just link to the main index --> 
+        {{ if eq .Params.product $.Page.Params.product }} 
+            <!-- If the version has a page title that matches ours, then assume it's the same page --> 
+            {{ if eq .Title $.Page.Title }}
+                <!-- Set the flag that we found our page --> 
+                {{ $.Scratch.Set "found" true }}
+                <!-- Map the version to the page --> 
                 {{ $.Scratch.SetInMap "version_links" .Params.version . }}
-            {{ end }} 
+            {{ else }}
+                <!-- If we haven't found our page yet, see if we are the main version index (subsection == true) -->
+                {{ if (and .Params.subsection (ne ($.Scratch.Get "found"))) }} 
+                    <!-- If so, then map the version to the index page -->
+                    <!-- If our page doesn't exist in the other version then we just link to the main index --> 
+                    {{ $.Scratch.SetInMap "version_links" .Params.version . }}
+                {{ end }} 
+            {{ end }}
         {{ end }} 
     {{ end }}
 {{ end }} 

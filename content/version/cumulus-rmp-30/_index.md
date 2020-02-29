@@ -9,7 +9,7 @@ pageID: 5118664
 subsection: true
 cascade:
   product: Cumulus RMP
-  version: '3.0'
+  version: "3.0"
   imgData: cumulus-rmp-30
   siteSlug: cumulus-rmp-30
 ---

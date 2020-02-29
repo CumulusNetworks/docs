@@ -140,9 +140,9 @@ The search commands look for the search terms not only in the package name but i
 
 The the `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with their versions, run the following commands.
 
-<details>
+{{< tabs "list_packages">}}
 
-<summary>NCLU Commands </summary>
+{{<tab "NCLU Commands" >}}
 
 Run the `net show package version` command:
 
@@ -162,11 +162,9 @@ atftpd                             0.7.git20120829-3.1
 ...
 ```
 
-</details>
+{{</tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{<tab "Linux Commands" >}}
 
 Run the `dpkg -l` command:
 
@@ -189,7 +187,8 @@ ii  atftpd              0.7.git20120829-3.1       amd64        advanced TFTP ser
 ...
 ```
 
-</details>
+{{</tab>}}
+{{</tabs>}}
 
 {{%notice note%}}
 The apps repository was removed in Cumulus Linux 4.0.0.

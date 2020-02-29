@@ -9,7 +9,7 @@ pageID: 5126578
 subsection: true
 cascade:
   product: Cumulus VX
-  version: '3.0'
+  version: "3.0"
   imgData: cumulus-vx-30
   siteSlug: cumulus-vx-30
 ---

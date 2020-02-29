@@ -2,11 +2,6 @@
 title: PDFs
 author: Cumulus Networks
 weight: 660
-product: Cumulus NetQ
-draft: false
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 
 The PDFs for NetQ 2.4.x are coming soon.

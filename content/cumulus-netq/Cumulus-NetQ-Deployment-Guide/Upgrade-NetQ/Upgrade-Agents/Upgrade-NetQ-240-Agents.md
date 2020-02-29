@@ -5,10 +5,7 @@ weight: 146
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
+
 toc: 5
 ---
 NetQ 2.4.0 requires a fresh installation. If you have already upgraded to NetQ 2.4.0, you may require an update to the NetQ Agent. Verify you have the latest version of the agent software, a version of 2.4.0 and an update of 25 or later.

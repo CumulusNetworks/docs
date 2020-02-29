@@ -4,10 +4,6 @@ author: Cumulus Networks
 weight: 600
 aliases:
  - /display/NETQ/Investigate+NetQ+Issues
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 Monitoring of systems inevitably leads to the need to troubleshoot and
 resolve the issues found. In fact network management follows a common

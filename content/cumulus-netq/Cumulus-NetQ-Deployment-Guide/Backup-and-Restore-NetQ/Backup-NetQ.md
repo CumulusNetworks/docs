@@ -2,10 +2,6 @@
 title: Back Up Your NetQ Data
 author: Cumulus Networks
 weight: 160
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 
 NetQ 2.x data is stored in a Cassandra database. A backup is performed by running scripts provided with the software and located in the `/usr/sbin` directory. When a backup is performed, a single tar file is created. The file is stored on a local drive that you specify and is named `netq_master_snapshot_<timestamp>.tar.gz`. Currently, only one backup file is supported, and includes the entire set of data tables. It is replaced each time a new backup is created.

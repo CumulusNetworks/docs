@@ -6,10 +6,7 @@ aliases:
  - /display/NETQ/Monitor+Events
  - /pages/viewpage.action?pageId=12321771
 pageID: 12321771
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
+
 toc: 4
 ---
 NetQ supports a set of events that are triggered by crossing a user-defined threshold. These events allow detection and prevention of network failures for selected interface, utilization,  sensor, forwarding, and ACL events.

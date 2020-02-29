@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ22/NetQ-User-Interface-Overview
  - /pages/viewpage.action?pageId=12321856
 pageID: 12321856
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 The Global Search field in the UI header enables you to search for
 devices or cards. You can create new searches or run existing searches.

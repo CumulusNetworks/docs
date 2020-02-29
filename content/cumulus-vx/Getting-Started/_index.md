@@ -7,10 +7,6 @@ aliases:
  - /display/VX/Getting+Started
  - /pages/viewpage.action?pageId=5126687
 pageID: 5126687
-product: Cumulus VX
-version: '3.7'
-imgData: cumulus-vx
-siteSlug: cumulus-vx
 ---
 To install Cumulus VX, first download and install the preferred
 hypervisor platform or development environment, then download the

@@ -230,8 +230,8 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 
 <table>
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">

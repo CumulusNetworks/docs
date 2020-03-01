@@ -6,6 +6,7 @@ aliases:
  - /cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/tacacs-plus
  - /display/DOCS/TACACS+Plus
  - /pages/viewpage.action?pageId=8366279
+toc: 4
 ---
 Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication, and Authorization) in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in {{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}. There is no need to create accounts or directories on the switch. Accounting records are sent to all configured TACACS+ servers by default. Use of per-command authorization requires additional setup on the switch.
 

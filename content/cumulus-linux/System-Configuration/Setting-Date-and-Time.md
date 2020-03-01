@@ -5,6 +5,7 @@ weight: 120
 aliases:
  - /display/DOCS/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=8366266
+toc: 3
 ---
 Setting the time zone, date and time requires root privileges; use `sudo`.
 

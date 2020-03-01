@@ -8,6 +8,7 @@ aliases:
  - /display/DOCS/Bonding+Link+Aggregation
  - /display/DOCS/Bonding+-+Link+Aggregation
  - /pages/viewpage.action?pageId=8362653
+toc: 3
 ---
 Linux bonding provides a method for aggregating multiple network interfaces (*slaves*) into a single logical bonded interface (*bond*). Link aggregation is useful for linear scaling of bandwidth, load balancing, and failover protection.
 

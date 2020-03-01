@@ -5,6 +5,7 @@ weight: 510
 aliases:
  - /display/DOCS/IGMP+and+MLD+Snooping
  - /pages/viewpage.action?pageId=8366419
+toc: 3
 ---
 IGMP (Internet Group Management Protocol) and MLD (Multicast Listener Discovery) snooping are implemented in the bridge driver in the Cumulus Linux kernel and are enabled by default. IGMP snooping processes IGMP v1/v2/v3 reports received on a bridge port in a bridge to identify the hosts which would like to receive multicast traffic destined to that group.
 

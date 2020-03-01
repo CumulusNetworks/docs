@@ -5,6 +5,7 @@ weight: 470
 aliases:
  - /display/DOCS/VLAN+Tagging
  - /pages/viewpage.action?pageId=8366391
+toc: 4
 ---
 This topic shows two examples of VLAN tagging, one basic and one more advanced. They both demonstrate the streamlined interface configuration from `ifupdown2`.
 

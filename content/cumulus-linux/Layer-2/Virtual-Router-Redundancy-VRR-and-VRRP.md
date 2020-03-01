@@ -6,6 +6,7 @@ aliases:
  - /display/DOCS/Virtual+Router+Redundancy+++VRR+and+VRRP
  - /pages/viewpage.action?pageId=8366414
  - /display/DOCS/Virtual+Router+Redundancy+VRR+and+VRRP
+toc: 3
 ---
 Cumulus Linux provides the option of using Virtual Router Redundancy (VRR) or Virtual Router Redundancy Protocol (VRRP).
 

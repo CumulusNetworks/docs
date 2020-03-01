@@ -7,6 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8366400
  - /display/DOCS/Multi+Chassis+Link+Aggregation+MLAG
  - /display/DOCS/Multi+Chassis+Link+Aggregation+-+MLAG
+toc: 3
 ---
 Multi-Chassis Link Aggregation (MLAG) enables a server or switch with a two-port bond, such as a link aggregation group/LAG, EtherChannel, port group or trunk, to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput.
 

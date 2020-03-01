@@ -9,6 +9,7 @@ aliases:
  - /display/DOCS/Open+Shortest+Path+First+-+OSPF+-+Protocol
  - /display/DOCS/Open+Shortest+Path+First+++OSPF+++Protocol
  - /pages/viewpage.action?pageId=8366646
+toc: 3
 ---
 OSPF maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge and has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table. The computation is generally referred to as *SPF computation* and the resultant tree as the *SPF tree*.
 

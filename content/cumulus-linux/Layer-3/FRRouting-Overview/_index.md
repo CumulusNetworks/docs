@@ -5,6 +5,7 @@ weight: 750
 aliases:
  - /display/DOCS/FRRouting+Overview
  - /pages/viewpage.action?pageId=8366641
+toc: 3
 ---
 Cumulus Linux uses FRRouting to provide the routing protocols for dynamic routing and supports the following routing protocols:
 

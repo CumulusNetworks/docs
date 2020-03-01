@@ -5,6 +5,7 @@ weight: 730
 aliases:
  - /display/DOCS/Introduction+to+Routing+Protocols
  - /pages/viewpage.action?pageId=8366637
+toc: 3
 ---
 A *routing protocol* dynamically computes reachability between various end points. This enables communication to work around link and node failures, and additions and withdrawals of various addresses.
 

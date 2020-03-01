@@ -5,6 +5,7 @@ weight: 1100
 aliases:
  - /display/DOCS/Monitoring+Best+Practices
  - /pages/viewpage.action?pageId=8366346
+toc: 3
 ---
 The following monitoring processes are considered best practices for reviewing and troubleshooting potential issues with Cumulus Linux environments. In addition, several of the more common issues have been listed, with potential solutions included.
 

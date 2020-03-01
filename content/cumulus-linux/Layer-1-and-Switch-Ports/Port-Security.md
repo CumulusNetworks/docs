@@ -2,7 +2,7 @@
 title: Port Security
 author: Cumulus Networks
 weight: 380
-aliases:
+toc: 3
 ---
 Port security is a layer 2 traffic control feature that enables you to manage network access from end-users. Use port security to:
 

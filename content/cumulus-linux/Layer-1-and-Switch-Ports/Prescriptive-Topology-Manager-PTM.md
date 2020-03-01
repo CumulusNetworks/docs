@@ -7,6 +7,7 @@ aliases:
  - /display/DOCS/Prescriptive+Topology+Manager+-+PTM
  - /display/DOCS/Prescriptive+Topology+Manager+++PTM
  - /pages/viewpage.action?pageId=8366745
+toc: 3
 ---
 In data center topologies, right cabling is a time-consuming endeavor and is error prone. Prescriptive Topology Manager (PTM) is a dynamic cabling verification tool to help detect and eliminate such errors. It takes a Graphviz-DOT specified network cabling plan (something many operators already generate), stored in a `topology.dot` file, and couples it with runtime information derived from LLDP to verify that the cabling matches the specification. The check is performed on every link transition on each node in the network.
 

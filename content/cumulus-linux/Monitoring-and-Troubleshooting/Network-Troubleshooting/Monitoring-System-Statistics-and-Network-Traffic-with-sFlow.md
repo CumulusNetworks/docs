@@ -5,6 +5,7 @@ weight: 1070
 aliases:
  - /display/DOCS/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow
  - /pages/viewpage.action?pageId=8366318
+toc: 4
 ---
 {{<exlink url="http://www.sflow.org/index.php" text="sFlow">}} is a monitoring protocol that samples network packets, application operations, and system counters. sFlow collects both interface counters and sampled 5-tuple packet information, so that you can monitor your network traffic as well as your switch state and performance metrics. An outside server, known as an *sFlow collector*, is required to collect and analyze this data.
 

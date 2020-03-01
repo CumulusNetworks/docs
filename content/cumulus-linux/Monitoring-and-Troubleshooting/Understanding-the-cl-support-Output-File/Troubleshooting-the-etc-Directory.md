@@ -5,6 +5,7 @@ weight: 1010
 aliases:
  - /display/DOCS/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=8366322
+toc: 4
 ---
 The `{{<link url="Understanding-the-cl-support-Output-File" text="cl-support">}}` script replicates the /`etc` directory, however, it deliberately excludes certain files, such as `/etc/nologin`, which prevents unprivileged users from logging into the system.
 

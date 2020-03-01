@@ -5,6 +5,7 @@ weight: 80
 aliases:
  - /display/DOCS/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=8366352
+toc: 3
 ---
 
 You use the Advanced Packaging Tool (`apt`) to manage additional applications (in the form of packages) and to install the latest updates.

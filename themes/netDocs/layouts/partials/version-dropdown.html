@@ -1,10 +1,12 @@
 {{if ne .Params.Product nil}}
 <!-- The slice MUST be initalized with an int or it can not use the `uniq` function due to golang typing -->
 {{ $.Scratch.Set "versions" (slice 1) }} 
+{{ $.Scratch.Set "product_pages" (slice) }} 
 
 <!-- Create an array of all the versions of this product -->
 {{ range where .Site.Pages "Params.product" .Page.Params.product  }} 
-    {{ $.Scratch.Set "versions" ($.Scratch.Get "versions" | append .Params.version) }} 
+    {{ $.Scratch.Add "versions" .Params.version }}
+    {{ $.Scratch.Add "product_pages" . }} 
 {{ end }} 
 
 <!-- Filter it to the unique versions -->
@@ -20,7 +22,7 @@
     {{ $.Scratch.Set "found" false }} 
     <!-- Loop over every page in that version --> 
     <!-- NEEDS DOUBLE WHERE, but current filter is wrong -->
-    {{ range where $.Site.Pages "Params.version" . }}
+    {{ range where ($.Scratch.Get "product_pages") "Params.version" . }}
         {{ if eq .Params.product $.Page.Params.product }} 
             <!-- If the version has a page title that matches ours, then assume it's the same page --> 
             {{ if eq .Title $.Page.Title }}

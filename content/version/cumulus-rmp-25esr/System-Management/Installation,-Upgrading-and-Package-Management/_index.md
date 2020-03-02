@@ -6,10 +6,6 @@ aliases:
  - '/display/RMP25ESR/Installation,+Upgrading+and+Package+Management'
  - /pages/viewpage.action?pageId=5116318
 pageID: 5116318
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 A Cumulus RMP switch can have up to two images of the operating system
 installed. This section discusses installing new and updating existing

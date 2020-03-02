@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=5115962
 pageID: 5115962
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 

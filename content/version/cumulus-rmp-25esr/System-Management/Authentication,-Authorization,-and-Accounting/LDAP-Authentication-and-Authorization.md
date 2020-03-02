@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/LDAP+Authentication+and+Authorization
  - /pages/viewpage.action?pageId=5116314
 pageID: 5116314
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 
 Cumulus RMP uses Pluggable Authentication Modules (PAM) and Name Service

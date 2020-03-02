@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Layer+1+and+Switch+Port+Attributes
  - /pages/viewpage.action?pageId=5118735
 pageID: 5118735
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 
 This chapter discusses the various network interfaces on a switch

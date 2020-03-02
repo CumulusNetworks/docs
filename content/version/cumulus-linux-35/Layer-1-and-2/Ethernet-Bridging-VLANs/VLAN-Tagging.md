@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/VLAN+Tagging
  - /pages/viewpage.action?pageId=8357450
 pageID: 8357450
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 This article shows two examples of VLAN tagging, one basic and one more
 advanced. They both demonstrate the streamlined interface configuration

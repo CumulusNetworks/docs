@@ -9,7 +9,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer address, such as a MAC address, associated with a given network layer address. ARP is defined by [RFC 826](https://tools.ietf.org/html/rfc826). The Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior in a few ways because Cumulus Linux is an operating system for routers/switches rather than servers.
+Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer address, such as a MAC address, associated with a given network layer address. ARP is defined by {{<exlink url="https://tools.ietf.org/html/rfc826" text="RFC 826">}}. The Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior in a few ways because Cumulus Linux is an operating system for routers/switches rather than servers.
 
 ## Standard Debian ARP Behavior and the Tunable ARP Parameters
 
@@ -21,7 +21,7 @@ Debian has these five tunable ARP parameters:
 - `arp_ignore`
 - `arp_notify`
 
-These parameters are described in the [Linux documentation](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt), but snippets for each parameter description are included in the table below and are highlighted in *italics*.
+These parameters are described in the {{<exlink url="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt" text="Linux documentation">}}, but snippets for each parameter description are included in the table below and are highlighted in *italics*.
 
 In a standard Debian installation, all of these ARP parameters are set to *0*, leaving the router as wide open and unrestricted as possible. These settings are based on the assertion made long ago that Linux IP addresses are a property of the device, not a property of an individual interface. Therefore, an ARP request or reply could be sent on one interface containing an address residing on a different interface. While this unrestricted behavior makes sense for a server, it is not the normal behavior of a router. Routers expect the MAC/IP address mappings supplied by ARP to match the physical topology, with the IP addresses matching the interfaces on which they reside. With these tunable ARP parameters, Cumulus Linux is able to specify the behavior to match the expectations of a router.
 
@@ -173,8 +173,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 </details>
 
-If you are running two interfaces in the same broadcast domain (typically seen when using
-[VRR](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/), which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface so that both interfaces do not respond with proxy ARP replies.
+If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface so that both interfaces do not respond with proxy ARP replies.
 
 <details>
 
@@ -262,3 +261,29 @@ cumulus@switch:~$ sudo ifreload -a
 ```
 
 </details>
+
+## Duplicate Address Detection (Windows Hosts)
+
+In centralized VXLAN environments, where ARP/ND suppression is enabled and SVIs exist on the leaf switches but are not assigned an address within the subnet, problems with the Duplicate Address Detection process on Microsoft Windows hosts can occur. For example, in a pure layer 2 scenario or with SVIs that have the `ip-forward` option set to off, the IP address is not assigned to the SVI. The `neighmgrd` service selects a source IP address for an ARP probe based on the subnet match on the neighbor IP address. Because the SVI on which this neighbor is learned does not contiain an IP address, the subnet match fails. This results in `neighmgrd` using UNSPEC (0.0.0.0 for IPv4) as the source IP address in the ARP probe.
+
+To work around this issue, run the `neighmgrctl setsrcipv4 <ipaddress>` command to specify a non-0.0.0.0 address for the source; for example:
+
+```
+cumulus@switch:~$ neighmgrctl setsrcipv4 10.1.0.2
+```
+
+The configuration above takes effect immediately but does not persist if you reboot the switch. To make the changes apply persistently:
+
+1. Create a new file called `/etc/cumulus/neighmgr.conf` and add the `setsrcipv4 <ipaddress>` option; for example:
+
+```
+cumulus@switch:~$  sudo nano /etc/cumulus/neighmgr.conf
+
+setsrcipv4: 10.1.0.2
+```
+
+2. Reload the configuration file using `systemd`:
+
+```
+cumulus@switch:~$ sudo systemctl daemon-reload
+```

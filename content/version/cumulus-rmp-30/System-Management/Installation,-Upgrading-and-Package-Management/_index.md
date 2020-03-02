@@ -6,10 +6,6 @@ aliases:
  - '/display/RMP30/Installation,+Upgrading+and+Package+Management'
  - /pages/viewpage.action?pageId=5118681
 pageID: 5118681
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 A Cumulus RMP switch can have only one image of the operating system
 installed. This section discusses installing new and updating existing

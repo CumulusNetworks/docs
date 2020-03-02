@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Monitoring+Virtual+Device+Counters
  - /pages/viewpage.action?pageId=7112362
 pageID: 7112362
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 Cumulus Linux gathers statistics for VXLANs and VLANs using virtual
 device counters. These counters are supported on Tomahawk, Trident II+

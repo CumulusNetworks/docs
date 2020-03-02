@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-Cumulus Linux gathers statistics for VXLANs and VLANs using virtual device counters. These counters are supported on Tomahawk, Trident II+ and Trident II-based platforms only; see the [Cumulus Networks HCL](http://cumulusnetworks.com/hcl/) for a list of supported platforms.
+Cumulus Linux gathers statistics for VXLANs and VLANs using virtual device counters. These counters are supported on Tomahawk, Trident II+ and Trident II-based platforms only; see the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Networks HCL">}} for a list of supported platforms.
 
 You can retrieve the data from these counters using tools like `ip -s link show`, `ifconfig`, `/proc/net/dev`, or `netstat -i`.
 
@@ -47,7 +47,7 @@ cumulus@switch:~$ ip -s link show br-vxln16757104
 To show access statistics, run:
 
 ```
-cumulus@switch:~$ s0.6
+cumulus@switch:~$ ip -s link show swp2s0.6
 63: swp2s0.6@swp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-vxln16757104 state UP mode DEFAULT
     link/ether 44:38:39:00:69:88 brd ff:ff:ff:ff:ff:ff
     RX: bytes  packets  errors  dropped overrun mcast
@@ -72,7 +72,7 @@ cumulus@switch:~$ ip -s link show vxln16757104
 
 ### For VLANs Using the VLAN-aware Bridge Mode Driver
 
-For a bridge using the [VLAN-aware bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) driver, the bridge is a just a container and each VLAN (VID/PVID) in the bridge is an independent layer 2 broadcast domain. As there is no `netdev` available to display these VLAN statistics, the `switchd` nodes are used instead:
+For a bridge using the {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} driver, the bridge is a just a container and each VLAN (VID/PVID) in the bridge is an independent layer 2 broadcast domain. As there is no `netdev` available to display these VLAN statistics, the `switchd` nodes are used instead:
 
 ```
 cumulus@switch:~$ ifquery bridge
@@ -100,7 +100,7 @@ Total Out Packets               : 3
 
 ### For VLANs Using the Traditional Bridge Mode Driver
 
-For a bridge using the [traditional bridge mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/) driver, each bridge is a single L2 broadcast domain and is associated with an internal VLAN. This internal VLAN's counters are displayed as bridge netdev stats.
+For a bridge using the {{<link url="Traditional-Bridge-Mode" text="traditional bridge mode">}} driver, each bridge is a single L2 broadcast domain and is associated with an internal VLAN. This internal VLAN's counters are displayed as bridge netdev stats.
 
 ```
 cumulus@switch:~$ brctl show br0
@@ -118,7 +118,7 @@ cumulus@switch:~$ ip -s link show br0
 
 ## Configure the Counters in switchd
 
-These counters are enabled by default. To configure them, use `cl-cfg` and configure them as you would any other [`switchd` parameter](../../System-Configuration/Configuring-switchd/). The `switchd` parameters are:
+These counters are enabled by default. To configure them, use `cl-cfg` and configure them as you would any other {{<link url="Configuring-switchd" text="`switchd` parameter">}}. The `switchd` parameters are:
 
 - `stats.vlan.aggregate`, which controls the statistics available for each VLAN. Its value defaults to *BRIEF*.
 - `stats.vxlan.aggregate`, which controls the statistics available for each VNI (access and network). Its value defaults to *DETAIL*.

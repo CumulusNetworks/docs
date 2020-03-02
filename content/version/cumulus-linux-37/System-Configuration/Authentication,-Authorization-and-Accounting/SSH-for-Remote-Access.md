@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/SSH+for+Remote+Access
  - /pages/viewpage.action?pageId=8362551
 pageID: 8362551
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 You can generate authentication keys to access a Cumulus Linux switch
 securely with the `ssh-keygen` component of the Secure Shell (SSH)

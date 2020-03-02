@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Configuring+FRRouting
  - /pages/viewpage.action?pageId=8357715
 pageID: 8357715
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 This section provides an overview of configuring FRRouting, the routing
 software package that provides a suite of routing protocols so you can

@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/TACACS+Plus
  - /pages/viewpage.action?pageId=5126756
 pageID: 5126756
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication,
 and Authorization) in a transparent way with minimal configuration.

@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Network+Troubleshooting
  - /pages/viewpage.action?pageId=5115968
 pageID: 5115968
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Cumulus Linux contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.

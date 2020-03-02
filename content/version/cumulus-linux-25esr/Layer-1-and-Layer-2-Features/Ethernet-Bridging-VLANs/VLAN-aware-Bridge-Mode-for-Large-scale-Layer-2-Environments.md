@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/VLAN+aware+Bridge+Mode+for+Large+scale+Layer+2+Environments
  - /pages/viewpage.action?pageId=5116019
 pageID: 5116019
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Cumulus Linux bridge driver supports two configuration modes, one that
 is VLAN-aware, and one that follows a more traditional Linux bridge

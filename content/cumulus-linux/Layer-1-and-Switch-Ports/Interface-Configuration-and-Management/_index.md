@@ -13,7 +13,7 @@ version: '4.0'
 ---
 `ifupdown` is the network interface manager for Cumulus Linux. Cumulus Linux uses an updated version of this tool, `ifupdown2`.
 
-For more information on network interfaces, see [Switch Port Attributes](Switch-Port-Attributes).
+For more information on network interfaces, see {{<link title="Switch Port Attributes">}}.
 
 {{%notice info%}}
 
@@ -105,7 +105,7 @@ cumulus@switch:~$ ip link show dev swp1
     link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 ```
 
-For additional information on interface administrative state and physical state, refer to [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202693826).
+For additional information on interface administrative state and physical state, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202693826" text="this knowledge base article">}}.
 
 ## ifupdown2 Interface Classes
 
@@ -139,11 +139,11 @@ cumulus@switch:~$ sudo ifup --allow=uplinks
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-If you are using [Management VRF](../../Layer-3/Management-VRF/), you can use the special interface class called *mgmt* and put the management interface into that class. The management VRF must have an IPv6 address in addition to an IPv4 address to work correctly.
+If you are using {{<link title="Management VRF">}}, you can use the special interface class called *mgmt* and put the management interface into that class. The management VRF must have an IPv6 address in addition to an IPv4 address to work correctly.
 
 {{%notice warning%}}
 
-The *mgmt* interface class is not supported with [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/) commands.
+The *mgmt* interface class is not supported with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} commands.
 
 {{%/notice%}}
 
@@ -210,7 +210,7 @@ The loopback interface *lo* must always be specified in the  `/etc/network/inter
 
 ## ifupdown Behavior with Child Interfaces
 
-By default, `ifupdown` recognizes and uses any interface present on the system that is listed as a dependent of an interface (for example, a VLAN, bond, or physical interface). You are not required to list interfaces in the `interfaces` file unless they need a specific configuration for [MTU, link speed, and so on](Switch-Port-Attributes). If you need to delete a child interface, delete all references to that interface from the `interfaces` file.
+By default, `ifupdown` recognizes and uses any interface present on the system that is listed as a dependent of an interface (for example, a VLAN, bond, or physical interface). You are not required to list interfaces in the `interfaces` file unless they need a specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `interfaces` file.
 
 In the following example, swp1 and swp2 do not need an entry in the `interfaces` file. The following stanzas defined in `/etc/network/interfaces` provide the exact same configuration:
 
@@ -274,7 +274,7 @@ iface br-100
     bridge-stp on
 ```
 
-For more information about bridges in traditional mode and bridges in VLAN-aware mode, read [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
+For more information about bridges in traditional mode and bridges in VLAN-aware mode, read {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204909397" text="this knowledge base article">}}.
 
 ## ifupdown2 Interface Dependencies
 
@@ -406,9 +406,9 @@ cumulus@switch:~$ sudo ifquery --print-dependency=dot -a >interfaces_all.dot
 
 On Linux, an *interface* is a network device that can be either physical, like a switch port (for example, swp1) or virtual, like a VLAN (for example, vlan100). A *VLAN subinterface* is a VLAN device on an interface, and the VLAN ID is appended to the parent interface using dot (.) VLAN notation. For example, a VLAN with ID 100 that is a subinterface of swp1 is named swp1.100. The dot VLAN notation for a VLAN device name is a standard way to specify a VLAN device on Linux. Many Linux configuration tools, such as `ifupdown2` and its predecessor `ifupdown`, recognize such a name as a VLAN interface name.
 
-A VLAN subinterface only receives traffic [tagged](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging/) for that VLAN; therefore, swp1.100 only receives packets tagged with VLAN 100 on switch port swp1. Similarly, any packets transmitted from swp1.100 are tagged with VLAN 100.
+A VLAN subinterface only receives traffic  {{<link url="VLAN-Tagging" text="tagged">}} for that VLAN; therefore, swp1.100 only receives packets tagged with VLAN 100 on switch port swp1. Similarly, any packets transmitted from swp1.100 are tagged with VLAN 100.
 
-In an [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094 by default if you configured the subinterface with [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/). The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
+In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094 by default if you configured the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
 
 ## ifup and Upper (Parent) Interfaces
 
@@ -682,7 +682,7 @@ iface swp1
 
 {{%notice note%}}
 
-Purging existing addresses on interfaces with multiple `iface` stanzas is not supported. Doing so can result in the configuration of multiple addresses for an interface after you change an interface address and reload the configuration with `ifreload -a`. If this happens, you must shut down and restart the interface with `ifup` and `ifdown`, or manually delete superfluous addresses with `ip address delete specify.ip.address.here/mask dev DEVICE`. See also the [Caveats and Errata](#caveats-and-errata) section below for cautions about using multiple `iface` stanzas for the same interface.
+Purging existing addresses on interfaces with multiple `iface` stanzas is not supported. Doing so can result in the configuration of multiple addresses for an interface after you change an interface address and reload the configuration with `ifreload -a`. If this happens, you must shut down and restart the interface with `ifup` and `ifdown`, or manually delete superfluous addresses with `ip address delete specify.ip.address.here/mask dev DEVICE`. See also the {{<link url="#caveats-and-errata" text="Caveats and Errata">}} section below for cautions about using multiple `iface` stanzas for the same interface.
 
 {{%/notice%}}
 
@@ -874,7 +874,7 @@ iface br1
 
 ## Mako Templates
 
-`ifupdown2` supports [Mako-style templates](http://www.makotemplates.org/). The Mako template engine is run over the `interfaces` file before parsing.
+`ifupdown2` supports {{<exlink url="http://www.makotemplates.org/" text="Mako-style templates">}}. The Mako template engine is run over the `interfaces` file before parsing.
 
 {{%notice warning%}}
 
@@ -915,7 +915,7 @@ To comment out content in Mako templates, use double hash marks (\#\#). For exam
 ##
 ```
 
-For more examples of configuring Mako templates, read this [knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202868023).
+For more examples of configuring Mako templates, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202868023" text="knowledge base article">}}.
 
 ## Run ifupdown Scripts under /etc/network/ with ifupdown2
 
@@ -1035,7 +1035,7 @@ cumulus@switch$ ip link show swp1
 
 </details>
 
-Interface descriptions also appear in the [SNMP](../../Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/) OID [IF-MIB::ifAlias](https://cumulusnetworks.com/static/mibs/IF-MIB.txt).
+Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
 
 {{%notice note%}}
 
@@ -1089,9 +1089,9 @@ cumulus@switch:~$ sudo systemctl restart networking.service
 
 ## Related Information
 
-- [Debian - Network Configuration](http://wiki.debian.org/NetworkConfiguration)
-- [Linux Foundation - Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
-- [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
+- {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}
+- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" text="Linux Foundation - Bonds">}}
+- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
 - man ifdown(8)
 - man ifquery(8)
 - man ifreload

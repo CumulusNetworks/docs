@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/LDAP+Authentication+and+Authorization
  - /pages/viewpage.action?pageId=5127543
 pageID: 5127543
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 
 Cumulus RMP uses Pluggable Authentication Modules (PAM) and Name Service

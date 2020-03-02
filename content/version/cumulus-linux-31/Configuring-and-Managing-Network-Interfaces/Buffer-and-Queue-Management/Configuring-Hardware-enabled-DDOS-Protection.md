@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Configuring+Hardware+enabled+DDOS+Protection
  - /pages/viewpage.action?pageId=5122109
 pageID: 5122109
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 {{%notice note%}}
 

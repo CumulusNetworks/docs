@@ -14,15 +14,15 @@ This chapter discusses the various architectures and strategies available from t
 
 |<div style="width:300px">Example| Summary |
 |--------------------------------|----------------|
-| {{< img src = "/images/cumulus-linux/network-solutions-dc-host-to-tor.png">}}| [Bond](../../Layer-2/Bonding-Link-Aggregation/) and Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.|
+| {{< img src = "/images/cumulus-linux/network-solutions-dc-host-to-tor.png">}}| {{<link url="Bonding-Link-Aggregation" text="Bond">}} and Etherchannel are not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.|
 
 | <div style="width:300px">Benefits | Caveats |
 |----------|---------|
-|<ul><li>Established technology: Interoperability with other vendors, easy configuration, a lot of documentation from multiple vendors and the industry</li><li>Ability to use [spanning tree](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/) commands: [PortAdminEdge](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree#portadminedge-portfast-mode) and [BPDU guard](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard)</li><li>Layer 2 reachability to all VMs</li></ul>|<ul><li>The load balancing mechanism on the host can cause problems. If there is only host pinning to each NIC, there are no problems, but if you have a bond, you need to look at an MLAG solution.</li><li>No active-active host links. Some operating systems allow HA (NIC failover), but this still does not utilize all the bandwidth. VMs use one NIC, not two.</li></ul>|
+|<ul><li>Established technology: Interoperability with other vendors, easy configuration, a lot of documentation from multiple vendors and the industry</li><li>Ability to use {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="spanning tree">}} commands: {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#portadminedge-portfast-mode" text="PortAdminEdge">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="BPDU guard">}}</li><li>Layer 2 reachability to all VMs</li></ul>|<ul><li>The load balancing mechanism on the host can cause problems. If there is only host pinning to each NIC, there are no problems, but if you have a bond, you need to look at an MLAG solution.</li><li>No active-active host links. Some operating systems allow HA (NIC failover), but this still does not utilize all the bandwidth. VMs use one NIC, not two.</li></ul>|
 
 | <div style="width:130px">Active-Active Mode | <div style="width:130px">Active-Passive Mode | L2 to L3 Demarcation|
 |---------------------|--------------------|---------------------|
-| None (not possible with traditional spanning tree) | [VRR](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/) | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li></ul><br>You can configure VRR on a pair of switches at any level in the network. However, the higher up the network, the larger the layer 2 domain becomes. The benefit is layer 2 reachability. The drawback is that the layer 2 domain is more difficult to troubleshoot, does not scale as well, and the pair of switches running VRR needs to carry the entire MAC address table of everything below it in the network. Cumulus Professional Services recommends minimizing the layer 2 domain as much as possible. For more information, see [this presentation](https://docs.google.com/presentation/d/1l1d_6iUF7RTUHTSAmGuLwm3WCUXTNdFjndCLLxzBSOU/edit?usp=sharing).|
+| None (not possible with traditional spanning tree) | {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}} | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li></ul><br>You can configure VRR on a pair of switches at any level in the network. However, the higher up the network, the larger the layer 2 domain becomes. The benefit is layer 2 reachability. The drawback is that the layer 2 domain is more difficult to troubleshoot, does not scale as well, and the pair of switches running VRR needs to carry the entire MAC address table of everything below it in the network. Cumulus Professional Services recommends minimizing the layer 2 domain as much as possible. For more information, see {{<exlink url="https://docs.google.com/presentation/d/1l1d_6iUF7RTUHTSAmGuLwm3WCUXTNdFjndCLLxzBSOU/edit?usp=sharing" text="this presentation">}}.|
 
 **Example Configuration**
 
@@ -86,7 +86,7 @@ iface br-20 inet manual
 
 | <div style="width:300px">Example | Summary |
 |----|----|
-|{{< img src = "/images/cumulus-linux/network-solutions-mlag.png" >}} | [MLAG (multi-chassis link aggregation)](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) uses both uplinks at the same time. VRR enables both spines to act as gateways simultaneously for HA (high availability) and [active-active mode](../../Network-Virtualization/VXLAN-Active-Active-Mode/) (both are used at the same time). |
+|{{< img src = "/images/cumulus-linux/network-solutions-mlag.png" >}} | {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG (multi-chassis link aggregation)">}} uses both uplinks at the same time. VRR enables both spines to act as gateways simultaneously for HA (high availability) and {{<link url="VXLAN-Active-Active-Mode" text="active-active mode">}} (both are used at the same time). |
 
 | <div style="width:300px">Benefits | Caveats |
 |----------| --------|
@@ -94,7 +94,7 @@ iface br-20 inet manual
 
 | Active-Active Mode | Active-Passive Mode | L2 to L3 Demarcation| More Information|
 |---------------------|--------------------|---------------------|-----------------|
-| [VRR](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/)| None | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li><ul>|<ul><li>Can be done with either the [traditional](../../Layer-2/Ethernet-Bridging-VLANs/) or [VLAN-aware](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) bridge driver depending on overall STP needs.</li><li>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific.</li><li>[Cumulus Networks Layer 2 HA validated design guide](https://cumulusnetworks.com/media/resources/validated-design-guides/Cumulus-Linux-Layer-2-HA-Validated-Design-Guide_v1.0.0.pdf).</li></ul>|
+| {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}| None | <ul><li>ToR layer (recommended)</li><li>Spine layer</li><li>Core/edge/exit</li><ul>|<ul><li>Can be done with either the {{<link url="Traditional-Bridge-Mode" text="traditional">}} or {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}} bridge driver depending on overall STP needs.</li><li>There are a few different solutions including Cisco VPC and Arista MLAG, but none of them interoperate and are very vendor specific.</li><li>{{<exlink url="https://cumulusnetworks.com/media/resources/validated-design-guides/Cumulus-Linux-Layer-2-HA-Validated-Design-Guide_v1.0.0.pdf" text="Cumulus Networks Layer 2 HA validated design guide">}}.</li></ul>|
 
 **Example Configuration**
 
@@ -167,7 +167,7 @@ iface vm-br10 inet manual
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 |----------| --------|
-| No redundancy for ToR, uses single ToR as gateway.| [Big Data validated design guide](https://cumulusnetworks.com/learn/resources/installation-guides/big-data-deployment-guide) uses single attached ToR.<br><br>For additional bandwidth, links between host and leaf can be bonded. |
+| No redundancy for ToR, uses single ToR as gateway.| {{<exlink url="https://cumulusnetworks.com/learn/resources/installation-guides/big-data-deployment-guide" text="Big Data validated design guide">}} uses single attached ToR.<br><br>For additional bandwidth, links between host and leaf can be bonded. |
 
 **Example Configuration**
 
@@ -247,7 +247,7 @@ iface eth1 inet static
 
 |<div style="width:300px">Example| Summary |
 |----|----|
-|{{< img src = "/images/cumulus-linux/network-solutions-redis-neighbor.png" >}} | The [Redistribute neighbor](../../Layer-3/Redistribute-Neighbor/) daemon grabs ARP entries dynamically and uses the redistribute table for FRRouting to take these dynamic entries and redistribute them into the fabric. |
+|{{< img src = "/images/cumulus-linux/network-solutions-redis-neighbor.png" >}} | The {{<link url="Redistribute-Neighbor" text="Redistribute neighbor">}} daemon grabs ARP entries dynamically and uses the redistribute table for FRRouting to take these dynamic entries and redistribute them into the fabric. |
 
 | <div style="width:300px">Benefits | Caveats |
 |-----------------------------------| --------|
@@ -255,13 +255,13 @@ iface eth1 inet static
 
 | FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-|<ul><li>Equal cost route installed on server, host, or hypervisor to both ToRs to load balance evenly.</li><li>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but do not distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter to which pair of leafs it is cabled.| [Cumulus Networks blog post introducing redistribute neighbor](https://cumulusnetworks.com/blog/introducing-rdnbr)|
+|<ul><li>Equal cost route installed on server, host, or hypervisor to both ToRs to load balance evenly.</li><li>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but do not distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter to which pair of leafs it is cabled.| {{<exlink url="https://cumulusnetworks.com/blog/introducing-rdnbr" text="Cumulus Networks blog post introducing redistribute neighbor">}}|
 
 ## Layer 3 - Routing on the Host
 
 |<div style="width:300px">Example| Summary |
 |--------------------------------|-----------|
-| {{< img src = "/images/cumulus-linux/network-solutions-routing-on-host.png" >}} | Routing on the host means there is a routing application (such as [FRRouting](../../Layer-3/FRRouting-Overview/), either on the bare metal host (no VMs or containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team. |
+| {{< img src = "/images/cumulus-linux/network-solutions-routing-on-host.png" >}} | Routing on the host means there is a routing application (such as {{<link url="FRRouting-Overview" text="FRRouting">}}, either on the bare metal host (no VMs or containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team. |
 
 | <div style="width:300px">Benefits | Caveats |
 |-----------------------------------| --------|
@@ -269,7 +269,7 @@ iface eth1 inet static
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-|<ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</li></ul>|<ul><li>[Installing the FRRouting Package on an Ubuntu Server](http://docs.frrouting.org/en/latest/installation.html)</li><li>[Configuring FRRouting](../../Layer-3/Configuring-FRRouting/)</li></ul>|
+|<ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configuring-FRRouting">}}</li></ul>|
 
 ## Layer 3 - Routing on the VM
 
@@ -283,21 +283,21 @@ iface eth1 inet static
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-| <ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>You can use multiple ToRs (two or more)</li><ul>|<ul><li>[Installing the FRRouting Package on an Ubuntu Server](http://docs.frrouting.org/en/latest/installation.html)</li><li>[Configuring FRRouting](../../Layer-3/Configuring-FRRouting/)</li><ul>|
+| <ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>You can use multiple ToRs (two or more)</li><ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configuring-FRRouting">}}</li><ul>|
 
 ## Layer 3 - Virtual Router
 
 |<div style="width:300px">Example | Summary |
 |----|----|
-| {{< img src = "/images/cumulus-linux/network-solutions-vrouter.png" >}} | Virtual router (vRouter) runs as a VM on the hypervisor or host and sends routes to the ToR using [BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) or [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/). |
+| {{< img src = "/images/cumulus-linux/network-solutions-vrouter.png" >}} | Virtual router (vRouter) runs as a VM on the hypervisor or host and sends routes to the ToR using {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}. |
 
 | <div style="width:300px">Benefits | Caveats |
 |-----------------------------------| --------|
-|In addition to routing on a host:<ul><li>Multi-tenancy can work, where multiple customers share the same racks</li><li>The base OS does not need to be routing capable</li></ul>|<ul><li>[ECMP](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/) might not work correctly (load balancing to multiple ToRs); the Linux kernel in older versions is not capable of ECMP per flow (it does it per packet)</li><li>No layer 2 adjacency between servers without VXLAN</li></ul>|
+|In addition to routing on a host:<ul><li>Multi-tenancy can work, where multiple customers share the same racks</li><li>The base OS does not need to be routing capable</li></ul>|<ul><li>{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}} might not work correctly (load balancing to multiple ToRs); the Linux kernel in older versions is not capable of ECMP per flow (it does it per packet)</li><li>No layer 2 adjacency between servers without VXLAN</li></ul>|
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-|<ul><li>The gateway is the vRouter, which has two routes out (two ToRs)</li><li>You can use multiple vRouters</li></ul>|<ul><li>[Installing the FRRouting Package on an Ubuntu Server](http://docs.frrouting.org/en/latest/installation.html)</li><li>[Configuring FRRouting](../../Layer-3/Configuring-FRRouting/)</li></ul>|
+|<ul><li>The gateway is the vRouter, which has two routes out (two ToRs)</li><li>You can use multiple vRouters</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configuring-FRRouting">}}</li></ul>|
 
 ## Layer 3 - Anycast with Manual Redistribution
 
@@ -387,7 +387,7 @@ iface eth2 inet static
 
 ## Layer 3 - EVPN with Symmetric VXLAN Routing
 
-[Symmetric VXLAN routing](../../Network-Virtualization/VXLAN-Routing/) is configured directly on the ToR, using [EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/) for both VLAN and VXLAN bridging as well as VXLAN and external routing.
+{{<link url="VXLAN-Routing" text="Symmetric VXLAN routing">}} is configured directly on the ToR, using {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} for both VLAN and VXLAN bridging as well as VXLAN and external routing.
 
 {{< img src = "/images/cumulus-linux/network-solutions-evpn-symmetric.png" >}}
 
@@ -395,11 +395,11 @@ Each server is configured on a VLAN, with a total of two VLANs for the setup. ML
 
 | <div style="width:300px">Benefits | Caveats |
 |-----------------------------------| --------|
-| <ul><li>Layer 2 domain is reduced to the pair of ToRs</li><li>Aggregation layer is all layer 3 (VLANs do not have to exist on spine switches)</li><li>Greater route scaling and flexibility</li><li>High availability</li></ul>| Needs MLAG (with the same caveats as the [MLAG](#mlag) section above)|
+| <ul><li>Layer 2 domain is reduced to the pair of ToRs</li><li>Aggregation layer is all layer 3 (VLANs do not have to exist on spine switches)</li><li>Greater route scaling and flexibility</li><li>High availability</li></ul>| Needs MLAG (with the same caveats as the {{<link url="#mlag" text="MLAG">}} section above)|
 
 |Active-Active Mode|Active-Passive Mode|Demarcation| More Information|
 |------------------|-------------------|------------|-------------|
-|[VRR](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP) |None|ToR layer|<ul><li>[Cumulus Networks EVPN with symmetric routing demo on GitHub](https://github.com/CumulusNetworks/cldemo-evpn-symmetric)</li><li>[Ethernet Virtual Private Network - EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/)</li><li>[VXLAN Routing](../../Network-Virtualization/VXLAN-Routing/)</li></ul>|
+| {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}} |None|ToR layer|<ul><li>{{<exlink url="https://github.com/CumulusNetworks/cldemo-evpn-symmetric" text="Cumulus Networks EVPN with symmetric routing demo on GitHub">}}</li><li>{{<link url="Ethernet-Virtual-Private-Network-EVPN" text="Ethernet Virtual Private Network - EVPN">}}</li><li>{{<link url="VXLAN-Routing">}}</li></ul>|
 
 **Example Configuration**
 

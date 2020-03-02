@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Configuring+switchd
  - /pages/viewpage.action?pageId=5116317
 pageID: 5116317
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 `switchd` is the daemon at the heart of Cumulus RMP. It communicates
 between the switch and Cumulus RMP, and all the applications running on

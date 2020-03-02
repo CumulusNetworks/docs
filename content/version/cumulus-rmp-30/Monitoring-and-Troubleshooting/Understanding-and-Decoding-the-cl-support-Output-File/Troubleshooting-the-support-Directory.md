@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Troubleshooting+the+support+Directory
  - /pages/viewpage.action?pageId=5118698
 pageID: 5118698
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 The `support` directory is unique in the fact that it is not a copy of
 the switch's filesystem. Actually, it is the output from various

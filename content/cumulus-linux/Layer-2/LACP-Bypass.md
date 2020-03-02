@@ -8,7 +8,7 @@ aliases:
 product: Cumulus Linux
 version: '4.0'
 ---
-On Cumulus Linux, *LACP Bypass* allows a [bond](../Bonding-Link-Aggregation/) configured in 802.3ad mode to become active and forward traffic even when there is no LACP partner. For example, you can enable a host that does not have the capability to run LACP to PXE boot while connected to a switch on a bond configured in 802.3ad mode. After the pre-boot process completes and the host is capable of running LACP, the normal 802.3ad link aggregation operation takes over.
+On Cumulus Linux, *LACP Bypass* allows a {{<link url="Bonding-Link-Aggregation" text="bond">}} configured in 802.3ad mode to become active and forward traffic even when there is no LACP partner. For example, you can enable a host that does not have the capability to run LACP to PXE boot while connected to a switch on a bond configured in 802.3ad mode. After the pre-boot process completes and the host is capable of running LACP, the normal 802.3ad link aggregation operation takes over.
 
 ## LACP Bypass All-active Mode
 
@@ -17,8 +17,8 @@ In *all-active* mode, when a bond has multiple slave interfaces, each bond slave
 {{%notice note%}}
 
 - All-active mode is *not* supported on bonds that are *not* specified as bridge ports on the switch.
-- STP does not run on the individual bond slave interfaces when the LACP bond is in all-active mode. Only use all-active mode on host-facing LACP bonds. Cumulus Networks highly recommends you configure [STP BPDU guard](../Spanning-Tree-and-Rapid-Spanning-Tree/) together with all-active mode.
-- In an [MLAG deployment](../Multi-Chassis-Link-Aggregation-MLAG/) where bond slaves of a host are connected to two switches and the bond is in all-active mode, all the slaves of bond are active on both the primary and secondary MLAG nodes.
+- STP does not run on the individual bond slave interfaces when the LACP bond is in all-active mode. Only use all-active mode on host-facing LACP bonds. Cumulus Networks highly recommends you configure {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="STP BPDU guard">}} together with all-active mode.
+- In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG deployment">}} where bond slaves of a host are connected to two switches and the bond is in all-active mode, all the slaves of bond are active on both the primary and secondary MLAG nodes.
 - `priority mode`, `bond-lacp-bypass-period`, `bond-lacp-bypass-priority`, and `bond-lacp-bypass-all-active` are not supported.
 
 {{%/notice%}}
@@ -164,7 +164,7 @@ cumulus@switch:~$ cat /sys/class/net/swp51/bonding_slave/ad_rx_bypass
 
 ## Example LACP Bypass Configuration (Traditional Bridge Mode)
 
-The following configuration shows LACP bypass enabled for multiple active interfaces (all-active mode) with a bridge in [traditional bridge mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/):
+The following configuration shows LACP bypass enabled for multiple active interfaces (all-active mode) with a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional bridge mode">}}:
 
 ```
 ...

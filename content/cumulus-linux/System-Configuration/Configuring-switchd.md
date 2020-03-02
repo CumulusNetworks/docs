@@ -110,7 +110,7 @@ acl.non_atomic_update_mode = FALSE
 ...
 ```
 
-When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect. See [Restart switchd](#restart-switchd), below.
+When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect. See {{<link url="#restart-switchd" text="Restart switchd">}}, below.
 
 ## Restart switchd
 

@@ -1,7 +1,7 @@
 ---
 title: Cumulus NetQ Components
 author: Cumulus Networks
-weight: 401
+weight: 30
 pageID: 12320801
 product: Cumulus NetQ
 version: 2.4

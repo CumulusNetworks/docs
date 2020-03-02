@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Managing+Application+Daemons
  - /pages/viewpage.action?pageId=8362073
 pageID: 8362073
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 You manage application daemons (services) in Cumulus Linux in the
 following ways:

@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/Switch+Port+Attributes
  - /pages/viewpage.action?pageId=8363026
 pageID: 8363026
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 Cumulus Linux exposes network interfaces for several types of physical
 and logical devices:
@@ -1509,7 +1505,14 @@ comment out the lines as this prevents `switchd` from restarting.
 ### Mellanox SN2100 Switch and eth0 Link Speed
 
 After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
-To work around this issue, either flap the interface or add commands to the `/etc/rc.local` file so that this occurs on boot automatically.
+
+To work around this issue, add the following commands to the `/etc/rc.local` file to flap the interface automatically when the switch boots:
+
+```
+modprobe -r igb
+sleep 20
+modprobe igb
+```
 
 ### Link Speed on the EdgeCore AS7326-56X Switch
 

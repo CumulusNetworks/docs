@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Troubleshooting+the+etc+Directory
  - /pages/viewpage.action?pageId=5868919
 pageID: 5868919
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 The
 [`cl-support`](/version/cumulus-linux-332/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/)

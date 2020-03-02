@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=5121994
 pageID: 5121994
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 
 Before you install Cumulus Linux, the switch can be in two different

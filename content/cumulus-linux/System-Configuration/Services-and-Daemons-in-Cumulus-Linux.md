@@ -248,16 +248,16 @@ The following table lists the most important services in Cumulus Linux.
 |switchd|Hardware abstraction daemon. Synchronizes the kernel with the ASIC.|YES|
 |sx\_sdk|Interfaces with the Spectrum ASIC. Only on Spectrum switches.|YES|
 |portwd| Reads pluggable information over the I2C bus. Identifies and classifies the optics that are inserted into the system. Sets interface speeds and capabilities to match the optics.|YES, eventually, if optics are added or removed|
-|frr|[FRRouting](../../Layer-3/FRRouting-Overview/). Handles routing protocols. There are separate processes for each routing protocol, such as `bgpd` and `ospfd`.|YES if routing|
-|clag|Cumulus link aggregation daemon. Handles [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).|YES if using MLAG|
+|frr|{{<link url="FRRouting-Overview" text="FRRouting">}}. Handles routing protocols. There are separate processes for each routing protocol, such as `bgpd` and `ospfd`.|YES if routing|
+|clag|Cumulus link aggregation daemon. Handles {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|YES if using MLAG|
 |neighmgrd|Synchronizes MAC address information if using MLAG.|YES if using MLAG|
-|mstpd|[Spanning tree protocol](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/) daemon.|YES if using layer 2|
-|ptmd|[Prescriptive Topology Manager](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/). Verifies cabling based on [LLDP](../../Layer-2/Link-Layer-Discovery-Protocol) output. Also sets up [BFD](../../Layer-3/Bidirectional-Forwarding-Detection-BFD/) sessions.|YES if using BFD|
-|netd|[NCLU](../Network-Command-Line-Utility-NCLU/) back end.|NO|
+|mstpd|{{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="Spanning tree protocol">}} daemon.|YES if using layer 2|
+|ptmd|{{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager">}}. Verifies cabling based on {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} output. Also sets up {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} sessions.|YES if using BFD|
+|netd|{{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} back end.|NO|
 |rsyslog|Handles logging of syslog messages.|NO|
-|ntp|[Network time protocol](../Setting-Date-and-Time/).|NO|
-|ledmgrd|[LED manager](../../Monitoring-and-Troubleshooting/Monitoring-System-Hardware/Network-Switch-Port-LED-and-Status-LED-Guidelines/). Reads the state of system LEDs.|NO|
+|ntp|{{<link url="Setting-Date-and-Time" text="Network time protocol">}}.|NO|
+|ledmgrd|{{<link url="Network-Switch-Port-LED-and-Status-LED-Guidelines" text="LED manager">}}. Reads the state of system LEDs.|NO|
 |sysmonitor|Watches and logs critical system load (free memory, disk, CPU).|NO|
-|lldpd|Handles Tx/Rx of [LLDP](../../Layer-2/Link-Layer-Discovery-Protocol/) information.|NO|
-|smond|Reads [platform sensors and fan information](../../Monitoring-and-Troubleshooting/Monitoring-System-Hardware/) from pwmd.|NO|
+|lldpd|Handles Tx/Rx of {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} information.|NO|
+|smond|Reads {{<link url="Monitoring-System-Hardware" text="platform sensors and fan information">}} from pwmd.|NO|
 |pwmd|Reads and sets fan speeds.|NO|

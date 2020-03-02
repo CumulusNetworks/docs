@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Telemetry+Preface
  - /pages/viewpage.action?pageId=10453518
 pageID: 10453518
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 A variety of resources are available for you to become familiar with
 Cumulus NetQ and to take advantage of its monitoring and analytic

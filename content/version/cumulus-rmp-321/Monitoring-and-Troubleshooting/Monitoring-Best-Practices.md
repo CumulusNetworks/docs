@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Monitoring+Best+Practices
  - /pages/viewpage.action?pageId=5127589
 pageID: 5127589
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 
 The following monitoring processes are considered best practices for

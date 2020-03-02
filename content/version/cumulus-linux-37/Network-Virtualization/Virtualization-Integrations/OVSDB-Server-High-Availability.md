@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/OVSDB+Server+High+Availability
  - /pages/viewpage.action?pageId=8362860
 pageID: 8362860
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 {{%notice warning%}}
 

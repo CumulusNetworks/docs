@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=7112385
 pageID: 7112385
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 You use the Advanced Packaging Tool (`apt`) to manage additional
 applications (in the form of packages) and to install the latest

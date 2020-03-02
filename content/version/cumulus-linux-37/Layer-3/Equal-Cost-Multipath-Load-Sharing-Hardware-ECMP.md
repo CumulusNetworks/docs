@@ -7,10 +7,6 @@ aliases:
  - /display/DOCS/Equal+Cost+Multipath+Load+Sharing+-+Hardware+ECMP
  - /pages/viewpage.action?pageId=8362929
 pageID: 8362929
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 Cumulus Linux supports hardware-based [equal cost multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
 
@@ -397,7 +393,7 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 
 ### IPv6 Route Replacement
 
-When the next hop information for an IPv6 prefix changes (for example, when ECMP paths are added or deleted, or when the next hop IP address, interface, or tunnel changes), FRR deletes the existing route to that prefix from the kernel and then adds a new route with all the relevant new information. However, in certain situations, resilient hashing might not be maintained for IPv6 flows.
+When the next hop information for an IPv6 prefix changes (for example, when ECMP paths are added or deleted, or when the next hop IP address, interface, or tunnel changes), FRR deletes the existing route to that prefix from the kernel and then adds a new route with all the relevant new information. Because of this process, resilient hashing might not be maintained for IPv6 flows in certain situations.
 
 To work around this issue in Cumulus Linux 3.7.12 and later, you can enable the IPv6 route replacement option.
 

@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/LDAP+Authentication+and+Authorization
  - /pages/viewpage.action?pageId=5121929
 pageID: 5121929
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name

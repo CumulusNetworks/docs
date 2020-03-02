@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Installing+a+New+Cumulus+Linux+Image
  - /pages/viewpage.action?pageId=5115997
 pageID: 5115997
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Before you install Cumulus Linux, the switch can be in two different
 states:

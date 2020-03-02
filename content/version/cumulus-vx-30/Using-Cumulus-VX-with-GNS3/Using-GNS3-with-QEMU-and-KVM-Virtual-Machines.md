@@ -6,10 +6,6 @@ aliases:
  - /display/VX30/Using+GNS3+with+QEMU+and+KVM+Virtual+Machines
  - /pages/viewpage.action?pageId=5126603
 pageID: 5126603
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 ---
 Before you run your virtual network under GNS3, make sure you have done
 the following:
@@ -63,7 +59,7 @@ Each node needs a different port. You can do this by
         
         {{%notice note%}}
         
-This enables SSH to port 1401 (ssh -p 1401 cumulus@127.0.0.1).
+This enables SSH to port 1401 (`ssh -p 1401 cumulus@127.0.0.1`).
         
         {{%/notice%}}
     

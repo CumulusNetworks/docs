@@ -6,8 +6,4 @@ aliases:
  - /display/CL30/Layer+1+and+Layer+2+Features
  - /pages/viewpage.action?pageId=5118270
 pageID: 5118270
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---

@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Using+netshow+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=5118694
 pageID: 5118694
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 `netshow` is a tool in Cumulus RMP that quickly returns a lot of
 information about your network configuration. It's a tool designed by

@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=8357376
 pageID: 8357376
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 You monitor system hardware in these ways, using:
 

@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Ethernet+Bridging+++VLANs
  - /pages/viewpage.action?pageId=5116341
 pageID: 5116341
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 
 Ethernet bridges provide a means for hosts to communicate at layer 2.

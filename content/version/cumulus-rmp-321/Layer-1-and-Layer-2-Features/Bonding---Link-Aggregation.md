@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Bonding+++Link+Aggregation
  - /pages/viewpage.action?pageId=5127595
 pageID: 5127595
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 Linux bonding provides a method for aggregating multiple network
 interfaces (the *slaves*) into a single logical bonded interface (the

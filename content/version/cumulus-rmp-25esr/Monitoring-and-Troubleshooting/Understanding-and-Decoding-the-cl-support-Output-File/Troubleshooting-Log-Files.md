@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Troubleshooting+Log+Files
  - /pages/viewpage.action?pageId=5116332
 pageID: 5116332
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 The only real unique entity for logging on Cumulus RMP compared to any
 other Linux distribution is `switchd.log`, which logs the HAL (hardware

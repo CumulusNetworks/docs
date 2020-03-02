@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Buffer+and+Queue+Management
  - /pages/viewpage.action?pageId=5118374
 pageID: 5118374
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 Hardware datapath configuration manages packet buffering, queueing, and

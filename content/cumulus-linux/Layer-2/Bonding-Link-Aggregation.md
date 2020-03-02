@@ -16,11 +16,11 @@ Linux bonding provides a method for aggregating multiple network interfaces (*sl
 Cumulus Linux supports two bonding modes:
 
 - IEEE 802.3ad link aggregation mode that allows one or more links to be aggregated together to form a *link aggregation group* (LAG) so that a media access control (MAC) client can treat the group as if it were a single link. IEEE 802.3ad link aggregation is the default mode.
-- Balance-xor mode, where the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. This is useful for [MLAG](../Multi-Chassis-Link-Aggregation-MLAG/) deployments.
+- Balance-xor mode, where the bonding of slave interfaces are static and all slave interfaces are active for load balancing and fault tolerance purposes. This is useful for {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} deployments.
 
 Cumulus Linux uses version 1 of the LAG control protocol (LACP).
 
-To temporarily bring up a bond even when there is no LACP partner, use [LACP Bypass](../LACP-Bypass/).
+To temporarily bring up a bond even when there is no LACP partner, use {{<link title="LACP Bypass">}}.
 
 ## Hash Distribution
 
@@ -84,7 +84,7 @@ cumulus@switch:~$ ifreload -a
 
 {{%notice note%}}
 
-- The bond is configured by default in IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see [Configuration Parameters](#configure-bond-options) below.
+- The bond is configured by default in IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#configure-bond-options" text="Configuration Parameters">}} below.
 - If the bond is *not* going to become part of a bridge, you need to specify an IP address.
 - The name of the bond must be compliant with Linux interface naming conventions and unique within the switch.
 
@@ -160,7 +160,7 @@ cumulus@switch:~$ ifreload -a
 
 {{%notice note%}}
 
-Each bond configuration option, except for `bond slaves,` is set to the recommended value by default in Cumulus Linux. Only configure an option if a different setting is needed. For more information on configuration values, refer to the [Related Information](#related-information) section below.
+Each bond configuration option, except for `bond slaves,` is set to the recommended value by default in Cumulus Linux. Only configure an option if a different setting is needed. For more information on configuration values, refer to the {{<link url="#related-information" text="Related Information">}}  section below.
 
 {{%/notice%}}
 
@@ -266,7 +266,7 @@ The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner
 - A bond can have subinterfaces, but subinterfaces cannot have a bond.
 - A bond cannot enslave VLAN subinterfaces.
 - Set all slave ports within a bond to the same speed/duplex and make sure they match the link partner's slave ports.
-- On a [Cumulus RMP](/cumulus-rmp) switch, if you create a bond with multiple 10G member ports, traffic gets dropped when the bond uses members of the same *unit* listed in the `/var/lib/cumulus/porttab` file. For example, traffic gets dropped if both swp49 and swp52 are in the bond because they both are in xe0 (or if both swp50 and swp51 are in the same bond because they are both in xe1):
+- On a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-rmp" text="Cumulus RMP">}} switch, if you create a bond with multiple 10G member ports, traffic gets dropped when the bond uses members of the same *unit* listed in the `/var/lib/cumulus/porttab` file. For example, traffic gets dropped if both swp49 and swp52 are in the bond because they both are in xe0 (or if both swp50 and swp51 are in the same bond because they are both in xe1):
 
 ```
 swp49 xe0 0 0 -1 0
@@ -275,16 +275,16 @@ swp51 xe1 1 0 -1 0
 swp52 xe0 1 0 -1 0
 ```
 
-    Single port member bonds, bonds with different units (xe0 or xe1, as above), or layer 3 bonds do not have this issue.
+   Single port member bonds, bonds with different units (xe0 or xe1, as above), or layer 3 bonds do not have this issue.
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 On Cumulus RMP switches, which are built with two Hurricane2 ASICs, you cannot form an LACP bond on links that terminate on different Hurricane2 ASICs.
 
-    {{%/notice%}}
+   {{%/notice%}}
 
 ## Related Information
 
-- [Linux Foundation - Bonding](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
-- [802.3ad](http://www.ieee802.org/3/ad/) ([Accessible writeup](http://cs.uccs.edu/%7Escold/doc/linkage%20aggregation.pdf))
-- [Wikipedia - Link aggregation](http://en.wikipedia.org/wiki/Link_aggregation)
+- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" text="Linux Foundation - Bonding">}}
+- {{<exlink url="http://www.ieee802.org/3/ad/" text="802.3ad">}} ({{<exlink url="http://cs.uccs.edu/%7Escold/doc/linkage%20aggregation.pdf" text="Accessible writeup">}})
+- {{<exlink url="http://en.wikipedia.org/wiki/Link_aggregation" text="Wikipedia - Link aggregation">}}

@@ -8,10 +8,6 @@ aliases:
  - /display/CL332/Prescriptive+Topology+Manager+PTM
  - /pages/viewpage.action?pageId=5868968
 pageID: 5868968
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 In data center topologies, right cabling is a time-consuming endeavor
 and is error prone. Prescriptive Topology Manager (PTM) is a dynamic

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Event+Message+Reference
  - /pages/viewpage.action?pageId=10453533
 pageID: 10453533
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 NetQ presents messages at four levels of severity: Critical, Warning,
 Info, and Debug. Recommended actions suggest NetQ CLI commands and NCLU

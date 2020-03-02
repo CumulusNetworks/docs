@@ -14,7 +14,7 @@ In Cumulus Linux 4.0, management VRF is enabled by default. This is a change fro
 
 {{%/notice%}}
 
-*Management VRF* is a subset of [VRF](../Virtual-Routing-and-Forwarding-VRF/) (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For all VRFs, the *main* routing table is the default table for all of the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
+*Management VRF* is a subset of {{<link url="Virtual-Routing-and-Forwarding-VRF">}} (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For all VRFs, the *main* routing table is the default table for all of the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
 
 Cumulus Linux only supports eth0 (or eth1, depending on the switch platform) for *out-of-band management*. The Ethernet ports are software-only ports that are not hardware accelerated by `switchd`. VLAN subinterfaces, bonds, bridges, and the front panel switch ports are not supported as OOB management interfaces.
 
@@ -82,7 +82,7 @@ For TCP, connected sockets are bound to the VRF on which the first packet is rec
 
 {{%/notice%}}
 
-The following steps show how to enable the SNMP service to run in the management VRF. You can enable any of the services listed above, except for `dhcrelay` (see [DHCP Relays](../../Layer-1-and-Switch-Ports/DHCP-Relays/)).
+The following steps show how to enable the SNMP service to run in the management VRF. You can enable any of the services listed above, except for `dhcrelay` (see {{<link url="DHCP-Relays">}}).
 
 1. If SNMP is running, stop the service:
 
@@ -151,7 +151,7 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 
 ### Enable Polling with snmpd in a Management VRF
 
-When you enable `snmpd` to run in the management VRF, you need to specify that VRF so that `snmpd` listens on eth0 in the management VRF; you can also configure `snmpd` to listen on other ports. In Cumulus Linux, SNMP configuration is VRF aware so `snmpd` can bind to multiple IP addresses each configured with a particular VRF (routing table). The `snmpd` daemon responds to polling requests on the interfaces of the VRF on which the request comes in. For information about configuring SNMP version 1, 2c, and 3 Traps and (v3) Inform messages, refer to [Simple Network Management Protocol - SNMP](../../Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/).
+When you enable `snmpd` to run in the management VRF, you need to specify that VRF so that `snmpd` listens on eth0 in the management VRF; you can also configure `snmpd` to listen on other ports. In Cumulus Linux, SNMP configuration is VRF aware so `snmpd` can bind to multiple IP addresses each configured with a particular VRF (routing table). The `snmpd` daemon responds to polling requests on the interfaces of the VRF on which the request comes in. For information about configuring SNMP version 1, 2c, and 3 Traps and (v3) Inform messages, refer to {{<link url="Simple-Network-Management-Protocol-SNMP">}}.
 
 {{%notice note%}}
 
@@ -173,7 +173,7 @@ Or:
 cumulus@switch:~$ traceroute -s <source-ip> <destination-ip>
 ```
 
-For additional information on using `ping` and `traceroute`, see [Network Troubleshooting](../../Monitoring-and-Troubleshooting/Network-Troubleshooting/).
+For additional information on using `ping` and `traceroute`, see {{<link url="Network-Troubleshooting">}}.
 
 ### Run Services as a Non-root User
 
@@ -337,11 +337,11 @@ cumulus@switch:~$ ip route get <ip-address> oif mgmt
 
 ## mgmt Interface Class
 
-In `ifupdown2`, [interface classes](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/) are used to create a user-defined grouping for interfaces. The special class *mgmt* is available to separate the management interfaces of the switch from the data interfaces. This allows you to manage the data interfaces by default using `ifupdown2` commands. Performing operations on the *mgmt* interfaces requires specifying the `--allow-mgmt` option, which prevents inadvertent outages on the management interfaces. Cumulus Linux by default brings up all interfaces in both the *auto* (default) class and the *mgmt* interface class when the switch boots.
+In `ifupdown2`, {{<link url="Interface-Configuration-and-Management#ifupdown2-interface-classes" text="interface classes">}} are used to create a user-defined grouping for interfaces. The special class *mgmt* is available to separate the management interfaces of the switch from the data interfaces. This allows you to manage the data interfaces by default using `ifupdown2` commands. Performing operations on the *mgmt* interfaces requires specifying the `--allow-mgmt` option, which prevents inadvertent outages on the management interfaces. Cumulus Linux by default brings up all interfaces in both the *auto* (default) class and the *mgmt* interface class when the switch boots.
 
 {{%notice warning%}}
 
-The management VRF interface class is not supported if you are configuring Cumulus Linux using [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/).
+The management VRF interface class is not supported if you are configuring Cumulus Linux using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
 
 {{%/notice%}}
 

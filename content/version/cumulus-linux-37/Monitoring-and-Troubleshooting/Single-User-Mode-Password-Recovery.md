@@ -9,10 +9,6 @@ aliases:
  - /pages/viewpage.action?pageId=8362606
  - /cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery
 pageID: 8362606
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery. To enter single user mode, follow the steps

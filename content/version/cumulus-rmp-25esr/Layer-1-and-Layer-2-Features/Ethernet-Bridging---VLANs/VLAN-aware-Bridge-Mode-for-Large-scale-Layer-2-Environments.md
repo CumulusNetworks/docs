@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/VLAN+aware+Bridge+Mode+for+Large+scale+Layer+2+Environments
  - /pages/viewpage.action?pageId=5116351
 pageID: 5116351
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 
 The Cumulus RMP bridge driver supports two configuration modes, one that

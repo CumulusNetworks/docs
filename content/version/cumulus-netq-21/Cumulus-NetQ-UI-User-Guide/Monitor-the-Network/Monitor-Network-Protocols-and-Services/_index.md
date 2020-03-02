@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+Network+Protocols+and+Services
  - /pages/viewpage.action?pageId=10464262
 pageID: 10464262
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 The Network Services card workflows provide a network-wide view into the
 routing, link, and virtual network protocols installed in your network.

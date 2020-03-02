@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ/Cumulus+NetQ+CLI+User+Guide
  - /pages/viewpage.action?pageId=10977536
 pageID: 10977536
-product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 This guide is intended for network administrators who are responsible
 for monitoring and troubleshooting the network in their data center

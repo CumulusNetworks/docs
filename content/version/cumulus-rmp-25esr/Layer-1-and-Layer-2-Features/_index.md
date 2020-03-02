@@ -6,9 +6,5 @@ aliases:
  - /display/RMP25ESR/Layer+1+and+Layer+2+Features
  - /pages/viewpage.action?pageId=5116336
 pageID: 5116336
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 

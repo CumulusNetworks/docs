@@ -6,10 +6,6 @@ aliases:
  - /display/CL36/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=8362087
 pageID: 8362087
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 

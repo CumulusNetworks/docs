@@ -1,7 +1,7 @@
 ---
 title: Monitor Network Elements
 author: Cumulus Networks
-weight: 97
+weight: 450
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
@@ -11,7 +11,7 @@ In addition to network performance monitoring, the Cumulus NetQ UI provides a vi
 
 Some of these views provide data that is also available through the card workflows, but these views are not treated like cards. They only provide the current status; you cannot change the time period of the views, or graph the data within the UI.
 
-Access these tables through the Main Menu (<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/>), under the **Network** heading.
+Access these tables through the Main Menu (<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>), under the **Network** heading.
 
 {{<figure src="/images/netq/main-menu-ntwk-choices-highlighted-240.png" width="400">}}
 
@@ -76,9 +76,44 @@ When WJH capabilities are combined with Cumulus NetQ, you have the ability to ho
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
 
-WJH is enabled by default on Mellanox switches and no configuration is required in Cumulus Linux 4.0.0 or NetQ 2.4.0.
+{{%notice info%}}
+By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0 or later.
 
-### Viewing What Just Happened Metrics
+```
+cumulus@<hostname>:~$ sudo apt-get update
+cumulus@<hostname>:~$ sudo apt-get install -y netq-agent
+cumulus@<hostname>:~$ netq config restart agent
+cumulus@<hostname>:~$ sudo apt-get install -y netq-apps
+cumulus@<hostname>:~$ netq config restart cli
+```
+
+{{%/notice%}}
+
+### Configure the WJH Feature
+
+WJH is enabled by default on Mellanox switches and no configuration is required in Cumulus Linux 4.0.0; however, you must enable the NetQ Agent to collect the data in NetQ 2.4.0 or later.
+
+To enable WJH in NetQ:
+
+1. Configure the NetQ Agent on the Mellanox switch.
+
+```
+cumulus@switch:~$ netq config add agent wjh
+```
+
+2. Restart the NetQ Agent to start collecting the WJH data.
+
+```
+cumulus@switch:~$ netq config restart agent
+```
+
+When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
+
+{{%notice note%}}
+Using *wjh_dump.py* on a Mellanox platform that is running Cumulus Linux 4.0 and the NetQ 2.4.0 agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run *wjh_dump.py* on a different system than the one where the NetQ Agent has WJH enabled, or disable *wjh_dump.py* and restart the NetQ Agent (run `netq config restart agent`).
+{{%/notice%}}
+
+### View What Just Happened Metrics
 
 The What Just Happened view displays events based on conditions detected in the data plane. The most recent 1000 events from the last 24 hours are presented for each drop category.
 
@@ -101,7 +136,7 @@ The What Just Happened view displays events based on conditions detected in the 
 <td><p>What Just Happened</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -237,7 +272,7 @@ The What Just Happened view displays events based on conditions detected in the 
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>

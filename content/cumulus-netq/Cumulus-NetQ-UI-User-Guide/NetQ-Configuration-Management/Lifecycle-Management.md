@@ -1,7 +1,7 @@
 ---
 title: Lifecycle Management
 author: Cumulus Networks
-weight: 602
+weight: 320
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
@@ -126,9 +126,9 @@ To view an existing snapshot:
 
 3. Click **View**.
 
-4. Click the snapshot you want to view, then click **Finish**.
+4. Click one or more snapshots you want to view, then click **Finish**.
 
-    Click **Back** or **Choose Action** to cancel viewing of your selected snapshot.
+    Click **Back** or **Choose Action** to cancel viewing of your selected snapshot(s).
 
 To remove an existing snapshot:
 
@@ -138,6 +138,6 @@ To remove an existing snapshot:
 
 3. Click **Delete**.
 
-4. Click the snapshot you want to remove, then click **Finish**.
+4. Click one or more snapshots you want to remove, then click **Finish**.
 
-    Click **Back** or **Choose Action** to cancel the deletion of your selected snapshot.
+    Click **Back** or **Choose Action** to cancel the deletion of your selected snapshot(s).

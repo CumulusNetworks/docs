@@ -6,12 +6,7 @@ aliases:
  - /display/CL321/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=5126774
 pageID: 5126774
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
-
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 
 ## Using the Serial Console</span>

@@ -6,11 +6,12 @@ aliases:
  - /display/VX30/Cumulus+VX+Getting+Started+Guide
  - /pages/viewpage.action?pageId=5126578
 pageID: 5126578
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 subsection: true
+cascade:
+  product: Cumulus VX
+  version: '3.0'
+  imgData: cumulus-vx-30
+  siteSlug: cumulus-vx-30
 ---
 Cumulus VX is a free virtual environment for cloud and network
 administrators to test the latest technology from Cumulus Networks,

@@ -6,10 +6,6 @@ aliases:
  - /display/DOCS/RADIUS+AAA
  - /pages/viewpage.action?pageId=8362559
 pageID: 8362559
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 Cumulus Networks offers add-on packages that enable
 [RADIUS](https://en.wikipedia.org/wiki/RADIUS) users to log in to

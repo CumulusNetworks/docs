@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Network+Virtualization
  - /pages/viewpage.action?pageId=5116024
 pageID: 5116024
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Cumulus Linux supports these forms of [network virtualization](http://en.wikipedia.org/wiki/Network_virtualization):
 

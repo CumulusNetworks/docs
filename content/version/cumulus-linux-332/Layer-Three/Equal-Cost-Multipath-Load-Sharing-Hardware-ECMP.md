@@ -8,10 +8,6 @@ aliases:
  - /display/CL332/Equal+Cost+Multipath+Load+Sharing+Hardware+ECMP
  - /pages/viewpage.action?pageId=5869223
 pageID: 5869223
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 Cumulus Linux supports hardware-based [equal cost
 multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing)

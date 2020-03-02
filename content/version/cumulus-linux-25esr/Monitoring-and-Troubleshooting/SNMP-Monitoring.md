@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/SNMP+Monitoring
  - /pages/viewpage.action?pageId=5115976
 pageID: 5115976
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Cumulus Linux 2.5.x utilizes the open source Net-SNMP agent `snmpd`,
 v5.4.3, which provides support for most of the common industry-wide

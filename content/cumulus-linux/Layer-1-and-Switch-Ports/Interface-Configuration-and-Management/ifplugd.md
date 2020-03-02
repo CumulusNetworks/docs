@@ -12,7 +12,7 @@ version: '4.0'
 
 ## Install ifplugd
 
-You can install this package even if the switch is not connected to the internet, as it is contained in the `cumulus-local-apt-archive` repository that is [embedded](../../../Installation-Management/Adding-and-Updating-Packages/#add-packages-from-the-cumulus-linux-local-archive/) in the Cumulus Linux disk image.
+You can install this package even if the switch is not connected to the internet, as it is contained in the `cumulus-local-apt-archive` repository that is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux disk image.
 
 To install `ifplugd`:
 

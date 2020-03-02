@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Quick+Start+Guide
  - /pages/viewpage.action?pageId=7112304
 pageID: 7112304
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 This quick start guide provides an end-to-end setup process for
 installing and running Cumulus Linux, as well as a collection of example

@@ -1,7 +1,7 @@
 ---
 title: Monitor Using Topology View
 author: Cumulus Networks
-weight: 99
+weight: 460
 product: Cumulus NetQ
 version: 2.4
 imgData: cumulus-netq
@@ -11,7 +11,7 @@ The core capabilities of Cumulus NetQ enable you to monitor your network by view
 
 ## Access the Topology View
 
-To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg", height="18", width="18"/> in any workbench header.
+To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> in any workbench header.
 
 {{<figure src="/images/netq/topo-access-from-wb-hdr-231.png" width="700">}}
 
@@ -21,7 +21,7 @@ This opens the full screen view of your network topology.
 
 This document uses the Cumulus Networks [reference topology](/cumulus-linux/Network-Solutions/Cumulus-Networks-Services-Demos/#reference-topology) for all examples.
 
-To close the view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
+To close the view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 ## Topology Overview
 
@@ -30,11 +30,11 @@ The topology view provides a visual representation of your Linux network, showin
 | Symbol | Usage |
 | :----: | ----- |
 | {{<img src="/images/netq/rocket-turtle-limed-spruce.svg" width="28" height="28">}} | Switch running Cumulus Linux OS |
-| <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/> | Switch running RedHat, Ubuntu, or CentOS |
-| <img src="https://icons.cumulusnetworks.com/12-Design/08-Grids-Rulers/grid-monitor.svg", height="18", width="18"/> | Host with unknown operating system |
+| <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> | Switch running RedHat, Ubuntu, or CentOS |
+| <img src="https://icons.cumulusnetworks.com/12-Design/08-Grids-Rulers/grid-monitor.svg" height="18" width="18"/> | Host with unknown operating system |
 | {{<img src="/images/netq/cof_white-black_hex.png" width="18" height="18">}} | Host running Ubuntu |
-| Red <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell-ring.svg", height="18", width="18"/> | Alarm (critical) event is present on the node|
-| Yellow <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg", height="18", width="18"/> | Info event is present |
+| Red <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell-ring.svg" height="18" width="18"/> | Alarm (critical) event is present on the node|
+| Yellow <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/> | Info event is present |
 | Lines | Physical links or connections |
 
 ## Interact with the Topology
@@ -77,8 +77,8 @@ From the Configuration Panel, you can view the following data about nodes and li
 | OS Name | Operating system running on the switch |
 | Platform | Vendor and name of the switch hardware |
 | Open Card/s | Opens the Event|Alarms and/or the Events|Info cards when there are events present |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell-ring.svg", height="18", width="18"/> | Number of alarm events present on the switch |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg", height="18", width="18"/> | Number of info events present on the switch |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell-ring.svg" height="18" width="18"/> | Number of alarm events present on the switch |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/> | Number of info events present on the switch |
 
 <p> </p>
 
@@ -89,9 +89,9 @@ From the Configuration Panel, you can view the following data about nodes and li
 | Target | Switch where the connection ends |
 | Target Interface | Port on the destination switch used by the connection |
 
-After reviewing the provided information, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg", height="18", width="18"/> to close the panel, or to view data for another node or link without closing the panel, simply click on that element. The panel is hidden by default.
+After reviewing the provided information, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg" height="18" width="18"/> to close the panel, or to view data for another node or link without closing the panel, simply click on that element. The panel is hidden by default.
 
-When no devices or links are selected, you can view the unique count of items in the network by clicking on the <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-2.svg", height="18", width="18"/> on the upper left to open the count summary. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg", height="18", width="18"/> to close the panel.
+When no devices or links are selected, you can view the unique count of items in the network by clicking on the <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-2.svg" height="18" width="18"/> on the upper left to open the count summary. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-left-2.svg" height="18" width="18"/> to close the panel.
 
 {{<figure src="/images/netq/topo-open-item-count-summary-230.png" width="400">}}
 

@@ -16,7 +16,7 @@ This topic describes how to configure DHCP relays for IPv4 and IPv6. Configurati
 
 {{%notice note%}}
 
-The `dhcpd` and `dhcrelay` services are disabled by default. After you finish configuring the DHCP relays and servers, you need to start those services. If you intend to run these services within a [VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/), including the [management VRF](../../Layer-3/Management-VRF/), follow [these steps](../../Layer-3/Management-VRF/). See also [Virtual Routing and Forwarding - VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/).
+The `dhcpd` and `dhcrelay` services are disabled by default. After you finish configuring the DHCP relays and servers, you need to start those services. If you intend to run these services within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.
 
 {{%/notice%}}
 
@@ -34,7 +34,7 @@ You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not the pare
 
 {{%/notice%}}
 
-Specify the IP address of each DHCP server and the interfaces that are used as the uplinks. In the example commands below, the DHCP server IP address is 172.16.1.102, VLAN 1 (the SVI is vlan1) and the uplinks are swp51 and swp52. As per [RFC 3046](https://tools.ietf.org/html/rfc3046), you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
+Specify the IP address of each DHCP server and the interfaces that are used as the uplinks. In the example commands below, the DHCP server IP address is 172.16.1.102, VLAN 1 (the SVI is vlan1) and the uplinks are swp51 and swp52. As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify as many server IP addresses that can fit in 255 octets. You can specify each address only once.
 
 ```
 cumulus@switch:~$ net add dhcp relay interface swp51
@@ -66,7 +66,7 @@ cumulus@switch:~$ sudo systemctl restart dhcrelay.service
 
 <summary>Linux Commands </summary>
 
-1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client). In the example below, the DHCP server IP address is 172.16.1.102, VLAN 1 (the SVI is vlan1) and the uplinks are swp51 and swp52. If the client-facing interface is a bridge port, specify the switch virtual interface (SVI) name if using a [VLAN-aware bridge](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/) (for example, bridge.100), or the bridge name if using traditional bridging (for example, br100).
+1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client). In the example below, the DHCP server IP address is 172.16.1.102, VLAN 1 (the SVI is vlan1) and the uplinks are swp51 and swp52. If the client-facing interface is a bridge port, specify the switch virtual interface (SVI) name if using a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}} (for example, bridge.100), or the bridge name if using traditional bridging (for example, br100).
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -149,7 +149,7 @@ cumulus@switch:~$ sudo systemctl restart dhcrelay.service
 
 When DHCP relay is required in an environment that relies on an anycast gateway (such as EVPN), a unique IP address is necessary on each device for return traffic. By default, in a BGP unnumbered environment with DHCP relay, the source IP address is set to the loopback IP address and the gateway IP address (giaddr) is set as the SVI IP address. However with anycast traffic, the SVI IP address is not unique to each rack; it is typically shared amongst all racks. Most EVPN ToR deployments only possess a single unique IP address, which is the loopback IP address.
 
-[RFC 3527](https://tools.ietf.org/html/rfc3527) enables the DHCP server to react to these environments by introducing a new parameter to the DHCP header called the link selection sub-option, which is built by the DHCP relay agent. The link selection sub-option takes on the normal role of the giaddr in relaying to the DHCP server which subnet is correlated to the DHCP request. When using this sub-option, the giaddr continues to be present but only relays the return IP address that is to be used by the DHCP server; the giaddr becomes the unique loopback IP address.
+{{<exlink url="https://tools.ietf.org/html/rfc3527" text="RFC 3527">}} enables the DHCP server to react to these environments by introducing a new parameter to the DHCP header called the link selection sub-option, which is built by the DHCP relay agent. The link selection sub-option takes on the normal role of the giaddr in relaying to the DHCP server which subnet is correlated to the DHCP request. When using this sub-option, the giaddr continues to be present but only relays the return IP address that is to be used by the DHCP server; the giaddr becomes the unique loopback IP address.
 
 When enabling RFC 3527 support, you can specify an interface, such as the loopback interface or a switch port interface to be used as the giaddr. The relay picks the first IP address on that interface. If the interface has multiple IP addresses, you can specify a specific IP address for the interface.
 
@@ -175,52 +175,52 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
 cumulus@switch:~$ net add dhcp relay giaddr-interface lo
 ```
 
-    The above command creates the following configuration in the `/etc/default/isc-dhcp-relay` file:
+   The above command creates the following configuration in the `/etc/default/isc-dhcp-relay` file:
 
 ```
 # Additional options that are passed to the DHCP relay daemon?
 OPTIONS="-U lo"
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 The first IP address on the loopback interface is typically the 127.0.0.1 address; Cumulus Networks recommends that you use more specific syntax, as shown in the next example.
 
 {{%/notice%}}
 
-    The following example uses IP address 10.0.0.1 on the loopback interface as the giaddr:
+   The following example uses IP address 10.0.0.1 on the loopback interface as the giaddr:
 
 ```
 cumulus@switch:~$ net add dhcp relay giaddr-interface lo 10.0.0.1
 ```
 
-    The above command creates the following configuration in the `/etc/default/isc-dhcp-relay` file:
+   The above command creates the following configuration in the `/etc/default/isc-dhcp-relay` file:
 
 ```
 # Additional options that are passed to the DHCP relay daemon?
 OPTIONS="-U 10.0.0.1%lo"
 ```
 
-    The following example uses the first IP address on swp2 as the giaddr:
+   The following example uses the first IP address on swp2 as the giaddr:
 
 ```
 cumulus@switch:~$ net add dhcp relay giaddr-interface swp2
 ```
 
-    The above command creates the following configuration in the `/etc/default/isc-dhcp-relay` file:
+   The above command creates the following configuration in the `/etc/default/isc-dhcp-relay` file:
 
 ```
 # Additional options that are passed to the DHCP relay daemon?
 OPTIONS="-U swp2"
 ```
 
-    The following example uses IP address 10.0.0.3 on swp2 as the giaddr:
+   The following example uses IP address 10.0.0.3 on swp2 as the giaddr:
 
 ```
 cumulus@switch:~$ net add dhcp relay giaddr-interface swp2 10.0.0.3
 ```
 
-    The above command creates the following configuration in the `/etc/default/isc-dhcp-relay` file:
+   The above command creates the following configuration in the `/etc/default/isc-dhcp-relay` file:
 
 ```
 # Additional options that are passed to the DHCP relay daemon?
@@ -248,13 +248,13 @@ cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
 OPTIONS="-U lo"
 ```
 
-    {{%notice note%}}
+   {{%notice note%}}
 
 The first IP address on the loopback interface is typically the 127.0.0.1 address; Cumulus Networks recommends that you use more specific syntax, as shown in the next example.
 
 {{%/notice%}}
 
-    The following example uses IP address 10.0.0.1 on the loopback interface as the giaddr:
+   The following example uses IP address 10.0.0.1 on the loopback interface as the giaddr:
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -263,7 +263,7 @@ cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
 OPTIONS="-U 10.0.0.1%lo"
 ```
 
-    The following example uses the first IP address on swp2 as the giaddr:
+   The following example uses the first IP address on swp2 as the giaddr:
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -272,7 +272,7 @@ cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
 OPTIONS="-U swp2"
 ```
 
-    The following example uses IP address 10.0.0.3 on swp2 as the giaddr:
+   The following example uses IP address 10.0.0.3 on swp2 as the giaddr:
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -409,7 +409,7 @@ INTF_CMD="-i swp2s2 -i swp2s3"
 OPTIONS=""
 ```
 
-    An example configuration file for IPv6 is shown below:
+   An example configuration file for IPv6 is shown below:
 
 ```
 # Defaults for isc-dhcp-relay6 initscript

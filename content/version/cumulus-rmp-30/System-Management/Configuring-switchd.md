@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Configuring+switchd
  - /pages/viewpage.action?pageId=5118680
 pageID: 5118680
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 
 `switchd` is the daemon at the heart of Cumulus RMP. It communicates

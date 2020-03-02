@@ -12,7 +12,7 @@ This chapter discusses routing on switches running Cumulus Linux.
 
 ## Manage Static Routes
 
-Static routes are added to the [FRRouting](https://frrouting.org) routing table and then the kernel routing table.
+Static routes are added to the {{<exlink url="https://frrouting.org" text="FRRouting">}} routing table and then the kernel routing table.
 
 To add static routes:
 
@@ -264,7 +264,7 @@ default via 10.0.1.2 dev eth0
 
 ### Apply a Route Map for Route Updates
 
-To apply a [route map](http://docs.frrouting.org/en/latest/routemap.html) to filter route updates from Zebra into the Linux kernel:
+To apply a {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route map">}} to filter route updates from Zebra into the Linux kernel:
 
 <details>
 
@@ -362,7 +362,7 @@ Cumulus Linux (via `switchd)`advertises the maximum number of route table entrie
 
 In addition, switches on the Tomahawk, Trident II, Trident II+, and Trident3 platforms are configured to manage route table entries using Algorithm Longest Prefix Match (ALPM). In ALPM mode, the hardware can store significantly more route entries.
 
-You can use [`cl-resource-query`](../../Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/) to determine the current table sizes on a given switch.
+You can use `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}` to determine the current table sizes on a given switch.
 
 
 ### Forwarding Table Profiles
@@ -380,7 +380,7 @@ cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf | grep forwarding_table
 forwarding_table.profile = default
 ```
 
-After you specify a different profile, [restart `switchd`](../../System-Configuration/Configuring-switchd#restart-switchd) for the change to take effect. You can see the forwarding table profile when you run `cl-resource-query`.
+After you specify a different profile, {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}} for the change to take effect. You can see the forwarding table profile when you run `cl-resource-query`.
 
 {{%notice note%}}
 
@@ -458,9 +458,9 @@ cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx
        tcam_resource.profile = default
 ```
 
-After you specify a different profile, [restart `switchd`](../../System-Configuration/Configuring-switchd#restart-switchd) for the change to take effect.
+After you specify a different profile, {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}} for the change to take effect.
 
-When [nonatomic updates](../../System-Configuration/Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode) are enabled (`acl.non_atomic_update_mode` is set to `TRUE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
+When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="nonatomic updates">}} are enabled (`acl.non_atomic_update_mode` is set to `TRUE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
 
 | Profile    | Mroute Entries | ACL Entries                |
 | ---------- | -------------- | -------------------------- |
@@ -469,7 +469,7 @@ When [nonatomic updates](../../System-Configuration/Netfilter-ACLs#nonatomic-upd
 | acl-heavy  | 450            | 2000 (IPv6) or 3500 (IPv4) |
 | ipmc-max   | 13000          | 1000 (IPv6) or 2000 (IPv4) |
 
-When [nonatomic updates](../../System-Configuration/Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode) are disabled (`acl.non_atomic_update_mode` is set to `FALSE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
+When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="nonatomic updates">}} are disabled (`acl.non_atomic_update_mode` is set to `FALSE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
 
 | Profile    | Mroute Entries | ACL Entries                |
 | ---------- | -------------- | -------------------------- |
@@ -487,6 +487,10 @@ On Broadcom switches with Cumulus Linux 4.0 and later, when there is a /32 IPv4 
 ### Do Not Delete Routes through Linux Shell
 
 Cumulus Networks recommends that you **do not** use the Linux shell to delete static routes added via FRRouting (with `vtysh` commands). Delete the routes with the `vtysh` commands; otherwise FRRouting might not be able to clean up its internal state completely, which can result in incorrect routing.
+
+### Using NCLU Commands to Delete Routing Configuration
+
+When you use NCLU commands to delete routing (FRR) configuration, such as static routes or route map rules  (multiples of which can exist in a configuration), Cumulus Networks recommends that you commit ten or fewer delete commands at a time to avoid commit failures.
 
 ### Add IPv6 Default Route with src Address on eth0 Fails without Adding Delay
 
@@ -531,7 +535,24 @@ fe80::/64 dev eth0  proto kernel  metric 256
 default via 2001:620:5ca1:160::1 dev eth0  metric 1024
 ```
 
+### Use the Same Neighbor Cache Aging Timer for IPv4 and IPv6
+
+Cumulus Linux does not support different neighbor cache aging timer settings for IPv4 and IPv6.
+
+For example, see the two settings for `neigh.default.base_reachable_time_ms` in `/etc/sysctl.d/neigh.conf`:
+
+```
+cumulus@switch:~$ sudo cat /etc/sysctl.d/neigh.conf
+
+...
+
+net.ipv4.neigh.default.base_reachable_time_ms=1080000
+net.ipv6.neigh.default.base_reachable_time_ms=1080000
+
+...
+```
+
 ## Related Information
 
-- [Linux IP - ip route command](http://linux-ip.net/html/tools-ip-route.html)
-- [FRRouting docs - static route commands](https://frrouting.org/user-guide/zebra.html#static-route-commands)
+- {{<exlink url="http://linux-ip.net/html/tools-ip-route.html" text="Linux IP - ip route command">}}
+- {{<exlink url="http://docs.frrouting.org/en/latest/static.html#static-route-commands" text="FRRouting docs - static route commands">}}

@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Configuring+a+Global+Proxy
  - /pages/viewpage.action?pageId=5115910
 pageID: 5115910
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 [Global HTTP and HTTPS proxies](https://wiki.archlinux.org/index.php/proxy_settings) 
 are configured in the `/etc/profile.d/` directory of Cumulus Linux.

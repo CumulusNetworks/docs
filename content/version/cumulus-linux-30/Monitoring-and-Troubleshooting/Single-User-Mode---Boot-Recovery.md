@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Single+User+Mode+++Boot+Recovery
  - /pages/viewpage.action?pageId=5118243
 pageID: 5118243
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery. Entering single user mode is

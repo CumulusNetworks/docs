@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Adding+and+Updating+Packages
  - /pages/viewpage.action?pageId=5118685
 pageID: 5118685
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 You use the Advanced Packaging Tool (APT) to manage additional
 applications (in the form of packages) and to install the latest

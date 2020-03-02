@@ -7,10 +7,6 @@ aliases:
  - /display/DOCS/Netfilter+-+ACLs
  - /pages/viewpage.action?pageId=8362563
 pageID: 8362563
-product: Cumulus Linux
-version: 3.7
-imgData: cumulus-linux
-siteSlug: cumulus-linux
 ---
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework
 in Cumulus Linux as well as most other Linux distributions. There are a
@@ -851,7 +847,20 @@ present.
 | Egress raw limit                 | 256                    | 0                      | 512                       | 0                         |
 | Egress limit with default rules  | 256 (29 default)       | 0                      | 512 (29 default)          | 0                         |
 
-### Broadcom Trident II+ and Trident3 Limits
+### Broadcom Trident3 Limits
+
+The Trident3 ASIC is divided into 12 slices, organized into 4 groups for ACLs. Each group contains 3 slices. Each group can support a maximum of 768 rules. You cannot mix IPv4 and IPv6 rules within the same group. IPv4 and MAC rules can be programmed into the same group.
+
+| Direction                        | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
+| -------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------------------------- |
+| Ingress raw limit                | 768                    | 768                    | 2304                      | 2304                      |
+| Ingress limit with default rules | 768 (44 default)       | 768 (41 default)       | 2304 (44 default)         | 2304 (41 default)         |
+| Egress raw limit                 | 512                    | 0                      | 512                       | 0                         |
+| Egress limit with default rules  | 512 (28 default)       | 0                      | 512 (28 default)          | 0                         |
+
+Due to a hardware limitation on Trident3 switches, certain broadcast packets that are VXLAN decapsulated and sent to the CPU do not hit the normal INPUT chain ACL rules installed with `cl-acltool`. See [Caveats and Errata](Default-Cumulus-Linux-ACL-Configuration#caveats-and-errata).
+
+### Broadcom Trident II+ Limits
 
 | Direction                        | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
 | -------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------------------------- |

@@ -8,10 +8,6 @@ aliases:
  - /display/CL25ESR/Power+over+Ethernet+PoE
  - /pages/viewpage.action?pageId=5115909
 pageID: 5115909
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Cumulus Linux supports Power over Ethernet (PoE), so certain Cumulus
 Linux switches can supply power from Ethernet switch ports to enabled

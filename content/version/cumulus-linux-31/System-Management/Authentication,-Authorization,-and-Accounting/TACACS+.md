@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/TACACS+
  - /pages/viewpage.action?pageId=5121931
 pageID: 5121931
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 {{%notice warning%}}
 

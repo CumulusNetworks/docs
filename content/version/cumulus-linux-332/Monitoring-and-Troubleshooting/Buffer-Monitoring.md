@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Buffer+Monitoring
  - /pages/viewpage.action?pageId=5868944
 pageID: 5868944
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 Monitoring [packet buffers](/version/cumulus-linux-332/Interface-Configuration-and-Management/Buffer-and-Queue-Management/)
 and their utilization is vital for proper traffic management on a

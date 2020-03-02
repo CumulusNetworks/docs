@@ -53,25 +53,19 @@ netq [<hostname>] show events [level info|level error|level warning|level critic
 ```
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-- w: week(s)
-- d: day(s)
-- h: hour(s)
-- m: minute(s)
-- s: second(s)
-- now
-
-For time ranges, the `<text-time>` is the most recent time and the
-`<text-endtime>` is the oldest time. The values do not have to have the
-same unit of measure.
-
+For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 {{%notice note%}}
-
 The keyword values for the `vendor`, `model`, `model-id`, `arch`,
 `name`, `transport`, `type`, `version`, `psu`, `temp`, and `fan`
 keywords are specific to your deployment. For example, if you have
@@ -79,7 +73,6 @@ devices with CPU architectures of only one type, say Intel x86, then
 that is the only option available for the `cpu-arch` keyword value. If
 you have multiple CPU architectures, say you also have ARMv7, then that
 would also be an option for you.
-
 {{%/notice%}}
 
 ## View a Summary of Your Network Inventory

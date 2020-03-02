@@ -3,10 +3,6 @@ title: Access the NetQ UI
 author: Cumulus Networks
 weight: 501
 pageID: 12321856
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 Logging in to the NetQ UI is as easy as opening any web page.
 

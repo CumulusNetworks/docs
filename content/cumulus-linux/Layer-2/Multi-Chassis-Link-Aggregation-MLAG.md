@@ -1363,7 +1363,7 @@ For MLAG to function properly, you must configure the dual-connected host interf
 
 ### MTU in an MLAG Configuration
 
-The {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} in MLAG traffic is determined by the bridge MTU. Bridge MTU is determined by the lowest MTU setting of an interface that is a member of the bridge. If you want to set an MTU other than the default (1500 bytes on a Broadcom switch or 9248 bytes on a Mellanox switch), you must configure the MTU on each physical interface and bond interface that are members of the MLAG bridges in the entire bridged domain.
+The {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} in MLAG traffic is determined by the bridge MTU. Bridge MTU is determined by the lowest MTU setting of an interface that is a member of the bridge. If you want to set an MTU other than the default (1500 bytes on a Broadcom switch or 9238 bytes on a Mellanox switch), you must configure the MTU on each physical interface and bond interface that are members of the MLAG bridges in the entire bridged domain.
 
 For example, if an MTU of 9216 is desired through the MLAG domain in the example shown above, **on all four leaf switches**, {{%link url="Switch-Port-Attributes#mtu" text="configure `mtu 9216`"%}} for each of the following bond interfaces, as they are members of bridge *bridge*: peerlink, uplink, server01.
 

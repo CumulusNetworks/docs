@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Troubleshooting+Network+Interfaces
  - /pages/viewpage.action?pageId=5115973
 pageID: 5115973
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 The following sections describe various ways you can troubleshoot
 `ifupdown2`.

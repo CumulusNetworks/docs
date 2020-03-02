@@ -6,10 +6,6 @@ aliases:
  - '/display/CL25ESR/Installation,+Upgrading+and+Package+Management'
  - /pages/viewpage.action?pageId=5115985
 pageID: 5115985
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 A Cumulus Linux switch can have up to two images of the operating system
 installed. This section discusses installing new and updating existing

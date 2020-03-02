@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Introduction+to+Routing+Protocols
  - /pages/viewpage.action?pageId=5118381
 pageID: 5118381
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 This chapter discusses the various routing protocols, and how to
 configure them.

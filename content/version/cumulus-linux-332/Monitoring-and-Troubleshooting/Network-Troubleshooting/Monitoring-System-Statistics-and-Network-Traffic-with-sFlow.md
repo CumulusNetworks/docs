@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow
  - /pages/viewpage.action?pageId=5868915
 pageID: 5868915
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 [sFlow](http://www.sflow.org/index.php) is a monitoring protocol that
 samples network packets, application operations, and system counters.

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ/Monitor+Switches
  - /pages/viewpage.action?pageId=12321794
 pageID: 12321794
-product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 With the NetQ UI, you can monitor individual switches separately from
 the network. You are able to view the status of services they are
@@ -47,7 +43,7 @@ The small Switch card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="24", width="24"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/></p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -101,7 +97,7 @@ The medium Switch card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="24", width="24"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/></p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -138,7 +134,7 @@ The *Attributes* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="24", width="24"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/></p></td>
 <td><p>Indicates data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -217,7 +213,7 @@ The *Utilization* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg", height="24", width="24"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg" height="24" width="24"/></p></td>
 <td><p>Indicates utilization data is for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -252,7 +248,7 @@ The *Interfaces* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/07-Data-Transfer/data-transfer-square-diagonal.svg", width="18", height="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/07-Data-Transfer/data-transfer-square-diagonal.svg" width="18" height="18"/></p></td>
 <td><p>Indicates interface statistics for a single switch</p></td>
 </tr>
 <tr class="even">
@@ -300,7 +296,7 @@ addresses, and all interfaces.
 <td><p>Switches</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></p></td>
 <td><p>Closes full screenn card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -402,7 +398,7 @@ addresses, and all interfaces.
 <td><p>Enables export of all or selected items in a CSV or JSON formatted file</p></td>
 </tr>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></p></td>
 <td><p>Enables manipulation of table display; choose columns to display and reorder columns</p></td>
 </tr>
 </tbody>
@@ -419,7 +415,7 @@ status and summary performance score and trend.
 
 To view the summary:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/>, and select Device|Switches. A dialog box opens.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/>, and select Device|Switches. A dialog box opens.
 
     {{< figure src="/images/netq/dev-switch-open-switch-card.png" width="250" >}}
 
@@ -484,7 +480,7 @@ performance with other switches.
 To view the resource utilization on a particular switch:
 
 1.  Open the large Switch card.
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg", height="18", width="18"/>.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg" height="18" width="18"/>.
 3.  The card is divided into two sections, displaying
     hardware-related performance through a series of charts.
 
@@ -503,7 +499,7 @@ If you suspect that a particular switch is having performance problems, you migh
 
 To view interface statistics:
 
-1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", width="18", height="18"/>.
+1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" width="18" height="18"/>.
 
 2. Begin typing the name of the switch of interest, and select when it appears in the suggestions list.
 
@@ -511,7 +507,7 @@ To view interface statistics:
 
 4. Click **Add**.
 
-5. Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/07-Data-Transfer/data-transfer-square-diagonal.svg", width="18", height="18"/> to open the Interface Stats tab.
+5. Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/07-Data-Transfer/data-transfer-square-diagonal.svg" width="18" height="18"/> to open the Interface Stats tab.
 
     {{<figure src="/images/netq/dev-switch-large-interfaces-tab-230.png" width="500">}}
 
@@ -541,7 +537,7 @@ To view all IP addresses:
     information, determine if it is an IPv4 or IPv6 address, and so
     forth.
 
-3.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
+3.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 To view all MAC addresses:
 
@@ -553,7 +549,7 @@ To view all MAC addresses:
 2.  Review the addresses for any anomalies, to see the associated egress
     port, associated VLANs, and so forth.
 
-3.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
+3.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 ### View All Interfaces on a Switch
 
@@ -576,7 +572,7 @@ To view all interfaces:
     shown in the **Type** column.
 6.  Verify the correct VRF interface is assigned to an interface, shown
     in the **VRF** column.
-7.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
+7.  To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 ### View All Software Packages on a Switch
 
@@ -588,7 +584,7 @@ To view all software packages:
 
     {{<figure src="/images/netq/dev-switch-fullscr-pkgs-tab-231.png" width="700">}}
 
-2. Look for packages of internest and their version and status. Sort by a particular parameter by hovering over the column and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg", height="18", width="18"/>.
+2. Look for packages of internest and their version and status. Sort by a particular parameter by hovering over the column and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.
 
 3. Optionally, export the list by selecting all or a specific package, then clicking **Export** above the table, or **Export Select** in the Edit Menu.
 
@@ -601,7 +597,7 @@ To view the disk state:
 1. Open the full-screen Switch card for a switch of interest:
 
      - Type the switch name in the Search box, then use the card size picker to open the full-screen card, or 
-     - Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="24", width="24"/> (Switches) and enter the switch name and select the full-screen card size.
+     - Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/> (Switches) and enter the switch name and select the full-screen card size.
 
 2. Select the BTRFS Utilization tab.
 
@@ -641,7 +637,7 @@ The small Switch Inventory card displays:
 
 | Item              | Description  |
 | ----------------- | ------------ |
-| <img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="22", width="22"/> | Indicates data is for switch inventory |
+| <img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="22" width="22"/> | Indicates data is for switch inventory |
 | Count             | Total number of switches in the network inventory |
 | Chart             | Distribution of overall health status during the designated time period; fresh versus rotten |
 
@@ -662,7 +658,7 @@ The medium Switch Inventory card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="22", width="22"/></p></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="22" width="22"/></p></p></td>
 <td><p>Indicates data is for switch inventory</p></td>
 </tr>
 <tr class="even">
@@ -700,7 +696,7 @@ The *Summary* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg", height="22", width="22"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="22" width="22"/></p></td>
 <td><p>Indicates data is for switch inventory</p></td>
 </tr>
 <tr class="even">
@@ -736,7 +732,7 @@ The *ASIC* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core-1.svg", height="20", width="20"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core-1.svg" height="20" width="20"/></p></td>
 <td><p>Indicates data is for ASIC information</p></td>
 </tr>
 <tr class="even">
@@ -818,7 +814,7 @@ The *Software* tab displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg", height="20", width="20"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg" height="20" width="20"/></p></td>
 <td><p>Indicates data is for software information</p></td>
 </tr>
 <tr class="even">
@@ -962,7 +958,7 @@ To view the most commonly deployed ASIC, for example:
 
 3.  If you opened the medium Switch Inventory card, switch to the large card.
 
-4.  Hover over the card, and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core-1.svg", height="18", width="18"/> to open the **ASIC** tab. Here you can more easily view the various vendors and platforms based on the ASIC deployed.
+4.  Hover over the card, and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core-1.svg" height="18" width="18"/> to open the **ASIC** tab. Here you can more easily view the various vendors and platforms based on the ASIC deployed.
 
 5.  *Hover* over the **Vendor** pie chart
     to highlight which platforms are supported by the vendor; and vice
@@ -979,7 +975,7 @@ To view the most commonly deployed ASIC, for example:
 
     {{<figure src="/images/netq/inventory-switch-large-asic-tab-vendor-selected-230.png" width="500">}}
 
-7.  To return to the complete view of vendors and platforms, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> on the filter tag.
+7.  To return to the complete view of vendors and platforms, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> on the filter tag.
 
 ### View the Number of Switches with a Particular NetQ Agent
 
@@ -1002,7 +998,7 @@ distribution by version:
 
 5.  For more detail, switch to the large Switch Inventory card.
 
-6.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg", height="20", width="20"/> to open the **Software** tab.  
+6.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg" height="20" width="20"/> to open the **Software** tab.  
 
     {{<figure src="/images/netq/inventory-switch-large-software-tab-230.png" width="500">}}
 
@@ -1016,7 +1012,7 @@ distribution by version:
 
 9.  Click either chart to focus on a particular OS or agent version.
 
-10. To return to the full view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the filter tag.
+10. To return to the full view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
 
 11. Filter the data on the card by switches that are having trouble
     communicating, by selecting *Rotten Switches* from the dropdown

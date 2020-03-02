@@ -72,7 +72,7 @@ One LDAP server can be configured per bind DN (distinguished name). Once LDAP is
 
 To create an LDAP configuration:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", width="18", height="18"/>, then select *Management* under **Admin**.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>, then select *Management* under **Admin**.
 
 2. Locate the LDAP Server Info card, and click **Configure LDAP**.
 
@@ -156,7 +156,7 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 
 ## Add LDAP Users to NetQ
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", width="18", height="18"/>, then select *Management* under **Admin**.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>, then select *Management* under **Admin**.
 
 2. Locate the User Accounts card, and click **Manage**.
 
@@ -198,13 +198,13 @@ LDAP user passwords are not stored in the NetQ database and are always authentic
 
 You can remove LDAP users in the same manner as local users.
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", width="18", height="18"/>, then select *Management* under **Admin**.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>, then select *Management* under **Admin**.
 
 2. Locate the User Accounts card, and click **Manage**.
 
 3. Select the user or users you want to remove.
 
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg", width="18", height="18"/> in the Edit menu.
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18"/> in the Edit menu.
 
 {{%notice tip%}}
 If an LDAP user is deleted in LDAP it is not automatically deleted from NetQ; however, the login credentials for these LDAP users stop working immediately.

@@ -2,10 +2,6 @@
 title: Document Format Conventions
 author: Cumulus Networks
 weight: 302
-product: Cumulus NetQ
-version: 2.3
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 
 The Cumulus NetQ documentation uses the following typographical and note conventions.

@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+the+BGP+Service
  - /pages/viewpage.action?pageId=10464593
 pageID: 10464593
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 The Cumulus NetQ UI enables operators to view the health of the BGP
 service on a network-wide and a per session basis, giving greater
@@ -253,7 +249,7 @@ sessions, and all alarms.
 <td><p>Network Services | BGP</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -417,7 +413,7 @@ To compare this data with the same data at a previous time:
 2.  Move the new card next to the original card if needed.
 
 3.  Change the time period for the data on the new card by hovering over
-    the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
+    the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
 4.  Select the time period that you want to compare with the original
     time. We chose *Past Week* for this example.  
@@ -485,7 +481,7 @@ To view switches with the most BGP alarms:
 
 1.  Open the large BGP Service card.
 
-2.  Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/>.
+2.  Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/>.
 
 3.  Select **SWITCHES WITH MOST ALARMS** from the filter above the
     table.  
@@ -552,7 +548,7 @@ click the **All Switches** tab.
 
 {{% imgOld 38 %}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/> in the top right corner.
 
 ### View Details for All BGP Sessions
 
@@ -564,7 +560,7 @@ click the **All Sessions** tab.
 
 {{% imgOld 40 %}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/> in the top right corner.
 
 ### Take Actions on Data Displayed in Results List
 
@@ -658,7 +654,7 @@ The small BGP Session card displays:
 <tbody>
 <tr class="odd">
 <td><p</p>
-<p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="18", width="18"/></p></td>
+<p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="even">
@@ -699,7 +695,7 @@ The medium BGP Session card displays:
 <td><p>Range of time in which the displayed data was collected; applies to all card sizes</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="18" width="18"/></p></td>
 <td><p>Indicates data is for a single session of a Network Service or Protocol</p></td>
 </tr>
 <tr class="odd">
@@ -803,7 +799,7 @@ card sizes
 
 <td class="confluenceTd" rowspan="1" colspan="1">
 
-<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="18", width="18"/>
+<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="18" width="18"/>
 
 </td>
 
@@ -1243,7 +1239,7 @@ To view the configuration file changes:
 
 1.  Open the large BGP Session card.
 
-2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/> to open the **BGP Configuration File Evolution** tab.
+2.  Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> to open the **BGP Configuration File Evolution** tab.
 
 3.  Select the time of interest on the left; when a change may have
     impacted the performance. Scroll down if needed.
@@ -1272,7 +1268,7 @@ click the **All BGP Sessions** tab.
 
 {{% imgOld 75 %}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/> in the top right corner.
 
 ### View All Events
 
@@ -1284,4 +1280,4 @@ the **All Events** tab.
 
 {{% imgOld 77 %}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/> in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/> in the top right corner.

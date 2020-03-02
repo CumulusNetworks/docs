@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Open+Shortest+Path+First+++OSPF+++Protocol
  - /pages/viewpage.action?pageId=5122126
 pageID: 5122126
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 OSPFv2 is a [link-state routing
 protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for

@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/VXLAN+Routing
  - /pages/viewpage.action?pageId=8357513
 pageID: 8357513
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 VXLAN routing, sometimes referred to as *inter-VXLAN routing*, provides
 IP routing between VXLAN VNIs in overlay networks. The routing of

@@ -8,10 +8,6 @@ aliases:
  - /display/CL34/Lightweight+Network+Virtualization+-+LNV+Overview
  - /pages/viewpage.action?pageId=7112485
 pageID: 7112485
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 Lightweight Network Virtualization (LNV) is a technique for deploying
 [VXLANs](/version/cumulus-linux-343/Network-Virtualization/) without a

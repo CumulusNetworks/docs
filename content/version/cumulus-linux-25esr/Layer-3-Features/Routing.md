@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Routing
  - /pages/viewpage.action?pageId=5116102
 pageID: 5116102
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 This chapter discusses routing on switches running Cumulus Linux.
 

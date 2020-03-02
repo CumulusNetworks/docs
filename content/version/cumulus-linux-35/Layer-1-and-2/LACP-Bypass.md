@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/LACP+Bypass
  - /pages/viewpage.action?pageId=8357472
 pageID: 8357472
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 On Cumulus Linux, *LACP Bypass* is a feature that allows a
 [bond](/version/cumulus-linux-35/Layer-1-and-2/Bonding-Link-Aggregation)

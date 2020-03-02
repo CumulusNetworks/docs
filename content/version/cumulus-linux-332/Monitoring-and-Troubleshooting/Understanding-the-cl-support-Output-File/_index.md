@@ -6,10 +6,6 @@ aliases:
  - /display/CL332/Understanding+the+cl+support+Output+File
  - /pages/viewpage.action?pageId=5868918
 pageID: 5868918
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---
 The `cl-support` command generates an archive of useful information for
 troubleshooting that can be auto-generated or manually created. To

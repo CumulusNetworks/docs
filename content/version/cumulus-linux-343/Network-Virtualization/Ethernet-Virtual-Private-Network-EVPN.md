@@ -8,10 +8,6 @@ aliases:
  - /display/CL34/Ethernet+Virtual+Private+Network+EVPN
  - /pages/viewpage.action?pageId=7112514
 pageID: 7112514
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 Ethernet Virtual Private Network (EVPN) provides a control plane for
 [VXLANs](/version/cumulus-linux-343/Network-Virtualization/) in Cumulus

@@ -3,10 +3,6 @@ title: Focus Your Monitoring Using Workbenches
 author: Cumulus Networks
 weight: 507
 pageID: 12321856
-product: Cumulus NetQ
-version: 2.2
-imgData: cumulus-netq-22
-siteSlug: cumulus-netq-22
 ---
 Workbenches are an integral structure of the Cumulus NetQ application. They are where you collect and view the data that is important to you.
 
@@ -39,7 +35,7 @@ You can create and save as many workbenches as suit your needs. For example, cre
 
 To create a workbench:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg", height="18", width="18"/> in the workbench header.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> in the workbench header.
 
       {{< figure src="/images/netq/add-workbench-modal.png" width="200" >}}
 
@@ -57,7 +53,7 @@ Once you have created a custom workbench, you can save any changes you make to i
 
 To save a workbench:
 
-1. When you have the workbench open, click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/11-Floppy-Disks/floppy-disk-2.svg", height="18", width="18"/> in the workbench header.
+1. When you have the workbench open, click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/11-Floppy-Disks/floppy-disk-2.svg" height="18" width="18"/> in the workbench header.
 
       {{< figure src="/images/netq/save-custom-wb.png" width="200" >}}
 

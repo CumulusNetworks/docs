@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Configure+Optional+NetQ+Capabilities
  - /pages/viewpage.action?pageId=10453429
 pageID: 10453429
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 After you have installed the Telemetry Server and the NetQ Agents, you
 may want to configure some of the additional capabilities that NetQ

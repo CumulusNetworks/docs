@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Spanning+Tree+and+Rapid+Spanning+Tree
  - /pages/viewpage.action?pageId=5127614
 pageID: 5127614
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 
 Spanning tree protocol (STP) is always recommended in layer 2

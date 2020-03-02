@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Resource+Diagnostics+Using+cl+resource+query
  - /pages/viewpage.action?pageId=5116325
 pageID: 5116325
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 You can use ` cl-resource-query  `to retrieve information about host
 entries, MAC entries, L2 and L3 routes, and ingress and degrees ACL

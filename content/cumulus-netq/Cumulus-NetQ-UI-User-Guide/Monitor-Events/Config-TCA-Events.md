@@ -128,13 +128,13 @@ Now that you know which events are supported and how to set the scope, you can c
 
 To create a TCA rule:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the Main Menu.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
 
     {{<figure src="/images/netq/main-menu-tca-selected-241.png" width="600">}}
 
 2. Click *Threshold Crossing Rules* under **Notifications**.
 
-3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg", height="18", width="18"/> to add a rule.
+3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> to add a rule.
 
     The Create TCA Rule dialog opens. Three steps create the rule.
 
@@ -172,7 +172,7 @@ This example shows two rules. The rule on the left triggers an informational eve
 
 ## View All TCA Rules
 
-You can view all of the threshold-crossing event rules you have created by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> and then selecting *Threshold Crossing Rules* under **Notifications**.
+You can view all of the threshold-crossing event rules you have created by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and then selecting *Threshold Crossing Rules* under **Notifications**.
 
 ## Modify TCA Rules
 
@@ -180,13 +180,13 @@ You can modify the threshold value and scope of any existing rules.
 
 To edit a rule:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the Main Menu.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
 
 2. Click *Threshold Crossing Rules* under **Notifications**.
 
 3. Locate the rule you want to modify and hover over the card.
 
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg", height="18", width="18"/>.
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/tca-edit-rule-241.png" width="200">}}
 
@@ -218,7 +218,7 @@ To suppress a rule for a designated amount of time, you must change the state of
 
 To suppress a rule:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the Main Menu.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
 
 2. Click *Threshold Crossing Rules* under **Notifications**.
 
@@ -246,7 +246,7 @@ To disable a rule until you want to manually re-enable it, you must change the s
 
 To disable a rule that is currently active:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the Main Menu.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
 
 2. Click *Threshold Crossing Rules* under **Notifications**.
 
@@ -268,7 +268,7 @@ To disable a rule that is currently active:
 
 To disable a rule that is currently suppressed:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the Main Menu.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
 
 2. Click *Threshold Crossing Rules* under **Notifications**.
 
@@ -288,13 +288,13 @@ You might find that you no longer want to received event notifications for a par
 
 To delete a rule:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg", height="18", width="18"/> to open the Main Menu.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
 
 2. Click *Threshold Crossing Rules* under **Notifications**.
 
 3. Locate the rule you want to remove and hover over the card.
 
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg", height="18", width="18"/>.
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
 
 {{<figure src="/images/netq/tca-delete-rule-241.png" width="200">}}
 

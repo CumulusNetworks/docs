@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Configuring+and+Managing+Network+Interfaces
  - /pages/viewpage.action?pageId=5118733
 pageID: 5118733
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 
 `ifupdown` is the network interface manager for Cumulus RMP. Cumulus RMP

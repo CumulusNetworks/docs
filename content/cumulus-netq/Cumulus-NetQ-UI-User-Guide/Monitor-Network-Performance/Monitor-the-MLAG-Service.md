@@ -41,7 +41,7 @@ The small MLAG Service card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
 <td>Indicates data is for all sessions of a Network Service or Protocol</td>
 </tr>
 <tr class="even">
@@ -49,11 +49,11 @@ The small MLAG Service card displays:
 <td>MLAG: All MLAG Sessions, or the MLAG Service</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
 <td>Total number of switches with the MLAG service enabled during the designated time period</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
 <td>Total number of MLAG-related alarms received during the designated time period</td>
 </tr>
 <tr class="odd">
@@ -84,7 +84,7 @@ The medium MLAG Service card displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
 <td>Indicates data is for all sessions of a Network Service or Protocol</td>
 </tr>
 <tr class="odd">
@@ -92,19 +92,19 @@ The medium MLAG Service card displays:
 <td>Network Services | All MLAG Sessions</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
 <td>Total number of switches with the MLAG service enabled during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
 <td>Total number of MLAG-related alarms received during the designated time period</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/11-Pins-Style%20Two/style-two-pin-off-map.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/11-Pins-Style%20Two/style-two-pin-off-map.svg" height="18" width="18"/></td>
 <td>Total number of sessions with an inactive backup IP address during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/27-Link-Unlink/link-broken-1.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/27-Link-Unlink/link-broken-1.svg" height="18" width="18"/></td>
 <td>Total number of bonds with only a single connection during the designated time period</td>
 </tr>
 <tr class="even">
@@ -147,7 +147,7 @@ The *All MLAG Sessions* summary tab which displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
 <td>Indicates data is for all sessions of a Network Service or Protocol</td>
 </tr>
 <tr class="odd">
@@ -155,11 +155,11 @@ The *All MLAG Sessions* summary tab which displays:
 <td>All MLAG Sessions Summary</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
 <td>Total number of switches with the MLAG service enabled during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
 <td>Total number of MLAG-related alarms received during the designated time period</td>
 </tr>
 <tr class="even">
@@ -208,7 +208,7 @@ The *All MLAG Alarms* tab which displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in header)</td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
 <td>Indicates alarm data for all MLAG sessions</td>
 </tr>
 <tr class="odd">
@@ -216,11 +216,11 @@ The *All MLAG Alarms* tab which displays:
 <td>Network Services | All MLAG Alarms (visible when you hover over card)</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
 <td>Total number of switches with the MLAG service enabled during the designated time period</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/> (in summary bar)</td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
 <td>Total number of MLAG-related alarms received during the designated time period</td>
 </tr>
 <tr class="even">
@@ -261,12 +261,16 @@ sessions, and all alarms.
 <td>Network Services | MLAG</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
 <td>Closes full screen card and returns to workbench</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
 </tr>
 <tr class="even">
 <td>Results</td>
@@ -400,7 +404,7 @@ To compare this data with the same data at a previous time:
 
 2. Move the new card next to the original card if needed.
 
-3. Change the time period for the data on the new card by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg", height="18", width="18"/>.
+3. Change the time period for the data on the new card by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
 4. Select the time period that you want to compare with the current time. You can now see whether there are significant differences between this time period and the previous time period.  
 
@@ -438,7 +442,7 @@ To view switches with most MLAG alarms:
 
 1. Open the large MLAG Service card.
 
-2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/>.
+2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/>.
 
 3. Select **Events by Most Active Device** from the filter above the table.
 
@@ -462,7 +466,7 @@ To view all MLAG events:
 
 2. Click **All Alarms** tab.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-all-alarms-tab-230.png" width="700">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-all-alarms-tab-241.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options include:
 
@@ -471,8 +475,8 @@ Where to go next depends on what data you see, but a few options include:
     - by **Message** to determine the frequency of particular events
     - by **Severity** to determine the most critical events
     - by **Time** to find events that may have occurred at a particular time to try to correlate them with other system events
-- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg", height="18", width="18"/>
-- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner
+- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>
+- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner
 
 ### View Details About All Switches Running MLAG
 
@@ -480,9 +484,9 @@ You can view all stored attributes of all switches running MLAG in your network 
 
 To view all switch details, open the full screen MLAG Service card, and click the **All Switches** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-all-switches-tab-230.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-all-switches-tab-241.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner.
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 Use the icons above the table to select/deselect, filter, and export items in the list. Refer to [Table Settings](../../NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings) for more detail. To return to original display of results, click the associated tab.
 
@@ -491,7 +495,7 @@ Use the icons above the table to select/deselect, filter, and export items in th
 With NetQ, you can monitor the number of nodes running the MLAG service, view switches with the most peers alive and not alive, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to [Multi-Chassis Link Aggregation - MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
 
 {{%notice note%}}
-To access the single session cards, you must open the full screen MLAG Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg",  height="18", width="18"/> (Open Cards).
+To access the single session cards, you must open the full screen MLAG Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Cards).
 {{%/notice%}}
 
 ### Granularity of Data Shown Based on Time Period
@@ -528,7 +532,7 @@ The small MLAG Session card displays:
 </thead>
 <tbody>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
 <td>Indicates data is for a single session of a Network Service or Protocol</td>
 </tr>
 <tr class="even">
@@ -540,8 +544,8 @@ The small MLAG Session card displays:
 <td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session.</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></td>
-<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
 </tr>
 </tbody>
 </table>
@@ -567,7 +571,7 @@ The medium MLAG Session card displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
 <td>Indicates data is for a single session of a Network Service or Protocol</td>
 </tr>
 <tr class="odd">
@@ -575,12 +579,12 @@ The medium MLAG Session card displays:
 <td>Network Services | MLAG Session</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></td>
-<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open associated device card.</td>
+<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></td>
-<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
 </tr>
 <tr class="even">
 <td>Time period (above chart)</td>
@@ -632,7 +636,7 @@ The *Session Summary* tab displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg", height="22", width="22"/></td>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
 <td>Indicates data is for a single session of a Network Service or Protocol</td>
 </tr>
 <tr class="odd">
@@ -640,12 +644,12 @@ The *Session Summary* tab displays:
 <td>(Network Services | MLAG Session) Session Summary</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></td>
-<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open associated device card.</td>
+<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></td>
-<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
 </tr>
 <tr class="even">
 <td>Alarm Count Chart</td>
@@ -715,7 +719,7 @@ The *Configuration File Evolution* tab displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
 <td>Indicates configuration file information for a single session of a Network Service or Protocol</td>
 </tr>
 <tr class="odd">
@@ -723,12 +727,12 @@ The *Configuration File Evolution* tab displays:
 <td>(Network Services | MLAG Session) Configuration File Evolution</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/></td>
-<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> to open associated device card.</td>
+<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
 </tr>
 <tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></td>
-<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg", height="18", width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg", height="18", width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
 </tr>
 <tr class="even">
 <td>Timestamps</td>
@@ -765,12 +769,16 @@ and all events.
 <td>Network Services | MLAG</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/></td>
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
 <td>Closes full screen card and returns to workbench</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg", height="14", width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
 </tr>
 <tr class="even">
 <td>Results</td>
@@ -868,7 +876,7 @@ To view the configuration file changes:
 
 1. Open the large MLAG Session card.
 
-2. Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg", height="18", width="18"/> to open the **Configuration File Evolution** tab.
+2. Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> to open the **Configuration File Evolution** tab.
 
 3. Select the time of interest on the left; when a change may have impacted the performance. Scroll down if needed.
 
@@ -896,8 +904,8 @@ Where to go next depends on what data you see, but a few options include:
 - Sort on other parameters:
     - by **Single Bonds** to determine which interface sets are only connected to one of the switches
     - by **Backup IP and Backup IP Active** to determine if the correct backup IP address is specified for the service
-- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg", height="18", width="18"/>
-- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner
+- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>
+- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner
 
 ### View All MLAG Session Events
 
@@ -905,7 +913,7 @@ You can view all of the alarm and info events for the two devices on this card.
 
 To view all events, open the full screen MLAG Session card, and click the **All Events** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-mlag-fullscr-events-tab-230.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-mlag-fullscr-events-tab-241.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options include:
 
@@ -914,5 +922,5 @@ Where to go next depends on what data you see, but a few options include:
     - by **Message** to determine the frequency of particular events
     - by **Severity** to determine the most critical events
     - by **Time** to find events that may have occurred at a particular time to try to correlate them with other system events
-- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg", height="18", width="18"/>
-- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="14", width="14"/> in the top right corner
+- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>
+- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner

@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Troubleshooting+the+support+Directory
  - /pages/viewpage.action?pageId=5115972
 pageID: 5115972
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 The `support` directory is unique in the fact that it is not a copy of
 the switch's filesystem. Actually, it is the output from various

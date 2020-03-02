@@ -64,7 +64,7 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 
         Select the standalone single-server arrangements for smaller, simpler deployments. Be sure to consider the capabilities and resources needed on this server to support the size of your final deployment.
 
-        Select the three-server cluster arrangement to obtain scalability, high availability, and/or failover for your network. With this release, you must have one master and two worker nodes.
+        Select the three-server cluster arrangement to obtain scalability, high availability, and/or failover for your network. With the NetQ 2.4.0 release, you must have one master and two worker nodes. With the NetQ 2.4.1 release and later, you can configure up to seven additional worker nodes, for a total of nine.
 
         {{<figure src="/images/netq/adminui-server-arrange-240.png" width="700" caption="Select arrangement">}}
 

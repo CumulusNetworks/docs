@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Redistribute+Neighbor
  - /pages/viewpage.action?pageId=7112694
 pageID: 7112694
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 *Redistribute neighbor* provides a mechanism for IP subnets to span
 racks without forcing the end hosts to run a routing protocol.

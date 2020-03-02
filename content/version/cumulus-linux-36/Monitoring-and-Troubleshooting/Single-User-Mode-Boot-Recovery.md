@@ -8,10 +8,6 @@ aliases:
  - /display/CL36/Single+User+Mode+Boot+Recovery
  - /pages/viewpage.action?pageId=8362101
 pageID: 8362101
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery. To enter single user mode, follow the steps

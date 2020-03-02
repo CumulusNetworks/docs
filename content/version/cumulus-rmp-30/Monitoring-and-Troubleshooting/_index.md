@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Monitoring+and+Troubleshooting
  - /pages/viewpage.action?pageId=5118688
 pageID: 5118688
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 This chapter introduces monitoring and troubleshooting Cumulus RMP.
 

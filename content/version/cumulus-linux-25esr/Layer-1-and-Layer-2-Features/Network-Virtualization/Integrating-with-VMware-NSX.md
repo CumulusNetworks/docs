@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Integrating+with+VMware+NSX
  - /pages/viewpage.action?pageId=5116025
 pageID: 5116025
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Switches running Cumulus Linux can integrate with VMware NSX to act as
 VTEP gateways. The VMware NSX controller provides consistent

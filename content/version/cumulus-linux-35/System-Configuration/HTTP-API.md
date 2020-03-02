@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/HTTP+API
  - /pages/viewpage.action?pageId=8357373
 pageID: 8357373
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 Cumulus Linux 3.4+ implements an HTTP application programing interface
 to [OpenStack ML2

@@ -6,10 +6,6 @@ aliases:
  - /display/RMP30/Using+sudo+to+Delegate+Privileges
  - /pages/viewpage.action?pageId=5118676
 pageID: 5118676
-product: Cumulus RMP
-version: 3.0.1
-imgData: cumulus-rmp-30
-siteSlug: cumulus-rmp-30
 ---
 By default, Cumulus RMP has two user accounts: *root* and *cumulus*. The
 *cumulus* account is a normal user and is in the group *sudo*.

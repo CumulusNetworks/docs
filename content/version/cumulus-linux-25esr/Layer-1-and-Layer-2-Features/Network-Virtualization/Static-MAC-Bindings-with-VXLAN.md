@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Static+MAC+Bindings+with+VXLAN
  - /pages/viewpage.action?pageId=5116068
 pageID: 5116068
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Cumulus Linux includes native Linux VXLAN kernel support.
 

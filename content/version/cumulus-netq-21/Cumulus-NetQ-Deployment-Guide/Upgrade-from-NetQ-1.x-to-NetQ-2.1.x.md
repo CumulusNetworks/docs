@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Upgrade+from+NetQ+1.x+to+NetQ+2.1.x
  - /pages/viewpage.action?pageId=10464070
 pageID: 10464070
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 This document describes the steps required to upgrade from NetQ 1.x to
 NetQ 2.1.x.

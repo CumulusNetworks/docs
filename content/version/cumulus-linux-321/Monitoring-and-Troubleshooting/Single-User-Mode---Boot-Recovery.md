@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Single+User+Mode+++Boot+Recovery
  - /pages/viewpage.action?pageId=5126790
 pageID: 5126790
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 Use single user mode to assist in troubleshooting system boot issues or
 for password recovery. To enter single user mode, follow steps below.

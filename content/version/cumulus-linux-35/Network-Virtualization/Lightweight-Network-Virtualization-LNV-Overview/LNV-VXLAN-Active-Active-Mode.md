@@ -6,10 +6,6 @@ aliases:
  - /display/CL35/LNV+VXLAN+Active+Active+Mode
  - /pages/viewpage.action?pageId=8357503
 pageID: 8357503
-product: Cumulus Linux
-version: '3.5'
-imgData: cumulus-linux-35
-siteSlug: cumulus-linux-35
 ---
 *LNV active-active mode* allows a pair of
 [MLAG](/version/cumulus-linux-35/Layer-1-and-2/Multi-Chassis-Link-Aggregation-MLAG/) 

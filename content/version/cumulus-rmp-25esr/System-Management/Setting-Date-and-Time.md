@@ -6,10 +6,6 @@ aliases:
  - /display/RMP25ESR/Setting+Date+and+Time
  - /pages/viewpage.action?pageId=5116309
 pageID: 5116309
-product: Cumulus RMP
-version: 2.5 ESR
-imgData: cumulus-rmp-25esr
-siteSlug: cumulus-rmp-25esr
 ---
 Setting the time zone, date and time requires root privileges; use
 `sudo`.

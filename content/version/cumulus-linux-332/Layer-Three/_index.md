@@ -6,8 +6,4 @@ aliases:
  - /display/CL332/Layer+Three
  - /pages/viewpage.action?pageId=5869193
 pageID: 5869193
-product: Cumulus Linux
-version: 3.3.2
-imgData: cumulus-linux-332
-siteSlug: cumulus-linux-332
 ---

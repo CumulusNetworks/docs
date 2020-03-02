@@ -6,10 +6,6 @@ aliases:
  - /display/CL321/Managing+Cumulus+Linux+Disk+Images
  - /pages/viewpage.action?pageId=5126814
 pageID: 5126814
-product: Cumulus Linux
-version: 3.2.1
-imgData: cumulus-linux-321
-siteSlug: cumulus-linux-321
 ---
 The Cumulus Linux operating system resides on a switch as a *disk
 image*. This section discusses how to manage the image, including

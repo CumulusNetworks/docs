@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Cumulus+Networks+Services+Demos
  - /pages/viewpage.action?pageId=5116152
 pageID: 5116152
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 The Cumulus Networks Services team demos provide a virtual environment
 built using either VirtualBox or `libvirt` using Vagrant to manage the

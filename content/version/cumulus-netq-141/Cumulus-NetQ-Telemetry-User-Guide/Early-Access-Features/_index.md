@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ141/Early+Access+Features
  - /pages/viewpage.action?pageId=10453494
 pageID: 10453494
-product: Cumulus NetQ
-version: 1.4.1
-imgData: cumulus-netq-141
-siteSlug: cumulus-netq-141
 ---
 NetQ has [early access](https://support.cumulusnetworks.com/hc/en-us/articles/202933878-Early-Access-Features-Defined) features that provide advanced access to new functionality before it
 becomes generally available. The following features are early access in NetQ 1.4:

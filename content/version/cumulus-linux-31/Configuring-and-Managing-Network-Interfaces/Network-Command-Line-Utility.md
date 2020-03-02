@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Network+Command+Line+Utility
  - /pages/viewpage.action?pageId=5122114
 pageID: 5122114
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 {{%notice warning%}}
 

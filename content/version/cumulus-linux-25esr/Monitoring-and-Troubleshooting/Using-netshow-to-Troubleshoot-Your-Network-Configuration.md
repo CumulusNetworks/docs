@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Using+netshow+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=5115984
 pageID: 5115984
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 `netshow` is a tool in Cumulus Linux that quickly returns a lot of
 information about your network configuration. It's a tool designed by

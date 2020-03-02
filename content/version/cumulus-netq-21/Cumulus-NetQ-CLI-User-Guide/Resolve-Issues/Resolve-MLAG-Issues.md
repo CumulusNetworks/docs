@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Resolve+MLAG+Issues
  - /pages/viewpage.action?pageId=10464109
 pageID: 10464109
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 This topic outlines a few scenarios that illustrate how you use NetQ to
 troubleshoot

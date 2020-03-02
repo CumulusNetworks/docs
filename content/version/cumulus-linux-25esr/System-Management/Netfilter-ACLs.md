@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Netfilter+++ACLs
  - /pages/viewpage.action?pageId=5115908
 pageID: 5115908
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework
 in Cumulus Linux as well as most other Linux distributions. `iptables`,

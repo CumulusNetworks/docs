@@ -6,10 +6,6 @@ aliases:
  - /display/RMP321/Using+NCLU+to+Troubleshoot+Your+Network+Configuration
  - /pages/viewpage.action?pageId=5127563
 pageID: 5127563
-product: Cumulus RMP
-version: 3.2.1
-imgData: cumulus-rmp-321
-siteSlug: cumulus-rmp-321
 ---
 The [Network Command Line
 Utility](/version/cumulus-rmp-321/System-Configuration/Network-Command-Line-Utility)

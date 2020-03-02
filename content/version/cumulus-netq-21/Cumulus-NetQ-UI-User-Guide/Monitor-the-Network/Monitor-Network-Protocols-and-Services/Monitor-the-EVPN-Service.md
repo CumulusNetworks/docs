@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ21/Monitor+the+EVPN+Service
  - /pages/viewpage.action?pageId=10464665
 pageID: 10464665
-product: Cumulus NetQ
-version: '2.1'
-imgData: cumulus-netq-21
-siteSlug: cumulus-netq-21
 ---
 The Cumulus NetQ UI enables operators to view the health of the EVPN
 service on a network-wide and a per session basis, giving greater
@@ -251,7 +247,7 @@ sessions, all alarms.
 <td><p>Network Services | EVPN</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">
@@ -523,7 +519,7 @@ To view switches with the most EVPN alarms:
 
 1.  Open the large EVPN Service card.
 
-2.  Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/>.
+2.  Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/>.
 
 3.  Select **EVENTS BY MOST ACTIVE DEVICE** from the filter above the
     table.  
@@ -789,7 +785,7 @@ and all events.
 <td><p>Network Services | EVPN</p></td>
 </tr>
 <tr class="even">
-<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg", height="18", width="18"/></p></td>
+<td><p><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="18" width="18"/></p></td>
 <td><p>Closes full screen card and returns to workbench</p></td>
 </tr>
 <tr class="odd">

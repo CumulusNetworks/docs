@@ -7,10 +7,6 @@ aliases:
  - /display/CL36/Simple+Network+Management+Protocol+SNMP+Monitoring
  - /pages/viewpage.action?pageId=8362103
 pageID: 8362103
-product: Cumulus Linux
-version: '3.6'
-imgData: cumulus-linux-36
-siteSlug: cumulus-linux-36
 ---
 Cumulus Linux uses the open source Net-SNMP agent `snmpd`, version 5.7,
 which provides support for most of the common industry-wide MIBs,

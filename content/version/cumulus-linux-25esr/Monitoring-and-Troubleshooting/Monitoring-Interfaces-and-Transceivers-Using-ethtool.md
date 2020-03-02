@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Monitoring+Interfaces+and+Transceivers+Using+ethtool
  - /pages/viewpage.action?pageId=5115963
 pageID: 5115963
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 The `ethtool` command enables you to query or control the network driver
 and hardware settings. It takes the device name (like swp1) as an

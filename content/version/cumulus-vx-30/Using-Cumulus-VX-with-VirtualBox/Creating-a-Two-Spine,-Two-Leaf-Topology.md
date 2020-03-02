@@ -6,10 +6,6 @@ aliases:
  - '/display/VX30/Creating+a+Two+Spine,+Two+Leaf+Topology'
  - /pages/viewpage.action?pageId=5126584
 pageID: 5126584
-product: Cumulus VX
-version: '3.0'
-imgData: cumulus-vx-30
-siteSlug: cumulus-vx-30
 ---
 To create a two-spine/two-leaf configuration, you start by importing the
 OVA image into VirtualBox four times, as each instance of the VM

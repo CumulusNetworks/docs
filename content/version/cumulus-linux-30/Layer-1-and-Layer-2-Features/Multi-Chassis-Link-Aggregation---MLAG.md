@@ -6,10 +6,6 @@ aliases:
  - /display/CL30/Multi+Chassis+Link+Aggregation+++MLAG
  - /pages/viewpage.action?pageId=5118344
 pageID: 5118344
-product: Cumulus Linux
-version: 3.0.1
-imgData: cumulus-linux-30
-siteSlug: cumulus-linux-30
 ---
 
 Multi-Chassis Link Aggregation, or MLAG, enables a server or switch with

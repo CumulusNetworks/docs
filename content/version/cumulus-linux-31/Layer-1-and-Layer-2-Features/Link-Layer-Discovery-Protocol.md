@@ -6,10 +6,6 @@ aliases:
  - /display/CL31/Link+Layer+Discovery+Protocol
  - /pages/viewpage.action?pageId=5122001
 pageID: 5122001
-product: Cumulus Linux
-version: 3.1.2
-imgData: cumulus-linux-31
-siteSlug: cumulus-linux-31
 ---
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery
 Protocol, or LLDP) standard. LLDP allows you to know which ports are

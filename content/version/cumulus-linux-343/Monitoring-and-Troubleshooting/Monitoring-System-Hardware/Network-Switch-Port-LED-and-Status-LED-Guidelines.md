@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Network+Switch+Port+LED+and+Status+LED+Guidelines
  - /pages/viewpage.action?pageId=7112352
 pageID: 7112352
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 Data centers today have a large number of network switches manufactured
 by different hardware vendors running NOSes (network operating system)

@@ -42,7 +42,7 @@ Users with either administrative or user roles can create and save as many custo
 
 To create a workbench:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg", height="18", width="18"/> in the workbench header.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> in the workbench header.
 
       {{<figure src="/images/netq/add-custom-workbench-modal-230.png" width="200">}}
 
@@ -50,7 +50,7 @@ To create a workbench:
 
 3. Click **Create** to open a blank new workbench, or **Cancel** to discard the workbench.
 
-4. Add cards to the workbench using <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg", height="18", width="18"/> or <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg", height="18", width="18"/>.
+4. Add cards to the workbench using <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> or <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>.
 
 Refer to [Access Data with Cards](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards) for information about interacting with cards on your workbenches.
 
@@ -60,7 +60,7 @@ Once you have created a number of custom workbenches, you might find that you no
 
 To remove a workbench:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg", height="18", width="18"/> in the application header to open the **User Settings** options.
+1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
 

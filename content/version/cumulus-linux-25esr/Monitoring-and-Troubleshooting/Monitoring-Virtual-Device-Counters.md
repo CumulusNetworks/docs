@@ -6,10 +6,6 @@ aliases:
  - /display/CL25ESR/Monitoring+Virtual+Device+Counters
  - /pages/viewpage.action?pageId=5115974
 pageID: 5115974
-product: Cumulus Linux
-version: 2.5 ESR
-imgData: cumulus-linux-25esr
-siteSlug: cumulus-linux-25esr
 ---
 Cumulus Linux gathers statistics for VXLANs and VLANs using virtual
 device counters. These counters are supported on Trident II-based

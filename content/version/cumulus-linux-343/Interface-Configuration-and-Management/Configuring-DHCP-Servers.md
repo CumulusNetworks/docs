@@ -6,10 +6,6 @@ aliases:
  - /display/CL34/Configuring+DHCP+Servers
  - /pages/viewpage.action?pageId=7112632
 pageID: 7112632
-product: Cumulus Linux
-version: 3.4.3
-imgData: cumulus-linux-343
-siteSlug: cumulus-linux-343
 ---
 To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP server
 twice: once for IPv4 and once for IPv6. The following configuration uses

@@ -11,4 +11,4 @@ Alarms card workflow tracks critical severity events, whereas the Info
 card workflow tracks all warning, info, and debug severity events.
 
 To focus on events from a single device perspective, refer to
-[Monitor Switches](../Monitor-Devices/Monitor-Switches/).
+{{<link title="Monitor Switches">}}.

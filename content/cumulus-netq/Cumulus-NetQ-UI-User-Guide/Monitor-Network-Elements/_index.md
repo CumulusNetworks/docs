@@ -11,7 +11,7 @@ Access these tables through the Main Menu (<img src="https://icons.cumulusnetwor
 
 {{<figure src="/images/netq/main-menu-ntwk-choices-highlighted-240.png" width="400">}}
 
-The tables can be manipulated as described in [Data Grid settings](../NetQ-User-Interface-Overview/Access-Data-with-Cards/#data-grid-settings) and by using the filter function at the top of the table. Expand and collapse the filter by clicking the down and up arrow in the title bar.
+The tables can be manipulated as described in {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}} and by using the filter function at the top of the table. Expand and collapse the filter by clicking the down and up arrow in the title bar.
 
 {{<figure src="/images/netq/main-menu-ntwk-table-filter-240.png" width="500">}}
 

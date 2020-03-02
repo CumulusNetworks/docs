@@ -32,4 +32,4 @@ root@rhel7:~# sudo yum install netq-agent
 root@rhel7:~# netq config restart agent
 ```
 
-Refer to [Configure the NetQ Agent on a RHEL or CentOS Server](../../../Install-NetQ/Install-NetQ-Agents/Install-NetQ-Agents-on-RHEL/#configure-the-netq-agent-on-a-rhel-or-centos-server) to complete the upgrade.
+Refer to {{<link title="Install and Configure the NetQ Agent on RHEL and CentOS Servers">}} to complete the upgrade.

@@ -13,13 +13,13 @@ pattern as shown in this diagram.
 
 This topic describes some of the tools and commands you can use to
 troubleshoot issues with the network and NetQ itself. Some example scenarios are included here:
-- [viewing configuration and log files](#browse-configuration-and-log-files),
-- [verifying NetQ Agent health](#check-netq-agent-health),
-- [investigating recent events](#diagnose-an-event-after-it-occurs), and
-- [investigating events from the past](#use-netq-as-a-time-machine)
-- [running a trace](#trace-paths-in-a-vrf).
+- {{<link url="#browse-configuration-and-log-files" text="viewing configuration and log files">}},
+- {{<link url="#check-netq-agent-health" text="verifying NetQ Agent health">}},
+- {{<link url="#diagnose-an-event-after-it-occurs" text="investigating recent events">}}, and
+- {{<link url="#use-netq-as-a-time-machine" text="investigating events from the past">}}
+- {{<link url="#trace-paths-in-a-vrf" text="running a trace">}}.
 
-Try looking at the specific protocol or service, or particular devices as well. If none of these produce a resolution, you can [capture a log](#generate-a-support-file) to use in discussion with the Cumulus Networks support team.
+Try looking at the specific protocol or service, or particular devices as well. If none of these produce a resolution, you can {{<link url="#generate-a-support-file" text="capture a log">}} to use in discussion with the Cumulus Networks support team.
 
 ## Browse Configuration and Log Files
 

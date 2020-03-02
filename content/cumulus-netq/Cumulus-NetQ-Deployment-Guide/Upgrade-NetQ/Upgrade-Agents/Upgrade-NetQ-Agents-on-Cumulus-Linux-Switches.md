@@ -39,4 +39,4 @@ To upgrade the NetQ Agent:
  netq config restart agent
 ```
 
-Refer to [Configure the NetQ Agent on a Cumulus Linux Switch](../../../Install-NetQ/Install-NetQ-Agents/Install-NetQ-Agents-on-CL/#configure-the-netq-agent-on-a-cumulus-linux-switch) to complete the upgrade.
+Refer to {{<link title="Install and Configure the NetQ Agent on Cumulus Linux Switches">}} to complete the upgrade.

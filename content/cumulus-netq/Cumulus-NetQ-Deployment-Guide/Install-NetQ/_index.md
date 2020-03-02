@@ -49,9 +49,9 @@ When you choose to purchase and install NetQ software on a Cumulus hardware appl
 
 Again, both options provide the same services and features. The biggest difference is in the number of servers to be deployed and in the continued availability of services running on those servers should hardware failures occur.
 
-A single server is easier to set up, configure and manage, but can limit your ability to scale your network monitoring quickly. Multiple servers is a bit more complicated, but you limit potential downtime and increase availability with the master and two worker nodes supported in the NetQ 2.4.0 release. 
+A single server is easier to set up, configure and manage, but can limit your ability to scale your network monitoring quickly. Multiple servers is a bit more complicated, but you limit potential downtime and increase availability with the master and two worker nodes supported in the NetQ 2.4.0 release.
 
-<!-- For more detail about clustering, refer to [Server Clustering](tbd). -->
+<!-- For more detail about clustering, refer to {{<link url="Cumulus-NetQ-Deployment-Guide" text="Server Clustering">}}. -->
 
 ## Installation Workflow Summary
 
@@ -69,20 +69,20 @@ Follow the instructions contained in the section identified in these tables base
 
 | On Prem/ Cloud | VM + Your HW/ Cumulus NetQ HW | Get Started Here |
 | ---- | ---- | ---- |
-| On premises | VM + your hardware | [Prepare Your Hardware and VM for a NetQ On-premises Deployment](x) |
-| On premises | NetQ 2.4 Appliance | [Prepare Your New NetQ Appliance for a NetQ On-premises Deployment](x) |
-| Cloud | VM + your hardware | [Prepare Your Hardware and VM for a NetQ Cloud Deployment](x) |
-| Cloud | NetQ 2.4 Cloud Appliance | [Prepare Your New NetQ Cloud Appliance for a NetQ Cloud Deployment](x) |
-| On premises, cloud | NetQ 2.3 and earlier Appliances | [Prepare Your Existing NetQ Appliances for a NetQ 2.4 Deployment](x) |
+| On premises | VM + your hardware | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Hardware and VM for a NetQ On-premises Deployment">}} |
+| On premises | NetQ 2.4 Appliance | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your New NetQ Appliance for a NetQ On-premises Deployment">}} |
+| Cloud | VM + your hardware | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Hardware and VM for a NetQ Cloud Deployment">}} |
+| Cloud | NetQ 2.4 Cloud Appliance | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your New NetQ Cloud Appliance for a NetQ Cloud Deployment">}} |
+| On premises, cloud | NetQ 2.3 and earlier Appliances | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Existing NetQ Appliances for a NetQ 2.4 Deployment">}} |
 
 ### Server Cluster
 
 | On Prem/ Cloud | VM + Your HW/ Cumulus NetQ HW | Get Started Here |
 | ---- | ---- | ---- |
-| On premises | VM + your hardware | [Prepare Your Hardware and VM for a NetQ On-premises Cluster Deployment](x) |
-| On premises | NetQ Appliance | [Prepare Your New NetQ Appliances for a NetQ On-premises Cluster Deployment](x) |
-| Cloud | VM + your hardware | [Prepare Your Hardware and VM for a NetQ Cloud Cluster Deployment](x) |
-| Cloud | NetQ Cloud Appliance | [Prepare Your New NetQ Cloud Appliance for a NetQ Cloud Cluster Deployment](x) |
-| On premises, cloud | NetQ 2.3 and earlier Appliances | [Prepare Your Existing NetQ Appliances for a NetQ 2.4 Cluster Deployment](x) |
+| On premises | VM + your hardware | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Hardware and VM for a NetQ On-premises Cluster Deployment">}} |
+| On premises | NetQ Appliance | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your New NetQ Appliances for a NetQ On-premises Cluster Deployment">}} |
+| Cloud | VM + your hardware | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Hardware and VM for a NetQ Cloud Cluster Deployment">}} |
+| Cloud | NetQ Cloud Appliance | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your New NetQ Cloud Appliance for a NetQ Cloud Cluster Deployment">}} |
+| On premises, cloud | NetQ 2.3 and earlier Appliances | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Existing NetQ Appliances for a NetQ 2.4 Cluster Deployment">}} |
 
 After you have completed the necessary preparations, you can install the NetQ software and Agents. -->

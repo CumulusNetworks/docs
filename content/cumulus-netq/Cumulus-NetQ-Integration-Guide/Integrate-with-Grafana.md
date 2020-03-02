@@ -22,7 +22,7 @@ interface statistics:
   - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
     rx\_multicast, rx\_packets
 
-You can use [Grafana](https://grafana.com/), an open source analytics and monitoring tool, to view the interface statistics collected by the NetQ Agents. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then importing the prepared NetQ dashboard.
+You can use {{<exlink url="https://grafana.com/" text="Grafana">}}, an open source analytics and monitoring tool, to view the interface statistics collected by the NetQ Agents. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then importing the prepared NetQ dashboard.
 
 ## Install NetQ Plug-in for Grafana
 
@@ -99,7 +99,7 @@ To use the Cumulus-provided dashboard, select the *NetQ Interface Statistics* fr
 
 {{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
 
-If you choose this option, you can skip directly to [analyzing your data](#analyze-the-data).
+If you choose this option, you can skip directly to {{<link url="#analyze-the-data" text="analyzing your data">}}.
 
 To create your own dashboard:
 

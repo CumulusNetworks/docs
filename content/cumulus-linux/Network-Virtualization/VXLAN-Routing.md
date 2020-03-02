@@ -91,7 +91,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 ...
 ```
 
-{{<link url="Configuring-switchd#restart-switchd" text="Restart `switchd`">}} for the changes to take effect.
+{{%link url="Configuring-switchd#restart-switchd" text="Restart `switchd`"%}} for the changes to take effect.
 
 {{%notice note%}}
 

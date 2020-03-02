@@ -11,7 +11,7 @@ With the NetQ UI, you can validate the operation of the network protocols and se
 
 This release supports validation of the following network protocols and services: Agents, BGP, CLAG, EVPN, Interfaces, License, MTU, NTP, OSPF, Sensors, VLAN, and VXLAN.
 
-For a more general understanding of how well your network is operating, refer to the [Monitor Network Health](../Monitor-Network-Health) topic.
+For a more general understanding of how well your network is operating, refer to the {{<link title="Monitor Network Health">}} topic.
 
 ## Create Validation Requests
 
@@ -214,7 +214,7 @@ validation requests.
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -224,10 +224,10 @@ validation requests.
 There are several types of validation requests that a user can make. Each has a slightly different flow through the Validation Request card,
 and is therefore described separately. The types are based on the intent of the request:
 
-- [Run an Existing Scheduled Validation Request On Demand](#run-an-existing-scheduled-validation-request-on-demand)
-- [Create a New On-demand Validation Request](#create-a-new-on-demand-validation-request)
-- [Create a New Scheduled Validation Request](#create-a-new-scheduled-validation-request)
-- [Modify an Existing Scheduled Validation Request](#modify-an-existing-scheduled-validation-request)
+- {{<link url="#run-an-existing-scheduled-validation-request-on-demand" text="Run an Existing Scheduled Validation Request On Demand">}}
+- {{<link url="#create-a-new-on-demand-validation-request" text="Create a New On-demand Validation Request">}}
+- {{<link url="#create-a-new-scheduled-validation-request" text="Create a New Scheduled Validation Request">}}
+- {{<link url="#modify-an-existing-scheduled-validation-request" text="Modify an Existing Scheduled Validation Request">}}
 
 ### Run an Existing Scheduled Validation Request On Demand
 
@@ -242,7 +242,7 @@ To run a scheduled validation now:
     {{< figure src="/images/netq/valid-request-large-valid-selection-222.png" width="500" >}}
 
 3. Click **Go** or **Run Now**.  
-    The associated Validation Result card is opened on your workbench. Refer to [View On-demand Validation Results](#view-on-demand-validation-results).
+    The associated Validation Result card is opened on your workbench. Refer to {{<link url="#view-on-demand-validation-results" text="View On-demand Validation Results">}}.
 
     {{< figure src="/images/netq/valid-request-medium-default-bgp-running-230.png" width="200" >}}
 
@@ -259,7 +259,7 @@ To create and run a request for *a single* protocol or service:
     {{< figure src="/images/netq/valid-request-selection.png" width="300" >}}
 
 3. Click **Go** or **Run Now**.  
-    The associated Validation Result card is opened on your workbench. Refer to [View On-demand Validation Results](#view-on-demand-validation-results).
+    The associated Validation Result card is opened on your workbench. Refer to {{<link url="#view-on-demand-validation-results" text="View On-demand Validation Results">}}.
 
 To create and run a request for *more than one* protocol and/or service:
 
@@ -271,7 +271,7 @@ To create and run a request for *more than one* protocol and/or service:
     {{< figure src="/images/netq/valid-request-bgp-evpn-222.png" width="500" >}}
 
 3. Click **Run Now** to start the validation.  
-    The associated on-demand validation result cards (one per protocol or service selected) are opened on your current workbench. Refer to     [View On-demand Validation Results](#view-on-demand-validation-results).
+    The associated on-demand validation result cards (one per protocol or service selected) are opened on your current workbench. Refer to {{<link url="#view-on-demand-validation-results" text="View On-demand Validation Results">}}.
 
     {{< figure src="/images/netq/valid-request-medium-bgpevpn-running-230.png" width="420" >}}
 
@@ -312,7 +312,7 @@ Spaces and special characters are *not* allowed in validation request names.
 
 8. Click **Save**.
 
-The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to [View Scheduled Validation Results](#view-scheduled-validation-results). Note that the number of scheduled validations is now two (2).
+The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link url="#view-scheduled-validation-results" text="View Scheduled Validation Results">}}. Note that the number of scheduled validations is now two (2).
 
 {{< figure src="/images/netq/valid-request-select-sched-222.png" width="500">}}
 
@@ -331,7 +331,7 @@ To modify a scheduled validation:
 3. Edit the schedule or validation types.
 4. Click **Update**.
 
-The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to [View Scheduled Validation Results](#view-scheduled-validation-results).
+The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link url="#view-scheduled-validation-results" text="View Scheduled Validation Results">}}.
 
 ## View On-demand Validation Results
 
@@ -441,7 +441,7 @@ The medium Validation Result card displays:
 </tr>
 <tr class="odd">
 <td>Open &lt;Service&gt;  Card</td>
-<td>Click to open the corresponding medium Network Services card, where available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/">Monitor Network Performance</a> for details about these cards and workflows.</td>
+<td>Click to open the corresponding medium Network Services card, where available. Refer to {{<link title="Monitor Network Performance">}} for details about these cards and workflows.</td>
 </tr>
 </tbody>
 </table>
@@ -512,7 +512,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="odd">
 <td>Open &lt;Service&gt; Card</td>
-<td>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/">Monitor Network Performance</a> for details about these cards and workflows.</td>
+<td>Click to open the corresponding medium Network Services card, when available. Refer to {{<link title="Monitor Network Performance">}} for details about these cards and workflows.</td>
 </tr>
 <tr class="even">
 <td>Table/Filter options</td>
@@ -622,7 +622,7 @@ The full screen Validation Result card provides a tab for all on-demand validati
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -775,12 +775,12 @@ The medium Scheduled Validation Result card displays:
 <td>Validation results, where:
 <ul>
 <li><strong>Time period</strong>: Range of time in which the data on the heat map was collected</li>
-<li><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to <a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</li>
+<li><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to {{<link title="#Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</li>
 </ul></td>
 </tr>
 <tr class="even">
 <td>Open &lt;Service&gt; Card</td>
-<td>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/">Monitor Network Performance</a> for details about these cards and workflows.</td>
+<td>Click to open the corresponding medium Network Services card, when available. Refer to {{<link title="Monitor Network Performance">}} for details about these cards and workflows.</td>
 </tr>
 </tbody>
 </table>
@@ -829,12 +829,12 @@ The large Scheduled Validation Result card contains two tabs.
 <td>Validation results, where:
 <ul>
 <li><strong>Time period</strong>: Range of time in which the data on the heat map was collected</li>
-<li><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to <a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</li>
+<li><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to {{<link title="#Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</li>
 </ul></td>
 </tr>
 <tr class="odd">
 <td>Open &lt;Service&gt; Card</td>
-<td>Click to open the corresponding medium Network Services card, when available. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/">Monitor Network Performance</a> for details about these cards and workflows.</td>
+<td>Click to open the corresponding medium Network Services card, when available. Refer to {{<link title="Monitor Network Performance">}} for details about these cards and workflows.</td>
 </tr>
 <tr class="even">
 <td>Table/Filter options</td>
@@ -953,7 +953,7 @@ validation results for the service.
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -1013,7 +1013,7 @@ To view the results:
 
 12. Optionally, view the health of the protocol or service as a whole by clicking **Open** \<*network service*\> **Card** (when available).
 
-13. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and     clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/>. If you want to change the configuration, click **Edit Config** to open the large Validation Request card, pre-populated with the current configuration. Follow the instructions in [Modify an Existing Scheduled Validation Request](#modify-an-existing-scheduled-validation-request) to make your changes.
+13. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and     clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/>. If you want to change the configuration, click **Edit Config** to open the large Validation Request card, pre-populated with the current configuration. Follow the instructions in {{<link url="#modify-an-existing-scheduled-validation-request" text="Modify an Existing Scheduled Validation Request">}} to make your changes.
 
 14. To view all data available for all scheduled validation results for the given protocol or service, click **Show All Results** or switch to the full screen card.
 

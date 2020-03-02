@@ -117,7 +117,7 @@ cumulus@switch:~$ ip -s link show br0
 
 ## Configure the Counters in switchd
 
-These counters are enabled by default. To configure them, use `cl-cfg` and configure them as you would any other {{<link url="Configuring-switchd" text="`switchd` parameter">}}. The `switchd` parameters are:
+These counters are enabled by default. To configure them, use `cl-cfg` and configure them as you would any other {{%link url="Configuring-switchd" text="`switchd` parameter"%}}. The `switchd` parameters are:
 
 - `stats.vlan.aggregate`, which controls the statistics available for each VLAN. Its value defaults to *BRIEF*.
 - `stats.vxlan.aggregate`, which controls the statistics available for each VNI (access and network). Its value defaults to *DETAIL*.

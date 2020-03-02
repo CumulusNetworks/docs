@@ -379,7 +379,7 @@ cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf | grep forwarding_table
 forwarding_table.profile = default
 ```
 
-After you specify a different profile, {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}} for the change to take effect. You can see the forwarding table profile when you run `cl-resource-query`.
+After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect. You can see the forwarding table profile when you run `cl-resource-query`.
 
 {{%notice note%}}
 
@@ -457,7 +457,7 @@ cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx
        tcam_resource.profile = default
 ```
 
-After you specify a different profile, {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}} for the change to take effect.
+After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect.
 
 When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="nonatomic updates">}} are enabled (`acl.non_atomic_update_mode` is set to `TRUE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
 

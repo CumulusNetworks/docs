@@ -12,7 +12,7 @@ toc: 5
 After you have validated the prerequisites and performed the preparation steps, you can now install the NetQ software using the Admin UI.
 
 {{%notice info%}}
-You must perform the preparation steps before installing the NetQ software. Go to [Prepare for NetQ On-premises Installation](../Prepare-NetQ-Onprem/) or [Prepare for NetQ Cloud Installation](../Prepare-NetQ-Cloud/) if you have not yet completed these preparation steps.
+You must perform the preparation steps before installing the NetQ software. Go to {{%link title="Prepare for NetQ On-premises Installation"%}} or {{%link title="Prepare for NetQ Cloud Installation"%}} if you have not yet completed these preparation steps.
 {{%/notice%}}
 
 To install NetQ:

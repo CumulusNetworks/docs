@@ -653,7 +653,7 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 
 Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.
 
-You configure storm control for each physical port by {{<link url="Configuring-switchd" text="configuring `switchd`">}}. For example, to enable unicast and multicast storm control at 400 packets per second (pps) and 3000 pps for swp1, run the following commands:
+You configure storm control for each physical port by {{%link url="Configuring-switchd" text="configuring `switchd`"%}}. For example, to enable unicast and multicast storm control at 400 packets per second (pps) and 3000 pps for swp1, run the following commands:
 
 ```
 cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'

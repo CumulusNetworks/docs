@@ -9,7 +9,7 @@ pageID: 12321794
 ---
 With the NetQ UI, you can monitor individual switches separately from the network. You are able to view the status of services they are running, health of its various components, and connectivity performance. Being able to monitor switch component inventory aids in upgrade, compliance, and other planning tasks. Viewing individual switch health helps isolate performance issues.
 
-For network-wide monitoring, refer to [Monitor Network Performance](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Performance/).
+For network-wide monitoring, refer to {{<link title="Monitor Network Performance">}}.
 
 ## Monitor Switch Performance
 
@@ -418,7 +418,7 @@ The full screen Switch card provides multiple tabs.
 <li><strong>Hostname</strong>: Hostname of the given device</li>
 <li><strong>Largest Chunk Size</strong>: Largest remaining chunk size on disk</li>
 <li><strong>Last Changed</strong>: Data and time that the storage allocation was last updated</li>
-<li><strong>Rebalance Recommended</strong>: Based on rules described in <a href="https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions">When to Rebalance BTRFS Partitions</a>,  a rebalance is suggested</li>
+<li><strong>Rebalance Recommended</strong>: Based on rules described in {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions" text="When to Rebalance BTRFS Partitions" >}}, a rebalance is suggested</li>
 <li><strong>Unallocated Space</strong>: Amount of space remaining on the disk</li>
 <li><strong>Unused Data Chunks Space</strong>: Amount of available data chunk space</li>
 </ul></td>
@@ -477,7 +477,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="odd">
 <td>What Just Happened</td>
-<td>Displays displays events based on conditions detected in the data plane on the switch. Refer to <a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/Monitor-Network-Elements/#view-what-just-happened">What Just Happened</a> for descriptions of the fields in this table.</td>
+<td>Displays displays events based on conditions detected in the data plane on the switch. Refer to {{<link url="Monitor-Network-Elements#view-what-just-happened" text="What Just Happened" >}} for descriptions of the fields in this table.</td>
 </tr>
 <tr class="even">
 <td>Sensors</td>
@@ -527,7 +527,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="odd">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -694,7 +694,7 @@ To view all software packages:
 
 ### View Disk Storage After BTRFS Allocation
 
-Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. For details about when a rebalance is recommended, refer to [When to Rebalance BTRFS Partitions](https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions).
+Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. For details about when a rebalance is recommended, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions" text="When to Rebalance BTRFS Partitions">}}.
 
 To view the disk state:
 

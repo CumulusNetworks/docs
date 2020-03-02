@@ -19,5 +19,5 @@ To complete the upgrade for either an on-premises or a cloud deployment:
 - Optionally, go to {{<link title="Upgrade NetQ CLI">}}
 
 {{%notice note%}}
-If you are currently running NetQ 2.4.0 and you installed the NetQ 2.4.0 Agent, you may need to update the agent. Refer to [Update NetQ 2.4.0 Agents](../Upgrade-NetQ/Upgrade-Agents/Upgrade-NetQ-240-Agents/).
+If you are currently running NetQ 2.4.0 and you installed the NetQ 2.4.0 Agent, you may need to update the agent. Refer to {{<link title="Update NetQ 2.4.0 Agents">}}.
 {{%/notice%}}

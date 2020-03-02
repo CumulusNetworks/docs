@@ -327,7 +327,7 @@ Using the `include <bgp-number-range-list>` and `exclude <bgp-number-range-list>
 | 1 | Address Families |
 | 2 | Router ID |
 
-Refer to [BGP Validation Tests](#bgp-validation-tests) for a description of these tests.
+Refer to {{<link url="#bgp-validation-tests" text="BGP Validation Tests">}} for a description of these tests.
 
 To include only the session establishment and router ID tests during a validation, run either of these commands:
 
@@ -526,7 +526,7 @@ Using the `include <clag-number-range-list>` and `exclude <clag-number-range-lis
 | 9 | ProtoDown Bonds |
 | 10 | SVI |
 
-Refer to [CLAG Validation Tests](#clag-validation-tests) for descriptions of these tests.
+Refer to {{<link url="#clag-validation-tests" text="CLAG Validation Tests">}} for descriptions of these tests.
 
 To include only the CLAG SysMAC test during a validation:
 
@@ -635,7 +635,7 @@ Vrf Consistency Test             : passed,
 Using the `mac-consistency` option, you can view any inconsistencies in the usage of MAC addresses in the EVPN overlay network. 
 
 {{%notice info%}}
-The NetQ 2.3.x release is the last release that will support the `mac-consistency` option. However, this is equivalent to running only the EVPN Type 2 validation test. Refer to [Perform an EVPN Validation with Selected Tests](#perform-an-evpn-validation-with-selected-tests) for details. As of Cumulus NetQ 2.4, the `mac-consistency` option will be removed.
+The NetQ 2.3.x release is the last release that will support the `mac-consistency` option. However, this is equivalent to running only the EVPN Type 2 validation test. Refer to {{<link url="#perform-an-evpn-validation-with-selected-tests" text="Perform an EVPN Validation with Selected Tests">}} for details. As of Cumulus NetQ 2.4, the `mac-consistency` option will be removed.
 {{%/notice%}} 
 
 ```
@@ -704,7 +704,7 @@ Using the `include <evpn-number-range-list>` and `exclude <evpn-number-range-lis
 | 5 | Vlan Consistency |
 | 6 | Vrf Consistency |
 
-Refer to [EVPN Validation Tests](#evpn-validation-tests) for descriptions of these tests.
+Refer to {{<link url="#evpn-validation-tests" text="EVPN Validation Tests">}} for descriptions of these tests.
 
 To run only the EVPN Type 2 test:
 
@@ -849,7 +849,7 @@ Using the `include <interface-number-range-list>` and `exclude <interface-number
 | 2 | Speed |
 | 3 | Autoneg |
 
-Refer to [Interface Validation Tests](#interface-validation-tests) for descriptions of these tests.
+Refer to {{<link url="#interface-validation-tests" text="Interface Validation Tests">}} for descriptions of these tests.
 
 ### Perform a License Validation
 

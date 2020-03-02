@@ -15,4 +15,4 @@ This guide provides instructions and information about monitoring
 individual components of the network, the network as a whole, and the
 NetQ software itself using the NetQ graphical user interface (GUI). If
 you prefer to use a command line interface, refer to the
-[Cumulus NetQ CLI User Guide](/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/).
+{{<link title="Cumulus NetQ CLI User Guide">}}.

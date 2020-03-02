@@ -16,8 +16,8 @@ Log in to your appliance.
 
 <details><summary>Verify that your appliance is a supported hardware model.</summary>
 
-- NetQ Appliance: SuperMicro SYS-6019P-WTR ([user manual](https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf), [quick reference guide](https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf))
-- NetQ Cloud Appliance: SuperMicro SYS-E300-9D ([user manual](https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf))
+- NetQ Appliance: SuperMicro SYS-6019P-WTR ({{<exlink url="https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf" text="user manual">}}, {{<exlink url="https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf" text="quick reference guide">}})
+- NetQ Cloud Appliance: SuperMicro SYS-E300-9D ({{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}})
     
 </details>
 
@@ -45,7 +45,7 @@ netq_master_snapshot_2020-01-09_07_24_50_UTC.tar.gz
 
 <details><summary>Install Ubuntu 18.04 LTS. </summary>
     
-Use the instructions [here](https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm).
+Use the instructions {{<exlink url="https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm" text="here">}}.
     
  Note these tips:
 
@@ -174,7 +174,7 @@ root@ubuntu:~# apt-get install netq-agent netq-apps
 
 <details><summary>Download the bootstrap and NetQ installation tarballs.</summary>
 
-Download the software from the [Cumulus Downloads](https://cumulusnetworks.com/downloads/) page.
+Download the software from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page.
 
 1. Select *NetQ* from the **Product** list.
 
@@ -233,7 +233,7 @@ Allow about five minutes for this to complete.
 </details>
 
 {{%notice note%}}
-If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to [Prepare Your Cumulus NetQ Appliance](../../Install-NetQ-Hardware/Prepare-NetQ-Onprem/#prepare-your-cumulus-netq-appliance)  or [Prepare Your Cumulus NetQ Cloud Appliance](../../Install-NetQ-Hardware/Prepare-NetQ-Cloud/#prepare-your-cumulus-netq-cloud-appliance) for a new appliance.
+If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{%link title="Prepare for NetQ On-premises Installation#prepare-your-cumulus-netq-appliance"%}} or {{%link title="Prepare for NetQ Cloud Installation#prepare-your-cumulus-netq-cloud-appliance"%}} for a new appliance.
 {{%/notice%}}
 
-You are now ready to install the NetQ Software. Refer to [Install NetQ Using the AdminUI](../Install-NetQ-Using-AdminUI/) (recommended) or [Install NetQ Using the NetQ CLI](../Install-NetQ-Using-CLI).
+You are now ready to install the NetQ Software. Refer to {{<link title="Install NetQ Using the Admin UI">}} (recommended) or {{<link title="Install NetQ Using the CLI">}}.

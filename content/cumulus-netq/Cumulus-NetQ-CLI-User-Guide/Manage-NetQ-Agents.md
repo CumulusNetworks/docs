@@ -7,10 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12321061
 pageID: 12321061
 ---
-At various points in time, you might want to change which network nodes
-are being monitored by NetQ or look more closely at a network node for
-troubleshooting purposes. Adding the NetQ Agent to a switch or host is
-described in [Install NetQ](/cumulus-netq/Cumulus-NetQ-Deployment-Guide/Install-NetQ). Viewing the status of an Agent, disabling an Agent, and managing NetQ Agent logging are presented.
+At various points in time, you might want to change which network nodes are being monitored by NetQ or look more closely at a network node for troubleshooting purposes. Adding the NetQ Agent to a switch or host is described in {{<link url="Install-NetQ" text="Install NetQ">}}. Viewing the status of an Agent, disabling an Agent, and managing NetQ Agent logging are presented.
 
 ## View NetQ Agent Status
 

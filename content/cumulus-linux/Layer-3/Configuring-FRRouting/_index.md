@@ -66,7 +66,7 @@ For more information on the `systemctl` command and changing the state of daemon
 
 By default in Cumulus Linux, FRRouting saves all daemon configurations in a single integrated configuration file, `frr.conf`.
 
-You can disable this mode by running the following command in the {{<link url="#frrouting-vtysh-modal-cli" text="`vtysh` FRRouting CLI">}}:
+You can disable this mode by running the following command in the {{%link url="#frrouting-vtysh-modal-cli" text="`vtysh` FRRouting CLI"%}}:
 
 ```
 cumulus@switch:~$ sudo vtysh

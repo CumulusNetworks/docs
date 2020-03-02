@@ -26,7 +26,7 @@ You should see:
 - For Cumulus Linux 4.0.0:
     - netq-agent_2.4.0-cl4u25~1579822727.aeb67d82_amd64.deb
 
-If you do not see one of these, refer to [Upgrade NetQ Agents on Cumulus Linux Switches](../../Upgrade-Agents/Upgrade-NetQ-Agents-on-Cumulus-Linux-Switches/).
+If you do not see one of these, refer to {{<link title="Upgrade NetQ Agents on Cumulus Linux Switches">}}.
 
 ## For Servers Running Ubuntu 16.04 or 18.04
 
@@ -41,7 +41,7 @@ You should see:
 - netq-agent_2.4.0-ub18.04u25~1579642196.aeb67d8_amd64.deb, or
 - netq-agent_2.4.0-ub16.04u25~1579714730.aeb67d8_amd64.deb
 
-If you do not see one of these, refer to [Upgrade NetQ Agents on Ubuntu Servers](../../Upgrade-Agents/Upgrade-NetQ-Agents-on-Ubuntu-Servers/).
+If you do not see one of these, refer to {{<link title="Upgrade NetQ Agents on Ubuntu Servers">}}.
 
 ## For Servers Running RHEL7 or CentOS
 
@@ -55,4 +55,4 @@ You should see:
 
 - netq-agent-2.4.0-rh7u25~1579642928.aeb67d8.x86_64.rpm
 
-If you do not see one of these, refer to [Upgrade NetQ Agents on RHEL or CentOS Servers](../../Upgrade-Agents/Upgrade-NetQ-Agents-on-RHEL-or-CentOS-Servers/).
+If you do not see one of these, refer to {{<link title="Upgrade NetQ Agents on RHEL or CentOS Servers">}}.

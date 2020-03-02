@@ -19,11 +19,11 @@ of how to use the API to extract the data you need. Descriptions of each
 endpoint and model parameter are contained in the API .json files.
 
 For information regarding new features, improvements, bug fixes, and
-known issues present in this release, refer to the [release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/360025451374).
+known issues present in this release, refer to the
+{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413-Cumulus-NetQ-2-4-Release-Notes" text="release notes">}}.
 
 <!-- This Cumulus NetQ API User Guide is available in
-[PDF](/pdfs/Cumulus_NetQ_220_API_User_Guide.pdf) for
+{{<link url="/pdfs/Cumulus_NetQ_220_API_User_Guide.pdf" text="PDF">}} for
 offline viewing. -->
 
 ## API Organization
@@ -113,7 +113,7 @@ to make the responses more readable. You may chose to do so as well or
 not.
 
 To view all of the endpoints and their associated requests and
-responses, refer to [View the API](#view-the-api).
+responses, refer to {{<link title="#View the API">}}.
 
 ### Get Network-wide Status of the BGP Service
 

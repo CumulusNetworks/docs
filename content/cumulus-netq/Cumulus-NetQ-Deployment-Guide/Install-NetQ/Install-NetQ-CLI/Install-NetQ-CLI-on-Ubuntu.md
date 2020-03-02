@@ -20,7 +20,7 @@ For servers running Ubuntu OS, you need to:
 - Obtain NetQ software packages
 
 {{%notice note%}}
-If your network uses a proxy server for external connections, you should first [configure a global proxy](/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/) so `apt-get` can access the agent package on the Cumulus Networks repository.
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the agent package on the Cumulus Networks repository.
 {{%/notice%}}
 
 ### Verify Service Package Versions
@@ -50,7 +50,7 @@ root@ubuntu:~# sudo systemctl start lldpd.service
 
 If NTP is not already installed and configured, follow these steps:
 
-1.  Install [NTP](/cumulus-linux/System-Configuration/Setting-Date-and-Time/) on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1.  Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
 ```
 root@ubuntu:~# sudo apt-get install ntp
@@ -60,114 +60,99 @@ root@ubuntu:~# sudo apt-get install ntp
 
     <details><summary>Use NTP Configuration File</summary>
 
-    1.  Open the `/etc/ntp.conf` file in your text editor of choice.
+    1. Open the `/etc/ntp.conf` file in your text editor of choice.
 
-    2.  Under the *Server* section, specify the NTP server IP address or hostname.
+    2. Under the *Server* section, specify the NTP server IP address or hostname.
 
-    3.  Enable and start the NTP service.
+    3. Enable and start the NTP service.
 
-```
-root@ubuntu:~# sudo systemctl enable ntp
-root@ubuntu:~# sudo systemctl start ntp
-```
+           root@ubuntu:~# sudo systemctl enable ntp
+           root@ubuntu:~# sudo systemctl start ntp
 
-        {{%notice tip%}}
+    {{%notice tip%}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
-        {{%/notice%}}
+    {{%/notice%}}
 
-    4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+    4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
-```
-root@ubuntu:~# ntpq -pn
-remote           refid            st t when poll reach   delay   offset  jitter
-==============================================================================
-+173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
-+12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
-2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
-\*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
-```
+           root@ubuntu:~# ntpq -pn
+           remote           refid            st t when poll reach   delay   offset  jitter
+           ==============================================================================
+           +173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
+           +12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
+           2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+           \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
     </details>
-    <details><summary>Use Chrony (Ubuntu 18.04 only)</summary>
+
+    <details>
+    <summary>Use Chrony (Ubuntu 18.04 only)</summary>
 
     1. Install chrony if needed.
 
-```
-root@ubuntu:~# sudo apt install chrony
-```
+           root@ubuntu:~# sudo apt install chrony
 
     2. Start the chrony service.
-    
-    ```
-    root@ubuntu:~# sudo /usr/local/sbin/chronyd
-```
-    
+
+           root@ubuntu:~# sudo /usr/local/sbin/chronyd
+
     3. Verify it installed successfully.
 
-```
-root@ubuntu:~# chronyc activity
-200 OK
-8 sources online
-0 sources offline
-0 sources doing burst (return to online)
-0 sources doing burst (return to offline)
-0 sources with unknown address
-```
+           root@ubuntu:~# chronyc activity
+           200 OK
+           8 sources online
+           0 sources offline
+           0 sources doing burst (return to online)
+           0 sources doing burst (return to offline)
+           0 sources with unknown address
 
     4. View the time servers chrony is using.
-    
- ```
- root@ubuntu:~# chronyc sources
-210 Number of sources = 8
 
-MS Name/IP address         Stratum Poll Reach LastRx Last sample
-===============================================================================
-^+ golem.canonical.com           2   6   377    39  -1135us[-1135us] +/-   98ms
-^* clock.xmission.com            2   6   377    41  -4641ns[ +144us] +/-   41ms
-^+ ntp.ubuntu.net              2   7   377   106   -746us[ -573us] +/-   41ms
-...
-```
-    
-        Open the *chrony.conf* configuration file (by default at */etc/chrony/*) and edit if needed.
+           root@ubuntu:~# chronyc sources
+           210 Number of sources = 8
 
-        Example with individual servers specified:
+           MS Name/IP address         Stratum Poll Reach LastRx Last sample
+           ===============================================================================
+           ^+ golem.canonical.com           2   6   377    39  -1135us[-1135us] +/-   98ms
+           ^* clock.xmission.com            2   6   377    41  -4641ns[ +144us] +/-   41ms
+           ^+ ntp.ubuntu.net              2   7   377   106   -746us[ -573us] +/-   41ms
+           ...
 
-        ```
-        server golem.canonical.com iburst
-        server clock.xmission.com iburst
-        server ntp.ubuntu.com iburst
-        driftfile /var/lib/chrony/drift
-        makestep 1.0 3
-        rtcsync
-        ```
+       Open the *chrony.conf* configuration file (by default at */etc/chrony/*) and edit if needed.
 
-        Example when using a pool of servers:
+       Example with individual servers specified:
 
-        ```
-        pool pool.ntp.org iburst
-        driftfile /var/lib/chrony/drift
-        makestep 1.0 3
-        rtcsync
-        ```
+           server golem.canonical.com iburst
+           server clock.xmission.com iburst
+           server ntp.ubuntu.com iburst
+           driftfile /var/lib/chrony/drift
+           makestep 1.0 3
+           rtcsync
+
+       Example when using a pool of servers:
+
+           pool pool.ntp.org iburst
+           driftfile /var/lib/chrony/drift
+           makestep 1.0 3
+           rtcsync
 
     5. View the server chrony is currently tracking.
 
-   ```
-    root@ubuntu:~# chronyc tracking
-    Reference ID    : 5BBD59C7 (golem.canonical.com)
-    Stratum         : 3
-    Ref time (UTC)  : Mon Feb 10 14:35:18 2020
-    System time     : 0.0000046340 seconds slow of NTP time
-    Last offset     : -0.000123459 seconds
-    RMS offset      : 0.007654410 seconds
-    Frequency       : 8.342 ppm slow
-    Residual freq   : -0.000 ppm
-    Skew            : 26.846 ppm
-    Root delay      : 0.031207654 seconds
-    Root dispersion : 0.001234590 seconds
-    Update interval : 115.2 seconds
-    Leap status     : Normal
-    ```
+           root@ubuntu:~# chronyc tracking
+           Reference ID    : 5BBD59C7 (golem.canonical.com)
+           Stratum         : 3
+           Ref time (UTC)  : Mon Feb 10 14:35:18 2020
+           System time     : 0.0000046340 seconds slow of NTP time
+           Last offset     : -0.000123459 seconds
+           RMS offset      : 0.007654410 seconds
+           Frequency       : 8.342 ppm slow
+           Residual freq   : -0.000 ppm
+           Skew            : 26.846 ppm
+           Root delay      : 0.031207654 seconds
+           Root dispersion : 0.001234590 seconds
+           Update interval : 115.2 seconds
+           Leap status     : Normal
+
 </details>
 
 ### Obtain NetQ CLI Software Package
@@ -185,6 +170,7 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 2. Add the Ubuntu repository:
 
     <details><summary>Ubuntu 16.04</summary>
+
     Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
     ```
@@ -196,6 +182,7 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 
     </details>
     <details><summary>Ubuntu 18.04</summary>
+
     Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
 
         root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
@@ -237,7 +224,7 @@ root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
 Two methods are available for configuring the NetQ CLI on a switch:
 
 - Run NetQ CLI commands on the switch; refer to the next section
-- Edit the configuration file on the switch; refer to [Configure CLI Using File](#configure-netq-cli-using-configuration-file)
+- Edit the configuration file on the switch; refer to {{<link url="#configure-netq-cli-using-configuration-file" text="Configure CLI Using File">}}
 
 ### Configure NetQ CLI Using the CLI
 

@@ -62,7 +62,7 @@ graph G {
 
 ## ptmd Scripts
 
-`ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail`for each interface that goes through a change and runs `if-topo-pass` when an LLDP or BFD check passes or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command, described in the {{<link url="#ptmd-service-commands" text="`ptmd` commands below">}}.
+`ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail`for each interface that goes through a change and runs `if-topo-pass` when an LLDP or BFD check passes or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command, described in the {{%link url="#ptmd-service-commands" text="`ptmd` commands below"%}}.
 
 Modify these default scripts as needed.
 

@@ -32,31 +32,24 @@ The syntax for these commands is:
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] [type license|type os] [between <text-time> and <text-endtime>] [json]
 
 {{%notice note%}}
-
 The values for the `name` option are specific to your
 deployment. For example, if you have devices with only one type of OS,
 say Cumulus Linux, then that is the only option available for the
 `os-name` option value. If you have multiple OSs running, say you also
 have Ubuntu, then that would also be an option for you.
-
 {{%/notice%}}
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-- w: week(s)
-- d: day(s)
-- h: hour(s)
-- m: minute(s)
-- s: second(s)
-- now
-
-For time ranges, the `<text-time>` is the most recent time and the
-`<text-endtime>` is the oldest time. The values do not have to have the
-same unit of measure.
-
+For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 ### View OS Information for a Switch

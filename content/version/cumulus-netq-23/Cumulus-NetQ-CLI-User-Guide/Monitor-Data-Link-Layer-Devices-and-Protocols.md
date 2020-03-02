@@ -304,20 +304,16 @@ with interfaces and MAC addresses. The syntax for these commands is:
     netq [<hostname>] show vlan [<1-4096>] [around <text-time>] [json]
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
-
-For time ranges, the `<text-time>` is the most recent time and the
-`<text-endtime>` is the oldest time. The values do not have to have the
-same unit of measure.
-
+In NetQ 2.3.0, values for the `between` option must be entered with `<text-time>` being the most recent time and `text-endtime>` being the least recent time. In NetQ 2.3.1, the times can be entered in either order. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 ### View VLAN Information for All Devices

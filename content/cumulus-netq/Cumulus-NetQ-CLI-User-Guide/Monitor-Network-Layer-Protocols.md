@@ -52,20 +52,16 @@ route information from the devices. Its syntax is:
     netq [<hostname>] show ipv6 routes [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [origin] [around <text-time>] [json]
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
-
-For time ranges, the `<text-time>` is the most recent time and the
-`<text-endtime>` is the oldest time. The values do not have to have the
-same unit of measure.
-
+For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 ### View IP Address Information
@@ -431,20 +427,16 @@ validate the configuration. The syntax of these commands is:
     netq check bgp [vrf <vrf>] [around <text-time>] [json]
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
-
-For time ranges, the `<text-time>` is the most recent time and the
-`<text-endtime>` is the oldest time. The values do not have to have the
-same unit of measure.
-
+For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 ### View BGP Configuration Information
@@ -802,20 +794,16 @@ validate the configuration. The syntax of these commands is:
     netq check ospf [around <text-time>] [json]
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
-
-For time ranges, the `<text-time>` is the most recent time and the
-`<text-endtime>` is the oldest time. The values do not have to have the
-same unit of measure.
-
+For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 ### View OSPF Configuration Information

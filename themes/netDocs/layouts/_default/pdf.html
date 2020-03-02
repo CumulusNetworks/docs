@@ -12,11 +12,9 @@
     </div>
 </div>
 {{ range where $.Site.Pages "Type" .Section }}
-{{ if eq .Page.Name "Switch Port Attributes" }} 
 <article class="markdown">
     <span class="toc{{ .Params.toc }}"><h1><a id="{{- urlize .Title -}}"></a>{{- .Title -}}</h1></span>
 {{- .Content -}}
 </article>
 {{ end }}
-{{ end }} 
 {{ end }}

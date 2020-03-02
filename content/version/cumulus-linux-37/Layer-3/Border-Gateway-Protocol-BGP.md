@@ -124,15 +124,14 @@ cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external
 cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
 ```
 
-    For an iBGP session, the `remote-as` is the same as the local AS:
+For an iBGP session, the `remote-as` is the same as the local AS:
 
 ```
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal
-cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
+cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as internal
 ```
 
-    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
-
+Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
 ```
 cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.0.0.2
@@ -145,13 +144,13 @@ cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 act
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 next-hop-self
 ```
 
-    If this is a route reflector client, it can be specified as follows:
+If this is a route reflector client, it can be specified as follows:
 
 ```
 cumulus@switchRR:~$ net add bgp neighbor 10.0.0.1 route-reflector-client
 ```
 
-    {{%notice note%}}
+{{%notice note%}}
 
 It is node *switchRR*, the route reflector, on which the peer is specified as a client.
 

@@ -16,16 +16,16 @@ The following Cumulus NetQ user documentation is available in PDF for offline vi
 
 NetQ 2.4.1
 
-- {{<exlink url="https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-241-Deployment-Guide.pdf" text="Cumulus NetQ Deployment Guide PDF">}}
-- {{<exlink url="https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-241-Integration-Guide.pdf" text="Cumulus NetQ Integration Guide PDF">}}
-- {{<exlink url="https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-241-UI-User-Guide.pdf" text="Cumulus NetQ UI User Guide PDF">}}
-- {{<exlink url="https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-241-CLI-User-Guide.pdf" text="Cumulus NetQ CLI User Guide PDF">}}
-- {{<exlink url="" text="Single File of All Guides">}}
+- Cumulus NetQ Deployment Guide PDF
+- Cumulus NetQ Integration Guide PDF
+- Cumulus NetQ UI User Guide PDF
+- Cumulus NetQ CLI User Guide PDF
+- text="Single File of All Guides
 
 NetQ 2.4.0
 
-- {{<exlink url="https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-240-Deployment-Guide.pdf" text="Cumulus NetQ Deployment Guide PDF">}}
-- {{<exlink url="https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-240-Integration-Guide.pdf" text="Cumulus NetQ Integration Guide PDF">}}
-- {{<exlink url="https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-240-UI-User-Guide.pdf" text="Cumulus NetQ UI User Guide PDF">}}
-- {{<exlink url="https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-240-CLI-User-Guide.pdf" text="Cumulus NetQ CLI User Guide PDF">}}
+- Cumulus NetQ Deployment Guide PDF
+- Cumulus NetQ Integration Guide PDF
+- Cumulus NetQ UI User Guide PDF
+- Cumulus NetQ CLI User Guide PDF
 -->

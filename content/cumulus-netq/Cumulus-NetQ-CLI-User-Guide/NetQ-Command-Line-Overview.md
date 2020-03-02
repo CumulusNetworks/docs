@@ -15,13 +15,13 @@ The NetQ CLI provides access to all of the network state and event information c
 
 {{%notice note%}}
 
-The NetQ command line interface only runs on switches and server  hosts implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus [Hardware Compatibility List](https://cumulusnetworks.com/products/hardware-compatibility-list/) and verify the value in the **Platforms** tab \> **CPU** column.
+The NetQ command line interface only runs on switches and server  hosts implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus {{<exlink url="https://cumulusnetworks.com/hcl" text="Hardware Compatibility List">}} and verify the value in the **Platforms** tab \> **CPU** column.
 
 {{%/notice%}}
 
 ## CLI Access
 
-When NetQ is installed or upgraded, the CLI may also be installed  and enabled on your NetQ server or appliance and hosts. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ) topic for details.
+When NetQ is installed or upgraded, the CLI may also be installed  and enabled on your NetQ server or appliance and hosts. Refer to the {{<link url="Install-NetQ">}} topic for details.
 
 To access the CLI from a switch or server:
 
@@ -49,13 +49,13 @@ To access the CLI from a switch or server:
 
 This section describes the core structure and behavior of the NetQ CLI. It includes the following:
 
-- [Command Line Structure](#command-line-structure)
-- [Command Syntax](#command-syntax)
-- [Command Output](#commnad-output)
-- [Command Prompts](#command-prompts)
-- [Command Completion](#command-completion)
-- [Command Help](#command-help)
-- [Command History](#command-history)
+- {{<link url="#command-line-structure" text="Command Line Structure">}}
+- {{<link url="#command-syntax" text="Command Syntax">}}
+- {{<link url="#command-output" text="Command Output">}}
+- {{<link url="#command-prompts" text="Command Prompts">}}
+- {{<link url="#command-completion" text="Command Completion">}}
+- {{<link url="#command-help" text="Command Help">}}
+- {{<link url="#command-history" text="Command History">}}
 
 ### Command Line Structure
 
@@ -106,7 +106,7 @@ NetQ code examples use the following prompts:
 - `cumulus@host:~$` Indicates the user *cumulus* is logged in to a host to run the example command
 - `cumulus@netq-appliance:~$` Indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
 
-The switches must be running the Cumulus Linux operating system (OS), NetQ Platform software, and the NetQ Agent. The hosts must be running CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the [Install NetQ](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ) topic for details.
+The switches must be running the Cumulus Linux operating system (OS), NetQ Platform software, and the NetQ Agent. The hosts must be running CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the {{<link url="Install-NetQ">}} topic for details.
 
 ### Command Completion
 
@@ -151,10 +151,10 @@ The CLI stores commands issued within a session, which enables you to review and
 
 While the CLI has a flat structure, the commands can be conceptually grouped into four functional categories:
 
-- [Validation Commands](#validation-commands)
-- [Monitoring Commands](#monitoring-commands)
-- [Configuration Commands](#configuration-commands)
-- [Trace Commands](#trace-commands)
+- {{<link url="#validation-commands" text="Validation Commands">}}
+- {{<link url="#monitoring-commands" text="Monitoring Commands">}}
+- {{<link url="#configuration-commands" text="Configuration Commands">}}
+- {{<link url="#trace-commands" text="Trace Commands">}}
 
 ### Validation Commands
 
@@ -316,7 +316,7 @@ The `netq config` and `netq notification` commands enable the network administra
 
 #### NetQ Agent Configuration
 
-The agent commands enable the network administrator to configure individual NetQ Agents. Refer to [Cumulus NetQ Components](../../Cumulus-NetQ-Deployment-Guide/NetQ-Basics/NetQ-Components) for a description of NetQ Agents, to [Manage NetQ Agents](../Manage-NetQ-Agents), or to [Install NetQ Agents](../../Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Agents/) for more detailed usage examples.
+The agent commands enable the network administrator to configure individual NetQ Agents. Refer to {{<link title="Cumulus NetQ Components">}} for a description of NetQ Agents, to {{<link url="Manage-NetQ-Agents">}}, or to {{<link url="Install-NetQ-Agents">}} for more detailed usage examples.
 
 The agent configuration commands enable you to add and remove agents from switches and hosts, start and stop agent operations, add and remove Kubernetes container monitoring, add or remove sensors, debug the agent, and add or remove FRR (FRRouting).
 
@@ -408,7 +408,7 @@ This example shows how to configure a PagerDuty channel:
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
     Successfully added/updated channel pd-netq-events
 
-Refer to [Integrate NetQ with Notification Applications](../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications/) for details about using these commands and additional examples.
+Refer to {{<link url="Integrate-NetQ-with-Notification-Applications">}} for details about using these commands and additional examples.
 
 ### Trace Commands
 

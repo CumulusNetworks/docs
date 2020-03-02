@@ -294,7 +294,7 @@ However, if the primary switch goes down without stopping the `clagd` service fo
 
 The `clagd` service has a number of timers that you can tune for enhanced performance. The relevant timers are:
 
-- `--reloadTimer <SECONDS>`: The number of seconds to wait for the peer switch to become active. If the peer switch does not become active after the timer expires, the MLAG bonds leave the initialization ({{<link text="protodown" url="#peer-link-interfaces-and-the-protodown-state">}}) state and become active. This provides `clagd` with sufficient time to determine whether the peer switch is coming up or if it is permanently unreachable. The default is *300* seconds.
+- `--reloadTimer <SECONDS>`: The number of seconds to wait for the peer switch to become active. If the peer switch does not become active after the timer expires, the MLAG bonds leave the initialization ({{<link url="#peer-link-interfaces-and-the-protodown-state" text="protodown">}}) state and become active. This provides `clagd` with sufficient time to determine whether the peer switch is coming up or if it is permanently unreachable. The default is *300* seconds.
 - `--peerTimeout <SECONDS>`: The number of seconds `clagd` waits without receiving any data from the peer switch before it determines that the peer is no longer active. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value.
 - `--initDelay <SECONDS>`: The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. The default is *180* seconds.
 - `--sendTimeout <SECONDS>`: The number of seconds `clagd` waits until the sending socket times out. If it takes longer than the `sendTimeout` value to send data to the peer, `clagd` generates an exception. The default is *30* seconds.
@@ -1365,7 +1365,7 @@ For MLAG to function properly, you must configure the dual-connected host interf
 
 The {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} in MLAG traffic is determined by the bridge MTU. Bridge MTU is determined by the lowest MTU setting of an interface that is a member of the bridge. If you want to set an MTU other than the default (1500 bytes on a Broadcom switch or 9238 bytes on a Mellanox switch), you must configure the MTU on each physical interface and bond interface that are members of the MLAG bridges in the entire bridged domain.
 
-For example, if an MTU of 9216 is desired through the MLAG domain in the example shown above, **on all four leaf switches**, {{<link url="Switch-Port-Attributes#mtu" text="configure `mtu 9216`">}} for each of the following bond interfaces, as they are members of bridge *bridge*: peerlink, uplink, server01.
+For example, if an MTU of 9216 is desired through the MLAG domain in the example shown above, **on all four leaf switches**, {{%link url="Switch-Port-Attributes#mtu" text="configure `mtu 9216`"%}} for each of the following bond interfaces, as they are members of bridge *bridge*: peerlink, uplink, server01.
 
 <details>
 

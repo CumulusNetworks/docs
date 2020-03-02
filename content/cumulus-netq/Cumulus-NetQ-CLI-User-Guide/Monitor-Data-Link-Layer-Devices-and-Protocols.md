@@ -565,9 +565,7 @@ protocol, so we call it MLAG.
 
 {{%/notice%}}
 
-For instructions on configuring MLAG, refer to the
-[MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) topic in
-the Cumulus Linux User Guide.
+For instructions on configuring MLAG, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="MLAG">}} topic in the Cumulus Linux User Guide.
 
 With NetQ, you can view the configuration and operation of devices using
 MLAG using the `netq show clag` command. You can view the current

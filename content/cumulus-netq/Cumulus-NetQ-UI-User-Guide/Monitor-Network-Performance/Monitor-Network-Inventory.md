@@ -20,7 +20,7 @@ The Devices Inventory card workflow helps answer questions such as:
 - Do all switches have valid licenses?
 - Are NetQ agents running on all of my switches?
 
-For monitoring inventory and performance on a switch-by-switch basis, refer to the [Monitor Switches](../../Monitor-Devices/Monitor-Switches).
+For monitoring inventory and performance on a switch-by-switch basis, refer to {{<link title="Monitor Switches">}}.
 
 ## Devices Inventory Card Workflow Summary
 

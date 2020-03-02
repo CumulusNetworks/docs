@@ -20,7 +20,7 @@ The Cumulus Linux implementation of MLAG is referred to by other vendors as MLAG
 
 ## Monitor the MLAG Service (All Sessions)
 
-With NetQ, you can monitor the number of nodes running the MLAG service, view sessions running, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to [Multi-Chassis Link Aggregation - MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
+With NetQ, you can monitor the number of nodes running the MLAG service, view sessions running, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
 ### MLAG Service Card Workflow Summary
 
@@ -359,7 +359,7 @@ sessions, and all alarms.
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -430,7 +430,7 @@ To view switches with the most unestablished MLAG sessions:
 
 Where to go next depends on what data you see, but a few options include:
 
-- Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to [Monitor Switches](../../Monitor-Devices/Monitor-Switches).
+- Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
 
 - Click **Show All Sessions** to investigate all MLAG sessions with events in the full screen card.
 
@@ -488,14 +488,14 @@ To view all switch details, open the full screen MLAG Service card, and click th
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-Use the icons above the table to select/deselect, filter, and export items in the list. Refer to [Table Settings](../../NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings) for more detail. To return to original display of results, click the associated tab.
+Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}} for more detail. To return to original display of results, click the associated tab.
 
 ## Monitor a Single MLAG Session
 
-With NetQ, you can monitor the number of nodes running the MLAG service, view switches with the most peers alive and not alive, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to [Multi-Chassis Link Aggregation - MLAG](/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
+With NetQ, you can monitor the number of nodes running the MLAG service, view switches with the most peers alive and not alive, and view alarms triggered by the MLAG service. For an overview and how to configure MLAG in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
 {{%notice note%}}
-To access the single session cards, you must open the full screen MLAG Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Cards).
+To access the single session cards, you must open the full screen MLAG Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards).
 {{%/notice%}}
 
 ### Granularity of Data Shown Based on Time Period
@@ -821,7 +821,7 @@ and all events.
 </tr>
 <tr class="odd">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>

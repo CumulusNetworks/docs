@@ -43,7 +43,7 @@ and event information immediately to the NetQ Platform.
 ### Switch Agents
 
 The NetQ Agents running on Cumulus Linux switches gather the following
-network data via [Netlink](https://tools.ietf.org/html/rfc3549):
+network data via {{<exlink url="https://tools.ietf.org/html/rfc3549" text="Netlink">}}:
 
   - Interfaces
   - IP addresses (v4 and v6)

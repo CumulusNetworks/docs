@@ -25,7 +25,7 @@ It helps answer questions such as:
 {{%notice note%}}
 
 Lightweight network virtualization (LNV) was deprecated in Cumulus Linux
-3.7.4 and will be removed in Cumulus Linux 4.0.0. LNV is deprecated in Cumulus NetQ 2.3.1, but supports and returns LNV data. Support will be removed from the Cumulus NetQ 2.4.0 release. For information on the support timeline, read these knowledge base articles:
+3.7.4 and will be removed in Cumulus Linux 4.0.0. LNV is deprecated in Cumulus NetQ 2.3.1, but supports and returns LNV data. Support will be removed from the Cumulus NetQ 3.0 release. For information on the support timeline, read these knowledge base articles:
 
 - [Cumulus Linux Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/217132357-Cumulus-Linux-Release-Versioning-and-Support-Policy).
 - [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
@@ -49,20 +49,16 @@ following command:
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type vxlan [between <text-time> and <text-endtime>] [json]
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
-
-For time ranges, the `<text-time>` is the most recent time and the
-`<text-endtime>` is the oldest time. The values do not have to have the
-same unit of measure.
-
+In NetQ 2.3.0, values for the `between` option must be entered with `<text-time>` being the most recent time and `text-endtime>` being the least recent time. In NetQ 2.3.1, the times can be entered in either order. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 ### View All VXLANs in Your Network
@@ -198,20 +194,16 @@ command is:
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type vxlan [between <text-time> and <text-endtime>] [json]
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-  - d: day(s)
-  - h: hour(s)
-  - m: minute(s)
-  - s: second(s)
-  - now
-
-For time ranges, the `<text-time>` is the most recent time and the
-`<text-endtime>` is the oldest time. The values do not have to have the
-same unit of measure.
-
+In NetQ 2.3.0, values for the `between` option must be entered with `<text-time>` being the most recent time and `text-endtime>` being the least recent time. In NetQ 2.3.1, the times can be entered in either order. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 For more information about and configuration of EVPN in your data
@@ -312,7 +304,7 @@ command is:
 {{%notice note%}}
 
 Lightweight network virtualization (LNV) was deprecated in Cumulus Linux
-3.7.4 and will be removed in Cumulus Linux 4.0.0. LNV is deprecated in Cumulus NetQ 2.3.1, but supports and returns LNV data. Support will be removed from the Cumulus NetQ 2.4.0 release. For information on the support timeline, read these knowledge base articles:
+3.7.4 and will be removed in Cumulus Linux 4.0.0. LNV is deprecated in Cumulus NetQ 2.3.1, but supports and returns LNV data. Support will be removed from the Cumulus NetQ 3.0.0 release. For information on the support timeline, read these knowledge base articles:
 
 - [Cumulus Linux Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/217132357-Cumulus-Linux-Release-Versioning-and-Support-Policy).
 - [Cumulus NetQ Release Versioning and Support Policy](https://support.cumulusnetworks.com/hc/en-us/articles/360020782534)
@@ -364,6 +356,3 @@ example shows the status of LNV about 30 minutes ago.
 For more information about and configuration of LNV, refer to the
 [Cumulus Linux LNV Overview](/version/cumulus-linux-37/Network-Virtualization/Lightweight-Network-Virtualization-Overview/)
 topic.
-
-
-</details>

@@ -254,6 +254,10 @@ The full screen LLDP Service card provides tabs for all switches, all sessions, 
 <td>Time period</td>
 <td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
 </tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
 <tr class="even">
 <td>Results</td>
 <td>Number of results found for the selected tab</td>
@@ -457,7 +461,7 @@ To view all LLDP events:
 
 2. Click the **All Alarms** tab.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-222.png" width="700">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-alarms-tab-241.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options include:
 
@@ -757,6 +761,10 @@ The full screen LLDP Session card provides tabs for all LLDP sessions and all ev
 <td>Time period</td>
 <td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
 </tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
 <tr class="even">
 <td>Results</td>
 <td>Number of results found for the selected tab</td>
@@ -879,7 +887,7 @@ You can view all of the alarm and info events in the network.
 
 To view all events, open the full screen LLDP Session card, and click the **All Events** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-events-tab-222.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-events-tab-241.png" width="700">}}
 
 Where to go next depends on what data you see, but a few options include:
 
@@ -888,5 +896,5 @@ Where to go next depends on what data you see, but a few options include:
   - by **Message** to determine the frequency of particular events
   - by **Severity** to determine the most critical events
   - by **Time** to find events that may have occurred at a particular time to try to correlate them with other system events
-- Export data to a file
+- Export data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>
 - Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner

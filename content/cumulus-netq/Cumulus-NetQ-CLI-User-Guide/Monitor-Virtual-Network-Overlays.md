@@ -24,9 +24,7 @@ It helps answer questions such as:
 - Can device A reach device B?
 
 {{%notice note%}}
-
-Lightweight network virtualization (LNV) has been removed from Cumulus Linux 4.0.0 and Cumulus NetQ 2.4.0. If you need LNV, you must use Cumulus Linux 3.7.x or NetQ 2.3.1 or earlier.
-
+Lightweight network virtualization (LNV) has been removed from Cumulus Linux 4.0.0 and disabled in Cumulus NetQ 2.4.0. If you need LNV, you must use Cumulus Linux 3.7.x and either enable LNV in NetQ 2.4.0, or use NetQ 2.3.1 or earlier.
 {{%/notice%}}
 
 ## Monitor Virtual Extensible LANs
@@ -47,18 +45,16 @@ netq [<hostname>] show events [level info|level error|level warning|level critic
 ```
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-- d: day(s)
-- h: hour(s)
-- m: minute(s)
-- s: second(s)
-- now
-
-For time ranges, you can specify the start and end times in either order; the most recent time first and then the oldest time, or vice versa. The values do not have to have the same unit of measure.
-
+For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 ### View All VXLANs in Your Network
@@ -206,18 +202,16 @@ netq [<hostname>] show events [level info|level error|level warning|level critic
 ```
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-- d: day(s)
-- h: hour(s)
-- m: minute(s)
-- s: second(s)
-- now
-
-For time ranges, you can specify the start and end times in either order; the most recent time first and then the oldest time, or vice versa. The values do not have to have the same unit of measure.
-
+For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 For more information about and configuration of EVPN in your data center, refer to the [Cumulus Linux EVPN](/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/) topic.

@@ -16,7 +16,7 @@ application-wide settings for the Cumulus NetQ UI from a single location.
 
 Individual users have the ability to set preferences specific to their
 workspaces. This information is covered separately. Refer to
-[Set User Preferences](../../NetQ-User-Interface-Overview/Set-User-Preferences).
+{{<link title="Set User Preferences">}}.
 
 ## NetQ Management Workbench
 
@@ -27,7 +27,7 @@ To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Inte
 {{<figure src="/images/netq/netq-mgmt-wb-cloud-230.png" width="700">}}
 
 {{%notice note%}}
-For on-premises deployments, an additional LDAP Server Info card is available. Refer to [Integrate NetQ with Your LDAP server](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Your-LDAP-Server) for details.
+For on-premises deployments, an additional LDAP Server Info card is available. Refer to {{<link url="Integrate-NetQ-with-Your-LDAP-Server" text="Integrate NetQ with Your LDAP server">}} for details.
 {{%/notice%}}
 
 ## Manage User Accounts
@@ -39,7 +39,7 @@ modify, and delete user accounts using the User Accounts card.
 ### Add New User Account
 
 For each user that monitors at least one aspect of your data center
-network, a user account is needed. Adding a local user is described here. Refer to [Integrate NetQ with Your LDAP server](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Your-LDAP-Server) for instructions for adding LDAP users.
+network, a user account is needed. Adding a local user is described here. Refer to {{<link url="Integrate-NetQ-with-Your-LDAP-Server" text="Integrate NetQ with Your LDAP server">}} for instructions for adding LDAP users.
 
 To add a new user account:
 
@@ -145,7 +145,7 @@ To change access permissions:
 
 You cannot edit a user's email address, because this is the identifier
 the system uses for authentication. If you need to change an email
-address, you must create a new one for this user. Refer to [Add a New User Account](#add-new-user-account). You should delete the incorrect user account. Select the user account, and click **Delete** in the Edit menu.
+address, you must create a new one for this user. Refer to {{<link title="#Add New User Account" text="Add New User Account">}}. You should delete the incorrect user account. Select the user account, and click **Delete** in the Edit menu.
 
 ### Export a List of User Accounts
 
@@ -275,7 +275,7 @@ To add a scheduled validation:
 
     {{<figure src="/images/netq/valid-request-large-222.png" width="500">}}
 
-4.  Configure the request. Refer to [Validate Network Protocol and Service Operations](../../Monitor-Network-Performance/Validate-Network-Protocol-and-Service-Operations) for details.
+4.  Configure the request. Refer to {{<link title="Validate Network Protocol and Service Operations">}} for details.
 
 ### Delete Scheduled Validations
 

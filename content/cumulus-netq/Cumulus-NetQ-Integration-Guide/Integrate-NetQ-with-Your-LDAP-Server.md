@@ -11,7 +11,7 @@ With this release and an administrator role, you are able to integrate the NetQ 
 
 Integrating with an LDAP server does not prevent you from configuring local users (stored and managed in the NetQ database) as well.
 
-Read the Overview to become familiar with LDAP configuration parameters, or skip to [Create an LDAP Configuration](#create-an-ldap-configuration) if you are already an LDAP expert.
+Read the Overview to become familiar with LDAP configuration parameters, or skip to {{<link title="#Create an LDAP Configuration" text="Create an LDAP Configuration">}} if you are already an LDAP expert.
 
 ## Overview
 
@@ -78,7 +78,7 @@ To create an LDAP configuration:
 
     {{<figure src="/images/netq/netq-mgmt-ldap-config-modal-231.png" width="500">}}
 
-3. Fill out the LDAP Server Configuration form according to your particular configuration. Refer to [Overview](#overview) for details about the various parameters.
+3. Fill out the LDAP Server Configuration form according to your particular configuration. Refer to {{<link title="#Overview" text="Overview">}} for details about the various parameters.
 
     **Note**: Items with an asterisk (*) are required. All others are optional.
 

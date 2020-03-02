@@ -238,7 +238,7 @@ To suppress a rule:
 
     - The state is now marked as *Inactive*,  but remains green
     - The date and time that the rule will be enabled is noted in the **Suppressed** field
-    - The **Disable** option has changed to **Disable Forever**. Refer to [Disable a Rule](#disable-a-rule) for information about this change.
+    - The **Disable** option has changed to **Disable Forever**. Refer to {{<link title="#Disable a Rule" text="Disable a Rule">}} for information about this change.
 
 ### Disable a Rule
 
@@ -284,7 +284,7 @@ To disable a rule that is currently suppressed:
 
 ### Delete a Rule
 
-You might find that you no longer want to received event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to [Disable a Rule](#disable-a-rule) in the first case. Follow the instructions here to remove the rule. The rule can be in any of the three states.
+You might find that you no longer want to received event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to {{<link title="#Disable a Rule" text="Disable a Rule">}} in the first case. Follow the instructions here to remove the rule. The rule can be in any of the three states.
 
 To delete a rule:
 

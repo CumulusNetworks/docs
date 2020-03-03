@@ -4,6 +4,6 @@ layout: weights
 bookhidden: true
 weight: 999
 product: Cumulus Linux
-version: "4.0"
+version: "4.1"
 ---
 

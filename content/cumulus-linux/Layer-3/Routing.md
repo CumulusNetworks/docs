@@ -5,8 +5,7 @@ weight: 720
 aliases:
  - /display/DOCS/Routing
  - /pages/viewpage.action?pageId=8366636
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 This chapter discusses routing on switches running Cumulus Linux.
 

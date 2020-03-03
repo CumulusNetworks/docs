@@ -5,8 +5,7 @@ weight: 940
 aliases:
  - /display/DOCS/Monitoring+System+Hardware
  - /pages/viewpage.action?pageId=8366315
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 You monitor system hardware using the following commands and utilities:
 

@@ -2,7 +2,6 @@
 title: Writing Guidelines
 author: Cumulus Networks
 weight: 220
-siteSlug: contributor-guide
 ---
 When we create our user documentation, we strive to provide easy-to-read, concise content with illustrations when useful. When you are editing existing or creating new content for Cumulus Networks technical user documentation, please follow these general guidelines.
 

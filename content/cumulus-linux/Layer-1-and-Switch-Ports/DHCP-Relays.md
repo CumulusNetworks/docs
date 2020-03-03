@@ -5,8 +5,7 @@ weight: 340
 aliases:
  - /display/DOCS/DHCP+Relays
  - /pages/viewpage.action?pageId=8366758
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 DHCP is a client/server protocol that automatically provides IP hosts with IP addresses and other related  configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers. DHCP relays forward requests and replies between clients and servers that are not on the same physical subnet.
 

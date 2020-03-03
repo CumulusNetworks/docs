@@ -2,10 +2,6 @@
 title: Configuration Updates
 author: Cumulus Networks
 weight: 172
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 After installation or upgrade of NetQ is complete, there are a few additional configuration tasks that might be required.
 

@@ -5,8 +5,7 @@ weight: 680
 aliases:
  - /display/DOCS/Integrating+Hardware+VTEPs+with+VMware+NSX+V
  - /pages/viewpage.action?pageId=8366547
-product: Cumulus Linux
-version: '4.0'
+toc: 4
 ---
 Switches running Cumulus Linux can integrate with VMware NSX-V to act as hardware VTEP gateways. The VMware NSX-V controller provides consistent provisioning across virtual and physical server infrastructures.
 

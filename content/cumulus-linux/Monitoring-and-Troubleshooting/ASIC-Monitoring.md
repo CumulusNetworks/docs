@@ -5,10 +5,9 @@ weight: 980
 aliases:
  - /display/DOCS/ASIC+Monitoring
  - /pages/viewpage.action?pageId=8366348
-product: Cumulus Linux
-version: '4.0'
-
+toc: 3
 ---
+
 Cumulus Linux provides an ASIC monitoring tool that collects and distributes data about the state of the ASIC. The monitoring tool polls for data at specific intervals and takes certain actions so that you can quickly identify and respond to problems, such as:
 
 - Microbursts that result in longer packet latency

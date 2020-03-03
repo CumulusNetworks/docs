@@ -2,7 +2,6 @@
 title: Resources
 author: Cumulus Networks
 weight: 30
-siteSlug: contributor-guide
 ---
 The resources include here describe:
 

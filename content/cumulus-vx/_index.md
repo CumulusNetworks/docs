@@ -7,11 +7,12 @@ aliases:
  - /display/VX/
  - /pages/viewpage.action?pageId=5126686
 pageID: 5126686
-product: Cumulus VX
-version: '3.7'
-imgData: cumulus-vx
-siteSlug: cumulus-vx
 subsection: true
+cascade:
+  product: Cumulus VX
+  version: '3.7'
+  imgData: cumulus-vx
+  siteSlug: cumulus-vx
 ---
 Cumulus VX is a free virtual environment designed for cloud and network
 administrators that introduces you to open networking and lets you learn

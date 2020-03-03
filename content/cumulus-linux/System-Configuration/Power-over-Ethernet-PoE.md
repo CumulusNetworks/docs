@@ -7,8 +7,7 @@ aliases:
  - /display/DOCS/Power+over+Ethernet+-+PoE
  - /display/DOCS/Power+over+Ethernet+PoE
  - /pages/viewpage.action?pageId=8366297
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain Cumulus Linux switches can supply power from Ethernet switch ports to enabled devices over the Ethernet cables that connect them. PoE is capable of powering devices up to 15W, while PoE+ can power devices up to 30W. Configuration for power negotiation is done over {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}.
 

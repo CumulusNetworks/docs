@@ -5,8 +5,7 @@ weight: 60
 aliases:
  - /display/DOCS/Migrating+from+LNV+to+EVPN
  - /pages/viewpage.action?pageId=9013184
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 Cumulus Networks deprecated lightweight network virtualization (LNV) in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}) to enable interoperability with switches from other manufacturers, to commit to industry standards, and because the benefits of EVPN outweigh those of LNV.
 

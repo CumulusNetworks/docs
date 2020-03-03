@@ -6,10 +6,6 @@ aliases:
 - /display/NETQ/Cumulus+NetQ+Deployment+Guide
 - /pages/viewpage.action?pageId=12320788
 pageID: 12320788
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 This guide is intended for network administrators who are responsible for installation, setup, and maintenance of Cumulus NetQ in their data center environment. NetQ offers the ability to monitor and manage your data center network infrastructure and operational health with simple tools based on open source Linux. This guide provides instructions and information about installing NetQ core capabilities, configuring optional capabilities, and upgrading an existing NetQ installation. This guide assumes you have already installed Cumulus Linux on your network switches and you are ready to add these NetQ capabilities.
 

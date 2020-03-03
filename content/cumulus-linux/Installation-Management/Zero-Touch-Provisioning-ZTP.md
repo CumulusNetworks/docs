@@ -7,8 +7,7 @@ aliases:
  - /display/DOCS/Zero+Touch+Provisioning+ZTP
  - /display/DOCS/Zero+Touch+Provisioning+++ZTP
  - /pages/viewpage.action?pageId=8366353
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 *Zero touch provisioning* (ZTP) enables you to deploy network devices quickly in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.
 

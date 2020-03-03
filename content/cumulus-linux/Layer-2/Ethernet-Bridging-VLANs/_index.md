@@ -7,8 +7,7 @@ aliases:
  - /display/DOCS/Ethernet+Bridging+VLANs
  - /display/DOCS/Ethernet+Bridging+-+VLANs
  - /pages/viewpage.action?pageId=8366378
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} (maximum transmission unit). The bridge MTU is the minimum MTU among all its members. By default, the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360005695794" text="bridge's MAC address">}} is the MAC address of the first port in the `bridge-ports` list. The bridge can also be assigned an IP address, as discussed {{<link url="#bridge-mac-addresses" text="below">}}.
 

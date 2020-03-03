@@ -2,7 +2,6 @@
 title: Give Simple Feedback
 author: Cumulus Networks
 weight: 10
-siteSlug: contributor-guide
 ---
 You can provide feedback about errors that are easy to fix, such as typographical errors, broken links, or simple grammar mistakes, using one of the following methods:
 

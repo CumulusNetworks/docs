@@ -3,8 +3,7 @@ title: EVPN Enhancements
 author: Cumulus Networks
 weight: 550
 aliases:
-product: Cumulus Linux
-version: '4.0'
+toc: 4
 ---
 This section describes EVPN enhancements.
 

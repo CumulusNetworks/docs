@@ -5,8 +5,7 @@ weight: 690
 aliases:
  - /display/DOCS/Integrating+Hardware+VTEPs+with+VMware+NSX+MH
  - /pages/viewpage.action?pageId=8366520
-product: Cumulus Linux
-version: '4.0'
+toc: 4
 ---
 Switches running Cumulus Linux can integrate with VMware NSX Multi-Hypervisor (MH) to act as hardware VTEP gateways. The VMware NSX-MH controller provides consistent provisioning across virtual and physical server infrastructures.
 

@@ -7,8 +7,7 @@ aliases:
  - /display/DOCS/Virtual+Routing+and+Forwarding+-+VRF
  - /display/DOCS/Virtual-Routing-and-Forwarding-VRF
  - /pages/viewpage.action?pageId=8366666
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 Cumulus Linux provides *virtual* *routing and forwarding* (VRF) to allow for the presence of multiple independent routing tables working simultaneously on the same router or switch. This permits multiple network paths without the need for multiple switches. Think of this feature as VLAN for layer 3, but unlike VLANs, there is no field in the IP header carrying it. Other implementations call this feature *VRF-Lite*.
 

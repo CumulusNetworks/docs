@@ -10,7 +10,7 @@ pageID: 8362022
 subsection: true
 cascade:
   product: Cumulus Linux
-  version: '3.6'
+  version: "3.6"
   imgData: cumulus-linux-36
   siteSlug: cumulus-linux-36
 ---

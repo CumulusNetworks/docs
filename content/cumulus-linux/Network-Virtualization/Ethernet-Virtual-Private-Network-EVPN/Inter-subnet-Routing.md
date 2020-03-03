@@ -4,8 +4,7 @@ author: Cumulus Networks
 weight: 560
 aliases:
  - /pages/viewpage.action?pageId=12910740
-product: Cumulus Linux
-version: '4.0'
+toc: 4
 ---
 There are multiple models in EVPN for routing between different subnets (VLANs), also known as inter-VLAN routing. The model you choose depends if every VTEP acts as a layer 3 gateway and performs routing or if only specific VTEPs perform routing, and if routing is performed only at the ingress of the VXLAN tunnel or both the ingress and the egress of the VXLAN tunnel.
 

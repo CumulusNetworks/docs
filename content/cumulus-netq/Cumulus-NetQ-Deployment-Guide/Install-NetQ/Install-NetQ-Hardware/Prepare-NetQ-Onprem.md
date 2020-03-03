@@ -486,6 +486,33 @@ Apply the settings.
 $ sudo netplan apply
 ```
 
+{%notice info%}}
+If you have changed the IP address or hostname of the NetQ Appliance, you need to
+re-register this address with the Kubernetes containers before you can
+continue.
+
+1. Reset all Kubernetes administrative settings. Run the command twice to make sure all directories and files have been reset.
+    ```
+    cumulus@netq-platform:~$ sudo kubeadm reset -f
+    ```  
+
+2. Remove the Kubernetes configuration.  
+    ```
+    cumulus@netq-platform:~$ sudo rm /home/cumulus/.kube/config
+    ```
+
+3. Reset the NetQ Platform install daemon.  
+    ```
+    cumulus@netq-platform:~$ sudo systemctl reset-failed
+    ```  
+
+4. Reset the Kubernetes service.  
+    ```
+    cumulus@netq-platform:~$ sudo systemctl restart cts-kubectl-config
+    ```  
+    **Note**: Allow 15 minutes for the prompt to return.
+{{%/notice%}}
+
 #### Verify NetQ Software and Appliance Readiness
 
 Now that the appliance is up and running, verify that the software is available and the appliance is ready for installation.

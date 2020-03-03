@@ -12,7 +12,7 @@ imgData: cumulus-netq
 siteSlug: cumulus-netq
 toc: 5
 ---
-After you have validated the prerequisites and performed the preparation steps, you can now install the NetQ software using the CLI.
+After you have validated the prerequisites and performed the preparation steps, you can then install the NetQ software using the CLI.
 
 {{%notice info%}}
 You must perform the preparation steps before installing the NetQ software. Go to {{%link title="Prepare for NetQ On-premises Installation"%}} or {{%link title="Prepare for NetQ Cloud Installation"%}} if you have not yet completed these preparation steps.
@@ -71,4 +71,3 @@ You can specify the IP address instead of the interface name here: use `ip-addr 
         {{%notice tip%}}
 You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of `interface eth0` above.
         {{%/notice%}}
-

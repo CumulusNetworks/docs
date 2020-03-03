@@ -39,8 +39,8 @@ The NetQ Platform requires a VM with the following system resources allocated:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Resource</p></th>
-<th><p>Minimum Requirement</p></th>
+<th>Resource</th>
+<th>Minimum Requirement</th>
 </tr>
 </thead>
 <tbody>
@@ -288,8 +288,8 @@ The NetQ Platform requires a VM with the following system resources allocated:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Resource</p></th>
-<th><p>Minimum Requirement</p></th>
+<th>Resource</th>
+<th>Minimum Requirement</th>
 </tr>
 </thead>
 <tbody>

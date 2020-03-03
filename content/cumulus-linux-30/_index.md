@@ -12,6 +12,7 @@ cascade:
   version: "3.0"
   imgData: cumulus-linux-30
   siteSlug: cumulus-linux-30
+  old: true
 ---
 ## Welcome to Cumulus Networks</span>
 

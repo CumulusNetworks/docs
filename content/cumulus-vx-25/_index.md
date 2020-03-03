@@ -12,6 +12,7 @@ cascade:
   version: "2.5 ESR"
   imgData: cumulus-vx-25
   siteSlug: cumulus-vx-25
+old: true
 ---
 Cumulus VX is free, open source software that provides a virtual
 experience enabling cloud and network admins to evaluate Cumulus

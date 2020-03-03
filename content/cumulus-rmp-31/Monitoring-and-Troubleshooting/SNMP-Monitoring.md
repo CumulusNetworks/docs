@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 Cumulus RMP utilizes the open source Net-SNMP agent `snmpd`, v5.7.3,
 which provides support for most of the common industry-wide MIBs,

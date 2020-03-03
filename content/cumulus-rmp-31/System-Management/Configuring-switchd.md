@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 `switchd` is the daemon at the heart of Cumulus RMP. It communicates
 between the switch and Cumulus RMP, and all the applications running on

@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "2.1"
 imgData: cumulus-netq-21
 siteSlug: cumulus-netq-21
+old: true
 ---
 The NetQ API provides access to key telemetry and system monitoring data
 gathered about the performance and operation of your data center network

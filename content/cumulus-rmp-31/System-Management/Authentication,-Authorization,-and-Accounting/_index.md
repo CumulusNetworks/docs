@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
   - [SSH for Remote
     Access](/cumulus-rmp-31/System-Management/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access)

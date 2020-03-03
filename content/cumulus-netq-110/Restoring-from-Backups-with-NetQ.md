@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.1"
 imgData: cumulus-netq-110
 siteSlug: cumulus-netq-110
+old: true
 ---
 NetQ automatically takes snapshots of the NetQ Telemetry Server at five
 minute intervals. These snapshots can be used to restore to a previous

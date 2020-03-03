@@ -12,6 +12,7 @@ cascade:
   version: "3.2"
   imgData: cumulus-rmp-321
   siteSlug: cumulus-rmp-321
+  old: true
 ---
 ## Introducing Cumulus RMP</span>
 

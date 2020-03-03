@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.2"
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
+old: true
 ---
 NetQ provides quality assurance capabilities to detect erroneous or
 undesired network configurations before the changes are rolled into

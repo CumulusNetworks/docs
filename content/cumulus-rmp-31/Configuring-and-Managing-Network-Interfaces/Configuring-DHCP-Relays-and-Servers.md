@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 You can configure an interface so it can make DHCP relay requests for
 IPv4 and IPv6.

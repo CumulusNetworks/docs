@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.0"
 imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
+old: true
 ---
 The NetQ Telemetry Server provides access to the NetQ Service Console, a
 graphical user interface (GUI) for NetQ. The service console in turn

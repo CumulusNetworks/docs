@@ -12,6 +12,7 @@ cascade:
   version: "3.4"
   imgData: cumulus-linux-343
   siteSlug: cumulus-linux-343
+  old: true
 ---
 ## Introducing Cumulus Linux
 

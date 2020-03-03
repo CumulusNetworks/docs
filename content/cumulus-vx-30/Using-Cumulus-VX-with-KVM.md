@@ -10,6 +10,7 @@ product: Cumulus VX
 version: "3.0"
 imgData: cumulus-vx-30
 siteSlug: cumulus-vx-30
+old: true
 ---
 Once you install the hypervisor and 
 [download the qcow2 image](https://cumulusnetworks.com/cumulus-vx/download/), 

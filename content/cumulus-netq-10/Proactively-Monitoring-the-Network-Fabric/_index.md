@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.0"
 imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
+old: true
 ---
 NetQ continually and algorithmically checks for these symptoms and sends
 real-time alerts via *NetQ Notifier* to notify users that a network

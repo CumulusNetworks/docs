@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 Cumulus RMP contains a number of command line and analytical tools to
 help you troubleshoot issues with your network.

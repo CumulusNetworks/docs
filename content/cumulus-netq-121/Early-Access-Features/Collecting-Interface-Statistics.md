@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.2"
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
+old: true
 ---
 The NetQ Agent collects interface counters from `/proc/net/dev` and
 pushes them to the NetQ Telemetry Server, where they are stored in a

@@ -12,6 +12,7 @@ cascade:
   version: "3.0"
   imgData: cumulus-vx-30
   siteSlug: cumulus-vx-30
+  old: true
 ---
 Cumulus VX is a free virtual environment for cloud and network
 administrators to test the latest technology from Cumulus Networks,

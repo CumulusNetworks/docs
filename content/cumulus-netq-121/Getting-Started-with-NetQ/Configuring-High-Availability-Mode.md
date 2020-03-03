@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.2"
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
+old: true
 ---
 NetQ supports high availability - that is, the ability to continue
 functioning even in the absence of a single failure of the telemetry

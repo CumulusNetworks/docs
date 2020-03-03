@@ -13,6 +13,7 @@ cascade:
   version: "2.5 ESR"
   imgData: cumulus-linux-25esr
   siteSlug: cumulus-linux-25esr
+  old: true
 ---
 ## Welcome to Cumulus Networks
 

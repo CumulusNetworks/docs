@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 The only real unique entity for logging on Cumulus RMP compared to any
 other Linux distribution is `switchd.log`, which logs the HAL (hardware

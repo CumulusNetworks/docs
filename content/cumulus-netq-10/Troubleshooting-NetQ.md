@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.0"
 imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
+old: true
 ---
 To aid in troubleshooting issues with NetQ, there are several
 configuration and log files on the telemetry server that can provide

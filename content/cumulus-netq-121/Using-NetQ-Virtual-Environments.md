@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.2"
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
+old: true
 ---
 You can try out NetQ in two different virtual environments. These
 environments enable you to try out NetQ on your own, or to test/validate

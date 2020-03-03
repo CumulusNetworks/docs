@@ -11,6 +11,7 @@ version: "1.0"
 imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
 subsection: true
+old: true
 ---
 Cumulus NetQ is a fabric-wide, telemetry-based validation system, that
 enables organizations to validate network state, both during regular

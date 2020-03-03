@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.2"
 imgData: cumulus-rmp-321
 siteSlug: cumulus-rmp-321
+old: true
 ---
 This quick start guide provides an end-to-end setup process for
 installing and running Cumulus RMP, as well as a collection of example

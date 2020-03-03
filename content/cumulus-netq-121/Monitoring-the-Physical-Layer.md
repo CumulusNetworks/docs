@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.2"
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
+old: true
 ---
 NetQ provides the ability to monitor at layer 1 - the physical cabling
 connecting the nodes of the network fabric. This includes the ability

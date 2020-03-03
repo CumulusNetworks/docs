@@ -10,6 +10,7 @@ product: Cumulus Linux
 version: "3.0"
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
+old: true
 ---
 This chapter helps you get up and running with Cumulus Linux quickly and
 easily.

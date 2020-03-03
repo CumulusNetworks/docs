@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.0"
 imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
+old: true
 ---
 
 NetQ is comprised of two main install components: the NetQ Telemetry

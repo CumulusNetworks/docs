@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 A Cumulus RMP switch can have only one image of the operating system
 installed. This section discusses installing new and updating existing

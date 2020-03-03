@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.0"
 imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
+old: true
 ---
 This chapter helps you get up and running with Cumulus RMP quickly and
 easily.

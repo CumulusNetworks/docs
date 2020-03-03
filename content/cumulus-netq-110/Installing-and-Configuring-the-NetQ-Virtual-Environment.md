@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.1"
 imgData: cumulus-netq-110
 siteSlug: cumulus-netq-110
+old: true
 ---
 A virtual NetQ demo environment is available on the [Cumulus Networks
 GitHub site](https://github.com/CumulusNetworks/cldemo-netq), allowing

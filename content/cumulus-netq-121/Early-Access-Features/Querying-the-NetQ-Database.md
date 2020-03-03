@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.2"
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
+old: true
 ---
 You can query for even more NetQ data using the SQL-like NetQ Query
 Language (NetQL) so you can conduct your own custom analysis or

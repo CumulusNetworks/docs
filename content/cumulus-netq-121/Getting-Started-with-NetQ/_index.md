@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.2"
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
+old: true
 ---
 NetQ is comprised of two main install components: the NetQ Telemetry
 Server, and the `cumulus-netq` metapackage which gets installed on

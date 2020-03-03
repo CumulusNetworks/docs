@@ -10,6 +10,7 @@ product: Cumulus VX
 version: "3.0"
 imgData: cumulus-vx-30
 siteSlug: cumulus-vx-30
+old: true
 ---
 Cumulus VX has the same foundation as other Cumulus Networks products;
 that is, Cumulus Linux and Cumulus RMP. Cumulus VX includes all the

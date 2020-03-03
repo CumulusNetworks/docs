@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.0"
 imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
+old: true
 ---
 This chapter outlines a few scenarios that illustrate how you use NetQ
 to troubleshoot MLAG on Cumulus Linux switches. Each starts with a log

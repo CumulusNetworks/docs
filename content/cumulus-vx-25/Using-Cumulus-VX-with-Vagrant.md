@@ -10,6 +10,7 @@ product: Cumulus VX
 version: "2.5 ESR"
 imgData: cumulus-vx-25
 siteSlug: cumulus-vx-25
+old: true
 ---
 ## Requirements
 

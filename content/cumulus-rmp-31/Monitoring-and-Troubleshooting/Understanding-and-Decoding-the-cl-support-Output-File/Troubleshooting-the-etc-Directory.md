@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 The
 [`cl-support`](/cumulus-rmp-31/Monitoring-and-Troubleshooting/Understanding-and-Decoding-the-cl-support-Output-File/)

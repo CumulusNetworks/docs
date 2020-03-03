@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.2"
 imgData: cumulus-netq-121
 siteSlug: cumulus-netq-121
+old: true
 ---
 NetQ provides the ability to codify playbooks and extend NetQ with
 custom commands for use cases specific to your network.

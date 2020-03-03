@@ -11,6 +11,7 @@ product: Cumulus Linux
 version: "3.0"
 imgData: cumulus-linux-30
 siteSlug: cumulus-linux-30
+old: true
 ---
 Cumulus Linux 3.0.1 includes bug fixes only.
 

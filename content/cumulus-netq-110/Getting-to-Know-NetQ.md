@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.1"
 imgData: cumulus-netq-110
 siteSlug: cumulus-netq-110
+old: true
 ---
 After you've installed NetQ, running `netq example` gives you some
 pointers as to how it helps you solve issues across your network.

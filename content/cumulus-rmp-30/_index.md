@@ -12,6 +12,7 @@ cascade:
   version: "3.0"
   imgData: cumulus-rmp-30
   siteSlug: cumulus-rmp-30
+  old: true
 ---
 ## Welcome to Cumulus Networks</span>
 

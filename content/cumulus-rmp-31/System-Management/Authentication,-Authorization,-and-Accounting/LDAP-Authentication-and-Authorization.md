@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 
 Cumulus RMP uses Pluggable Authentication Modules (PAM) and Name Service

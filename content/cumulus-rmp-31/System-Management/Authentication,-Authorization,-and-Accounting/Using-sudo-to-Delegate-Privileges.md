@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 By default, Cumulus RMP has two user accounts: *root* and *cumulus*. The
 *cumulus* account is a normal user and is in the group *sudo*.

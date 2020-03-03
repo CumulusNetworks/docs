@@ -10,6 +10,7 @@ product: Cumulus VX
 version: "3.0"
 imgData: cumulus-vx-30
 siteSlug: cumulus-vx-30
+old: true
 ---
 This section covers configuring the network interfaces and Quagga for a
 2 leaf/2 spine topology. The steps below assume that the VMs have been

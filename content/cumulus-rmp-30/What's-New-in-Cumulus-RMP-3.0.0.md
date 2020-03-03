@@ -11,6 +11,7 @@ product: Cumulus RMP
 version: "3.0"
 imgData: cumulus-rmp-30
 siteSlug: cumulus-rmp-30
+old: true
 ---
 Cumulus RMP 3.0.0 has a host of new features and capabilities. In
 addition to this chapter, please read the [release

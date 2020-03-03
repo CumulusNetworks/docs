@@ -12,6 +12,7 @@ cascade:
   version: "1.4"
   imgData: cumulus-netq-141
   siteSlug: cumulus-netq-141
+  old: true
 ---
 Cumulus® NetQ is a network operations tool set that provides actionable
 insight into and operational intelligence about the health of the entire

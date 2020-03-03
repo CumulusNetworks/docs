@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.0"
 imgData: cumulus-netq-10
 siteSlug: cumulus-netq-10
+old: true
 ---
 NetQ provides users with the ability to go back in time to replay the
 network state, see fabric-wide event changelogs and root cause state

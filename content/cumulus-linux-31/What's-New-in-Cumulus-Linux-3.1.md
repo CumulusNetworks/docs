@@ -11,6 +11,7 @@ product: Cumulus Linux
 version: "3.1"
 imgData: cumulus-linux-31
 siteSlug: cumulus-linux-31
+old: true
 ---
 ## What's New in Cumulus Linux 3.1.2</span>
 

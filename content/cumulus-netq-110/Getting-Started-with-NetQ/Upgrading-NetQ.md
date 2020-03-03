@@ -10,6 +10,7 @@ product: Cumulus NetQ
 version: "1.1"
 imgData: cumulus-netq-110
 siteSlug: cumulus-netq-110
+old: true
 ---
 This section covers the process for upgrading NetQ. The upgrade process
 involves upgrading each of the various components of NetQ (the NetQ

@@ -12,6 +12,7 @@ cascade:
   version: "2.5 ESR"
   imgData: cumulus-rmp-25esr
   siteSlug: cumulus-rmp-25esr
+  old: true
 ---
 ## Welcome to Cumulus Networks</span>
 

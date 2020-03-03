@@ -10,6 +10,7 @@ product: Cumulus VX
 version: "2.5 ESR"
 imgData: cumulus-vx-25
 siteSlug: cumulus-vx-25
+old: true
 ---
 Once you install the hypervisor and [download the qcow2
 image](https://cumulusnetworks.com/cumulus-vx/download/), you will clone

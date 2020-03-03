@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery

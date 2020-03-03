@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 *Management VRF* provides a separation between the out-of-band
 management network and the in-band data plane network. For all VRFs, the

@@ -10,6 +10,7 @@ product: Cumulus RMP
 version: "3.1"
 imgData: cumulus-rmp-31
 siteSlug: cumulus-rmp-31
+old: true
 ---
 `netshow` is a tool in Cumulus RMP that quickly returns a lot of
 information about your network configuration. It's a tool designed by

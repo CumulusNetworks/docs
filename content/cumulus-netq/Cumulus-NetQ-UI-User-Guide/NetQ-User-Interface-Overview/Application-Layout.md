@@ -21,23 +21,19 @@ The NetQ UI contains two main areas:
     status and configuration information about your network and its
     various components).
 
-{{< figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-230.png" width="700" >}}
+{{< figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-241.png" width="700" >}}
 
 ## Main Menu
 
 Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the main menu which provides navigation to:
 
-  - **Favorites**: contains list of links to workbenches that you have
-    designated as favorites; Home is listed by default and points to the Cumulus Workbench
-  - **NetQ**: contains list of links to all workbenches in the
-    application
-  - **Network**: contains list of links to tabular data about various
-    network elements; return to a workbench by selecting it from the
-    NetQ menu
-  - **Admin**: contains link to user documentation and application
-    management
+  - **Favorites**: contains link to the user-defined favorite workbenche; Home is listed by default and points to the Cumulus Workbench
+  - **NetQ**: contains links to all workbenches
+  - **Network**: contains links to tabular data about various network elements and the What Just Happened feature
+  - **Admin**: contains link to user documentation and application management features
+  -**Notifications**: contains link to event notification configuration
 
-{{< figure src="/images/netq/main-menu-222.png" width="450" >}}
+{{< figure src="/images/netq/main-menu-241.png" width="500" >}}
 
 ## Recent Actions
 

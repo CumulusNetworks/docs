@@ -7,10 +7,6 @@ aliases:
   - /display/VX/GNS3+and+VirtualBox
  - /pages/viewpage.action?pageId=5126714
 pageID: 5126714
-product: Cumulus VX
-version: '3.7'
-imgData: cumulus-vx
-siteSlug: cumulus-vx
 ---
 Before you run your virtual network under GNS3, make sure you:
 

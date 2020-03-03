@@ -5,8 +5,7 @@ weight: 870
 aliases:
  - /display/DOCS/Management+VRF
  - /pages/viewpage.action?pageId=8366664
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 {{%notice note%}}
 

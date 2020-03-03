@@ -2,10 +2,6 @@
 title: What's New in Cumulus NetQ 2.4
 author: Cumulus Networks
 weight: 630
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 
 Cumulus NetQ 2.4 extends its visibility into network-wide and device issues, and makes deployment easier. Moving to this release requires a fresh installation; however, you can backup and restore data from prior versions. You can upgrade from NetQ 2.4.0 to 2.4.1.

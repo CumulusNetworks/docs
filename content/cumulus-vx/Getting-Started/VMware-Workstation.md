@@ -7,10 +7,6 @@ aliases:
  - /display/VX/VMware+Workstation
  - /pages/viewpage.action?pageId=5126698
 pageID: 5126698
-product: Cumulus VX
-version: '3.7'
-imgData: cumulus-vx
-siteSlug: cumulus-vx
 ---
 The following sections describe how to import and set up a
 two-leaf/two-spine Cumulus VX topology with VMware Workstation.

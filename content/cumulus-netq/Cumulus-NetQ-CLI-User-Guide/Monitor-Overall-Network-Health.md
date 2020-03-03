@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ/Monitor+Overall+Network+Health
  - /pages/viewpage.action?pageId=12321047
 pageID: 12321047
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 NetQ provides the information you need to monitor the health of your
 network fabric, devices, and interfaces. You are able to easily validate

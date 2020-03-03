@@ -3,10 +3,6 @@ title: Data Center Network Deployments
 author: Cumulus Networks
 weight: 40
 pageID: 12320801
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 
 There are three deployment types that are commonly deployed for network management in the data center:

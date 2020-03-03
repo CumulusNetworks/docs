@@ -7,8 +7,7 @@ aliases:
  - /display/DOCS/Protocol+Independent+Multicast+PIM
  - /display/DOCS/Protocol+Independent+Multicast+-+PIM
  - /pages/viewpage.action?pageId=8366623
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 Protocol Independent Multicast (PIM) is a multicast control plane protocol that advertises multicast sources and receivers over a routed layer 3 network. Layer 3 multicast relies on PIM to advertise information about multicast capable routers, and the location of multicast senders and receivers. For this reason, multicast cannot be sent through a routed network without PIM.
 
@@ -1045,7 +1044,7 @@ cumulus@rp01:~$ net add loopback lo ip address 10.1.1.100/32
 2. On every multicast switch, configure the group to RP mapping using the anycast address:
 
 ```
-cumulus@switch:$ net add pim rp 100.1.1.100 224.0.0.0/4
+cumulus@switch:$ net add pim rp 10.1.1.100 224.0.0.0/4
 cumulus@switch:$ net pending
 cumulus@switch:$ net commit
 ```
@@ -1116,7 +1115,7 @@ cumulus@switch:~$ ifreload -a
 cumulus@rp01:~$ sudo vtysh
 
 rp01# configure terminal
-rp01(config)# ip pim rp 100.1.1.100 224.0.0.0/4
+rp01(config)# ip pim rp 10.1.1.100 224.0.0.0/4
 ```
 
 4. Configure the MSDP mesh group for all active RPs (the following example uses 3 RPs):

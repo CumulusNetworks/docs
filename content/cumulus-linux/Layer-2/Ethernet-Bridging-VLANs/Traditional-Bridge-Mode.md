@@ -5,8 +5,7 @@ weight: 460
 aliases:
  - /display/DOCS/Traditional+Bridge+Mode
  - /pages/viewpage.action?pageId=8366393
-product: Cumulus Linux
-version: '4.0'
+toc: 4
 ---
 Cumulus Networks recommends you use a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}} on your switch. Use traditional mode bridges only if you need to run more than one bridge on the switch or if you need to use PVSTP+.
 

@@ -5,10 +5,7 @@ weight: 142
 aliases:
  - /display/NETQ/Upgrade+NetQ
  - /pages/viewpage.action?pageId=12320951
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
+
 toc: 4
 ---
 With NetQ 2.4, there are a couple of instances when you should upgrade your NetQ Agents:

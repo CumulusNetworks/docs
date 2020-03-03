@@ -5,8 +5,7 @@ weight: 580
 aliases:
  - /display/DOCS/EVPN+Configuration+Examples
  - /pages/viewpage.action?pageId=12910740
-product: Cumulus Linux
-version: '4.0'
+toc: 4
 ---
 This section shows the following configuration examples:
 

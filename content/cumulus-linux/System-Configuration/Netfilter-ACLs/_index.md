@@ -7,8 +7,7 @@ aliases:
  - /display/DOCS/Netfilter+ACLs
  - /display/DOCS/Netfilter+-+ACLs
  - /pages/viewpage.action?pageId=8366284
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 {{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux as well as most other Linux distributions. There are a number of tools available for configuring ACLs in Cumulus Linux:
 

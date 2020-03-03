@@ -3,7 +3,7 @@ title: Campus Architecture Solution Guide
 author: Cumulus Networks
 weight: 10
 product: Cumulus Networks Guides
-version: 1.0
+version: "1.0"
 imgData: guides
 siteSlug: guides
 ---

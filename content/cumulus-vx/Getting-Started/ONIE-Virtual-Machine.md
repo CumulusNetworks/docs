@@ -7,10 +7,6 @@ aliases:
  - /display/VX/ONIE+Virtual+Machine
  - /pages/viewpage.action?pageId=5126699
 pageID: 5126699
-product: Cumulus VX
-version: '3.7'
-imgData: cumulus-vx
-siteSlug: cumulus-vx
 ---
 Cumulus VX images now include the GRUB boot loader and 
 [Open Network Install Environment (ONIE)](http://onie.org/) preinstalled. 

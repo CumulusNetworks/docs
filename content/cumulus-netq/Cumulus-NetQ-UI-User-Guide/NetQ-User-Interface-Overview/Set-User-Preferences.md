@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ22/NetQ-User-Interface-Overview
  - /pages/viewpage.action?pageId=12321856
 pageID: 12321856
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 Each user can customize the NetQ application display, change his account
 password, and manage his workbenches.

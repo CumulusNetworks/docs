@@ -6,10 +6,7 @@ aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
 pageID: 12320951
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
+
 toc: 5
 ---
 After you have validated the prerequisites and performed the preparation steps, you can now install the NetQ software using the Admin UI.

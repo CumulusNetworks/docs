@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ/NetQ+User+Interface+Overview
  - /pages/viewpage.action?pageId=12321856
 pageID: 12321856
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 The NetQ 2.x graphical user interface (UI) enables you to access NetQ capabilities through a web browser as opposed to through a terminal window using the Command Line Interface (CLI). Visual representations of the health of the network, inventory, and system events make it easy to both find faults and misconfigurations, and to fix them.
 

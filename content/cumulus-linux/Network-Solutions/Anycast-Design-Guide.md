@@ -5,8 +5,7 @@ weight: 1190
 aliases:
  - /display/DOCS/Anycast+Design+Guide
  - /pages/viewpage.action?pageId=8366734
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 Cumulus Networks Routing on the Host enables you to run {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} directly on server hosts. This can enable a network architecture known as *anycast*, where many servers can provide the same service without needing layer 2 extensions or load balancer appliances.
 

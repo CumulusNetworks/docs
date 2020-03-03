@@ -6,10 +6,6 @@ aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
 pageID: 12321950
-product: Cumulus NetQ
-version: 2.4
-imgData: cumulus-netq
-siteSlug: cumulus-netq
 ---
 As an administrator, you have two major tasks related to managing Cumulus NetQ:
 

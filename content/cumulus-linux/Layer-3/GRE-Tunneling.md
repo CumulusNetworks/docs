@@ -5,8 +5,7 @@ weight: 880
 aliases:
  - /display/DOCS/GRE+Tunneling
  - /pages/viewpage.action?pageId=8366690
-product: Cumulus Linux
-version: '4.0'
+toc: 3
 ---
 {{%notice warning%}}
 

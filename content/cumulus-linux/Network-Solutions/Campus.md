@@ -2,10 +2,7 @@
 title: Campus Deployments
 author: Cumulus Networks
 weight: 1160
-product: Cumulus Linux
-version: '4.0'
-imgData: cumulus-linux
-siteSlug: cumulus-linux
+toc: 3
 ---
 
 Cumulus Linux includes a number of features that you can use to deploy in a campus setting. These features include:

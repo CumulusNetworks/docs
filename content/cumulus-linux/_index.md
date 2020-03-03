@@ -6,9 +6,11 @@ aliases:
  - /display/DOCS/
  - /display/DOCS/Cumulus+Linux+User+Guide
  - /pages/viewpage.action?pageId=8366246
-product: Cumulus Linux
-version: '4.0'
 subsection: true
+cascade:
+    product: Cumulus Linux
+    version: "4.0"
+toc: 1
 ---
 ## What is Cumulus Linux?
 

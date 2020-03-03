@@ -5,8 +5,7 @@ weight: 170
 aliases:
  - /display/DOCS/LDAP+Authentication+and+Authorization
  - /pages/viewpage.action?pageId=8366277
-product: Cumulus Linux
-version: '4.0'
+toc: 4
 ---
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switch (NSS) for user authentication. NSS enables PAM to use LDAP to provide user authentication, group mapping, and information for other services on the system.
 

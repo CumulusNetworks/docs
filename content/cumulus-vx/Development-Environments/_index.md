@@ -7,10 +7,6 @@ aliases:
  - /display/VX/Development+Environments
  - /pages/viewpage.action?pageId=5126712
 pageID: 5126712
-product: Cumulus VX
-version: '3.7'
-imgData: cumulus-vx
-siteSlug: cumulus-vx
 ---
 You can use Cumulus VX within both Vagrant and GNS3 development
 environments, running on either VirtualBox or KVM hypervisors. This

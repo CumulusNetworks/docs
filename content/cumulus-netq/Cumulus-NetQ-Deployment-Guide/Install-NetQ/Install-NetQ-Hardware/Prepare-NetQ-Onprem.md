@@ -21,9 +21,9 @@ There are three key steps in the preparation for on-premises installation:
 
 3. Obtain the NetQ Platform image and setup the VM or appliance.
 
-## Requirements for VMs
+## Prepare Your KVM VM and Obtain the NetQ Platform
 
-If you choose to deploy NetQ on your own hardware, the following *minimum* hardware and software requirements must be met for the VM to operate correctly.
+The first preparation step is to verify your VM meets the following *minimum* hardware and software requirements to ensure the VM can operate correctly.
 
 ### Virtual Machine Requirements
 
@@ -36,8 +36,8 @@ The NetQ Platform requires a VM with the following system resources allocated:
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Resource</p></th>
-<th><p>Minimum Requirement</p></th>
+<th>Resource</th>
+<th>Minimum Requirement</th>
 </tr>
 </thead>
 <tbody>
@@ -103,9 +103,7 @@ For internal cluster communication:
 Port 32666 is no longer used for the NetQ UI.
 {{%/notice%}}
 
-## Prepare Your KVM VM and Obtain the NetQ Platform  
-
-Follow the preparation instructions below, based on whether you intend to deploy a single server platform or a three-server cluster.
+The second preparation step is to follow the instructions below, based on whether you intend to deploy a single-server platform or a three-server cluster.
 
 ### KVM Single-Server Deployment
 
@@ -274,7 +272,87 @@ You are now ready to install the Cumulus NetQ software.  Refer to {{<link title=
 
 ## Prepare Your VMware VM and Obtain NetQ Platform
 
-Follow the preparation instructions below, based on whether you intend to deploy a single server platform or a three-server cluster.
+The first preparation step is to verify your VM meets the following *minimum* hardware and software requirements to ensure the VM can operate correctly.
+
+### Virtual Machine Requirements
+
+The NetQ Platform requires a VM with the following system resources allocated:
+
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Resource</th>
+<th>Minimum Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td>Processor</td>
+<td>Eight (8) virtual CPUs</td>
+</tr>
+<tr class="odd">
+<td>Memory</td>
+<td>64 GB RAM</td>
+</tr>
+<tr class="even">
+<td>Local disk storage</td>
+<td>256 GB SSD <br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+</tr>
+<tr class="odd">
+<td>Network interface speed</td>
+<td>1 Gb NIC</td>
+</tr>
+<tr class="even">
+<td>Hypervisor</td>
+<td><ul><li>VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux, CentOS, Ubuntu and RedHat operating systems</li><li>KVM/QCOW (QEMU Copy on Write) image for servers running CentOS, Ubuntu and RedHat operating systems</li></ul></td>
+</tr>
+</tbody>
+</table>
+
+### Required Open Ports
+
+You must also open the following ports on your NetQ Platform (or platforms if you are planning to deploy a server cluster).
+
+For external connections:
+
+| Port  |  Protocol | Component Access |
+| ------: |  :-----: | ----- |
+| 8443 |  TCP | Admin UI |
+| 443 | TCP | NetQ UI |
+| 31980 | TCP | NetQ Agent communication |
+| 32708 | TCP | API Gateway |
+| 22 | TCP | SSH |
+
+For internal cluster communication:
+
+| Port  |  Protocol | Component Access |
+| ------: |  :-----: | ----- |
+| 8080 | TCP | Admin API |
+| 5000 | TCP | Docker registry |
+| 8472 | UDP | Flannel port for VXLAN |
+| 6443 | TCP | Kubernetes API server |
+| 10250 | TCP | kubelet health probe |
+| 2379 | TCP | etcd |
+| 2380 | TCP | etcd |
+| 7072 | TCP | Kafka JMX monitoring |
+| 9092 | TCP | Kafka client |
+| 7071 | TCP | Cassandra JMX monitoring |
+| 7000 | TCP | Cassandra cluster communication |
+| 9042 | TCP | Cassandra client |
+| 7073 | TCP | Zookeeper JMX |
+| 2888 | TCP | Zookeeper cluster communication |
+| 3888 | TCP | Zookeeper cluster communication |
+| 2181 | TCP | Zookeeper client |
+
+{{%notice tip%}}
+Port 32666 is no longer used for the NetQ UI.
+{{%/notice%}}
+
+The second preparation step is to follow the instructions below, based on whether you intend to deploy a single-server platform or a three-server cluster.
 
 ### VMware Single-Server Arrangement
 
@@ -412,7 +490,7 @@ You are now ready to install the Cumulus NetQ software.  Refer to {{<link title=
 
 ## Prepare Your Cumulus NetQ Appliance
 
-Follow the preparation instructions below, based on whether you intend to deploy a single server platform or a three-server cluster.
+Follow the preparation instructions below, based on whether you intend to deploy a single NetQ Appliance or three NetQ Appliances as a cluster.
 
 ### Single NetQ Appliance
 

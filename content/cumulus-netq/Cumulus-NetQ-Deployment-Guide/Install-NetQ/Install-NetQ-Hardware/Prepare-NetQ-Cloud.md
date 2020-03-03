@@ -561,6 +561,22 @@ Apply the settings.
 cumulus@<hostname>:~$ sudo netplan apply
 ```
 
+{{%notice info%}}
+If you changed the IP address or interface of the appliance to something other than what it was assigned previously, you must inform NetQ of the change.
+
+If you changed the IP address, but kept the interface the same (for example, eth0), re-run the `netq install opta interface` command using your config-key:
+
+```
+cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.3.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+```
+
+If you changed the interface (for example, eth0 to eth1), run the `netq install opta interface` command with the new interface and your config-key:
+
+```
+cumulus@netq-appliance:~$ netq install opta interface eth1 tarball NetQ-2.3.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+```
+{{%/notice%}}
+
 #### Verify NetQ Software and Appliance Readiness
 
 Now that the appliance is up and running, verify that the software is available and the appliance is ready for installation.

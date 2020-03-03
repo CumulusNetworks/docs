@@ -206,7 +206,7 @@ The full screen Trace Request card displays:
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -233,7 +233,7 @@ To create a layer 3 trace request:
  If you mistype an address, you must double-click it, or backspace over the error, and retype the address. You cannot select the address by dragging over it as this action attempts to move the card to another location.
     {{%/notice%}}
 
-4. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to [View Layer 3 Trace Results](#view-layer-3-trace-results) for details.
+4. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
 
 ### Create a Layer 3 Trace Through a Given VRF
 
@@ -253,7 +253,7 @@ To create the trace request:
 
     In this example, we are starting our trace at *leaf01* and ending it at *10.1.3.103* using VRF *vrf1.*
 
-5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to [View Layer 3 Trace Results](#view-layer-3-trace-results) for details.
+5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
 
 ### Create a Layer 2 Trace
 
@@ -273,7 +273,7 @@ To create a layer 2 trace request:
 
     In this example, we are starting our trace at *leaf01* and ending it at *00:03:00:33:33:01* using VLAN *13.*
 
-5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to [View Layer 2 Trace Results](#view-layer-2-trace-results) for details.
+5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="#View Layer 2 Trace Results" text="View Layer 2 Trace Results">}} for details.
 
 ### Create a Trace to Run on a Regular Basis (Scheduled Trace)
 
@@ -592,7 +592,7 @@ The full screen On-demand Trace Results card displays:
 </tr>
 <tr class="odd">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -732,7 +732,7 @@ The medium Scheduled Trace Results card displays:
 </tr>
 <tr class="odd">
 <td>Charts</td>
-<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
+<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to {{<link url="#granularity-of-data-shown-based-on-time-period" text="Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</p>
 <p><strong>Unique Bad Nodes</strong>: Distribution of unique nodes that generated the indicated warnings and/or failures</p></td>
 </tr>
 </tbody>
@@ -779,7 +779,7 @@ The *Results* tab displays:
 </tr>
 <tr class="odd">
 <td>Charts</td>
-<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to <a href="#granularity-of-data-shown-based-on-time-period">Granularity of Data Shown Based on Time Period</a> for details on how to interpret the results.</p>
+<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to {{<link url="#granularity-of-data-shown-based-on-time-period" text="Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</p>
 <p><strong>Small charts</strong>: Display counts for each item during the same time period, for the purpose of correlating with the warnings and errors shown in the heat map.</p></td>
 </tr>
 <tr class="even">
@@ -903,7 +903,7 @@ The full screen Scheduled Trace Results card displays:
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to <a href="https://docs.cumulusnetworks.com/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards/#table-settings">Table Settings</a>.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -953,7 +953,7 @@ To view the results:
 
 9. View the available paths for each run, by selecting **Paths** in the filter above the table.
 
-10. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/>. If you want to change the configuration, click **Edit** to open the large Trace Request card, pre-populated with the current configuration. Follow the instructions in [Create a Scheduled Trace Request](#create-a-trace-to-run-on-a-regular-basis-scheduled-trace) to make your changes in the same way you created a new scheduled trace.
+10. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/>. If you want to change the configuration, click **Edit** to open the large Trace Request card, pre-populated with the current configuration. Follow the instructions in {{<link url="#create-a-trace-to-run-on-a-regular-basis-scheduled-trace" text="Create a Scheduled Trace Request">}} to make your changes in the same way you created a new scheduled trace.
 
 11. To view a summary of all scheduled trace results, switch to the full screen card.
 

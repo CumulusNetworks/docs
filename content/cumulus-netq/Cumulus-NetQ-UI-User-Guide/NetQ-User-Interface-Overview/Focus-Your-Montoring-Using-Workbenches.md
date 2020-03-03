@@ -52,7 +52,7 @@ To create a workbench:
 
 4. Add cards to the workbench using <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> or <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>.
 
-Refer to [Access Data with Cards](/cumulus-netq/Cumulus-NetQ-UI-User-Guide/NetQ-User-Interface-Overview/Access-Data-with-Cards) for information about interacting with cards on your workbenches.
+Refer to {{<link title="Access Data with Cards">}} for information about interacting with cards on your workbenches.
 
 ### Remove a Workbench
 
@@ -124,4 +124,4 @@ To manage your workbenches as a group, either:
 - Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> next to the current workbench name, then click **Manage My WB**. 
 - Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" width="18"/>, select **Profiles & Preferences** option.
 
-Both of these open the Profiles & Preferences page. Look for the Workbenches card and refer to [Manage Your Workbenches](../Set-User-Preferences/#manage-your-workbenches) for more information.
+Both of these open the Profiles & Preferences page. Look for the Workbenches card and refer to {{<link url="Set-User-Preferences#manage-your-workbenches" text="Manage Your Workbenches">}} for more information.

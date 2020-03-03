@@ -266,7 +266,7 @@ To always start `switchd` with nonatomic updates:
 acl.non_atomic_update_mode = TRUE
 ```
 
-3. {{<link url="Configuring-switchd#restart-switchd" text="Restart `switchd`">}}:
+3. {{%link url="Configuring-switchd#restart-switchd" text="Restart `switchd`"%}}:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -1256,7 +1256,7 @@ For example, your switch is set so BFD is rate limited to 2000 packets per secon
 
 In Cumulus Linux, atomic update mode is enabled by default. If you have Tomahawk switches and plan to use SPAN and/or mangle rules, you must disable atomic update mode.
 
-To do so, enable nonatomic update mode by setting the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}}.
+To do so, enable nonatomic update mode by setting the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}}.
 
 ```
 acl.non_atomic_update_mode = TRUE
@@ -1278,7 +1278,7 @@ On a Trident3 switch, the TCAM allocation for ACLs is limited to 2048 rules in a
 
 #### Enable Nonatomic Mode
 
-On a Trident3 switch, you must enable nonatomic update mode before you can configure ERSPAN. To do so, set the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}}.
+On a Trident3 switch, you must enable nonatomic update mode before you can configure ERSPAN. To do so, set the value for `acl.non_atomic_update_mode` to TRUE in `/etc/cumulus/switchd.conf`, then {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}}.
 
 ```
 acl.non_atomic_update_mode = TRUE

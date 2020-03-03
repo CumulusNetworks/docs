@@ -33,4 +33,4 @@ Cumulus NetQ 2.4 extends its visibility into network-wide and device issues, and
 - Miscellaneous improvements in card displays in NetQ UI
 - Ubuntu 18.04 deployed as base OS for NetQ appliances
 
-For further information regarding new features, improvements, bug fixes, and known issues present in this release, refer to the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360041040413).
+For further information regarding new features, improvements, bug fixes, and known issues present in this release, refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413-Cumulus-NetQ-2-4-Release-Notes" text="release notes">}}.

@@ -50,11 +50,11 @@ To open Recent Actions, click <img src="https://icons.cumulusnetworks.com/05-Int
 ## Search
 
 The Global Search field in the UI header enables you to search for
-devices. It behaves like most searches and can help you quickly find device information. For more detail on creating and running searches, refer to [Create and Run Searches](../Create-and-Run-Searches).
+devices. It behaves like most searches and can help you quickly find device information. For more detail on creating and running searches, refer to {{<link title="Create and Run Searches">}}.
 
 ## Cumulus Networks Logo
 
-Clicking on the Cumulus logo takes you to your favorite workbench. For details about specifying your favorite workbench, refer to [Set User Preferences](../Set-User-Preferences).
+Clicking on the Cumulus logo takes you to your favorite workbench. For details about specifying your favorite workbench, refer to {{<link title="Set User Preferences">}}.
 
 ## Quick Network Health View
 
@@ -77,7 +77,7 @@ A workbench is comprised of a given set of cards. In this release, a
 pre-configured default workbench, Cumulus Workbench, is available to get
 you started. It contains Device Inventory, Switch Inventory, Alarm and
 Info Events, and Network Health cards. On initial login, this workbench
-is opened. You can create your own workbenches by adding or removing cards available cards to meet your particular needs. For more detail about managing your data using workbenches, refer to [Focus Your Monitoring Using Workbenches](../Focus-Your-Montoring-Using-Workbenches/).
+is opened. You can create your own workbenches by adding or removing cards available cards to meet your particular needs. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.
 
 ## Cards
 
@@ -91,11 +91,11 @@ detailed information on the full-screen view. Cards are collected onto a
 workbench where you see all of the data relevant to a task or set of
 tasks. You can add and remove cards from a workbench, move between cards
 and card sizes, and make copies of cards to show different levels of
-data at the same time. For details about working with cards, refer to [Access Data with Cards](../Access-Data-with-Cards).
+data at the same time. For details about working with cards, refer to {{<link title="Access Data with Cards">}}.
 
 ## User Settings
 
-Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > Profile & Preferences. For details, refer to [Set User Preferences](../Set-User-Preferences).
+Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > Profile & Preferences. For details, refer to {{<link title="Set User Preferences">}}.
 
 ## Format Cues
 

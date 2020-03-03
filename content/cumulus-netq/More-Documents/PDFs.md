@@ -16,16 +16,16 @@ The following Cumulus NetQ user documentation is available in PDF for offline vi
 
 NetQ 2.4.1
 
-- [Cumulus NetQ Deployment Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-241-Deployment-Guide.pdf)
-- [Cumulus NetQ Integration Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-241-Integration-Guide.pdf)
-- [Cumulus NetQ UI User Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-241-UI-User-Guide.pdf)
-- [Cumulus NetQ CLI User Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-241-CLI-User-Guide.pdf)
-- [Single File of All Guides](xxx)
+- Cumulus NetQ Deployment Guide PDF
+- Cumulus NetQ Integration Guide PDF
+- Cumulus NetQ UI User Guide PDF
+- Cumulus NetQ CLI User Guide PDF
+- text="Single File of All Guides
 
 NetQ 2.4.0
 
-- [Cumulus NetQ Deployment Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-240-Deployment-Guide.pdf)
-- [Cumulus NetQ Integration Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-240-Integration-Guide.pdf)
-- [Cumulus NetQ UI User Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-240-UI-User-Guide.pdf)
-- [Cumulus NetQ CLI User Guide PDF](https://docs-cdn.cumulusnetworks.com/pdfs/Cumulus-NetQ-240-CLI-User-Guide.pdf)
+- Cumulus NetQ Deployment Guide PDF
+- Cumulus NetQ Integration Guide PDF
+- Cumulus NetQ UI User Guide PDF
+- Cumulus NetQ CLI User Guide PDF
 -->

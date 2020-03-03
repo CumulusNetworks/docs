@@ -20,10 +20,7 @@ disk, memory, fan and power supply information. You can also monitor temperature
 - How many transmit and receive packets have been dropped?
 - How healthy are the fans and power supply?
 
-NetQ uses [LLDP](../../../cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/) (Link
-Layer Discovery Protocol) to collect port information. NetQ can also
-identify peer ports connected to DACs (Direct Attached Cables) and AOCs
-(Active Optical Cables) without using LLDP, even if the link is not UP.
+NetQ uses {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
 
 The NetQ CLI provides a number of `netq show` commands to monitor switches. The syntax of these commands is:
 
@@ -53,25 +50,19 @@ netq [<hostname>] show events [level info|level error|level warning|level critic
 ```
 
 {{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
 
-When entering a time value, you must include a numeric value *and* the
-unit of measure:
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
 
-- w: week(s)
-- d: day(s)
-- h: hour(s)
-- m: minute(s)
-- s: second(s)
-- now
-
-For time ranges, the `<text-time>` is the most recent time and the
-`<text-endtime>` is the oldest time. The values do not have to have the
-same unit of measure.
-
+For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
 {{%notice note%}}
-
 The keyword values for the `vendor`, `model`, `model-id`, `arch`,
 `name`, `transport`, `type`, `version`, `psu`, `temp`, and `fan`
 keywords are specific to your deployment. For example, if you have
@@ -79,7 +70,6 @@ devices with CPU architectures of only one type, say Intel x86, then
 that is the only option available for the `cpu-arch` keyword value. If
 you have multiple CPU architectures, say you also have ARMv7, then that
 would also be an option for you.
-
 {{%/notice%}}
 
 ## View a Summary of Your Network Inventory
@@ -830,7 +820,7 @@ This output indicates that this drive is in a good state overall with 80% of its
 
 ## View Disk Storage Utilization After BTRFS Allocation
 
-Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. Refer to [When to Rebalance BTRFS Partitions](https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions) for details about the rules used to recommend a rebalance operation.
+Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. Refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions" text="When to Rebalance BTRFS Partitions">}} for details about the rules used to recommend a rebalance operation.
 
 To view the disk utilization and whether a rebalance is recommended, use the `netq show cl-btrfs-util` command as follows:
 

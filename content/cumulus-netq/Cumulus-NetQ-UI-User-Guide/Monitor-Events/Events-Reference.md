@@ -15,9 +15,9 @@ The following table lists all event messages organized by type.
 
 The messages can be viewed through third-party notification
 applications. For details about configuring notifications using the NetQ
-CLI, refer to [Integrate NetQ with Notification Applications](../../../Cumulus-NetQ-Integration-Guide/Integrate-NetQ-with-Notification-Applications).
+CLI, refer to {{<link title="Integrate NetQ with Notification Applications">}}.
 
-For information about configuring threshold-based events (TCAs), refer to [Configure Threshold-based Events](../../Monitor-Events/Config-TCA-Events/).
+For information about configuring threshold-based events (TCAs), refer to {{<link title="Configure Threshold-based Events">}}.
 
 <table>
 <colgroup>

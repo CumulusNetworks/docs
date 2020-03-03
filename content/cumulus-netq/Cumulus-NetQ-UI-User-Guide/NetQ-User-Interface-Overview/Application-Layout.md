@@ -26,7 +26,7 @@ Found in the application header, click <img src="https://icons.cumulusnetworks.c
   - **NetQ**: contains links to all workbenches
   - **Network**: contains links to tabular data about various network elements and the What Just Happened feature
   - **Admin**: contains link to user documentation and application management features
-  -**Notifications**: contains link to event notification configuration
+  - **Notifications**: contains link to event notification configuration
 
 {{< figure src="/images/netq/main-menu-241.png" width="500" >}}
 

@@ -108,12 +108,14 @@ cumulus@switch:~$ net add bgp router-id 0.0.0.1
 
 ```
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external
+cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
 ```
 
    For an iBGP session, the `remote-as` is the same as the local AS:
 
- ```
+```
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal
+cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as internal
 ```
 
    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
@@ -137,7 +139,7 @@ cumulus@switchRR:~$ net add bgp neighbor 10.0.0.1 route-reflector-client
 
    {{%notice note%}}
 
-When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
+When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command otherwise, the `route-reflector-client` command is ignored.
 
 {{%/notice%}}
 
@@ -172,12 +174,14 @@ switch(config-router)# bgp router-id 0.0.0.1
 
 ```
 switch(config-router)# neighbor 10.0.0.2 remote-as external
+switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
 ```
 
    For an iBGP session, the `remote-as` is the same as the local AS:
 
 ```
 switch(config-router)# neighbor 10.0.0.2 remote-as internal
+switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as internal
 ```
 
    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
@@ -194,7 +198,8 @@ switch(config-router-af)# exit
 4. Specify BGP session properties:
 
 ```
-switch(config-router)# address-family ipv4 unicast
+switch(config-router)#
+
 switch(config-router-af)# neighbor 10.0.0.2 next-hop-self
 ```
 

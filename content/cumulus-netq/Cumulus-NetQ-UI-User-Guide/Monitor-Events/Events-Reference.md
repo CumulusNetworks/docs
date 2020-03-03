@@ -13,7 +13,7 @@ The messages can be viewed through third-party notification
 applications. For details about configuring notifications using the NetQ
 CLI, refer to {{<link title="Integrate NetQ with Notification Applications">}}.
 
-For information about configuring threshold-based events (TCAs), refer to {{<link title="Configure Threshold-based Events">}}.
+For information about configuring threshold-based events (TCAs), refer to {{<link url="Application-Management/#manage-threshold-crossing-rules">}}.
 
 <table>
 <colgroup>

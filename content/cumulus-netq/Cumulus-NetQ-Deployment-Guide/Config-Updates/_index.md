@@ -11,7 +11,7 @@ Installation of NetQ with a server cluster sets up the master and two worker nod
 
 To add more worker nodes:
 
-1. Prepare the nodes. Refer to the relevant server cluster instructions in {{<link url="Prepare-NetQ-Cloud" text="Prepare for NetQ Cloud Installation">}}.
+1. Prepare the nodes. Refer to the relevant server cluster instructions in {{<link title="Prepare for NetQ Cloud Installation" text="Prepare for NetQ Cloud Installation">}}.
 
 2. Open the Admin UI by entering `https://<master-hostname-or-ipaddress>:8443` in your browser address field.
 

@@ -9,6 +9,7 @@ disablePathToLower = true
 enableGitInfo= false
 noChmod = true
 enableRobotsTXT = true
+disableKinds = ["RSS"]  
 
 [markup]
   [markup.tableOfContents]

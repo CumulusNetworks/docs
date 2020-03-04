@@ -6,7 +6,6 @@ aliases:
  - /display/DOCS/Single+User+Mode+++Boot+Recovery
  - /display/DOCS/Single+User+Mode+-+Boot+Recovery
  - /display/DOCS/Single+User+Mode+Boot+Recovery
- - /cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery
  - /pages/viewpage.action?pageId=8366327
 toc: 3
 ---

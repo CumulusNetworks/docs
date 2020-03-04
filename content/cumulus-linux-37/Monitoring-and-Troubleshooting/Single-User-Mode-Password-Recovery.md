@@ -7,7 +7,6 @@ aliases:
  - /display/DOCS/Single+User+Mode+-+Boot+Recovery
  - /display/DOCS/Single+User+Mode+Boot+Recovery
  - /pages/viewpage.action?pageId=8362606
- - /cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-and-Troubleshooting/Single-User-Mode-Boot-Recovery
 pageID: 8362606
 ---
 Use single user mode to assist in troubleshooting system boot issues or

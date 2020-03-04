@@ -85,7 +85,7 @@ For internal cluster communication:
 | 5000 | TCP | Docker registry |
 | 8472 | UDP | Flannel port for VXLAN |
 | 6443 | TCP | Kubernetes API server |
-| 10250 | TCP | kubelet health probe |
+| 10250 | TCP | Kubelet health probe |
 | 2379 | TCP | etcd |
 | 2380 | TCP | etcd |
 | 7072 | TCP | Kafka JMX monitoring |
@@ -93,7 +93,7 @@ For internal cluster communication:
 | 7071 | TCP | Cassandra JMX monitoring |
 | 7000 | TCP | Cassandra cluster communication |
 | 9042 | TCP | Cassandra client |
-| 7073 | TCP | Zookeeper JMX |
+| 7073 | TCP | Zookeeper JMX monitoring|
 | 2888 | TCP | Zookeeper cluster communication |
 | 3888 | TCP | Zookeeper cluster communication |
 | 2181 | TCP | Zookeeper client |
@@ -510,7 +510,7 @@ After you unbox the appliance:
 3. Connect the Ethernet cable to the 1G management port (eth0).
 4. Power on the appliance.
 
-   {{< figure src="/images/netq/netq-appliance-port-connections.png" width="700" caption="NetQ Appliance connections">}}
+   {{< figure src="/images/netq/netq-cloud-appl-port-connections.png" width="700" caption="NetQ Appliance connections">}}
 
 If your network runs DHCP, you can configure Cumulus NetQ over the network. If DHCP is not enabled, then you configure the appliance using the console cable provided.
 
@@ -530,33 +530,49 @@ passwd: password updated successfully
 By default, DHCP is used to acquire the hostname and IP address. However, you can manually specify the hostname with the following command:
 
 ```
-sudo hostnamectl set-hostname <newHostNameHere>
+cumulus@<hostname>:~$ sudo hostnamectl set-hostname <newHostNameHere>
 ```
 
 You can also configure these items using the Ubuntu Netplan configuration tool. For example, to set your network interface *eth0* to a static IP address of *192.168.1.222* with gateway *192.168.1.1* and DNS server as *8.8.8.8* and *8.8.4.4*:
 
 Edit the */etc/netplan/01-ethernet.yaml* Netplan configuration file:
 
-    ```
-    # This file describes the network interfaces available on your system
-    # For more information, see netplan(5).
-    network:
-        version: 2
-        renderer: networkd
-        ethernets:
-            eno0:
-                dhcp4: no
-                addresses: [192.168.1.222/24]
-                gateway4: 192.168.1.1
-                nameservers:
-                    addresses: [8.8.8.8,8.8.4.4]
-    ```
+```
+# This file describes the network interfaces available on your system
+# For more information, see netplan(5).
+network:
+    version: 2
+    renderer: networkd
+    ethernets:
+        eno0:
+            dhcp4: no
+            addresses: [192.168.1.222/24]
+            gateway4: 192.168.1.1
+            nameservers:
+                addresses: [8.8.8.8,8.8.4.4]
+```
 
 Apply the settings.
 
 ```
-$ sudo netplan apply
+cumulus@<hostname>:~$ sudo netplan apply
 ```
+
+{{%notice info%}}
+If you changed the IP address or interface of the appliance to something other than what it was assigned previously, you must inform NetQ of the change.
+
+If you changed the IP address, but kept the interface the same (for example, eth0), re-run the `netq install opta interface` command using your config-key:
+
+```
+cumulus@netq-appliance:~$ netq install opta interface eth0 tarball NetQ-2.3.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+```
+
+If you changed the interface (for example, eth0 to eth1), run the `netq install opta interface` command with the new interface and your config-key:
+
+```
+cumulus@netq-appliance:~$ netq install opta interface eth1 tarball NetQ-2.3.x-opta.tgz config-key "CNKaDBIjZ3buZhV2Mi5uZXRxZGV2LmN1bXVsdXNuZXw3b3Jrcy5jb20YuwM="
+```
+{{%/notice%}}
 
 #### Verify NetQ Software and Appliance Readiness
 
@@ -590,22 +606,22 @@ Now that the appliance is up and running, verify that the software is available 
     NetQ-2.4.1-opta.tgz  netq-bootstrap-2.4.1.tgz
     ```
 
-2. Run the following commands.
+3. Run the following commands.
 
-```
-sudo systemctl disable apt-{daily,daily-upgrade}.{service,timer}
-sudo systemctl stop apt-{daily,daily-upgrade}.{service,timer}
-sudo systemctl disable motd-news.{service,timer}
-sudo systemctl stop motd-news.{service,timer}
-```
+    ```
+    cumulus@<hostname>:~$ sudo systemctl disable apt-{daily,daily-upgrade}.{service,timer}
+    cumulus@<hostname>:~$ sudo systemctl stop apt-{daily,daily-upgrade}.{service,timer}
+    cumulus@<hostname>:~$ sudo systemctl disable motd-news.{service,timer}
+    cumulus@<hostname>:~$ sudo systemctl stop motd-news.{service,timer}
+    ```
 
-3. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+4. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     ```
     cumulus@<hostname>:~$ sudo opta-check-cloud
     ```
     
-4. Run the Bootstrap CLI on the appliance *for the interface you defined above* (eth0 or eth1 for example). This example uses the *eth0* interface.
+5. Run the Bootstrap CLI on the appliance *for the interface you defined above* (eth0 or eth1 for example). This example uses the *eth0* interface.
 
     ```
     cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz

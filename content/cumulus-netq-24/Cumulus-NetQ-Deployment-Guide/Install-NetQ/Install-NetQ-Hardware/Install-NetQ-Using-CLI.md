@@ -6,7 +6,6 @@ aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
 pageID: 12320951
-
 toc: 5
 ---
 After you have validated the prerequisites and performed the preparation steps, you can then install the NetQ software using the CLI.

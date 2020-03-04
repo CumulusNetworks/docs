@@ -2,7 +2,9 @@
 title: Configuration Updates
 author: Cumulus Networks
 weight: 172
+toc: 3
 ---
+
 After installation or upgrade of NetQ is complete, there are a few additional configuration tasks that might be required.
 
 ## Add More Nodes to Your Server Cluster

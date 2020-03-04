@@ -5,7 +5,6 @@ weight: 142
 aliases:
  - /display/NETQ/Upgrade+NetQ
  - /pages/viewpage.action?pageId=12320951
-
 toc: 4
 ---
 With NetQ 2.4, there are a couple of instances when you should upgrade your NetQ Agents:

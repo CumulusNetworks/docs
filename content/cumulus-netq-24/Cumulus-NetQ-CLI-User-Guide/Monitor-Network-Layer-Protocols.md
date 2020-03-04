@@ -6,6 +6,7 @@ aliases:
  - /display/NETQ/Monitor+Network+Layer+Protocols
  - /pages/viewpage.action?pageId=12321049
 pageID: 12321049
+toc: 3
 ---
 With NetQ, a network administrator can monitor OSI Layer 3 network
 protocols running on Linux-based hosts, including IP (Internet

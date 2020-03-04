@@ -6,6 +6,7 @@ aliases:
  - /display/NETQ141/Collect+Interface+Statistics
  - /pages/viewpage.action?pageId=10453499
 pageID: 10453499
+toc: 3
 ---
 Switches collect statistics about the performance of their interfaces.
 The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ

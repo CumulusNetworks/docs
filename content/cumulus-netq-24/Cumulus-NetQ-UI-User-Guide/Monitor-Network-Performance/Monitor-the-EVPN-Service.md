@@ -6,6 +6,7 @@ aliases:
  - /display/NETQ/Monitor+the+EVPN+Service
  - /pages/viewpage.action?pageId=12321294
 pageID: 12321294
+toc: 4
 ---
 The Cumulus NetQ UI enables operators to view the health of the EVPN service on a network-wide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session. They are described separately here.
 

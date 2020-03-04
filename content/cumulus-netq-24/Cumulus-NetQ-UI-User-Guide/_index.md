@@ -6,7 +6,9 @@ aliases:
  - /display/NETQ/Cumulus+NetQ+UI+User+Guide
  - /pages/viewpage.action?pageId=12321069
 pageID: 12321069
+toc: 2
 ---
+
 This guide is intended for network administrators and operators who are
 responsible for monitoring and troubleshooting the network in their data
 center environment. NetQ 2.x offers the ability to easily monitor and

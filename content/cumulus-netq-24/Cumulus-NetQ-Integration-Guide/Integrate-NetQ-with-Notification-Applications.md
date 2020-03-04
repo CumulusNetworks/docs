@@ -5,6 +5,7 @@ weight: 200
 aliases:
  - /display/NETQ/Integrate+with+Third-party+Software+and+Hardware
  - /pages/viewpage.action?pageId=12320911
+toc: 3
 ---
 After you have installed the NetQ applications package and the NetQ Agents,
 you may want to configure some of the additional capabilities that NetQ

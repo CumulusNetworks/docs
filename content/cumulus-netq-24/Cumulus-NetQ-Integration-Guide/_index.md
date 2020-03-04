@@ -2,6 +2,7 @@
 title: Cumulus NetQ Integration Guide
 author: Cumulus Networks
 weight: 180
+toc: 2
 ---
 After you have completed the installation of Cumulus NetQ,
 you may want to configure some of the additional capabilities that NetQ

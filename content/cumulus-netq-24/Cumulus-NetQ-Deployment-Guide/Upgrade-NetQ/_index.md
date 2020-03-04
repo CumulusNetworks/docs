@@ -5,7 +5,6 @@ weight: 140
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
-
 toc: 3
 ---
 This topic describes how to upgrade from your current NetQ 2.4.0 installation to the NetQ 2.4.1 release to take advantage of new capabilities and bug fixes (refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413" text="release notes">}}).

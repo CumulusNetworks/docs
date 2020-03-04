@@ -2,6 +2,7 @@
 title: Back Up and Restore NetQ
 author: Cumulus Networks
 weight: 150
+toc: 3
 ---
 
 It is recommended that you back up your NetQ data according to your company policy. Typically this includes after key configuration changes and on a scheduled basis.

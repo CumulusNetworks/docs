@@ -561,7 +561,7 @@ Apply the settings.
 $ sudo netplan apply
 ```
 
-{%notice info%}}
+{{%notice info%}}
 If you have changed the IP address or hostname of the NetQ Appliance, you need to
 re-register this address with the Kubernetes containers before you can
 continue.

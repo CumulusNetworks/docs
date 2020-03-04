@@ -16,5 +16,3 @@ frontend:
     files:
       - '**/*'
     baseDirectory: public
-  cache:
-    paths: []

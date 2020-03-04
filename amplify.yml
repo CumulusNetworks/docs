@@ -8,7 +8,7 @@ frontend:
         - tar -xf hugo_extended_0.65.3_Linux-64bit.tar.gz hugo
         - mv hugo /usr/bin/hugo
         - rm -rf hugo_extended_0.65.3_Linux-64bit.tar.gz
-        - echo Successfully installed Hugo
+        - echo Successfully installed Hugo 
     build:
       commands:
         # Install pre-reqs for linkchecker

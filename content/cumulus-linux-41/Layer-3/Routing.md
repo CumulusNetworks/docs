@@ -361,8 +361,7 @@ Cumulus Linux (via `switchd)`advertises the maximum number of route table entrie
 
 In addition, switches on the Tomahawk, Trident II, Trident II+, and Trident3 platforms are configured to manage route table entries using Algorithm Longest Prefix Match (ALPM). In ALPM mode, the hardware can store significantly more route entries.
 
-You can use `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}` to determine the current table sizes on a given switch.
-
+You can use either the NCLU `net show system asic` command or the `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}` to determine the current table sizes on a given switch.
 
 ### Forwarding Table Profiles
 

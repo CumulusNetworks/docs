@@ -55,7 +55,7 @@ The `smond` process provides monitoring functionality for various switch hardwar
 | PSU Fan | <pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s PSU[X]Fan[X]</pre> |10 seconds |
 | PSU Temperature | <pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s PSU[X]Temp[X]</pre> |10 seconds |
 | Voltage|<pre>cumulus@switch:~$ smonctl -j<br>cumulus@switch:~$ smonctl -j -s Volt[X]</pre> | 10 seconds |
-| Front Panel LED | <pre>cumulus@switch:~$ ledmgrd -d<br>cumulus@switch:~$ ledmgrd -j</pre>|5 seconds |
+| Front Panel LED | <pre>cumulus@switch:~$ ledmgrd -d<br>cumulus@switch:~$ ledmgrd -j</pre><p>You can also run `net show system leds`, which is the NCLU command equivalent of `ledmgrd -d`.</p>|5 seconds |
 
 {{%notice note%}}
 

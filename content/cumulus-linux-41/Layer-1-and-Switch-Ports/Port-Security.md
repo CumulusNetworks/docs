@@ -14,8 +14,7 @@ You can specify what action to take when there is a port security violation (dro
 
 {{%notice note%}}
 
-- Port security is supported on Broadcom switches only.
-- Layer 2 interfaces in trunk or access mode are currently supported. However, interfaces in a bond are *not* supported.
+Layer 2 interfaces in trunk or access mode are currently supported. However, interfaces in a bond are *not* supported.
 
 {{%/notice%}}
 

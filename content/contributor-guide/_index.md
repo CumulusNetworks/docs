@@ -2,8 +2,9 @@
 title: Contributor Guide
 author: Cumulus Networks
 weight: 1
-siteSlug: contributor-guide
-version: 2.0
+cascade:
+  siteSlug: contributor-guide
+  version: "2.0"
 ---
 Welcome to the Cumulus Networks documentation Contributor Guide!
 All of the technical user documentation for [Cumulus Linux](/cumulus-linux/),

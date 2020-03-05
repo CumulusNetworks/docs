@@ -8,7 +8,7 @@ aliases:
  - /pages/viewpage.action?pageId=7113871
 pageID: 7113871
 product: Cumulus Chassis
-version: '1.0'
+version: "1.0"
 imgData: chassis
 siteSlug: chassis
 ---

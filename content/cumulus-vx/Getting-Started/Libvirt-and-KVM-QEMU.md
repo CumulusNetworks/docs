@@ -7,10 +7,6 @@ aliases:
  - /display/VX/Libvirt+and+KVM+QEMU
  - /pages/viewpage.action?pageId=5126704
 pageID: 5126704
-product: Cumulus VX
-version: '3.7'
-imgData: cumulus-vx
-siteSlug: cumulus-vx
 ---
 The following sections describe how to set up a two-leaf/two-spine
 Cumulus VX topology with QEMU/KVM on a Linux server.

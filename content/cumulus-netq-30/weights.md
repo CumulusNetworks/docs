@@ -4,7 +4,7 @@ layout: weights
 bookhidden: true
 weight: 999
 product: Cumulus NetQ
-version: "2.4"
+version: "3.0"
 imgData: cumulus-netq
 siteSlug: cumulus-netq
 ---

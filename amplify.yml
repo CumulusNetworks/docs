@@ -42,7 +42,7 @@ frontend:
         #- if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdfs.py $DOCRAPTOR_KEY https://stage.docs.cumulusnetworks.com/ $USERNAME $PASSWORD ; fi
         #- echo Building docs ...
         # Don't minify in non-prod branches to simplify troubleshooting
-        - if [ "${AWS_BRANCH}" != "master" ]; then hugo --baseURL $BASEURL ; fi
+        - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL ; fi
         - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         - echo Successfully built docs
         # If everything else worked, and this is master, then cut a new release.

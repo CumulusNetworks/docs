@@ -6,7 +6,6 @@ aliases:
  - /display/NETQ/Monitor+Container+Environments
  - /pages/viewpage.action?pageId=12321042
 pageID: 12321042
-toc: 3
 ---
 The NetQ Agent monitors container environments the same way it monitors
 {{<link url="Monitor-Linux-Hosts" text="physical servers">}}.

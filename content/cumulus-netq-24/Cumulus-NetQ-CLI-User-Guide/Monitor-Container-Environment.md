@@ -1,5 +1,5 @@
 ---
-title: Monitor Container Environments
+title: Monitor Container Environments Using Kubernetes API Server
 author: Cumulus Networks
 weight: 580
 aliases:
@@ -7,72 +7,40 @@ aliases:
  - /pages/viewpage.action?pageId=12321042
 pageID: 12321042
 ---
-The NetQ Agent monitors container environments the same way it monitors
-{{<link url="Monitor-Linux-Hosts" text="physical servers">}}.
-There is no special implementation. The NetQ Agent pulls data from the
-container as it would pull data from a Cumulus Linux switch or Linux
-host. It can be installed on a Linux server or in a Linux VM. NetQ Agent
-integrates with the Kubernetes container orchestrator.
+The NetQ Agent monitors container environments by integrating with Kubernetes API server. Cumulus Networks recommend installing the NetQ Agent on the server with the containers.
 
-NetQ monitors many aspects of containers on your network, including
-their:
+NetQ monitors many aspects of containers on your network, including their:
 
-  - **Identity**: The NetQ agent tracks every container's IP and MAC
-    address, name, image, and more. NetQ can locate containers across
-    the fabric based on a container's name, image, IP or MAC address,
-    and protocol and port pair.
-  - **Port mapping on a network**: The NetQ agent tracks protocol and
-    ports exposed by a container. NetQ can identify containers exposing
-    a specific protocol and port pair on a network.
-  - **Connectivity**: NetQ can provide information on network
-    connectivity for a container, including adjacency, and can identify
-    containers that can be affected by a top of rack switch.
+- **Identity**: The NetQ agent tracks every container's IP and MAC address, name, image, and more. NetQ can locate containers across the fabric based on a container's name, image, IP or MAC address, and protocol and port pair.
+- **Port mapping on a network**: The NetQ agent tracks protocol and ports exposed by a container. NetQ can identify containers exposing a specific protocol and port pair on a network.
+- **Connectivity**: NetQ can provide information on network connectivity for a container, including adjacency, and can identify containers that can be affected by a top of rack switch.
 
 NetQ helps answer questions such as:
 
-  - Where is this container located?
-  - Open ports? What image is being used?
-  - Which containers are part of this service? How are they connected?
+- Where is this container located?
+- Open ports? What image is being used?
+- Which containers are part of this service? How are they connected?
 
 ## Use NetQ with Kubernetes Clusters
 
-The NetQ Agent interfaces with a Kubernetes API server and listens to
-Kubernetes events. The NetQ Agent monitors network identity and physical
-network connectivity of Kubernetes resources like Pods, Daemon sets,
-Service, and so forth. NetQ works with any container network interface
-(CNI), such as Calico or Flannel.
+The NetQ Agent interfaces with a Kubernetes API server and listens to Kubernetes events. The NetQ Agent monitors network identity and physical network connectivity of Kubernetes resources like Pods, Daemon sets, Service, and so forth. NetQ works with any container network interface (CNI), such as Calico or Flannel.
 
 The NetQ Kubernetes integration enables network administrators to:
 
-  - Identify and locate pods, deployment, replica-set and services
-    deployed within the network using IP, name, label, and so forth.
-  - Track network connectivity of all pods of a service, deployment and
-    replica set.
-  - Locate what pods have been deployed adjacent to a top of rack (ToR)
-    switch.
-  - Check what pod, services, replica set or deployment can be impacted
-    by a specific ToR switch.
+- Identify and locate pods, deployment, replica-set and services deployed within the network using IP, name, label, and so forth.
+- Track network connectivity of all pods of a service, deployment and replica set.
+- Locate what pods have been deployed adjacent to a top of rack (ToR) switch.
+- Check what pod, services, replica set or deployment can be impacted by a specific ToR switch.
 
-NetQ also helps network administrators identify changes within a
-Kubernetes cluster and determine if such changes had an adverse effect
-on the network performance (caused by a noisy neighbor for example).
-Additionally, NetQ helps the infrastructure administrator determine how
-Kubernetes workloads are distributed within a network.
+NetQ also helps network administrators identify changes within a Kubernetes cluster and determine if such changes had an adverse effect on the network performance (caused by a noisy neighbor for example). Additionally, NetQ helps the infrastructure administrator determine how Kubernetes workloads are distributed within a network.
 
 ### Requirements
 
 The NetQ Agent supports Kubernetes version 1.9.2 or later.
 
-Due to the higher memory requirements to run containers, Cumulus
-Networks recommends you run the NetQ Platform on a host with at least
-64G RAM.
-
 ### Command Summary
 
-There is a large set of commands available to monitor Kubernetes
-configurations, including the ability to monitor clusters, nodes,
-daemon-set, deployment, pods, replication, and services. Run `netq show
-kubernetes help` to see all the possible commands:
+There is a large set of commands available to monitor Kubernetes configurations, including the ability to monitor clusters, nodes, daemon-set, deployment, pods, replication, and services. Run `netq show kubernetes help` to see all the possible commands.
 
     netq [<hostname>] show kubernetes cluster [name <kube-cluster-name>] [around <text-time>] [json]
     netq [<hostname>] show kubernetes node [components] [name <kube-node-name>] [cluster <kube-cluster-name> ] [label <kube-node-label>] [around <text-time>] [json]
@@ -93,31 +61,40 @@ kubernetes help` to see all the possible commands:
     netq config del agent kubernetes-monitor
     netq config show agent kubernetes-monitor [json]
 
-### Enable Kubernetes Monitoring
+## Enable Kubernetes Monitoring
 
-For NetQ to monitor the containers on a host, you must configure the
-following on the Kubernetes master node:
+To enable NetQ Agent monitoring of the containers using the Kubernetes API, you must configure the following on the Kubernetes master node:
 
-1.  Configure the host to point to the NetQ Platform by its IP address.
-    See the {{<link url="Install-NetQ">}} topic for details.
+1. Install and configure the NetQ Agent and CLI on the master node.
 
-2.  Enable Kubernetes monitoring by NetQ. You can specify a polling
-    period between 10 and 120 seconds; 15 seconds is the default.
+     Follow the steps outlined in {{<link url="Install-NetQ-Agents">}} and  {{<link url="Install-NetQ-CLI">}}.
 
-        cumulus@host:~$ netq config add agent kubernetes-monitor poll-period 20
-        Successfully added kubernetes monitor. Please restart netq-agent.
+2. Enable Kubernetes monitoring by the NetQ Agent on the master node.
 
-3.  Restart the NetQ agent:
+    You can specify a polling period between 10 and 120 seconds; 15 seconds is the default.
 
-        cumulus@server01:~$ netq config restart agent
+    ```
+    cumulus@host:~$ netq config add agent kubernetes-monitor poll-period 20
+    Successfully added kubernetes monitor. Please restart netq-agent.
+    ```
 
-Next, you must enable the NetQ Agent on all the worker nodes, as
-described in {{<link url="Install-NetQ-Agents">}}, for complete insight into your container network.
+3.  Restart the NetQ agent.
 
-### View Status of Kubernetes Clusters
+    ```
+    cumulus@host:~$ netq config restart agent
+    ```
 
-You can get the status of all Kubernetes clusters in the fabric using
-the `netq show kubernetes cluster` command:
+4. After waiting for a minute, run the `show` command to view the cluster.
+
+    ```
+    cumulus@host:~$netq show kubernetes cluster
+    ```
+
+Next, you must enable the NetQ Agent on all of the worker nodes, as described in {{<link url="Install-NetQ-Agents">}}, for complete insight into your container network.
+
+## View Status of Kubernetes Clusters
+
+Run the `netq show kubernetes cluster` command to view the status of all Kubernetes clusters in the fabric.
 
     cumulus@switch:~$ netq show kubernetes cluster
     Matching kube_cluster records:
@@ -132,8 +109,7 @@ the `netq show kubernetes cluster` command:
                                                                                     er14 server21 server
                                                                                     22
 
-To filter the list, you can specify the hostname of the master before
-the `show` command:
+To filter the list, you can specify the hostname of a master:
 
     cumulus@switch:~$ netq server11 show kubernetes cluster
     Matching kube_cluster records:
@@ -144,7 +120,7 @@ the `show` command:
                                                                                     er12 server23 server
                                                                                     24
 
-Optionally, you can output the results in JSON format:
+Optionally, use the `json` option to output the results in JSON format.
 
     cumulus@server11:~$ netq show kubernetes cluster json
     {
@@ -167,12 +143,20 @@ Optionally, you can output the results in JSON format:
         "truncatedResult":false
     }
 
-### View Changes to a Cluster
+<!-- Why does server21 and server 11 show up twice in the nodes list? -->
 
-If data collection from the NetQ Agents is not occurring as it once was,
-you can verify that no changes have been made to the Kubernetes cluster
-configuration using the `around` option. This example shows the changes
-that have been made in the last hour.
+## View Changes to a Cluster
+
+If data collection from the NetQ Agents is not occurring as it once was, you can verify that no changes have been made to the Kubernetes cluster configuration using the `around` option. Be sure to include the unit of measure in the around value. Valid units include:
+
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
+
+This example shows the changes that have been made in the last hour.
 
     cumulus@server11:~$ netq show kubernetes cluster around 1h
     Matching kube_cluster records:
@@ -186,12 +170,9 @@ that have been made in the last hour.
     server11:3.0.0.68        default          Healthy              Healthy          server11                                 Add      Fri Feb  8 01:50:50 2019
     server12:3.0.0.69        default          Healthy              Healthy          server12                                 Add      Fri Feb  8 01:50:50 2019
 
-### View Kubernetes Pod Information
+## View Kubernetes Pod Information
 
-You can show configuration and status of the pods in a cluster,
-including the names, labels, addresses, associated cluster and
-containers, and whether the pod is running. This example shows pods for
-FRR, Nginx, Calico, various Kubernetes components sorted by master node.
+You can show configuration and status of the pods in a cluster, including the names, labels, addresses, associated cluster and containers, and whether the pod is running. This example shows pods for FRR, Nginx, Calico, and various Kubernetes components sorted by master node.
 
     cumulus@server11:~$ netq show kubernetes pod
     Matching kube_pod records:
@@ -393,10 +374,9 @@ You can filter this information to focus on a particular pod:
                                           r11                                                omponent:kube-schedu          3cb
                                                                                              ler
 
-### View Kubernetes Node Information
+## View Kubernetes Node Information
 
-You can view a lot of information about a node, including the pod CIDR
-and kubelet status.
+You can view a lot of information about a node, including the pod CIDR and kubelet status.
 
     cumulus@host:~$ netq server11 show kubernetes node
     Matching kube_cluster records:
@@ -440,10 +420,7 @@ and kubelet status.
                                                                                                4 beta.kubernetes.io
                                                                                                /os:linux
 
-To display the kubelet or Docker version, use the `components` option on the
-above command. This example lists all the details of all master and
-worker nodes because the master's hostname - *server11* in this case -
-was included in the query.
+To display the kubelet or Docker version, use the `components` option on the above command. This example lists all the details of all master and worker nodes because the master's hostname - *server11* in this case - was included in the query.
 
     cumulus@server11:~$ netq server11 show kubernetes node components
     Matching kube_cluster records:
@@ -458,8 +435,7 @@ was included in the query.
     server11:3.0.0.68        default          server23             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
     server11:3.0.0.68        default          server24             v1.9.2       v1.9.2       docker://17.3.2   KubeletReady
 
-To view only the details for a worker node, specify the hostname at the
-end of the command using the `name` option:
+To view only the details for a worker node, specify the hostname at the end of the command using the `name` option:
 
     cumulus@server11:~$ netq server11 show kubernetes node components name server13
     Matching kube_cluster records:
@@ -521,9 +497,7 @@ You can view information about a deployment:
     ------------------------ --------------- -------------------- ---------------------------------- -------------- ------------------------------ ----------------
     server11:3.0.0.68        default         nginx                3                                  3              run:nginx                      14h:27m:20s
 
-You can search for information using labels as well. The label search is
-similar to a "contains" regular expression search. In the following
-example, we are looking for all nodes that contain *kube* in the
+You can search for information using labels as well. The label search is similar to a "contains" regular expression search. In the following example, we are looking for all nodes that contain *kube* in the
 replication set name or label:
 
     cumulus@server11:~$ netq server11 show kubernetes replica-set label kube
@@ -534,12 +508,9 @@ replication set name or label:
     server11:3.0.0.68        default      kube-system      calico-kube-controllers-d669cc k8s-app:calico-kube- 1                                  1              14h:30m:41s
                                                            78f                            controllers
 
-### View Container Connectivity
+## View Container Connectivity
 
-You can view the connectivity graph of a Kubernetes pod, seeing its
-replica set, deployment or service level. The impact/connectivity graph
-starts with the server where the pod is deployed, and shows the peer for
-each server interface.
+You can view the connectivity graph of a Kubernetes pod, seeing its replica set, deployment or service level. The impact/connectivity graph starts with the server where the pod is deployed, and shows the peer for each server interface.
 
     cumulus@server11:~$ netq server11 show kubernetes deployment name nginx connectivity
     nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
@@ -553,7 +524,7 @@ each server interface.
                                   -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
                                   -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
 
-### View Kubernetes Service Connectivity and Impact
+## View Kubernetes Service Connectivity and Impact
 
 You can show the Kubernetes services in a cluster:
 
@@ -603,15 +574,11 @@ To see the impact of a given Kubernetes service, run:
                                      -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
                                      -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
 
-### View Kubernetes Cluster Configuration in the Past
+## View Kubernetes Cluster Configuration in the Past
 
-You can use the {{<link url="Investigate-NetQ-Issues/#use-netq-as-a-time-machine" text="\"time machine\" features">}} of NetQ on a Kubernetes cluster, using the `around` option to go back in time to check the network status and identify any changes that
-occurred on the network.
+You can use the {{<link url="Investigate-NetQ-Issues/#use-netq-as-a-time-machine" text="\"time machine\" features">}} of NetQ on a Kubernetes cluster, using the `around` option to go back in time to check the network status and identify any changes that occurred on the network.
 
-This example shows the current state of the network. Notice there is a
-node named *server23*. server23 is there because the node *server22*
-went down and Kubernetes spun up a third replica on a different host to
-satisfy the deployment requirement.
+This example shows the current state of the network. Notice there is a node named *server23*. server23 is there because the node *server22* went down and Kubernetes spun up a third replica on a different host to satisfy the deployment requirement.
 
     cumulus@redis-1:~$ netq server11 show kubernetes deployment name nginx connectivity
     nginx -- nginx-8586cf59-fqtnj -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
@@ -624,8 +591,7 @@ satisfy the deployment requirement.
                                   -- server23:swp2:NetQBond-1 -- swp28:NetQBond-28:edge01
                                   -- server23:swp3:NetQBond-1 -- swp28:NetQBond-28:edge02
 
-You can see this by going back in time 10 minutes. *server23* was not
-present, whereas *server22* **was** present:
+You can see this by going back in time 10 minutes. *server23* was not present, whereas *server22* **was** present:
 
     cumulus@redis-1:~$ netq server11 show kubernetes deployment name nginx connectivity around 10m
     nginx -- nginx-8586cf59-fqtnj -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
@@ -639,10 +605,7 @@ present, whereas *server22* **was** present:
                                   -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
                                   -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
 
-You can determine the impact on the Kubernetes deployment in the event a
-host or switch goes down. The output is color coded (not shown in the
-example below) so you can clearly see the impact: green shows no impact,
-yellow shows partial impact, and red shows full impact.
+You can determine the impact on the Kubernetes deployment in the event a host or switch goes down. The output is color coded (not shown in the example below) so you can clearly see the impact: green shows no impact, yellow shows partial impact, and red shows full impact.
 
     cumulus@server11:~$ netq torc-21 show impact kubernetes deployment name nginx
     nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
@@ -665,4 +628,3 @@ yellow shows partial impact, and red shows full impact.
                                   -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
           -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
                                   -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
-

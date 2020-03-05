@@ -18,7 +18,8 @@ For PIM-SM, type-3 routes do not result in any forwarding entries. Cumulus Linux
 
 {{%notice note%}}
 
-EVPN-PIM is supported on Broadcom Trident3 Trident 2+ switches.
+-EVPN-PIM is supported on Broadcom Trident3 and Trident 2+ switches, and Mellanox Spectrum and Spectrum-2 switches.
+-On Mellanox Spectrum and Spectrum-2 switches, layer 3 multicast over SVIs is not supported when EVPN-PIM is configured. If you have a VXLAN underlay multicast configuration, you must set the `ipmulticast.svi_l3mc_disable` option to TRUE in the `/etc/cumulus/switchd.conf` file.
 
 {{%/notice%}}
 

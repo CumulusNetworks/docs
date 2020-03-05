@@ -11,8 +11,11 @@
         <br />
     </div>
 </div>
-<article class="markdown">
-    <span class="toc{{ .Params.toc }}"><h1><a id="{{- urlize .Title -}}"></a>{{- .Title -}}</h1></span>
-{{- .Content -}}
-</article>
+{{ range where $.Site.Pages "Type" .Section }}
+    <article class="markdown">
+        <span class="toc{{ .Params.toc }}"><h1><a id="{{- urlize .Title -}}"></a>{{- .Title -}}</h1></span>
+        {{- .Content -}}
+    </article>
+{{ end }} 
+
 {{ end }}

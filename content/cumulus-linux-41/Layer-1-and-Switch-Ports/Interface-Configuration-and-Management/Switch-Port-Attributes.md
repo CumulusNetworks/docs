@@ -890,7 +890,6 @@ Cumulus Linux provides the ability to:
 {{%notice note%}}
 
 - For switches with ports that support 100G speeds, you can break out any 100G port into a variety of options: four 10G ports, four 25G ports, two 40G ports or two 50G ports. You *cannot* have more than 128 total logical ports on a Broadcom switch.
-- You can only use NCLU to configure a 4x25G breakout port. To configure other breakout ports, use Linux commands.
 - You cannot use NCLU to break out the uplink ports.
 
 {{%/notice%}}
@@ -932,7 +931,7 @@ cumulus@switch:~$ net commit
 
 {{%/notice%}}
 
-These commands break out the 100G interfaces to 4x25G interfaces in the `/etc/cumulus/ports.conf` file, restart the `switchd` process to reconfigure the ports and create four interfaces in the `/etc/network/interfaces` file named as follows:
+These commands break out the 100G interfaces to 4x25G interfaces in the `/etc/cumulus/ports.conf` file and create four interfaces in the `/etc/network/interfaces` file named as follows:
 
 ```
 cumulus@switch:~$ cat /etc/network/interfaces
@@ -955,7 +954,9 @@ The breakout port configuration is stored in the `/etc/cumulus/ports.conf` file.
 
 {{%notice note%}}
 
-When you commit your change, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+When you commit your change on a Broadcom switch, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+When you commit your change on a Mellanox switch, `switchd` does not restart; there is no interruption to network services.
 
 {{%/notice%}}
 
@@ -967,7 +968,14 @@ When you commit your change, `switchd` restarts to apply the changes. The restar
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. See the examples below.
 2. Configure the breakout ports in the `/etc/network/interfaces` file. See the example below.
-3. {{<link url="Configuring-switchd/#restart-switchd" text="Restart switchd">}}.
+3. On a Broadcom switch, {{<link url="Configuring-switchd/#restart-switchd" text="restart switchd">}}. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, run the following commands. There is no interruption to network services.
+
+    ```
+    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
+    cumulus@switch:~$ ifreload -a
+    ```
 
 The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on ({{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
@@ -1145,7 +1153,14 @@ iface swp25s3
 ...
 ```
 
-3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
+3. On a Broadcom switch, {{<link url="Configuring-switchd/#restart-switchd" text="restart switchd">}}. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, run the following commands. There is no interruption to network services.
+
+    ```
+    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
+    cumulus@switch:~$ ifreload -a
+    ```
 
 </details>
 
@@ -1180,7 +1195,14 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 ...
 ```
 
-3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
+3. On a Broadcom switch, {{<link url="Configuring-switchd/#restart-switchd" text="restart switchd">}}. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, run the following commands. There is no interruption to network services.
+
+    ```
+    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
+    cumulus@switch:~$ ifreload -a
+    ```
 
 </details>
 
@@ -1200,7 +1222,14 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 ...
 ```
 
-2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
+2. On a Broadcom switch, {{<link url="Configuring-switchd/#restart-switchd" text="restart switchd">}}. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, run the following commands. There is no interruption to network services.
+
+    ```
+    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
+    cumulus@switch:~$ ifreload -a
+    ```
 
 </details>
 
@@ -1247,7 +1276,7 @@ These commands create the following configuration snippet in the `/etc/cumulus/p
 
 <summary>Linux Commands </summary>
 
-To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` file as shown below, then {{<link url="Configuring-switchd#restart-switchd" text="restart switchd">}}.
+To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` file as shown below.
 
 ```
 # SFP+ ports#
@@ -1257,6 +1286,15 @@ To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` fi
 3=40G/4
 4=40G/4
 5=10G
+```
+
+On a Broadcom switch, {{<link url="Configuring-switchd/#restart-switchd" text="restart switchd">}}. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+On a Mellanox switch, run the following commands. There is no interruption to network services.
+
+```
+cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
+cumulus@switch:~$ ifreload -a
 ```
 
 </details>

@@ -25,7 +25,7 @@
     {{ range where ($.Scratch.Get "product_pages") "Params.version" . }}
         {{ if eq .Params.product $.Page.Params.product }} 
             <!-- If the version has a page title that matches ours, then assume it's the same page --> 
-            {{ if and (eq .Title $.Page.Title) (ne $.Page.Params.type "pdf") }}
+            {{ if and (eq .Title $.Page.Title) (ne .Page.Params.type "pdf") }}
                 <!-- Set the flag that we found our page --> 
                 {{ $.Scratch.Set "found" true }}
                 <!-- Map the version to the page --> 

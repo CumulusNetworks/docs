@@ -34,7 +34,7 @@ Each service runs as a background daemon.
 
 ## Configuration
 
-You configure the HTTP API services in the `/etc/nginx/sites-available/nginx-restapi.conf`  configuration file.
+To configure the HTTP API services, edit the `/etc/nginx/sites-available/nginx-restapi.conf` configuration file, then run the `systemctl enable nginx; systemctl restart nginx` command.
 
 ### IP and Port Settings
 

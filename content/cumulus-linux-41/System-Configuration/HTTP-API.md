@@ -13,13 +13,19 @@ Cumulus Linux implements an HTTP application programing interface to {{<link url
 
 The supporting software for the API is installed with Cumulus Linux.
 
+To use the REST API, you must enable `nginx` on the switch:
+
+```
+cumulus@switch:~$ sudo systemctl enable nginx; systemctl restart nginx
+```
+
 To enable the HTTP API service, run the following `systemd` command:
 
 ```
 cumulus@switch:~$ sudo systemctl enable restserver
 ```
 
-Use the `systemctl start` and `systemctl stop` commands to start or stop the HTTP API service:
+Use the `systemctl start` and `systemctl stop` commands to start or stop the service:
 
 ```
 cumulus@switch:~$ sudo systemctl start restserver
@@ -34,7 +40,7 @@ Each service runs as a background daemon.
 
 ## Configuration
 
-To configure the HTTP API services, edit the `/etc/nginx/sites-available/nginx-restapi.conf` configuration file, then run the `systemctl enable nginx; systemctl restart nginx` command.
+To configure the HTTP API services, edit the `/etc/nginx/sites-available/nginx-restapi.conf` configuration file, then run the `sudo systemctl restart nginx` command.
 
 ### IP and Port Settings
 

@@ -159,10 +159,10 @@ VRF              Table
 rocket            1016
 ```
 
-To show a list of processes and PIDs associated with a specific VRF table, run the `vrf task list <vrf-name>` command. For example:
+To show a list of processes and PIDs associated with a specific VRF table, run the `ip vrf pids <vrf-name>` command. For example:
 
 ```
-cumulus@switch:~$ vrf task list rocket
+cumulus@switch:~$ ip vrf pids rocket
 
 VRF: rocket
 -----------------------
@@ -175,10 +175,10 @@ vrf                2829
 ```
 
 To determine which VRF table is associated with a particular PID, run
-the `vrf task identify <pid>` command. For example:
+the `ip vrf identify <pid>` command. For example:
 
 ```
-cumulus@switch:~$ vrf task identify 2829
+cumulus@switch:~$ ip vrf identify 2829
 rocket
 ```
 

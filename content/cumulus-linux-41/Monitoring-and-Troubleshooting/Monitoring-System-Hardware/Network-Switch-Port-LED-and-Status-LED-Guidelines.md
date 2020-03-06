@@ -78,10 +78,9 @@ A set of status LEDs are typically located on one side of a network switch. The 
 
 Cumulus Linux supports the locator LED functionality for identifying a switch, by blinking a single LED on a specified network port, on the following switches:
 
-- Celestica Seastone
 - Dell Z9100-ON
 - Edgecore AS7712-32X
-- Penguin Arctica 3200C
+- Penguin Arctica 3200c
 - Quanta QuantaMesh BMS T4048-IX2
 - Supermicro SSE-C3632S
 
@@ -119,6 +118,6 @@ When all of the ports are set to 1G, all the link lights are green.
 
 The port LED blink state that indicates link activity is not implemented; the ports only have ON/OFF states.
 
-### Celestica SeaStone2 Front Panel ALARM LED
+### Penguin Arctica 3200c Front Panel ALARM LED
 
-On the Celestica SeaStone2 switch, the front panel ALARM LED is not functional and remains off when you remove or insert a power module. The rear panel ALARM always flashes yellow.
+On the Penguin Arctica 3200c switch, the front panel ALARM LED is not functional and remains off when you remove or insert a power module. The rear panel ALARM always flashes yellow.

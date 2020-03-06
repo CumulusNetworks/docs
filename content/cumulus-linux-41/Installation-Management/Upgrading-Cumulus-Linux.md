@@ -133,7 +133,7 @@ Be aware of the following when installing the disk image:
 - If configuration files are not restored correctly, you might be unable to ssh to the switch from in-band management. Out-of-band connectivity (eth0 or console) is recommended.
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
-**Package upgrade** is recommended if you are upgrading from Cumulus Linux 3.7.x, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike disk image install).
+**Package upgrade** is recommended if you are upgrading from Cumulus Linux 4.0, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike disk image install).
 
 Be aware of the following when upgrading packages:
 
@@ -252,7 +252,7 @@ cumulus@switch:~$ sudo reboot
 
 ### Upgrade Notes
 
-*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 3.0.1 and run the `sudo -E apt-get upgrade` command on that switch, the packages are upgraded to the latest releases contained in the latest 3.y.z release.
+*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 4.0.0 and run the `sudo -E apt-get upgrade` command on that switch, the packages are upgraded to the latest releases contained in the latest 4.y.z release.
 
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 

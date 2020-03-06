@@ -138,7 +138,7 @@ cumulus@switch:~$ sudo systemctl enable ntp@mgmt.service
 cumulus@switch:~$ ps aux | grep ntp
 ntp       7294  0.0  0.4  81320  2108 ?        Ssl  22:22   0:00 /usr/sbin/ntpd -n -u ntp:ntp -g
 cumulus   7906  0.0  0.4  12728  2056 tty1     S+   22:34   0:00 grep ntp
-cumulus@switch:~$ vrf task identify 7294
+cumulus@switch:~$ ip vrf identify 7294
 mgmt
 ```
 

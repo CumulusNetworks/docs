@@ -295,7 +295,7 @@ hal.bcm.ll_mcast_punt_disable = TRUE
 ...
 ```
 
-A {{switchd}} restart is **not** required.
+A `switchd` restart is **not** required.
 
 ## Caveats and Errata
 

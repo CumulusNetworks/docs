@@ -140,7 +140,7 @@ cumulus@switch:~$ ip link set arp off dev INTERFACE
 
 ## Generate Traffic Using mz
 
-`mz` is a fast traffic generator. It can generate a large variety of packet types at high speed. See `man mz` for details.
+`{{<exlink url="http://www.netsniff-ng.org" text="mz">}}` (or `mausezahn`) is a fast traffic generator. It can generate a large variety of packet types at high speed. See `man mz` for details.
 
 For example, to send two sets of packets to TCP port 23 and 24, with source IP address 11.0.0.1 and destination IP address 11.0.0.2:
 

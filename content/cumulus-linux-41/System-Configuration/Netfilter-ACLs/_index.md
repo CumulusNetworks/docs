@@ -959,7 +959,7 @@ The examples here use the DSCP match criteria in combination with other IP, TCP,
 
 ### Check the Packet and Byte Counters for ACL Rules
 
-To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with `{{<exlink url="https://en.wikipedia.org/wiki/Mausezahn" text="mz">}}` (mausezahn), which can be installed on host servers or even on Cumulus Linux switches. After traffic is sent to validate the counters, they are matched on switch1 using `cl-acltool`.
+To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with `{{<exlink url="http://www.netsniff-ng.org" text="mz">}}` (or `mausezahn`), which can be installed on host servers or even on Cumulus Linux switches. After traffic is sent to validate the counters, they are matched on switch1 using `cl-acltool`.
 
 {{%notice note%}}
 

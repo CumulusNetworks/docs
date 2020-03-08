@@ -1153,14 +1153,9 @@ iface swp25s3
 ...
 ```
 
-3. On a Broadcom switch, {{<link url="Configuring-switchd/#restart-switchd" text="restart switchd">}}. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, run the following commands. There is no interruption to network services.
-
-    ```
-    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-    cumulus@switch:~$ ifreload -a
-    ```
+    On a Mellanox switch, you can reset `switchd` with the `sudo systemctl reset switchd.service` command. The reset does **not** interrupt network services.
 
 </details>
 
@@ -1195,14 +1190,9 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 ...
 ```
 
-3. On a Broadcom switch, {{<link url="Configuring-switchd/#restart-switchd" text="restart switchd">}}. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, run the following commands. There is no interruption to network services.
-
-    ```
-    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-    cumulus@switch:~$ ifreload -a
-    ```
+    On a Mellanox switch, you can reset `switchd` with the `sudo systemctl reset switchd.service` command. The reset does **not** interrupt network services.
 
 </details>
 
@@ -1222,14 +1212,9 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 ...
 ```
 
-2. On a Broadcom switch, {{<link url="Configuring-switchd/#restart-switchd" text="restart switchd">}}. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+2. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, run the following commands. There is no interruption to network services.
-
-    ```
-    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-    cumulus@switch:~$ ifreload -a
-    ```
+    On a Mellanox switch, you can reset `switchd` with the `sudo systemctl reset switchd.service` command. The reset does **not** interrupt network services.
 
 </details>
 
@@ -1288,14 +1273,9 @@ To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` fi
 5=10G
 ```
 
-On a Broadcom switch, {{<link url="Configuring-switchd/#restart-switchd" text="restart switchd">}}. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-On a Mellanox switch, run the following commands. There is no interruption to network services.
-
-```
-cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-cumulus@switch:~$ ifreload -a
-```
+On a Mellanox switch, you can reset `switchd` with the `sudo systemctl reset switchd.service` command. The reset does **not** interrupt network services.
 
 </details>
 

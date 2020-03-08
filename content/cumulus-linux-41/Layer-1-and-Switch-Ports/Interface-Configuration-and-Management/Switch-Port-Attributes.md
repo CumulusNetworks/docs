@@ -968,14 +968,9 @@ When you commit your change on a Mellanox switch, `switchd` does not restart; th
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. See the examples below.
 2. Configure the breakout ports in the `/etc/network/interfaces` file. See the example below.
-3. On a Broadcom switch, {{<link url="Configuring-switchd/#restart-switchd" text="restart switchd">}}. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, run the following commands. There is no interruption to network services.
-
-    ```
-    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-    cumulus@switch:~$ ifreload -a
-    ```
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on ({{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 

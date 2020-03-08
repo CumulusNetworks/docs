@@ -1155,7 +1155,7 @@ iface swp25s3
 
 3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can reset `switchd` with the `sudo systemctl reset switchd.service` command. The reset does **not** interrupt network services.
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 </details>
 
@@ -1192,7 +1192,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 
 3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can reset `switchd` with the `sudo systemctl reset switchd.service` command. The reset does **not** interrupt network services.
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 </details>
 
@@ -1214,7 +1214,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 
 2. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can reset `switchd` with the `sudo systemctl reset switchd.service` command. The reset does **not** interrupt network services.
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 </details>
 
@@ -1275,7 +1275,7 @@ To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` fi
 
 On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-On a Mellanox switch, you can reset `switchd` with the `sudo systemctl reset switchd.service` command. The reset does **not** interrupt network services.
+On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 </details>
 

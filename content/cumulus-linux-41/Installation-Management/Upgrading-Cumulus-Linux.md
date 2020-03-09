@@ -139,7 +139,7 @@ Be aware of the following when upgrading packages:
 
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from **3**.7.x to **4**.1.0.
 - The `sudo -E  apt-get upgrade` command might result in services being restarted or stopped as part of the upgrade process.
-- The `sudo -E apt-get install` command might disrupt core services by changing core service dependency packages.
+- The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 
 ### Disk Image Install (ONIE)
@@ -168,7 +168,7 @@ cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.1.0-
 
 ### Package Upgrade
 
-Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update and -E apt-get upgrade` commands. Any packages that have been changed since the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
+Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have been changed since the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
 
 When you use package upgrade to upgrade your switch, configuration data stays in place while the packages are upgraded. If the new release updates a configuration file that you changed previously, you are prompted for the version you want to use or if you want to evaluate the differences.
 
@@ -185,7 +185,7 @@ cumulus@switch:~$ sudo -E apt-get update
 3. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded.
 
 ```
-cumulus@switch:~$ sudo -E apt-get install --dry-run
+cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
 ```
 
 4. Upgrade all the packages to the latest distribution.
@@ -194,7 +194,7 @@ cumulus@switch:~$ sudo -E apt-get install --dry-run
 cumulus@switch:~$ sudo -E apt-get upgrade
 ```
 
-    If no reboot is required after the upgrade completes, the upgrade ends, restarts all upgraded services, and log messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, only the `frr` package was upgraded.
+If no reboot is required after the upgrade completes, the upgrade ends, restarts all upgraded services, and log messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, only the `frr` package was upgraded.
 
 ```
 Policy: Service frr.service action stop postponed
@@ -204,8 +204,7 @@ Policy: Finished restarting services
 Policy: Removed /usr/sbin/policy-rc.d
 Policy: Upgrade is finished
 ```
-
-    If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to this:
+If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to this:
 
 ```
 Configuration file '/etc/frr/daemons'
@@ -219,26 +218,26 @@ Z : start a shell to examine the situation
 The default action is to keep your current version.
 *** daemons (Y/I/N/O/D/Z) [default=N] ?
 
-\- To see the differences between the currently installed version
+- To see the differences between the currently installed version
 and the new version, type `D`- To keep the currently installed
 version, type `N`. The new package version is installed with the
 suffix `_.dpkg-dist` (for example, `/etc/frr/daemons.dpkg-dist`).
 When upgrade is complete and **before** you reboot, merge your
 changes with the changes from the newly installed file.  
-\- To install the new version, type `I`. Your currently installed
+- To install the new version, type `I`. Your currently installed
 version is saved with the suffix `.dpkg-old`.  
 When the upgrade is complete, you can search for the files with the
 `sudo find / -mount -type f -name '*.dpkg-*'` command.
 ```
 
-    {{%notice note%}}
+{{%notice note%}}
 
 If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys](https://support.cumulusnetworks.com/hc/en-us/articles/360002663013-Updating-Expired-GPG-Keys).
 
 {{%/notice%}}
 
 5. Reboot the switch if the upgrade messages indicate that a system restart is required.
-
+    
 ```
 cumulus@switch:~$ sudo -E apt-get upgrade
 ... upgrade messages here ...
@@ -257,7 +256,7 @@ cumulus@switch:~$ sudo reboot
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 
 - The `/etc/os-release` and `/etc/lsb-release` files are updated to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *disk image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 3.7.1, these two files display the release as 3.7.1 after the upgrade.
-- The `/etc/image-release` file is updated **only** when you run a disk image install. Therefore, if you run a disk image install of Cumulus Linux 3.5.0, followed by a package upgrade to 3.7.1 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 3.5.0, which is the originally installed base image.
+- The `/etc/image-release` file is updated **only** when you run a disk image install. Therefore, if you run a disk image install of Cumulus Linux 4.0.0, followed by a package upgrade to 4.1.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 4.0.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 
@@ -334,8 +333,7 @@ cumulus@switch:~$ clagctl priority 32768
 
 ## Roll Back a Cumulus Linux Installation
 
-Even the most well planned and tested upgrades can result in unforeseen problems; sometimes the best solution is to roll back to the previous state. There are three main strategies; all require detailed planning and
-execution:
+Even the most well planned and tested upgrades can result in unforeseen problems; sometimes the best solution is to roll back to the previous state. There are three main strategies; all require detailed planning and execution:
 
 - Flatten and rebuild: If the OS becomes unusable, you can use orchestration tools to reinstall the previous OS release from scratch and then rebuild the configuration automatically.
 - Backup and restore: Another common strategy is to restore to a previous state using a backup captured before the upgrade. See {{<link title="Back up and Restore">}}.

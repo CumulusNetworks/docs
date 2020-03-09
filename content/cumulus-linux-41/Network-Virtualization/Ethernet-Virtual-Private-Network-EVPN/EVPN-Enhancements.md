@@ -194,6 +194,90 @@ exit-address-family
 ...
 ```
 
+## Disable Flooding in EVPN
+
+By default, the VTEP floods all broadcast, and unknown unicast and multicast packets (ARP, NS, or DHCP) it receives to all interfaces (except for the incoming interface) and to all VXLAN tunnel interfaces. When the switch receives such packets on a VXLAN tunnel interface, it floods the packets to all interfaces in the packet's VXLAN.
+
+You can disable flooding so that EVPN does not advertise type-3 routes for each local VNI and stops taking action on received type-3 routes.
+
+Disabling flooding is useful in a deployment with a controller or orchestrator, where the switch is pre-provisioned and there is no need to flood any ARP, NS, or DHCP packets.
+
+To disable flooding, run the NCLU `net add bgp l2vpn evpn bum-flood-disable` command or the vtysh `flooding disable` command. For example:
+
+<details>
+
+<summary>NCLU Commands </summary>
+
+```
+cumulus@switch:~$ net add bgp l2vpn evpn bum-flood-disable
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+</details>
+
+<details>
+
+<summary>vtysh Commands</summary>
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# router bgp 65011
+switch(config-router)# address-family l2vpn evpn 
+switch(config-router-af)# flooding disable
+switch(config-router-af)# end
+switch)# write memory
+switch)# exit
+cumulus@switch:~$
+```
+
+</details>
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65000
+ !
+ address-family l2vpn evpn
+  flooding disable
+ exit-address-family
+...
+```
+
+To re-enable flooding, run the NCLU `net del bgp l2vpn evpn bum-flood-disable` command or the vtysh `flooding head-end-replication` command. For example:
+
+<details>
+
+<summary>NCLU Commands </summary>
+
+```
+cumulus@switch:~$ net del bgp l2vpn evpn bum-flood-disable
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+</details>
+
+<details>
+
+<summary>vtysh Commands </summary>
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# router bgp 65011
+switch(config-router)# address-family l2vpn evpn 
+switch(config-router-af)# flooding head-end-replication
+switch(config-router-af)# end
+switch)# write memory
+switch)# exit
+cumulus@switch:~$
+```
+
+</details>
+
 ## Extended Mobility
 
 Cumulus Linux supports scenarios where the IP to MAC binding for a host or virtual machine changes across the move. In addition to the simple mobility scenario where a host or virtual machine with a binding of `IP1`, `MAC1` moves from one rack to another, Cumulus Linux supports additional scenarios where a host or virtual machine with a binding of `IP1`, `MAC1` moves and takes on a new binding of `IP2`, `MAC1` or `IP1`, `MAC2`. The EVPN protocol mechanism to handle extended mobility continues to use the MAC mobility extended community and is the same as the standard mobility procedures. Extended mobility defines how the sequence number in this attribute is computed when binding changes occur.

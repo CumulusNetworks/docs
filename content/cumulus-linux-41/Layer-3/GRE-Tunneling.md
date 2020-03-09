@@ -67,7 +67,7 @@ To apply the GRE tunnel configuration automatically at reboot, instead of runnin
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-# Tunnel-R1 configuration 
+# Tunnel-R1 configuration
 auto swp1 #underlay interface for tunnel
 iface swp1
     link-speed 10000
@@ -75,15 +75,14 @@ iface swp1
     link-autoneg off
     address 10.0.0.9/24
 
-auto Tunnel-R2 #overlay interface for tunnel
-iface Tunnel-R2 inet static
-    address 10.0.100.1/24
-    # Run pre-up command before bringing the interface up. If this command fails, then ifup aborts, refraining from marking the interface as configured, prints an error message, and exits with status 0. This behavior may change in the future.
-    pre-up ip tunnel add Tunnel-R2 mode gre remote 10.0.0.2 local   10.0.0.9 ttl 255
-    # Run post-up command after bringing the interface up. If this command fails then ifup aborts, refraining from marking the interface as configured (even though it has really been configured), prints an error message, and exits with status 0. This behavior may change in the future.
-    post-up ip route add 10.0.100.0/24 dev Tunnel-R2
-    # Run post-down command after taking the interface down. If this command fails then ifdown aborts, marks the interface as deconfigured, and exits with status 0. This behavior may change in the future.
-    post-down ip tunnel del Tunnel-R2
+auto Tunnel-R2
+iface Tunnel-R2
+    tunnel-mode gre
+    tunnel-endpoint 10.0.0.2
+    tunnel-local 10.0.0.9
+    tunnel-ttl 255
+    address 10.0.100.1
+    up ip route add 10.0.100.0/24 dev Tunnel-R2
 
 # Tunnel-R2 configuration
 auto swp1 #underlay interface for tunnel
@@ -92,20 +91,20 @@ iface swp1
     link-duplex full
     link-autoneg off
     address 10.0.0.2/24
-auto Tunnel-R1 #overlay interface for tunnel
-iface Tunnel-R1 inet static
-    address 10.0.200.1/24
-    pre-up ip tunnel add Tunnel-R1 mode gre local 10.0.0.2 remote 10.0.0.9 ttl 255
-    post-up ip route add 10.0.200.0/24 dev Tunnel-R1
-    post-down ip tunnel del Tunnel-R1
-...
-```
 
-For more information about the `pre-up`, `post-up`, and `post-down` commands, run the `man interfaces` command.
+auto Tunnel-R1
+iface Tunnel-R1
+    tunnel-mode gre
+    tunnel-endpoint 10.0.0.9
+    tunnel-local 10.0.0.2
+    tunnel-ttl 255
+    address 10.0.200.1
+    up ip route add 10.0.200.0/24 dev Tunnel-R1
+```
 
 ## Verify GRE Tunnel Settings
 
-Use the `ip tunnel show` command to check GRE tunnel settings:
+To check GRE tunnel settings, run the `ip tunnel show` command or the `ifquery --check` command. For example:
 
 ```
 cumulus@switch:~$ ip tunnel show
@@ -113,9 +112,21 @@ gre0: gre/ip remote any local any ttl inherit nopmtudisc
 Tunnel-R1: gre/ip remote 10.0.0.2 local 10.0.0.9 ttl 255
 ```
 
+```
+cumulus@switch:~$ ifquery --check Tunnel-R1
+auto Tunnel-R1
+iface Tunnel-R1                                                 [pass]
+        up ip route add 10.0.200.0/24 dev Tunnel-R1                 []
+        tunnel-ttl 255                                          [pass]
+        tunnel-endpoint 10.0.0.9                                [pass]
+        tunnel-local 10.0.0.2                                   [pass]
+        tunnel-mode gre                                         [pass]
+        address 10.0.200.1/32                                   [pass]
+```
+
 ## Delete a GRE Tunnel Interface
 
-Use the `ip tunnel del` command to delete a GRE tunnel, remove the tunnel interface, and remove the routes configured with the tunnel interface. For example:
+To delete a GRE tunnel, remove the tunnel interface, and remove the routes configured with the tunnel interface, run the `ip tunnel del` command. For example:
 
 ```
 cumulus@switch:~$ sudo ip tunnel del Tunnel-R2 mode gre remote 10.0.0.2 local 10.0.0.9 ttl 255
@@ -124,6 +135,8 @@ cumulus@switch:~$ sudo ip tunnel del Tunnel-R2 mode gre remote 10.0.0.2 local 10
 {{%notice note%}}
 
 You can delete a GRE tunnel directly from the `/etc/network/interfaces` file instead of using the `ip tunnel del` command. Make sure you run the `ifreload - a` command after you update the interfaces file.
+
+This action is disruptive as the tunnel is removed, then recreated with the new settings.
 
 {{%/notice%}}
 

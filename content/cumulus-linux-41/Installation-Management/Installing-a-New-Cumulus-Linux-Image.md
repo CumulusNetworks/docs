@@ -120,7 +120,7 @@ You need a console connection to access the switch; you cannot perform this proc
 onie# onie-discovery-stop
 ```
 
-    On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
+On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
 
 ```
 onie# /etc/init.d/discover.sh stop
@@ -135,7 +135,6 @@ ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
 3. Place the Cumulus Linux disk image in a directory on your web server.
 
 4. Run the installer manually (because there are no DHCP options):
-
 
 ```
 ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
@@ -177,13 +176,14 @@ ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
 onie# onie-discovery-stop
 ```
 
-    On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
+On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
 
 ```
 onie# /etc/init.d/discover.sh stop
 ```
 
 3. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+
 4. If you are not using DHCP options, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
 
 ```
@@ -199,6 +199,7 @@ ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 <summary>Install from Cumulus Linux </summary>
 
 1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+
 2. From the Cumulus Linux command prompt, run one of the following
     commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
 
@@ -230,7 +231,7 @@ ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
 onie# onie-discovery-stop
 ```
 
-    On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
+On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
 
 ```
 onie# /etc/init.d/discover.sh stop

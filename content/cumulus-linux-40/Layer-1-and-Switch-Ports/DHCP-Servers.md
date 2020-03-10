@@ -35,7 +35,6 @@ You must include two pools in the DHCP configuration files:
 In a text editor, edit the `/etc/dhcp/dhcpd.conf` file. Use following configuration as an example:
 
 ```
-
 cumulus@switch:~$ cat /etc/dhcp/dhcpd.conf
 ddns-update-style none;
 

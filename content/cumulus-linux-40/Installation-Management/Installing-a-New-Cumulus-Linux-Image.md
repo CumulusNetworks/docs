@@ -94,9 +94,9 @@ ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bi
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -116,30 +116,29 @@ You need a console connection to access the switch; you cannot perform this proc
 
 1. ONIE is in *{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="discovery mode">}}*. You must disable discovery mode with the following command:
 
-```
-onie# onie-discovery-stop
-```
+    ```
+    onie# onie-discovery-stop
+    ```
 
     On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
 
-```
-onie# /etc/init.d/discover.sh stop
-```
+    ```
+    onie# /etc/init.d/discover.sh stop
+    ```
 
 2. Assign a static address to eth0 with the `ip addr add` command:
 
-```
-ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
-```
+    ```
+    ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
+    ```
 
 3. Place the Cumulus Linux disk image in a directory on your web server.
 
 4. Run the installer manually (because there are no DHCP options):
 
-
-```
-ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
-```
+    ```
+    ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -151,9 +150,9 @@ ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bi
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -167,30 +166,31 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 
 1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
-```
-ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
-```
+    ```
+    ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
+    ```
 
 2. If you are using static addressing, disable ONIE discovery mode:
 
-```
-onie# onie-discovery-stop
-```
+    ```
+    onie# onie-discovery-stop
+    ```
 
     On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
 
-```
-onie# /etc/init.d/discover.sh stop
-```
+    ```
+    onie# /etc/init.d/discover.sh stop
+    ```
 
 3. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+
 4. If you are not using DHCP options, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
 
-```
-ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+    ```
+    ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
 
-ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
-```
+    ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -199,14 +199,15 @@ ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 <summary>Install from Cumulus Linux </summary>
 
 1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+
 2. From the Cumulus Linux command prompt, run one of the following
     commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
 
-cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
-```
+    cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -220,29 +221,29 @@ Follow the steps below to install the disk image referencing a local file.
 
 1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
-```
-ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
-```
+    ```
+    ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
+    ```
 
 2. If you are using static addressing, disable ONIE discovery mode.
 
-```
-onie# onie-discovery-stop
-```
+    ```
+    onie# onie-discovery-stop
+    ```
 
     On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
 
-```
-onie# /etc/init.d/discover.sh stop
-```
+    ```
+    onie# /etc/init.d/discover.sh stop
+    ```
 
 3. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux disk image to the switch.
 
 4. Run the installer manually from ONIE:
 
-```
-ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
-```
+    ```
+    ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -254,9 +255,9 @@ ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -282,7 +283,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
     {{%notice warning%}}
 
-Use caution when performing the actions below; it is possible to severely damage your system with the following utilities.
+    Use caution when performing the actions below; it is possible to severely damage your system with the following utilities.
 
     {{%/notice%}}
 

@@ -1576,10 +1576,8 @@ The Lenovo NE2572O switch has external retimers on swp1 through swp8. Currently,
 
 The following switches that use Serial over LAN technology (SOL) do not support eth0 speed or auto-negotiation changes:
 
-- Celestica Pebble
-- Celestica QueStone2
-- Celestica SeaStone2
 - EdgeCore AS7816-64X
+- Penguin Arctica 4804ip
 - Penguin Arctica NX3200c
 - Penguin Arctica NX4808xxv
 

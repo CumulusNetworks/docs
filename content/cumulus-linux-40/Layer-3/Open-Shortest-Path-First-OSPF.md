@@ -516,41 +516,40 @@ cumulus@switch:~$ sudo systemctl restart frr.service
 
    <summary>NCLU Commands </summary>
 
-```
-cumulus@switch:~$ net add interface swp1 ospf instance-id 11
-cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
-cumulus@switch:~$ net add ospf router-id 1.1.1.1
-cumulus@switch:~$ net add interface swp2 ospf instance-id 22
-cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
-cumulus@switch:~$ net add ospf router-id 1.1.1.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
+   ```
+   cumulus@switch:~$ net add interface swp1 ospf instance-id 11
+   cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
+   cumulus@switch:~$ net add ospf router-id 1.1.1.1
+   cumulus@switch:~$ net add interface swp2 ospf instance-id 22
+   cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
+   cumulus@switch:~$ net add ospf router-id 1.1.1.1
+   cumulus@switch:~$ net pending
+   cumulus@switch:~$ net commit
+   ```
    </details>
 
    <details>
 
    <summary>vtysh Commands </summary>
 
-```
-cumulus@switch:~$ sudo vtysh
+   ```
+   cumulus@switch:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# interface swp1
-switch(config-if)#  ip ospf 11 area 0.0.0.0
-switch(config-if)# router ospf 11
-switch(config-router)# ospf router-id 0.0.0.1
-...
-switch(config)# interface swp2
-switch(config-if)#  ip ospf 22 area 0.0.0.0
-switch(config-if)# router ospf 22
-switch(config-router)# ospf router-id 0.0.0.1
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
+   switch# configure terminal
+   switch(config)# interface swp1
+   switch(config-if)#  ip ospf 11 area 0.0.0.0
+   switch(config-if)# router ospf 11
+   switch(config-router)# ospf router-id 0.0.0.1
+   ...
+   switch(config)# interface swp2
+   switch(config-if)#  ip ospf 22 area 0.0.0.0
+   switch(config-if)# router ospf 22
+   switch(config-router)# ospf router-id 0.0.0.1
+   switch(config-router)# end
+   switch# write memory
+   switch# exit
+   cumulus@switch:~$
+   ```
 
    </details>
 

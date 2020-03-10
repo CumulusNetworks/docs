@@ -64,7 +64,7 @@ dos.icmpv6_length = true
 dos.ipv6_min_frag = true
 ```
 
-    {{%notice note%}}
+{{%notice note%}}
 
 Configuring any of the following settings affects the {{<link url="Bidirectional-Forwarding-Detection-BFD/#echo-function" text="BFD echo">}} function. For example, if you enable `dos.udp_ports_eq`, all the BFD packets are dropped because the BFD protocol uses the same source and destination UDP ports.
 

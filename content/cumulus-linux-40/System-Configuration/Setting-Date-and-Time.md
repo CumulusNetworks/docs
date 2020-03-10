@@ -256,7 +256,7 @@ cumulus@switch:~$ net commit
 These commands create the following configuration snippet in the `ntp.conf` file:
 
 ```
-... 
+...
 # Specify interfaces
 interface listen swp10
 ...
@@ -401,7 +401,7 @@ ind assid status  conf reach auth condition  last_event cnt
   1 40828  f014   yes   yes   ok     reject   reachable  1
 ```
 
-    After authorization is accepted, you see the following command output:
+After authorization is accepted, you see the following command output:
 
 ```
 cumulus@switch:~$ ntpq -c as
@@ -457,9 +457,8 @@ To configure a boundary clock:
 
     {{%notice note%}}
 
-PTP *is* supported on BGP unnumbered interfaces.
-
-PTP is *not* supported on switched virtual interfaces (SVIs).
+- PTP *is* supported on BGP unnumbered interfaces.
+- PTP is *not* supported on switched virtual interfaces (SVIs).
 
 {{%/notice%}}
 
@@ -486,7 +485,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-    The `ptp4l` man page describes all the configuration parameters.
+The `ptp4l` man page describes all the configuration parameters.
 
 3. Restart the `ptp4l` and `phc2sys` daemons:
 
@@ -494,7 +493,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
 ```
 
-    The configuration is saved in the `/etc/ptp4l.conf` file.
+The configuration is saved in the `/etc/ptp4l.conf` file.
 
 4. Enable the services to start at boot time:
 
@@ -529,7 +528,6 @@ To view a summary of the PTP configuration on the switch, run the `net show conf
 
 ```
 cumulus@switch:~$ net show configuration ptp
-
 ptp
   global
 

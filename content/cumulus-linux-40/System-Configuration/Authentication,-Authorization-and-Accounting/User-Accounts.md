@@ -50,7 +50,7 @@ following:
 root@host:~# ls -al ~/.ssh/
 ```
 
-    The name of the key is similar to `id_dsa.pub`, `id_rsa.pub`, or `id_ecdsa.pub`.
+The name of the key is similar to `id_dsa.pub`, `id_rsa.pub`, or `id_ecdsa.pub`.
 
 2. If a key does not exist, generate a new one by first creating the RSA key pair:
 
@@ -59,8 +59,11 @@ root@host:~# ssh-keygen -t rsa
 ```
 
 3. You are prompted to enter a file in which to save the key (/root/.ssh/id\_rsa)*.* Press Enter to use the home directory of the root user or provide a different destination.
+
 4. You are prompted to enter a passphrase (empty for no passphrase). This is optional but it does provide an extra layer of security.
+
 5. The public key is now located in `/root/.ssh/id_rsa.pub`. The private key (identification) is now located in `/root/.ssh/id_rsa`.
+
 6. Copy the public key to the switch. SSH to the switch as the cumulus user, then run:
 
 ```

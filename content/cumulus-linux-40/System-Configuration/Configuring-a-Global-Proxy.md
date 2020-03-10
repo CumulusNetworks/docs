@@ -15,18 +15,12 @@ You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings
 cumulus@switch:~$ sudo nano /etc/profile.d/proxy.sh
 ```
 
-2. Add a line to the file to configure either an HTTP or an HTTPS proxy, or both:
-
-    - HTTP proxy:
+2. Add a line to the file to configure either an HTTP or an HTTPS proxy, or both.
 
 ```
 http_proxy=http://myproxy.domain.com:8080
 export http_proxy
-```
 
-    - HTTPS proxy:
-
-```
 https_proxy=https://myproxy.domain.com:8080
 export https_proxy
 ```

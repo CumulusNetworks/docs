@@ -1077,6 +1077,19 @@ You cannot purge existing addresses on interfaces with multiple `iface` stanzas.
 For `sysctl` commands in the `pre-up`, `up`, `post-up`, `pre-down`, `down`, and `post-down` lines that use the
 `$IFACE` variable, if the interface name contains a dot (.), `ifupdown2` does not change the name to work with `sysctl`. For example, the interface name `bridge.1` is not converted to `bridge/1`.
 
+### ifupdown2 and the gateway Parameter
+
+The default route created by the gateway parameter in ifupdown2 is not installed in FRR, therefore cannot be redistributed into other routing protocols. As a work-around, define a static default route, which is installed in FRR and redistributed, if needed.
+
+The following shows an example of the `/etc/network/interfaces` file when you use a static route instead of a gateway parameter:
+
+```
+auto swp2
+iface swp2
+address 172.16.3.3/24
+up ip route add default via 172.16.3.2
+```
+
 ### Long Interface Names
 
 Interface names can be a maximum of 15 characters in length and you cannot use a number as the first character. Longer interface names might result in errors. To resolve long interface name issues, remove the interface from the `/etc/network/interfaces` file, then restart `networking.service`.

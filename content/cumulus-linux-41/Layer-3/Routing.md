@@ -347,6 +347,12 @@ ip route 0.0.0.0/0 10.1.0.1
 ...
 ```
 
+{{%notice note%}}
+
+The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR, so cannot be redistributed into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
+
+{{%/notice%}}
+
 ## Supported Route Table Entries
 
 Cumulus Linux (via `switchd)`advertises the maximum number of route table entries that are supported on a given switch architecture, including:

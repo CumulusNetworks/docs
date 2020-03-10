@@ -99,11 +99,11 @@ If Cumulus Linux is already installed on your switches, follow the steps below t
 
     <summary>Configure MLAG for leaf01 </summary>
 
-```
-cumulus@leaf01:~$ net add interface swp49,swp50 mtu 9216
-cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 primary
-cumulus@leaf01:~$ net commit
-```
+    ```
+    cumulus@leaf01:~$ net add interface swp49,swp50 mtu 9216
+    cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 primary
+    cumulus@leaf01:~$ net commit
+    ```
 
     </details>
 
@@ -111,11 +111,11 @@ cumulus@leaf01:~$ net commit
 
     <summary>Configure MLAG for leaf01 </summary>
 
-```
-cumulus@leaf02:~$ net add interface swp49,swp50 mtu 9216
-cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 secondary
-cumulus@leaf02:~$ net commit
-```
+    ```
+    cumulus@leaf02:~$ net add interface swp49,swp50 mtu 9216
+    cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 secondary
+    cumulus@leaf02:~$ net commit
+    ```
 
     </details>
 
@@ -125,12 +125,12 @@ cumulus@leaf02:~$ net commit
 
     <summary>Configure Bridge for leaf01 </summary>
 
-```
-cumulus@leaf01:~$ net add bridge bridge ports peerlink
-cumulus@leaf01:~$ net add bridge bridge pvid 1
-cumulus@leaf01:~$ net add vlan 1 ip address 10.1.1.201/24
-cumulus@leaf01:~$ net commit
-```
+    ```
+    cumulus@leaf01:~$ net add bridge bridge ports peerlink
+    cumulus@leaf01:~$ net add bridge bridge pvid 1
+    cumulus@leaf01:~$ net add vlan 1 ip address 10.1.1.201/24
+    cumulus@leaf01:~$ net commit
+    ```
 
     </details>
 
@@ -138,108 +138,108 @@ cumulus@leaf01:~$ net commit
 
     <summary>Configure Bridge for leaf02</summary>
 
-```
-cumulus@leaf02:~$ net add bridge bridge ports peerlink
-cumulus@leaf02:~$ net add bridge bridge pvid 1
-cumulus@leaf02:~$ net add vlan 1 ip address 10.1.1.202/24
-cumulus@leaf02:~$ net commit
-```
+    ```
+    cumulus@leaf02:~$ net add bridge bridge ports peerlink
+    cumulus@leaf02:~$ net add bridge bridge pvid 1
+    cumulus@leaf02:~$ net add vlan 1 ip address 10.1.1.202/24
+    cumulus@leaf02:~$ net commit
+    ```
 
     </details>
 
     {{%notice note%}}
 
-In both configurations the `pvid` value of *1* indicates the native VLAN ID. If you do not know the value for the native VLAN ID, use *1*.
+    In both configurations the `pvid` value of *1* indicates the native VLAN ID. If you do not know the value for the native VLAN ID, use *1*.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 3. Edit the `/etc/default/cumulus-hyperconverged` file and set the Nutanix username, password and server IP address. Do this on both switches (leaf01 and leaf02). Cumulus Linux uses the settings in this file to authenticate and communicate with the Nutanix cluster.
 
-```
-cumulus@leaf02:~$ sudo nano /etc/default/cumulus-hyperconverged
+    ```
+    cumulus@leaf02:~$ sudo nano /etc/default/cumulus-hyperconverged
 
-### /etc/default/cumulus-hyperconverged config file
-# username for Prism (required)
-USERNAME=admin
-# password for Prism (required)
-PASSWORD=nutanixpassword
-# CVM address used by the service (required)
-SERVER=10.1.1.11
-# Hook server address (optional)
-#HOOK_SERVER=10.0.0.0
-# Hook port (optional)
-#HOOK_PORT=9440
-# Socket timeout (optional)
-#SOCKET_TIMEOUT=10.0.0.0
-# single/multi rack configuration (optional)
-VXLAN_CONFIG=False
-# loglevel: verbose/debug (optional)
-LOGLEVEL=verbose
-# periodic sync timeout (optional)
-#PERIODIC_SYNC_TIMEOUT=60
-```
+    ### /etc/default/cumulus-hyperconverged config file
+    # username for Prism (required)
+    USERNAME=admin
+    # password for Prism (required)
+    PASSWORD=nutanixpassword
+    # CVM address used by the service (required)
+    SERVER=10.1.1.11
+    # Hook server address (optional)
+    #HOOK_SERVER=10.0.0.0
+    # Hook port (optional)
+    #HOOK_PORT=9440
+    # Socket timeout (optional)
+    #SOCKET_TIMEOUT=10.0.0.0
+    # single/multi rack configuration (optional)
+    VXLAN_CONFIG=False
+    # loglevel: verbose/debug (optional)
+    LOGLEVEL=verbose
+    # periodic sync timeout (optional)
+    #PERIODIC_SYNC_TIMEOUT=60
+    ```
 
    These settings are defined {{<link url="#cumulus-hcs-configuration-settings" text="below">}}.
 
-   {{%notice note%}}
+    {{%notice note%}}
 
-The server IP address may be a specific Nutanix CVM address or the virtual cluster IP address.
+    The server IP address may be a specific Nutanix CVM address or the virtual cluster IP address.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 4. Enable and start Cumulus HCS on leaf01 and leaf02.
 
-```
-cumulus@leaf01:~$ sudo systemctl enable cumulus-hyperconverged
-cumulus@leaf01:~$ sudo systemctl start cumulus-hyperconverged
-```
+    ```
+    cumulus@leaf01:~$ sudo systemctl enable cumulus-hyperconverged
+    cumulus@leaf01:~$ sudo systemctl start cumulus-hyperconverged
+    ```
 
-```
-cumulus@leaf02:~$ sudo systemctl enable cumulus-hyperconverged
-cumulus@leaf02:~$ sudo systemctl start cumulus-hyperconverged
-```
+    ```
+    cumulus@leaf02:~$ sudo systemctl enable cumulus-hyperconverged
+    cumulus@leaf02:~$ sudo systemctl start cumulus-hyperconverged
+    ```
 
 5. Verify that the service is running on leaf01 and leaf02.
 
-```
-cumulus@leaf01:~$ sudo systemctl status cumulus-hyperconverged
-● cumulus-hyperconverged.service - Cumulus Linux Hyperconverged Daemon
-        Loaded: loaded (/lib/systemd/system/cumulus-hyperconverged.service; enabled)
-        Active: active (running) since Mon 2019-01-07 03:36:26 UTC; 56min ago
-      Main PID: 4206 (cumulus-hyperco)
-        CGroup: /system.slice/cumulus-hyperconverged.service
-                ├─4206 /usr/bin/python /usr/bin/cumulus-hyperconverged
-                └─6300 /usr/sbin/lldpcli -f json watch
-```
+    ```
+    cumulus@leaf01:~$ sudo systemctl status cumulus-hyperconverged
+    ● cumulus-hyperconverged.service - Cumulus Linux Hyperconverged Daemon
+            Loaded: loaded (/lib/systemd/system/cumulus-hyperconverged.service; enabled)
+            Active: active (running) since Mon 2019-01-07 03:36:26 UTC; 56min ago
+          Main PID: 4206 (cumulus-hyperco)
+            CGroup: /system.slice/cumulus-hyperconverged.service
+                    ├─4206 /usr/bin/python /usr/bin/cumulus-hyperconverged
+                    └─6300 /usr/sbin/lldpcli -f json watch
+    ```
 
-```
-cumulus@leaf02:~$ sudo systemctl status cumulus-hyperconverged
-● cumulus-hyperconverged.service - Cumulus Linux Hyperconverged Daemon
-        Loaded: loaded (/lib/systemd/system/cumulus-hyperconverged.service; enabled)
-        Active: active (running) since Mon 2019-01-07 03:36:26 UTC; 56min ago
-      Main PID: 4207 (cumulus-hyperco)
-        CGroup: /system.slice/cumulus-hyperconverged.service
-                ├─4207 /usr/bin/python /usr/bin/cumulus-hyperconverged
-                └─4300 /usr/sbin/lldpcli -f json watch
-```
+    ```
+    cumulus@leaf02:~$ sudo systemctl status cumulus-hyperconverged
+    ● cumulus-hyperconverged.service - Cumulus Linux Hyperconverged Daemon
+            Loaded: loaded (/lib/systemd/system/cumulus-hyperconverged.service; enabled)
+            Active: active (running) since Mon 2019-01-07 03:36:26 UTC; 56min ago
+          Main PID: 4207 (cumulus-hyperco)
+            CGroup: /system.slice/cumulus-hyperconverged.service
+                    ├─4207 /usr/bin/python /usr/bin/cumulus-hyperconverged
+                    └─4300 /usr/sbin/lldpcli -f json watch
+    ```
 
    {{%notice tip%}}
 
-If the service fails to start, you may find more information in the service's log file. View the log with `sudo journalctl -u cumulus-hyperconverged`.
+    If the service fails to start, you may find more information in the service's log file. View the log with `sudo journalctl -u cumulus-hyperconverged`.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 6. Enable the server-facing ports to accept inbound LLDP frames and configure jumbo MTU on both leaf01 and leaf02.
 
-```
-cumulus@leaf01:~$ net add interface swp1-48 mtu 9216
-cumulus@leaf01:~$ net commit
-```
+    ```
+    cumulus@leaf01:~$ net add interface swp1-48 mtu 9216
+    cumulus@leaf01:~$ net commit
+    ```
 
-```
-cumulus@leaf02:~$ net add interface swp1-48 mtu 9216
-cumulus@leaf02:~$ net commit
-```
+    ```
+    cumulus@leaf02:~$ net add interface swp1-48 mtu 9216
+    cumulus@leaf02:~$ net commit
+    ```
 
 At this point, the service is fully configured. It may take up to 60 seconds for LLDP frames to be received to trigger Cumulus HCS.
 

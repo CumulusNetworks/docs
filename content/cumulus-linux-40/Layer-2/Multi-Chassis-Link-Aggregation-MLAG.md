@@ -378,7 +378,7 @@ The commands to create the configurations for both spines look like the followin
 
 <details>
 
-<summary>**spine01** </summary>
+<summary>spine01 </summary>
 
 ```
 cumulus@spine01:~$ net show configuration commands
@@ -416,7 +416,7 @@ iface swp4
 
 <details>
 
-<summary>**spine02** </summary>
+<summary>spine02 </summary>
 
 ```
 cumulus@spine02:~$ net show configuration commands
@@ -456,7 +456,7 @@ Here is an example configuration for the switches leaf01 through leaf04. Note th
 
 <details>
 
-<summary>**leaf01** </summary>
+<summary>leaf01 </summary>
 
 ```
 cumulus@leaf01:~$ net show configuration commands
@@ -561,7 +561,7 @@ iface vlan100
 
 <details>
 
-<summary>**leaf02** </summary>
+<summary>leaf02 </summary>
 
 ```
 cumulus@leaf02:~$ net show conf commands
@@ -665,7 +665,7 @@ iface vlan100
 
 <details>
 
-<summary>**leaf03**</summary>
+<summary>leaf03</summary>
 
 ```
 cumulus@leaf03:~$ net show conf commands
@@ -770,7 +770,7 @@ iface vlan100
 
 <details>
 
-<summary>**leaf04** </summary>
+<summary>leaf04 </summary>
 
 ```
 cumulus@leaf04:~$ net show configuration commands
@@ -1134,7 +1134,7 @@ iface peer-bond.4000
 ...
 ```
 
-R un `ifreload -a` to reload the configuration :
+Run `ifreload -a` to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -1307,11 +1307,7 @@ IGMP snooping is enabled by default on the bridge. IGMP snooping multicast datab
 
 {{%notice note%}}
 
- In an MLAG configuration, the switch in the secondary role does not
- send IGMP queries, even though the configuration is identical to the
- switch in the primary role. This is expected behavior, as there can be
- only one querier on each VLAN. Once the querier on the primary switch
- stops transmitting, the secondary switch starts transmitting.
+In an MLAG configuration, the switch in the secondary role does not send IGMP queries, even though the configuration is identical to the switch in the primary role. This is expected behavior, as there can be only one querier on each VLAN. Once the querier on the primary switch stops transmitting, the secondary switch starts transmitting.
 
 {{%/notice%}}
 
@@ -1611,4 +1607,4 @@ This occurs when you have multiple LACP bonds between the same two LACP endpoint
 
 ## Caveats and Errata
 
-- If both backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, sees the peer switch as down and takes over as the primary.
+If both backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, sees the peer switch as down and takes over as the primary.

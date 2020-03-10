@@ -240,7 +240,7 @@ midonet> tunnel-zone tzone0 add member host host0 address 10.111.0.182
 zone tzone0 host host0 address 10.111.0.182
 ```
 
-    Repeat this procedure for each OpenStack host connected to the Neutron network and the MidoNet bridge.
+Repeat this procedure for each OpenStack host connected to the Neutron network and the MidoNet bridge.
 
 3. Create a VTEP and assign it to the tunnel zone ID returned in the previous step. The management IP address (the destination address for the VXLAN or remote VTEP) and the port must be the same ones you configure in the `vtep-bootstrap` script or the manual bootstrapping:
 
@@ -249,9 +249,9 @@ midonet> vtep add management-ip 10.50.20.22 management-port 6632 tunnel-zone tzo
 name sw12 description sw12 management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0 connection-state CONNECTED
 ```
 
-    In this step, MidoNet initiates a connection between the OpenStack Controller and the Cumulus Linux switch. If the OVS client successfully connects to the OVSDB server, the returned values  should show the name and description matching the `switch-name` parameter specified in the bootstrap process.
+In this step, MidoNet initiates a connection between the OpenStack Controller and the Cumulus Linux switch. If the OVS client successfully connects to the OVSDB server, the returned values  should show the name and description matching the `switch-name` parameter specified in the bootstrap process.
 
-    {{%notice note%}}
+{{%notice note%}}
 
 Verify the connection-state as CONNECTED. If ERROR is returned, you must debug. Typically this only fails if the `management-ip` and or the `management-port` settings are incorrect.
 
@@ -259,7 +259,7 @@ Verify the connection-state as CONNECTED. If ERROR is returned, you must debug. 
 
 4. The VTEP binding uses the information provided to MidoNet from the OVSDB server, providing a list of ports that the hardware VTEP can use for layer 2 attachment. This binding virtually connects the physical interface to the overlay switch, and joins it to the Neutron bridged network.
 
-    First, get the UUID of the Neutron network behind the MidoNet bridge:
+First, get the UUID of the Neutron network behind the MidoNet bridge:
 
 ```
 midonet> list bridge
@@ -269,7 +269,7 @@ midonet> show bridge bridge1 id
 6c9826da-6655-4fe3-a826-4dcba6477d2d
 ```
 
-    Next, create the VTEP binding using the UUID and the switch port being bound to the VTEP on the remote end. If there is no VLAN ID, set `vlan` to 0:
+Next, create the VTEP binding using the UUID and the switch port being bound to the VTEP on the remote end. If there is no VLAN ID, set `vlan` to 0:
 
 ```
 midonet> vtep name sw12 binding add network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d physical-port swp11s0 vlan 0

@@ -363,7 +363,6 @@ In addition, switches on the Tomahawk, Trident II, Trident II+, and Trident3 pla
 
 You can use `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}` to determine the current table sizes on a given switch.
 
-
 ### Forwarding Table Profiles
 
 On Mellanox Spectrum and some Broadcom ASICs, you can configure the allocation of forwarding table resources and mechanisms. Cumulus Linux provides a number of generalized profiles for the platforms described below. These profiles work only with layer 2 and layer 3 unicast forwarding.

@@ -117,28 +117,24 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
 
 1. Confirm that `service integrated-vtysh-config` is enabled:
 
-``` 
-cumulus@switch:~$ net show configuration | grep integrated
-service integrated-vtysh-config  
-```
+    ``` 
+    cumulus@switch:~$ net show configuration | grep integrated
+    service integrated-vtysh-config  
+    ```
 
 2. Remove `/etc/frr/frr.conf`:
 
-```
-cumulus@switch:~$ sudo rm /etc/frr/frr.conf
-```
+    ```
+    cumulus@switch:~$ sudo rm /etc/frr/frr.conf
+    ```
 
-    {{%notice note%}}
-
-If integrated configuration file mode is disabled, remove all the configuration files (such as `zebra.conf` or `ospf6d.conf`) instead of `frr.conf`.
-
-{{%/notice%}}
+    If integrated configuration file mode is disabled, remove all the configuration files (such as `zebra.conf` or `ospf6d.conf`) instead of `frr.conf`.
 
 3.  Restart FRRouting:
 
-```
-cumulus@switch:~$ sudo systemctl restart frr.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart frr.service
+    ```
 
 ## Interface IP Addresses and VRFs
 

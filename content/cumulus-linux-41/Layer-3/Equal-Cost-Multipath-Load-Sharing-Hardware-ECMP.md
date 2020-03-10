@@ -152,7 +152,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the the `/etc/cumulus/datapath/traffic.conf` file. For example:
+Edit the the `/etc/cumulus/datapath/traffic.conf` file, then restart `switchd`. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
@@ -161,8 +161,6 @@ cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 ecmp_hash_seed = 50
 ...
 ```
-
-{{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -180,13 +178,8 @@ Resilient hashing supports both IPv4 and IPv6 routes.
 
 {{%notice note%}}
 
-Resilient hashing prevents disruptions when next hops are removed. It does not prevent disruption when next hops are added.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-Resilient hashing is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum">}} chipsets. You can run `net show system` to determine the chipset.
+- Resilient hashing prevents disruptions when next hops are removed. It does not prevent disruption when next hops are added.
+- Resilient hashing is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum">}} chipsets. You can run `net show system` to determine the chipset.
 
 {{%/notice%}}
 
@@ -257,24 +250,24 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 1. Enable resilient hashing:
 
-```
-# Enable resilient hashing
-resilient_hash_enable = TRUE
-```
+    ```
+    # Enable resilient hashing
+    resilient_hash_enable = TRUE
+    ```
 
 2. **(Optional)** Edit the number of hash buckets:
 
-```
-# Resilient hashing flowset entries per ECMP group
-# Valid values - 64, 128, 256, 512, 1024
-resilient_hash_entries_ecmp = 256
-```
+    ```
+    # Resilient hashing flowset entries per ECMP group
+    # Valid values - 64, 128, 256, 512, 1024
+    resilient_hash_entries_ecmp = 256
+    ```
 
 3. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart switchd.service
+    ```
 
 ## Caveats and Errata
 
@@ -294,36 +287,36 @@ To enable the IPv6 route replacement option:
 
 1. In the `/etc/frr/daemons` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
 
-```
-cumulus@switch:~$ sudo nano /etc/frr/daemons
-...
-vtysh_enable=yes
-zebra_options=" -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
-bgpd_options=" -M snmp  -A 127.0.0.1"
-ospfd_options=" -M snmp -A 127.0.0.1"
-...
-```
+    ```
+    cumulus@switch:~$ sudo nano /etc/frr/daemons
+    ...
+    vtysh_enable=yes
+    zebra_options=" -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
+    bgpd_options=" -M snmp  -A 127.0.0.1"
+    ospfd_options=" -M snmp -A 127.0.0.1"
+      ...
+    ```
 
 2. Restart FRRouting:
 
-```
-cumulus@switch:~$ sudo systemctl restart frr.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart frr.service
+    ```
 
 To verify that the IPv6 route replacement option is enabled, run the `systemctl status frr` command:
 
-```
-cumulus@switch:~$ systemctl status frr
+    ```
+    cumulus@switch:~$ systemctl status frr
 
-● frr.service - FRRouting
-   Loaded: loaded (/lib/systemd/system/frr.service; enabled; vendor preset: enabled)
-   Active: active (running) since Mon 2020-02-03 20:02:33 UTC; 3min 8s ago
-     Docs: https://frrouting.readthedocs.io/en/latest/setup.html
-  Process: 4675 ExecStart=/usr/lib/frr/frrinit.sh start (code=exited, status=0/SUCCESS)
-   Memory: 14.4M
-   CGroup: /system.slice/frr.service
-           ├─4685 /usr/lib/frr/watchfrr -d zebra bgpd staticd
-           ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
-           ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
-           └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
-```
+    ● frr.service - FRRouting
+      Loaded: loaded (/lib/systemd/system/frr.service; enabled; vendor preset: enabled)
+      Active: active (running) since Mon 2020-02-03 20:02:33 UTC; 3min 8s ago
+        Docs: https://frrouting.readthedocs.io/en/latest/setup.html
+      Process: 4675 ExecStart=/usr/lib/frr/frrinit.sh start (code=exited, status=0/SUCCESS)
+      Memory: 14.4M
+      CGroup: /system.slice/frr.service
+            ├─4685 /usr/lib/frr/watchfrr -d zebra bgpd staticd
+            ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
+            ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
+            └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
+    ```

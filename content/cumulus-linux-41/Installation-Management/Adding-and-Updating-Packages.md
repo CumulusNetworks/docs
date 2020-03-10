@@ -318,44 +318,44 @@ To install a new package, complete the following steps:
 1. Run the `dpkg` command to ensure that the package is not already
     installed on the system:
 
-```
-cumulus@switch:~$ dpkg -l | grep {name of package}
-```
+    ```
+    cumulus@switch:~$ dpkg -l | grep {name of package}
+    ```
 
 2. If the package is installed already, ensure it is the version you need. If it is an older version, update the package from the Cumulus Linux repository:
 
-```
-cumulus@switch:~$ sudo -E apt-get update
-cumulus@switch:~$ sudo -E apt-get install {name of package}
-cumulus@switch:~$ sudo -E apt-get upgrade
-```
+    ```
+    cumulus@switch:~$ sudo -E apt-get update
+    cumulus@switch:~$ sudo -E apt-get install {name of package}
+    cumulus@switch:~$ sudo -E apt-get upgrade
+    ```
 
 3. If the package is not on the system, the package source location is most likely **not** in the `/etc/apt/sources.list` file. If the source for the new package is **not** in `sources.list`, edit and add the appropriate source to the file. For example, add the following if you want a package from the Debian repository that is **not** in the Cumulus Linux repository:
 
-```
-deb http://http.us.debian.org/debian buster main
-deb http://security.debian.org/ buster/updates main
-```
+    ```
+    deb http://http.us.debian.org/debian buster main
+    deb http://security.debian.org/ buster/updates main
+    ```
 
     Otherwise, the repository might be listed in `/etc/apt/sources.list` but is commented out, as can be the case with the early-access repository:
 
-```
-#deb http://apt.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
-```
+    ```
+    #deb http://apt.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
+    ```
 
     To uncomment the repository, remove the \# at the start of the line, then save the file:
 
-```
-deb http://apt.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
-```
+    ```
+    deb http://apt.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
+    ```
 
 4. Run `sudo -E apt-get update`, then install the package and upgrade:
 
-```
-cumulus@switch:~$ sudo -E apt-get update
-cumulus@switch:~$ sudo -E apt-get install {name of package}
-cumulus@switch:~$ sudo -E apt-get upgrade
-```
+    ```
+    cumulus@switch:~$ sudo -E apt-get update
+    cumulus@switch:~$ sudo -E apt-get install {name of package}
+    cumulus@switch:~$ sudo -E apt-get upgrade
+    ```
 
 ## Add Packages from the Cumulus Linux Local Archive
 

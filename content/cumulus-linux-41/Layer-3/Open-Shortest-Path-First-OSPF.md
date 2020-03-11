@@ -105,22 +105,22 @@ cumulus@switch:~$ net commit
 
 2. From the vtysh shell, configure OSPF.
 
-```
-cumulus@switch:~$ sudo vtysh
+    ```
+    cumulus@switch:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router ospf
-switch(config-router)# router-id 0.0.0.1
-switch(config-router)# network 10.0.0.0/16 area 0.0.0.0
-switch(config-router)# network 192.0.2.0/16 area 0.0.0.1
-switch(config-router)# passive-interface swp10
-switch(config-router)# passive-interface swp11
-switch(config-router)# exit
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
+    switch# configure terminal
+    switch(config)# router ospf
+    switch(config-router)# router-id 0.0.0.1
+    switch(config-router)# network 10.0.0.0/16 area 0.0.0.0
+    switch(config-router)# network 192.0.2.0/16 area 0.0.0.1
+    switch(config-router)# passive-interface swp10
+    switch(config-router)# passive-interface swp11
+    switch(config-router)# exit
+    switch(config)# exit
+    switch# write memory
+    switch# exit
+    cumulus@switch:~$
+    ```
 
 {{%notice note%}}
 
@@ -494,21 +494,21 @@ To configure multi-instance OSPF:
 
 1. Edit the `/etc/frr/daemons` file to add `ospfd_instances` to the `ospfd` line. Specify an instance ID for each separate instance. For example, the following configuration enables two `ospfd` instances, 11 and 22:
 
-```
-cumulus@switch:~$ cat /etc/frr/daemons
-...
-bgpd=no
-ospfd=yes ospfd_instances="11 22"
-ospf6d=no
-ripd=no
-...
-```
+    ```
+    cumulus@switch:~$ cat /etc/frr/daemons
+    ...
+    bgpd=no
+    ospfd=yes ospfd_instances="11 22"
+    ospf6d=no
+    ripd=no
+    ...
+    ```
 
 2. Restart FRRouting:
 
-```
-cumulus@switch:~$ sudo systemctl restart frr.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart frr.service
+    ```
 
 3. Assign and enable an OSPF interface for each instance:
 
@@ -516,16 +516,16 @@ cumulus@switch:~$ sudo systemctl restart frr.service
 
    <summary>NCLU Commands </summary>
 
-```
-cumulus@switch:~$ net add interface swp1 ospf instance-id 11
-cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
-cumulus@switch:~$ net add ospf router-id 1.1.1.1
-cumulus@switch:~$ net add interface swp2 ospf instance-id 22
-cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
-cumulus@switch:~$ net add ospf router-id 1.1.1.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+    ```
+    cumulus@switch:~$ net add interface swp1 ospf instance-id 11
+    cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
+    cumulus@switch:~$ net add ospf router-id 1.1.1.1
+    cumulus@switch:~$ net add interface swp2 ospf instance-id 22
+    cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
+    cumulus@switch:~$ net add ospf router-id 1.1.1.1
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
 
    </details>
 
@@ -533,24 +533,24 @@ cumulus@switch:~$ net commit
 
    <summary>vtysh Commands </summary>
 
-```
-cumulus@switch:~$ sudo vtysh
+    ```
+    cumulus@switch:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# interface swp1
-switch(config-if)#  ip ospf 11 area 0.0.0.0
-switch(config-if)# router ospf 11
-switch(config-router)# ospf router-id 0.0.0.1
-...
-switch(config)# interface swp2
-switch(config-if)#  ip ospf 22 area 0.0.0.0
-switch(config-if)# router ospf 22
-switch(config-router)# ospf router-id 0.0.0.1
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
+    switch# configure terminal
+    switch(config)# interface swp1
+    switch(config-if)#  ip ospf 11 area 0.0.0.0
+    switch(config-if)# router ospf 11
+    switch(config-router)# ospf router-id 0.0.0.1
+    ...
+    switch(config)# interface swp2
+    switch(config-if)#  ip ospf 22 area 0.0.0.0
+    switch(config-if)# router ospf 22
+    switch(config-router)# ospf router-id 0.0.0.1
+    switch(config-router)# end
+    switch# write memory
+    switch# exit
+    cumulus@switch:~$
+    ```
 
    </details>
 
@@ -728,42 +728,42 @@ cumulus@switch:~$ net commit
 
 1. Edit the `/etc/network/interfaces` file to configure the unnumbered interface:
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto lo
-iface lo inet loopback
-address 192.0.2.1/32
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ...
+    auto lo
+    iface lo inet loopback
+    address 192.0.2.1/32
 
-auto swp1
-iface swp1
-  address 192.0.2.1/32
+    auto swp1
+    iface swp1
+      address 192.0.2.1/32
 
-auto swp2
-iface swp2
-  address 192.0.2.1/32
-...
-```
+    auto swp2
+    iface swp2
+      address 192.0.2.1/32
+    ...
+    ```
 
 2. Run the `ifreload -a` command to load the new configuration:
 
-```
-cumulus@switch:~$ ifreload -a
-```
+    ```
+    cumulus@switch:~$ ifreload -a
+    ```
 
 3. From the `vtysh` shell, enable OSPF on an unnumbered interface:
 
-```
-cumulus@switch:~$ sudo vtysh
+    ```
+    cumulus@switch:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# interface swp1
-switch(config-if)# ip ospf area 0.0.0.1
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
+    switch# configure terminal
+    switch(config)# interface swp1
+    switch(config-if)# ip ospf area 0.0.0.1
+    switch(config-if)# end
+    switch# write memory
+    switch# exit
+    cumulus@switch:~$
+    ```
 
 </details>
 

@@ -83,7 +83,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file and add `bridge-ageing` to the bridge stanza. The following example sets MAC address ageing to 600 seconds.
+Edit the `/etc/network/interfaces` file to add `bridge-ageing` to the bridge stanza, then run the `ifreload -a` command. The following example sets MAC address ageing to 600 seconds.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces 
@@ -93,8 +93,6 @@ iface bridge
     bridge-ageing 600
 ...
 ```
-
-Run the `ifreload -a` command to load the new configuration:
 
 ```
 cumulus@switch:~$ ifreload -a
@@ -133,7 +131,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file to add the interfaces and VLAN ID you want to use. The following configures an SVI using swp1 and swp2, and VLAN ID 10. The `bridge-vlan-aware` parameter associates the SVI with the VLAN-aware bridge.
+Edit the `/etc/network/interfaces` file to add the interfaces and VLAN ID you want to use, then run the `ifreload -a` command. The following configures an SVI using swp1 and swp2, and VLAN ID 10. The `bridge-vlan-aware` parameter associates the SVI with the VLAN-aware bridge.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -149,8 +147,6 @@ iface bridge.10
     address 10.100.100.1/24
 ...
 ```
-
-Run the `ifreload -a` command to load the new configuration:
 
 ```
 cumulus@switch:~$ ifreload -a
@@ -196,49 +192,49 @@ Now add the dummy interface to your network configuration:
 
 1. Edit the `/etc/network/interfaces` file and add the dummy interface stanza before the bridge stanza:
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ...
 
-auto dummy
-iface dummy
-    link-type dummy
+    auto dummy
+    iface dummy
+        link-type dummy
 
-auto bridge
-iface bridge
-...
-```
+    auto bridge
+    iface bridge
+    ...
+    ```
 
 2. Add the dummy interface to the `bridge-ports` line in the bridge configuration:
 
-```
-auto bridge
-iface bridge
-    bridge-vlan-aware yes
-    bridge-ports swp3 dummy
-    bridge-vids 100
-    bridge-pvid 1
-```
+    ```
+    auto bridge
+    iface bridge
+        bridge-vlan-aware yes
+        bridge-ports swp3 dummy
+        bridge-vids 100
+        bridge-pvid 1
+    ```
 
 3. Save and exit the file, then reload the configuration:
 
-```
-cumulus@switch:~$ sudo ifreload -a
-```
+    ```
+    cumulus@switch:~$ sudo ifreload -a
+    ```
 
-Now, even when swp3 is down, both the dummy interface and the bridge remain up:
+    Now, even when swp3 is down, both the dummy interface and the bridge remain up:
 
-```
-cumulus@switch:~$ ip link show swp3
-5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master bridge state DOWN mode DEFAULT group default qlen 1000
-    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-cumulus@switch:~$ ip link show dummy
-37: dummy: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default
-    link/ether 66:dc:92:d4:f3:68 brd ff:ff:ff:ff:ff:ff
-cumulus@switch:~$ ip link show bridge
-35: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
-    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-```
+    ```
+    cumulus@switch:~$ ip link show swp3
+    5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master bridge state DOWN mode DEFAULT group default qlen 1000
+        link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
+    cumulus@switch:~$ ip link show dummy
+    37: dummy: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue master bridge state UNKNOWN mode DEFAULT group default
+        link/ether 66:dc:92:d4:f3:68 brd ff:ff:ff:ff:ff:ff
+    cumulus@switch:~$ ip link show bridge
+    35: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
+        link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
+    ```
 
 </details>
 
@@ -266,7 +262,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file and add the line `ipv6-addrgen off` to the VLAN stanza. The following example disables automatic address generation for a regular IPv6 address on VLAN 100.
+Edit the `/etc/network/interfaces` file to add the line `ipv6-addrgen off` to the VLAN stanza, then run the `ifreload -a` command. The following example disables automatic address generation for a regular IPv6 address on VLAN 100.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -278,8 +274,6 @@ iface vlan 100
     vlan-raw-device bridge
 ...
 ```
-
-Run the `ifreload -a` command to load the new configuration:
 
 ```
 cumulus@switch:~$ ifreload -a
@@ -307,12 +301,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-1.  Edit the `/etc/network/interfaces` file and **remove** the line `ipv6-addrgen off` from the VLAN stanza. The following example re-enables automatic address generation for a regular IPv6 address on a VLAN 100.
-2.  Run the `ifreload -a` command to load the new configuration:
-
-```
-cumulus@switch:~$ ifreload -a
-```
+Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off` from the VLAN stanza, then run the `ifreload -a` command.
 
 </details>
 

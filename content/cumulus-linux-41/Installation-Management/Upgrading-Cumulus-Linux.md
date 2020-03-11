@@ -158,9 +158,9 @@ To upgrade the switch:
 2. Download the Cumulus Linux image.
 3. Install the disk image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.1.0-mlx-amd64.bin && sudo reboot
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.1.0-mlx-amd64.bin &&   sudo reboot
+    ```
 
 4. Restore the configuration files to the new release - ideally with automation.
 5. Verify correct operation with the old configurations on the new release.
@@ -178,74 +178,70 @@ To upgrade the switch using package upgrade:
 
 2. Fetch the latest update metadata from the repository.
 
-```
-cumulus@switch:~$ sudo -E apt-get update
-```
+    ```
+    cumulus@switch:~$ sudo -E apt-get update
+    ```
 
 3. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded.
 
-```
-cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
-```
+    ```
+    cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
+    ```
 
 4. Upgrade all the packages to the latest distribution.
 
-```
-cumulus@switch:~$ sudo -E apt-get upgrade
-```
+    ```
+    cumulus@switch:~$ sudo -E apt-get upgrade
+    ```
 
-If no reboot is required after the upgrade completes, the upgrade ends, restarts all upgraded services, and log messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, only the `frr` package was upgraded.
+    If no reboot is required after the upgrade completes, the upgrade ends, restarts all upgraded services, and log messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, only the `frr` package was upgraded.
 
-```
-Policy: Service frr.service action stop postponed
-Policy: Service frr.service action start postponed
-Policy: Restarting services: frr.service
-Policy: Finished restarting services
-Policy: Removed /usr/sbin/policy-rc.d
-Policy: Upgrade is finished
-```
-If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to this:
+    ```
+    Policy: Service frr.service action stop postponed
+    Policy: Service frr.service action start postponed
+    Policy: Restarting services: frr.service
+    Policy: Finished restarting services
+    Policy: Removed /usr/sbin/policy-rc.d
+    Policy: Upgrade is finished
+    ```
+    If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to this:
 
-```
-Configuration file '/etc/frr/daemons'
-==> Modified (by you or by a script) since installation.
-==> Package distributor has shipped an updated version.
-What would you like to do about it ? Your options are:
-Y or I : install the package maintainer's version
-N or O : keep your currently-installed version
-D : show the differences between the versions
-Z : start a shell to examine the situation
-The default action is to keep your current version.
-*** daemons (Y/I/N/O/D/Z) [default=N] ?
+    ```
+    Configuration file '/etc/frr/daemons'
+    ==> Modified (by you or by a script) since installation.
+    ==> Package distributor has shipped an updated version.
+    What would you like to do about it ? Your options are:
+    Y or I : install the package maintainer's version
+    N or O : keep your currently-installed version
+    D : show the differences between the versions
+    Z : start a shell to examine the situation
+    The default action is to keep your current version.
+    *** daemons (Y/I/N/O/D/Z) [default=N] ?
 
-- To see the differences between the currently installed version
-and the new version, type `D`- To keep the currently installed
-version, type `N`. The new package version is installed with the
-suffix `_.dpkg-dist` (for example, `/etc/frr/daemons.dpkg-dist`).
-When upgrade is complete and **before** you reboot, merge your
-changes with the changes from the newly installed file.  
-- To install the new version, type `I`. Your currently installed
-version is saved with the suffix `.dpkg-old`.  
-When the upgrade is complete, you can search for the files with the
-`sudo find / -mount -type f -name '*.dpkg-*'` command.
-```
+    - To see the differences between the currently installed version and the 
+    new version, type `D`- To keep the currently installed version, type `N`.
+    The new package version is installed with the suffix `_.dpkg-dist` 
+    (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and 
+    **before** you reboot, merge your changes with the changes from the newly 
+    installed file.  
+    - To install the new version, type `I`. Your currently installed version is 
+    saved with the suffix `.dpkg-old`.  
+    When the upgrade is complete, you can search for the files with the 
+    `sudo find / -mount -type f -name '*.dpkg-*'` command.
+    ```
 
-{{%notice note%}}
-
-If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys](https://support.cumulusnetworks.com/hc/en-us/articles/360002663013-Updating-Expired-GPG-Keys).
-
-{{%/notice%}}
+    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys](https://support.cumulusnetworks.com/hc/en-us/articles/360002663013-Updating-Expired-GPG-Keys).
 
 5. Reboot the switch if the upgrade messages indicate that a system restart is required.
-    
-```
-cumulus@switch:~$ sudo -E apt-get upgrade
-... upgrade messages here ...
 
-*** Caution: Service restart prior to reboot could cause unpredictable behavior
-*** System reboot required ***
-cumulus@switch:~$ sudo reboot
-```
+    ```
+    cumulus@switch:~$ sudo -E apt-get upgrade
+    ... upgrade messages here ...
+
+    *** Caution: Service restart prior to reboot could cause unpredictable behavior
+    *** System reboot required ***
+    cumulus@switch:~$ sudo reboot
+    ```
 
 6. Verify correct operation with the old configurations on the new version.
 
@@ -271,65 +267,65 @@ For networks with MLAG deployments, Cumulus Networks only supports upgrading to 
 
 1. Verify the switch is in the secondary role:
 
-```
-cumulus@switch:~$ clagctl status
-```
+    ```
+    cumulus@switch:~$ clagctl status
+    ```
 
 2. Shut down the core uplink layer 3 interfaces:
 
-```
-cumulus@switch:~$ sudo ip link set swpX down
-```
+    ```
+    cumulus@switch:~$ sudo ip link set swpX down
+    ```
 
 3. Shut down the peer link:
 
-```
-cumulus@switch:~$ sudo ip link set peerlink down
-```
+    ```
+    cumulus@switch:~$ sudo ip link set peerlink down
+    ```
 
 4. Run the `onie-install -a -i <image-location>` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.0.0-mlx-amd64.bin
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.0.0-mlx-amd64.bin
+    ```
 
 5. Reboot the switch:
 
-```
-cumulus@switch:~$ sudo reboot
-```
+    ```
+    cumulus@switch:~$ sudo reboot
+    ```
 
 6. Verify STP convergence across both switches:
 
-```
-cumulus@switch:~$ mstpctl showall
-```
+    ```
+    cumulus@switch:~$ mstpctl showall
+    ```
 
 7. Verify core uplinks and peer links are UP:
 
-```
-cumulus@switch:~$ net show interface
-```
+    ```
+    cumulus@switch:~$ net show interface
+    ```
 
 8. Verify MLAG convergence:
 
-```
-cumulus@switch:~$ clagctl status
-```
+    ```
+    cumulus@switch:~$ clagctl status
+    ```
 
 9. Make this secondary switch the primary:
 
-```
-cumulus@switch:~$ clagctl priority 2048
-```
+    ```
+    cumulus@switch:~$ clagctl priority 2048
+    ```
 
 10. Verify the other switch is now in the secondary role.
 11. Repeat steps 2-8 on the new secondary switch.
 12. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
 
-```
-cumulus@switch:~$ clagctl priority 32768
-```
+    ```
+    cumulus@switch:~$ clagctl priority 32768
+    ```
 
 ## Roll Back a Cumulus Linux Installation
 

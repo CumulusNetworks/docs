@@ -196,9 +196,9 @@ exit-address-family
 
 ## Disable Flooding in EVPN
 
-By default, the VTEP floods all broadcast, and unknown unicast and multicast packets (ARP, NS, or DHCP) it receives to all interfaces (except for the incoming interface) and to all VXLAN tunnel interfaces. When the switch receives such packets on a VXLAN tunnel interface, it floods the packets to all interfaces in the packet's VXLAN.
+By default, the VTEP floods all broadcast, and unknown unicast and multicast packets (such as ARP, NS, or DHCP) it receives to all interfaces (except for the incoming interface) and to all VXLAN tunnel interfaces in the same broadcast domain. When the switch receives such packets on a VXLAN tunnel interface, it floods the packets to all interfaces in the packet's broadcast domain.
 
-You can disable flooding so that EVPN does not advertise type-3 routes for each local VNI and stops taking action on received type-3 routes.
+You can disable flooding over VXLAN tunnels so that EVPN does not advertise type-3 routes for each local VNI and stops taking action on received type-3 routes.
 
 Disabling flooding is useful in a deployment with a controller or orchestrator, where the switch is pre-provisioned and there is no need to flood any ARP, NS, or DHCP packets.
 
@@ -435,7 +435,7 @@ switch(config-router-af)# dup-addr-detection freeze 1000
 switch(config-router-af)# end
 switch)# write memory
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 </details>
@@ -472,7 +472,7 @@ switch(config-router-af)# dup-addr-detection freeze permanent
 switch(config-router-af)# end
 switch)# write memory
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 </details>
@@ -500,7 +500,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# clear evpn dup-addr vni 101 ip 10.0.0.9
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 </details>
@@ -526,7 +526,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# clear evpn dup-addr vni all
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 </details>

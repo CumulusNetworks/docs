@@ -1,33 +1,12 @@
----
-title: Use KVM Hypervisor
-author: Cumulus Networks
-weight: 
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
-toc: 5
-bookhidden: false
-netq: onprem
-cluster: false
----
-Perform the following steps to prepare your system for installation of the NetQ software.
-
 1. Verify that your system meets the VM requirements.
 
     {{<netq-install/vm-reqs>}}.
 
-2. Confirm that the needed ports are open for communications.
+2. Confirm that the needed {{<link url="sglsvr-open-ports" text="ports">}} are open for communications.
 
-    {{<netq-install/port-reqs>}}
+3. {{<link url="X" text="Download the NetQ Platform image">}}.
 
-3. Download the NetQ Platform image.
-
-    {{<link url="X" text="Download the NetQ Platform image">}}.
-
-4. Configure the KVM VM.
-
-        {{<link url="x" text="Configure Your KVM VM">}}
+4. {{<link url="x" text="Configure Your KVM VM">}}
 
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 

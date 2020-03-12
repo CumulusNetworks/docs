@@ -1,5 +1,5 @@
 ---
-title: Deploy NetQ as an On-premises Installation
+title: Install NetQ in an On-premises Deployment
 author: Cumulus Networks
 weight: 111
 aliases:
@@ -8,19 +8,13 @@ aliases:
 pageID: 12320951
 toc: 5
 ---
-Follow the instructions as determined by the installation questions to install the NetQ Platform in an on-premises deployment.
+On-premises deployments of NetQ can use a single server or a server cluster. In either case, you can use either the Cumulus NetQ Appliance or your own server running a KVM or VMware Virtual Machine (VM). This topic walks you through the installation for each of these on-premises options.
 
-| Back Up & Restore | Server Arrangement | System | Hypervisor | Installation Instructions |
-| --- | --- | --- | --- | ---|
-| No | Single server | Cumulus NetQ Appliance | NA | link |
-| No | Single server | Own Hardware plus VM | KVM | {{<link url="install-op-bu-ss-vm-kvm" text="Install NetQ: Option 2">}} |
-| No | Single server | Own Hardware plus VM | VMware | link |
-| No | Server Cluster | Cumulus NetQ Appliance | NA | link |
-| No | Server Cluster | Own Hardware plus VM | KVM | link |
-| No | Server Cluster | Own Hardware plus VM | VMware | link |
-| Yes | Single server | Cumulus NetQ Appliance | NA | link |
-| Yes | Single server | Own Hardware plus VM | KVM | link |
-| Yes | Single server | Own Hardware plus VM | VMware | link |
-| Yes | Server Cluster | Cumulus NetQ Appliance | NA | link |
-| Yes | Server Cluster | Own Hardware plus VM | KVM | link |
-| Yes | Server Cluster | Own Hardware plus VM | VMware | link |
+The first step is to decide whether you are deploying a single server or a server cluster. Both options provide the same services and features. The biggest difference is in the number of servers to be deployed and in the continued availability of services running on those servers should hardware failures occur.
+
+A single server is easier to set up, configure and manage, but can limit your ability to scale your network monitoring quickly. Multiple servers is a bit more complicated, but you limit potential downtime and increase availability by having more than one server that can run the software and store the data.
+
+Click the server arrangement you want to use to move to the next installation step:
+
+- {{ <link title="Single Server"> }}
+- {{ <link title="Server Cluster"> }}

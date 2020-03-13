@@ -1,0 +1,5 @@
+{{ if .Page.Params.onprem }}
+<pre>cumulus@<hostname>:~$ sudo opta-check</pre>
+{{ else }}
+<pre>cumulus@<hostname>:~$ sudo opta-check-cloud</pre>
+{{ end }}

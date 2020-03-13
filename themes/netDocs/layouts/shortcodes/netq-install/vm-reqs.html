@@ -1,26 +1,4 @@
-The NetQ Platform requires a VM with the following system resources allocated:
-
-{{ if eq .Page.Params.netq "cloud" }}
-    {{ if .Page.Params.cluster }} 
-      <!-- If it's a cloud cluster -->
-    {{ else }} 
-      <!-- Cloud, but not a cluster -->
-    {{ end }}
-{{ else }} 
-    {{ if .Page.Params.cluster }} 
-      <!-- If it's a on-prem cluster -->
-    {{ else }} 
-      <!-- on-prem, but not a cluster -->
-    {{ end }}
-{{ end }} 
-
-{{ .Page.Params.version }}
-
-leave block empty if nothing to print
-
-{{ if .Page.Params.cluster}}
-Cluster is true
-{{ end }}
+When using a VM, the following system resources must be allocated:
 
 <table>
 <colgroup>
@@ -40,15 +18,19 @@ Cluster is true
 </tr>
 <tr class="odd">
 <td>Memory</td>
-{{ if eq .Page.Params.netq "cloud" }}
-  <td>8 GB RAM</td>
-{{ else }}
+{{ if .Page.Params.onprem }}
   <td>64 GB RAM</td>
+{{ else }}
+  <td>8 GB RAM</td>
 {{ end }}
 </tr>
 <tr class="even">
 <td>Local disk storage</td>
-<td>256 GB SSD <br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+{{ if .Page.Params.onprem }}
+  <td>256 GB SSD <br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+{{ else }}
+  <td>32 GB</td>
+{{ end }}
 </tr>
 <tr class="odd">
 <td>Network interface speed</td>

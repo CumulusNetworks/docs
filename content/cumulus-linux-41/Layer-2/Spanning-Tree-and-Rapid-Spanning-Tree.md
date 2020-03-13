@@ -190,7 +190,7 @@ cumulus@switch:~$ sudo brctl show
                                                           swp5
 ```
 
-To show the `mstpd` bridge port state, run the `mstpctl showport bridge`command:
+To show the `mstpd` bridge port state, run the `mstpctl showport bridge` command:
 
 ```
 cumulus@switch:~$ sudo mstpctl showport bridge
@@ -229,7 +229,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Configure the tree priority (`mstpctl-treeprio`) under the *bridge* stanza in the `/etc/network/interfaces` file. The following example command sets the tree priority to 8192:
+Configure the tree priority (`mstpctl-treeprio`) under the *bridge* stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example command sets the tree priority to 8192:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -245,8 +245,6 @@ iface bridge
     mstpctl-treeprio 8192
 ...
 ```
-
-Run the `ifreload -a` command to load the new configuration:
 
 ``` 
 cumulus@switch:~$ ifreload -a
@@ -295,7 +293,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Configure PortAdminEdge and BPDU guard under the switch port interface stanza in the `/etc/network/interfaces` file. The following example configures PortAdminEdge and BPD guard on swp5.
+Configure PortAdminEdge and BPDU guard under the switch port interface stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example configures PortAdminEdge and BPD guard on swp5.
 
 ```
 cumulus@switch:~$ sudo nano /etc/netowrk/interfaces
@@ -306,8 +304,6 @@ iface swp5
     mstpctl-portadminedge yes
 ...
 ```
-
-Run the `ifreload -a` command to load the new configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -364,7 +360,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-portautoedge no` line. The following example disables PortAutoEdge on swp1:
+Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-portautoedge no` line, then run the `ifreload -a` command. The following example disables PortAutoEdge on swp1:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -376,8 +372,6 @@ iface swp1
     mstpctl-portautoedge no
 ...
 ```
-
-Run `ifreload -a` to load the new configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -405,13 +399,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the switch port interface stanza in the `/etc/network/interfaces` file to remove `mstpctl-portautoedge no`.
-
-Run `ifreload -a` to load the new configuration:
-
-```
-cumulus@switch:~$ sudo ifreload -a
-```
+Edit the switch port interface stanza in the `/etc/network/interfaces` file to remove `mstpctl-portautoedge no`, then run the `ifreload -a` command.
 
 </details>
 
@@ -439,7 +427,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the switch port interface stanza in the `/etc/network/interfaces` file and add the `mstpctl-bpduguard yes` line. The following example sets BPDU guard for interface swp5:
+Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-bpduguard yes` line, then run the `ifreload -a` command. The following example sets BPDU guard for interface swp5:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -449,8 +437,6 @@ iface swp5
     mstpctl-bpduguard yes
 ...
 ```
-
-Run `ifreload -a` to load the new configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -543,7 +529,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the switch port interface stanza in the `/etc/network/interfaces` file and add the `mstpctl-portnetwork yes` line. The following example enables bridge assurance on swp5:
+Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-portnetwork yes` line, then run the `ifreload -a` command. The following example enables bridge assurance on swp5:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -553,8 +539,6 @@ iface swp5
     mstpctl-portnetwork yes
 ...
 ```
-
-Run `ifreload -a` to load the new configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -616,7 +600,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the switch port interface stanza in the `/etc/network/interfaces` file and add the `mstpctl-portbpdufilter yes` line. The following example configures BPDU filter on swp6:
+Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-portbpdufilter yes` line, then run the `ifreload -a` command. The following example configures BPDU filter on swp6:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -626,8 +610,6 @@ iface swp6
     mstpctl-portbpdufilter yes
 ...
 ```
-
-Run `ifreload -a` to load the new configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a

@@ -130,77 +130,77 @@ Run the configuration script provided with Cumulus Linux:
     - The datapath IP address of the VTEP (`172.16.20.157` in the example command below). This is the VXLAN anycast IP address.
     - The IP address of the management interface on the switch (`192.168.100.157` in the example command below). This interface is used for control traffic.
 
-```
-cumulus@switch:~$ vtep-bootstrap  --db_ha active  --db_ha_vip 169.254.0.11:9998  --db_ha_repl_sv 169.254.0.9:9999 --controller_ip 192.168.100.17 vtep7 172.16.20.157 192.168.100.157
-Executed:
-           create certificate on a switch, to be used for authentication with controller
-             ().
-Executed:
-           sign certificate
-             (vtep7-req.pem   Tue Sep 11 21:11:27 UTC 2018
-               fingerprint a4cda030fe5e458c0d7ba44e22f52650f01bcd75).
-Executed:
-           define physical switch
-             ().
-Executed:
-           define NSX controller IP address in OVSDB
-             ().
-Executed:
-           define local tunnel IP address on the switch
-             ().
-Executed:
-           define management IP address on the switch
-             ().
-Executed:
-           restart a service
-             ().
-```
+    ```
+    cumulus@switch:~$ vtep-bootstrap  --db_ha active  --db_ha_vip 169.254.0.11:9998  --db_ha_repl_sv 169.254.0.9:9999 --controller_ip 192.168.100.17 vtep7 172.16.20.157 192.168.100.157
+    Executed:
+              create certificate on a switch, to be used for authentication with controller
+                ().
+    Executed:
+              sign certificate
+                (vtep7-req.pem   Tue Sep 11 21:11:27 UTC 2018
+                  fingerprint a4cda030fe5e458c0d7ba44e22f52650f01bcd75).
+    Executed:
+              define physical switch
+                ().
+    Executed:
+              define NSX controller IP address in OVSDB
+                ().
+    Executed:
+              define local tunnel IP address on the switch
+                ().
+    Executed:
+              define management IP address on the switch
+                ().
+    Executed:
+              restart a service
+                ().
+    ```
 
 2. On the switch where you want to run the standby OVSDB server, run the the `vtep-bootstrap` command with the same options as above but replace `db_ha active` with `db_ha standby`:
 
-```
-cumulus@switch:~$ vtep-bootstrap  --db_ha standby  --db_ha_vip 169.254.0.11:9998  --db_ha_repl_sv 169.254.0.9:9999 --controller_ip 192.168.100.17 vtep7 172.16.20.157 192.168.100.157
-Executed:
-        create certificate on a switch, to be used for authentication with controller
-          ().
-Executed:
-        sign certificate
-          (vtep7-req.pem   Tue Sep 11 21:11:27 UTC 2018
-            fingerprint a4cda030fe5e458c0d7ba44e22f52650f01bcd75).
-Executed:
-        define physical switch
-          ().
-Executed:
-        define NSX controller IP address in OVSDB
-          ().
-Executed:
-        define local tunnel IP address on the switch
-          ().
-Executed:
-        define management IP address on the switch
-          ().
-Executed:
-        restart a service
-          ().
-```
+    ```
+    cumulus@switch:~$ vtep-bootstrap  --db_ha standby  --db_ha_vip 169.254.0.11:9998  --db_ha_repl_sv 169.254.0.9:9999 --controller_ip 192.168.100.17 vtep7 172.16.20.157 192.168.100.157
+    Executed:
+            create certificate on a switch, to be used for authentication with controller
+              ().
+    Executed:
+            sign certificate
+              (vtep7-req.pem   Tue Sep 11 21:11:27 UTC 2018
+                fingerprint a4cda030fe5e458c0d7ba44e22f52650f01bcd75).
+    Executed:
+            define physical switch
+              ().
+    Executed:
+            define NSX controller IP address in OVSDB
+              ().
+    Executed:
+            define local tunnel IP address on the switch
+              ().
+    Executed:
+            define management IP address on the switch
+              ().
+    Executed:
+            restart a service
+              ().
+    ```
 
 3. From the switch running the active OVSDB server, copy the certificate files (`hostname-cert.pem` and `hostname-privkey.pem`) to the same location on the switch with the standby OVSDB server.
 
-    {{%notice note%}}
+  {{%notice note%}}
 
-The certificate and key pairs for authenticating with the NSX controller are generated automatically when you run the configuration script and are stored in the `/home/cumulus` directory. The same certificate must be used for both switches.
+  The certificate and key pairs for authenticating with the NSX controller are generated automatically when you run the configuration script and are stored in the `/home/cumulus` directory. The same certificate must be used for both switches.
 
-{{%/notice%}}
+  {{%/notice%}}
 
 4. On the switch running the *active* OVSDB server and then the switch running the *standby* OVSDB server, run the following commands in the order shown to complete the configuration process:
 
-```
-cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
-cumulus@switch:~$ sudo ifreload -a
-cumulus@switch:~$ sudo systemctl restart networking.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
+    cumulus@switch:~$ sudo ifreload -a
+    cumulus@switch:~$ sudo systemctl restart networking.service
+    ```
 
-For information about the configuration script, read `man vtep-bootstrap` or run the command `vtep-bootstrap --help`.
+    For information about the configuration script, read `man vtep-bootstrap` or run the command `vtep-bootstrap --help`.
 
 ## Configure the Transport and Logical Layers
 

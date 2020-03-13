@@ -131,20 +131,19 @@ You can modify the reserved range if it conflicts with any user-defined VLANs, a
 
 To configure the reserved range:
 
-1. Open `/etc/cumulus/switchd.conf` in a text editor.
-2. Uncomment the following line, specify a new range, and save the file:
+Edit the `/etc/cumulus/switchd.conf` file to uncomment the `resv_vlan_range` line and specify a new range, then restart `switchd`:
 
 ```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
 resv_vlan_range
 ```
-
-3. Restart `switchd` to implement the change:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
-   {{%notice note%}}
+{{%notice note%}}
 
 While restarting `switchd`, all running ports will flap, and forwarding will be interrupted.
 
@@ -192,7 +191,7 @@ iface swp3
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file. The following example commands configure swp3 to override the bridge VIDs:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example commands configure swp3 to override the bridge VIDs:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -209,8 +208,6 @@ iface swp3
   bridge-vids 200
 ...
 ```
-
-Run the `ifreload -a` command to load the new configuration:
 
 ```
 cumulus@switch:~$ ifreload -a
@@ -263,7 +260,7 @@ iface swp2
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -284,8 +281,6 @@ iface swp2
     bridge-access 100
 ...
 ```
-
-Run the `ifreload -a` command to load the new configuration:
 
 ```
 cumulus@switch:~$ ifreload -a
@@ -329,7 +324,7 @@ swp2             10
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file to add the `bridge-allow-untagged no` line to the under the switch port interface stanza. The following example configures swp2 to drop untagged frames:
+Edit the `/etc/network/interfaces` file to add the `bridge-allow-untagged no` line under the switch port interface stanza, then run the `ifreload -a` command. The following example configures swp2 to drop untagged frames:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -339,7 +334,7 @@ iface swp1
 
 auto swp2
 iface swp2
-    bridge-allow-untagged no 
+    bridge-allow-untagged no
 
 auto bridge
 iface bridge
@@ -349,8 +344,6 @@ iface bridge
     bridge-vlan-aware yes
 ...
 ```
-
-Run the `ifreload -a` command to load the new configuration:
 
 ``` 
 cumulus@switch:~$ sudo ifreload -a
@@ -394,7 +387,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file, then reload the configuration with the `ifreload -a` command. The following example declares native VLAN 100 with IPv4 address 192.168.10.1/24 and IPv6 address 2001:db8::1/32.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example declares native VLAN 100 with IPv4 address 192.168.10.1/24 and IPv6 address 2001:db8::1/32.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -413,6 +406,10 @@ iface vlan100
     vlan-id 100
     vlan-raw-device bridge
 ...
+```
+
+```
+cumulus@switch:~$ ifreload -a
 ```
 
 </details>

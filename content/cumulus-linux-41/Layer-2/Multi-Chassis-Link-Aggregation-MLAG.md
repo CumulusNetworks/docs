@@ -200,7 +200,7 @@ iface peerlink.4094
 ...
 ```
 
-To enable MLAG, you must add *peerlink* to a traditional or VLAN-aware bridge. The configuration below adds *peerlink* to a VLAN-aware bridge:
+To enable MLAG, you must add *peerlink* to a traditional or VLAN-aware bridge, then run the `ifreload -a` command. The configuration below adds *peerlink* to a VLAN-aware bridge:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -211,8 +211,6 @@ iface bridge
     bridge-vlan-aware yes
 ...
 ```
-
-Run the `ifreload -a` command to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -261,7 +259,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file and add the `clagd-priority` option. The following example sets the `clagd-priority` option for the peer link:
+Edit the `/etc/network/interfaces` file and add the `clagd-priority` option, then run the `ifreload -a` command. The following example sets the `clagd-priority` option for the peer link:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -274,8 +272,6 @@ iface peerlink.4094
     clagd-priority 2048
 ...
 ```
-
-Run the `ifreload -a` command to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -378,7 +374,7 @@ The commands to create the configurations for both spines look like the followin
 
 <details>
 
-<summary>**spine01** </summary>
+<summary>spine01 </summary>
 
 ```
 cumulus@spine01:~$ net show configuration commands
@@ -416,7 +412,7 @@ iface swp4
 
 <details>
 
-<summary>**spine02** </summary>
+<summary>spine02 </summary>
 
 ```
 cumulus@spine02:~$ net show configuration commands
@@ -456,7 +452,7 @@ Here is an example configuration for the switches leaf01 through leaf04. Note th
 
 <details>
 
-<summary>**leaf01** </summary>
+<summary>leaf01 </summary>
 
 ```
 cumulus@leaf01:~$ net show configuration commands
@@ -561,7 +557,7 @@ iface vlan100
 
 <details>
 
-<summary>**leaf02** </summary>
+<summary>leaf02 </summary>
 
 ```
 cumulus@leaf02:~$ net show conf commands
@@ -665,7 +661,7 @@ iface vlan100
 
 <details>
 
-<summary>**leaf03**</summary>
+<summary>leaf03</summary>
 
 ```
 cumulus@leaf03:~$ net show conf commands
@@ -770,7 +766,7 @@ iface vlan100
 
 <details>
 
-<summary>**leaf04** </summary>
+<summary>leaf04 </summary>
 
 ```
 cumulus@leaf04:~$ net show configuration commands
@@ -892,7 +888,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file and add `clagd-enable no` to the interface stanza:
+Edit the `/etc/network/interfaces` file to add `clagd-enable no` to the interface stanza, then run the `ifreload -a` command:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces 
@@ -907,8 +903,6 @@ iface peerlink.4094
 ...
 ```
 
-Run the `ifreload` -a command to reload the configuration.
-
 ```
 cumulus@switch:~$ sudo ifreload -a
 ```
@@ -922,7 +916,7 @@ Use `clagd-priority` to set the role of the MLAG peer switch to primary or secon
 To check the status of your MLAG configuration, run the NCLU `net show clag` command or the Linux `clagctl` command. For example:
 
 ``` 
-cumulus@switch:~$ net show clag 
+cumulus@switch:~$ net show clag
 The peer is alive
     Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
      Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary
@@ -1026,7 +1020,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file and add `clag-backup-ip <ip-address>` to the peer link configuration. For example:
+Edit the `/etc/network/interfaces` file to add `clag-backup-ip <ip-address>` to the peer link configuration, then run the `ifreload -a` command. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -1040,6 +1034,10 @@ iface peerlink.4094
     clagd-sys-mac 44:38:39:ff:00:01
     clagd-args --priority 1000
 ...
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
 ```
 
 You can also specify the backup UDP port. The port defaults to 5342, but you can change the port with `clagd-args` `--backupPort <port>` . For example:
@@ -1059,18 +1057,12 @@ iface peerlink.4094
 ...
 ```
 
-Run `ifreload -a` to reload the configuration:
-
-```
-cumulus@switch:~$ sudo ifreload -a
-```
-
 </details>
 
 To show the backup IP address, run the NCLU `net show clag` command or the Linux `clagctl` command. For example:
 
 ```
-cumulus@switch:~$ net show clag 
+cumulus@switch:~$ net show clag
 The peer is alive
         Our Priority, ID, and Role: 32768 44:38:39:00:00:41 primary
     Peer Priority, ID, and Role: 32768 44:38:39:00:00:42 secondary
@@ -1112,7 +1104,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file to include the name of the VRF or management VRF with the `clag-backup-ip` option. The following configuration links to the management VRF.
+Edit the `/etc/network/interfaces` file to include the name of the VRF or management VRF with the `clag-backup-ip` option, then run the `ifreload -a` command. The following configuration links to the management VRF.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -1133,8 +1125,6 @@ iface peer-bond.4000
         clagd-sys-mac 44:38:39:ff:00:01
 ...
 ```
-
-R un `ifreload -a` to reload the configuration :
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -1185,7 +1175,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file and add the timeout to the *peerlink* stanza. The following example sets the timeout to 900:
+Edit the `/etc/network/interfaces` file and add the timeout to the *peerlink* stanza, then run the `ifreload -a` command. The following example sets the timeout to 900:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -1200,8 +1190,6 @@ iface peerlink.4094
     clagd-sys-mac 44:38:39:ff:00:01
 ...
 ```
-
-Run `ifreload -a` to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -1231,7 +1219,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file. The following example sets the frequency to 900 seconds:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example sets the frequency to 900 seconds:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -1246,8 +1234,6 @@ auto peerlink.4094
     clagd-sys-mac 44:38:39:ff:00:01
 ...
 ```
-
-Run `ifreload -a` to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -1327,7 +1313,7 @@ You can check the status of `clagd` monitoring by using the `cl-service-summary`
 cumulus@switch:~$ sudo cl-service-summary
 The systemctl daemon 5.4 uptime: 15m
 ...
-Service clagd        enabled    active 
+Service clagd        enabled    active
 ...
 ```
 
@@ -1384,7 +1370,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file. This is an example configuration:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. This is an example configuration:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -1406,8 +1392,6 @@ iface uplink
     mtu 9216
 ...
 ```
-
-Run `ifreload -a` to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -1611,4 +1595,4 @@ This occurs when you have multiple LACP bonds between the same two LACP endpoint
 
 ## Caveats and Errata
 
-- If both backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, sees the peer switch as down and takes over as the primary.
+If both backup and peer connectivity are lost within a 30-second window, the switch in the secondary role misinterprets the event sequence, sees the peer switch as down and takes over as the primary.

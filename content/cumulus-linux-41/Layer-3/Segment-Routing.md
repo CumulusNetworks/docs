@@ -427,21 +427,21 @@ To configure the segment routing example above:
 
 1. For each switch in the topology, add the label indexes:
 
-```
-cumulus@switch:~$ net add bgp network 10.1.1.1/32 label-index 1
-cumulus@switch:~$ net add bgp network 10.1.1.2/32 label-index 2
-cumulus@switch:~$ net add bgp network 10.1.1.3/32 label-index 3
-cumulus@switch:~$ net add bgp network 10.1.1.4/32 label-index 4
-cumulus@switch:~$ net add bgp network 10.1.1.5/32 label-index 5
-```
+    ```
+    cumulus@switch:~$ net add bgp network 10.1.1.1/32 label-index 1
+    cumulus@switch:~$ net add bgp network 10.1.1.2/32 label-index 2
+    cumulus@switch:~$ net add bgp network 10.1.1.3/32 label-index 3
+    cumulus@switch:~$ net add bgp network 10.1.1.4/32 label-index 4
+    cumulus@switch:~$ net add bgp network 10.1.1.5/32 label-index 5
+    ```
 
 2. For each switch in the topology, define the *global-block* of labels to use for segment routing in {{<link url="Configuring-FRRouting" text="FRR">}}. The default global-block is 16000-23999. The example configuration uses global-block `100 200`. The *local label* is the MPLS label global-block plus the label-index.
 
-```
-cumulus@switch:~$ net add mpls label global-block 100 200
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+    ```
+    cumulus@switch:~$ net add mpls label global-block 100 200
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
 
 </details>
 
@@ -451,31 +451,31 @@ cumulus@switch:~$ net commit
 
 1. For each switch in the topology, add the label indexes:
 
-```
-cumulus@switch:~$ sudo vtysh
+    ```
+    cumulus@switch:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65444
-switch(config-router)# address-family ipv4 unicast
-switch(config-router-if)# network 10.1.1.1/32 label-index 1
-switch(config-router-if)# network 10.1.1.2/32 label-index 2
-switch(config-router-if)# network 10.1.1.3/32 label-index 3
-switch(config-router-if)# network 10.1.1.4/32 label-index 4
-switch(config-router-if)# network 10.1.1.5/32 label-index 5
-switch(config-router-if)# exit
-switch(config-router)# exit
-switch(config)#
-```
+    switch# configure terminal
+    switch(config)# router bgp 65444
+    switch(config-router)# address-family ipv4 unicast
+    switch(config-router-if)# network 10.1.1.1/32 label-index 1
+    switch(config-router-if)# network 10.1.1.2/32 label-index 2
+    switch(config-router-if)# network 10.1.1.3/32 label-index 3
+    switch(config-router-if)# network 10.1.1.4/32 label-index 4
+    switch(config-router-if)# network 10.1.1.5/32 label-index 5
+    switch(config-router-if)# exit
+    switch(config-router)# exit
+    switch(config)#
+    ```
 
 2. For each switch in the topology, define the *global-block* of labels to use for segment routing in {{<link url="Configuring-FRRouting" text="FRR">}}. The default global-block is 16000-23999. The example configuration uses global-block `100 200`. The *local label* is the MPLS label global-block plus the label-index.
 
-```
-switch(config)# mpls label global-block 100 200
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
+    ```
+    switch(config)# mpls label global-block 100 200
+    switch(config)# exit
+    switch# write memory
+    switch# exit
+    cumulus@switch:~$
+    ```
 
 </details>
 

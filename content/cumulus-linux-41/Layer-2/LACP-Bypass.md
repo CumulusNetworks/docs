@@ -49,7 +49,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file to add the set `bond-lacp-bypass-allow` to yes option. The following configuration creates a VLAN-aware bridge with LACP bypass enabled:
+Edit the `/etc/network/interfaces` file to add the set `bond-lacp-bypass-allow` to yes option, then run the `ifreload -a` command. The following configuration creates a VLAN-aware bridge with LACP bypass enabled:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -68,8 +68,6 @@ iface bridge
     bridge-vlan-aware yes
 ...
 ```
-
-Run the `ifreload -a` command to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a

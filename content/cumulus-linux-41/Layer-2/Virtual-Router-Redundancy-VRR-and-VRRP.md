@@ -73,7 +73,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file. The example file configuration below create a VLAN-aware bridge interface for a VRR-enabled network:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The example file configuration below create a VLAN-aware bridge interface for a VRR-enabled network:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -93,8 +93,6 @@ iface vlan500
 ...
 ```
 
-Run the `ifreload -a` command to reload the configuration:
-
 ```
 cumulus@switch:~$ sudo ifreload -a
 ```
@@ -113,7 +111,7 @@ To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} co
 
 <details>
 
-<summary>**leaf01 Configuration**</summary>
+<summary>leaf01 Configuration</summary>
 
 ```
 cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21
@@ -206,7 +204,7 @@ iface vlan400
 
 <details>
 
-<summary>**leaf02 Configuration** </summary>
+<summary>leaf02 Configuration </summary>
 
 ```
 cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22
@@ -299,7 +297,7 @@ iface vlan400
 
 <details>
 
-<summary>**server01 Configuration** </summary>
+<summary>server01 Configuration </summary>
 
 Create a configuration like the following on an Ubuntu host:
 
@@ -347,7 +345,7 @@ iface uplink:400 inet static
 
 <details>
 
-<summary>**server02 Configuration** </summary>
+<summary>server02 Configuration </summary>
 
 Create a configuration like the following on an Ubuntu host:
 
@@ -467,37 +465,38 @@ cumulus@spine02:~$ net commit
 <summary>Linux and vtysh Commands </summary>
 
 1. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="Configuring FRRouting">}}.
+
 2. From the vtysh shell, configure VRRP.
 
    **spine01**
 
-```
-cumulus@spine01:~$ sudo vtysh
+    ```
+    cumulus@spine01:~$ sudo vtysh
 
-spine01# configure terminal
-spine01(config)# interface swp1
-spine01(config-if)# vrrp 44 ip 10.0.0.1
-spine01(config-if)# vrrp 44 ipv6 2001:0db8::1
-spine01(config-if)# vrrp 44 priority 254
-spine01(config-if)# vrrp 44 advertisement-interval 5000
-spine01(config-if)# end
-spine01# write memory
-spine01# exit
-```
+    spine01# configure terminal
+    spine01(config)# interface swp1
+    spine01(config-if)# vrrp 44 ip 10.0.0.1
+    spine01(config-if)# vrrp 44 ipv6 2001:0db8::1
+    spine01(config-if)# vrrp 44 priority 254
+    spine01(config-if)# vrrp 44 advertisement-interval 5000
+    spine01(config-if)# end
+    spine01# write memory
+    spine01# exit
+    ```
 
    **spine02**
 
- ```
-cumulus@spine02:~$ sudo vtysh
+    ```
+    cumulus@spine02:~$ sudo vtysh
 
-spine02# configure terminal
-spine02(config)# interface swp1
-spine02(config-if)# vrrp 44 ip 10.0.0.1
-spine02(config-if)# vrrp 44 ipv6 2001:0db8::1
-spine02(config-if)# end
-spine02# write memory
-spine02# exit
-```
+    spine02# configure terminal
+    spine02(config)# interface swp1
+    spine02(config-if)# vrrp 44 ip 10.0.0.1
+    spine02(config-if)# vrrp 44 ipv6 2001:0db8::1
+    spine02(config-if)# end
+    spine02# write memory
+    spine02# exit
+    ```
 
 </details>
 

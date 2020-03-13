@@ -171,7 +171,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65011
-switch(config-router)# address-family l2vpn evpn 
+switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# vni 10
 switch(config-router-af-vni)# advertise-svi-ip
 switch(config-router-af-vni)# end
@@ -194,15 +194,21 @@ exit-address-family
 ...
 ```
 
-## Disable Flooding in EVPN
+## Disable BUM Flooding in EVPN
 
 By default, the VTEP floods all broadcast, and unknown unicast and multicast packets (such as ARP, NS, or DHCP) it receives to all interfaces (except for the incoming interface) and to all VXLAN tunnel interfaces in the same broadcast domain. When the switch receives such packets on a VXLAN tunnel interface, it floods the packets to all interfaces in the packet's broadcast domain.
 
-You can disable flooding over VXLAN tunnels so that EVPN does not advertise type-3 routes for each local VNI and stops taking action on received type-3 routes.
+You can disable BUM flooding over VXLAN tunnels so that EVPN does not advertise type-3 routes for each local VNI and stops taking action on received type-3 routes.
 
-Disabling flooding is useful in a deployment with a controller or orchestrator, where the switch is pre-provisioned and there is no need to flood any ARP, NS, or DHCP packets.
+Disabling BUM flooding is useful in a deployment with a controller or orchestrator, where the switch is pre-provisioned and there is no need to flood any ARP, NS, or DHCP packets.
 
-To disable flooding, run the NCLU `net add bgp l2vpn evpn bum-flood-disable` command or the vtysh `flooding disable` command. For example:
+{{%notice note%}}
+
+For information on EVPN BUM flooding with PIM, refer to {{<link url="EVPN-BUM-Traffic-with-PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
+
+{{%/notice%}}
+
+To disable BUM flooding, run the NCLU `net add bgp l2vpn evpn bum-flood-disable` command or the vtysh `flooding disable` command. For example:
 
 <details>
 
@@ -224,7 +230,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65011
-switch(config-router)# address-family l2vpn evpn 
+switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# flooding disable
 switch(config-router-af)# end
 switch)# write memory
@@ -246,7 +252,7 @@ router bgp 65000
 ...
 ```
 
-To re-enable flooding, run the NCLU `net del bgp l2vpn evpn bum-flood-disable` command or the vtysh `flooding head-end-replication` command. For example:
+To re-enable BUM flooding, run the NCLU `net del bgp l2vpn evpn bum-flood-disable` command or the vtysh `flooding head-end-replication` command. For example:
 
 <details>
 
@@ -277,6 +283,29 @@ cumulus@switch:~$
 ```
 
 </details>
+
+### Verify Configuration
+
+To show that BUM flooding is disabled, run the NCLU `net show bgp l2vpn evpn vni` command or the vtysh `show bgp l2vpn evpn vni` command. For example:
+
+```
+cumulus@switch:~$ net show bgp l2vpn evpn vni
+Advertise Gateway Macip: Disabled
+Advertise SVI Macip: Enabled
+Advertise All VNI flag: Enabled
+BUM flooding: Disabled
+Number of L2 VNIs: 3
+Number of L3 VNIs: 2
+Flags: * - Kernel
+  VNI        Type RD                 Import RT          Export RT         Tenant VRF
+* 1002       L2   10.0.0.11:2        5546:1002          5546:1002         vrf1
+* 1006       L2   10.0.0.11:3        5546:1006          5546:1006         vrf2
+* 1000       L2   10.0.0.11:4        5546:1000          5546:1000         vrf1
+* 4001       L3   10.2.4.11:4        5546:4001          5546:4001         vrf1
+* 4002       L3   10.2.6.11:6        5546:4002          5546:4002         vrf2
+```
+
+Run the NCLU `net show bgp l2vpn evpn route type multicast` command to make sure no locally-originated EVPN type-3 routes are listed.
 
 ## Extended Mobility
 

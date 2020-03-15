@@ -281,35 +281,43 @@ Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.c
 
 On Broadcom switches, the syntax checker runs automatically during `switchd` initialization and reports syntax errors to the `/var/log/switchd.log` file. You must resolve any syntax errors before you can restart `switchd`.
 
-On both Broadcom and Mellanox switches, you run the syntax checker manually from the command line by issuing the `datapath-checker` command. If errors exist, they are shown either on the command line or written to the `/var/log/switchd.log` file, depending on the option you specify.
+On both Broadcom and Mellanox switches, you run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are shown either on the command line or written to the `/var/log/switchd.log` file, depending on the option you specify.
 
-The `datapath-checker` command takes the following options:
+The `cl-consistency-check --datapath-syntax-check` command takes the following options:
 
 | <div style="width:120px">Option | Description |
-| ------ | ----------- |
+| ------------------------------- | ----------- |
 | -h | Displays this list of command options. |
-| -t `<file-name>` | Runs the syntax check on a non-default `traffic.conf` file; for example, `/mypath/test-traffic.conf`.|
 | -q | Runs the command in quiet mode. Errors are written to the `/var/log/switchd.log` file instead of the command line. |
+| -v | Displays the tests that pass in addition to errors. |
+| -t `<file-name>` | Runs the syntax check on a non-default `traffic.conf` file; for example, `/mypath/test-traffic.conf`.|
 
 **Example Commands**
 
-The following example command runs the validation checker on the default `/etc/cumulus/datapath/traffic.conf` file. If errors exist, they are written to the command line.
+The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file. If errors exist, they are shown on the command line.
 
 ```
-cumulus@switch:~$ datapath-checker
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check
 No errors detected in traffic config file /etc/cumulus/datapath/traffic.conf
 ```
 
-The following example command runs the validation checker on the default /`etc/cumulus/datapath/traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
+The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
 
 ```
-cumulus@switch:~$ datapath-checker -q
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -q
 ```
 
-The following example command runs the validation checker on the `/mypath/test-traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file:
+The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file. If errors exist, they are shown on the command line:
 
 ```
-cumulus@switch:~$ datapath-checker -t /path/test-traffic.conf -q
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf
+Errors detected while checking traffic config file /mypath/test-traffic.conf
+```
+
+The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file:
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf -q
 ```
 
 ## Configure Traffic Marking through ACL Rules

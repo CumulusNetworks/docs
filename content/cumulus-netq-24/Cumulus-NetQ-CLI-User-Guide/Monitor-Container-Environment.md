@@ -17,7 +17,7 @@ The NetQ Agent monitors many aspects of containers on your network by integratin
 Cumulus Networks recommends installing the NetQ Agent on the server with the containers.
 {{%/notice%}}
 
-This topic assumes a reasonable familiarity with Kubernetes terminology and architecture.
+This topic assumes a reasonable familiarity with Kubernetes terminology and architecture. If you do not have this familiarity, refer to {{<exlink url="https://kubernetes.io/docs/tutorials/" text="Kubernetes Tutorials">}} before continuing.
 
 ## Use NetQ with Kubernetes Clusters
 

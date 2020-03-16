@@ -22,7 +22,7 @@ The following illustratration shows a basic NAT configuration.
 {{%notice note%}}
 
 - NAT is supported on physical interfaces and bond interfaces only.
-- Dynamic NAT/PAT is supported on Broadcom Trident3 X7 and Mellanox Spectrum-2 switches only.
+- Dynamic NAT is supported on Broadcom Trident3 X7 and Mellanox Spectrum-2 switches only.
 - IPv6 to IPv4 translation is not supported.
 - Multicast traffic is not supported.
 - NAT is *not* supported in an EVPN configuration.

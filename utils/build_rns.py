@@ -56,7 +56,7 @@ def build_rns(json_file, fixed=True):
     if(fixed):
         output.append("## Open issues in {{% version %}}")
         output.append("\n")
-        output.append("<div class=\"table-wrapper\" markdown=\"block\">")
+        # output.append("<div class=\"table-wrapper\" markdown=\"block\">")
         output.append("\n")
         output.append("|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|")
         output.append("\n")
@@ -64,7 +64,7 @@ def build_rns(json_file, fixed=True):
         output.append("\n")
     else:
         output.append("## Fixed issues in {{% version %}}")
-        output.append("<div class=\"table-wrapper\" markdown=\"block\">")
+        # output.append("<div class=\"table-wrapper\" markdown=\"block\">")
         output.append("\n")
         output.append("|  Bug ID 	|   Description	|   Affects	|")
         output.append("\n")
@@ -79,7 +79,7 @@ def build_rns(json_file, fixed=True):
 
         output.append("\n")
     
-    output.append("</div>")
+    # output.append("</div>")
     output.append("\n")
 
     return output
@@ -100,7 +100,7 @@ def main():
     #     print("Please provide the content folder name of the release to build release notes for. For example \n\t $ python build_rns.py cumulus-linux-41")
     # exit(1)
 
-    version = "cumulus-linux-40" #sys.argv[1]
+    version = "cumulus-linux-41" #sys.argv[1]
     affects_filename = "cl_release_note_affects.json"
     fixed_filename = "cl_release_note_fixed.json"
 

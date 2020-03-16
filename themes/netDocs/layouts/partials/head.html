@@ -30,7 +30,7 @@
 {{ "-->" | safeHTML }}
 
 <!-- clipboard.js support -->
-{{if ne .Page.Type "pdf"}}
+{{if ne .Params.layout "pdf"}}
     {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
     <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

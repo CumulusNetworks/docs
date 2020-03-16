@@ -22,10 +22,10 @@ The following illustratration shows a basic NAT configuration.
 {{%notice note%}}
 
 - NAT is supported on physical interfaces and bond interfaces only.
-- Dynamic NAT is supported on Broadcom Trident3 X7 and Mellanox Spectrum-2 switches only.
 - IPv6 to IPv4 translation is not supported.
 - Multicast traffic is not supported.
 - NAT is *not* supported in an EVPN configuration.
+- Dynamic NAT is supported on Broadcom Trident3 X7 and Mellanox Spectrum-2 switches only.
 
 {{%/notice%}}
 
@@ -52,7 +52,7 @@ Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 {{%notice note%}}
 
-Other options in the NAT configuration section of the switchd.conf file, such as nat.age_poll_interval and nat.table_size are dynamic NAT configuration options and are currently not supported.
+Other options in the NAT configuration section of the `switchd.conf` file, such as `nat.age_poll_interval` and `nat.table_size` are dynamic NAT configuration options and are currently *not* supported.
 
 {{%/notice%}}
 
@@ -107,6 +107,8 @@ The following rule matches ICMP packets with destination IP address 192.168.1.3 
 
 ```
 cumulus@switch:~$ net add nat static dnat icmp 192.168.1.3 in-interface swo51 translate 10.0.0.1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 The following rule matches UDP packets with source IP address 10.0.0.1 and source port 5000, and translates the IP address to 192.168.1.3 and the port to 6000.
@@ -118,9 +120,9 @@ cumulus@switch:~$ net commit
 ```
 
 The following rule matches UDP packets with destination IP address 192.168.1.3 and destination port 6000 on interface swp51, and translates the IP address to 10.0.0.1 and the port to 5000:
-cumulus@switch:~$ net add nat static dnat udp 192.168.1.3 6000 in-interface swp51 translate 10.0.0.1 5000
 
 ```
+cumulus@switch:~$ net add nat static dnat udp 192.168.1.3 6000 in-interface swp51 translate 10.0.0.1 5000
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -199,7 +201,7 @@ Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 {{%notice note%}}
 
-Other dynamic NAT options in the NAT configuration section of the `switchd.conf` file, such as `nat.age_poll_interval` and `nat.table_size` are currently not supported.
+Other dynamic NAT options in the NAT configuration section of the `switchd.conf` file, such as `nat.age_poll_interval` and `nat.table_size` are currently *not* supported.
 
 {{%/notice%}}
 
@@ -228,7 +230,7 @@ net add nat dynamic snat|dnat <protocol> source-ip <ipv4-address/prefixlen>|dest
 **PAT**
 
 ```
-net add nat dynamic snat|dnat <protocol> source-ip <ip-address/prefixlen>|destination-ip <ip-address/prefixlen> out-interface|in-interface translate <ip-address> <port-range>
+net add nat dynamic snat|dnat <protocol> source-ip <ipv4-address/prefixlen>|destination-ip <ipv4-address/prefixlen> out-interface|in-interface translate <ipv4-address> <port-range>
 ```
 
 Where:

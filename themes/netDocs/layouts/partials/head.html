@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="{{ $styles.Permalink }}">
 
 <!-- The PDF page has a custom CSS sheet to control PDF output formatting -->
-{{if eq .Page.Type "pdf"}}
+{{if eq .Params.layout "pdf"}}
     {{ partial "pdf-head" . }}
 {{ end }}
 

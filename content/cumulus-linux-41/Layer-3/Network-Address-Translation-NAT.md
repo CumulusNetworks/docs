@@ -8,7 +8,7 @@ Network Address Translation (NAT) enables your network to use one set of IP addr
 
 NAT was designed to overcome addressing problems due to the explosive growth of the Internet. In addition to preventing the depletion of IPv4 addresses, NAT enables you to use the private address space internally and still have a way to access the Internet, which increases security by hiding your internal network topology and private addresses.
 
-Cumulus Linux supports both static NAT and dynamic NAT. Static NAT provides a permanent mapping between one private IP address and a single public address. Dynamic NAT maps private IP addresses to public addresses; these public IP addresses come from a pool. The dynamic translations are created as needed and dynamically, so that a large number of private addresses can share a smaller pool of public addresses.
+Cumulus Linux supports both static NAT and dynamic NAT. Static NAT provides a permanent mapping between one private IP address and a single public address. Dynamic NAT maps private IP addresses to public addresses; these public IP addresses come from a pool. The translations are created as needed  dynamically, so that a large number of private addresses can share a smaller pool of public addresses.
 
 Static and dynamic NAT both support:
 

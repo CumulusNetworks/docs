@@ -7,7 +7,12 @@ cascade:
     product: Cumulus Linux
     version: "4.1"
 toc: 0
+layout: pdf
+type: release note
 ---
+
+- {{<link url="#open-issues-in-41" text="Open Issues in 4.1">}}
+- {{<link url="#fixed-issues-in-41" text="Fixed Issues in 4.1">}}
 
 ## Open issues in {{% version %}}
 

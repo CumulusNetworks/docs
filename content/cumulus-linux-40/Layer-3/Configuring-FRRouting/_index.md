@@ -128,7 +128,7 @@ service integrated-vtysh-config
 cumulus@switch:~$ sudo rm /etc/frr/frr.conf
 ```
 
-    {{%notice note%}}
+{{%notice note%}}
 
 If integrated configuration file mode is disabled, remove all the configuration files (such as `zebra.conf` or `ospf6d.conf`) instead of `frr.conf`.
 

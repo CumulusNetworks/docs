@@ -106,31 +106,51 @@ You can check which files have changed since the last binary install with the fo
 
 ## Upgrade Cumulus Linux
 
-To upgrade to Cumulus Linux 4.0 from Cumulus Linux 3.7, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
+You can upgrade Cumulus Linux in one of two ways:
+
+- Install a disk image of the new release, using ONIE.
+- Upgrade only the changed packages using the `sudo -E apt-get update` and `sudo -E apt-get upgrade` command.
+
+{{%notice note%}}
+
+Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
+
+{{%/notice%}}
+
+### Should I Install a Disk Image or Upgrade Packages?
+
+The decision to upgrade Cumulus Linux by either installing a disk image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
+
+**Installing a disk image** is recommended if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 3.7.12 to 4.1.0).
+
+Be aware of the following when installing the disk image:
+
+- Installing a disk image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the disk image install.
+- You must move configuration data to the new OS using ZTP or automation while the OS is first booted, or soon afterwards using out-of-band management.
+- Moving a configuration file might cause issues;
+- Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade-cumulus-linux) above.
+- Merge conflicts with configuration file changes in the new release might go undetected.
+- If configuration files are not restored correctly, you might be unable to ssh to the switch from in-band management. Out-of-band connectivity (eth0 or console) is recommended.
+- You *must* reinstall and reconfigure third-party applications after upgrade.
+
+**Package upgrade** is recommended if you are upgrading from Cumulus Linux 4.0, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike disk image install).
+
+Be aware of the following when upgrading packages:
+
+- You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from **3**.7.x to **4**.1.0.
+- The `sudo -E  apt-get upgrade` command might result in services being restarted or stopped as part of the upgrade process.
+- The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
+- After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
+
+### Disk Image Install (ONIE)
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
 
 {{%notice note%}}
 
-Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in {{<link title="#Upgrade Switches in an MLAG Pair">}} below to ensure a smooth upgrade.
+Cumulus Networks deprecated lightweight network virtualization (LNV) in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}. If your network is configured for LNV, you need to migrate your network configuration to a BGP EVPN configuration that is functionally equivalent ***before*** you upgrade. Refer to {{<link title="Migrating from LNV to EVPN">}}..
 
 {{%/notice%}}
-
-{{%notice note%}}
-
-Cumulus Networks deprecated lightweight network virtualization (LNV) in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}. If your network is configured for LNV, you need to migrate your network configuration to a BGP EVPN configuration that is functionally equivalent ***before*** you upgrade to Cumulus Linux 4.0. Refer to {{<link title="Migrating from LNV to EVPN">}}..
-
-{{%/notice%}}
-
-Be aware of the following when installing the disk image:
-
-- Installing a disk image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start installation.
-- You must move configuration data to the new OS using ZTP or automation while the OS is first booted, or soon afterwards using out-of-band management.
-- Moving a configuration file might cause issues:
-  - Identifying all the locations of configuration data is not always an easy task. See {{<link title="#Before You Upgrade" text="Before You Upgrade">}} above.
-  - Merge conflicts with configuration file changes in the new release might go undetected.
-- If configuration files are not restored correctly, you might be unable to `ssh` to the switch from in-band management. Out-of-band connectivity (eth0 or console) is recommended.
-- You *must* reinstall and reconfigure third-party applications after upgrade.
 
 To upgrade the switch:
 
@@ -138,13 +158,101 @@ To upgrade the switch:
 2. Download the Cumulus Linux image.
 3. Install the disk image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.0.0-mlx-amd64.bin && sudo reboot
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.1.0-mlx-amd64.bin &&   sudo reboot
+    ```
 
 4. Restore the configuration files to the new release - ideally with automation.
 5. Verify correct operation with the old configurations on the new release.
 6. Reinstall third party applications and associated configurations.
+
+### Package Upgrade
+
+Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have been changed since the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
+
+When you use package upgrade to upgrade your switch, configuration data stays in place while the packages are upgraded. If the new release updates a configuration file that you changed previously, you are prompted for the version you want to use or if you want to evaluate the differences.
+
+To upgrade the switch using package upgrade:
+
+1. Back up the configurations from the switch.
+
+2. Fetch the latest update metadata from the repository.
+
+    ```
+    cumulus@switch:~$ sudo -E apt-get update
+    ```
+
+3. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded.
+
+    ```
+    cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
+    ```
+
+4. Upgrade all the packages to the latest distribution.
+
+    ```
+    cumulus@switch:~$ sudo -E apt-get upgrade
+    ```
+
+    If no reboot is required after the upgrade completes, the upgrade ends, restarts all upgraded services, and log messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, only the `frr` package was upgraded.
+
+    ```
+    Policy: Service frr.service action stop postponed
+    Policy: Service frr.service action start postponed
+    Policy: Restarting services: frr.service
+    Policy: Finished restarting services
+    Policy: Removed /usr/sbin/policy-rc.d
+    Policy: Upgrade is finished
+    ```
+    If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to this:
+
+    ```
+    Configuration file '/etc/frr/daemons'
+    ==> Modified (by you or by a script) since installation.
+    ==> Package distributor has shipped an updated version.
+    What would you like to do about it ? Your options are:
+    Y or I : install the package maintainer's version
+    N or O : keep your currently-installed version
+    D : show the differences between the versions
+    Z : start a shell to examine the situation
+    The default action is to keep your current version.
+    *** daemons (Y/I/N/O/D/Z) [default=N] ?
+
+    - To see the differences between the currently installed version and the 
+    new version, type `D`- To keep the currently installed version, type `N`.
+    The new package version is installed with the suffix `_.dpkg-dist` 
+    (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and 
+    **before** you reboot, merge your changes with the changes from the newly 
+    installed file.  
+    - To install the new version, type `I`. Your currently installed version is 
+    saved with the suffix `.dpkg-old`.  
+    When the upgrade is complete, you can search for the files with the 
+    `sudo find / -mount -type f -name '*.dpkg-*'` command.
+    ```
+
+    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys](https://support.cumulusnetworks.com/hc/en-us/articles/360002663013-Updating-Expired-GPG-Keys).
+
+5. Reboot the switch if the upgrade messages indicate that a system restart is required.
+
+    ```
+    cumulus@switch:~$ sudo -E apt-get upgrade
+    ... upgrade messages here ...
+
+    *** Caution: Service restart prior to reboot could cause unpredictable behavior
+    *** System reboot required ***
+    cumulus@switch:~$ sudo reboot
+    ```
+
+6. Verify correct operation with the old configurations on the new version.
+
+### Upgrade Notes
+
+*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 4.0.0 and run the `sudo -E apt-get upgrade` command on that switch, the packages are upgraded to the latest releases contained in the latest 4.y.z release.
+
+Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
+
+- The `/etc/os-release` and `/etc/lsb-release` files are updated to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *disk image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 3.7.1, these two files display the release as 3.7.1 after the upgrade.
+- The `/etc/image-release` file is updated **only** when you run a disk image install. Therefore, if you run a disk image install of Cumulus Linux 4.0.0, followed by a package upgrade to 4.1.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 4.0.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 
@@ -152,77 +260,76 @@ If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}
 
 {{%notice warning%}}
 
-For networks with MLAG deployments, Cumulus Networks only supports upgrading to Cumulus Linux 4.0 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.0. Version 3.7.10 is available on the 
+For networks with MLAG deployments, Cumulus Networks only supports upgrading to Cumulus Linux 4.1 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.1. Version 3.7.10 is available on the 
 {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}} on our website.
 
 {{%/notice%}}
 
 1. Verify the switch is in the secondary role:
 
-```
-cumulus@switch:~$ clagctl status
-```
+    ```
+    cumulus@switch:~$ clagctl status
+    ```
 
 2. Shut down the core uplink layer 3 interfaces:
 
-```
-cumulus@switch:~$ sudo ip link set swpX down
-```
+    ```
+    cumulus@switch:~$ sudo ip link set swpX down
+    ```
 
 3. Shut down the peer link:
 
-```
-cumulus@switch:~$ sudo ip link set peerlink down
-```
+    ```
+    cumulus@switch:~$ sudo ip link set peerlink down
+    ```
 
 4. Run the `onie-install -a -i <image-location>` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.0.0-mlx-amd64.bin
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.0.0-mlx-amd64.bin
+    ```
 
 5. Reboot the switch:
 
-```
-cumulus@switch:~$ sudo reboot
-```
+    ```
+    cumulus@switch:~$ sudo reboot
+    ```
 
 6. Verify STP convergence across both switches:
 
-```
-cumulus@switch:~$ mstpctl showall
-```
+    ```
+    cumulus@switch:~$ mstpctl showall
+    ```
 
 7. Verify core uplinks and peer links are UP:
 
-```
-cumulus@switch:~$ net show interface
-```
+    ```
+    cumulus@switch:~$ net show interface
+    ```
 
 8. Verify MLAG convergence:
 
-```
-cumulus@switch:~$ clagctl status
-```
+    ```
+    cumulus@switch:~$ clagctl status
+    ```
 
 9. Make this secondary switch the primary:
 
-```
-cumulus@switch:~$ clagctl priority 2048
-```
+    ```
+    cumulus@switch:~$ clagctl priority 2048
+    ```
 
 10. Verify the other switch is now in the secondary role.
 11. Repeat steps 2-8 on the new secondary switch.
 12. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
 
-```
-cumulus@switch:~$ clagctl priority 32768
-```
+    ```
+    cumulus@switch:~$ clagctl priority 32768
+    ```
 
 ## Roll Back a Cumulus Linux Installation
 
-Even the most well planned and tested upgrades can result in unforeseen problems; sometimes the best solution is to roll back to the previous state. There are three main strategies; all require detailed planning and
-execution:
+Even the most well planned and tested upgrades can result in unforeseen problems; sometimes the best solution is to roll back to the previous state. There are three main strategies; all require detailed planning and execution:
 
 - Flatten and rebuild: If the OS becomes unusable, you can use orchestration tools to reinstall the previous OS release from scratch and then rebuild the configuration automatically.
 - Backup and restore: Another common strategy is to restore to a previous state using a backup captured before the upgrade. See {{<link title="Back up and Restore">}}.

@@ -44,7 +44,8 @@ The following example `/etc/cumulus/datapath/traffic.conf` datapath configuratio
 - Per-port remark packet fields and mapping apply to the designated set of ports.
 
 <details>
-<summary>**click to see traffic.conf file**</summary>
+
+<summary>click to see traffic.conf file</summary>
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
@@ -523,7 +524,7 @@ ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadc
 
 <details>
 
-<summary>**Click to learn how to configure ECN** </summary>
+<summary>Click to learn how to configure ECN </summary>
 
 ECN is disabled by default in Cumulus Linux. You can enable ECN for individual switch priorities on specific switch ports in the `/etc/cumulus/datapath/traffic.conf` file:
 
@@ -563,4 +564,4 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 
 ## Related Information
 
-- {{<exlink url="http://ipset.netfilter.org/iptables-extensions.man.html" text="iptables-extensions man page">}}
+{{<exlink url="http://ipset.netfilter.org/iptables-extensions.man.html" text="iptables-extensions man page">}}

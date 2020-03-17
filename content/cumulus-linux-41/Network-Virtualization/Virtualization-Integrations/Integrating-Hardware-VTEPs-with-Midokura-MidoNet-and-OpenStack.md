@@ -93,27 +93,27 @@ Perform the following commands in order (see the automated script example above 
 
 1. Define the switch in OVSDB:
 
-```
-cumulus@switch:~$ sudo vtep-ctl add-ps <switch_name>
-```
+    ```
+    cumulus@switch:~$ sudo vtep-ctl add-ps <switch_name>
+    ```
 
 2. Define the VTEP tunnel IP address:
 
-```
-cumulus@switch:~$ sudo vtep-ctl set Physical_switch <switch_name> tunnel_ips=<tunnel_ip>
-```
+    ```
+    cumulus@switch:~$ sudo vtep-ctl set Physical_switch <switch_name> tunnel_ips=<tunnel_ip>
+    ```
 
 3. Define the management interface IP address:
 
-```
-cumulus@switch:~$ sudo vtep-ctl set Physical_switch <switch_name> management_ips=<management_ip>
-```
+    ```
+    cumulus@switch:~$ sudo vtep-ctl set Physical_switch <switch_name> management_ips=<management_ip>
+    ```
 
 4. Restart the OVSDB server and `vtepd`:
 
-```
-cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
+    ```
 
 The switch is now ready to connect to MidoNet. The rest of the configuration is performed from the MidoNet Manager GUI or using the MidoNet API.
 
@@ -213,45 +213,45 @@ From the MidoNet CLI, the commands explained in this section perform the same op
 
 1. Create a tunnel zone with a name and type *vtep*:
 
-```
-midonet> tunnel-zone create name sw12 type vtep
-tzone1
-```
+    ```
+    midonet> tunnel-zone create name sw12 type vtep
+    tzone1
+    ```
 
 2. The tunnel zone is a construct used to define the VXLAN source address used for the tunnel. The address of this host is used for the source of the VXLAN encapsulation and traffic transits into the routing domain from this point. Therefore, the host must have layer 3 reachability to the Cumulus Linux switch tunnel IP.
 
-  - First, obtain the list of available hosts connected to the Neutron network and the MidoNet bridge.
-  - Next, get a listing of all the interfaces.
-  - Finally, add a host entry to the tunnel zone ID returned in the previous step and specify which interface address to use.
+    - First, obtain the list of available hosts connected to the Neutron network and the MidoNet bridge.
+    - Next, get a listing of all the interfaces.
+    - Finally, add a host entry to the tunnel zone ID returned in the previous step and specify which interface address to use.
 
-```
-midonet> list host
-host host0 name os-compute1 alive true
-host host1 name os-network alive true 
-midonet> host host0 list interface
-iface midonet host_id host0 status 0 addresses [] mac 02:4b:38:92:dd:ce mtu 1500 type Virtual endpoint DATAPATH
-iface lo host_id host0 status 3 addresses [u'127.0.0.1', u'169.254.169.254', u'0:0:0:0:0:0:0:1'] mac 00:00:00:00:00:00 mtu 65536 type Virtual endpoint LOCALHOST
-iface virbr0 host_id host0 status 1 addresses [u'192.168.122.1'] mac 22:6e:63:90:1f:69 mtu 1500 type Virtual endpoint UNKNOWN
-iface tap7cfcf84c-26 host_id host0 status 3 addresses [u'fe80:0:0:0:e822:94ff:fee2:d41b'] mac ea:22:94:e2:d4:1b mtu 65000 type Virtual endpoint DATAPATH
-iface eth1 host_id host0 status 3 addresses [u'10.111.0.182', u'fe80:0:0:0:5054:ff:fe85:acd6'] mac 52:54:00:85:ac:d6 mtu 1500 type Physical endpoint PHYSICAL
-iface tapfd4abcea-df host_id host0 status 3 addresses [u'fe80:0:0:0:14b3:45ff:fe94:5b07'] mac 16:b3:45:94:5b:07 mtu 65000 type Virtual endpoint DATAPATH
-iface eth0 host_id host0 status 3 addresses [u'10.50.21.182', u'fe80:0:0:0:5054:ff:feef:c5dc'] mac 52:54:00:ef:c5:dc mtu 1500 type Physical endpoint PHYSICAL
-midonet> tunnel-zone tzone0 add member host host0 address 10.111.0.182
-zone tzone0 host host0 address 10.111.0.182
-```
+    ```
+    midonet> list host
+    host host0 name os-compute1 alive true
+    host host1 name os-network alive true 
+    midonet> host host0 list interface
+    iface midonet host_id host0 status 0 addresses [] mac 02:4b:38:92:dd:ce mtu 1500 type Virtual endpoint DATAPATH
+    iface lo host_id host0 status 3 addresses [u'127.0.0.1', u'169.254.169.254', u'0:0:0:0:0:0:0:1'] mac 00:00:00:00:00:00 mtu 65536 type Virtual endpoint LOCALHOST
+    iface virbr0 host_id host0 status 1 addresses [u'192.168.122.1'] mac 22:6e:63:90:1f:69 mtu 1500 type Virtual endpoint UNKNOWN
+    iface tap7cfcf84c-26 host_id host0 status 3 addresses [u'fe80:0:0:0:e822:94ff:fee2:d41b'] mac ea:22:94:e2:d4:1b mtu 65000 type Virtual endpoint DATAPATH
+    iface eth1 host_id host0 status 3 addresses [u'10.111.0.182', u'fe80:0:0:0:5054:ff:fe85:acd6'] mac 52:54:00:85:ac:d6 mtu 1500 type Physical endpoint PHYSICAL
+    iface tapfd4abcea-df host_id host0 status 3 addresses [u'fe80:0:0:0:14b3:45ff:fe94:5b07'] mac 16:b3:45:94:5b:07 mtu 65000 type Virtual endpoint DATAPATH
+    iface eth0 host_id host0 status 3 addresses [u'10.50.21.182', u'fe80:0:0:0:5054:ff:feef:c5dc'] mac 52:54:00:ef:c5:dc mtu 1500 type Physical endpoint PHYSICAL
+    midonet> tunnel-zone tzone0 add member host host0 address 10.111.0.182
+    zone tzone0 host host0 address 10.111.0.182
+    ```
 
     Repeat this procedure for each OpenStack host connected to the Neutron network and the MidoNet bridge.
 
 3. Create a VTEP and assign it to the tunnel zone ID returned in the previous step. The management IP address (the destination address for the VXLAN or remote VTEP) and the port must be the same ones you configure in the `vtep-bootstrap` script or the manual bootstrapping:
 
-```
-midonet> vtep add management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0
-name sw12 description sw12 management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0 connection-state CONNECTED
-```
+    ```
+    midonet> vtep add management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0
+    name sw12 description sw12 management-ip 10.50.20.22 management-port 6632 tunnel-zone tzone0 connection-state CONNECTED
+    ```
 
     In this step, MidoNet initiates a connection between the OpenStack Controller and the Cumulus Linux switch. If the OVS client successfully connects to the OVSDB server, the returned values  should show the name and description matching the `switch-name` parameter specified in the bootstrap process.
 
-    {{%notice note%}}
+{{%notice note%}}
 
 Verify the connection-state as CONNECTED. If ERROR is returned, you must debug. Typically this only fails if the `management-ip` and or the `management-port` settings are incorrect.
 
@@ -261,20 +261,20 @@ Verify the connection-state as CONNECTED. If ERROR is returned, you must debug. 
 
     First, get the UUID of the Neutron network behind the MidoNet bridge:
 
-```
-midonet> list bridge
-bridge bridge0 name internal state up
-bridge bridge1 name internal2 state up
-midonet> show bridge bridge1 id
-6c9826da-6655-4fe3-a826-4dcba6477d2d
-```
+    ```
+    midonet> list bridge
+    bridge bridge0 name internal state up
+    bridge bridge1 name internal2 state up
+    midonet> show bridge bridge1 id
+    6c9826da-6655-4fe3-a826-4dcba6477d2d
+    ```
 
     Next, create the VTEP binding using the UUID and the switch port being bound to the VTEP on the remote end. If there is no VLAN ID, set `vlan` to 0:
 
-```
-midonet> vtep name sw12 binding add network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d physical-port swp11s0 vlan 0
- management-ip 10.50.20.22 physical-port swp11s0 vlan 0 network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d
-```
+    ```
+    midonet> vtep name sw12 binding add network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d physical-port swp11s0 vlan 0
+    management-ip 10.50.20.22 physical-port swp11s0 vlan 0 network-id 6c9826da-6655-4fe3-a826-4dcba6477d2d
+    ```
 
 At this point, the VTEP is connected and the layer 2 overlay is operational. From the openstack instance (VM), you can ping a physical server connected to the port bound to the hardware switch VTEP.
 

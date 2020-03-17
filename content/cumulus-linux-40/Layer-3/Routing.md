@@ -363,7 +363,6 @@ In addition, switches on the Tomahawk, Trident II, Trident II+, and Trident3 pla
 
 You can use `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}` to determine the current table sizes on a given switch.
 
-
 ### Forwarding Table Profiles
 
 On Mellanox Spectrum and some Broadcom ASICs, you can configure the allocation of forwarding table resources and mechanisms. Cumulus Linux provides a number of generalized profiles for the platforms described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
@@ -407,7 +406,7 @@ The values in the following tables reflect results from testing on the different
 
 | Profile        | MAC Addresses | L3 Neighbors              | Longest Prefix Match (LPM)     |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
-| default        | 40k           | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) or 28k (IPv6-long)  |
+| default        | 40k           | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) and 28k (IPv6-long)  |
 | l2-heavy       | 88k           | 48k (IPv4) and 40k (IPv6) | 8k (IPv4) and 8k (IPv6-long)   |
 | l2-heavy-1     | 180K          | 8k (IPv4) and 8k (IPv6)   | 8k (IPv4) and 8k (IPv6-long)   |
 | v4-lpm-heavy   | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long) |

@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8366755
 toc: 3
 ---
-Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware. To configre priority groups, and assign the scheduling alogorithm and weights, you edit the `/etc/cumulus/datapath/traffic.conf`.
+Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware. To configure priority groups, and assign the scheduling alogorithm and weights, you edit the `/etc/cumulus/datapath/traffic.conf`.
 
 {{%notice note%}}
 
@@ -44,7 +44,8 @@ The following example `/etc/cumulus/datapath/traffic.conf` datapath configuratio
 - Per-port remark packet fields and mapping apply to the designated set of ports.
 
 <details>
-<summary>**click to see traffic.conf file**</summary>
+
+<summary>click to see the traffic.conf file</summary>
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
@@ -273,6 +274,53 @@ On Mellanox switches with the Spectrum ASIC, the following options in the `/etc/
 - Priority flow control (PFC) settings (`pfc.*`)
 - Link Pause settings (`link_pause.*`)
 - Queue weight settings (`priority_group.*.weight`)
+
+## Syntax Checker
+
+Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.conf` file to check for errors, such missing parameters, or invalid parameter labels and values.
+
+On Broadcom switches, the syntax checker runs automatically during `switchd` initialization and reports syntax errors to the `/var/log/switchd.log` file.
+
+On both Broadcom and Mellanox switches, you can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
+
+The `cl-consistency-check --datapath-syntax-check` command takes the following options:
+
+| <div style="width:120px">Option | Description |
+| ------------------------------- | ----------- |
+| -h | Displays this list of command options. |
+| -q | Runs the command in quiet mode. Errors are written to the `/var/log/switchd.log` file instead of `stderr`. |
+| -t `<file-name>` | Runs the syntax check on a non-default `traffic.conf` file; for example, `/mypath/test-traffic.conf`.|
+
+You can run the syntax checker when `switchd` is either running or stopped.
+
+**Example Commands**
+
+The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file and shows that no errors are detected:
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check
+No errors detected in traffic config file /etc/cumulus/datapath/traffic.conf
+```
+
+The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -q
+```
+
+The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file and shows that errors are detected:
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf
+Traffic source 8021p: missing mapping for priority value '7'
+Errors detected while checking traffic config file /mypath/test-traffic.conf
+```
+
+The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf -q
+```
 
 ## Configure Traffic Marking through ACL Rules
 
@@ -523,7 +571,7 @@ ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadc
 
 <details>
 
-<summary>**Click to learn how to configure ECN** </summary>
+<summary>Click to learn how to configure ECN </summary>
 
 ECN is disabled by default in Cumulus Linux. You can enable ECN for individual switch priorities on specific switch ports in the `/etc/cumulus/datapath/traffic.conf` file:
 

@@ -100,13 +100,6 @@ When building rules to affect the flow of traffic, the individual chains can be 
 
 - **Filter** classifies traffic or filters traffic
 - **NAT** applies Network Address Translation rules
-
-    {{%notice note%}}
-
-Cumulus Linux does not support NAT.
-
-    {{%/notice%}}
-
 - **Mangle** alters packets as they move through the switch
 
 Each table has a set of default chains that can be used to modify or inspect packets at different points of the path through the switch. Chains contain the individual rules to influence traffic. Each table and the default chains they support are shown below. Tables and chains in green are supported by Cumulus Linux, those in red are not supported (that is, they are not hardware accelerated) at this time.
@@ -959,7 +952,7 @@ The examples here use the DSCP match criteria in combination with other IP, TCP,
 
 ### Check the Packet and Byte Counters for ACL Rules
 
-To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with `{{<exlink url="https://en.wikipedia.org/wiki/Mausezahn" text="mz">}}` (mausezahn), which can be installed on host servers or even on Cumulus Linux switches. After traffic is sent to validate the counters, they are matched on switch1 using `cl-acltool`.
+To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with `{{<exlink url="http://www.netsniff-ng.org" text="mz">}}` (or `mausezahn`), which can be installed on host servers or even on Cumulus Linux switches. After traffic is sent to validate the counters, they are matched on switch1 using `cl-acltool`.
 
 {{%notice note%}}
 

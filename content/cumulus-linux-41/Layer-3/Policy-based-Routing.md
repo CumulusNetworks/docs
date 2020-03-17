@@ -49,50 +49,42 @@ To configure a PBR policy:
 
 1. Configure the policy map. The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
 
-    {{%notice note%}}
+    If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
 
-If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
-
-    {{%/notice%}}
-
-```
-cumulus@switch:~$ net add pbr-map map1 seq 1 match dst-ip 10.1.2.0/24
-cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 10.1.4.1/24
-```
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 match dst-ip 10.1.2.0/24
+    cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 10.1.4.1/24
+    ```
 
 2. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on  the output interface swp2 and VRF `rocket` to the `map1` policy map. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
-```
-cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
-```
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
+    ```
 
     To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `rocket`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
 
-    {{%notice note%}}
+    The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
-The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
-
-    {{%/notice%}}
-
-```
-cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.21 swp1 nexthop-vrf rocket
-cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.22
-cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop-group group1
-```
+    ```
+    cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.21 swp1 nexthop-vrf rocket
+    cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.22
+    cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop-group group1
+    ```
 
 3. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
 
-```
-cumulus@switch:~$ net add interface swp51 pbr-policy map1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+    ```
+    cumulus@switch:~$ net add interface swp51 pbr-policy map1
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
 
-    {{%notice note%}}
+{{%notice note%}}
 
 You can only set one policy per interface.
 
-    {{%/notice%}}
+{{%/notice%}}
 
 </details>
 
@@ -102,86 +94,78 @@ You can only set one policy per interface.
 
 1. Before you run the vtysh commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRR with the `systemctl restart frr.service` command.
 
-```
-cumulus@leaf01:~$ sudo nano /etc/frr/daemons
-...
-bgpd=yes
-ospfd=no
-ospf6d=no
-ripd=no
-ripngd=no
-isisd=no
-fabricd=no
-pimd=no
-ldpd=no
-nhrpd=no
-eigrpd=no
-babeld=no
-sharpd=no
-pbrd=yes
-...
-```
+    ```
+    cumulus@leaf01:~$ sudo nano /etc/frr/daemons
+    ...
+    bgpd=yes
+    ospfd=no
+    ospf6d=no
+    ripd=no
+    ripngd=no
+    isisd=no
+    fabricd=no
+    pimd=no
+    ldpd=no
+    nhrpd=no
+    eigrpd=no
+    babeld=no
+    sharpd=no
+    pbrd=yes
+    ...
+    ```
 
 2. Configure the policy map. The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
 
-```
-cumulus@switch:~$ sudo vtysh
+    ```
+    cumulus@switch:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# pbr-map map1 seq 1 
-switch(config-pbr-map)# match dst-ip 10.1.2.0/24
-switch(config-pbr-map)# match src-ip 10.1.4.1/24 
-```
+    switch# configure terminal
+    switch(config)# pbr-map map1 seq 1 
+    switch(config-pbr-map)# match dst-ip 10.1.2.0/24
+    switch(config-pbr-map)# match src-ip 10.1.4.1/24 
+    ```
 
-    {{%notice note%}}
-
-If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
-
-    {{%/notice%}}
+    If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
 
 2.  Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
-```
-switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
-switch(config-pbr-map)# exit
-switch(config)# 
-```
+    ```
+    switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
+    switch(config-pbr-map)# exit
+    switch(config)#
+    ```
 
     To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `rocket`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
 
-    {{%notice note%}}
+    The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
-The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
-
-    {{%/notice%}}
-
-```
-switch(config)# nexthop-group group1
-switch(config-nh-group)# nexthop 192.168.0.21 swp1 nexthop-vrf rocket
-switch(config-nh-group)# nexthop 192.168.0.22
-switch(config-nh-group)# exit
-switch(config)# pbr-map map1 seq 1
-switch(config-pbr-map)# set nexthop-group group1
-switch(config-pbr-map)# exit
-switch(config)#
-```
+    ```
+    switch(config)# nexthop-group group1
+    switch(config-nh-group)# nexthop 192.168.0.21 swp1 nexthop-vrf rocket
+    switch(config-nh-group)# nexthop 192.168.0.22
+    switch(config-nh-group)# exit
+    switch(config)# pbr-map map1 seq 1
+    switch(config-pbr-map)# set nexthop-group group1
+    switch(config-pbr-map)# exit
+    switch(config)#
+    ```
 
 4. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
 
-```
-switch(config)# interface swp51
-switch(config-if)# pbr-policy map1
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
+    ```
+    switch(config)# interface swp51
+    switch(config-if)# pbr-policy map1
+    switch(config-if)# end
+    switch# write memory
+    switch# exit
+    cumulus@switch:~$
+    ```
 
-    {{%notice note%}}
+{{%notice note%}}
 
 You can only set one policy per interface.
 
-    {{%/notice%}}
+{{%/notice%}}
 
 </details>
 
@@ -233,7 +217,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# pbr-map map1 seq 1 
+switch(config)# pbr-map map1 seq 1
 switch(config-pbr-map)# match src-ip 0.0.0.0/0
 switch(config-pbr-map)# set nexthop 192.168.0.32
 switch(config-pbr-map)# exit
@@ -277,15 +261,15 @@ To see information about all policies, including mapped table and rule numbers, 
 
 ```
 cumulus@switch:~$ net show pbr map
- pbr-map map1 valid: 1
-  Seq: 700 rule: 999 Installed: 1(1) Reason: Valid
+ pbr-map map1 valid: yes
+  Seq: 700 rule: 999 Installed: yes Reason: Valid
       SRC Match: 10.0.0.1/32
   nexthop 192.168.0.32
-      Installed: 1(1) Tableid: 10003
-  Seq: 701 rule: 1000 Installed: 1(2) Reason: Valid
+      Installed: yes Tableid: 10003
+  Seq: 701 rule: 1000 Installed: yes Reason: Valid
       SRC Match: 90.70.0.1/32
   nexthop 192.168.0.32
-      Installed: 1(1) Tableid: 10004
+      Installed: yes Tableid: 10004
 ```
 
 To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in vtysh).
@@ -294,18 +278,18 @@ To see information about all next hop groups, run the NCLU `net show pbr nexthop
 
 ```
 cumulus@switch:~$ net show pbr nexthop-group
-Nexthop-Group: map1701 Table: 10004 Valid: 1 Installed: 1
-Valid: 1 nexthop 10.1.1.2
-Nexthop-Group: map1700 Table: 10003 Valid: 1 Installed: 1
-Valid: 1 nexthop 10.1.1.2
-Nexthop-Group: group1 Table: 10000 Valid: 1 Installed: 1
-Valid: 1 nexthop 192.168.10.0 bond1
-Valid: 1 nexthop 192.168.10.2
-Valid: 1 nexthop 192.168.10.3 vlan70
-Nexthop-Group: group2 Table: 10001 Valid: 1 Installed: 1
-Valid: 1 nexthop 192.168.8.1
-Valid: 1 nexthop 192.168.8.2
-Valid: 1 nexthop 192.168.8.3
+Nexthop-Group: map1701 Table: 10004 Valid: yes Installed: yes
+Valid: yes nexthop 10.1.1.2
+Nexthop-Group: map1700 Table: 10003 Valid: yes Installed: yes
+Valid: yes nexthop 10.1.1.2
+Nexthop-Group: group1 Table: 10000 Valid: yes Installed: yes
+Valid: yes nexthop 192.168.10.0 bond1
+Valid: yes nexthop 192.168.10.2
+Valid: yes nexthop 192.168.10.3 vlan70
+Nexthop-Group: group2 Table: 10001 Valid: yes Installed: yes
+Valid: yes nexthop 192.168.8.1
+Valid: yes nexthop 192.168.8.2
+Valid: yes nexthop 192.168.8.3
 ```
 
 To see information about a specific next hop group, add the group name at the end of the command; for example, `net show pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
@@ -328,11 +312,11 @@ The example below shows an existing configuration.
 
 ```
 cumulus@switch:~$ net show pbr map
-Seq: 4 rule: 303 Installed: 1(10) Reason: Valid
+Seq: 4 rule: 303 Installed: yes Reason: Valid
     SRC Match: 10.1.4.1/24
     DST Match: 10.1.2.0/24
  nexthop 192.168.0.21
-    Installed: 1(1) Tableid: 10009
+    Installed: yes Tableid: 10009
 ```
 
 The NCLU commands for the above configuration are:
@@ -365,11 +349,11 @@ Run the `net show pbr map` command to verify that the rule has the updated sourc
 
 ```
 cumulus@switch:~$ net show pbr map
-Seq: 4 rule: 303 Installed: 1(10) Reason: Valid
+Seq: 4 rule: 303 Installed: yes Reason: Valid
      SRC Match: 10.1.4.2/24
      DST Match: 10.1.2.0/24
    nexthop 192.168.0.21
-     Installed: 1(1) Tableid: 10012
+     Installed: yes Tableid: 10012
 ```
 
 Run the `ip rule show` command to verify the entry in the kernel:
@@ -377,7 +361,7 @@ Run the `ip rule show` command to verify the entry in the kernel:
 ```
 cumulus@switch:~$ ip rule show
 
-303:	from 10.1.4.1/24 to 10.1.4.2 iif swp16 lookup 10012
+303: from 10.1.4.1/24 to 10.1.4.2 iif swp16 lookup 10012
 ```
 
 Run the following command to verify `switchd`:
@@ -397,10 +381,10 @@ cumulus@switch:~$ sudo cat /cumulus/switchd/run/iprule/show | grep 303 -A 1
 The example below shows an existing configuration, where only one source IP match is configured:
 
 ```
-Seq: 3 rule: 302 Installed: 1(9) Reason: Valid
+Seq: 3 rule: 302 Installed: yes Reason: Valid
 	SRC Match: 10.1.4.1/24
 nexthop 192.168.0.21
-	Installed: 1(1) Tableid: 10008
+	Installed: yes Tableid: 10008
 ```
 
 The NCLU commands for the above configuration are:
@@ -589,11 +573,11 @@ If a PBR rule has multiple conditions (for example, a source IP match and a dest
 The example below shows an existing configuration that has a source IP match and a destination IP match.
 
 ```
-Seq: 6 rule: 305 Installed: 1(12) Reason: Valid
+Seq: 6 rule: 305 Installed: yes Reason: Valid
    SRC Match: 10.1.4.1/24
    DST Match: 10.1.2.0/24
 nexthop 192.168.0.21
-   Installed: 1(1) Tableid: 10011
+   Installed: yes Tableid: 10011
 ```
 
 The NCLU commands for the above configuration are:

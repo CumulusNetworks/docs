@@ -193,7 +193,7 @@ graph G {
 When you specify `match_hostname=fqdn`, `ptmd` will match the entire FQDN, (*cumulus-2.domain.com* in the example below). If you do not specify anything for `match_hostname`, `ptmd` matches based on hostname only, (*cumulus-3* below), and ignores the rest of the URL:
 
 ```
-graph G { 
+graph G {
           "cumulus-1":"swp44" -- "cumulus-2.domain.com":"swp20" [LLDP="match_hostname=fqdn"] 
           "cumulus-1":"swp46" -- "cumulus-3":"swp22" [LLDP="match_type=portdescr"] 
 }

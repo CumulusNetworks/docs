@@ -52,7 +52,6 @@ root@switch:~# sed -i -re '
 ' /lib/systemd/system/docker@.service
 
 root@switch:~# echo "docker" >>/etc/vrf/systemd.conf
-
 root@switch:~# systemctl daemon-reload
 root@switch:~# systemctl mask docker.socket
 root@switch:~# systemctl disable --now docker.service

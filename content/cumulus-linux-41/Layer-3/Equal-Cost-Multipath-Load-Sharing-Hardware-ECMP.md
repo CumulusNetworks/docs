@@ -152,7 +152,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the the `/etc/cumulus/datapath/traffic.conf` file. For example:
+Edit the the `/etc/cumulus/datapath/traffic.conf` file, then restart `switchd`. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
@@ -162,33 +162,150 @@ ecmp_hash_seed = 50
 ...
 ```
 
-{{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
-
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
 </details>
 
+### ECMP Custom Hashing
+
+{{%notice note%}}
+
+Custom hashing is supported on Mellanox switches.
+
+{{%/notice%}}
+
+You can configure the set of fields used to hash upon during ECMP load balancing. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
+
+You can enable/disable the following fields:
+
+- IP Protocol
+- Source IP
+- Destination IP
+- Source port
+- Destination port
+- IPv6 flow label
+- Ingress interface
+
+You can also enable/disable these Inner header fields:
+
+- Inner IP protocol
+- Inner source IP
+- Inner destination IP
+- Inner source port
+- Inner destination port
+- Inner IPv6 flow label
+
+To configure custom hashing, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
+
+1. To enable custom hashing, uncomment the `hash_config.enable = true` line.
+2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
+3. Restart the `switchd` service:
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+The following shows an example `datapath.conf` file:
+
+```
+cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf
+...
+# HASH config for ECMP to enable custom fields
+# Fields will be applicable for ECMP hash
+# calculation
+#Note: Hash seed can be configured in traffic.conf
+#/etc/cumulus/datapath/traffic.conf
+#
+# Uncomment to enable custom fields configured below
+hash_config.enable = true
+
+#symmetric hash will get disabled
+#if sip/dip or sport/dport are not enabled in pair
+#hash Fields available ( assign true to enable)
+#ip protocol
+hash_config.ip_prot = true
+#source ip
+hash_config.sip = true
+#destination ip
+hash_config.dip = true
+#source port
+hash_config.sport = false
+#destination port
+hash_config.dport = false
+#ipv6 flow label
+hash_config.ip6_label = true
+#ingress interface
+hash_config.ing_intf = false
+
+#inner fields for  IPv4-over-IPv6 and IPv6-over-IPv6
+hash_config.inner_ip_prot = false
+hash_config.inner_sip = false
+hash_config.inner_dip = false
+hash_config.inner_sport = false
+hash_config.inner_dport = false
+hash_config.inner_ip6_label = false
+# Hash config end #
+...
+```
+
+{{%notice note%}}
+
+Symmetric hashing is enabled by default on Mellanox switches. Make sure that the settings for the source IP (`hash_config.sip`) and destination IP (`hash_config.dip`) fields match, and that the settings for the source port (`hash_config.sport`) and destination port (`hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+
+{{%/notice%}}
+
 ## Resilient Hashing
 
 In Cumulus Linux, when a next hop fails or is removed from an ECMP pool, the hashing or hash bucket assignment can change. For deployments where there is a need for flows to always use the same next hop, like TCP anycast deployments, this can create session failures.
 
-The ECMP hash performed with resilient hashing is exactly the same as the default hashing mode. Only the method in which next hops are assigned to hash buckets differs.
+*Resilient hashing* is an alternate mechanism for managing ECMP groups. The ECMP hash performed with resilient hashing is exactly the same as the default hashing mode. Only the method in which next hops are assigned to hash buckets differs &mdash; they're assigned to buckets by hashing their header fields and using the resulting hash to index into the table of 2^n hash buckets. Since all packets in a given flow have the same header hash value, they all use the same flow bucket.
 
 Resilient hashing supports both IPv4 and IPv6 routes.
 
-{{%notice note%}}
+Resilient hashing behaves slightly differently depending upon whether you are running Cumulus Linux on a switch with a {{<link url="#resilient-hashing-on-broadcom-switches" text="Broadcom ASIC">}} or   {{<link url="#resilient-hashing-on-mellanox-switches" text="Mellanox ASIC">}}. The differences are described below.
 
-Resilient hashing prevents disruptions when next hops are removed. It does not prevent disruption when next hops are added.
+- Resilient hashing prevents disruptions when next hops are removed. It does not prevent disruption when next hops are added.
+- Resilient hashing is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum">}} chipsets. You can run `net show system` to determine the chipset.
 
-{{%/notice%}}
+- When a next hop is removed, the assigned buckets are distributed to the remaining next hops.
+- When a next hop is added, **some** buckets assigned to other next hops are migrated to the new next hop.
+- The algorithm assigns buckets to next hops so as to make the number of buckets per next hop as close to equal as possible.
+- The assignment of buckets to next hops is not changed in any other case. In particular, this assignment is not changed due to traffic loading or imbalance.
+- Next hops are assigned to buckets randomly, to minimize the chance of systemic imbalance.
 
-{{%notice note%}}
+### Resilient Hashing on Mellanox Switches
 
-Resilient hashing is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum">}} chipsets. You can run `net show system` to determine the chipset.
+A Mellanox switch has two unique options for configuring resilient hashing, both of which you configure in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​` file. The recommended values for these options depend largely on the desired outcome for a specific network implementation &mdash; the number and duration of flows, and the importance of keeping these flows pinned without interruption.
 
-{{%/notice%}}
+- `resilient_hash_active_timer`: A timer that protects TCP sessions from being
+  disrupted while attempting to populate new next hops. You specify the number of
+  seconds when at least one hash bucket consistently sees no traffic before
+  Cumulus Linux rebalances the flows; the default is 120 seconds. If any
+  one bucket is idle; that is, it sees no traffic for the defined period, the next
+  new flow utilizes that bucket and flows to the new link. Thus, if the network is
+  experiencing a large number of flows or very consistent or persistent flows, there
+  may not be any buckets remaining idle for a consistent 120 second period, and the
+  imbalance remains until that timer has been met. If a new link is brought up and
+  added back to a group during this time, traffic does not get allocated to utilize
+  it until a bucket qualifies as *empty*, meaning it has been idle for 120 seconds.
+  This is when a rebalance can occur.
+- `resilient_hash_max_unbalanced_timer`: You can force a rebalance every N seconds
+  with this option. However, while this could correct the persistent imbalance that
+  is expected with resilient hashing, this rebalance would result in the movement of
+  all flows and thus a break in any TCP sessions that are active at that time.
+
+Note that when you configure these options, a new next hop might not get populated for a long time.
+
+The Mellanox Spectrum ASIC assigns packets to hash buckets and assigns hash buckets to next hops as follows. It also runs a background thread that monitors and may migrate buckets between next hops to rebalance the load.
+
+- When a next hop is removed, the assigned buckets are distributed to the remaining next hops.
+- When a next hop is added, **no** buckets are assigned to the new next hop until the background thread rebalances the load.
+- The load gets rebalanced when the active flow timer specified by the `resilient_hash_active_timer` setting expires if, and only if, there are inactive hash buckets available; the new next hop may remain unpopulated until the period set in `resilient_hash_active_timer` expires
+- When the `resilient_hash_max_unbalanced_timer` setting expires and the load is not balanced, the thread migrates any bucket(s) to different next hops to rebalance the load.
+
+As a result, any flow may be migrated to any next hop, depending on flow activity and load balance conditions; over time, the flow may get pinned, which is the default setting and behavior.
 
 ### Resilient Hash Buckets
 
@@ -257,24 +374,24 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 1. Enable resilient hashing:
 
-```
-# Enable resilient hashing
-resilient_hash_enable = TRUE
-```
+    ```
+    # Enable resilient hashing
+    resilient_hash_enable = TRUE
+    ```
 
 2. **(Optional)** Edit the number of hash buckets:
 
-```
-# Resilient hashing flowset entries per ECMP group
-# Valid values - 64, 128, 256, 512, 1024
-resilient_hash_entries_ecmp = 256
-```
+    ```
+    # Resilient hashing flowset entries per ECMP group
+    # Valid values - 64, 128, 256, 512, 1024
+    resilient_hash_entries_ecmp = 256
+    ```
 
 3. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart switchd.service
+    ```
 
 ## Caveats and Errata
 
@@ -294,36 +411,36 @@ To enable the IPv6 route replacement option:
 
 1. In the `/etc/frr/daemons` file, add the configuration option `--v6-rr-semantics` to the zebra daemon definition. For example:
 
-```
-cumulus@switch:~$ sudo nano /etc/frr/daemons
-...
-vtysh_enable=yes
-zebra_options=" -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
-bgpd_options=" -M snmp  -A 127.0.0.1"
-ospfd_options=" -M snmp -A 127.0.0.1"
-...
-```
+    ```
+    cumulus@switch:~$ sudo nano /etc/frr/daemons
+    ...
+    vtysh_enable=yes
+    zebra_options=" -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
+    bgpd_options=" -M snmp  -A 127.0.0.1"
+    ospfd_options=" -M snmp -A 127.0.0.1"
+      ...
+    ```
 
 2. Restart FRRouting:
 
-```
-cumulus@switch:~$ sudo systemctl restart frr.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart frr.service
+    ```
 
 To verify that the IPv6 route replacement option is enabled, run the `systemctl status frr` command:
 
-```
-cumulus@switch:~$ systemctl status frr
+    ```
+    cumulus@switch:~$ systemctl status frr
 
-● frr.service - FRRouting
-   Loaded: loaded (/lib/systemd/system/frr.service; enabled; vendor preset: enabled)
-   Active: active (running) since Mon 2020-02-03 20:02:33 UTC; 3min 8s ago
-     Docs: https://frrouting.readthedocs.io/en/latest/setup.html
-  Process: 4675 ExecStart=/usr/lib/frr/frrinit.sh start (code=exited, status=0/SUCCESS)
-   Memory: 14.4M
-   CGroup: /system.slice/frr.service
-           ├─4685 /usr/lib/frr/watchfrr -d zebra bgpd staticd
-           ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
-           ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
-           └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
-```
+    ● frr.service - FRRouting
+      Loaded: loaded (/lib/systemd/system/frr.service; enabled; vendor preset: enabled)
+      Active: active (running) since Mon 2020-02-03 20:02:33 UTC; 3min 8s ago
+        Docs: https://frrouting.readthedocs.io/en/latest/setup.html
+      Process: 4675 ExecStart=/usr/lib/frr/frrinit.sh start (code=exited, status=0/SUCCESS)
+      Memory: 14.4M
+      CGroup: /system.slice/frr.service
+            ├─4685 /usr/lib/frr/watchfrr -d zebra bgpd staticd
+            ├─4701 /usr/lib/frr/zebra -d -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000
+            ├─4705 /usr/lib/frr/bgpd -d -M snmp -A 127.0.0.1
+            └─4711 /usr/lib/frr/staticd -d -A 127.0.0.1
+    ```

@@ -62,7 +62,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file and add a stanza for the bond. The example below creates a bond called `bond0` with slaves swp1, swp2, swp3, and swp4:
+Edit the `/etc/network/interfaces` file to add a stanza for the bond, then run the `ifreload -a` command. The example below creates a bond called `bond0` with slaves swp1, swp2, swp3, and swp4:
 
 ```
 cumulus@switch:~$ sudo nanno /etc/network/interfaces
@@ -72,8 +72,6 @@ iface bond0
     bond-slaves swp1 swp2 swp3 swp4
 ...
 ```
-
-Run the `ifreload -a` command to load the new configuration:
 
 ```
 cumulus@switch:~$ ifreload -a
@@ -137,7 +135,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file and add the parameter to the bond stanza, then load the new configuration. The following example sets the bond mode for bond01 to `balance-xor`:
+Edit the `/etc/network/interfaces` file to add the parameter to the bond stanza, then run the `ifreload -a` command. The following example sets the bond mode for bond01 to `balance-xor`:
 
 ```
 cumulus@switch:~$ sudo nanno /etc/network/interfaces
@@ -148,8 +146,6 @@ iface bond1
     bond-slaves swp1 swp2 swp3 swp4
 ...
 ```
-
-Run the `ifreload -a` command to load the new configuration:
 
 ```
 cumulus@switch:~$ ifreload -a
@@ -267,20 +263,20 @@ The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner
 - Set all slave ports within a bond to the same speed/duplex and make sure they match the link partner's slave ports.
 - On a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-rmp" text="Cumulus RMP">}} switch, if you create a bond with multiple 10G member ports, traffic gets dropped when the bond uses members of the same *unit* listed in the `/var/lib/cumulus/porttab` file. For example, traffic gets dropped if both swp49 and swp52 are in the bond because they both are in xe0 (or if both swp50 and swp51 are in the same bond because they are both in xe1):
 
-```
-swp49 xe0 0 0 -1 0
-swp50 xe1 0 0 -1 0
-swp51 xe1 1 0 -1 0
-swp52 xe0 1 0 -1 0
-```
+    ```
+    swp49 xe0 0 0 -1 0
+    swp50 xe1 0 0 -1 0
+    swp51 xe1 1 0 -1 0
+    swp52 xe0 1 0 -1 0
+    ```
 
    Single port member bonds, bonds with different units (xe0 or xe1, as above), or layer 3 bonds do not have this issue.
 
-   {{%notice note%}}
+{{%notice note%}}
 
 On Cumulus RMP switches, which are built with two Hurricane2 ASICs, you cannot form an LACP bond on links that terminate on different Hurricane2 ASICs.
 
-   {{%/notice%}}
+{{%/notice%}}
 
 ## Related Information
 

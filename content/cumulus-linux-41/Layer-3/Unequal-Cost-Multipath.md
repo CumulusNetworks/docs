@@ -44,7 +44,7 @@ The border leafs balance traffic equally; all weights are equal to the spines. O
 
 Use the `set extcommunity bandwidth num-multipaths` command in a route map to set the extended community against all prefixes, or against a specific or set of prefixes using the match clause of the route map. Apply the route map at the first device to receive the prefix; against the BGP neighbor that generated this prefix.
 
-The BGP link bandwidth extended community is encoded in bytes-per-second. To convert the number of ECMP paths, a reference bandwidth of 1Mbps is used. For example, if there are four ECMP paths to an anycast IP, the encoded bandwidth in the extended community is 524,288. The actual value is not important, as long as all routers originating the link bandwidth are converting the number of ECMP paths in the same way.
+The BGP link bandwidth extended community is encoded in bytes-per-second. To convert the number of ECMP paths, a reference bandwidth of 1024Kbps is used. For example, if there are four ECMP paths to an anycast IP, the encoded bandwidth in the extended community is 512,000. The actual value is not important, as long as all routers originating the link bandwidth are converting the number of ECMP paths in the same way.
 
 Cumulus Linux accepts the bandwidth extended community by default. No additional configuration is required on transit devices where UCMP routes are not being originated.
 

@@ -48,7 +48,7 @@ The BGP link bandwidth extended community is encoded in bytes-per-second. To con
 
 Cumulus Linux accepts the bandwidth extended community by default. No additional configuration is required on transit devices where UCMP routes are not being originated.
 
-{{%notice info%}}
+{{%notice note%}}
 
 The bandwidth used in the extended community has no impact on or relation to port bandwidth.
 
@@ -155,13 +155,15 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
-{{%notice info%}}
+{{%notice note%}}
 
 For EVPN configuration, make sure that you activate the commands under the EVPN address-family.
 
 {{%/notice%}}
 
 ## Control UCMP on the Receiving Router
+
+To control UCMP on the receiving router, you can set default values for UCMP routes and disable the advertisement of all BGP extended communities on specific peerings.
 
 ### Set Default Values for UCMP Routes
 
@@ -227,15 +229,15 @@ router bgp 65011
  !
  ```
 
-### Link Bandwidth outside a Domain
+### Link Bandwidth Outside a Domain
 
 The link bandwidth extended community is automatically passed on with the prefix to eBGP peers. If you do not want to pass on the link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
 
-{{%notice info%}}
+{{%notice note%}}
 
 You cannot disable just the link bandwidth extended community from being advertised to a neighbor; you either send all BGP extended communities, or none.
 
-{{/%notice%}}
+{{%/notice%}}
 
 To disable all BGP extended communities on a peer or peer-group (per address-family):
 
@@ -298,11 +300,11 @@ Paths: (2 available, best #2, table default)
       Last update: Thu Feb 20 18:22:34 2020
 ```
 
-{{%notice info%}}
+{{%notice note%}}
 
 The bandwidth value used by UCMP is only to determine the percentage of load to a given next hop and has no impact on actual link or flow bandwidth.
 
-{{%notice%}}
+{{%/notice%}}
 
 To show EVPN type-5 routes, run the NCLU `net show bgp l2vpn evpn route type prefix` command or the vtysh `show bgp l2vpn evpn route type prefix` command.
 

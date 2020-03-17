@@ -235,7 +235,7 @@ The link bandwidth extended community is automatically passed on with the prefix
 
 You cannot disable just the link bandwidth extended community from being advertised to a neighbor; you either send all BGP extended communities, or none.
 
-{{%notice%}}
+{{/%notice%}}
 
 To disable all BGP extended communities on a peer or peer-group (per address-family):
 

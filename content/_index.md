@@ -6,9 +6,9 @@ title: "Cumulus Networks Documentation Home"
 
 ## Products
 
-[Cumulus Linux 3.7](/cumulus-linux/)
+[Cumulus Linux 4.0](/cumulus-linux-40/)
 
-[Cumulus NetQ 2.2](/cumulus-netq/)
+[Cumulus NetQ 2.4](/cumulus-netq-24/)
 
 [Cumulus VX](/cumulus-vx/)
 
@@ -17,28 +17,29 @@ title: "Cumulus Networks Documentation Home"
 
 ## Old Versions
 
-[Cumulus Linux 3.6](/version/cumulus-linux-36/)
+[Cumulus Linux 3.7](/cumulus-linux-37/)
 
-[Cumulus Linux 3.5](/version/cumulus-linux-35/)
+[Cumulus Linux 3.6](/cumulus-linux-36/)
 
-[Cumulus Linux 3.4](/version/cumulus-linux-343/)
+[Cumulus Linux 3.5](/cumulus-linux-35/)
 
-[Cumulus Linux 3.3](/version/cumulus-linux-332/)
+[Cumulus Linux 3.4](/cumulus-linux-343/)
 
-[Cumulus Linux 3.3](/version/cumulus-linux-330/)
+[Cumulus Linux 3.3](/cumulus-linux-332/)
 
-[Cumulus Linux 3.2](/version/cumulus-linux-321/)
+[Cumulus Linux 3.3](/cumulus-linux-330/)
 
-[Cumulus Linux 3.1](/version/cumulus-linux-312/)
+[Cumulus Linux 3.2](/cumulus-linux-321/)
 
-[Cumulus Linux 3.0](/version/cumulus-linux-301/)
+[Cumulus Linux 3.1](/cumulus-linux-312/)
 
-[Cumulus Linux 2.5.12 ESR](/version/cumulus-linux-2512-esr/)
+[Cumulus Linux 3.0](/cumulus-linux-301/)
 
-[Cumulus VX 3.0](/version/cumulus-vx-30)
+[Cumulus Linux 2.5.12 ESR](/cumulus-linux-2512-esr/)
+
+[Cumulus VX 3.0](/cumulus-vx-30)
 
 [Cumulus RMP](/cumulus-rmp)
-
 
 
 ## Contributor Guide

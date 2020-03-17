@@ -8,7 +8,7 @@ aliases:
  - /pages/viewpage.action?pageId=5122816
 pageID: 5122816
 product: Cumulus RMP
-version: '3.7'
+version: "3.7"
 imgData: cumulus-rmp
 siteSlug: cumulus-rmp
 ---
@@ -72,9 +72,9 @@ Cumulus RMP switch up and running after you remove it from the box.
 ## Upgrading Cumulus RMP</span>
 
 If you are running a Cumulus RMP version earlier than 3.0.0, you must
-perform a [complete install](/version/cumulus-linux-37/Installation-Management/Installing-a-New-Cumulus-Linux-Image/). If you
+perform a [complete install](/cumulus-linux-37/Installation-Management/Installing-a-New-Cumulus-Linux-Image/). If you
 already have Cumulus Linux 3.0.0 or later installed on your switch, read
-[Upgrading Cumulus Linux](/version/cumulus-linux-37/Installation-Management/Upgrading-Cumulus-Linux/) for
+[Upgrading Cumulus Linux](/cumulus-linux-37/Installation-Management/Upgrading-Cumulus-Linux/) for
 considerations before you start the process.
 
 ## Getting Started</span>
@@ -109,7 +109,7 @@ All accounts except `root` are permitted remote SSH login; you can use
 `sudo` to grant root-level access to a non-root account. Commands that
 change system configuration require this elevated level of access.
 
-For more information about `sudo`, read [Using sudo to Delegate Privileges](/version/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/).
+For more information about `sudo`, read [Using sudo to Delegate Privileges](/cumulus-linux-37/System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/).
 
 ### Serial Console Management</span>
 
@@ -129,7 +129,7 @@ are geared specifically for out-of-band management use. The management
 interface uses DHCPv4 for addressing by default. While it is generally
 recommended to **not** assign an address to eth0, you can set a static
 IP address with the [Network Command Line
-Utility](/version/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU/) (NCLU).
+Utility](/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU/) (NCLU).
 
 {{%notice info%}}
 
@@ -306,7 +306,7 @@ bridge](https://support.cumulusnetworks.com/hc/en-us/articles/203508477).
 ### Layer 3 Port Configuration</span>
 
 To configure a front panel port or bridge interface as a layer 3 port,
-use [NCLU](/version/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU/).
+use [NCLU](/cumulus-linux-37/System-Configuration/Network-Command-Line-Utility-NCLU/).
 
 In the following configuration example, the front panel port swp1 is
 configured as a layer 3 access port:

@@ -7,11 +7,12 @@ aliases:
  - /display/VX/
  - /pages/viewpage.action?pageId=5126686
 pageID: 5126686
-product: Cumulus VX
-version: '3.7'
-imgData: cumulus-vx
-siteSlug: cumulus-vx
 subsection: true
+cascade:
+  product: Cumulus VX
+  version: '3.7'
+  imgData: cumulus-vx
+  siteSlug: cumulus-vx
 ---
 Cumulus VX is a free virtual environment designed for cloud and network
 administrators that introduces you to open networking and lets you learn
@@ -66,6 +67,8 @@ In addition, you can use Cumulus VX with the following development environments:
 For more information about Cumulus VX, Cumulus Linux and supported
 environments, visit these links:
 
+- [Cumulus Linux 4.0 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360038927193-Cumulus-Linux-4-0-Release-Notes/)
+- [Cumulus Linux 3.7 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360007793174-Cumulus-Linux-3-7-Release-Notes)
 - [Cumulus Linux 3.6 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003039873-Cumulus-Linux-3-6-Release-Notes)
     (Cumulus VX known issues are now included in the Cumulus Linux release notes)
 - [Cumulus VX 3.5 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115015782767)

@@ -6,14 +6,14 @@ relURLs = true
 googleAnalytics = "UA-40724538-3"
 #Book configuration
 disablePathToLower = true
-## bug in local server, will enable in production
 enableGitInfo= false
 noChmod = true
 enableRobotsTXT = true
+disableKinds = ["RSS"]  
 
 [markup]
   [markup.tableOfContents]
-    endLevel = 3
+    endLevel = 4
     ordered = false
     startLevel = 1
   [markup.goldmark]
@@ -50,7 +50,6 @@ enableRobotsTXT = true
     title = "Cumulus Chassis"
     url = "/chassis/"
     weight = 20
-
 
 
 

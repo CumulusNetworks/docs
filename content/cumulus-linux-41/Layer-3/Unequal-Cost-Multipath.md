@@ -21,7 +21,7 @@ The above example shows how traffic towards 192.168.10.1/32 is load balanced whe
 
 - Leaf01 has two ECMP paths to 192.168.10.1/32 (via Server01 and Server03) whereas Leaf03 and Leaf04 have a single path to Server04.
 - Leaf01, Leaf02, Leaf03, and Leaf04 are configured to generate BGP link bandwidth based on the number of BGP multipaths for a prefix.
-- When announcing the prefix to the spines Leaf01 and Leaf02 generate a link bandwidth of two while Leaf03 and Leaf04 generate a link bandwidth of one.
+- When announcing the prefix to the spines, Leaf01 and Leaf02 generate a link bandwidth of two while Leaf03 and Leaf04 generate a link bandwidth of one.
 - Each spine advertises the 192.168.10.1/32 prefix to the border leafs with an accumulated bandwidth of 6. This combines the value of 2 from Leaf01, 2 from Leaf02, 1 from Leaf03 and 1 from Leaf04.
 
 Each spine has four UCMP routes:

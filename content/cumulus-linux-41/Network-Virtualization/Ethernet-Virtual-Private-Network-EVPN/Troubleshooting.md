@@ -65,6 +65,8 @@ cumulus@leaf01:~$ ip neigh show
 ...
 ```
 
+As an alternative, you can use the NCLU `net show neighbor` command.
+
 ## General BGP Commands
 
 If you use BGP for the underlay routing, run the NCLU `net show bgp summary` command or the vtysh `show bgp summary` command to view a summary of the layer 3 fabric connectivity:

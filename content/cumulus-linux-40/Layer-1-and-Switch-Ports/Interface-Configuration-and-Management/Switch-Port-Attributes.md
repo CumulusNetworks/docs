@@ -1516,6 +1516,15 @@ To disable the QSFP+ ports, you must set the ports to `disabled`. Do not comment
 
 {{%/notice%}}
 
+### 1000BASE-T Modules Not Supported on Certain Edgecore and Cumulus Express Switches
+
+1000BASE-T modules are not supported on the following switches:
+
+- Cumulus Express CX-5148-S
+- Cumulus Express CX-8132-S
+- Edgecore AS7326-56X
+- Edgecore AS7726-32X
+
 ### Mellanox SN2100 Switch and eth0 Link Speed
 
 After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
@@ -1563,10 +1572,8 @@ The Lenovo NE2572O switch has external retimers on swp1 through swp8. Currently,
 
 The following switches that use Serial over LAN technology (SOL) do not support eth0 speed or auto-negotiation changes:
 
-- Celestica Pebble
-- Celestica QueStone2
-- Celestica SeaStone2
 - EdgeCore AS7816-64X
+- Penguin Arctica 4804ip
 - Penguin Arctica NX3200c
 - Penguin Arctica NX4808xxv
 

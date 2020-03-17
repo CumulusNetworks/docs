@@ -153,7 +153,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file to set `/proc/sys/net/ipv4/conf/<interface>/proxy_arp` to `1` in the interface stanza. The following example configuration enables proxy ARP on swp1.
+Edit the `/etc/network/interfaces` file to set `/proc/sys/net/ipv4/conf/<interface>/proxy_arp` to `1` in the interface stanza, then run the `ifreload -a` command. The following example configuration enables proxy ARP on swp1.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -163,8 +163,6 @@ iface swp1
     post-up echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp
 ...
 ```
-
-Run the `ifreload -a` command to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -192,7 +190,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file. For example:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -208,8 +206,6 @@ iface swp1-v0
     post-up echo 2 > /proc/sys/net/ipv4/conf/swp1-v0/medium_id
 ...
 ```
-
-Run the `ifreload -a` command to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -238,7 +234,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file. For example:
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/networks/interfaces
@@ -252,8 +248,6 @@ iface vlan100
     vlan-id 100
 ...
 ```
-
-Run the `ifreload -a` command to reload the configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -275,14 +269,14 @@ The configuration above takes effect immediately but does not persist if you reb
 
 1. Create a new file called `/etc/cumulus/neighmgr.conf` and add the `setsrcipv4 <ipaddress>` option; for example:
 
-```
-cumulus@switch:~$  sudo nano /etc/cumulus/neighmgr.conf
+    ```
+    cumulus@switch:~$  sudo nano /etc/cumulus/neighmgr.conf
 
-setsrcipv4: 10.1.0.2
-```
+    setsrcipv4: 10.1.0.2
+    ```
 
 2. Reload the configuration file using `systemd`:
 
-```
-cumulus@switch:~$ sudo systemctl daemon-reload
-```
+    ```
+    cumulus@switch:~$ sudo systemctl daemon-reload
+    ```

@@ -145,7 +145,7 @@ set "$@" --bootstrap-ca-cert=/root/controller.cacert
 set "$@ " --ssl-protocols=TLSv1,TLSv1.1,TLSv1.2
 ```
 
-    If files have been moved or regenerated, restart the OVSDB server and VTEPd:
+If files have been moved or regenerated, restart the OVSDB server and VTEPd:
 
 ```
 cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
@@ -164,7 +164,7 @@ cumulus@switch:~$ sudo vtep-ctl list-ps
 vtep7
 ```
 
-    Then set the tunnel source IP address of the VTEP. This is the datapath address of the VTEP, which is typically an address on a loopback interface on the switch that is reachable from the underlying layer 3 network:
+Then set the tunnel source IP address of the VTEP. This is the datapath address of the VTEP, which is typically an address on a loopback interface on the switch that is reachable from the underlying layer 3 network:
 
 ```
 cumulus@switch:~$ sudo vtep-ctl set Physical_Switch vtep7 tunnel_ips=172.16.20.157

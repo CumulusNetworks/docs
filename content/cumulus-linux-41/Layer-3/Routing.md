@@ -347,6 +347,12 @@ ip route 0.0.0.0/0 10.1.0.1
 ...
 ```
 
+{{%notice note%}}
+
+The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR, so cannot be redistributed into other routing protocols. See {{<link url="Interface-Configuration-and-Management#ifupdown2-and-the-gateway-parameter" text="ifupdown2 and the gateway Parameter" >}} for more information.
+
+{{%/notice%}}
+
 ## Supported Route Table Entries
 
 Cumulus Linux (via `switchd)`advertises the maximum number of route table entries that are supported on a given switch architecture, including:
@@ -361,8 +367,7 @@ Cumulus Linux (via `switchd)`advertises the maximum number of route table entrie
 
 In addition, switches on the Tomahawk, Trident II, Trident II+, and Trident3 platforms are configured to manage route table entries using Algorithm Longest Prefix Match (ALPM). In ALPM mode, the hardware can store significantly more route entries.
 
-You can use `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}` to determine the current table sizes on a given switch.
-
+You can use either the NCLU `net show system asic` command or the `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}` to determine the current table sizes on a given switch.
 
 ### Forwarding Table Profiles
 

@@ -120,34 +120,34 @@ If a site wants to allow local fallback authentication for a user when none of t
 
 To configure local fallback authentication:
 
-1.  dd a local privileged user account. For example, if the `radius_priv_user` account in the `/etc/passwd` file is `radius_priv_user:x:1002:1001::/home/radius_priv_user:/sbin/radius_shell`, run the following command to add a local privileged user account named johnadmin:
+1. Add a local privileged user account. For example, if the `radius_priv_user` account in the `/etc/passwd` file is `radius_priv_user:x:1002:1001::/home/radius_priv_user:/sbin/radius_shell`, run the following command to add a local privileged user account named johnadmin:
 
-```
-cumulus@switch:~$ sudo useradd -u 1002 -g 1001 -o -s /sbin/radius_shell johnadmin
-```
+    ```
+    cumulus@switch:~$ sudo useradd -u 1002 -g 1001 -o -s /sbin/radius_shell johnadmin
+    ```
 
 2. To enable the local privileged user to run `sudo` and NCLU commands, run the following commands:
 
-```
-cumulus@switch:~$ sudo adduser johnadmin netedit
-cumulus@switch:~$ sudo adduser johnadmin sudo
-cumulus@switch:~$ sudo systemctl restart netd
-```
+    ```
+    cumulus@switch:~$ sudo adduser johnadmin netedit
+    cumulus@switch:~$ sudo adduser johnadmin sudo
+    cumulus@switch:~$ sudo systemctl restart netd
+    ```
 
 3. Edit the `/etc/passwd` file to move the local user line before to the `radius_priv_user` line:
 
-```
-cumulus@switch:~$ sudo vi /etc/passwd
-...
-johnadmin:x:1002:1001::/home/johnadmin:/sbin/radius_shell
-radius_priv_user:x:1002:1001::/home/radius_priv_user:/sbin/radius_shell
-```
+    ```
+    cumulus@switch:~$ sudo vi /etc/passwd
+    ...
+    johnadmin:x:1002:1001::/home/johnadmin:/sbin/radius_shell
+    radius_priv_user:x:1002:1001::/home/radius_priv_user:/sbin/radius_shell
+    ```
 
 4. To set the local password for the local user, run the following command:
 
-```
-cumulus@switch:~$ sudo passwd johnadmin
-```
+    ```
+    cumulus@switch:~$ sudo passwd johnadmin
+    ```
 
 ## Verify RADIUS Client Configuration
 

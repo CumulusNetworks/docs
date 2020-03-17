@@ -49,50 +49,42 @@ To configure a PBR policy:
 
 1. Configure the policy map. The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
 
-    {{%notice note%}}
+    If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
 
-If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
-
-    {{%/notice%}}
-
-```
-cumulus@switch:~$ net add pbr-map map1 seq 1 match dst-ip 10.1.2.0/24
-cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 10.1.4.1/24
-```
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 match dst-ip 10.1.2.0/24
+    cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 10.1.4.1/24
+    ```
 
 2. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on  the output interface swp2 and VRF `rocket` to the `map1` policy map. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
-```
-cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
-```
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
+    ```
 
     To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `rocket`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
 
-    {{%notice note%}}
+    The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
-The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
-
-    {{%/notice%}}
-
-```
-cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.21 swp1 nexthop-vrf rocket
-cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.22
-cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop-group group1
-```
+    ```
+    cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.21 swp1 nexthop-vrf rocket
+    cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.22
+    cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop-group group1
+    ```
 
 3. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
 
-```
-cumulus@switch:~$ net add interface swp51 pbr-policy map1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+    ```
+    cumulus@switch:~$ net add interface swp51 pbr-policy map1
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
 
-    {{%notice note%}}
+{{%notice note%}}
 
 You can only set one policy per interface.
 
-    {{%/notice%}}
+{{%/notice%}}
 
 </details>
 
@@ -102,86 +94,78 @@ You can only set one policy per interface.
 
 1. Before you run the vtysh commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRR with the `systemctl restart frr.service` command.
 
-```
-cumulus@leaf01:~$ sudo nano /etc/frr/daemons
-...
-bgpd=yes
-ospfd=no
-ospf6d=no
-ripd=no
-ripngd=no
-isisd=no
-fabricd=no
-pimd=no
-ldpd=no
-nhrpd=no
-eigrpd=no
-babeld=no
-sharpd=no
-pbrd=yes
-...
-```
+    ```
+    cumulus@leaf01:~$ sudo nano /etc/frr/daemons
+    ...
+    bgpd=yes
+    ospfd=no
+    ospf6d=no
+    ripd=no
+    ripngd=no
+    isisd=no
+    fabricd=no
+    pimd=no
+    ldpd=no
+    nhrpd=no
+    eigrpd=no
+    babeld=no
+    sharpd=no
+    pbrd=yes
+    ...
+    ```
 
 2. Configure the policy map. The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
 
-```
-cumulus@switch:~$ sudo vtysh
+    ```
+    cumulus@switch:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# pbr-map map1 seq 1 
-switch(config-pbr-map)# match dst-ip 10.1.2.0/24
-switch(config-pbr-map)# match src-ip 10.1.4.1/24 
-```
+    switch# configure terminal
+    switch(config)# pbr-map map1 seq 1 
+    switch(config-pbr-map)# match dst-ip 10.1.2.0/24
+    switch(config-pbr-map)# match src-ip 10.1.4.1/24 
+    ```
 
-    {{%notice note%}}
-
-If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
-
-    {{%/notice%}}
+    If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
 
 2.  Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
-```
-switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
-switch(config-pbr-map)# exit
-switch(config)# 
-```
+    ```
+    switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
+    switch(config-pbr-map)# exit
+    switch(config)#
+    ```
 
     To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `rocket`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
 
-    {{%notice note%}}
+    The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
-The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
-
-    {{%/notice%}}
-
-```
-switch(config)# nexthop-group group1
-switch(config-nh-group)# nexthop 192.168.0.21 swp1 nexthop-vrf rocket
-switch(config-nh-group)# nexthop 192.168.0.22
-switch(config-nh-group)# exit
-switch(config)# pbr-map map1 seq 1
-switch(config-pbr-map)# set nexthop-group group1
-switch(config-pbr-map)# exit
-switch(config)#
-```
+    ```
+    switch(config)# nexthop-group group1
+    switch(config-nh-group)# nexthop 192.168.0.21 swp1 nexthop-vrf rocket
+    switch(config-nh-group)# nexthop 192.168.0.22
+    switch(config-nh-group)# exit
+    switch(config)# pbr-map map1 seq 1
+    switch(config-pbr-map)# set nexthop-group group1
+    switch(config-pbr-map)# exit
+    switch(config)#
+    ```
 
 4. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
 
-```
-switch(config)# interface swp51
-switch(config-if)# pbr-policy map1
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
+    ```
+    switch(config)# interface swp51
+    switch(config-if)# pbr-policy map1
+    switch(config-if)# end
+    switch# write memory
+    switch# exit
+    cumulus@switch:~$
+    ```
 
-    {{%notice note%}}
+{{%notice note%}}
 
 You can only set one policy per interface.
 
-    {{%/notice%}}
+{{%/notice%}}
 
 </details>
 

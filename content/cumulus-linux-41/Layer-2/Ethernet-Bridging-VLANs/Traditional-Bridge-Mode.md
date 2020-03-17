@@ -37,7 +37,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file. The following example command configures a traditional mode bridge called my\_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example command configures a traditional mode bridge called my\_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
 
 ```
 ...
@@ -60,8 +60,6 @@ iface my_bridge
     bridge-vlan-aware no
 ...
 ```
-
-Run the `ifreload -a` command to reload the network configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a

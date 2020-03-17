@@ -73,7 +73,7 @@ cumulus@switch:~$ net commit
 
 <summary>Linux Commands </summary>
 
-1. Edit the `/etc/network/interfaces` file. The following example disables auto-negotiation for the swp1 interface.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example disables auto-negotiation for the swp1 interface.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -83,10 +83,8 @@ iface swp1
     link-autoneg off
 ```
 
-2. Run the `ifreload -a` command to load the updated configuration:
-
 ```
-cumulus@switch:~$ sudo ifreload -a
+cumlus@switch:~$ sudo ifreload -a
 ```
 
 **Runtime Configuration (Advanced)**
@@ -126,7 +124,7 @@ You can configure ports to one speed less than their maximum speed.
 | 40G              | 10G\*                                                     |
 | 100G             | 50G\* & 40G (with or without breakout port), 25G\*, 10G\* |
 
-\*Requires the port to be converted into a breakout port. See {{<link url="#breakout-ports" text="Configure Breakout Ports">}} below.
+\* Requires the port to be converted into a breakout port. See {{<link url="#breakout-ports" text="Configure Breakout Ports">}} below.
 
 {{%notice note%}}
 
@@ -183,15 +181,11 @@ iface swp31
 
 <summary>Linux Commands </summary>
 
-Edit the `/etc/network/interfaces` file to create a persistent configuration for the port speeds:
+To create a persistent configuration for the port speeds, edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
-1. Add the appropriate lines for each switch port stanza. The following example shows that the port speed for the swp1 interface is set to 10G and the duplex mode is set to *full*.
-
-    {{%notice note%}}
+Add the appropriate lines for each switch port stanza. The following example shows that the port speed for the swp1 interface is set to 10G and the duplex mode is set to *full*.
 
 If you specify the port speed in the `/etc/network/interfaces` file, you must also specify the duplex mode setting; otherwise, the interface defaults to half duplex.
-
-{{%/notice%}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -202,8 +196,6 @@ iface swp1
     link-speed 10000
     link-duplex full
 ```
-
-2. Run the `ifreload -a` command to load the updated configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -259,7 +251,7 @@ iface swp1
 
 <summary>Linux Commands </summary>
 
-1. Edit the `/etc/network/interfaces` file. The following example sets MTU to 9000 for the swp1 interface.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example sets MTU to 9000 for the swp1 interface.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -268,8 +260,6 @@ auto swp1
 iface swp1
     mtu 9000
 ```
-
-2. Run the `ifreload -a` command to load the updated configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -594,19 +584,17 @@ cumulus@switch:~$ sudo net commit
 
 <summary>Linux Commands </summary>
 
-1. Edit the `/etc/network/interfaces` file. The following example enables RS FEC for the swp1 interface (`link-fec rs`):
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example enables RS FEC for the swp1 interface (`link-fec rs`):
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 
 auto swp1
 iface swp1
-     link-autoneg off
-     link-speed 100000
-     link-fec rs
+    link-autoneg off
+    link-speed 100000
+    link-fec rs
 ```
-
-2. Run the `ifreload -a` command to load the updated configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -648,19 +636,17 @@ cumulus@switch:~$ sudo net commit
 
 <summary>Linux Commands </summary>
 
-1. Edit the `/etc/network/interfaces` file. The following example enables Base-R FEC for the swp1 interface (`link-fec baser`):
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example enables Base-R FEC for the swp1 interface (`link-fec baser`):
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 
 auto swp1
 iface swp1
-     link-autoneg off
-     link-speed 100000
-     link-fec baser
+    link-autoneg off
+    link-speed 100000
+    link-fec baser
 ```
-
-2. Run the `ifreload -a` command to load the updated configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -708,17 +694,15 @@ cumulus@switch:~$ sudo net commit
 
 <summary>Linux Commands </summary>
 
-1. Edit the `/etc/network/interfaces` file and set auto-negotiation to *on*. For example:
+Edit the `/etc/network/interfaces` file to set auto-negotiation to *on*, then run the `ifreload -a` command. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 
 auto swp1
 iface swp1
-    link-autoneg on
+link-autoneg on
 ```
-
-2. Run the `ifreload -a` command to load the updated configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -773,7 +757,7 @@ cumulus@switch:~$ sudo net commit
 
 <summary>Linux Commands </summary>
 
-1. Edit the `/etc/network/interfaces` file. The following example disables Base-R FEC for the swp1 interface (`link-fec baser`):
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example disables Base-R FEC for the swp1 interface (`link-fec baser`):
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -782,8 +766,6 @@ auto swp23
 iface swp23
 link-fec off
 ```
-
-2. Run the `ifreload -a` command to load the updated configuration:
 
 ```
 cumulus@switch:~$ sudo ifreload -a
@@ -890,7 +872,6 @@ Cumulus Linux provides the ability to:
 {{%notice note%}}
 
 - For switches with ports that support 100G speeds, you can break out any 100G port into a variety of options: four 10G ports, four 25G ports, two 40G ports or two 50G ports. You *cannot* have more than 128 total logical ports on a Broadcom switch.
-- You can only use NCLU to configure a 4x25G breakout port. To configure other breakout ports, use Linux commands.
 - You cannot use NCLU to break out the uplink ports.
 
 {{%/notice%}}
@@ -932,7 +913,7 @@ cumulus@switch:~$ net commit
 
 {{%/notice%}}
 
-These commands break out the 100G interfaces to 4x25G interfaces in the `/etc/cumulus/ports.conf` file, restart the `switchd` process to reconfigure the ports and create four interfaces in the `/etc/network/interfaces` file named as follows:
+These commands break out the 100G interfaces to 4x25G interfaces in the `/etc/cumulus/ports.conf` file and create four interfaces in the `/etc/network/interfaces` file named as follows:
 
 ```
 cumulus@switch:~$ cat /etc/network/interfaces
@@ -955,7 +936,9 @@ The breakout port configuration is stored in the `/etc/cumulus/ports.conf` file.
 
 {{%notice note%}}
 
-When you commit your change, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+When you commit your change on a Broadcom switch, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+When you commit your change on a Mellanox switch, `switchd` does not restart; there is no interruption to network services.
 
 {{%/notice%}}
 
@@ -967,7 +950,9 @@ When you commit your change, `switchd` restarts to apply the changes. The restar
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. See the examples below.
 2. Configure the breakout ports in the `/etc/network/interfaces` file. See the example below.
-3. {{<link url="Configuring-switchd/#restart-switchd" text="Restart switchd">}}.
+3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on ({{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
@@ -1114,38 +1099,40 @@ cumulus@switch:~$ net commit
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout.
 
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-...
+    ```
+    cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
+    ...
 
-25s0=10G
-25s1=10G
-25s2=10G
-25s3=10G
-...
-```
+    25s0=10G
+    25s1=10G
+    25s2=10G
+    25s3=10G
+    ...
+    ```
 
 2. Configure the breakout ports in the `/etc/network/interfaces` file.
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ...
 
-auto swp25s0
-iface swp25s0
+    auto swp25s0
+    iface swp25s0
 
-auto swp25s1
-iface swp25s1
+    auto swp25s1
+    iface swp25s1
 
-auto swp25s2
-iface swp25s2
+    auto swp25s2
+    iface swp25s2
 
-auto swp25s3
-iface swp25s3
-...
-```
+    auto swp25s3
+    iface swp25s3
+    ...
+    ```
 
-3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
+3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 </details>
 
@@ -1159,28 +1146,30 @@ To remove a breakout port:
 
 1. Run the `net del interface <interface>` command. For example:
 
-```
-cumulus@switch:~$ net del interface swp3s0
-cumulus@switch:~$ net del interface swp3s1
-cumulus@switch:~$ net del interface swp3s2
-cumulus@switch:~$ net del interface swp3s3
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+    ```
+    cumulus@switch:~$ net del interface swp3s0
+    cumulus@switch:~$ net del interface swp3s1
+    cumulus@switch:~$ net del interface swp3s2
+    cumulus@switch:~$ net del interface swp3s3
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
 
 2. Manually edit the `/etc/cumulus/ports.conf` file to configure the interface for the original speed. For example:
 
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-...
+    ```
+    cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
+    ...
 
-2=100G
-3=100G
-4=100G
-...
-```
+    2=100G
+    3=100G
+    4=100G
+    ...
+    ```
 
-3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
+3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 </details>
 
@@ -1190,17 +1179,19 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the interface for the original speed.
 
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-...
+    ```
+    cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
+    ...
 
-2=100G
-3=100G
-4=100G
-...
-```
+    2=100G
+    3=100G
+    4=100G
+    ...
+    ```
 
-2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
+2. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 </details>
 
@@ -1247,7 +1238,7 @@ These commands create the following configuration snippet in the `/etc/cumulus/p
 
 <summary>Linux Commands </summary>
 
-To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` file as shown below, then {{<link url="Configuring-switchd#restart-switchd" text="restart switchd">}}.
+To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` file as shown below.
 
 ```
 # SFP+ ports#
@@ -1258,6 +1249,10 @@ To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` fi
 4=40G/4
 5=10G
 ```
+
+On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 </details>
 
@@ -1394,31 +1389,31 @@ For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must conf
 
 1. Edit the `/etc/cumulus/ports.conf` file and configure the four ports to be 10G. 1G SFPs are clocked at 10G speeds; therefore, for 1G SFPs, the `/etc/cumulus/ports.conf` file entry must also specify 10G. Currently you cannot use NCLU commands for this step.
 
-```
-...
-# SFP28 ports
-#
-# <port label 1-48> = [25G|10G|100G/4|40G/4]
-1=25G
-2=25G
-3=25G
-4=25G
-5=10G
-6=10G
-7=10G
-8=10G
-9=25G
-...
-```
+    ```
+    ...
+    # SFP28 ports
+    #
+    # <port label 1-48> = [25G|10G|100G/4|40G/4]
+    1=25G
+    2=25G
+    3=25G
+    4=25G
+    5=10G
+    6=10G
+    7=10G
+    8=10G
+    9=25G
+    ...
+    ```
 
 2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 3. If you want to set the speed of any SFPs to 1G, set the port speed to 1000 Mbps using NCLU commands; this is *not* necessary for 10G SFPs. You don't need to set the port speed to 1G for all four ports. For example, if you intend only for swp5 and swp6 to use 1G SFPs, do the following:
 
-```
-cumulus@switch:~$ net add interface swp5-swp6 link speed 1000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+    ```
+    cumulus@switch:~$ net add interface swp5-swp6 link speed 1000
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
 
 {{%notice note%}}
 
@@ -1563,10 +1558,8 @@ The Lenovo NE2572O switch has external retimers on swp1 through swp8. Currently,
 
 The following switches that use Serial over LAN technology (SOL) do not support eth0 speed or auto-negotiation changes:
 
-- Celestica Pebble
-- Celestica QueStone2
-- Celestica SeaStone2
 - EdgeCore AS7816-64X
+- Penguin Arctica 4804ip
 - Penguin Arctica NX3200c
 - Penguin Arctica NX4808xxv
 

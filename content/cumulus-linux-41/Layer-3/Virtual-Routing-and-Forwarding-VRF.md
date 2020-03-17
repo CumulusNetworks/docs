@@ -159,10 +159,10 @@ VRF              Table
 rocket            1016
 ```
 
-To show a list of processes and PIDs associated with a specific VRF table, run the `vrf task list <vrf-name>` command. For example:
+To show a list of processes and PIDs associated with a specific VRF table, run the `ip vrf pids <vrf-name>` command. For example:
 
 ```
-cumulus@switch:~$ vrf task list rocket
+cumulus@switch:~$ ip vrf pids rocket
 
 VRF: rocket
 -----------------------
@@ -175,10 +175,10 @@ vrf                2829
 ```
 
 To determine which VRF table is associated with a particular PID, run
-the `vrf task identify <pid>` command. For example:
+the `ip vrf identify <pid>` command. For example:
 
 ```
-cumulus@switch:~$ vrf task identify 2829
+cumulus@switch:~$ ip vrf identify 2829
 rocket
 ```
 
@@ -1249,42 +1249,42 @@ Configure each DHCP server and relay as follows:
 
 1. Create the file `isc-dhcp-server-rocket` in `/etc/default/`. Here is sample content:
 
-```
-# Defaults for isc-dhcp-server initscript
-# sourced by /etc/init.d/isc-dhcp-server
-# installed at /etc/default/isc-dhcp-server by the maintainer scripts
-#
-# This is a POSIX shell fragment
-#
-# Path to dhcpd&#39;s config file (default: /etc/dhcp/dhcpd.conf).
-DHCPD_CONF=&quot;-cf /etc/dhcp/dhcpd-rocket.conf&quot;
-# Path to dhcpd&#39;s PID file (default: /var/run/dhcpd.pid).
-DHCPD_PID=&quot;-pf /var/run/dhcpd-rocket.pid&quot;
-# Additional options to start dhcpd with.
-# Don&#39;t use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
-#OPTIONS=&quot;&quot;
-# On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
-# Separate multiple interfaces with spaces, e.g. &quot;eth0 eth1&quot;.
-INTERFACES=&quot;swp2&quot;
-```
+    ```
+    # Defaults for isc-dhcp-server initscript
+    # sourced by /etc/init.d/isc-dhcp-server
+    # installed at /etc/default/isc-dhcp-server by the maintainer scripts
+    #
+    # This is a POSIX shell fragment
+    #
+    # Path to dhcpd&#39;s config file (default: /etc/dhcp/dhcpd.conf).
+    DHCPD_CONF=&quot;-cf /etc/dhcp/dhcpd-rocket.conf&quot;
+    # Path to dhcpd&#39;s PID file (default: /var/run/dhcpd.pid).
+    DHCPD_PID=&quot;-pf /var/run/dhcpd-rocket.pid&quot;
+    # Additional options to start dhcpd with.
+    # Don&#39;t use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
+    #OPTIONS=&quot;&quot;
+    # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
+    # Separate multiple interfaces with spaces, e.g. &quot;eth0 eth1&quot;.
+    INTERFACES=&quot;swp2&quot;
+    ```
 
 2. Enable the DHCP server:
 
-```
-cumulus@switch:~$ sudo systemctl enable dhcpd@rocket.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl enable dhcpd@rocket.service
+    ```
 
 3. Start the DHCP server:
 
-```
-cumulus@switch:~$ sudo systemctl start dhcpd@rocket.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl start dhcpd@rocket.service
+    ```
 
 4. Check status:
 
-```
-cumulus@switch:~$ sudo systemctl status dhcpd@rocket.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl status dhcpd@rocket.service
+    ```
 
 You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
 
@@ -1300,48 +1300,48 @@ cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcpd -f -q -cf /
 
 1. Create the file `isc-dhcp-server6-turtle` in `/etc/default/`. Here is sample content:
 
-```
-# Defaults for isc-dhcp-server initscript
-# sourced by /etc/init.d/isc-dhcp-server
-# installed at /etc/default/isc-dhcp-server by the maintainer scripts
-#
-# This is a POSIX shell fragment
-#
-# Path to dhcpd&#39;s config file (default: /etc/dhcp/dhcpd.conf).
-DHCPD_CONF=&quot;-cf /etc/dhcp/dhcpd6-turtle.conf&quot;
-# Path to dhcpd&#39;s PID file (default: /var/run/dhcpd.pid).
-DHCPD_PID=&quot;-pf /var/run/dhcpd6-turtle.pid&quot;
-# Additional options to start dhcpd with.
-# Don&#39;t use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
-#OPTIONS=&quot;&quot;
-# On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
-# Separate multiple interfaces with spaces, e.g. &quot;eth0 eth1&quot;.
-INTERFACES=&quot;swp3&quot;
-```
+    ```
+    # Defaults for isc-dhcp-server initscript
+    # sourced by /etc/init.d/isc-dhcp-server
+    # installed at /etc/default/isc-dhcp-server by the maintainer scripts
+    #
+    # This is a POSIX shell fragment
+    #
+    # Path to dhcpd&#39;s config file (default: /etc/dhcp/dhcpd.conf).
+    DHCPD_CONF=&quot;-cf /etc/dhcp/dhcpd6-turtle.conf&quot;
+    # Path to dhcpd&#39;s PID file (default: /var/run/dhcpd.pid).
+    DHCPD_PID=&quot;-pf /var/run/dhcpd6-turtle.pid&quot;
+    # Additional options to start dhcpd with.
+    # Don&#39;t use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
+    #OPTIONS=&quot;&quot;
+    # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
+    # Separate multiple interfaces with spaces, e.g. &quot;eth0 eth1&quot;.
+    INTERFACES=&quot;swp3&quot;
+    ```
 
 2. Enable the DHCP server:
 
-```
-cumulus@switch:~$ sudo systemctl enable dhcpd6@turtle.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl enable dhcpd6@turtle.service
+    ```
 
 3. Start the DHCP server:
 
-```
-cumulus@switch:~$ sudo systemctl start dhcpd6@turtle.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl start dhcpd6@turtle.service
+    ```
 
 4. Check status:
 
-```
-cumulus@switch:~$ sudo systemctl status dhcpd6@turtle.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl status dhcpd6@turtle.service
+    ```
 
 You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
 
 ```
 cumulus@switch:~$ sudo ip vrf exec turtle dhcpd -6 -q -cf /
-    /etc/dhcp/dhcpd6-turtle.conf -pf /var/run/dhcpd6-turtle.pid swp3
+  /etc/dhcp/dhcpd6-turtle.conf -pf /var/run/dhcpd6-turtle.pid swp3
 ```
 
 </details>
@@ -1352,44 +1352,45 @@ cumulus@switch:~$ sudo ip vrf exec turtle dhcpd -6 -q -cf /
 
 1. Create the file `isc-dhcp-relay-rocket` in `/etc/default/`. Here is sample content:
 
-```
-# Defaults for isc-dhcp-relay initscript
-# sourced by /etc/init.d/isc-dhcp-relay
-# installed at /etc/default/isc-dhcp-relay by the maintainer scripts
-#
-# This is a POSIX shell fragment
-#
-# What servers should the DHCP relay forward requests to?
-SERVERS=&quot;102.0.0.2&quot;
-# On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
-# Always include the interface towards the DHCP server.
-# This variable requires a -i for each interface configured above.
-# This will be used in the actual dhcrelay command
-# For example, &quot;-i eth0 -i eth1&quot;
-INTF_CMD=&quot;-i swp2s2 -i swp2s3&quot;
-# Additional options that are passed to the DHCP relay daemon?
-OPTIONS=&quot;&quot;
-```
+    ```
+    # Defaults for isc-dhcp-relay initscript
+    # sourced by /etc/init.d/isc-dhcp-relay
+    # installed at /etc/default/isc-dhcp-relay by the maintainer scripts
+    #
+    # This is a POSIX shell fragment
+    #
+    # What servers should the DHCP relay forward requests to?
+    SERVERS=&quot;102.0.0.2&quot;
+    # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+    # Always include the interface towards the DHCP server.
+    # This variable requires a -i for each interface configured above.
+    # This will be used in the actual dhcrelay command
+    # For example, &quot;-i eth0 -i eth1&quot;
+    INTF_CMD=&quot;-i swp2s2 -i swp2s3&quot;
+    # Additional options that are passed to the DHCP relay daemon?
+    OPTIONS=&quot;&quot;
+    ```
 
 2. Enable the DHCP relay:
 
-```
-cumulus@switch:~$ sudo systemctl enable dhcrelay@rocket.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl enable dhcrelay@rocket.service
+    ```
 
 3. Start the DHCP relay:
 
-```
-cumulus@switch:~$ sudo systemctl start dhcrelay@rocket.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl start dhcrelay@rocket.service
+    ```
 
 4. Check status:
 
-```
-cumulus@switch:~$ sudo systemctl status dhcrelay@rocket.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl status dhcrelay@rocket.service
+    ```
 
 You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
+
 ```
 cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcrelay -d -q -i /
     swp2s2 -i swp2s3 102.0.0.2
@@ -1402,42 +1403,42 @@ cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcrelay -d -q -i /
 
 1. Create the file `isc-dhcp-relay6-turtle` in `/etc/default/`. Here is sample content:
 
-```
-# Defaults for isc-dhcp-relay initscript
-# sourced by /etc/init.d/isc-dhcp-relay
-# installed at /etc/default/isc-dhcp-relay by the maintainer scripts
-#
-# This is a POSIX shell fragment
-#
-# What servers should the DHCP relay forward requests to?
-#SERVERS=&quot;103.0.0.2&quot;
-# On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
-# Always include the interface towards the DHCP server.
-# This variable requires a -i for each interface configured above.
-# This will be used in the actual dhcrelay command
-# For example, &quot;-i eth0 -i eth1&quot;
-INTF_CMD=&quot;-l swp18s0 -u swp18s1&quot;
-# Additional options that are passed to the DHCP relay daemon?
-OPTIONS=&quot;-pf /var/run/dhcrelay6@turtle.pid&quot;
-```
+    ```
+    # Defaults for isc-dhcp-relay initscript
+    # sourced by /etc/init.d/isc-dhcp-relay
+    # installed at /etc/default/isc-dhcp-relay by the maintainer scripts
+    #
+    # This is a POSIX shell fragment
+    #
+    # What servers should the DHCP relay forward requests to?
+    #SERVERS=&quot;103.0.0.2&quot;
+    # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+    # Always include the interface towards the DHCP server.
+    # This variable requires a -i for each interface configured above.
+    # This will be used in the actual dhcrelay command
+    # For example, &quot;-i eth0 -i eth1&quot;
+    INTF_CMD=&quot;-l swp18s0 -u swp18s1&quot;
+    # Additional options that are passed to the DHCP relay daemon?
+    OPTIONS=&quot;-pf /var/run/dhcrelay6@turtle.pid&quot;
+    ```
 
 2. Enable the DHCP relay:
 
-```
-cumulus@switch:~$ sudo systemctl enable dhcrelay6@turtle.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl enable dhcrelay6@turtle.service
+    ```
 
 3. Start the DHCP relay:
 
-```
-cumulus@switch:~$ sudo systemctl start dhcrelay6@turtle.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl start dhcrelay6@turtle.service
+    ```
 
 4. Check status:
 
-```
-cumulus@switch:~$ sudo systemctl status dhcrelay6@turtle.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl status dhcrelay6@turtle.service
+    ```
 
 You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
 

@@ -122,7 +122,7 @@ and voltage information:
     PSU2:  OK
     power:8.5 W   (voltages = ['11.98', '11.87'] V currents = ['0.72'] A)
 
-Whereas the Penguin Arctica 3200C (Celestica Seastone) does not:
+Whereas the Penguin Arctica 3200c does not:
 
     cumulus@cel-sea:~/tmp$ sudo smonctl -v -s PSU1
     PSU1:  OK

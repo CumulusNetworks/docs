@@ -113,7 +113,7 @@ PSU2:  OK
 power:8.5 W   (voltages = ['11.98', '11.87'] V currents = ['0.72'] A)
 ```
 
-The Penguin Arctica 3200C (Celestica Seastone) does not have this sensor:
+The Penguin Arctica 3200c does not have this sensor:
 
 ```
 cumulus@cel-sea:~/tmp$ sudo smonctl -v -s PSU1
@@ -132,6 +132,8 @@ Usage: `smonctl [OPTION]... [CHIP]...`
 | `-v`, `--verbose` | Displays detailed hardware sensors data. |
 
 For more information, read `man smond` and `man smonctl`.
+
+You can also run these NCLU commands to show sensor information: `net show system sensors`, `net show system sensors detail`, and `net show system sensors json`.
 
 ## Monitor Hardware Using sensors
 

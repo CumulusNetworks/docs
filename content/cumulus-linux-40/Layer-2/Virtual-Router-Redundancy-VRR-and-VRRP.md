@@ -113,7 +113,7 @@ To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} co
 
 <details>
 
-<summary>**leaf01 Configuration**</summary>
+<summary>leaf01</summary>
 
 ```
 cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21
@@ -206,7 +206,7 @@ iface vlan400
 
 <details>
 
-<summary>**leaf02 Configuration** </summary>
+<summary>leaf02 </summary>
 
 ```
 cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22
@@ -299,7 +299,7 @@ iface vlan400
 
 <details>
 
-<summary>**server01 Configuration** </summary>
+<summary>server01 </summary>
 
 Create a configuration like the following on an Ubuntu host:
 
@@ -347,7 +347,7 @@ iface uplink:400 inet static
 
 <details>
 
-<summary>**server02 Configuration** </summary>
+<summary>server02 </summary>
 
 Create a configuration like the following on an Ubuntu host:
 
@@ -402,11 +402,8 @@ All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX
 {{%notice note%}}
 
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
-
 - 255 virtual routers are supported per switch.
-
 - VRRP is not supported currently in an MLAG environment or with EVPN.
-
 - To configure VRRP on an SVI, you need to edit the `/etc/frr/frr.conf` file; The NCLU commands are not supported for SVIs.
 
 {{%/notice%}}

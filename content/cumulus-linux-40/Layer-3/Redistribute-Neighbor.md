@@ -73,56 +73,56 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
 
 1. Configure the host facing ports using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
 
-```
-cumulus@leaf01:~$ net add loopback lo ip address 10.0.0.11/32
-cumulus@leaf01:~$ net add interface swp1-2 ip address 10.0.0.11/32
-cumulus@leaf01:~$ net pending 
-cumulus@leaf01:~$ net commit
-```
+    ```
+    cumulus@leaf01:~$ net add loopback lo ip address 10.0.0.11/32
+    cumulus@leaf01:~$ net add interface swp1-2 ip address 10.0.0.11/32
+    cumulus@leaf01:~$ net pending
+    cumulus@leaf01:~$ net commit
+    ```
 
 2. Enable the daemon so it starts at bootup, then start the daemon:
 
-```
-cumulus@leaf01:~$ sudo systemctl enable rdnbrd.service
-cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
-```
+    ```
+    cumulus@leaf01:~$ sudo systemctl enable rdnbrd.service
+    cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
+    ```
 
 3. Configure routing:
 
     1. Define a route-map that matches on the host-facing interfaces:
 
-```
-cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 10 match interface swp1
-cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 20 match interface swp2
-```
+        ```
+        cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 10 match interface swp1
+        cumulus@leaf01:~$ net add routing route-map REDIST_NEIGHBOR permit 20 match interface swp2
+        ```
 
     2. Import routing table 10 and apply the route-map:
 
-```
-cumulus@leaf01:~$ net add routing import-table 10 route-map REDIST_NEIGHBOR
-```
+        ```
+        cumulus@leaf01:~$ net add routing import-table 10 route-map REDIST_NEIGHBOR
+        ```
 
     3. Redistribute the imported *table* routes in into the appropriate routing protocol.
     
         ****BGP:****
 
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65001
-cumulus@leaf01:~$ net add bgp ipv4 unicast redistribute table 10
-```
+        ```
+        cumulus@leaf01:~$ net add bgp autonomous-system 65001
+        cumulus@leaf01:~$ net add bgp ipv4 unicast redistribute table 10
+        ```
 
         **OSPF:**
 
-```
-cumulus@leaf01:~$ net add ospf redistribute table 1
-```
+        ```
+        cumulus@leaf01:~$ net add ospf redistribute table 1
+        ```
 
 4. Save the configuration by committing your changes.
 
-```
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
+    ```
+    cumulus@leaf01:~$ net pending
+    cumulus@leaf01:~$ net commit
+    ```
 
 </details>
 
@@ -132,83 +132,83 @@ cumulus@leaf01:~$ net commit
 
 1. Edit the `/etc/network/interfaces` file to configure the host facing ports, using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
 
-```
-cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+    ```
+    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 
-auto lo
-iface lo inet loopback
-      address 10.0.0.11/32
+    auto lo
+    iface lo inet loopback
+        address 10.0.0.11/32
 
-auto swp1
-iface swp1
-      address 10.0.0.11/32
+    auto swp1
+    iface swp1
+        address 10.0.0.11/32
 
-auto swp2
-iface swp2
-      address 10.0.0.11/32
-...
-```
+    auto swp2
+    iface swp2
+        address 10.0.0.11/32
+    ...
+    ```
 
 2. Enable the daemon so it starts at bootup, then start the daemon:
 
-```
-cumulus@leaf01:~$ sudo systemctl enable rdnbrd.service
-cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
-```
+    ```
+    cumulus@leaf01:~$ sudo systemctl enable rdnbrd.service
+    cumulus@leaf01:~$ sudo systemctl restart rdnbrd.service
+    ```
 
 3. Configure routing:
 
     1. Add the table as routes into the local routing table:
 
-```
-cumulus@leaf01:~$ sudo vtysh
+        ```
+        cumulus@leaf01:~$ sudo vtysh
 
-leaf01# configure terminal
-leaf01(config)# ip import-table 10
-```
+        leaf01# configure terminal
+        leaf01(config)# ip import-table 10
+        ```
 
     2. Define a route-map that matches on the host-facing interface:
 
-```
-leaf01(config)# route-map REDIST_NEIGHBOR permit 10
-leaf01(config-route-map)# match interface swp1
-leaf01(config-route-map)# route-map REDIST_NEIGHBOR permit 20
-leaf01(config-route-map)# match interface swp2
-```
+        ```
+        leaf01(config)# route-map REDIST_NEIGHBOR permit 10
+        leaf01(config-route-map)# match interface swp1
+        leaf01(config-route-map)# route-map REDIST_NEIGHBOR permit 20
+        leaf01(config-route-map)# match interface swp2
+        ```
 
     3. Apply that route-map to routes imported into *table*:
 
-```
-leaf01(config)# ip protocol table route-map REDIST_NEIGHBOR
-```
+        ```
+        leaf01(config)# ip protocol table route-map REDIST_NEIGHBOR
+        ```
 
     4. Redistribute the imported *table* routes in into the appropriate routing protocol.  
-        
+
         **BGP:**
 
-```
-leaf01(config)# router bgp 65001
-leaf01(config-router)# address-family ipv4 unicast
-leaf01(config-router-af)# redistribute table 10
-leaf01(config-router-af)# exit
-leaf01(config-router)# exit
-leaf01(config)# exit
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:~$
-```
+        ```
+        leaf01(config)# router bgp 65001
+        leaf01(config-router)# address-family ipv4 unicast
+        leaf01(config-router-af)# redistribute table 10
+        leaf01(config-router-af)# exit
+        leaf01(config-router)# exit
+        leaf01(config)# exit
+        leaf01# write memory
+        leaf01# exit
+        cumulus@leaf01:~$
+        ```
 
         **OSPF:**
 
-```
-leaf01(config)# router ospf
-leaf01(config-router)# redistribute table 10
-leaf01(config-router)# exit
-leaf01(config)# exit
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:~$
-```
+        ```
+        leaf01(config)# router ospf
+        leaf01(config-router)# redistribute table 10
+        leaf01(config-router)# exit
+        leaf01(config)# exit
+        leaf01# write memory
+        leaf01# exit
+        cumulus@leaf01:~$
+        ```
 
 </details>
 
@@ -262,28 +262,28 @@ Configure the loopback and physical interfaces. Referring back to the topology d
 
     <summary>Click to expand </summary>
 
-```
-# The loopback network interface
-auto lo
-iface lo inet loopback
+    ```
+    # The loopback network interface
+    auto lo
+    iface lo inet loopback
 
-auto lo:1
-iface lo:1
-   address 10.1.0.101/32
+    auto lo:1
+    iface lo:1
+    address 10.1.0.101/32
 
-auto eth1
-iface eth1
-   address 10.1.0.101/32
-   post-up for i in {1..3}; do arping -q -c 1 -w 0 -i eth1 10.0.0.11; sleep 1; done
-   post-up ip route add 0.0.0.0/0 nexthop via 10.0.0.11 dev eth1 onlink nexthop via 10.0.0.12 dev eth2 onlink || true
+    auto eth1
+    iface eth1
+    address 10.1.0.101/32
+    post-up for i in {1..3}; do arping -q -c 1 -w 0 -i eth1 10.0.0.11; sleep 1; done
+    post-up ip route add 0.0.0.0/0 nexthop via 10.0.0.11 dev eth1 onlink nexthop via 10.0.0.12 dev eth2 onlink || true
 
-auto eth2
-iface eth2
-  address 10.1.0.101/32
-  post-up for i in {1..3}; do arping -q -c 1 -w 0 -i eth2 10.0.0.12; sleep 1; done
-  post-up ip route add 0.0.0.0/0 nexthop via 10.0.0.11 dev eth1 onlink nexthop via 10.0.0.12 dev eth2 onlink || true
-  ...
-```
+    auto eth2
+    iface eth2
+    address 10.1.0.101/32
+    post-up for i in {1..3}; do arping -q -c 1 -w 0 -i eth2 10.0.0.12; sleep 1; done
+    post-up ip route add 0.0.0.0/0 nexthop via 10.0.0.11 dev eth1 onlink nexthop via 10.0.0.12 dev eth2 onlink || true
+    ...
+    ```
 
 </details>
 
@@ -413,28 +413,28 @@ Use the following workflow to verify that the kernel routing table isbeing popul
 
 1. Verify that ARP neighbor entries are being populated into the Kernel routing table 10.
 
-```
-cumulus@leaf01:~$ ip route show table 10
-10.0.1.101 dev swp1 scope link
-```
+    ```
+    cumulus@leaf01:~$ ip route show table 10
+    10.0.1.101 dev swp1 scope link
+    ```
 
     If these routes are not being generated, verify the following that the `rdnbrd` daemon is running and check the `/etc/rdnbrd.conf` file to verify the correct table number is used.
 
 2. Verify that routes are being imported into FRRouting from the kernel routing table 10.
 
-```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# show ip route table
-Codes: K - kernel route, C - connected, S - static, R - RIP,
+    ```
+    cumulus@leaf01:~$ sudo vtysh
+    leaf01# show ip route table
+    Codes: K - kernel route, C - connected, S - static, R - RIP,
            O - OSPF, I - IS-IS, B - BGP, A - Babel, T - Table,
            > - selected route, * - FIB route
-T[10]>* 10.0.1.101/32 [19/0] is directly connected, swp1, 01:25:29
-```
+    T[10]>* 10.0.1.101/32 [19/0] is directly connected, swp1, 01:25:29
+    ```
 
     Both the \> and \* should be present so that table 10 routes are installed as preferred into  the routing table. If the routes are not being installed, verify the imported distance of the locally imported kernel routes with the `ip import 10 distance X` command (where X is **not** less than the administrative distance of the routing protocol). If the distance is too low,  routes learned from the protocol might overwrite the locally imported routes. Also, verify that the routes are in the kernel routing table.
 
 3. Confirm that routes are in the BGP/OSPF database and are being advertised.
 
-```
-leaf01# show ip bgp
-```
+    ```
+    leaf01# show ip bgp
+    ```

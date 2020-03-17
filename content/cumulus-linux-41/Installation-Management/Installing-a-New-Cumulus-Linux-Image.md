@@ -80,9 +80,9 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 1. Place the Cumulus Linux disk image in a directory on the web server.
 2. Run the `onie-nos-install` command:
 
-```
-ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
-```
+    ```
+    ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -94,9 +94,9 @@ ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bi
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -116,30 +116,29 @@ You need a console connection to access the switch; you cannot perform this proc
 
 1. ONIE is in *{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="discovery mode">}}*. You must disable discovery mode with the following command:
 
-```
-onie# onie-discovery-stop
-```
+    ```
+    onie# onie-discovery-stop
+    ```
 
     On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
 
-```
-onie# /etc/init.d/discover.sh stop
-```
+    ```
+    onie# /etc/init.d/discover.sh stop
+    ```
 
 2. Assign a static address to eth0 with the `ip addr add` command:
 
-```
-ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
-```
+    ```
+    ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
+    ```
 
 3. Place the Cumulus Linux disk image in a directory on your web server.
 
 4. Run the installer manually (because there are no DHCP options):
 
-
-```
-ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
-```
+    ```
+    ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -151,9 +150,9 @@ ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bi
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -167,30 +166,31 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 
 1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
-```
-ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
-```
+    ```
+    ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
+    ```
 
 2. If you are using static addressing, disable ONIE discovery mode:
 
-```
-onie# onie-discovery-stop
-```
+    ```
+    onie# onie-discovery-stop
+    ```
 
     On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
 
-```
-onie# /etc/init.d/discover.sh stop
-```
+    ```
+    onie# /etc/init.d/discover.sh stop
+    ```
 
 3. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+
 4. If you are not using DHCP options, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
 
-```
-ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+    ```
+    ONIE# onie-nos-install ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
 
-ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
-```
+    ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -199,14 +199,15 @@ ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
 <summary>Install from Cumulus Linux </summary>
 
 1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+
 2. From the Cumulus Linux command prompt, run one of the following
     commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i ftp://local-ftp-server/cumulus-install-[PLATFORM].bin
 
-cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
-```
+    cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -220,29 +221,29 @@ Follow the steps below to install the disk image referencing a local file.
 
 1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
-```
-ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
-```
+    ```
+    ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
+    ```
 
 2. If you are using static addressing, disable ONIE discovery mode.
 
-```
-onie# onie-discovery-stop
-```
+    ```
+    onie# onie-discovery-stop
+    ```
 
     On older ONIE versions, if the `onie-discovery-stop` command is not supported, run:
 
-```
-onie# /etc/init.d/discover.sh stop
-```
+    ```
+    onie# /etc/init.d/discover.sh stop
+    ```
 
 3. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux disk image to the switch.
 
 4. Run the installer manually from ONIE:
 
-```
-ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
-```
+    ```
+    ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -254,9 +255,9 @@ ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin
+    ```
 
 </details>
 
@@ -282,7 +283,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
     {{%notice warning%}}
 
-Use caution when performing the actions below; it is possible to severely damage your system with the following utilities.
+    Use caution when performing the actions below; it is possible to severely damage your system with the following utilities.
 
     {{%/notice%}}
 
@@ -292,33 +293,33 @@ Use caution when performing the actions below; it is possible to severely damage
 
     2. Create a new partition table on the USB drive. (The `parted` utility should already be installed. However, if it is not, install it with `sudo -E apt-get install parted`.)
 
-    ```
-    sudo parted /dev/sdb mklabel msdos
-    ```
+        ```
+        sudo parted /dev/sdb mklabel msdos
+        ```
 
     3. Create a new partition on the USB drive:
 
-    ```
-    sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
-    ```
+        ```
+        sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
+        ```
 
     4. Format the partition to your filesystem of choice using *one* of the examples below:
 
-    ```
-    sudo mkfs.ext2 /dev/sdb1
-    sudo mkfs.msdos -F 32 /dev/sdb1
-    sudo mkfs.vfat /dev/sdb1
-    ```
+        ```
+        sudo mkfs.ext2 /dev/sdb1
+        sudo mkfs.msdos -F 32 /dev/sdb1
+        sudo mkfs.vfat /dev/sdb1
+        ```
 
        To use `mkfs.msdos` or `mkfs.vfat`, you need to install the `dosfstools` package from the 
        {{<link url="Adding-and-Updating-Packages" text="Debian software repositories">}}, as they are not included by default.
 
     5. To continue installing Cumulus Linux, mount the USB drive to move files
 
-    ```
-    sudo mkdir /mnt/usb
-    sudo mount /dev/sdb1 /mnt/usb
-    ```
+        ```
+        sudo mkdir /mnt/usb
+        sudo mount /dev/sdb1 /mnt/usb
+        ```
 
     </details>
 
@@ -331,7 +332,7 @@ Use caution when performing the actions below; it is possible to severely damage
 
     {{%notice warning%}}
 
-When using a Mac or Windows computer to rename the installation file, the file extension might still be present. Make sure to remove the file extension otherwise ONIE is not able to detect the file.
+    When using a Mac or Windows computer to rename the installation file, the file extension might still be present. Make sure to remove the file extension otherwise ONIE is not able to detect the file.
 
     {{%/notice%}}
 
@@ -350,9 +351,9 @@ When using a Mac or Windows computer to rename the installation file, the file e
 
     {{%notice note%}}
 
-SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
+    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 2. Monitor the console and select the ONIE option from the first GRUB screen shown below.
 
@@ -364,37 +365,37 @@ SSH sessions to the switch get dropped after this step. To complete the remainin
 
 4. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
 
-```
-ONIE: OS Install Mode  ...
+    ```
+    ONIE: OS Install Mode  ...
 
-Version : quanta_common_rangeley-2014.05.05-6919d98-201410171013
-Build  Date: 2014-10-17T10:13+0800
-Info: Mounting kernel filesystems...  done.
-Info: Mounting LABEL=ONIE-BOOT on /mnt/onie-boot  ...
-initializing eth0...
-scsi 6:0:0:0: Direct-Access  SanDisk Cruzer Facet 1.26 PQ: 0 ANSI: 6
-sd 6:0:0:0: [sdb] 31266816 512-byte logical blocks: (16.0 GB/14.9 GiB)
-sd 6:0:0:0: [sdb] Write Protect is off
-sd 6:0:0:0: [sdb] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
-sd 6:0:0:0: [sdb] Attached SCSI disk
+    Version : quanta_common_rangeley-2014.05.05-6919d98-201410171013
+    Build  Date: 2014-10-17T10:13+0800
+    Info: Mounting kernel filesystems...  done.
+    Info: Mounting LABEL=ONIE-BOOT on /mnt/onie-boot  ...
+    initializing eth0...
+    scsi 6:0:0:0: Direct-Access  SanDisk Cruzer Facet 1.26 PQ: 0 ANSI: 6
+    sd 6:0:0:0: [sdb] 31266816 512-byte logical blocks: (16.0 GB/14.9 GiB)
+    sd 6:0:0:0: [sdb] Write Protect is off
+    sd 6:0:0:0: [sdb] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+    sd 6:0:0:0: [sdb] Attached SCSI disk
 
-<...snip...>
+    <...snip...>
 
-ONIE:  Executing installer: file://dev/sdb1/onie-installer-x86_64
-Verifying image checksum ... OK.
-Preparing image archive ... OK.
-Dumping image info...
-Control File Contents
-=====================
-Description: Cumulus Linux
-OS-Release:  4.0.0~1571178373.763fd151
-Architecture: amd64
-Date:  Fri, 22 November 2019 17:10:30 -0700
-Installer-Version:  1.2
-Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley 
+    ONIE:  Executing installer: file://dev/sdb1/onie-installer-x86_64
+    Verifying image checksum ... OK.
+    Preparing image archive ... OK.
+    Dumping image info...
+    Control File Contents
+    =====================
+    Description: Cumulus Linux
+    OS-Release:  4.0.0~1571178373.763fd151
+    Architecture: amd64
+    Date:  Fri, 22 November 2019 17:10:30 -0700
+    Installer-Version:  1.2
+    Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley 
 
-Homepage: http://www.cumulusnetworks.com/
-```
+    Homepage: http://www.cumulusnetworks.com/
+    ```
 
 5. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
@@ -413,78 +414,78 @@ Homepage: http://www.cumulusnetworks.com/
 
     {{%notice note%}}
 
-SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
+    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 2. Interrupt the normal boot process before the countdown (shown below) completes. Press any key to stop the autoboot.
 
-```
-U-Boot 2013.01-00016-gddbf4a9-dirty (Feb 14 2014 - 16:30:46) Accton: 1.4.0.5
+    ```
+    U-Boot 2013.01-00016-gddbf4a9-dirty (Feb 14 2014 - 16:30:46) Accton: 1.4.0.5
 
-CPU0: P2020, Version: 2.1, (0x80e20021)
-Core: E500, Version: 5.1, (0x80211051)
-Clock Configuration:
-      CPU0:1200 MHz, CPU1:1200 MHz, 
-      CCB:600 MHz,
-      DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
-L1: D-cache 32 kB enabled
-I-cache 32 kB enabled
+    CPU0: P2020, Version: 2.1, (0x80e20021)
+    Core: E500, Version: 5.1, (0x80211051)
+    Clock Configuration:
+        CPU0:1200 MHz, CPU1:1200 MHz, 
+        CCB:600 MHz,
+        DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
+    L1: D-cache 32 kB enabled
+    I-cache 32 kB enabled
 
-<...snip ...>
+    <...snip ...>
 
-USB: USB2513 hub OK
-Hit any key to stop autoboot: 0
-```
+    USB: USB2513 hub OK
+    Hit any key to stop autoboot: 0
+    ```
 
 3. A command prompt appears so that you can run commands. Execute the following command:
 
-```
-run onie_bootcmd
-```
+    ```
+    run onie_bootcmd
+    ```
 
 4. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
 
-```
-Loading Open Network Install Environment  ...
-Platform: arm-as4610_54p-r0
-Version : 1.6.1.3
-WARNING: adjusting available memory to 30000000
-## Booting kernel from Legacy Image at ec040000  ...
-       Image Name:   as6701_32x.1.6.1.3
-       Image Type:   ARM Linux Multi-File Image (gzip compressed)
-       Data Size:    4456555 Bytes = 4.3 MiB
-       Load Address: 00000000
-       Entry Point:  00000000
-       Contents:
-          Image 0: 3738543 Bytes = 3.6 MiB
-          Image 1: 706440 Bytes = 689.9 KiB
-          Image 2: 11555 Bytes = 11.3 KiB
-   Verifying Checksum ... OK
-## Loading init Ramdisk from multi component Legacy Image at ec040000  ...
-## Flattened Device Tree from multi component Image at EC040000
-   Booting using the fdt at 0xec47d388
-   Uncompressing Multi-File Image ... OK
-   Loading Ramdisk to 2ff53000, end 2ffff788 ... OK
-   Loading Device Tree to 03ffa000, end 03fffd22 ... OK
+    ```
+    Loading Open Network Install Environment  ...
+    Platform: arm-as4610_54p-r0
+    Version : 1.6.1.3
+    WARNING: adjusting available memory to 30000000
+    ## Booting kernel from Legacy Image at ec040000  ...
+        Image Name:   as6701_32x.1.6.1.3
+        Image Type:   ARM Linux Multi-File Image (gzip compressed)
+        Data Size:    4456555 Bytes = 4.3 MiB
+        Load Address: 00000000
+        Entry Point:  00000000
+        Contents:
+            Image 0: 3738543 Bytes = 3.6 MiB
+            Image 1: 706440 Bytes = 689.9 KiB
+            Image 2: 11555 Bytes = 11.3 KiB
+    Verifying Checksum ... OK
+    ## Loading init Ramdisk from multi component Legacy Image at ec040000  ...
+    ## Flattened Device Tree from multi component Image at EC040000
+    Booting using the fdt at 0xec47d388
+    Uncompressing Multi-File Image ... OK
+    Loading Ramdisk to 2ff53000, end 2ffff788 ... OK
+    Loading Device Tree to 03ffa000, end 03fffd22 ... OK
 
-<...snip...>
+    <...snip...>
 
-ONIE: Starting ONIE Service Discovery
-ONIE: Executing installer: file://dev/sdb1/onie-installer-arm
-Verifying image checksum ... OK.
-Preparing image archive ... OK.
-Dumping image info ...
-Control File Contents
-=====================
-Description: Cumulus Linux
-OS-Release: 3.0.0-3b46bef-201509041633-build
-Architecture: arm
-Date: Fri, 27 May 2016 17:08:35 -0700
-Installer-Version: 1.2
-Platforms: accton_as4600_54t, accton_as6701_32x, accton_5652, accton_as5610_52x, dni_6448, dni_7448, dni_c7448n, cel_kennisis, cel_redstone, cel_smallstone, cumulus_p2020, quanta_lb9, quanta_ly2, quanta_ly2r, quanta_ly6_p2020
-Homepage: http://www.cumulusnetworks.com/
-```
+    ONIE: Starting ONIE Service Discovery
+    ONIE: Executing installer: file://dev/sdb1/onie-installer-arm
+    Verifying image checksum ... OK.
+    Preparing image archive ... OK.
+    Dumping image info ...
+    Control File Contents
+    =====================
+    Description: Cumulus Linux
+    OS-Release: 3.0.0-3b46bef-201509041633-build
+    Architecture: arm
+    Date: Fri, 27 May 2016 17:08:35 -0700
+    Installer-Version: 1.2
+    Platforms: accton_as4600_54t, accton_as6701_32x, accton_5652, accton_as5610_52x, dni_6448, dni_7448, dni_c7448n, cel_kennisis, cel_redstone, cel_smallstone, cumulus_p2020, quanta_lb9, quanta_ly2, quanta_ly2r, quanta_ly6_p2020
+    Homepage: http://www.cumulusnetworks.com/
+    ```
 
 5. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 

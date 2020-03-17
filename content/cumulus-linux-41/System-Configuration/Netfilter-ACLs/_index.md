@@ -675,6 +675,8 @@ The Trident3 ASIC is divided into 12 slices, organized into 4 groups for ACLs. E
 | Egress raw limit                 | 512                    | 0                      | 512                       | 0                         |
 | Egress limit with default rules  | 512 (28 default)       | 0                      | 512 (28 default)          | 0                         |
 
+Due to a hardware limitation on Trident3 switches, certain broadcast packets that are VXLAN decapsulated and sent to the CPU do not hit the normal INPUT chain ACL rules installed with `cl-acltool`. See [Caveats and Errata](Default-Cumulus-Linux-ACL-Configuration#caveats-and-errata).
+
 ### Broadcom Trident II+ Limits
 
 | Direction                        | Atomic Mode IPv4 Rules | Atomic Mode IPv6 Rules | Nonatomic Mode IPv4 Rules | Nonatomic Mode IPv6 Rules |
@@ -957,7 +959,7 @@ The examples here use the DSCP match criteria in combination with other IP, TCP,
 
 ### Check the Packet and Byte Counters for ACL Rules
 
-To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with `{{<exlink url="https://en.wikipedia.org/wiki/Mausezahn" text="mz">}}` (mausezahn), which can be installed on host servers or even on Cumulus Linux switches. After traffic is sent to validate the counters, they are matched on switch1 using `cl-acltool`.
+To verify the counters using the above example rules, first send test traffic matching the patterns through the network. The following example generates traffic with `{{<exlink url="http://www.netsniff-ng.org" text="mz">}}` (or `mausezahn`), which can be installed on host servers or even on Cumulus Linux switches. After traffic is sent to validate the counters, they are matched on switch1 using `cl-acltool`.
 
 {{%notice note%}}
 

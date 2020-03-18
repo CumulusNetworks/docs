@@ -24,7 +24,7 @@ The above example shows how traffic towards 192.168.10.1/32 is load balanced whe
 - When announcing the prefix to the spines, Leaf01 and Leaf02 generate a link bandwidth of two while Leaf03 and Leaf04 generate a link bandwidth of one.
 - Each spine advertises the 192.168.10.1/32 prefix to the border leafs with an accumulated bandwidth of 6. This combines the value of 2 from Leaf01, 2 from Leaf02, 1 from Leaf03 and 1 from Leaf04.
 
-Each spine has four UCMP routes:
+Now, each spine has four UCMP routes:
 
 - via Leaf01 with weight 2
 - via Leaf02 with weight 2
@@ -277,13 +277,13 @@ router bgp 65011
  ...
  ```
 
-### Link Bandwidth Outside a Domain
+### BGP Link Bandwidth Outside a Domain
 
-The link bandwidth extended community is automatically passed on with the prefix to eBGP peers. If you do not want to pass on the link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
+The BGP link bandwidth extended community is automatically passed on with the prefix to eBGP peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
 
 {{%notice note%}}
 
-You cannot disable just the link bandwidth extended community from being advertised to a neighbor; you either send all BGP extended communities, or none.
+You cannot disable just the BGP link bandwidth extended community from being advertised to a neighbor; you either send all BGP extended communities, or none.
 
 {{%/notice%}}
 
@@ -322,7 +322,7 @@ cumulus@switch:~$
 
 To show the extended community in a received or local route, run the NCLU `net show bgp` command or the vtysh `show bgp` command.
 
-The following example shows that a IPv4 unicast route is received with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is encoded in bytes-per-second and shown in Mbps per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
+The following example shows that an IPv4 unicast route is received with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is encoded in bytes-per-second and shown in Mbps per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
 
 ```
 cumulus@switch:~$ net show bgp ipv4 unicast 192.168.10.1/32

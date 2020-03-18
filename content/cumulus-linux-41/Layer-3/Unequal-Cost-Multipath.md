@@ -24,7 +24,7 @@ The above example shows how traffic towards 192.168.10.1/32 is load balanced whe
 - When announcing the prefix to the spines, Leaf01 and Leaf02 generate a link bandwidth of two while Leaf03 and Leaf04 generate a link bandwidth of one.
 - Each spine advertises the 192.168.10.1/32 prefix to the border leafs with an accumulated bandwidth of 6. This combines the value of 2 from Leaf01, 2 from Leaf02, 1 from Leaf03 and 1 from Leaf04.
 
-Each spine has four UCMP routes:
+Now, each spine has four UCMP routes:
 
 - via Leaf01 with weight 2
 - via Leaf02 with weight 2

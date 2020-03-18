@@ -21,7 +21,7 @@ This user guide provides in-depth documentation on the Cumulus Linux installatio
 
 Cumulus Linux 4.1 includes the NetQ agent and CLI, which is installed by default on the Cumulus Linux switch. Use NetQ to monitor and manage your data center network infrastructure and operational health. Refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq/" text="NetQ documentation" >}} for details.
 
-For information on new features, bug fixes, and known issues present in this release, refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360045174513-Cumulus-Linux-4-0-Release-Notes/" text="release notes" >}}.
+For information on new features, bug fixes, and known issues present in this release, refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360045174513-Cumulus-Linux-4-1-Release-Notes/" text="release notes" >}}.
 
 ### Open Source Contributions
 

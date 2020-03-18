@@ -54,6 +54,8 @@ The bandwidth used in the extended community has no impact on or relation to por
 
 {{%/notice%}}
 
+### Set the BGP Link Bandwidth Extended Community Against All Prefixes
+
 The following command examples show how you can set the BGP link bandwidth extended community against **all** prefixes.
 
 <details>
@@ -101,6 +103,8 @@ route-map ucmp-route-map permit 10
  set extcommunity bandwidth num-multipaths
 ...
 ```
+
+### Set the BGP Link Bandwidth Extended Community Against Certain Prefixes
 
 The following command examples show how you can set the BGP link bandwidth extended community for anycast servers in the 192.168/16 IP address range.
 
@@ -155,9 +159,9 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
-{{%notice note%}}
+### EVPN Configuration
 
-For EVPN configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration to set the BGP link bandwidth extended community against **all** prefixes.
+For EVPN configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
 
 <details>
 
@@ -206,8 +210,6 @@ route-map ucmp-route-map permit 10
  set extcommunity bandwidth num-multipaths
 ...
 ```
-
-{{%/notice%}}
 
 ## Control UCMP on the Receiving Router
 

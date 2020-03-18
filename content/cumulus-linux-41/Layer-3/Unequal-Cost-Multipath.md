@@ -277,13 +277,13 @@ router bgp 65011
  ...
  ```
 
-### Link Bandwidth Outside a Domain
+### BGP Link Bandwidth Outside a Domain
 
-The link bandwidth extended community is automatically passed on with the prefix to eBGP peers. If you do not want to pass on the link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
+The BGP link bandwidth extended community is automatically passed on with the prefix to eBGP peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
 
 {{%notice note%}}
 
-You cannot disable just the link bandwidth extended community from being advertised to a neighbor; you either send all BGP extended communities, or none.
+You cannot disable just the BGP link bandwidth extended community from being advertised to a neighbor; you either send all BGP extended communities, or none.
 
 {{%/notice%}}
 
@@ -322,7 +322,7 @@ cumulus@switch:~$
 
 To show the extended community in a received or local route, run the NCLU `net show bgp` command or the vtysh `show bgp` command.
 
-The following example shows that a IPv4 unicast route is received with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is encoded in bytes-per-second and shown in Mbps per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
+The following example shows that an IPv4 unicast route is received with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is encoded in bytes-per-second and shown in Mbps per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
 
 ```
 cumulus@switch:~$ net show bgp ipv4 unicast 192.168.10.1/32

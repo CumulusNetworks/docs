@@ -99,7 +99,7 @@ VXLAN SVI interfaces.
 To disable the VXLAN routing capability on a Trident II+ or Trident3
 switch, set the `vxlan_routing_overlay.profile` field to *disable*.
 
-### Tomahawk and Tomahawk+
+## Tomahawk and Tomahawk+
 
 The Tomahawk and Tomahawk+ ASICs do not support RIOT natively; you must
 configure the switch ports for VXLAN routing to use internal loopback
@@ -130,15 +130,12 @@ To configure one or more switch ports for loopback mode, edit the
 In the example below, swp8 and swp9 are configured for loopback mode:
 
     cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-     
     ...
      
     7=4x10G
     8=loopback
     9=loopback
     10=100G
-     
-     
     ...
 
 After you save your changes to the `ports.conf` file,
@@ -153,6 +150,10 @@ you cannot use a bridge in
 [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/).
 
 {{%/notice%}}
+
+### Tomahawk+ and 25G Ports for Loopback
+
+For VXLAN routing on a switch with the Tomahawk+ ASIC, if you use 25G ports as the internal loopback, you must configure all four ports in the same port group.
 
 ## VXLAN Routing Data Plane and Broadcom Trident II Platforms
 

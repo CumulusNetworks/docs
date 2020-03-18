@@ -17,5 +17,5 @@ The next step is to identify which hypervisor you want to use. NetQ supports KVM
 
 Click the hypervisor you want to use to continue installation:
 
-- {{ <link url="KVM-Setup" text="Use KVM">}}
-- {{ <link url="VMW-Setup" text="Use VMware">}}
+- {{<link title="Setup Your Virtual Machine" text="Use KVM">}}
+- {{<link title="Setup Your Virtual Machine" text="Use VMware">}}

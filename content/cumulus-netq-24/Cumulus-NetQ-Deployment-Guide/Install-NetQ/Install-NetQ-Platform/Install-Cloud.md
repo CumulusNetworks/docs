@@ -1,5 +1,5 @@
 ---
-title: Deploy NetQ as a Cloud Installation
+title: Install NetQ as a Cloud Deployment
 author: Cumulus Networks
 weight: 112
 aliases:

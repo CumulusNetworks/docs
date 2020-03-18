@@ -1,4 +1,5 @@
-{{ if .Page.Params.kvm }}
+{{- if eq (.Get "hypervisor") "kvm" -}}
+
 Open your hypervisor and set up your VM.  
 
 You can use this example for reference or use your own hypervisor instructions.
@@ -52,6 +53,8 @@ Replace network bridge value (br0 in the above example) with the name of the (pr
     ```
     $ virsh console netq_ts
     ```
-{{ else }}
+{{ end }} 
+{{- if eq (.Get "hypervisor") "vmware" -}}
 vmware setup
-{{ end }}
+{{end}}
+

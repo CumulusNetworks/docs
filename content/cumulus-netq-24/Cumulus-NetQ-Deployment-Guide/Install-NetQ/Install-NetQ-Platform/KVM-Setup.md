@@ -13,27 +13,28 @@ cluster: false
 vm: true
 kvm: true
 ---
+
 Follow these steps to setup and configure your VM:
 
 1. Verify that your system meets the VM requirements.
 
-    {{< netq-install/vm-reqs >}}
+    {{<netq-install/vm-reqs>}}
 
 2. Confirm that the needed ports are open for communications.
 
-    {{< netq-install/port-reqs >}}
+    {{<netq-install/port-reqs>}}
 
 3. Download the NetQ Platform image.
 
-    {{< netq-install/platform-image >}}
+    {{<netq-install/platform-image>}}
 
 4. Setup and configure your VM.
 
-    {{< netq-install/vm-setup >}}
+    {{<netq-install/vm-setup hypervisor="kvm">}}
 
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
-    {{< netq-install/verify-cmd >}}
+    {{<netq-install/verify-cmd>}}
 
 5. Run the Bootstrap CLI on the platform *for the interface you defined above* (eth0 or eth1 for example). This example uses the eth0 interface.
 

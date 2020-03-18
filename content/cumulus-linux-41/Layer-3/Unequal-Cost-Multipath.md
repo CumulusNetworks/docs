@@ -54,7 +54,7 @@ The bandwidth used in the extended community has no impact on or relation to por
 
 {{%/notice%}}
 
-The following command examples show how you can set the BGP link bandwidth extended community against all prefixes.
+The following command examples show how you can set the BGP link bandwidth extended community against **all** prefixes.
 
 <details>
 
@@ -96,7 +96,7 @@ The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` fi
 ...
 address-family ipv4 unicast
  neighbor 10.1.1.1 route-map ucmp-route-map out
-...
+!
 route-map ucmp-route-map permit 10
  set extcommunity bandwidth num-multipaths
 ...
@@ -147,7 +147,7 @@ The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` fi
 ...
 address-family ipv4 unicast
  neighbor 10.1.1.1 route-map ucmp-route-map out
-...
+!
 ip prefix-list anycast-ip permit 192.168.0.0/16 le 32
 route-map ucmp-route-map permit 10
  match ip address prefix-list anycast-ip
@@ -157,7 +157,55 @@ route-map ucmp-route-map permit 10
 
 {{%notice note%}}
 
-For EVPN configuration, make sure that you activate the commands under the EVPN address-family.
+For EVPN configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration to set the BGP link bandwidth extended community against **all** prefixes.
+
+<details>
+
+<summary>NCLU Commands</summary>
+
+```
+cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 set extcommunity bandwidth num-multipaths
+cumulus@leaf01:~$ net add bgp l2vpn evpn advertise ipv4 unicast route-map ucmp-route-map
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+</details>
+
+<details>
+
+<summary>vtysh Commands</summary>
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# route-map ucmp-route-map permit 10
+leaf01(config-route-map)# set extcommunity bandwidth num-multipaths
+leaf01(config-route-map)# router bgp 65011
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# advertise ipv4 unicast route-map ucmp-route-map
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+</details>
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+ address-family l2vpn evpn
+  advertise ipv4 unicast route-map ucmp-route-map
+ exit-address-family
+!
+ip prefix-list anycast-ip permit 192.168.0.0/16 le 32
+route-map ucmp-route-map permit 10
+ match ip address prefix-list anycast-ip
+ set extcommunity bandwidth num-multipaths
+...
+```
 
 {{%/notice%}}
 
@@ -220,11 +268,11 @@ router bgp 65011
   neighbor swp3 interface peer-group LEAF
   neighbor swp4 interface peer-group LEAF
   bgp bestpath bandwidth skip-missing
-
+!
   address-family ipv4 unicast
     network 10.0.0.1/32
   exit-address-family
- !
+ ...
  ```
 
 ### Link Bandwidth Outside a Domain

@@ -58,7 +58,9 @@ Other options in the NAT configuration section of the `switchd.conf` file, such 
 
 ### Configure Static NAT
 
-For static NAT, create a rule that matches a source or destination IP address and translate for external use. For static PAT, create a rule that matches a source or destination IP address together with the layer 4 port and translate for external use.
+For static **NAT**, create a rule that matches a source or destination IP address and translates the IP address to a public IP address.
+
+For static **PAT**, create a rule that matches a source or destination IP address together with the layer 4 port and translates the IP address and port to a public IP address and port.
 
 For Mellanox Spectrum-2 switches, you can include the outgoing or incoming interface.
 
@@ -196,7 +198,7 @@ nat.dynamic_enable = TRUE
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-#### Dynamic NAT Configuration options
+**Additional Dynamic NAT Settings**
 
 The `/etc/cumulus/switchd.conf` file includes the following configuration options for dynamic NAT. Only change these options if dynamic NAT is enabled.
 
@@ -210,9 +212,9 @@ After you change any of the dynamic NAT configuration options, restart `switchd`
 
 ### Configure Dynamic NAT
 
-For dynamic NAT, create a rule that matches a IP address in CIDR notation and translates the address to a public IP address or IP address range.
+For dynamic **NAT**, create a rule that matches a IP address in CIDR notation and translates the address to a public IP address or IP address range.
 
-For dynamic PAT, create a rule that matches an IP address in CIDR notation and translates the address to a public IP address and port range or an IP address range and port range. You can also match a IP address in CIDR notation and a port.
+For dynamic **PAT**, create a rule that matches an IP address in CIDR notation and translates the address to a public IP address and port range or an IP address range and port range. You can also match on an IP address in CIDR notation and port.
 
 For Mellanox Spectrum-2 switches, you can include the outgoing or incoming interface in the rule. See the examples below.
 
@@ -360,7 +362,7 @@ Chain POSTROUTING (policy ACCEPT 27 packets, 3249 bytes)
 
 ## Show Conntrack Flows
 
-To see the currently active connection tracking (conntrack) flows, check the contents of /proc/net/nf_conntrack. The hardware offloaded flows contain [OFFLOAD] in their output.
+To see the currently active connection tracking (conntrack) flows, check the contents of /proc/net/nf_conntrack. The hardware offloaded flows contain `[OFFLOAD]` in the output.
 
 ```
 cumulus@switch:~$ sudo cat /proc/net/nf_conntrack

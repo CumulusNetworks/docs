@@ -281,12 +281,6 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
     <summary>Optional: Prepare a USB Drive inside Cumulus Linux</summary>
 
-    {{%notice warning%}}
-
-    Use caution when performing the actions below; it is possible to severely damage your system with the following utilities.
-
-    {{%/notice%}}
-
     1. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine on which device your USB drive can be found. For example, `sudo fdisk -l /dev/sdb`.
 
         These instructions assume your USB drive is the `/dev/sdb` device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the `/dev/sda` device. Make sure to modify the commands below to use the proper device for your USB drive.
@@ -330,11 +324,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
     You can also use any of the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes mentioned here">}}.
 
-    {{%notice warning%}}
-
     When using a Mac or Windows computer to rename the installation file, the file extension might still be present. Make sure to remove the file extension otherwise ONIE is not able to detect the file.
-
-    {{%/notice%}}
 
 4. Insert the USB drive into the switch, then continue with the appropriate instructions below for your x86 or ARM platform.
 
@@ -349,11 +339,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
-    {{%notice note%}}
-
     SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
-
-    {{%/notice%}}
 
 2. Monitor the console and select the ONIE option from the first GRUB screen shown below.
 
@@ -412,11 +398,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
-    {{%notice note%}}
-
-SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
-
-{{%/notice%}}
+    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
 2. Interrupt the normal boot process before the countdown (shown below) completes. Press any key to stop the autoboot.
 

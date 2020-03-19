@@ -80,9 +80,9 @@ def build_rn_markdown(json_file, version, product, file_type):
 
     for bug in json_file:
         if(file_type == "affects"):
-            output.append("| " + bug["ticket"] + " | " + sanatize_rn(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + ", ".join(bug["fixed_versions"]) + "|")
+            output.append("| [" + bug["ticket"] + "](#" + bug["ticket"] + ") | " + sanatize_rn(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + ", ".join(bug["fixed_versions"]) + "|")
         else:
-            output.append("| " + bug["ticket"] + " | " + sanatize_rn(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + "|")
+            output.append("| [" + bug["ticket"] + "](#" + bug["ticket"] + ") | " + sanatize_rn(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + "|")
 
         output.append("\n")
     

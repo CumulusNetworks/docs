@@ -8,7 +8,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362976
 pageID: 8362976
 ---
-Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer  address, such as a MAC address, associated with a given network layer  address. ARP is defined by [RFC 826](https://tools.ietf.org/html/rfc826).
+Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer  address, such as a MAC address, associated with a given network layer  address. ARP is defined by {{<exlink url="https://tools.ietf.org/html/rfc826" text="RFC 826">}}.
 
 The  Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior in a few ways because Cumulus Linux is an operating system for routers/switches rather than servers. This chapter describes the differences in ARP behavior, why the changes were made, where the changes were implemented, and how to change port-specific values.
 
@@ -22,7 +22,7 @@ Debian has these five tunable ARP parameters:
 - `arp_ignore`
 - `arp_notify`
 
-These parameters are described in the [Linux documentation](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt), but snippets for each parameter description are included in the table below and are highlighted in *italics*.
+These parameters are described in the {{<exlink url="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt" text="Linux documentation">}}, but snippets for each parameter description are included in the table below and are highlighted in *italics*.
 
 In a standard Debian installation, all of these ARP parameters are set to *0*, leaving the router as wide open and unrestricted as possible. These settings are based on the assertion made long ago that Linux IP addresses are a property of the device, not a property of an individual interface. Thus an ARP request or reply could be sent on one interface containing an address residing on a different interface. While this unrestricted behavior makes sense for a server, it is not the normal behavior of a router. Routers expect the MAC/IP address mappings supplied by ARP to match the physical topology, with the IP addresses matching the interfaces on which they reside. With these tunable ARP parameters, Cumulus Linux has been able to specify the behavior to match the expectations of a router.
 
@@ -32,10 +32,10 @@ The ARP tunable parameters are set to the following values by default in Cumulus
 
 <table>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -209,7 +209,7 @@ iface swp1
     post-up echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp
 ```
 
-If you're running two interfaces in the same broadcast domain, which is typically seen when using [VRR](../../Layer-2/Virtual-Router-Redundancy-VRR-and-VRRP/), as it creates a "-v0" interface in the same broadcast domain, make sure to use `sysctl` or `sysfs` to let the kernel know, so that both interfaces do not respond with proxy ARP replies. To do so, set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface. Continuing with the previous example:
+If you're running two interfaces in the same broadcast domain, which is typically seen when using {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}, as it creates a "-v0" interface in the same broadcast domain, make sure to use `sysctl` or `sysfs` to let the kernel know, so that both interfaces do not respond with proxy ARP replies. To do so, set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface. Continuing with the previous example:
 
 ```
 cumulus@switch:~$ net add interface swp1 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id"

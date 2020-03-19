@@ -39,13 +39,13 @@ characteristics:
   binding sockets to the VRF device or passing the `ifindex`
   using `cmsg`. By default, applications on the switch run against the
   default VRF. Services started by `systemd` run in the default VRF
-  unless the VRF instance is used. 
-  If [management VRF](../Management-VRF/) is enabled, 
+  unless the VRF instance is used.
+  If {{<link url="Management-VRF" text="management VRF">}} is enabled, 
   logins to the switch default to the management VRF. This is a convenience for
   users to not have to specify management VRF for each command.
 - Listen sockets used by services are VRF-global by default unless the
   application is configured to use a more limited scope - for example,
-  read about [services in the management VRF](../Management-VRF/#run-services-within-the-management-vrf).
+  read about {{<link url="Management-VRF#run-services-within-the-management-vrf" text="services in the management VRF">}}.
   Connected sockets (like TCP) are then bound to the VRF domain in
   which the connection originates. The kernel provides a sysctl that
   allows a single instance to accept connections over all VRFs. For
@@ -71,7 +71,7 @@ or OSPFv2 - for each routing table.
 
 Each routing table is called a *VRF table*, and has its own table ID.
 You configure VRF using
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/),
+{{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}},
 then place the layer 3 interface in the VRF. You can have a maximum of
 255 VRFs on a switch.
 
@@ -84,7 +84,7 @@ interfaces. Keep in mind the following for a VRF table:
   when the kernel forwards the packet.
 - Names for VRF tables can be up to 15 characters. However, you
   **cannot** use the name *mgmt*, as this name can **only** be used
-  for [management VRF](../Management-VRF/).
+  for {{<link url="Management-VRF" text="management VRF">}}.
 
 To configure a VRF, run:
 
@@ -214,7 +214,7 @@ running in the default VRF owns the port across all VRFs - that is, it
 is VRF global. `systemd`-based services are stopped when the VRF is
 deleted and started when the VRF is created. For example, when you
 restart networking or run an `ifdown`/`ifup` sequence - as mentioned above. The
-[management VRF chapter](../Management-VRF/#run-services-within-the-management-vrf)
+{{<link url="Management-VRF#run-services-within-the-management-vrf" text="management VRF chapter">}}
 details how to do this.
 
 In Cumulus Linux, the following services work with VRF instances:
@@ -287,13 +287,13 @@ of static route leaking. Dynamic route leaking is easier to configure,
 easier to maintain (static route leaking configuration requires changes
 when you want to leak new routes), and supports route maps for better
 control. See
-[Configure Dynamic Route Leaking](#configure-dynamic-route-leaking).
+{{<link url="#configure-dynamic-route-leaking" text="Configure Dynamic Route Leaking">}}.
 
 {{%/notice%}}
 
 To configure static route leaking in a non-EVPN configuration, follow
 the steps below. To configure static route leaking with EVPN, see
-[Configure Static Route Leaking with EVPN](#configure-static-route-leaking-with-evpn).
+{{<link url="#configure-static-route-leaking-with-evpn" text="Configure Static Route Leaking with EVPN">}}.
 
 1.  In the `/etc/cumulus/switchd.conf` file, change the
     `vrf_route_leak_enable` option to `TRUE` and uncomment the line.
@@ -311,7 +311,7 @@ the steps below. To configure static route leaking with EVPN, see
 
 Set only the `vrf_route_leak_enable` option to `TRUE` for *static*
 VRF route leaking (make sure `vrf_route_leak_enable_dynamic` is set to
-_false_, as that is used only for [dynamic route leaking](#configure-dynamic-route-leaking).
+_false_, as that is used only for {{<link url="#configure-dynamic-route-leaking" text="dynamic route leaking">}}.
 
     {{%/notice%}}
 
@@ -338,7 +338,7 @@ You cannot leak the default route.
 To configure static route leaking with EVPN symmetric routing:
 
 1.  Enable VRF route leaking, as shown in step 1 of
-    [configure-static-routing](#configure-static-route-leaking) above.
+    {{<link url="#configure-static-route-leaking" text="configure-static-routing">}} above.
 
 2.  Configure static route leaking for EVPN. The following commands
     provide examples.
@@ -410,7 +410,7 @@ between a pair of VRFs.
   shared service VRF. Create another VRF for shared services.
 - Broadcom switches have certain limitations when leaking routes
   between the default VRF and non-default VRFs.
-- On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), only leak the specific routes you need from the default VRF; do not include the VTEP routes or filter out the VTEP routes with a route filter.
+- On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, only leak the specific routes you need from the default VRF; do not include the VTEP routes or filter out the VTEP routes with a route filter.
 
 {{%/notice%}}
 
@@ -430,7 +430,7 @@ between a pair of VRFs.
 
 Set only the `vrf_route_leak_enable_dynamic` option to `TRUE` for *dynamic*
 VRF route leaking (make sure `vrf_route_leak_enable` is set to
-_false_, as that is used only for [static route leaking](#configure-static-route-leaking).
+_false_, as that is used only for {{<link url="#configure-static-route-leaking" text="static route leaking">}}.
 
     {{%/notice%}}
 
@@ -580,12 +580,12 @@ cause issues when used with VRF route leaking in FRR.
 ## FRRouting Operation in a VRF
 
 In Cumulus Linux 3.5 and later,
-[BGP](../Border-Gateway-Protocol-BGP/), [OSPFv2](../Open-Shortest-Path-First-OSPF/)
-and [static routing](../Routing/) (IPv4 and IPv6) are supported within a VRF
+{{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, {{<link url="Open-Shortest-Path-First-OSPF" text="OSPFv2">}}
+and {{<link url="Routing" text="static routing">}} (IPv4 and IPv6) are supported within a VRF
 context. Various FRRouting routing constructs, such as routing tables, next hops,
 router-id, and related processing are also VRF-aware.
 
-[FRRouting](../FRRouting-Overview/) learns of VRFs
+{{<link url="FRRouting-Overview" text="FRRouting">}} learns of VRFs
 provisioned on the system as well as interface attachment to a VRF
 through notifications from the kernel.
 
@@ -599,7 +599,7 @@ VRF neighbors are bound to the VRF, which is how you can have
 overlapping address spaces in different VRFs. Each VRF can have its own
 parameters, such as address families and redistribution. Incoming
 connections rely on the Linux kernel for VRF-global sockets. BGP
-neighbors can be tracked using [BFD](../Bidirectional-Forwarding-Detection-BFD/),
+neighbors can be tracked using {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}},
 both for single and multiple hops. You can configure multiple BGP
 instances, associating each with a VRF.
 
@@ -609,7 +609,7 @@ and physical interfaces. The VRF supports types 1 through 5 (ABR/ASBR -
 external LSAs) and types 9 through 11 (opaque LSAs) link state
 advertisements, redistributing other routing protocols, connected and
 static routes, and route maps. As with BGP, you can track OSPF neighbors
-with [BFD](../Bidirectional-Forwarding-Detection-BFD/).
+with {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
 
 {{%notice note%}}
 
@@ -635,7 +635,7 @@ but they become active only when configured with NCLU.
   for this configuration to be accepted - either already defined
   through `/etc/network/interfaces` or pre-provisioned in FRRouting.
   If you want to leak a static route in a VRF, see the
-  [note above](#configure-static-route-leaking).
+  {{<link url="#configure-static-route-leaking" text="note above">}}.
 
 ### Example BGP and OSPF Configurations
 
@@ -1139,7 +1139,7 @@ output.
 
 ## BGP Unnumbered Interfaces with VRF
 
-[BGP unnumbered interface configurations](../Border-Gateway-Protocol-BGP/)
+{{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered-interfaces" text="BGP unnumbered interface configurations">}}
 are supported with VRF. In BGP unnumbered, there are no addresses on any
 interface. However, debugging tools like `traceroute` need at least a
 single IP address per node as the node's source IP address. Typically,
@@ -1484,9 +1484,9 @@ To run `traceroute` on a VRF from the default VRF, run the
   under the BGP instance using `bgp router-id`. If both are specified,
   the one under the BGP instance overrides the one provided outside BGP.
 - You cannot configure
-  [EVPN address families](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/)
+  {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN address families">}}
   within a VRF.
-- When [EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/)
+- When {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}
   is configured, FRRouting supports only a single autonomous system number (ASN) for
   all VRFs configured with BGP on the system.
 - When you take down a VRF using `ifdown`, Cumulus Linux removes all routes associated with that VRF from FRR but it does *not* remove the routes from the kernel.

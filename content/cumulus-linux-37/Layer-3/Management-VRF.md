@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362940
 pageID: 8362940
 ---
-*Management VRF* is a subset of [VRF](../Virtual-Routing-and-Forwarding-VRF/) (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For all VRFs, the *main* routing table is the default table for all of the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
+*Management VRF* is a subset of {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}} (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For all VRFs, the *main* routing table is the default table for all of the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
 
 Cumulus Linux only supports eth0 (or eth1, depending on the switch platform) for *out-of-band management*. The Ethernet ports are software-only ports that are not hardware accelerated by `switchd`. VLAN subinterfaces, bonds, bridges, and the front panel switch ports are not supported as OOB management interfaces.
 
@@ -94,13 +94,13 @@ You can run a variety of services within the management VRF instead of the defau
 - ssh
 - zabbix-agent
 
-When you run a service inside the management VRF, that service runs **only** on eth0; it no longer runs on any switch port. However, you can keep the service running in the default VRF with a wildcard for [agentAddress](../../Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/#configure-snmp-manually). This enables the service to run on **all** interfaces no matter which VRF, so you don't have to run a different process for each VRF.
+When you run a service inside the management VRF, that service runs **only** on eth0; it no longer runs on any switch port. However, you can keep the service running in the default VRF with a wildcard for {{<link url="Simple-Network-Management-Protocol-SNMP#configure-snmp-manually" text="agentAddress">}}. This enables the service to run on **all** interfaces no matter which VRF, so you don't have to run a different process for each VRF.
 
 Some applications can work across all VRFs. The kernel provides a `sysctl` that allows a single instance to accept connections over all VRFs. For TCP, connected sockets are bound to the VRF on which the first packet is received. This `sysctl` is enabled for Cumulus Linux.
 
-To enable a service to run in the management VRF, do the following. These steps use the NTP service, but you can use any of the services listed above, except for `dhcrelay`, which is discussed [here](../../Layer-1-and-Switch-Ports/DHCP-Relays/#configure-multiple-dhcp-relays).
+To enable a service to run in the management VRF, do the following. These steps use the NTP service, but you can use any of the services listed above, except for `dhcrelay`, which is discussed {{<link url="DHCP-Relays/#configure-multiple-dhcp-relays" text="here">}}.
 
-1. Configure the management VRF as described in the [Enabling Management VRF section](#enable-management-vrf) above.
+1. Configure the management VRF as described in the {{<link url="#enable-management-vrf" text="Enabling Management VRF section">}} above.
 
 2. If NTP is running, stop the service:
 
@@ -178,7 +178,7 @@ Or:
 cumulus@switch:~$ traceroute -s <source-ip> <destination-ip>
 ```
 
-For additional information on using `ping` and `traceroute`, see  [Network Troubleshooting](../../Monitoring-and-Troubleshooting/Network-Troubleshooting/).
+For additional information on using `ping` and `traceroute`, see {{<link url="Network-Troubleshooting">}}.
 
 ### Run Services as a Non-root User
 
@@ -300,11 +300,11 @@ cumulus@switch:~$ net show route vrf mgmt <addr>
 
 ## mgmt Interface Class
 
-In `ifupdown2`, [interface classes](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#ifupdown2-interface-classes) are used to create a user-defined grouping for interfaces. The special class *mgmt* is available to separate the management interfaces of the switch from the data interfaces. This allows you to manage the data interfaces by default using `ifupdown2` commands. Performing operations on the *mgmt* interfaces requires specifying the `--allow-mgmt` option, which prevents inadvertent outages on the management interfaces. Cumulus Linux by default brings up all interfaces in both the *auto* (default) class and the *mgmt* interface class when the switch boots.
+In `ifupdown2`, {{<link url="Interface-Configuration-and-Management#ifupdown2-interface-classes" text="interface classes">}} are used to create a user-defined grouping for interfaces. The special class *mgmt* is available to separate the management interfaces of the switch from the data interfaces. This allows you to manage the data interfaces by default using `ifupdown2` commands. Performing operations on the *mgmt* interfaces requires specifying the `--allow-mgmt` option, which prevents inadvertent outages on the management interfaces. Cumulus Linux by default brings up all interfaces in both the *auto* (default) class and the *mgmt* interface class when the switch boots.
 
 {{%notice warning%}}
 
-The management VRF interface class is not supported if you are configuring Cumulus Linux using [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU).
+The management VRF interface class is not supported if you are configuring Cumulus Linux using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
 
 {{%/notice%}}
 

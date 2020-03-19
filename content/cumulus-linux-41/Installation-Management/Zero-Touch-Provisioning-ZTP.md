@@ -142,7 +142,7 @@ Header                        Value                 Example
 ------                        -----                 -------
 User-Agent                                          CumulusLinux-AutoProvision/0.4
 CUMULUS-ARCH                  CPU architecture      x86_64
-CUMULUS-BUILD                                       4.1.0-5c6829a-201309251712-final
+CUMULUS-BUILD                                       4.1.0
 CUMULUS-LICENSE-INSTALLED     Either 0 or 1         1
 CUMULUS-MANUFACTURER                                odm
 CUMULUS-PRODUCTNAME                                 switch_model

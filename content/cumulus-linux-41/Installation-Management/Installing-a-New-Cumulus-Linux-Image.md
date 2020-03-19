@@ -374,7 +374,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     Control File Contents
     =====================
     Description: Cumulus Linux
-    OS-Release:  4.1.0~1571178373.763fd151
+    OS-Release:  4.1.0
     Architecture: amd64
     Date:  Fri, 22 November 2019 17:10:30 -0700
     Installer-Version:  1.2
@@ -461,7 +461,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     Control File Contents
     =====================
     Description: Cumulus Linux
-    OS-Release: 4.1.0-3b46bef-201509041633-build
+    OS-Release: 4.1.0
     Architecture: arm
     Date: Fri, 13 March 2020 17:08:35 -0700
     Installer-Version: 1.2

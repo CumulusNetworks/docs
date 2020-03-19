@@ -82,7 +82,7 @@ iface mgmt
 **/etc/frr/frr.conf**
 
 ```
-frr version 4.0+cl3u9
+frr version 7.0+cl4u3
 frr defaults datacenter
 hostname r1
 username cumulus nopassword
@@ -156,7 +156,7 @@ iface mgmt
 **/etc/frr/frr.conf**
 
 ```
-frr version 4.0+cl3u9
+frr version 7.0+cl4u3
 frr defaults datacenter
 hostname r2
 username cumulus nopassword
@@ -232,7 +232,7 @@ iface mgmt
 **/etc/frr/frr.conf**
 
 ```
-frr version 4.0+cl3u9
+frr version 7.0+cl4u3
 frr defaults datacenter
 hostname r3
 username cumulus nopassword
@@ -303,7 +303,7 @@ iface mgmt
 **/etc/frr/frr.conf**
 
 ```
-frr version 4.0+cl3u9
+frr version 7.0+cl4u3
 frr defaults datacenter
 hostname r4
 username cumulus nopassword
@@ -378,7 +378,7 @@ iface mgmt
 **/etc/frr/frr.conf**
 
 ```
-frr version 4.0+cl3u9
+frr version 7.0+cl4u3
 frr defaults datacenter
 hostname r5
 username cumulus nopassword

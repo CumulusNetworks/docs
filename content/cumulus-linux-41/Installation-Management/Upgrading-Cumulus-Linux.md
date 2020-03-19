@@ -286,7 +286,7 @@ For networks with MLAG deployments, Cumulus Networks only supports upgrading to 
 4. Run the `onie-install -a -i <image-location>` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.0.0-mlx-amd64.bin
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
     ```
 
 5. Reboot the switch:

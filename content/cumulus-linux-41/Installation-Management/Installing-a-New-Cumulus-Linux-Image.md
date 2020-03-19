@@ -368,8 +368,8 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     ```
     ONIE: OS Install Mode  ...
 
-    Version : quanta_common_rangeley-2014.05.05-6919d98-201410171013
-    Build  Date: 2014-10-17T10:13+0800
+    Version : quanta_common_rangeley-2019.05.05-6919d98-201410171013
+    Build  Date: 2019-10-17T10:13+0800
     Info: Mounting kernel filesystems...  done.
     Info: Mounting LABEL=ONIE-BOOT on /mnt/onie-boot  ...
     initializing eth0...
@@ -388,11 +388,11 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     Control File Contents
     =====================
     Description: Cumulus Linux
-    OS-Release:  4.0.0~1571178373.763fd151
+    OS-Release:  4.1.0~1571178373.763fd151
     Architecture: amd64
     Date:  Fri, 22 November 2019 17:10:30 -0700
     Installer-Version:  1.2
-    Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley 
+    Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley
 
     Homepage: http://www.cumulusnetworks.com/
     ```
@@ -414,9 +414,9 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
     {{%notice note%}}
 
-    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
+SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
-    {{%/notice%}}
+{{%/notice%}}
 
 2. Interrupt the normal boot process before the countdown (shown below) completes. Press any key to stop the autoboot.
 
@@ -426,7 +426,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     CPU0: P2020, Version: 2.1, (0x80e20021)
     Core: E500, Version: 5.1, (0x80211051)
     Clock Configuration:
-        CPU0:1200 MHz, CPU1:1200 MHz, 
+        CPU0:1200 MHz, CPU1:1200 MHz,
         CCB:600 MHz,
         DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
     L1: D-cache 32 kB enabled
@@ -479,9 +479,9 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     Control File Contents
     =====================
     Description: Cumulus Linux
-    OS-Release: 3.0.0-3b46bef-201509041633-build
+    OS-Release: 4.1.0-3b46bef-201509041633-build
     Architecture: arm
-    Date: Fri, 27 May 2016 17:08:35 -0700
+    Date: Fri, 13 March 2020 17:08:35 -0700
     Installer-Version: 1.2
     Platforms: accton_as4600_54t, accton_as6701_32x, accton_5652, accton_as5610_52x, dni_6448, dni_7448, dni_c7448n, cel_kennisis, cel_redstone, cel_smallstone, cumulus_p2020, quanta_lb9, quanta_ly2, quanta_ly2r, quanta_ly6_p2020
     Homepage: http://www.cumulusnetworks.com/

@@ -9,7 +9,7 @@ toc: 3
 ---
 {{%notice note%}}
 
-In Cumulus Linux 4.0, management VRF is enabled by default. This is a change from earlier Cumulus Linux releases, where management VRF is *disabled* by default. Be sure to update any configuration scripts, if necessary.
+In Cumulus Linux 4.0 and later, management VRF is enabled by default. This is a change from earlier Cumulus Linux releases, where management VRF is *disabled* by default. Be sure to update any configuration scripts, if necessary.
 
 {{%/notice%}}
 

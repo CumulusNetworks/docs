@@ -383,8 +383,8 @@ tacplus-auth: error connecting to 10.0.3.195:49 to request authorization for net
 tacplus-auth: 192.168.3.189:49 authorized command net
 tacplus-auth: net authorized, executing
 DISTRIB_ID="Cumulus Linux"
-DISTRIB_RELEASE=4.0.0
-DISTRIB_DESCRIPTION="Cumulus Linux 4.0.0"
+DISTRIB_RELEASE=4.1.0
+DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
 ```
 
 To disable debugging:

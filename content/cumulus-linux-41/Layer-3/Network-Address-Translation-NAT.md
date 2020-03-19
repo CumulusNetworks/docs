@@ -362,7 +362,7 @@ Chain POSTROUTING (policy ACCEPT 27 packets, 3249 bytes)
 
 ## Show Conntrack Flows
 
-To see the currently active connection tracking (conntrack) flows, check the contents of /proc/net/nf_conntrack. The hardware offloaded flows contain `[OFFLOAD]` in the output.
+To see the currently active connection tracking (conntrack) flows, run the `sudo cat /proc/net/nf_conntrack` command. The hardware offloaded flows contain `[OFFLOAD]` in the output.
 
 ```
 cumulus@switch:~$ sudo cat /proc/net/nf_conntrack

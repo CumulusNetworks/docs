@@ -100,13 +100,6 @@ When building rules to affect the flow of traffic, the individual chains can be 
 
 - **Filter** classifies traffic or filters traffic
 - **NAT** applies Network Address Translation rules
-
-    {{%notice note%}}
-
-Cumulus Linux does not support NAT.
-
-    {{%/notice%}}
-
 - **Mangle** alters packets as they move through the switch
 
 Each table has a set of default chains that can be used to modify or inspect packets at different points of the path through the switch. Chains contain the individual rules to influence traffic. Each table and the default chains they support are shown below. Tables and chains in green are supported by Cumulus Linux, those in red are not supported (that is, they are not hardware accelerated) at this time.

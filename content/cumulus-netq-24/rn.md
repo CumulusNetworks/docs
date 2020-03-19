@@ -1,0 +1,45 @@
+---
+title: Cumulus NetQ 2.4 Release Notes
+author: Cumulus Networks
+weight: -30
+cascade:
+    product: <function product_string at 0x10f402dc0>
+    version: "<function version_string at 0x10f402e50>"
+toc: 1
+---
+
+
+## 2.4.1 Release Notes
+### Open issues in 2.4.1
+
+|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|---	        |---	        |---	    |---	                |
+| NETQ-4927 | Admin UI: If the Master Installation phase fails during NetQ installation, refreshing the page causes the error log to be lost. On failure, download the error log, then run netq bootstrap reset followed by netq bootstrap master interface on the node before restarting the installation process. | 2.4.1 | |
+| NETQ-3451 | NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session. | 2.3.0-2.4.1 | |
+
+### Fixed issues in 2.4.1
+|  Bug ID 	|   Description	|   Affects	|
+|---	        |---	        |---	    |
+| NETQ-4419 | NetQ Admin UI: When installing NetQ with the Admin UI, the job status is presented to show progress. However, when an error is encountered while running individual tasks, the UI may feel unresponsive. Please wait for at least 15 minutes to receive a response. | 2.4.0 | |
+| NETQ-4113 | NetQ UI: On medium- and large-sized Scheduled Trace cards, the destination field does not accept IPv6 addresses. They are reported as invalid destination IP addresses. The source field on these cards accepts IPv6 addresses. | 2.3.1-2.4.0 | |
+| NETQ-3916 | NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running `netq show validation results type evpn` in the NetQ CLI, even though the EVPN failure is seen on validation. | 2.3.1-2.4.0 | |
+
+## 2.4.0 Release Notes
+### Open issues in 2.4.0
+
+|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|---	        |---	        |---	    |---	                |
+| NETQ-4419 | NetQ Admin UI: When installing NetQ with the Admin UI, the job status is presented to show progress. However, when an error is encountered while running individual tasks, the UI may feel unresponsive. Please wait for at least 15 minutes to receive a response. | 2.4.0 | |
+| NETQ-4113 | NetQ UI: On medium- and large-sized Scheduled Trace cards, the destination field does not accept IPv6 addresses. They are reported as invalid destination IP addresses. The source field on these cards accepts IPv6 addresses. | 2.3.1-2.4.0 | |
+| NETQ-3916 | NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running `netq show validation results type evpn` in the NetQ CLI, even though the EVPN failure is seen on validation. | 2.3.1-2.4.0 | |
+| NETQ-3451 | NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session. | 2.3.0-2.4.0 | |
+
+### Fixed issues in 2.4.0
+|  Bug ID 	|   Description	|   Affects	|
+|---	        |---	        |---	    |
+| NETQ-4100 | NetQ UI: This only applies to the NetQ 2.3.1 UI installed on the NetQ Server or NetQ Appliance in on-premises deployments. Cloud deployments are not impacted by this bug. Trace results are not shown after running an on-demand or scheduled trace request in the NetQ UI. The medium Trace Result cards are blank whether the trace was successful or not. The full-screen Trace Result card and the NetQ CLI show the results correctly.<br />To work around this issue, apply the update to your existing 2.3.1 build as follows:<br /><br />	Download the update tarball.<br />If your server or appliance has internet access, use wget to perform the download. Be sure to use your download directory in place of /home/cumulus indicated in this example.<br />cumulus&#64;opta:~$ wget http://netq-shared.s3-us-west-2.amazonaws.com/NetQ-2.3.1.1.tgz -O /home/cumulus/NetQ-2.3.1.1.tgz<br /><br />If your server or appliance is air-gapped, first download the tarball and then, as a root user, copy it to the appropriate directory on your server or appliance.<br />root&#64;opta:~# cd /mnt/swinstalls/<br />root&#64;opta:/mnt/swinstalls# cp /home/cumulus/NetQ-2.3.1.1.tgz ./ <br /><br />	Extract the script.<br />cumulus&#64;opta:~$ tar -xvzf /home/cumulus/NetQ-2.3.1.1.tgz update-app.sh<br /><br />	Run the script. On completion, a new GUI container will be running and the card will display the trace result.<br />cumulus&#64;opta:~$ ./update-app.sh /home/cumulus/NetQ-2.3.1.1.tgz<br />Loading the new app<br />e9b2c1648ab5: Loading layer [==================================================&gt;]  2.048kB/2.048kB<br />e7acfa3378f4: Loading layer [==================================================&gt;]  20.59MB/20.59MB<br />...<br />Loaded image: 498186410471.dkr.ecr.us-west-2.amazonaws.com/netq-gui:2.3.1<br />Restarting the app with new image<br />deployment.extensions/netq-gui-deploy scaled<br />Sleeping for 15 seconds<br />Confirming the app is running with new image<br />Found the container running with new image.<br /><br />	Close and reopen the NetQ UI to run the new image. Note: You may need to press Cmd+Shift+R to fully clear the cache on the Chrome browser.<br /> | 2.3.1 | |
+| NETQ-4080 | When you upgrade both the NetQ Agent and the NetQ Apps in on-premises deployments, a temporary increase in event messages is seen. They are the result of collecting package information from the NetQ Agent on each monitored node. This only happens on initial upgrade and there is no functional impact to the operation of the NetQ software. | 2.3.1 | |
+| NETQ-3993 | NetQ UI: When a warning occurs during a VXLAN validation, the small, medium, and large VXLAN Scheduled Validation Result cards incorrectly display the text of the warning instead of the Failed icon and text. | 2.3.1 | |
+| NETQ-3915 | NetQ UI: When troubleshooting a user may wish to disable auto-refresh so that the data is not changed in the middle of analysis. If auto-refresh causes any state loss on the card of interest, pause the auto-refresh feature by clicking the Refresh icon in the workbench header. When finished with the analysis, re-enable the auto-refresh feature by clicking the Refresh icon again to ensure the card data is always the most recent available. | 2.3.1 | |
+| NETQ-3255 | NetQ UI: Trace configuration information is not captured until the trace has been run at least once, leaving the large Trace Result card blank. The schedule information remains missing even after the trace has been run. | 2.2.2-2.3.1 | |
+

@@ -52,7 +52,7 @@ Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 {{%notice note%}}
 
-Other options in the NAT configuration section of the `switchd.conf` file, such as `nat.age_poll_interval` and `nat.table_size` are dynamic NAT configuration options and are currently *not* supported.
+Other options in the NAT configuration section of the `switchd.conf` file, such as `nat.age_poll_interval` and `nat.table_size` are dynamic NAT configuration options and are currently not supported with static NAT.
 
 {{%/notice%}}
 

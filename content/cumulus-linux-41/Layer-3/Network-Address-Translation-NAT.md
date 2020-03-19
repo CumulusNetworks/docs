@@ -58,15 +58,9 @@ Other options in the NAT configuration section of the `switchd.conf` file, such 
 
 ### Configure Static NAT
 
-For static NAT, create a rule that matches a source or destination IP address and translate for external use. 64.For static PAT, create a rule that matches a source or destination IP address together with the layer 4 port and translate for external use.
+For static NAT, create a rule that matches a source or destination IP address and translate for external use. For static PAT, create a rule that matches a source or destination IP address together with the layer 4 port and translate for external use.
 
 For Mellanox Spectrum-2 switches, you can include the outgoing or incoming interface.
-
-{{%notice note%}}
-
-The protocol is required. Static NAT supports TCP, ICMP, and UDP packets.
-
-{{%/notice%}}
 
 To create rules, you can use either NCLU or cl-acltool.
 
@@ -85,13 +79,14 @@ net add nat static snat|dnat <protocol> <ip-address> [out-interface|in-interface
 **PAT**
 
 ```
-net add nat static snat|dnat <protocol> <ip-address> <port>  [out-interface|in-interface <interface>] translate <ip-address> <port>
+net add nat static snat|dnat <protocol> <ip-address> <port> [out-interface|in-interface <interface>] translate <ip-address> <port>
 ```
 
 Where:
 
 - `snat` is the source NAT
 - `dnat` is the destination NAT
+- `protocol` is TCP, ICMP, or UDP. The protocol is required.
 - `out-interface` is the outbound interface for `snat` (Mellanox Spectrum-2 switches only)
 - `in-interface` is the inbound interface for `dnat` (Mellanox Spectrum-2 switches only)
 
@@ -108,7 +103,7 @@ cumulus@switch:~$ net commit
 The following rule matches ICMP packets with destination IP address 172.69.58.80 on interface swp51 and translates the IP address to 10.0.0.1
 
 ```
-cumulus@switch:~$ net add nat static dnat icmp 172.69.58.80 in-interface swo51 translate 10.0.0.1
+cumulus@switch:~$ net add nat static dnat icmp 172.69.58.80 in-interface swp51 translate 10.0.0.1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -184,7 +179,7 @@ To delete a static NAT rule, remove the rule from the policy file in the  `/etc/
 
 ## Dynamic NAT
 
-Dynamic NAT maps private IP addresses to multiple public IP addresses or to a single public IP address and a range of ports. IP addresses are assigned from a pool of addresses dynamically. When entries are released after a period of inactivity, new incoming connections are dynamically mapped to the freed up addresses and ports.
+Dynamic NAT maps private IP addresses and ports to a public IP address and port range or a public IP address range and port range. IP addresses are assigned from a pool of addresses dynamically. When entries are released after a period of inactivity, new incoming connections are dynamically mapped to the freed up addresses and ports.
 
 ### Enable Dynamic NAT
 
@@ -207,8 +202,8 @@ The `/etc/cumulus/switchd.conf` file includes the following configuration option
 
 | Option | Description |
 | ------ | ----------- |
-| nat.age_poll_interval | The period of inactivity before `switchd` removes a NAT entry from the translation table.<br>The default value is 5 minutes. The minimum value is 1 minute. The maximum value is 24 hours.|
-| nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the tranlation table. <br>Trident3 switches support a maximum of 1000 entries. Mellanox Spectrum2 switches support a maximum of 8000 entries. The default value is 1024. |
+| nat.age_poll_interval | The period of inactivity before `switchd` releases a NAT entry from the translation table.<br>The default value is 5 minutes. The minimum value is 1 minute. The maximum value is 24 hours.|
+| nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>Trident3 switches support a maximum of 1000 entries.<br>Mellanox Spectrum-2 switches support a maximum of 8000 entries. |
 | nat.config_table_size | The maximum number of rules allowed (NCLU or cl-acltool).<br>The default value is 64. The minimum value is 64. The maximum value is 1000. |
 
 After you change any of the dynamic NAT configuration options, restart `switchd` with the `sudo systemctl restart switchd.service` command.
@@ -217,15 +212,9 @@ After you change any of the dynamic NAT configuration options, restart `switchd`
 
 For dynamic NAT, create a rule that matches a IP address in CIDR notation and translates the address to a public IP address or IP address range.
 
-For dynamic PAT, create a rule that matches an IP address in CIDR notation and translates the address to a public IP address and port range or an IP address range and port range.
+For dynamic PAT, create a rule that matches an IP address in CIDR notation and translates the address to a public IP address and port range or an IP address range and port range. You can also match a IP address in CIDR notation and a port.
 
 For Mellanox Spectrum-2 switches, you can include the outgoing or incoming interface in the rule. See the examples below.
-
-{{%notice note%}}
-
-The protocol is required. Dynamic NAT supports TCP, ICMP, and UDP packets.
-
-{{%/notice%}}
 
 <details>
 
@@ -236,7 +225,7 @@ Use the following NCLU commands:
 **NAT**
 
 ```
-net add nat dynamic snat|dnat <protocol> source-ip <ipv4-address/prefixlen> destination-ip <ip-address/prefixlen> out-interface|in-interface translate <ipv4-address>|<ip-address-range>
+net add nat dynamic snat|dnat <protocol> source-ip <ipv4-address/prefixlen>|destination-ip <ip-address/prefixlen> out-interface|in-interface translate <ipv4-address>|<ip-address-range>
 ```
 
 **PAT**
@@ -249,10 +238,11 @@ Where:
 
 - `snat` is the source NAT
 - `dnat` is the destination NAT
+- `protocol` is TCP, ICMP, or UDP. The protocol is required.
 - `out-interface` is the outbound interface for `snat` (Mellanox Spectrum-2 switches only)
 - `in-interface` is the inbound interface for `dnat` (Mellanox Spectrum-2 switches only)
 
-For source NAT, you can match a source IP address or both a source and destination address.
+For source NAT (`snat`), you can match a source IP address or both a source and destination address.
 
 **Example Commands**
 
@@ -296,7 +286,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-To delete a dynamic rule, run the net del command. For example:
+To delete a dynamic rule, run the `net del` command. For example:
 
 ```
 cumulus@switch:~$ net del nat dynamic snat tcp source-ip 10.0.0.0/24 translate 172.69.58.0-172.69.58.80 1024-1200

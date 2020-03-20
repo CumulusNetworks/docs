@@ -8,11 +8,9 @@ aliases:
 pageID: 8362673
 ---
 The Cumulus Linux bridge driver supports two configuration modes, one
-that is VLAN-aware, and one that follows a more traditional Linux bridge
-model.
+that is VLAN-aware, and one that follows a more traditional Linux bridge model.
 
-For [traditional Linux
-bridges](../Traditional-Bridge-Mode/),
+For {{<link url="Traditional-Bridge-Mode" text="traditional Linux bridges">}},
 the kernel supports VLANs in the form of VLAN subinterfaces. Enabling
 bridging on multiple VLANs means configuring a bridge for each VLAN and,
 for each member port on a bridge, creating one or more VLAN
@@ -23,8 +21,7 @@ large.
 
 The VLAN-aware mode in Cumulus Linux implements a configuration model
 for large-scale L2 environments, with **one single** **instance** of
-[Spanning
-Tree](../../Spanning-Tree-and-Rapid-Spanning-Tree/).
+{{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="Spanning Tree">}}.
 Each physical bridge member port is configured with the list of allowed
 VLANs as well as its port VLAN ID (either PVID or native VLAN - see
 below). MAC address learning, filtering and forwarding are *VLAN-aware*.
@@ -42,9 +39,8 @@ VLAN-aware bridge on a given switch.
 
 ## Configure a VLAN-aware Bridge
 
-VLAN-aware bridges can be configured with the Network Command Line
-Utility
-([NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU/)).
+VLAN-aware bridges can be configured with the Network Command Line Utility
+({{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}).
 The example below shows the NCLU commands required to create a
 VLAN-aware bridge configured for STP, that contains two switch ports,
 and includes 3 VLANs - the tagged VLANs 100 and 200 and the untagged
@@ -64,16 +60,16 @@ cumulus@switch:~$ net add bridge bridge pvid 1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 cumulus@switch:~$ net show configuration files
- 
+
 ...
- 
+
 auto bridge
 iface bridge
     bridge-ports swp1 swp2
     bridge-pvid 1
     bridge-vids 100 200
     bridge-vlan-aware yes
- 
+
 ...</code></pre></td>
 </tr>
 </tbody>
@@ -83,19 +79,15 @@ The following attributes are useful for configuring VLAN-aware bridges:
 
   - `bridge-vlan-aware`: Is automatically set to *yes* to indicate that
     the bridge is in VLAN-aware mode.
-
   - `bridge-pvid`: A PVID is the bridge's *Primary VLAN Identifer*. The
     PVID defaults to 1; specifying the PVID identifies that VLAN as the
     native VLAN.
-
   - `bridge-vids`: A VID is the *VLAN Identifier*, which declares the
     VLANs associated with this bridge.
-
   - `bridge-access`: Declares the physical switch port as an *access
     port*. Access ports ignore all tagged packets; put all untagged
     packets into the VLAN specified for this attribute. See the example
-    [below](#untagged-access-ports).
-
+    {{<link url="#untaggedaccess-ports" text="below">}}.
   - `bridge-allow-untagged`: When set to *no*, it drops any untagged
     frames for a given switch port.
 
@@ -401,7 +393,7 @@ You can specify a range of VLANs as well. For example:
 
 Cumulus Linux does not often interact directly with end systems as much
 as end systems interact with one another. Thus, after a successful
-[address resolution protocol](http://linux-ip.net/html/ether-arp.html)
+{{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}}
 (ARP) places a neighbor into a reachable state, Cumulus Linux may not
 interact with the client again for a long enough period of time for the
 neighbor to move into a stale state. To keep neighbors in the reachable
@@ -413,8 +405,7 @@ the hardware forwarding.
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). You can
 change this setting by following the procedures outlined in this
-[knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
+{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202012933" text="knowledge base article">}}.
 
 ### Configure Multiple Ports in a Range
 
@@ -492,7 +483,7 @@ all the defined VLANs.
 
 The configuration below demonstrates a VLAN-aware bridge with a large
 set of bonds. The bond configurations are generated from a
-[Mako](http://www.makotemplates.org/) template.
+{{<exlink url="http://www.makotemplates.org/" text="Mako">}} template.
 
     cumulus@switch:~$ net show configuration files
      
@@ -589,9 +580,7 @@ VLAN-aware bridge to map VLANs to VNIs.
 
 {{%notice note%}}
 
-See the [VXLAN Scale](../../../Network-Virtualization/VXLAN-Scale/)
-topic for information about the number of VXLANs you can configure
-simultaneously.
+See the {{<link url="VXLAN-Scale">}} topic for information about the number of VXLANs you can configure simultaneously.
 
 {{%/notice%}}
 

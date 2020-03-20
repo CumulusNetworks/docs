@@ -22,10 +22,10 @@ dedicated server in your environment.
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
-including the [management VRF](../../Layer-3/Management-VRF/),
-follow [these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
-configuring them. See also the [VRF chapter](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
+{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
+including the {{<link url="Management-VRF" text="management VRF">}},
+follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} for
+configuring them. See also the {{<link url="Virtual-Routing-and-Forwarding-VRF#dhcp-with-vrf" text="VRF chapter">}}.
 
 {{%/notice%}}
 

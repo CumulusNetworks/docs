@@ -1,5 +1,5 @@
 {{- if .Get "url" -}}
-    {{- if in (.Get "url")  "//"  -}}
+{{- if or (in (.Get "url") "mailto:") (in (.Get "url")  "//")  -}}
         <a rel="canonical" href="{{ (.Get "url") }}">{{- default (.Get "url") (.Get "text") -}}</a>
     {{- else -}} 
         <a rel="canonical" href="//{{ (.Get "url") }}">{{- default (.Get "url") (.Get "text") -}}</a>

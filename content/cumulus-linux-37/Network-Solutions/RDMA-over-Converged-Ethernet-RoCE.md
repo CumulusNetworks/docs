@@ -8,8 +8,7 @@ aliases:
  - /pages/viewpage.action?pageId=8363018
 pageID: 8363018
 ---
-*RDMA over Converged Ethernet*
-([RoCE](https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet))
+*RDMA over Converged Ethernet* ({{<exlink url="https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet" text="RoCE">}})
 provides the ability to write to compute or storage elements using
 remote direct memory access (RDMA) over an Ethernet network instead of
 using host CPUs. RoCE relies on congestion control and lossless Ethernet
@@ -25,11 +24,11 @@ stack:
 
 - RoCEv1, which runs at the link layer and cannot be run over a routed
   network. Therefore, it requires the link layer
-  [priority flow control](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-priority-flow-control)
+  {{<link url="Buffer-and-Queue-Management/#configure-priority-flow-control" text="priority flow control">}}
   (PFC) to be enabled.
 - RoCEv2, which runs over layer 3. Since it's a routed solution,
   Cumulus Networks recommends you use
-  [explicit congestion notification](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-explicit-congestion-notification)
+  {{<link url="Buffer-and-Queue-Management/#configure-explicit-congestion-notification" text="explicit congestion notification">}}
   (ECN) with RoCEv2 since ECN bits are communicated end-to-end across
   a routed network.
 
@@ -41,14 +40,12 @@ lossless Ethernet layer handles congestion hop by hop.
 
 To learn the Cumulus Linux settings you need to configure to support
 RoCEv1, see the example configuration in the
-[PFC](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-priority-flow-control)
-section of the
-[Buffer and Queue Management](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
-chapter.
+{{<link url="Buffer-and-Queue-Management/#configure-priority-flow-control" text="PFC">}}
+section of the {{<link url="Buffer-and-Queue-Management">}} chapter.
 
 {{%notice tip%}}
 
-On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1),
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}},
 you can alternately use NCLU to configure RoCE with PFC:
 
     cumulus@switch:~$ net add interface swp1 storage-optimized pfc
@@ -186,7 +183,7 @@ priority_group.control.egress_buffer.mc.sp_dynamic_quota = 9
 
 {{%notice note%}}
 
-While [link pause](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-link-pause)
+While {{<link url="Buffer-and-Queue-Management/#configure-link-pause" text="link pause">}}
 is another way to provide lossless ethernet, PFC is the preferred
 method. PFC allows more granular control by pausing the traffic flow for
 a given CoS group, rather than the entire link.
@@ -206,14 +203,12 @@ notification packet directed to the source of the packet.
 
 To learn the Cumulus Linux settings you need to configure to support
 RoCEv2, see the example configuration in the
-[ECN](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-explicit-congestion-notification)
-section of the
-[Buffer and Queue Management](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/)
-chapter.
+{{<link url="Buffer-and-Queue-Management/#configure-explicit-congestion-notification" text="ECN">}}
+section of the {{<link url="Buffer-and-Queue-Management">}} chapter.
 
 {{%notice tip%}}
 
-On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), you can alternately use NCLU to configure RoCE with ECN:
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can alternately use NCLU to configure RoCE with ECN:
 
     cumulus@switch:~$ net add interface swp1 storage-optimized
     cumulus@switch:~$ net pending
@@ -324,9 +319,7 @@ priority_group.service.weight = 16
 
 ## Related Information
 
-- [RoCE introduction](http://www.roceinitiative.org/roce-introduction/) -
-  roceinitiative.org
-- [RoCEv2 congestion management](https://community.mellanox.com/docs/DOC-2321) -
-  community.mellanox.com
-- [Configuring RoCE over a DSCP-based lossless network](https://community.mellanox.com/docs/DOC-3036)
+- {{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org
+- {{<exlink url="https://community.mellanox.com/docs/DOC-2321" text="RoCEv2 congestion management">}} - community.mellanox.com
+- {{<exlink url="https://community.mellanox.com/docs/DOC-3036" text="Configuring RoCE over a DSCP-based lossless network">}}
   with a Mellanox Spectrum switch

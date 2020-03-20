@@ -274,9 +274,9 @@ with the VLAN ID translated.
 
 {{%notice note%}}
 
-A bridge in [VLAN-aware mode](../VLAN-aware-Bridge-Mode/)
+A bridge in {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}
 cannot have VLAN translation enabled for it; only bridges configured in
-[traditional mode](../Traditional-Bridge-Mode/)
+{{<link url="Traditional-Bridge-Mode" text="traditional mode">}}
 can utilize VLAN translation.
 
 {{%/notice%}}

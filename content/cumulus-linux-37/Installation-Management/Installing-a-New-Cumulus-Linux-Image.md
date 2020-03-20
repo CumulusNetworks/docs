@@ -7,16 +7,16 @@ aliases:
  - /pages/viewpage.action?pageId=8362643
 pageID: 8362643
 ---
-This topic discusses how to install a new Cumulus Linux disk image using [ONIE](http://www.onie.org/), an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
+This topic discusses how to install a new Cumulus Linux disk image using {{<exlink url="http://www.onie.org/" text="ONIE">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
 
 Before you install Cumulus Linux, the switch can be in two different states:
 
 - No image is installed on the switch (the switch is only running ONIE).
 - Cumulus Linux is already installed on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.
 
-The sections below describe some of the different ways you can install the Cumulus Linux disk image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the [ONIE Design Specification](http://opencomputeproject.github.io/onie/design-spec/discovery.html).
+The sections below describe some of the different ways you can install the Cumulus Linux disk image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
-You can download a Cumulus Linux image from the [Cumulus Networks Downloads page](http://cumulusnetworks.com/downloads/).
+You can download a Cumulus Linux image from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Networks Downloads page">}}.
 
 {{%notice note%}}
 
@@ -26,10 +26,10 @@ Installing the Cumulus Linux disk image is destructive; configuration files on t
 
 In the following procedures:
 
-- You can name your Cumulus Linux installer disk image using any of the [ONIE naming schemes mentioned here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
+- You can name your Cumulus Linux installer disk image using any of the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes mentioned here">}}.
 - In the example commands, `[PLATFORM]` can be any supported Cumulus Linux platform, such as *x86\_64*, or *arm*.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
-- After you install the Cumulus Linux disk image, you need to install the license file. Refer to [Install the License](../../Quick-Start-Guide/#install-the-license).
+- After you install the Cumulus Linux disk image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.
 
 ## Install Using a DHCP/Web Server with DHCP Options
 
@@ -44,11 +44,11 @@ To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a D
 
 {{%notice note%}}
 
-The most common method is to send DHCP option 114 with the entire URL to the web server (this can be the same system). However, there are many other ways to use DHCP even if you do not have full control over DHCP. See the ONIE user guide for help with [partial installer URLs](https://opencomputeproject.github.io/onie/design-spec/discovery.html#partial-installer-urls) and [advanced DHCP options](https://opencomputeproject.github.io/onie/user-guide/index.html#advanced-dhcp-2-vivso); both articles list more supported DHCP options.
+The most common method is to send DHCP option 114 with the entire URL to the web server (this can be the same system). However, there are many other ways to use DHCP even if you do not have full control over DHCP. See the ONIE user guide for help with {{<exlink url="https://opencomputeproject.github.io/onie/design-spec/discovery.html#partial-installer-urls" text="partial installer URLs">}} and {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#advanced-dhcp-2-vivso" text="advanced DHCP options">}}; both articles list more supported DHCP options.
 
 {{%/notice%}}
 
-Here is an example DHCP configuration with an [ISC DHCP server](http://www.isc.org/downloads/dhcp/):
+Here is an example DHCP configuration with an {{<exlink url="http://www.isc.org/downloads/dhcp/" text="ISC DHCP server">}}:
 
 ```
 subnet 172.0.24.0 netmask 255.255.255.0 {
@@ -57,15 +57,14 @@ subnet 172.0.24.0 netmask 255.255.255.0 {
 }
 ```
 
-Here is an example DHCP configuration with [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) (static address
-assignment):
+Here is an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address assignment):
 
 ```
 dhcp-host=sw4,192.168.100.14,6c:64:1a:00:03:ba,set:sw4
 dhcp-option=tag:sw4,114,"http://roz.rtplab.test/onie-installer-[PLATFORM]"
 ```
 
-If you do not have a web server, you can use [this free Apache example](https://www.apachefriends.org/index.html).
+If you do not have a web server, you can use {{<exlink url="https://www.apachefriends.org/index.html" text="this free Apache example">}}.
 
 ## Install Using a DHCP/Web Server without DHCP Options
 
@@ -112,7 +111,7 @@ You need a console connection to access the switch; you cannot perform this proc
 
 <summary>Install from ONIE </summary>
 
-1. ONIE is in [*discovery mode*](http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods). You must disable discovery mode with the following command:
+1. ONIE is in *{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="discovery mode">}}*. You must disable discovery mode with the following command:
 
 ```
 onie# onie-discovery-stop
@@ -234,7 +233,7 @@ onie# onie-discovery-stop
 onie# /etc/init.d/discover.sh stop
 ```
 
-3. Use [scp](http://en.wikipedia.org/wiki/Secure_copy) to copy the Cumulus Linux disk image to the switch. (Windows users can use [WinScp](http://winscp.net/eng/index.php).)
+3. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux disk image to the switch. (Windows users can use {{<exlink url="http://winscp.net/eng/index.php" text="WinScp">}}.)
 
 4. Run the installer manually from ONIE:
 
@@ -265,13 +264,13 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 {{%notice tip%}}
 
 - Installing Cumulus Linux using a USB drive is fine for a single switch here and there but is not scalable. DHCP can scale to hundreds of switch installs with zero manual input unlike USB installs.
-- Cumulus Networks also provides *Cumulus on a Stick*, which packages Cumulus Linux images with your license. You can download your personalized ZIP file, transfer it to a USB drive, insert the drive into your switch, apply power, and you are ready to go. See [Cumulus on a Stick](https://cumulusnetworks.com/cumulus-on-a-stick/) for information.
+- Cumulus Networks also provides *Cumulus on a Stick*, which packages Cumulus Linux images with your license. You can download your personalized ZIP file, transfer it to a USB drive, insert the drive into your switch, apply power, and you are ready to go. See {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}} for information.
 
 {{%/notice%}}
 
 ### Prepare for USB Installation
 
-1. From the [Cumulus Networks Downloads page](https://cumulusnetworks.com/downloads/), download the appropriate Cumulus Linux image for your x86 or ARM platform.
+1. From the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Networks Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
 
 2. From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
@@ -306,7 +305,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     sudo mkfs.msdos -F 32 /dev/sdb1
     sudo mkfs.vfat /dev/sdb1</code></pre>
     <p>{{%notice note%}}</p>
-    <p>To use <code>mkfs.msdos</code> or <code>mkfs.vfat</code>, you need to install the <code>dosfstools</code> package from the <a href="../Adding-and-Updating-Packages/#add-packages-from-another-repository" class="external-link">Debian software repositories</a>, as they are not included by default.</p>
+    <p>To use <code>mkfs.msdos</code> or <code>mkfs.vfat</code>, you need to install the <code>dosfstools</code> package from the {{<link url="Adding-and-Updating-Packages/#add-packages-from-another-repository" text="Debian software repositories">}}, as they are not included by default.</p>
     <p>{{%/notice%}}</p></li>
     <li><p>To continue installing Cumulus Linux, mount the USB drive to move files.</p>
     <pre><code>sudo mkdir /mnt/usb
@@ -324,7 +323,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
     {{%notice note%}}
 
-You can also use any of the [ONIE naming schemes mentioned here](http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order).
+You can also use any of the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes mentioned here">}}.
 
 {{%/notice%}}
 
@@ -482,7 +481,7 @@ Homepage: http://www.cumulusnetworks.com/
 
 ## Related Information
 
-- [ONIE Design Specification](http://opencomputeproject.github.io/onie/design-spec/)
-- [Cumulus Networks Downloads page](https://cumulusnetworks.com/downloads/)
-- [Cumulus on a Stick](https://cumulusnetworks.com/cumulus-on-a-stick/)
-- [Managing Cumulus Linux Disk Images](../Managing-Cumulus-Linux-Disk-Images/)
+- {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
+- {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Networks Downloads page">}}
+- {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}}
+- {{<link title="Managing Cumulus Linux Disk Images">}}

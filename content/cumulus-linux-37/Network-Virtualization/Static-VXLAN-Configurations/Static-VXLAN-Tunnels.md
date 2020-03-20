@@ -7,15 +7,15 @@ aliases:
  - /pages/viewpage.action?pageId=8362793
 pageID: 8362793
 ---
-In VXLAN-based networks, there are a range of complexities and challenges in determining the destination *virtual tunnel endpoints* (VTEPs) for any given VXLAN. At scale, various solutions, including [Lightweight Network Virtualization](../../Lightweight-Network-Virtualization-Overview/)
-(LNV), controller-based options like [Midokura MidoNet](../../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/) or [VMware NSX](../../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-MH/) and even new standards like
-[EVPN](../../Ethernet-Virtual-Private-Network-EVPN/) are attempts to address these complexities, however do retain their own complexities.
+In VXLAN-based networks, there are a range of complexities and challenges in determining the destination *virtual tunnel endpoints* (VTEPs) for any given VXLAN. At scale, various solutions, including {{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight Network Virtualization">}}
+(LNV), controller-based options like {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH" text="VMware NSX">}} and even new standards like
+{{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} are attempts to address these complexities, however do retain their own complexities.
 
 Enter *static VXLAN tunnels*, which simply serve to connect two VTEPs in a given environment. Static VXLAN tunnels are the simplest deployment mechanism for small scale environments and are interoperable with other vendors that adhere to VXLAN standards. Because you are simply mapping which VTEPs are in a particular VNI, you can avoid the tedious process of defining connections to every VLAN on every other VTEP on every other rack.
 
 ## Requirements
 
-Cumulus Networks supports static VXLAN tunnels only on switches in the [Cumulus Linux HCL](https://cumulusnetworks.com/hcl/) using the Broadcom Tomahawk, Trident II+, Trident II, and Maverick ASICs, as well as the Mellanox Spectrum ASIC.
+Cumulus Networks supports static VXLAN tunnels only on switches in the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Linux HCL">}} using the Broadcom Tomahawk, Trident II+, Trident II, and Maverick ASICs, as well as the Mellanox Spectrum ASIC.
 
 For a basic VXLAN configuration, make sure that:
 

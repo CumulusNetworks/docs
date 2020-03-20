@@ -7,8 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362599
 pageID: 8362599
 ---
-The [network command line
-utility](../../../System-Configuration/Network-Command-Line-Utility-NCLU/)
+The {{<link url="Network-Command-Line-Utility-NCLU" text="network command line utility">}}
 (NCLU) can quickly return a lot of information about your network
 configuration.
 
@@ -110,9 +109,8 @@ system`:
 
 ## Other Useful Features
 
-NCLU uses the [python
-network-docopt](https://pypi.python.org/pypi/network-docopt) package.
-This is inspired by [docopt](https://github.com/docopt/docopt) and
+NCLU uses the {{<exlink url="https://pypi.python.org/pypi/network-docopt" text="python network-docopt">}} package.
+This is inspired by {{<exlink url="https://github.com/docopt/docopt" text="docopt">}} and
 provides the ability to specify partial commands, without tab completion
 and running the complete option. For example:
 

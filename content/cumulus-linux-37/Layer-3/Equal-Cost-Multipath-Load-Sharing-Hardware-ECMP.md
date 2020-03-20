@@ -8,7 +8,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362929
 pageID: 8362929
 ---
-Cumulus Linux supports hardware-based [equal cost multipath](http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing) (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
+Cumulus Linux supports hardware-based {{<exlink url="http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing" text="equal cost multipath">}} (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
 
 ## Equal Cost Routing
 
@@ -30,7 +30,7 @@ For routes to be considered equal they must:
 
 {{%notice info%}}
 
-The BGP `maximum-paths` setting is enabled, so multiple routes are installed by default. See [ECMP with BGP](../Border-Gateway-Protocol-BGP/#ecmp-with-bgp) for more information.
+The BGP `maximum-paths` setting is enabled, so multiple routes are installed by default. See {{<link url="Border-Gateway-Protocol-BGP#ecmp-with-bgp" text="ECMP with BGP">}} for more information.
 
 {{%/notice%}}
 
@@ -44,7 +44,7 @@ Cumulus Linux hashes on the following fields:
 - Source IPv4 or IPv6 address
 - Destination IPv4 or IPv6 address
 
-On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), Cumulus Linux hashes on these additional fields:
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, Cumulus Linux hashes on these additional fields:
 
 - Source MAC address
 - Destination MAC address
@@ -96,7 +96,7 @@ cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
 
 `cl-ecmpcalc` can only take input interfaces that can be converted to a single physical port in the port tab file, like the physical switch ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces are not supported.
 
-`cl-ecmpcalc` is supported only on switches with the [Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3](https://cumulusnetworks.com/hcl/) chipsets.
+`cl-ecmpcalc` is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3">}} chipsets.
 
 ### ECMP Hash Buckets
 
@@ -255,13 +255,13 @@ In Cumulus Linux, when a next hop fails or is removed from an ECMP pool, the has
 
 Resilient hashing supports both IPv4 and IPv6 routes.
 
-Resilient hashing behaves slightly differently depending upon whether you are running Cumulus Linux on a switch with a [Broadcom ASIC](#resilient-hashing-on-broadcom-switches) or [Mellanox ASIC](#resilient-hashing-on-mellanox-switches). The differences are described below.
+Resilient hashing behaves slightly differently depending upon whether you are running Cumulus Linux on a switch with a {{<link url="#resilient-hashing-on-broadcom-switches" text="Broadcom ASIC">}} or {{<link url="#resilient-hashing-on-mellanox-switches" text="Mellanox ASIC">}}. The differences are described below.
 
-Resilient hashing is not enabled by default. See below for [steps on configuring it](#configure-resilient-hashing).
+Resilient hashing is not enabled by default. See below for {{<link url="#configure-resilient-hashing" text="steps on configuring it">}}.
 
 ### Resilient Hashing on Broadcom Switches
 
-Resilient hashing is supported only on switches with the [Broadcom Tomahawk, Trident II, Trident II+, and Trident3](https://cumulusnetworks.com/hcl/) ASICs. You can run `net show system` to determine the ASIC.
+Resilient hashing is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3">}} ASICs. You can run `net show system` to determine the ASIC.
 
 The Broadcom ASIC assigns packets to hash buckets and assigns hash buckets to next hops as follows:
 
@@ -379,11 +379,11 @@ resilient_hash_enable = TRUE
 resilient_hash_entries_ecmp = 256
 ```
 
-1. **(Optional)** On [Mellanox switches](#resilient-hashing-on-mellanox-switches),
+1. **(Optional)** On {{<link url="#resilient-hashing-on-mellanox-switches" text="Mellanox switches">}},
   configure timers in the the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​`
   file.
 
-1. [Restart](../../System-Configuration/Configuring-switchd/#restart-switchd) the `switchd` service:
+1. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service

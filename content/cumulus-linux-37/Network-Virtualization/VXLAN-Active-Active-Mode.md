@@ -8,14 +8,13 @@ aliases:
 pageID: 8362725
 ---
 *VXLAN active-active mode* allows a pair of
-[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
+{{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
 switches to act as a single VTEP, providing active-active VXLAN
 termination for bare metal as well as virtualized workloads.
 
 There are some differences whether you're deploying this with
-[EVPN](../Ethernet-Virtual-Private-Network-EVPN/)
-or
-[LNV](../Lightweight-Network-Virtualization-Overview/).
+{{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}
+or {{<link url="Lightweight-Network-Virtualization-Overview" text="LNV">}}.
 This chapter outlines the configurations for both options.
 
 ## Terminology
@@ -25,7 +24,7 @@ This chapter outlines the configurations for both options.
 | VTEP                     | The virtual tunnel endpoint. This is an encapsulation and decapsulation point for VXLANs.    |
 | active-active VTEP       | A pair of switches acting as a single VTEP.                             |
 | ToR                      | The top of rack switch; also referred to as a leaf or access switch.    |
-| spine                    | The aggregation switch for multiple leafs. Specifically used when a data center is using a [Clos network architecture.](https://en.wikipedia.org/wiki/Clos_network) Read more about spine-leaf architecture in this [white paper](http://go.cumulusnetworks.com/scalable-dcnetworks?utm_source=homepageslider&utm_medium=search&utm_campaign=Whitepaper-Building+Scalable+Datacenter+Networks). |
+| spine                    | The aggregation switch for multiple leafs. Specifically used when a data center is using a {{<exlink url="https://en.wikipedia.org/wiki/Clos_network" text="Clos network architecture">}}. Read more about spine-leaf architecture in this {{<exlink url="https://cumulusnetworks.com/learn/resources/whitepapers/building-scalable-data-center-networks" text="white paper">}}. |
 | exit leaf                | A switch dedicated to peering the Clos network to an outside network; also referred to as a border leaf, service leaf, or edge leaf.                                            |
 | anycast                  | An IP address that is advertised from multiple locations. Anycast enables multiple devices to share the same IP address and effectively load balance traffic across them. With VXLAN, anycast is used to share a VTEP IP address between a pair of MLAG switches.  |
 | RIOT                     | Routing in and out of tunnels. A Broadcom feature for routing in and out of tunnels. Allows a VXLAN bridge to have a switch VLAN interface associated with it, and traffic to exit a VXLAN into the layer 3 fabric. Also called VXLAN Routing.                    |
@@ -39,9 +38,9 @@ to work correctly.
 
 | Technology | More Information |
 | ---------- | ---------------- |
-|MLAG|Refer to the [MLAG chapter](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) for more detailed configuration information. Configurations for the demonstration are provided below.|
-|OSPF or BGP|Refer to the [OSPF chapter](../../Layer-3/Open-Shortest-Path-First-OSPF/) or the [BGP chapter](../../Layer-3/Border-Gateway-Protocol-BGP/) for more detailed configuration information. Configurations for the BGP demonstration are provided below.|
-|STP|You must enable [BPDU filter](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-filter) and [BPDU guard](../../Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree/#bpdu-guard) in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN. Configurations for the demonstration are provided below.|
+|MLAG|Refer to the {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG chapter">}} for more detailed configuration information. Configurations for the demonstration are provided below.|
+|OSPF or BGP|Refer to the {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF chapter">}} or the {{<link url="Border-Gateway-Protocol-BGP" text="BGP chapter">}} for more detailed configuration information. Configurations for the BGP demonstration are provided below.|
+|STP|You must enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="BPDU guard">}} in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN. Configurations for the demonstration are provided below.|
 
 ### Active-active VTEP Anycast IP Behavior
 
@@ -74,14 +73,14 @@ interface on each switch in the MLAG pair.
 
 ### Failure Scenario Behaviors
 
-| Scenario                                                                            | Behavior                                                                                                                                                                                                                                                                                                                                                                            |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The peer link goes down.                                                            | The primary MLAG switch continues to keep all VXLAN interfaces up with the anycast IP address while the secondary switch brings down all VXLAN interfaces and places them in a PROTO\_DOWN state. The secondary MLAG switch removes the anycast IP address from the loopback interface and changes the local IP address of the VXLAN interface to the configured unique IP address. |
-| One of the switches goes down.                                                      | The other operational switch continues to use the anycast IP address.                                                                                                                                                                                                                                                                                                               |
-| `clagd` is stopped.                                                                 | All VXLAN interfaces are put in a PROTO\_DOWN state. The anycast IP address is removed from the loopback interface and the local IP addresses of the VXLAN interfaces are changed from the anycast IP address to unique non-virtual IP addresses.                                                                                                                                   |
-| MLAG peering could not be established between the switches.                         | `clagd` brings up all the VXLAN interfaces after the reload timer expires with the configured anycast IP address. This allows the VXLAN interface to be up and running on both switches even though peering is not established.                                                                                                                                                     |
-| When the peer link goes down but the peer switch is up (the backup link is active). | All VXLAN interfaces are put into a PROTO\_DOWN state on the secondary switch.                                                                                                                                                                                                                                                                                                      |
-| A configuration mismatch between the MLAG switches                                  | The VXLAN interface is placed into a PROTO\_DOWN state on the secondary switch.                                                                                                                                                                                                                                                                                                     |
+| Scenario          | Behavior    |
+| ---------------------------- | ------------------------------ |
+| The peer link goes down.               | The primary MLAG switch continues to keep all VXLAN interfaces up with the anycast IP address while the secondary switch brings down all VXLAN interfaces and places them in a PROTO\_DOWN state. The secondary MLAG switch removes the anycast IP address from the loopback interface and changes the local IP address of the VXLAN interface to the configured unique IP address. |
+| One of the switches goes down.        | The other operational switch continues to use the anycast IP address.        |
+| `clagd` is stopped.                    | All VXLAN interfaces are put in a PROTO\_DOWN state. The anycast IP address is removed from the loopback interface and the local IP addresses of the VXLAN interfaces are changed from the anycast IP address to unique non-virtual IP addresses.           |
+| MLAG peering could not be established between the switches.                         | `clagd` brings up all the VXLAN interfaces after the reload timer expires with the configured anycast IP address. This allows the VXLAN interface to be up and running on both switches even though peering is not established.        |
+| When the peer link goes down but the peer switch is up (the backup link is active). | All VXLAN interfaces are put into a PROTO\_DOWN state on the secondary switch.          |
+| A configuration mismatch between the MLAG switches        | The VXLAN interface is placed into a PROTO\_DOWN state on the secondary switch.  |
 
 ### Check VXLAN Interface Configuration Consistency
 
@@ -132,8 +131,8 @@ changes to anycast upon MLAG peering.
 ### FRRouting Configuration
 
 You can configure the layer 3 fabric using
-[BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) or
-[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/). The
+{{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} or
+{{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}. The
 following example uses BGP unnumbered. The MLAG switch configuration for
 the topology above is shown below.
 
@@ -155,7 +154,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# downlinks
+\# downlinks
 auto swp1
 iface swp1
  
@@ -180,7 +179,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# downlinks
+\# downlinks
 auto swp1
 iface swp1
  
@@ -208,7 +207,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# peerlinks
+\# peerlinks
 auto swp49
 iface swp49
  
@@ -226,7 +225,7 @@ iface peerlink.4094
   clagd-backup-ip 10.0.0.12
   clagd-sys-mac 44:38:39:FF:40:94
  
-# Downlinks
+\# Downlinks
 auto swp1
 iface swp1
  
@@ -267,7 +266,7 @@ iface vni20
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
  
-# uplinks
+\# uplinks
 auto swp51
 iface swp51
  
@@ -281,7 +280,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# peerlinks
+\# peerlinks
 auto swp49
 iface swp49
  
@@ -299,7 +298,7 @@ iface peerlink.4094
   clagd-backup-ip 10.0.0.11
   clagd-sys-mac 44:38:39:FF:40:94
  
-# Downlinks
+\# Downlinks
 auto swp1
 iface swp1
  
@@ -340,7 +339,7 @@ iface vni20
   mstpctl-portbpdufilter yes
   bridge-arp-nd-suppress on
  
-# uplinks
+\# uplinks
 auto swp51
 iface swp51
  
@@ -356,7 +355,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# peerlinks
+\# peerlinks
 auto swp49
 iface swp49
  
@@ -374,7 +373,7 @@ iface peerlink.4094
   clagd-backup-ip 10.0.0.14
   clagd-sys-mac 44:38:39:FF:40:95
  
-# Downlinks
+\# Downlinks
 auto swp1
 iface swp1
 
@@ -416,7 +415,7 @@ iface vni20
   bridge-arp-nd-suppress on
  
 
-# uplinks
+\# uplinks
 auto swp51
 iface swp51
  
@@ -430,7 +429,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
  
-# peerlinks
+\# peerlinks
 auto swp49
 iface swp49
  
@@ -448,7 +447,7 @@ iface peerlink.4094
   clagd-backup-ip 10.0.0.13
   clagd-sys-mac 44:38:39:FF:40:95
  
-# Downlinks
+\# Downlinks
 auto swp1
 iface swp1
 
@@ -490,7 +489,7 @@ iface vni20
   bridge-arp-nd-suppress on
  
 
-# uplinks
+\# uplinks
 auto swp51
 iface swp51
  
@@ -589,27 +588,22 @@ iface bond0.20 inet static
 
 ## Using Active-active Mode with LNV
 
-When using VXLAN active-active mode with [lightweight network
-virtualization](../Lightweight-Network-Virtualization-Overview/)
+When using VXLAN active-active mode with {{<link url="Lightweight-Network-Virtualization-Overview" text="lightweight network virtualization">}}
 (LNV), follow the steps outlined above. In addition, the following
 configuration steps are needed:
 
   - Configuring the loopback interface for active-active mode
-
   - Enabling the registration daemon
-
   - Configuring a VTEP
-
   - Enabling the service node daemon
-
   - Configuring the service node
 
 ### Terminology
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 30%" />
+<col style="width: 70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -765,55 +759,55 @@ svcnode_peers = 10.0.0.21 10.0.0.22</code></pre>
 # Log level is one of DEBUG, INFO, WARNING, ERROR, CRITICAL
 #loglevel = INFO
 
-# Destination for log message.  Can be a file name, &#39;stdout&#39;, or &#39;syslog&#39;
+\# Destination for log message.  Can be a file name, &#39;stdout&#39;, or &#39;syslog&#39;
 #logdest = syslog
 
-# log file size in bytes. Used when logdest is a file
+\# log file size in bytes. Used when logdest is a file
 #logfilesize = 512000
 
-# maximum number of log files stored on disk. Used when logdest is a file
+\# maximum number of log files stored on disk. Used when logdest is a file
 #logbackupcount = 14
 
-# The file to write the pid. If using monit, this must match the one
-# in the vxsnd.rc
+\# The file to write the pid. If using monit, this must match the one
+\# in the vxsnd.rc
 #pidfile = /var/run/vxsnd.pid
 
-# The file name for the unix domain socket used for mgmt.
+\# The file name for the unix domain socket used for mgmt.
 #udsfile = /var/run/vxsnd.sock
 
-# UDP port for vxfld control messages
+\# UDP port for vxfld control messages
 #vxfld_port = 10001
 
-# This is the address to which registration daemons send control messages for
-# registration and/or BUM packets for replication
+\# This is the address to which registration daemons send control messages for
+\# registration and/or BUM packets for replication
 svcnode_ip = 10.10.10.10
 
-# Holdtime (in seconds) for soft state. It is used when sending a
-# register msg to peers in response to learning a &lt;vni, addr&gt; from a
-# VXLAN data pkt
+\# Holdtime (in seconds) for soft state. It is used when sending a
+\# register msg to peers in response to learning a &lt;vni, addr&gt; from a
+\# VXLAN data pkt
 #holdtime = 90
 
-# Local IP address to bind to for receiving inter-vxsnd control traffic
+\# Local IP address to bind to for receiving inter-vxsnd control traffic
 src_ip = 10.0.0.21
 
 [vxsnd]
-# Space separated list of IP addresses of vxsnd to share state with
+\# Space separated list of IP addresses of vxsnd to share state with
 svcnode_peers = 10.0.0.21 10.0.0.22
 
-# When set to true, the service node will listen for vxlan data traffic
-# Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
-# for False
+\# When set to true, the service node will listen for vxlan data traffic
+\# Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
+\# for False
 #enable_vxlan_listen = true
 
-# When set to true, the svcnode_ip will be installed on the loopback
-# interface, and it will be withdrawn when the vxsnd is no longer in
-# service.  If set to true, the svcnode_ip configuration
-# variable must be defined.
-# Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
-# for False
+\# When set to true, the svcnode_ip will be installed on the loopback
+\# interface, and it will be withdrawn when the vxsnd is no longer in
+\# service.  If set to true, the svcnode_ip configuration
+\# variable must be defined.
+\# Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
+\# for False
 #install_svcnode_ip = false
 
-# Seconds to wait before checking the database to age out stale entries
+\# Seconds to wait before checking the database to age out stale entries
 #age_check = 90</code></pre>
 </details></td>
 <td><details>
@@ -827,55 +821,55 @@ svcnode_peers = 10.0.0.21 10.0.0.22</code></pre>
 # Log level is one of DEBUG, INFO, WARNING, ERROR, CRITICAL
 #loglevel = INFO
 
-# Destination for log message.  Can be a file name, &#39;stdout&#39;, or &#39;syslog&#39;
+\# Destination for log message.  Can be a file name, &#39;stdout&#39;, or &#39;syslog&#39;
 #logdest = syslog
 
-# log file size in bytes. Used when logdest is a file
+\# log file size in bytes. Used when logdest is a file
 #logfilesize = 512000
 
-# maximum number of log files stored on disk. Used when logdest is a file
+\# maximum number of log files stored on disk. Used when logdest is a file
 #logbackupcount = 14
 
-# The file to write the pid. If using monit, this must match the one
-# in the vxsnd.rc
+\# The file to write the pid. If using monit, this must match the one
+\# in the vxsnd.rc
 #pidfile = /var/run/vxsnd.pid
 
-# The file name for the unix domain socket used for mgmt.
+\# The file name for the unix domain socket used for mgmt.
 #udsfile = /var/run/vxsnd.sock
 
-# UDP port for vxfld control messages
+\# UDP port for vxfld control messages
 #vxfld_port = 10001
 
-# This is the address to which registration daemons send control messages for
-# registration and/or BUM packets for replication
+\# This is the address to which registration daemons send control messages for
+\# registration and/or BUM packets for replication
 svcnode_ip = 10.10.10.10
 
-# Holdtime (in seconds) for soft state. It is used when sending a
-# register msg to peers in response to learning a &lt;vni, addr&gt; from a
-# VXLAN data pkt
+\# Holdtime (in seconds) for soft state. It is used when sending a
+\# register msg to peers in response to learning a &lt;vni, addr&gt; from a
+\# VXLAN data pkt
 #holdtime = 90
 
-# Local IP address to bind to for receiving inter-vxsnd control traffic
+\# Local IP address to bind to for receiving inter-vxsnd control traffic
 src_ip = 10.0.0.22
 
 [vxsnd]
-# Space separated list of IP addresses of vxsnd to share state with
+\# Space separated list of IP addresses of vxsnd to share state with
 svcnode_peers = 10.0.0.21 10.0.0.22
 
-# When set to true, the service node will listen for vxlan data traffic
-# Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
-# for False
+\# When set to true, the service node will listen for vxlan data traffic
+\# Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
+\# for False
 #enable_vxlan_listen = true
 
-# When set to true, the svcnode_ip will be installed on the loopback
-# interface, and it will be withdrawn when the vxsnd is no longer in
-# service.  If set to true, the svcnode_ip configuration
-# variable must be defined.
-# Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
-# for False
+\# When set to true, the svcnode_ip will be installed on the loopback
+\# interface, and it will be withdrawn when the vxsnd is no longer in
+\# service.  If set to true, the svcnode_ip configuration
+\# variable must be defined.
+\# Note: Use 1, yes, true, or on, for True and 0, no, false, or off,
+\# for False
 #install_svcnode_ip = false
 
-# Seconds to wait before checking the database to age out stale entries
+\# Seconds to wait before checking the database to age out stale entries
 #age_check = 90</code></pre>
 </details></td>
 </tr>
@@ -884,8 +878,7 @@ svcnode_peers = 10.0.0.21 10.0.0.22
 
 ## Troubleshooting
 
-In addition to [troubleshooting single-attached
-configurations](../Troubleshooting-VXLANs/),
+In addition to {{<link url="Troubleshooting-VXLANs" text="troubleshooting single-attached configurations">}},
 there is now the MLAG daemon (`clagd`) to consider. The `clagctl`
 command gives the output of MLAG behavior and any inconsistencies that
 might arise between a MLAG pair.
@@ -908,8 +901,8 @@ might arise between a MLAG pair.
 
 The additions to normal MLAG behavior are the following:
 
-| Output                          | Explanation                                                                                             |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Output           | Explanation       |
+| ------------------------------- | --------------------------------------- |
 | `VXLAN Anycast IP: 10.10.10.30` | The anycast IP address being shared by the MLAG pair for VTEP termination is in use and is 10.10.10.30. |
 | `Conflicts: -`                  | There are no conflicts for this MLAG Interface.                                                         |
 | `Proto-Down Reason: -`          | The VXLAN is up and running (there is no Proto-Down).                                                   |
@@ -943,7 +936,7 @@ that there is a `vxlan-id` mis-match on VXLAN10.
 Do not reuse the VLAN used for the peer link layer 3 subinterface for
 any other interface in the system. A high VLAN ID value is recommended.
 For more information on VLAN ID ranges, refer to the
-[VLAN-aware bridge chapter](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/#reserved-vlan-range).
+{{<link url="VLAN-aware-Bridge-Mode#reserved-vlan-range" text="VLAN-aware bridge chapter">}}.
 
 ### Bonds with Vagrant in Cumulus VX
 
@@ -962,7 +955,7 @@ topologies only, and is not needed on real hardware.
       post-up ip link set $IFACE promisc on
 
 For more information on using Cumulus VX and Vagrant, refer to the
-[Cumulus VX documentation](/cumulus-vx/).
+{{<exlink url="https://docs.cumulusnetworks.com/cumulus-vx/" text="Cumulus VX documentation">}}.
 
 ### With LNV, Unique Node ID Required for vxrd in Cumulus VX
 
@@ -1017,4 +1010,4 @@ mode can function correctly.
 
 ## Related Information
 
-[Network virtualization chapter, Cumulus Linux user guide](../../Network-Virtualization/)
+{{<link url="Network-Virtualization" text="Network virtualization chapter, Cumulus Linux user guide">}}

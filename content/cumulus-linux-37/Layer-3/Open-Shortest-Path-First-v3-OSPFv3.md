@@ -9,13 +9,13 @@ aliases:
  - /pages/viewpage.action?pageId=8362924
 pageID: 8362924
 ---
-OSPFv3 is a revised version of OSPFv2 to support the IPv6 address family. Refer to [Open Shortest Path First (OSPF) Protocol](../Open-Shortest-Path-First-OSPF/) for a discussion on the basic concepts, which remain the same between the two versions.
+OSPFv3 is a revised version of OSPFv2 to support the IPv6 address family. Refer to {{<link url="Open-Shortest-Path-First-OSPF">}} for a discussion on the basic concepts, which remain the same between the two versions.
 
 OSPFv3 defines a new LSA, called intra-area prefix LSA, to separate the advertisement of stub networks attached to a router from the router LSA. It is a clear separation of node topology from prefix reachability and lends itself well to an optimized SPF computation.
 
 {{%notice note%}}
 
-IETF has defined extensions to OSPFv3 to support multiple address families (both IPv6 and IPv4). [FRR](../FRRouting-Overview/) does not currently support multiple address families.
+IETF has defined extensions to OSPFv3 to support multiple address families (both IPv6 and IPv4). {{<link url="FRRouting-Overview" text="FRR">}} does not currently support multiple address families.
 
 {{%/notice%}}
 
@@ -217,11 +217,11 @@ Neighbor ID      Pri  DeadTime     State/IfState        Duration I/F[State]
 
 Run the `net show ospf6 help` command to show available NCLU command options.
 
-For a list of all the OSPF debug options, refer to [Debugging-OSPF](http://docs.frrouting.org/en/latest/ospfd.html#id7).
+For a list of all the OSPF debug options, refer to {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html#id7" text="Debugging OSPF">}}.
 
 ## Related Information
 
-- [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD/) (BFD) and OSPF
-- [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)
-- [FRR OSPFv3](https://frrouting.org/user-guide/ospf6d.html)
-- [Auto-cost reference bandwidth](../Open-Shortest-Path-First-OSPF/#auto-cost-reference-bandwidth) (OSPFv2 chapter)
+- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional forwarding detection">}} (BFD) and OSPF
+- {{<exlink url="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" text="Wikipedia - Open Shortest Path First">}}
+- {{<exlink url="http://docs.frrouting.org/en/latest/ospf6d.html" text="FRR OSPFv3">}}
+- {{<link url="Open-Shortest-Path-First-OSPF/#auto-cost-reference-bandwidth" text="Auto-cost reference bandwidth">}} (OSPFv2 chapter)

@@ -32,20 +32,41 @@ def sanatize_rn(string):
     string - The string to sanatize
     '''
 
-    # Remove HTML tags
-    TAG_RE = re.compile(r'<[^>]+>')
-    output_string = TAG_RE.sub('', string)
+    # # Remove HTML tags
+    # TAG_RE = re.compile(r'<[^>]+>')
+    # output_string = TAG_RE.sub('', string)
+    output_string = string.replace("<p>", "")
+    output_string = output_string.replace("</p>", "")
+    
+    output_string = output_string.replace("`", "'")
+
+    output_string = output_string.replace("\r\n", "<br />")
+    output_string = output_string.replace("\n", "")
+    
+    output_string = output_string.replace("&lt;", "<")
+    output_string = output_string.replace("&gt;", ">")
+
+    output_string = output_string.replace("<tt>", "`")
+    output_string = output_string.replace("</tt>", "`")
+
+    #CM-21678
+    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\"><pre>', "<br /><pre>")
+    output_string = output_string.replace("</pre></div></div>", "</pre><br />")
 
     # Remove line returns and replace them with HTML breaks
     output_string = output_string.replace("\r", "")
-    output_string = output_string.replace("\n\n", "<br />")
-    output_string = output_string.replace("\n", "<br />")
+    #output_string = output_string.replace("\n\n", "<br />")
+    #output_string = output_string.replace("\n", "<br />")
 
+    
     # Escape pipe characters
     output_string = output_string.replace("|", "\|")
 
     #Replace @ characters to prevent auto email link creation 
     output_string = output_string.replace("@", "&#64;")
+    output_string = output_string.replace("[", "&#91;")
+    output_string = output_string.replace("]", "&#93;")
+    
 
     return output_string
 
@@ -80,9 +101,9 @@ def build_rn_markdown(json_file, version, product, file_type):
 
     for bug in json_file:
         if(file_type == "affects"):
-            output.append("| [" + bug["ticket"] + "](#" + bug["ticket"] + ") | " + sanatize_rn(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + ", ".join(bug["fixed_versions"]) + "|")
+            output.append("| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") <a name=\"" + bug["ticket"] + "\"></a> | " + sanatize_rn(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + ", ".join(bug["fixed_versions"]) + "|")
         else:
-            output.append("| [" + bug["ticket"] + "](#" + bug["ticket"] + ") | " + sanatize_rn(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + "|")
+            output.append("| <a name=\"" + bug["ticket"] + "\"></a> [" + bug["ticket"] + "](#" + bug["ticket"] + ") | " + sanatize_rn(bug["release_notes_text"]) + " | " + ", ".join(bug["affects_versions"]) + " | " + "|")
 
         output.append("\n")
     

@@ -12,24 +12,22 @@ pageID: 8362715
 As of Cumulus Linux 3.7.4, the lightweight network virtualization
 feature (LNV) has been deprecated. The feature will be removed in
 Cumulus Linux 4.0. Cumulus Networks recommends you use
-[Ethernet virtual private network (EVPN)](../../Ethernet-Virtual-Private-Network-EVPN/)
+{{<link url="Ethernet-Virtual-Private-Network-EVPN" text="Ethernet virtual private network (EVPN)">}}
 for network virtualization.
 
 {{%/notice%}}
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
-[VXLANs](../../../Network-Virtualization/) without a central
+{{<link url="Network-Virtualization" text="VXLANs">}} without a central
 controller on bare metal switches. This a full example complete with
-diagram. Refer to the [Lightweight Network Virtualization
-chapter](../../Lightweight-Network-Virtualization-Overview/)
+diagram. Refer to the {{<link url="Lightweight-Network-Virtualization-Overview" text="LNV chapter">}}
 for more detailed information. This full example uses the **recommended
 way** of deploying LNV, which is to use anycast to load balance the
 service nodes.
 
 {{%notice note%}}
 
-LNV is a lightweight controller option. [Contact Cumulus
-Networks](http://cumulusnetworks.com/cumulus-linux/overview/#cl-howtoBuy)
+LNV is a lightweight controller option. {{<exlink url="http://cumulusnetworks.com/cumulus-linux/overview/#cl-howtoBuy" text="Contact Cumulus Networks">}}
 with your scale requirements so we can make sure this is the right fit
 for you. There are also other controller options that can work on
 Cumulus Linux.
@@ -58,15 +56,15 @@ The following images illustrate the configuration:
 {{%notice tip%}}
 
 Want to try out configuring LNV and do not have a Cumulus Linux switch?
-Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/) .
+Check out {{<exlink url="https://cumulusnetworks.com/cumulus-vx/" text="Cumulus VX">}} .
 
 {{%/notice%}}
 
 {{%notice tip%}}
 
-{{< img src="/images/old_doc_images/turtle_training.png" width="40">}} 
+{{< img src="/images/old_doc_images/turtle_training.png" width="40">}}
 
-Feeling overwhelmed? Come join a [Cumulus Boot Camp](https://education.cumulusnetworks.com/series/bootcamps/) and get instructor-led training\!
+Feeling overwhelmed? Come join a {{<exlink url="https://education.cumulusnetworks.com/series/bootcamps/" text="Cumulus Boot Camp">}} and get instructor-led training\!
 
 {{%/notice%}}
 
@@ -256,8 +254,8 @@ iface br-30
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
-[BGP](../../../Layer-3/Border-Gateway-Protocol-BGP/) or
-[OSPF](../../../Layer-3/Open-Shortest-Path-First-OSPF/). In this
+{{<link url="Border-Gateway-Protocol-BGP/" text="BGP">}} or
+{{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}. In this
 example, OSPF is used to demonstrate full reachability.
 
 Here is the FRRouting configuration using OSPF:
@@ -519,11 +517,8 @@ svcnode_peers = 10.2.1.3
 
 ## Related Information
 
-  - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
-  - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
-  - [Detailed LNV Configuration
-    Guide](../../Lightweight-Network-Virtualization-Overview/)
-  - [Cumulus Networks
-    Training](http://cumulusnetworks.com/education/instructor-led-training/)
-  - [Network virtualization chapter, Cumulus Linux user
-    guide](../../../Network-Virtualization/)
+  - {{<exlink url="https://tools.ietf.org/html/rfc7348" text="RFC 7348">}}
+  - {{<exlink url="http://en.wikipedia.org/wiki/Anycast" text="Wikipedia - Anycast">}}
+  - {{<link url="Lightweight-Network-Virtualization-Overview" text="Detailed LNV Configuration Guide">}}
+  - {{<exlink url="http://cumulusnetworks.com/education/instructor-led-training/" text="Cumulus Networks Training">}}
+  - {{<link url="Network-Virtualization" text="Network virtualization chapter, Cumulus Linux user guide">}}

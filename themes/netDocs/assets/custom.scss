@@ -1553,3 +1553,9 @@ footer {
   margin-top: 20px;
   margin-bottom: 40px;
 }
+
+.markdown pre{
+  display: inline-block; 
+  white-space: pre-wrap; 
+  overflow-x: auto;
+}

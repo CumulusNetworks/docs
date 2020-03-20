@@ -12,7 +12,7 @@ You monitor system hardware in these ways, using:
 - `decode-syseeprom`
 - `smond`
 - `sensors`
-- [Net-SNMP](../../Monitoring-and-Troubleshooting/Simple-Network-Management-Protocol-SNMP/)
+- {{<link url="Simple-Network-Management-Protocol-SNMP" text="Net-SNMP">}}
 - `watchdog`
 
 ## Retrieve Hardware Information Using decode-syseeprom
@@ -54,7 +54,7 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t]`
 |-r|Prints the number of MACs allocated for switch interfaces.|
 |-s|Sets the EEPROM content if the EEPROM is writable. args can be supplied in command line in a comma separated list of the form \<field>=\<value>, .... Illegal characters in field names and values include the comma (,) and equals sign (=). Fields that are not specified default to their current values. If args are supplied in the command line, they will be written without confirmation. If args is empty, the values will be prompted interactively.|
 |-j, --json|Displays JSON output.|
-|-t TARGET|Prints the target EEPROM (board, psu2, psu1) information. **Note**: Some systems that use a BMC to manage sensors (such as the Dell Z9264, Facebook Voyager, and Facebook Wedge-100) do not provide the PSU EEPROM contents. This is because the BMC connects to the PSUs via I2C and the main CPU of the switch has no direct access.|
+|-t TARGET|Prints the target EEPROM (board, psu2, psu1) information.{{%notice note%}}Some systems that use a BMC to manage sensors (such as the Dell Z9264, Facebook Voyager, and Facebook Wedge-100) do not provide the PSU EEPROM contents. This is because the BMC connects to the PSUs via I2C and the main CPU of the switch has no direct access.{{%/notice%}}|
 |--serial|Prints the device serial number.|
 |-m|Prints the base MAC address for management interfaces.|
 |--init|Clears and initializes the board EEPROM cache|
@@ -150,14 +150,14 @@ In Cumulus Linux 3.7.11 and later, you can run these NCLU commands to show senso
 
 The `sensors` command provides a method for monitoring the health of
 your switch hardware, such as power, temperature and fan speeds. This
-command executes [lm-sensors](https://en.wikipedia.org/wiki/Lm_sensors).
+command executes `{{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors">}}`.
 
 {{%notice note%}}
 
 Even though you can use the `sensors` command to monitor the health of
 your switch hardware, the `smond` daemon is the recommended method for
 monitoring hardware health. See
-[Monitor System Units Using smond](#monitor-system-units-using-smond) above.
+{{<link url="#monitor-system-units-using-smond" text="Monitor System Units Using smond">}} above.
 
 {{%/notice%}}
 
@@ -217,7 +217,7 @@ Example chip names include:
 
 ## Monitor Switch Hardware Using SNMP
 
-The Net-SNMP documentation is discussed [here](../Simple-Network-Management-Protocol-SNMP/).
+The Net-SNMP documentation is discussed {{<link url="Simple-Network-Management-Protocol-SNMP" text="here">}}.
 
 ## Keep the Switch Alive Using the Hardware Watchdog
 
@@ -240,7 +240,7 @@ and scheduler priority &mdash; in the configuration file, `/etc/watchdog.conf`. 
 is the default configuration file:
 
 ```
-cumulus@switch:~$ cat /etc/watchdog.conf 
+cumulus@switch:~$ cat /etc/watchdog.conf
 
 watchdog-device	= /dev/watchdog
 
@@ -278,6 +278,6 @@ This is a known limitation on the OMP-800 platform.
 
 ## Related Information
 
-- [packages.debian.org/search?keywords=lshw](http://packages.debian.org/search?keywords=lshw)
-- [lm-sensors.org](https://en.wikipedia.org/wiki/Lm_sensors)
-- [Net-SNMP tutorials](http://net-snmp.sourceforge.net/wiki/index.php/Tutorials)
+- {{<exlink url="https://packages.debian.org/jessie/lshw" text="lshw package for Debian Jessie">}}
+- {{<exlink url="https://github.com/lm-sensors/lm-sensors" text="lm-sensors on GitHub">}}
+- {{<exlink url="http://net-snmp.sourceforge.net/wiki/index.php/Tutorials" text="Net-SNMP tutorials">}}

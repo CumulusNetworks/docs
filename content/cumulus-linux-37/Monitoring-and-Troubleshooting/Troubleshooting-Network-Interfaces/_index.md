@@ -187,12 +187,10 @@ reload the configuration with `ifreload -a`, bond1 is still part of br0.
 
 ## MTU Set on a Logical Interface Fails with Error: "Numerical result out of range"
 
-This error occurs when the
-[MTU](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu)
+This error occurs when the {{<link url="Switch-Port-Attributes/#mtu" text="MTU">}}
 you are trying to set on an interface is higher than the MTU of the
 lower interface or dependent interface. Linux expects the upper
-interface to have an MTU less than or equal to the MTU on the lower
-interface.
+interface to have an MTU less than or equal to the MTU on the lower interface.
 
 In the example below, the swp1.100 VLAN interface is an upper interface
 to physical interface swp1. If you want to change the MTU to 9000 on the
@@ -240,4 +238,4 @@ Losing a large number of packets across an MLAG peerlink interface may
 not be a problem. Instead this could be occurring in order to prevent
 looping of BUM (broadcast, unknown unicast and multicast) packets. For
 more information, and how to detect these drops, see
-[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/#large-packet-drops-on-the-peer-link-interface).
+{{<link url="Multi-Chassis-Link-Aggregation-MLAG/#large-packet-drops-on-the-peer-link-interface" text="MLAG">}}.

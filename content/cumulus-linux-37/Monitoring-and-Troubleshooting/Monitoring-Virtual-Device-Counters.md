@@ -10,7 +10,7 @@ pageID: 8362605
 Cumulus Linux gathers statistics for VXLANs and VLANs using virtual
 device counters. These counters are supported on Tomahawk, Trident II+
 and Trident II-based platforms only; see the
-[Cumulus Networks HCL](https://cumulusnetworks.com/hcl/) for a list of supported platforms.
+{{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Networks HCL">}} for a list of supported platforms.
 
 You can retrieve the data from these counters using tools like
 `ip -s link show`, `ifconfig`, `/proc/net/dev`, or `netstat -i`.
@@ -72,8 +72,7 @@ To get network statistics, run:
 
 ### For VLANs Using the VLAN-aware Bridge Mode Driver
 
-For a bridge using the [VLAN-aware bridge
-mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)
+For a bridge using the {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}}
 driver, the bridge is a just a container and each VLAN (VID/PVID) in the
 bridge is an independent L2 broadcast domain. As there is no netdev
 available to display these VLAN statistics, the `switchd` nodes are used
@@ -101,8 +100,7 @@ instead:
 
 ### For VLANs Using the Traditional Bridge Mode Driver
 
-For a bridge using the [traditional bridge
-mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/)
+For a bridge using the {{<link url="Traditional-Bridge-Mode" text="traditional bridge mode">}}
 driver, each bridge is a single L2 broadcast domain and is associated
 with an internal VLAN. This internal VLAN's counters are displayed as
 bridge netdev stats.
@@ -122,7 +120,7 @@ bridge netdev stats.
 ## Configure the Counters in switchd
 
 These counters are enabled by default. To configure them, use `cl-cfg`
-and configure them as you would any other [`switchd` parameter](../../System-Configuration/Configuring-switchd/). The `switchd` parameters are as follows:
+and configure them as you would any other {{<link url="Configuring-switchd" text="`switchd` parameter">}}. The `switchd` parameters are as follows:
 
   - `stats.vlan.aggregate`, which controls the statistics available for
     each VLAN. Its value defaults to *BRIEF*.

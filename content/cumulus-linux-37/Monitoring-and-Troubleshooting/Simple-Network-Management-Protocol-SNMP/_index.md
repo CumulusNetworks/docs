@@ -23,7 +23,7 @@ University of Liverpool as well as later in Denmark. In late 2000, the
 project name changed to `net-snmp` and became a fully-fledged
 collaborative open source project. The version used by Cumulus Networks
 is based on the latest `net-snmp` 5.7 branch with added custom MIBs and
-pass-through and pass-persist scripts ([see below](#pass-persist-scripts)
+pass-through and pass-persist scripts ({{<link url="#pass-persist-scripts" text="see below">}}
 for more information on pass persist scripts).
 
 ## Introduction to Simple Network Management Protocol
@@ -208,9 +208,9 @@ username passwords and has the option of encrypting the packet contents.
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
-including the [management VRF](../../Layer-3/Management-VRF/), follow
-[these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf)
+{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
+including the {{<link url="Management-VRF" text="management VRF">}}, follow
+{{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}
 for configuring the service.
 
 {{%/notice%}}
@@ -275,35 +275,35 @@ and committed.
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><code>net del all</code> or <code>net del snmp-server all</code></p></td>
 <td><p>Removes all entries in the <code>/etc/snmp/snmpd.conf</code> file and replaces them with defaults. The defaults remove all SNMPv3 usernames, readonly-communities, and a listening-address of localhost is configured.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><code>net add snmp-server listening-address (localhost|localhost-v6)</code></p></td>
 <td><p>For security reasons, the localhost is set to a listening address 127.0.0.1 by default so that the SNMP agent only responds to requests originating on the switch itself. You can also configure listening only on the IPv6 localhost address with localhost-v6. When using IPv6 addresses or localhost, you can use a <code>readonly-community-v6</code> for v1 and v2c requests. For v3 requests, you can use the <code>username</code> command to restrict access.</p>
 <pre><code>net add snmp-server listening-address localhost
 net add snmp-server listening-address localhost-v6</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p><code>net add snmp-server listening-address (all|all-v6)</code></p></td>
 <td><p>Configures the <code>snmpd</code> agent to listen on all interfaces for either IPv4 or IPv6 UDP port 161 SNMP requests. This command removes all other individual IP addresses configured.</p>
 <p>Note: This command does not allow <code>snmpd</code> to cross VRF table boundaries. To listen on IP addresses in different VRF tables, use multiple listening-address commands each with a VRF name, as shown below.</p>
 <pre><code>net add snmp-server listening-address all
 net add snmp-server listening-address all-v6</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><code>net add snmp-server listening-address IP_ADDRESS IP_ADDRESS ...</code></p></td>
 <td><p>Sets <code>snmpd</code> to listen to a specific IPv4 or IPv6 address, or a group of addresses with space separated values, for incoming SNMP queries. If VRF tables are used, be sure to specify an IP address with an associated VRF name, as shown below. If you omit a VRF name, the default VRF is used.</p>
 <pre><code>net add snmp-server listening-address 10.10.10.10</code></pre>
 <pre><code>net add snmp-server listening-address 10.10.10.10 44.44.44.44</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p><code>net add snmp-server listening-address IP_ADDRESS vrf VRF_NAME</code></p></td>
 <td><p>Sets <code>snmpd</code> to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If the VRF name is not given, the default VRF is used.</p>
 <pre><code>net add snmp-server listening-address 10.10.10.10 vrf mgmt</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><code>net add snmp-server username [user name] (auth-none|auth-md5|auth-sha) &lt;authentication password&gt; [(encrypt-des|encrypt-aes) &lt;encryption password&gt;] (oid &lt;OID&gt;|view &lt;view name&gt;)</code></p></td>
 <td><p>Creates an SNMPv3 username and the necessary credentials for access. You can restrict a user to a particular OID tree or predefined view name if these are specified. If you specify auth-none, no authentication password is required. Otherwise, an MD5 or SHA password is required for access to the MIB objects. If specified, an encryption password is used to hide the contents of the request and response packets.</p>
 <pre><code>net add snmp-server username testusernoauth  auth-none
@@ -311,7 +311,7 @@ net add snmp-server username testuserauth    auth-md5  myauthmd5password
 net add snmp-server username testuserboth    auth-md5  mynewmd5password   encrypt-aes  myencryptsecret
 net add snmp-server username limiteduser1    auth-md5  md5password1       encrypt-aes  myaessecret       oid 1.3.6.1.2.1.1</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p><code>net add snmp-server viewname [view name] (included | excluded) [OID or name]</code></p></td>
 <td><p>Creates a view name that is used in readonly-community to restrict MIB tree exposure. By itself, this view definition has no effect; however, when linked to an SNMPv3 username or community password, and a host from a restricted subnet, any SNMP request with that username and password must have a source IP address within the configured subnet.</p>
 <p>Note: OID can be either a string of period separated decimal numbers or a unique text string that identifies an SNMP MIB object. Some MIBs are not installed by default; you must install them either by hand or with the latest Debian package called snmp-mibs-downloader. You can remove specific view name entries with the delete command or with just a view name to remove all entries matching that view name. You can define a specific view name multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.</p>
@@ -322,7 +322,7 @@ net add snmp-server readonly-community simplepassword access any view cumulusOnl
 net add snmp-server username testusernoauth  auth-none view cumulusOnly
 net add snmp-server username limiteduser1    auth-md5  md5password1 encrypt-aes  myaessecret  view cumulusCounters</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><code>net add snmp-server (readonly-community | readonly-community-v6) [password] access (any | localhost | [network]) [(view [view name]) or [oid [oid or name])</code></p></td>
 <td><p>This command defines the password required for SNMP version 1 or 2c requests for GET or GETNEXT. By default, this provides access to the full OID tree for such requests, regardless of from where they were sent. There is no default password set, so <code>snmpd</code> does not respond to any requests that arrive. Users often specify a source IP address token to restrict access to only that host or network given. You can specify a view name to restrict the subset of the OID tree.</p>
 <p>Examples of <code>readonly-community </code>commands are shown below. The first command sets the read only community string to <code>simplepassword</code> for SNMP requests and this restricts requests to those sourced from hosts in the 10.10.10.0/24 subnet and restricts viewing to the <em>mysystem</em> view name defined with the <code>viewname</code> command. The second example creates a read-only community password <em>showitall</em> that allows access to the entire OID tree for requests originating from any source IP address.</p>
@@ -331,14 +331,14 @@ net add snmp-server readonly-community simplepassword access 10.10.10.0/24 view 
  
 net add snmp-server readonly-community showitall access any</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p><code>net add snmp-server trap-destination (localhost | [ipaddress]) [vrf vrf name] community-password [password] [version [1 | 2c]]</code></p></td>
 <td><p>For SNMP versions 1 and 2C, this command sets the SNMP Trap destination IP address. Multiple destinations can exist, but you must set up at least one to enable SNMP Traps to be sent. Removing all settings disables SNMP traps. The default version is 2c, unless otherwise configured. You must include a VRF name with the IP address to force Traps to be sent in a non-default VRF table.</p>
 <pre><code>net add snmp-server trap-destination 10.10.10.10 community-password mynotsosecretpassword version 1
 net add snmp-server trap-destination 20.20.20.20 vrf mgmt community-password mymanagementvrfpassword version 2c
  </code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><code>net add snmp-server trap-destination (localhost | [ipaddress]) [vrf vrf name] username &lt;v3 username&gt; (auth-md5|auth-sha) &lt;authentication password&gt; [(encrypt-des|encrypt-aes) &lt;encryption password&gt;] engine-id &lt;text&gt; [inform]</code></p></td>
 <td><p>For SNMPv3 Trap and Inform messages, this command configures the trap destination IP address (with an optional VRF name). You must define the authentication type and password. The encryption type and password are optional. You must specify the engine ID/user name pair. The <code>inform </code>keyword is used to specify an Inform message where the SNMP agent waits for an acknowledgement.</p>
 <p>For Traps, the engine ID/user name is for the CL switch <strong>sending</strong> the traps. This can be found at the end of the <code>/var/lib/snmp/snmpd.conf</code> file labelled <code>oldEngineID</code>. Configure this same engine ID/user name (with authentication and encryption passwords) for the Trap daemon receiving the trap to validate the received Trap.</p>
@@ -348,22 +348,22 @@ net add snmp-server trap-destination 20.20.20.20 vrf mgmt username mymgmtvrfuser
 <pre><code>net add snmp-server trap-destination 10.10.10.10 username myv3userrsion auth-md5 md5password1 encrypt-aes myaessecret engine-id  0x80001f888070939b14a514da5a00000000 inform
 net add snmp-server trap-destination 20.20.20.20 vrf mgmt username mymgmtvrfusername auth-md5 md5password2 encrypt-aes myaessecret2 engine-id  0x80001f888070939b14a514da5a00000000 inform</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p><code>net add snmp-server trap-link-up [check-frequency [seconds]]</code></p></td>
 <td><p>Enables notifications for interface link-up to be sent to SNMP Trap destinations.</p>
 <pre><code>net add snmp-server trap-link-up check-frequency 15</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><code>net add snmp-server trap-link-down [check-frequency [seconds]]</code></p></td>
 <td><p>Enables notifications for interface link-down to be sent to SNMP Trap destinations.</p>
 <pre><code>net add snmp-server trap-link-down check-frequency 10</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p><code>net add snmp-server trap-snmp-auth-failures</code></p></td>
 <td><p>Enables SNMP Trap notifications to be sent for every SNMP authentication failure.</p>
 <pre><code>net add snmp-server trap-snmp-auth-failures</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><code>net add snmp-server trap-cpu-load-average one-minute [threshold] five-minute [5-min-threshold]</code></p>
 <p><code>fifteen-minute [15-min-threshold]</code></p></td>
 <td><p>Enables a trap when the cpu-load-average exceeds the configured threshold. You can only use integers or floating point numbers.</p>
@@ -387,17 +387,17 @@ SNMPv2-MIB.
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><code>net add snmp-server system-location [string]</code></p></td>
 <td><p>Sets the system physical location for the node in the SNMPv2-MIB system table.</p>
 <pre><code>net add snmp-server system-location  My private bunker</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><code>net add snmp-server system-contact [string]</code></p></td>
 <td><p>Sets the identification of the contact person for this managed node, together with information on how to contact this person.</p>
 <pre><code>net add snmp-server system-contact user X at myemail@example.com</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p><code>net add snmp-server system-name [string]</code></p></td>
 <td><p>Sets an administratively-assigned name for the managed node. By convention, this is the fully-qualified domain name of the node.</p>
 <pre><code>net add snmp-server system-name CumulusBox number 1,543,567</code></pre></td>
@@ -447,11 +447,11 @@ keywords are defined in the following table.
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><strong>agentaddress</strong></p></td>
 <td><p><strong>Required.</strong> This command sets the protocol, IP address, and the port for <code>snmpd</code> to listen for <strong>incoming</strong> requests. The IP address must exist on an interface that has link UP on the switch where <code>snmpd</code> is being used. By default, this is set to <em>udp:127.0.0.1:161</em>, which means <code>snmpd</code> listens on the loopback interface and only responds to requests (<code>snmpwalk</code>, <code>snmpget</code>, <code>snmpgetnext</code>) originating from the switch. A wildcard setting of <em>udp:161,udp6:161</em> forces <code>snmpd</code> to listen on all IPv4 and IPv6 interfaces for incoming SNMP requests. You can configure multiple IP addresses as comma-separated values; for example, <em>udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161.</em> You can use multiple lines to define listening addresses. To bind to a particular IP address within a particular VRF table, follow the IP address with a <code>@</code> and the name of the VRF table (for example, <code>10.10.10.10@mgmt</code>).</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>rocommunity</strong></p></td>
 <td><p><strong>Required.</strong> This command defines the password that is required for SNMP version 1 or 2c requests for GET or GETNEXT. By default, this provides access to the full OID tree for such requests, regardless of from where they were sent. There is no default password set, so <code>snmpd</code> does not respond to any requests that arrive. Specify a source IP address token to restrict access to only that host or network given. Specify a view name (as defined above) to restrict the subset of the OID tree.</p>
 <p>Examples of <code>rocommunity</code> commands are shown below. The first command sets the read only community string to <code>simplepassword</code> for SNMP requests sourced from the 10.10.10.0/24 subnet and restricts viewing to the <em>systemonly</em> view name defined previously with the <code>view</code> command. The second example creates a read-only community password that allows access to the entire OID tree from any source IP address.</p>
@@ -459,7 +459,7 @@ keywords are defined in the following table.
  
 rocommunity cumulustestpassword</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p><strong>view</strong></p></td>
 <td><p>This command defines a view name that specifies a subset of the overall OID tree. You can reference this restricted view by name in the <code>rocommunity</code> command to link the view to a password that is used to see this restricted OID subset. By default, the <code>snmpd.conf</code> file contains numerous views with the <em>systemonly</em> view name.</p>
 <pre><code>view   systemonly  included   .1.3.6.1.2.1.1
@@ -469,12 +469,12 @@ view   systemonly  included   .1.3.6.1.2.1.2
 view   systemonly  included   .1.3.6.1.2.1.3 </code></pre>
 <p>The <em>systemonly</em> view is used by <code>rocommunity</code> to create a password for access to only these branches of the OID tree.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>trapsink</strong></p>
 <p><strong>trap2sink</strong></p></td>
 <td><p>This command defines the IP address of the notification (or trap) receiver for either SNMPv1 traps or SNMPv2 traps. If you specify several sink directives, multiple copies of each notification (in the appropriate formats) are generated. You must configure a trap server to receive and decode these trap messages (for example, <code>snmptrapd</code>). You can configure the address of the trap receiver with a different protocol and port but this is most often left out. The defaults are to use the well-known UDP packets and port 162.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p><strong>createuser</strong></p>
 <p><strong>iquerysecName</strong></p>
 <p><strong>rouser</strong></p></td>
@@ -485,7 +485,7 @@ iquerysecname snmptrapusernameX
  
 rouser snmptrapusernameX</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>linkUpDownNotifications yes</strong></p></td>
 <td><p>This command enables link up and link down trap notifications, assuming the other trap configurations settings are set. This command configures the Event MIB tables to monitor the ifTable for network interfaces being taken up or down, and triggering a <em>linkUp</em> or <em>linkDown</em> notification as appropriate. This is equivalent to the following configuration:</p>
 <pre><code>notificationEvent  linkUpTrap    linkUp   ifIndex ifAdminStatus ifOperStatus
@@ -496,7 +496,7 @@ monitor  -r 60 -e linkUpTrap   &quot;Generate linkUp&quot; ifOperStatus != 2
  
 monitor  -r 60 -e linkDownTrap &quot;Generate linkDown&quot; ifOperStatus == 2</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p><strong>defaultMonitors yes</strong></p></td>
 <td><p>This command configures the Event MIB tables to monitor the various UCD-SNMP-MIB tables for problems (as indicated by the appropriate xxErrFlag column objects) and send a trap. This assumes you have downloaded the <code>snmp-mibs-downloader</code> Debian package and commented out <code>mibs</code> from the <code>/etc/snmp/snmp.conf</code> file (#mibs). This command is exactly equivalent to the following configuration:</p>
 <pre><code>monitor   -o prNames -o prErrMessage &quot;process table&quot; prErrorFlag != 0
@@ -522,9 +522,9 @@ it using `systemctl`.
 {{%notice note%}}
 
 As mentioned above, if you intend to run this service within a
-[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
-including the [management VRF](../../Layer-3/Management-VRF/), follow
-[these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf)
+{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
+including the {{<link url="Management-VRF" text="management VRF">}}, follow
+{{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}}
 for configuring the service.
 
 {{%/notice%}}
@@ -557,8 +557,7 @@ on the switch.
 
 ### Configure SNMP with Management VRF (used prior to Cumulus Linux 3.6)
 
-When you configure [Management
-VRF](../../Layer-3/Management-VRF/), you need to be aware of the
+When you configure {{<link url="Management-VRF" text="management VRF">}}, you need to be aware of the
 interface IP addresses on which SNMP is listening. If you set
 listening-address to all, the `snmpd` daemon responds to incoming
 requests on all interfaces that are in the default VRF. If you prefer to
@@ -642,10 +641,16 @@ shows how to stop `snmpd` and restart it in the management VRF.
     cumulus@switch:mgmt-vrf:~$ systemctl start snmpd@mgmt.service
     cumulus@switch:mgmt-vrf:~$ systemctl enable snmpd.service
     cumulus@switch:mgmt-vrf:~$ systemctl status snmpd@mgmt.service
-    root@switch:mgmt-vrf:/home/cumulus# systemctl status snmpd@mgmt.service                                                                                                                                                                                                                                                                               ● snmpd@mgmt.service - Simple Network Management Protocol (SNMP) Daemon.                                                                                                                                                                                                                                                                                       Loaded: loaded (/lib/systemd/system/snmpd.service; disabled)                                                                                                                                                                                                                                                                                               Drop-In: /run/systemd/generator/snmpd@.service.d                                                                                                                                                                                                                                                                                                                     └─vrf.conf
-       Active: active (running) since Thu 2017-12-07 20:05:41 UTC; 2min 22s ago                                                                                                                                                                                                                                                                                  Main PID: 30880 (snmpd)
-       CGroup: /system.slice/system-snmpd.slice/snmpd@mgmt.service                                                                                                                                                                                                                                                                                                         └─30880 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
-                                                                                                                                                                                                                                                                                                                                                                Dec 07 20:05:41 cel-redxp-01 systemd[1]: Started Simple Network Management Protocol (SNMP) Daemon..
+    root@switch:mgmt-vrf:/home/cumulus# systemctl status snmpd@mgmt.service     
+      ● snmpd@mgmt.service - Simple Network Management Protocol (SNMP) Daemon.                    
+                              Loaded: loaded (/lib/systemd/system/snmpd.service; disabled)
+                              Drop-In: /run/systemd/generator/snmpd@.service.d                                                                                         
+        └─vrf.conf
+           Active: active (running) since Thu 2017-12-07 20:05:41 UTC; 2min 22s ago                    
+                                   Main PID: 30880 (snmpd)
+           CGroup: /system.slice/system-snmpd.slice/snmpd@mgmt.service
+        └─30880 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
+                  Dec 07 20:05:41 cel-redxp-01 systemd[1]: Started Simple Network Management Protocol (SNMP) Daemon..
      
     cumulus@switch:mgmt-vrf:~$ ps aux | grep snmpd
     snmp     30880  0.4  0.3  57176 12276 ?        Ss   20:05   0:00 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
@@ -665,9 +670,7 @@ However, you need to copy several files to the NMS server for the custom
 Cumulus MIB to be recognized on NMS server.
 
   - `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt`
-
   - `/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt`
-
   - `/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt`
 
 ### Set the Community String
@@ -689,8 +692,8 @@ To enable read-only querying by a client:
 
     <table>
     <colgroup>
-    <col style="width: 50%" />
-    <col style="width: 50%" />
+    <col style="width: 30%" />
+    <col style="width: 70%" />
     </colgroup>
     <thead>
     <tr class="header">
@@ -699,22 +702,22 @@ To enable read-only querying by a client:
     </tr>
     </thead>
     <tbody>
-    <tr class="odd">
+    <tr>
     <td><p>rocommunity</p></td>
     <td><p>Read-only community; <em>rwcommunity</em> is for read-write access.</p></td>
     </tr>
-    <tr class="even">
+    <tr>
     <td><p>public</p></td>
     <td><p>Plain text password/community string.</p>
     <p>{{%notice warning%}}</p>
     <p>Cumulus Networks strongly recommends you change this password to something else.</p>
     <p>{{%/notice%}}</p></td>
     </tr>
-    <tr class="odd">
+    <tr>
     <td><p>default</p></td>
     <td><p>The <em>default</em> keyword allows connections from any system. The <em>localhost</em> keyword allows requests only from the local host. A restricted source can either be a specific hostname (or address), or a subnet, represented as IP/MASK (like 10.10.10.0/255.255.255.0), or IP/BITS (like 10.10.10.0/24), or the IPv6 equivalents.</p></td>
     </tr>
-    <tr class="even">
+    <tr>
     <td><p>systemonly</p></td>
     <td><p>The name of this particular SNMP view. This is a user-defined value.</p></td>
     </tr>
@@ -728,12 +731,11 @@ To enable read-only querying by a client:
 ## Enable SNMP Support for FRRouting
 
 SNMP supports Routing MIBs in
-[FRRouting](../../Layer-3/FRRouting-Overview/). To enable SNMP
+{{<link url="FRRouting-Overview" text="FRRouting">}}. To enable SNMP
 support for FRRouting, you need to:
 
-  - Configure [AgentX](http://www.net-snmp.org/docs/README.agentx.html)
+  - Configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}}
     (ASX) access in FRRouting
-
   - The default `/etc/snmp/snmpd.conf` configuration already enables
     agentx and sets the correct permissions
 
@@ -776,9 +778,7 @@ Make sure that the `/var/agentx` directory is world-readable and
 3.  Optionally, you might need to expose various MIBs:
 
       - For the BGP4 MIB, allow access to `1.3.6.1.2.1.15`
-
       - For the OSPF MIB, allow access to `1.3.6.1.2.1.14`
-
       - For the OSPFV3 MIB, allow access to `1.3.6.1.2.1.191`
 
 To verify the configuration, run `snmpwalk`. For example, if you have a
@@ -964,10 +964,7 @@ the Distributed Management (DisMan) Event MIB for various system events,
 including:
 
   - Link up/down.
-
-  - Exceeding the temperature sensor threshold, CPU load, or memory
-    threshold.
-
+  - Exceeding the temperature sensor threshold, CPU load, or memory threshold.
   - Other SNMP MIBs.
 
 To enable specific types of traps, you need to create the following
@@ -1020,8 +1017,7 @@ still required. Starting with Net-SNMP 5.3, `snmptrapd` no longer
 accepts all traps by default. `snmptrapd` must be configured with
 authorized SNMPv1/v2c community strings and/or SNMPv3 users.
 Non-authorized traps/informs are dropped. Refer to the
-[snmptrapd.conf(5) manual
-page](http://www.net-snmp.org/docs/man/snmptrapd.conf.html) for details.
+{{<exlink url="http://www.net-snmp.org/docs/man/snmptrapd.conf.html" text="snmptrapd.conf(5) manual page">}} for details.
 
 {{%/notice%}}
 
@@ -1382,10 +1378,8 @@ You can specify three processing types:
 
   - *log* logs the details of the notification in a specified file to
     standard output (or stderr), or through syslog (or similar).
-
   - *execute* passes the details of the trap to a specified handler
     program, including embedded Perl.
-
   - *net* forwards the trap to another notification receiver.
 
 Typically, this configuration is *log,execute,net* to cover any style of
@@ -1436,8 +1430,8 @@ for them. The overall Cumulus Linux MIB is defined in the
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 30%" />
+<col style="width: 70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1446,59 +1440,59 @@ for them. The overall Cumulus Linux MIB is defined in the
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/BGP4-MIB.txt" class="external-link">BGP4-MIB</a>,</p>
-<p><a href="https://cumulusnetworks.com/static/mibs/OSPFv2-MIB.txt" class="external-link">OSPFv2-MIB</a>,</p>
-<p><a href="https://cumulusnetworks.com/static/mibs/OSPFv3-MIB.txt" class="external-link">OSPFv3-MIB</a>,</p>
-<p><a href="https://cumulusnetworks.com/static/mibs/RIPv2-MIB.txt" class="external-link">RIPv2-MIB</a></p></td>
-<td><p>You can enable FRRouting SNMP support to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-1657). See the <a href="#enable-snmp-support-for-frrouting">FRRouting section</a> above.</p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/BGP4-MIB.txt">BGP4-MIB</a>,</p>
+<p><a href="https://cumulusnetworks.com/static/mibs/OSPFv2-MIB.txt">OSPFv2-MIB</a>,</p>
+<p><a href="https://cumulusnetworks.com/static/mibs/OSPFv3-MIB.txt">OSPFv3-MIB</a>,</p>
+<p><a href="https://cumulusnetworks.com/static/mibs/RIPv2-MIB.txt">RIPv2-MIB</a></p></td>
+<td><p>You can enable FRRouting SNMP support to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-1657). See the {{<link url="#enable-snmp-support-for-frrouting" text="FRRouting section">}} above.</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-COUNTERS-MIB.txt" class="external-link">CUMULUS-COUNTERS-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-COUNTERS-MIB.txt">CUMULUS-COUNTERS-MIB</a></p></td>
 <td><p>Discard counters: Cumulus Linux also includes its own counters MIB, defined in <code>/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt</code>. It has the OID <code>.1.3.6.1.4.1.40310.2</code></p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-POE-MIB.txt" class="external-link">CUMULUS-POE-MIB</a></p></td>
-<td><p>The Cumulus Networks custom <a href="../../System-Configuration/Power-over-Ethernet-PoE">Power over Ethernet</a> PoE MIB defined in the <code>/usr/share/snmp/mibs/Cumulus-POE-MIB.txt</code> file. For devices that provide PoE, this provides users with the system wide power information in <code>poeSystemValues</code> as well as per interface <code>PoeObjectsEntry</code> values for the <code>poeObjectsTable</code>. Most of this information comes from the <code>poectl</code> command. To enable this MIB, uncomment the following line in <code>/etc/snmp/snmpd.conf</code>:</p>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-POE-MIB.txt">CUMULUS-POE-MIB</a></p></td>
+<td><p>The Cumulus Networks custom {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet">}} PoE MIB defined in the <code>/usr/share/snmp/mibs/Cumulus-POE-MIB.txt</code> file. For devices that provide PoE, this provides users with the system wide power information in <code>poeSystemValues</code> as well as per interface <code>PoeObjectsEntry</code> values for the <code>poeObjectsTable</code>. Most of this information comes from the <code>poectl</code> command. To enable this MIB, uncomment the following line in <code>/etc/snmp/snmpd.conf</code>:</p>
 <pre><code>#pass_persist .1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py</code></pre></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-RESOURCE-QUERY-MIB.txt" class="external-link">CUMULUS-RESOURCE-QUERY-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-RESOURCE-QUERY-MIB.txt">CUMULUS-RESOURCE-QUERY-MIB</a></p></td>
 <td><p>Cumulus Linux includes its own resource utilization MIB, which is similar to using<code> cl-resource-query</code>. This MIB monitors layer 3 entries by host, route, nexthops, ECMP groups, and layer 2 MAC/BDPU entries.The MIB is defined in <code>/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt</code> and has the OID <code>.1.3.6.1.4.1.40310.1.</code></p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-SNMP-MIB.txt" class="external-link">CUMULUS-SNMP-MIB</a></p></td>
-<td><p>SNMP counters. For information on exposing CPU and memory information with SNMP, see this <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203922988" class="external-link">knowledge base article</a>.</p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-SNMP-MIB.txt">CUMULUS-SNMP-MIB</a></p></td>
+<td><p>SNMP counters. For information on exposing CPU and memory information with SNMP, see this <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203922988">knowledge base article</a>.</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/DISMAN-EVENT-MIB.txt" class="external-link">DISMAN-EVENT-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/DISMAN-EVENT-MIB.txt">DISMAN-EVENT-MIB</a></p></td>
 <td><p>Trap monitoring</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/ENTITY-MIB.txt" class="external-link">ENTITY-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/ENTITY-MIB.txt">ENTITY-MIB</a></p></td>
 <td><p>From RFC 4133, the temperature sensors, fan sensors, power sensors, and ports are covered.</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/ENTITY-SENSOR-MIB.txt" class="external-link">ENTITY-SENSOR-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/ENTITY-SENSOR-MIB.txt">ENTITY-SENSOR-MIB</a></p></td>
 <td><p>Physical sensor information (temperature, fan, and power supply) from RFC 3433.</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/HOST-RESOURCES-MIB.txt" class="external-link">HOST-RESOURCES-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/HOST-RESOURCES-MIB.txt">HOST-RESOURCES-MIB</a></p></td>
 <td><p>Users, storage, interfaces, process info, run parameters</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/IEEE8021-BRIDGE-MIB.txt" class="external-link">IEEE8021-BRIDGE-MIB</a></p>
-<p><a href="https://cumulusnetworks.com/static/mibs/IEEE8021-Q-BRIDGE-MIB.txt" class="external-link">IEEE8021-Q-BRIDGE-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/IEEE8021-BRIDGE-MIB.txt">IEEE8021-BRIDGE-MIB</a></p>
+<p><a href="https://cumulusnetworks.com/static/mibs/IEEE8021-Q-BRIDGE-MIB.txt">IEEE8021-Q-BRIDGE-MIB</a></p></td>
 <td><p>The <code>dot1dBasePortEntry</code> and <code>dot1dBasePortIfIndex</code> tables in the BRIDGE-MIB and <code>dot1qBase</code>, <code>dot1qFdbEntry</code>, <code>dot1qTpFdbEntry</code>, <code>dot1qTpFdbStatus</code>, and <code>dot1qVlanStaticName</code> tables in the Q-BRIDGE-MIB tables. You must uncomment the <code>bridge_pp.py pass_persist</code> script in <code>/etc/snmp/snmpd.conf</code>.</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/IEEE8023-LAG-MIB.txt" class="external-link">IEEE8023-LAG-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/IEEE8023-LAG-MIB.txt">IEEE8023-LAG-MIB</a></p></td>
 <td><p>Implementation of the IEEE 8023-LAG-MIB includes the <code>dot3adAggTable</code> and <code>dot3adAggPortListTable</code> tables. To enable this, edit <code>/etc/snmp/snmpd.conf</code> and uncomment or add the following lines:</p>
 <pre><code>view systemonly included .1.2.840.10006.300.43
 pass_persist .1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py</code></pre></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" class="external-link">IF-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/IF-MIB.txt">IF-MIB</a></p></td>
 <td><p>Interface description, type, MTU, speed, MAC, admin, operation status, counters.</p>
 <p>By default, IF-MIB can handle a maximum of 500 interfaces. You can change this setting by editing the value for the <code>ifmib_max_num_ifaces</code> setting in the default SNMP configuration file, <code>/etc/snmp/snmpd.conf</code>.
 </p>
@@ -1509,72 +1503,72 @@ pass_persist .1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py</code></pr
 SNMPDOPTS=&#39;-y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid&#39;</code></pre>
 <p>{{%/notice%}}</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/IP-FORWARD-MIB.txt" class="external-link">IP-FORWARD-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/IP-FORWARD-MIB.txt">IP-FORWARD-MIB</a></p></td>
 <td><p>IP routing table</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/IP-MIB.txt" class="external-link">IP-MIB (includes ICMP)</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/IP-MIB.txt">IP-MIB (includes ICMP)</a></p></td>
 <td><p>IPv4, IPv4 addresses, counters, netmasks</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/IPV6-MIB.txt" class="external-link">IPv6-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/IPV6-MIB.txt">IPv6-MIB</a></p></td>
 <td><p>IPv6 counters</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/LLDP-MIB.txt" class="external-link">LLDP-MIB</a></p></td>
-<td><p>Layer 2 neighbor information from <code>lldpd</code> (you need to <a href="../../Layer-2/Link-Layer-Discovery-Protocol/#enable-the-snmp-subagent-in-lldp">enable the SNMP subagent</a> in LLDP). You need to start <code>lldpd</code> with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/LLDP-MIB.txt">LLDP-MIB</a></p></td>
+<td><p>Layer 2 neighbor information from <code>lldpd</code> (you need to {{<link url="Link-Layer-Discovery-Protocol#enable-the-snmp-subagent-in-lldp" text="enable the SNMP subagent">}} in LLDP). You need to start <code>lldpd</code> with the <code>-x</code> option to enable connectivity to <code>snmpd</code> (AgentX).</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/LM-SENSORS-MIB.txt" class="external-link">LM-SENSORS MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/LM-SENSORS-MIB.txt">LM-SENSORS MIB</a></p></td>
 <td><p>Fan speed, temperature sensor values, voltages. This is deprecated since the ENTITY-SENSOR MIB has been added.</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/NET-SNMP-AGENT-MIB.txt" class="external-link">NET-SNMP-AGENT-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/NET-SNMP-AGENT-MIB.txt">NET-SNMP-AGENT-MIB</a></p></td>
 <td><p>Agent timers, user, group config</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/NET-SNMP-EXTEND-MIB.txt" class="external-link">NET-SNMP-EXTEND-MIB</a></p></td>
-<td><p>See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/204507848" class="external-link">this knowledge base article</a> on extending NET-SNMP in Cumulus Linux to include data from power supplies, fans, and temperature sensors.</p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/NET-SNMP-EXTEND-MIB.txt">NET-SNMP-EXTEND-MIB</a></p></td>
+<td><p>See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/204507848">this knowledge base article</a> on extending NET-SNMP in Cumulus Linux to include data from power supplies, fans, and temperature sensors.</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/NET-SNMP-VACM-MIB.txt" class="external-link">NET-SNMP-VACM-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/NET-SNMP-VACM-MIB.txt">NET-SNMP-VACM-MIB</a></p></td>
 <td><p>Agent timers, user, group config</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/NOTIFICATION-LOG-MIB.txt" class="external-link">NOTIFICATION-LOG-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/NOTIFICATION-LOG-MIB.txt">NOTIFICATION-LOG-MIB</a></p></td>
 <td><p>Local logging</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/SNMP-FRAMEWORK-MIB.txt" class="external-link">SNMP-FRAMEWORK-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/SNMP-FRAMEWORK-MIB.txt">SNMP-FRAMEWORK-MIB</a></p></td>
 <td><p>Users, access</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/SNMP-MPD.txt" class="external-link">SNMP-MPD-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/SNMP-MPD.txt">SNMP-MPD-MIB</a></p></td>
 <td><p>Users, access</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/SNMP-TARGET.txt" class="external-link">SNMP-TARGET-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/SNMP-TARGET.txt">SNMP-TARGET-MIB</a></p></td>
 <td><p> </p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/SNMP-USER-BASED-SM.txt" class="external-link">SNMP-USER-BASED-SM-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/SNMP-USER-BASED-SM.txt">SNMP-USER-BASED-SM-MIB</a></p></td>
 <td><p>Users, access</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/SNMP-VIEW-BASED-ACM.txt" class="external-link">SNMP-VIEW-BASED-ACM-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/SNMP-VIEW-BASED-ACM.txt">SNMP-VIEW-BASED-ACM-MIB</a></p></td>
 <td><p>Users, access</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/TCP-MIB.txt" class="external-link">TCP-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/TCP-MIB.txt">TCP-MIB</a></p></td>
 <td><p>TCP-related information</p></td>
 </tr>
-<tr class="even">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/UCD-SNMP-MIB.txt" class="external-link">UCD-SNMP-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/UCD-SNMP-MIB.txt">UCD-SNMP-MIB</a></p></td>
 <td><p>System memory, load, CPU, disk IO</p></td>
 </tr>
-<tr class="odd">
-<td><p><a href="https://cumulusnetworks.com/static/mibs/UDP-MIB.txt" class="external-link">UDP-MIB</a></p></td>
+<tr>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/UDP-MIB.txt">UDP-MIB</a></p></td>
 <td><p>UDP-related information</p></td>
 </tr>
 </tbody>
@@ -1588,8 +1582,7 @@ The ENTITY MIB does not show the chassis information in Cumulus Linux.
 
 ## Pass Persist Scripts
 
-The pass persist scripts in Cumulus Linux use the [pass\_persist
-extension](http://net-snmp.sourceforge.net/wiki/index.php/Tut:Extending_snmpd_using_shell_scripts#Pass_persist)
+The pass persist scripts in Cumulus Linux use the {{<exlink url="http://net-snmp.sourceforge.net/wiki/index.php/Tut:Extending_snmpd_using_shell_scripts#Pass_persist" text="pass_persist extension">}}
 to Net-SNMP. The scripts are stored in `/usr/share/snmp` and include:
 
   - bgp4\_pp.py
@@ -1606,10 +1599,10 @@ to Net-SNMP. The scripts are stored in `/usr/share/snmp` and include:
 All the scripts are enabled by default in Cumulus Linux, except for:
 
   - `bgp4_pp.py`, which is now handled by
-    [FRRouting](../../Layer-3/FRRouting-Overview/) instead of
+    {{<link url="FRRouting-Overview" text="FRRouting">}} instead of
     Quagga, so monitoring has changed accordingly.
   - `cl_poe_pp.py`, which is disabled by default as only certain
-    platforms that Cumulus Linux supports are capable of doing [Power over Ethernet](../../System-Configuration/Power-over-Ethernet-PoE/).
+    platforms that Cumulus Linux supports are capable of doing {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet">}}.
 
 ## Troubleshooting
 

@@ -16,9 +16,7 @@ listed, with potential solutions included.
 
 This document describes:
 
-  - Metrics that you can poll from Cumulus Linux and use in trend
-    analysis
-
+  - Metrics that you can poll from Cumulus Linux and use in trend analysis
   - Critical log messages that you can monitor for triggered alerts
 
 ### Trend Analysis Using Metrics
@@ -49,11 +47,8 @@ example, consider this `syslog` entry:
     2017-03-08T06:26:43.569681+00:00 leaf01 sysmonitor: Critically high CPU use: 99%
 
   - *2017-03-08T06:26:43.569681+00:00* is the timestamp.
-
   - *leaf01* is the hostname.
-
   - *sysmonitor* is the process that is the source of the message.
-
   - *Critically high CPU use: 99%* is the message.
 
 For brevity and legibility, the timestamp and hostname have been omitted
@@ -129,7 +124,7 @@ cumulus@switch:~$ ledmgrd -j</code></pre><p>In Cumulus Linux 3.7.11 and later, y
 
 Not all switch models include a sensor for monitoring power consumption
 and voltage. See
-[this note](../Monitoring-System-Hardware/#monitor-system-units-using-smond)
+{{<link url="Monitoring-System-Hardware#monitor-system-units-using-smond" text="this note">}}
 for details.
 
 {{%/notice%}}
@@ -282,6 +277,7 @@ jdoo[4727]: &#39;localhost&#39; sysloadavg(15min) of 111.0 matches resource limi
 </tbody>
 </table>
 </details>
+
 In Cumulus Linux 2.5, CPU logs are created with each unique threshold:
 
 | CPU measure | \< 2.5 Threshold |
@@ -379,6 +375,7 @@ called `jdoo` to monitor processes. If the process fails, `jdoo` invokes
 </tbody>
 </table>
 </details>
+
 ## Layer 1 Protocols and Interfaces
 
 Link and port state interface transitions are logged to
@@ -629,15 +626,13 @@ Prescriptive Topology Manager (PTM) uses LLDP information to compare
 against a `topology.dot` file that describes the network. It has built
 in alerting capabilities, so it is preferable to use PTM on box rather
 than polling LLDP information regularly. The PTM code is available on
-the Cumulus Networks [GitHub
-repository](https://github.com/CumulusNetworks/ptm). Additional PTM,
+the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM,
 BFD, and associated logs are documented in the code.
 
 {{%notice note%}}
 
 Cumulus Networks recommends that you track peering information through
-PTM. For more information, refer to the [Prescriptive Topology Manager
-documentation](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/).
+PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
 
 {{%/notice%}}
 

@@ -13,7 +13,7 @@ The `cl-support` script generates a compressed archive file of useful informatio
 
 The system creates the `cl-support` archive file automatically for the following reasons:
 
-- When there is a [core file dump](http://linux.die.net/man/5/core) of any application (not specific to Cumulus Linux, but something all Linux distributions support), located in `/var/support/core`.
+- When there is a {{<exlink url="http://linux.die.net/man/5/core" text="core file dump">}} of any application (not specific to Cumulus Linux, but something all Linux distributions support), located in `/var/support/core`.
 - After the first failure of one of several monitored services since the switch was rebooted or power cycled.
 
 ## Manual cl-support File
@@ -42,5 +42,5 @@ cumulus@switch:~$ sudo cl-support -M
 
 For information on the directories included in the `cl-support` archive, see:
 
-- [Troubleshooting the etc Directory](../Understanding-the-cl-support-Output-File/Troubleshooting-the-etc-Directory/). The `/etc` directory contains the largest number of files to send to Cumulus Networks; however, log files might be significantly larger in file size.
-- [Troubleshooting Log Files](../Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files/). This guide highlights the most important log files to inspect. Keep in mind, `cl-support` includes all of the log files.
+- {{<link url="Troubleshooting-the-etc-Directory">}}. The `/etc` directory contains the largest number of files to send to Cumulus Networks; however, log files might be significantly larger in file size.
+- {{<link url="Troubleshooting-Log-Files">}}. This guide highlights the most important log files to inspect. Keep in mind, `cl-support` includes all of the log files.

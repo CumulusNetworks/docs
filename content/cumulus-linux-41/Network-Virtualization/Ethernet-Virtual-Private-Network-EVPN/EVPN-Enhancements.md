@@ -194,7 +194,7 @@ exit-address-family
 ...
 ```
 
-## Disable BUM Flooding in EVPN
+## Disable BUM Flooding
 
 By default, the VTEP floods all broadcast, and unknown unicast and multicast packets (such as ARP, NS, or DHCP) it receives to all interfaces (except for the incoming interface) and to all VXLAN tunnel interfaces in the same broadcast domain. When the switch receives such packets on a VXLAN tunnel interface, it floods the packets to all interfaces in the packet's broadcast domain.
 

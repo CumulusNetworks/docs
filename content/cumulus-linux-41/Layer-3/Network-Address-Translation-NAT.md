@@ -198,7 +198,7 @@ nat.dynamic_enable = TRUE
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-**Additional Dynamic NAT Settings**
+**Optional Dynamic NAT Settings**
 
 The `/etc/cumulus/switchd.conf` file includes the following configuration options for dynamic NAT. Only change these options if dynamic NAT is enabled.
 

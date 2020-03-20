@@ -268,4 +268,4 @@ be prefixed with `sudo.`
 
 ## Related Information
 
-  - [sudo](https://wiki.debian.org/sudo)
+{{<exlink url="https://wiki.debian.org/sudo" text="Debian wiki - sudo">}}

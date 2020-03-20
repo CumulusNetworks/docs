@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362601
 pageID: 8362601
 ---
-The [`cl-support`](../../Understanding-the-cl-support-Output-File/)
+The `{{<link url="Understanding-the-cl-support-Output-File" text="cl-support">}}`
 script replicates the /`etc` directory.
 
 Files that `cl-support` deliberately excludes are:

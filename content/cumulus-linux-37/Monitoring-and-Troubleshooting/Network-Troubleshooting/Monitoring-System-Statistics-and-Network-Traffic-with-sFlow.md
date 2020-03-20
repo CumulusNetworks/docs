@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362597
 pageID: 8362597
 ---
-[sFlow](http://www.sflow.org/index.php) is a monitoring protocol that
+{{<exlink url="http://www.sflow.org/index.php" text="sFlow">}} is a monitoring protocol that
 samples network packets, application operations, and system counters.
 sFlow collects both interface counters and sampled 5-tuple packet
 information, enabling you to monitor your network traffic as well as
@@ -23,9 +23,9 @@ automatically when the switch boots up.
 The `hsflowd` service does not sample interfaces that are up but not configured.
 
 If you intend to run this service within a
-[VRF](../../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
-including the [management VRF](../../../Layer-3/Management-VRF/), follow
-[these steps](../../../Layer-3/Management-VRF/#run-services-within-the-management-vrf)
+{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
+including the {{<link url="Management-VRF" text="management VRF">}}, follow
+{{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}
 for configuring the service.
 
 {{%/notice%}}
@@ -128,15 +128,15 @@ collector for more information.
 ## Configure sFlow Visualization Tools
 
 For information on configuring various sFlow visualization tools, read this
-[Help Center article](https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools).
+{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools" text="Help Center article">}}.
 
 ## Caveats and Errata
 
-The [EdgeCore AS4610 switch](https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=EdgeCore)
+The {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=EdgeCore" text="EdgeCore AS4610 switch">}}
 occasionally sends malformed packets and does not send any flow samples; it
 sends only counters. This is a known limitation on this Helix4 platform.
 
 ## Related Information
 
-- [sFlow Collectors](http://www.sflow.org/products/collectors.php)
-- [sFlow Wikipedia page](http://en.wikipedia.org/wiki/SFlow)
+- {{<exlink url="http://www.sflow.org/products/collectors.php" text="sFlow Collectors">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/SFlow" text="sFlow Wikipedia page">}}

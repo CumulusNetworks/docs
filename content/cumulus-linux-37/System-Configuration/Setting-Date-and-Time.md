@@ -26,7 +26,7 @@ To see the current time zone, list the contents of `/etc/timezone`:
 
 Edit the file to add your desired time zone. A list of valid time zones
 can be found at the following
-[link](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+{{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="link">}}.
 
 Use the following command to apply the new time zone immediately.
 
@@ -68,7 +68,7 @@ example selects the US/Pacific time zone:
     Universal Time is now:  Mon Jun 17 16:27:45 UTC 2013.
 
 For more info see the Debian
-[System Administrator's Manual - Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html).
+{{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}.
 
 ## Set the Date and Time
 
@@ -107,34 +107,27 @@ hardware clock using the `hwclock` command:
 
 See `man hwclock(8)` for more information.
 
-You can find a good overview of the software and hardware clocks in the
-Debian [System Administrator's Manual -
-Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html),
-specifically the section [Setting and showing hardware
-clock](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2).
+You can find a good overview of the software and hardware clocks in the Debian {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="System Administrator's Manual - Time">}}, specifically the section {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s16.2" text="Setting and showing hardware clock">}}.
 
 ## Set the Time Using NTP and NCLU
 
 The `ntpd` daemon running on the switch implements the NTP protocol. It
 synchronizes the system time with time servers listed in
 `/etc/ntp.conf`. The `ntpd` daemon is started at boot by default. See
-`man ntpd(8)` for `ntpd` details. You can check [this
-site](http://nlug.ml1.co.uk/2012/01/ntpq-p-output/831) for an
-explanation of the output.
+`man ntpd(8)` for `ntpd` details. You can check {{<exlink url="http://nlug.ml1.co.uk/2012/01/ntpq-p-output/831" text="this site">}} for an explanation of the output.
 
 {{%notice note%}}
 
 If you intend to run this service within a
-[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
-including the [management VRF](../../Layer-3/Management-VRF/),
-follow [these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
-configuring the service.
+{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
+including the {{<link url="Management-VRF" text="management VRF">}},
+follow {{<link url="Management-VRF" text="these steps">}} for configuring the service.
 
 {{%/notice%}}
 
 By default, `/etc/ntp.conf` contains some default time servers. You can
 specify the NTP server or servers you want to use with
-[NCLU](../Network-Command-Line-Utility-NCLU/);
+{{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}};
 include the `iburst` option to increase the sync speed.
 
     cumulus@switch:~$ net add time ntp server 4.cumulusnetworks.pool.ntp.org iburst
@@ -693,7 +686,7 @@ sure to set the system clock on the switch.
 
 ## Related Information
 
-  - [Debian System Administrator's Manual - Time](http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html)
-  - [www.ntp.org](http://www.ntp.org)
-  - [en.wikipedia.org/wiki/Network\_Time\_Protocol](http://en.wikipedia.org/wiki/Network_Time_Protocol)
-  - [wiki.debian.org/NTP](http://wiki.debian.org/NTP)
+  - {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="Debian System Administrator's Manual - Time">}}
+  - {{<exlink url="http://wiki.debian.org/NTP" text="Debian wiki - NTP">}}
+  - {{<exlink url="http://www.ntp.org" text="www.ntp.org">}}
+  - {{<exlink url="http://en.wikipedia.org/wiki/Network_Time_Protocol" text="Wikipedia - Network Time Protocol">}}

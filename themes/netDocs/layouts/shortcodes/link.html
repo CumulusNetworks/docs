@@ -57,7 +57,7 @@
 {{- end -}}
 
 <!-- Loop over every page in this version --> 
-{{- range where .Site.Pages ".Page.Params.version" .Page.Params.version -}}
+{{- range where (where .Site.Pages ".Page.Params.version" .Page.Params.version) ".Page.Params.product" .Page.Params.product -}}
     <!-- Try to find our page if we are looking for the title --> 
     {{- if eq ($.Scratch.Get "search_param") "title" -}}
         {{- if eq ($.Scratch.Get "title") .Page.Title -}}

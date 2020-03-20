@@ -19,12 +19,12 @@ and logical devices:
 
 Each physical network interface has a number of configurable settings:
 
-- [Auto-negotiation](http://en.wikipedia.org/wiki/Autonegotiation)
-- [Duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
-- [FEC](https://en.wikipedia.org/wiki/Forward_error_correction)
+- {{<exlink url="http://en.wikipedia.org/wiki/Autonegotiation" text="Auto-negotiation">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29" text="Duplex">}}
+- {{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="FEC">}}
   (Forward error correction)
 - Link speed
-- MTU, or [maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)
+- MTU, or {{<exlink url="https://en.wikipedia.org/wiki/Maximum_transmission_unit" text="maximum transmission unit">}}
 
 Most of these settings are configured automatically for you, depending
 upon your switch ASIC, although you must always set MTU manually.
@@ -37,7 +37,7 @@ unsupported error is shown.
 
 {{%/notice%}}
 
-For switches with **[Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1)**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
+For switches with **{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
 the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 For **Broadcom-based switches,** Cumulus Networks recommends that you
@@ -45,7 +45,7 @@ enable auto-negotiation on each port. When enabled, Cumulus Linux
 automatically configures the best link parameter settings based on the
 module type (speed, duplex, auto-negotiation, and FEC where supported).
 To understand the default configuration for the various port and cable
-types, see the [table below](#interface-configuration-recommendations-for-broadcom-platforms).  
+types, see the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}.  
 If you need to troubleshoot further to bring the link up, follow the 
 sections below to set the specific link parameters.
 
@@ -59,15 +59,13 @@ auto-negotiation for swp1 through swp52:
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-Any time you enable auto-negotiation, Cumulus Linux restores the default
-configuration settings specified in the 
-[table below](#interface-configuration-recommendations-for-broadcom-platforms).
+Any time you enable auto-negotiation, Cumulus Linux restores the default configuration settings specified in the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}.
 
 By default on a Broadcom-based switch, auto-negotiation is disabled -
 except on 10G and 1000BASE-T fixed copper switch ports, where it is
 required for links to work. For RJ-45 SFP adapters, you need to manually
 configure the desired link speed and auto-negotiation as described in
-the [default settings table below](#interface-configuration-recommendations-for-broadcom-platforms).
+the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="default settings table below">}}.
 
 If you disable auto-negotiation later or never enable it, then you have
 to configure any settings that deviate from the port default - such as
@@ -92,20 +90,20 @@ If you do decide to disable auto-negotiation, be aware of the following:
 For 1000BASE-T RJ-45 SFP adapters, auto-negotiation is automatically
 done on the SFP PHY, so enabling auto-negotiation on the port settings
 is not required. You must manually configure these ports using the
-[settings below](#interface-configuration-recommendations-for-broadcom-platforms).
+{{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="settings below">}}.
 
 {{%/notice%}}
 
 Depending upon the connector used for a port, enabling auto-negotiation
 also enables forward error correction (FEC), if the cable requires it
-(see the [table below](#interface-configuration-recommendations-for-broadcom-platforms)). The
+(see the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}). The
 correct FEC mode is set based on the speed of the cable when
 auto-negotiation is enabled.
 
 ## Port Speed and Duplex Mode
 
 Cumulus Linux supports both half- and
-[full-duplex](http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29)
+{{<exlink url="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29" text="full-duplex">}}
 configurations. The duplex mode setting defaults to *full*. You only
 need to specify `link duplex` if you want half-duplex mode.
 
@@ -124,7 +122,7 @@ You can configure ports to one speed less than their maximum speed.
 | 100G             | 50G\* & 40G (with or without breakout port), 25G\*, 10G\* |
 
 \*Requires the port to be converted into a breakout port. See
-[Breakout Ports](#breakout-ports) below.
+{{<link url="#breakout-ports" text="Breakout Ports">}} below.
 
 The following NCLU commands configure the port speed for the swp1
 interface:
@@ -145,8 +143,7 @@ snippet:
 - On Lenovo NE2572O switches, swp1 thru swp8 only support 25G speed.
 - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
   you must edit the `/etc/cumulus/ports.conf` file and configure the
-  four ports in the same core to be 10G. See [Caveats and Errata](#caveats-and-errata)
-  below.
+  four ports in the same core to be 10G. See {{<link url="#caveats-and-errata" text="Caveats and Errata">}} below.
 - A switch with the Maverick ASIC switch limits multicast traffic by the lowest speed
   port that has joined a particular group. For example, if you are sending 100G
   multicast through and subscribe with one 100G and one 25G port, traffic on both
@@ -155,8 +152,7 @@ snippet:
 
 ## MTU
 
-Interface MTU 
-([maximum transmission unit](https://en.wikipedia.org/wiki/Maximum_transmission_unit)) 
+Interface MTU ({{<exlink url="https://en.wikipedia.org/wiki/Maximum_transmission_unit" text="maximum transmission unit">}})
 applies to traffic traversing the management port, front panel/switch ports,
 bridge, VLAN subinterfaces and bonds - in other words, both physical and
 logical interfaces.
@@ -190,8 +186,7 @@ For a global policy to set MTU, create a policy document (called
 
 {{%notice note%}}
 
-After making the edits to the policy file above, the changed policy will need to be applied to the system by issuing the `ifreload -a` command.
-NCLU may also apply the policy if an `ifreload -a` is issued as part of the next commit operation.
+After making the edits to the policy file above, the changed policy will need to be applied to the system by issuing the `ifreload -a` command. NCLU may also apply the policy if an `ifreload -a` is issued as part of the next commit operation.
 
 {{%/notice%}}
 
@@ -251,7 +246,7 @@ from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100
 inherits the MTU setting for swp1.
 
 If you are
-working with [VXLANs](../../../Network-Virtualization/), the MTU
+working with {{<link url="Network-Virtualization" text="VXLANs">}}, the MTU
 for a virtual network interface (VNI) must be 50 bytes smaller than the
 MTU of the physical interfaces on the switch, as those 50 bytes are
 required for various headers and other data. Also, consider setting the
@@ -260,7 +255,7 @@ MTU much higher than the default 1500.
 In general, the policy file specified above handles default MTU settings
 for all interfaces on the switch. If you need to configure a different
 MTU setting for a subset of interfaces, use
-[NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU).
+{{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
 
 The following commands configure an MTU minimum value of 9000 on swp1:
 
@@ -322,7 +317,7 @@ example:
 
 ## FEC
 
-[Forward Error Correction (FEC)](https://en.wikipedia.org/wiki/Forward_error_correction)
+{{<exlink url="https://en.wikipedia.org/wiki/Forward_error_correction" text="Forward Error Correction (FEC)">}}
 is an encoding and decoding layer that enables the switch to detect and
 correct bit errors introduced over the cable between two interfaces.
 Because 25G transmission speeds can introduce a higher than acceptable
@@ -398,8 +393,7 @@ If a cable is manufactured to CA-25G-S classification and FEC is not
 enabled, the BER might be unacceptable in a production network. It is
 important to set the FEC according to the cable class (or better) to
 have acceptable bit error rates. See
-[Determining Cable Class](#determine-cable-class-of-100g-and-25g-dacs)
-below.
+{{<link url="#determine-cable-class-of-100g-and-25g-dacs" text="Determining Cable Class">}} below.
 
 You can check bit errors using `cl-netstat` (`RX_ERR` column) or
 `ethtool -S` (`HwIfInErrors` counter) after a large amount of traffic
@@ -491,13 +485,13 @@ When the link is between two switches with Spectrum ASICs:
   RS-FEC.
 - For 100G cables/modules, the firmware chooses RS-FEC.
 
-| Cable Type                              | FEC Mode     |
-| --------------------------------------- | ------------ |
+| Cable Type                              | FEC Mode      |
+| --------------------------------------- | ------------- |
 | 25G optical cables                      | Base-R/FC-FEC |
 | 25G 1,2 meters: CA-N, loss <13db        | Base-R/FC-FEC |
 | 25G 2.5,3 meters: CA-S, loss <16db      | Base-R/FC-FEC |
-| 25G 2.5,3,4,5 meters: CA-L, loss > 16db | RS-FEC       |
-| 100G DAC or optical                     | RS-FEC       |
+| 25G 2.5,3,4,5 meters: CA-L, loss > 16db | RS-FEC        |
+| 100G DAC or optical                     | RS-FEC        |
 
 When linking to a non-Spectrum peer, the firmware lets the peer decide. The
 Spectrum ASIC supports RS-FEC (for both 100G and 25G), Base-R/FC-FEC (25G only),
@@ -958,8 +952,8 @@ Cumulus Linux has the ability to:
 - Break out 40G switch ports into four separate 10G ports for use with
   breakout cables.
 - Combine (also called *aggregating* or *ganging*) four 10G switch
-  ports into one 40G port for use with a breakout cable 
-  ([not to be confused with a bond](../../../Layer-2/Bonding-Link-Aggregation)).
+  ports into one 40G port for use with a breakout cable
+  ({{<link url="Bonding-Link-Aggregation" text="not to be confused with a bond">}}).
 
 To configure a 4x25G breakout port, first configure the port to break
 out then set the link speed:
@@ -976,7 +970,7 @@ with `net commit`:
 
     cumulus@switch:~$ net add interface swp4 breakout disabled
 
-Also, [see below](#mellanox-logical-port-limits-and-breakout-configurations) for
+Also, {{<link url="#mellanox-logical-port-limits-and-breakout-configurations" text="see below">}} for
 how to configure breakout ports on Spectrum switches.
 
 {{%/notice%}}
@@ -1007,8 +1001,7 @@ reconfigure the ports and create four interfaces in the
 {{%notice note%}}
 
 When you commit your change configuring the breakout ports, `switchd`
-restarts to apply the changes. The restart 
-[interrupts network services](../../../System-Configuration/Configuring-switchd/#restart-switchd).
+restarts to apply the changes. The restart {{<link url="Configuring-switchd/#restart-switchd" text="interrupts network services">}}.
 
 {{%/notice%}}
 
@@ -1018,8 +1011,7 @@ The breakout port configuration is stored in the
 {{%notice info%}}
 
 The `/etc/cumulus/ports.conf` file varies across different hardware
-platforms. Check the current list of supported platforms on 
-[the hardware compatibility list](http://www.cumulusnetworks.com/hcl).
+platforms. Check the current list of supported platforms on {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
 A snippet from the `/etc/cumulus/ports.conf` file on a Dell S6000 switch
 (with a Trident II+ ASIC) where swp6 is broken out looks like this:
@@ -1125,7 +1117,7 @@ To remove a breakout port, you need to do the following:
          
         ...
 
-3. [Restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
+3. {{<link url="Configuring-switchd#restart-switchd" text="Restart `switchd`">}}.
 
 ### Combine Four 10G Ports into One 40G Port
 
@@ -1162,8 +1154,7 @@ depending upon the manufacturer; these include:
 
 - Mellanox SN2700, SN2700B, SN2410 and SN2410B switches
 - Switches with Broadcom Tomahawk, Trident II, Trident II+ and Trident3
-  chipsets (check the
-  [HCL](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/))
+  chipsets (check the {{<exlink url="https://cumulusnetworks.com/hcl/" text="HCL">}})
 
 You *cannot* have more than 128 total logical ports on a Broadcom
 switch.
@@ -1232,7 +1223,7 @@ There is no limitation on any port if interfaces are configured in 2x50G
 mode.
 
 Here is an example showing how to configure breakout cables for the
-[Mellanox Spectrum SN2700](https://community.mellanox.com/docs/DOC-2685).
+{{<exlink url="https://community.mellanox.com/docs/DOC-2685" text="Mellanox Spectrum SN2700">}}.
 
 ## Configure Interfaces with ethtool
 
@@ -1318,10 +1309,8 @@ Low-level interface statistics are available with `ethtool`:
 
 ### Query SFP Port Information
 
-You can verify SFP settings using 
-[`ethtool -m`](../../../Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool).
-The following example shows the vendor, type and power output for the
-swp4 interface.
+You can verify SFP settings using `{{<link url="Monitoring-Interfaces-and-Transceivers-Using-ethtool" text="ethtool -m">}}`.
+The following example shows the vendor, type and power output for the swp4 interface.
 
     cumulus@switch:~$ sudo ethtool -m swp4 | egrep 'Vendor|type|power\s+:'
             Transceiver type                          : 10G Ethernet: 10G Base-LR
@@ -1379,7 +1368,7 @@ order; for example, swp1, swp2, swp3, and swp4.
         9=25G
         ...
 
-2. [Restart `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd).
+2. {{<link url="Configuring-switchd/#restart-switchd" text="Restart `switchd`">}}.
 
 3. If you want to set the speed of any SFPs to 1G, set the port speed
     to 1000 Mbps using NCLU commands; this is *not* necessary for 10G
@@ -1412,7 +1401,7 @@ error occurs while removing and reinserting QSFP module.
 You cannot remove the QSFPx2 module while the switch is powered on, as
 it is not hot-swappable. However, if an *Operation timed out* error
 occurs, you can get the link to come up by
-[restarting `switchd`](../../../System-Configuration/Configuring-switchd/#restart-switchd)
+{{<link url="Configuring-switchd/#restart-switchd" text="restarting `switchd`">}}
 however, this disrupts your network.
 
 On the T3048-LY9, run the following commands:
@@ -1581,10 +1570,8 @@ file on a Spectrum switch, `ethtool` still shows the speed as 100G.
 This is a known issue where `ethtool` does not update after restarting
 `switchd`, so it continues to display the outdated port speed.
 
-To correctly set the port speed, use
-[NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU)
-or `ethtool` to set the speed instead of manually editing the
-`ports.conf` file.
+To correctly set the port speed, use {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}
+or `ethtool` to set the speed instead of manually editing the `ports.conf` file.
 
 For example, to set the speed to 40G using NCLU:
 
@@ -1609,6 +1596,6 @@ To work around this issue, disable auto-negotiation on interfaces where it is no
 
 ## Related Information
 
-- [Debian - Network Configuration](http://wiki.debian.org/NetworkConfiguration)
-- [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-- [Linux Foundation - Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
+- {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}
+- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
+- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" text="Linux Foundation - Bonds">}}

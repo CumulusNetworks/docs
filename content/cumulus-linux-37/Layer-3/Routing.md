@@ -11,7 +11,7 @@ This chapter discusses routing on switches running Cumulus Linux.
 
 ## Manage Static Routes
 
-You manage static routes using [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/) or the Cumulus Linux `ip route` command. The routes are added to the [FRRouting](https://frrouting.org) routing table, and are then updated into the kernel routing table as well.
+You manage static routes using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} or the Cumulus Linux `ip route` command. The routes are added to the {{<exlink url="https://frrouting.org" text="FRRouting">}} routing table, and are then updated into the kernel routing table as well.
 
 To add a static route, run:
 
@@ -139,7 +139,7 @@ default via 10.0.1.2 dev eth0
 
 ### Apply a Route Map for Route Updates
 
-To apply a [route map](http://docs.frrouting.org/en/latest/routemap.html) to filter route updates from Zebra into the Linux kernel:
+To apply a {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route map">}} to filter route updates from Zebra into the Linux kernel:
 
 ```
 cumulus@switch:$ net add routing protocol static route-map <route-map-name>
@@ -171,7 +171,7 @@ Cumulus Linux - via `switchd` - advertises the maximum number of route table ent
 
 In addition, switches on the Tomahawk, Trident II, Trident II+, and Trident3 platforms are configured to manage route table entries using Algorithm Longest Prefix Match (ALPM). In ALPM mode, the hardware can store significantly more route entries.
 
-You can use [`cl-resource-query`](../../Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/) to determine the current table sizes on a given switch. In Cumulus Linux 3.7.11 and later, you can run the NCLU command equivalent: `net show system asic`.
+You can use `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}` to determine the current table sizes on a given switch. In Cumulus Linux 3.7.11 and later, you can run the NCLU command equivalent: `net show system asic`.
 
 ### Forwarding Table Profiles
 
@@ -188,7 +188,7 @@ cumulus@switch:~$ cat /etc/cumulus/datapath/traffic.conf | grep forwarding_table
 forwarding_table.profile = default
 ```
 
-After you specify a different profile, [restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd) for the change to take effect. You can see the forwarding table profile when you run the `cl-resource-query` command. In Cumulus Linux 3.7.11 and later, you can run the NCLU command equivalent `net show sytem asic` to see the forwarding table profile.
+After you specify a different profile, {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}} for the change to take effect. You can see the forwarding table profile when you run the `cl-resource-query` command. In Cumulus Linux 3.7.11 and later, you can run the NCLU command equivalent `net show sytem asic` to see the forwarding table profile.
 
 {{%notice note%}}
 
@@ -255,7 +255,7 @@ For Broadcom switches, IPv4 and IPv6 entries are not carved in separate spaces s
 
 ### TCAM Resource Profiles for Spectrum Switches
 
-The [Spectrum ASIC](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1) provides the ability to configure the TCAM resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Cumulus Linux provides a number of general profiles for this platform: *default*, *ipmc-heavy*, *acl-heavy*, *ipmc-max* and *ip-acl-heavy*. Choose the profile that best suits your network architecture and specify that profile name in the `tcam_resource.profile` variable in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file.
+The {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASIC">}} provides the ability to configure the TCAM resource allocation, which is shared between IP multicast forwarding entries and ACL tables. Cumulus Linux provides a number of general profiles for this platform: *default*, *ipmc-heavy*, *acl-heavy*, *ipmc-max* and *ip-acl-heavy*. Choose the profile that best suits your network architecture and specify that profile name in the `tcam_resource.profile` variable in the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file.
 
 ```
 cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf | grep -B3 "tcam_resource"
@@ -265,9 +265,9 @@ cumulus@switch:~$ cat /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx
 tcam_resource.profile = default
 ```
 
-After you specify a different profile, [restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd) for the change to take effect.
+After you specify a different profile, {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}} for the change to take effect.
 
-When [nonatomic updates](../../System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode) are enabled (that is, the `acl.non_atomic_update_mode` is set to *TRUE* in `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are as follows:
+When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-update-mode" text="nonatomic updates">}} are enabled (that is, the `acl.non_atomic_update_mode` is set to *TRUE* in `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are as follows:
 
 | Profile      | Mroute Entries | ACL Entries                |
 | ------------ | -------------- | -------------------------- |
@@ -277,7 +277,7 @@ When [nonatomic updates](../../System-Configuration/Netfilter-ACLs/#nonatomic-up
 | ipmc-max     | 13000          | 1000 (IPv6) or 2000 (IPv4) |
 | ip-acl-heavy | | |
 
-When [nonatomic updates](../../System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode) are disabled (that is, the `acl.non_atomic_update_mode` is set to *FALSE* in `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are as follows:
+When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-update-mode" text="nonatomic updates">}} are disabled (that is, the `acl.non_atomic_update_mode` is set to *FALSE* in `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are as follows:
 
 | Profile      | Mroute Entries | ACL Entries                |
 | ------------ | -------------- | -------------------------- |
@@ -389,5 +389,5 @@ net.ipv6.neigh.default.base_reachable_time_ms=1080000
 
 ## Related Information
 
-- [Linux IP - ip route command](http://linux-ip.net/html/tools-ip-route.html)
-- [FRRouting docs - static route commands](http://docs.frrouting.org/en/latest/static.html#static-route-commands)
+- {{<exlink url="http://linux-ip.net/html/tools-ip-route.html" text="Linux IP - ip route command">}}
+- {{<exlink url="http://docs.frrouting.org/en/latest/static.html#static-route-commands" text="FRRouting docs - static route commands">}}

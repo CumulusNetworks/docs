@@ -19,7 +19,7 @@ Cumulus Networks has not tested RIP, RIPv6, IS-IS, or Babel.
 
 {{%/notice%}}
 
-The `zebra` daemon must always be enabled. The others you can enable according to how you plan to route your network; for example, using [BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) instead of [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/).
+The `zebra` daemon must always be enabled. The others you can enable according to how you plan to route your network; for example, using {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} instead of {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}.
 
 Before you start FRRouting, you need to enable the corresponding daemons. Edit the `/etc/frr/daemons` file and set to *yes* each daemon you are enabling. For example, to enable BGP, set both `zebra` and `bgpd` to *yes*:
 
@@ -51,7 +51,7 @@ not running, it starts `zebra`, then starts the dependent service, such as `bgpd
 
 In general, if you restart a service, its dependent services also get restarted. For example, running `systemctl restart frr.service` restarts any of the routing protocol daemons that are enabled and running.
 
-For more information on the `systemctl` command and changing the state of daemons, read [Services and Daemons in Cumulus Linux](../../System-Configuration/Services-and-Daemons-in-Cumulus-Linux/).
+For more information on the `systemctl` command and changing the state of daemons, read {{<link url="Services-and-Daemons-in-Cumulus-Linux">}}.
 
 {{%/notice%}}
 
@@ -59,7 +59,7 @@ For more information on the `systemctl` command and changing the state of daemon
 
 By default in Cumulus Linux, FRRouting saves the configuration of all daemons in a single integrated configuration file, `frr.conf`.
 
-You can disable this mode by running the following command in the [`vtysh` FRRouting CLI](#frrouting-vtysh-modal-cli):
+You can disable this mode by running the following command in the {{<link url="#frrouting-vtysh-modal-cli" text="`vtysh` FRRouting CLI">}}:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -133,7 +133,7 @@ If you disabled `service integrated-vtysh-config`, you need to remove all the co
 
 ## Interface IP Addresses and VRFs
 
-FRRouting inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRRouting. For more information, see [Configure IP Addresses](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#configure-ip-addresses) and [Virtual Routing and Forwarding - VRF](../Virtual-Routing-and-Forwarding-VRF/).
+FRRouting inherits the IP addresses and any associated routing tables for the network interfaces from the `/etc/network/interfaces` file. This is the recommended way to define the addresses; do **not** create interfaces using FRRouting. For more information, see {{<link url="Interface-Configuration-and-Management#configure-ip-addresses" text="Configure IP Addresses">}} and {{<link url="Virtual-Routing-and-Forwarding-VRF">}}.
 
 ## FRRouting vtysh Modal CLI
 
@@ -397,7 +397,7 @@ If you attempt to configure a routing protocol that has not been started, `vtysh
 
 {{%/notice%}}
 
-If you do not want to use a modal CLI to configure FRRouting, you can use a suite of [Cumulus Linux-specific commands](../Configuring-FRRouting/Comparing-NCLU-and-vtysh-Commands/) instead.
+If you do not want to use a modal CLI to configure FRRouting, you can use a suite of {{<link url="Comparing-NCLU-and-vtysh-Commands" text="Cumulus Linux-specific commands">}} instead.
 
 ## Reload the FRRouting Configuration
 
@@ -422,7 +422,7 @@ Examine the running configuration and verify that it matches the config in `/etc
 cumulus@switch:~$ net show configuration
 ```
 
-If the running configuration is not what you expected, [submit a support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) and supply the following information:
+If the running configuration is not what you expected, {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="submit a support request">}} and supply the following information:
 
 - The current running configuration (run `net show configuration` and output the contents to a file)
 - The contents of `/etc/frr/frr.conf`
@@ -470,6 +470,6 @@ Accidentally configuring the same numbered BGP neighbor using both the `neighbor
 
 ## Related Information
 
-- [FRR BGP documentation](http://docs.frrouting.org/en/latest/bgp.html)
-- [FRR IPv6 support](http://docs.frrouting.org/en/latest/ipv6.html)
-- [FRR Zebra documentation](http://docs.frrouting.org/en/latest/zebra.html)
+- {{<exlink url="http://docs.frrouting.org/en/latest/bgp.html" text="FRR BGP documentation">}}
+- {{<exlink url="http://docs.frrouting.org/en/latest/ipv6.html" text="FRR IPv6 support">}}
+- {{<exlink url="http://docs.frrouting.org/en/latest/zebra.html" text="FRR Zebra documentation">}}

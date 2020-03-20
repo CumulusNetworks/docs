@@ -7,16 +7,16 @@ aliases:
  - /pages/viewpage.action?pageId=8363010
 pageID: 8363010
 ---
-[FRRouting](https://frrouting.org/) provides the ability to run
-[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/) or
-[BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) directly on
+{{<exlink url="https://frrouting.org/" text="FRRouting">}} provides the ability to run
+{{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or
+{{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} directly on
 server hosts. This can enable a network architecture known as *anycast*,
 where many servers can provide the same service without needing layer 2
 extensions or load balancer appliances.
 
 Anycast is not a new protocol or protocol implementation and does not
 require any additional network configuration. Anycast leverages the
-[equal cost multipath](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/)
+{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="equal cost multipath">}}
 (ECMP) capabilities inherent in layer 3 networks to provide stateless
 load sharing services.
 
@@ -103,7 +103,7 @@ impact of network changes or failures.
 
 ## Resilient Hashing
 
-[Resilient hashing](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#resilient-hashing)
+{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#resilient-hashing" text="Resilient hashing">}}
 provides a method to prevent failures from impacting the hash result of
 unrelated flows. However, resilient hashing does not prevent rehashing
 when new next hops are added.
@@ -162,7 +162,7 @@ Although resilient hashing can prevent rehashing on next hop failure, it
 cannot prevent rehashing on next hop addition.
 
 You can read more information on resilient hashing in the
-[ECMP chapter](../../Layer-3/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/).
+{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP chapter">}}.
 
 ## Applications for Anycast
 

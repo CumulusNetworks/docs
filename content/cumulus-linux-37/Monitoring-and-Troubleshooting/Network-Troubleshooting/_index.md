@@ -190,7 +190,7 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
 
 In Linux, all ACL rules are always counted. To create an ACL rule for
 counting purposes only, set the rule action to ACCEPT. See the
-[Netfilter](../../System-Configuration/Netfilter-ACLs/)
+{{<link url="Netfilter-ACLs" text="Netfilter">}}
 chapter for details on how to use `cl-acltool` to set up
 iptables-/ip6tables-/ebtables-based ACLs.
 
@@ -261,12 +261,12 @@ packets have the following format:
 {{%/notice%}}
 
 SPAN and ERSPAN are configured via `cl-acltool`, the
-[same utility for security ACL configuration](../../System-Configuration/Netfilter-ACLs/).
+{{<link url="Netfilter-ACLs" text="same utility for security ACL configuration">}}.
 The match criteria for SPAN and ERSPAN is usually an interface; for more
-granular match terms, use [selective spanning](#selective-spanning). The
+granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The
 SPAN source interface can be a port, a subinterface or a bond interface.
-Ingress traffic on interfaces can be matched, and on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), egress traffic can be matched. See the
-[list of limitations](#limitations-for-span-erspan) below.
+Ingress traffic on interfaces can be matched, and on switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, egress traffic can be matched. See the
+{{<link url="#limitations-for-spanerspan" text="list of limitations">}} below.
 
 Cumulus Linux supports a maximum of 2 SPAN destinations. Multiple rules
 (SPAN sources) can point to the same SPAN destination, although a given
@@ -296,7 +296,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
     destinations.
   - To configure SPAN or ERSPAN on a Tomahawk or Trident3 switch, you
     must enable
-    [non-atomic update mode](../../System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode).
+    {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-update-mode" text="non-atomic update mode">}}.
   - Spectrum switches reject SPAN ACL rules for an output interface that
     is a subinterface.
   - Mirrored traffic is not guaranteed. If the MTP is congested,
@@ -465,7 +465,7 @@ from `swp1` to 12.0.0.2.
 
 {{%notice note%}}
 
-[Cut-through mode](../../Layer-1-and-Switch-Ports/Buffer-and-Queue-Management/#configure-cut-through-mode-and-store-and-forward-switching)
+{{<link url="Buffer-and-Queue-Management/#configure-cut-through-mode-and-store-and-forward-switching" text="Cut-through mode">}}
 is **not** supported for ERSPAN in Cumulus Linux on switches using
 Broadcom Tomahawk, Trident II+ and Trident II ASICs.
 
@@ -507,14 +507,14 @@ switches using Spectrum ASICs.
 
 {{%notice tip%}}
 
-If a SPAN destination IP address is not available, or if the interface type or types prevent using a laptop as a SPAN destination, read this [knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/360040711774) for a workaround.
+If a SPAN destination IP address is not available, or if the interface type or types prevent using a laptop as a SPAN destination, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360040711774" text="knowledge base article">}} for a workaround.
 
 {{%/notice%}}
 
 #### ERSPAN and Wireshark
 
-- When using [Wireshark](https://www.wireshark.org) to review the ERSPAN output, Wireshark may report the message "Unknown version, please report or test to use fake ERSPAN preference", and the trace is unreadable. To resolve this, go into the General preferences for Wireshark, then go to **Protocols** \> **ERSPAN** and check the **Force to decode fake ERSPAN frame** option.
-- To set up a [capture filter](https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html) on the destination switch that filters for a specific IP protocol, use `ip.proto == 49` to filter for GRE-encapsulated (IP protocol 49) traffic.
+- When using {{<exlink url="https://www.wireshark.org" text="Wireshark">}} to review the ERSPAN output, Wireshark may report the message "Unknown version, please report or test to use fake ERSPAN preference", and the trace is unreadable. To resolve this, go into the General preferences for Wireshark, then go to **Protocols** \> **ERSPAN** and check the **Force to decode fake ERSPAN frame** option.
+- To set up a {{<exlink url="https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html" text="capture filter">}} on the destination switch that filters for a specific IP protocol, use `ip.proto == 49` to filter for GRE-encapsulated (IP protocol 49) traffic.
 
 ### Selective Spanning
 
@@ -618,9 +618,9 @@ You can use `tcpdump` to monitor control plane traffic - traffic sent to
 and coming from the switch CPUs. `tcpdump` does **not** monitor data
 plane traffic; use `cl-acltool` instead (see above).
 
-For more information on tcpdump, read
-[the `tcpdump` documentation](http://www.tcpdump.org/#documentation)
-and the [`tcpdump` man page](http://www.tcpdump.org/manpages/tcpdump.1.html).
+For more information on tcpdump, read the
+{{<exlink url="http://www.tcpdump.org/#documentation" text="`tcpdump` documentation">}}
+and the {{<exlink url="http://www.tcpdump.org/manpages/tcpdump.1.html" text="`tcpdump` man page">}}.
 
 The following example incorporates a few `tcpdump` options:
 
@@ -651,6 +651,6 @@ The following example incorporates a few `tcpdump` options:
 
 ## Related Information
 
-- [en.wikipedia.org/wiki/Ping](http://en.wikipedia.org/wiki/Ping)
-- [en.wikipedia.org/wiki/Traceroute](https://en.wikipedia.org/wiki/Traceroute)
-- [www.tcpdump.org](http://www.tcpdump.org)
+- {{<exlink url="http://en.wikipedia.org/wiki/Ping" text="Wikipedia - ping">}}
+- {{<exlink url="https://en.wikipedia.org/wiki/Traceroute" text="Wikipedia - traceroute">}}
+- {{<exlink url="http://www.tcpdump.org" text="www.tcpdump.org">}}

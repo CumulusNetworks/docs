@@ -35,7 +35,7 @@ You can configure the following BFD parameters for both IPv4 and IPv6 sessions:
 
 ## Configure BFD
 
-You configure BFD one of two ways: by specifying the configuration in the [PTM `topology.dot` file](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/), or using [FRRouting](../FRRouting-Overview/).
+You configure BFD one of two ways: by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}, or using {{<link url="FRRouting-Overview" text="FRRouting">}}.
 However, the topology file has some limitations:
 
 - The `topology.dot` file supports creating BFD IPv4 and IPv6 single hop sessions only; you cannot specify IPv4 or IPv6 multihop sessions in the topology file.
@@ -43,7 +43,7 @@ However, the topology file has some limitations:
 
 {{%notice note%}}
 
-You cannot specify BFD multihop sessions in the `topology.dot` file since you cannot specify the source and destination IP address pairs in that file. Use [FRRouting](../Configuring-FRRouting/) to configure multihop sessions.
+You cannot specify BFD multihop sessions in the `topology.dot` file since you cannot specify the source and destination IP address pairs in that file. Use {{<link url="Configuring-FRRouting" text="FRRouting">}} to configure multihop sessions.
 
 {{%/notice%}}
 
@@ -63,7 +63,7 @@ BFD requires an IP address for any interface on which it is configured. The neig
 
 ## BFD in BGP
 
-For FRRouting when using **BGP**, neighbors are registered and de-registered with [PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/) dynamically when you enable BFD in BGP using `net add bgp neighbor <neighbor|IP|interface> bfd`. For example:
+For FRRouting when using **BGP**, neighbors are registered and de-registered with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} dynamically when you enable BFD in BGP using `net add bgp neighbor <neighbor|IP|interface> bfd`. For example:
 
 Configuration of BFD for a peergroup or individual neighbors is performed in the same way.
 
@@ -106,7 +106,7 @@ cumulus@switch:~$ net commit
 
 ## BFD in OSPF
 
-For FRRouting using **OSFP**, neighbors are registered and de-registered dynamically with [PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/) when you enable or disable BFD in OSPF. A neighbor is registered with BFD when two-way adjacency is established and deregistered when adjacency goes down if the BFD is enabled on the interface. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
+For FRRouting using **OSFP**, neighbors are registered and de-registered dynamically with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} when you enable or disable BFD in OSPF. A neighbor is registered with BFD when two-way adjacency is established and deregistered when adjacency goes down if the BFD is enabled on the interface. The BFD configuration is per interface and any IPv4 and IPv6 neighbors discovered on that interface inherit the configuration.
 
 ```
 cumulus@switch:~$ net add interface swp1 ospf6 bfd 5 500 500
@@ -284,7 +284,7 @@ tx_timeout  rx_timeout  hop_cnt
 
 ## Related Information
 
-- [RFC 5880 - Bidirectional Forwarding Detection](https://tools.ietf.org/html/rfc5880)
-- [RFC 5881 - BFD for IPv4 and IPv6 (Single Hop)](https://tools.ietf.org/html/rfc5881)
-- [RFC 5882 - Generic Application of BFD](https://tools.ietf.org/html/rfc5882)
-- [RFC 5883 - Bidirectional Forwarding Detection (BFD) for Multihop Paths](https://tools.ietf.org/html/rfc5883)
+- {{<exlink url="https://tools.ietf.org/html/rfc5880" text="RFC 5880 - Bidirectional Forwarding Detection">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5881" text="RFC 5881 - BFD for IPv4 and IPv6 (Single Hop)">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5882" text="RFC 5882 - Generic Application of BFD">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc5883" text="RFC 5883 - Bidirectional Forwarding Detection (BFD) for Multihop Paths">}}

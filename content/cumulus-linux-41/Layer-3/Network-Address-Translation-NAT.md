@@ -6,14 +6,14 @@ toc: 3
 ---
 Network Address Translation (NAT) enables your network to use one set of IP addresses for internal traffic and a second set of addresses for external traffic.
 
-NAT was designed to overcome addressing problems due to the explosive growth of the Internet. In addition to preventing the depletion of IPv4 addresses, NAT enables you to use the private address space internally and still have a way to access the Internet, which increases security by hiding your internal network topology and private addresses.
+NAT was designed to overcome addressing problems due to the explosive growth of the Internet. In addition to preventing the depletion of IPv4 addresses, NAT enables you to use the private address space internally and still have a way to access the Internet.
 
 Cumulus Linux supports both static NAT and dynamic NAT. Static NAT provides a permanent mapping between one private IP address and a single public address. Dynamic NAT maps private IP addresses to public addresses; these public IP addresses come from a pool. The translations are created as needed  dynamically, so that a large number of private addresses can share a smaller pool of public addresses.
 
 Static and dynamic NAT both support:
 
 - Basic NAT, which only translates the IP address in the packet: the source IP address in the outbound direction and the destination IP address in the inbound direction.
-- PAT, which translates both the IP address and layer 4 port: the source IP address and port in the outbound direction and the destination IP address and port in the inbound direction.
+- Port Address Translation (PAT), which translates both the IP address and layer 4 port: the source IP address and port in the outbound direction and the destination IP address and port in the inbound direction.
 
 The following illustratration shows a basic NAT configuration.
 
@@ -31,7 +31,7 @@ The following illustratration shows a basic NAT configuration.
 
 ## Static NAT
 
-Static NAT provides a one-to-one mapping between a private IP address inside your network and a public IP address. For example, if you have a web server with the private IP address 10.0.0.10 and you want a remote host to be able to make a request to the web server using the IP address 172.69.58.80, you must configure a static NAT mapping between the two IP addresses.
+Static NAT provides a one-to-one mapping between a private IP address inside your network and a public IP address. For example, if you have a web server with the private IP address 10.0.0.10 and you want a remote host to be able to make a request to the web server using the IP address 172.30.58.80, you must configure a static NAT mapping between the two IP addresses.
 
 Static NAT entries do not time out from the translation table.
 
@@ -94,34 +94,34 @@ Where:
 
 **Command Examples**
 
-The following rule matches TCP packets with source IP address 10.0.01 and translates the IP address to 172.69.58.80:
+The following rule matches TCP packets with source IP address 10.0.01 and translates the IP address to 172.30.58.80:
 
 ```
-cumulus@switch:~$ net add nat static snat tcp 10.0.0.1 translate 172.69.58.80
+cumulus@switch:~$ net add nat static snat tcp 10.0.0.1 translate 172.30.58.80
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following rule matches ICMP packets with destination IP address 172.69.58.80 on interface swp51 and translates the IP address to 10.0.0.1
+The following rule matches ICMP packets with destination IP address 172.30.58.80 on interface swp51 and translates the IP address to 10.0.0.1
 
 ```
-cumulus@switch:~$ net add nat static dnat icmp 172.69.58.80 in-interface swp51 translate 10.0.0.1
+cumulus@switch:~$ net add nat static dnat icmp 172.30.58.80 in-interface swp51 translate 10.0.0.1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following rule matches UDP packets with source IP address 10.0.0.1 and source port 5000, and translates the IP address to 172.69.58.80 and the port to 6000.
+The following rule matches UDP packets with source IP address 10.0.0.1 and source port 5000, and translates the IP address to 172.30.58.80 and the port to 6000.
 
 ```
-cumulus@switch:~$ net add nat static snat udp 10.0.0.1 5000 translate 172.69.58.80 6000
+cumulus@switch:~$ net add nat static snat udp 10.0.0.1 5000 translate 172.30.58.80 6000
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following rule matches UDP packets with destination IP address 172.69.58.80 and destination port 6000 on interface swp51, and translates the IP address to 10.0.0.1 and the port to 5000:
+The following rule matches UDP packets with destination IP address 172.30.58.80 and destination port 6000 on interface swp51, and translates the IP address to 10.0.0.1 and the port to 5000:
 
 ```
-cumulus@switch:~$ net add nat static dnat udp 172.69.58.80 6000 in-interface swp51 translate 10.0.0.1 5000
+cumulus@switch:~$ net add nat static dnat udp 172.30.58.80 6000 in-interface swp51 translate 10.0.0.1 5000
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -129,7 +129,7 @@ cumulus@switch:~$ net commit
 To delete a static rule, run the `net del` command. For example:
 
 ```
-cumulus@switch:~$ net del nat static snat tcp 10.0.0.1 translate 172.69.58.80
+cumulus@switch:~$ net del nat static snat tcp 10.0.0.1 translate 172.30.58.80
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -151,28 +151,28 @@ cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/60_nat.rules
 
 **Example Rules**
 
-The following rule matches TCP packets with source IP address 10.0.01 and translates the IP address to 172.69.58.80:
+The following rule matches TCP packets with source IP address 10.0.01 and translates the IP address to 172.30.58.80:
 
 ```
--t nat -A POSTROUTING -s 10.0.0.1 -p tcp -j SNAT --to-source 172.69.58.80
+-t nat -A POSTROUTING -s 10.0.0.1 -p tcp -j SNAT --to-source 172.30.58.80
 ```
 
-The following rule matches ICMP packets with destination IP address 172.69.58.80 on interface swp51 and translates the IP address to 10.0.0.1
+The following rule matches ICMP packets with destination IP address 172.30.58.80 on interface swp51 and translates the IP address to 10.0.0.1
 
 ```
--t nat -A PREROUTING -d 172.69.58.80 -p icmp --in-interface swp51 -j DNAT --to-destination 10.0.0.1
+-t nat -A PREROUTING -d 172.30.58.80 -p icmp --in-interface swp51 -j DNAT --to-destination 10.0.0.1
 ```
 
-The following rule matches UDP packets with source IP address 10.0.0.1 and source port 5000, and translates the IP address to 172.69.58.80 and the port to 6000.
+The following rule matches UDP packets with source IP address 10.0.0.1 and source port 5000, and translates the IP address to 172.30.58.80 and the port to 6000.
 
 ```
--t nat -A POSTROUTING -s 10.0.0.1 -p udp --sport 5000 -j SNAT --to-source 172.69.58.80:6000
+-t nat -A POSTROUTING -s 10.0.0.1 -p udp --sport 5000 -j SNAT --to-source 172.30.58.80:6000
 ```
 
-The following rule matches UDP packets with destination IP address 172.69.58.80 and destination port 6000 on interface swp51, and translates the IP address to 10.0.0.1 and the port to 5000.
+The following rule matches UDP packets with destination IP address 172.30.58.80 and destination port 6000 on interface swp51, and translates the IP address to 10.0.0.1 and the port to 5000.
 
 ```
--t nat -A PREROUTING -d 172.69.58.80 -p udp --dport 6000 --in-interface swp51  -j DNAT --to-destination 10.0.0.1:5000
+-t nat -A PREROUTING -d 172.30.58.80 -p udp --dport 6000 --in-interface swp51  -j DNAT --to-destination 10.0.0.1:5000
 ```
 
 To delete a static NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i command`.
@@ -248,42 +248,42 @@ For source NAT (`snat`), you can match a source IP address or both a source and 
 
 **Example Commands**
 
-The following rule matches TCP packets with source IP address 10.0.0.0/24 on outbound interface swp5 and translates the address dynamically to an IP address in the range 172.69.58.0-172.69.58.80:
+The following rule matches TCP packets with source IP address 10.0.0.0/24 on outbound interface swp5 and translates the address dynamically to an IP address in the range 172.30.58.0-172.30.58.80:
 
 ```
-cumulus@switch:~$ net add nat dynamic snat tcp source-ip 10.0.0.0/24 out-interface swp5 translate 172.69.58.0-172.69.58.80
+cumulus@switch:~$ net add nat dynamic snat tcp source-ip 10.0.0.0/24 out-interface swp5 translate 172.30.58.0-172.30.58.80
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following rule matches UDP packets with source IP address 10.0.0.0/24 and translates the addresses dynamically to IP address 172.69.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches UDP packets with source IP address 10.0.0.0/24 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
-cumulus@switch:~$ net add nat dynamic snat udp source-ip 10.0.0.0/24 translate 172.69.58.80 1024-1200
+cumulus@switch:~$ net add nat dynamic snat udp source-ip 10.0.0.0/24 translate 172.30.58.80 1024-1200
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following rule matches UDP packets with source IP address 10.0.0.0/24 on source port 5000 and translates the addresses dynamically to IP address 172.69.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches UDP packets with source IP address 10.0.0.0/24 on source port 5000 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
-cumulus@switch:~$ net add nat dynamic snat udp source-ip 10.0.0.0/24 source-port 5000 translate 172.69.58.80 1024-1200
+cumulus@switch:~$ net add nat dynamic snat udp source-ip 10.0.0.0/24 source-port 5000 translate 172.30.58.80 1024-1200
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following rule matches TCP packets with destination IP address 10.1.0.0/24 and translates the address dynamically to IP address range 172.69.58.0-172.69.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches TCP packets with destination IP address 10.1.0.0/24 and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
-cumulus@switch:~$ net add nat dynamic dnat tcp destination-ip 10.1.0.0/24 translate 172.69.58.0-172.69.58.80 1024-1200
+cumulus@switch:~$ net add nat dynamic dnat tcp destination-ip 10.1.0.0/24 translate 172.30.58.0-172.30.58.80 1024-1200
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-The following rule matches ICMP packets with source IP address 10.0.0.0/24 and destination IP address 10.1.0.0/24 and translates the address dynamically to IP address range 172.69.58.0-172.69.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches ICMP packets with source IP address 10.0.0.0/24 and destination IP address 10.1.0.0/24 and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
-cumulus@switch:~$ net add nat dynamic snat icmp source-ip 10.0.0.0/24 destination-ip 10.1.0.0/24 translate 172.69.58.0-172.69.58.80 1024-1200
+cumulus@switch:~$ net add nat dynamic snat icmp source-ip 10.0.0.0/24 destination-ip 10.1.0.0/24 translate 172.30.58.0-172.30.58.80 1024-1200
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -291,7 +291,7 @@ cumulus@switch:~$ net commit
 To delete a dynamic rule, run the `net del` command. For example:
 
 ```
-cumulus@switch:~$ net del nat dynamic snat tcp source-ip 10.0.0.0/24 translate 172.69.58.0-172.69.58.80 1024-1200
+cumulus@switch:~$ net del nat dynamic snat tcp source-ip 10.0.0.0/24 translate 172.30.58.0-172.30.58.80 1024-1200
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -313,34 +313,34 @@ cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/60_nat.rules
 
 **Example Rules**
 
-The following rule matches TCP packets with source IP address 10.0.0.0/24 on outbound interface swp5 and translates the address dynamically to an IP address in the range 172.69.58.0-172.69.58.80.
+The following rule matches TCP packets with source IP address 10.0.0.0/24 on outbound interface swp5 and translates the address dynamically to an IP address in the range 172.30.58.0-172.30.58.80.
 
 ```
--t nat -A POSTROUTING -s 10.0.0.0/24 --out-interface swp5 -p tcp -j SNAT --to-source 172.69.58.0-172.69.58.80
+-t nat -A POSTROUTING -s 10.0.0.0/24 --out-interface swp5 -p tcp -j SNAT --to-source 172.30.58.0-172.30.58.80
 ```
 
-The following rule matches UDP packets with source IP address 10.0.0.0/24 and translates the addresses dynamically to IP address 172.69.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches UDP packets with source IP address 10.0.0.0/24 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
--t nat -A POSTROUTING -s 10.0.0.0/24 -p udp -j SNAT --to-source 172.69.58.80:1024-1200
+-t nat -A POSTROUTING -s 10.0.0.0/24 -p udp -j SNAT --to-source 172.30.58.80:1024-1200
 ```
 
-The following rule matches UDP packets with source IP address 10.0.0.0/24 on source port 5000 and translates the addresses dynamically to IP address 172.69.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches UDP packets with source IP address 10.0.0.0/24 on source port 5000 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
--t nat -A POSTROUTING -s 10.0.0.0/24 -p udp --sport 5000 -j SNAT --to-source 172.69.58.80:1024-1200
+-t nat -A POSTROUTING -s 10.0.0.0/24 -p udp --sport 5000 -j SNAT --to-source 172.30.58.80:1024-1200
 ```
 
-The following rule matches TCP packets with destination IP address 10.1.0.0/24 and translates the address dynamically to IP address range 172.69.58.0-172.69.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches TCP packets with destination IP address 10.1.0.0/24 and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
--t nat -A PREROUTING -d 10.1.0.0/24 -p tcp -j DNAT --to-destination 172.69.58.0-172.69.58.80:1024-1200
+-t nat -A PREROUTING -d 10.1.0.0/24 -p tcp -j DNAT --to-destination 172.30.58.0-172.30.58.80:1024-1200
 ```
 
-The following rule matches ICMP packets with source IP address 10.0.0.0/24 and destination IP address 10.1.0.0/24 and translates the address dynamically to IP address range 172.69.58.0-172.69.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches ICMP packets with source IP address 10.0.0.0/24 and destination IP address 10.1.0.0/24 and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
--t nat -A POSTROUTING -s 10.0.0.0/24 -d 10.1.0.0/24 -p icmp -j SNAT --to-source 172.69.58.0-172.69.58.80:1024-1200
+-t nat -A POSTROUTING -s 10.0.0.0/24 -d 10.1.0.0/24 -p icmp -j SNAT --to-source 172.30.58.0-172.30.58.80:1024-1200
 ```
 
 To delete a dynamic NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i` command.
@@ -357,7 +357,7 @@ cumulus@switch:~$ sudo iptables -t nat -v -L
 ...
 Chain POSTROUTING (policy ACCEPT 27 packets, 3249 bytes)
  pkts bytes target   prot opt in   out   source      destination
-    0     0 SNAT     tcp --  any  any   10.0.0.1    anywhere     to:172.69.58.80
+    0     0 SNAT     tcp --  any  any   10.0.0.1    anywhere     to:172.30.58.80
 ```
 
 ## Show Conntrack Flows
@@ -366,5 +366,5 @@ To see the currently active connection tracking (conntrack) flows, run the `sudo
 
 ```
 cumulus@switch:~$ sudo cat /proc/net/nf_conntrack
-ipv4     2 udp      17 src=172.16.10.5 dst=10.0.0.2 sport=5001 dport=5000 src=10.0.0.2 dst=10.1.0.10 sport=6000 dport=1026 [OFFLOAD] mark=0 zone=0 use=2
+ipv4     2 udp      17 src=172.30.10.5 dst=10.0.0.2 sport=5001 dport=5000 src=10.0.0.2 dst=10.1.0.10 sport=6000 dport=1026 [OFFLOAD] mark=0 zone=0 use=2
 ```

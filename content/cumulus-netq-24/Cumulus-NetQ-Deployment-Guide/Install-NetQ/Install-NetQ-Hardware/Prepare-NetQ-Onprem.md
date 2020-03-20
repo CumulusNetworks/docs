@@ -158,7 +158,7 @@ Copy, instead of moving, the original QCOW2 image that was downloaded to avoid r
         For a Direct VM, where the VM uses a MACVLAN interface to sit on the host interface for its connectivity:
 
     ```
-    $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio -import --noautoconsole
+    $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio --import --noautoconsole
     ```
 
         {{%notice note%}}

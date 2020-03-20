@@ -95,7 +95,7 @@ configuration with the following commands:
 - `net clear` provides a way to clear `net show` counters, BGP and
   OSPF neighbor content, and more.
 - `net rollback` provides a mechanism to
-  [revert back](../../Installation-Management/Using-Snapshots/#roll-back-to-earlier-snapshots)
+  {{<link url="Using-Snapshots#roll-back-to-earlier-snapshots" text="revert back">}}
   to an earlier configuration.
 - `net commit confirm` requires you to press *Enter* to commit changes
   using NCLU. If you run `net commit confirm` but do not press *Enter*
@@ -104,7 +104,7 @@ configuration with the following commands:
 - `net commit description <description>` enables you to provide a
   descriptive summary of the changes you are about to commit.
 - `net commit permanent` retains the
-  [snapshot](../../Installation-Management/Using-Snapshots/)
+  {{<link url="Using-Snapshots" text="snapshot">}}
   taken when committing the change. Otherwise, the snapshots created
   from NCLU commands are cleaned up periodically with a snapper cron job.
 - `net commit delete` deletes one or more snapshots created when
@@ -115,7 +115,7 @@ configuration with the following commands:
     {{%notice note%}}
 
 The `net del all` command does not remove
-[management VRF](../../Layer-3/Management-VRF/) configurations; NCLU
+{{<link url="Management-VRF" text="management VRF">}} configurations; NCLU
 does not interact with eth0 interfaces and management VRF.
 
     {{%/notice%}}
@@ -332,7 +332,7 @@ switch1# net show bridge macs
 
 ## Configure User Accounts
 
-You can configure [user accounts](../Authentication-Authorization-and-Accounting/User-Accounts/)
+You can configure {{<link url="User-Accounts" text="user accounts">}}
 in Cumulus Linux with read-only or edit permissions for NCLU:
 
 - You create user accounts with **read-only** permissions for NCLU by
@@ -388,11 +388,8 @@ Done
 You can use the `adduser` command for local user accounts only. You can
 use the `addgroup` command for both local and remote user accounts. For
 a remote user account, you must use the mapping username, such as
-`tacacs3` or `radius_user`, not the
-[TACACS](../Authentication-Authorization-and-Accounting/TACACS-Plus/)
-or
-[RADIUS](../Authentication-Authorization-and-Accounting/RADIUS-AAA/)
-account name.
+`tacacs3` or `radius_user`, not the {{<link url="TACACS-Plus" text="TACACS+">}}
+or {{<link url="RADIUS-AAA" text="RADIUS">}} account name.
 
 {{%/notice%}}
 
@@ -434,7 +431,7 @@ To configure a new user group to use NCLU, add that group to the
 
 Use caution giving edit permissions to groups. For example, don't give
 edit permissions to the
-[*tacacs* group](../Authentication-Authorization-and-Accounting/TACACS-Plus/#configure-nclu-for-tacacs-plus-users).
+{{<link url="TACACS-Plus#configure-nclu-for-tacacs-plus-users" text="*tacacs* group">}}.
 
 {{%/notice%}}
 

@@ -206,7 +206,7 @@ cumulus@switch:~$ net commit</code></pre></td>
 </tr>
 <tr class="even">
 <td><p><code>bond lacp-bypass-allow</code></p></td>
-<td><p>Enables <a href="../LACP-Bypass">LACP bypass</a>.</p></td>
+<td><p>Enables {{<link url="LACP-Bypass" text="LACP bypass">}}.</p></td>
 <td><p>N/A</p></td>
 </tr>
 <tr class="odd">

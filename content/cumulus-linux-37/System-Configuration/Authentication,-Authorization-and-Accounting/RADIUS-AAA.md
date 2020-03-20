@@ -8,7 +8,7 @@ aliases:
 pageID: 8362559
 ---
 Cumulus Networks offers add-on packages that enable
-[RADIUS](https://en.wikipedia.org/wiki/RADIUS) users to log in to
+{{<exlink url="https://en.wikipedia.org/wiki/RADIUS" text="RADIUS">}} users to log in to
 Cumulus Linux switches in a transparent way with minimal configuration.
 There is no need to create accounts or directories on the switch.
 Authentication is handled with PAM and includes login, `ssh`, `sudo` and
@@ -28,7 +28,7 @@ After installation is complete, either reboot the switch or run the
 `sudo systemctl restart netd` command.
 
 The `libpam-radius-auth` package supplied with the Cumulus Linux RADIUS
-client is a newer version than the one in [Debian Jessie](https://packages.debian.org/jessie/libpam-radius-auth). This
+client is a newer version than the one in {{<exlink url="https://packages.debian.org/jessie/libpam-radius-auth" text="Debian Jessie">}}. This
 package has added support for IPv6, the `src_ip` option described below,
 as well as a number of bug fixes and minor features. The package also
 includes VRF support, provides man pages describing the PAM and RADIUS
@@ -72,7 +72,7 @@ To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf`
 file:
 
 1.  Add the hostname or IP address of at least one RADIUS server (such
-    as a [*freeradius*](http://freeradius.org/) server on Linux) and the
+    as a {{<exlink url="http://freeradius.org/" text="FreeRADIUS">}} server on Linux) and the
     shared secret used to authenticate and encrypt communication with
     each server.
 
@@ -104,7 +104,7 @@ The hostname of the switch must be resolvable to an IP address,
     option, you must also specify the `timeout` option.
 
 4.  Set the `vrf-name` field. This is typically set to *mgmt* if you are
-    using a [management VRF](../../../Layer-3/Management-VRF/). You
+    using a {{<link url="Management-VRF" text="management VRF">}}. You
     cannot specify more than one VRF.
 
 The configuration file includes the `mapped_priv_user` field that sets
@@ -332,6 +332,6 @@ mapping file; this might be the first or second user that logged in.
 
 ## Related Information
 
-  - [TACACS+ client](../../Authentication-Authorization-and-Accounting/TACACS-Plus/)
-  - [Cumulus Networks RADIUS demo on GitHub](https://github.com/CumulusNetworks/cldemo-radius)
-  - [Cumulus Network TACACS demo on GitHub](https://github.com/CumulusNetworks/cldemo-tacacs)
+  - {{<link url="TACACS-Plus" text="TACACS+ client">}}
+  - {{<exlink url="https://github.com/CumulusNetworks/cldemo-radius" text="Cumulus Networks RADIUS demo on GitHub">}}
+  - {{<exlink url="https://github.com/CumulusNetworks/cldemo-tacacs" text="Cumulus Network TACACS demo on GitHub">}}

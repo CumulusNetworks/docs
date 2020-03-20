@@ -3,8 +3,8 @@ title: Cumulus Linux 3.7 Release Notes
 author: Cumulus Networks
 weight: -30
 cascade:
-    product: <function product_string at 0x10a261dc0>
-    version: "<function version_string at 0x10a261e50>"
+    product: <function product_string at 0x10cdc0dc0>
+    version: "<function version_string at 0x10cdc0e50>"
 toc: 1
 ---
 
@@ -12,7 +12,7 @@ toc: 1
 ## 3.7.12 Release Notes
 ### Open issues in 3.7.12
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28968"></a> [CM-28968](#CM-28968) <a name="CM-28968"></a> | The EVPN `advertise-svi-ip` command does not withdraw routes.<br/>To work around this issue, run the `systemctl restart frr.service` command. | 3.7.9-3.7.12 | |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
@@ -173,7 +173,7 @@ toc: 1
 | <a name="CM-15094"></a> [CM-15094](#CM-15094) <a name="CM-15094"></a> | Counter samples for an 80G bond (2 x 40G) exported from the switch show an interface speed (ifSpeed) of 14.464Gbps.  | 3.2.0-3.7.12 | |
 
 ### Fixed issues in 3.7.12
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-28485"></a> [CM-28485](#CM-28485) | The following vulnerability affects libxml2:<br/>CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc->oldNs.  This can lead to a denial of service.<br/>For more information, see <a href="https://www.debian.org/lts/security/2019/dla-2048.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2019/dla-2048.en.html</a> .<br/>Vulnerable: 2.9.1+dfsg1-5+deb8u7<br/>Fixed: 2.9.1+dfsg1-5+deb8u8 | 3.0.0-3.7.11 | |
 | <a name="CM-28484"></a> [CM-28484](#CM-28484) | The following vulnerability affects libbsd, a package containing utility functions from BSD systems.<br/>CVE-2016-2090: In function fgetwln() an off-by-one error could triggers a heap buffer overflow.<br/>For more information, see <a href="https://www.debian.org/lts/security/2019/dla-2052.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2019/dla-2052.en.html</a> .<br/>Vulnerable: 0.7.0-2<br/>Fixed: 0.7.0-2+deb8u1 | 3.0.0-3.7.11 | |
@@ -216,7 +216,7 @@ toc: 1
 ## 3.7.11 Release Notes
 ### Open issues in 3.7.11
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28968"></a> [CM-28968](#CM-28968) <a name="CM-28968"></a> | The EVPN `advertise-svi-ip` command does not withdraw routes.<br/>To work around this issue, run the `systemctl restart frr.service` command. | 3.7.9-3.7.12 | |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
@@ -407,7 +407,7 @@ toc: 1
 | <a name="CM-15094"></a> [CM-15094](#CM-15094) <a name="CM-15094"></a> | Counter samples for an 80G bond (2 x 40G) exported from the switch show an interface speed (ifSpeed) of 14.464Gbps.  | 3.2.0-3.7.12 | |
 
 ### Fixed issues in 3.7.11
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-28224"></a> [CM-28224](#CM-28224) | The following security vulnerability has been announced in qemu, which is not installed by default on Cumulus Linux but is available in the repository for optional installation:<br/>CVE-2019-15890: libslirp 4.0.0, as used in QEMU 4.1.0, has a use-after-free in ip_reass in ip_input.c.<br/>Vulnerable: <= 2.1+dfsg-12+deb8u11<br/>Fixed: 2.1+dfsg-12+deb8u12 | 3.0.0-3.7.10 | |
 | <a name="CM-27628"></a> [CM-27628](#CM-27628) | The following security vulnerabilities have been announced in the nss/libnss3 library, which is not installed by default but is available in the repository:<br/>CVE-2019-11745: Out-of-bounds write when passing an output buffer smaller than the block size to NSC_EncryptUpdate<br/>CVE-2019-17007: nss: Handling of Netscape Certificate Sequences in CERT_DecodeCertPackage() may crash with a NULL deref leading to DoS<br/>See <a href="https://security-tracker.debian.org/tracker/source-package/nss" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/nss</a> for more information.<br/>Vulnerable: <= 3.26-1+debu8u7<br/>Fixed: 3.26-1+debu8u9 | 3.0.0-3.7.10 | |
@@ -479,7 +479,7 @@ toc: 1
 ## 3.7.10 Release Notes
 ### Open issues in 3.7.10
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28968"></a> [CM-28968](#CM-28968) <a name="CM-28968"></a> | The EVPN `advertise-svi-ip` command does not withdraw routes.<br/>To work around this issue, run the `systemctl restart frr.service` command. | 3.7.9-3.7.12 | |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
@@ -703,13 +703,13 @@ toc: 1
 | <a name="CM-13316"></a> [CM-13316](#CM-13316) <a name="CM-13316"></a> | When you try to remove a VNI from a bridge using a regex match, the VNI is added back when you run the `ifreload -a` command. | 3.1.1-3.7.10 | 3.7.11-3.7.12|
 
 ### Fixed issues in 3.7.10
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 
 ## 3.7.9 Release Notes
 ### Open issues in 3.7.9
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28968"></a> [CM-28968](#CM-28968) <a name="CM-28968"></a> | The EVPN `advertise-svi-ip` command does not withdraw routes.<br/>To work around this issue, run the `systemctl restart frr.service` command. | 3.7.9-3.7.12 | |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
@@ -908,14 +908,14 @@ toc: 1
 | <a name="CM-13316"></a> [CM-13316](#CM-13316) <a name="CM-13316"></a> | When you try to remove a VNI from a bridge using a regex match, the VNI is added back when you run the `ifreload -a` command. | 3.1.1-3.7.10 | 3.7.11-3.7.12|
 
 ### Fixed issues in 3.7.9
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-27349"></a> [CM-27349](#CM-27349) | Debian security advisory DSA-4213 for qemu lists a number of security vulnerabilities.<br/><a href="https://www.debian.org/security/2018/dsa-4213" class="external-link" rel="nofollow">https://www.debian.org/security/2018/dsa-4213</a><br/>The latest upstream version 2.1+dfsg-12+deb8u12 fixes the following vulnerabilities listed in that announcement:<br/>CVE-2017-15038 Tuomas Tynkkynen discovered an information leak in 9pfs.<br/>CVE-2017-15119 Eric Blake discovered that the NBD server insufficiently restricts large option requests, resulting in denial of service.<br/>CVE-2017-15268 A memory leak in websockets support may result in denial of service.<br/>CVE-2017-15289 Guoxiang Niu discovered an OOB write in the emulated Cirrus graphics adaptor which could result in denial of service.<br/>CVE-2017-16845 Cyrille Chatras discovered an information leak in PS/2 mouse and keyboard emulation which could be exploited during instance migration.<br/>CVE-2017-17381 Dengzhan Heyuandong Bijunhua and Liweichao discovered that an implementation error in the virtio vring implementation could result in denial of service.<br/>CVE-2017-18043 Eric Blake discovered an integer overflow in an internally used macro which could result in denial of service.<br/>CVE-2018-5683 Jiang Xin and Lin ZheCheng discovered an OOB memory access in the emulated VGA adaptor which could result in denial of service.<br/>CVE-2018-7550 Cyrille Chatras discovered that an OOB memory write when using multiboot could result in the execution of arbitrary code.<br/>The following remains vulnerable in 2.1+dfsg-12+deb8u12:<br/>CVE-2017-15124 Daniel Berrange discovered that the integrated VNC server insufficiently restricted memory allocation, which could result in denial of service.<br/>Note: qemu is not installed by default, but is available in the repository for optional installation. | 3.0.0-3.7.8 | |
 
 ## 3.7.8 Release Notes
 ### Open issues in 3.7.8
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
 | <a name="CM-28938"></a> [CM-28938](#CM-28938) <a name="CM-28938"></a> | When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI. | 3.7.6-3.7.12 | |
@@ -1093,13 +1093,13 @@ toc: 1
 | <a name="CM-13316"></a> [CM-13316](#CM-13316) <a name="CM-13316"></a> | When you try to remove a VNI from a bridge using a regex match, the VNI is added back when you run the `ifreload -a` command. | 3.1.1-3.7.10 | 3.7.11-3.7.12|
 
 ### Fixed issues in 3.7.8
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 
 ## 3.7.7 Release Notes
 ### Open issues in 3.7.7
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
 | <a name="CM-28938"></a> [CM-28938](#CM-28938) <a name="CM-28938"></a> | When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI. | 3.7.6-3.7.12 | |
@@ -1264,7 +1264,7 @@ toc: 1
 | <a name="CM-13316"></a> [CM-13316](#CM-13316) <a name="CM-13316"></a> | When you try to remove a VNI from a bridge using a regex match, the VNI is added back when you run the `ifreload -a` command. | 3.1.1-3.7.10 | 3.7.11-3.7.12|
 
 ### Fixed issues in 3.7.7
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-21853"></a> [CM-21853](#CM-21853) | The Trident3 switch does not send out `sflow` flow samples; only counter samples are sent.  | 3.7.6 | |
 | <a name="CM-12967"></a> [CM-12967](#CM-12967) | When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. <br/>If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC. | 3.1.0-3.7.6 | |
@@ -1272,7 +1272,7 @@ toc: 1
 ## 3.7.6 Release Notes
 ### Open issues in 3.7.6
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
 | <a name="CM-28938"></a> [CM-28938](#CM-28938) <a name="CM-28938"></a> | When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI. | 3.7.6-3.7.12 | |
@@ -1428,13 +1428,13 @@ toc: 1
 | <a name="CM-12967"></a> [CM-12967](#CM-12967) <a name="CM-12967"></a> | When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. <br/>If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC. | 3.1.0-3.7.6 | 3.7.7-3.7.12|
 
 ### Fixed issues in 3.7.6
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 
 ## 3.7.5 Release Notes
 ### Open issues in 3.7.5
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
 | <a name="CM-28867"></a> [CM-28867](#CM-28867) <a name="CM-28867"></a> | The QuantaMesh BMS T3048-LY8 switch shows a low fan RPM in syslog. | 3.7.5-3.7.12 | |
@@ -1564,13 +1564,13 @@ toc: 1
 | <a name="CM-12967"></a> [CM-12967](#CM-12967) <a name="CM-12967"></a> | When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. <br/>If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC. | 3.1.0-3.7.6 | 3.7.7-3.7.12|
 
 ### Fixed issues in 3.7.5
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 
 ## 3.7.4 Release Notes
 ### Open issues in 3.7.4
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
 | <a name="CM-28816"></a> [CM-28816](#CM-28816) <a name="CM-28816"></a> | The following security advisory has been announced for bash: <br/>CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use `enable -f` for runtime loading of a new builtin that calls `setuid()` to regain dropped privileges.<br/>To work around this issue, do not make bash or bash scripts `setuid`. | 3.0.0-3.7.12 | |
@@ -1690,13 +1690,13 @@ toc: 1
 | <a name="CM-12967"></a> [CM-12967](#CM-12967) <a name="CM-12967"></a> | When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. <br/>If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC. | 3.1.0-3.7.6 | 3.7.7-3.7.12|
 
 ### Fixed issues in 3.7.4
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 
 ## 3.7.3 Release Notes
 ### Open issues in 3.7.3
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
 | <a name="CM-28816"></a> [CM-28816](#CM-28816) <a name="CM-28816"></a> | The following security advisory has been announced for bash: <br/>CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use `enable -f` for runtime loading of a new builtin that calls `setuid()` to regain dropped privileges.<br/>To work around this issue, do not make bash or bash scripts `setuid`. | 3.0.0-3.7.12 | |
@@ -1809,13 +1809,13 @@ toc: 1
 | <a name="CM-12967"></a> [CM-12967](#CM-12967) <a name="CM-12967"></a> | When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. <br/>If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC. | 3.1.0-3.7.6 | 3.7.7-3.7.12|
 
 ### Fixed issues in 3.7.3
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 
 ## 3.7.2 Release Notes
 ### Open issues in 3.7.2
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
 | <a name="CM-28816"></a> [CM-28816](#CM-28816) <a name="CM-28816"></a> | The following security advisory has been announced for bash: <br/>CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use `enable -f` for runtime loading of a new builtin that calls `setuid()` to regain dropped privileges.<br/>To work around this issue, do not make bash or bash scripts `setuid`. | 3.0.0-3.7.12 | |
@@ -1914,13 +1914,13 @@ toc: 1
 | <a name="CM-12967"></a> [CM-12967](#CM-12967) <a name="CM-12967"></a> | When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. <br/>If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC. | 3.1.0-3.7.6 | 3.7.7-3.7.12|
 
 ### Fixed issues in 3.7.2
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 
 ## 3.7.1 Release Notes
 ### Open issues in 3.7.1
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12 | |
 | <a name="CM-28816"></a> [CM-28816](#CM-28816) <a name="CM-28816"></a> | The following security advisory has been announced for bash: <br/>CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use `enable -f` for runtime loading of a new builtin that calls `setuid()` to regain dropped privileges.<br/>To work around this issue, do not make bash or bash scripts `setuid`. | 3.0.0-3.7.12 | |
@@ -2003,6 +2003,6 @@ toc: 1
 | <a name="CM-12967"></a> [CM-12967](#CM-12967) <a name="CM-12967"></a> | When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. <br/>If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC. | 3.1.0-3.7.6 | 3.7.7-3.7.12|
 
 ### Fixed issues in 3.7.1
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 

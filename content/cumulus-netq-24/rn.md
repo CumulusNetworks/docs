@@ -3,8 +3,8 @@ title: Cumulus NetQ 2.4 Release Notes
 author: Cumulus Networks
 weight: -30
 cascade:
-    product: <function product_string at 0x10a261dc0>
-    version: "<function version_string at 0x10a261e50>"
+    product: <function product_string at 0x10cdc0dc0>
+    version: "<function version_string at 0x10cdc0e50>"
 toc: 1
 ---
 
@@ -12,13 +12,13 @@ toc: 1
 ## 2.4.1 Release Notes
 ### Open issues in 2.4.1
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="NETQ-4927"></a> [NETQ-4927](#NETQ-4927) <a name="NETQ-4927"></a> | Admin UI: If the Master Installation phase fails during NetQ installation, refreshing the page causes the error log to be lost. On failure, download the error log, then run `netq bootstrap reset` followed by `netq bootstrap master interface` on the node before restarting the installation process. | 2.4.1 | |
 | <a name="NETQ-3451"></a> [NETQ-3451](#NETQ-3451) <a name="NETQ-3451"></a> | NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session. | 2.3.0-2.4.1 | |
 
 ### Fixed issues in 2.4.1
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="NETQ-4419"></a> [NETQ-4419](#NETQ-4419) | NetQ Admin UI: When installing NetQ with the Admin UI, the job status is presented to show progress. However, when an error is encountered while running individual tasks, the UI may feel unresponsive. Please wait for at least 15 minutes to receive a response. | 2.4.0 | |
 | <a name="NETQ-4113"></a> [NETQ-4113](#NETQ-4113) | NetQ UI: On medium- and large-sized Scheduled Trace cards, the destination field does not accept IPv6 addresses. They are reported as invalid destination IP addresses. The source field on these cards accepts IPv6 addresses. | 2.3.1-2.4.0 | |
@@ -27,7 +27,7 @@ toc: 1
 ## 2.4.0 Release Notes
 ### Open issues in 2.4.0
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="NETQ-4419"></a> [NETQ-4419](#NETQ-4419) <a name="NETQ-4419"></a> | NetQ Admin UI: When installing NetQ with the Admin UI, the job status is presented to show progress. However, when an error is encountered while running individual tasks, the UI may feel unresponsive. Please wait for at least 15 minutes to receive a response. | 2.4.0 | |
 | <a name="NETQ-4113"></a> [NETQ-4113](#NETQ-4113) <a name="NETQ-4113"></a> | NetQ UI: On medium- and large-sized Scheduled Trace cards, the destination field does not accept IPv6 addresses. They are reported as invalid destination IP addresses. The source field on these cards accepts IPv6 addresses. | 2.3.1-2.4.0 | |
@@ -35,7 +35,7 @@ toc: 1
 | <a name="NETQ-3451"></a> [NETQ-3451](#NETQ-3451) <a name="NETQ-3451"></a> | NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session. | 2.3.0-2.4.0 | |
 
 ### Fixed issues in 2.4.0
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="NETQ-4100"></a> [NETQ-4100](#NETQ-4100) | NetQ UI: This only applies to the NetQ 2.3.1 UI installed on the NetQ Server or NetQ Appliance in on-premises deployments. Cloud deployments are not impacted by this bug. Trace results are not shown after running an on-demand or scheduled trace request in the NetQ UI. The medium Trace Result cards are blank whether the trace was successful or not. The full-screen Trace Result card and the NetQ CLI show the results correctly.<br/>To work around this issue, apply the update to your existing 2.3.1 build as follows:<ul>	<li>Download the update tarball.<br/>If your server or appliance has internet access, use `wget` to perform the download. Be sure to use your download directory in place of <em>/home/cumulus</em> indicated in this example.<br /><pre>cumulus&#64;opta:~$ wget http://netq-shared.s3-us-west-2.amazonaws.com/NetQ-2.3.1.1.tgz -O /home/cumulus/NetQ-2.3.1.1.tgz<br /></pre><br />If your server or appliance is air-gapped, first download the tarball and then, as a root user, copy it to the appropriate directory on your server or appliance.<br /><pre>root&#64;opta:~# cd /mnt/swinstalls/<br />root&#64;opta:/mnt/swinstalls# cp /home/cumulus/NetQ-2.3.1.1.tgz ./ <br /></pre><br /></li>	<li>Extract the script.<br /><pre>cumulus&#64;opta:~$ tar -xvzf /home/cumulus/NetQ-2.3.1.1.tgz update-app.sh<br /></pre><br /></li>	<li>Run the script. On completion, a new GUI container will be running and the card will display the trace result.<br /><pre>cumulus&#64;opta:~$ ./update-app.sh /home/cumulus/NetQ-2.3.1.1.tgz<br />Loading the new app<br />e9b2c1648ab5: Loading layer &#91;==================================================>&#93;  2.048kB/2.048kB<br />e7acfa3378f4: Loading layer &#91;==================================================>&#93;  20.59MB/20.59MB<br />...<br />Loaded image: 498186410471.dkr.ecr.us-west-2.amazonaws.com/netq-gui:2.3.1<br />Restarting the app with new image<br />deployment.extensions/netq-gui-deploy scaled<br />Sleeping for 15 seconds<br />Confirming the app is running with new image<br />Found the container running with new image.<br /></pre><br /></li>	<li>Close and reopen the NetQ UI to run the new image. <b>Note</b>: You may need to press Cmd+Shift+R to fully clear the cache on the Chrome browser.</li></ul> | 2.3.1 | |
 | <a name="NETQ-4080"></a> [NETQ-4080](#NETQ-4080) | When you upgrade both the NetQ Agent and the NetQ Apps in on-premises deployments, a temporary increase in event messages is seen. They are the result of collecting package information from the NetQ Agent on each monitored node. This only happens on initial upgrade and there is no functional impact to the operation of the NetQ software. | 2.3.1 | |

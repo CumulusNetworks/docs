@@ -3,8 +3,8 @@ title: Cumulus Linux 4.1 Release Notes
 author: Cumulus Networks
 weight: -30
 cascade:
-    product: <function product_string at 0x10a261dc0>
-    version: "<function version_string at 0x10a261e50>"
+    product: <function product_string at 0x10cdc0dc0>
+    version: "<function version_string at 0x10cdc0e50>"
 toc: 1
 ---
 
@@ -12,7 +12,7 @@ toc: 1
 ## 4.1.0 Release Notes
 ### Open issues in 4.1.0
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28968"></a> [CM-28968](#CM-28968) <a name="CM-28968"></a> | The EVPN `advertise-svi-ip` command does not withdraw routes.<br/>To work around this issue, run the `systemctl restart frr.service` command. | 3.7.9-3.7.12, 4.0.0-4.1.0 | |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12, 4.0.0-4.1.0 | |
@@ -165,7 +165,7 @@ toc: 1
 | <a name="CM-15812"></a> [CM-15812](#CM-15812) <a name="CM-15812"></a> | Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs. | 3.2.1-3.7.12, 4.0.0-4.1.0 | |
 
 ### Fixed issues in 4.1.0
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-28909"></a> [CM-28909](#CM-28909) | On the Mellanox SN3800 switch, 10x4G, 10G, and 4x25G are all currently unsupported. |  | |
 | <a name="CM-28825"></a> [CM-28825](#CM-28825) | `hostapd` is not installed in Cumulus Linux 4.0.0 by default.<br/>To work around this issue, run the following commands to install the package:<br /><pre>cumulus&#64;switch:~$ sudo apt-get update -y<br />cumulus&#64;switch:~$ sudo apt-get install hostapd -y<br /></pre><br /> | 4.0.0 | |

@@ -3,8 +3,8 @@ title: Cumulus Linux 4.0 Release Notes
 author: Cumulus Networks
 weight: -30
 cascade:
-    product: <function product_string at 0x10a261dc0>
-    version: "<function version_string at 0x10a261e50>"
+    product: <function product_string at 0x10cdc0dc0>
+    version: "<function version_string at 0x10cdc0e50>"
 toc: 1
 ---
 
@@ -12,7 +12,7 @@ toc: 1
 ## 4.0.0 Release Notes
 ### Open issues in 4.0.0
 
-|  Bug ID 	|   Description	|   Affects	|   Fixed in release	|
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-28968"></a> [CM-28968](#CM-28968) <a name="CM-28968"></a> | The EVPN `advertise-svi-ip` command does not withdraw routes.<br/>To work around this issue, run the `systemctl restart frr.service` command. | 3.7.9-3.7.12, 4.0.0 | |
 | <a name="CM-28944"></a> [CM-28944](#CM-28944) <a name="CM-28944"></a> | A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>To work around this issue, reenter the `redistribute <connected\|static> route-map <route-map-name>` statement in the configuration. | 3.6.2-3.7.12, 4.0.0 | |
@@ -235,7 +235,7 @@ toc: 1
 | <a name="CM-15812"></a> [CM-15812](#CM-15812) <a name="CM-15812"></a> | Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs. | 3.2.1-3.7.12, 4.0.0 | |
 
 ### Fixed issues in 4.0.0
-|  Bug ID 	|   Description	|   Affects	|
+|  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-27269"></a> [CM-27269](#CM-27269) | The following Linux kernel security vulnerabilities do not affect Cumulus Linux in supported configurations:<br/>CVE-2018-12207 CVE-2019-0154 CVE-2019-0155 CVE-2019-11135<br/>Several vulnerabilities have been discovered in the Linux kernel that may may to a privilege escalation, denial of service, or information leak.<br/>CVE-2018-12207: Intel CPU hypervisor vulnerability.  Running hypervisors on Cumulus Linux is not supported.<br/>CVE-2019-0154, CVE-2019-0155:  Intel GPU vulnerabilities.  GPUs are not present on our switches.<br/>CVE-2019-11135, CVE-2019-11139: Intel CPU transactional memory vulnerability.  None of our switches support transactional memory.<br/>For the detailed security status of linux, refer to its security tracker page at:<br/><a href="https://security-tracker.debian.org/tracker/linux" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/linux</a> |  | |
 | <a name="CM-26815"></a> [CM-26815](#CM-26815) | If a router MAC address changes on a VTEP, other VTEPs might still point to the previous router MAC address. | 3.7.10 | |

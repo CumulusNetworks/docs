@@ -3,8 +3,8 @@ title: Cumulus Linux 3.7 Release Notes
 author: Cumulus Networks
 weight: -30
 cascade:
-    product: <function product_string at 0x10cdc0dc0>
-    version: "<function version_string at 0x10cdc0e50>"
+    product: <function product_string at 0x103c9fdc0>
+    version: "<function version_string at 0x103c9fe50>"
 toc: 1
 ---
 

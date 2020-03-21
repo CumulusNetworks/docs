@@ -19,8 +19,6 @@ jobs:
       with:
         stable_branch: 'stage'
         development_branch: 'plumbis-stage'
-        allow_ff: true
-        ff_only:  true
         user_name: Cumulus Docs Daily Merge 
         user_email: docs@cumulusnetworks.com 
       env:

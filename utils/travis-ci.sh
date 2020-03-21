@@ -20,7 +20,7 @@ echo "running rn script"
 python3 utils/build_rns.py 
 
 # Check if there is anything different in the local vs remote files
-if [[ 'git status --porcelain' ]]; then
+if [ 'git status --porcelain' ]; then
   echo "Release note script detected release note updates."
   git diff-index HEAD --
   git add *

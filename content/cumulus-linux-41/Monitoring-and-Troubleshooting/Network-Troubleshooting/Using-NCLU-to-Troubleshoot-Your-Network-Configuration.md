@@ -104,7 +104,7 @@ To get information about the switch itself, run `net show system`:
 cumulus@switch:~$ net show system
 Hostname......... celRED
 
-Build............ Cumulus Linux 4.0.0~1555370771.772c26b6
+Build............ Cumulus Linux 4.1.0
 Uptime........... 8 days, 12:24:01.770000
 
 Model............ Cel REDSTONE

@@ -541,10 +541,10 @@ Now, the user can run the NCLU `net show` commands successfully:
 
 ```
 cumulus@switch:~$ net show version
-NCLU_VERSION=1.0-cl4u1~1555625956.7cfe305
+NCLU_VERSION=1.0-cl4u5
 DISTRIB_ID="Cumulus Linux"
-DISTRIB_RELEASE=4.0.0~1555370771.772c26b6
-DISTRIB_DESCRIPTION="Cumulus Linux 4.0.0~1555370771.772c26b6"
+DISTRIB_RELEASE=4.1.0
+DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
 ```
 
 ### LDAP Browsers

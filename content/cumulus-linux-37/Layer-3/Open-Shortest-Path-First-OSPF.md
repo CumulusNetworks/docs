@@ -14,7 +14,7 @@ OSPF maintains the view of the network topology conceptually as a directed graph
 
 An LSA (*link-state advertisement*) is the fundamental quantum of information that OSPF routers exchange with each other. It seeds the graph building process on the node and triggers SPF computation. LSAs originated by a node are distributed to all the other nodes in the network through a mechanism called *flooding*. Flooding is done hop-by-hop. OSPF ensures reliability by using link state acknowledgement packets. The set of LSAs in a router's memory is termed *link-state database* (LSDB), a representation of the network graph. Therefore, OSPF ensures a consistent view of LSDB on each node in the network in a distributed fashion (eventual consistency model); this is key to the protocol's correctness.
 
-This topic describes OSPFv2, which is a [link-state routing protocol](http://en.wikipedia.org/wiki/Link-state_routing_protocol) for IPv4. For IPv6 commands, refer to [Open Shortest Path First v3 - OSPFv3](../Open-Shortest-Path-First-v3-OSPFv3/)
+This topic describes OSPFv2, which is a {{<exlink url="http://en.wikipedia.org/wiki/Link-state_routing_protocol" text="link-state routing protocol">}} for IPv4. For IPv6 commands, refer to {{<link url="Open-Shortest-Path-First-v3-OSPFv3">}}
 
 ## Scalability and Areas
 
@@ -46,7 +46,7 @@ To configure OSPF, you need to:
 
 ### Enable the OSPF and Zebra Daemons
 
-To enable OSPF, enable the `zebra` and `ospf` daemons, as described in [Configuring FRRouting](../Configuring-FRRouting/), then start the FRRouting service:
+To enable OSPF, enable the `zebra` and `ospf` daemons, as described in {{<link url="Configuring-FRRouting">}}, then start the FRRouting service:
 
 ```
 cumulus@switch:~$ sudo systemctl enable frr.service
@@ -140,7 +140,7 @@ To configure MD5 authentication:
 cumulus@switch:~$ net add interface swp1 ospf message-digest-key 1 md5 thisisthekey
 ```
 
-    {{%notice info%}}
+   {{%notice info%}}
 
 You can remove existing MD5 authentication hashes with the `net del interface <interface> ospf message-digest-key <KEYID> md5 <KEY>` command.
 
@@ -154,7 +154,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-    These commands creates the following configuration in the `/etc/frr/frr.conf` file:
+   These commands creates the following configuration in the `/etc/frr/frr.conf` file:
 
 ```
 cumulus@switch:~$ sudo cat /etc/frr/frr.conf
@@ -390,7 +390,7 @@ Don't specify a process ID unless you are using multi-instance OSPF.
 
 {{%notice note%}}
 
-If you disabled the [integrated](../Configuring-FRRouting/#integrated-configurations) FRRouting configuration, you must create a separate `ospfd` configuration file for each instance. The `ospfd.conf` file must include the instance ID in the file name. Continuing with our example, you would create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
+If you disabled the {{<link url="Configuring-FRRouting#integrated-configurations" text="integrated">}} FRRouting configuration, you must create a separate `ospfd` configuration file for each instance. The `ospfd.conf` file must include the instance ID in the file name. Continuing with our example, you would create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
 
 ```
 cumulus@switch:~$ cat /etc/frr/ospfd-11.conf
@@ -504,7 +504,7 @@ If there is a `network <network number>/<mask> area <area ID>` command present i
 
 {{%notice tip%}}
 
-Unless the Ethernet media is intended to be used as a LAN with multiple connected routers, we recommend configuring the interface as point-to-point. It has the additional advantage of a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See [RFC5309](http://tools.ietf.org/rfc/rfc5309) for a more detailed discussion.
+Unless the Ethernet media is intended to be used as a LAN with multiple connected routers, we recommend configuring the interface as point-to-point. It has the additional advantage of a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC 5309">}} for a more detailed discussion.
 
 {{%/notice%}}
 
@@ -540,7 +540,7 @@ cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.1
 
 ## Apply a Route Map for Route Updates
 
-To apply a [route map](http://docs.frrouting.org/en/latest/routemap.html) to filter route updates from Zebra into the Linux kernel:
+To apply a {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route map">}} to filter route updates from Zebra into the Linux kernel:
 
 ```
 cumulus@switch:$ net add routing protocol ospf route-map <route-map-name>
@@ -590,14 +590,14 @@ cumulus@switch:~$ net add interface swp1 ospf cost 65535
 - To verify that the LSDB is synchronized across all routers in the network, run the `net show ospf database` command.
 - To debug why an OSPF route is not being forwarded correctly, run the `net show route ospf` command. This command shows the outcome of the SPF computation downloaded to the forwarding table.
 
-[Debugging-OSPF](http://docs.frrouting.org/en/latest/ospfd.html#id7) lists all of the OSPF debug options.
+{{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html#id7" text="Debugging OSPF">}} lists all of the OSPF debug options.
 
 ## Related Information
 
-- [Bidirectional forwarding detection](../Bidirectional-Forwarding-Detection-BFD/) (BFD) and OSPF
-- [en.wikipedia.org/wiki/Open\_Shortest\_Path\_First](http://en.wikipedia.org/wiki/Open_Shortest_Path_First)
-- [FRR OSPFv2](https://frrouting.org/user-guide/ospfd.html)
+- {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional forwarding detection">}} (BFD) and OSPF
+- {{<exlink url="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" text="Wikipedia - Open Shortest Path First">}}
+- {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html" text="FRR OSPFv2">}}
 - Perlman, Radia (1999). Interconnections: Bridges, Routers, Switches, and Internetworking Protocols (2 ed.). Addison-Wesley.
 - Moy, John T. OSPF: Anatomy of an Internet Routing Protocol. Addison-Wesley.
-- [RFC 2328 OSPFv2](https://tools.ietf.org/html/rfc2328)
-- [RFC 3101 OSPFv2 Not-So-Stubby Area (NSSA)](https://tools.ietf.org/html/rfc3101)
+- {{<exlink url="https://tools.ietf.org/html/rfc2328" text="RFC 2328 OSPFv2">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc3101" text="RFC 3101 OSPFv2 Not-So-Stubby Area (NSSA)">}}

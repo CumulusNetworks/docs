@@ -19,9 +19,8 @@ The plugin supports configuration caching. The cached configuration is
 replayed back to the Cumulus Linux switch from Cumulus ML2 mechanism
 driver when a switch or process restart is detected.
 
-In order to deploy [OpenStack
-ML2](https://wiki.openstack.org/wiki/Neutron/ML2) in a network with
-Cumulus Linux switches, you need the following:
+In order to deploy {{<exlink url="https://wiki.openstack.org/wiki/Neutron/ML2" text="OpenStack ML2">}}
+in a network with Cumulus Linux switches, you need the following:
 
   - A REST API, which is installed in Cumulus Linux.
   - The Cumulus Networks Modular Layer 2 (ML2) mechanism driver for
@@ -87,14 +86,13 @@ You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
     switch. The default value is *30* seconds.
   - `spf_enable` - Enables/disables SPF for the bridge. The default
     value is *False*.
-  - `new_bridge` - Enables/disables [VLAN-aware bridge
-    mode](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)
+  - `new_bridge` - Enables/disables {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}}
     for the bridge configuration. The default value is *False*, so a
     traditional mode bridge is created.
 
 ## Try OpenStack with Cumulus in the Cloud
 
 OpenStack Neutron is available as a preconfigured option with
-[Cumulus in the Cloud](https://cumulusnetworks.com/products/cumulus-in-the-cloud/).
+{{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}.
 You just need to add the ML2 driver, as per the
-[instructions above](#install-and-configure-the-cumulus-networks-modular-layer-2-mechanism-driver).
+{{<link url="#install-and-configure-the-cumulus-networks-modular-layer-2-mechanism-driver" text="instructions above">}}.

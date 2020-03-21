@@ -8,7 +8,7 @@ aliases:
 pageID: 8362980
 ---
 Cumulus Linux is based on Linux kernel 4.1, which supports the
-[Docker](https://www.docker.com/) engine. Docker can be installed
+{{<exlink url="https://www.docker.com/" text="Docker">}} engine. Docker can be installed
 directly on a Cumulus Linux switch, and Docker containers can be run
 natively on the switch. This section covers the installation and set up
 instructions for Docker.

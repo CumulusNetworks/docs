@@ -17,7 +17,7 @@ hosts that want to receive multicast traffic destined to that group.
 
 In Cumulus Linux 3.7.4 and later, IGMP and MLD snooping is supported
 over VXLAN bridges; however, this feature is *not* enabled by default.
-To enable IGMP and MLD over VXLAN, see [Configure IGMP/MLD Snooping over VXLAN](#configure-igmp-mld-snooping-over-vxlan).
+To enable IGMP and MLD over VXLAN, see {{<link url="#configure-igmpmld-snooping-over-vxlan" text="Configure IGMP/MLD Snooping over VXLAN">}}.
 
 {{%/notice%}}
 
@@ -53,7 +53,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-Cumulus Networks recommends that you also configure IGMP/MLD querier. See [Configure IGMP/MLD Querier](#configure-igmp-mld-querier) below.
+Cumulus Networks recommends that you also configure IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}} below.
 
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.
 
@@ -117,8 +117,7 @@ address of the queries to be the bridge IP address, configure
 For an explanation of the relevant parameters, see the
 `ifupdown-addons-interfaces` man page.
 
-For a
-[VLAN-aware bridge](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/),
+For a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}},
 use a configuration like the following:
 
     auto bridge.100
@@ -144,8 +143,7 @@ You can specify a range of VLANs as well. For example:
     vlan bridge.[1-200]
       bridge-igmp-querier-src 123.1.1.1
 
-For a bridge in 
-[traditional mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/), use a
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, use a
 configuration like the following:
 
     auto br0
@@ -242,9 +240,9 @@ command. To show detailed router ports and group information, run the `bridge -d
 
 ## Related Information
 
-  - [tools.ietf.org/html/rfc4541](https://tools.ietf.org/html/rfc4541)
-  - [en.wikipedia.org/wiki/IGMP\_snooping](http://en.wikipedia.org/wiki/IGMP_snooping)
-  - [tools.ietf.org/rfc/rfc2236.txt](http://tools.ietf.org/rfc/rfc2236.txt)
-  - [tools.ietf.org/html/rfc3376](http://tools.ietf.org/html/rfc3376)
-  - [tools.ietf.org/search/rfc2710](http://tools.ietf.org/search/rfc2710)
-  - [tools.ietf.org/html/rfc3810](http://tools.ietf.org/html/rfc3810)
+- {{<exlink url="http://en.wikipedia.org/wiki/IGMP_snooping" text="IGMP snooping - Wikipedia">}}
+- {{<exlink url="http://tools.ietf.org/rfc/rfc2236.txt" text="IETF RFC 2236">}}
+- {{<exlink url="http://tools.ietf.org/search/rfc2710" text="IETF RFC 2710">}}
+- {{<exlink url="http://tools.ietf.org/html/rfc3376" text="IETF RFC 3376">}}
+- {{<exlink url="http://tools.ietf.org/html/rfc3810" text="IETF RFC 3810">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc4541" text="IETF RFC 4541">}}

@@ -19,12 +19,14 @@ git checkout plumbis-stage
 echo "running rn script"
 python3 utils/build_rns.py 
 
-
-if git diff-index --quiet HEAD --; then
+# Check if there is anything different in the local vs remote files
+git diff-index --quiet HEAD -- 
+if [ $? -eq 0 ]; then
   echo "No release note updates."
   exit 0
 else
-  echo "Release note script detected release note updates. Commiting"
+  echo "Release note script detected release note updates."
+  git diff-index HEAD --
   git add *
   git commit -m "Auto commit of release note update" -m "[skip ci]"
   git push

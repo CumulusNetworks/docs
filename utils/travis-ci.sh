@@ -22,7 +22,7 @@ sleep 1
 # Check if there is anything different in the local vs remote files
 if [ 'git status --porcelain' ]; then
   echo "Release note script detected release note updates."
-  git diff-index HEAD --
+  git status --porcelain
   git add *
   git commit -m "Auto commit of release note update" -m "[skip ci]"
   git push

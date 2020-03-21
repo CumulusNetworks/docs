@@ -28,8 +28,6 @@ pwd
 
 echo "making local_clone directory"
 mkdir local_clone
-
-echo "cloning..."
 git clone https://plumbis:${GH_TOKEN}@github.com/CumulusNetworks/docs.git local_clone
 
 
@@ -40,6 +38,8 @@ pwd
 echo "running git config"
 git config --global user.email "docs@cumulusnetworks.com"
 git config --global user.name "Cumulus Docs CI"
+
+git checkout plumbis-stage 
 
 echo "running rn script"
 python3 utils/build_rns.py

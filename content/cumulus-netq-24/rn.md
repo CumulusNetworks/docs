@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ 2.4 Release Notes
+title: Cumulus NetQ 2.4 Release  Notes
 author: Cumulus Networks
 weight: -30
 product: Cumulus NetQ

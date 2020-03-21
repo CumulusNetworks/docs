@@ -34,7 +34,7 @@ echo "making local_clone directory"
 mkdir local_clone
 
 echo "cloning..."
-git clone https://plumbis:${GH_TOKEN}@https://github.com/CumulusNetworks/docs.git local_clone
+git clone https://plumbis:${GH_TOKEN}@github.com/CumulusNetworks/docs.git local_clone
 
 echo "moving into directory"
 cd local_clone

@@ -25,7 +25,7 @@ The following illustratration shows a basic NAT configuration.
 - IPv6 to IPv4 translation is not supported.
 - Multicast traffic is not supported.
 - NAT is *not* supported in an EVPN configuration.
-- Dynamic NAT is supported on Broadcom Trident3 X7 and Mellanox Spectrum-2 switches only.
+- NAT is supported on Broadcom Trident3 X7 and Mellanox Spectrum-2 switches only.
 
 {{%/notice%}}
 
@@ -94,7 +94,7 @@ Where:
 
 **Command Examples**
 
-The following rule matches TCP packets with source IP address 10.0.01 and translates the IP address to 172.30.58.80:
+The following rule matches TCP packets with source IP address 10.0.0.1 and translates the IP address to 172.30.58.80:
 
 ```
 cumulus@switch:~$ net add nat static snat tcp 10.0.0.1 translate 172.30.58.80
@@ -205,8 +205,8 @@ The `/etc/cumulus/switchd.conf` file includes the following configuration option
 | Option | Description |
 | ------ | ----------- |
 | nat.age_poll_interval | The period of inactivity before `switchd` releases a NAT entry from the translation table.<br>The default value is 5 minutes. The minimum value is 1 minute. The maximum value is 24 hours.|
-| nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>Trident3 switches support a maximum of 1000 entries.<br>Mellanox Spectrum-2 switches support a maximum of 8000 entries. |
-| nat.config_table_size | The maximum number of rules allowed (NCLU or cl-acltool).<br>The default value is 64. The minimum value is 64. The maximum value is 1000. |
+| nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>Trident3 switches support a maximum of 1024  entries.<br>Mellanox Spectrum-2 switches support a maximum of 8192 entries. |
+| nat.config_table_size | The maximum number of rules allowed (NCLU or cl-acltool).<br>The default value is 64. The minimum value is 64. The maximum value is 1024. |
 
 After you change any of the dynamic NAT configuration options, restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
@@ -243,8 +243,6 @@ Where:
 - `protocol` is TCP, ICMP, or UDP. The protocol is required.
 - `out-interface` is the outbound interface for `snat` (Mellanox Spectrum-2 switches only)
 - `in-interface` is the inbound interface for `dnat` (Mellanox Spectrum-2 switches only)
-
-For source NAT (`snat`), you can match a source IP address or both a source and destination address.
 
 **Example Commands**
 

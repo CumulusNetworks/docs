@@ -1,0 +1,27 @@
+# From https://github.com/marketplace/actions/nightly-merge
+name: 'Nightly Merge'
+
+on:
+  schedule:
+    - cron:  '*/3 * * * *'
+
+jobs:
+  nightly-merge:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Nightly Merge
+      uses: robotology/gh-action-nightly-merge@v1.2.0
+      with:
+        stable_branch: 'stage'
+        development_branch: 'plumbis-stage'
+        allow_ff: true
+        ff_only:  true
+        user_name: Cumulus Docs Daily Merge 
+        user_email: docs@cumulusnetworks.com 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

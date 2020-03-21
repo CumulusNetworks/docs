@@ -1,7 +1,7 @@
 #!/bin/sh
 # Inspired by  https://gist.github.com/willprice/e07efd73fb7f13f917ea
 
-echo "making local_clone directory"
+echo "making local_clone directory" 
 mkdir local_clone
 git clone https://plumbis:${GH_TOKEN}@github.com/CumulusNetworks/docs.git local_clone
 

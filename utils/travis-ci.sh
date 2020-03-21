@@ -26,13 +26,20 @@ commit_release_notes() {
 
 pwd 
 
+echo "running git config"
 git config --global user.email "docs@cumulusnetworks.com"
 git config --global user.name "Cumulus Docs CI"
 
+echo "making local_clone directory"
 mkdir local_clone
-git clone https://plumbis:${GH_TOKEN}@https://github.com/CumulusNetworks/docs.git local_clone> /dev/null 2>&1
+
+echo "cloning..."
+git clone https://plumbis:${GH_TOKEN}@https://github.com/CumulusNetworks/docs.git local_clone
+
+echo "moving into directory"
 cd local_clone
 
+echo "running rn script"
 python3 utils/build_rns.py
 
 git add *

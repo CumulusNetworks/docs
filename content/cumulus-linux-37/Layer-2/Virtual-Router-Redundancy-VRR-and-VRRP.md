@@ -37,9 +37,7 @@ configuration.
 
 The diagram below illustrates a basic VRR-enabled network configuration.
 The network includes several hosts and two routers running Cumulus Linux
-configured with 
-[Multi-chassis Link Aggregation](../Multi-Chassis-Link-Aggregation-MLAG/)
-(MLAG).
+configured with {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-chassis Link Aggregation">}} (MLAG).
 
 {{%notice note%}}
 
@@ -168,7 +166,7 @@ mode for First Hop Redundancy Protocol.
 
 ### Example VRR Configuration with MLAG
 
-To create an [MLAG](../Multi-Chassis-Link-Aggregation-MLAG/)
+To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
 configuration that incorporates VRR, use a configuration like the following:
 
 ### leaf01 Configuration
@@ -462,13 +460,12 @@ the IP addresses of the virtual router.
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
 - 255 virtual routers are supported per switch.
 - VRRP is not supported currently in an MLAG environment.
-- To configure VRRP on an SVI or [traditional mode bridge](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/), you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files. The NCLU commands are not supported with SVIs or traditional mode bridges.
+- To configure VRRP on an SVI or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files. The NCLU commands are not supported with SVIs or traditional mode bridges.
 - In Cumulus Linux 3.7.11 and later, VRRP is supported with EVPN, and on layer 3 interfaces and subinterfaces that are part of a VRF.
 
 {{%/notice%}}
 
-[RFC 5798](https://tools.ietf.org/html/rfc5798#section-4.1) describes
-VRRP in detail.
+{{<exlink url="https://tools.ietf.org/html/rfc5798#section-4.1" text="RFC 5798">}} describes VRRP in detail.
 
 The following example illustrates a basic VRRP configuration.
 

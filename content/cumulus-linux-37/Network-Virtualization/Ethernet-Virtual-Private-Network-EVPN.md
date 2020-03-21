@@ -11,25 +11,25 @@ pageID: 8362732
 VXLAN is the de facto technology for implementing network virtualization
 in the data center, enabling layer 2 segments to be extended over an IP
 core (the underlay). The initial definition of VXLAN
-([RFC 7348](https://tools.ietf.org/html/rfc7348)) did not include any
+({{<exlink url="https://tools.ietf.org/html/rfc7348" text="RFC 7348">}}) did not include any
 control plane and relied on a flood-and-learn approach for MAC address
 learning. An alternate deployment model was to use a controller or a
-technology such as [Lightweight Network Virtualization (LNV)](../Lightweight-Network-Virtualization-Overview/) in Cumulus Linux.
+technology such as {{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight Network Virtualization (LNV)">}} in Cumulus Linux.
 
 {{%notice note%}}
 
 - You cannot use EVPN and LNV at the same time.
-- When using EVPN, you *must* disable data plane MAC learning on all VXLAN interfaces. This is described in [Basic EVPN Configuration](#basic-evpn-configuration), below.
+- When using EVPN, you *must* disable data plane MAC learning on all VXLAN interfaces. This is described in {{<link url="#basic-evpn-configuration" text="Basic EVPN Configuration">}}, below.
 
 {{%/notice%}}
 
 Ethernet Virtual Private Network (EVPN) is a standards-based control
 plane for VXLAN defined in
-[RFC 7432](https://tools.ietf.org/html/rfc7432) and
-[draft-ietf-bess-evpn-overlay](https://datatracker.ietf.org/doc/draft-ietf-bess-evpn-overlay/)
+{{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} and
+{{<exlink url="https://datatracker.ietf.org/doc/rfc8365/" text="RFC 8365">}}
 that allows for building and deploying VXLANs at scale. It relies on
 multi-protocol BGP (MP-BGP) for exchanging information and is based on
-BGP-MPLS IP VPNs ([RFC 4364](https://tools.ietf.org/html/rfc4364)). It
+BGP-MPLS IP VPNs ({{<exlink url="https://tools.ietf.org/html/rfc4364" text="RFC 4364">}}). It
 has provisions to enable not only bridging between end systems in the
 same layer 2 segment but also routing between different segments
 (subnets). There is also inherent support for multi-tenancy. EVPN is
@@ -42,7 +42,7 @@ features include:
 - VNI membership exchange between VTEPs using EVPN type-3 (Inclusive multicast Ethernet tag) routes.
 - Exchange of host MAC and IP addresses using EVPN type-2 (MAC/IP advertisement) routes.
 - Support for host/VM mobility (MAC and IP moves) through exchange of the MAC Mobility Extended community.
-- Support for dual-attached hosts via [VXLAN active-active mode](../VXLAN-Active-Active-Mode/). MAC synchronization between the peer switches is done using [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).
+- Support for dual-attached hosts via {{<link url="VXLAN-Active-Active-Mode" text="VXLAN active-active mode">}}. MAC synchronization between the peer switches is done using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.
 - Support for ARP/ND suppression, which provides VTEPs with the ability to suppress ARP flooding over VXLAN tunnels.
 - Support for exchange of static (sticky) MAC addresses through EVPN.
 - Support for distributed symmetric routing between different subnets.
@@ -66,19 +66,19 @@ over iBGP peering, OSPF can be used as the IGP or the next hops can also
 be resolved using iBGP.
 
 You can provision and manage EVPN using
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/).
+{{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
 
 {{%notice note%}}
 
 For Cumulus Linux 3.4 and later releases, the routing control plane
 (including EVPN) is installed as part of the
-[FRRouting](https://frrouting.org/) (FRR) package. For more information
-about FRR, refer to the [FRR Overview](../../Layer-3/FRRouting-Overview/).
+{{<exlink url="https://frrouting.org/" text="FRRouting">}} (FRR) package. For more information
+about FRR, refer to the {{<link url="FRRouting-Overview">}}.
 
 {{%/notice%}}
 
 For information about VXLAN routing, including platform and hardware
-limitations, see [VXLAN Routing](../VXLAN-Routing/).
+limitations, see {{<link url="VXLAN-Routing">}}.
 
 ## Basic EVPN Configuration
 
@@ -102,7 +102,7 @@ parameters.
 ### Enable EVPN between BGP Neighbors
 
 You enable EVPN between
-[BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) neighbors by
+{{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} neighbors by
 adding the address family *evpn* to the existing neighbor address-family
 activation command.
 
@@ -110,7 +110,7 @@ For a non-VTEP device that is merely participating in EVPN route
 exchange, such as a spine switch (the network deployment uses hop-by-hop
 eBGP or the switch is acting as an iBGP route reflector), activating the
 interface for the EVPN address family is the fundamental configuration
-needed in [FRRouting](../../Layer-3/FRRouting-Overview/).
+needed in {{<link url="FRRouting-Overview" text="FRRouting">}}.
 Additional configuration options for specific scenarios are described
 later on in this chapter.
 
@@ -151,7 +151,7 @@ The above commands create the following configuration snippet in the
 
 The above configuration does not result in BGP knowing about the local
 VNIs defined on the system and advertising them to peers. This requires
-additional configuration, [as described below](#advertise-all-vnis).
+additional configuration, {{<link url="#advertise-all-vnis" text="as described below">}}.
 
 ### Advertise All VNIs
 
@@ -284,7 +284,7 @@ The above commands create the following configuration snippet in the
 
 ### Enable EVPN in an iBGP Environment with an OSPF Underlay
 
-EVPN can be deployed with an [OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/)
+EVPN can be deployed with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}
 or static route underlay if needed. This is a more complex configuration than
 using eBGP. In this case, iBGP advertises EVPN routes directly between
 VTEPs, and the spines are unaware of EVPN or BGP.
@@ -373,7 +373,7 @@ These commands create the following code snippet in the
 
 {{%notice tip%}}
 
-For a bridge in [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/),
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}},
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
@@ -441,7 +441,7 @@ appropriate on the VLANs. See the example configuration below.
 
 {{%/notice%}}
 
-To configure ARP/ND suppression, use [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/).
+To configure ARP/ND suppression, use {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
 Here is an example configuration using two VXLANs (10100 and 10200) and two VLANs (100 and 200).
 
     cumulus@leaf01:~$ net add loopback lo vxlan local-tunnelip 10.0.0.1
@@ -507,7 +507,7 @@ These commands create the following configuration in the
 
 {{%notice tip%}}
 
-For a bridge in [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/),
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}},
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
@@ -603,8 +603,8 @@ ND extended community, run this command:
 ## EVPN and VXLAN Active-active Mode
 
 No additional EVPN-specific configuration is needed for
-[VXLAN active-active mode](../VXLAN-Active-Active-Mode/).
-Both switches in the [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
+{{<link url="VXLAN-Active-Active-Mode" text="VXLAN active-active mode">}}.
+Both switches in the {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
 pair establish EVPN peering with other EVPN speakers (for example, with
 spine switches, if using hop-by-hop eBGP) and inform about their locally
 known VNIs and MACs. When MLAG is active, both switches announce this
@@ -612,21 +612,16 @@ information with the shared anycast IP address.
 
 The active-active configuration, make sure that:
 
-- The `clagd-vxlan-anycast-ip` and `vxlan-local-tunnelip` parameters are
-  under the [loopback stanza](../VXLAN-Active-Active-Mode/#active-active-vtep-anycast-ip-behavior)
-  on both peers.
-- The anycast address is advertised to the routed fabric from both
-  peers.
-- The [VNIs](../VXLAN-Active-Active-Mode/#example-vxlan-active-active-configuration)
-  are configured identically on both peers. 
-- The [peerlink](../VXLAN-Active-Active-Mode/#example-vxlan-active-active-configuration)
-  must belong to the bridge.
+- The `clagd-vxlan-anycast-ip` and `vxlan-local-tunnelip` parameters are under the {{<link url="VXLAN-Active-Active-Mode#active-active-vtep-anycast-ip-behavior" text="loopback stanza">}} on both peers.
+- The anycast address is advertised to the routed fabric from both peers.
+- The {{<link url="VXLAN-Active-Active-Mode#example-vxlan-active-active-configuration" text="VNIs">}} are configured identically on both peers. 
+- The {{<link url="VXLAN-Active-Active-Mode#example-vxlan-active-active-configuration" text="peerlink">}} must belong to the bridge.
 
 MLAG synchronizes information between the two switches in the MLAG pair;
 EVPN does not synchronize.
 
 For information about active-active VTEPs and anycast IP behavior, and
-for failure scenarios, read the [VXLAN Active-Active Mode](../VXLAN-Active-Active-Mode/) chapter.
+for failure scenarios, read the {{<link url="VXLAN-Active-Active-Mode">}} chapter.
 
 ## Inter-subnet Routing
 
@@ -653,7 +648,7 @@ when it moves from one VTEP to another.
 EVPN in Cumulus Linux supports all of the routing models listed above.
 The models are described further in the following sections.
 
-All routing happens in the context of a tenant VRF ([virtual routing and forwarding](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/)).
+All routing happens in the context of a tenant VRF ({{<link url="Virtual-Routing-and-Forwarding-VRF" text="virtual routing and forwarding">}}).
 A VRF instance is provisioned for each tenant, and the subnets of the
 tenant are associated with that VRF (the corresponding SVI is attached
 to the VRF). Inter-subnet routing for each tenant occurs within the
@@ -662,7 +657,7 @@ tenants.
 
 {{%notice note%}}
 
-When configuring [VXLAN routing](../VXLAN-Routing/), Cumulus Networks recommends 
+When configuring {{<link url="VXLAN-Routing" text="VXLAN routing">}}, Cumulus Networks recommends 
 enabling ARP suppression on all VXLAN interfaces.
 Otherwise, when a locally attached host ARPs for the gateway, it will
 receive multiple responses, one from each anycast gateway.
@@ -899,8 +894,8 @@ These commands create the following configuration snippet in the
 
 The tenant VRF RD and RTs are different from the RD and RTs for the
 layer 2 VNI, which are described in
-[Auto-derivation of RDs and RTs](#auto-derivation-of-rds-and-rts) and
-[User-defined RDs and RTs](#user-defined-rds-and-rts) above.
+{{<link url="#auto-derivation-of-rds-and-rts" text="Auto-derivation of RDs and RTs">}} and
+{{<link url="#user-defined-rds-and-rts" text="User-defined RDs and RTs">}} above.
 
 {{%/notice%}}
 
@@ -917,7 +912,7 @@ will be announced as EVPN prefix (type-5) routes.
 To advertise locally attached subnets, you must:
 
 1.  Enable advertisement of EVPN prefix (type-5) routes. Refer to
-    [Prefix-based Routing - EVPN Type-5 Routes](#prefix-based-routing-evpn-type-5-routes),
+    {{<link url="#prefix-based-routing---evpn-type-5-routes" text="Prefix-based Routing - EVPN Type-5 Routes">}},
     below.
 2.  Ensure that the routes corresponding to the connected subnets are
     known in the BGP VRF routing table by injecting them using the
@@ -968,7 +963,7 @@ Spectrum A1 chip.
 {{%notice note%}}
 
 If you are using a Broadcom Trident II+ switch as a border/exit leaf, see
-[Caveats](#caveats) below for a necessary workaround; the workaround only applies
+{{<link url="#caveats" text="Caveats">}} below for a necessary workaround; the workaround only applies
 to Trident II+ switches, not Tomahawk or Spectrum.
 
 {{%/notice%}}
@@ -1101,7 +1096,7 @@ These commands create the following configuration in the
 
 {{%notice tip%}}
 
-For a bridge in [traditional mode](../../Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/),
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}},
 you must edit the bridge configuration in the `/etc/network/interfaces`
 file using a text editor:
 
@@ -1155,7 +1150,7 @@ from a remote VTEP/rack.
   `advertise-svi-ip` option and the `advertise-default-gw` option at
   the same time. (The `advertise-default-gw` option configures the
   gateway VTEPs to advertise their IP/MAC address. See
-  [Advertising the Default Gateway](#advertising-the-default-gateway)).
+  {{<link url="#advertising-the-default-gateway" text="Advertising the Default Gateway">}}).
 
 {{%/notice%}}
 
@@ -1305,7 +1300,7 @@ seconds.
     cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection max-moves 10 time 1200
 
 To disable duplicate address detection, see
-[Disable Duplicate Address Detection](#disable-duplicate-address-detection) below.
+{{<link url="#disable-duplicate-address-detection" text="Disable Duplicate Address Detection">}} below.
 
 #### Example syslog Messages
 
@@ -1347,15 +1342,15 @@ When you enable the freeze option and a duplicate address is detected:
 
 **To recover from a freeze**, shut down the faulty host or VM or fix any
 other misconfiguration in the network. If the address is frozen
-*permanently*, issue the [clear command](#clear-duplicate-addresses)
+*permanently*, issue the {{<link url="#clear-duplicate-addresses" text="clear command">}}
 on the VTEP where the address is marked as duplicate. If the address is
 frozen for a defined period of time, it is cleared automatically after
 the timer expires (you can clear the duplicate address before the timer
-expires with the [clear command](#clear-duplicate-addresses)).
+expires with the {{<link url="#clear-duplicate-addresses" text="clear command">}}).
 
 {{%notice note%}}
 
-If you issue the [clear command](#clear-duplicate-addresses) or the timer expires
+If you issue the {{<link url="#clear-duplicate-addresses" text="clear command">}} or the timer expires
 before you address the fault, duplicate address detection might occur repeatedly.
 
 {{%/notice%}}
@@ -1370,9 +1365,8 @@ intervene and clear the faulty MAC and ARP table entries.
 #### Configure the Freeze Option
 
 To enable Cumulus Linux to *freeze* detected duplicate addresses, run
-the `net add bgp l2vpn evpn dup-addr-detection freeze
-<duration>|permanent` command. The duration can be any number of seconds
-between 30 and 3600.
+the `net add bgp l2vpn evpn dup-addr-detection freeze <duration>|permanent` command. 
+The duration can be any number of seconds between 30 and 3600.
 
 The following example command freezes duplicate addresses for a period
 of 1000 seconds, after which it is cleared automatically :
@@ -1389,7 +1383,7 @@ freeze timer to 540 seconds.
 {{%/notice%}}
 
 The following example command freezes duplicate addresses permanently
-(until you issue the [clear command](#clear-duplicate-addresses)):
+(until you issue the {{<link url="#clear-duplicate-addresses" text="clear command">}}):
 
     cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze permanent
 
@@ -2015,10 +2009,7 @@ each and the associated router MAC address.
     configuration is used. You must ensure that the VLAN to VNI mappings
     and the layer 3 VNI assignment for a tenant VRF are uniform
     throughout the network.
-- If the remote host is dual attached, the next hop for the EVPN route
-    is the anycast IP address of the remote
-    [MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
-    pair, when MLAG is active.
+- If the remote host is dual attached, the next hop for the EVPN route is the anycast IP address of the remote {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} pair, when MLAG is active.
 
 {{%/notice%}}
 
@@ -2190,7 +2181,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
     to them are advertised to EVPN peers. There is no provision to only
     announce certain VNIs.
 - For VXLAN type-5 routes, ECMP does not work when the VTEP is directly connected to remote VTEPs. To work around this issue, add an additional device in the VXLAN fabric between the local and remote VTEPs, so that local and remote VTEPs are not directly connected.
-- In a [VXLAN active-active](../VXLAN-Active-Active-Mode/)
+- In a {{<link url="VXLAN-Active-Active-Mode" text="VXLAN active-active">}}
     configuration, ARPs are sometimes *not* suppressed even if ARP
     suppression is enabled. This is because the neighbor entries are not
     synchronized between the two switches operating in active-active

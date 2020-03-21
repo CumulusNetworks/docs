@@ -9,7 +9,7 @@ pageID: 8362575
 ---
 On Broadcom switches, a MAC address is learned on a bridge regardless of
 whether or not a received packet is dropped by an
-[ACL](../../Netfilter-ACLs/). This is
+{{<link url="Netfilter-ACLs" text="ACL">}}. This is
 due to how the hardware learns MAC addresses and occurs before the ACL
 lookup. This can be a security or resource problem as the MAC address
 table has the potential to get filled with bogus MAC addresses; a
@@ -26,7 +26,7 @@ and drop traffic otherwise.
 {{%notice note%}}
 
 This feature is specific to switches on the Broadcom platform only; on
-switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), the input port ACL does not have these
+switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, the input port ACL does not have these
 issues when learning MAC addresses.
 
 {{%/notice%}}
@@ -80,7 +80,7 @@ to configure:
     bridge fdb add 00:00:00:00:00:66 dev swp6 master static vlan 600
 
 Then create the configuration using
-[NCLU](../../Network-Command-Line-Utility-NCLU/):
+{{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}:
 
     cumulus@switch:~$ net add bridge bridge vids 100,200,300
     cumulus@switch:~$ net add bridge bridge pvid 1
@@ -126,7 +126,7 @@ These commands create the following configuration in the
 ## Interactions with EVPN
 
 If you are using
-[EVPN](../../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/),
+{{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}},
 local static MAC addresses added to the local FDB are exported as static
 MAC addresses to remote switches. Remote MAC addresses are added as MAC
 addresses to the remote FDB.

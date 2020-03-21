@@ -31,60 +31,60 @@ Cumulus Linux supports only PIM Sparse Mode.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 33%" />
+<col style="width: 67%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th><p>Network Element</p></th>
 <th><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>First Hop Router (FHR)</p></td>
 <td><p>The FHR is the router attached to the source. The FHR is responsible for the PIM register process.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>Last Hop Router (LHR)</p></td>
 <td><p>The LHR is the last router in the path, attached to an interested multicast receiver. There is a single LHR for each network subnet with an interested receiver, however multicast groups can have multiple LHRs throughout the network.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>Rendezvous Point (RP)</p></td>
 <td><p>The RP allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable.</p>
 <p>{{%notice warning%}}</p>
-<p>Do not use a spine switch as an RP. If you are running <a href="../Border-Gateway-Protocol-BGP">BGP</a> on a spine switch and it is *not* configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP - see below).</p>
+<p>Do not use a spine switch as an RP. If you are running {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} on a spine switch and it is *not* configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP - see below).</p>
 <p>{{%/notice%}}</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>PIM Shared Tree (RP Tree) or (*,G) Tree</p></td>
 <td><p>The Shared Tree is the multicast tree rooted at the RP. When receivers want to join a multicast group, join messages are sent along the shared tree towards the RP.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>PIM Shortest Path Tree (SPT) or (S,G) Tree</p></td>
 <td><p>The SPT is the multicast tree rooted at the multicast source for a given group. Each multicast source has a unique SPT. The SPT can match the RP Tree, but this is not a requirement. The SPT represents the most efficient way to send multicast traffic from a source to the interested receivers.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>Outgoing Interface (OIF)</p></td>
 <td><p>The outgoing interface indicates the interface on which a PIM or multicast packet is be sent out. OIFs are the interfaces towards the multicast receivers.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>Incoming Interface (IIF)</p></td>
 <td><p>The incoming interface indicates the interface on which a multicast packet is received. An IIF can be the interface towards the source or towards the RP.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>Reverse Path Forwarding Interface (RPF Interface)</p></td>
 <td><p>Reverse path forwarding interface is the path used to reach the RP or source. There must be a valid PIM neighbor to determine the RPF unless directly connected to source.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>Multicast Route (mroute)</p></td>
 <td><p>A multicast route indicates the multicast source and multicast group as well as associated OIFs, IIFs, and RPF information.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>Star-G mroute (*,G)</p></td>
 <td><p>The (*,G) mroute represents the RP Tree. The * is a wildcard indicating any multicast source. The G is the multicast group. An example (*,G) is (*, 239.1.2.9).</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>S-G mroute (S,G)</p></td>
 <td><p>This is the mroute representing the source entry. The S is the multicast source IP. The G is the multicast group. An example (S,G) is (10.1.1.1, 239.1.2.9).</p></td>
 </tr>
@@ -94,18 +94,14 @@ Cumulus Linux supports only PIM Sparse Mode.
 ### PIM Messages
 
 <table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th><p>PIM Message</p></th>
 <th><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>PIM Hello</p></td>
 <td><p>PIM hellos announce the presence of a multicast router on a segment. PIM hellos are sent every 30 seconds by default.</p>
 <pre><code>22.1.2.2 &gt; 224.0.0.13: PIMv2, length 34
@@ -120,7 +116,7 @@ Cumulus Linux supports only PIM Sparse Mode.
  Generation ID Option (20), length 4, Value: 0x2459b190
  0x0000: 2459 b190</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>PIM Join/Prune (J/P)</p></td>
 <td><p>PIM J/P messages indicate the groups that a multicast router would like to receive or no longer receive. Often PIM join/prune messages are described as distinct message types, but are actually a single PIM message with a list of groups to join and a second list of groups to leave. PIM J/P messages can be to join or prune from the SPT or RP trees (also called (*,G) joins or (S,G) joins).</p>
 <p>{{%notice note%}}</p>
@@ -135,26 +131,26 @@ Cumulus Linux supports only PIM Sparse Mode.
  group #1: 225.1.0.0, joined sources: 0, pruned sources: 1
  pruned source #1: 33.1.1.1(S)</code></pre></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>PIM Register</p></td>
 <td><p>PIM register messages are unicast packets sent from an FHR destined to the RP to advertise a multicast group. The FHR fully encapsulates the original multicast packet in PIM register messages. The RP is responsible for decapsulating the PIM register message and forwarding it along the (*,G) tree towards the receivers.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>PIM Null Register</p></td>
 <td><p>PIM null register is a special type of PIM register message where the <em>Null-Register</em> flag is set within the packet. Null register messages are used for an FHR to signal to an RP that a source is still sending multicast traffic. Unlike normal PIM register messages, null register messages do not encapsulate the original data packet.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>PIM Register Stop</p></td>
 <td><p>PIM register stop messages are sent by an RP to the FHR to indicate that PIM register messages must no longer be sent.</p>
 <pre><code>21:37:00.419379 IP (tos 0x0, ttl 255, id 24, offset 0, flags [none], proto PIM (103), length 38)
  100.1.2.1 &gt; 33.1.1.10: PIMv2, length 18
  Register Stop, cksum 0xd8db (correct) group=225.1.0.0 source=33.1.1.1</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>IGMP Membership Report (IGMP Join)</p></td>
 <td><p>IGMP membership reports are sent by multicast receivers to tell multicast routers of their interest in a specific multicast group. IGMP join messages trigger PIM *,G joins. IGMP version 2 queries are sent to the all hosts multicast address, 224.0.0.1. IGMP version 2 reports (joins) are sent to the group's multicast address. IGMP version 3 messages are sent to an IGMP v3 specific multicast address, 224.0.0.22.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>IGMP Leave</p></td>
 <td><p>IGMP leaves tell a multicast router that a multicast receiver no longer wants the multicast group. IGMP leave messages trigger PIM *,G prunes.</p></td>
 </tr>
@@ -297,12 +293,9 @@ You must configure IGMP on all interfaces where multicast receivers
 
     {{%notice note%}}
 
-Each PIM-SM enabled device must configure a static RP to a group
-    mapping, and all PIM-SM enabled devices must have the same RP to
-    group mapping configuration.
+Each PIM-SM enabled device must configure a static RP to a group mapping, and all PIM-SM enabled devices must have the same RP to group mapping configuration.
 
-    IP PIM RP group ranges can overlap. Cumulus Linux performs a longest
-    prefix match (LPM) to determine the RP. For example:
+IP PIM RP group ranges can overlap. Cumulus Linux performs a longest prefix match (LPM) to determine the RP. For example:
 
         cumulus(config)# ip pim rp 10.0.0.13 224.10.0.0/16
 
@@ -348,8 +341,7 @@ supported.
 
 {{%/notice%}}
 
-For additional information, see
-[RFC 7761 - Protocol Independent Multicast - Sparse Mode](https://tools.ietf.org/html/rfc7761).
+For additional information, see {{<exlink url="https://tools.ietf.org/html/rfc7761" text="RFC 7761 - Protocol Independent Multicast - Sparse Mode">}}.
 
 ### Any-source Multicast Routing
 
@@ -701,7 +693,7 @@ hello source by setting the source:
 
 ## Verify PIM
 
-The following outputs are based on the [Cumulus Reference Topology](https://github.com/CumulusNetworks/cldemo-vagrant) with `cldemo-pim`.
+The following outputs are based on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Networks reference topology">}} with `cldemo-pim`.
 
 ### Source Starts First
 
@@ -848,7 +840,7 @@ On the RP:
 
 ## PIM in a VRF
 
-[VRFs](../Virtual-Routing-and-Forwarding-VRF/)
+{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}}
 divide the routing table on a per-tenant basis, ultimately providing for
 separate layer 3 networks over a single layer 3 infrastructure. With a
 VRF, each tenant has its own virtualized layer 3 network, so IP
@@ -969,8 +961,7 @@ In FRR, you can use show commands to display VRF information:
 
 ## BFD for PIM Neighbors
 
-You can use [bidirectional forward
-detection](../Bidirectional-Forwarding-Detection-BFD/)
+You can use {{<link url="Bidirectional-Forwarding-Detection-BFD" text="bidirectional forward detection">}}
 (BFD) for PIM neighbors to quickly detect link failures. When you
 configure an interface, include the `pim bfd` option:
 
@@ -1243,8 +1234,7 @@ In Cumulus Linux 3.7.11 and later, you can run the NCLU command equivalent:`net 
 
 {{%/notice%}}
 
-For Spectrum chipsets, refer to
-[TCAM Resource Profiles for Spectrum Switches](../Routing/#tcam-resource-profiles-for-spectrum-switches).
+For Spectrum chipsets, refer to {{<link url="Routing#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
 
 ### Verify MSDP Session State
 

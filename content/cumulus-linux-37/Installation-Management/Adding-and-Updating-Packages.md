@@ -175,7 +175,7 @@ A list of packages that will be upgraded is displayed and you are prompted to co
 
 The above commands upgrade all installed versions with their latest versions but do not install any new packages.
 
-Refer to [Upgrading Cumulus Linux](../Upgrading-Cumulus-Linux/) for additional information.
+Refer to {{<link title="Upgrading Cumulus Linux">}} for additional information.
 
 ## Add New Packages
 
@@ -185,7 +185,7 @@ To add a new package, first ensure the package is not already installed on the s
 cumulus@switch:~$ dpkg -l | grep <name of package>
 ```
 
-- If the package is installed already, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See [Upgrade Packages](#upgrade-packages) above.
+- If the package is installed already, you can update the package from the Cumulus Linux repository as part of the package upgrade process, which upgrades all packages on the system. See {{<link title="#Upgrade Packages" text="Upgrade Packages">}} above.
 - If the package is *not* already installed, add it by running `sudo -E apt-get install <name of package>`. This retrieves the package from the Cumulus Linux repository and installs it on your system together with any other packages on which this package might depend. The following example adds the `tcpreplay` package to the system:
 
 ```
@@ -346,5 +346,5 @@ cumulus@leaf01:~$ sudo -E apt-get install htop
 
 ## Related Information
 
-- [Debian GNU/Linux FAQ, Ch 8 Package management tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)
+- {{<exlink url="http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html" text="Debian GNU/Linux FAQ, Ch 8 Package management tools">}}
 - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`

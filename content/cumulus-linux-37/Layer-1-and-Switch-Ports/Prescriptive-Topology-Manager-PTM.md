@@ -34,27 +34,24 @@ For more information, see `man ptmd(8)`.
     supported. Cumulus Linux does not support specifying virtual
     interfaces like bonds or subinterfaces like eth0.200 in the topology
     file.
-  - Forwarding path failure detection using [Bidirectional Forwarding
-    Detection](http://tools.ietf.org/html/rfc5880) (BFD); however,
+  - Forwarding path failure detection using {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection">}} (BFD); however,
     demand mode is not supported. For more information on how BFD
-    operates in Cumulus Linux, read the 
-    [Bidirectional Forwarding Detection - BFD](../../Layer-3/Bidirectional-Forwarding-Detection-BFD/)
+    operates in Cumulus Linux, read the
+    {{<link url="Bidirectional-Forwarding-Detection-BFD">}}
     chapter and read `man ptmd(8)`.
   - Integration with FRRouting (PTM to FRRouting notification).
   - Client management: `ptmd` creates an abstract named socket
     `/var/run/ptmd.socket` on startup. Other applications can connect to
     this socket to receive notifications and send commands.
   - Event notifications: see Scripts below.
-  - User configuration via a `topology.dot` file; [see
-    below](#configure-ptm).
+  - User configuration via a `topology.dot` file; {{<link url="#configure-ptm" text="see below">}}.
 
 ## Configure PTM
 
 `ptmd` verifies the physical network topology against a DOT-specified
 network graph file, `/etc/ptm.d/topology.dot`.
 
-PTM supports [undirected
-graphs](http://en.wikipedia.org/wiki/DOT_%28graph_description_language%29).
+PTM supports {{<exlink url="https://en.wikipedia.org/wiki/DOT_%28graph_description_language%29#Undirected_graphs" text="undirected graphs">}}.
 
 At startup, `ptmd` connects to `lldpd`, the LLDP daemon, over a Unix
 socket and retrieves the neighbor name and port information. It then
@@ -99,8 +96,7 @@ graph G {
 change, running `if-topo-pass` when an LLDP or BFD check passes and
 running `if-topo-fails` when the check fails. The scripts receive an
 argument string that is the result of the `ptmctl` command, described in
-the [`ptmd` commands section
-below](#ptmd-service-commands).
+the {{<link url="#ptmd-service-commands" text="ptmd commands section below">}}.
 
 You should modify these default scripts as needed.
 
@@ -122,7 +118,7 @@ the switch it's running on:
 {{%notice tip%}}
 
 It's a good idea to always wrap the hostname in double quotes, like
-*"www.example.com"*. Otherwise, `ptmd` can fail if you specify a
+*"www\.example.com"*. Otherwise, `ptmd` can fail if you specify a
 fully-qualified domain name as the hostname and do not wrap it in double
 quotes.
 
@@ -192,7 +188,6 @@ combinations and applying them to a given port. A template instructs
 There are two parameter strings `ptmd` supports:
 
   - `bfdtmpl`, which specifies a custom parameter tuple for BFD.
-
   - `lldptmpl`, which specifies a custom parameter tuple for LLDP.
 
 For example:
@@ -286,8 +281,7 @@ between two network devices. It provides a unified mechanism for link
 detection over all media and protocol layers. Use BFD to detect failures
 for IPv4 and IPv6 single or multihop paths between any two network
 devices, including unidirectional path failure detection. For
-information about configuring BFD using PTM, see the [BFD
-topic](../../Layer-3/Bidirectional-Forwarding-Detection-BFD).
+information about configuring BFD using PTM, see the {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD topic">}}
 
 ## Check Link State with FRRouting
 
@@ -556,7 +550,7 @@ graph from working correctly.
 
 ## Related Information
 
-  - [Bidirectional Forwarding Detection (BFD)](http://tools.ietf.org/html/rfc5880)
-  - [Graphviz](http://www.graphviz.org)
-  - [LLDP on Wikipedia](http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol)
-  - [PTMd GitHub repo](https://github.com/CumulusNetworks/ptm)
+  - {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection (BFD)">}}
+  - {{<exlink url="http://www.graphviz.org" text="Graphviz">}}
+  - {{<exlink url="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" text="LLDP on Wikipedia">}}
+  - {{<exlink url="https://github.com/CumulusNetworks/ptm" text="PTMd GitHub repo">}}

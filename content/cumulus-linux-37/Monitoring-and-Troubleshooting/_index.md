@@ -16,7 +16,7 @@ when you find yourself rebooting the switch often or if you do not have a
 reliable network connection.
 
 The default serial console baud rate is 115200, which is the baud rate
-[ONIE](http://opencomputeproject.github.io/onie/) uses.
+{{<exlink url="http://opencomputeproject.github.io/onie/" text="ONIE">}} uses.
 
 ### Configure the Serial Console on ARM Switches
 
@@ -75,19 +75,22 @@ To change the serial console baud rate:
     `/etc/default/grub` are as follows; replace the *115200* value with
     a valid value specified above in the `--speed` variable in the first
     line and in the `console` variable in the second line:
+
 ```
-    GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"              
+    GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"
     GRUB_CMDLINE_LINUX="console=ttyS1,115200n8 cl_platform=accton_as5712_54x"
 ```
+
 2.  After you save your changes to the grub configuration, type the
     following at the command prompt:
 ```
     cumulus@switch:~$ update-grub
 ```
+
 3.  If you plan on accessing the switch BIOS over the serial console,
     you need to update the baud rate in the switch BIOS. For more
-    information, see 
-    [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/203884473).
+    information, see this
+    {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/203884473" text="knowledge base article">}}.
 
 4.  Reboot the switch.
 
@@ -164,8 +167,7 @@ Serial Number.... A1010B2A011212AB000001
 You can use `cl-support` to generate a single export file that contains
 various details and the configuration from a switch. This is useful for
 remote debugging and troubleshooting. For more information about
-`cl-support`, read 
-[Understanding the cl-support Output File](Understanding-the-cl-support-Output-File/).
+`cl-support`, read {{<link url="Understanding-the-cl-support-Output-File">}}.
 
 You should run `cl-support` before you submit a support request to
 Cumulus Networks as this file helps in the investigation of issues.
@@ -210,13 +212,13 @@ cumulus@switch:~$ cat /etc/rsyslog.d/11-remotesyslog.conf
 
 NCLU cannot configure a remote syslog if management VRF is enabled on
 the switch. Refer to
-[Writing to syslog with Management VRF Enabled](#write-to-syslog-with-management-vrf-enabled) below.
+{{<link url="#write-to-syslog-with-management-vrf-enabled" text="Writing to syslog with Management VRF Enabled">}} below.
 
 {{%/notice%}}
 
 ### Log Technical Details
 
-Logging on Cumulus Linux is done with [rsyslog](http://www.rsyslog.com/).
+Logging on Cumulus Linux is done with {{<exlink url="http://www.rsyslog.com/" text="rsyslog">}}.
 `rsyslog` provides both local logging to the `syslog` file as well as the ability
 to export logs to an external `syslog` server. High precision timestamps are enabled
 for all `rsyslog` log files; here's an example:
@@ -251,19 +253,19 @@ written:
 | ----------------- | --------------------- |
 | 10-rules.conf     | Sets defaults for log messages, include log format and log rate limits. |
 | 15-crit.conf      | Logs crit, alert or emerg log messages to `/var/log/crit.log` to ensure they are not rotated away rapidly.              |
-| 20-clagd.conf     | Logs `clagd` messages to `/var/log/clagd.log` for [MLAG](../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/).  |
+| 20-clagd.conf     | Logs `clagd` messages to `/var/log/clagd.log` for {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.  |
 | 22-linkstate.conf | Logs link state changes for all physical and logical network links to `/var/log/linkstate`              |
 | 25-switchd.conf   | Logs `switchd` messages to `/var/log/switchd.log`.  |
-| 30-ptmd.conf      | Logs `ptmd` messages to `/var/log/ptmd.log` for [Prescription Topology Manager](../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/). |
-| 35-rdnbrd.conf    | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for [redistribute neighbor](../Layer-3/Redistribute-Neighbor/).  |
-| 40-netd.conf      | Logs `netd` messages to `/var/log/netd.log` for [NCLU](../System-Configuration/Network-Command-Line-Utility-NCLU/). |
+| 30-ptmd.conf      | Logs `ptmd` messages to `/var/log/ptmd.log` for {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescription Topology Manager">}}. |
+| 35-rdnbrd.conf    | Logs `rdnbrd` messages to `/var/log/rdnbrd.log` for {{<link url="Redistribute-Neighbor" text="redistribute neighbor">}}.  |
+| 40-netd.conf      | Logs `netd` messages to `/var/log/netd.log` for {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. |
 | 45-frr.conf       | Logs routing protocol messages to /var/log/frr/frr.log. This includes BGP and OSPF log messages. |
 | 99-syslog.conf    | All remaining processes that use `rsyslog` are sent to `/var/log/syslog`.    |
 
 Log files that are rotated are compressed into an archive. Processes
 that do not use `rsyslog` write to their own log files within the
 `/var/log` directory. For more information on specific log files, see
-[Troubleshooting Log Files](Understanding-the-cl-support-Output-File/Troubleshooting-Log-Files/).
+{{<link url="Troubleshooting-Log-Files">}}.
 
 ### Enable Remote syslog
 
@@ -322,7 +324,7 @@ Do not use the `imfile` module with any file written by `rsyslogd`.
 ### Write to syslog with Management VRF Enabled
 
 You can write to syslog with
-[management VRF](../Layer-3/Management-VRF/) enabled by applying the
+{{<link url="Management-VRF" text="management VRF">}} enabled by applying the
 following configuration; this configuration is commented out in the
 `/etc/rsyslog.d/11-remotesyslog.conf` file:
 
@@ -346,8 +348,8 @@ If you want to limit the number of `syslog` messages that can be written
 to the `syslog` file from individual processes, add the following
 configuration to `/etc/rsyslog.conf`. Adjust the interval and burst
 values to rate-limit messages to the appropriate levels required by your
-environment. For more information, read the 
-[rsyslog documentation](http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html).
+environment. For more information, read the
+{{<exlink url="http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html" text="rsyslog documentation">}}.
 
     module(load="imuxsock"
           SysSock.RateLimit.Interval="2" SysSock.RateLimit.Burst="50")

@@ -33,10 +33,10 @@ Consider the following example:
 
 Preconfiguring remote MAC addresses does not scale. A better solution is
 to use the Cumulus Networks
-[Lightweight Network Virtualization](../../Lightweight-Network-Virtualization-Overview/)
+{{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight Network Virtualization">}}
 feature, or a controller-based option like
-[Midokura MidoNet and OpenStack](../../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack/)
-or [VMware NSX-V](../../Virtualization-Integrations/Integrating-Hardware-VTEPs-with-VMware-NSX-V/).
+{{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet and OpenStack">}}
+or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}.
 
 {{%/notice%}}
 

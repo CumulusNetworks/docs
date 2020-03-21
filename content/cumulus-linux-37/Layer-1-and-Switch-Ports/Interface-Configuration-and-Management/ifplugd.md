@@ -34,9 +34,7 @@ The example `ifplugd` configuration below show that `ifplugd` has been
 configured to bring down all uplinks when the peerbond goes down in an
 MLAG environment.
 
-`ifplugd` is configured on both both the primary and secondary
-[MLAG](../../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
-switches in this example.
+`ifplugd` is configured on both both the primary and secondary {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} switches in this example.
 
 1.  Open `/etc/default/ifplugd` in a text editor.
 

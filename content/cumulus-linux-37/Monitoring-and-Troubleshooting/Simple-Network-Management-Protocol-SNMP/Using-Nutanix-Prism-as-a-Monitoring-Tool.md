@@ -121,28 +121,18 @@ Nutanix hosts are visible.
 
   - Physical Interface (e.g. swp1, swp2). This will only display swp
     interfaces connected to Nutanix hosts by default.
-
   - Switch ID - Unique identifier that Nutanix keeps track of each port
     ID (see below)
-
   - Index - interface index, in the above demonstration swp49 maps to
     Index 52 because there is a loopback and two ethernet interface
     before the swp starts.
-
   - MTU of interface
-
   - MAC Address of Interface
-
   - Unicast RX Packets (Received)
-
   - Unicast TX Packets (Transmitted)
-
   - Error RX Packets (Received)
-
   - Error TX Packets (Transmitted)
-
   - Discard RX Packets (Received)
-
   - Discard TX Packets (Transmitted)
 
 The Nutanix appliance will use Switch IDs that can also be viewed on the
@@ -180,9 +170,9 @@ To help visualize the following diagram is provided:
 1.  Follow the directions on one of the following websites to enable
     CDP:
 
-      - [kb.vmware.com/selfservice/microsites/search.do?language=en\_US\&cmd=displayKC\&externalId=1003885](http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1003885)
+      - {{<exlink url="https://kb.vmware.com/s/article/1003885" text="VMware - Configuring the Cisco Discovery Protocol (CDP) with ESX/ESXi (1003885)">}}
 
-      - [wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/](http://wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/)
+      - {{<exlink url="http://wahlnetwork.com/2012/07/17/utilizing-cdp-and-lldp-with-vsphere-networking/" text="Wahl Network - Utilizing CDP and LLDP with vSphere Networking">}}
 
         For example, switch CDP on:
 
@@ -239,12 +229,12 @@ To help visualize the following diagram is provided:
         swp51         1G       NotConfigured  ====  swp1               spine01
         swp52         1G       NotConfigured  ====  swp1               spine02
 
-[Nutanix Acropolis](http://www.nutanix.com/products/acropolis/) is an
+{{<exlink url="http://www.nutanix.com/products/acropolis/" text="Nutanix Acropolis">}} is an
 alternate hypervisor that Nutanix supports. **Acropolis Hypervisor**
 uses the yum packaging system and is capable of installing normal Linux
 lldp daemons to operating just like Cumulus Linux. LLDP should be
-enabled for each interface on the host. Refer to
-<https://community.mellanox.com/docs/DOC-1522> for setup instructions.
+enabled for each interface on the host. Refer to this
+{{<exlink url="https://community.mellanox.com/docs/DOC-1522" text="Mellanox document">}} for setup instructions.
 
 ## Troubleshoot Connections without LLDP or CDP
 
@@ -315,4 +305,3 @@ enabled for each interface on the host. Refer to
             PortID:       ifname vmnic2
             PortDescr:    vmnic2
         -------------------------------------------------------------------------------
-

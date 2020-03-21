@@ -10,8 +10,7 @@ pageID: 8363023
 `ifupdown` is the network interface manager for Cumulus Linux. Cumulus
 Linux uses an updated version of this tool, `ifupdown2`.
 
-For more information on network interfaces, see [Switch Port
-Attributes](../Interface-Configuration-and-Management/Switch-Port-Attributes/).
+For more information on network interfaces, see {{<link url="Switch-Port-Attributes">}}.
 
 {{%notice info%}}
 
@@ -47,7 +46,7 @@ command:
 
 In this example, swp1 is administratively UP and the physical link is UP
 (LOWER\_UP flag). More information on interface administrative state and
-physical state can be found in [this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202693826).
+physical state can be found in {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202693826" text="this knowledge base article">}}.
 
 To put an interface into an admin down state. The interface remains down
 after any future reboots or applying configuration changes with
@@ -95,15 +94,14 @@ interfaces are also in the auto class:
     cumulus@switch:~$ sudo ifup --allow=uplinks
     cumulus@switch:~$ sudo ifreload -a
 
-If you are using [Management
-VRF](../../Layer-3/Management-VRF/), you can use the special
+If you are using a {{<link url="Management-VRF" text="management VRF">}}, you can use the special
 interface class called *mgmt*, and put the management interface into
 that class.
 
 {{%notice warning%}}
 
 The mgmt interface class is not supported if you are configuring Cumulus
-Linux using [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/).
+Linux using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
 
 {{%/notice%}}
 
@@ -168,7 +166,7 @@ The loopback interface *lo* must always be specified in `/etc/network/interfaces
 
 By default, `ifupdown` recognizes and uses any interface present on the
 system - whether a VLAN, bond or physical interface - that is listed as
-a dependent of an interface. You are not required to list them in the `interfaces` file unless they need a specific configuration, such [MTU or link speed](../Interface-Configuration-and-Management/Switch-Port-Attributes/).
+a dependent of an interface. You are not required to list them in the `interfaces` file unless they need a specific configuration, such {{<link url="Switch-Port-Attributes" text="MTU or link speed">}}.
 And if you need to delete a child interface, you should delete all
 references to that interface from the `interfaces` file.
 
@@ -246,8 +244,7 @@ iface br-100
 </table>
 
 For more information on the bridge in traditional mode vs the bridge in
-VLAN-aware mode, please read [this knowledge base
-article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
+VLAN-aware mode, please read {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204909397" text="this knowledge base article">}}.
 </details>
 
 ## ifupdown2 Interface Dependencies
@@ -387,20 +384,17 @@ device name is a standard way to specify a VLAN device on Linux. Many
 Linux configuration tools, most notably `ifupdown2` and its predecessor
 `ifupdown`, recognize such a name as a VLAN interface name.
 
-A VLAN subinterface only receives traffic
-[tagged](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-Tagging/)
+A VLAN subinterface only receives traffic {{<link url="VLAN-Tagging" text="tagged">}}
 for that VLAN, so swp1.100 only receives packets tagged with VLAN 100 on
 switch port swp1. Similarly, any transmits from swp1.100 result in
 tagging the packet with VLAN 100.
 
-For an
-[MLAG](../../Layer-2/Multi-Chassis-Link-Aggregation-MLAG/)
+For an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
 deployment, the peerlink interface that connects the two switches in the
 MLAG pair has a VLAN subinterface named 4094 by default, provided you
 configured the subinterface with
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/).
-The peerlink.4094 subinterface only receives traffic tagged for VLAN
-4094.
+{{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
+The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
 
 ## ifup and Upper (Parent) Interfaces
 
@@ -579,9 +573,8 @@ addresses for an interface after you change an interface address and
 reload the configuration with `ifreload -a`. If this happens, you must
 shut down and restart the interface with `ifup` and `ifdown`, or
 manually delete superfluous addresses with `ip address delete
-specify.ip.address.here/mask dev DEVICE`. See also the [Caveats and Errata](#caveats-and-errata)
-section below for some cautions about using multiple `iface` stanzas for
-the same interface.
+specify.ip.address.here/mask dev DEVICE`. See also the {{<link url="#caveats-and-errata" text="Caveats and Errata">}}
+section below for some cautions about using multiple `iface` stanzas for the same interface.
 
 {{%/notice%}}
 
@@ -714,7 +707,7 @@ These commands produce the following snippet in the
 
 ## Mako Templates
 
-`ifupdown2` supports [Mako-style templates](http://www.makotemplates.org/). The Mako template engine is run over the `interfaces` file before parsing.
+`ifupdown2` supports {{<exlink url="http://www.makotemplates.org/" text="Mako-style templates">}}. The Mako template engine is run over the `interfaces` file before parsing.
 
 {{%notice warning%}}
 
@@ -756,7 +749,7 @@ You can test your template and confirm it evaluates correctly by running
 {{%/notice%}}
 
 For more examples of configuring Mako templates, read this
-[knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202868023).
+{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202868023" text="knowledge base article">}}.
 
 To comment out content in Mako templates, use double hash marks (\#\#).
 For example:
@@ -816,7 +809,7 @@ You can query the interface description using NCLU:
     hypervisor_port_1
 
 Interface descriptions also appear in the SNMP OID
-[IF-MIB::ifAlias](https://cumulusnetworks.com/static/mibs/IF-MIB.txt).
+{{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
 
 {{%notice note%}}
 
@@ -904,9 +897,9 @@ the `/etc/network/interfaces` file, then restart the networking.service.
 
 ## Related Information
 
-  - [Debian - Network Configuration](http://wiki.debian.org/NetworkConfiguration)
-  - [Linux Foundation - Bonds](http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding)
-  - [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
+  - {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}
+  - {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" text="Linux Foundation - Bonds">}}
+  - {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
   - man ifdown(8)
   - man ifquery(8)
   - man ifreload

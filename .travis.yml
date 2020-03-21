@@ -8,5 +8,5 @@ python:
 install:
   - pip install requests
 script:
-  - sh utils/travis-ci.sh
+  - bash utils/travis-ci.sh
     

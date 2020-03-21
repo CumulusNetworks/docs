@@ -7,7 +7,8 @@ setup_git() {
 }
 
 build_release_notes() {
-  git checkout stage
+  git checkout -b plumbis-stage travis-docs
+  cd travis-docs
   # Current month and year, e.g: Apr 2018
   dateAndMonth=`date "+%b %Y"`
   # run the python script to pull new RNs
@@ -25,7 +26,7 @@ commit_release_notes() {
   git remote rm origin
   # Add new "origin" with access token in the git URL for authentication
   git remote add origin https://plumbis:${GH_TOKEN}@https://github.com/CumulusNetworks/docs.git > /dev/null 2>&1
-  git push origin stage --quiet > /dev/null 2>&1
+  git push origin plumbis-stage --quiet > /dev/null 2>&1
 }
 
 setup_git
@@ -36,6 +37,8 @@ build_release_notes
 if [ $? -eq 0 ]; then
   echo "Release note script detected release note updates. Commiting"
   commit_release_notes
+  exit $?
 else
   echo "No release note updates."
+  exit 0
 fi

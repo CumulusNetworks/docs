@@ -1,13 +1,8 @@
 #!/bin/sh
 # Credit: https://gist.github.com/willprice/e07efd73fb7f13f917ea
 
-setup_git() {
-  git config --global user.email "docs@cumulusnetworks.com"
-  git config --global user.name "Cumulus Docs CI"
-}
-
 build_release_notes() {
-  git checkout -b plumbis-stage travis-docs
+  git checkout plumbis-stage travis-docs
   cd travis-docs
   # Current month and year, e.g: Apr 2018
   dateAndMonth=`date "+%b %Y"`
@@ -29,14 +24,25 @@ commit_release_notes() {
   git push origin plumbis-stage --quiet > /dev/null 2>&1
 }
 
-setup_git
+pwd 
 
-build_release_notes
+git config --global user.email "docs@cumulusnetworks.com"
+git config --global user.name "Cumulus Docs CI"
+
+mkdir local_clone
+git clone https://plumbis:${GH_TOKEN}@https://github.com/CumulusNetworks/docs.git local_clone> /dev/null 2>&1
+cd local_clone
+
+python3 utils/build_rns.py
+
+git add *
 
 # Attempt to commit to git only if "git commit" succeeded
 if [ $? -eq 0 ]; then
   echo "Release note script detected release note updates. Commiting"
-  commit_release_notes
+  dateAndMonth=`date "+%b %Y"`
+  git commit -m "Auto commit of release note update on $dateAndMonth" -m "[skip ci]"
+  git push
   exit $?
 else
   echo "No release note updates."

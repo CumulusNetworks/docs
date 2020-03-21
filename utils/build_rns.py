@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+'''
+This script will pull the collection of release note JSON files.
+
+The script will parse and markdown sanatize the JSON.
+
+And write markdown files for hugo to render into the respective product and version directories.
+'''
 
 import json
 from operator import itemgetter, attrgetter

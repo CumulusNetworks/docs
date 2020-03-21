@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux 3.7 Release  Notes
+title: Cumulus Linux 3.7 Release Notes
 author: Cumulus Networks
 weight: -30
 product: Cumulus Linux

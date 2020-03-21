@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux 4.0 Release  Notes
+title: Cumulus Linux 4.0 Release Notes
 author: Cumulus Networks
 weight: -30
 product: Cumulus Linux

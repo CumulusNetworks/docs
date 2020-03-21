@@ -1,5 +1,5 @@
 # From https://github.com/marketplace/actions/nightly-merge
-name: 'Nightly Merge'
+name: 'Scheduled Merge'
 
 on:
   schedule:

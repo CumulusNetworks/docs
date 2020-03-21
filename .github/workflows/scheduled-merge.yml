@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Auto Merge Stage into Master
-      uses: CumulusNetworks/gh-action-nightly-merge@v1.2.1
+      uses: CumulusNetworks/gh-action-nightly-merge@v1.2.2
       with:
         source_branch: 'stage'
         target_branch: 'master'

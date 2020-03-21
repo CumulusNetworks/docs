@@ -18,7 +18,7 @@ git checkout plumbis-stage
 
 echo "running rn script"
 python3 utils/build_rns.py 
-
+sleep 1
 # Check if there is anything different in the local vs remote files
 if [ 'git status --porcelain' ]; then
   echo "Release note script detected release note updates."

@@ -3,7 +3,7 @@ name: 'Scheduled Merge'
 
 on:
   schedule:
-    - cron:  '*/3 * * * *'
+    - cron:  '0 19 * * *'
 
 jobs:
   nightly-merge:
@@ -14,12 +14,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Nightly Merge
+    - name: Auto Merge Stage into Master
       uses: robotology/gh-action-nightly-merge@v1.2.0
       with:
         stable_branch: 'stage'
-        development_branch: 'plumbis-stage'
-        user_name: Cumulus Docs Daily Merge 
+        development_branch: 'master'
+        user_name: Cumulus Docs Auto Merge 
         user_email: docs@cumulusnetworks.com 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

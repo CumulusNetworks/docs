@@ -20,15 +20,14 @@ echo "running rn script"
 python3 utils/build_rns.py 
 
 # Check if there is anything different in the local vs remote files
-git diff-index --quiet HEAD -- 
-if [ $? -eq 0 ]; then
-  echo "No release note updates."
-  exit 0
-else
+if [[ 'git status --porcelain' ]]; then
   echo "Release note script detected release note updates."
   git diff-index HEAD --
   git add *
   git commit -m "Auto commit of release note update" -m "[skip ci]"
   git push
   exit $?
+else
+  echo "No release note updates."
+  exit 0
 fi

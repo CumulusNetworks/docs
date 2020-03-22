@@ -1559,3 +1559,9 @@ footer {
   white-space: pre-wrap; 
   overflow-x: auto;
 }
+
+.book-tabs input[type="radio"] {
+  opacity:  0;
+  position: fixed;
+  width: 0;
+}

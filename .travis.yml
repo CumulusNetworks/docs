@@ -1,0 +1,11 @@
+branches:
+  only:
+  - stage
+language: python
+python:
+  - "3.8"
+install:
+  - pip install requests
+script:
+  - bash utils/travis-ci.sh
+    

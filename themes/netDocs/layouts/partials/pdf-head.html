@@ -46,6 +46,12 @@
       @top-right {
         border-bottom: .25pt solid #36424a;
       }
+      
+      @prince-overlay {
+        color: rgba(0,0,0,0.5);
+        content: "DRAFT - For Internal Use Only";
+        font-size: 20pt;
+     }
   }
 
   @page:right {
@@ -179,9 +185,12 @@
   }
 
   .markdown code { 
-    font-size: .5rem;
+    font-size: .8rem;
   }
 
+  .markdown pre {
+    white-space: normal;
+  }
   .toc1 {
       prince-bookmark-level: 1;
   }

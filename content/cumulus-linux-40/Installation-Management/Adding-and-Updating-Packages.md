@@ -199,9 +199,9 @@ The apps repository was removed in Cumulus Linux 4.0.0.
 
 To show the version of a specific package installed on the system:
 
-<details>
+{{< tabs "show_packages">}}
 
-<summary>NCLU Commands </summary>
+{{<tab "NCLU Commands" >}}
 
 Run the `net show package version <package>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
 
@@ -210,11 +210,9 @@ cumulus@switch:~$ net show package version vrf
 1.0-cl4u1
 ```
 
-</details>
+{{</tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{<tab "Linux Commands" >}}
 
 Run the Linux `dpkg -l <package_name>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
 
@@ -228,7 +226,9 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ii  vrf        1.0-cl4u1    amd64        Linux tools for VRF
 ```
 
-</details>
+{{</tab>}}
+{{</tabs>}}
+
 
 ## Upgrade Packages
 

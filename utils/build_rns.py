@@ -302,7 +302,7 @@ def build_rn_xls(json_file, version, product, file_type):
         output.append("<td>{}</td>\n".format(bug["affects_versions"]))
         if(file_type == "affects"):
             output.append("<td>{}</td>\n".format(bug["fixed_versions"]))
-        output.append("<tr>\n")
+        output.append("</tr>\n")
     output.append("</table>\n")
 
     return output
@@ -340,13 +340,14 @@ def build_rn_xls_files(product, version_list):
             
             # one_version_output is the table output for a single release
             one_version_output = []
-
+            one_version_output.append("<tables>")
             # once for affects, once for fixed.
             for rn_file in files:
                 rn_output = build_rn_xls(get_json(product, version, rn_file), version, product_string(product), rn_file)
                 one_version_output.extend(rn_output)
                 all_versions_xls.extend(rn_output)
             
+            one_version_output.append("</tables>")
             write_rns(one_version_output, "xls", product, version, minor=True)
 
         # The one_version_output now contains the RNs for all maintenance releases in order. 

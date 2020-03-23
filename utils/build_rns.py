@@ -120,6 +120,32 @@ def sanatize_rn_for_markdown(string):
 
     return output_string
 
+def sanatize_rn_for_xls(string):
+    '''
+    Strip any special or problematic characters from the a string. 
+    This (generally) will be used on the release note text to strip characters that break markdown.
+
+    string - The string to sanatize
+    '''
+
+    # # Remove HTML tags
+    # TAG_RE = re.compile(r'<[^>]+>')
+    # output_string = TAG_RE.sub('', string)
+    output_string = string.replace("<p>", "")
+    output_string = output_string.replace("</p>", "")
+    
+    output_string = output_string.replace("`", "'")
+
+    output_string = output_string.replace("<tt>", "")
+    output_string = output_string.replace("</tt>", "")
+
+    #CM-21678
+    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\"><pre>', "")
+    output_string = output_string.replace("</pre></div></div>", "")
+        
+
+    return output_string
+
 def build_rn_markdown(json_file, version, product, file_type):
     '''
     Builds a list of lines that contain the entire formatted release notes in markdown table format.
@@ -269,9 +295,10 @@ def build_rn_xls(json_file, version, product, file_type):
         output.append("<th> Fixed </th>\n")
     output.append("</tr>\n")
     for bug in json_file:
+        rn_text = sanatize_rn_for_xls(bug["release_notes_text"])
         output.append("<tr>\n")
         output.append("<td>{}</td>\n".format(bug["ticket"]))
-        output.append("<td>{}</td>\n".format(bug["release_notes_text"]))
+        output.append("<td>{}</td>\n".format(rn_text))
         output.append("<td>{}</td>\n".format(bug["affects_versions"]))
         if(file_type == "affects"):
             output.append("<td>{}</td>\n".format(bug["fixed_versions"]))
@@ -305,7 +332,7 @@ def build_rn_xls_files(product, version_list):
         # all_versions_xls is the combined table of all minors within a major in a single xls file.
         all_versions_xls = []
 
-        all_versions_xls.append("<tables>")
+        all_versions_xls.append("<tables>\n")
         
         # Loop over all the maintenance releases.
         for version in major_minor[major]:

@@ -8,7 +8,6 @@ aliases:
  - /pages/viewpage.action?pageId=8366246
 subsection: true
 cascade:
-    draft: true
     product: Cumulus Linux
     version: "4.1"
 toc: 1

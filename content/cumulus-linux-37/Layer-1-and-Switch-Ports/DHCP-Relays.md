@@ -46,7 +46,7 @@ You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not
 the parent bridge; in our example, you would specify v*lan1* as the SVI
 for VLAN 1; do not specify the bridge named *bridge* in this case.
 
-As per {{<link url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify
+As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify
 as many server IP addresses that can fit in 255 octets, specifying each
 address only once.
 

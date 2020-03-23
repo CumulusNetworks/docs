@@ -267,7 +267,7 @@ def build_rn_markdown_files(product, version_list):
         # We only want to generate the frontmatter once per minor
         version_output.extend(build_markdown_header(product_string(product), major))    
         hugo_dir = get_hugo_folder(product, version)
-        version_output.append("<a href=\"/{}/rn{}.xls\"><img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" />&nbsp;&nbsp;&nbsp;&nbsp;Download all {} release notes as .xls</a>\n".format(hugo_dir, major, major, major, major))
+        version_output.append("<a href=\"/{}/rn.xls\"><img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" />&nbsp;&nbsp;&nbsp;&nbsp;Download all {} release notes as .xls</a>\n".format(hugo_dir, major, major, major))
 
 
         # Loop over all the maintenance releases.

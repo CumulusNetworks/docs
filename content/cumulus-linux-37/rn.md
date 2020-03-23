@@ -9,9 +9,9 @@ draft: True
 ---
 
 
-<a href="/cumulus-linux-40/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 3.7 release notes as .xls</a>
+<a href="/cumulus-linux-40/rn.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 3.7 release notes as .xls</a>
 ## 3.7.12 Release Notes
-<a href="/cumulus-linux-37/rn3.7.12.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.12 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.12 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.12.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.12 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.12 release notes as .xls</a>
 ### Open issues in 3.7.12
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -217,7 +217,7 @@ draft: True
 | <a name="CM-22591"></a> [CM-22591](#CM-22591) | CVE-2018-5391 (FragmentSmack) is a network vulnerability where an attacker can trigger time and calculation expensive fragment reassembly with specially crafted packets, leading to a denial of service. On a Cumulus Linux switch, the impact is limited to control plane and management plane traffic. Any control plane traffic coming in the front panel ports will be limited by existing policer ACLs.<br/>To work around this issue, create a file called `/etc/sysctl.d/ip.conf` and add these settings:<br /><pre>net.ipv4.ipfrag_low_thresh = 196608<br />net.ipv6.ip6frag_low_thresh = 196608<br />net.ipv4.ipfrag_high_thresh = 262144<br />net.ipv6.ip6frag_high_thresh = 262144<br /></pre><br /> | 3.7.0-3.7.11 | |
 
 ## 3.7.11 Release Notes
-<a href="/cumulus-linux-37/rn3.7.11.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.11 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.11 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.11.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.11 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.11 release notes as .xls</a>
 ### Open issues in 3.7.11
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -482,7 +482,7 @@ draft: True
 | <a name="CM-13316"></a> [CM-13316](#CM-13316) | When you try to remove a VNI from a bridge using a regex match, the VNI is added back when you run the `ifreload -a` command. | 3.1.1-3.7.10 | |
 
 ## 3.7.10 Release Notes
-<a href="/cumulus-linux-37/rn3.7.10.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.10 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.10 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.10.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.10 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.10 release notes as .xls</a>
 ### Open issues in 3.7.10
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -714,7 +714,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.9 Release Notes
-<a href="/cumulus-linux-37/rn3.7.9.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.9 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.9 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.9.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.9 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.9 release notes as .xls</a>
 ### Open issues in 3.7.9
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -922,7 +922,7 @@ draft: True
 | <a name="CM-27349"></a> [CM-27349](#CM-27349) | Debian security advisory DSA-4213 for qemu lists a number of security vulnerabilities.<br/><a href="https://www.debian.org/security/2018/dsa-4213" class="external-link" rel="nofollow">https://www.debian.org/security/2018/dsa-4213</a><br/>The latest upstream version 2.1+dfsg-12+deb8u12 fixes the following vulnerabilities listed in that announcement:<br/>CVE-2017-15038 Tuomas Tynkkynen discovered an information leak in 9pfs.<br/>CVE-2017-15119 Eric Blake discovered that the NBD server insufficiently restricts large option requests, resulting in denial of service.<br/>CVE-2017-15268 A memory leak in websockets support may result in denial of service.<br/>CVE-2017-15289 Guoxiang Niu discovered an OOB write in the emulated Cirrus graphics adaptor which could result in denial of service.<br/>CVE-2017-16845 Cyrille Chatras discovered an information leak in PS/2 mouse and keyboard emulation which could be exploited during instance migration.<br/>CVE-2017-17381 Dengzhan Heyuandong Bijunhua and Liweichao discovered that an implementation error in the virtio vring implementation could result in denial of service.<br/>CVE-2017-18043 Eric Blake discovered an integer overflow in an internally used macro which could result in denial of service.<br/>CVE-2018-5683 Jiang Xin and Lin ZheCheng discovered an OOB memory access in the emulated VGA adaptor which could result in denial of service.<br/>CVE-2018-7550 Cyrille Chatras discovered that an OOB memory write when using multiboot could result in the execution of arbitrary code.<br/>The following remains vulnerable in 2.1+dfsg-12+deb8u12:<br/>CVE-2017-15124 Daniel Berrange discovered that the integrated VNC server insufficiently restricted memory allocation, which could result in denial of service.<br/>Note: qemu is not installed by default, but is available in the repository for optional installation. | 3.0.0-3.7.8 | |
 
 ## 3.7.8 Release Notes
-<a href="/cumulus-linux-37/rn3.7.8.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.8 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.8 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.8.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.8 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.8 release notes as .xls</a>
 ### Open issues in 3.7.8
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1108,7 +1108,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.7 Release Notes
-<a href="/cumulus-linux-37/rn3.7.7.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.7 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.7 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.7.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.7 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.7 release notes as .xls</a>
 ### Open issues in 3.7.7
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1283,7 +1283,7 @@ draft: True
 | <a name="CM-12967"></a> [CM-12967](#CM-12967) | When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. <br/>If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC. | 3.1.0-3.7.6 | |
 
 ## 3.7.6 Release Notes
-<a href="/cumulus-linux-37/rn3.7.6.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.6 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.6 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.6.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.6 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.6 release notes as .xls</a>
 ### Open issues in 3.7.6
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1447,7 +1447,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.5 Release Notes
-<a href="/cumulus-linux-37/rn3.7.5.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.5 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.5 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.5.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.5 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.5 release notes as .xls</a>
 ### Open issues in 3.7.5
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1585,7 +1585,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.4 Release Notes
-<a href="/cumulus-linux-37/rn3.7.4.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.4 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.4 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.4.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.4 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.4 release notes as .xls</a>
 ### Open issues in 3.7.4
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1713,7 +1713,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.3 Release Notes
-<a href="/cumulus-linux-37/rn3.7.3.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.3 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.3 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.3.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.3 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.3 release notes as .xls</a>
 ### Open issues in 3.7.3
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1834,7 +1834,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.2 Release Notes
-<a href="/cumulus-linux-37/rn3.7.2.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.2 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.2 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.2.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.2 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.2 release notes as .xls</a>
 ### Open issues in 3.7.2
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1941,7 +1941,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.1 Release Notes
-<a href="/cumulus-linux-37/rn3.7.1.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.1 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.1 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.1.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.1 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.1 release notes as .xls</a>
 ### Open issues in 3.7.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |

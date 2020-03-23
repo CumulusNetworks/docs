@@ -19,7 +19,7 @@
 </tr>
 <tr>
 <td>NETQ-3916</td>
-<td>NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running 'netq show validation results type evpn' in the NetQ CLI, even though the EVPN failure is seen on validation.</td>
+<td>NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running &amp;apos;netq show validation results type evpn&amp;apos; in the NetQ CLI, even though the EVPN failure is seen on validation.</td>
 <td>2.3.1-2.4.0</td>
 <td></td>
 </tr>
@@ -38,12 +38,12 @@
 </tr>
 <tr>
 <td>NETQ-4100</td>
-<td>NetQ UI: This only applies to the NetQ 2.3.1 UI installed on the NetQ Server or NetQ Appliance in on-premises deployments. Cloud deployments are not impacted by this bug. Trace results are not shown after running an on-demand or scheduled trace request in the NetQ UI. The medium Trace Result cards are blank whether the trace was successful or not. The full-screen Trace Result card and the NetQ CLI show the results correctly.<br/>
+<td>NetQ UI: This only applies to the NetQ 2.3.1 UI installed on the NetQ Server or NetQ Appliance in on-premises deployments. Cloud deployments are not impacted by this bug. Trace results are not shown after running an on-demand or scheduled trace request in the NetQ UI. The medium Trace Result cards are blank whether the trace was successful or not. The full-screen Trace Result card and the NetQ CLI show the results correctly.&lt;br/&gt;
 To work around this issue, apply the update to your existing 2.3.1 build as follows:
 
-<ul>
-	<li>Download the update tarball.<br/>
-If your server or appliance has internet access, use wget to perform the download. Be sure to use your download directory in place of <em>/home/cumulus</em> indicated in this example.
+&lt;ul&gt;
+	&lt;li&gt;Download the update tarball.&lt;br/&gt;
+If your server or appliance has internet access, use wget to perform the download. Be sure to use your download directory in place of &lt;em&gt;/home/cumulus&lt;/em&gt; indicated in this example.
 
 cumulus@opta:~$ wget http://netq-shared.s3-us-west-2.amazonaws.com/NetQ-2.3.1.1.tgz -O /home/cumulus/NetQ-2.3.1.1.tgz
 
@@ -53,18 +53,18 @@ cumulus@opta:~$ wget http://netq-shared.s3-us-west-2.amazonaws.com/NetQ-2.3.1.1.
 root@opta:~# cd /mnt/swinstalls/
 root@opta:/mnt/swinstalls# cp /home/cumulus/NetQ-2.3.1.1.tgz ./ 
 
-</li>
-	<li>Extract the script.
+&lt;/li&gt;
+	&lt;li&gt;Extract the script.
 
 cumulus@opta:~$ tar -xvzf /home/cumulus/NetQ-2.3.1.1.tgz update-app.sh
 
-</li>
-	<li>Run the script. On completion, a new GUI container will be running and the card will display the trace result.
+&lt;/li&gt;
+	&lt;li&gt;Run the script. On completion, a new GUI container will be running and the card will display the trace result.
 
 cumulus@opta:~$ ./update-app.sh /home/cumulus/NetQ-2.3.1.1.tgz
 Loading the new app
-e9b2c1648ab5: Loading layer [==================================================&gt;]  2.048kB/2.048kB
-e7acfa3378f4: Loading layer [==================================================&gt;]  20.59MB/20.59MB
+e9b2c1648ab5: Loading layer [==================================================&amp;gt;]  2.048kB/2.048kB
+e7acfa3378f4: Loading layer [==================================================&amp;gt;]  20.59MB/20.59MB
 ...
 Loaded image: 498186410471.dkr.ecr.us-west-2.amazonaws.com/netq-gui:2.3.1
 Restarting the app with new image
@@ -73,9 +73,9 @@ Sleeping for 15 seconds
 Confirming the app is running with new image
 Found the container running with new image.
 
-</li>
-	<li>Close and reopen the NetQ UI to run the new image. <b>Note</b>: You may need to press Cmd+Shift+R to fully clear the cache on the Chrome browser.</li>
-</ul>
+&lt;/li&gt;
+	&lt;li&gt;Close and reopen the NetQ UI to run the new image. &lt;b&gt;Note&lt;/b&gt;: You may need to press Cmd+Shift+R to fully clear the cache on the Chrome browser.&lt;/li&gt;
+&lt;/ul&gt;
 </td>
 <td>2.3.1</td>
 </tr>

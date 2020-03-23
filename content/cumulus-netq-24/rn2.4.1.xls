@@ -36,7 +36,7 @@
 </tr>
 <tr>
 <td>NETQ-3916</td>
-<td>NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running 'netq show validation results type evpn' in the NetQ CLI, even though the EVPN failure is seen on validation.</td>
+<td>NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running &amp;apos;netq show validation results type evpn&amp;apos; in the NetQ CLI, even though the EVPN failure is seen on validation.</td>
 <td>2.3.1-2.4.0</td>
 </tr>
 </table>

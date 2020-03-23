@@ -7,23 +7,23 @@
 </tr>
 <tr>
 <td>CM-28992</td>
-<td>The following security vulnerability has been announced:<br/>
+<td>The following security vulnerability has been announced:&lt;br/&gt;
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28944</td>
-<td>A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>
-To work around this issue, reenter the redistribute &lt;connected|static&gt; route-map &lt;route-map-name&gt; statement in the configuration.</td>
+<td>A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. &lt;br/&gt;
+To work around this issue, reenter the redistribute &amp;lt;connected|static&amp;gt; route-map &amp;lt;route-map-name&amp;gt; statement in the configuration.</td>
 <td>3.6.2-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28816</td>
-<td>The following security advisory has been announced for bash: <br/>
-CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
-When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
+<td>The following security advisory has been announced for bash: &lt;br/&gt;
+CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability&lt;br/&gt;
+When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.&lt;br/&gt;
 To work around this issue, do not make bash or bash scripts setuid.</td>
 <td>3.0.0-3.7.12</td>
 <td></td>
@@ -38,85 +38,85 @@ To work around this issue, do not make bash or bash scripts setuid.</td>
 <td>CM-28488</td>
 <td>The following CVEs were announced that affect the cron package.  All of these require untrusted local user access.
 
-CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
-CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></td>
+CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.&lt;br/&gt;
+CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).&lt;br/&gt;
+&lt;a href=&quot;https://security-tracker.debian.org/tracker/DLA-1723-1&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://security-tracker.debian.org/tracker/DLA-1723-1&lt;/a&gt;</td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28487</td>
-<td>The following CVE was announced for rsyslog:<br/>
-CVE-2019-17041 CVE-2019-17042<br/>
-rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
-Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
+<td>The following CVE was announced for rsyslog:&lt;br/&gt;
+CVE-2019-17041 CVE-2019-17042&lt;br/&gt;
+rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.&lt;br/&gt;
+Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\&lt;br/&gt;
 The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28485</td>
-<td>The following vulnerability affects libxml2:<br/>
-CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
-For more information, see <a href="https://www.debian.org/lts/security/2019/dla-2048.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2019/dla-2048.en.html</a> .<br/>
-Vulnerable: 2.9.1+dfsg1-5+deb8u7<br/>
+<td>The following vulnerability affects libxml2:&lt;br/&gt;
+CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&amp;gt;oldNs.  This can lead to a denial of service.&lt;br/&gt;
+For more information, see &lt;a href=&quot;https://www.debian.org/lts/security/2019/dla-2048.en.html&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://www.debian.org/lts/security/2019/dla-2048.en.html&lt;/a&gt; .&lt;br/&gt;
+Vulnerable: 2.9.1+dfsg1-5+deb8u7&lt;br/&gt;
 Fixed: 2.9.1+dfsg1-5+deb8u8</td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12</td>
 </tr>
 <tr>
 <td>CM-28484</td>
-<td>The following vulnerability affects libbsd, a package containing utility functions from BSD systems.<br/>
-CVE-2016-2090: In function fgetwln() an off-by-one error could triggers a heap buffer overflow.<br/>
-For more information, see <a href="https://www.debian.org/lts/security/2019/dla-2052.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2019/dla-2052.en.html</a> .<br/>
-Vulnerable: 0.7.0-2<br/>
+<td>The following vulnerability affects libbsd, a package containing utility functions from BSD systems.&lt;br/&gt;
+CVE-2016-2090: In function fgetwln() an off-by-one error could triggers a heap buffer overflow.&lt;br/&gt;
+For more information, see &lt;a href=&quot;https://www.debian.org/lts/security/2019/dla-2052.en.html&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://www.debian.org/lts/security/2019/dla-2052.en.html&lt;/a&gt; .&lt;br/&gt;
+Vulnerable: 0.7.0-2&lt;br/&gt;
 Fixed: 0.7.0-2+deb8u1</td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12</td>
 </tr>
 <tr>
 <td>CM-28224</td>
-<td>The following security vulnerability has been announced in qemu, which is not installed by default on Cumulus Linux but is available in the repository for optional installation:<br/>
-CVE-2019-15890: libslirp 4.0.0, as used in QEMU 4.1.0, has a use-after-free in ip_reass in ip_input.c.<br/>
-Vulnerable: &lt;= 2.1+dfsg-12+deb8u11<br/>
+<td>The following security vulnerability has been announced in qemu, which is not installed by default on Cumulus Linux but is available in the repository for optional installation:&lt;br/&gt;
+CVE-2019-15890: libslirp 4.0.0, as used in QEMU 4.1.0, has a use-after-free in ip_reass in ip_input.c.&lt;br/&gt;
+Vulnerable: &amp;lt;= 2.1+dfsg-12+deb8u11&lt;br/&gt;
 Fixed: 2.1+dfsg-12+deb8u12</td>
 <td>3.0.0-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-28223</td>
-<td>The following security vulnerability has been announced in qemu, which is not installed by default on Cumulus Linux but is available in the repository for optional installation:<br/>
+<td>The following security vulnerability has been announced in qemu, which is not installed by default on Cumulus Linux but is available in the repository for optional installation:&lt;br/&gt;
 CVE-2020-1711: block: iscsi: OOB heap access via an unexpected response of iSCSI Server</td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-28222</td>
-<td>The following security vulnerability has been announced in qemu, which is not installed by default on Cumulus Linux but is available in the repository for optional installation:<br/>
-CVE-2020-7039: tcp_emu in tcp_subr.c in libslirp 4.1.0, as used in QEMU 4.2.0, mismanages memory, as demonstrated by IRC DCC commands in EMU_IRC. This can cause a heap-based buffer overflow or other out-of-bounds access which can lead to a DoS or potential execute arbitrary code.<br/>
-Vulnerable: &lt;= 2.1+dfsg-12+deb8u12<br/>
+<td>The following security vulnerability has been announced in qemu, which is not installed by default on Cumulus Linux but is available in the repository for optional installation:&lt;br/&gt;
+CVE-2020-7039: tcp_emu in tcp_subr.c in libslirp 4.1.0, as used in QEMU 4.2.0, mismanages memory, as demonstrated by IRC DCC commands in EMU_IRC. This can cause a heap-based buffer overflow or other out-of-bounds access which can lead to a DoS or potential execute arbitrary code.&lt;br/&gt;
+Vulnerable: &amp;lt;= 2.1+dfsg-12+deb8u12&lt;br/&gt;
 Fixed: 2.1+dfsg-12+deb8u13</td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12</td>
 </tr>
 <tr>
 <td>CM-28219</td>
-<td>The following vulnerability affects sudo, which is installed by default on Cumulus Linux.  It is potentially exploitable on Cumulus Linux if pwfeedback (which is NOT enabled by default) is enabled in the /etc/sudoers file.<br/>
-CVE-2019-18634: In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.<br/>
-For more information, refer to:<br/>
-<a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
-<a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
-<a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
+<td>The following vulnerability affects sudo, which is installed by default on Cumulus Linux.  It is potentially exploitable on Cumulus Linux if pwfeedback (which is NOT enabled by default) is enabled in the /etc/sudoers file.&lt;br/&gt;
+CVE-2019-18634: In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.&lt;br/&gt;
+For more information, refer to:&lt;br/&gt;
+&lt;a href=&quot;https://security-tracker.debian.org/tracker/source-package/sudo&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://security-tracker.debian.org/tracker/source-package/sudo&lt;/a&gt;&lt;br/&gt;
+&lt;a href=&quot;https://security-tracker.debian.org/tracker/CVE-2019-18634&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://security-tracker.debian.org/tracker/CVE-2019-18634&lt;/a&gt;&lt;br/&gt;
+&lt;a href=&quot;https://www.sudo.ws/alerts/pwfeedback.html&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://www.sudo.ws/alerts/pwfeedback.html&lt;/a&gt;&lt;br/&gt;
+Vulnerable: &amp;lt;= 1.8.10p3-1+deb8u6&lt;br/&gt;
 Fixed: 1.8.10p3-1+deb8u7</td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12</td>
 </tr>
 <tr>
 <td>CM-28091</td>
-<td>Two security issues were found in the Python interface to the apt package manager, which is installed by default on Cumulus Linux; package downloads from unsigned repositories were incorrectly rejected (CVE-2019-15796) and the hash validation relied on MD5 (CVE-2019-15795).<br/>
-For more information, refer to <a href="https://security-tracker.debian.org/tracker/source-package/python-apt" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/python-apt</a><br/>
-Vulnerable: 0.9.3.12<br/>
+<td>Two security issues were found in the Python interface to the apt package manager, which is installed by default on Cumulus Linux; package downloads from unsigned repositories were incorrectly rejected (CVE-2019-15796) and the hash validation relied on MD5 (CVE-2019-15795).&lt;br/&gt;
+For more information, refer to &lt;a href=&quot;https://security-tracker.debian.org/tracker/source-package/python-apt&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://security-tracker.debian.org/tracker/source-package/python-apt&lt;/a&gt;&lt;br/&gt;
+Vulnerable: 0.9.3.12&lt;br/&gt;
 Fixed: 0.9.3.13</td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12</td>
@@ -129,100 +129,100 @@ Fixed: 0.9.3.13</td>
 </tr>
 <tr>
 <td>CM-27947</td>
-<td>Broadcom Field Alert - SID - MMU 2B Errors<br/>
+<td>Broadcom Field Alert - SID - MMU 2B Errors&lt;br/&gt;
 A few of the MMU memories on Broadcom switches are grouped together with single parity control. During SER correction when a parity error occurs on one of those groups, other memory in that group might also report a SER error. This occurs when the memory is accessed either by a packet hit or through a schan operation. This issue can cause SER errors in other memory and cause traffic mis-forwarding or a packet drop.</td>
 <td>3.7.0-3.7.11</td>
 <td>3.7.12</td>
 </tr>
 <tr>
 <td>CM-27937</td>
-<td>Debian security advisory DSA-4213 for qemu lists a number of security vulnerabilities.<br/>
-<a href="https://www.debian.org/security/2018/dsa-4213" class="external-link" rel="nofollow">https://www.debian.org/security/2018/dsa-4213</a><br/>
-One of the listed vulnerabilities is still present in the latest upstream version 2.1+dfsg-12+deb8u12 (the others have been fixed):<br/>
-CVE-2017-15124 Daniel Berrange discovered that the integrated VNC server insufficiently restricted memory allocation, which could result in denial of service.<br/>
-<a href="https://security-tracker.debian.org/tracker/CVE-2017-15124" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2017-15124</a></td>
+<td>Debian security advisory DSA-4213 for qemu lists a number of security vulnerabilities.&lt;br/&gt;
+&lt;a href=&quot;https://www.debian.org/security/2018/dsa-4213&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://www.debian.org/security/2018/dsa-4213&lt;/a&gt;&lt;br/&gt;
+One of the listed vulnerabilities is still present in the latest upstream version 2.1+dfsg-12+deb8u12 (the others have been fixed):&lt;br/&gt;
+CVE-2017-15124 Daniel Berrange discovered that the integrated VNC server insufficiently restricted memory allocation, which could result in denial of service.&lt;br/&gt;
+&lt;a href=&quot;https://security-tracker.debian.org/tracker/CVE-2017-15124&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://security-tracker.debian.org/tracker/CVE-2017-15124&lt;/a&gt;</td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27924</td>
-<td>A security vulnerability has been announced in the cyrus-sasl2 (libsasl2-2 and libsasl2-modules) package. The libraries are installed by default on Cumulus Linux.<br/>
-CVE-2019-19906: Stephan Zeisberg reported an out-of-bounds write vulnerability in the _sasl_add_string() function in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer. A remote attacker can take advantage of this issue to cause denial-of-service conditions for applications using the library.<br/>
-Vulnerable: 2.1.26.dfsg1-13+deb8u1<br/>
+<td>A security vulnerability has been announced in the cyrus-sasl2 (libsasl2-2 and libsasl2-modules) package. The libraries are installed by default on Cumulus Linux.&lt;br/&gt;
+CVE-2019-19906: Stephan Zeisberg reported an out-of-bounds write vulnerability in the _sasl_add_string() function in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer. A remote attacker can take advantage of this issue to cause denial-of-service conditions for applications using the library.&lt;br/&gt;
+Vulnerable: 2.1.26.dfsg1-13+deb8u1&lt;br/&gt;
 Fixed: 2.1.26.dfsg1-13+deb8u2</td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12</td>
 </tr>
 <tr>
 <td>CM-27855</td>
-<td>The FRR cl-support module times out on switches on the ARM platform even when the switch is not under heavy load.<br/>
+<td>The FRR cl-support module times out on switches on the ARM platform even when the switch is not under heavy load.&lt;br/&gt;
 To work around this issue, run the cl-support -M command to disable timeouts.</td>
 <td>3.7.0-3.7.11</td>
 <td>3.7.12</td>
 </tr>
 <tr>
 <td>CM-27793</td>
-<td>A security vulnerability has been announced in the cyrus-sasl2 (libsasl2-2 and libsasl2-modules) package. The libraries are installed by default on Cumulus Linux.<br/>
-CVE-2019-19906: Stephan Zeisberg reported an out-of-bounds write vulnerability in the _sasl_add_string() function in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer. A remote attacker can take advantage of this issue to cause denial-of-service conditions for applications using the library.<br/>
-Vulnerable: 2.1.27+dfsg-1<br/>
+<td>A security vulnerability has been announced in the cyrus-sasl2 (libsasl2-2 and libsasl2-modules) package. The libraries are installed by default on Cumulus Linux.&lt;br/&gt;
+CVE-2019-19906: Stephan Zeisberg reported an out-of-bounds write vulnerability in the _sasl_add_string() function in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer. A remote attacker can take advantage of this issue to cause denial-of-service conditions for applications using the library.&lt;br/&gt;
+Vulnerable: 2.1.27+dfsg-1&lt;br/&gt;
 Fixed: 2.1.27+dfsg-1+deb10u1</td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27683</td>
-<td>The following CVEs were announced that affect the Linux kernel:<br/>
-CVE-2019-12378: An issue was discovered in ip6_ra_control in net/ipv6/ipv6_sockglue.c in the Linux kernel through 5.1.5. There is an unchecked kmalloc of new_ra, which might allow an attacker to cause a denial of service (NULL pointer dereference and system crash).<br/>
-CVE-2019-12381: An issue was discovered in ip_ra_control in net/ipv4/ip_sockglue.c in the Linux kernel through 5.1.5. There is an unchecked kmalloc of new_ra, which might allow an attacker to cause a denial of service (NULL pointer dereference and system crash).<br/>
-CVE-2019-15239: In the Linux kernel, a certain net/ipv4/tcp_output.c change, which was properly incorporated into 4.16.12, was incorrectly backported to the earlier longterm kernels, introducing a new vulnerability that was potentially more severe than the issue that was intended to be fixed by backporting. Specifically, by adding to a write queue between disconnection and re-connection, a local attacker can trigger multiple use-after-free conditions. This can result in a kernel crash, or potentially in privilege escalation. <br/>
-CVE-2019-19062: A memory leak in the crypto_report() function in crypto/crypto_user_base.c in the Linux kernel through 5.3.11 allows attackers to cause a denial of service (memory consumption) by triggering crypto_report_alg() failures, aka CID-ffdde5932042.<br/>
-CVE-2019-19537: In the Linux kernel before 5.2.10, there is a race condition bug that can be caused by a malicious USB device in the USB character device driver layer, aka CID-303911cfc5b9. This affects drivers/usb/core/file.c.<br/>
+<td>The following CVEs were announced that affect the Linux kernel:&lt;br/&gt;
+CVE-2019-12378: An issue was discovered in ip6_ra_control in net/ipv6/ipv6_sockglue.c in the Linux kernel through 5.1.5. There is an unchecked kmalloc of new_ra, which might allow an attacker to cause a denial of service (NULL pointer dereference and system crash).&lt;br/&gt;
+CVE-2019-12381: An issue was discovered in ip_ra_control in net/ipv4/ip_sockglue.c in the Linux kernel through 5.1.5. There is an unchecked kmalloc of new_ra, which might allow an attacker to cause a denial of service (NULL pointer dereference and system crash).&lt;br/&gt;
+CVE-2019-15239: In the Linux kernel, a certain net/ipv4/tcp_output.c change, which was properly incorporated into 4.16.12, was incorrectly backported to the earlier longterm kernels, introducing a new vulnerability that was potentially more severe than the issue that was intended to be fixed by backporting. Specifically, by adding to a write queue between disconnection and re-connection, a local attacker can trigger multiple use-after-free conditions. This can result in a kernel crash, or potentially in privilege escalation. &lt;br/&gt;
+CVE-2019-19062: A memory leak in the crypto_report() function in crypto/crypto_user_base.c in the Linux kernel through 5.3.11 allows attackers to cause a denial of service (memory consumption) by triggering crypto_report_alg() failures, aka CID-ffdde5932042.&lt;br/&gt;
+CVE-2019-19537: In the Linux kernel before 5.2.10, there is a race condition bug that can be caused by a malicious USB device in the USB character device driver layer, aka CID-303911cfc5b9. This affects drivers/usb/core/file.c.&lt;br/&gt;
 CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer dereference in drop_sysctl_table() in fs/proc/proc_sysctl.c, related to put_links, aka CID-23da9588037e.</td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12</td>
 </tr>
 <tr>
 <td>CM-27646</td>
-<td>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
-distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
-CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
-CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
-CVE-2019-1352: .git vulnerability with NTFS Alternate Streams Accesses<br/>
-CVE-2019-1353: NTFS filesystem protection should be on by default<br/>
-CVE-2019-1387: dubiously-nested submodule git directories should be disallowed<br/>
-CVE-2019-19604: submodule update repository code execution vulnerability<br/>
-Vulnerable: &lt;= 2.1.4-2.1+deb8u7<br/>
+<td>Several vulnerabilities have been discovered in git, a fast, scalable,&lt;br/&gt;
+distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.&lt;br/&gt;
+CVE-2019-1348: export-marks is insecure, fix is to disable by default.&lt;br/&gt;
+CVE-2019-1349: .git / git~1 filename vulnerability on NTFS&lt;br/&gt;
+CVE-2019-1352: .git vulnerability with NTFS Alternate Streams Accesses&lt;br/&gt;
+CVE-2019-1353: NTFS filesystem protection should be on by default&lt;br/&gt;
+CVE-2019-1387: dubiously-nested submodule git directories should be disallowed&lt;br/&gt;
+CVE-2019-19604: submodule update repository code execution vulnerability&lt;br/&gt;
+Vulnerable: &amp;lt;= 2.1.4-2.1+deb8u7&lt;br/&gt;
 Fixed: 2.1.4-2.1+deb8u8</td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-27628</td>
-<td>The following security vulnerabilities have been announced in the nss/libnss3 library, which is not installed by default but is available in the repository:<br/>
-CVE-2019-11745: Out-of-bounds write when passing an output buffer smaller than the block size to NSC_EncryptUpdate<br/>
-CVE-2019-17007: nss: Handling of Netscape Certificate Sequences in CERT_DecodeCertPackage() may crash with a NULL deref leading to DoS<br/>
-See <a href="https://security-tracker.debian.org/tracker/source-package/nss" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/nss</a> for more information.<br/>
-Vulnerable: &lt;= 3.26-1+debu8u7<br/>
+<td>The following security vulnerabilities have been announced in the nss/libnss3 library, which is not installed by default but is available in the repository:&lt;br/&gt;
+CVE-2019-11745: Out-of-bounds write when passing an output buffer smaller than the block size to NSC_EncryptUpdate&lt;br/&gt;
+CVE-2019-17007: nss: Handling of Netscape Certificate Sequences in CERT_DecodeCertPackage() may crash with a NULL deref leading to DoS&lt;br/&gt;
+See &lt;a href=&quot;https://security-tracker.debian.org/tracker/source-package/nss&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://security-tracker.debian.org/tracker/source-package/nss&lt;/a&gt; for more information.&lt;br/&gt;
+Vulnerable: &amp;lt;= 3.26-1+debu8u7&lt;br/&gt;
 Fixed: 3.26-1+debu8u9</td>
 <td>3.0.0-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-27349</td>
-<td>Debian security advisory DSA-4213 for qemu lists a number of security vulnerabilities.<br/>
-<a href="https://www.debian.org/security/2018/dsa-4213" class="external-link" rel="nofollow">https://www.debian.org/security/2018/dsa-4213</a><br/>
-The latest upstream version 2.1+dfsg-12+deb8u12 fixes the following vulnerabilities listed in that announcement:<br/>
-CVE-2017-15038 Tuomas Tynkkynen discovered an information leak in 9pfs.<br/>
-CVE-2017-15119 Eric Blake discovered that the NBD server insufficiently restricts large option requests, resulting in denial of service.<br/>
-CVE-2017-15268 A memory leak in websockets support may result in denial of service.<br/>
-CVE-2017-15289 Guoxiang Niu discovered an OOB write in the emulated Cirrus graphics adaptor which could result in denial of service.<br/>
-CVE-2017-16845 Cyrille Chatras discovered an information leak in PS/2 mouse and keyboard emulation which could be exploited during instance migration.<br/>
-CVE-2017-17381 Dengzhan Heyuandong Bijunhua and Liweichao discovered that an implementation error in the virtio vring implementation could result in denial of service.<br/>
-CVE-2017-18043 Eric Blake discovered an integer overflow in an internally used macro which could result in denial of service.<br/>
-CVE-2018-5683 Jiang Xin and Lin ZheCheng discovered an OOB memory access in the emulated VGA adaptor which could result in denial of service.<br/>
-CVE-2018-7550 Cyrille Chatras discovered that an OOB memory write when using multiboot could result in the execution of arbitrary code.<br/>
-The following remains vulnerable in 2.1+dfsg-12+deb8u12:<br/>
-CVE-2017-15124 Daniel Berrange discovered that the integrated VNC server insufficiently restricted memory allocation, which could result in denial of service.<br/>
+<td>Debian security advisory DSA-4213 for qemu lists a number of security vulnerabilities.&lt;br/&gt;
+&lt;a href=&quot;https://www.debian.org/security/2018/dsa-4213&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://www.debian.org/security/2018/dsa-4213&lt;/a&gt;&lt;br/&gt;
+The latest upstream version 2.1+dfsg-12+deb8u12 fixes the following vulnerabilities listed in that announcement:&lt;br/&gt;
+CVE-2017-15038 Tuomas Tynkkynen discovered an information leak in 9pfs.&lt;br/&gt;
+CVE-2017-15119 Eric Blake discovered that the NBD server insufficiently restricts large option requests, resulting in denial of service.&lt;br/&gt;
+CVE-2017-15268 A memory leak in websockets support may result in denial of service.&lt;br/&gt;
+CVE-2017-15289 Guoxiang Niu discovered an OOB write in the emulated Cirrus graphics adaptor which could result in denial of service.&lt;br/&gt;
+CVE-2017-16845 Cyrille Chatras discovered an information leak in PS/2 mouse and keyboard emulation which could be exploited during instance migration.&lt;br/&gt;
+CVE-2017-17381 Dengzhan Heyuandong Bijunhua and Liweichao discovered that an implementation error in the virtio vring implementation could result in denial of service.&lt;br/&gt;
+CVE-2017-18043 Eric Blake discovered an integer overflow in an internally used macro which could result in denial of service.&lt;br/&gt;
+CVE-2018-5683 Jiang Xin and Lin ZheCheng discovered an OOB memory access in the emulated VGA adaptor which could result in denial of service.&lt;br/&gt;
+CVE-2018-7550 Cyrille Chatras discovered that an OOB memory write when using multiboot could result in the execution of arbitrary code.&lt;br/&gt;
+The following remains vulnerable in 2.1+dfsg-12+deb8u12:&lt;br/&gt;
+CVE-2017-15124 Daniel Berrange discovered that the integrated VNC server insufficiently restricted memory allocation, which could result in denial of service.&lt;br/&gt;
 Note: qemu is not installed by default, but is available in the repository for optional installation.</td>
 <td>3.0.0-3.7.8</td>
 <td>3.7.9-3.7.12</td>
@@ -251,25 +251,25 @@ OSError: [Errno 24] Too many open files
 </tr>
 <tr>
 <td>CM-26523</td>
-<td>Package: hostapd<br/>
-CVE ID: CVE-2019-13377 CVE-2019-16275<br/>
-Two vulnerabilities were found in the WPA protocol implementation found in wpa_supplication (station) and hostapd (access point).<br/>
-CVE-2019-13377<br/>
-A timing-based side-channel attack against WPA3's Dragonfly handshake when using Brainpool curves could be used by an attacker to retrieve the password.<br/>
-CVE-2019-16275<br/>
-Insufficient source address validation for some received Management frames in hostapd could lead to a denial of service for stations associated to an access point. An attacker in radio range of the access point could inject a specially constructed unauthenticated IEEE 802.11 frame to the access point to cause associated stations to be disconnected and require a reconnection to the network.<br/>
+<td>Package: hostapd&lt;br/&gt;
+CVE ID: CVE-2019-13377 CVE-2019-16275&lt;br/&gt;
+Two vulnerabilities were found in the WPA protocol implementation found in wpa_supplication (station) and hostapd (access point).&lt;br/&gt;
+CVE-2019-13377&lt;br/&gt;
+A timing-based side-channel attack against WPA3's Dragonfly handshake when using Brainpool curves could be used by an attacker to retrieve the password.&lt;br/&gt;
+CVE-2019-16275&lt;br/&gt;
+Insufficient source address validation for some received Management frames in hostapd could lead to a denial of service for stations associated to an access point. An attacker in radio range of the access point could inject a specially constructed unauthenticated IEEE 802.11 frame to the access point to cause associated stations to be disconnected and require a reconnection to the network.&lt;br/&gt;
 Fixed version: 1:2.8.0-cl4u3</td>
 <td>3.7.0-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-26252</td>
-<td>The following CVEs were announced that affect the ghostscript package:<br/>
-CVE ID : CVE-2019-14811 CVE-2019-14812 CVE-2019-14813 CVE-2019-14817<br/>
-It was discovered that various procedures in Ghostscript, the GPL PostScript/PDF interpreter, do not properly restrict privileged calls, which could result in bypass of file system restrictions of the dSAFER sandbox.<br/>
-We recommend that you upgrade your ghostscript packages.<br/>
-For the detailed security status of ghostscript, refer to its security tracker page at:<br/>
-<a href="https://security-tracker.debian.org/tracker/ghostscript" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/ghostscript</a></td>
+<td>The following CVEs were announced that affect the ghostscript package:&lt;br/&gt;
+CVE ID : CVE-2019-14811 CVE-2019-14812 CVE-2019-14813 CVE-2019-14817&lt;br/&gt;
+It was discovered that various procedures in Ghostscript, the GPL PostScript/PDF interpreter, do not properly restrict privileged calls, which could result in bypass of file system restrictions of the dSAFER sandbox.&lt;br/&gt;
+We recommend that you upgrade your ghostscript packages.&lt;br/&gt;
+For the detailed security status of ghostscript, refer to its security tracker page at:&lt;br/&gt;
+&lt;a href=&quot;https://security-tracker.debian.org/tracker/ghostscript&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://security-tracker.debian.org/tracker/ghostscript&lt;/a&gt;</td>
 <td>3.7.0-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
@@ -281,33 +281,33 @@ For the detailed security status of ghostscript, refer to its security tracker p
 </tr>
 <tr>
 <td>CM-25298</td>
-<td>The following CVEs were announced in a Debian Security Advisory that affects vim modelines. <br/>
- Package: vim and neovim <br/>
- CVE ID: CVE-2019-12735 <br/>
- Debian Bugs: 930020, 930024 <br/>
- getchar.c in Vim before 8.1.1365 and Neovim before 0.3.6 allows remote attackers to execute arbitrary OS commands via the :source! command in a modeline, as demonstrated by execute in Vim, and assert_fails or nvim_input in Neovim. <br/>
- For the detailed security status, refer to the security tracker page at: <br/>
- <a href="https://security-tracker.debian.org/tracker/CVE-2019-12735" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-12735</a> <br/>
- <a href="https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-12735.html" class="external-link" rel="nofollow">https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-12735.html</a> <br/>
- <a href="https://github.com/numirias/security/blob/master/doc/2019-06-04_ace-vim-neovim.md" class="external-link" rel="nofollow">https://github.com/numirias/security/blob/master/doc/2019-06-04_ace-vim-neovim.md</a> <br/>
- Cumulus Networks recommends that you disable modelines in the the vimrc file (set nomodeline) to use the securemodelines plugin or to disable modelineexpr (since patch 8.1.1366, Vim-only) to disallow expressions in modelines. <br/>
- To check if you have modelines enabled, open vim and enter: <br/>
- :set modeline? <br/>
- If vim returns nomodeline, you are <em>not</em> vulnerable. If you are vulnerable or you want to ensure your security with this issue, add these lines to your vimrc file: 
+<td>The following CVEs were announced in a Debian Security Advisory that affects vim modelines. &lt;br/&gt;
+ Package: vim and neovim &lt;br/&gt;
+ CVE ID: CVE-2019-12735 &lt;br/&gt;
+ Debian Bugs: 930020, 930024 &lt;br/&gt;
+ getchar.c in Vim before 8.1.1365 and Neovim before 0.3.6 allows remote attackers to execute arbitrary OS commands via the :source! command in a modeline, as demonstrated by execute in Vim, and assert_fails or nvim_input in Neovim. &lt;br/&gt;
+ For the detailed security status, refer to the security tracker page at: &lt;br/&gt;
+ &lt;a href=&quot;https://security-tracker.debian.org/tracker/CVE-2019-12735&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://security-tracker.debian.org/tracker/CVE-2019-12735&lt;/a&gt; &lt;br/&gt;
+ &lt;a href=&quot;https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-12735.html&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://people.canonical.com/~ubuntu-security/cve/2019/CVE-2019-12735.html&lt;/a&gt; &lt;br/&gt;
+ &lt;a href=&quot;https://github.com/numirias/security/blob/master/doc/2019-06-04_ace-vim-neovim.md&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://github.com/numirias/security/blob/master/doc/2019-06-04_ace-vim-neovim.md&lt;/a&gt; &lt;br/&gt;
+ Cumulus Networks recommends that you disable modelines in the the vimrc file (set nomodeline) to use the securemodelines plugin or to disable modelineexpr (since patch 8.1.1366, Vim-only) to disallow expressions in modelines. &lt;br/&gt;
+ To check if you have modelines enabled, open vim and enter: &lt;br/&gt;
+ :set modeline? &lt;br/&gt;
+ If vim returns nomodeline, you are &lt;em&gt;not&lt;/em&gt; vulnerable. If you are vulnerable or you want to ensure your security with this issue, add these lines to your vimrc file: 
  
  
  set modelines=0 
  set nomodeline 
  
  
- modeline is enabled by default. <br/>
+ modeline is enabled by default. &lt;br/&gt;
  Verify that you do not have any existing lines in .vimrc that set modelines or modeline.</td>
 <td>3.0.0-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24652</td>
-<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. <br/>
+<td>In an EVPN environment, the centralized MAC address is not installed on the MLAG pair because Cumulus Linux does not perform an SVI MAC check per VLAN. &lt;br/&gt;
 This issue does not affect a pure distributed routing (symmetric or asymmetric) environment or a pure centralized routing environment.</td>
 <td>3.7.0-3.7.12</td>
 <td></td>
@@ -334,8 +334,8 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
 </tr>
 <tr>
 <td>CM-23792</td>
-<td>When you delete post-up and pre-down IP peer entries from the etc/network/interfaces file, then run the ifreload command, the IP addresses are not removed and the route remains in the route table. <br/>
- To work around this issue, either delete the IP addresses without the /32 mask component or flush the IP addresses for the interface with the ip addr flush dev &lt;interface&gt; command. 
+<td>When you delete post-up and pre-down IP peer entries from the etc/network/interfaces file, then run the ifreload command, the IP addresses are not removed and the route remains in the route table. &lt;br/&gt;
+ To work around this issue, either delete the IP addresses without the /32 mask component or flush the IP addresses for the interface with the ip addr flush dev &amp;lt;interface&amp;gt; command. 
 </td>
 <td>3.7.0-3.7.12</td>
 <td></td>
@@ -355,7 +355,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
 </tr>
 <tr>
 <td>CM-23125</td>
-<td>The OpenSSL package on Cumulus Linux 3.x has a vulnerability similar to CVE-2018-0734. (The OpenSSL DSA signature algorithm has been shown to be vulnerable to a timing side channel attack. An attacker could use variations in the signing algorithm to recover the private key).  According to Debian upstream, this version "is not vulnerable <span class="error">&#91;to CVE-2018-0734 exactly&#93;</span>. Nevertheless, there is a bug fix that futher reduces the amount of leaked timing information. It got no CVE on its own and introduced this vulnerability."<br/>
+<td>The OpenSSL package on Cumulus Linux 3.x has a vulnerability similar to CVE-2018-0734. (The OpenSSL DSA signature algorithm has been shown to be vulnerable to a timing side channel attack. An attacker could use variations in the signing algorithm to recover the private key).  According to Debian upstream, this version &quot;is not vulnerable &lt;span class=&quot;error&quot;&gt;&amp;#91;to CVE-2018-0734 exactly&amp;#93;&lt;/span&gt;. Nevertheless, there is a bug fix that futher reduces the amount of leaked timing information. It got no CVE on its own and introduced this vulnerability.&quot;&lt;br/&gt;
 Vulnerable on CL3: 1.0.1t-1+deb8u12</td>
 <td>3.0.0-3.7.12</td>
 <td></td>
@@ -396,19 +396,19 @@ Vulnerable on CL3: 1.0.1t-1+deb8u12</td>
 </tr>
 <tr>
 <td>CM-22605</td>
-<td>On a Dell S4048 switch, when you set the eth0 speed to 100, either with NCLU or by editing the /etc/network/interfaces file, the igb driver crashes, which brings down eth0. <br/>
+<td>On a Dell S4048 switch, when you set the eth0 speed to 100, either with NCLU or by editing the /etc/network/interfaces file, the igb driver crashes, which brings down eth0. &lt;br/&gt;
 To work around this issue: 
-<ul>
-	<li>If eth0 is configured in the management VRF, power cycle the switch; the eth0 configuration fails and reverts back to the default (auto-negotiation/1000).</li>
-	<li>If eth0 is configured in the default VRF and you power cycle after the crash, igb continues to crash on boot up (before getting to login prompt); power-cycle the switch, select the Advanced option in GRUB to boot to recovery mode, then modify the /etc/network/interfaces file.</li>
-</ul>
+&lt;ul&gt;
+	&lt;li&gt;If eth0 is configured in the management VRF, power cycle the switch; the eth0 configuration fails and reverts back to the default (auto-negotiation/1000).&lt;/li&gt;
+	&lt;li&gt;If eth0 is configured in the default VRF and you power cycle after the crash, igb continues to crash on boot up (before getting to login prompt); power-cycle the switch, select the Advanced option in GRUB to boot to recovery mode, then modify the /etc/network/interfaces file.&lt;/li&gt;
+&lt;/ul&gt;
 </td>
 <td>3.5.3-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-22591</td>
-<td>CVE-2018-5391 (FragmentSmack) is a network vulnerability where an attacker can trigger time and calculation expensive fragment reassembly with specially crafted packets, leading to a denial of service. On a Cumulus Linux switch, the impact is limited to control plane and management plane traffic. Any control plane traffic coming in the front panel ports will be limited by existing policer ACLs.<br/>
+<td>CVE-2018-5391 (FragmentSmack) is a network vulnerability where an attacker can trigger time and calculation expensive fragment reassembly with specially crafted packets, leading to a denial of service. On a Cumulus Linux switch, the impact is limited to control plane and management plane traffic. Any control plane traffic coming in the front panel ports will be limited by existing policer ACLs.&lt;br/&gt;
 To work around this issue, create a file called /etc/sysctl.d/ip.conf and add these settings:
 
 net.ipv4.ipfrag_low_thresh = 196608
@@ -447,14 +447,14 @@ net.ipv6.ip6frag_high_thresh = 262144
 </tr>
 <tr>
 <td>CM-22301</td>
-<td>For an unresolved address, the IPROUTER default policer rule has been modified to <em>not</em> match on packets exiting a TUNNEL and headed to the CPU to resolve the address via ARP. As a result, the following default rule no longer matches TUNNEL ingress packets. 
+<td>For an unresolved address, the IPROUTER default policer rule has been modified to &lt;em&gt;not&lt;/em&gt; match on packets exiting a TUNNEL and headed to the CPU to resolve the address via ARP. As a result, the following default rule no longer matches TUNNEL ingress packets. 
  
  
  A $INGRESS_CHAIN --in-interface $INGRESS_INTF -m addrtype --dst-type 
  IPROUTER -j POLICE --set-mode pkt --set-rate 400 --set-burst 100 
  
  
- These packets are now policed by catch all rules. <br/>
+ These packets are now policed by catch all rules. &lt;br/&gt;
  To work around this issue, the VPORT value on a TRIDENT switch must be changed from binary 011 to 100. 
 </td>
 <td>3.6.1-3.7.12</td>
@@ -481,21 +481,21 @@ net.ipv6.ip6frag_high_thresh = 262144
 </tr>
 <tr>
 <td>CM-22041</td>
-<td>At a high CPU transmit traffic rate (for example, if there is unexpected CPU generated flooding or replication in software), when the ASIC packet driver cannot keep up with the transmit rate because there are no free DMA buffers, it can back pressure by suspending the switch port transmit queues. This can fill up the application socket buffers resulting in No buffer space available error messages on protocol sockets.<br/>
+<td>At a high CPU transmit traffic rate (for example, if there is unexpected CPU generated flooding or replication in software), when the ASIC packet driver cannot keep up with the transmit rate because there are no free DMA buffers, it can back pressure by suspending the switch port transmit queues. This can fill up the application socket buffers resulting in No buffer space available error messages on protocol sockets.&lt;br/&gt;
 When the driver recovers, it automatically resumes the transmit queues. In most cases these error messages are transient. In rare cases, the hardware queues might get stuck, which you can recover with a switchd restart.</td>
 <td>3.4.3-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-22020</td>
-<td>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.<br/>
+<td>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.&lt;br/&gt;
 To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</td>
 <td>3.7.0-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21927</td>
-<td>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
+<td>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. &lt;br/&gt;
 To work around this issue, remove and re-add the affected VLANs from the port. 
 </td>
 <td>3.5.3-3.7.12</td>
@@ -503,10 +503,10 @@ To work around this issue, remove and re-add the affected VLANs from the port.
 </tr>
 <tr>
 <td>CM-21898</td>
-<td>On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. <br/>
- -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>
-To work around this issue, let the CPU bound IGMP packet hit the following rule and change the policer rate to a desired value for IGMP packets: <br/>
- -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>
+<td>On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. &lt;br/&gt;
+ -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 &lt;br/&gt;
+To work around this issue, let the CPU bound IGMP packet hit the following rule and change the policer rate to a desired value for IGMP packets: &lt;br/&gt;
+ -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 &lt;br/&gt;
 Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IGMP control and data stream packets. However, this workaround cannot handle data stream multicast packets that are not TCP/UDP; this is not typically done. </td>
 <td>3.6.2-3.7.12</td>
 <td></td>
@@ -528,7 +528,7 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
  
  
- cumulus@<span class="code-keyword">switch</span>:~$ netq show sensors temp changes | grep absent | grep -v psu 
+ cumulus@&lt;span class=&quot;code-keyword&quot;&gt;switch&lt;/span&gt;:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 47 105 100 5 Unable to read temp4_highest Add 9d:23h:26m:6s 
@@ -542,27 +542,27 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 </tr>
 <tr>
 <td>CM-21667</td>
-<td>FRR does not add BGP ttl-security to either the running configuration or to the /etc/frr/frr.conf file when configured on a peer group instead of a specific neighbor. <br/>
+<td>FRR does not add BGP ttl-security to either the running configuration or to the /etc/frr/frr.conf file when configured on a peer group instead of a specific neighbor. &lt;br/&gt;
 To work around this issue, add ttl-security to individual neighbors instead of the peer group.</td>
 <td>3.6.1-3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-21373</td>
-<td>Debian issued the following security advisory, DSA-4231-1, which affects the libgcrypt20 package. This advisory applies only to the the Debian Stretch release. <br/>
-Debian Jessie, upon which Cumulus Linux 3.0 - 3.6.2 is based, is vulnerable. <br/>
-CVE-2018-0495 <br/>
-It was discovered that Libgcrypt is prone to a local side-channel attack allowing recovery of ECDSA private keys. <br/>
-For the stable distribution (stretch), this problem has been fixed in version 1.7.6-2+deb9u3. <br/>
-We recommend that you upgrade your libgcrypt20 packages. <br/>
-For the detailed security status of libgcrypt20, refer to its security tracker page at: <br/>
-<a href="https://security-tracker.debian.org/tracker/libgcrypt20" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/libgcrypt20</a></td>
+<td>Debian issued the following security advisory, DSA-4231-1, which affects the libgcrypt20 package. This advisory applies only to the the Debian Stretch release. &lt;br/&gt;
+Debian Jessie, upon which Cumulus Linux 3.0 - 3.6.2 is based, is vulnerable. &lt;br/&gt;
+CVE-2018-0495 &lt;br/&gt;
+It was discovered that Libgcrypt is prone to a local side-channel attack allowing recovery of ECDSA private keys. &lt;br/&gt;
+For the stable distribution (stretch), this problem has been fixed in version 1.7.6-2+deb9u3. &lt;br/&gt;
+We recommend that you upgrade your libgcrypt20 packages. &lt;br/&gt;
+For the detailed security status of libgcrypt20, refer to its security tracker page at: &lt;br/&gt;
+&lt;a href=&quot;https://security-tracker.debian.org/tracker/libgcrypt20&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://security-tracker.debian.org/tracker/libgcrypt20&lt;/a&gt;</td>
 <td>3.6.2-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-21278</td>
-<td>The net show lldp command sometimes shows the port description in the Remote Port field. The net show interface command shows the correct value in the Remote Host field.<br/>
+<td>The net show lldp command sometimes shows the port description in the Remote Port field. The net show interface command shows the correct value in the Remote Host field.&lt;br/&gt;
 To work around this issue, use net show interface command for LLDP output when connected to Cisco equipment.</td>
 <td>3.5.3-3.7.10</td>
 <td>3.7.11-3.7.12</td>
@@ -599,9 +599,9 @@ To work around this issue, use net show interface command for LLDP output when c
 </tr>
 <tr>
 <td>CM-20480</td>
-<td>The python-crypto package, which is not installed by default on Cumulus Linux, but is present in the repository to be installed, has the following security vulnerability in the version available for Cumulus Linux 3.x:<br/>
-CVE-2018-6594: lib/Crypto/PublicKey/ElGamal.py in PyCrypto through 2.6.1 generates weak ElGamal key parameters, which allows attackers to obtain sensitive information by reading ciphertext data (i.e., it does not have semantic security in face of a ciphertext-only attack). The Decisional Diffie-Hellman (DDH) assumption does not hold for PyCrypto's ElGamal implementation.<br/>
-More information at <a href="https://security-tracker.debian.org/tracker/CVE-2018-6594" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2018-6594</a> .</td>
+<td>The python-crypto package, which is not installed by default on Cumulus Linux, but is present in the repository to be installed, has the following security vulnerability in the version available for Cumulus Linux 3.x:&lt;br/&gt;
+CVE-2018-6594: lib/Crypto/PublicKey/ElGamal.py in PyCrypto through 2.6.1 generates weak ElGamal key parameters, which allows attackers to obtain sensitive information by reading ciphertext data (i.e., it does not have semantic security in face of a ciphertext-only attack). The Decisional Diffie-Hellman (DDH) assumption does not hold for PyCrypto's ElGamal implementation.&lt;br/&gt;
+More information at &lt;a href=&quot;https://security-tracker.debian.org/tracker/CVE-2018-6594&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;https://security-tracker.debian.org/tracker/CVE-2018-6594&lt;/a&gt; .</td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -620,7 +620,7 @@ More information at <a href="https://security-tracker.debian.org/tracker/CVE-201
 </tr>
 <tr>
 <td>CM-19788</td>
-<td>If you configure a VLAN under a VLAN-aware bridge and create a subinterface of the same VLAN on one of the bridge ports, the bridge and interface compete for the same VLAN and if the interface is flapped, it stops working. Correcting the configuration and running the ifreload command does not resolve the conflict. <br/>
+<td>If you configure a VLAN under a VLAN-aware bridge and create a subinterface of the same VLAN on one of the bridge ports, the bridge and interface compete for the same VLAN and if the interface is flapped, it stops working. Correcting the configuration and running the ifreload command does not resolve the conflict. &lt;br/&gt;
 To work around this issue, correct the bridge VIDs and restart switchd or delete the subinterface. </td>
 <td>3.5.0-3.7.12</td>
 <td></td>
@@ -633,8 +633,8 @@ To work around this issue, correct the bridge VIDs and restart switchd or delete
 </tr>
 <tr>
 <td>CM-19454</td>
-<td>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
-To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</td>
+<td>When you use NCLU to bring a bond admin down (net add bond &amp;lt;bond&amp;gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.&lt;br/&gt;
+To work around this issue, use the sudo ifdown &amp;lt;bondname&amp;gt; command.</td>
 <td>3.5.0-3.7.12</td>
 <td></td>
 </tr>
@@ -652,8 +652,8 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</td>
 </tr>
 <tr>
 <td>CM-17494</td>
-<td>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</td>
+<td>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. &lt;br/&gt;
+To work around this issue, change the value of arp_ignore to 2. See &lt;a href=&quot;https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux&quot; class=&quot;external-link&quot; rel=&quot;nofollow&quot;&gt;Default ARP Settings in Cumulus Linux&lt;/a&gt; for more information.</td>
 <td>3.3.2-3.7.12</td>
 <td></td>
 </tr>
@@ -690,7 +690,7 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-12967</td>
-<td>When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. <br/>
+<td>When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. &lt;br/&gt;
 If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC.</td>
 <td>3.1.0-3.7.6</td>
 <td>3.7.7-3.7.12</td>

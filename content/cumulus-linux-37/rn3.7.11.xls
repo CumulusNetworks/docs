@@ -1408,8 +1408,8 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <tr>
 <td>CM-21678</td>
 <td>On a Dell switch with a Maverick ASIC, NetQ might receive false alerts like the following via PagerDuty: 
- <div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
-<pre class="code-java"> 
+ 
+ 
  cumulus@<span class="code-keyword">switch</span>:~$ netq show sensors temp changes | grep absent | grep -v psu 
  P2Leaf01 temp9 networking asic die temp sensor absent 43 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 
  P2Leaf01 temp6 networking asic die temp sensor absent 45 105 100 5 Unable to find driver path: /cumulu Add 7d:22h:1m:41s 

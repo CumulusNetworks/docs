@@ -9,7 +9,7 @@ draft: True
 ---
 
 
-<a href="/cumulus-linux-37/rn4.1.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.1 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 4.1 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.1 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 4.1 release notes as .xls</a>
 ## 4.1.0 Release Notes
 <a href="/cumulus-linux-41/rn4.1.0.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.1.0 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 4.1.0 release notes as .xls</a>
 ### Open issues in 4.1.0

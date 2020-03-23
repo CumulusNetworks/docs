@@ -9,7 +9,7 @@ draft: True
 ---
 
 
-<a href="/cumulus-linux-37/rn3.7.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 3.7 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 3.7 release notes as .xls</a>
 ## 3.7.12 Release Notes
 <a href="/cumulus-linux-37/rn3.7.12.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.12 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.12 release notes as .xls</a>
 ### Open issues in 3.7.12

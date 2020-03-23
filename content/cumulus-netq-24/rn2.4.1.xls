@@ -1,0 +1,42 @@
+<table name="Open Issues in 2.4.1">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+<th> Fixed </th>
+</tr>
+<tr>
+<td>NETQ-4927</td>
+<td><p>Admin UI: If the Master Installation phase fails during NetQ installation, refreshing the page causes the error log to be lost. On failure, download the error log, then run <tt>netq bootstrap reset</tt> followed by <tt>netq bootstrap master interface</tt> on the node before restarting the installation process.</p></td>
+<td>[u'2.4.1']</td>
+<td>[]</td>
+<tr>
+<tr>
+<td>NETQ-3451</td>
+<td><p>NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</p></td>
+<td>[u'2.3.0-2.4.1']</td>
+<td>[]</td>
+<tr>
+</table>
+<table name="Fixed issues in 2.4.1">
+<tr>
+<th> Issue ID </th>
+<th> Description </th>
+<th> Affects </th>
+</tr>
+<tr>
+<td>NETQ-4419</td>
+<td><p>NetQ Admin UI: When installing NetQ with the Admin UI, the job status is presented to show progress. However, when an error is encountered while running individual tasks, the UI may feel unresponsive. Please wait for at least 15 minutes to receive a response.</p></td>
+<td>[u'2.4.0']</td>
+<tr>
+<tr>
+<td>NETQ-4113</td>
+<td><p>NetQ UI: On medium- and large-sized Scheduled Trace cards, the destination field does not accept IPv6 addresses. They are reported as invalid destination IP addresses. The source field on these cards accepts IPv6 addresses.</p></td>
+<td>[u'2.3.1-2.4.0']</td>
+<tr>
+<tr>
+<td>NETQ-3916</td>
+<td><p>NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running `netq show validation results type evpn` in the NetQ CLI, even though the EVPN failure is seen on validation.</p></td>
+<td>[u'2.3.1-2.4.0']</td>
+<tr>
+</table>

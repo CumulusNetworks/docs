@@ -1,5 +1,6 @@
-{{ if .Page.Params.onprem }}
+{{- if eq (.Get "deployment") "onprem" -}}
 <pre>cumulus@<hostname>:~$ sudo opta-check</pre>
-{{ else }}
+{{ end }} 
+{{- if eq (.Get "deployment") "cloud" -}}
 <pre>cumulus@<hostname>:~$ sudo opta-check-cloud</pre>
 {{ end }}

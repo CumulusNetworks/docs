@@ -18,18 +18,20 @@ When using a VM, the following system resources must be allocated:
 </tr>
 <tr class="odd">
 <td>Memory</td>
-{{ if .Page.Params.onprem }}
-  <td>64 GB RAM</td>
-{{ else }}
-  <td>8 GB RAM</td>
+{{- if eq (.Get "deployment") "onprem" -}}
+<td>64 GB RAM</td>
+{{ end }}
+{{- if eq (.Get "deployment") "cloud" -}}
+<td>8 GB RAM</td>
 {{ end }}
 </tr>
 <tr class="even">
 <td>Local disk storage</td>
-{{ if .Page.Params.onprem }}
-  <td>256 GB SSD <br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
-{{ else }}
-  <td>32 GB</td>
+{{- if eq (.Get "deployment") "onprem" -}}
+<td>256 GB SSD <br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+{{ end }}
+{{- if eq (.Get "deployment") "cloud" -}}
+<td>32 GB</td>
 {{ end }}
 </tr>
 <tr class="odd">

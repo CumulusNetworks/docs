@@ -7,6 +7,5 @@ aliases:
  - /pages/viewpage.action?pageId=12320951
 pageID: 12320951
 toc: 5
-onprem: true
-cluster: true
+bookhidden: true
 ---

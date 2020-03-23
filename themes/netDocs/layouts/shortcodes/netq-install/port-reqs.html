@@ -1,6 +1,7 @@
-{{ if .Page.Params.cluster }}
+{{- if eq (.Get "server") "cluster" -}}
 You must open the following ports on your NetQ Platforms:
-{{ else }}
+{{ end }}
+{{- if eq (.Get "server") "single" -}}
 You must open the following ports on your NetQ Platform:
 {{ end }}
 
@@ -41,7 +42,7 @@ You must open the following ports on your NetQ Platform:
     </tbody>
     </table>
 
-{{ if .Page.Params.cluster }}
+    {{- if eq (.Get "server") "cluster" -}}
 
 Additionally, for internal cluster communication, you must open these ports:
 
@@ -137,7 +138,6 @@ Additionally, for internal cluster communication, you must open these ports:
     </tbody>
     </table>
 
-{{ else }}
 {{ end }}
 
-<strong>Note</strong>: Port 32666 is no longer used for the NetQ UI.
+<p><strong>Note</strong>: Port 32666 is no longer used for the NetQ UI.</p>

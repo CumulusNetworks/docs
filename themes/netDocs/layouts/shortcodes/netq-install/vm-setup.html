@@ -1,58 +1,32 @@
+<p>Open your hypervisor and set up your VM. You can use this example for reference or use your own hypervisor instructions.</p>
+
 {{- if eq (.Get "hypervisor") "kvm" -}}
-
-Open your hypervisor and set up your VM.  
-
-You can use this example for reference or use your own hypervisor instructions.
-
     <details><summary>KVM Example Configuration</summary>
 
-    This example shows the VM setup process for a system with Libvirt and KVM/QEMU installed.
+    <p>This example shows the VM setup process for a system with Libvirt and KVM/QEMU installed.</p>
 
-    1. Confirm that the SHA256 checksum matches the one posted on the Cumulus Downloads website to ensure the image download has not been corrupted.
+    <ol>
+        <li>
+            <p>Confirm that the SHA256 checksum matches the one posted on the Cumulus Downloads website to ensure the image download has not been corrupted.</p>
+            <pre>$ sha256sum ./Downloads/cumulus-netq-server-2.4.1-ts-amd64-qemu.qcow2<br>$ 6fff5f2ac62930799b4e8cc7811abb6840b247e2c9e76ea9ccba03f991f42424  ./Downloads/cumulus-netq-server-2.4.1-ts-amd64-qemu.qcow2</pre>
+        </li>
+        <li>Copy the QCOW2 image to a directory where you want to run it.
+            <p><strong>Tip</strong>: Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.</p>
+            <pre>$ sudo mkdir /vms<br>$ sudo cp ./Downloads/cumulus-netq-server-2.4.1-ts-amd64-qemu.qcow2 /vms/ts.qcow2</pre>
+        </li>
+        <li>Create the VM.
+            <p>For a Direct VM, where the VM uses a MACVLAN interface to sit on the host interface for its connectivity:</p>
+            <pre>$ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio -import --noautoconsole</pre>
+            <p><strong>Note</strong>: Replace the disk path value with the location where the QCOW2 image is to reside. Replace network model value (eth0 in the above example) with the name of the interface where the VM is connected to the external network.</p>
+            <p>Or, for a Bridged VM, where the VM attaches to a bridge which has already been setup to allow for external access:</p>
+            <pre>$ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \ --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=bridge=br0,model=virtio --import --noautoconsole</pre>
+            <p><strong>Note</strong>: Replace network bridge value (br0 in the above example) with the name of the (pre-existing) bridge interface where the VM is connected to the external network.</p>
+        </li>
+        <li>Watch the boot process in another terminal window.
+            <pre>$ virsh console netq_ts</pre>
+        </li>
+    </ol>
 
-    ```
-    $ sha256sum ./Downloads/cumulus-netq-server-2.4.1-ts-amd64-qemu.qcow2
-    $ 6fff5f2ac62930799b4e8cc7811abb6840b247e2c9e76ea9ccba03f991f42424  ./Downloads/cumulus-netq-server-2.4.1-ts-amd64-qemu.qcow2
-    ```
-
-    2. Copy the QCOW2 image to a directory where you want to run it.
-
-        Tip: 
-Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.
-        
-
-    ```
-    $ sudo mkdir /vms
-    $ sudo cp ./Downloads/cumulus-netq-server-2.4.1-ts-amd64-qemu.qcow2 /vms/ts.qcow2
-    ```
-
-    3. Create the VM.
-
-        For a Direct VM, where the VM uses a MACVLAN interface to sit on the host interface for its connectivity:
-
-    ```
-    $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio -import --noautoconsole
-    ```
-
-        Note:
-Replace the disk path value with the location where the QCOW2 image is to reside. Replace network model value (eth0 in the above example) with the name of the interface where the VM is connected to the external network.
-        
-
-        Or, for a Bridged VM, where the VM attaches to a bridge which has already been setup to allow for external access:
-
-    ```
-    $ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \ --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=bridge=br0,model=virtio --import --noautoconsole
-    ```
-
-        Note:
-Replace network bridge value (br0 in the above example) with the name of the (pre-existing) bridge interface where the VM is connected to the external network.
-        
-
-    4.  Watch the boot process in another terminal window.
-
-    ```
-    $ virsh console netq_ts
-    ```
 {{ end }} 
 {{- if eq (.Get "hypervisor") "vmware" -}}
 vmware setup

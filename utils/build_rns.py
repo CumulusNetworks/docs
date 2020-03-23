@@ -134,7 +134,7 @@ def sanatize_rn_for_xls(string):
     output_string = string.replace("<p>", "\015")
     output_string = output_string.replace("</p>", "")
     
-    output_string = output_string.replace("`", "'")
+    output_string = output_string.replace("`", "&apos;")
 
     output_string = output_string.replace("<tt>", "")
     output_string = output_string.replace("</tt>", "")
@@ -142,11 +142,15 @@ def sanatize_rn_for_xls(string):
     output_string = output_string.replace("<pre>", "")
     output_string = output_string.replace("</pre>", "")
     output_string = output_string.replace("<pre class=\"code-java\">", "")
-    
+
     output_string = output_string.replace('<div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent panelContent\">', "")
     output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\">', "")
     output_string = output_string.replace("</div>", "")
-        
+
+    output_string = output_string.replace("&", "&amp;")
+    output_string = output_string.replace("\"", "&quot;")
+    output_string = output_string.replace("<", "&lt;")
+    output_string = output_string.replace(">", "&gt;")
 
     return output_string
 
@@ -262,11 +266,17 @@ def build_rn_markdown_files(product, version_list):
         
         # We only want to generate the frontmatter once per minor
         version_output.extend(build_markdown_header(product_string(product), major))    
-        
+        hugo_dir = get_hugo_folder(product, version)
+        version_output.append("<a href=\"/{}/rn{}.xls\"><img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" />&nbsp;&nbsp;&nbsp;&nbsp;Download all {} release notes as .xls</a>\n".format(hugo_dir, major, major, major, major))
+
+
         # Loop over all the maintenance releases.
         for version in major_minor[major]:
             print("Building markdown for {} {}\n".format(product_string(product), version))
             version_output.append("## {} Release Notes\n".format(version))
+            hugo_dir = get_hugo_folder(product, version)
+            version_output.append("<a href=\"/{}/rn{}.xls\"><img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" />&nbsp;&nbsp;&nbsp;&nbsp;Download {} release notes as .xls</a>\n".format(hugo_dir, version, version, version, version))
+
 
             # once for affects, once for fixed.
             for rn_file in files:

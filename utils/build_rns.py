@@ -141,7 +141,9 @@ def sanatize_rn_for_xls(string):
 
     output_string = output_string.replace("<pre>", "")
     output_string = output_string.replace("</pre>", "")
-
+    output_string = output_string.replace("<pre class=\"code-java\">", "")
+    
+    output_string = output_string.replace('<div class=\"code panel\" style=\"border-width: 1px;\"><div class=\"codeContent panelContent\">', "")
     output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\">', "")
     output_string = output_string.replace("</div>", "")
         

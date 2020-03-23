@@ -131,7 +131,7 @@ def sanatize_rn_for_xls(string):
     # # Remove HTML tags
     # TAG_RE = re.compile(r'<[^>]+>')
     # output_string = TAG_RE.sub('', string)
-    output_string = string.replace("<p>", "")
+    output_string = string.replace("<p>", "\015")
     output_string = output_string.replace("</p>", "")
     
     output_string = output_string.replace("`", "'")
@@ -139,9 +139,11 @@ def sanatize_rn_for_xls(string):
     output_string = output_string.replace("<tt>", "")
     output_string = output_string.replace("</tt>", "")
 
-    #CM-21678
-    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\"><pre>', "")
-    output_string = output_string.replace("</pre></div></div>", "")
+    output_string = output_string.replace("<pre>", "")
+    output_string = output_string.replace("</pre>", "")
+
+    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\">', "")
+    output_string = output_string.replace("</div>", "")
         
 
     return output_string
@@ -296,12 +298,22 @@ def build_rn_xls(json_file, version, product, file_type):
     output.append("</tr>\n")
     for bug in json_file:
         rn_text = sanatize_rn_for_xls(bug["release_notes_text"])
+        if bug["affects_versions"]:
+            affects_versions = ", ".join(bug["affects_versions"])
+        else:
+            affects_versions = ""
+        if(file_type == "affects"):
+            if bug["fixed_versions"]:
+                fixed_versions = ", ".join(bug["fixed_versions"])
+            else:
+                fixed_versions = ""
+
         output.append("<tr>\n")
         output.append("<td>{}</td>\n".format(bug["ticket"]))
         output.append("<td>{}</td>\n".format(rn_text))
-        output.append("<td>{}</td>\n".format(bug["affects_versions"]))
+        output.append("<td>{}</td>\n".format(affects_versions))
         if(file_type == "affects"):
-            output.append("<td>{}</td>\n".format(bug["fixed_versions"]))
+            output.append("<td>{}</td>\n".format(fixed_versions))
         output.append("</tr>\n")
     output.append("</table>\n")
 

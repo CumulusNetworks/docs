@@ -1,4 +1,4 @@
-<table name="Open Issues in 2.4.0">
+<tables><table name="Open Issues in 2.4.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -10,25 +10,25 @@
 <td>NetQ Admin UI: When installing NetQ with the Admin UI, the job status is presented to show progress. However, when an error is encountered while running individual tasks, the UI may feel unresponsive. Please wait for at least 15 minutes to receive a response.</td>
 <td>[u'2.4.0']</td>
 <td>[]</td>
-<tr>
+</tr>
 <tr>
 <td>NETQ-4113</td>
 <td>NetQ UI: On medium- and large-sized Scheduled Trace cards, the destination field does not accept IPv6 addresses. They are reported as invalid destination IP addresses. The source field on these cards accepts IPv6 addresses.</td>
 <td>[u'2.3.1-2.4.0']</td>
 <td>[]</td>
-<tr>
+</tr>
 <tr>
 <td>NETQ-3916</td>
 <td>NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running 'netq show validation results type evpn' in the NetQ CLI, even though the EVPN failure is seen on validation.</td>
 <td>[u'2.3.1-2.4.0']</td>
 <td>[]</td>
-<tr>
+</tr>
 <tr>
 <td>NETQ-3451</td>
 <td>NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session.</td>
 <td>[u'2.3.0-2.4.0']</td>
 <td>[]</td>
-<tr>
+</tr>
 </table>
 <table name="Fixed issues in 2.4.0">
 <tr>
@@ -78,25 +78,26 @@ Found the container running with new image.
 </ul>
 </td>
 <td>[u'2.3.1']</td>
-<tr>
+</tr>
 <tr>
 <td>NETQ-4080</td>
 <td>When you upgrade both the NetQ Agent and the NetQ Apps in on-premises deployments, a temporary increase in event messages is seen. They are the result of collecting package information from the NetQ Agent on each monitored node. This only happens on initial upgrade and there is no functional impact to the operation of the NetQ software.</td>
 <td>[u'2.3.1']</td>
-<tr>
+</tr>
 <tr>
 <td>NETQ-3993</td>
 <td>NetQ UI: When a warning occurs during a VXLAN validation, the small, medium, and large VXLAN Scheduled Validation Result cards incorrectly display the text of the warning instead of the Failed icon and text.</td>
 <td>[u'2.3.1']</td>
-<tr>
+</tr>
 <tr>
 <td>NETQ-3915</td>
 <td>NetQ UI: When troubleshooting a user may wish to disable auto-refresh so that the data is not changed in the middle of analysis. If auto-refresh causes any state loss on the card of interest, pause the auto-refresh feature by clicking the Refresh icon in the workbench header. When finished with the analysis, re-enable the auto-refresh feature by clicking the Refresh icon again to ensure the card data is always the most recent available.</td>
 <td>[u'2.3.1']</td>
-<tr>
+</tr>
 <tr>
 <td>NETQ-3255</td>
 <td>NetQ UI: Trace configuration information is not captured until the trace has been run at least once, leaving the large Trace Result card blank. The schedule information remains missing even after the trace has been run.</td>
 <td>[u'2.2.2-2.3.1']</td>
-<tr>
+</tr>
 </table>
+</tables>

@@ -141,9 +141,9 @@ The search commands look for the search terms not only in the package name but i
 
 The the `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with their versions, run the following commands.
 
-{{< tabs "list_packages">}}
+<details>
 
-{{<tab "NCLU Commands" >}}
+<summary>NCLU Commands </summary>
 
 Run the `net show package version` command:
 
@@ -163,9 +163,11 @@ atftpd                             0.7.git20120829-3.1
 ...
 ```
 
-{{</tab >}}
+</details>
 
-{{<tab "Linux Commands" >}}
+<details>
+
+<summary>Linux Commands </summary>
 
 Run the `dpkg -l` command:
 
@@ -188,8 +190,7 @@ ii  atftpd              0.7.git20120829-3.1       amd64        advanced TFTP ser
 ...
 ```
 
-{{</tab>}}
-{{</tabs>}}
+</details>
 
 {{%notice note%}}
 The apps repository was removed in Cumulus Linux 4.0.0.
@@ -199,9 +200,9 @@ The apps repository was removed in Cumulus Linux 4.0.0.
 
 To show the version of a specific package installed on the system:
 
-{{< tabs "show_packages">}}
+<details>
 
-{{<tab "NCLU Commands" >}}
+<summary>NCLU Commands </summary>
 
 Run the `net show package version <package>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
 
@@ -210,9 +211,11 @@ cumulus@switch:~$ net show package version vrf
 1.0-cl4u1
 ```
 
-{{</tab >}}
+</details>
 
-{{<tab "Linux Commands" >}}
+<details>
+
+<summary>Linux Commands </summary>
 
 Run the Linux `dpkg -l <package_name>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
 
@@ -226,8 +229,7 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ii  vrf        1.0-cl4u1    amd64        Linux tools for VRF
 ```
 
-{{</tab>}}
-{{</tabs>}}
+</details>
 
 
 ## Upgrade Packages

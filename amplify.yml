@@ -47,7 +47,7 @@ frontend:
         - echo Successfully built docs
         # If everything else worked, and this is master, then cut a new release.
         - echo "Creating new Github release"
-        - if [ "${AWS_BRANCH}" = "master" ]; then python utils/build_release.py $GITHUB_TOKEN  ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_release.py $GITHUB_TOKEN  ; fi
   artifacts:
     files:
       - '**/*'

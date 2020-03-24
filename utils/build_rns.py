@@ -5,6 +5,8 @@ This script will pull the collection of release note JSON files.
 The script will parse and markdown sanatize the JSON.
 
 And write markdown files for hugo to render into the respective product and version directories.
+
+This will also write the XML files that are used to generate xls files for the release notes. 
 '''
 
 import json
@@ -273,7 +275,7 @@ def build_rn_markdown_files(product, version_list):
         # We only want to generate the frontmatter once per minor
         version_output.extend(build_markdown_header(product_string(product), major))    
         hugo_dir = get_hugo_folder(product, version)
-        version_output.append("<a href=\"/{}/rn.xml\"><img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" />&nbsp;&nbsp;&nbsp;&nbsp;Download all {} release notes as .xls</a>\n".format(hugo_dir, major, major, major))
+        version_output.append("<a href=\"/{}/rn.xls\"><img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" />&nbsp;&nbsp;&nbsp;&nbsp;Download all {} release notes as .xls</a>\n".format(hugo_dir, major, major, major))
 
 
         # Loop over all the maintenance releases.
@@ -281,7 +283,7 @@ def build_rn_markdown_files(product, version_list):
             print("Building markdown for {} {}\n".format(product_string(product), version))
             version_output.append("## {} Release Notes\n".format(version))
             hugo_dir = get_hugo_folder(product, version)
-            version_output.append("<a href=\"/{}/rn{}.xml\"><img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" />&nbsp;&nbsp;&nbsp;&nbsp;Download {} release notes as .xls</a>\n".format(hugo_dir, version, version, version, version))
+            version_output.append("<a href=\"/{}/rn{}.xls\"><img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" />&nbsp;&nbsp;&nbsp;&nbsp;Download {} release notes as .xls</a>\n".format(hugo_dir, version, version, version, version))
 
 
             # once for affects, once for fixed.

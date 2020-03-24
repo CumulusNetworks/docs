@@ -9,9 +9,9 @@ draft: True
 ---
 
 
-<a href="/cumulus-linux-37/rn.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.1 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 4.1 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.1 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 4.1 release notes as .xls</a>
 ## 4.1.0 Release Notes
-<a href="/cumulus-linux-41/rn4.1.0.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.1.0 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 4.1.0 release notes as .xls</a>
+<a href="/cumulus-linux-41/rn4.1.0.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.1.0 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 4.1.0 release notes as .xls</a>
 ### Open issues in 4.1.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -214,7 +214,7 @@ draft: True
 | <a name="CM-27547"></a> [CM-27547](#CM-27547) | Trident2+ switches do not enable DFE for 10G and 4x10G DACs. As a result, longer or marginal 10G DACs might not link up reliably.<br/>To work around this issue, run the following command after a reboot.<br/>On the SFP side:<br /><pre>echo CR > /cumulus/switchd/config/interface/swp${port}/interface_mode ; done<br /></pre><br />On the QSFP side:<br /><pre>echo CR > /cumulus/switchd/config/interface/swp${port}/interface_mode ; done<br /></pre><br /> | 4.0.0 | |
 | <a name="CM-27517"></a> [CM-27517](#CM-27517) | When `hsflowd` is used on the switch, you might experience a kernel panic. | 4.0.0 | |
 | <a name="CM-27507"></a> [CM-27507](#CM-27507) | The `ports.conf` file on the Dell S5248F-ON switch does not show port ganging or breakout options. | 3.7.10-3.7.11 | |
-| <a name="CM-27496"></a> [CM-27496](#CM-27496) | All Broadcom Trident3 X7 switches contain PCIE firmware, which is programmed by the vendor when the switch is manufactured. The latest version of this firmware (2.6) is incompatible with Cumulus Linux 3.7.11 and earlier, and Cumulus Linux 4.0. <br/>To work around this issue, downgrade the Broadcom ASIC firmware to an earlier version.<br/>A fix for this issue will be provided in a future Cumulus Linux release. | 3.7.11, 4.0.0 | |
+| <a name="CM-27496"></a> [CM-27496](#CM-27496) | All Broadcom Trident3 X7 switches contain PCIE firmware, which is programmed by the vendor when the switch is manufactured. The latest version of this firmware (2.6) is incompatible with Cumulus Linux 3.7.11 and earlier, and Cumulus Linux 4.0. <br/>To work around this issue, downgrade the Broadcom ASIC firmware to an earlier version. | 3.7.11, 4.0.0 | |
 | <a name="CM-27457"></a> [CM-27457](#CM-27457) | If you delete, then re-add a PBR policy on an interface, the configured PBR policy is not programmed in the kernel or `switchd`. | 3.7.9-3.7.10, 4.0.0 | |
 | <a name="CM-27456"></a> [CM-27456](#CM-27456) | After making a series of PBR configuration changes using NCLU commands, the stale PBR entry is still present in the kernel. | 3.7.9-3.7.10, 4.0.0 | |
 | <a name="CM-27367"></a> [CM-27367](#CM-27367) | On the Mellanox switch with the Spectrum or Spectrum-2 ASIC, `switchd` might crash, then restart under certain conditions. | 4.0.0 | |

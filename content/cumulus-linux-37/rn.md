@@ -9,9 +9,9 @@ draft: True
 ---
 
 
-<a href="/cumulus-linux-40/rn.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 3.7 release notes as .xls</a>
+<a href="/cumulus-linux-40/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 3.7 release notes as .xls</a>
 ## 3.7.12 Release Notes
-<a href="/cumulus-linux-37/rn3.7.12.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.12 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.12 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.12.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.12 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.12 release notes as .xls</a>
 ### Open issues in 3.7.12
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -205,7 +205,7 @@ draft: True
 | <a name="CM-27644"></a> [CM-27644](#CM-27644) | Ifupdown2 does not set up the front panel interface for the `dhclient` to accept the DHCP OFFER.<br/>To work around this issue, restart the networking service after `ifreload -a` with the `systemctl restart networking` command. | 3.7.10-3.7.11 | |
 | <a name="CM-27525"></a> [CM-27525](#CM-27525) | On the Delta AG6248C PoE switch, if the PoE priority is set to low on some ports, other ports with a higher priority might have their requests to draw power rejected instead of the lower priority ports being brought down. | 3.7.11 | |
 | <a name="CM-27507"></a> [CM-27507](#CM-27507) | The `ports.conf` file on the Dell S5248F-ON switch does not show port ganging or breakout options. | 3.7.10-3.7.11 | |
-| <a name="CM-27496"></a> [CM-27496](#CM-27496) | All Broadcom Trident3 X7 switches contain PCIE firmware, which is programmed by the vendor when the switch is manufactured. The latest version of this firmware (2.6) is incompatible with Cumulus Linux 3.7.11 and earlier, and Cumulus Linux 4.0. <br/>To work around this issue, downgrade the Broadcom ASIC firmware to an earlier version.<br/>A fix for this issue will be provided in a future Cumulus Linux release. | 3.7.11 | |
+| <a name="CM-27496"></a> [CM-27496](#CM-27496) | All Broadcom Trident3 X7 switches contain PCIE firmware, which is programmed by the vendor when the switch is manufactured. The latest version of this firmware (2.6) is incompatible with Cumulus Linux 3.7.11 and earlier, and Cumulus Linux 4.0. <br/>To work around this issue, downgrade the Broadcom ASIC firmware to an earlier version. | 3.7.11 | |
 | <a name="CM-27444"></a> [CM-27444](#CM-27444) | If you use the NCLU commands to configure NTP and run the `net add time ntp source <interface>` command before you run the `net add time ntp server <server> iburst` command, the `/etc/ntp.conf` file is misconfigured.<br/>To work around this issue, run the `net add time ntp server <server> iburst` command before you run the `net add time ntp source <interface>` command. | 3.7.10-3.7.11 | |
 | <a name="CM-27295"></a> [CM-27295](#CM-27295) | IPv6 table rules might affect forwarding. For example, if you create the following rule in the `/etc/cumulus/acl/policy.d/03-sshd.rules` file, the rule counter increments but IPv4 SSH traffic might be dropped.<br /><pre>&#91;ip6tables&#93;<br />-A INPUT -p tcp --dport 22 -j DROP<br /></pre><br /> | 3.7.2-3.7.11 | |
 | <a name="CM-27120"></a> [CM-27120](#CM-27120) | When an interface flap occurs, numbered IPv6 BGP sessions might fail to establish.<br/>To work around this issue, run the `ip -6 route flush cache <IPv6-address>` command to flush the IPv6 route cache. | 3.7.9-3.7.11 | |
@@ -217,7 +217,7 @@ draft: True
 | <a name="CM-22591"></a> [CM-22591](#CM-22591) | CVE-2018-5391 (FragmentSmack) is a network vulnerability where an attacker can trigger time and calculation expensive fragment reassembly with specially crafted packets, leading to a denial of service. On a Cumulus Linux switch, the impact is limited to control plane and management plane traffic. Any control plane traffic coming in the front panel ports will be limited by existing policer ACLs.<br/>To work around this issue, create a file called `/etc/sysctl.d/ip.conf` and add these settings:<br /><pre>net.ipv4.ipfrag_low_thresh = 196608<br />net.ipv6.ip6frag_low_thresh = 196608<br />net.ipv4.ipfrag_high_thresh = 262144<br />net.ipv6.ip6frag_high_thresh = 262144<br /></pre><br /> | 3.7.0-3.7.11 | |
 
 ## 3.7.11 Release Notes
-<a href="/cumulus-linux-37/rn3.7.11.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.11 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.11 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.11.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.11 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.11 release notes as .xls</a>
 ### Open issues in 3.7.11
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -294,7 +294,7 @@ draft: True
 | <a name="CM-27525"></a> [CM-27525](#CM-27525) <a name="CM-27525"></a> | On the Delta AG6248C PoE switch, if the PoE priority is set to low on some ports, other ports with a higher priority might have their requests to draw power rejected instead of the lower priority ports being brought down. | 3.7.11 | 3.7.12|
 | <a name="CM-27522"></a> [CM-27522](#CM-27522) <a name="CM-27522"></a> | The NCLU command `net show interface` produces an error if bonds with no members exist.<br/>To work around this issue, remove the empty Bond interfaces from the `/etc/network/interfaces` file and run `sudo ifreload -a`. | 3.7.10-3.7.12 | |
 | <a name="CM-27507"></a> [CM-27507](#CM-27507) <a name="CM-27507"></a> | The `ports.conf` file on the Dell S5248F-ON switch does not show port ganging or breakout options. | 3.7.10-3.7.11 | 3.7.12|
-| <a name="CM-27496"></a> [CM-27496](#CM-27496) <a name="CM-27496"></a> | All Broadcom Trident3 X7 switches contain PCIE firmware, which is programmed by the vendor when the switch is manufactured. The latest version of this firmware (2.6) is incompatible with Cumulus Linux 3.7.11 and earlier, and Cumulus Linux 4.0. <br/>To work around this issue, downgrade the Broadcom ASIC firmware to an earlier version.<br/>A fix for this issue will be provided in a future Cumulus Linux release. | 3.7.11 | 3.7.12|
+| <a name="CM-27496"></a> [CM-27496](#CM-27496) <a name="CM-27496"></a> | All Broadcom Trident3 X7 switches contain PCIE firmware, which is programmed by the vendor when the switch is manufactured. The latest version of this firmware (2.6) is incompatible with Cumulus Linux 3.7.11 and earlier, and Cumulus Linux 4.0. <br/>To work around this issue, downgrade the Broadcom ASIC firmware to an earlier version. | 3.7.11 | 3.7.12|
 | <a name="CM-27444"></a> [CM-27444](#CM-27444) <a name="CM-27444"></a> | If you use the NCLU commands to configure NTP and run the `net add time ntp source <interface>` command before you run the `net add time ntp server <server> iburst` command, the `/etc/ntp.conf` file is misconfigured.<br/>To work around this issue, run the `net add time ntp server <server> iburst` command before you run the `net add time ntp source <interface>` command. | 3.7.10-3.7.11 | 3.7.12|
 | <a name="CM-27354"></a> [CM-27354](#CM-27354) <a name="CM-27354"></a> | On the Celestica Pebble switch, if you use IPv6 routes with mask /65 to /127,  the `switchd` log fills with errors. | 3.7.10-3.7.12 | |
 | <a name="CM-27295"></a> [CM-27295](#CM-27295) <a name="CM-27295"></a> | IPv6 table rules might affect forwarding. For example, if you create the following rule in the `/etc/cumulus/acl/policy.d/03-sshd.rules` file, the rule counter increments but IPv4 SSH traffic might be dropped.<br /><pre>&#91;ip6tables&#93;<br />-A INPUT -p tcp --dport 22 -j DROP<br /></pre><br /> | 3.7.2-3.7.11 | 3.7.12|
@@ -482,7 +482,7 @@ draft: True
 | <a name="CM-13316"></a> [CM-13316](#CM-13316) | When you try to remove a VNI from a bridge using a regex match, the VNI is added back when you run the `ifreload -a` command. | 3.1.1-3.7.10 | |
 
 ## 3.7.10 Release Notes
-<a href="/cumulus-linux-37/rn3.7.10.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.10 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.10 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.10.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.10 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.10 release notes as .xls</a>
 ### Open issues in 3.7.10
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -714,7 +714,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.9 Release Notes
-<a href="/cumulus-linux-37/rn3.7.9.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.9 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.9 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.9.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.9 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.9 release notes as .xls</a>
 ### Open issues in 3.7.9
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -922,7 +922,7 @@ draft: True
 | <a name="CM-27349"></a> [CM-27349](#CM-27349) | Debian security advisory DSA-4213 for qemu lists a number of security vulnerabilities.<br/><a href="https://www.debian.org/security/2018/dsa-4213" class="external-link" rel="nofollow">https://www.debian.org/security/2018/dsa-4213</a><br/>The latest upstream version 2.1+dfsg-12+deb8u12 fixes the following vulnerabilities listed in that announcement:<br/>CVE-2017-15038 Tuomas Tynkkynen discovered an information leak in 9pfs.<br/>CVE-2017-15119 Eric Blake discovered that the NBD server insufficiently restricts large option requests, resulting in denial of service.<br/>CVE-2017-15268 A memory leak in websockets support may result in denial of service.<br/>CVE-2017-15289 Guoxiang Niu discovered an OOB write in the emulated Cirrus graphics adaptor which could result in denial of service.<br/>CVE-2017-16845 Cyrille Chatras discovered an information leak in PS/2 mouse and keyboard emulation which could be exploited during instance migration.<br/>CVE-2017-17381 Dengzhan Heyuandong Bijunhua and Liweichao discovered that an implementation error in the virtio vring implementation could result in denial of service.<br/>CVE-2017-18043 Eric Blake discovered an integer overflow in an internally used macro which could result in denial of service.<br/>CVE-2018-5683 Jiang Xin and Lin ZheCheng discovered an OOB memory access in the emulated VGA adaptor which could result in denial of service.<br/>CVE-2018-7550 Cyrille Chatras discovered that an OOB memory write when using multiboot could result in the execution of arbitrary code.<br/>The following remains vulnerable in 2.1+dfsg-12+deb8u12:<br/>CVE-2017-15124 Daniel Berrange discovered that the integrated VNC server insufficiently restricted memory allocation, which could result in denial of service.<br/>Note: qemu is not installed by default, but is available in the repository for optional installation. | 3.0.0-3.7.8 | |
 
 ## 3.7.8 Release Notes
-<a href="/cumulus-linux-37/rn3.7.8.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.8 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.8 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.8.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.8 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.8 release notes as .xls</a>
 ### Open issues in 3.7.8
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1108,7 +1108,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.7 Release Notes
-<a href="/cumulus-linux-37/rn3.7.7.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.7 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.7 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.7.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.7 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.7 release notes as .xls</a>
 ### Open issues in 3.7.7
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1283,7 +1283,7 @@ draft: True
 | <a name="CM-12967"></a> [CM-12967](#CM-12967) | When link pause or priority flow control (PFC) is enabled on a Broadcom Tomahawk-based switch and there is over-subscription on a link, the ASIC sends pause frames aggressively, causing the upstream switch to not throttle enough. <br/>If you need link pause or PFC functionality, you must use a switch that does not use the Tomahawk ASIC. | 3.1.0-3.7.6 | |
 
 ## 3.7.6 Release Notes
-<a href="/cumulus-linux-37/rn3.7.6.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.6 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.6 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.6.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.6 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.6 release notes as .xls</a>
 ### Open issues in 3.7.6
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1447,7 +1447,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.5 Release Notes
-<a href="/cumulus-linux-37/rn3.7.5.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.5 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.5 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.5.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.5 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.5 release notes as .xls</a>
 ### Open issues in 3.7.5
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1585,7 +1585,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.4 Release Notes
-<a href="/cumulus-linux-37/rn3.7.4.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.4 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.4 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.4.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.4 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.4 release notes as .xls</a>
 ### Open issues in 3.7.4
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1713,7 +1713,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.3 Release Notes
-<a href="/cumulus-linux-37/rn3.7.3.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.3 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.3 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.3.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.3 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.3 release notes as .xls</a>
 ### Open issues in 3.7.3
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1834,7 +1834,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.2 Release Notes
-<a href="/cumulus-linux-37/rn3.7.2.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.2 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.2 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.2.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.2 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.2 release notes as .xls</a>
 ### Open issues in 3.7.2
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -1941,7 +1941,7 @@ draft: True
 |---	        |---	        |---	    |
 
 ## 3.7.1 Release Notes
-<a href="/cumulus-linux-37/rn3.7.1.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.1 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.1 release notes as .xls</a>
+<a href="/cumulus-linux-37/rn3.7.1.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7.1 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 3.7.1 release notes as .xls</a>
 ### Open issues in 3.7.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |

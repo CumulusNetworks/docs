@@ -1,5 +1,5 @@
 ---
-title: Install NetQ Platform
+title: Install NetQ Platform v2
 author: Cumulus Networks
 weight: 110
 aliases:

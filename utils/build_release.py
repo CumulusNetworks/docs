@@ -25,6 +25,7 @@ def get_next_release():
     if not r.ok:
         print("Failed to get API response from latest release") 
         print("Response: {}".format(r.status_code))
+        print(r.content)
         exit(1)
     
     try:
@@ -53,6 +54,7 @@ def get_last_pr():
     if not r.ok:
         print("Failed to get API response from last commit to HEAD") 
         print("Response: {}".format(r.status_code))
+        print(r.content)
         exit(1)
 
     return r.json()

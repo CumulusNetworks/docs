@@ -879,12 +879,6 @@ Running hypervisors for virtual guest operating systems is not supported on Cumu
 <td></td>
 </tr>
 <tr>
-<td>CM-27131</td>
-<td><p>On the Broadcom switch with the Tomahawk3 ASIC, such as the EdgeCore Minipack AS8000, SPAN and ERSPAN functionality is not supported.</p></td>
-<td>4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-27118</td>
 <td><p>The Broadcom switch with the Tomahawk3 ASIC, such as the EdgeCore Minipack AS8000, might not learn all MAC address on a port configured for bridging when the hardware MAC table is near the maximum capacity.</p></td>
 <td>4.0.0</td>

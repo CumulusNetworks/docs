@@ -1574,8 +1574,7 @@ echo CR &gt; /cumulus/switchd/config/interface/swp${port}/interface_mode ; done
 <tr>
 <td>CM-27496</td>
 <td><p>All Broadcom Trident3 X7 switches contain PCIE firmware, which is programmed by the vendor when the switch is manufactured. The latest version of this firmware (2.6) is incompatible with Cumulus Linux 3.7.11 and earlier, and Cumulus Linux 4.0. <br/>
-To work around this issue, downgrade the Broadcom ASIC firmware to an earlier version.<br/>
-A fix for this issue will be provided in a future Cumulus Linux release.</p></td>
+To work around this issue, downgrade the Broadcom ASIC firmware to an earlier version.</p></td>
 <td>3.7.11, 4.0.0</td>
 </tr>
 <tr>

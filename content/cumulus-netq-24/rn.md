@@ -9,9 +9,9 @@ draft: True
 ---
 
 
-<a href="/cumulus-netq-24/rn.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 2.4 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 2.4 release notes as .xls</a>
+<a href="/cumulus-netq-24/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 2.4 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 2.4 release notes as .xls</a>
 ## 2.4.1 Release Notes
-<a href="/cumulus-netq-24/rn2.4.1.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 2.4.1 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 2.4.1 release notes as .xls</a>
+<a href="/cumulus-netq-24/rn2.4.1.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 2.4.1 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 2.4.1 release notes as .xls</a>
 ### Open issues in 2.4.1
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
@@ -27,7 +27,7 @@ draft: True
 | <a name="NETQ-3916"></a> [NETQ-3916](#NETQ-3916) | NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running 'netq show validation results type evpn' in the NetQ CLI, even though the EVPN failure is seen on validation. | 2.3.1-2.4.0 | |
 
 ## 2.4.0 Release Notes
-<a href="/cumulus-netq-24/rn2.4.0.xml"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 2.4.0 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 2.4.0 release notes as .xls</a>
+<a href="/cumulus-netq-24/rn2.4.0.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 2.4.0 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download 2.4.0 release notes as .xls</a>
 ### Open issues in 2.4.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |

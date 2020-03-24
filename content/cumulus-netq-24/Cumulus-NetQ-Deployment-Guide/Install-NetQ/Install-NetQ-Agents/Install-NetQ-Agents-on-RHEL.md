@@ -131,7 +131,7 @@ root@rhel7:~# sudo yum install netq-agent
 2. Verify you have the correct version of the Agent.
 
 ```
-root@rhel7:~# rpm -q -netq-agent
+root@rhel7:~# rpm -q netq-agent
 ```
 
     You should see version 2.4.1 and update 26 or later in the results. For example: 
@@ -191,15 +191,15 @@ If you intend to use VRF, skip to {{<link url="#configure-the-netq-agent-to-use-
 Use the following command to configure the NetQ Agent:
 
 ```
-netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
+netq-agent config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
 ```
 
 This example uses an IP address of *192.168.1.254* and the default port and VRF for the NetQ hardware.
 
 ```
-root@rhel7:~# sudo netq config add agent server 192.168.1.254
+root@rhel7:~# sudo netq-agent config add agent server 192.168.1.254
 Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
-root@rhel7:~# sudo netq config restart agent
+root@rhel7:~# sudo netq-agent config restart agent
 ```
 
 ## Configure Advanced NetQ Agent Settings
@@ -211,8 +211,8 @@ A couple of additional options are available for configuring the NetQ Agent. If 
 While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Platform only via a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/" text="VRF">}}, including a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Management-VRF/" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Platform over it, configure the agent like this:
 
 ```
-root@rhel7:~# sudo netq config add agent server 192.168.1.254 vrf mgmt
-root@rhel7:~# sudo netq config restart agent
+root@rhel7:~# sudo netq-agent config add agent server 192.168.1.254 vrf mgmt
+root@rhel7:~# sudo netq-agent config restart agent
 ```
 
 ### Configure the NetQ Agent to Communicate over a Specific Port
@@ -220,6 +220,6 @@ root@rhel7:~# sudo netq config restart agent
 By default, NetQ uses port 31980 for communication between the NetQ Platform and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ Platform via a different port, you need to specify the port number when configuring the NetQ Agent like this:
 
 ```
-root@rhel7:~# sudo netq config add agent server 192.168.1.254 port 7379
-root@rhel7:~# sudo netq config restart agent
+root@rhel7:~# sudo netq-agent config add agent server 192.168.1.254 port 7379
+root@rhel7:~# sudo netq-agent config restart agent
 ```

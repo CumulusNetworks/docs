@@ -14,6 +14,8 @@ cascade:
     imgData: cumulus-linux
     siteSlug: cumulus-linux
 ---
+
+{{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}
 ## What is Cumulus Linux?
 
 Cumulus Linux is the first full-featured Linux operating system for the

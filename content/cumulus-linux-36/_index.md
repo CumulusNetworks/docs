@@ -15,6 +15,9 @@ cascade:
   siteSlug: cumulus-linux-36
   old: true
 ---
+
+{{<exlink url="mailto:vitas%40nppfactor.kiev.ua" text="Vitalii Demianets">}}
+
 ## Introducing Cumulus Linux
 
 Cumulus Linux is the first full-featured Linux operating system for the

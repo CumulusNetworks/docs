@@ -8,7 +8,7 @@ URL = "https://api.github.com/repos/cumulusnetworks/docs/"
 
 if len(sys.argv) != 2:
     print("Github Auth token must be provided with no other arguments")
-    exit(1)
+    exit(0)
 
 token = sys.argv[1]
 
@@ -26,7 +26,7 @@ def get_next_release():
         print("Failed to get API response from latest release") 
         print("Response: {}".format(r.status_code))
         print(r.content)
-        exit(1)
+        exit(0)
     
     try:
         doc_latest_release = str(r.json()["tag_name"])
@@ -40,7 +40,7 @@ def get_next_release():
         new_ver = major_ver + "." + minor_ver + "." +  str(new_ver)
     except e:
         print("Failed to parse API reponse for releases. Error message: {} ".format(e))
-        exit(1)
+        exit(0)
     
     return new_ver
 
@@ -55,7 +55,7 @@ def get_last_pr():
         print("Failed to get API response from last commit to HEAD") 
         print("Response: {}".format(r.status_code))
         print(r.content)
-        exit(1)
+        exit(0)
 
     return r.json()
 
@@ -78,7 +78,7 @@ def create_release(new_version, sha, message):
         print("Failed to create release") 
         print("Response: {}".format(r.status_code))
         print(r.content)
-        exit(1)
+        exit(0)
     
 
 def main():

@@ -123,7 +123,7 @@ try:
     
     print("Downloading XLS files...")
     get_xls_files()
-    exit(0)
+
     while True:
         if(first_loop):
             print("Checking PDF status...", end="")

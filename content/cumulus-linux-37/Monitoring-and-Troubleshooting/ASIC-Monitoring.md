@@ -18,7 +18,7 @@ quickly identify and respond to problems, such as:
 
 {{%notice note%}}
 
-ASIC monitoring is currently supported on switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1) only.
+ASIC monitoring is currently supported on switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}} only.
 
 {{%/notice%}}
 
@@ -217,7 +217,7 @@ For example, to monitor packet drops due to buffer congestion:
 Certain settings in the procedure above (such as the histogram size,
 boundary size, and sampling time) only apply to the histogram monitor.
 All ASIC monitor settings are described in
-[ASIC Monitoring Settings](#asic-monitoring-settings).
+{{<link url="#asic-monitoring-settings" text="ASIC Monitoring Settings">}}.
 
 ## Configuration Examples
 
@@ -232,42 +232,38 @@ In the following example:
 - The size of the histogram is set to 12288 bytes, the minimum boundary to 960 bytes, and the sampling time to 1024 nanoseconds.
 - A threshold is set so that when the size of the queue reaches 500
   bytes, the system sends a message to the `/var/log/syslog` file.
-
-```
-    monitor.port_group_list                               = [histogram_pg]
-    monitor.histogram_pg.port_set                         = swp1-swp50
-    monitor.histogram_pg.stat_type                        = histogram
-    monitor.histogram_pg.cos_list                         = [0]
-    monitor.histogram_pg.trigger_type                     = timer
-    monitor.histogram_pg.timer                            = 1s
-    monitor.histogram_pg.action_list                      = [snapshot,log]
-    monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
-    monitor.histogram_pg.snapshot.file_count              = 64
-    monitor.histogram_pg.log.queue_bytes                  = 500
-    monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
-    monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
-    monitor.histogram_pg.histogram.sample_time_ns         = 1024
-```
+  
+       monitor.port_group_list                               = [histogram_pg]
+       monitor.histogram_pg.port_set                         = swp1-swp50
+       monitor.histogram_pg.stat_type                        = histogram
+       monitor.histogram_pg.cos_list                         = [0]
+       monitor.histogram_pg.trigger_type                     = timer
+       monitor.histogram_pg.timer                            = 1s
+       monitor.histogram_pg.action_list                      = [snapshot,log]
+       monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
+       monitor.histogram_pg.snapshot.file_count              = 64
+       monitor.histogram_pg.log.queue_bytes                  = 500
+       monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
+       monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
+       monitor.histogram_pg.histogram.sample_time_ns         = 1024
 
 ### Packet Drops Due to Errors
 
 In the following example:
 
 - Packet drops on swp1 through swp50 are collected every two seconds.
-- If the number of packet drops is greater than 100, the results are
-    written to the `/var/lib/cumulus/discard_stats snapshot` file and
-    the system sends a message to the `/var/log/syslog` file.
+- If the number of packet drops is greater than 100, the results are written to the `/var/lib/cumulus/discard_stats snapshot` file and the system sends a message to the `/var/log/syslog` file.
 
-    monitor.port_group_list                            = [discards_pg]
-    monitor.discards_pg.port_set                       = swp1-swp50
-    monitor.discards_pg.stat_type                      = packet
-    monitor.discards_pg.action_list                    = [snapshot,log]
-    monitor.discards_pg.trigger_type                   = timer
-    monitor.discards_pg.timer                          = 2s
-    monitor.discards_pg.log.packet_error_drops         = 100
-    monitor.discards_pg.snapshot.packet_error_drops    = 100
-    monitor.discards_pg.snapshot.file                  = /var/lib/cumulus/discard_stats
-    monitor.discards_pg.snapshot.file_count            = 16
+      monitor.port_group_list                            = [discards_pg]
+      monitor.discards_pg.port_set                       = swp1-swp50
+      monitor.discards_pg.stat_type                      = packet
+      monitor.discards_pg.action_list                    = [snapshot,log]
+      monitor.discards_pg.trigger_type                   = timer
+      monitor.discards_pg.timer                          = 2s
+      monitor.discards_pg.log.packet_error_drops         = 100
+      monitor.discards_pg.snapshot.packet_error_drops    = 100
+      monitor.discards_pg.snapshot.file                  = /var/lib/cumulus/discard_stats
+      monitor.discards_pg.snapshot.file_count            = 16
 
 ### Queue Length (Histogram) with Collect Actions
 
@@ -292,53 +288,50 @@ In the following example:
   results are written to the `/var/lib/cumulus/discard_stats` snapshot
   file and a message is sent to the `/var/log/syslog` file.
 
-```
-    monitor.port_group_list                               = [histogram_pg,discards_pg]
+      monitor.port_group_list                               = [histogram_pg,discards_pg]
 
-    monitor.histogram_pg.port_set                         = swp1-swp50
-    monitor.histogram_pg.stat_type                        = buffer
-    monitor.histogram_pg.cos_list                         = [0]
-    monitor.histogram_pg.trigger_type                     = timer
-    monitor.histogram_pg.timer                            = 1s
-    monitor.histogram_pg.action_list                      = [snapshot,collect,log]
-    monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
-    monitor.histogram_pg.snapshot.file_count              = 64
-    monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
-    monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
-    monitor.histogram_pg.histogram.sample_time_ns         = 1024
-    monitor.histogram_pg.log.queue_bytes                  = 500
-    monitor.histogram_pg.collect.queue_bytes              = 500
-    monitor.histogram_pg.collect.port_group_list          = [buffers_pg,all_packet_pg]
-     
-     
-    monitor.buffers_pg.port_set                           = swp1-swp50
-    monitor.buffers_pg.stat_type                          = buffer
-    monitor.buffers_pg.action_list                        = [snapshot]
-    monitor.buffers_pg.snapshot.file                      = /var/lib/cumulus/buffer_stats
-    monitor.buffers_pg.snapshot.file_count                = 8
-     
-    monitor.all_packet_pg.port_set                        = swp1-swp50
-    monitor.all_packet_pg.stat_type                       = packet_all
-    monitor.all_packet_pg.action_list                     = [snapshot]
-    monitor.all_packet_pg.snapshot.file                   = /var/lib/cumulus/all_packet_stats
-    monitor.all_packet_pg.snapshot.file_count             = 8
-     
-    monitor.discards_pg.port_set                          = swp1-swp50
-    monitor.discards_pg.stat_type                         = packet
-    monitor.discards_pg.action_list                       = [snapshot,log]
-    monitor.discards_pg.trigger_type                      = timer
-    monitor.discards_pg.timer                             = 2s
-    monitor.discards_pg.log.packet_error_drops            = 100
-    monitor.discards_pg.snapshot.packet_error_drops       = 100
-    monitor.discards_pg.snapshot.file                     = /var/lib/cumulus/discard_stats
-    monitor.discards_pg.snapshot.file_count               = 16
-```
+      monitor.histogram_pg.port_set                         = swp1-swp50
+      monitor.histogram_pg.stat_type                        = buffer
+      monitor.histogram_pg.cos_list                         = [0]
+      monitor.histogram_pg.trigger_type                     = timer
+      monitor.histogram_pg.timer                            = 1s
+      monitor.histogram_pg.action_list                      = [snapshot,collect,log]
+      monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
+      monitor.histogram_pg.snapshot.file_count              = 64
+      monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
+      monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
+      monitor.histogram_pg.histogram.sample_time_ns         = 1024
+      monitor.histogram_pg.log.queue_bytes                  = 500
+      monitor.histogram_pg.collect.queue_bytes              = 500
+      monitor.histogram_pg.collect.port_group_list          = [buffers_pg,all_packet_pg]
+
+      monitor.buffers_pg.port_set                           = swp1-swp50
+      monitor.buffers_pg.stat_type                          = buffer
+      monitor.buffers_pg.action_list                        = [snapshot]
+      monitor.buffers_pg.snapshot.file                      = /var/lib/cumulus/buffer_stats
+      monitor.buffers_pg.snapshot.file_count                = 8
+
+      monitor.all_packet_pg.port_set                        = swp1-swp50
+      monitor.all_packet_pg.stat_type                       = packet_all
+      monitor.all_packet_pg.action_list                     = [snapshot]
+      monitor.all_packet_pg.snapshot.file                   = /var/lib/cumulus/all_packet_stats
+      monitor.all_packet_pg.snapshot.file_count             = 8
+
+      monitor.discards_pg.port_set                          = swp1-swp50
+      monitor.discards_pg.stat_type                         = packet
+      monitor.discards_pg.action_list                       = [snapshot,log]
+      monitor.discards_pg.trigger_type                      = timer
+      monitor.discards_pg.timer                             = 2s
+      monitor.discards_pg.log.packet_error_drops            = 100
+      monitor.discards_pg.snapshot.packet_error_drops       = 100
+      monitor.discards_pg.snapshot.file                     = /var/lib/cumulus/discard_stats
+      monitor.discards_pg.snapshot.file_count               = 16
 
 {{%notice note%}}
 
 Certain actions require additional settings. For example, if the `snapshot` action
 is specified, a snapshot file is also required. If the `log` action is specified,
-a log threshold is also required. See [action\_list](#asic-monitoring-settings)
+a log threshold is also required. See {{<link url="#asic-monitoring-settings" text="action\_list">}}
 for additional settings required for each *action*.
 
 {{%/notice%}}
@@ -366,8 +359,8 @@ The following table provides descriptions of the ASIC monitor settings.
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 40%" />
+<col style="width: 60%" />
 </colgroup>
 <thead>
 <tr class="header">

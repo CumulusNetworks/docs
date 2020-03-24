@@ -12,6 +12,7 @@ import docraptor
 import os, os.path
 import errno
 
+TEST = True
 
 if len(sys.argv) != 5:
     print("Please provide arguments in the following order <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS>.")
@@ -45,14 +46,22 @@ def safe_open_w(path):
     mkdir_p(os.path.dirname(path))
     return open(path, 'wb')
 
+def request_pdf(product):
+    '''
+    Make the HTTP request to build the PDF. 
 
-try:
+    product - one of "Linux" or "NetQ". 
+
+    Returns: 
+    Doc Raptor API "AsyncDoc" object
+    '''
     # Based on API example: https://github.com/DocRaptor/docraptor-python/blob/master/examples/async.py
     # This _must_ be an async request. The filesizes of CL and NetQ are unlikely return before timeout.
-    print("Sending NetQ PDF creation request")
-    netq_request = doc_api.create_async_doc({
-        "document_url": base_url + "cumulus-netq/pdf/",
+    print("Sending Cumulus {} PDF creation request".format(product))
+    pdf_request = doc_api.create_async_doc({
+        "document_url": base_url + "cumulus-{}/pdf/".format(product.lower()),
         "document_type": "pdf",
+        "test": TEST,
         "javascript": True,
         "prince_options": {
             "http_user": http_user,
@@ -60,20 +69,60 @@ try:
         }
     })
 
-    print("Sending Cumulus Linux PDF creation request")
-    cl_request = doc_api.create_async_doc({
-        "document_url": base_url + "cumulus-linux/pdf/",
-        "document_type": "pdf",
-        "javascript": True,
-        "prince_options": {
-            "http_user": http_user,
-            "http_password": http_pass
-        }
-    })
+    return pdf_request
 
+def get_dir_list():
+    full_dir_list = os.listdir('content')
+    old_releases = ["cumulus-linux-37", "cumulus-netq-24"]  # Older versions that have a single release we care about
+    return_dirs = []
+
+    for directory in full_dir_list:
+        if directory in old_releases:
+            return_dirs.append(directory)
+        else:
+            split_dir = directory.split("-")
+            if len(split_dir) == 3:
+                if split_dir[0] == "cumulus" and split_dir[2][0] == "4":
+                    return_dirs.append(directory)
+                elif split_dir[0] == "netq" and split_dir[3][0] == "3":
+                    return_dirs.append(directory)
+
+    return return_dirs
+
+def get_xls_files():
+    dir_list = get_dir_list()
+    for directory in dir_list:
+        for file in os.listdir("content/" + directory):
+            if file.endswith(".xml"):
+                print("Converting {} to xls".format(file))
+                create_response = doc_api.create_doc({
+                    "test": TEST,                                                   # test documents are free but watermarked
+                    "document_url": "{}{}/{}".format(base_url, directory, file),
+                    "name": "{}-{}".format(directory, file),                                 # help you find a document later
+                    "document_type": "xls",                                         # pdf or xls or xlsx
+                    "prince_options": {
+                        "http_user": http_user,
+                        "http_password": http_pass
+                    }
+                })
+                xls_file = file.replace(".xml", ".xls")
+                destination_file = "content/{}/{}".format(directory, xls_file)
+                print("Writing {} to {}\n".format(file, destination_file))
+                file = open(destination_file, "wb")
+                file.write(create_response)
+                file.close
+
+try:
+    netq_request = request_pdf("NetQ")
+    cl_request = request_pdf("Linux")
+    
     first_loop = True
     download_cl = False
     download_netq = False
+    download_xls = False
+    
+    print("Downloading XLS files...")
+    get_xls_files()
 
     while True:
         if(first_loop):

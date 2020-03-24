@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="{{ $styles.Permalink }}">
 
 <!-- The PDF page has a custom CSS sheet to control PDF output formatting -->
-{{if eq .Page.Type "pdf"}}
+{{if eq .Params.layout "pdf"}}
     {{ partial "pdf-head" . }}
 {{ end }}
 
@@ -30,7 +30,7 @@
 {{ "-->" | safeHTML }}
 
 <!-- clipboard.js support -->
-{{if ne .Page.Type "pdf"}}
+{{if ne .Params.layout "pdf"}}
     {{ $jsCodeCopy := resources.Get "js/codecopy.js"}}
     <script src = "{{ $jsCodeCopy.Permalink }}"> </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -9,7 +9,7 @@ pageID: 8362593
 ---
 You can use the `cl-resource-query` command to retrieve information
 about host entries, MAC entries, layer 2 and layer 3 routes, and
-[ECMP](../../Layer-3/Network-Topology/#load-balancing)
+{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}}
 routes that are in use. Because Cumulus Linux synchronizes routes
 between the kernel and the switching silicon, if the required resource
 pools in hardware fill up, new kernel routes can cause existing routes
@@ -104,7 +104,7 @@ Trident II switch:
 {{%notice note%}}
 
 - Ingress ACL and Egress ACL entries show the counts in single wide (*not* double-wide). For information about ACL entries, see
-[Estimate the Number of ACL Rules](../../System-Configuration/Netfilter-ACLs/#estimate-the-number-of-rules).
+{{<link url="Netfilter-ACLs#estimate-the-number-of-rules" text="Estimate the Number of ACL Rules">}}.
 - On a Spectrum switch in Cumulus Linux 3.7.4, the `cl-resource-query` command shows the number of TCAM entries used by the different types of ACL resources.
 - Cumulus Linux 3.7.11 and later provides the `net show system asic` command, which is the NCLU command equivalent of `cl-resource-query`.
 

@@ -16,7 +16,7 @@ scheduling in hardware. There are two configuration input files:
 
     {{%notice note%}}
 
-While it's possible to change the buffer limits in the `datapath.conf` file, Cumulus Networks strongly recommends you [work with a Cumulus support engineer](https://support.cumulusnetworks.com/hc/en-us/requests/new) to do so.
+While it's possible to change the buffer limits in the `datapath.conf` file, Cumulus Networks strongly recommends you {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="work with a Cumulus support engineer">}} to do so.
 
     {{%/notice%}}
 
@@ -39,9 +39,7 @@ packets with the same priority value are assigned to separate queues,
 which are assigned equal scheduling weights.
 
 Datapath configuration takes effect when you initialize `switchd`.
-Changes to the `traffic.conf` file require you to [restart the
-`switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd)
-service.
+Changes to the `traffic.conf` file require you to {{<link url="Configuring-switchd#restart-switchd" text="restart the `switchd`">}} service.
 
 {{%notice note%}}
 
@@ -56,9 +54,7 @@ platforms only:
 ## Commands
 
 If you modify the configuration in the
-`/etc/cumulus/datapath/traffic.conf` file, you must [restart
-`switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd)
-for the changes to take effect:
+`/etc/cumulus/datapath/traffic.conf` file, you must {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}} for the changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
 
@@ -67,7 +63,7 @@ for the changes to take effect:
 The following example `/etc/cumulus/datapath/traffic.conf` datapath
 configuration file applies to 10G, 40G, and 100G switches on Broadcom
 Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum
-[platforms](https://cumulusnetworks.com/hcl/) only. However, see the note
+{{<exlink url="https://cumulusnetworks.com/hcl/" text="platforms">}} only. However, see the note
 above for all the supported ASICs.
 
 Keep in mind the following about the configuration:
@@ -338,7 +334,7 @@ You can specify one of the following targets for SETQOS/setqos:
 
 | Option                  | Description   |
 | ----------------------- | ------------- |
-| \--set-cos INT          | Sets the datapath resource/queuing class value. Values are defined in [IEEE\_P802.1p](http://en.wikipedia.org/wiki/IEEE_P802.1p).         |
+| \--set-cos INT          | Sets the datapath resource/queuing class value. Values are defined in {{<exlink url="http://en.wikipedia.org/wiki/IEEE_P802.1p" text="IEEE_P802.1p">}}.  |
 | \--set-dscp value       | Sets the DSCP field in packet header to a value, which can be either a decimal or hex value.  |
 | \--set-dscp-class class | Sets the DSCP field in the packet header to the value represented by the DiffServ class value. This class can be EF, BE or any of the CSxx or AFxx classes. |
 
@@ -365,8 +361,8 @@ rule in the filter table, omit `-t mangle`.
 
 ## Configure Priority Flow Control
 
-*Priority flow control*, as defined in the 
-[IEEE 802.1Qbb standard](http://www.ieee802.org/1/pages/802.1bb.html), provides a
+*Priority flow control*, as defined in the
+{{<exlink url="http://www.ieee802.org/1/pages/802.1bb.html" text="IEEE 802.1Qbb standard">}}, provides a
 link-level flow control mechanism that can be controlled independently
 for each Class of Service (CoS) with the intention to ensure no data
 frames are lost when congestion occurs in a bridged network.
@@ -419,8 +415,8 @@ group. The lossless priority group has been removed from Cumulus Linux.
 {{%/notice%}}
 
 Priority flow control is fully supported on both
-[Broadcom](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2)
-and [Mellanox](https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox) switches.
+{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&asic%5B14%5D=Broadcom%20Tomahawk3&asic%5B15%5D=Broadcom%20Trident3%20X5&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2" text="Broadcom">}}
+and {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox" text="Mellanox">}} switches.
 
 PFC is disabled by default in Cumulus Linux. Enabling priority flow
 control (PFC) requires configuring the following settings in
@@ -519,7 +515,7 @@ sequences of contiguous ports; you can see which ports are contiguous in
         swp7
         ...
 
-[Restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd)
+{{<link url="Configuring-switchd#restart-switchd" text="Restart `switchd`">}}
 to allow the PFC configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -576,7 +572,7 @@ link_pause.pause_port_group.rx_enable = true
 link_pause.pause_port_group.tx_enable = true
 ```
 
-[Restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd)
+{{<link url="Configuring-switchd#restart-switchd" text="Restart `switchd`">}}
 to allow link pause configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -633,7 +629,7 @@ On switches using Spectrum ASICs, Cumulus Linux supports cut-through mode but do
 ## Configure Explicit Congestion Notification
 
 *Explicit Congestion Notification* (ECN) is defined by
-[RFC 3168](https://tools.ietf.org/html/rfc3168). ECN gives a Cumulus
+{{<exlink url="https://tools.ietf.org/html/rfc3168" text="RFC 3168">}}. ECN gives a Cumulus
 Linux switch the ability to mark a packet to signal impending congestion
 instead of dropping the packet outright, which is how TCP typically
 behaves when ECN is not enabled.
@@ -679,7 +675,7 @@ traffic is received. If the ECN bits are set, they remain set. The only
 way to overwrite ECN bits is to enable it - that is, set the ECN bits to
 *11*.
 
-ECN is supported on [Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum switches](https://cumulusnetworks.com/hcl).
+ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum switches">}}.
 
 <details>
 <summary>Click to learn how to configure ECN ... </summary>
@@ -725,7 +721,7 @@ through swp4 and swp6:
      ecn.ecn_port_group.max_threshold_bytes = 200000
      ecn.ecn_port_group.probability = 100
 
-[Restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd)
+{{<link url="Configuring-switchd#restart-switchd" text="Restart `switchd`">}}
 to allow the ECN configuration changes to take effect:
 
     cumulus@switch:~$ sudo systemctl restart switchd.service
@@ -733,10 +729,10 @@ to allow the ECN configuration changes to take effect:
 
 ## Check Interface Buffer Status
 
-On switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1), you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the [ASIC monitoring chapter](../../Monitoring-and-Troubleshooting/ASIC-Monitoring/) for details.
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link url="ASIC-Monitoring" text="ASIC monitoring chapter">}} for details.
 
 On Broadcom switches, the buffer status is not visible currently.
 
 ## Related Information
 
-- [iptables-extensions man page](http://ipset.netfilter.org/iptables-extensions.man.html)
+{{<exlink url="http://ipset.netfilter.org/iptables-extensions.man.html" text="iptables-extensions man page">}}

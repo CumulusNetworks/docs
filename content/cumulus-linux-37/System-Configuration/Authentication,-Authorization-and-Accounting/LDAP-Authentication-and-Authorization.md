@@ -109,7 +109,7 @@ using `debconf-set-selections`:
 After the install is complete, the *name service LDAP caching daemon*
 (`nslcd`) runs. This service handles all of the LDAP protocol
 interactions and caches information returned from the LDAP server. In
-the `/etc/nsswitch.conf` file, `ldap` **** is appended and is the
+the `/etc/nsswitch.conf` file, `ldap` is appended and is the
 secondary information source for *passwd*, *group*, and *shadow*. The
 local files (`/etc/passwd`, `/etc/groups` and `/etc/shadow`) are used
 first, as specified by the `compat` source.
@@ -130,7 +130,7 @@ getting locked out of the system.
 
 After installation, you need to update the main configuration file
 (`/etc/nslcd.conf`) to accommodate the expected LDAP server settings.
-The [nslcd.conf man page](http://linux.die.net/man/5/nslcd.conf) details
+The {{<exlink url="http://linux.die.net/man/5/nslcd.conf" text="nslcd.conf man page">}} details
 all the available configuration options. Some of the more important
 options relate to security and how the queries are handled.
 
@@ -436,8 +436,8 @@ lack. Therefore, it can be more complicated to configure on the client
 and each version of AD is a little different in how it works with
 Linux-based LDAP clients. Some more advanced configuration examples,
 from testing LDAP clients on Cumulus Linux with Active Directory
-(AD/LDAP), are available in our 
-[knowledge base](https://support.cumulusnetworks.com/hc/en-us/articles/204383797).
+(AD/LDAP), are available in the Cumulus
+{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204383797" text="knowledge base">}}.
 
 ## LDAP Verification Tools
 
@@ -548,12 +548,12 @@ There are several GUI LDAP clients available that help to work with LDAP
 servers. These are free tools to help show the structure of the LDAP
 database graphically.
 
-  - [Apache Directory Studio](http://directory.apache.org/studio/)
-  - [LDAPManager](http://ldapmanager.sourceforge.net/)
+  - {{<exlink url="http://directory.apache.org/studio/" text="Apache Directory Studio">}}
+  - {{<exlink url="http://ldapmanager.sourceforge.net/" text="LDAPManager">}}
 
 ## Related Information
 
-  - [Debian - configuring LDAP authentication](https://wiki.debian.org/LDAP/NSS)
-  - [Debian - configuring PAM to use LDAP](https://wiki.debian.org/LDAP/PAM)
-  - [GitHub - Arthur de Jong nslcd.conf file](https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf)
-  - [Debian backports](http://backports.debian.org/Instructions/)
+  - {{<exlink url="https://wiki.debian.org/LDAP/NSS" text="Debian - configuring LDAP authentication">}}
+  - {{<exlink url="https://wiki.debian.org/LDAP/PAM" text="Debian - configuring PAM to use LDAP">}}
+  - {{<exlink url="https://raw.githubusercontent.com/arthurdejong/nss-pam-ldapd/master/nslcd.conf" text="GitHub - Arthur de Jong nslcd.conf file">}}
+  - {{<exlink url="http://backports.debian.org/Instructions/" text="Debian backports">}}

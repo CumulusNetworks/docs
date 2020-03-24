@@ -7,4 +7,4 @@ aliases:
  - /pages/viewpage.action?pageId=8362649
 pageID: 8362649
 ---
-This section describes layer 2 configuration. Read this section to understand [bridging](Ethernet-Bridging-VLANs/), [bonding](Bonding-Link-Aggregation/), [multi-chassis link aggregation](Multi-Chassis-Link-Aggregation-MLAG/) (MLAG), [link layer discovery protocol](Link-Layer-Discovery-Protocol/) (LLDP), [LACP bypass](LACP-Bypass/), [virtual router redundancy](Virtual-Router-Redundancy-VRR-and-VRRP/) and [IGMP and MLD snooping](IGMP-and-MLD-Snooping/).
+This section describes layer 2 configuration. Read this section to understand {{<link url="Ethernet-Bridging-VLANs" text="bridging">}}, {{<link url="Bonding-Link-Aggregation" text="bonding">}}, {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="multi-chassis link aggregation">}} (MLAG), {{<link url="Link-Layer-Discovery-Protocol" text="link layer discovery protocol">}} (LLDP), {{<link url="LACP-Bypass" text="LACP bypass">}}, {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="virtual router redundancy">}} and {{<link url="IGMP-and-MLD-Snooping" text="IGMP and MLD snooping">}}.

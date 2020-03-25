@@ -3,6 +3,7 @@ title: What's New
 author: Cumulus Networks
 weight: 5
 toc: 2
+draft: True
 ---
 Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains several new features and improvements:
 

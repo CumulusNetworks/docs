@@ -70,7 +70,9 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 </tr>
 <tr>
 <td>CM-28925</td>
-<td><p>The global MTU setting in the mtu.json file does not take effect on SVI interfaces after ifreload -a. A temporary workaround is to run systemctl restart networking or to restart the switch. Note that restarting networking is a disruptive operation. </p></td>
+<td><p>The global MTU setting in the mtu.json file does not take effect on SVI interfaces after ifreload -a. <br/>
+To work around this issue, run sudo systemctl restart networking or restart the switch. <br/>
+Note: A network restart is a disruptive operation. </p></td>
 <td>4.1.0</td>
 <td></td>
 </tr>

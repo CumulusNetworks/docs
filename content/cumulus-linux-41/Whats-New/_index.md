@@ -1,5 +1,5 @@
 ---
-title: What's New in Cumulus Linux 4.1
+title: What's New
 author: Cumulus Networks
 weight: 5
 toc: 2
@@ -11,7 +11,7 @@ Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains sev
 - Dell 5212F-ON (25G Trident3 X5)
 - Mellanox SN2010 with 32G RAM (25G Spectrum)
 
-To see a list of all the platforms suppoerted in Cumulus Linux 4.1.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+To see a list of all the platforms supported in Cumulus Linux 4.1.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 
 ## New Features and Enhancements
 

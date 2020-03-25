@@ -32,7 +32,7 @@ frontend:
         # Meaning we can't generate it from the results of /this/ build. 
         # This only runs in the master branch, and assumes that stage was merged into master to trigger the build
         # - if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 20 -a -u cumulus -p $PASSWORD https://stage.docs.cumulusnetworks.com/ --ignore-url=".xls" --ignore-url=pdf --ignore-url="\/cumulus-linux-3[0-6]+" --ignore-url="\/cumulus-netq-1*" --ignore-url="\/cumulus-netq-2[1-3]" --ignore-url="\/cumulus-linux-25esr" --ignore-url="\/cumulus-rmp" --ignore-url="\/cumulus-vx-25"; fi
-        - linkchecker -t 20 -a -u cumulus -p $PASSWORD https://stage.docs.cumulusnetworks.com/ --ignore-url=".xls" --ignore-url=pdf --ignore-url="\/cumulus-linux-3[0-6]+" --ignore-url="\/cumulus-netq-1*" --ignore-url="\/cumulus-netq-2[1-3]" --ignore-url="\/cumulus-linux-25esr" --ignore-url="\/cumulus-rmp" --ignore-url="\/cumulus-vx-25" & pid="$!""
+        - linkchecker -t 20 -a -u cumulus -p $PASSWORD https://stage.docs.cumulusnetworks.com/ --ignore-url=".xls" --ignore-url=pdf --ignore-url="\/cumulus-linux-3[0-6]+" --ignore-url="\/cumulus-netq-1*" --ignore-url="\/cumulus-netq-2[1-3]" --ignore-url="\/cumulus-linux-25esr" --ignore-url="\/cumulus-rmp" --ignore-url="\/cumulus-vx-25" &
         # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- echo Building PDFs...
@@ -57,7 +57,7 @@ frontend:
         # cutting a release is a "nice to have" feature but should not break the build.
         - echo "Creating new Github release"
         - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_release.py $GITHUB_TOKEN  ; fi
-        - wait $pid
+        - wait 
   artifacts:
     files:
       - '**/*'

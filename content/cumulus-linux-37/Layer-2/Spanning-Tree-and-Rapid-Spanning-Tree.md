@@ -17,8 +17,8 @@ an active link fails. STP is enabled by default in Cumulus Linux.
 The STP modes Cumulus Linux supports vary depending upon whether the
 traditional or VLAN-aware bridge driver mode is in use.
 
-- Bridges configured in *[VLAN-aware](../Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)* mode operate **only** in RSTP mode.
-- Bridges configured in [*traditional* mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/) operate in both PVST and PVRST mode. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
+- Bridges configured in *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}}* mode operate **only** in RSTP mode.
+- Bridges configured in *{{<link url="Traditional-Bridge-Mode" text="traditional">}}* operate in both PVST and PVRST mode. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
 
 ### STP for a VLAN-aware Bridge
 
@@ -196,7 +196,7 @@ errors are located in `/var/log/syslog`.
 `mstpd` is the preferred utility for interacting with STP on Cumulus
 Linux. `brctl` also provides certain methods for configuring STP;
 however, they are not as complete as the tools offered in `mstpd` and
-[output from brctl can be misleading](https://support.cumulusnetworks.com/hc/en-us/articles/212153658-brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking)
+{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/212153658-brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking" text="output from brctl can be misleading">}}
 in some cases.
 
 {{%/notice%}}
@@ -309,7 +309,7 @@ learning states to move immediately to forwarding.
 {{%notice warning%}}
 
 Using PortAdminEdge mode has the potential to cause loops if it is not
-accompanied by the [BPDU guard](#bpdu-guard) feature.
+accompanied by the {{<link url="#bpdu-guard" text="BPDU guard">}} feature.
 
 {{%/notice%}}
 
@@ -347,7 +347,7 @@ iface swp5
 
 **Example Traditional Bridge Configuration**
 
-For a bridge in [traditional mode](../Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/),
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}},
 configure `PortAdminEdge` under the bridge stanza in `/etc/network/interfaces`:
 
 ```
@@ -593,10 +593,9 @@ iface swp6
 (broadcast, unknown unicast, multicast) traffic on layer 2 switch port
 interfaces, which can cause poor network performance.
 
-You configure storm control for each physical port by [configuring `switchd`](../../System-Configuration/Configuring-switchd/). For
+You configure storm control for each physical port by {{<link url="Configuring-switchd" text="configuring `switchd`">}}. For
 example, to enable unicast and multicast storm control at 400 packets
-per second (pps) and 3000 pps, respectively, for swp1, run the
-following:
+per second (pps) and 3000 pps, respectively, for swp1, run the following:
 
 ```
 cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/broadcast'
@@ -615,27 +614,23 @@ interface.swp1.storm_control.multicast = 3000
 interface.swp1.storm_control.unknown_unicast = 3000
 ```
 
-Save the file then 
-[restart `switchd`](../../System-Configuration/Configuring-switchd/#restart-switchd)
-to make the changes persist across reboots.
+Save the file then {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}} to make the changes persist across reboots.
 
 ### Spanning Tree Parameter List
 
 Spanning tree parameters are defined in the IEEE
-[802.1D](http://standards.ieee.org/findstds/standard/802.1D-2004.html),
-[802.1Q](http://standards.ieee.org/findstds/standard/802.1Q-2018.html)
-specifications.
+{{<exlink url="https://standards.ieee.org/findstds/standard/802.1D-2004.html" text="802.1D">}} and
+{{<exlink url="https://standards.ieee.org/standard/802_1Q-2018.html" text="802.1Q">}} specifications.
 
 The table below describes the STP configuration parameters available in
 Cumulus Linux. For a comparison of STP parameter configuration between
-`mstpctl` and other vendors, [read this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/206908397).
+`mstpctl` and other vendors, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/206908397" text="knowledge base article">}}.
 
 {{%notice note%}}
 
 Most of these parameters are blacklisted in the `ifupdown_blacklist`
 section of the `/etc/netd.conf` file. Before you configure these
-parameters, you must
-[edit the file](../../System-Configuration/Network-Command-Line-Utility-NCLU/#advanced-configuration) 
+parameters, you must {{<link url="Network-Command-Line-Utility-NCLU/#advanced-configuration" text="edit the file">}}
 to remove them from the blacklist.
 
 {{%/notice%}}
@@ -774,12 +769,10 @@ can be accomplished using PVRSTP or PVSTP.
 
 ## Related Information
 
-The source code for `mstpd`/`mstpctl` was written by
-[Vitalii Demianets](mailto:vitas%40nppfactor.kiev.ua) and is hosted at
-the URL below.
+The source code for `mstpd`/`mstpctl` was written by {{<exlink url="mailto:vitas%40nppfactor.kiev.ua" text="Vitalii Demianets">}} and is hosted at the URL below.
 
-- [GitHub - mstpd project](https://github.com/mstpd/mstpd)
-- [Wikipedia - Spanning Tree Protocol](http://en.wikipedia.org/wiki/Spanning_Tree_Protocol)
+- {{<exlink url="https://github.com/mstpd/mstpd" text="GitHub - mstpd project">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/Spanning_Tree_Protocol" text="Wikipedia - Spanning Tree Protocol">}}
 - brctl(8)
 - bridge-utils-interfaces(5)
 - ifupdown-addons-interfaces(5)

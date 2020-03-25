@@ -631,17 +631,6 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 
 </details>
 
-### Storm Control
-
-Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.
-
-You configure storm control for each physical port by {{%link url="Configuring-switchd" text="configuring `switchd`"%}}. For example, to enable unicast and multicast storm control at 400 packets per second (pps) and 3000 pps for swp1, run the following commands:
-
-```
-cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
-cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
-```
-
 ### Spanning Tree Parameter List
 
 Spanning tree parameters are defined in the IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" text="802.1D">}} and {{<exlink url="https://standards.ieee.org/standard/802_1Q-2018.html" text="802.1Q">}} specifications.

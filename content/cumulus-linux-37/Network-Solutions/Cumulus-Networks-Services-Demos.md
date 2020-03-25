@@ -18,7 +18,7 @@ code and simulate failure scenarios.
 
 The Cumulus Networks *reference topology* includes cabling (in DOT
 format for dual use with
-[PTM](../../Layer-1-and-Switch-Ports/Prescriptive-Topology-Manager-PTM/)),
+{{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}}),
 MAC addressing, IP addressing, switches and servers. This topology is
 blessed by the Professional Services Team at Cumulus Networks to fit a
 majority of designs seen in the field.
@@ -30,7 +30,7 @@ majority of designs seen in the field.
 | Hostname        | eth0 IP       | eth0 MAC          | Interface Count                                                  |
 | --------------- | ------------- | ----------------- | ---------------------------------------------------------------- |
 | oob-mgmt-server | 192.168.0.254 | any               |                                                                  |
-| oob-mgmt-switch | 192.168.0.1   | any               | [Cumulus RMP](https://cumulusnetworks.com/cumulus-rmp/overview/) |
+| oob-mgmt-switch | 192.168.0.1   | any               | {{<exlink url="https://cumulusnetworks.com/cumulus-rmp/overview/" text="Cumulus RMP">}} |
 | leaf01          | 192.168.0.11  | A0:00:00:00:00:11 | 48x10g w/ 6x40g uplink                                           |
 | leaf02          | 192.168.0.12  | A0:00:00:00:00:12 | 48x10g w/ 6x40g uplink                                           |
 | leaf03          | 192.168.0.13  | A0:00:00:00:00:13 | 48x10g w/ 6x40g uplink                                           |
@@ -51,17 +51,17 @@ majority of designs seen in the field.
 #### Virtual Appliance
 
 You can build out the reference topology in hardware or using Cumulus VX
-(the free Cumulus Networks virtual appliance). The 
-[Cumulus Reference Topology using Vagrant](https://github.com/CumulusNetworks/cldemo-vagrant) 
+(the free Cumulus Networks virtual appliance). The
+{{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Reference Topology using Vagrant">}} 
 is essentially the reference topology built out inside Vagrant with
 VirtualBox or KVM. The installation and setup instructions for bringing
 up the entire reference topology on a laptop or server are on the
-[cldemo-vagrant GitHub repo](https://github.com/CumulusNetworks/cldemo-vagrant).
+{{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="cldemo-vagrant GitHub repo">}}.
 
 #### Hardware
 
-Any switch from the 
-[hardware compatibility list](https://cumulusnetworks.com/support/linux-hardware-compatibility-list/)
+Any switch from the
+{{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}}
 is compatible with the topology as long as you follow the interface
 count from the table above. Of course, in your own production
 environment, you don't have to use exactly the same devices and cabling
@@ -69,6 +69,5 @@ as outlined above.
 
 ### Demos
 
-You can find an up to date list of all the demos in the 
-[cldemo-vagrant GitHub repository](https://github.com/CumulusNetworks/cldemo-vagrant#available-demos),
-which is available to anyone free of charge.
+You can find an up to date list of all the demos in the
+{{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant#available-demos" text="cldemo-vagrant GitHub repository">}}, which is available to anyone free of charge.

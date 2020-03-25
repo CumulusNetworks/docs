@@ -7,15 +7,15 @@ aliases:
  - /pages/viewpage.action?pageId=8362670
 pageID: 8362670
 ---
-Cumulus Networks recommends you use a 
-[VLAN-aware bridge](../VLAN-aware-Bridge-Mode/)
+Cumulus Networks recommends you use a
+{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}
 on your switch. You use traditional mode bridges only if you need to run
 more than one bridge on the switch or if you need to use PVSTP+.
 
 ## Create a Traditional Mode Bridge
 
 You can configure a traditional mode bridge either using
-[NCLU](../../../System-Configuration/Network-Command-Line-Utility-NCLU/)
+{{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}
 or manually editing the `/etc/network/interfaces` file.
 
 ### Configure a Traditional Bridge with NCLU
@@ -26,7 +26,7 @@ NCLU has limited support for configuring bridges in traditional mode.
 
 The traditional bridge must be named something other than *bridge*, as that name
 is reserved for the single
-[VLAN-aware bridge](../VLAN-aware-Bridge-Mode/)
+{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}
 that you can configure on the switch.
 
 {{%/notice%}}
@@ -146,7 +146,7 @@ To create a traditional mode bridge manually, you need to hand edit the
     <tr class="odd">
     <td><p>bridge-stp</p></td>
     <td><p>Enables spanning tree protocol on this bridge. The default spanning tree mode is Per VLAN Rapid Spanning Tree Protocol (PVRST).</p>
-    <p>For more information on spanning-tree configurations see the configuration section: <a href="../../Spanning-Tree-and-Rapid-Spanning-Tree">Spanning Tree and Rapid Spanning Tree</a>.</p></td>
+    <p>For more information on spanning-tree configurations see {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree">}}.</p></td>
     <td><p>off</p></td>
     </tr>
     </tbody>
@@ -204,7 +204,7 @@ This example configuration looks like this in the
 
 ## Trunks in Traditional Bridge Mode
 
-The [IEEE standard](http://www.ieee802.org/1/pages/802.1Q.html) for
+The {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE standard">}} for
 trunking is 802.1Q. The 802.1Q specification adds a 4 byte header within
 the Ethernet frame that identifies the VLAN of which the frame is a
 member.
@@ -260,14 +260,14 @@ To create the above example, add the following configuration to the
 
 ### VLAN Tagging Examples
 
-You can find more examples of VLAN tagging in 
-[the VLAN tagging chapter](../VLAN-Tagging/).
+You can find more examples of VLAN tagging in
+{{<link url="VLAN-Tagging" text="the VLAN tagging chapter">}}.
 
 ### Configure ARP Timers
 
 Cumulus Linux does not often interact directly with end systems as much
 as end systems interact with one another. Thus, after a successful
-[address resolution protocol](http://linux-ip.net/html/ether-arp.html)
+{{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}}
 (ARP) places a neighbor into a reachable state, Cumulus Linux may not
 interact with the client again for a long enough period of time for the
 neighbor to move into a stale state. To keep neighbors in the reachable
@@ -279,7 +279,7 @@ the hardware forwarding.
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). You can
 change this setting by following the procedures outlined in this
-[knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
+{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202012933" text="knowledge base article">}}.
 
 ## Caveats
 

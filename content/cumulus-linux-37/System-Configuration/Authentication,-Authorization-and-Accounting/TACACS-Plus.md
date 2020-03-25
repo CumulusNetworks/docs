@@ -10,7 +10,7 @@ pageID: 8362558
 Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication,
 and Authorization) in a transparent way with minimal configuration. The
 client implements the TACACS+ protocol as described in
-[this IETF document](https://tools.ietf.org/html/draft-grant-tacacs-02).
+{{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}.
 There is no need to create accounts or directories on the switch. Accounting
 records are sent to all configured TACACS+ servers by default. Use of
 per-command authorization requires additional setup on the switch.
@@ -19,7 +19,7 @@ per-command authorization requires additional setup on the switch.
 
   - Authentication using PAM; includes `login`, `ssh`, `sudo` and `su`
   - Runs over the eth0 management interface
-  - Ability to run in the [management VRF](../../../Layer-3/Management-VRF/)
+  - Ability to run in the {{<link url="Management-VRF" text="management VRF">}}
   - TACACS+ privilege 15 users can run any command with sudo using the
     `/etc/sudoers.d/tacplus` file that is installed by the
     `libtacplus-map1` package
@@ -80,7 +80,7 @@ configuration to see the changed server list.
 
 You can also configure the IP address used as the source IP address when
 communicating with the TACACS+ server. See
-[TACACS Configuration Parameters](#tacacs-configuration-parameters) below for the
+{{<link url="#tacacs-configuration-parameters" text="TACACS Configuration Parameters">}} below for the
 full list of TACACS+ parameters.
 
 Following is the complete list of the TACACS+ client configuration
@@ -145,7 +145,7 @@ Due to SSH and login processing mechanisms, Cumulus Linux needs to know the foll
 
 The only way to do this for non-local users &mdash; that is, users not present in the local password file &mdash; is to send a TACACS+ authorization request as the first communication with the TACACS+ server, prior to the authentication and before a password is requested from the user logging in.
 
-Some TACACS+ servers need special configuration to allow authorization requests prior to authentication. [Contact Cumulus Support](https://support.cumulusnetworks.com/hc/en-us/requests/new) if your TACACS+ server does not allow the initial authorization request.
+Some TACACS+ servers need special configuration to allow authorization requests prior to authentication. {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="Contact Cumulus Support">}} if your TACACS+ server does not allow the initial authorization request.
 
 ## Local Fallback Authentication
 
@@ -226,7 +226,7 @@ accounting. These records are installed as part of the package.
 
 `audisp-tacplus` installs the audit rules for command accounting.
 Modifying the configuration files is not usually necessary. However,
-when a [management VRF](../../../Layer-3/Management-VRF/) is
+when a {{<link url="Management-VRF" text="management VRF">}} is
 configured, the accounting configuration does need special modification
 because the `auditd` service starts prior to networking. It is necessary
 to add the *vrf* parameter and to signal the `audisp-tacplus` process to
@@ -318,8 +318,8 @@ The following table provides the command options:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 20%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -328,15 +328,15 @@ The following table provides the command options:
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>-i</p></td>
 <td><p>Initializes the environment. You only need to issue this option once per username.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>-a</p></td>
 <td><p>You can invoke the utility with the <code>-a</code> option as many times as desired. For each command in the <code>-a</code> list, a symbolic link is created from <code>tacplus-auth</code> to the relative portion of the command name in the local <code>bin</code> subdirectory. You also need to enable these commands on the TACACS+ server (refer to the TACACS+ server documentation). It is common to have the server allow some options to a command, but not others.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>-f</p></td>
 <td><p>Re-initializes the environment. If you need to restart, issue the <code>-f</code> option with <code>-i</code> to force the re-initialization; otherwise, repeated use of <code>-i</code> is ignored.</p>
 <p>As part of the initialization:</p>
@@ -418,8 +418,8 @@ The table below describes the configuration options available:
 
 <table>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 30%" />
+<col style="width: 70%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -428,18 +428,18 @@ The table below describes the configuration options available:
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>debug</p></td>
 <td><p>The output debugging information through <code>syslog(3)</code>.</p>
 <p>{{%notice note%}}</p>
 <p>Debugging is heavy, including passwords. Do not leave debugging enabled on a production switch after you have completed troubleshooting.</p>
 <p>{{%/notice%}}</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>secret=STRING</p></td>
 <td><p>The secret key used to encrypt and decrypt packets sent to and received from the server. You can specify the secret key more than once in any order with respect to the server= parameter. When fewer secret= parameters are specified, the last secret given is used for the remaining servers. Only use this parameter in files such as <code>/etc/tacplus_servers</code> that are not world readable.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>server=HOSTNAME</p>
 <p>server=IP_ADDR</p></td>
 <td><p>Adds a TACACS+ server to the servers list. Servers are queried in turn until a match is found, or no servers remain in the list. Can be specified up to 7 times. An IP address can be optionally followed by a port number, preceded by a ":". The default port is 49.</p>
@@ -447,23 +447,23 @@ The table below describes the configuration options available:
 <p>When sending accounting records, the record is sent to all servers in the list if <code>acct_all=1,</code> which is the default.</p>
 <p>{{%/notice%}}</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>source_ip=IPv4_ADDRESS</p></td>
 <td><p>Sets the IP address used as the source IP address when communicating with the TACACS+ server. You must specify an IPv4 address. IPv6 addresses and hostnames are not supported. The address must must be valid for the interface being used.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>timeout=SECONDS</p></td>
 <td><p>TACACS+ server(s) communication timeout. This parameter defaults to 10 seconds in the <code>/etc/tacplus_servers</code> file, but defaults to 5 seconds in the <code>/etc/tacplus_nss.conf</code> file.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>include=/file/name</p></td>
 <td><p>A supplemental configuration file to avoid duplicating configuration information. You can include up to 8 more configuration files.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>min_uid=value</p></td>
 <td><p>The minimum user ID that the NSS plugin looks up. Setting it to <em>0</em> means uid 0 (root) is never looked up, which is desirable for performance reasons. The value should not be greater than the local TACACS+ user IDs (0 through 15), to ensure they can be looked up.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>exclude_users=user1,user2,...</p></td>
 <td><p>A comma-separated list of usernames that are never looked up by the NSS plugin, set in the <code>tacplus_nss.conf</code> file. You cannot use * (asterisk) as a wild card in the list. While it's not a legal username, bash may lookup this as a user name during pathname completion, so it is included in this list as a username string.</p>
 <p>{{%notice warning%}}</p>
@@ -471,33 +471,33 @@ The table below describes the configuration options available:
 <p>If you do remove the cumulus user, Cumulus Networks recommends you add some other local fallback user that does not rely on TACACS but is a member of sudo and netedit groups, so that these accounts can run <code>sudo</code> and NCLU commands.</p>
 <p>{{%/notice%}}</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>login=STRING</p></td>
 <td><p>TACACS+ authentication service (pap, chap, or login). The default value is <em>pap</em>.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>user_homedir=1</p></td>
 <td><p>This is not enabled by default. When enabled, a separate home directory for each TACACS+ user is created when the TACACS+ user first logs in. By default, the home directory in the mapping accounts in <code>/etc/passwd</code> (<code>/home/tacacs0</code> ... <code>/home/tacacs15</code>) is used. If the home directory does not exist, it is created with the <code>mkhomedir_helper</code> program, in the same manner as <code>pam_mkhomedir</code>.</p>
 <p>This option is not honored for accounts with restricted shells when per-command authorization is enabled.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>acct_all=1</p></td>
 <td><p>Configuration option for <code>audisp_tacplus</code> and <code>pam_tacplus</code> sending accounting records to all supplied servers (1), or the first server to respond (0). The default value is <em>1</em>.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>timeout=<strong>SECS</strong></p></td>
 <td><p>Sets the timeout in seconds for connections to each TACACS+ server. The default is 10 seconds for all lookups except that NSS lookups use a 5 second timeout.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>vrf=<strong>VRFNAME</strong></p></td>
 <td><p>If the management network is in a VRF, set this variable to the VRF name. This would usually be "mgmt". When this variable is set, the connection to the TACACS+ accounting servers is made through the named VRF.</p></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p>service</p></td>
 <td><p>TACACS+ accounting and authorization service. Examples include shell, pap, raccess, ppp, and slip.</p>
 <p>The default value is <em>shell</em>.</p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p>protocol</p></td>
 <td><p>TACACS+ protocol field. This option is use dependent.</p>
 <p>PAM uses the SSH protocol.</p></td>
@@ -619,16 +619,16 @@ daemon with:
 The following table describes the different pieces of software involved
 with delivering TACACS.
 
-| Package Name                    | Description                                                                                                                                                                                                                                                                                                                                                                      |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| audisp-tacplus\_1.0.0-1-cl3u3   | This package uses auditing data from `auditd` to send accounting records to the TACACS+ server and is started as part of `auditd`.                                                                                                                                                                                                                                               |
-| libtac2\_1.4.0-cl3u2            | Basic TACACS+ server utility and communications routines.                                                                                                                                                                                                                                                                                                                        |
-| libnss-tacplus\_1.0.1-cl3u3     | Provides an interface between `libc` username lookups, the mapping functions, and the TACACS+ server.                                                                                                                                                                                                                                                                            |
-| tacplus-auth-1.0.0-cl3u1        | This package includes the `tacplus-restrict` setup utility, which enables you to perform per-command TACACS+ authorization. Per-command authorization is not done by default.                                                                                                                                                                                                    |
-| libpam-tacplus\_1.4.0-1-cl3u2   | A modified version of the standard Debian package.                                                                                                                                                                                                                                                                                                                               |
+| Package Name    | Description        |
+| ------------------------------- | --------------------------------------- |
+| audisp-tacplus\_1.0.0-1-cl3u3   | This package uses auditing data from `auditd` to send accounting records to the TACACS+ server and is started as part of `auditd`.                            |
+| libtac2\_1.4.0-cl3u2            | Basic TACACS+ server utility and communications routines.   |
+| libnss-tacplus\_1.0.1-cl3u3     | Provides an interface between `libc` username lookups, the mapping functions, and the TACACS+ server.  |
+| tacplus-auth-1.0.0-cl3u1        | This package includes the `tacplus-restrict` setup utility, which enables you to perform per-command TACACS+ authorization. Per-command authorization is not done by default.             |
+| libpam-tacplus\_1.4.0-1-cl3u2   | A modified version of the standard Debian package.   |
 | libtacplus-map1\_1.0.0-cl3u2    | The mapping functionality between local and TACACS+ users on the server. Sets the immutable `sessionid` and auditing UID to ensure the original user can be tracked through multiple processes and privilege changes. Sets the auditing `loginuid` as immutable if supported. Creates and maintains a status database in `/run/tacacs_client_map` to manage and lookup mappings. |
-| libsimple-tacacct1\_1.0.0-cl3u2 | Provides an interface for programs to send accounting records to the TACACS+ server. Used by `audisp-tacplus`.                                                                                                                                                                                                                                                                   |
-| libtac2-bin\_1.4.0-cl3u2        | Provides the `tacc` testing program and TACACS+ man page.                                                                   |
+| libsimple-tacacct1\_1.0.0-cl3u2 | Provides an interface for programs to send accounting records to the TACACS+ server. Used by `audisp-tacplus`.   |
+| libtac2-bin\_1.4.0-cl3u2        | Provides the `tacc` testing program and TACACS+ man page.                     |
 
 ## Limitations
 
@@ -666,7 +666,6 @@ created by each user.
   - For commands that do not execute other commands (for example,
     changes to configurations in an editor, or actions with tools like
     `clagctl` and `vtysh`), no additional accounting is done.
-
   - Per-command authorization is implemented at the most basic level
     (commands are permitted or denied based on the standard Linux user
     permissions for the local TACACS users and only privilege level 15

@@ -281,12 +281,6 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
     <summary>Optional: Prepare a USB Drive inside Cumulus Linux</summary>
 
-    {{%notice warning%}}
-
-    Use caution when performing the actions below; it is possible to severely damage your system with the following utilities.
-
-    {{%/notice%}}
-
     1. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine on which device your USB drive can be found. For example, `sudo fdisk -l /dev/sdb`.
 
         These instructions assume your USB drive is the `/dev/sdb` device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the `/dev/sda` device. Make sure to modify the commands below to use the proper device for your USB drive.
@@ -330,11 +324,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
     You can also use any of the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes mentioned here">}}.
 
-    {{%notice warning%}}
-
     When using a Mac or Windows computer to rename the installation file, the file extension might still be present. Make sure to remove the file extension otherwise ONIE is not able to detect the file.
-
-    {{%/notice%}}
 
 4. Insert the USB drive into the switch, then continue with the appropriate instructions below for your x86 or ARM platform.
 
@@ -349,11 +339,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
-    {{%notice note%}}
-
     SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
-
-    {{%/notice%}}
 
 2. Monitor the console and select the ONIE option from the first GRUB screen shown below.
 
@@ -368,8 +354,8 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     ```
     ONIE: OS Install Mode  ...
 
-    Version : quanta_common_rangeley-2014.05.05-6919d98-201410171013
-    Build  Date: 2014-10-17T10:13+0800
+    Version : quanta_common_rangeley-2019.05.05-6919d98-201410171013
+    Build  Date: 2019-10-17T10:13+0800
     Info: Mounting kernel filesystems...  done.
     Info: Mounting LABEL=ONIE-BOOT on /mnt/onie-boot  ...
     initializing eth0...
@@ -388,11 +374,11 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     Control File Contents
     =====================
     Description: Cumulus Linux
-    OS-Release:  4.0.0~1571178373.763fd151
+    OS-Release:  4.1.0
     Architecture: amd64
     Date:  Fri, 22 November 2019 17:10:30 -0700
     Installer-Version:  1.2
-    Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley 
+    Platforms: accton_as5712_54x accton_as6712_32x  mlx_sx1400_i73612 dell_s4000_c2338 dell_s3000_c2338  cel_redstone_xp cel_smallstone_xp cel_pebble quanta_panther  quanta_ly8_rangeley quanta_ly6_rangeley quanta_ly9_rangeley
 
     Homepage: http://www.cumulusnetworks.com/
     ```
@@ -412,11 +398,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
-    {{%notice note%}}
-
     SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
-
-    {{%/notice%}}
 
 2. Interrupt the normal boot process before the countdown (shown below) completes. Press any key to stop the autoboot.
 
@@ -426,7 +408,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     CPU0: P2020, Version: 2.1, (0x80e20021)
     Core: E500, Version: 5.1, (0x80211051)
     Clock Configuration:
-        CPU0:1200 MHz, CPU1:1200 MHz, 
+        CPU0:1200 MHz, CPU1:1200 MHz,
         CCB:600 MHz,
         DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
     L1: D-cache 32 kB enabled
@@ -479,9 +461,9 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
     Control File Contents
     =====================
     Description: Cumulus Linux
-    OS-Release: 3.0.0-3b46bef-201509041633-build
+    OS-Release: 4.1.0
     Architecture: arm
-    Date: Fri, 27 May 2016 17:08:35 -0700
+    Date: Fri, 13 March 2020 17:08:35 -0700
     Installer-Version: 1.2
     Platforms: accton_as4600_54t, accton_as6701_32x, accton_5652, accton_as5610_52x, dni_6448, dni_7448, dni_c7448n, cel_kennisis, cel_redstone, cel_smallstone, cumulus_p2020, quanta_lb9, quanta_ly2, quanta_ly2r, quanta_ly6_p2020
     Homepage: http://www.cumulusnetworks.com/

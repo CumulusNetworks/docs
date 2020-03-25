@@ -26,22 +26,19 @@ hosts, DHCP relay, and DHCP server using the following topology:
 The `dhcpd` and `dhcrelay` services are disabled by default. After you
 finish configuring the DHCP relays and servers, you need to start those
 services. If you intend to run these services within a
-[VRF](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/),
-including the [management VRF](../../Layer-3/Management-VRF/),
-follow [these steps](../../Layer-3/Management-VRF/#run-services-within-the-management-vrf) for
-configuring them. See also the [VRF chapter](../../Layer-3/Virtual-Routing-and-Forwarding-VRF/#dhcp-with-vrf).
+{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
+including the {{<link url="Management-VRF" text="management VRF">}},
+follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} for
+configuring them. See also the {{<link url="Virtual-Routing-and-Forwarding-VRF#dhcp-with-vrf" text="VRF chapter">}}.
 
 {{%/notice%}}
 
 ## Configure IPv4 DHCP Relays
 
-Configure `isc-dhcp-relay` using
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/),
-specifying the IP addresses to each DHCP server and the interfaces that
-are used as the uplinks.
+Configure `isc-dhcp-relay` using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}},
+specifying the IP addresses to each DHCP server and the interfaces that are used as the uplinks.
 
-In the examples below, the DHCP server IP address is 172.16.1.102, VLAN
-1 (the SVI is vlan1) and the uplinks are swp51 and swp52.
+In the examples below, the DHCP server IP address is 172.16.1.102, VLAN 1 (the SVI is vlan1) and the uplinks are swp51 and swp52.
 
 {{%notice warning%}}
 
@@ -49,7 +46,7 @@ You configure a DHCP relay on a per-VLAN basis, specifying the SVI, not
 the parent bridge; in our example, you would specify v*lan1* as the SVI
 for VLAN 1; do not specify the bridge named *bridge* in this case.
 
-As per [RFC 3046](https://tools.ietf.org/html/rfc3046), you can specify
+As per {{<exlink url="https://tools.ietf.org/html/rfc3046" text="RFC 3046">}}, you can specify
 as many server IP addresses that can fit in 255 octets, specifying each
 address only once.
 
@@ -110,15 +107,14 @@ with anycast traffic, the SVI IP address is not unique to each rack; it
 is typically shared amongst all racks. Most EVPN ToR deployments only
 possess a single unique IP address, which is the loopback IP address.
 
-[RFC 3527](https://tools.ietf.org/html/rfc3527) enables the DHCP server
+{{<exlink url="https://tools.ietf.org/html/rfc3527" text="RFC 3527">}} enables the DHCP server
 to react to these environments by introducing a new parameter to the
 DHCP header called the *link selection sub-option*, which is built by
 the DHCP relay agent. The link selection sub-option takes on the normal
 role of the giaddr in relaying to the DHCP server which subnet is
 correlated to the DHCP request. When using this sub-option, the giaddr
 continues to be present but only relays the return IP address that is to
-be used by the DHCP server; the giaddr becomes the unique loopback IP
-address.
+be used by the DHCP server; the giaddr becomes the unique loopback IP address.
 
 When enabling RFC 3527 support, you can specify an interface, such as
 the loopback interface or a switchport interface to be used as the
@@ -312,8 +308,7 @@ The `/etc/default/isc-dhcp-relay` variables file needs to reference both
 interfaces participating in DHCP relay (facing the server and facing the
 client) and the IP address of the server. If the client-facing interface
 is a bridge port, specify the switch virtual interface (SVI) name if you
-are using a
-[VLAN-aware bridge](../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/)
+are using a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}
 (for example, vlan100), or the bridge name if you are using traditional
 bridging (for example, br100).
 </details>

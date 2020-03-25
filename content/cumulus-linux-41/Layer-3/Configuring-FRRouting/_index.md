@@ -466,7 +466,7 @@ Spine01-1(config)# do sh run
 Building configuration...
 Current configuration:
 !
-frr version 4.0+cl3u1
+frr version 7.0+cl4u3
 frr defaults datacenter
 hostname Spine01
 hostname Spine01-1

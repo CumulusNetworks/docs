@@ -121,8 +121,8 @@ For information about the version of Cumulus Linux running on the switch, run th
 cumulus@switch:~$ net show version
 NCLU_VERSION=1.0-cl4u1
 DISTRIB_ID="Cumulus Linux"
-DISTRIB_RELEASE=4.0.0
-DISTRIB_DESCRIPTION="Cumulus Linux 4.0.0"
+DISTRIB_RELEASE=4.1.0
+DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
 ```
 
 For general information about the switch, run `net show system`, which gathers information about the switch from a number of files in the system:
@@ -131,7 +131,7 @@ For general information about the switch, run `net show system`, which gathers i
 cumulus@switch:~$ net show system
 Hostname......... celRED
 
-Build............ Cumulus Linux 4.0.0
+Build............ Cumulus Linux 4.1.0
 Uptime........... 8 days, 12:24:01.770000
 
 Model............ Cel REDSTONE

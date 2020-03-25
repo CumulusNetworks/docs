@@ -12,13 +12,13 @@ pageID: 8362706
 As of Cumulus Linux 3.7, the lightweight network virtualization
 feature (LNV) has been deprecated. The feature will be removed in
 Cumulus Linux 4.0. Cumulus Networks recommends you use
-[Ethernet virtual private network (EVPN)](../Ethernet-Virtual-Private-Network-EVPN/)
+{{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}
 for network virtualization.
 
 {{%/notice%}}
 
 Lightweight Network Virtualization (LNV) is a technique for deploying
-[VXLANs](../../Network-Virtualization/) without a central
+{{<link url="Network-Virtualization" text="VXLANs">}} without a central
 controller on bare metal switches. This solution requires no external
 controller or software suite; it runs the VXLAN service and registration
 daemons on Cumulus Linux itself. The data path between bridge entities
@@ -26,13 +26,12 @@ is established on top of a layer 3 fabric by means of a simple service
 node coupled with traditional MAC address learning.
 
 To see an example of a full solution before reading the following
-background information,
-[read this chapter](../Lightweight-Network-Virtualization-Overview/LNV-Full-Example/).
+background information, {{<link url="LNV-Full-Example" text="read this chapter">}}.
 
 {{%notice note%}}
 
 LNV is a lightweight controller option.
-[Contact Cumulus Networks](https://support.cumulusnetworks.com/hc/en-us/requests/new)
+{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="Contact Cumulus Networks">}}
 with your scale requirements so we can make sure this is the right fit
 for you. There are also other controller options that can work on Cumulus Linux.
 
@@ -40,7 +39,7 @@ for you. There are also other controller options that can work on Cumulus Linux.
 
 {{%notice note%}}
 
-You cannot use LNV and [EVPN](../Ethernet-Virtual-Private-Network-EVPN/)
+You cannot use LNV and {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}
 at the same time.
 
 {{%/notice%}}
@@ -113,7 +112,7 @@ to every remote VTEP.
 #### Head End Replication
 
 Broadcom switches with Tomahawk, Trident II+, and Trident II ASICs
-and switches with [Spectrum ASICs](https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1) are capable of head end replication (HER), which is the ability to generate all the BUM traffic in hardware. The most scalable solution available with LNV is to have each VTEP (top of rack switch) generate all of its own BUM traffic instead of relying on an external service node. HER is enabled by default in Cumulus Linux.
+and switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}} are capable of head end replication (HER), which is the ability to generate all the BUM traffic in hardware. The most scalable solution available with LNV is to have each VTEP (top of rack switch) generate all of its own BUM traffic instead of relying on an external service node. HER is enabled by default in Cumulus Linux.
 
 Cumulus Linux verified support for up to 128 VTEPs with head end
 replication.
@@ -128,8 +127,7 @@ packets. This is useful with LNV if you have more than 128 VTEPs.
 However, it is not recommended because it forces the spine switches
 running the `vxsnd` (service node daemon) to replicate the packets in
 software instead of in hardware, unlike head end replication. If you are
-not using a controller but have more than 128 VTEPs, contact [Cumulus
-Networks](mailto:support@cumulusnetworks.com).
+not using a controller but have more than 128 VTEPs, contact {{<exlink url="mailto:support@cumulusnetworks.com" text="Cumulus Networks">}}.
 
 To enable service node replication:
 
@@ -168,7 +166,7 @@ You only specify this parameter when head end replication is
   - Switches with the Broadcom Tomahawk, Trident II+, or Trident II ASIC
     or switches with the Mellanox Spectrum ASIC running Cumulus Linux
     2.5.4 or later. Please refer to the Cumulus Networks
-    [hardware compatibility list](https://cumulusnetworks.com/hcl)
+    {{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}}
     for a list of supported switch models.
 
 ### Configuration Requirements
@@ -205,7 +203,7 @@ throughout this chapter.
 {{%notice tip%}}
 
 Want to try out configuring LNV and do not have a Cumulus Linux switch?
-Check out [Cumulus VX](https://cumulusnetworks.com/cumulus-vx/).
+Check out {{<exlink url="https://cumulusnetworks.com/cumulus-vx/" text="Cumulus VX">}}.
 
 {{%/notice%}}
 
@@ -235,7 +233,7 @@ example.
 <col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><strong>spine1:</strong></p>
 <pre><code>cumulus@spine1:~$ net add interface swp49 ip address 10.1.1.2/30
 cumulus@spine1:~$ net add interface swp50 ip address 10.1.1.6/30
@@ -301,7 +299,7 @@ auto swp52
 iface swp52
 address 10.1.1.38/30</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>leaf1:</strong></p>
 <pre><code>cumulus@leaf1:~$ net add interface swp1 breakout 4x
 cumulus@leaf1:~$ net add interface swp1s0 ip address 10.1.1.1/30
@@ -376,8 +374,8 @@ iface swp1s3
 
 The service nodes and registration nodes must all be routable between
 each other. The layer 3 fabric on Cumulus Linux can either be
-[BGP](../../Layer-3/Border-Gateway-Protocol-BGP/) or
-[OSPF](../../Layer-3/Open-Shortest-Path-First-OSPF/). In this
+{{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} or
+{{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}. In this
 example, OSPF is used to demonstrate full reachability. Click to expand
 the FRRouting configurations below.
 <details>
@@ -391,7 +389,7 @@ FRRouting configuration using OSPF:
 <col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><strong>spine1:</strong></p>
 <pre><code>cumulus@spine1:~$ net add ospf network 10.2.1.3/32 area 0.0.0.0
 cumulus@spine1:~$ net add interface swp49 ospf network point-to-point
@@ -459,7 +457,7 @@ router ospf
  ospf router-id 10.2.1.4
  network 10.2.1.4/32 area 0.0.0.0</code></pre></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>leaf1:</strong></p>
 <pre><code>cumulus@leaf1:~$ net add ospf network 10.2.1.1/32 area 0.0.0.0
 cumulus@leaf1:~$ net add interface swp1s0 ospf network point-to-point
@@ -546,7 +544,7 @@ configurations below.
 <col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><strong>server1:</strong></p>
 <pre><code>auto eth3.10
 iface eth3.10 inet static
@@ -604,7 +602,7 @@ and leaf2 for this demonstration.
 <col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><strong>leaf1:</strong></p>
 <pre><code>cumulus@leaf1:~$ net add loopback lo ip address 10.2.1.1/32
 cumulus@leaf1:~$ net add loopback lo vxrd-src-ip 10.2.1.1
@@ -823,7 +821,7 @@ For the registration daemon:
 ## Configure the Registration Node
 
 The registration node was configured earlier in `/etc/network/interfaces` in the
-[VXLAN mapping](#verify-the-vlan-to-vxlan-mapping) section above; no additional
+{{<link url="#verify-the-vlan-to-vxlan-mapping" text="VXLAN mapping">}} section above; no additional
 configuration is typically needed. However, if you need to modify the registration
 node configuration, edit `/etc/vxrd.conf`.
 <details>
@@ -859,8 +857,8 @@ The complete list of options you can configure is listed below:
 <details>
 <summary>Registration node options ... </summary>
 
-| Name                | Description                                                                                                                                                                                                                       | Default            |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| Name                | Description                | Default            |
+| ------------------- | -------------------------- | ------------------ |
 | loglevel            | The log level: DEBUG, INFO, WARNING, ERROR, CRITICAL.                                                                                                                                                                             | INFO               |
 | logdest             | The destination for log messages. The destination can be a file name, `stdout`, or `syslog`.                                                                                                                                      | syslog             |
 | logfilesize         | The log file size in bytes. Used when `logdest` is a file name.                                                                                                                                                                   | 512000             |
@@ -940,11 +938,9 @@ Use *1*, *yes*, *true,* or *on* for True for each relevant option. Use
 The above configuration assumes a single service node, which can quickly
 be overwhelmed by BUM traffic. To load balance BUM traffic across
 multiple service nodes, use
-[Anycast](http://en.wikipedia.org/wiki/Anycast). Anycast enables BUM
+{{<exlink url="http://en.wikipedia.org/wiki/Anycast" text="Anycast">}}. Anycast enables BUM
 traffic to reach the topologically nearest service node instead of
 overwhelming a single service node.
-
-####
 
 #### Enable the Service Node Daemon on Additional Spine Switches
 
@@ -962,7 +958,7 @@ Enable it on the spine2 switch, then restart the `vxsnd` daemon:
 <col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><strong>spine1:</strong></p>
 <p>Add the 10.10.10.10/32 address to the loopback address:</p>
 <pre><code>cumulus@spine1:~$ net add loopback lo ip address 10.10.10.10/32
@@ -1013,7 +1009,7 @@ iface lo inet loopback
 <col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><strong>spine1:</strong></p>
 <p>Use a text editor to edit the network configuration:</p>
 <pre><code>cumulus@spine1:~$ sudo nano /etc/vxsnd.conf</code></pre>
@@ -1052,7 +1048,7 @@ cumulus@spine1:~$ sudo systemctl restart vxsnd.service</code></pre></td>
 <col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><strong>leaf1:</strong></p>
 <p>Change the <code>vxrd-svcnode-ip</code> field to the anycast address:</p>
 <pre><code>cumulus@leaf1:~$ net add loopback lo vxrd-svcnode-ip 10.10.10.10
@@ -1185,6 +1181,6 @@ the IP address.
 
 ## Related Information
 
-  - [tools.ietf.org/html/rfc7348](https://tools.ietf.org/html/rfc7348)
-  - [en.wikipedia.org/wiki/Anycast](http://en.wikipedia.org/wiki/Anycast)
-  - [Network virtualization section, Cumulus Linux user guide](../../Network-Virtualization/)
+  - {{<exlink url="https://tools.ietf.org/html/rfc7348" text="RFC 7348">}}
+  - {{<exlink url="http://en.wikipedia.org/wiki/Anycast" text="Wikipedia - Anycast">}}
+  - {{<link url="Network-Virtualization" text="Network virtualization section, Cumulus Linux user guide">}}

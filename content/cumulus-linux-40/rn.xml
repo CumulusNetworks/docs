@@ -128,8 +128,8 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 
 
 <p>To work around this issue, stop the netq-agent daemon.</p></td>
-<td>4.0.0-4.1.0</td>
-<td></td>
+<td>4.0.0</td>
+<td>4.1.0</td>
 </tr>
 <tr>
 <td>CM-28770</td>

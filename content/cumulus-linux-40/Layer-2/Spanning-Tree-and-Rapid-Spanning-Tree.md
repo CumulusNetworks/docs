@@ -633,6 +633,22 @@ Run `ifreload -a` to load the new configuration:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+
+{{%/notice%}}
+
+To enable BPDU filter at runtime, run `mstpctl`. For example:
+
+```
+cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
+```
+
+</details>
+
 ### Storm Control
 
 Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.
@@ -665,22 +681,6 @@ cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/
 cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
-
-**Runtime Configuration (Advanced)**
-
-{{%notice warning%}}
-
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-
-{{%/notice%}}
-
-To enable BPDU filter at runtime, run `mstpctl`. For example:
-
-```
-cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
-```
-
-</details>
 
 ### Spanning Tree Parameter List
 

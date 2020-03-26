@@ -8,6 +8,7 @@ aliases:
 pageID: 12320951
 toc: 5
 bookhidden: true
+draft: true
 ---
 
 Follow these steps to setup and configure your VM:

@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12320951
 pageID: 12320951
 toc: 5
-
+draft: true
 ---
 On-premises deployments of NetQ can use a single server or a server cluster. In either case, you can use either the Cumulus NetQ Appliance or your own server running a KVM or VMware Virtual Machine (VM). This topic walks you through the installation for each of these on-premises options.
 

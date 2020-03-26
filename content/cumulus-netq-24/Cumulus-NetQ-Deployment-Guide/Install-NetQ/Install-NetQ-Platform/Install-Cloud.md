@@ -7,6 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12320951
 pageID: 12320951
 toc: 5
+draft: true
 ---
 Follow the instructions as determined by the installation questions to install the NetQ Platform in a cloud deployment.
 

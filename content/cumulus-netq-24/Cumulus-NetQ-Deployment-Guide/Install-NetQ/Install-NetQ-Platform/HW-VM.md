@@ -8,6 +8,7 @@ aliases:
 pageID: 12320951
 toc: 5
 bookhidden: true
+draft: true
 ---
 
 The next step is to identify which hypervisor you want to use. NetQ supports KVM and VMware VMs.

@@ -6,6 +6,7 @@ aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
 toc: 4
+draft: true
 ---
 To install NetQ 2.4.1, you must first decide whether you want to install the NetQ Platform in an on-premises or cloud deployment. Both deployment options provide secure access to data and features useful for monitoring and troubleshooting your network, and each has its benefits.
 

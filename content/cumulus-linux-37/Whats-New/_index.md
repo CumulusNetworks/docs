@@ -174,7 +174,7 @@ Cumulus Linux 3.7.0 supports new platforms, provides bug fixes, and contains sev
     - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#extended-mobility" text="Extended mobility support">}}
     - ECMP support for overlay networks on RIOT-capable Broadcom switches
 - New NCLU commands:
-    - {{<link url="Adding-and-Updating-Packages/#show-the-version-of-a-package" text="Show the version of a package">}}
+    - {{<link url="Adding-and-Updating-Packages/#display-the-version-of-a-package" text="Show the version of a package">}}
     - {{<link url="Interface-Configuration-and-Management/#add-descriptions-to-interfaces" text="Show the interface description (alias) for all interfaces on the switch">}}
     - {{<link url="Virtual-Routing-and-Forwarding-VRF/#show-vrf-information" text="Show which interfaces are in a VRF and the VNIs for VRF interfaces">}}
     - {{<link url="Bonding-Link-Aggregation" text="Change bond mode to IEEE 802.3ad link aggregation mode">}}

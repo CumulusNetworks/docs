@@ -78,8 +78,13 @@
             <h3>Cumulus Linux</h3>
             <p class="small">An open network operating system designed for efficiency, automation and scale</p>
             <ul>
-              <li><a href="/cumulus-linux/">User guide</a></li>
-              <li><a href="/cumulus-linux/Quick-Start-Guide/">Quick start guide</a></li>
+              {{ if .Site.IsServer }} 
+                <li><a href="/cumulus-linux-41/">User guide</a></li>
+                <li><a href="/cumulus-linux-41/Quick-Start-Guide/">Quick start guide</a></li>
+              {{ else }} 
+                <li><a href="/cumulus-linux/">User guide</a></li>
+                <li><a href="/cumulus-linux/Quick-Start-Guide/">Quick start guide</a></li>
+              {{ end }} 
               <!-- <li><a href="/pdfs/cumulus-linux.pdf">User guide (PDF)</a></li> -->
             </ul>
           </div>
@@ -88,10 +93,17 @@
             <h3>Cumulus NetQ</h3>
             <p class="small">A highly-scalable, modern network operations tool set that provides visibility into your network</p>
             <ul>
-              <li><a href="/cumulus-netq/Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
-              <li><a href="/cumulus-netq/Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
-              <li><a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
-              <li><a href="/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
+              {{ if .Site.IsServer }}
+                <li><a href="/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
+                <li><a href="/cumulus-netq-24/Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
+                <li><a href="/cumulus-netq-24/Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
+                <li><a href="/cumulus-netq-24/Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
+              {{ else }} 
+                <li><a href="/cumulus-netq/Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
+                <li><a href="/cumulus-netq/Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
+                <li><a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
+                <li><a href="/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
+              {{ end }} 
             </ul>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">

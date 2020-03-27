@@ -131,7 +131,7 @@ root@rhel7:~# sudo yum install netq-agent
 2. Verify you have the correct version of the Agent.
 
 ```
-root@rhel7:~# rpm -q -netq-agent
+root@rhel7:~# rpm -q netq-agent
 ```
 
     You should see version 2.4.1 and update 26 or later in the results. For example: 

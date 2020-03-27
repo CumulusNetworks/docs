@@ -15,7 +15,7 @@ Cumulus Linux 3.7.12 also includes a firmware update for Mellanox switches that 
 
 ## What's New in Cumulus Linux 3.7.11
 
-Cumulus Linux 3.7.11 supports new platforms, provides bug fixes, and contains several new features and improvements:
+Cumulus Linux 3.7.11 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms in 3.7.11
 
@@ -26,8 +26,6 @@ Cumulus Linux 3.7.11 supports new platforms, provides bug fixes, and contains se
 - IBM 02JE062 (100G Spectrum)
 - Penguin Arctica NX4808xxv (25G Trident3)
 - Penguin Arctica NX3200c (100G Trident3 X7)
-
-To see a list of all the platforms supported in Cumulus Linux 4.0.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 
 ### New Features and Enhancements in 3.7.11
 
@@ -49,7 +47,7 @@ Cumulus Linux 3.7.10 contains a critical bug fix.
 
 ## What's New in Cumulus Linux 3.7.9
 
-Cumulus Linux 3.7.9 supports these new platforms, and contains new bug fixes and several new features and improvements.
+Cumulus Linux 3.7.9 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms in 3.7.9
 
@@ -93,7 +91,7 @@ Cumulus Linux 3.7.5 replaces Cumulus Linux 3.7.4 and includes all the new featur
 
 Cumulus Linux 3.7.4 is no longer available due to severe issues that are resolved in Cumulus Linux 3.7.5.
 
-Cumulus Linux 3.7.4 contains a number of new platforms, features, and improvements:
+Cumulus Linux 3.7.4 supports one new platform, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms in 3.7.4
 
@@ -111,7 +109,7 @@ Cumulus Linux 3.7.4 contains a number of new platforms, features, and improvemen
 
 ## What's New in Cumulus Linux 3.7.3
 
-Cumulus Linux 3.7.3 contains a number of new platforms, features, and improvements.
+Cumulus Linux 3.7.3 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms in 3.7.3
 
@@ -132,7 +130,7 @@ Cumulus Linux 3.7.3 contains a number of new platforms, features, and improvemen
 
 ## What's New in Cumulus Linux 3.7.2
 
-Cumulus Linux 3.7.2 contains a number of new platforms, features and improvements.
+Cumulus Linux 3.7.2 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms in 3.7.2
 
@@ -157,7 +155,7 @@ Cumulus Linux 3.7.1 contains bug fixes only.
 
 ## What's New in Cumulus Linux 3.7.0
 
-Cumulus Linux 3.7.0 contains a number of new platforms, features and improvements.
+Cumulus Linux 3.7.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms in 3.7.0
 
@@ -184,3 +182,5 @@ Cumulus Linux 3.7.0 contains a number of new platforms, features and improvement
 - Change bond mode to IEEE 802.3ad link aggregation mode
 
 Whether you are installing Cumulus Linux 3.7 for the first time or upgrading from an earlier version, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+
+To see a list of all the platforms supported in Cumulus Linux 3.7, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.

@@ -5,7 +5,7 @@ weight: 5
 toc: 2
 draft: True
 ---
-This document supports the Cumulus Linux 4.1 release and describes currently available platforms and features.
+This document supports the Cumulus Linux 4.1 release and lists new platforms and features.
 
 ## What's New in Cumulus Linux 4.1.0
 

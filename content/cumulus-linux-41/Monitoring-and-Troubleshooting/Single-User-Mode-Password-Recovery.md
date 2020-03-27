@@ -41,14 +41,12 @@ To enter single user mode:
 4. Press ctrl-d to reboot.
 5. After the system reboots, set a new **root** password. The root user provides complete control over the switch.
 
-```
-root@switch:~# passwd
-Enter new UNIX password:
-Retype new UNIX password:
-passwd: password updated successfully
-```
+       root@switch:~# passwd
+       Enter new UNIX password:
+       Retype new UNIX password:
+       passwd: password updated successfully
 
-    {{%notice tip%}}
+   {{%notice tip%}}
 
 You can take this opportunity to reset the password for the *cumulus* account.
 
@@ -63,8 +61,6 @@ passwd: password updated successfully
 
 6. Sync the `/etc` directory, then reboot the system:
 
-```
-root@switch:~# sync
-root@switch:~# reboot -f
-Restarting the system.
-```
+       root@switch:~# sync
+       root@switch:~# reboot -f
+       Restarting the system.

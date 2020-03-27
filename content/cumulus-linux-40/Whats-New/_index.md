@@ -29,7 +29,7 @@ To see a list of all the platforms supported in Cumulus Linux 4.0.0, refer to th
 - {{<link url="Port-Security" text="Port security">}} on Broadcom switches
 - What Just Happened (WJH) for Mellanox switches to stream detailed and contextual telemetry for off-box analysis with tools such as NetQ
 - {{<link url="Back-up-and-Restore" text="New backup and restore utility">}}
-- {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address for type-5 routes">}} in EVPN symmetric deployments (VXLAN active-active mode)
+- {{<link url="Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address for type-5 routes">}} in EVPN symmetric deployments (VXLAN active-active mode)
 - {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} best path reason shown in command outputs
 - The following default settings have changed:
     - {{<link url="Management-VRF" text="Management VRF">}} is enabled by default

@@ -32,7 +32,6 @@ To see a list of all the platforms supported in Cumulus Linux 4.1.0, refer to th
 - {{<link url="Static-VXLAN-Tunnels#control-link-local-multicast-across-a-static-vxlan-tunnel" text="Control link-local multicast">}} across a static VXLAN tunnel
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#ipv6-route-replacement" text="IPv6 route replacement option">}} to maintain resilient hashing for IPv6 flows
 - {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="Default reserved VLAN range">}} reduced to 3600-3999
-- New NCLU commands: net show neighbors, net show sensor output, net show system leds
-- Platform Support
+- New NCLU commands: `net show neighbors`, `net show sensor output`, `net show system leds`
 
 Whether you are installing Cumulus Linux 4.1 for the first time or upgrading from an earlier version, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.

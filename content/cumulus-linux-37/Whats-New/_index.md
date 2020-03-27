@@ -7,6 +7,10 @@ draft: True
 ---
 This document supports the Cumulus Linux 3.7 releases and lists the new platforms and features.
 
+To upgrade to a Cumulus Linux 3.7 release, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+
+To see a list of all the platforms supported in a Cumulus Linux 3.7 release, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+
 ## What's New in Cumulus Linux 3.7.12
 
 Cumulus Linux 3.7.12 contains bug fixes.
@@ -178,7 +182,3 @@ Cumulus Linux 3.7.0 supports new platforms, provides bug fixes, and contains sev
     - {{<link url="Interface-Configuration-and-Management/#add-descriptions-to-interfaces" text="Show the interface description (alias) for all interfaces on the switch">}}
     - {{<link url="Virtual-Routing-and-Forwarding-VRF/#show-vrf-information" text="Show which interfaces are in a VRF and the VNIs for VRF interfaces">}}
     - {{<link url="Bonding-Link-Aggregation" text="Change bond mode to IEEE 802.3ad link aggregation mode">}}
-
-Whether you are installing Cumulus Linux 3.7 for the first time or upgrading from an earlier version, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
-
-To see a list of all the platforms supported in Cumulus Linux 3.7, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.

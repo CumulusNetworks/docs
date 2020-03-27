@@ -7,6 +7,12 @@ draft: True
 ---
 This document supports the Cumulus Linux 4.0 release and lists the new platforms and features.
 
+For complete details on the differences between Cumulus Linux 4.0.0 and Cumulus Linux 3.7, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360038231814" text="this article">}}.
+
+To see a list of all the platforms supported in Cumulus Linux 4.0.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+
+To upgrade to Cumulus Linux 4.0.0, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+
 ## What's New in Cumulus Linux 4.0.0
 
 Cumulus Linux 4.0.0 supports new platforms, provides bug fixes, and contains several new features and improvements:
@@ -17,8 +23,6 @@ Cumulus Linux 4.0.0 supports new platforms, provides bug fixes, and contains sev
 - Mellanox SN3700C (100G Spectrum-2)
 - Mellanox SN3700 (200G Spectrum-2): Cumulus Linux 4.0.0 currently supports 100G speed
 - HPE SN2745M (100G Spectrum)
-
-To see a list of all the platforms supported in Cumulus Linux 4.0.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 
 ### New Features and Enhancements
 
@@ -35,7 +39,3 @@ To see a list of all the platforms supported in Cumulus Linux 4.0.0, refer to th
     - {{<link url="Management-VRF" text="Management VRF">}} is enabled by default
     - {{<link url="Basic-Configuration" text="ARP/ND suppression">}} is enabled by default on all VXLAN interfaces
     - {{<link url="Basic-Configuration" text="MAC learning">}} is disabled by default on all VXLAN bridge ports
-
-For complete details on the differences between Cumulus Linux 4.0.0 and Cumulus Linux 3.7, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360038231814" text="this article">}}.
-
-Whether you are installing Cumulus Linux 4.0.0 for the first time or upgrading from an earlier version, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.

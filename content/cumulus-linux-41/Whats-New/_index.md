@@ -11,14 +11,14 @@ This document supports the Cumulus Linux 4.1 release and lists new platforms and
 
 Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
-### New Platforms in 4.1.0
+### New Platforms
 
 - Dell 5212F-ON (25G Trident3 X5)
 - Mellanox SN2010 with 32G RAM (25G Spectrum)
 
 To see a list of all the platforms supported in Cumulus Linux 4.1.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 
-### New Features and Enhancements in 4.1.0
+### New Features and Enhancements
 
 - {{<link url="Network-Address-Translation-NAT" text="Static and dynamic NAT">}}
 - {{<link url="EVPN-Enhancements/#disable-bum-flooding" text="Configuration to disable EVPN flooding">}}

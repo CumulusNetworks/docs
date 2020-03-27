@@ -11,7 +11,7 @@ This document supports the Cumulus Linux 4.0 release and lists the new platforms
 
 Cumulus Linux 4.0.0 supports new platforms, provides bug fixes, and contains several new features and improvements:
 
-### New Platforms in 4.0.0
+### New Platforms
 
 - EdgeCore Minipack AS8000 (100G Tomahawk3)
 - Mellanox SN3700C (100G Spectrum-2)
@@ -20,7 +20,7 @@ Cumulus Linux 4.0.0 supports new platforms, provides bug fixes, and contains sev
 
 To see a list of all the platforms supported in Cumulus Linux 4.0.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 
-### New Features and Enhancements in 4.0.0
+### New Features and Enhancements
 
 - The Cumulus Linux operating system is now based on Debian Buster (version 10) with a 4.19 kernel.
 - Capability to apt-get upgrade to a specific 4.x.y release, not just the latest (for use in future Cumulus 4.0.x releases)

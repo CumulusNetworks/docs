@@ -1,5 +1,5 @@
 ---
-title: What's New in Cumulus Linux 4.1
+title: What's New
 author: Cumulus Networks
 weight: 5
 toc: 2

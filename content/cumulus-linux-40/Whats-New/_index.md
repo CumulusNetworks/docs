@@ -1,5 +1,5 @@
 ---
-title: What's New in Cumulus Linux 4.0
+title: What's New
 author: Cumulus Networks
 weight: 5
 toc: 2
@@ -9,7 +9,7 @@ This document supports the Cumulus Linux 4.0 release and describes currently ava
 
 ## What's New in Cumulus Linux 4.0.0
 
-Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains several new features and improvements:
+Cumulus Linux 4.0.0 supports new platforms, provides bug fixes, and contains several new features and improvements:
 
 ### New Platforms in 4.0.0
 

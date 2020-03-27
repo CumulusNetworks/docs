@@ -141,29 +141,25 @@ To help visualize the following diagram is provided:
 
    For example, switch CDP on:
 
-```
-root@NX-1050-A:~] esxcli network vswitch standard set -c both -v vSwitch0
-```
+       root@NX-1050-A:~] esxcli network vswitch standard set -c both -v vSwitch0
 
    Then confirm it is running:
 
-```
-root@NX-1050-A:~] esxcli network vswitch standard list -v vSwitch0
-vSwitch0
-    Name: vSwitch0
-    Class: etherswitch
-    Num Ports: 4082
-    Used Ports: 12
-    Configured Ports: 128
-    MTU: 1500
-    CDP Status: both
-    Beacon Enabled: false
-    Beacon Interval: 1
-    Beacon Threshold: 3
-    Beacon Required By:
-    Uplinks: vmnic3, vmnic2, vmnic1, vmnic0
-    Portgroups: VM Network, Management Network
-```
+       root@NX-1050-A:~] esxcli network vswitch standard list -v vSwitch0
+       vSwitch0
+           Name: vSwitch0
+           Class: etherswitch
+           Num Ports: 4082
+           Used Ports: 12
+           Configured Ports: 128
+           MTU: 1500
+           CDP Status: both
+           Beacon Enabled: false
+           Beacon Interval: 1
+           Beacon Threshold: 3
+           Beacon Required By:
+           Uplinks: vmnic3, vmnic2, vmnic1, vmnic0
+           Portgroups: VM Network, Management Network
 
    **both** means CDP is now running and the lldp dameon on Cumulus Linux is capable of *seeing* CDP devices.
 

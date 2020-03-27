@@ -7,9 +7,9 @@ draft: True
 ---
 This document supports the Cumulus Linux 3.7 releases and lists the new platforms and features.
 
-To upgrade to a Cumulus Linux 3.7 release, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
-
 To see a list of all the platforms supported in a Cumulus Linux 3.7 release, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+
+To upgrade to a Cumulus Linux 3.7 release, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
 ## What's New in Cumulus Linux 3.7.12
 

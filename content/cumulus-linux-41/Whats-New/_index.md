@@ -5,16 +5,20 @@ weight: 5
 toc: 2
 draft: True
 ---
+This document supports the Cumulus Linux 4.1 release and describes currently available platforms and features.
+
+## What's New in Cumulus Linux 4.1.0
+
 Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains several new features and improvements:
 
-## New Platforms
+### New Platforms in 4.1.0
 
 - Dell 5212F-ON (25G Trident3 X5)
 - Mellanox SN2010 with 32G RAM (25G Spectrum)
 
 To see a list of all the platforms supported in Cumulus Linux 4.1.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 
-## New Features and Enhancements
+### New Features and Enhancements in 4.1.0
 
 - {{<link url="Network-Address-Translation-NAT" text="Static and dynamic NAT">}}
 - {{<link url="EVPN-Enhancements/#disable-bum-flooding" text="Configuration to disable EVPN flooding">}}
@@ -32,9 +36,3 @@ To see a list of all the platforms supported in Cumulus Linux 4.1.0, refer to th
 - Platform Support
 
 Whether you are installing Cumulus Linux 4.1 for the first time or upgrading from an earlier version, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
-
-{{%notice note%}}
-
-Any Perl scripts that use the `DB_File` module or Python scripts that use the `bsddb` module do not run under Cumulus Linux 4.1.
-
-{{%/notice%}}

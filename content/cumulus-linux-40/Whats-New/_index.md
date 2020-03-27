@@ -1,0 +1,41 @@
+---
+title: What's New
+author: Cumulus Networks
+weight: 5
+toc: 2
+draft: True
+---
+This document supports the Cumulus Linux 4.0 release and describes currently available platforms and features.
+
+## What's New in Cumulus Linux 4.0.0
+
+Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains several new features and improvements:
+
+### New Platforms in 4.0.0
+
+- EdgeCore Minipack AS8000 (100G Tomahawk3)
+- Mellanox SN3700C (100G Spectrum-2)
+- Mellanox SN3700 (200G Spectrum-2): Cumulus Linux 4.0.0 currently supports 100G speed
+- HPE SN2745M (100G Spectrum)
+
+To see a list of all the platforms supported in Cumulus Linux 4.0.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+
+### New Features and Enhancements in 4.0.0
+
+- The Cumulus Linux operating system is now based on Debian Buster (version 10) with a 4.19 kernel.
+- Capability to apt-get upgrade to a specific 4.x.y release, not just the latest (for use in future Cumulus 4.0.x releases)
+- {{<link url="EVPN-BUM-Traffic-with-PIM-SM" text="EVPN BUM traffic handling using PIM-SM">}} on Broadcom switches
+- {{<link url="Protocol-Independent-Multicast-PIM#pim-active-active-with-mlag" text="PIM active-active with MLAG">}}
+- {{<link url="Port-Security" text="Port security">}} on Broadcom switches
+- {{<link url="MMellanox-WJH" text="What Just Happened (WJH)">}} for Mellanox switches to stream detailed and contextual telemetry for off-box analysis with tools such as NetQ
+- {{<link url="Back-up-and-Restore" text="New backup and restore utility">}}
+- {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address for type-5 routes">}} in EVPN symmetric deployments (VXLAN active-active mode)
+- {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} best path reason shown in command outputs
+- The following default settings have changed:
+    - {{<link url="Management-VRF" text="Management VRF">}} is enabled by default
+    - {{<link url="Basic-Configuration" text="ARP/ND suppression">}} is enabled by default on all VXLAN interfaces
+    - {{<link url="Basic-Configuration" text="MAC learning">}} is disabled by default on all VXLAN bridge ports
+
+For complete details on the differences between Cumulus Linux 4.0.0 and Cumulus Linux 3.7, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360038231814" text="this article">}}.
+
+Whether you are installing Cumulus Linux 4.0.0 for the first time or upgrading from an earlier version, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.

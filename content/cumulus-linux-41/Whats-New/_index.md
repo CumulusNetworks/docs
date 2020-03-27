@@ -7,13 +7,13 @@ draft: True
 ---
 This document supports the Cumulus Linux 4.1 release and lists the new platforms and features.
 
+To see a list of all the platforms supported in Cumulus Linux 4.1, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+
+To upgrade to Cumulus Linux 4.1, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+
 ## What's New in Cumulus Linux 4.1.0
 
 Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
-
-To see a list of all the platforms supported in Cumulus Linux 4.1.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
-
-To upgrade to Cumulus Linux 4.1.0, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
 ### New Platforms
 

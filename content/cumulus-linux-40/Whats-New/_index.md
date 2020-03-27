@@ -7,11 +7,11 @@ draft: True
 ---
 This document supports the Cumulus Linux 4.0 release and lists the new platforms and features.
 
-For complete details on the differences between Cumulus Linux 4.0.0 and Cumulus Linux 3.7, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360038231814" text="this article">}}.
+For complete details on the differences between Cumulus Linux 4.0 and Cumulus Linux 3.7, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360038231814" text="this article">}}.
 
-To see a list of all the platforms supported in Cumulus Linux 4.0.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+To see a list of all the platforms supported in Cumulus Linux 4.0, refer to the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 
-To upgrade to Cumulus Linux 4.0.0, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+To upgrade to Cumulus Linux 4.0, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
 ## What's New in Cumulus Linux 4.0.0
 

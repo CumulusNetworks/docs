@@ -9,7 +9,7 @@ This document supports the Cumulus Linux 4.1 release and describes currently ava
 
 ## What's New in Cumulus Linux 4.1.0
 
-Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains several new features and improvements:
+Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms in 4.1.0
 

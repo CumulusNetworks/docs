@@ -13,6 +13,7 @@ cascade:
     version: "3.7"
     imgData: cumulus-linux
     siteSlug: cumulus-linux
+    old: true
 ---
 
 {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}

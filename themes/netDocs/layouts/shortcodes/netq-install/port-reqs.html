@@ -1,0 +1,143 @@
+{{- if eq (.Get "server") "cluster" -}}
+You must open the following ports on your NetQ Platforms:
+{{ end }}
+{{- if eq (.Get "server") "single" -}}
+You must open the following ports on your NetQ Platform:
+{{ end }}
+
+<table>
+    <thead>
+    <tr>
+    <th style="text-align:right">Port</th>
+    <th style="text-align:center">Protocol</th>
+    <th>Component Access</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td style="text-align:right">8443</td>
+    <td style="text-align:center">TCP</td>
+    <td>Admin UI</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">443</td>
+    <td style="text-align:center">TCP</td>
+    <td>NetQ UI</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">31980</td>
+    <td style="text-align:center">TCP</td>
+    <td>NetQ Agent communication</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">32708</td>
+    <td style="text-align:center">TCP</td>
+    <td>API Gateway</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">22</td>
+    <td style="text-align:center">TCP</td>
+    <td>SSH</td>
+    </tr>
+    </tbody>
+    </table>
+
+    {{- if eq (.Get "server") "cluster" -}}
+
+Additionally, for internal cluster communication, you must open these ports:
+
+<table>
+    <thead>
+    <tr>
+    <th style="text-align:right">Port</th>
+    <th style="text-align:center">Protocol</th>
+    <th>Component Access</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td style="text-align:right">8080</td>
+    <td style="text-align:center">TCP</td>
+    <td>Admin API</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">5000</td>
+    <td style="text-align:center">TCP</td>
+    <td>Docker registry</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">8472</td>
+    <td style="text-align:center">UDP</td>
+    <td>Flannel port for VXLAN</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">6443</td>
+    <td style="text-align:center">TCP</td>
+    <td>Kubernetes API server</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">10250</td>
+    <td style="text-align:center">TCP</td>
+    <td>kubelet health probe</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">2379</td>
+    <td style="text-align:center">TCP</td>
+    <td>etcd</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">2380</td>
+    <td style="text-align:center">TCP</td>
+    <td>etcd</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">7072</td>
+    <td style="text-align:center">TCP</td>
+    <td>Kafka JMX monitoring</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">9092</td>
+    <td style="text-align:center">TCP</td>
+    <td>Kafka client</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">7071</td>
+    <td style="text-align:center">TCP</td>
+    <td>Cassandra JMX monitoring</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">7000</td>
+    <td style="text-align:center">TCP</td>
+    <td>Cassandra cluster communication</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">9042</td>
+    <td style="text-align:center">TCP</td>
+    <td>Cassandra client</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">7073</td>
+    <td style="text-align:center">TCP</td>
+    <td>Zookeeper JMX monitoring</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">2888</td>
+    <td style="text-align:center">TCP</td>
+    <td>Zookeeper cluster communication</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">3888</td>
+    <td style="text-align:center">TCP</td>
+    <td>Zookeeper cluster communication</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">2181</td>
+    <td style="text-align:center">TCP</td>
+    <td>Zookeeper client</td>
+    </tr>
+    </tbody>
+    </table>
+
+{{ end }}
+
+<p><strong>Note</strong>: Port 32666 is no longer used for the NetQ UI.</p>

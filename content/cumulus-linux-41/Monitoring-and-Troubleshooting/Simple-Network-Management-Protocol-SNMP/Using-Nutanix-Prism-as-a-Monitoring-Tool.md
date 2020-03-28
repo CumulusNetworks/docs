@@ -23,45 +23,37 @@ cumulus@switch:~$ ssh cumulus@[switch]
 
     - bridge\_pp.py
 
-```
-pass_persist .1.3.6.1.2.1.17 /usr/share/snmp/bridge_pp.py
-```
+          pass_persist .1.3.6.1.2.1.17 /usr/share/snmp/bridge_pp.py
 
-    - Community
+   - Community
 
-```
-rocommunity public  default    -V systemonly
-```
+          rocommunity public  default    -V systemonly
 
     - Line directly below the Q-BRIDGE-MIB (.1.3.6.1.2.1.17)
 
-```
-# BRIDGE-MIB and Q-BRIDGE-MIB tables
-view   systemonly  included   .1.3.6.1.2.1.17
-```
+          \# BRIDGE-MIB and Q-BRIDGE-MIB tables
+          view   systemonly  included   .1.3.6.1.2.1.17
 
 4. Restart `snmpd`:
 
-```
-cumulus@switch:~$ sudo systemctl restart snmpd.service
-Restarting network management services: snmpd.
-```
+       cumulus@switch:~$ sudo systemctl restart snmpd.service
+       Restarting network management services: snmpd.
 
 ## Configure Nutanix
 
 1. Log into the Nutanix Prism. Nutanix defaults to the Home menu, referred to as the Dashboard:
 
-    {{< img src = "/images/cumulus-linux/monitor-nutanix-login.png" >}}
+   {{< img src = "/images/cumulus-linux/monitor-nutanix-login.png" >}}
 
 2. Click on the gear icon in the top right corner of the dashboard, then select NetworkSwitch:
 
-    {{< img src = "/images/cumulus-linux/monitor-nutanix-switch.png" >}}
+   {{< img src = "/images/cumulus-linux/monitor-nutanix-switch.png" >}}
 
 3. Click the **+Add Switch Configuration** button in the **Network Switch Configuration** pop up window.
 
 4. Fill out the **Network Switch Configuration** for the Top of Rack (ToR) switch configured for snmpd in the previous section:
 
-    {{< img src = "/images/cumulus-linux/monitor-nutanix-top-rack.png" >}}
+   {{< img src = "/images/cumulus-linux/monitor-nutanix-top-rack.png" >}}
 
     | Configuration Parameter  | Description | Value Used in Example  |
     | -------------------------| ----------- | ---------------------- |
@@ -149,29 +141,25 @@ To help visualize the following diagram is provided:
 
    For example, switch CDP on:
 
-```
-root@NX-1050-A:~] esxcli network vswitch standard set -c both -v vSwitch0
-```
+       root@NX-1050-A:~] esxcli network vswitch standard set -c both -v vSwitch0
 
    Then confirm it is running:
 
-```
-root@NX-1050-A:~] esxcli network vswitch standard list -v vSwitch0
-vSwitch0
-    Name: vSwitch0
-    Class: etherswitch
-    Num Ports: 4082
-    Used Ports: 12
-    Configured Ports: 128
-    MTU: 1500
-    CDP Status: both
-    Beacon Enabled: false
-    Beacon Interval: 1
-    Beacon Threshold: 3
-    Beacon Required By:
-    Uplinks: vmnic3, vmnic2, vmnic1, vmnic0
-    Portgroups: VM Network, Management Network
-```
+       root@NX-1050-A:~] esxcli network vswitch standard list -v vSwitch0
+       vSwitch0
+           Name: vSwitch0
+           Class: etherswitch
+           Num Ports: 4082
+           Used Ports: 12
+           Configured Ports: 128
+           MTU: 1500
+           CDP Status: both
+           Beacon Enabled: false
+           Beacon Interval: 1
+           Beacon Threshold: 3
+           Beacon Required By:
+           Uplinks: vmnic3, vmnic2, vmnic1, vmnic0
+           Portgroups: VM Network, Management Network
 
    **both** means CDP is now running and the lldp dameon on Cumulus Linux is capable of *seeing* CDP devices.
 

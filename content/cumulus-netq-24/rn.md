@@ -5,7 +5,9 @@ weight: -30
 product: Cumulus NetQ
 version: "2.4"
 toc: 1
+type: rn
 draft: True
+bookhidden: True
 ---
 
 

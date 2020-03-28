@@ -69,7 +69,9 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 </tr>
 <tr>
 <td>CM-28925</td>
-<td><p>The global MTU setting in the mtu.json file does not take effect on SVI interfaces after ifreload -a. A temporary workaround is to run systemctl restart networking or to restart the switch. Note that restarting networking is a disruptive operation. </p></td>
+<td><p>The global MTU setting in the mtu.json file does not take effect on SVI interfaces after ifreload -a. <br/>
+To work around this issue, run sudo systemctl restart networking or restart the switch. <br/>
+Note: A network restart is a disruptive operation. </p></td>
 <td>4.1.0</td>
 <td></td>
 </tr>
@@ -104,24 +106,6 @@ CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td>3.0.0-3.7.12, 4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28794</td>
-<td><p>When the NETQ agent is active, you see the following errors in in the FFR log file: </p>
-
-2020-03-05T16:00:05.036398+09:00 [switch01][bgpd][err] [EC 100663314] Attempting to process an I/O event but for fd: 29(4) no thread to handle this!
-2020-03-05T16:01:30.841455+09:00 [switch01[bgpd][err] [EC 100663314] Attempting to process an I/O event but for fd: 29(4) no thread to handle this!
-
-
-<p>You also see the following errors in the ptmd log file:</p>
-
-2020-03-05T15:59:12.877549+09:00 [switch01][ptmd][info] New client connection fd[17] tot[1]
-2020-03-05T15:59:12.899906+09:00 [switch01][ptmd][info] Free client connection fd[17] tot[0]
-
-
-<p>To work around this issue, stop the netq-agent daemon.</p></td>
-<td>4.0.0-4.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1194,6 +1178,23 @@ cumulus@switch:~$ sudo apt-get update -y
 cumulus@switch:~$ sudo apt-get install hostapd -y
 
 </td>
+<td>4.0.0</td>
+</tr>
+<tr>
+<td>CM-28794</td>
+<td><p>When the NETQ agent is active, you see the following errors in in the FFR log file: </p>
+
+2020-03-05T16:00:05.036398+09:00 [switch01][bgpd][err] [EC 100663314] Attempting to process an I/O event but for fd: 29(4) no thread to handle this!
+2020-03-05T16:01:30.841455+09:00 [switch01[bgpd][err] [EC 100663314] Attempting to process an I/O event but for fd: 29(4) no thread to handle this!
+
+
+<p>You also see the following errors in the ptmd log file:</p>
+
+2020-03-05T15:59:12.877549+09:00 [switch01][ptmd][info] New client connection fd[17] tot[1]
+2020-03-05T15:59:12.899906+09:00 [switch01][ptmd][info] Free client connection fd[17] tot[0]
+
+
+<p>You can ignore these errors.</p></td>
 <td>4.0.0</td>
 </tr>
 <tr>

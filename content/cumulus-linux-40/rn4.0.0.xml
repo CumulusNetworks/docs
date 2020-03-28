@@ -126,9 +126,9 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 2020-03-05T15:59:12.899906+09:00 [switch01][ptmd][info] Free client connection fd[17] tot[0]
 
 
-<p>To work around this issue, stop the netq-agent daemon.</p></td>
-<td>4.0.0-4.1.0</td>
-<td></td>
+<p>You can ignore these errors.</p></td>
+<td>4.0.0</td>
+<td>4.1.0</td>
 </tr>
 <tr>
 <td>CM-28770</td>

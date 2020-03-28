@@ -383,3 +383,7 @@ Routing entry for 192.168.10.1/32
 ## Caveats and Errata
 
 UCMP with BGP link bandwidth is only available for BGP-learned routes.
+
+## Related Information
+
+{{<exlink url="https://tools.ietf.org/html/draft-ietf-idr-link-bandwidth-07" text="IETF draft - BGP Link Bandwidth Extended Community">}}

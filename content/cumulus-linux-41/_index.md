@@ -29,3 +29,8 @@ To implement various Cumulus Linux features, Cumulus Networks has forked various
 ### Hardware Compatibility List
 
 You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url="https://cumulusnetworks.com/hcl/" text="here" >}}. Use the HCL to confirm that your switch model is supported by Cumulus Networks. The HCL is updated regularly, listing products by port configuration, manufacturer and SKU part number.
+
+### Stay up to Date
+
+- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-product-bulletin" text="product bulletin" >}} mailing list to receive important announcements and updates about issues that arise in our products.
+- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="security announcement" >}} mailing list to receive alerts whenever we update our software for security issues.

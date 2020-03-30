@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29068</td>
+<td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>

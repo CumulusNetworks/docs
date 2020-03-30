@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29068</td>
+<td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -1587,6 +1593,12 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29068</td>
+<td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29040</td>

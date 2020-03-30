@@ -13,7 +13,7 @@ import os, os.path
 import errno
 
 # Are we generating test or production PDFs?
-TEST = False
+TEST = True
 
 # Validate that the amplify CLI is passing the right parameters 
 if len(sys.argv) != 5:

@@ -57,9 +57,9 @@ There is a large set of commands available to monitor Kubernetes configurations,
 
 ## Enable Kubernetes Monitoring
 
-{{%notice note%}}
+{{<notice note>}}
 For Kubernetes monitoring, the NetQ Agent must be installed, running, and enabled on the host(s) providing the Kubernetes service.
-{{%/notice%}}
+{{</notice>}}
 
 To enable NetQ Agent monitoring of the containers using the Kubernetes API, you must configure the following on the Kubernetes master node:
 

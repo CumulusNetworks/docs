@@ -14,7 +14,7 @@ Follow these steps to setup and configure your VM:
 
 1. Verify that your system meets the VM requirements.
 
-    {{<netq-install/vm-reqs deployment="onprem">}}
+    {{<netq-install/vm-reqs deployment="onprem" hypervisor="vmware">}}
 
 2. Confirm that the needed ports are open for communications.
 

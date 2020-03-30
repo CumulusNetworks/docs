@@ -12,8 +12,10 @@ import docraptor
 import os, os.path
 import errno
 
-TEST = True
+# Are we generating test or production PDFs?
+TEST = False
 
+# Validate that the amplify CLI is passing the right parameters 
 if len(sys.argv) != 5:
     print("Please provide arguments in the following order <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS>.")
     print(F"Received {len(sys.argv)} arguments: {sys.argv}" )
@@ -26,13 +28,14 @@ http_user = sys.argv[3]
 http_pass = sys.argv[4]
 pdf_dir = "static/pdfs"
 
-# this key works for test documents
 docraptor.configuration.username = str(token)
-# docraptor.configuration.debug = True
 doc_api = docraptor.DocApi()
 
 # Taken from https://stackoverflow.com/a/600612/119527
 def mkdir_p(path):
+    '''
+    Generate a given path with all required parent folder
+    '''
     try:
         os.makedirs(path)
     except OSError as exc: # Python >2.5
@@ -72,6 +75,11 @@ def request_pdf(product):
     return pdf_request
 
 def get_dir_list():
+    '''
+    Get a list of directories to place PDF content into.
+
+    Returns a list of directory names, assuming the "content" folder as a parent
+    '''
     full_dir_list = os.listdir('content')
     old_releases = ["cumulus-linux-37", "cumulus-netq-24"]  # Older versions that have a single release we care about
     return_dirs = []
@@ -90,6 +98,11 @@ def get_dir_list():
     return return_dirs
 
 def get_xls_files():
+    '''
+    Generate XLS files from docraptor.
+    The process is simpler than PDF process so it is a self-contained method that directly downloads and writes the xls files.
+
+    '''
     dir_list = get_dir_list()
     for directory in dir_list:
         for file in os.listdir("content/" + directory):
@@ -113,21 +126,26 @@ def get_xls_files():
                 file.close
 
 try:
+
+    # Trigger the HTTP request for both CL and NetQ PDFs
+    # This takes some time so start before we do anything else.
     netq_request = request_pdf("NetQ")
     cl_request = request_pdf("Linux")
     
-    first_loop = True
-    download_cl = False
-    download_netq = False
-    download_xls = False
+    first_loop = True  # Flag to check if this is our first time in the while loop
+    download_cl = False  # Did we download CL PDF?
+    download_netq = False  # Did we download NetQ PDF    
     
+    # Request and download the XLS files 
     print("Downloading XLS files...")
     get_xls_files()
 
+    # It takes some time to gerate the pdf files, so loop forever
     while True:
         if(first_loop):
             print("Checking PDF status...", end="")
         else:
+            # Let me know stuff is still happening....
             print(".", end="")
         
         # API calls to create both NetQ and CL docs in parallel
@@ -143,9 +161,7 @@ try:
                 doc_response = doc_api.get_async_doc(netq_status_response.download_id)
                 with safe_open_w(pdf_dir + "/cumulus-netq.pdf") as f:
                     f.write(doc_response)
-                # file = open(pdf_dir + "/cumulus-netq.pdf", "wb")
-                # file.write(doc_response)
-                # file.close
+
                 print(F"Wrote PDF to {pdf_dir}/cumulus-netq.pdf")
                 download_netq = True
                 
@@ -165,9 +181,6 @@ try:
                 doc_response = doc_api.get_async_doc(cl_status_response.download_id)
                 with safe_open_w(pdf_dir + "/cumulus-linux.pdf") as f:
                     f.write(doc_response)
-                # file = open(pdf_dir + "/cumulus-linux.pdf", "wb")
-                # file.write(doc_response)
-                # file.close
                 print(F"Wrote PDF to {pdf_dir}/cumulus-linux.pdf")
                 download_cl = True
 

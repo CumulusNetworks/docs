@@ -305,7 +305,7 @@ cumulus@switch:~$ sudo nslcd -d
 After you enable debug mode, run the following command to test LDAP queries:
 
 ```
-cumulus@switch:~$ getent myuser
+cumulus@switch:~$ getent passwd
 ```
 
 If LDAP is configured correctly, the following messages appear after you run the `getent` command:

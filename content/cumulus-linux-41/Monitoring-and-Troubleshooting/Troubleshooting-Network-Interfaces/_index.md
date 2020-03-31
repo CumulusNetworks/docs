@@ -39,13 +39,13 @@ To exclude an interface so that it does not come up when you boot the switch or 
 1. Create a file in the `/etc/systemd/system/networking.service.d` directory (for example, `/etc/systemd/system/networking.service.d/override.conf`).
 2. Add the following lines to the file, where `<interface>` is the interface you want to exclude (such as eth0).
 
-```
-[Service]
-ExecStart=
-ExecStart=/sbin/ifup -a -X <interface>
-ExecStop=
-ExecStop=/sbin/ifdown -a -X <interface>
-```
+    ```
+    [Service]
+    ExecStart=
+    ExecStart=/sbin/ifup -a -X <interface>
+    ExecStop=
+    ExecStop=/sbin/ifdown -a -X <interface>
+    ```
 
 You can exclude any interface specified in the `/etc/network/interfaces` file.
 

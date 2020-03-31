@@ -215,6 +215,7 @@ def build_markdown_header(product, version):
     output.append("product: {}\n".format(product))
     output.append("version: \"{}\"\n".format(version))
     output.append("toc: 1\n")
+    output.append("pdfprint: false\n")
     output.append("draft: True\n")
     output.append("---\n")
     output.append("\n\n")
@@ -370,17 +371,10 @@ def build_rn_xls_files(product, version_list):
         for version in major_minor[major]:
             print("Building xls for {} {}\n".format(product_string(product), version))
             
-            # one_version_output is the table output for a single release
-            one_version_output = []
-            one_version_output.append("<tables>")
             # once for affects, once for fixed.
             for rn_file in files:
                 rn_output = build_rn_xls(get_json(product, version, rn_file), version, product_string(product), rn_file)
-                one_version_output.extend(rn_output)
                 all_versions_xls.extend(rn_output)
-            
-            one_version_output.append("</tables>")
-            write_rns(one_version_output, "xls", product, version, minor=True)
 
         # The one_version_output now contains the RNs for all maintenance releases in order. 
         # Write out the markdown file.

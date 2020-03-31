@@ -72,85 +72,85 @@ To monitor queue lengths using a histogram:
 
 1. Open the `/etc/cumulus/datapath/monitor.conf`file in a text editor.
 
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
-```
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
+   ```
 
 2. At the end of the file, add the following line to specify the name of the histogram monitor (port group). The example uses `histogram_pg`; however, you can use any name you choose. You must use the same name with all histogram settings.
 
-```
-monitor.port_group_list = [histogram_pg]
-```
+   ```
+   monitor.port_group_list = [histogram_pg]
+   ```
 
 3. Add the following line to specify the ports you want to monitor. The following example sets swp1 through swp50.
 
-```
-monitor.histogram_pg.port_set = swp1-swp50
-```
+   ```
+   monitor.histogram_pg.port_set = swp1-swp50
+   ```
 
 4. Add the following line to set the data type to `histogram`. This is the data type for histogram monitoring.
 
-```
-monitor.histogram_pg.stat_type = histogram 
-```
+   ```
+   monitor.histogram_pg.stat_type = histogram 
+   ```
 
 5. Add the following line to set the trigger type to `timer`. Currently, the only trigger type available is timer.
 
-```
-monitor.histogram_pg.trigger_type = timer
-```
+   ```
+   monitor.histogram_pg.trigger_type = timer
+   ```
 
 6. Add the following line to set the frequency at which data collection starts. In the following example, the frequency is set to one second.
 
-```
-monitor.histogram_pg.timer = 1s
-```
+   ```
+   monitor.histogram_pg.timer = 1s
+   ```
 
 7. Add the following line to set the actions you want to take when data is collected. In the following example, the system writes the results of data collection to a snapshot file and sends a message to the `/var/log/syslog` file .
 
-```
-monitor.histogram_pg.action_list = [snapshot,log]
-```
+   ```
+   monitor.histogram_pg.action_list = [snapshot,log]
+   ```
 
 8. Add the following line to specify a name and location for the snapshot file. In the following example, the system writes the snapshot to a file called `histogram_stats` in the `/var/lib/cumulus` directory and adds a suffix to the file name with the snapshot file count (see the following step).
 
-```
-monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats
-```
+   ```
+   monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats
+   ```
 
 9. Add the following line to set the number of snapshots that are taken before the system starts overwriting the earliest snapshot files. In the following example, because the snapshot file count is set to 64, the first snapshot file is named `histogram_stats_0` and the 64th snapshot is named `histogram_stats_63`. When the 65th snapshot is taken, the original snapshot file (`histogram_stats_0`) is overwritten and the sequence continues until `histogram_stats_63` is written. Then, the sequence restarts.
 
-```
-monitor.histogram_pg.snapshot.file_count = 64
-```
+   ```
+   monitor.histogram_pg.snapshot.file_count = 64
+   ```
 
 10. Add the following line to include a threshold, which determines how to collect data. Setting a threshold is optional. In the following example, when the size of the queue reaches 500 bytes, the system sends a message to the `/var/log/syslog` file.
 
-```
-monitor.histogram_pg.log.queue_bytes = 500
-```
+    ```
+    monitor.histogram_pg.log.queue_bytes = 500
+    ```
 
 11. Add the following lines to set the size, minimum boundary, and sampling time of the histogram. Adding the histogram size and the minimum boundary size together produces the maximum boundary size. These settings are used to represent the range of queue lengths per bin.
 
-```
-monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
-monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
-monitor.histogram_pg.histogram.sample_time_ns         = 1024
-```
+    ```
+    monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
+    monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
+    monitor.histogram_pg.histogram.sample_time_ns         = 1024
+    ```
 
 12. Save the file, then restart the `asic-monitor` service with the following command.
 
-```
-cumulus@switch:~$ systemctl restart asic-monitor.service
-```
+    ```
+    cumulus@switch:~$ systemctl restart asic-monitor.service
+    ```
 
-   {{%notice note%}}
+    {{%notice note%}}
 
 Restarting the `asic-monitor` service does not disrupt traffic or require you to restart `switchd`. The service is enabled by default when you boot the switch and restarts when you restart `switchd`.
 
-{{%/notice%}}
+    {{%/notice%}}
 
-   {{%notice note%}}
+{{%notice note%}}
 
 Overhead is involved in collecting the data, which uses both the CPU and SDK process and can affect execution of `switchd`. Snapshots and logs can occupy a lot of disk space if you do not limit their number.
 

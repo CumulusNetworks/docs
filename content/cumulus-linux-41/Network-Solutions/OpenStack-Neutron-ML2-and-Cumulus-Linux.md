@@ -23,22 +23,22 @@ To deploy {{<exlink url="https://wiki.openstack.org/wiki/Neutron/ML2" text="Open
 
 1. Configure the relevant settings in the `/etc/restapi.conf` file:
 
-```
-[ML2]
-#local_bind = 10.40.10.122
-#service_node = 10.40.10.1
+    ```
+    [ML2]
+    #local_bind = 10.40.10.122
+    #service_node = 10.40.10.1
 
-# Add the list of inter switch links that
-# need to have the vlan included on it by default
-# Not needed if doing Hierarchical port binding
-#trunk_interfaces = uplink
-```
+    # Add the list of inter switch links that
+    # need to have the vlan included on it by default
+    # Not needed if doing Hierarchical port binding
+    #trunk_interfaces = uplink
+    ```
 
 2. Restart the REST API service for the configuration changes to take effect:
 
-```
-cumulus@switch:~$ sudo systemctl restart restserver
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart restserver
+    ```
 
 Additional REST API calls have been added to support bridge configuration using the bridge name instead of network ID.
 
@@ -46,25 +46,25 @@ Additional REST API calls have been added to support bridge configuration using 
 
 1. Install the Cumulus Networks ML2 mechanism driver on your Neutron host, which is available upstream:
 
-```
-root@neutron:~# git clone https://github.com/CumulusNetworks/networking-cumulus.git
-root@neutron:~# cd networking-cumulus
-root@neutron:~# python setup.py install
-root@neutron:~# neutron-db-manage upgrade head
-```
+    ```
+    root@neutron:~# git clone https://github.com/CumulusNetworks/networking-cumulus.git
+    root@neutron:~# cd networking-cumulus
+    root@neutron:~# python setup.py install
+    root@neutron:~# neutron-db-manage upgrade head
+    ```
 
 2. Configure the host to use the ML2 driver:
 
-```
-root@neutron:~# openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini mechanism_drivers linuxbridge,cumulus
-```
+    ```
+    root@neutron:~# openstack-config --set /etc/neutron/plugins/ml2/ml2_conf.ini mechanism_drivers linuxbridge,cumulus
+    ```
 
 3. List the Cumulus Linux switches to configure. Edit the `/etc/neutron/plugins/ml2/ml2_conf.ini` file and add the IP addresses of the Cumulus Linux switches to the `switches` line. For example:
 
-```
-[ml2_cumulus]
-switches="192.168.10.10,192.168.20.20"
-```
+    ```
+    [ml2_cumulus]
+    switches="192.168.10.10,192.168.20.20"
+    ```
 
 The ML2 mechanism driver includes the following parameters, which you can configure in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
 

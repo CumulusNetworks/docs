@@ -1,5 +1,5 @@
 ---
-title: Set Up Your VMware Virtual Machine
+title: Set Up Your VMware Virtual Machine on Single Server for On-premises
 author: Cumulus Networks
 weight:
 aliases:

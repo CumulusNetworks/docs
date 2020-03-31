@@ -1,5 +1,5 @@
 ---
-title: Install the NetQ Appliance
+title: Install the NetQ Cloud Appliance
 author: Cumulus Networks
 weight: 
 aliases:
@@ -9,19 +9,19 @@ pageID: 12320951
 toc: 5
 bookhidden: true
 ---
-To prepare your single, on-premises NetQ Appliance:
+To prepare your single NetQ Cloud Appliance:
 
 Inside the box that was shipped to you, you'll find:
 
-- Your Cumulus NetQ Appliance (a Supermicro 6019P-WTR server)
+- Your Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
 - Information regarding your order
 
-For more detail about hardware specifications (including LED layouts and FRUs like the power supply or fans, and accessories like included cables) or safety and environmental information, refer to the {{<exlink url="https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf" text="user manual">}} and {{<exlink url="https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf" text="quick reference guide">}}.
+If you're looking for hardware specifications (including LED layouts and FRUs like the power supply or fans and accessories like included cables) or safety and environmental information, check out the appliance's {{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}}.
 
 #### Install the Appliance
 
-{{<netq-install/appliance-setup deployment="onprem">}}
+{{<netq-install/appliance-setup deployment="cloud">}}
 
 #### Configure the Password, Hostname and IP Address
 
@@ -123,7 +123,7 @@ Now that the appliance is up and running, verify that the software is available 
 
 2. Verify the installation images are present and of the correct release, version 2.4.1.
 
-    {{<netq-install/verify-image deployment="onprem">}}
+    {{<netq-install/verify-image deployment="cloud">}}
 
 3. Run the following commands to prevent daily upgrades and Message of the Day news.
 
@@ -136,7 +136,7 @@ Now that the appliance is up and running, verify that the software is available 
 
 4. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
-    {{<netq-install/verify-cmd deployment="onprem">}}
+    {{<netq-install/verify-cmd deployment="cloud">}}
 
 5. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 

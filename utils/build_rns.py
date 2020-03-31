@@ -215,13 +215,16 @@ def build_markdown_header(product, version):
     output.append("product: {}\n".format(product))
     output.append("version: \"{}\"\n".format(version))
     output.append("toc: 1\n")
+    output.append("type: rn\n")
     output.append("draft: True\n")
+    output.append("bookhidden: True\n")
+    output.append("pdfhidden: True\n")
     output.append("---\n")
     output.append("\n\n")
     
     return output
 
-def write_rns(output, file_type, product, version, minor=False):
+def write_rns(output, file_type, product, version):
     '''
     Write the RN output to the file for a given version.
 
@@ -234,17 +237,12 @@ def write_rns(output, file_type, product, version, minor=False):
         print("Incorrect filetype. Can not write release notes.")
         exit(1)
 
-    if minor:
-        minor_version = version
-    else:
-        minor_version = ""
-    
     # DocRaptor requires the file to be an .xml file
     # but calling it xml when we are building xls is confusing
     if file_type == "xls":
         file_type = "xml"
 
-    with open("content/{}/rn{}.{}".format(directory, minor_version, file_type), "w") as out_file:
+    with open("content/{}/rn.{}".format(directory, file_type), "w") as out_file:
         for line in output:
             out_file.write(line)
 
@@ -282,9 +280,6 @@ def build_rn_markdown_files(product, version_list):
         for version in major_minor[major]:
             print("Building markdown for {} {}\n".format(product_string(product), version))
             version_output.append("## {} Release Notes\n".format(version))
-            hugo_dir = get_hugo_folder(product, version)
-            version_output.append("<a href=\"/{}/rn{}.xls\"><img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" />&nbsp;&nbsp;&nbsp;&nbsp;Download {} release notes as .xls</a>\n".format(hugo_dir, version, version, version, version))
-
 
             # once for affects, once for fixed.
             for rn_file in files:
@@ -370,17 +365,10 @@ def build_rn_xls_files(product, version_list):
         for version in major_minor[major]:
             print("Building xls for {} {}\n".format(product_string(product), version))
             
-            # one_version_output is the table output for a single release
-            one_version_output = []
-            one_version_output.append("<tables>")
             # once for affects, once for fixed.
             for rn_file in files:
                 rn_output = build_rn_xls(get_json(product, version, rn_file), version, product_string(product), rn_file)
-                one_version_output.extend(rn_output)
                 all_versions_xls.extend(rn_output)
-            
-            one_version_output.append("</tables>")
-            write_rns(one_version_output, "xls", product, version, minor=True)
 
         # The one_version_output now contains the RNs for all maintenance releases in order. 
         # Write out the markdown file.

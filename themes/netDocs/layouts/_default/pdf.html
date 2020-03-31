@@ -15,16 +15,16 @@
 </div>
 
 {{ if eq .Params.type "pdf" }} 
-    {{ range where $.Site.Pages "Type" .Section }}
-        <article class="markdown">
-            <span class="toc{{ .Params.toc }}"><h1><a id="{{- urlize .Title -}}"></a>{{- .Title -}}</h1></span>
-            {{- .Content -}}
-        </article>
+    {{ range (where $.Site.Pages "Type" .Section) }}
+        {{ if .Page.Params.pdfhidden }}
+            <!-- Skip these pages --> 
+        {{ else }} 
+            <article class="markdown">
+                <span class="toc{{ .Params.toc }}"><h1><a id="{{- urlize .Title -}}"></a>{{- .Title -}}</h1></span>
+                {{- .Content -}}
+            </article>
+        {{ end }} 
     {{ end }} 
 {{ end }} 
-{{ if eq .Params.type "release note"}}
-<article class="markdown">
-    {{- .Content -}}
-</article>
-{{ end }} 
+
 {{ end }}

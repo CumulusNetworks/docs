@@ -1,5 +1,5 @@
 ---
-title: Choose a Virtual Machine for On-premises
+title: Choose a Virtual Machine for an On-premises Server Cluster
 author: Cumulus Networks
 weight: 111
 aliases:
@@ -14,5 +14,5 @@ The next step is to identify which hypervisor you want to use. NetQ supports KVM
 
 Click the hypervisor you want to use to continue installation:
 
-- {{<link title="Set Up Your KVM Virtual Machine on Single Server for On-premises" text="Use KVM">}}
-- {{<link title="Set Up Your VMware Virtual Machine on Single Server for On-premises" text="Use VMware">}}
+- {{<link title="Set Up Your KVM Virtual Machine for an On-premises Server Cluster" text="Use KVM">}}
+- {{<link title="Set Up Your VMware Virtual Machine for an On-premises Server Cluster" text="Use VMware">}}

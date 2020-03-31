@@ -18,4 +18,4 @@ A single server is easier to set up, configure and manage, but can limit your ab
 Click the server arrangement you want to use to begin installation:
 
 - {{<link title="Choose an On-premises System Platform" text="Use a Single Server Arrangement">}}
-- {{<link url="Server-Cluster" text="Use a Server Cluster Arrangement">}}
+- {{<link title="Choose an On-premises System Platform for Your Cluster" text="Use a Server Cluster Arrangement">}}

@@ -274,11 +274,11 @@ To define the logical switch:
 
 6. In the **VNI** field, assign the switch a VNI ID, then click **OK**.
 
-{{%notice note%}}
+    {{%notice note%}}
 
 Do not use 0 or 16777215 as the VNI ID; these are reserved values under Cumulus Linux.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 7. Click **Save** to save the logical switch configuration.  
 

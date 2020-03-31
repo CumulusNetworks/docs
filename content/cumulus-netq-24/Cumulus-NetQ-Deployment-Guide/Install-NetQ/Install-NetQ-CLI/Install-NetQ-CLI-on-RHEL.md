@@ -123,7 +123,7 @@ root@rhel7:~# sudo yum install netq-apps
 4. Verify you have the correct version of the CLI.
 
 ```
-root@rhel7:~# rpm -q -netq-apps
+root@rhel7:~# rpm -q netq-apps
 ```
 
    You should see version 2.4.1 and update 26 or later in the results. For example:

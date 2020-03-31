@@ -8,6 +8,7 @@ toc: 1
 type: rn
 draft: True
 bookhidden: True
+pdfhidden: True
 ---
 
 

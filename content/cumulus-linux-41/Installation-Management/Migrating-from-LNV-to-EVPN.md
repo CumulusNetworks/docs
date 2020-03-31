@@ -97,7 +97,7 @@ The BGP EVPN configuration for a centralized routing topology is slightly differ
 
     {{%notice note%}}
 
-    Traffic loss can start to occur at this point.
+Traffic loss can start to occur at this point.
 
     {{%/notice%}}
 

@@ -1,11 +1,11 @@
 {{- if  eq (.Get "server") "single" -}}
     <pre>cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz</pre>
+{{ end }}
+
+{{- if  eq (.Get "server") "cluster" -}}
+    <pre>cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz</pre>
+{{ end }}
 
     <p>Allow about five to ten minutes for this to complete,  and only then continue to the next step.</p>
 
     <p><strong>Tip</strong>: If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p>
-{{ end }}
-
-{{- if  eq (.Get "server") "cluster" -}}
-worker command
-{{ end }}

@@ -9,7 +9,6 @@ pageID: 12320951
 toc: 5
 bookhidden: true
 ---
-
 Follow these steps to setup and configure your VM on a single server in an on-premises deployment:
 
 1. Verify that your system meets the VM requirements.

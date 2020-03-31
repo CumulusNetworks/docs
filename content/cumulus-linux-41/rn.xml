@@ -27,6 +27,12 @@ To work around this issue, run the systemctl restart frr.service command.</p></t
 <td></td>
 </tr>
 <tr>
+<td>CM-28948</td>
+<td><p>Cumulus Linux supports a maximum of 300 ACLs for use with 802.1X interfaces. This limit encompasses the default ACLs, pre-auth ACLs and dynamic ACLs. Exceeding this limit can affect the performance of the switch.</p></td>
+<td>4.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28944</td>
 <td><p>A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>
 To work around this issue, reenter the redistribute &lt;connected|static&gt; route-map &lt;route-map-name&gt; statement in the configuration.</p></td>

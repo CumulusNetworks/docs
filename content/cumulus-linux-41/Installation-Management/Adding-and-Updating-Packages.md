@@ -363,4 +363,4 @@ You add these packages normally with `apt-get update && apt-get install`, as {{<
 
 ## Caveats and Errata
 
-- At this time, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.
+At this time, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.

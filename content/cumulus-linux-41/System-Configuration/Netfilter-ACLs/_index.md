@@ -141,32 +141,32 @@ The Linux packet forwarding construct is an overlay for how the silicon undernea
 - The order of operations for how rules are processed is not perfectly maintained when you compare how `iptables` and the switch silicon process packets. The switch silicon reorders rules when `switchd` writes to the ASIC, whereas traditional `iptables` execute the list of rules in order.
 - All rules are terminating; after a rule matches, the action is carried out and no more rules are processed. However, as an exception, when a SETCLASS rule is placed immediately before another rule, it exists multiple times in the default ACL configuration. In the example below, the SETCLASS action applied with the `--in-interface` option, creates the internal ASIC classification, and continues to process the next rule, which does the rate-limiting for the matched protocol:
 
-```
--A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j SETCLASS --class 7
--A $INGRESS_CHAIN -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000
-```
+    ```
+    -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p udp --dport $BFD_ECHO_PORT -j SETCLASS --class 7
+    -A $INGRESS_CHAIN -p udp --dport $BFD_ECHO_PORT -j POLICE --set-mode pkt --set-rate 2000 --set-burst 2000
+    ```
 
-   {{%notice warning%}}
+    {{%notice warning%}}
 
 If multiple contiguous rules with the same match criteria are applied to `--in-interface`, **only** the first rule gets processeand then terminates processing. This is a misconfiguration; there is no reason to have duplicate rules with different actions.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 - When processing traffic, rules affecting the FORWARD chain that specify an ingress interface are performed prior to rules that match on an egress interface. As a workaround, rules that only affect the egress interface can have an ingress interface wildcard (currently, only *swp+* and *bond+* are supported as wildcard names; see below) that matches any interface applied so that you can maintain order of operations with other input interface rules. For example, with the following rules:
 
-```
--A FORWARD -i $PORTA -j ACCEPT
--A FORWARD -o $PORTA -j ACCEPT   <-- This rule is performed LAST (because of egress interface matching)
--A FORWARD -i $PORTB -j DROP
-```
+    ```
+    -A FORWARD -i $PORTA -j ACCEPT
+    -A FORWARD -o $PORTA -j ACCEPT   <-- This rule is performed LAST (because of egress interface matching)
+    -A FORWARD -i $PORTB -j DROP
+    ```
 
     If you modify the rules like this, they are performed in order:
 
-```
--A FORWARD -i $PORTA -j ACCEPT
--A FORWARD -i swp+ -o $PORTA -j ACCEPT   <-- These rules are performed in order (because of wildcard match on ingress interface)
--A FORWARD -i $PORTB -j DROP
-```
+    ```
+    -A FORWARD -i $PORTA -j ACCEPT
+    -A FORWARD -i swp+ -o $PORTA -j ACCEPT   <-- These rules are performed in order (because of wildcard match on ingress interface)
+    -A FORWARD -i $PORTB -j DROP
+    ```
 
 - When using rules that do a mangle and a filter lookup for a packet, Cumulus Linux processes them in parallel and combines the action.
 - If a switch port is assigned to a bond, any egress rules must be assigned to the bond.
@@ -254,15 +254,15 @@ To always start `switchd` with nonatomic updates:
 1. Edit `/etc/cumulus/switchd.conf`.
 2. Add the following line to the file:
 
-```
-acl.non_atomic_update_mode = TRUE
-```
+    ```
+    acl.non_atomic_update_mode = TRUE
+    ```
 
 3. {{%link url="Configuring-switchd#restart-switchd" text="Restart `switchd`"%}}:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart switchd.service
+    ```
 
 {{%notice note%}}
 
@@ -306,27 +306,27 @@ By default, each entry occupies one double wide entry, except if the entry is on
 -A FORWARD --in-interface swp1s0,swp1s1 -p icmp -j ACCEPT
 - An entry with multiple comma-separated output interfaces is split into one rule for each output interface (listed after `--out-interface` below). This entry splits into two rules:
 
-```
--A FORWARD --in-interface swp+ --out-interface swp1s0,swp1s1 -p icmp -j ACCEPT
-```
+    ```
+    -A FORWARD --in-interface swp+ --out-interface swp1s0,swp1s1 -p icmp -j ACCEPT
+    ```
 
 - An entry with both input and output comma-separated interfaces is split into one rule for each combination of input and output interface (listed after `--in-interface` and `--out-interface` below). This entry splits into four rules:
 
-```
--A FORWARD --in-interface swp1s0,swp1s1 --out-interface swp1s2,swp1s3 -p icmp -j ACCEPT
-```
+    ```
+    -A FORWARD --in-interface swp1s0,swp1s1 --out-interface swp1s2,swp1s3 -p icmp -j ACCEPT
+    ```
 
 - An entry with multiple layer 4 port ranges is split into one rule for each range (listed after `--dports` below). For example, this entry splits into two rules:
 
-```
--A FORWARD --in-interface swp+ -p tcp -m multiport --dports 1050:1051,1055:1056 -j ACCEPT
-```
+    ```
+    -A FORWARD --in-interface swp+ -p tcp -m multiport --dports 1050:1051,1055:1056 -j ACCEPT
+    ```
 
    {{%notice note%}}
 
 Port ranges are only allowed for ingress rules.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 ### Match SVI and Bridged Interfaces in Rules
 

@@ -1,6 +1,6 @@
 {{- if eq (.Get "deployment") "onprem" -}}
-<pre>cumulus@<hostname>:~$ sudo opta-check</pre>
+<pre>cumulus@hostname:~$ sudo opta-check</pre>
 {{ end }} 
 {{- if eq (.Get "deployment") "cloud" -}}
-<pre>cumulus@<hostname>:~$ sudo opta-check-cloud</pre>
+<pre>cumulus@hostname:~$ sudo opta-check-cloud</pre>
 {{ end }}

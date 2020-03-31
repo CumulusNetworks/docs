@@ -17,6 +17,7 @@ bookhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-29068"></a> [CM-29068](#CM-29068) <a name="CM-29068"></a> | On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect. | 3.7.11-3.7.12 | |
 | <a name="CM-29040"></a> [CM-29040](#CM-29040) <a name="CM-29040"></a> | The following issue has been found in `e2fsprogs`, a package that contains ext2/ext3/ext4 file system utilities:<br/>CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability. | 3.0.0-3.7.12 | |
 | <a name="CM-28992"></a> [CM-28992](#CM-28992) <a name="CM-28992"></a> | The following security vulnerability has been announced:<br/>CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp. | 3.0.0-3.7.12 | |
 | <a name="CM-28968"></a> [CM-28968](#CM-28968) <a name="CM-28968"></a> | The EVPN `advertise-svi-ip` command does not withdraw routes.<br/>To work around this issue, run the `systemctl restart frr.service` command. | 3.7.9-3.7.12 | |
@@ -223,6 +224,7 @@ bookhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-29068"></a> [CM-29068](#CM-29068) <a name="CM-29068"></a> | On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect. | 3.7.11-3.7.12 | |
 | <a name="CM-29040"></a> [CM-29040](#CM-29040) <a name="CM-29040"></a> | The following issue has been found in `e2fsprogs`, a package that contains ext2/ext3/ext4 file system utilities:<br/>CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability. | 3.0.0-3.7.12 | |
 | <a name="CM-28992"></a> [CM-28992](#CM-28992) <a name="CM-28992"></a> | The following security vulnerability has been announced:<br/>CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp. | 3.0.0-3.7.12 | |
 | <a name="CM-28968"></a> [CM-28968](#CM-28968) <a name="CM-28968"></a> | The EVPN `advertise-svi-ip` command does not withdraw routes.<br/>To work around this issue, run the `systemctl restart frr.service` command. | 3.7.9-3.7.12 | |

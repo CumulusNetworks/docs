@@ -12,10 +12,12 @@ frontend:
     build:
       commands:
         # Install pre-reqs for linkchecker
-        - if [ "${AWS_BRANCH}" = "master" ]; then yum -y -q install python-devel ; fi
-        - if [ "${AWS_BRANCH}" = "master" ]; then yum -y -q install python-pip ; fi
+        - yum -y -q install python-devel
+        - yum -y -q install python-pip
         # Pip install linkchecker from github for the latest version since the project lost access to pypi
-        - if [ "${AWS_BRANCH}" = "master" ]; then pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip ; fi
+        - pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip
+        - pip list
+        - exit 1
         # Linkchecker has a bug where it can't pass an auth file
         # https://github.com/linkchecker/linkchecker/issues/343
         # Older versions have an issue parsing robots.txt on https pages

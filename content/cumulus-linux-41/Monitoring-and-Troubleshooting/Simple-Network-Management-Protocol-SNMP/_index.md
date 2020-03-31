@@ -210,23 +210,23 @@ To start the SNMP daemon:
 
 1. Start the `snmpd` daemon:
 
-```
-cumulus@switch:~$ sudo systemctl start snmpd.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl start snmpd.service
+   ```
 
 2. Configure the `snmpd` daemon to start automatically after reboot:
 
-```
-cumulus@switch:~$ sudo systemctl enable snmpd.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl enable snmpd.service
+   ```
 
 3. To enable `snmpd` to restart automatically after failure, create a file called `/etc/systemd/system/snmpd.service.d/restart.conf` and add the following lines:
 
-```
-[Service]
-Restart=always
-RestartSec=60
-```
+   ```
+   [Service]
+   Restart=always
+   RestartSec=60
+   ```
 
 4. Run the `sudo systemctl daemon-reload` command.
 
@@ -254,9 +254,9 @@ The `snmpd` authentication for versions 1 and 2 is disabled by default in Cumulu
 
 1. To enable read-only querying by a client, open the `/etc/snmp/snmpd.conf` file in a text editor and uncomment the following line:
 
-```
-rocommunity public default -V systemonly
-```
+   ```
+   rocommunity public default -V systemonly
+   ```
 
    | Keyword| Meaning|
    |------- |------- |
@@ -267,9 +267,9 @@ rocommunity public default -V systemonly
 
 2. Restart `snmpd`:
 
-```
-cumulus@switch:~$ systemctl restart snmpd.service
-```
+   ```
+   cumulus@switch:~$ systemctl restart snmpd.service
+   ```
 
 ## Enable SNMP Support for FRRouting
 
@@ -292,25 +292,25 @@ To enable SNMP support for FRRouting:
 
 1. Configure AgentX access in FRRouting:
 
-```
-cumulus@switch:~$ net add routing agentx
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+   ```
+   cumulus@switch:~$ net add routing agentx
+   cumulus@switch:~$ net pending
+   cumulus@switch:~$ net commit
+   ```
 
 2. Update the SNMP configuration to enable FRRouting to respond to SNMP requests. Open the `/etc/snmp/snmpd.conf` file in a text editor and verify that the following configuration exists:
 
-```
-agentxsocket /var/agentx/master
-agentxperms 777 777 snmp snmp
-master agentx
-```
+   ```
+   agentxsocket /var/agentx/master
+   agentxperms 777 777 snmp snmp
+   master agentx
+   ```
 
    {{%notice note%}}
 
 Make sure that the `/var/agentx` directory is world-readable andworld-searchable (octal mode 755).
 
-{{%/notice%}}
+   {{%/notice%}}
 
 3. Optionally, you might need to expose various MIBs:
 
@@ -425,16 +425,16 @@ The following procedure shows a slightly more secure method of configuring SNMPv
 
 1. Install the `net-snmp-config` script that is in `libsnmp-dev` package:
 
-```
-cumulus@switch:~$ sudo -E apt-get update
-cumulus@switch:~$ sudo -E apt-get install libsnmp-dev
-```
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   cumulus@switch:~$ sudo -E apt-get install libsnmp-dev
+   ```
 
 2. Stop the daemon:
 
-```
-cumulus@switch:~$ sudo systemctl stop snmpd.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl stop snmpd.service
+   ```
 
 3. Use the `net-snmp-config` command to create two users, one with MD5 and DES, and the next with SHA and AES.
 
@@ -442,13 +442,13 @@ cumulus@switch:~$ sudo systemctl stop snmpd.service
     
 The minimum password length is eight characters and the arguments `-a` and `-x` have different meanings in `net-snmp-config` than `snmpwalk`.
 
-{{%/notice%}}
+   {{%/notice%}}
 
-```  
-cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a md5authpass -x desprivpass -A MD5 -X DES userMD5withDES 
-cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
-cumulus@switch:~$ sudo systemctl start snmpd.service
-```
+   ```  
+   cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a md5authpass -x desprivpass -A MD5 -X DES userMD5withDES 
+   cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+   cumulus@switch:~$ sudo systemctl start snmpd.service
+   ```
 
 This adds a `createUser` command in `/var/lib/snmp/snmpd.conf`. Do **not** edit this file by hand unless you are removing usernames. You can edit this file and restrict access to certain parts of the MIB by adding *noauth*, *auth* or *priv* to allow unauthenticated access, require authentication, or to enforce use of encryption.
 

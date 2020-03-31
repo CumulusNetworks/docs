@@ -122,7 +122,7 @@ cumulus@switch:~$ net commit
     cumulus@switch:~$
     ```
 
-{{%notice note%}}
+    {{%notice note%}}
 
 Instead of configuring the IP subnet prefix and area address per network with the `router ospf` `network` command, you can configure OSPF *per interface* with the `interface` command. However, you cannot use both configuration methods at the same time. Here is an example of configuring OSPF per interface:
 
@@ -138,7 +138,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{%/notice%}}
+    {{%/notice%}}
 
 You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
 

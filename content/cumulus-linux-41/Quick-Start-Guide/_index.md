@@ -506,7 +506,7 @@ cumulus@switch:~$ ip addr show
 
 ## Configure a Loopback Interface
 
-Cumulus Linux has a loopback preconfigured in the `/etc/network/interfaces` file. When the switch boots up, it has a loopback interface, called *lo*, which is up and assigned an IP address of 127.0.0.1.
+Cumulus Linux has a loopback interface preconfigured in the `/etc/network/interfaces` file. When the switch boots up, it has a loopback interface, called *lo*, which is up and assigned an IP address of 127.0.0.1.
 
 {{%notice tip%}}
 
@@ -547,14 +547,6 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-You can configure multiple loopback addresses by adding additional `address` lines:
-
-```
-cumulus@switch:~$ net add loopback lo ip address 172.16.2.1/24
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
 </details>
 
 <details>
@@ -588,16 +580,11 @@ If an IP address is configured without a mask (as shown above), the IP address b
 
 {{%/notice%}}
 
-You can add multiple loopback addresses by adding additional `address` lines in the `/etc/network/interfaces` file:
-
-```
-auto lo
-iface lo inet loopback
-    address 10.1.1.1
-    address 172.16.2.1/24
-```
-
 </details>
+
+### Multiple Loopbacks
+
+You can add multiple loopback addresses. See {{<link url="Interface-Configuration-and-Management#configure-multiple-loopbacks" text="Configure Multiple Loopbacks">}} for details.
 
 ## Reboot the Switch
 

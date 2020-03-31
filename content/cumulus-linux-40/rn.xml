@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29068</td>
+<td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29057</td>
+<td><p>The following vulnerability was reported in the bluez package. No bluez packages are installed by default on Cumulus Linux 4.x, but libbluetooth3 is available from the repository for optional installation.<br/>
+CVE-2020-0556: It was reported that the BlueZ's HID and HOGP profile implementations<br/>
+don't specifically require bonding between the device and the host.<br/>
+Malicious devices can take advantage of this flaw to connect to a target<br/>
+host and impersonate an existing HID device without security or to cause<br/>
+an SDP or GATT service discovery to take place which would allow HID<br/>
+reports to be injected to the input subsystem from a non-bonded source.</p></td>
+<td>4.0.0-4.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
@@ -127,9 +145,9 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 2020-03-05T15:59:12.899906+09:00 [switch01][ptmd][info] Free client connection fd[17] tot[0]
 
 
-<p>To work around this issue, stop the netq-agent daemon.</p></td>
-<td>4.0.0-4.1.0</td>
-<td></td>
+<p>You can ignore these errors.</p></td>
+<td>4.0.0</td>
+<td>4.1.0</td>
 </tr>
 <tr>
 <td>CM-28770</td>

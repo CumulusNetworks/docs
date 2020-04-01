@@ -4,8 +4,7 @@ layout: weights
 bookhidden: true
 weight: 999
 product: Cumulus Linux
-version: "4.1"
-bookhidden: true
+version: "3.7"
 pdfprint: false
 ---
 

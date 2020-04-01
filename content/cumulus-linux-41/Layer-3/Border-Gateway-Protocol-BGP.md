@@ -136,11 +136,11 @@ The following procedure provides example commands:
     cumulus@switchRR:~$ net add bgp neighbor 10.0.0.1 route-reflector-client
     ```
 
-   {{%notice note%}}
+    {{%notice note%}}
 
-  When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command otherwise, the `route-reflector-client` command is ignored.
+When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command otherwise, the `route-reflector-client` command is ignored.
 
-  {{%/notice%}}
+    {{%/notice%}}
 
 4. Specify which prefixes to originate:
 
@@ -208,11 +208,11 @@ The following procedure provides example commands:
     switchRR(config-router-af)# neighbor 10.0.0.1 route-reflector-client
     ```
 
-  {{%notice note%}}
+    {{%notice note%}}
 
-  When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
+When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 
-  {{%/notice%}}
+    {{%/notice%}}
 
 5. Specify which prefixes to originate:
 

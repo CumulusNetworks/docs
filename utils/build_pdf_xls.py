@@ -4,6 +4,8 @@ This script will use the DocRaptor (www.docraptor.com) API to generate the PDFs 
 
 This is done by passing specific URLs to DocRaptor to download and render. 
 Because of this, we must run the PDF creation _after_ we deploy the updated changes.
+
+This script is also responsible for building .xls files of all the release notes using the same docraptor API.
 '''
 import requests
 import sys
@@ -12,8 +14,10 @@ import docraptor
 import os, os.path
 import errno
 
-TEST = True
+# Are we generating test or production PDFs?
+TEST = False
 
+# Validate that the amplify CLI is passing the right parameters 
 if len(sys.argv) != 5:
     print("Please provide arguments in the following order <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS>.")
     print(F"Received {len(sys.argv)} arguments: {sys.argv}" )
@@ -21,18 +25,22 @@ if len(sys.argv) != 5:
 
 # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS> 
 token = sys.argv[1]
-base_url = sys.argv[2]
+if sys.argv[2].endswith("/"):
+    base_url = sys.argv[2]
+else:
+    base_url = sys.argv[2] + "/"
 http_user = sys.argv[3]
 http_pass = sys.argv[4]
 pdf_dir = "static/pdfs"
 
-# this key works for test documents
 docraptor.configuration.username = str(token)
-# docraptor.configuration.debug = True
 doc_api = docraptor.DocApi()
 
 # Taken from https://stackoverflow.com/a/600612/119527
 def mkdir_p(path):
+    '''
+    Generate a given path with all required parent folder
+    '''
     try:
         os.makedirs(path)
     except OSError as exc: # Python >2.5
@@ -59,7 +67,7 @@ def request_pdf(product):
     # This _must_ be an async request. The filesizes of CL and NetQ are unlikely return before timeout.
     print("Sending Cumulus {} PDF creation request".format(product))
     pdf_request = doc_api.create_async_doc({
-        "document_url": base_url + "cumulus-{}/pdf/".format(product.lower()),
+        "document_url": base_url + "{}/pdf/".format(product.lower()),
         "document_type": "pdf",
         "test": TEST,
         "javascript": True,
@@ -72,6 +80,11 @@ def request_pdf(product):
     return pdf_request
 
 def get_dir_list():
+    '''
+    Get a list of directories to place PDF content into.
+
+    Returns a list of directory names, assuming the "content" folder as a parent
+    '''
     full_dir_list = os.listdir('content')
     old_releases = ["cumulus-linux-37", "cumulus-netq-24"]  # Older versions that have a single release we care about
     return_dirs = []
@@ -90,11 +103,16 @@ def get_dir_list():
     return return_dirs
 
 def get_xls_files():
+    '''
+    Generate XLS files from docraptor.
+    The process is simpler than PDF process so it is a self-contained method that directly downloads and writes the xls files.
+
+    '''
     dir_list = get_dir_list()
     for directory in dir_list:
         for file in os.listdir("content/" + directory):
             if file.endswith(".xml"):
-                print("Converting {} to xls".format(file))
+                print("Converting {}/rn.xml to xls".format(directory))
                 create_response = doc_api.create_doc({
                     "test": TEST,                                                   # test documents are free but watermarked
                     "document_url": "{}{}/{}".format(base_url, directory, file),
@@ -113,81 +131,58 @@ def get_xls_files():
                 file.close
 
 try:
-    netq_request = request_pdf("NetQ")
-    cl_request = request_pdf("Linux")
-    
-    first_loop = True
-    download_cl = False
-    download_netq = False
-    download_xls = False
-    
+
+    dir_list = get_dir_list()
+    pdf_requests = {}
+
+    # Get the list of directories we need to build PDFs for
+    # map each directory to docraptor request object
+    for directory in dir_list:
+        pdf_requests[directory] = request_pdf(directory)
+
+    # Request and download the XLS files 
     print("Downloading XLS files...")
     get_xls_files()
 
+    print("Checking PDF status...", end="")
+    # It takes some time to gerate the pdf files, so loop forever
     while True:
-        if(first_loop):
-            print("Checking PDF status...", end="")
-        else:
-            print(".", end="")
-        
-        # API calls to create both NetQ and CL docs in parallel
-        netq_status_response = doc_api.get_async_doc_status(netq_request.status_id)
-        cl_status_response = doc_api.get_async_doc_status(cl_request.status_id)
-        
-        # If we've already downloaded NetQ but are waiting on CL,
-        # Then just skip over the netq checking.
-        if not download_netq:
-            if netq_status_response.status == "completed":
 
-                print("\nNetQ PDF successfully created. Downloading...")
-                doc_response = doc_api.get_async_doc(netq_status_response.download_id)
-                with safe_open_w(pdf_dir + "/cumulus-netq.pdf") as f:
-                    f.write(doc_response)
-                # file = open(pdf_dir + "/cumulus-netq.pdf", "wb")
-                # file.write(doc_response)
-                # file.close
-                print(F"Wrote PDF to {pdf_dir}/cumulus-netq.pdf")
-                download_netq = True
+        for directory in dir_list:
+            status = doc_api.get_async_doc_status(pdf_requests[directory].status_id)
+
+            if status.status == "failed":
+                print("\n{} PDF creation failed. Error response:".format(directory))
+                print(status)
+                exit(1)
+
+            elif status.status == "completed":
+                print("\nPDF generation for {} completed, downloading.\n".format(directory))
+                doc_response = doc_api.get_async_doc(status.download_id)
                 
-                # If aren't sure if CL is already done, let's keep waiting.
-                if not download_cl:
-                    print("Continuing to wait for CL PDF...", end="")
-            elif netq_status_response.status == "failed":
-                print("\nCL PDF creation failed. Error response:")
-                print(netq_status_response)
-                exit(1)
-
-        # Just like NetQ, if we have already downloaded CL but are waiting on NetQ
-        # Skip all the CL checking.
-        if not download_cl:
-            if cl_status_response.status == "completed":
-                print("\nCumulus Linux PDF successfully created. Downloading...")
-                doc_response = doc_api.get_async_doc(cl_status_response.download_id)
-                with safe_open_w(pdf_dir + "/cumulus-linux.pdf") as f:
+                # write the file to the version folder, for example 
+                # content/cumulus-linux-37/cumulus-linux-37.pdf
+                download_dir = "content/{}/{}.pdf".format(directory, directory)
+                
+                with safe_open_w(download_dir) as f:
                     f.write(doc_response)
-                # file = open(pdf_dir + "/cumulus-linux.pdf", "wb")
-                # file.write(doc_response)
-                # file.close
-                print(F"Wrote PDF to {pdf_dir}/cumulus-linux.pdf")
-                download_cl = True
+                print("PDF written to {}".format(download_dir))
 
-                # If we are not sure that netq is done yet, keep waiting.
-                if not download_netq:
-                    print("Continuing to wait for NetQ PDF...", end="")
-            elif cl_status_response.status == "failed":
-                print("\nCL PDF creation failed. Error response:")
-                print(cl_status_response)
-                exit(1)
+                # Now that we have the PDF of that release, remove it from the directory list
+                dir_list.remove(directory)
 
-        # If we've downloaded both PDFs then let's exit.
-        if download_netq and download_cl:
-            print("\nBoth PDF files successfully downloaded. Exiting.")
-            exit(0)
-        else:
-            #Flush the stdout buffer to print growing "..." for waiting message
-            sys.stdout.flush()
-            first_loop = False
-            time.sleep(1)
+                # If there are no directories left in the list then we have all the PDFs
+                if len(dir_list) == 0:
+                    print("All PDFs generated. Exiting")
+                    exit(0)
+                else:
+                    print("Still waiting on PDFs {}.\n".format(", ".join(dir_list)))
+
+            else: 
+                print(".", end="")    
+                #Flush the stdout buffer to print growing "..." for waiting message
+                sys.stdout.flush()
+        time.sleep(1)
 
 except docraptor.rest.ApiException as error:
     print(error)

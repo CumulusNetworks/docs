@@ -1,0 +1,29 @@
+Format-Specification: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?op=file&rev=135
+Maintainer: Andrew Main (Zefram) <zefram@fysh.org>
+Source: http://search.cpan.org/dist/Perl4-CoreLibs/
+Name: Perl4-CoreLibs
+
+Files: *
+Copyright: 1987-2009 Larry Wall et al
+ 2010, 2011 Andrew Main (Zefram) <zefram@fysh.org>
+License: Artistic or GPL-1+
+
+Files: debian/*
+Copyright: 2011, Dominic Hargreaves <dom@earth.li>
+License: Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.

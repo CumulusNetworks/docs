@@ -10,9 +10,10 @@ This will also write the XML files that are used to generate xls files for the r
 '''
 
 import json
-from operator import itemgetter, attrgetter
-import requests 
+import requests
 import re
+import tarfile 
+import os 
 
 def product_string(product):
     '''
@@ -57,57 +58,11 @@ def get_hugo_folder(product, version):
         print("ERROR: Unknown product {}".format(product))
         exit(1)
 
-def sanatize_rn_for_markdown(string):
-    '''
-    Strip any special or problematic characters from the a string. 
-    This (generally) will be used on the release note text to strip characters that break markdown.
-
-    string - The string to sanatize
-    '''
-
-    # # Remove HTML tags
-    # TAG_RE = re.compile(r'<[^>]+>')
-    # output_string = TAG_RE.sub('', string)
-    output_string = string.replace("<p>", "")
-    output_string = output_string.replace("</p>", "")
-    
-    output_string = output_string.replace("`", "'")
-
-    output_string = output_string.replace("\r\n", "<br />")
-    output_string = output_string.replace("\n", "")
-    
-    output_string = output_string.replace("&lt;", "<")
-    output_string = output_string.replace("&gt;", ">")
-
-    output_string = output_string.replace("<tt>", "`")
-    output_string = output_string.replace("</tt>", "`")
-
-    #CM-21678
-    output_string = output_string.replace('<div class=\"preformatted\" style=\"border-width: 1px;\"><div class=\"preformattedContent panelContent\"><pre>', "<br /><pre>")
-    output_string = output_string.replace("</pre></div></div>", "</pre><br />")
-
-    # Remove line returns and replace them with HTML breaks
-    output_string = output_string.replace("\r", "")
-    #output_string = output_string.replace("\n\n", "<br />")
-    #output_string = output_string.replace("\n", "<br />")
-
-    
-    # Escape pipe characters
-    output_string = output_string.replace("|", "\|")
-
-    #Replace @ characters to prevent auto email link creation 
-    output_string = output_string.replace("@", "&#64;")
-    output_string = output_string.replace("[", "&#91;")
-    output_string = output_string.replace("]", "&#93;")
-    
-
-    return output_string
-
 def build_foss_license_markdown(csv_file, version, product):
     '''
-    Builds a list of lines that contain the entire formatted release notes in markdown table format.
+    Builds a list of lines that contain the entire formatted foss licenses in markdown table format.
 
-    json_file - the json output to parse and build release notes from
+    json_file - the json output to parse and build foss licenses from
     version - a full version string, i.e., 3.7.11
     product - a product_string() output, i.e., Cumulus Linux
     '''
@@ -119,7 +74,7 @@ def build_foss_license_markdown(csv_file, version, product):
         if header:
             output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), split_line[2].strip()))
         else:
-            output.append("| [{}]({}) | {} | {} |\n".format(split_line[0], split_line[0], split_line[1].strip(), split_line[2].strip()))
+            output.append("| [{}](/{}/Whats-New/foss/{}) | {} | {} |\n".format(split_line[0], version_string(version), split_line[0], split_line[1].strip(), split_line[2].strip()))
         if header:
             output.append("|---	        |---	        |---	    |\n")
             header = False
@@ -161,7 +116,7 @@ def write_foss_licenses(output, product, version, minor=False):
     '''
     directory = get_hugo_folder(product, version)
 
-    with open("content/{}/foss/_index.md".format(directory), "w") as out_file:
+    with open("content/{}/Whats-New/foss.md".format(directory), "w") as out_file:
         for line in output:
             out_file.write(line)
 
@@ -189,33 +144,49 @@ def build_foss_license_markdown_files(product, version_list):
         
         # We only want to generate the frontmatter once per minor
         version_output.extend(build_markdown_header(product_string(product), major))    
-        hugo_dir = get_hugo_folder(product, version)
 
         # Loop over all the maintenance releases.
         for version in major_minor[major]:
             print("Building markdown for {} {}\n".format(product_string(product), version))
             version_output.append("## {} Open Source Software Licenses \n".format(version))
-            hugo_dir = get_hugo_folder(product, version)
 
-            version_output.extend(build_foss_license_markdown("utils/FOSS-4.1.0.csv", version, product_string(product)))
+            version_output.extend(build_foss_license_markdown("content/cumulus-linux-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), version), version, product_string(product)))
 
         # The version_output now contains the RNs for all maintenance releases in order. 
         # Write out the markdown file.
         write_foss_licenses(version_output, product, version)
 
+def process_foss_tar(version):
+    '''
+    Download the tar file containing the foss licenses. 
+
+    version - the version to capture foss tar files for
+    '''
+
+    url = "https://d2whzysjlaya8k.cloudfront.net/cl/{}/FOSS-{}.tgz".format(version, version)
+
+    response = requests.get(url, stream=True)
+
+    if response.status_code != 200:
+        print('Unable to download {} \nReceived response {}'.format(url, response.status_code))
+        exit(1)
+    
+    with open("temp.tgz", "wb") as f:
+        f.write(response.raw.read())
+    tar = tarfile.open("temp.tgz")
+    tar.extractall(path="content/cumulus-linux-{}/Whats-New/licenses/".format(version_string(version).replace(".", "")))
+    os.remove("temp.tgz")
 
 def main():
 
-    # products = {
-    #     "cl":  ["3.7.1", "3.7.2", "3.7.3", "3.7.4", "3.7.5", "3.7.6", "3.7.7", "3.7.8", "3.7.9", "3.7.10", "3.7.11", "3.7.12", "4.0.0", "4.1.0"],
-    #     "netq": ["2.4.0", "2.4.1"]
-    # }
-    
     products = {
-        "cl": ["4.1.0"]
-    }
+        "cl": ["3.7.12", "4.1.0"]
+    } 
 
     for product in products:
+        for value in products[product]:
+            process_foss_tar(value)
+        
         build_foss_license_markdown_files(product, products[product])
 
     exit(0)

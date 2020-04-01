@@ -468,33 +468,33 @@ cumulus@spine02:~$ net commit
 
    **spine01**
 
-```
-cumulus@spine01:~$ sudo vtysh
+    ```
+    cumulus@spine01:~$ sudo vtysh
 
-spine01# configure terminal
-spine01(config)# interface swp1
-spine01(config-if)# vrrp 44 ip 10.0.0.1
-spine01(config-if)# vrrp 44 ipv6 2001:0db8::1
-spine01(config-if)# vrrp 44 priority 254
-spine01(config-if)# vrrp 44 advertisement-interval 5000
-spine01(config-if)# end
-spine01# write memory
-spine01# exit
-```
+    spine01# configure terminal
+    spine01(config)# interface swp1
+    spine01(config-if)# vrrp 44 ip 10.0.0.1
+    spine01(config-if)# vrrp 44 ipv6 2001:0db8::1
+    spine01(config-if)# vrrp 44 priority 254
+    spine01(config-if)# vrrp 44 advertisement-interval 5000
+    spine01(config-if)# end
+    spine01# write memory
+    spine01# exit
+    ```
 
    **spine02**
 
- ```
-cumulus@spine02:~$ sudo vtysh
+    ```
+    cumulus@spine02:~$ sudo vtysh
 
-spine02# configure terminal
-spine02(config)# interface swp1
-spine02(config-if)# vrrp 44 ip 10.0.0.1
-spine02(config-if)# vrrp 44 ipv6 2001:0db8::1
-spine02(config-if)# end
-spine02# write memory
-spine02# exit
-```
+    spine02# configure terminal
+    spine02(config)# interface swp1
+    spine02(config-if)# vrrp 44 ip 10.0.0.1
+    spine02(config-if)# vrrp 44 ipv6 2001:0db8::1
+    spine02(config-if)# end
+    spine02# write memory
+    spine02# exit
+    ```
 
 </details>
 

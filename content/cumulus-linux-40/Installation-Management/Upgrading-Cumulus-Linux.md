@@ -138,9 +138,9 @@ To upgrade the switch:
 2. Download the Cumulus Linux image.
 3. Install the disk image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.0.0-mlx-amd64.bin && sudo reboot
-```
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.0.0-mlx-amd64.bin && sudo reboot
+    ```
 
 4. Restore the configuration files to the new release - ideally with automation.
 5. Verify correct operation with the old configurations on the new release.
@@ -159,65 +159,65 @@ For networks with MLAG deployments, Cumulus Networks only supports upgrading to 
 
 1. Verify the switch is in the secondary role:
 
-```
-cumulus@switch:~$ clagctl status
-```
+   ```
+   cumulus@switch:~$ clagctl status
+   ```
 
 2. Shut down the core uplink layer 3 interfaces:
 
-```
-cumulus@switch:~$ sudo ip link set swpX down
-```
+   ```
+   cumulus@switch:~$ sudo ip link set swpX down
+   ```
 
 3. Shut down the peer link:
 
-```
-cumulus@switch:~$ sudo ip link set peerlink down
-```
+   ```
+   cumulus@switch:~$ sudo ip link set peerlink down
+   ```
 
 4. Run the `onie-install -a -i <image-location>` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
-```
-cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.0.0-mlx-amd64.bin
-```
+   ```
+   cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.0.0-mlx-amd64.bin
+   ```
 
 5. Reboot the switch:
 
-```
-cumulus@switch:~$ sudo reboot
-```
+   ```
+   cumulus@switch:~$ sudo reboot
+   ```
 
 6. Verify STP convergence across both switches:
 
-```
-cumulus@switch:~$ mstpctl showall
-```
+   ```
+   cumulus@switch:~$ mstpctl showall
+   ```
 
 7. Verify core uplinks and peer links are UP:
 
-```
-cumulus@switch:~$ net show interface
-```
+   ```
+   cumulus@switch:~$ net show interface
+   ```
 
 8. Verify MLAG convergence:
 
-```
-cumulus@switch:~$ clagctl status
-```
+   ```
+   cumulus@switch:~$ clagctl status
+   ```
 
 9. Make this secondary switch the primary:
 
-```
-cumulus@switch:~$ clagctl priority 2048
-```
+   ```
+   cumulus@switch:~$ clagctl priority 2048
+   ```
 
 10. Verify the other switch is now in the secondary role.
 11. Repeat steps 2-8 on the new secondary switch.
 12. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
 
-```
-cumulus@switch:~$ clagctl priority 32768
-```
+    ```
+    cumulus@switch:~$ clagctl priority 32768
+    ```
 
 ## Roll Back a Cumulus Linux Installation
 

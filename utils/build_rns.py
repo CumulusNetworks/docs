@@ -216,7 +216,6 @@ def build_markdown_header(product, version):
     output.append("version: \"{}\"\n".format(version))
     output.append("toc: 1\n")
     output.append("type: rn\n")
-    output.append("draft: True\n")
     output.append("bookhidden: True\n")
     output.append("pdfhidden: True\n")
     output.append("---\n")
@@ -241,8 +240,18 @@ def write_rns(output, file_type, product, version):
     # but calling it xml when we are building xls is confusing
     if file_type == "xls":
         file_type = "xml"
+        # this keeps the .xml file at the root of the version. 
+        # Moving it into the product specific folder makes generating xls much more complicated.
+        output_file = "content/{}/rn.{}".format(directory, file_type)
 
-    with open("content/{}/rn.{}".format(directory, file_type), "w") as out_file:
+
+    if file_type == "md":
+        if product == "cl":
+            output_file = "content/{}/Whats-New/rn.{}".format(directory, file_type)
+        if product == "netq":
+            output_file = "content/{}/More-Documents/rn.{}".format(directory, file_type)
+
+    with open(output_file, "w") as out_file:
         for line in output:
             out_file.write(line)
 

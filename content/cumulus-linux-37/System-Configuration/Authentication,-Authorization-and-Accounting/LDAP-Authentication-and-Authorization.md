@@ -310,7 +310,7 @@ connection (port 389).
 After you enable debug mode, run the following command to test LDAP
 queries:
 
-    cumulus@switch:~$ sudo getent myuser
+    cumulus@switch:~$ sudo getent passwd
 
 If LDAP is configured correctly, the following messages appear after you
 run the `getent` command:

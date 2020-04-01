@@ -199,50 +199,50 @@ You can run different commands to show neighbor information in OSPF, including B
 
    The following example shows IPv6 OSPF interface information.
 
-```
-cumulus@switch:~$ net show ospf6 interface swp2s0
-swp2s0 is up, type BROADCAST
-  Interface ID: 4
-  Internet Address:
-    inet : 11.0.0.21/30
-    inet6: fe80::4638:39ff:fe00:6c8e/64
-  Instance ID 0, Interface MTU 1500 (autodetect: 1500)
-  MTU mismatch detection: enabled
-  Area ID 0.0.0.0, Cost 10
-  State PointToPoint, Transmit Delay 1 sec, Priority 1
-  Timer intervals configured:
-    Hello 10, Dead 40, Retransmit 5
-  DR: 0.0.0.0 BDR: 0.0.0.0
-  Number of I/F scoped LSAs is 2
-    0 Pending LSAs for LSUpdate in Time 00:00:00 [thread off]
-    0 Pending LSAs for LSAck in Time 00:00:00 [thread off]
-  BFD: Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
-```
+    ```
+    cumulus@switch:~$ net show ospf6 interface swp2s0
+      swp2s0 is up, type BROADCAST
+    Interface ID: 4
+    Internet Address:
+      inet : 11.0.0.21/30
+      inet6: fe80::4638:39ff:fe00:6c8e/64
+    Instance ID 0, Interface MTU 1500 (autodetect: 1500)
+    MTU mismatch detection: enabled
+    Area ID 0.0.0.0, Cost 10
+    State PointToPoint, Transmit Delay 1 sec, Priority 1
+    Timer intervals configured:
+      Hello 10, Dead 40, Retransmit 5
+    DR: 0.0.0.0 BDR: 0.0.0.0
+    Number of I/F scoped LSAs is 2
+      0 Pending LSAs for LSUpdate in Time 00:00:00 [thread off]
+      0 Pending LSAs for LSAck in Time 00:00:00 [thread off]
+    BFD: Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
+    ```
 
 - To show IPv6 OSPF neighbor details, run the NCLU `net show ospf6 neighbor detail` command or the vtysh `show ip ospf6 neighbor detail` command.
 - To show IPv4 OSPF interface information, run the NCLU `net show ospf neighbor detail` command or the vtysh `show ip ospf neighbor detail` command.
 
   The following example shows IPv6 OSPF neighbor details.
 
-```
-cumulus@switch:~$ net show ospf6 neighbor detail
-  Neighbor 0.0.0.4%swp2s0
-    Area 0.0.0.0 via interface swp2s0 (ifindex 4)
-    His IfIndex: 3 Link-local address: fe80::202:ff:fe00:a
-    State Full for a duration of 02:32:33
-    His choice of DR/BDR 0.0.0.0/0.0.0.0, Priority 1
-    DbDesc status: Slave SeqNum: 0x76000000
-    Summary-List: 0 LSAs
-    Request-List: 0 LSAs
-    Retrans-List: 0 LSAs
-    0 Pending LSAs for DbDesc in Time 00:00:00 [thread off]
-    0 Pending LSAs for LSReq in Time 00:00:00 [thread off]
-    0 Pending LSAs for LSUpdate in Time 00:00:00 [thread off]
-    0 Pending LSAs for LSAck in Time 00:00:00 [thread off]
-    BFD: Type: single hop
-      Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
-      Status: Up, Last update: 0:00:00:20
-```
+  ```
+  cumulus@switch:~$ net show ospf6 neighbor detail
+    Neighbor 0.0.0.4%swp2s0
+      Area 0.0.0.0 via interface swp2s0 (ifindex 4)
+      His IfIndex: 3 Link-local address: fe80::202:ff:fe00:a
+      State Full for a duration of 02:32:33
+      His choice of DR/BDR 0.0.0.0/0.0.0.0, Priority 1
+      DbDesc status: Slave SeqNum: 0x76000000
+      Summary-List: 0 LSAs
+      Request-List: 0 LSAs
+      Retrans-List: 0 LSAs
+      0 Pending LSAs for DbDesc in Time 00:00:00 [thread off]
+      0 Pending LSAs for LSReq in Time 00:00:00 [thread off]
+      0 Pending LSAs for LSUpdate in Time 00:00:00 [thread off]
+      0 Pending LSAs for LSAck in Time 00:00:00 [thread off]
+      BFD: Type: single hop
+        Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
+        Status: Up, Last update: 0:00:00:20
+  ```
 
 ## Scripts
 

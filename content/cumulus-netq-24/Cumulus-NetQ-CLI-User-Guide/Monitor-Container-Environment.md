@@ -13,11 +13,7 @@ The NetQ Agent monitors many aspects of containers on your network by integratin
 - **Port mapping on a network**: Protocol and ports exposed by a container. NetQ can identify containers exposing a specific protocol and port pair on a network.
 - **Connectivity**: Information about network connectivity for a container, including adjacency, and can identify containers that can be affected by a top of rack switch.
 
-{{%notice note%}}
-Cumulus Networks recommends installing the NetQ Agent on the server with the containers.
-{{%/notice%}}
-
-This topic assumes a reasonable familiarity with Kubernetes terminology and architecture. If you do not have this familiarity, refer to {{<exlink url="https://kubernetes.io/docs/tutorials/" text="Kubernetes Tutorials">}} before continuing.
+This topic assumes a reasonable familiarity with Kubernetes terminology and architecture.
 
 ## Use NetQ with Kubernetes Clusters
 
@@ -60,6 +56,10 @@ There is a large set of commands available to monitor Kubernetes configurations,
     netq config show agent kubernetes-monitor [json]
 
 ## Enable Kubernetes Monitoring
+
+{{<notice note>}}
+For Kubernetes monitoring, the NetQ Agent must be installed, running, and enabled on the host(s) providing the Kubernetes service.
+{{</notice>}}
 
 To enable NetQ Agent monitoring of the containers using the Kubernetes API, you must configure the following on the Kubernetes master node:
 

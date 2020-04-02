@@ -1018,14 +1018,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td></td>
 </tr>
 <tr>
-<td>CM-23440</td>
-<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
- To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
-</td>
-<td>3.7.2-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
@@ -2813,14 +2805,6 @@ To restore connectivity, remove the VLAN ID from the bridge. </p></td>
 After you remove the link-speed, ethtool shows the advertised link modes as not reported and Speed/Duplex as unknown.<br/>
 To work around this issue and bring the interface back up, either restart switchd or use ethtool to configure the speed, advertised, duplex or MDI-X settings. <br/>
 Note: The advertised link mode gets set incorrectly if you include 1000baseT/Half. The port will come up successfully at 1G.</p></td>
-<td>3.7.2-3.7.12</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-23440</td>
-<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
- To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
-</td>
 <td>3.7.2-3.7.12</td>
 <td></td>
 </tr>
@@ -5109,14 +5093,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td></td>
 </tr>
 <tr>
-<td>CM-23440</td>
-<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
- To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
-</td>
-<td>3.7.2-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
@@ -6789,14 +6765,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td></td>
 </tr>
 <tr>
-<td>CM-23440</td>
-<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
- To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
-</td>
-<td>3.7.2-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
@@ -8331,14 +8299,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td></td>
 </tr>
 <tr>
-<td>CM-23440</td>
-<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
- To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
-</td>
-<td>3.7.2-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
@@ -9772,14 +9732,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td></td>
 </tr>
 <tr>
-<td>CM-23440</td>
-<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
- To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
-</td>
-<td>3.7.2-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
@@ -11138,14 +11090,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td></td>
 </tr>
 <tr>
-<td>CM-23440</td>
-<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
- To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
-</td>
-<td>3.7.2-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
@@ -12284,14 +12228,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td></td>
 </tr>
 <tr>
-<td>CM-23440</td>
-<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
- To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
-</td>
-<td>3.7.2-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
@@ -13336,14 +13272,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td></td>
 </tr>
 <tr>
-<td>CM-23440</td>
-<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
- To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
-</td>
-<td>3.7.2-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
@@ -14286,14 +14214,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td></td>
 </tr>
 <tr>
-<td>CM-23440</td>
-<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
- To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
-</td>
-<td>3.7.2-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-23418</td>
 <td><p>For QSFP modules, the sudo ifdown command does not disable the Tx laser. </p>
 </td>
@@ -14683,6 +14603,13 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>CM-23440</td>
+<td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
+ To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
+</td>
+<td>3.7.2</td>
 </tr>
 </table>
 <table name="Open Issues in 3.7.2">
@@ -15146,8 +15073,8 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
  To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
 </td>
-<td>3.7.2-3.7.12</td>
-<td></td>
+<td>3.7.2</td>
+<td>3.7.3-3.7.12</td>
 </tr>
 <tr>
 <td>CM-23418</td>

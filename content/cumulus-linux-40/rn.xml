@@ -2108,7 +2108,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td><p>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. <br/>
  To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
 </td>
-<td>3.7.2-3.7.12</td>
+<td>3.7.2</td>
 </tr>
 <tr>
 <td>CM-23016</td>

@@ -11,6 +11,11 @@ noChmod = true
 enableRobotsTXT = true
 disableKinds = ["RSS"]  
 
+[mediaTypes]
+  [mediaTypes."text/plain"]
+    suffix = ""
+    delimiter = ""
+
 [markup]
   [markup.tableOfContents]
     endLevel = 4

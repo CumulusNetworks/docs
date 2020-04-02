@@ -50,7 +50,8 @@ Cumulus Linux accepts the bandwidth extended community by default. No additional
 
 {{%notice note%}}
 
-The bandwidth used in the extended community has no impact on or relation to port bandwidth.
+- The bandwidth used in the extended community has no impact on or relation to port bandwidth.
+- You can only apply the route weight information on the outbound direction to a peer; you cannot apply route weight information on the inbound direction from peers advertising routes to the switch.
 
 {{%/notice%}}
 

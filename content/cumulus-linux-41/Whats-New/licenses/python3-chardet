@@ -1,0 +1,28 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: chardet
+Upstream-Contact: Daniel Blanchard <dan.blanchard@gmail.com>
+Source: https://pypi.python.org/pypi/chardet
+
+Files: *
+Copyright: 1998, 2001, 2005 Netscape Communications Corporation
+           2003, Mozilla Foundation
+           2006, 2007, 2008 Mark Pilgrim
+           2012-2013, Ian Cordasco
+License: LGPL-2.1+
+
+Files: chardet/cli/chardetect.py
+Copyright: 2012, Erik Rose <grinch@grinchcentral.com>
+License: LGPL-2.1+
+
+Files: debian/*
+Copyright: 2006-2011, Piotr Ożarowski <piotr@debian.org>
+           2014, 2016-2019, Daniele Tricoli <eriol@debian.org>
+License: LGPL-2.1+
+
+License: LGPL-2.1+
+ This library is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as
+ published by the Free Software Foundation; either version 2.1 of the
+ License, or (at your option) any later version.
+ .
+ See /usr/share/common-licenses/LGPL-2.1 for the full license text.

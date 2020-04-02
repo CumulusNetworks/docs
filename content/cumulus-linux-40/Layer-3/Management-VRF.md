@@ -85,35 +85,35 @@ The following steps show how to enable the SNMP service to run in the management
 
 1. If SNMP is running, stop the service:
 
-```
-cumulus@switch:~$ sudo systemctl stop snmpd.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl stop snmpd.service
+   ```
 
 2. Disable SNMP from starting automatically in the default VRF:
 
-```
-cumulus@switch:~$ sudo systemctl disable snmpd.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl disable snmpd.service
+   ```
 
 3. Start SNMP in the management VRF:
 
-```
-cumulus@switch:~$ sudo systemctl start snmpd@mgmt.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl start snmpd@mgmt.service
+   ```
 
 4. Enable `snmpd@mgmt` so that it starts when the switch boots:
 
-```
-cumulus@switch:~$ sudo systemctl enable snmpd@mgmt.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl enable snmpd@mgmt.service
+   ```
 
 5. Verify that the SNMP service is running in the management VRF:
 
-```
-cumulus@switch:~$ ps aux | grep snmpd
-snmp      3083  0.1  1.9  35916 13292 ?        Ss   21:07   0:00 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
-cumulus   3225  0.0  0.1   6076   884 pts/0    S+   21:07   0:00 grep snmpd
-```
+   ```
+   cumulus@switch:~$ ps aux | grep snmpd
+   snmp      3083  0.1  1.9  35916 13292 ?        Ss   21:07   0:00 /usr/sbin/snmpd -y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd.pid -f
+   cumulus   3225  0.0  0.1   6076   884 pts/0    S+   21:07   0:00 grep snmpd
+   ```
 
 Run the following command to show the process IDs associated with the management VRF:
 
@@ -180,30 +180,30 @@ To run services in the management VRF as a non-root user, you need to create a c
 
 1. Run the following command to create a custom service file in the `/etc/systemd/system` direcotry.
 
-```
-cumulus@switch:~$ sudo -E systemctl edit --full ssh.service
-```
+   ```
+   cumulus@switch:~$ sudo -E systemctl edit --full ssh.service
+   ```
 
 2. If a *User* directive exists under *\[Service\]*, comment it out.
 
-```
-cumulus@switch:~$ sudo nano /etc/systemd/system/ssh.service
-...
-[Service]
-#User=username
-ExecStart=/usr/local/bin/ssh agent -data-dir=/tmp/ssh -bind=192.168.0.11
-...
-```
+   ```
+   cumulus@switch:~$ sudo nano /etc/systemd/system/ssh.service
+   ...
+   [Service]
+   #User=username
+   ExecStart=/usr/local/bin/ssh agent -data-dir=/tmp/ssh -bind=192.168.0.11
+   ...
+   ```
 
 3. Modify the *ExecStart* line to `/usr/bin/ip vrf exec mgmt /sbin/runuser -u USER -- ssh`:
 
-```
-...
-[Service]
-#User=username
-ExecStart=/usr/bin/ip vrf exec mgmt /sbin/runuser -u cumulus -- ssh
-...
-```
+   ```
+   ...
+   [Service]
+   #User=username
+   ExecStart=/usr/bin/ip vrf exec mgmt /sbin/runuser -u cumulus -- ssh
+   ...
+   ```
 
 ## OSPF and BGP
 

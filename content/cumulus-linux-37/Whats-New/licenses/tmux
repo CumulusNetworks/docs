@@ -1,0 +1,138 @@
+Upstream-Name: tmux
+Upstream-Source: http://sf.net/projects/tmux
+Upstream Author: Nicholas Marriott <nicm@users.sf.net>
+
+Files: *
+Copyright: 
+ Copyright (c) 2007-2010 Nicholas Marriott <nicm@users.sourceforge.net> on
+	everything not listed thereunder
+ Copyright (c) 2009 Joshua Elsasser <josh@elsasser.org> on
+	attributes.c
+	osdep-darwin.c
+ Copyright (c) 2008-2009 Tiago Cunha <me@tiagocunha.org> on
+	cmd-confirm-before.c
+	cmd-copy-buffer.c
+	cmd-display-message.c
+	cmd-if-shell.c
+	cmd-load-buffer.c
+	cmd-save-buffer.c
+	cmd-source-file.c
+	examples/tmux.vim
+ Copyright (c) 2002 Todd C. Miller <Todd.Miller@courtesan.com> on
+	getopt_long.c
+ Copyright (c) 2004, 2005, 2007 Darren Tucker (dtucker at zip com au) on
+	bsd-poll.c
+ Copyright (c) 1998 Todd C. Miller <Todd.Miller@courtesan.com> on
+	strlcat.c
+ Copyright (c) 1998 Todd C. Miller <Todd.Miller@courtesan.com> on
+	strlcpy.c
+ Copyright (c) 2004 Ted Unangst and Todd Miller on
+	strtonum.c
+ Copyright (c) 2010 Romain Francoise <rfrancoise@debian.org> on
+	signal.c
+
+License:
+ Permission to use, copy, modify, and distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF MIND, USE, DATA OR PROFITS, WHETHER
+ IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
+ OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+Files: compat/{bitstring.h,daemon.c,fgetln.c,queue.h,str{casestr,sep}.c,
+	unvis.h,vis.h,vis.c}
+Copyright:
+ Copyright (c) 1989, 1993 The Regents of the University of California on
+	bitstring.h
+	unvis.c
+ Copyright (c) 1990, 1993 The Regents of the University of California on
+	strcasestr.c
+	strsep.c
+ Copyright (c) 1989, 1993 The Regents of the University of California on
+	vis.c
+ Copyright (c) 1990 The Regents of the University of California on
+	vis.h
+ Copyright (c) 1990, 1993 The Regents of the University of California on
+	daemon.c
+ Copyright (c) 1998 The NetBSD Foundation, Inc. on
+	fgetln.c
+ Copyright (c) 1991, 1993 The Regents of the University of California on
+	queue.h
+
+License: BSD-3	
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. Neither the name of the University nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+Files: compat/{bsd-poll.h,imsg.{c,h},imsg-buffer.c,getopt.h,getopt_long.c,tree.h}
+Copyright:
+ Copyright (c) 1996 Theo de Raadt on
+	bsd-poll.h
+ Copyright (c) 2003, 2004 Henning Brauer <henning@openbsd.org> on
+	imsg-buffer.c 
+ Copyright (c) 2003, 2004 Henning Brauer <henning@openbsd.org> on
+	imsg.c 
+ Copyright (c) 2006, 2007 Pierre-Yves Ritschard <pyr@openbsd.org> and
+ Copyright (c) 2006, 2007, 2008 Reyk Floeter <reyk@openbsd.org> and
+ Copyright (c) 2003, 2004 Henning Brauer <henning@openbsd.org> on
+	imsg.h
+ Copyright (c) 2000 The NetBSD Foundation, Inc. on
+	getopt.h
+ Copyright (c) 2000 The NetBSD Foundation, Inc. on
+	getopt_long.c
+ Copyright 2002 Niels Provos <provos@citi.umich.edu> on
+	tree,h
+
+License: BSD-2	
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+ IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+The Debian packaging is Copyright (C) 2008, 2009, 2010, 2011 Karl Ferdinand
+Ebert <kfebert@gmail.com> and is licensed under BSD-2.
+
+File: debian/patches/99_upstream.diff
+  Copyright (c) 2011 Nicholas Marriott <nicm@users.sourceforge.net>

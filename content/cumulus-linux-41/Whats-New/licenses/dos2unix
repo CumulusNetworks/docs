@@ -1,0 +1,83 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: dos2unix
+Upstream-Contact: Erwin Waterlander <waterlan@xs4all.nl>,
+                  <waterlan@users.sourceforge.net>
+Source: https://sourceforge.net/projects/dos2unix
+Comment: https://waterlan.home.xs4all.nl/dos2unix.html
+X-Upstream-Vcs: git clone git://git.code.sf.net/p/dos2unix/dos2unix
+X-Upstream-Bugs: https://sourceforge.net/p/dos2unix/bugs/
+
+Files: *
+Copyright:
+ 2009-2017 Erwin Waterlander <waterlan@xs4all.nl>,
+ 1998 Christian Wurll <wurll@ira.uka.de>
+ 1988 Bernd Johannes Wuebben <wuebben@kde.org>
+ 1989, 1994, 1995 Benjamin Lin <blin@socs.uts.edu.au>
+License: BSD-2-clause
+X-License-Comment:
+ Aka FreeBSD license.
+ See https://www.freebsd.org/copyright/freebsd-license.html
+ The License text below if from COPYING.txt
+
+Files: querycp.c
+Copyright:
+ 2009 <rugxulo@gmail.com>
+License: Public-Domain
+ [from querycp.c]
+ /* The code in this file is Public Domain */
+X-License-Comment:
+ // Tuesday, May 5, 2009    1:40pm
+ // rugxulo _AT_ gmail _DOT_ com
+
+Files: querycp.h
+Copyright:
+ Public Domain
+License: Public-Domain
+ [from querycp.h]
+ /* The code in this file is Public Domain */
+
+Files: debian/*
+Copyright:
+ 2009-2016 Jari Aalto <jari.aalto@cante.net>
+ 2018 tony mancill <tmancill@debian.org>
+License: GPL-2+
+
+License: BSD-2-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice in the documentation and/or other materials provided with
+    the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY
+ EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+ OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License can be found in "/usr/share/common-licenses/GPL-2".

@@ -17,15 +17,15 @@ To install `ifplugd`:
 
 1. Update the switch before installing the daemon:
 
-```
-cumulus@switch:~$ sudo -E apt-get update
-```
+    ```
+    cumulus@switch:~$ sudo -E apt-get update
+    ```
 
 2. Install the `ifplugd` package:
 
-```
-cumulus@switch:~$ sudo -E apt-get install ifplugd
-```
+    ```
+    cumulus@switch:~$ sudo -E apt-get install ifplugd
+    ```
 
 ## Configure ifplugd
 
@@ -38,20 +38,20 @@ The example configuration below configures `ifplugd` to bring down all uplinks w
 
 1. Open `/etc/default/ifplugd` in a text editor and configure the file as appropriate. Add the `peerbond` name before you save the file.
 
-```
-INTERFACES="peerbond"
-HOTPLUG_INTERFACES=""
-ARGS="-q -f -u0 -d1 -w -I"
-SUSPEND_ACTION="stop"
-```
+    ```
+    INTERFACES="peerbond"
+    HOTPLUG_INTERFACES=""
+    ARGS="-q -f -u0 -d1 -w -I"
+    SUSPEND_ACTION="stop"
+    ```
 
 2. Open the `/etc/ifplugd/action.d/ifupdown` file in a text editor. Configure the script, then save the file.
 
-```
-#!/bin/sh
-set -e
-case "$2" in
-up)
+    ```
+    #!/bin/sh
+    set -e
+    case "$2" in
+    up)
            clagrole=$(clagctl | grep "Our Priority" | awk '{print $8}')
            if [ "$clagrole" = "secondary" ]
            then
@@ -61,9 +61,9 @@ up)
                    echo "bringing up : $interface"  
                    ip link set $interface up
                done
-           fi
-       ;;
-down)
+            fi
+        ;;
+    down)
            clagrole=$(clagctl | grep "Our Priority" | awk '{print $8}')
            if [ "$clagrole" = "secondary" ]
            then
@@ -74,15 +74,15 @@ down)
                    ip link set $interface down
                done
            fi
-       ;;
-esac
-```
+        ;;
+    esac
+    ```
 
 3. Restart the `ifplugd` daemon to implement the changes:
 
-```
-cumulus@switch:~$ sudo systemctl restart ifplugd.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart ifplugd.service
+    ```
 
 ## Caveats and Errata
 

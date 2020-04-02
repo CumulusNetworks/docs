@@ -1,0 +1,35 @@
+This package was debianized by David Kimdon <dwhedon@debian.org> on
+Fri, 17 Jan 2003 20:05:00 -0800.
+
+It is currently maintained by Jochen Friedrich <jochen@scram.de>
+and Jan Christoph Nordholz <hesso@pool.math.tu-berlin.de>.
+
+It was downloaded from http://ebtables.sourceforge.net
+
+Upstream Authors:
+   Bart De Schuymer <bdschuym@pandora.be>
+   Nick Fedchik <nick@fedchik.org.ua>
+   Grzegorz Borowiak <grzes@gnu.univ.gda.pl>
+
+Copyright:
+   Copyright (C) 1999 Paul `Rusty' Russell & Michael J. Neuling
+   Copyright (C) 2001, 2002, 2004 Bart De Schuymer
+   Copyright (C) 2013, 2015, 2017 Cumulus Networks, Inc.  All rights reserved
+
+License:
+   This package is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; version 2 dated June, 1991.
+
+   This package is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this package; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+
+On Debian GNU/Linux systems, the complete text of the GNU General Public
+License, version 2, can be found in `/usr/share/common-licenses/GPL-2'.

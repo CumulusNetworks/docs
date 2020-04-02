@@ -38,7 +38,7 @@
     @page {
       /* NetQ docs contain long outputs. 
       Use landscape style to help fit */
-      {{ if eq .Section "cumulus-netq" }}
+      {{ if eq .Page.Params.product "Cumulus NetQ" }}
           size: A4 landscape;
       {{ else }}
           size: A4 portrait;

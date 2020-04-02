@@ -37,12 +37,3 @@
   {{ end }}
 {{ end }}
 
-<ul class = "cn-book-section-container" id = "top">
-  <li class="cn-book-section">
-    <!-- Match the page section (i.e., cumulus-linux-41) and then pull the "rn" file from the section -->
-    {{ $rn := (index (where (where .Site.Pages "Section" .Page.Section) ".Page.Type" "rn") 0) }}
-    {{ if $rn }} 
-      <a href ="{{ $rn.RelPermalink }}">{{ $rn.Title }}</a>
-    {{ end }} 
-  </li>
-</ul>

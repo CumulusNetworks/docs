@@ -18,6 +18,8 @@ git checkout plumbis-stage
 
 echo "running rn script"
 python3 utils/build_rns.py 
+python3 utils/build_foss_licenses.py
+
 sleep 1
 # Check if there is anything different in the local vs remote files
 if [ 'git status --porcelain' ]; then

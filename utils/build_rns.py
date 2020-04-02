@@ -216,7 +216,7 @@ def build_markdown_header(product, version):
     output.append("version: \"{}\"\n".format(version))
     output.append("toc: 1\n")
     output.append("type: rn\n")
-    output.append("bookhidden: True\n")
+    output.append("draft: True\n")
     output.append("pdfhidden: True\n")
     output.append("---\n")
     output.append("\n\n")

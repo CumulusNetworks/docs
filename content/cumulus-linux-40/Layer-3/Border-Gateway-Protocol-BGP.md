@@ -98,58 +98,58 @@ The following procedure provides example commands:
 
 1. Identify the BGP node by assigning an ASN and the router ID:
 
-```
-cumulus@switch:~$ net add bgp autonomous-system 65000
-cumulus@switch:~$ net add bgp router-id 0.0.0.1
-```
+   ```
+   cumulus@switch:~$ net add bgp autonomous-system 65000
+   cumulus@switch:~$ net add bgp router-id 0.0.0.1
+   ```
 
 2. Specify where to disseminate routing information:
 
-```
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external
-cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
-```
+   ```
+   cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external
+   cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
+   ```
 
    For an iBGP session, the `remote-as` is the same as the local AS:
 
-```
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal
-cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as internal
-```
+   ```
+   cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal
+   cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as internal
+   ```
 
    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
-```
-cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.0.0.2
-cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
-```
+   ```
+   cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.0.0.2
+   cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
+   ```
 
 3. Specify BGP session properties:
 
-```
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 next-hop-self
-```
+   ```
+   cumulus@switch:~$ net add bgp neighbor 10.0.0.2 next-hop-self
+   ```
 
    If this is a route reflector client, it can be specified as follows:
 
-```
-cumulus@switchRR:~$ net add bgp neighbor 10.0.0.1 route-reflector-client
-```
+   ```
+   cumulus@switchRR:~$ net add bgp neighbor 10.0.0.1 route-reflector-client
+   ```
 
    {{%notice note%}}
 
 When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command otherwise, the `route-reflector-client` command is ignored.
 
-{{%/notice%}}
+   {{%/notice%}}
 
 4. Specify which prefixes to originate:
 
-```
-cumulus@switch:~$ net add bgp ipv4 unicast network 192.0.2.0/24
-cumulus@switch:~$ net add bgp ipv4 unicast network 203.0.113.1/24
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+   ```
+   cumulus@switch:~$ net add bgp ipv4 unicast network 192.0.2.0/24
+   cumulus@switch:~$ net add bgp ipv4 unicast network 203.0.113.1/24
+   cumulus@switch:~$ net pending
+   cumulus@switch:~$ net commit
+   ```
 
 </details>
 
@@ -161,71 +161,71 @@ cumulus@switch:~$ net commit
 
 2. Identify the BGP node by assigning an ASN and the router ID:
 
-```
-cumulus@switch:~$ sudo vtysh
+   ```
+   cumulus@switch:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# bgp router-id 0.0.0.1
-```
+   switch# configure terminal
+   switch(config)# router bgp 65000
+   switch(config-router)# bgp router-id 0.0.0.1
+   ```
 
 3. Specify where to disseminate routing information:
 
-```
-switch(config-router)# neighbor 10.0.0.2 remote-as external
-switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
-```
+   ```
+   switch(config-router)# neighbor 10.0.0.2 remote-as external
+   switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
+   ```
 
    For an iBGP session, the `remote-as` is the same as the local AS:
 
-```
-switch(config-router)# neighbor 10.0.0.2 remote-as internal
-switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as internal
-```
+   ```
+   switch(config-router)# neighbor 10.0.0.2 remote-as internal
+   switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as internal
+   ```
 
    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
-```
-switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# neighbor 10.0.0.2
-switch(config-router-af)# exit
-switch(config-router)# address-family ipv6
-switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
-switch(config-router-af)# exit
-```
+   ```
+   switch(config-router)# address-family ipv4 unicast
+   switch(config-router-af)# neighbor 10.0.0.2
+   switch(config-router-af)# exit
+   switch(config-router)# address-family ipv6
+   switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
+   switch(config-router-af)# exit
+   ```
 
 4. Specify BGP session properties:
 
-```
-switch(config-router)#
+   ```
+   switch(config-router)#
 
-switch(config-router-af)# neighbor 10.0.0.2 next-hop-self
-```
+   switch(config-router-af)# neighbor 10.0.0.2 next-hop-self
+   ```
 
    If this is a route reflector client, it can be specified as follows:
 
-```
-switchRR(config-router-af)# neighbor 10.0.0.1 route-reflector-client
-```
+   ```
+   switchRR(config-router-af)# neighbor 10.0.0.1 route-reflector-client
+   ```
 
-   {{%notice note%}}
+  {{%notice note%}}
 
 When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 
-{{%/notice%}}
+  {{%/notice%}}
 
 5. Specify which prefixes to originate:
 
-```
-switch(config-router-af)# network 192.0.2.0/24
-switch(config-router-af)# network 203.0.113.1/24
-switch(config-router-af)# exit
-switch(config-router)# exit
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
+   ```
+   switch(config-router-af)# network 192.0.2.0/24
+   switch(config-router-af)# network 203.0.113.1/24
+   switch(config-router-af)# exit
+   switch(config-router)# exit
+   switch(config)# exit
+   switch# write memory
+   switch# exit
+   cumulus@switch:~$
+   ```
 
 </details>
 
@@ -601,7 +601,7 @@ This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ({{
 
 If this address is a link-local IPv6 address, it is reset so that the link-local IPv6 address of the eBGP peer is not passed along to an iBGP peer, which most likely is on a different link.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 - `route-map` and/or the peer configuration can change the above behavior. For example, `route-map` can set the global IPv6 next hop or the peer configuration can set it to *self* - which is relevant for *iBGP* peers. The route map or peer configuration can also set the next hop to unchanged, which ensures the source IPv6 global next hop is passed around - which is relevant for *eBGP* peers.
 - Whenever two next hops are being sent, the link-local next hop (the second value of the two) is the link-local IPv6 address on the peering interface unless it is due to `nh-local-unchanged` or `route-map` has set the link-local next hop.
@@ -1874,38 +1874,38 @@ The following sections outline how to configure an MD5-enabled BGP neighbor. Eac
 
 1. From leaf01, configure the password for the neighbor:
 
-```
-cumulus@leaf01:~$ net add bgp neighbor 10.0.0.102 password mypassword
-```
+   ```
+   cumulus@leaf01:~$ net add bgp neighbor 10.0.0.102 password mypassword
+   ```
 
 2. Confirm the configuration with the `net show bgp summary` command. For example:
 
-```
-cumulus@leaf01:~$ net show bgp summary
-show bgp ipv4 unicast summary
-=============================
-BGP router identifier 10.0.0.11, local AS number 65011 vrf-id 0
-BGP table version 18
-RIB entries 11, using 1320 bytes of memory
-Peers 2, using 36 KiB of memory
-Peer groups 1, using 56 bytes of memory
-Neighbor        V         AS     MsgRcvd  MsgSent   TblVer  InQ  OutQ     Up/Down  State/PfxRcd
-spine01(swp51)  4 65020   96144    96146        0        0    0  00:30:29                   3
-spine02(swp52)  4 65020   96209    96217        0        0    0  1d02h44m                   3
-Total number of neighbors 2
+   ```
+   cumulus@leaf01:~$ net show bgp summary
+   show bgp ipv4 unicast summary
+   =============================
+   BGP router identifier 10.0.0.11, local AS number 65011 vrf-id 0
+   BGP table version 18
+   RIB entries 11, using 1320 bytes of memory
+   Peers 2, using 36 KiB of memory
+   Peer groups 1, using 56 bytes of memory
+   Neighbor        V         AS     MsgRcvd  MsgSent   TblVer  InQ  OutQ     Up/Down  State/PfxRcd
+   spine01(swp51)  4 65020   96144    96146        0        0    0  00:30:29                   3
+   spine02(swp52)  4 65020   96209    96217        0        0    0  1d02h44m                   3
+   Total number of neighbors 2
 
-show bgp ipv6 unicast summary
-=============================
-No IPv6 neighbor is configured
-```
+   show bgp ipv6 unicast summary
+   =============================
+   No IPv6 neighbor is configured
+   ```
 
 3. From spine01, configure the password for the neighbor:
 
-```
-cumulus@spine01:~$ net add bgp neighbor 10.0.0.101 password mypassword
-cumulus@spine01:~$ net pending
-cumulus@spine01:~$ net commit
-```
+   ```
+   cumulus@spine01:~$ net add bgp neighbor 10.0.0.101 password mypassword
+   cumulus@spine01:~$ net pending
+   cumulus@spine01:~$ net commit
+   ```
 
 4. Confirm the configuration with the `net show bgp summary` command.
 
@@ -1917,32 +1917,32 @@ cumulus@spine01:~$ net commit
 
 1. From leaf01, configure the password for the neighbor:
 
-```
-cumulus@leaf01:~$ sudo vtysh
+   ```
+   cumulus@leaf01:~$ sudo vtysh
 
-leaf01# configure terminal
-leaf01(config)# router bgp 65011
-leaf01(config-router)# neighbor 10.0.0.102 password mypassword
-leaf01(config-router)# exit
-leaf01(config)# exit
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:~$
-```
+   leaf01# configure terminal
+   leaf01(config)# router bgp 65011
+   leaf01(config-router)# neighbor 10.0.0.102 password mypassword
+   leaf01(config-router)# exit
+   leaf01(config)# exit
+   leaf01# write memory
+   leaf01# exit
+   cumulus@leaf01:~$
+   ```
 
 2. From spine01, configure the password for the neighbor:
 
-```
-cumulus@spine01:~$ sudo vtysh
+   ```
+   cumulus@spine01:~$ sudo vtysh
 
-spine01# configure terminal
-spine01(config)# router bgp 65020
-spine01(config-router)# neighbor 10.0.0.101 password mypassword
-spine01(config-router)# end
-spine01# write memory
-spine01# exit
-cumulus@spine01:~$
-```
+   spine01# configure terminal
+   spine01(config)# router bgp 65020
+   spine01(config-router)# neighbor 10.0.0.101 password mypassword
+   spine01(config-router)# end
+   spine01# write memory
+   spine01# exit
+   cumulus@spine01:~$
+   ```
 
 3. Confirm the configuration with the `show ip` `bgp summary` command.
 

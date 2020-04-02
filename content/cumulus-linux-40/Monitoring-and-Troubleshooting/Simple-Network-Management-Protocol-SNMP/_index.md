@@ -210,23 +210,23 @@ To start the SNMP daemon:
 
 1. Start the `snmpd` daemon:
 
-```
-cumulus@switch:~$ sudo systemctl start snmpd.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl start snmpd.service
+   ```
 
 2. Configure the `snmpd` daemon to start automatically after reboot:
 
-```
-cumulus@switch:~$ sudo systemctl enable snmpd.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl enable snmpd.service
+   ```
 
 3. To enable `snmpd` to restart automatically after failure, create a file called `/etc/systemd/system/snmpd.service.d/restart.conf` and add the following lines:
 
-```
-[Service]
-Restart=always
-RestartSec=60
-```
+   ```
+   [Service]
+   Restart=always
+   RestartSec=60
+   ```
 
 4. Run the `sudo systemctl daemon-reload` command.
 
@@ -254,9 +254,9 @@ The `snmpd` authentication for versions 1 and 2 is disabled by default in Cumulu
 
 1. To enable read-only querying by a client, open the `/etc/snmp/snmpd.conf` file in a text editor and uncomment the following line:
 
-```
-rocommunity public default -V systemonly
-```
+   ```
+   rocommunity public default -V systemonly
+   ```
 
    | Keyword| Meaning|
    |------- |------- |
@@ -267,9 +267,9 @@ rocommunity public default -V systemonly
 
 2. Restart `snmpd`:
 
-```
-cumulus@switch:~$ systemctl restart snmpd.service
-```
+   ```
+   cumulus@switch:~$ systemctl restart snmpd.service
+   ```
 
 ## Enable SNMP Support for FRRouting
 
@@ -292,25 +292,25 @@ To enable SNMP support for FRRouting:
 
 1. Configure AgentX access in FRRouting:
 
-```
-cumulus@switch:~$ net add routing agentx
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+   ```
+   cumulus@switch:~$ net add routing agentx
+   cumulus@switch:~$ net pending
+   cumulus@switch:~$ net commit
+   ```
 
 2. Update the SNMP configuration to enable FRRouting to respond to SNMP requests. Open the `/etc/snmp/snmpd.conf` file in a text editor and verify that the following configuration exists:
 
-```
-agentxsocket /var/agentx/master
-agentxperms 777 777 snmp snmp
-master agentx
-```
+   ```
+   agentxsocket /var/agentx/master
+   agentxperms 777 777 snmp snmp
+   master agentx
+   ```
 
    {{%notice note%}}
 
 Make sure that the `/var/agentx` directory is world-readable andworld-searchable (octal mode 755).
 
-{{%/notice%}}
+   {{%/notice%}}
 
 3. Optionally, you might need to expose various MIBs:
 
@@ -425,16 +425,16 @@ The following procedure shows a slightly more secure method of configuring SNMPv
 
 1. Install the `net-snmp-config` script that is in `libsnmp-dev` package:
 
-```
-cumulus@switch:~$ sudo -E apt-get update
-cumulus@switch:~$ sudo -E apt-get install libsnmp-dev
-```
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   cumulus@switch:~$ sudo -E apt-get install libsnmp-dev
+   ```
 
 2. Stop the daemon:
 
-```
-cumulus@switch:~$ sudo systemctl stop snmpd.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl stop snmpd.service
+   ```
 
 3. Use the `net-snmp-config` command to create two users, one with MD5 and DES, and the next with SHA and AES.
 
@@ -442,13 +442,13 @@ cumulus@switch:~$ sudo systemctl stop snmpd.service
     
 The minimum password length is eight characters and the arguments `-a` and `-x` have different meanings in `net-snmp-config` than `snmpwalk`.
 
-{{%/notice%}}
+   {{%/notice%}}
 
-```  
-cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a md5authpass -x desprivpass -A MD5 -X DES userMD5withDES 
-cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
-cumulus@switch:~$ sudo systemctl start snmpd.service
-```
+   ```  
+   cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a md5authpass -x desprivpass -A MD5 -X DES userMD5withDES 
+   cumulus@switch:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+   cumulus@switch:~$ sudo systemctl start snmpd.service
+   ```
 
 This adds a `createUser` command in `/var/lib/snmp/snmpd.conf`. Do **not** edit this file by hand unless you are removing usernames. You can edit this file and restrict access to certain parts of the MIB by adding *noauth*, *auth* or *priv* to allow unauthenticated access, require authentication, or to enforce use of encryption.
 
@@ -553,10 +553,10 @@ For more information, read the the `snmp.conf` man page:
 
 ```
 clientaddr [<transport-specifier>:]<transport-address>
-            specifies the source address to be used by command-line applica-
-            tions when sending SNMP requests. See snmpcmd(1) for more infor-
-            mation about the format of addresses.
-            This value is also used by snmpd when generating notifications.
+  specifies the source address to be used by command-line applica-
+  tions when sending SNMP requests. See snmpcmd(1) for more infor-
+  mation about the format of addresses.
+  This value is also used by snmpd when generating notifications.
 ```
 
 #### Monitor Fans, Power Supplies, and Transformers
@@ -577,10 +577,10 @@ monitor [OPTIONS] NAME EXPRESSION
             Note also that such monitors use an internal SNMPv3 request to retrieve the values
             being monitored (even  if  normal  agent  queries  typically  use SNMPv1 or SNMPv2c).
             See the iquerySecName token described above.
-     
+
       EXPRESSION
             There are three types of monitor expression supported by the Event MIB - existence, boolean and threshold tests.
-     
+
             OID | ! OID | != OID
 
                     defines  an  existence(0)  monitor  test.  A bare OID specifies a present(0) test,
@@ -589,28 +589,28 @@ monitor [OPTIONS] NAME EXPRESSION
                     OID is delected.  An expression of the form != OID specifies a changed(2) test,
                     which will fire whenever the monitored value(s) change.  Note that there must be
                     whitespace before the OID token.
-     
+
             OID OP VALUE
 
                     defines a boolean(1) monitor test.  OP should be one of the defined comparison operators
                     (!=, ==, <, <=, >, >=) and VALUE should be an integer value to compare against.  Note that
                     there must be whitespace around the OP token.  A comparison such as OID !=0 will not be
                     handled correctly.
-     
+
             OID MIN MAX [DMIN DMAX]
 
                     defines a threshold(2) monitor test.  MIN and MAX are integer values, specifying
                     lower and upper thresholds.  If the value of the monitored OID falls below the lower
                     threshold (MIN) or rises above the upper threshold (MAX), then the monitor entry will
                     trigger the corresponding event.
-     
+
                     Note that the rising threshold event will only be re-armed when the monitored value
                     falls below the lower threshold (MIN).  Similarly, the falling threshold event will
                     be re-armed by the upper threshold (MAX).
-     
+
                     The optional parameters DMIN and DMAX configure a pair of similar threshold tests,
                     but working with the delta differences between successive sample values.
-     
+
     OPTIONS
 
             There are various options to control the behaviour of the monitored expression.  These include:
@@ -654,22 +654,22 @@ You can configurec`snmpd` to monitor the operational status of an Entity MIB or 
 
 - Using the `entPhySensorOperStatus` integer:
 
-```
-# without installing extra MIBS we can check the check Fan1 status
-# if the Fan1 index is 100011001, monitor this specific OID (-I) every 10 seconds (-r), and defines additional information to be included in the trap (-o).
-monitor -I -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7.100011001 "Fan1 Not OK"  1.3.6.1.2.1.99.1.1.1.5.100011001 > 1
-# Any Entity Status non OK (greater than 1)
- monitor  -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7  "Sensor Status Failure"  1.3.6.1.2.1.99.1.1.1.5 > 1
-```
+   ```
+   # without installing extra MIBS we can check the check Fan1 status
+   # if the Fan1 index is 100011001, monitor this specific OID (-I) every 10 seconds (-r), and defines additional information to be included in the trap (-o).
+   monitor -I -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7.100011001 "Fan1 Not OK"  1.3.6.1.2.1.99.1.1.1.5.100011001 > 1
+   # Any Entity Status non OK (greater than 1)
+    monitor  -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7  "Sensor Status Failure"  1.3.6.1.2.1.99.1.1.1.5 > 1
+   ```
 
 - Using the OID name:
 
-```  
-# for a specific fan called Fan1 with an index 100011001
-monitor -I -r 10  -o entPhysicalName.100011001 "Fan1 Not OK"  entPhySensorOperStatus.100011001 > 1
-# for any Entity Status not OK ( greater than 1)
- monitor  -r 10  -o entPhysicalName  "Sensor Status Failure"  entPhySensorOperStatus > 1
-```
+   ```  
+   # for a specific fan called Fan1 with an index 100011001
+   monitor -I -r 10  -o entPhysicalName.100011001 "Fan1 Not OK"  entPhySensorOperStatus.100011001 > 1
+   # for any Entity Status not OK ( greater than 1)
+    monitor  -r 10  -o entPhysicalName  "Sensor Status Failure"  entPhySensorOperStatus > 1
+   ```
 
    {{%notice note%}}
 
@@ -685,26 +685,26 @@ The `entPhySensorOperStatus` integer can be found by walking the `entPhysicalNam
 
 - To get all sensor information, run `snmpwalk` on the `entPhysicalName` table. For example:
 
-```
-cumulus@leaf01:~$ snmpwalk -v 2c -cpublic localhost .1.3.6.1.2.1.47.1.1.1.1.7
-iso.3.6.1.2.1.47.1.1.1.1.7.100000001 = STRING: "PSU1Temp1"
-iso.3.6.1.2.1.47.1.1.1.1.7.100000002 = STRING: "PSU2Temp1"
-iso.3.6.1.2.1.47.1.1.1.1.7.100000003 = STRING: "Temp1"
-iso.3.6.1.2.1.47.1.1.1.1.7.100000004 = STRING: "Temp2"
-iso.3.6.1.2.1.47.1.1.1.1.7.100000005 = STRING: "Temp3"
-iso.3.6.1.2.1.47.1.1.1.1.7.100000006 = STRING: "Temp4"
-iso.3.6.1.2.1.47.1.1.1.1.7.100000007 = STRING: "Temp5"
-iso.3.6.1.2.1.47.1.1.1.1.7.100011001 = STRING: "Fan1"
-iso.3.6.1.2.1.47.1.1.1.1.7.100011002 = STRING: "Fan2"
-iso.3.6.1.2.1.47.1.1.1.1.7.100011003 = STRING: "Fan3"
-iso.3.6.1.2.1.47.1.1.1.1.7.100011004 = STRING: "Fan4"
-iso.3.6.1.2.1.47.1.1.1.1.7.100011005 = STRING: "Fan5"
-iso.3.6.1.2.1.47.1.1.1.1.7.100011006 = STRING: "Fan6"
-iso.3.6.1.2.1.47.1.1.1.1.7.100011007 = STRING: "PSU1Fan1"
-iso.3.6.1.2.1.47.1.1.1.1.7.100011008 = STRING: "PSU2Fan1"
-iso.3.6.1.2.1.47.1.1.1.1.7.110000001 = STRING: "PSU1"
-iso.3.6.1.2.1.47.1.1.1.1.7.110000002 = STRING: "PSU2"
-```
+   ```
+   cumulus@leaf01:~$ snmpwalk -v 2c -cpublic localhost .1.3.6.1.2.1.47.1.1.1.1.7
+   iso.3.6.1.2.1.47.1.1.1.1.7.100000001 = STRING: "PSU1Temp1"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100000002 = STRING: "PSU2Temp1"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100000003 = STRING: "Temp1"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100000004 = STRING: "Temp2"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100000005 = STRING: "Temp3"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100000006 = STRING: "Temp4"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100000007 = STRING: "Temp5"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100011001 = STRING: "Fan1"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100011002 = STRING: "Fan2"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100011003 = STRING: "Fan3"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100011004 = STRING: "Fan4"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100011005 = STRING: "Fan5"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100011006 = STRING: "Fan6"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100011007 = STRING: "PSU1Fan1"
+   iso.3.6.1.2.1.47.1.1.1.1.7.100011008 = STRING: "PSU2Fan1"
+   iso.3.6.1.2.1.47.1.1.1.1.7.110000001 = STRING: "PSU1"
+   iso.3.6.1.2.1.47.1.1.1.1.7.110000002 = STRING: "PSU2"
+   ```
 
 #### Enable MIB to OID Translation
 
@@ -714,47 +714,47 @@ MIB names can be used instead of OIDs, by installing the `snmp-mibs-downloader`,
 
 2. Add the `non-free` repository, then save the file:
 
-```
-cumulus@switch:~$ sudo deb http://ftp.us.debian.org/debian/ buster main non-free
-```
+   ```
+   cumulus@switch:~$ sudo deb http://ftp.us.debian.org/debian/ buster main non-free
+   ```
 
 3. Update the switch:
 
-```
-cumulus@switch:~$ sudo -E apt-get update
-```
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   ```
 
 4. Install the `snmp-mibs-downloader`:
 
-```
-cumulus@switch:~$ sudo -E apt-get install snmp-mibs-downloader
-```
+   ```
+   cumulus@switch:~$ sudo -E apt-get install snmp-mibs-downloader
+   ```
 
 5. Open the `/etc/snmp/snmp.conf` file to verify that the `mibs :` line is commented out:
 
-```
-#
-# As the snmp packages come without MIB files due to license reasons, loading
-# of MIBs is disabled by default. If you added the MIBs you can reenable
-# loading them by commenting out the following line.
-#mibs :
-```
+   ```
+   #
+   # As the snmp packages come without MIB files due to license reasons, loading
+   # of MIBs is disabled by default. If you added the MIBs you can reenable
+   # loading them by commenting out the following line.
+   #mibs :
+   ```
 
 6. Open the `/etc/default/snmpd` file to verify that the `export MIBS=` line is commented out:
 
-``` 
-# This file controls the activity of snmpd and snmptrapd
+   ``` 
+   # This file controls the activity of snmpd and snmptrapd
 
-# Don't load any MIBs by default.
-# You might comment this lines once you have the MIBs Downloaded.
-#export MIBS=
-```
+   # Don't load any MIBs by default.
+   # You might comment this lines once you have the MIBs Downloaded.
+   #export MIBS=
+   ```
 
 7. After you confirm the configuration, remove or comment out the `non-free` repository in `/etc/apt/sources.list`.
 
-```
-#deb http://ftp.us.debian.org/debian/ buster main non-free
-```
+   ```
+   #deb http://ftp.us.debian.org/debian/ buster main non-free
+   ```
 
 #### Configure Link Up/Down Notifications
 

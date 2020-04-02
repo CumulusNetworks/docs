@@ -126,44 +126,44 @@ To monitor queue lengths using a histogram:
 
 10. Add the following line to include a threshold, which determines how to collect data. Setting a threshold is optional. In the following example, when the size of the queue reaches 500 bytes, the system sends a message to the `/var/log/syslog` file.
 
-   ```
-   monitor.histogram_pg.log.queue_bytes = 500
-   ```
+    ```
+    monitor.histogram_pg.log.queue_bytes = 500
+    ```
 
 11. Add the following lines to set the size, minimum boundary, and sampling time of the histogram. Adding the histogram size and the minimum boundary size together produces the maximum boundary size. These settings are used to represent the range of queue lengths per bin.
 
-   ```
-   monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
-   monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
-   monitor.histogram_pg.histogram.sample_time_ns         = 1024
-   ```
+    ```
+    monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
+    monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
+    monitor.histogram_pg.histogram.sample_time_ns         = 1024
+    ```
 
 12. Save the file, then restart the `asic-monitor` service with the following command.
 
-   ```
-   cumulus@switch:~$ systemctl restart asic-monitor.service
-   ```
+    ```
+    cumulus@switch:~$ systemctl restart asic-monitor.service
+    ```
 
-   {{%notice note%}}
+    {{%notice note%}}
 
-   Restarting the `asic-monitor` service does not disrupt traffic or require you to restart `switchd`. The service is enabled by default when you boot the switch and restarts when you restart `switchd`.
+Restarting the `asic-monitor` service does not disrupt traffic or require you to restart `switchd`. The service is enabled by default when you boot the switch and restarts when you restart `switchd`.
 
-   {{%/notice%}}
+    {{%/notice%}}
 
-   {{%notice note%}}
+    {{%notice note%}}
 
-   Overhead is involved in collecting the data, which uses both the CPU and SDK process and can affect execution of `switchd`. Snapshots and logs can occupy a lot of disk space if you do not limit their number.
+Overhead is involved in collecting the data, which uses both the CPU and SDK process and can affect execution of `switchd`. Snapshots and logs can occupy a lot of disk space if you do not limit their number.
 
-   {{%/notice%}}
+    {{%/notice%}}
 
    To collect other data, such as all packets per port, buffer congestion, or packet drops due to error, follow the procedure above but change the port group list setting to include the port group name you want to use. For example, to monitor packet drops due to buffer congestion:
 
-   ```
-   monitor.port_group_list = [buffers_pg]
-   monitor.buffers_pg.port_set  = swp1-swp50
-   monitor.buffers_pg.stat_type = buffer
-   ...
-   ```
+    ```
+    monitor.port_group_list = [buffers_pg]
+    monitor.buffers_pg.port_set  = swp1-swp50
+    monitor.buffers_pg.stat_type = buffer
+    ...
+    ```
 
 Certain settings in the procedure above (such as the histogram size, boundary size, and sampling time) only apply to the histogram monitor. All ASIC monitor settings are described in {{<link title="#ASIC Monitoring Settings">}}.
 

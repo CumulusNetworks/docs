@@ -334,7 +334,7 @@ For *bridge* to have an MTU of 9000, set the MTU for each of the member interfac
 
 **Use MTU 9216 for a bridge**
 
-Two common MTUs for jumbo frames are 9216 (the default value) and 9000 bytes. The corresponding MTUs for the VNIs would be 9166 and 8950.
+Two common MTUs for jumbo frames are 9216 (the default value) and 9000 bytes. The corresponding MTUs for the VNIs are 9166 and 8950.
 
 {{%/notice%}}
 
@@ -362,7 +362,7 @@ Run the `net show interface <interface>` command:
 cumulus@switch:~$ net show interface swp1
     Name    MAC                Speed      MTU  Mode
 --  ------  -----------------  -------  -----  ---------
-UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
+UP  swp1    44:38:39:00:00:04  1G        9216  Access/L2
 ```
 
 </details>
@@ -375,7 +375,7 @@ Run the `ip link show <interface>` command:
 
 ```
 cumulus@switch:~$ ip link show dev swp1
-3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
+3: swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT qlen 500
    link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 ```
 

@@ -13,8 +13,7 @@ disableKinds = ["RSS"]
 
 [mediaTypes]
   [mediaTypes."text/plain"]
-    suffix = ""
-    delimiter = ""
+    suffixes = [""]
 
 [markup]
   [markup.tableOfContents]

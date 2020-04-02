@@ -53,7 +53,7 @@ link/ether 44:38:39:00:27:9f brd ff:ff:ff:ff:ff:ff
 
 The following examples show how you grant as few privileges as necessary to a user or group of users to allow them to perform the required task. For each example, the system group *noc* is used; groups are prefixed with an %.
 
-When executed by an unprivileged user, the example commands below must be prefixed with `sudo.`
+When executed by an unprivileged user, the example commands below must be prefixed with `sudo`.
 
 | Category | Privilege | Example Command | sudoers Entry |
 |--------- |---------- |---------------- |-------------- |

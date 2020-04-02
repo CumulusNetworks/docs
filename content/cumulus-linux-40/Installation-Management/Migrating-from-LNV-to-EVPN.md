@@ -46,52 +46,52 @@ The BGP EVPN configuration for a centralized routing topology is slightly differ
 
     **Leaf node NCLU commands**
 
-```
-# BGP changes
-cumulus@switch:~$ net add bgp l2vpn evpn neighbor swp51-52 activate
-cumulus@switch:~$ net add bgp l2vpn evpn advertise-all-vni
+    ```
+    # BGP changes
+    cumulus@switch:~$ net add bgp l2vpn evpn neighbor swp51-52 activate
+    cumulus@switch:~$ net add bgp l2vpn evpn advertise-all-vni
 
-# Disable MAC learning on VNI
-cumulus@switch:~$ net add vxlan vni-13 bridge learning off
-cumulus@switch:~$ net add vxlan vni-24 bridge learning off
+    # Disable MAC learning on VNI
+    cumulus@switch:~$ net add vxlan vni-13 bridge learning off
+    cumulus@switch:~$ net add vxlan vni-24 bridge learning off
 
-# Remove LNV (vxrd) configuration
-cumulus@switch:~$ net del loopback lo vxrd-src-ip
-cumulus@switch:~$ net del loopback lo vxrd-svcnode-ip
-```
+    # Remove LNV (vxrd) configuration
+    cumulus@switch:~$ net del loopback lo vxrd-src-ip
+    cumulus@switch:~$ net del loopback lo vxrd-svcnode-ip
+    ```
 
     **Exit node NCLU commands**
 
-```
-# BGP changes
-cumulus@switch:~$ net add bgp l2vpn evpn neighbor swp51-52 activate
-cumulus@switch:~$ net add bgp l2vpn evpn advertise-all-vni
-cumulus@switch:~$ net add bgp l2vpn evpn advertise-default-gw
+    ```
+    # BGP changes
+    cumulus@switch:~$ net add bgp l2vpn evpn neighbor swp51-52 activate
+    cumulus@switch:~$ net add bgp l2vpn evpn advertise-all-vni
+    cumulus@switch:~$ net add bgp l2vpn evpn advertise-default-gw
 
-# Disable MAC learning on VNI
-cumulus@switch:~$ net add vxlan vni-13 bridge learning off
-cumulus@switch:~$ net add vxlan vni-24 bridge learning off
+    # Disable MAC learning on VNI
+    cumulus@switch:~$ net add vxlan vni-13 bridge learning off
+    cumulus@switch:~$ net add vxlan vni-24 bridge learning off
 
-# Remove LNV (vxrd) configuration
-cumulus@switch:~$ net del loopback lo vxrd-src-ip
-cumulus@switch:~$ net del loopback lo vxrd-svcnode-ip
-```
+    # Remove LNV (vxrd) configuration
+    cumulus@switch:~$ net del loopback lo vxrd-src-ip
+    cumulus@switch:~$ net del loopback lo vxrd-svcnode-ip
+    ```
 
     **Spine node NCLU commands**
 
-```
-# BGP changes
-cumulus@switch:~$ net add bgp l2vpn evpn neighbor swp1-4 activate
+    ```
+    # BGP changes
+    cumulus@switch:~$ net add bgp l2vpn evpn neighbor swp1-4 activate
 
-Remove LNV service node (vxsnd) configuration
-cumulus@switch:~$ net del lnv service-node anycast-ip 10.0.0.200
-cumulus@switch:~$ net del lnv service-node peers 10.0.0.21 10.0.0.22
-cumulus@switch:~$ net del lnv service-node source [primary-loopback-ip]
+    Remove LNV service node (vxsnd) configuration
+    cumulus@switch:~$ net del lnv service-node anycast-ip 10.0.0.200
+    cumulus@switch:~$ net del lnv service-node peers 10.0.0.21 10.0.0.22
+    cumulus@switch:~$ net del lnv service-node source [primary-loopback-ip]
 
-# Remove unused LNV anycast address 10.0.0.200
-cumulus@switch:~$ net del loopback lo ip address 10.0.0.200/32
-cumulus@switch:~$ net del bgp ipv4 unicast network 10.0.0.200/32
-```
+    # Remove unused LNV anycast address 10.0.0.200
+    cumulus@switch:~$ net del loopback lo ip address 10.0.0.200/32
+    cumulus@switch:~$ net del bgp ipv4 unicast network 10.0.0.200/32
+    ```
 
 2. Manually disable and stop the LNV daemons. NCLU can remove the LNV configuration from the configuration files, but you must manually stop and disable these daemons before you commit the NCLU changes. After you commit the NCLU changes, NCLU restarts the BGP daemon, which enables the EVPN address family.
 
@@ -103,23 +103,23 @@ Traffic loss can start to occur at this point.
 
 3. To disable and stop the LNV registration daemon, run the following commands on the leaf and exit nodes:
 
-```
-cumulus@switch:~$ sudo systemctl disable vxrd
-cumulus@switch:~$ sudo systemctl stop vxrd
-```
+    ```
+    cumulus@switch:~$ sudo systemctl disable vxrd
+    cumulus@switch:~$ sudo systemctl stop vxrd
+    ```
 
 4. To disable and stop the LNV service node daemon, run the following commands on the spine nodes:
 
-```
-cumulus@switch:~$ sudo systemctl disable vxsnd
-cumulus@switch:~$ sudo systemctl stop vxsnd
-```
+    ```
+    cumulus@switch:~$ sudo systemctl disable vxsnd
+    cumulus@switch:~$ sudo systemctl stop vxsnd
+    ```
 
 5. To commit and apply the pending NCLU changes, run the following command on all the nodes:
 
-```
-cumulus@switch:~$ net commit
-```
+    ```
+    cumulus@switch:~$ net commit
+    ```
 
 ## Verify the Upgrade
 
@@ -204,7 +204,7 @@ Route Distinguisher: 10.0.0.13:2
 You can filter the EVPN route output by route type. The multicast route type corresponds to type-3. The prefix route type is type-5 (but is not used here).
 
 ```
-cumulus@switch:~$ net show bgp l2vpn evpn route type 
+cumulus@switch:~$ net show bgp l2vpn evpn route type
    macip      : MAC-IP (Type-2) route
    multicast  : Multicast
    prefix     : An IPv4 or IPv6 prefix

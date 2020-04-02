@@ -156,15 +156,15 @@ cumulus@switch:~$ net commit
 
 1. Modify the `/etc/hostname` file with the desired hostname:
 
-```
-cumulus@switch:~$ sudo nano /etc/hostname
-```
+    ```
+    cumulus@switch:~$ sudo nano /etc/hostname
+    ```
 
 2. In `/etc/hosts` file, replace the 127.0.1.1 IP address with the new hostname:
 
-```
-cumulus@switch:~$ sudo nano /etc/hosts
-```
+    ```
+    cumulus@switch:~$ sudo nano /etc/hosts
+    ```
 
 </details>
 
@@ -174,17 +174,17 @@ To update the timezone, use NTP interactive mode:
 
 1. Run the following command in a terminal.
 
-```
-cumulus@switch:~$ sudo dpkg-reconfigure tzdata
-```
+    ```
+    cumulus@switch:~$ sudo dpkg-reconfigure tzdata
+    ```
 
 2. Follow the on screen menu options to select the geographic area and region.
 
-{{%notice note%}}
+    {{%notice note%}}
 
 Programs that are already running (including log files) and users currently logged in, do not see timezone changes made with interactive mode. To set the timezone for all services and daemons, reboot the switch.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 ### Verify the System Time
 
@@ -208,24 +208,24 @@ There are three ways to install the license onto the switch:
 
 - Copy the license from a local server. Create a text file with the license and copy it to a server accessible from the switch. On the switch, use the following command to transfer the file directly on the switch, then install the license file:
     
-```
-cumulus@switch:~$ scp user@my_server:/home/user/my_license_file.txt .
-cumulus@switch:~$ sudo cl-license -i my_license_file.txt
-```
+    ```
+    cumulus@switch:~$ scp user@my_server:/home/user/my_license_file.txt .
+    cumulus@switch:~$ sudo cl-license -i my_license_file.txt
+    ```
 
 - Copy the file to an HTTP server (not HTTPS), then reference the URL when you run `cl-license`:
 
-```
-cumulus@switch:~$ sudo cl-license -i <URL>
-```
+    ```
+    cumulus@switch:~$ sudo cl-license -i <URL>
+    ```
 
 - Copy and paste the license key into the `cl-license` command:
 
-```
-cumulus@switch:~$ sudo cl-license -i
-<paste license key>
-^+d
-```
+    ```
+    cumulus@switch:~$ sudo cl-license -i
+    <paste license key>
+    ^+d
+    ```
 
 Check that your license is installed with the `cl-license` command.
 

@@ -74,59 +74,59 @@ Instead of running the installer and following the interactive prompts, as descr
 1. Run `apt-get install debconf-utils` and create the pre-seeded parameters using `debconf-set-selections`. Provide the appropriate answers.
 2. Run `debconf-show <pkg>` to check the settings. Here is an example of how to pre-seed answers to the installer questions using `debconf-set-selections`:
 
-```
-root# debconf-set-selections <<'zzzEndOfFilezzz'
+   ```
+   root# debconf-set-selections <<'zzzEndOfFilezzz'
 
-# LDAP database user. Leave blank will be populated later!
+   # LDAP database user. Leave blank will be populated later!
 
-nslcd nslcd/ldap-binddn  string
+   nslcd nslcd/ldap-binddn  string
 
-# LDAP user password. Leave blank!
-nslcd nslcd/ldap-bindpw   password
+   # LDAP user password. Leave blank!
+   nslcd nslcd/ldap-bindpw   password
 
-# LDAP server search base:
-nslcd nslcd/ldap-base string  ou=support,dc=rtp,dc=example,dc=test
+   # LDAP server search base:
+   nslcd nslcd/ldap-base string  ou=support,dc=rtp,dc=example,dc=test
 
-# LDAP server URI. Using ldap over ssl.
-nslcd nslcd/ldap-uris string  ldaps://myadserver.rtp.example.test
+   # LDAP server URI. Using ldap over ssl.
+   nslcd nslcd/ldap-uris string  ldaps://myadserver.rtp.example.test
 
-# New to 0.9. restart cron, exim and others libraries without asking
-nslcd libraries/restart-without-asking: boolean true
+   # New to 0.9. restart cron, exim and others libraries without asking
+   nslcd libraries/restart-without-asking: boolean true
 
-# LDAP authentication to use:
-# Choices: none, simple, SASL
-# Using simple because its easy to configure. Security comes by using LDAP over SSL
-# keep /etc/nslcd.conf 'rw' to root for basic security of bindDN password
-nslcd nslcd/ldap-auth-type    select  simple
+   # LDAP authentication to use:
+   # Choices: none, simple, SASL
+   # Using simple because its easy to configure. Security comes by using LDAP over SSL
+   # keep /etc/nslcd.conf 'rw' to root for basic security of bindDN password
+   nslcd nslcd/ldap-auth-type    select  simple
 
-# Don't set starttls to true
-nslcd nslcd/ldap-starttls     boolean false
+   # Don't set starttls to true
+   nslcd nslcd/ldap-starttls     boolean false
 
-# Check server's SSL certificate:
-# Choices: never, allow, try, demand
-nslcd nslcd/ldap-reqcert      select  never
+   # Check server's SSL certificate:
+   # Choices: never, allow, try, demand
+   nslcd nslcd/ldap-reqcert      select  never
 
-# Choices: Ccreds credential caching - password saving, Unix authentication, LDAP Authentication , Create home directory on first time login, Ccreds credential caching - password checking
-# This is where "mkhomedir" pam config is activated that allows automatic creation of home directory
-libpam-runtime        libpam-runtime/profiles multiselect     ccreds-save, unix, ldap, mkhomedir , ccreds-check
+   # Choices: Ccreds credential caching - password saving, Unix authentication, LDAP Authentication , Create home directory on first time login, Ccreds credential caching - password checking
+   # This is where "mkhomedir" pam config is activated that allows automatic creation of home directory
+   libpam-runtime        libpam-runtime/profiles multiselect     ccreds-save, unix, ldap, mkhomedir , ccreds-check
 
-# for internal use; can be preseeded
-man-db        man-db/auto-update      boolean true
+   # for internal use; can be preseeded
+   man-db        man-db/auto-update      boolean true
 
-# Name services to configure:
-# Choices: aliases, ethers, group, hosts, netgroup, networks, passwd, protocols, rpc, services,  shadow
-libnss-ldapd  libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
-libnss-ldapd  libnss-ldapd/clean_nsswitch     boolean false
+   # Name services to configure:
+   # Choices: aliases, ethers, group, hosts, netgroup, networks, passwd, protocols, rpc, services,  shadow
+   libnss-ldapd  libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
+   libnss-ldapd  libnss-ldapd/clean_nsswitch     boolean false
 
-## define platform specific libnss-ldapd debconf questions/answers. 
-## For demo used amd64.
-libnss-ldapd:amd64    libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
-libnss-ldapd:amd64    libnss-ldapd/clean_nsswitch     boolean false
-# libnss-ldapd:powerpc   libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
-# libnss-ldapd:powerpc    libnss-ldapd/clean_nsswitch     boolean false
+   ## define platform specific libnss-ldapd debconf questions/answers. 
+   ## For demo used amd64.
+   libnss-ldapd:amd64    libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
+   libnss-ldapd:amd64    libnss-ldapd/clean_nsswitch     boolean false
+   # libnss-ldapd:powerpc   libnss-ldapd/nsswitch   multiselect     group, passwd, shadow
+   # libnss-ldapd:powerpc    libnss-ldapd/clean_nsswitch     boolean false
 
-zzzEndOfFilezzz
-```
+   zzzEndOfFilezzz
+   ```
 
 </details>
 
@@ -394,16 +394,16 @@ cumulus@switch:~$ sudo systemctl restart nslcd@mgmt.service
 - The search filter returns incorrect results. Check for typos in the search filter. Use `ldapsearch` to test your filter.
 - Optionally, configure the basic LDAP connection and search parameters in `/etc/ldap/ldap.conf`.
 
-```
-# ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' "(&(ObjectClass=inetOrgUser)(uid=myuser))"
-```
+   ```
+   # ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' "(&(ObjectClass=inetOrgUser)(uid=myuser))"
+   ```
 
 - When a local username also exists in the LDAP database, the order of the information sources in `/etc/nsswitch` can be updated to query LDAP before the local user database. This is generally not recommended. For example, the configuration below ensures that LDAP is queried before the local database.
 
-```
-# /etc/nsswitch.conf
-passwd:       ldap compat
-```
+   ```
+   # /etc/nsswitch.conf
+   passwd:       ldap compat
+   ```
 
 ## Configure LDAP Authorization
 

@@ -46,17 +46,17 @@ following:
 
 1. In a terminal on your host system (not the switch), check to see if a key already exists:
 
-```
-root@host:~# ls -al ~/.ssh/
-```
+    ```
+    root@host:~# ls -al ~/.ssh/
+    ```
 
-The name of the key is similar to `id_dsa.pub`, `id_rsa.pub`, or `id_ecdsa.pub`.
+    The name of the key is similar to `id_dsa.pub`, `id_rsa.pub`, or `id_ecdsa.pub`.
 
 2. If a key does not exist, generate a new one by first creating the RSA key pair:
 
-```
-root@host:~# ssh-keygen -t rsa
-```
+    ```
+    root@host:~# ssh-keygen -t rsa
+    ```
 
 3. You are prompted to enter a file in which to save the key (/root/.ssh/id\_rsa)*.* Press Enter to use the home directory of the root user or provide a different destination.
 
@@ -66,33 +66,33 @@ root@host:~# ssh-keygen -t rsa
 
 6. Copy the public key to the switch. SSH to the switch as the cumulus user, then run:
 
-```
-cumulus@switch:~$ sudo mkdir -p /root/.ssh
-cumulus@switch:~$ echo <SSH public key string> | sudo tee -a /root/.ssh/authorized_keys
-```
+    ```
+    cumulus@switch:~$ sudo mkdir -p /root/.ssh
+    cumulus@switch:~$ echo <SSH public key string> | sudo tee -a /root/.ssh/authorized_keys
+    ```
 
 ### Set the root User Password
 
 1. Run the following command:
 
-```
-cumulus@switch:~$ sudo passwd root
-```
+    ```
+    cumulus@switch:~$ sudo passwd root
+    ```
 
 2. Change the `PermitRootLogin` setting in the `/etc/ssh/sshd_config` file from *without-password* to *yes*.
 
-``` 
-cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
-...
-# Authentication:
-LoginGraceTime 120
-PermitRootLogin yes
-StrictModes yes
-...  
-```
+    ``` 
+    cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
+    ...
+    # Authentication:
+    LoginGraceTime 120
+    PermitRootLogin yes
+    StrictModes yes
+    ...  
+    ```
 
 3. Restart the `ssh` service:
 
-```
-cumulus@switch:~$ sudo systemctl reload ssh.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl reload ssh.service
+    ```

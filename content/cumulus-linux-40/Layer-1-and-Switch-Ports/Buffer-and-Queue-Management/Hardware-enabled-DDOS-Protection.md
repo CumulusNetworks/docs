@@ -36,35 +36,35 @@ DDOS protection is not supported on Broadcom Hurricane2 and Mellanox Spectrum AS
 
 2. Enable DOS prevention checks by setting the `dos_enable` value to `true`:
 
-```
-# To turn on/off Denial of Service (DOS) prevention checks
-dos_enable = true
-```
+    ```
+    # To turn on/off Denial of Service (DOS) prevention checks
+    dos_enable = true
+    ```
 
 3. Open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file in a text editor. Set any of the DOS checks to *true*. For example:
 
-```
-cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf
-# Enabling/disabling Denial of service (DOS) prevetion checks
-# To change the default configuration:
-# enable/disable the individual DOS checks.
-dos.sip_eq_dip = true
-dos.smac_eq_dmac = true
-dos.tcp_hdr_partial = true
-dos.tcp_syn_frag = true
-dos.tcp_ports_eq = true
-dos.tcp_flags_syn_fin = true
-dos.tcp_flags_fup_seq0 = true
-dos.tcp_offset1 = true
-dos.tcp_ctrl0_seq0 = true
-dos.udp_ports_eq = true
-dos.icmp_frag = true
-dos.icmpv4_length = true
-dos.icmpv6_length = true
-dos.ipv6_min_frag = true
-```
+    ```
+    cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf
+    # Enabling/disabling Denial of service (DOS) prevetion checks
+    # To change the default configuration:
+    # enable/disable the individual DOS checks.
+    dos.sip_eq_dip = true
+    dos.smac_eq_dmac = true
+    dos.tcp_hdr_partial = true
+    dos.tcp_syn_frag = true
+    dos.tcp_ports_eq = true
+    dos.tcp_flags_syn_fin = true
+    dos.tcp_flags_fup_seq0 = true
+    dos.tcp_offset1 = true
+    dos.tcp_ctrl0_seq0 = true
+    dos.udp_ports_eq = true
+    dos.icmp_frag = true
+    dos.icmpv4_length = true
+    dos.icmpv6_length = true
+    dos.ipv6_min_frag = true
+    ```
 
-{{%notice note%}}
+    {{%notice note%}}
 
 Configuring any of the following settings affects the {{<link url="Bidirectional-Forwarding-Detection-BFD/#echo-function" text="BFD echo">}} function. For example, if you enable `dos.udp_ports_eq`, all the BFD packets are dropped because the BFD protocol uses the same source and destination UDP ports.
 
@@ -79,10 +79,10 @@ dos.tcp_syn_frag
 dos.udp_ports_eq
 ```
 
-{{%/notice%}}
+    {{%/notice%}}
 
 4. Restart `switchd`:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart switchd.service
+    ```

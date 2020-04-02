@@ -75,33 +75,33 @@ cumulus@switch:~$ net commit
 
 1. Edit the `/etc/network/interfaces` file. The following example disables auto-negotiation for the swp1 interface.
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
 
-auto swp1
-iface swp1
-    link-autoneg off
-```
+    auto swp1
+    iface swp1
+        link-autoneg off
+    ```
 
 2. Run the `ifreload -a` command to load the updated configuration:
 
-```
-cumulus@switch:~$ sudo ifreload -a
-```
+    ```
+    cumulus@switch:~$ sudo ifreload -a
+    ```
 
-**Runtime Configuration (Advanced)**
+    **Runtime Configuration (Advanced)**
 
-You can use `ethtool` to configure auto-negotiation. The following example command enables auto-negotiation for the swp1 interface:
+    You can use `ethtool` to configure auto-negotiation. The following example command enables auto-negotiation for the swp1 interface:
 
-```
-ethtool -s swp1 speed 10000 duplex full autoneg on|off
-```
+    ```
+    ethtool -s swp1 speed 10000 duplex full autoneg on|off
+    ```
 
-{{%notice warning%}}
+    {{%notice warning%}}
 
 A runtime configuration is non-persistent; the configuration you create here does not persist after you reboot the switch.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 </details>
 
@@ -191,39 +191,39 @@ Edit the `/etc/network/interfaces` file to create a persistent configuration for
 
 If you specify the port speed in the `/etc/network/interfaces` file, you must also specify the duplex mode setting; otherwise, the interface defaults to half duplex.
 
-{{%/notice%}}
+    {{%/notice%}}
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
 
-auto swp1
-iface swp1
-    address 10.1.1.1/24
-    link-speed 10000
-    link-duplex full
-```
+    auto swp1
+    iface swp1
+        address 10.1.1.1/24
+        link-speed 10000
+        link-duplex full
+    ```
 
 2. Run the `ifreload -a` command to load the updated configuration:
 
-```
-cumulus@switch:~$ sudo ifreload -a
-```
+    ```
+    cumulus@switch:~$ sudo ifreload -a
+    ```
 
-**Runtime Configuration (Advanced)**
+    **Runtime Configuration (Advanced)**
 
-You can use `ethtool` to configure the port speed and duplex mode for your switch ports. You must specify both the port speed and the duplex mode in the `ethtool` command; auto-negotiation is optional.
+    You can use `ethtool` to configure the port speed and duplex mode for your switch ports. You must specify both the port speed and the duplex mode in the `ethtool` command; auto-negotiation is optional.
 
-The following example command sets the port speed to 10G and duplex mode to full on the swp1 interface:
+    The following example command sets the port speed to 10G and duplex mode to full on the swp1 interface:
 
-```
-cumulus@switch:~$  ethtool -s swp1 speed 10000 duplex full
-```
+    ```
+    cumulus@switch:~$  ethtool -s swp1 speed 10000 duplex full
+    ```
 
-{{%notice warning%}}
+    {{%notice warning%}}
 
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 </details>
 
@@ -261,33 +261,33 @@ iface swp1
 
 1. Edit the `/etc/network/interfaces` file. The following example sets MTU to 9000 for the swp1 interface.
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
 
-auto swp1
-iface swp1
-    mtu 9000
-```
+    auto swp1
+    iface swp1
+        mtu 9000
+    ```
 
 2. Run the `ifreload -a` command to load the updated configuration:
 
-```
-cumulus@switch:~$ sudo ifreload -a
-```
+    ```
+    cumulus@switch:~$ sudo ifreload -a
+    ```
 
-**Runtime Configuration (Advanced)**
+    **Runtime Configuration (Advanced)**
 
-Run the `ip link set` command. The following example command sets the swp1 interface to Jumbo Frame MTU=9000.
+    Run the `ip link set` command. The following example command sets the swp1 interface to Jumbo Frame MTU=9000.
 
-```
-cumulus@switch:~$ sudo ip link set dev swp1 mtu 9000
-```
+    ```
+    cumulus@switch:~$ sudo ip link set dev swp1 mtu 9000
+    ```
 
-{{%notice warning%}}
+    {{%notice warning%}}
 
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 </details>
 
@@ -596,35 +596,35 @@ cumulus@switch:~$ sudo net commit
 
 1. Edit the `/etc/network/interfaces` file. The following example enables RS FEC for the swp1 interface (`link-fec rs`):
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
 
-auto swp1
-iface swp1
-     link-autoneg off
-     link-speed 100000
-     link-fec rs
-```
+    auto swp1
+    iface swp1
+        link-autoneg off
+        link-speed 100000
+        link-fec rs
+    ```
 
 2. Run the `ifreload -a` command to load the updated configuration:
 
-```
-cumulus@switch:~$ sudo ifreload -a
-```
+    ```
+    cumulus@switch:~$ sudo ifreload -a
+    ```
 
-**Runtime Configuration (Advanced)**
+    **Runtime Configuration (Advanced)**
 
-Run the `ethtool --set-fec <interface> encoding RS` command. For example:
+    Run the `ethtool --set-fec <interface> encoding RS` command. For example:
 
-```
-cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding RS
-```
+    ```
+    cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding RS
+     ```
 
-{{%notice warning%}}
+    {{%notice warning%}}
 
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 </details>
 
@@ -650,35 +650,35 @@ cumulus@switch:~$ sudo net commit
 
 1. Edit the `/etc/network/interfaces` file. The following example enables Base-R FEC for the swp1 interface (`link-fec baser`):
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
 
-auto swp1
-iface swp1
-     link-autoneg off
-     link-speed 100000
-     link-fec baser
-```
+    auto swp1
+    iface swp1
+        link-autoneg off
+        link-speed 100000
+        link-fec baser
+    ```
 
 2. Run the `ifreload -a` command to load the updated configuration:
 
-```
-cumulus@switch:~$ sudo ifreload -a
-```
+    ```
+    cumulus@switch:~$ sudo ifreload -a
+    ```
 
-**Runtime Configuration (Advanced)**
+    **Runtime Configuration (Advanced)**
 
-Run the `ethtool --set-fec <interface> encoding baser` command. For example:
+    Run the `ethtool --set-fec <interface> encoding baser` command. For example:
 
-```
-cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding BaseR
-```
+    ```
+    cumulus@switch:~$ sudo ethtool --set-fec swp1 encoding BaseR
+    ```
 
-{{%notice warning%}}
+    {{%notice warning%}}
 
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 </details>
 
@@ -710,33 +710,33 @@ cumulus@switch:~$ sudo net commit
 
 1. Edit the `/etc/network/interfaces` file and set auto-negotiation to *on*. For example:
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
 
-auto swp1
-iface swp1
-    link-autoneg on
-```
+    auto swp1
+    iface swp1
+        link-autoneg on
+    ```
 
 2. Run the `ifreload -a` command to load the updated configuration:
 
-```
-cumulus@switch:~$ sudo ifreload -a
-```
+    ```
+    cumulus@switch:~$ sudo ifreload -a
+    ```
 
-**Runtime Configuration (Advanced)**
+    **Runtime Configuration (Advanced)**
 
-You can use `ethtool` to enable FEC with auto-negotiation. For example:
+    You can use `ethtool` to enable FEC with auto-negotiation. For example:
 
-```
-ethtool -s swp1 speed 10000 duplex full autoneg on
-```
+    ```
+    ethtool -s swp1 speed 10000 duplex full autoneg on
+    ```
 
-{{%notice warning%}}
+    {{%notice warning%}}
 
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 </details>
 
@@ -775,33 +775,33 @@ cumulus@switch:~$ sudo net commit
 
 1. Edit the `/etc/network/interfaces` file. The following example disables Base-R FEC for the swp1 interface (`link-fec baser`):
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
 
-auto swp23
-iface swp23
-link-fec off
-```
+    auto swp23
+    iface swp23
+    link-fec off
+    ```
 
 2. Run the `ifreload -a` command to load the updated configuration:
 
-```
-cumulus@switch:~$ sudo ifreload -a
-```
+    ```
+    cumulus@switch:~$ sudo ifreload -a
+    ```
 
-**Runtime Configuration (Advanced)**
+    **Runtime Configuration (Advanced)**
 
-Run the `ethtool --set-fec <interface> encoding off` command. For example:
+    Run the `ethtool --set-fec <interface> encoding off` command. For example:
 
-```
-cumulus@switch:~$ sudo ethtool --set-fec swp23 encoding off
-```
+    ```
+    cumulus@switch:~$ sudo ethtool --set-fec swp23 encoding off
+    ```
 
-{{%notice warning%}}
+    {{%notice warning%}}
 
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 
-{{%/notice%}}
+    {{%/notice%}}
 
 </details>
 
@@ -1114,36 +1114,36 @@ cumulus@switch:~$ net commit
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout.
 
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-...
+    ```
+    cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
+    ...
 
-25s0=10G
-25s1=10G
-25s2=10G
-25s3=10G
-...
-```
+    25s0=10G
+    25s1=10G
+    25s2=10G
+    25s3=10G
+    ...
+    ```
 
 2. Configure the breakout ports in the `/etc/network/interfaces` file.
 
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
+    ```
+    cumulus@switch:~$ sudo nano /etc/network/interfaces
+    ...
 
-auto swp25s0
-iface swp25s0
+    auto swp25s0
+    iface swp25s0
 
-auto swp25s1
-iface swp25s1
+    auto swp25s1
+    iface swp25s1
 
-auto swp25s2
-iface swp25s2
+    auto swp25s2
+    iface swp25s2
 
-auto swp25s3
-iface swp25s3
-...
-```
+    auto swp25s3
+    iface swp25s3
+    ...
+    ```
 
 3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 
@@ -1159,26 +1159,26 @@ To remove a breakout port:
 
 1. Run the `net del interface <interface>` command. For example:
 
-```
-cumulus@switch:~$ net del interface swp3s0
-cumulus@switch:~$ net del interface swp3s1
-cumulus@switch:~$ net del interface swp3s2
-cumulus@switch:~$ net del interface swp3s3
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+    ```
+    cumulus@switch:~$ net del interface swp3s0
+    cumulus@switch:~$ net del interface swp3s1
+    cumulus@switch:~$ net del interface swp3s2
+    cumulus@switch:~$ net del interface swp3s3
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
 
 2. Manually edit the `/etc/cumulus/ports.conf` file to configure the interface for the original speed. For example:
 
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-...
+    ```
+    cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
+    ...
 
-2=100G
-3=100G
-4=100G
-...
-```
+    2=100G
+    3=100G
+    4=100G
+    ...
+    ```
 
 3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 
@@ -1190,15 +1190,15 @@ cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the interface for the original speed.
 
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-...
+    ```
+    cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
+    ...
 
-2=100G
-3=100G
-4=100G
-...
-```
+    2=100G
+    3=100G
+    4=100G
+    ...
+    ```
 
 2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 
@@ -1394,31 +1394,31 @@ For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must conf
 
 1. Edit the `/etc/cumulus/ports.conf` file and configure the four ports to be 10G. 1G SFPs are clocked at 10G speeds; therefore, for 1G SFPs, the `/etc/cumulus/ports.conf` file entry must also specify 10G. Currently you cannot use NCLU commands for this step.
 
-```
-...
-# SFP28 ports
-#
-# <port label 1-48> = [25G|10G|100G/4|40G/4]
-1=25G
-2=25G
-3=25G
-4=25G
-5=10G
-6=10G
-7=10G
-8=10G
-9=25G
-...
-```
+    ```
+    ...
+    # SFP28 ports
+    #
+    # <port label 1-48> = [25G|10G|100G/4|40G/4]
+    1=25G
+    2=25G
+    3=25G
+    4=25G
+    5=10G
+    6=10G
+    7=10G
+    8=10G
+    9=25G
+    ...
+    ```
 
 2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 3. If you want to set the speed of any SFPs to 1G, set the port speed to 1000 Mbps using NCLU commands; this is *not* necessary for 10G SFPs. You don't need to set the port speed to 1G for all four ports. For example, if you intend only for swp5 and swp6 to use 1G SFPs, do the following:
 
-```
-cumulus@switch:~$ net add interface swp5-swp6 link speed 1000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+    ```
+    cumulus@switch:~$ net add interface swp5-swp6 link speed 1000
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
 
 {{%notice note%}}
 

@@ -207,7 +207,7 @@ user@company.com|thequickbrownfoxjumpsoverthelazydog312
 There are three ways to install the license onto the switch:
 
 - Copy the license from a local server. Create a text file with the license and copy it to a server accessible from the switch. On the switch, use the following command to transfer the file directly on the switch, then install the license file:
-    
+
     ```
     cumulus@switch:~$ scp user@my_server:/home/user/my_license_file.txt .
     cumulus@switch:~$ sudo cl-license -i my_license_file.txt

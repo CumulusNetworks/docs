@@ -74,7 +74,7 @@ def build_foss_license_markdown(csv_file, version, product):
         if header:
             output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), split_line[2].strip()))
         else:
-            output.append("| [{}](/{}/Whats-New/licenses/{}) | {} | {} |\n".format(split_line[0], version_string(version), split_line[0], split_line[1].strip(), split_line[2].strip()))
+            output.append("| [{}](/cumulus-linux-{}/Whats-New/licenses/{}) | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), split_line[2].strip()))
         if header:
             output.append("|---	        |---	        |---	    |\n")
             header = False

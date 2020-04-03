@@ -6,7 +6,6 @@ product: Cumulus Linux
 version: "4.1"
 toc: 1
 type: rn
-draft: True
 pdfhidden: True
 ---
 

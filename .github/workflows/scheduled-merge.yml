@@ -24,4 +24,4 @@ jobs:
         user_email: docs@cumulusnetworks.com 
 
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PLUMBIS_GITHUB_TOKEN }}

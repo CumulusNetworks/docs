@@ -1,5 +1,4 @@
 {{ $currentSect := default .Page.Section .Page.Params.BookSection}}
-
 {{ $sections := where .Site.Sections "Section" .Page.Section}}
   <ul id = "top" class = "cn-book-section-container">
   {{ range $sections }}

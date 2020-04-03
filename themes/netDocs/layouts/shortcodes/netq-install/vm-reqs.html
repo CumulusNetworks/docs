@@ -1,0 +1,46 @@
+When using a VM, the following system resources must be allocated:
+
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Resource</th>
+<th>Minimum Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td>Processor</td>
+<td>Eight (8) virtual CPUs</td>
+</tr>
+<tr class="odd">
+<td>Memory</td>
+{{- if eq (.Get "deployment") "onprem" -}}
+<td>64 GB RAM</td>
+{{ end }}
+{{- if eq (.Get "deployment") "cloud" -}}
+<td>8 GB RAM</td>
+{{ end }}
+</tr>
+<tr class="even">
+<td>Local disk storage</td>
+{{- if eq (.Get "deployment") "onprem" -}}
+<td>256 GB SSD <br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+{{ end }}
+{{- if eq (.Get "deployment") "cloud" -}}
+<td>32 GB</td>
+{{ end }}
+</tr>
+<tr class="odd">
+<td>Network interface speed</td>
+<td>1 Gb NIC</td>
+</tr>
+<tr class="even">
+<td>Hypervisor</td>
+<td><ul><li>VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux, CentOS, Ubuntu and RedHat operating systems</li><li>KVM/QCOW (QEMU Copy on Write) image for servers running CentOS, Ubuntu and RedHat operating systems</li></ul></td>
+</tr>
+</tbody>
+</table>

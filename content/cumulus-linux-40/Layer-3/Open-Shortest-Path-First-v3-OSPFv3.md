@@ -45,20 +45,20 @@ cumulus@switch:~$ net commit
 1. Enable the `ospf6` daemon, then start the FRRouting service. See {{<link url="Configuring-FRRouting">}}.
 2. From the vtysh shell, configure OSPFv3:
 
-```
-cumulus@switch:~$ sudo vtysh
+   ```
+   cumulus@switch:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router ospf6
-switch(config-ospf6)# router-id 0.0.0.1
-switch(config-ospf6)# interface swp1 area 0.0.0.0
-switch(config-ospf6)# interface swp2 area 0.0.0.1
-switch(config-ospf6)#exit
-switch(config)#exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
+   switch# configure terminal
+   switch(config)# router ospf6
+   switch(config-ospf6)# router-id 0.0.0.1
+   switch(config-ospf6)# interface swp1 area 0.0.0.0
+   switch(config-ospf6)# interface swp2 area 0.0.0.1
+   switch(config-ospf6)#exit
+   switch(config)#exit
+   switch# write memory
+   switch# exit
+   cumulus@switch:~$
+   ```
 
 </details>
 

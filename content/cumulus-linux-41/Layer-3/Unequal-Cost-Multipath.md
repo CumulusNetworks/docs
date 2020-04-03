@@ -50,7 +50,8 @@ Cumulus Linux accepts the bandwidth extended community by default. No additional
 
 {{%notice note%}}
 
-The bandwidth used in the extended community has no impact on or relation to port bandwidth.
+- The bandwidth used in the extended community has no impact on or relation to port bandwidth.
+- You can only apply the route weight information on the outbound direction to a peer; you cannot apply route weight information on the inbound direction from peers advertising routes to the switch.
 
 {{%/notice%}}
 
@@ -169,7 +170,7 @@ For EVPN configuration, make sure that you activate the commands under the EVPN 
 
 ```
 cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 set extcommunity bandwidth num-multipaths
-cumulus@leaf01:~$ net add bgp l2vpn evpn advertise ipv4 unicast route-map ucmp-route-map
+cumulus@leaf01:~$ net add bgp vrf turtle l2vpn evpn advertise ipv4 unicast route-map ucmp-route-map
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -185,7 +186,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map ucmp-route-map permit 10
 leaf01(config-route-map)# set extcommunity bandwidth num-multipaths
-leaf01(config-route-map)# router bgp 65011
+leaf01(config-route-map)# router bgp 65011 vrf turtle
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# advertise ipv4 unicast route-map ucmp-route-map
 leaf01(config-router-af)# end
@@ -211,9 +212,12 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
-## Control UCMP on the Receiving Router
+## Control UCMP on the Receiving Switch
 
-To control UCMP on the receiving router, you can set default values for UCMP routes and disable the advertisement of all BGP extended communities on specific peerings.
+To control UCMP on the receiving switch, you can:
+
+- Set default values for UCMP routes.
+- Disable the advertisement of all BGP extended communities on specific peerings.
 
 ### Set Default Values for UCMP Routes
 
@@ -380,3 +384,7 @@ Routing entry for 192.168.10.1/32
 ## Caveats and Errata
 
 UCMP with BGP link bandwidth is only available for BGP-learned routes.
+
+## Related Information
+
+{{<exlink url="https://tools.ietf.org/html/draft-ietf-idr-link-bandwidth-07" text="IETF draft - BGP Link Bandwidth Extended Community">}}

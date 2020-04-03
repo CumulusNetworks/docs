@@ -201,12 +201,13 @@ known.
 
 ### Auto-derivation of RDs and RTs
 
-When a local VNI is learned by FRR and there is no explicit
+When FRR learns about a local VNI and there is no explicit
 configuration for that VNI in FRR, the route distinguisher (RD) and
 import and export route targets (RTs) for this VNI are automatically
-derived - the RD uses "RouterId:VNI-Index " and the import and export RTs
-use "AS:VNI ". The RD and RTs are used in the EVPN route exchange. The RD
-disambiguates EVPN routes in different VNIs (as they may have the same
+derived; the RD uses *RouterId:VNI-Index* and the import and export RTs
+use *AS:VNI*. For routes that come from a layer 2 VNI (type-2 and type-3), the RD uses the `vxlan-local-tunnelip` from the layer 2 VNI interface instead of the RouterId (`vxlan-local-tunnelip:VNI`). The RD and RTs are used in the EVPN route exchange. 
+
+The RD disambiguates EVPN routes in different VNIs (as they may have the same
 MAC and/or IP address) while the RTs describe the VPN membership for the
 route. The "VNI-Index" used for the RD is a unique, internally generated
 number for a VNI. It solely has local significance; on remote switches,

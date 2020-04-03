@@ -1,0 +1,254 @@
+This package was first debianized by Mikhail Gusarov <dottedmag@dottedmag.net>
+on Mon, 08 Apr 2008 01:52:52 +0600
+
+It was downloaded from http://sphinx.pocoo.org/
+
+Copyright Holders: Georg Brandl <georg@python.org>, Armin Ronacher
+<armin.ronacher@active-4.com>, Josip Dzolonga, Gerold Penz, Vivake Gupta
+<v@nano.com>
+
+License for Sphinx
+==================
+
+Copyright (c) 2007-2013 by the Sphinx team (see AUTHORS file).
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+* Redistributions of source code must retain the above copyright
+  notice, this list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright
+  notice, this list of conditions and the following disclaimer in the
+  documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Licenses for incorporated software
+==================================
+
+The pgen2 package, included in this distribution under the name
+sphinx.pycode.pgen2, is available in the Python 2.6 distribution under
+the PSF license agreement for Python:
+
+| Copyright © 2001-2008 Python Software Foundation; All Rights Reserved.
+| 
+| PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2
+| --------------------------------------------
+| 
+| 1. This LICENSE AGREEMENT is between the Python Software Foundation
+|    ("PSF"), and the Individual or Organization ("Licensee") accessing
+|    and otherwise using Python 2.6 software in source or binary form
+|    and its associated documentation.
+| 
+| 2. Subject to the terms and conditions of this License Agreement, PSF
+|    hereby grants Licensee a nonexclusive, royalty-free, world-wide
+|    license to reproduce, analyze, test, perform and/or display
+|    publicly, prepare derivative works, distribute, and otherwise use
+|    Python 2.6 alone or in any derivative version, provided, however,
+|    that PSF's License Agreement and PSF's notice of copyright, i.e.,
+|    "Copyright © 2001-2008 Python Software Foundation; All Rights
+|    Reserved" are retained in Python 2.6 alone or in any derivative
+|    version prepared by Licensee.
+| 
+| 3. In the event Licensee prepares a derivative work that is based on
+|    or incorporates Python 2.6 or any part thereof, and wants to make
+|    the derivative work available to others as provided herein, then
+|    Licensee hereby agrees to include in any such work a brief summary
+|    of the changes made to Python 2.6.
+| 
+| 4. PSF is making Python 2.6 available to Licensee on an "AS IS" basis.
+|    PSF MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED.  BY
+|    WAY OF EXAMPLE, BUT NOT LIMITATION, PSF MAKES NO AND DISCLAIMS ANY
+|    REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS FOR ANY
+|    PARTICULAR PURPOSE OR THAT THE USE OF PYTHON 2.6 WILL NOT INFRINGE
+|    ANY THIRD PARTY RIGHTS.
+| 
+| 5. PSF SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON
+|    2.6 FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS
+|    AS A RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON
+|    2.6, OR ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY
+|    THEREOF.
+| 
+| 6. This License Agreement will automatically terminate upon a material
+|    breach of its terms and conditions.
+| 
+| 7. Nothing in this License Agreement shall be deemed to create any
+|    relationship of agency, partnership, or joint venture between PSF
+|    and Licensee.  This License Agreement does not grant permission to
+|    use PSF trademarks or trade name in a trademark sense to endorse or
+|    promote products or services of Licensee, or any third party.
+| 
+| 8. By copying, installing or otherwise using Python 2.6, Licensee
+|    agrees to be bound by the terms and conditions of this License
+|    Agreement.
+
+The included smartypants module, included as sphinx.util.smartypants,
+is available under the following license:
+
+| SmartyPants license::
+| 
+|     Copyright (c) 2003 John Gruber
+|     (http://daringfireball.net/)
+|     All rights reserved.
+| 
+|     Redistribution and use in source and binary forms, with or without
+|     modification, are permitted provided that the following conditions
+|     are met:
+| 
+|     *   Redistributions of source code must retain the above copyright
+|         notice, this list of conditions and the following disclaimer.
+| 
+|     *   Redistributions in binary form must reproduce the above
+|         copyright notice, this list of conditions and the following
+|         disclaimer in the documentation and/or other materials
+|         provided with the distribution.
+| 
+|     *   Neither the name "SmartyPants" nor the names of its
+|         contributors may be used to endorse or promote products
+|         derived from this software without specific prior written
+|         permission.
+| 
+|     This software is provided by the copyright holders and
+|     contributors "as is" and any express or implied warranties,
+|     including, but not limited to, the implied warranties of
+|     merchantability and fitness for a particular purpose are
+|     disclaimed. In no event shall the copyright owner or contributors
+|     be liable for any direct, indirect, incidental, special,
+|     exemplary, or consequential damages (including, but not limited
+|     to, procurement of substitute goods or services; loss of use,
+|     data, or profits; or business interruption) however caused and on
+|     any theory of liability, whether in contract, strict liability, or
+|     tort (including negligence or otherwise) arising in any way out of
+|     the use of this software, even if advised of the possibility of
+|     such damage.
+| 
+| 
+| smartypants.py license::
+| 
+|     smartypants.py is a derivative work of SmartyPants.
+| 
+|     Redistribution and use in source and binary forms, with or without
+|     modification, are permitted provided that the following conditions
+|     are met:
+| 
+|     *   Redistributions of source code must retain the above copyright
+|         notice, this list of conditions and the following disclaimer.
+| 
+|     *   Redistributions in binary form must reproduce the above
+|         copyright notice, this list of conditions and the following
+|         disclaimer in the documentation and/or other materials
+|         provided with the distribution.
+| 
+|     This software is provided by the copyright holders and
+|     contributors "as is" and any express or implied warranties,
+|     including, but not limited to, the implied warranties of
+|     merchantability and fitness for a particular purpose are
+|     disclaimed. In no event shall the copyright owner or contributors
+|     be liable for any direct, indirect, incidental, special,
+|     exemplary, or consequential damages (including, but not limited
+|     to, procurement of substitute goods or services; loss of use,
+|     data, or profits; or business interruption) however caused and on
+|     any theory of liability, whether in contract, strict liability, or
+|     tort (including negligence or otherwise) arising in any way out of
+|     the use of this software, even if advised of the possibility of
+|     such damage.
+
+The ElementTree package, included in this distribution in
+test/etree13, is available under the following license:
+
+| The ElementTree toolkit is
+| 
+| Copyright (c) 1999-2007 by Fredrik Lundh
+| 
+| By obtaining, using, and/or copying this software and/or its
+| associated documentation, you agree that you have read, understood,
+| and will comply with the following terms and conditions:
+| 
+| Permission to use, copy, modify, and distribute this software and its
+| associated documentation for any purpose and without fee is hereby
+| granted, provided that the above copyright notice appears in all
+| copies, and that both that copyright notice and this permission notice
+| appear in supporting documentation, and that the name of Secret Labs
+| AB or the author not be used in advertising or publicity pertaining to
+| distribution of the software without specific, written prior
+| permission.
+| 
+| SECRET LABS AB AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO
+| THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANT- ABILITY
+| AND FITNESS.  IN NO EVENT SHALL SECRET LABS AB OR THE AUTHOR BE LIABLE
+| FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+| WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+| ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
+| OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+AUTHORS file
+============
+
+Sphinx is written and maintained by Georg Brandl <georg@python.org>.
+
+Substantial parts of the templates were written by Armin Ronacher
+<armin.ronacher@active-4.com>.
+
+Other contributors, listed alphabetically, are:
+
+* Andi Albrecht -- agogo theme
+* Henrique Bastos -- SVG support for graphviz extension
+* Daniel Bültmann -- todo extension
+* Etienne Desautels -- apidoc module
+* Michael Droettboom -- inheritance_diagram extension
+* Charles Duffy -- original graphviz extension
+* Kevin Dunn -- MathJax extension
+* Josip Dzolonga -- coverage builder
+* Horst Gutmann -- internationalization support
+* Martin Hans -- autodoc improvements
+* Doug Hellmann -- graphviz improvements
+* Dave Kuhlman -- original LaTeX writer
+* Blaise Laflamme -- pyramid theme
+* Thomas Lamb -- linkcheck builder
+* Łukasz Langa -- partial support for autodoc
+* Robert Lehmann -- gettext builder (GSOC project)
+* Dan MacKinlay -- metadata fixes
+* Martin Mahner -- nature theme
+* Will Maier -- directory HTML builder
+* Jacob Mason -- websupport library (GSOC project)
+* Roland Meister -- epub builder
+* Ezio Melotti -- collapsible sidebar JavaScript
+* Daniel Neuhäuser -- JavaScript domain, Python 3 support (GSOC)
+* Christopher Perkins -- autosummary integration
+* Benjamin Peterson -- unittests
+* T. Powers -- HTML output improvements
+* Stefan Seefeld -- toctree improvements
+* Shibukawa Yoshiki -- pluggable search API and Japanese search
+* Antonio Valentino -- qthelp builder
+* Pauli Virtanen -- autodoc improvements, autosummary extension
+* Stefan van der Walt -- autosummary extension
+* Thomas Waldmann -- apidoc module fixes
+* John Waltman -- Texinfo builder
+* Barry Warsaw -- setup command improvements
+* Sebastian Wiesner -- image handling, distutils support
+* Joel Wurtz -- cellspanning support in LaTeX
+
+Many thanks for all contributions!
+
+There are also a few modules or functions incorporated from other
+authors and projects:
+
+* sphinx.util.jsdump uses the basestring encoding from simplejson,
+  written by Bob Ippolito, released under the MIT license
+* sphinx.util.stemmer was written by Vivake Gupta, placed in the
+  Public Domain
+* sphinx.apidoc is derived from the "sphinx-autopackage" script, which is:
+  Copyright 2008 Société des arts technologiques (SAT), http://www.sat.qc.ca/

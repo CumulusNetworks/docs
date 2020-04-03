@@ -424,33 +424,33 @@ Cut-through mode **is** supported for ERSPAN in Cumulus Linux on switches using 
 
 1. First, create a rules file in `/etc/cumulus/acl/policy.d/`:
 
-```
-cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/erspan.rules
-[iptables]
--A FORWARD --in-interface swp1 -j ERSPAN --src-ip 12.0.0.1 --dst-ip 12.0.0.2  --ttl 64
-EOF'
-```
+     ```
+     cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/erspan.rules
+     [iptables]
+     -A FORWARD --in-interface swp1 -j ERSPAN --src-ip 12.0.0.1 --dst-ip 12.0.0.2  --ttl 64
+     EOF'
+     ```
 
 2. Install the rules:
 
-```
-cumulus@switch:~$ sudo cl-acltool -i
-Reading rule file /etc/cumulus/acl/policy.d/00control_plane.rules ...
-Processing rules in file /etc/cumulus/acl/policy.d/00control_plane.rules ...
-Reading rule file /etc/cumulus/acl/policy.d/99control_plane_catch_all.rules ...
-Processing rules in file /etc/cumulus/acl/policy.d/99control_plane_catch_all.rules ...
-Reading rule file /etc/cumulus/acl/policy.d/erspan.rules ...
-Processing rules in file /etc/cumulus/acl/policy.d/erspan.rules ...
-Installing acl policy
-done.
-```
+     ```
+     cumulus@switch:~$ sudo cl-acltool -i
+     Reading rule file /etc/cumulus/acl/policy.d/00control_plane.rules ...
+     Processing rules in file /etc/cumulus/acl/policy.d/00control_plane.rules ...
+     Reading rule file /etc/cumulus/acl/policy.d/99control_plane_catch_all.rules ...
+     Processing rules in file /etc/cumulus/acl/policy.d/99control_plane_catch_all.rules ...
+     Reading rule file /etc/cumulus/acl/policy.d/erspan.rules ...
+     Processing rules in file /etc/cumulus/acl/policy.d/erspan.rules ...
+     Installing acl policy
+     done.
+     ```
 
 3. Verify that the ERSPAN rules are installed:
 
-```
-cumulus@switch:~$ sudo iptables -L -v | grep SPAN
-    69  6804 ERSPAN     all  --  swp1   any     anywhere             anywhere             ERSPAN src-ip:12.0.0.1 dst-ip:12.0.0.2
-```
+     ```
+     cumulus@switch:~$ sudo iptables -L -v | grep SPAN
+          69  6804 ERSPAN     all  --  swp1   any     anywhere             anywhere             ERSPAN   src-ip:12.0.0.1 dst-ip:12.0.0.2
+     ```
 
 The `src-ip` option can be any IP address, whether it exists in the routing table or not. The `dst-ip` option must be an IP address reachable via the routing table. The destination IP address must be reachable from a front-panel port, and not the management port. Use `ping` or `ip route get <ip>` to verify that the destination IP address is reachable. Setting the `--ttl` option is recommended.
 

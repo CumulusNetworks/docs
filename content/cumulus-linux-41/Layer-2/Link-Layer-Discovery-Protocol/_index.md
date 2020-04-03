@@ -66,7 +66,7 @@ Interface:    eth0, via: LLDP, RID: 1, Time: 0 day, 17:38:08
   Chassis:
     ChassisID:    mac 08:9e:01:e9:66:5a
     SysName:      PIONEERMS22
-    SysDescr:     Cumulus Linux version 4.0.0 running on quanta lb9
+    SysDescr:     Cumulus Linux version 4.1.0 running on quanta lb9
     MgmtIP:       192.168.0.22
     Capability:   Bridge, on
     Capability:   Router, on
@@ -78,7 +78,7 @@ Interface:    swp1, via: LLDP, RID: 10, Time: 0 day, 17:08:27
   Chassis:
     ChassisID:    mac 00:01:00:00:09:00
     SysName:      MSP-1
-    SysDescr:     Cumulus Linux version 4.0.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
+    SysDescr:     Cumulus Linux version 4.1.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
     MgmtIP:       192.0.2.9
     MgmtIP:       fe80::201:ff:fe00:900
     Capability:   Bridge, off
@@ -91,7 +91,7 @@ Interface:    swp2, via: LLDP, RID: 10, Time: 0 day, 17:08:27
   Chassis:
     ChassisID:    mac 00:01:00:00:09:00
     SysName:      MSP-1
-    SysDescr:     Cumulus Linux version 4.0.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
+    SysDescr:     Cumulus Linux version 4.1.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
     MgmtIP:       192.0.2.9
     MgmtIP:       fe80::201:ff:fe00:900
     Capability:   Bridge, off
@@ -104,7 +104,7 @@ Interface:    swp3, via: LLDP, RID: 11, Time: 0 day, 17:08:27
   Chassis:
     ChassisID:    mac 00:01:00:00:0a:00
     SysName:      MSP-2
-    SysDescr:     Cumulus Linux version 4.0.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
+    SysDescr:     Cumulus Linux version 4.1.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
     MgmtIP:       192.0.2.10
     MgmtIP:       fe80::201:ff:fe00:a00
     Capability:   Bridge, off
@@ -117,7 +117,7 @@ Interface:    swp4, via: LLDP, RID: 11, Time: 0 day, 17:08:27
   Chassis:
     ChassisID:    mac 00:01:00:00:0a:00
     SysName:      MSP-2
-    SysDescr:     Cumulus Linux version 4.0.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
+    SysDescr:     Cumulus Linux version 4.1.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
     MgmtIP:       192.0.2.10
     MgmtIP:       fe80::201:ff:fe00:a00
     Capability:   Bridge, off
@@ -130,7 +130,7 @@ Interface:    swp49s1, via: LLDP, RID: 9, Time: 0 day, 16:55:00
   Chassis:
     ChassisID:    mac 00:01:00:00:0c:00
     SysName:      TORC-1-2
-    SysDescr:     Cumulus Linux version 4.0.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
+    SysDescr:     Cumulus Linux version 4.1.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
     MgmtIP:       192.0.2.12
     MgmtIP:       fe80::201:ff:fe00:c00
     Capability:   Bridge, on
@@ -143,7 +143,7 @@ Interface:    swp49s0, via: LLDP, RID: 9, Time: 0 day, 16:55:00
   Chassis:
     ChassisID:    mac 00:01:00:00:0c:00
     SysName:      TORC-1-2
-    SysDescr:     Cumulus Linux version 4.0.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
+    SysDescr:     Cumulus Linux version 4.1.0 running on QEMU Standard PC (i440FX + PIIX, 1996)
     MgmtIP:       192.0.2.12
     MgmtIP:       fe80::201:ff:fe00:c00
     Capability:   Bridge, on

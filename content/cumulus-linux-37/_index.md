@@ -62,4 +62,4 @@ part number.
 
 
 ## PDF Documents
-A PDF version of the entire Cumulus Linux {{% version %}} user guide can be {{% pdf_link "downloaded here" %}}. 
+You can download a PDF version of the entire Cumulus Linux {{% version %}} user guide {{% pdf_link "downloaded here" %}}.

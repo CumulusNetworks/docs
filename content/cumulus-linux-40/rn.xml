@@ -235,7 +235,7 @@ Port security is not supported on bond/MLAG interfaces.</p></td>
 </tr>
 <tr>
 <td>CM-28451</td>
-<td><p>An error similar to the following shows in syslog:</p>
+<td><p>An error similar to the following shows in syslog for Mellanox switches:</p>
 
 2020-02-12T19:59:22.208012+08:00 leaf01 sx_sdk: RM_TABLE: No resources available to add 1 entries to KVD hash Table HW resource
 2020-02-12T19:59:22.208124+08:00 leaf01 sx_sdk: PORT: __port_vport_fid_set err = (No More Resources)

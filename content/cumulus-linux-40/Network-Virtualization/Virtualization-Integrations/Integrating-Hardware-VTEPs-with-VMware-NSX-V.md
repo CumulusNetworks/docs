@@ -114,61 +114,61 @@ In Cumulus Linux, generate a certificate that the NSX controller uses for authen
 
 1. In a terminal session connected to the switch, run the following commands:
 
-```
-cumulus@switch:~$ sudo ovs-pki init
-Creating controllerca...
-Creating switchca...
-cumulus@switch:~$ sudo ovs-pki req+sign cumulus
+    ```
+    cumulus@switch:~$ sudo ovs-pki init
+    Creating controllerca...
+    Creating switchca...
+    cumulus@switch:~$ sudo ovs-pki req+sign cumulus
 
-cumulus-req.pem Wed Oct 23 05:32:49 UTC 2013
+    cumulus-req.pem Wed Oct 23 05:32:49 UTC 2013
         fingerprint b587c9fe36f09fb371750ab50c430485d33a174a
 
-cumulus@switch:~$ ls -l
-total 12
--rw-r--r-- 1 root root 4028 Oct 23 05:32 cumulus-cert.pem
--rw------- 1 root root 1679 Oct 23 05:32 cumulus-privkey.pem
--rw-r--r-- 1 root root 3585 Oct 23 05:32 cumulus-req.pem
-```
+    cumulus@switch:~$ ls -l
+    total 12
+    -rw-r--r-- 1 root root 4028 Oct 23 05:32 cumulus-cert.pem
+    -rw------- 1 root root 1679 Oct 23 05:32 cumulus-privkey.pem
+    -rw-r--r-- 1 root root 3585 Oct 23 05:32 cumulus-req.pem
+    ```
 
 2. In the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file, make sure the lines containing **private-key**, **certificate**, and **bootstrap-ca-cert** point to the correct files; **bootstrap-ca-cert** is obtained dynamically the first time the switch talks to the controller:
 
-```
-# Start ovsdb-server.
-set ovsdb-server "$DB_FILE"
-set "$@" -vANY:CONSOLE:EMER -vANY:SYSLOG:ERR -vANY:FILE:INFO
-set "$@" --remote=punix:"$DB_SOCK"
-set "$@" --remote=db:Global,managers
-set "$@" --remote=ptcp:6633:$LOCALIP
-set "$@" --private-key=/root/cumulus-privkey.pem
-set "$@" --certificate=/root/cumulus-cert.pem
-set "$@" --bootstrap-ca-cert=/root/controller.cacert
-set "$@ " --ssl-protocols=TLSv1,TLSv1.1,TLSv1.2
-```
+    ```
+    # Start ovsdb-server.
+    set ovsdb-server "$DB_FILE"
+    set "$@" -vANY:CONSOLE:EMER -vANY:SYSLOG:ERR -vANY:FILE:INFO
+    set "$@" --remote=punix:"$DB_SOCK"
+    set "$@" --remote=db:Global,managers
+    set "$@" --remote=ptcp:6633:$LOCALIP
+    set "$@" --private-key=/root/cumulus-privkey.pem
+    set "$@" --certificate=/root/cumulus-cert.pem
+    set "$@" --bootstrap-ca-cert=/root/controller.cacert
+    set "$@ " --ssl-protocols=TLSv1,TLSv1.1,TLSv1.2
+    ```
 
-If files have been moved or regenerated, restart the OVSDB server and VTEPd:
+    If files have been moved or regenerated, restart the OVSDB server and VTEPd:
 
-```
-cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart openvswitch-vtep.service
+    ```
 
 3. Define the NSX Controller Cluster IP address in OVSDB. This causes the OVSDB server to start contacting the NSX controller:
 
-```
-cumulus@switch:~$ sudo vtep-ctl set-manager ssl:192.168.100.17:6632
-```
+    ```
+    cumulus@switch:~$ sudo vtep-ctl set-manager ssl:192.168.100.17:6632
+    ```
 
 4. Define the local IP address on the VTEP for VXLAN tunnel termination. First, find the physical switch name as recorded in OVSDB:
 
-```
-cumulus@switch:~$ sudo vtep-ctl list-ps
-vtep7
-```
+    ```
+    cumulus@switch:~$ sudo vtep-ctl list-ps
+    vtep7
+    ```
 
-Then set the tunnel source IP address of the VTEP. This is the datapath address of the VTEP, which is typically an address on a loopback interface on the switch that is reachable from the underlying layer 3 network:
+    Then set the tunnel source IP address of the VTEP. This is the datapath address of the VTEP, which is typically an address on a loopback interface on the switch that is reachable from the underlying layer 3 network:
 
-```
-cumulus@switch:~$ sudo vtep-ctl set Physical_Switch vtep7 tunnel_ips=172.16.20.157
-```
+    ```
+    cumulus@switch:~$ sudo vtep-ctl set Physical_Switch vtep7 tunnel_ips=172.16.20.157
+    ```
 
 After you generate the certificate, keep the terminal session active; you need to paste the certificate into NSX Manager when you configure the VTEP gateway.
 
@@ -203,12 +203,12 @@ After you create a certificate, connect to NSX Manager in a browser to configure
 3. Enable the BFD service to the service nodes. Select the **Enable BFD** check box.
 4. From the terminal session connected to the switch where you generated the certificate, copy the certificate and paste it into the **Certificate** text field. Copy only the bottom portion, including the `BEGIN CERTIFICATE` and `END CERTIFICATE` lines. For example, copy all the highlighted text in the terminal terminal and paste it into NSX Manager:
 
-```
-cumulus@switch:~$ cd /var/lib/openvswitch
-cumulus@switch:/var/lib/openvswitch$ ls
-conf.db  pki  vtep7-cert.pem  vtep7-privkey.pem  vtep7-req.pem
-cumulus@switch:/var/lib/openvswitch$ cat vtep7-cert.pem
-```
+    ```
+    cumulus@switch:~$ cd /var/lib/openvswitch
+    cumulus@switch:/var/lib/openvswitch$ ls
+    conf.db  pki  vtep7-cert.pem  vtep7-privkey.pem  vtep7-req.pem
+    cumulus@switch:/var/lib/openvswitch$ cat vtep7-cert.pem
+    ```
 
     {{< img src = "/images/cumulus-linux/virtualization-integrations-nsxv-add-hw-vtep.png" >}}
 

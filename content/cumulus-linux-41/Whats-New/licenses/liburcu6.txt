@@ -1,0 +1,496 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: *
+Copyright: 2009, 2010, Paul E. McKenney, IBM Corporation
+  2009-2015, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: config/*
+Copyright: 1996-2013, Free Software Foundation, Inc.
+License: GPL-2+
+
+Files: debian/*
+Copyright: 2009-2015, Jon Bernard <jbernard@debian.org>
+ 2014-2017, Michael Jeanson <mjeanson@ubuntu.com>
+License: GPL-3+
+
+Files: doc/examples/*
+Copyright: 2013, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: doc/examples/rculfhash/jhash.h
+Copyright: 2009-2012, - Mathieu Desnoyers <mathieu.desnoyers@polymtl.ca>
+License: MIT-MINIMAL
+
+Files: include/urcu/*
+Copyright: 2010, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/arch/*
+Copyright: 2009, 2010, Paul E. McKenney, IBM Corporation.
+  2009-2015, 2017, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/arch/alpha.h
+  include/urcu/arch/generic.h
+Copyright: 2010, Paolo Bonzini <pbonzini@redhat.com>
+License: LGPL-2.1+
+
+Files: include/urcu/arch/hppa.h
+Copyright: 2014, Helge Deller <deller@gmx.de>
+License: LGPL-2.1+
+
+Files: include/urcu/arch/mips.h
+Copyright: 2012, Ralf Baechle <ralf@linux-mips.org>
+  2010, Paolo Bonzini <pbonzini@redhat.com>
+License: LGPL-2.1+
+
+Files: include/urcu/arch/nios2.h
+Copyright: 2016, Marek Vasut <marex@denx.de>
+License: LGPL-2.1+
+
+Files: include/urcu/arch/s390.h
+Copyright: 2009, Novell, Inc.
+License: Expat
+
+Files: include/urcu/cds.h
+Copyright: 2011, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/compiler.h
+  include/urcu/debug.h
+  include/urcu/system.h
+Copyright: 2009, 2015, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: include/urcu/futex.h
+Copyright: 2011-2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/hlist.h
+  include/urcu/ref.h
+Copyright: 2010-2013, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+  2009, Novell Inc.
+License: LGPL-2.1
+
+Files: include/urcu/lfstack.h
+  include/urcu/wfstack.h
+Copyright: 2010-2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/list.h
+  include/urcu/rcuhlist.h
+  include/urcu/rculist.h
+Copyright: 2010, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+  2009, Pierre-Marc Fournier
+  2002, Free Software Foundation, Inc.
+License: LGPL-2.1+
+
+Files: include/urcu/map/*
+Copyright: 2009, 2010, Paul E. McKenney, IBM Corporation.
+  2009-2015, 2017, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/rculfhash.h
+Copyright: 2011, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / 2011, - Lai Jiangshan <laijs@cn.fujitsu.com>
+License: LGPL-2.1+
+
+Files: include/urcu/rculfqueue.h
+  include/urcu/rculfstack.h
+  include/urcu/wfqueue.h
+Copyright: 2010, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/static/*
+Copyright: 2009, 2010, Paul E. McKenney, IBM Corporation.
+  2009-2015, 2017, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/static/lfstack.h
+  include/urcu/static/wfstack.h
+Copyright: 2010-2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/static/rculfqueue.h
+  include/urcu/static/rculfstack.h
+  include/urcu/static/wfqueue.h
+Copyright: 2010, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/static/wfcqueue.h
+Copyright: 2011-2012, - Lai Jiangshan <laijs@cn.fujitsu.com> / 2010-2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/syscall-compat.h
+Copyright: 2013, - Pierre-Luc St-Charles <pierre-luc.st-charles@polymtl.ca>
+License: LGPL-2.1+
+
+Files: include/urcu/tls-compat.h
+Copyright: 2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: include/urcu/uatomic/*
+Copyright: 2010, Paul E. McKenney, IBM Corporation
+  2009-2015, Mathieu Desnoyers
+  1999-2004, Hewlett-Packard Development Company, L.P.
+  1996-1999, Silicon Graphics.
+  1991-1994, Xerox Corporation.
+License: MIT-MINIMAL
+
+Files: include/urcu/uatomic/alpha.h
+  include/urcu/uatomic/mips.h
+Copyright: 2010, Paolo Bonzini <pbonzini@redhat.com>
+License: Expat
+
+Files: include/urcu/uatomic/generic.h
+Copyright: 2010, Paolo Bonzini
+  2009, Mathieu Desnoyers
+  1999-2004, Hewlett-Packard Development Company, L.P.
+  1996-1999, Silicon Graphics.
+  1991-1994, Xerox Corporation.
+License: MIT-MINIMAL
+
+Files: include/urcu/uatomic/hppa.h
+Copyright: 2010, Paul E. McKenney, IBM Corporation
+  2009-2015, Mathieu Desnoyers
+  1999-2004, Hewlett-Packard Development Company, L.P
+  1996-1999, Silicon Graphics.
+  1991-1994, Xerox Corporation.
+License: MIT-MINIMAL
+
+Files: include/urcu/uatomic/nios2.h
+Copyright: 2016, Marek Vasut <marex@denx.de>
+License: Expat
+
+Files: include/urcu/uatomic/ppc.h
+  include/urcu/uatomic/x86.h
+Copyright: 2009, Mathieu Desnoyers
+  1999-2004, Hewlett-Packard Development Company, L.P.
+  1996-1999, Silicon Graphics.
+  1991-1994, Xerox Corporation.
+License: MIT-MINIMAL
+
+Files: include/urcu/uatomic/s390.h
+Copyright: 2009, Novell, Inc.
+  2009, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: Expat
+
+Files: include/urcu/uatomic/sparc64.h
+Copyright: 2009, Mathieu Desnoyers
+  1999-2003, Hewlett-Packard Company.
+  1996-1999, Silicon Graphics.
+  1991-1994, Xerox Corporation.
+License: MIT-MINIMAL
+
+Files: include/urcu/wfcqueue.h
+Copyright: 2011-2012, - Lai Jiangshan <laijs@cn.fujitsu.com> / 2010-2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: m4/*
+Copyright: 1989, 1991, 1994-2013, Free Software Foundation, Inc.
+License: LGPL-2.1+
+
+Files: m4/ax_c___attribute__.m4
+Copyright: 2008, Stepan Kasal <skasal@redhat.com>
+  2008, Ryan McCabe <ryan@numb.org>
+  2008, Christian Haggstrom
+License: GPL-2+
+
+Files: m4/ax_pthread.m4
+Copyright: 2011, Daniel Richard G. <skunk@iSKUNK.ORG>
+  2008, Steven G. Johnson <stevenj@alum.mit.edu>
+License: GPL-3+
+
+Files: m4/ax_tls.m4
+Copyright: 2010, Diego Elio Petteno` <flameeyes@gmail.com>
+  2008, Alan Woodland <ajw05@aber.ac.uk>
+License: GPL-3+
+
+Files: src/*
+Copyright: 2009, 2010, Paul E. McKenney, IBM Corporation.
+  2009-2015, 2017, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: src/Makefile.am
+  src/liburcu-bp.pc.in
+  src/liburcu-cds.pc.in
+  src/liburcu-mb.pc.in
+  src/liburcu-qsbr.pc.in
+  src/liburcu-signal.pc.in
+  src/liburcu.pc.in
+Copyright: 2009, 2010, Paul E. McKenney, IBM Corporation
+  2009-2015, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: src/compat-getcpu.h
+Copyright: 2015, Michael Jeanson <mjeanson@efficios.com>
+License: LGPL-2.1+
+
+Files: src/compat-rand.h
+Copyright: 2013, - Pierre-Luc St-Charles <pierre-luc.st-charles@polymtl.ca> / 1996, - Ulrich Drepper <drepper@cygnus.com >
+License: LGPL-2.1+
+
+Files: src/compat_arch_x86.c
+  src/compat_futex.c
+Copyright: 2009, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: src/lfstack.c
+  src/wfstack.c
+Copyright: 2010-2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: src/rculfhash-internal.h
+  src/rculfhash-mm-order.c
+Copyright: 2011, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / 2011, - Lai Jiangshan <laijs@cn.fujitsu.com>
+License: LGPL-2.1+
+
+Files: src/rculfhash-mm-chunk.c
+  src/rculfhash-mm-mmap.c
+Copyright: 2011, - Lai Jiangshan <laijs@cn.fujitsu.com>
+License: LGPL-2.1+
+
+Files: src/rculfhash.c
+Copyright: 2011, - Lai Jiangshan <laijs@cn.fujitsu.com> / 2010-2011, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: src/rculfqueue.c
+  src/rculfstack.c
+  src/wfqueue.c
+Copyright: 2010, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: src/urcu-call-rcu-impl.h
+Copyright: 2010, Paul E. McKenney <paulmck@linux.vnet.ibm.com>
+License: LGPL-2.1+
+
+Files: src/urcu-die.h
+  src/urcu-wait.h
+Copyright: 2012, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: src/urcu-flavor.h
+Copyright: 2011, Lai Jiangshan <laijs@cn.fujitsu.com>
+License: LGPL-2.1+
+
+Files: src/urcu-qsbr.h
+Copyright: no-info-found
+License: LGPL-2.1+
+
+Files: src/wfcqueue.c
+Copyright: 2011-2012, - Lai Jiangshan <laijs@cn.fujitsu.com> / 2010-2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: src/workqueue.c
+Copyright: 2017, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+  2010, Paul E. McKenney <paulmck@linux.vnet.ibm.com>
+License: LGPL-2.1+
+
+Files: tests/*
+Copyright: 2013, Christian Babeux <christian.babeux@efficios.com>
+License: GPL-2
+
+Files: tests/benchmark/*
+Copyright: February 2009, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2+
+
+Files: tests/benchmark/run.sh
+Copyright: 2013, - Christian Babeux <christian.babeux@efficios.com>
+License: GPL-2
+
+Files: tests/benchmark/test_cycles_per_loop.c
+  tests/benchmark/test_looplen.c
+  tests/benchmark/test_mutex.c
+  tests/benchmark/test_perthreadlock.c
+  tests/benchmark/test_perthreadlock_timing.c
+  tests/benchmark/test_rwlock.c
+  tests/benchmark/test_rwlock_timing.c
+  tests/benchmark/test_urcu.c
+  tests/benchmark/test_urcu_assign.c
+  tests/benchmark/test_urcu_bp.c
+  tests/benchmark/test_urcu_defer.c
+  tests/benchmark/test_urcu_gc.c
+  tests/benchmark/test_urcu_qsbr.c
+  tests/benchmark/test_urcu_qsbr_gc.c
+  tests/benchmark/test_urcu_qsbr_timing.c
+  tests/benchmark/test_urcu_timing.c
+Copyright: February 2009, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2+
+
+Files: tests/benchmark/test_urcu_hash.c
+  tests/benchmark/test_urcu_hash.h
+  tests/benchmark/test_urcu_hash_rw.c
+  tests/benchmark/test_urcu_hash_unique.c
+Copyright: 2009-2012, - Mathieu Desnoyers <mathieu.desnoyers@polymtl.ca>
+License: GPL-2+
+
+Files: tests/benchmark/test_urcu_lfq.c
+  tests/benchmark/test_urcu_lfs_rcu.c
+  tests/benchmark/test_urcu_wfcq.c
+  tests/benchmark/test_urcu_wfq.c
+  tests/benchmark/test_urcu_wfs.c
+Copyright: February 2010, - Paolo Bonzini <pbonzini@redhat.com> / February 2010, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2+
+
+Files: tests/benchmark/test_urcu_lfs.c
+Copyright: February 2010, - Paolo Bonzini <pbonzini@redhat.com> / 2010-2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2+
+
+Files: tests/common/*
+Copyright: 2009, 2010, Paul E. McKenney, IBM Corporation.
+  2009-2015, 2017, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: LGPL-2.1+
+
+Files: tests/common/api.h
+Copyright: 2006, Paul E. McKenney, IBM.
+License: GPL-2+
+
+Files: tests/common/cpuset.h
+Copyright: 2009-2013, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2+
+
+Files: tests/common/thread-id.h
+Copyright: 2013, - Mathieu Desnoyers <mathieu.desnoyers@polymtl.ca>
+License: MIT-MINIMAL
+
+Files: tests/regression/rcutorture.h
+Copyright: no-info-found
+License: GPL-2+
+
+Files: tests/regression/run.sh
+Copyright: 2013, - Christian Babeux <christian.babeux@efficios.com>
+License: GPL-2
+
+Files: tests/regression/test_urcu_fork.c
+Copyright: February 2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2+
+
+Files: tests/unit/*
+Copyright: February 2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2+
+
+Files: tests/unit/test_loop
+  tests/unit/unit_tests
+Copyright: February 2012, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2+
+
+Files: tests/unit/run.sh
+Copyright: 2013, - Christian Babeux <christian.babeux@efficios.com>
+License: GPL-2
+
+Files: tests/unit/test_uatomic.c
+Copyright: February 2009, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+License: GPL-2+
+
+Files: tests/unit/test_urcu_multiflavor.h
+Copyright: February 2012, - Mathieu Desnoyers <mathieu.desnoyers@efficios.com> / February 2012, - Lai Jiangshan <laijs@cn.fujitsu.com>
+License: GPL-2+
+
+Files: tests/utils/*
+Copyright: 2004, Nik Clayton
+License: BSD-2-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+Files: tests/utils/tap.sh
+Copyright: 2010, Patrick LeBoutillier <patrick.leboutillier@gmail.com>
+License: GPL-3+
+
+License: Expat
+ The MIT License
+ .
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated
+ documentation files (the "Software"), to deal in the Software
+ without restriction, including without limitation the rights to
+ use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to
+ whom the Software is furnished to do so, subject to the
+ following conditions:
+ .
+ The above copyright notice and this permission notice shall
+ be included in all copies or substantial portions of the
+ Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
+ WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+ SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; only version 2 of the License.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 dated June, 1991, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+License: GPL-3+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 3 dated June, 2007, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of version 3 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-3'.
+
+License: LGPL-2.1
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published by the
+ Free Software Foundation; version 2.1 of the License.
+ .
+ On Debian systems, the complete text of version 2.1 of the GNU Lesser
+ General Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
+
+License: LGPL-2.1+
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published by the
+ Free Software Foundation; version 2.1 of the License, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of version 2.1 of the GNU Lesser
+ General Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
+
+License: MIT-MINIMAL
+ THIS MATERIAL IS PROVIDED AS IS, WITH ABSOLUTELY NO WARRANTY EXPRESSED
+ OR IMPLIED.  ANY USE IS AT YOUR OWN RISK.
+ .
+ Permission is hereby granted to use or copy this program for any
+ purpose,  provided the above notices are retained on all copies.
+ Permission to modify the code and to distribute modified code is
+ granted, provided the above notices are retained, and a notice that
+ the code was modified is included with the above copyright notice.

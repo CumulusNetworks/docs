@@ -1,3 +1,6 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
 <script>
     function replace_url() {
         var elems = document.getElementsByTagName("a");
@@ -23,6 +26,9 @@
     }
     window.onload = function() {
         replace_url();
+        
+        // Auto expand all of the code folding "<details>" tags.
+        $( "details" ).attr("open", "true");
     }
 </script>
 <meta name="author" content="Cumulus Networks" />
@@ -32,7 +38,7 @@
     @page {
       /* NetQ docs contain long outputs. 
       Use landscape style to help fit */
-      {{ if eq .Section "cumulus-netq" }}
+      {{ if eq .Page.Params.product "Cumulus NetQ" }}
           size: A4 landscape;
       {{ else }}
           size: A4 portrait;
@@ -47,11 +53,6 @@
         border-bottom: .25pt solid #36424a;
       }
       
-      @prince-overlay {
-        color: rgba(0,0,0,0.5);
-        content: "DRAFT - For Internal Use Only";
-        font-size: 20pt;
-     }
   }
 
   @page:right {
@@ -189,7 +190,9 @@
   }
 
   .markdown pre {
-    white-space: normal;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    overflow-wrap: anywhere;
   }
   .toc1 {
       prince-bookmark-level: 1;

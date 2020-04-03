@@ -1,0 +1,53 @@
+This package was debianized by Joel Klecker jk@espy.org on
+Wed, 21 Jan 1998 23:01:08 -0800.
+
+From 2000-02-06 to 2003-04-05 the package was maintained
+by Carsten Leonhardt <leo@debian.org>.
+From 2003-04-05 to 2013-04-21 the package is maintained
+by Nicolas Duboc <nduboc@debian.org>
+Since 2013-04-21 the package is maintained
+by Axel Beckert <abe@debian.org>
+
+It was downloaded from
+http://www.gnu.org/software/zile/
+
+Upstream authors:
+   Sandro Sigala <sandro@sigala.it>
+   David A. Capello <dacap@users.sourceforge.net>
+   Reuben Thomas <rrt@sc3d.org>
+   Scott Lawrence <yorgle@gmail.com>
+
+Copyright (C) 1997-2010 Free Software Foundation, Inc.
+All rights reserved.
+
+   Zile is free software; you can redistribute it and/or modify it under
+   the terms of the GNU General Public License as published by the Free
+   Software Foundation; either version 3, or (at your option) any later
+   version.
+
+   Zile is distributed in the hope that it will be useful, but WITHOUT ANY
+   WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+   for more details.
+
+The complete text of the GNU General Public License can be found in
+file /usr/share/common-licenses/GPL-3.
+
+
+For source file build-aux/install-sh:
+Copyright (C) 1994 X Consortium
+
+For source file m4/ax_with_prog.m4:
+Copyright (c) 2008 Francesco Salvestrini <salvestrini@users.sourceforge.net>
+Copyright (c) 2008 Dustin J. Mitchell <dustin@cs.uchicago.edu>
+
+For source file m4/ax_with_curses.m4:
+Copyright (c) 2009 Mark Pulford <mark@kyne.com.au>
+Copyright (c) 2009 Damian Pietras <daper@daper.net>
+Copyright (c) 2009 Reuben Thomas <rrt@sc3d.org>
+
+For source file m4/ax_compare_version.m4
+Copyright (c) 2008 Tim Toolan <toolan@ele.uri.edu>
+
+For source file m4/ax_cflags_warn_all.m4
+Copyright (c) 2008 Guido U. Draheim <guidod@gmx.de>

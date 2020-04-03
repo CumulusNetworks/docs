@@ -1,0 +1,17 @@
+This package was debianized by Eric Dorland <eric@debian.org> on
+Wed, 06 Aug 2003 10:58:17 -0400.
+
+It was downloaded from http://www.irqbalance.org/
+
+Upstream Author: Arjan van de Ven <arjanv@linux.intel.com>
+
+Copyright:
+
+  Copyright (C) 2006, Intel Corporation
+  Copyright (C) 2003 Red Hat, Inc. All rights reserved.
+
+License:
+
+  This software is released under the terms of the GNU General Public
+  License, which on Debian systems can be found in the file
+  /usr/share/common-licenses/GPL.

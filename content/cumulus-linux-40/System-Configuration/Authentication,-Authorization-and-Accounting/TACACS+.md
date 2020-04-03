@@ -99,19 +99,19 @@ To configure local fallback authentication:
 
     An example of the `/etc/nsswitch.conf` file with the keyword `tacplus` removed from the line starting with `passwd` is shown below.
 
-```
-cumulus@switch:~$ sudo vi /etc/nsswitch.conf
-#
-# Example configuration of GNU Name Service Switch functionality.
-# If you have the `glibc-doc-reference' and `info' packages installed, try:
-# `info libc "Name Service Switch"' for information about this file.
+    ```
+    cumulus@switch:~$ sudo vi /etc/nsswitch.conf
+    #
+    # Example configuration of GNU Name Service Switch functionality.
+    # If you have the `glibc-doc-reference' and `info' packages installed, try:
+    # `info libc "Name Service Switch"' for information about this file.
 
-passwd:         files
-group:          tacplus files
-shadow:         files
-gshadow:        files
-...
-```
+    passwd:         files
+    group:          tacplus files
+    shadow:         files
+    gshadow:        files
+    ...
+    ```
 
 2. To enable the local privileged user to run `sudo` and NCLU commands, run the `adduser` commands shown below. In the example commands, the TACACS account name is tacadmin.
 
@@ -119,21 +119,21 @@ gshadow:        files
 
 The first `adduser` command prompts for information and a password. You can skip most of the requested information by pressing ENTER.
 
-{{%/notice%}}
+    {{%/notice%}}
 
-```
-cumulus@switch:~$ sudo adduser --ingroup tacacs tacadmin
-cumulus@switch:~$ sudo adduser tacadmin netedit
-cumulus@switch:~$ sudo adduser tacadmin sudo
-```
+    ```
+    cumulus@switch:~$ sudo adduser --ingroup tacacs tacadmin
+    cumulus@switch:~$ sudo adduser tacadmin netedit
+    cumulus@switch:~$ sudo adduser tacadmin sudo
+    ```
 
 3. Edit the `/etc/nsswitch.conf` file to add the keyword `tacplus` back to the line starting with `passwd` (the keyword you removed in the first step).
 
 4. Restart the `netd` service with the following command:
 
-```
-cumulus@switch:~$ sudo systemctl restart netd
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart netd
+    ```
 
 ## TACACS+ Accounting
 

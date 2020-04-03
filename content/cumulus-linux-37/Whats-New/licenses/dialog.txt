@@ -1,0 +1,24 @@
+This is the Debian prepackaged version of Savio Lam's dialog utility.
+This program enables the presentation of a variety of questions
+or display messages using dialog boxes from a shell script. This release
+is currently maintained by Thomas Dickey <dickey@invisible-island.net>
+
+This Debian package was first created by Leland Lucius <llucius@debian.org>.
+
+The source for this release was obtained from:
+
+ftp://invisible-island.net/dialog/dialog-1.2-20140911.tgz
+
+Copyright 1999-2014 Thomas E. Dickey
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License, version 2.1
+as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+On Debian systems, the complete text of the GNU Lesser General Public
+License version 2.1 can be found in `/usr/share/common-licenses/LGPL-2.1'.

@@ -308,11 +308,12 @@ cumulus@switch:~$ net commit
 <summary>Linux Commands </summary>
 
 1.  Edit the `/etc/network/interfaces` file and **remove** the line `ipv6-addrgen off` from the VLAN stanza. The following example re-enables automatic address generation for a regular IPv6 address on a VLAN 100.
+
 2.  Run the `ifreload -a` command to load the new configuration:
 
-```
-cumulus@switch:~$ ifreload -a
-```
+    ```
+    cumulus@switch:~$ ifreload -a
+    ```
 
 </details>
 

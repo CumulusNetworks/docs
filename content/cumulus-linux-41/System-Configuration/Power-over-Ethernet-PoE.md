@@ -252,7 +252,7 @@ LLDP requires network connectivity, so verify that the link is up.
 cumulus@switch:~$ net show interface swp20
     Name    MAC                Speed      MTU  Mode
 --  ------  -----------------  -------  -----  ---------
-UP  swp20   44:38:39:00:00:04  1G        1500  Access/L2
+UP  swp20   44:38:39:00:00:04  1G        9216  Access/L2
 ```
 
 ### View LLDP Information Using lldpcli
@@ -290,7 +290,7 @@ Interface:    swp20, via: LLDP, RID: 2, Time: 0 day, 00:03:34
       Power Priority: low
       PD requested power Value: 51000
       PSE allocated power Value: 51000
-  UnknownTLVs: 
+  UnknownTLVs:
     TLV:          OUI: 00,01,42, SubType: 1, Len: 1 05
     TLV:          OUI: 00,01,42, SubType: 1, Len: 1 0D
 -------------------------------------------------------------------------------

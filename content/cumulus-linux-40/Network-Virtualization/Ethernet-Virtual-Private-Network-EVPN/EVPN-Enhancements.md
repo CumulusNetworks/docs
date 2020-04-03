@@ -92,7 +92,7 @@ switch(config)# match evpn route-type prefix
 switch(config)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 </details>
@@ -351,7 +351,7 @@ switch(config-router-af)# dup-addr-detection freeze 1000
 switch(config-router-af)# end
 switch)# write memory
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 </details>
@@ -388,7 +388,7 @@ switch(config-router-af)# dup-addr-detection freeze permanent
 switch(config-router-af)# end
 switch)# write memory
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 </details>
@@ -416,7 +416,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# clear evpn dup-addr vni 101 ip 10.0.0.9
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 </details>
@@ -442,7 +442,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# clear evpn dup-addr vni all
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 </details>
@@ -482,7 +482,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65011
-switch(config-router)# address-family l2vpn evpn 
+switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# no dup-addr-detection
 switch(config-router-af)# end
 switch)# write memory

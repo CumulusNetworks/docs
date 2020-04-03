@@ -5,7 +5,6 @@ weight: -30
 product: Cumulus Linux
 version: "4.1"
 toc: 1
-draft: True
 pdfhidden: True
 ---
 

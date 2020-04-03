@@ -14,6 +14,7 @@ import requests
 import re
 import tarfile 
 import os 
+from os import listdir
 
 def product_string(product):
     '''
@@ -74,7 +75,7 @@ def build_foss_license_markdown(csv_file, version, product):
         if header:
             output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), split_line[2].strip()))
         else:
-            output.append("| [{}](/cumulus-linux-{}/Whats-New/licenses/{}) | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), split_line[2].strip()))
+            output.append("| [{}](/cumulus-linux-{}/Whats-New/licenses/{}.txt) | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), split_line[2].strip()))
         if header:
             output.append("|---	        |---	        |---	    |\n")
             header = False
@@ -173,9 +174,18 @@ def process_foss_tar(version):
     
     with open("temp.tgz", "wb") as f:
         f.write(response.raw.read())
+    license_dir = "content/cumulus-linux-{}/Whats-New/licenses/".format(version_string(version).replace(".", ""))
     tar = tarfile.open("temp.tgz")
-    tar.extractall(path="content/cumulus-linux-{}/Whats-New/licenses/".format(version_string(version).replace(".", "")))
+    tar.extractall(path=license_dir)
+
+    for file in listdir(license_dir):
+        if file.endswith(".csv") or file.endswith(".txt"):
+            continue
+        os.rename("{}{}".format(license_dir, file), "{}{}.txt".format(license_dir, file))
+ 
     os.remove("temp.tgz")
+
+    return "{}/FOSS-{}.csv".format(license_dir, version)
 
 def main():
 
@@ -183,11 +193,15 @@ def main():
         "cl": ["3.7.12", "4.1.0"]
     } 
 
+    cvs_file_list = []
     for product in products:
         for value in products[product]:
-            process_foss_tar(value)
+            cvs_file_list.append(process_foss_tar(value))
         
         build_foss_license_markdown_files(product, products[product])
+
+        for file in cvs_file_list:
+            os.remove(file)
 
     exit(0)
 

@@ -6,7 +6,6 @@ product: Cumulus NetQ
 version: "2.4"
 toc: 1
 type: rn
-draft: True
 pdfhidden: True
 ---
 

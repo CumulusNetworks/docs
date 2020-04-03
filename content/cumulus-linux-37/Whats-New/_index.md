@@ -3,7 +3,6 @@ title: What's New
 author: Cumulus Networks
 weight: 3
 toc: 2
-draft: True
 ---
 This document supports the Cumulus Linux 3.7 releases and lists the new platforms and features.
 

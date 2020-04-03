@@ -32,13 +32,6 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
-<td>CM-28968</td>
-<td><p>The EVPN advertise-svi-ip command does not withdraw routes.<br/>
-To work around this issue, run the systemctl restart frr.service command.</p></td>
-<td>3.7.9-3.7.12, 4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28948</td>
 <td><p>Cumulus Linux supports a maximum of 300 ACLs for use with 802.1X interfaces. This limit encompasses the default ACLs, pre-auth ACLs and dynamic ACLs. Exceeding this limit can affect the performance of the switch.</p></td>
 <td>4.1.0</td>

@@ -60,6 +60,5 @@ part number.
 - Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-product-bulletin" text="product bulletin" >}} mailing list to receive important announcements and updates about issues that arise in our products.
 - Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="security announcement" >}} mailing list to receive alerts whenever we update our software for security issues.
 
-
 ## PDF Documents
-You can download a PDF version of the entire Cumulus Linux {{% version %}} user guide {{% pdf_link "downloaded here" %}}.
+You can download a PDF version of the complete Cumulus Linux {{% version %}} user guide {{% pdf_link "here." %}}

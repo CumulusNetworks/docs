@@ -37,4 +37,4 @@ You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url
 - Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="security announcement" >}} mailing list to receive alerts whenever we update our software for security issues.
 
 ## PDF Documents
-A PDF version of the entire Cumulus Linux {{% version %}} user guide can be {{% pdf_link "downloaded here" %}}. 
+You can download a PDF version of the entire Cumulus Linux {{% version %}} user guide {{% pdf_link "downloaded here" %}}.

@@ -5,4 +5,4 @@ weight: 660
 pdfhide: True
 ---
 
-A PDF version of the entire Cumulus NetQ {{% version %}} user guide can be {{% pdf_link "downloaded here" %}}.
+You can download a PDF version of the entire Cumulus NetQ {{% version %}} user guide {{% pdf_link "downloaded here" %}}.

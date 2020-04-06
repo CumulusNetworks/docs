@@ -103,23 +103,7 @@ Now that the appliance is up and running, verify that the software is available 
 
 1. Verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
 
-    ```
-    cumulus@hostname:~$ dpkg -l | grep netq
-    ```
-
-    For Ubuntu 18.04, you should see:
-    
-    ```
-    ii  netq-agent   2.4.1-ub18.04u26~1581351889.c5ec3e5 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-    ii  netq-apps    2.4.1-ub18.04u26~1581351889.c5ec3e5 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
-    ```
-
-    For Ubuntu 16.04, you should see:
-
-    ```
-    ii  netq-agent   2.4.1-ub16.04u26~1581350451.c5ec3e5 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-    ii  netq-apps    2.4.1-ub16.04u26~1581350451.c5ec3e5 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
-    ```
+    {{<netq-install/verify-pkgs>}}
 
 2. Verify the installation images are present and of the correct release, version 2.4.1.
 

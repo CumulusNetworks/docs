@@ -16,4 +16,4 @@ When you choose to purchase and install NetQ software on a Cumulus NetQ Cloud Ap
 Click the system setup you want to use to continue with installation:
 
 - {{<link title="Install the NetQ Cloud Appliance" text="Use the NetQ Cloud Appliance">}}
-- {{<link title="Choose a Virtual Machine for Cloud" text="Use Your Own Server with a VM">}}
+- {{<link title="Choose a Virtual Machine for a Single Cloud Server" text="Use Your Own Server with a VM">}}

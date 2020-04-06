@@ -15,5 +15,5 @@ When you choose to purchase and install NetQ software on a Cumulus NetQ Applianc
 
 Click the system setup you want to use to continue with installation:
 
-- {{<link title="Install the NetQ Appliance Cluster" text="Use the NetQ Appliance">}}
-- {{<link title="Choose a Virtual Machine for an On-premises Server Cluster" text="Use Your Own Server with a VM">}}
+- {{<link title="Install the NetQ Appliance Cluster" text="Use NetQ Appliances">}}
+- {{<link title="Choose a Virtual Machine for an On-premises Server Cluster" text="Use Your Own Servers with VMs">}}

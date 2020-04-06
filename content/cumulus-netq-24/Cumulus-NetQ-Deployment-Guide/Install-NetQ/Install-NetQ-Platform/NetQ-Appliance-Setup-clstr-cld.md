@@ -9,11 +9,11 @@ pageID: 12320951
 toc: 5
 bookhidden: true
 ---
-To prepare your single NetQ Cloud Appliance:
+To prepare your NetQ Cloud Appliances:
 
-Inside the box that was shipped to you, you'll find:
+Inside each box that was shipped to you, you'll find:
 
-- Your Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
+- A Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
 - Information regarding your order
 
@@ -25,7 +25,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 
 #### Configure the Password, Hostname and IP Address
 
-Change the password using the `passwd` command:
+For each appliance, change the password using the `passwd` command:
 
 ```
 cumulus@hostname:~$ passwd
@@ -99,27 +99,11 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
 
 #### Verify NetQ Software and Appliance Readiness
 
-Now that the appliance is up and running, verify that the software is available and the appliance is ready for installation.
+Now that the appliances are up and running, verify that the software is available and each appliance is ready for installation.
 
-1. Verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
+1. On the master NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
 
-    ```
-    cumulus@hostname:~$ dpkg -l | grep netq
-    ```
-
-    For Ubuntu 18.04, you should see:
-    
-    ```
-    ii  netq-agent   2.4.1-ub18.04u26~1581351889.c5ec3e5 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-    ii  netq-apps    2.4.1-ub18.04u26~1581351889.c5ec3e5 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
-    ```
-
-    For Ubuntu 16.04, you should see:
-
-    ```
-    ii  netq-agent   2.4.1-ub16.04u26~1581350451.c5ec3e5 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-    ii  netq-apps    2.4.1-ub16.04u26~1581350451.c5ec3e5 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
-    ```
+    {{<netq-install/verify-pkgs>}}
 
 2. Verify the installation images are present and of the correct release, version 2.4.1.
 
@@ -134,13 +118,47 @@ Now that the appliance is up and running, verify that the software is available 
     cumulus@hostname:~$ sudo systemctl stop motd-news.{service,timer}
     ```
 
-4. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+4. Verify the master NetQ Cloud Appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
 5. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="single">}}
+
+6. On your first worker NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
+
+    {{<netq-install/verify-pkgs>}}
+
+7. Configure the IP address, hostname, and password using the same steps as as for the master node. Refer to {{<link title="#NetQ-Appliance-Setup-clstr-op" text="Configure the Password, Hostname and IP Address">}}.
+    {{<notice note>}}
+Make a note of the private IP addresses you assign to the master and worker nodes. They are needed for the later installation steps.
+    {{</notice>}}
+
+8. Copy the *netq-bootstrap-2.4.1.tgz* and *NetQ-2.4.1-opta.tgz* files,  downloaded for the master NetQ Cloud Appliance, to the */mnt/installables/* directory on the worker NetQ Cloud Appliance. 
+
+9. Run the following `systemctl` commands to disable automatic daily upgrades and Message of the Day news.
+
+    ```
+    cumulus@hostname:~$ sudo systemctl disable apt-{daily,daily-upgrade}.{service,timer}
+    cumulus@hostname:~$ sudo systemctl stop apt-{daily,daily-upgrade}.{service,timer}
+    cumulus@hostname:~$ sudo systemctl disable motd-news.{service,timer}
+    cumulus@hostname:~$ sudo systemctl stop motd-news.{service,timer}
+    ```
+
+10. Verify that the needed files are present and of the correct release.
+
+    {{<netq-install/verify-image deployment="cloud">}}
+
+11. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
+
+    {{<netq-install/verify-cmd deployment="cloud">}}
+
+12. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+
+    {{<netq-install/bootstrap server="cluster">}}
+
+13. Repeat Steps 6-12 for each additional worker NetQ Cloud Appliance.
 
 The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the CLI.
 

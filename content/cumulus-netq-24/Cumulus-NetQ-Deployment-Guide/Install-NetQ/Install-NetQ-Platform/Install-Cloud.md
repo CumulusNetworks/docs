@@ -1,7 +1,7 @@
 ---
 title: Install NetQ as a Cloud Deployment
 author: Cumulus Networks
-weight: 112
+weight: 80
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -17,13 +17,4 @@ A single server is easier to set up, configure and manage, but can limit your ab
 Click the server arrangement you want to use to begin installation:
 
 - {{<link title="Choose a Cloud System Platform" text="Use a Single Server Arrangement">}}
-- {{<link url="Server-Cluster" text="Use a Server Cluster Arrangement">}}
-
- Server Arrangement | System | Hypervisor | Installation Instructions |
-| --- | --- | --- | --- |
-| Single server | Cumulus NetQ Cloud Appliance | NA | link |
-| Single server | Own Hardware plus VM | KVM | link |
-| Single server | Own Hardware plus VM | VMware | link |
-| Server Cluster | Cumulus NetQ Cloud Appliance | NA | link |
-| Server Cluster | Own Hardware plus VM | KVM | link |
-| Server Cluster | Own Hardware plus VM | VMware | link |
+- {{<link title="Choose a Cloud System Platform for Your Cluster" text="Use a Server Cluster Arrangement">}}

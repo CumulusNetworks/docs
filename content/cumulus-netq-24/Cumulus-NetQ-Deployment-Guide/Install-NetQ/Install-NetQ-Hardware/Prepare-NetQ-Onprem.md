@@ -1,12 +1,13 @@
 ---
 title: Prepare for NetQ On-premises Installation
 author: Cumulus Networks
-weight: 70
+weight: 
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
 pageID: 12320951
 toc: 5
+bookhidden: true
 ---
 This topic describes the preparation steps needed before installing the NetQ components *on your premises*.  Refer to {{<link title="Prepare for NetQ Cloud Installation">}} for preparations for cloud deployments.
 

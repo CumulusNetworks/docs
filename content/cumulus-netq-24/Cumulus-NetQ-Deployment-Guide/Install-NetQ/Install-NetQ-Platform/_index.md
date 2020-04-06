@@ -1,7 +1,7 @@
 ---
 title: Install NetQ Platform v2
 author: Cumulus Networks
-weight: 110
+weight: 65
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

@@ -1,5 +1,5 @@
 ---
-title: Choose a Virtual Machine
+title: Choose a Virtual Machine for a Single Cloud Server
 author: Cumulus Networks
 weight: 111
 aliases:
@@ -15,5 +15,5 @@ The next step is to identify which hypervisor you want to use. NetQ supports KVM
 
 Click the hypervisor you want to use to continue installation:
 
-- {{<link title="Set Up Your KVM Virtual Machine" text="Use KVM">}}
-- {{<link title="Set Up Your VMware Virtual Machine" text="Use VMware">}}
+- {{<link title="Set Up Your KVM Virtual Machine for a Single Cloud Server" text="Use KVM">}}
+- {{<link title="Set Up Your VMware Virtual Machine for a Single Cloud Server" text="Use VMware">}}

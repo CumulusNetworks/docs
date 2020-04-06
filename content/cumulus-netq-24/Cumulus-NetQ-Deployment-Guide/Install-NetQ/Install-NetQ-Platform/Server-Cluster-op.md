@@ -1,5 +1,5 @@
 ---
-title: Choose a System Platform
+title: Choose an On-premises System Platform for Your Cluster
 author: Cumulus Networks
 weight: 
 aliases:
@@ -8,7 +8,6 @@ aliases:
 pageID: 12320951
 toc: 5
 bookhidden: true
-draft: true
 ---
 The next step is to determine whether you are going to use the NetQ Appliance or your own server with a VM. Both options provide the same services and features. The difference is in the implementation. When you choose to install NetQ software on your own hardware, you create and maintain a KVM or VMware VM, and the software is run from there. This requires you to scope and order an appropriate hardware server to support the NetQ requirements, but may allow you to reuse an existing server in your stock.
 
@@ -16,5 +15,5 @@ When you choose to purchase and install NetQ software on a Cumulus NetQ Applianc
 
 Click the system setup you want to use to continue with installation:
 
-- {{<link title="Install the NetQ Appliance" text="Use a NetQ Appliance">}}
-- {{<link title="Choose a Virtual Machine" text="Use Your Own Server with a VM">}}
+- {{<link title="Install the NetQ Appliance Cluster" text="Use NetQ Appliances">}}
+- {{<link title="Choose a Virtual Machine for an On-premises Server Cluster" text="Use Your Own Servers with VMs">}}

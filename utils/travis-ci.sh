@@ -17,19 +17,17 @@ git config --global user.name "Cumulus Docs CI"
 git checkout plumbis-stage 
 
 echo "running rn script"
+echo ""
 python3 utils/build_rns.py 
+
+echo "running FOSS script"
+echo ""
 python3 utils/build_foss_licenses.py
 
 sleep 1
-# Check if there is anything different in the local vs remote files
-if [ 'git status --porcelain' ]; then
-  echo "Release note script detected release note updates."
-  git status --porcelain
-  git add *
-  git commit -m "Auto commit of release note update" -m "[skip ci]"
-  git push
-  exit $?
-else
-  echo "No release note updates."
-  exit 0
-fi
+
+git add *
+git commit -m "Auto commit of release note update" -m "[skip ci]"
+git push
+
+exit $?

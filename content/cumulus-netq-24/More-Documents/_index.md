@@ -3,4 +3,4 @@ title: More Documents
 author: Cumulus Networks
 weight: 620
 ---
-The documents included here are mostly for reference, and provide insight into the document formatting, terminology used, and a summary of what is new with the current release.
+The following documents summarize new features in the release, bug fixes, document formatting conventions, and general terminology. You can also find the PDF version of the NetQ user documentation.

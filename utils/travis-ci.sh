@@ -14,7 +14,7 @@ echo "running git config"
 git config --global user.email "docs@cumulusnetworks.com"
 git config --global user.name "Cumulus Docs CI"
 
-git checkout plumbis-stage 
+git checkout stage 
 
 echo "running rn script"
 echo ""

@@ -1,7 +1,7 @@
 ---
 title: Cumulus Linux 4.0 Release Notes
 author: Cumulus Networks
-weight: -30
+weight: -20
 product: Cumulus Linux
 version: "4.0"
 toc: 1

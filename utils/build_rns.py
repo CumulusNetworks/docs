@@ -211,7 +211,7 @@ def build_markdown_header(product, version):
     output.append("---\n")
     output.append("title: {} {} Release Notes\n".format(product, version))
     output.append("author: Cumulus Networks\n")
-    output.append("weight: -30\n")
+    output.append("weight: -20\n")
     output.append("product: {}\n".format(product))
     output.append("version: \"{}\"\n".format(version))
     output.append("toc: 1\n")

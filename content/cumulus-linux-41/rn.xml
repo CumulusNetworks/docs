@@ -1307,7 +1307,8 @@ Fixed: 2.0.5-1+deb10u1</p></td>
 </tr>
 <tr>
 <td>CM-28200</td>
-<td><p>The Mellanox SN3700C switch encounters a memory leak after you apply an EVPN and PIM configuration.</p></td>
+<td><p>The Mellanox SN3700C switch experiences a kernel memory leak in the bridge IPv4 multicast receive function. When IGMP snooping is disabled, received IGMP packets are cloned and the clone is not freed, causing a memory leak.<br/>
+Because this memory leak is in the kernel, you cannot clear it by restarting a service; you must reboot the switch to clear the allocated memory.</p></td>
 <td>4.0.0</td>
 </tr>
 <tr>

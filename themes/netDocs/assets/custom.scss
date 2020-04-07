@@ -1555,6 +1555,11 @@ footer {
 }
 
 .markdown pre {
+  //white-space: pre-wrap; 
+  overflow-x: auto;
+}
+
+.markdown td pre {
   white-space: pre-wrap; 
   overflow-x: auto;
 }

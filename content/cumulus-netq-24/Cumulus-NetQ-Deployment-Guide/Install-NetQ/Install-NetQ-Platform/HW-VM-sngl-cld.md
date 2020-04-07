@@ -1,7 +1,7 @@
 ---
 title: Choose a Virtual Machine for a Single Cloud Server
 author: Cumulus Networks
-weight: 111
+weight: 
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

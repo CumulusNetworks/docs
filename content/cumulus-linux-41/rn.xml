@@ -32,13 +32,6 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
-<td>CM-28968</td>
-<td><p>The EVPN advertise-svi-ip command does not withdraw routes.<br/>
-To work around this issue, run the systemctl restart frr.service command.</p></td>
-<td>3.7.9-3.7.12, 4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28948</td>
 <td><p>Cumulus Linux supports a maximum of 300 ACLs for use with 802.1X interfaces. This limit encompasses the default ACLs, pre-auth ACLs and dynamic ACLs. Exceeding this limit can affect the performance of the switch.</p></td>
 <td>4.1.0</td>
@@ -1254,7 +1247,7 @@ Fixed: 7.64.0-4+deb10u1</p></td>
 </tr>
 <tr>
 <td>CM-28451</td>
-<td><p>An error similar to the following shows in syslog:</p>
+<td><p>An error similar to the following shows in syslog for Mellanox switches:</p>
 
 2020-02-12T19:59:22.208012+08:00 leaf01 sx_sdk: RM_TABLE: No resources available to add 1 entries to KVD hash Table HW resource
 2020-02-12T19:59:22.208124+08:00 leaf01 sx_sdk: PORT: __port_vport_fid_set err = (No More Resources)
@@ -1314,7 +1307,8 @@ Fixed: 2.0.5-1+deb10u1</p></td>
 </tr>
 <tr>
 <td>CM-28200</td>
-<td><p>The Mellanox SN3700C switch encounters a memory leak after you apply an EVPN and PIM configuration.</p></td>
+<td><p>The Mellanox SN3700C switch experiences a kernel memory leak in the bridge IPv4 multicast receive function. When IGMP snooping is disabled, received IGMP packets are cloned and the clone is not freed, causing a memory leak.<br/>
+Because this memory leak is in the kernel, you cannot clear it by restarting a service; you must reboot the switch to clear the allocated memory.</p></td>
 <td>4.0.0</td>
 </tr>
 <tr>

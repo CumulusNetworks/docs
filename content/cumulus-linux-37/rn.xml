@@ -27,13 +27,6 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
-<td>CM-28968</td>
-<td><p>The EVPN advertise-svi-ip command does not withdraw routes.<br/>
-To work around this issue, run the systemctl restart frr.service command.</p></td>
-<td>3.7.9-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28944</td>
 <td><p>A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>
 To work around this issue, reenter the redistribute &lt;connected|static&gt; route-map &lt;route-map-name&gt; statement in the configuration.</p></td>
@@ -179,7 +172,7 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 </tr>
 <tr>
 <td>CM-28451</td>
-<td><p>An error similar to the following shows in syslog:</p>
+<td><p>An error similar to the following shows in syslog for Mellanox switches:</p>
 
 2020-02-12T19:59:22.208012+08:00 leaf01 sx_sdk: RM_TABLE: No resources available to add 1 entries to KVD hash Table HW resource
 2020-02-12T19:59:22.208124+08:00 leaf01 sx_sdk: PORT: __port_vport_fid_set err = (No More Resources)
@@ -1607,13 +1600,6 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
-<td>CM-28968</td>
-<td><p>The EVPN advertise-svi-ip command does not withdraw routes.<br/>
-To work around this issue, run the systemctl restart frr.service command.</p></td>
-<td>3.7.9-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28944</td>
 <td><p>A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>
 To work around this issue, reenter the redistribute &lt;connected|static&gt; route-map &lt;route-map-name&gt; statement in the configuration.</p></td>
@@ -1715,7 +1701,7 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 </tr>
 <tr>
 <td>CM-28451</td>
-<td><p>An error similar to the following shows in syslog:</p>
+<td><p>An error similar to the following shows in syslog for Mellanox switches:</p>
 
 2020-02-12T19:59:22.208012+08:00 leaf01 sx_sdk: RM_TABLE: No resources available to add 1 entries to KVD hash Table HW resource
 2020-02-12T19:59:22.208124+08:00 leaf01 sx_sdk: PORT: __port_vport_fid_set err = (No More Resources)
@@ -3670,13 +3656,6 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <td></td>
 </tr>
 <tr>
-<td>CM-28968</td>
-<td><p>The EVPN advertise-svi-ip command does not withdraw routes.<br/>
-To work around this issue, run the systemctl restart frr.service command.</p></td>
-<td>3.7.9-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28944</td>
 <td><p>A change in a route map prefix list that should remove a route might not be reflected in the ospf6 database or in peers, and the route might not be deleted. <br/>
 To work around this issue, reenter the redistribute &lt;connected|static&gt; route-map &lt;route-map-name&gt; statement in the configuration.</p></td>
@@ -5515,13 +5494,6 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
 <td>3.0.0-3.7.12</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28968</td>
-<td><p>The EVPN advertise-svi-ip command does not withdraw routes.<br/>
-To work around this issue, run the systemctl restart frr.service command.</p></td>
-<td>3.7.9-3.7.12</td>
 <td></td>
 </tr>
 <tr>

@@ -1,7 +1,7 @@
 ---
 title: Cumulus NetQ 2.4 Release Notes
 author: Cumulus Networks
-weight: -30
+weight: -20
 product: Cumulus NetQ
 version: "2.4"
 toc: 1

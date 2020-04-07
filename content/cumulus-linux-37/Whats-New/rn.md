@@ -1,7 +1,7 @@
 ---
 title: Cumulus Linux 3.7 Release Notes
 author: Cumulus Networks
-weight: -30
+weight: -20
 product: Cumulus Linux
 version: "3.7"
 toc: 1

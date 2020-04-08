@@ -1,7 +1,7 @@
 ---
 title: Set Up Your VMware Virtual Machine for a Single Cloud Server
 author: Cumulus Networks
-weight:
+weight: 77
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

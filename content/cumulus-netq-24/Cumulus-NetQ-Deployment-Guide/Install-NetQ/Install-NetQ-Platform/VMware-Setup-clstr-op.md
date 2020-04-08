@@ -1,7 +1,7 @@
 ---
 title: Set Up Your VMware Virtual Machine for an On-premises Server Cluster
 author: Cumulus Networks
-weight:
+weight: 78
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

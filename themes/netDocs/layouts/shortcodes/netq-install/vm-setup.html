@@ -19,15 +19,15 @@
 
             <pre>$ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio -import --noautoconsole</pre>
 
-            <p><strong>Note</strong>: Replace the disk path value with the location where the QCOW2 image is to reside. Replace network model value (eth0 in the above example) with the name of the interface where the VM is connected to the external network.</p>
+            <div class="notices note"><p>Replace the disk path value with the location where the QCOW2 image is to reside. Replace network model value (eth0 in the above example) with the name of the interface where the VM is connected to the external network.</p></div>
 
             <p>Or, for a Bridged VM, where the VM attaches to a bridge which has already been setup to allow for external access:</p>
 
             <pre>$ virt-install --name=netq_ts --vcpus=8 --memory=65536 --os-type=linux --os-variant=debian7 \ --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=bridge=br0,model=virtio --import --noautoconsole</pre>
 
-            <p><strong>Note</strong>: Replace network bridge value (br0 in the above example) with the name of the (pre-existing) bridge interface where the VM is connected to the external network.</p>
+            <div class="notices note"><p>Replace network bridge value (br0 in the above example) with the name of the (pre-existing) bridge interface where the VM is connected to the external network.</p></div>
 
-            <p><strong>Tip</strong>: Make note of the name used during install as this is needed in a later step.</p>
+            <div class="notices Tip"><p>Make note of the name used during install as this is needed in a later step.</p></div>
         </li>
         <li>Watch the boot process in another terminal window.
             <pre>$ virsh console netq_ts</pre>

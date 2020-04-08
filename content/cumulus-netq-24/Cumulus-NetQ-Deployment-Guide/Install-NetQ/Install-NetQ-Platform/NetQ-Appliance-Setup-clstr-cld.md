@@ -1,7 +1,7 @@
 ---
 title: Install the NetQ Cloud Appliance Cluster
 author: Cumulus Networks
-weight: 
+weight: 83
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -130,12 +130,12 @@ Now that the appliances are up and running, verify that the software is availabl
 
     {{<netq-install/verify-pkgs>}}
 
-7. Configure the IP address, hostname, and password using the same steps as as for the master node. Refer to {{<link title="#NetQ-Appliance-Setup-clstr-op" text="Configure the Password, Hostname and IP Address">}}.
+7. Configure the IP address, hostname, and password using the same steps as as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
     {{<notice note>}}
 Make a note of the private IP addresses you assign to the master and worker nodes. They are needed for the later installation steps.
     {{</notice>}}
 
-8. Copy the *netq-bootstrap-2.4.1.tgz* and *NetQ-2.4.1-opta.tgz* files,  downloaded for the master NetQ Cloud Appliance, to the */mnt/installables/* directory on the worker NetQ Cloud Appliance. 
+8. Copy the *netq-bootstrap-2.4.1.tgz* and *NetQ-2.4.1-opta.tgz* files,  downloaded for the master NetQ Cloud Appliance, to the */mnt/installables/* directory on the worker NetQ Cloud Appliance.
 
 9. Run the following `systemctl` commands to disable automatic daily upgrades and Message of the Day news.
 

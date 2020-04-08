@@ -1,13 +1,14 @@
 ---
-title: Install NetQ Platform v2
+title: Install NetQ Platform
 author: Cumulus Networks
 weight: 65
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
 toc: 4
-draft: true
 ---
+This topic walks you through the NetQ Platform installation decisions and then provides installation steps based on those choices. If you are already comfortable with your installation choices, you may use the matrix in {{<link title="Install NetQ Quick Start">}} to go directly to the installation steps.
+
 To install NetQ 2.4.1, you must first decide whether you want to install the NetQ Platform in an on-premises or cloud deployment. Both deployment options provide secure access to data and features useful for monitoring and troubleshooting your network, and each has its benefits.
 
 It is common to select an on-premises deployment model if you want to host all required hardware and software at your location, and you have the in-house skill set to install, configure, and maintain it—including performing data backups, acquiring and maintaining hardware and software, and integration and license management. This model is also a good choice if you want very limited or no access to the Internet from switches and hosts in your network. Some companies simply want complete control of the their network, and no outside impact.

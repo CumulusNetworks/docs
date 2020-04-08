@@ -1,7 +1,7 @@
 ---
 title: Set Up Your KVM Virtual Machine for a Single Cloud Server
 author: Cumulus Networks
-weight:
+weight: 73
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951
@@ -9,7 +9,6 @@ pageID: 12320951
 toc: 5
 bookhidden: true
 ---
-
 Follow these steps to setup and configure your VM on a single server in a cloud deployment:
 
 1. Verify that your system meets the VM requirements.

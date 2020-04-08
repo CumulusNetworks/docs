@@ -8,6 +8,7 @@ aliases:
 pageID: 12320951
 toc: 5
 bookhidden: true
+pdfhidden: true
 ---
 The next step is to determine whether you are going to use the NetQ Cloud Appliance or your own server with a VM. Both options provide the same services and features. The difference is in the implementation. When you choose to install NetQ software on your own hardware, you create and maintain a KVM or VMware VM, and the software is run from there. This requires you to scope and order an appropriate hardware server to support the NetQ requirements, but may allow you to reuse an existing server in your stock.
 

@@ -11,7 +11,7 @@ toc: 5
 You can now install the NetQ software using the Admin UI.
 
 {{<notice info>}}
-This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install NetQ Platform v2">}} before continuing here.
+This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install NetQ Platform">}} before continuing here.
 {{</notice>}}
 
 To install NetQ:
@@ -35,14 +35,14 @@ To install NetQ:
         {{<figure src="/images/netq/adminui-deploy-type-240.png" width="700">}}
 
     2. Select your install method.
-    
+
         Choose between restoring data from a previous version of NetQ or performing a fresh installation.
 
-        \- **Fresh Install**: Continue with Step c.
+        **Fresh Install**: Continue with Step c.
 
         {{<figure src="/images/netq/adminui-install-netq-240.png" width="700">}}
 
-        \- **Maintain Existing Data** (on-premises only): If you have created a backup of your NetQ data, choose this option.
+        **Maintain Existing Data** (on-premises only): If you have created a backup of your NetQ data, choose this option.
 
         {{<notice info>}}
 If you are moving from a standalone to a server cluster arrangement, you can only restore your data one time. After the data has been converted to the cluster schema, it cannot be returned to the single server format.
@@ -54,7 +54,9 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 
         Select whether you want to deploy your infrastructure as a single stand-alone server or as a cluster of servers.
 
-        **Reminder**: With the NetQ 2.4.0 release, you must have one master and two worker nodes. With the NetQ 2.4.1 release and later, you can configure up to seven additional worker nodes, for a total of nine.
+        {{<notice note>}}
+With the NetQ 2.4.0 release, you must have one master and two worker nodes. With the NetQ 2.4.1 release and later, you can configure up to seven additional worker nodes, for a total of nine.
+        {{</notice>}}
 
         {{<figure src="/images/netq/adminui-server-arrange-240.png" width="700" caption="Select arrangement">}}
 

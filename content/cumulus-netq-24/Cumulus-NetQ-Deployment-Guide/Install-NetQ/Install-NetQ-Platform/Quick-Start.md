@@ -14,8 +14,6 @@ If you have previously installed NetQ 2.4.1 or know how you would answer the key
 Do not skip the normal installation flow until you have performed this process multiple times and are fully familiar with it.
 {{</notice>}}
 
-{{<exlink url="https://cumulusnetworks.com/static/mibs/BGP4-MIB.txt" text="BGP4-MIB">}}
-
 | Deployment Type | Server Arrangement | System | Hypervisor | Installation Instructions |
 | --- | --- | --- | --- | :---: |
 | On premises | Single server | Cumulus NetQ Appliance | NA | {{<link title="Install the NetQ Appliance" text="Start Install" >}} |

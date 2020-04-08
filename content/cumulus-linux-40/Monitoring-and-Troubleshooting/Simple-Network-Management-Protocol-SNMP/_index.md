@@ -9,11 +9,11 @@ aliases:
  - /pages/viewpage.action?pageId=8366329
 toc: 3
 ---
-Cumulus Linux uses the open source Net-SNMP agent `snmpd`, version 5.7, which provides support for most of the common industry-wide MIBs, including interface counters and TCP/UDP IP stack data.
+Cumulus Linux uses the open source Net-SNMP agent `snmpd` version 5.8, which provides support for most of the common industry-wide MIBs, including interface counters and TCP/UDP IP stack data.
 
 ## History
 
-SNMP is an IETF standards-based network management architecture and protocol that traces its roots back to Carnegie-Mellon University in 1982. Since then, it has been modified by programmers at the University of California. In 1995, this code was also made publicly available as the UCD project. After that, `ucd-snmp` was extended by work done at the University of Liverpool as well as later in Denmark. In late 2000, the project name changed to `net-snmp` and became a fully-fledged collaborative open source project. The version used by Cumulus Networks is based on the latest `net-snmp` 5.7 branch with added custom MIBs and pass-through and pass-persist scripts ({{<link url="#pass-persist-scripts" text="see below">}} for more information on pass persist scripts).
+SNMP is an IETF standards-based network management architecture and protocol that traces its roots back to Carnegie-Mellon University in 1982. Since then, it has been modified by programmers at the University of California. In 1995, this code was also made publicly available as the UCD project. After that, `ucd-snmp` was extended by work done at the University of Liverpool as well as later in Denmark. In late 2000, the project name changed to `net-snmp` and became a fully-fledged collaborative open source project. The version used by Cumulus Networks is based on the latest `net-snmp` 5.8 branch with added custom MIBs and pass-through and pass-persist scripts ({{<link url="#pass-persist-scripts" text="see below">}} for more information on pass persist scripts).
 
 ## Introduction to Simple Network Management Protocol
 
@@ -110,28 +110,9 @@ For external SNMP NMS systems to poll Cumulus Linux switches and routers, you mu
 
 {{%notice note%}}
 
-If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
-
-{{%/notice%}}
-
-{{%notice info%}}
-
-Cumulus Networks recommends using NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every single `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the
-`/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands.
-
-{{%/notice%}}
-
-{{%notice info%}}
-
-Cumulus Linux supports configuring VRFs for listening-addresses as well as Trap/Inform support. When management VRF is enabled on the switch, the eth0 interface in placed in the management VRF. When configuring the listening-address for snmp-server, you must specify an additional parameter to enable listening on the eth0 interface with the `net add snmp-server listening-address <address> vrf mgmt` command:
-
-These additional parameters are described in detail below.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-You must add a default community string for v1 or v2c environments or the `snmpd` daemon does not respond to any requests. For security reasons, the default configuration configures `snmpd` to listen to SNMP requests on the loopback interface so access to the switch is restricted to requests originating from the switch itself. The only required commands for `snmpd` to function are a `listening-address` and either a `username` or a `readonly-community` string.
+- Cumulus Networks recommends that you use NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands.
+- Cumulus Linux provides VRF listening-address, as well as Trap/Inform support. When management VRF is enabled, the eth0 interface is placed in the management VRF. When you configure the `listening-address` for `snmp-server`, you must run the `net add snmp-server listening-address <address> vrf mgmt` command to enable listening on the eth0 interface. These additional parameters are described in detail below.
+- You must add a default community string for v1 or v2c environments so that the `snmpd` daemon can respond to requests. For security reasons, the default configuration configures `snmpd` to listen to SNMP requests on the loopback interface so access to the switch is restricted to requests originating from the switch itself. The only required commands for `snmpd` to function are a `listening-address` and either a `username` or a `readonly-community` string.
 
 {{%/notice%}}
 

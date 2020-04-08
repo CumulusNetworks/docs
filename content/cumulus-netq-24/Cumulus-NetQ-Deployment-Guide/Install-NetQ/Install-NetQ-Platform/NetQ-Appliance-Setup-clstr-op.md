@@ -1,7 +1,7 @@
 ---
 title: Install the NetQ Appliance Cluster
 author: Cumulus Networks
-weight: 
+weight: 82
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

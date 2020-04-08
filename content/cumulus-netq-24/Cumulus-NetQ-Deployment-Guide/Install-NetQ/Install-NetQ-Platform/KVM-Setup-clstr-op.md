@@ -1,7 +1,7 @@
 ---
 title: Set Up Your KVM Virtual Machine for an On-premises Server Cluster
 author: Cumulus Networks
-weight:
+weight: 74
 aliases:
  - /display/NETQ/Install+NetQ
  - /pages/viewpage.action?pageId=12320951

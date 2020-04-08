@@ -11,7 +11,7 @@ toc: 5
 You can now install the NetQ software using the NetQ CLI.
 
 {{<notice info>}}
-This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install NetQ Platform v2">}} before continuing here.
+This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install NetQ Platform">}} before continuing here.
 {{</notice>}}
 
 To install NetQ:

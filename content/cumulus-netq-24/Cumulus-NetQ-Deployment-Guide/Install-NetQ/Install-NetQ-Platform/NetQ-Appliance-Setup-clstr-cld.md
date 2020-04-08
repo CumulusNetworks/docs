@@ -67,7 +67,7 @@ Apply the settings.
 cumulus@hostname:~$ sudo netplan apply
 ```
 
-{{<notice info>}}
+{{%notice info%}}
 If you have changed the IP address or hostname of the NetQ Appliance, you need to re-register this address with the Kubernetes containers before you can continue.
 
 1. Reset all Kubernetes administrative settings. Run the command twice to make sure all directories and files have been reset.
@@ -95,7 +95,7 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
     ```  
 
     **Note**: Allow 15 minutes for the prompt to return.
-{{</notice>}}
+{{%/notice%}}
 
 #### Verify NetQ Software and Appliance Readiness
 

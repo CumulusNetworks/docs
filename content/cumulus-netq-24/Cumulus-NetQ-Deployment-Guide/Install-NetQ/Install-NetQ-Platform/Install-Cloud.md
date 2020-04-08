@@ -7,6 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12320951
 pageID: 12320951
 toc: 5
+draft: true
 ---
 Cloud deployments of NetQ can use a single server or a server cluster on site. The NetQ database remains in the cloud either way.  You can use either the Cumulus NetQ Cloud Appliance or your own server running a KVM or VMware Virtual Machine (VM). This topic walks you through the installation for each of these cloud options.
 

@@ -217,12 +217,6 @@ Port security is not supported on bond/MLAG interfaces.</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-28442</td>
-<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
-<td>3.7.11-3.7.12, 4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.0</td>

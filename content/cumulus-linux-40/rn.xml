@@ -557,12 +557,18 @@ Fixed version: 4.11.3+24-g14b62ab3e5-1~deb10u1.</p></td>
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and, in addition, the default route is leaked from VRF1 to VRF2 and hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file). You might see logs similar to the following in /var/log/syslog:</p>
+<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<ul>
+	<li>The default route is leaked from VRF1 to VRF2</li>
+	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
+You might see logs similar to the following in /var/log/syslog:
 
 kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142ca sp 00007ffd557a86d0 error 4 in switchd[400000+71000]
 
 
-<p>To work around this issue, use a route map to filter the default route (the source VRF is imported into the destination VRF).</p></td>
+<p>To work around this issue, use a route map to filter the default route (the source VRF is imported into the destination VRF).</p></li>
+</ul>
+</td>
 <td>3.7.10-3.7.12, 4.0.0-4.1.0</td>
 <td></td>
 </tr>
@@ -1283,7 +1289,7 @@ To work around this issue, change the MTU on all SVIs and the bridge manually in
 </tr>
 <tr>
 <td>CM-25766</td>
-<td><p>On the Dell-N3048EP switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
+<td><p>On the Dell-N3048EP-ON switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
 <td>3.7.7-3.7.12, 4.0.0-4.1.0</td>
 <td></td>
 </tr>

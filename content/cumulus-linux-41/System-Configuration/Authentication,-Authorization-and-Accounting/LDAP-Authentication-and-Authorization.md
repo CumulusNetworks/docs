@@ -305,7 +305,7 @@ cumulus@switch:~$ sudo nslcd -d
 After you enable debug mode, run the following command to test LDAP queries:
 
 ```
-cumulus@switch:~$ getent myuser
+cumulus@switch:~$ getent passwd
 ```
 
 If LDAP is configured correctly, the following messages appear after you run the `getent` command:
@@ -510,7 +510,7 @@ result: 0 Success
 
 </details>
 
-### sdsds
+### NCLU
 
 To use NCLU, a user must be in either the `netshow` or `netedit` NCLU group in the LDAP database. You can either:
 
@@ -521,17 +521,17 @@ To use NCLU, a user must be in either the `netshow` or `netedit` NCLU group in t
 In the following example, a user that is *not* in the `netshow` or `netedit` NCLU group in the LDAP database runs the NCLU `net show version` command, which produces an error:
 
 ```
-cumulus@switch:~$ net show version
-ERROR: 'getpwuid(): uid not found: 1126'
+hsolo@switch:~$ net show version
+ERROR: 'getpwuid(): uid not found: 0922'
 See /var/log/netd.log for more details
 ```
 
 To add the the user to the `netshow` or `netedit` NCLU group in the LDAP database, either edit the `/etc/group` file manually or use the `sudo adduser USERNAME netshow` command, then restart `netd`. For example, to add the user bill to the `netshow` group:
 
 ```
-cumulus@switch:~$ sudo adduser bill netshow
-Adding user `bill' to group `netshow' ...
-Adding user bill to group netshow
+cumulus@switch:~$ sudo adduser hsolo netshow
+Adding user `hsolo' to group `netshow' ...
+Adding user hsolo to group netshow
 Done.
 
 cumulus@switch:~$ sudo systemctl restart netd
@@ -540,11 +540,11 @@ cumulus@switch:~$ sudo systemctl restart netd
 Now, the user can run the NCLU `net show` commands successfully:
 
 ```
-cumulus@switch:~$ net show version
-NCLU_VERSION=1.0-cl4u1~1555625956.7cfe305
+hsolo@switch:~$ net show version
+NCLU_VERSION=1.0-cl4u5
 DISTRIB_ID="Cumulus Linux"
-DISTRIB_RELEASE=4.0.0~1555370771.772c26b6
-DISTRIB_DESCRIPTION="Cumulus Linux 4.0.0~1555370771.772c26b6"
+DISTRIB_RELEASE=4.1.0
+DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
 ```
 
 ### LDAP Browsers

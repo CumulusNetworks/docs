@@ -12,13 +12,12 @@ Ethernet bridges provide a means for hosts to communicate through layer
 2, by connecting all of the physical and logical interfaces in the
 system into a single layer 2 domain. The bridge is a logical interface
 with a MAC address and an
-[MTU](../../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#mtu)
+{{<link url="Switch-Port-Attributes/#mtu" text="MTU">}}
 (maximum transmission unit). The bridge MTU is the minimum MTU among all
-its members. By default, the [bridge's MAC
-address](https://support.cumulusnetworks.com/hc/en-us/articles/360005695794)
+its members. By default, the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360005695794" text="bridge's MAC address">}}
 is the MAC address of the first port in the `bridge-ports` list. The
 bridge can also be assigned an IP address, as discussed
-[below](#configure-an-svi-switch-vlan-interface).
+{{<link url="#configure-an-svi-switch-vlan-interface" text="below">}}.
 
 {{%notice note%}}
 
@@ -31,7 +30,7 @@ interfaces that traverse an 802.1Q VLAN trunk.
 
 {{%notice tip%}}
 
-Cumulus Networks recommends using *[VLAN-aware mode](VLAN-aware-Bridge-Mode/)* bridges,
+Cumulus Networks recommends using *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges,
 rather than *traditional mode* bridges. The bridge driver in Cumulus Linux is
 capable of VLAN filtering, which allows for configurations that are similar to
 incumbent network devices. While Cumulus Linux supports Ethernet bridges in
@@ -41,8 +40,7 @@ traditional mode, Cumulus Networks recommends using VLAN-aware mode.
 
 {{%notice info%}}
 
-For a comparison of traditional and VLAN-aware modes, read
-[this knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
+For a comparison of traditional and VLAN-aware modes, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204909397" text="knowledge base article">}}.
 
 {{%/notice%}}
 
@@ -62,13 +60,11 @@ VLAN-aware bridge on a given switch.
 
 ## Create a VLAN-aware Bridge
 
-To learn about VLAN-aware bridges and how to configure them, read
-[VLAN-aware Bridge Mode](VLAN-aware-Bridge-Mode/).
+To learn about VLAN-aware bridges and how to configure them, read {{<link url="VLAN-aware-Bridge-Mode">}}.
 
 ## Create a Traditional Mode Bridge
 
-To create a traditional mode bridge, see
-[Traditional Bridge Mode](Traditional-Bridge-Mode/).
+To create a traditional mode bridge, see {{<link url="Traditional-Bridge-Mode">}}.
 
 ## Configure Bridge MAC Addresses
 
@@ -97,15 +93,13 @@ By default, Cumulus Linux stores MAC addresses in the Ethernet switching
 table for 1800 seconds (30 minutes). You can change this setting using NCLU.
 
 The `bridge-ageing` option is in the
-[NCLU blacklist](../../System-Configuration/Network-Command-Line-Utility-NCLU/#edit-the-netd-conf-file),
+{{<link url="Network-Command-Line-Utility-NCLU#edit-the-netd-conf-file" text="NCLU blacklist">}},
 as it's not frequently used. To configure this setting, you need to
-remove the `bridge-ageing` keyword from the `ifupdown_blacklist` in
-`/etc/netd.conf`.
-[Restart the `netd` service](../../System-Configuration/Network-Command-Line-Utility-NCLU/#restart-the-netd-service)
+remove the `bridge-ageing` keyword from the `ifupdown_blacklist` in `/etc/netd.conf`.
+{{<link url="Network-Command-Line-Utility-NCLU/#restart-the-netd-service" text="Restart the `netd` service">}}
 after you edit the file.
 
-Now you can change the setting using NCLU. For example, to change the
-setting to 600 seconds, run:
+Now you can change the setting using NCLU. For example, to change the setting to 600 seconds, run:
 
 ```
 cumulus@switch:~$ net add bridge bridge ageing 600
@@ -143,8 +137,7 @@ unreachable.
 
 {{%/notice%}}
 
-To configure the SVI, use
-[NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/):
+To configure the SVI, use {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}:
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-2
@@ -280,7 +273,7 @@ cumulus@switch:~$ ip link show bridge
 ## IPv6 Link-local Address Generation
 
 By default, Cumulus Linux automatically generates IPv6
-[link-local addresses](https://en.wikipedia.org/wiki/Link-local_address) on VLAN
+{{<exlink url="https://en.wikipedia.org/wiki/Link-local_address" text="link-local addresses">}} on VLAN
 interfaces. If you want to use a different mechanism to assign
 link-local addresses, you should disable this feature. You can disable
 link-local automatic address generation for both regular IPv6 addresses
@@ -382,10 +375,10 @@ Some things you should note about the output:
 - In environments where both VLAN-aware and traditional bridges are in use, if a traditional bridge has a subinterface of a bond that is a normal interface in a VLAN-aware bridge, the bridge is flapped when the traditional bridge's bond subinterface is brought down.
 - You cannot enslave a VLAN raw device to a different master interface (that is, you cannot edit the `vlan-raw-device` setting in the `/etc/network/interfaces` file). You need to delete the VLAN and create it again.
 - Cumulus Linux supports up to 2000 VLANs. This includes the internal interfaces, bridge interfaces, logical interfaces, and so on.
-- In Cumulus Linux, MAC learning is enabled by default on traditional or VLAN-aware bridge interfaces. Cumulus Networks recommends you do not disable MAC learning unless you are using EVPN. See [Ethernet Virtual Private Network - EVPN](../../Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/).
+- In Cumulus Linux, MAC learning is enabled by default on traditional or VLAN-aware bridge interfaces. Cumulus Networks recommends you do not disable MAC learning unless you are using EVPN. See {{<link url="Ethernet-Virtual-Private-Network-EVPN">}}.
 
 ## Related Information
 
-- [Linux Foundation - VLANs](http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan)
-- [Linux Journal - Linux as an Ethernet Bridge](http://www.linuxjournal.com/article/8172)
-- [Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode](https://support.cumulusnetworks.com/hc/en-us/articles/204909397)
+- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
+- {{<exlink url="http://www.linuxjournal.com/article/8172" text="Linux Journal - Linux as an Ethernet Bridge">}}
+- {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204909397" text="Comparing Traditional Bridge Mode to VLAN-aware Bridge Mode">}}

@@ -207,6 +207,118 @@ The loopback interface *lo* must always be specified in the  `/etc/network/inter
 
 {{%/notice%}}
 
+To see the status of the loopback interface (lo):
+
+<details>
+
+<summary>NCLU Commands </summary>
+
+Use the `net show interface lo` command.
+
+```
+cumulus@switch:~$ net show interface lo
+    Name    MAC                Speed    MTU    Mode
+--  ------  -----------------  -------  -----  --------
+UP  lo      00:00:00:00:00:00  N/A      65536  Loopback
+
+Alias
+-----
+loopback interface
+IP Details
+-------------------------  --------------------
+IP:                        127.0.0.1/8, ::1/128
+IP Neighbor(ARP) Entries:  0
+```
+
+The loopback is up and is assigned an IP address of 127.0.0.1.
+
+To add an IP address to a loopback interface, configure the *lo* interface:
+
+```
+cumulus@switch:~$ net add loopback lo ip address 10.1.1.1/32
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+</details>
+
+<details>
+
+<summary>Linux Commands </summary>
+
+Use the `ip addr show lo` command.
+
+```
+cumulus@switch:~$ ip addr show lo
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+    inet6 ::1/128 scope host
+        valid_lft forever preferred_lft forever
+```
+
+The loopback is up and is assigned an IP address of 127.0.0.1.
+
+To add an IP address to a loopback interface, add it directly under the `iface lo inet loopback` definition in the `/etc network/interfaces` file:
+
+```
+auto lo
+iface lo inet loopback
+    address 10.1.1.1
+```
+
+{{%notice note%}}
+
+If an IP address is configured without a mask (as shown above), the IP address becomes a /32. So, in the above case, 10.1.1.1 is actually 10.1.1.1/32.
+
+{{%/notice%}}
+
+</details>
+
+### Configure Multiple Loopbacks
+
+You can configure multiple loopback addresses by assigning additional IP addresses to the lo interface.
+
+<details>
+
+<summary>NCLU Commands </summary>
+
+```
+cumulus@switch:~$ net add loopback lo ip address 172.16.2.1/24
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands create the following configuration in the `/etc/network/interfaces` file:
+
+```
+cumulus@leaf01:~$ cat /etc/network/interfaces
+...
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+    # The primary network interface
+    address 172.16.2.1/24
+```
+
+</details>
+
+<details>
+
+<summary>Linux Commands </summary>
+
+Add multiple `address` lines in the `/etc/network/interfaces` file:
+
+```
+auto lo
+iface lo inet loopback
+    address 10.1.1.1
+    address 172.16.2.1/24
+```
+
+</details>
+
 ## ifupdown Behavior with Child Interfaces
 
 By default, `ifupdown` recognizes and uses any interface present on the system that is listed as a dependent of an interface (for example, a VLAN, bond, or physical interface). You are not required to list interfaces in the `interfaces` file unless they need a specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `interfaces` file.

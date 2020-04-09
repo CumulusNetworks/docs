@@ -1,0 +1,7 @@
+Upstream Author: Thom May <thom@canonical.com>
+
+Copyright 2004-2007 Thom May <thom@canonical.com>
+Copyright 2006-2008 Otavio Salvador <otavio@ossystems.com.br>
+
+This software is licensed under the BSD license. For further
+information please see /usr/share/common-licenses/BSD.

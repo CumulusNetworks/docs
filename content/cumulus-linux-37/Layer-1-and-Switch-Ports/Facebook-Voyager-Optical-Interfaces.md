@@ -50,11 +50,11 @@ AC400 module.
 | 16-QAM               | QPSK                 | Independent         |
 | 8-QAM                | 8-QAM                | Coupled             |
 
-QPSK-[Quadrature phase shift keying](https://www.allaboutcircuits.com/technical-articles/quadrature-phase-shift-keying-qpsk-modulation/).
+QPSK-{{<exlink url="https://www.allaboutcircuits.com/technical-articles/quadrature-phase-shift-keying-qpsk-modulation/" text="Quadrature phase shift keying">}}.
 When a network interface is using QPSK modulation, it carries 100Gbps
 and is therefore connected to only one client interface.
 
-16-QAM-[Quadrature amplitude modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
+16-QAM-{{<exlink url="https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation" text="Quadrature amplitude modulation">}}
 with 4 bits per symbol. When a network interface is using 16-QAM
 modulation, it carries 200Gbps and is therefore connected to two client
 interfaces. Each of the two client interfaces carried on a network
@@ -62,7 +62,7 @@ interface is called a tributary. The AC400 adds extra information so
 that these tributaries can be sorted out at the far end and delivered to
 the appropriate client interface.
 
-8-QAM-[Quadrature amplitude modulation](https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation)
+8-QAM-{{<exlink url="https://en.wikipedia.org/wiki/Quadrature_amplitude_modulation" text="Quadrature amplitude modulation">}}
 with 3 bits per symbol. When a network interface is using 8-QAM
 modulation, it carries 150Gbps. In this case, the two network interfaces
 in an AC400 module must be coupled, so that the total bandwidth carried
@@ -76,8 +76,8 @@ interface is carried on both of the network interfaces.
 For each of the five supported modulation configurations, the client
 interface to network interface connections are as follows:
 
-|||
-|--- |--- |
+| Configuration | Connections |
+| ------------- | ----------- |
 |{{% imgOld 1 %}}|In this configuration, two client interfaces, 0 and 2, are mapped to the two network interfaces. Client interfaces 1 and 3 are not used.|
 |{{% imgOld 2 %}}|In this configuration, two client interfaces are mapped to each network interface. Each network interface, therefore, has two tributaries.|
 |{{% imgOld 3 %}} <br /> {{% imgOld 4 %}}|These configurations are combinations of the previous two. The network interface configured for QPSK connects to one client interface and the network interface configured for 16-QAM connects to two client interfaces.|
@@ -93,8 +93,8 @@ The file has lines for the 12 QSPF28 ports. The four DWDM Line ports are
 labeled labeled **L1** thru **L4**. To program the AC400 modulation and
 coupling into the five configurations, configure these ports as follows:
 
-|ports.conf|L1 Modulation|L2 Modulation|Independent/Coupled|
-|--- |--- |--- |--- |
+| ports.conf | L1 Modulation | L2 Modulation | Independent/Coupled |
+| ---------- | ------------- | ------------- | ------------------- |
 |L1=1x <br /><br /> L2=1x|QPSK|QPSK|Independent|
 |L1=1x <br /><br /> L2=2x|QPSK|16-QAM|Independent|
 |L1=2x <br /><br /> L2=1x|16-QAM|QPSK|Independent|
@@ -137,7 +137,7 @@ system; L1, L2, L3, or L4.
 Using NCLU commands is the preferred way to configure the transponder
 modules. However, as an alternative, you can edit the
 `/etc/cumulus/transponders.ini` file to make configuration changes. See
-[Edit the transponder.ini file](#edit-the-transponders-ini-file)
+{{<link url="#edit-the-transponders-ini-file" text="Edit the transponder.ini file">}}
 below.
 
 {{%/notice%}}
@@ -328,7 +328,7 @@ cumulus@switch:~$ net add interface L1 frequency 195.<tab>
 
 To see a complete list of the frequencies, channels, and wavelengths,
 run the `net show transponder frequency-map` command (described in
-[Display Available Frequencies](#display-available-channel-frequencies).
+{{<link url="#display-available-channel-frequencies" text="Display Available Frequencies">}}).
 
 ### Set the Transmit Power
 
@@ -523,7 +523,7 @@ cumulus@switch:~$ net commit
 
 To enable loopback on the client interface (internal loopback for DWDM
 testing), edit the `/etc/cumulus/transponders.ini` file. See
-[Edit the transponder.ini file](#edit-the-transponders-ini-file) below.
+{{<link url="#edit-the-transpondersini-file" text="Edit the transponders.ini file">}} below.
 
 {{%/notice%}}
 
@@ -539,40 +539,40 @@ the system.
 cumulus@switch:~$ net show transponder
 Module: 1 ready Acacia Comm Inc. AC400-004-330 S/N:170212599 53.88C 11.89V
     Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
-     
-                                            Network Interfaces                    
-                                      L3                           L4             
+
+                                            Network Interfaces
+                                      L3                           L4
                         ---------------------------  ---------------------------  
-            Modulation 16-qam                       16-qam                       
-              Frequency 193.70 THz, Channel 52      193.70 THz, Channel 52      
-            Current BER 1.428e-04                   1.387e-05                    
+            Modulation 16-qam                       16-qam
+              Frequency 193.70 THz, Channel 52      193.70 THz, Channel 52
+            Current BER 1.428e-04                   1.387e-05
           Current OSNR 84.90dBm                     84.80dBm
 Current Chromatic Disp 13ps/nm                      9ps/nm
-            TX/RX Power 0.99dBm/0.66dBm             1.00dBm/0.43dBm              
-              Encoding differential                 differential                 
-              Alignment TX & RX                     TX & RX                      
-          Grid Spacing 50ghz                        50ghz                        
-              FEC Mode 25%                          25%                          
-Uncorrectable FEC Errs 0                            0                          
-          TX/RX Turn-up power_adjusted/locked       power_adjusted/locked        
-     
+            TX/RX Power 0.99dBm/0.66dBm             1.00dBm/0.43dBm
+              Encoding differential                 differential
+              Alignment TX & RX                     TX & RX
+          Grid Spacing 50ghz                        50ghz
+              FEC Mode 25%                          25%
+Uncorrectable FEC Errs 0                            0
+          TX/RX Turn-up power_adjusted/locked       power_adjusted/locked
+
 Module: 2 ready Acacia Comm Inc. AC400-004-330 S/N:170212585 55.00C 11.90V
     Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
-     
-                                            Network Interfaces                    
-                                      L1                           L2             
+
+                                            Network Interfaces
+                                      L1                           L2
                         ---------------------------  ---------------------------  
-                Modulation 16-qam                       16-qam                       
-                 Frequency 193.70 THz, Channel 52       193.70 THz, Channel 52       
-               Current BER 7.039e-05                    7.404e-05                    
+                Modulation 16-qam                       16-qam
+                 Frequency 193.70 THz, Channel 52       193.70 THz, Channel 52
+               Current BER 7.039e-05                    7.404e-05
               Current OSNR 84.90dBm                     84.80dBm
     Current Chromatic Disp 13ps/nm                      9ps/nm
-               TX/RX Power 0.98dBm/0.48dBm              0.99dBm/-0.78dBm             
-                  Encoding differential                 differential                 
-                 Alignment TX & RX                      TX & RX                      
-              Grid Spacing 50ghz                        50ghz                        
-                  FEC Mode 25%                          25%                          
-    Uncorrectable FEC Errs 0                            0                            
+               TX/RX Power 0.98dBm/0.48dBm              0.99dBm/-0.78dBm
+                  Encoding differential                 differential
+                 Alignment TX & RX                      TX & RX
+              Grid Spacing 50ghz                        50ghz
+                  FEC Mode 25%                          25%
+    Uncorrectable FEC Errs 0                            0
              TX/RX Turn-up power_adjusted/locked        power_adjusted/locked
 ```
 
@@ -585,22 +585,22 @@ The following example command displays the status of transponder module
 cumulus@switch:~$ net show transponder module 1
 Module: 1 ready Acacia Comm Inc. AC400-004-330 S/N:170212599 53.75C 11.89V
     Laser: 191.15 THz - 196.10 THz, 6.00 GHz fine tune, independent lanes
- 
-                                           Network Interfaces                    
-                                     L3                           L4             
+
+                                           Network Interfaces
+                                     L3                           L4
                        ---------------------------  ---------------------------
-            Modulation 16-qam                       16-qam          
-             Frequency 193.70 THz, Channel 52       193.70 THz, Channel 52       
+            Modulation 16-qam                       16-qam
+             Frequency 193.70 THz, Channel 52       193.70 THz, Channel 52
            Current BER 1.626e-04                    1.343e-05
           Current OSNR 84.90dBm                     84.80dBm
-Current Chromatic Disp 13ps/nm                      9ps/nm                    
-           TX/RX Power 1.00dBm/0.67dBm              0.99dBm/0.42dBm              
-              Encoding differential                 differential                 
-             Alignment TX & RX                      TX & RX                     
-          Grid Spacing 50ghz                        50ghz                       
-              FEC Mode 25%                          25%                          
-Uncorrectable FEC Errs 0                            0                            
-         TX/RX Turn-up power_adjusted/locked        power_adjusted/locked             
+Current Chromatic Disp 13ps/nm                      9ps/nm
+           TX/RX Power 1.00dBm/0.67dBm              0.99dBm/0.42dBm
+              Encoding differential                 differential
+             Alignment TX & RX                      TX & RX
+          Grid Spacing 50ghz                        50ghz
+              FEC Mode 25%                          25%
+Uncorrectable FEC Errs 0                            0
+         TX/RX Turn-up power_adjusted/locked        power_adjusted/locked
 ```
 
 To display more information, including the host interfaces, use the
@@ -782,8 +782,7 @@ following command:
 
 As an alternative to using NCLU commands to configure the transponder
 modules (described above), you can edit the
-`/etc/cumulus/transponders.ini` file, then [Initiate a hardware
-update](#initiate-a-hardware-update).
+`/etc/cumulus/transponders.ini` file, then {{<link url="#initiate-a-hardware-update" text="Initiate a hardware update">}}.
 
 {{%notice note%}}
 
@@ -807,7 +806,7 @@ considered comments.
 
 <details>
 
-<summary>Here is an example `/etc/cumulus/transponders.ini` file:</summary>
+<summary>Here is an example /etc/cumulus/transponders.ini file:</summary>
 
     #
     # Configuration file for Voyager transponder modules
@@ -1038,11 +1037,8 @@ considered comments.
 The file contains four configuration groups:
 
   - The Modules group
-
   - The module groups
-
   - The network interface groups
-
   - The client interface groups
 
 #### Modules Group

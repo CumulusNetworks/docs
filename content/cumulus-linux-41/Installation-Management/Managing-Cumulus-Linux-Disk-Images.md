@@ -153,8 +153,8 @@ Verifying image checksum ...OK.
 Preparing image archive ... OK.
 Control File Contents
 =====================
-Description: Cumulus Linux 4.0.0
-Release: 4.0.0
+Description: Cumulus Linux 4.1.0
+Release: 4.1.0
 Architecture: amd64
 Switch-Architecture: bcm-amd64
 Build-Id: dirtyz224615f

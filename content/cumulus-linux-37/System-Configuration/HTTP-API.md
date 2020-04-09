@@ -7,15 +7,15 @@ aliases:
  - /pages/viewpage.action?pageId=8362591
 pageID: 8362591
 ---
-Cumulus Linux implements an HTTP (Web) application programing interface 
-to the [OpenStack ML2 driver](../../Network-Solutions/OpenStack-Neutron-ML2-and-Cumulus-Linux/)
-and the [NCLU](../Network-Command-Line-Utility-NCLU/)
+Cumulus Linux implements an HTTP (Web) application programing interface
+to the {{<link url="OpenStack-Neutron-ML2-and-Cumulus-Linux" text="OpenStack ML2 driver">}}
+and the {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}
 API. Rather than accessing Cumulus Linux using SSH, you can interact with the
 switch using an HTTP client, such as cURL, HTTPie or a web browser.
 
 {{%notice note%}}
 
-The HTTP API service is enabled by default on [chassis](/chassis/) hardware only.
+The HTTP API service is enabled by default on {{<exlink url="https://docs.cumulusnetworks.com/chassis/" text="chassis">}} hardware only.
 However, the associated server is configured to only listen to traffic
 originating from within the chassis.
 
@@ -112,8 +112,8 @@ All URLs must use HTTPS, rather than HTTP.
 
 {{%/notice%}}
 
-For more information on the listen directive, refer to the 
-[NGINX documentation](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen).
+For more information on the listen directive, refer to the
+{{<exlink url="https://nginx.org/en/docs/http/ngx_http_core_module.html#listen" text="NGINX documentation">}}.
 
 {{%notice warning%}}
 
@@ -141,8 +141,8 @@ Cumulus Networks recommends you use your own certificates and keys.
 Certificates must be in the PEM format.
 
 For step by step documentation for generating self-signed certificates
-and keys, and installing them to the switch, refer to the 
-[Ubuntu Certificates and Security documentation](https://help.ubuntu.com/lts/serverguide/certificates-and-security.html).
+and keys, and installing them to the switch, refer to the
+{{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
 {{%notice warning%}}
 
@@ -173,8 +173,7 @@ set to `application/json`.
 {{%notice info%}}
 
 The cURL `-k` flag is necessary when the server uses a self-signed
-certificate. This is the default configuration (see the [Security
-section](#security)). To display the response
+certificate. This is the default configuration (see the {{<link url="#security" text="Security section">}}). To display the response
 headers, include `-D` flag in the command.
 
 {{%/notice%}}

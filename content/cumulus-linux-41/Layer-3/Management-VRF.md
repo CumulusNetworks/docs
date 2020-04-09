@@ -9,7 +9,7 @@ toc: 3
 ---
 {{%notice note%}}
 
-In Cumulus Linux 4.0, management VRF is enabled by default. This is a change from earlier Cumulus Linux releases, where management VRF is *disabled* by default. Be sure to update any configuration scripts, if necessary.
+In Cumulus Linux 4.0 and later, management VRF is enabled by default. This is a change from earlier Cumulus Linux releases, where management VRF is *disabled* by default. Be sure to update any configuration scripts, if necessary.
 
 {{%/notice%}}
 
@@ -55,7 +55,7 @@ Running `ifreload -a` disconnects the session for any interface configured as *a
 
 ## Run Services within the Management VRF
 
-At installation, the only enabled service that runs in the management VRF is NTP (`ntp@mgmt.service`). However, you can run a variety of services within the management VRF instead of the default VRF. When you run a `systemd` service inside the management VRF, that service runs **only** on eth0. You cannot configure the same service to run successfully in both the management VRF and the default VRF; you must stop and disable the normal service with `systemctl`.
+At installation, the only two enabled services that run in the management VRF are NTP (`ntp@mgmt.service`) and netqd (`netqd@mgmt`). However, you can run a variety of services within the management VRF instead of the default VRF. When you run a `systemd` service inside the management VRF, that service runs **only** on eth0. You cannot configure the same service to run successfully in both the management VRF and the default VRF; you must stop and disable the normal service with `systemctl`.
 
 You must disable the following services in the default VRF if you want to run them in the management VRF:
 
@@ -66,7 +66,6 @@ You must disable the following services in the default VRF if you want to run th
 - hsflowd
 - netq-agent
 - netq-notifier
-- netqd
 - puppet
 - snmpd
 - snmptrapd

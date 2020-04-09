@@ -19,15 +19,14 @@ monitoring. A variety of text editors are pre-installed, including `vi`
 and `nano`.
 
 You must have access to a Linux or UNIX shell. If you are running
-Windows, use a Linux environment like [Cygwin](http://www.cygwin.com/)
+Windows, use a Linux environment like {{<exlink url="http://www.cygwin.com/" text="Cygwin">}}
 as your command line tool for interacting with Cumulus Linux.
 
 If you are a networking engineer but are unfamiliar with Linux concepts,
-refer to [this reference guide](https://support.cumulusnetworks.com/hc/en-us/articles/201787636)
+refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/201787636" text="this reference guide">}}
 to compare the Cumulus Linux CLI and configuration options, and their
 equivalent Cisco Nexus 3000 NX-OS commands and settings. You can also
-[watch a series of short
-videos](http://cumulusnetworks.com/technical-videos/) introducing you to
+{{<exlink url="https://cumulusnetworks.com/learn/how-to-videos/" text="watch a series of short videos">}} introducing you to
 Linux and Cumulus Linux-specific concepts.
 
 {{%/notice%}}
@@ -35,7 +34,7 @@ Linux and Cumulus Linux-specific concepts.
 ## Install Cumulus Linux
 
 To install Cumulus Linux, you use
-[ONIE](https://opencomputeproject.github.io/onie) (Open Network Install
+{{<exlink url="https://opencomputeproject.github.io/onie" text="ONIE">}} (Open Network Install
 Environment), an extension to the traditional U-Boot software that
 allows for automatic discovery of a network installer image. This
 facilitates the ecosystem model of procuring switches with an operating
@@ -44,8 +43,7 @@ system choice, such as Cumulus Linux.
 {{%notice note%}}
 
 If Cumulus Linux is already installed on your switch and you need to
-upgrade the software only, skip to [Upgrading Cumulus
-Linux](../Installation-Management/Upgrading-Cumulus-Linux/).
+upgrade the software only, skip to {{<link url="Upgrading-Cumulus-Linux">}}.
 
 {{%/notice%}}
 
@@ -56,7 +54,7 @@ discovery:
     running a web server. If the host is IPv4-enabled, make sure it is
     running DHCP in addition to a web server.
 
-2.  [Download](https://cumulusnetworks.com/downloads/) the Cumulus Linux
+2.  {{<exlink url="https://cumulusnetworks.com/downloads/" text="Download">}} the Cumulus Linux
     installation file to the root directory of the web server. Rename
     this file `onie-installer`.
 
@@ -75,7 +73,7 @@ not need a console cable. A fresh install with ONIE using a local web
 server typically completes in less than ten minutes.
 
 You have more options for installing Cumulus Linux with ONIE. Read
-[Installing a New Cumulus Linux Image](../Installation-Management/Installing-a-New-Cumulus-Linux-Image/)
+{{<link url="Installing-a-New-Cumulus-Linux-Image">}}
 to install Cumulus Linux using ONIE in the following ways:
 
   - DHCP/web server with and without DHCP options
@@ -89,7 +87,7 @@ to install Cumulus Linux using ONIE in the following ways:
 ONIE supports many other discovery mechanisms using USB (copy the
 installer to the root of the drive), DHCPv6 and DHCPv4, and image copy
 methods including HTTP, FTP, and TFTP. For more information on these
-discovery methods, refer to the [ONIE documentation](https://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods).
+discovery methods, refer to the {{<exlink url="https://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="ONIE documentation">}}.
 
 After installing Cumulus Linux, you are ready to:
 
@@ -130,8 +128,7 @@ All accounts except `root` are permitted remote SSH login; you can use
 `sudo` to grant a non-root account root-level access. Commands that
 change the system configuration require this elevated level of access.
 
-For more information about `sudo`, read [Using sudo to Delegate
-Privileges](../System-Configuration/Authentication-Authorization-and-Accounting/Using-sudo-to-Delegate-Privileges/).
+For more information about `sudo`, read {{<link url="Using-sudo-to-Delegate-Privileges">}}.
 
 ### Serial Console Management
 
@@ -164,8 +161,7 @@ cumulus@switch:~$ net commit
 ```
 
 These commands produce the following snippet in the
-[/etc/network/interfaces](http://manpages.debian.net/man/5/interfaces)
-file:
+`{{<exlink url="http://manpages.debian.net/man/5/interfaces" text="/etc/network/interfaces">}}` file:
 
     auto eth0
     iface eth0
@@ -213,8 +209,7 @@ required.
 ### Verify the System Time
 
 Before you install the license, verify that the date and time on the
-switch are correct. You must [correct the date and
-time](../System-Configuration/Setting-Date-and-Time/) if they
+switch are correct. You must {{<link url="Setting-Date-and-Time" text="correct the date and time">}} if they
 are incorrect. The wrong date and time can have impacts on the switch,
 such as the inability to synchronize with Puppet or return errors like
 this one after you restart `switchd`:
@@ -283,7 +278,7 @@ as described above.
 
 If you are using 4x10G DAC or AOC cables, or want to break out 100G or
 40G switch ports, configure the breakout ports. For more details, see
-[Layer 1 and Switch Port Attributes](../Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/#breakout-ports).
+{{<link url="Switch-Port-Attributes/#breakout-ports" text="Breakout Ports">}}.
 
 ## Test Cable Connectivity
 

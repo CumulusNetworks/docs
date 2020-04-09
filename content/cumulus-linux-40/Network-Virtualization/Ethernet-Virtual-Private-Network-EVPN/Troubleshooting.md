@@ -242,7 +242,7 @@ VNI: 104001
   SVI-If: vlan4001
   State: Up
   Router MAC: 00:01:00:00:11:00
-  L2 VNIs: 10100 10200 
+  L2 VNIs: 10100 10200
 ```
 
 ## Examine Local and Remote MAC Addresses for a VNI
@@ -252,16 +252,16 @@ Run the NCLU `net show evpn mac vni <vni>` command or the vtysh `show evpn mac v
 ```
 cumulus@leaf01:~$ net show evpn mac vni 10100
 Number of MACs (local and remote) known for this VNI: 8
-MAC               Type   Intf/Remote VTEP      VLAN 
-00:02:00:00:00:0e remote 10.0.0.4            
-00:02:00:00:00:06 remote 10.0.0.2            
-00:02:00:00:00:05 remote 10.0.0.2            
+MAC               Type   Intf/Remote VTEP      VLAN
+00:02:00:00:00:0e remote 10.0.0.4
+00:02:00:00:00:06 remote 10.0.0.2
+00:02:00:00:00:05 remote 10.0.0.2
 00:02:00:00:00:02 local  swp4                  100  
 00:00:5e:00:01:01 local  vlan100-v0            100  
-00:02:00:00:00:09 remote 10.0.0.3            
+00:02:00:00:00:09 remote 10.0.0.3
 00:01:00:00:11:00 local  vlan100               100  
 00:02:00:00:00:01 local  swp3                  100  
-00:02:00:00:00:0a remote 10.0.0.3            
+00:02:00:00:00:0a remote 10.0.0.3
 00:02:00:00:00:0d remote 10.0.0.4
 ```
 
@@ -283,8 +283,8 @@ MAC: 00:02:00:00:00:05
     172.16.120.21 
 cumulus@leaf01:~$ net show evpn mac vni 10100 vtep 10.0.0.3
 VNI 10100
-MAC               Type   Intf/Remote VTEP      VLAN 
-00:02:00:00:00:09 remote 10.0.0.3            
+MAC               Type   Intf/Remote VTEP      VLAN
+00:02:00:00:00:09 remote 10.0.0.3
 00:02:00:00:00:0a remote 10.0.0.3
 ```
 

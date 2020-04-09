@@ -208,7 +208,7 @@ Run the `net show package version <package>` command. For example, the following
 
 ```
 cumulus@switch:~$ net show package version vrf
-1.0-cl4u1
+1.0-cl4u2
 ```
 
 </details>
@@ -226,17 +226,12 @@ Desired=Unknown/Install/Remove/Purge/Hold
 |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
 ||/ Name       Version      Architecture Description
 +++-==========-============-============-=================================
-ii  vrf        1.0-cl4u1    amd64        Linux tools for VRF
+ii  vrf        1.0-cl4u2    amd64        Linux tools for VRF
 ```
 
 </details>
 
 ## Upgrade Packages
-
-{{%notice note%}}
-You cannot upgrade to Cumulus Linux 4.0 from Cumulus 3.7 by upgrading packages. You must install a disk image using ONIE. Refer to {{% link url="Upgrading-Cumulus-Linux" text="Upgrading Cumulus Linux" %}}.
-
-{{%/notice%}}
 
 To upgrade all the packages installed on the system to their latest versions, run the following commands:
 
@@ -249,7 +244,7 @@ A list of packages that will be upgraded is displayed and you are prompted to co
 
 The above commands upgrade all installed versions with their latest versions but do not install any new packages.
 
-<!--CANNOT DO THIS IN 4.0.0  ## Add New Packages
+## Add New Packages
 
 To add a new package, first ensure the package is not already installed on the system:
 
@@ -270,15 +265,8 @@ The following NEW packages will be installed:
 tcpreplay
 0 upgraded, 1 newly installed, 0 to remove and 1 not upgraded.
 Need to get 436 kB of archives.
-After this operation, 1008 kB of additional disk space will be used.
-Get:1 https://repo.cumulusnetworks.com/ CumulusLinux-1.5/main tcpreplay amd64 4.6.2-5+deb8u1 [436 kB]
-Fetched 436 kB in 0s (1501 kB/s)
-Selecting previously unselected package tcpreplay.
-(Reading database ... 15930 files and directories currently installed.)
-Unpacking tcpreplay (from .../tcpreplay_4.6.2-5+deb8u1_amd64.deb) ...
-Processing triggers for man-db ...
-Setting up tcpreplay (4.6.2-5+deb8u1) ...
-cumulus@switch:~$
+After this operation, 1008 kB of additional disk space will be used
+...
 ```
 
 You can install several packages at the same time:
@@ -291,7 +279,7 @@ cumulus@switch:~$ sudo -E apt-get install <package 1> <package 2> <package 3>
 
 In some cases, installing a new package might also upgrade additional existing packages due to dependencies. To view these additional packages before you install, run the `apt-get install --dry-run` command.
 
-{{%/notice%}}-->
+{{%/notice%}}
 
 ## Add Packages from Another Repository
 
@@ -319,14 +307,14 @@ To install a new package, complete the following steps:
     installed on the system:
 
     ```
-    cumulus@switch:~$ dpkg -l | grep {name of package}
+    cumulus@switch:~$ dpkg -l | grep <name of package>
     ```
 
 2. If the package is installed already, ensure it is the version you need. If it is an older version, update the package from the Cumulus Linux repository:
 
     ```
     cumulus@switch:~$ sudo -E apt-get update
-    cumulus@switch:~$ sudo -E apt-get install {name of package}
+    cumulus@switch:~$ sudo -E apt-get install <name of package>
     cumulus@switch:~$ sudo -E apt-get upgrade
     ```
 
@@ -337,23 +325,13 @@ To install a new package, complete the following steps:
     deb http://security.debian.org/ buster/updates main
     ```
 
-    Otherwise, the repository might be listed in `/etc/apt/sources.list` but is commented out, as can be the case with the early-access repository:
-
-    ```
-    #deb http://apt.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
-    ```
-
-    To uncomment the repository, remove the \# at the start of the line, then save the file:
-
-    ```
-    deb http://apt.cumulusnetworks.com/repo CumulusLinux-4-early-access cumulus
-    ```
+    Otherwise, the repository might be listed in `/etc/apt/sources.list` but is commented out. To uncomment the repository, remove the `#` at the start of the line, then save the file.
 
 4. Run `sudo -E apt-get update`, then install the package and upgrade:
 
     ```
     cumulus@switch:~$ sudo -E apt-get update
-    cumulus@switch:~$ sudo -E apt-get install {name of package}
+    cumulus@switch:~$ sudo -E apt-get install <name of package>
     cumulus@switch:~$ sudo -E apt-get upgrade
     ```
 
@@ -385,4 +363,4 @@ You add these packages normally with `apt-get update && apt-get install`, as {{<
 
 ## Caveats and Errata
 
-- At this time, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.
+At this time, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.

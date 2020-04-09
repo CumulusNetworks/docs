@@ -322,24 +322,24 @@ Configure the NTP server:
 
 1. Create a `.keys` file, such as `/etc/ntp.keys`. Specify a key identifier (a number from 1-65535), an encryption method (M for MD5), and the password. The following provides an example:
 
-```
-#
-# PLEASE DO NOT USE THE DEFAULT VALUES HERE.
-#
-#65535  M  akey
-#1      M  pass
+    ```
+    #
+    # PLEASE DO NOT USE THE DEFAULT VALUES HERE.
+    #
+    #65535  M  akey
+    #1      M  pass
 
-1  M  CumulusLinux!
-```
+    1  M  CumulusLinux!
+    ```
 
 2. In the `/etc/ntp/ntp.conf` file, add a pointer to the `/etc/ntp.keys` file you created above and specify the key identifier. For example:
 
-```
-keys /etc/ntp/ntp.keys
-trustedkey 1
-controlkey 1
-requestkey 1
-```
+    ```
+    keys /etc/ntp/ntp.keys
+    trustedkey 1
+    controlkey 1
+    requestkey 1
+    ```
 
 3. Restart NTP with the `sudo systemctl restart ntp` command.
 
@@ -347,59 +347,59 @@ Configure the NTP client (the Cumulus Linux switch):
 
 1. Create the same `.keys` file you created on the NTP server (`/etc/ntp.keys`). For example:
 
-```
-cumulus@switch:~$  sudo nano /etc/ntp.keys
-#
-# PLEASE DO NOT USE THE DEFAULT VALUES HERE.
-#
-#65535  M  akey
-#1      M  pass
+    ```
+    cumulus@switch:~$  sudo nano /etc/ntp.keys
+    #
+    # PLEASE DO NOT USE THE DEFAULT VALUES HERE.
+    #
+    #65535  M  akey
+    #1      M  pass
 
-1  M  CumulusLinux!
-```
+      1  M  CumulusLinux!
+    ```
 
 2. Edit the `/etc/ntp.conf` file to specify the server you want to use, the key identifier, and a pointer to the `/etc/ntp.keys` file you created in step 1. For example:
 
-```
-cumulus@switch:~$ sudo nano /etc/ntp.conf
-...
-# You do need to talk to an NTP server or two (or three).
-#pool ntp.your-provider.example
-# OR
-#server ntp.your-provider.example
+    ```
+    cumulus@switch:~$ sudo nano /etc/ntp.conf
+    ...
+    # You do need to talk to an NTP server or two (or three).
+    #pool ntp.your-provider.example
+    # OR
+    #server ntp.your-provider.example
 
-# pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
-# pick a different set every time it starts up.  Please consider joining the
-# pool: <http://www.pool.ntp.org/join.html>
-#server 0.cumulusnetworks.pool.ntp.org iburst
-#server 1.cumulusnetworks.pool.ntp.org iburst
-#server 2.cumulusnetworks.pool.ntp.org iburst
-#server 3.cumulusnetworks.pool.ntp.org iburst
-server 10.50.23.121 key 1
+    # pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
+    # pick a different set every time it starts up.  Please consider joining the
+    # pool: <http://www.pool.ntp.org/join.html>
+    #server 0.cumulusnetworks.pool.ntp.org iburst
+    #server 1.cumulusnetworks.pool.ntp.org iburst
+    #server 2.cumulusnetworks.pool.ntp.org iburst
+    #server 3.cumulusnetworks.pool.ntp.org iburst
+    server 10.50.23.121 key 1
 
-#keys
-keys /etc/ntp.keys
-trustedkey 1
-controlkey 1
-requestkey 1
-...
-```
+    #keys
+    keys /etc/ntp.keys
+    trustedkey 1
+    controlkey 1
+    requestkey 1
+    ...
+    ```
 
 3. Restart NTP in the active VRF (default or management). For example:
 
-```
-cumulus@switch:~$ systemctl restart ntp@mgmt.service
-```
+    ```
+    cumulus@switch:~$ systemctl restart ntp@mgmt.service
+    ```
 
 4. Wait a few minutes, then run the `ntpq -c as` command to verify the configuration:
 
-```
-cumulus@switch:~$ ntpq -c as
+    ```
+    cumulus@switch:~$ ntpq -c as
 
-ind assid status  conf reach auth condition  last_event cnt
-===========================================================
-  1 40828  f014   yes   yes   ok     reject   reachable  1
-```
+    ind assid status  conf reach auth condition  last_event cnt
+    ===========================================================
+      1 40828  f014   yes   yes   ok     reject   reachable  1
+    ```
 
 After authorization is accepted, you see the following command output:
 
@@ -439,15 +439,15 @@ To enable the PTP boundary clock on the switch:
 
 1. Open the `/etc/cumulus/switchd.conf` file in a text editor and add the following line:
 
-```
-ptp.timestamping = TRUE
-```
+    ```
+    ptp.timestamping = TRUE
+    ```
 
 2. Restart `switchd`:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart switchd.service
+    ```
 
 ### Configure the PTP Boundary Clock
 
@@ -460,12 +460,12 @@ To configure a boundary clock:
 - PTP *is* supported on BGP unnumbered interfaces.
 - PTP is *not* supported on switched virtual interfaces (SVIs).
 
-{{%/notice%}}
+    {{%/notice%}}
 
-```   
-cumulus@switch:~$ net add interface swp13s0 ip address 10.0.0.9/32
-cumulus@switch:~$ net add interface swp13s1 ip address 10.0.0.10/32
-```
+    ```   
+    cumulus@switch:~$ net add interface swp13s0 ip address 10.0.0.9/32
+    cumulus@switch:~$ net add interface swp13s1 ip address 10.0.0.10/32
+    ```
 
 2. Configure PTP options on the switch:
 
@@ -474,32 +474,32 @@ cumulus@switch:~$ net add interface swp13s1 ip address 10.0.0.10/32
     - Add the `time-stamping` parameter. The switch automatically enables hardware time-stamping to capture timestamps from an Ethernet frame at the physical layer. If you are testing PTP in a virtual environment, hardware time-stamping is not available; however the `time-stamping` parameter is still required.
     - Add the PTP master and slave interfaces. You do not specify which is a master interface and which is a slave interface; this is determined by the PTP packet received. The following commands provide an example configuration:
 
-```
-cumulus@switch:~$ net add ptp global gm-capable no
-cumulus@switch:~$ net add ptp global priority2 254
-cumulus@switch:~$ net add ptp global priority1 254
-cumulus@switch:~$ net add ptp global time-stamping
-cumulus@switch:~$ net add ptp interface swp13s0
-cumulus@switch:~$ net add ptp interface swp13s1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+    ```
+    cumulus@switch:~$ net add ptp global gm-capable no
+    cumulus@switch:~$ net add ptp global priority2 254
+    cumulus@switch:~$ net add ptp global priority1 254
+    cumulus@switch:~$ net add ptp global time-stamping
+    cumulus@switch:~$ net add ptp interface swp13s0
+    cumulus@switch:~$ net add ptp interface swp13s1
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+    ```
 
 The `ptp4l` man page describes all the configuration parameters.
 
 3. Restart the `ptp4l` and `phc2sys` daemons:
 
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart ptp4l.service phc2sys.service
+    ```
 
-The configuration is saved in the `/etc/ptp4l.conf` file.
+    The configuration is saved in the `/etc/ptp4l.conf` file.
 
 4. Enable the services to start at boot time:
 
-```
-cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
+    ```
 
 ### Example Configuration
 

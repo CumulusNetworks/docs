@@ -203,9 +203,9 @@ To configure custom hashing, edit the `/usr/lib/python2.7/dist-packages/cumulus/
 2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
 3. Restart the `switchd` service:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart switchd.service
+    ```
 
 The following shows an example `datapath.conf` file:
 
@@ -369,6 +369,13 @@ Mellanox switches with the Spectrum ASIC do not support 128 or 256 hash buckets.
 {{%/notice%}}
 
 A larger number of ECMP buckets reduces the impact on adding new next hops to an ECMP route. However, the system supports fewer ECMP routes. If the maximum number of ECMP routes have been installed, new ECMP routes log an error and are not installed.
+
+{{%notice note%}}
+
+Mellanox switches with the Spectrum ASIC allow for two custom options to allocate route and  MAC address hardware resources depending on ECMP bucket size changes. More information about this is available in the Routing section on {{%link title="Routing#Mellanox Spectrum Switches" text="Mellanox Spectrum routing resources" %}}
+
+{{%/notice%}}
+
 
 To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 

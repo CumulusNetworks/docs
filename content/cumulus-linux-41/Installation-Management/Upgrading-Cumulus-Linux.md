@@ -148,7 +148,7 @@ ONIE is an open source project (equivalent to PXE on servers) that enables the i
 
 {{%notice note%}}
 
-Cumulus Networks deprecated lightweight network virtualization (LNV) in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}. If your network is configured for LNV, you need to migrate your network configuration to a BGP EVPN configuration that is functionally equivalent ***before*** you upgrade. Refer to {{<link title="Migrating from LNV to EVPN">}}..
+Cumulus Networks deprecated lightweight network virtualization (LNV) in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}. If your network is configured for LNV, you need to migrate your network configuration to a BGP EVPN configuration that is functionally equivalent ***before*** you upgrade. Refer to {{<link title="Migrating from LNV to EVPN">}}.
 
 {{%/notice%}}
 
@@ -194,7 +194,7 @@ To upgrade the switch using package upgrade:
     cumulus@switch:~$ sudo -E apt-get upgrade
     ```
 
-    If no reboot is required after the upgrade completes, the upgrade ends, restarts all upgraded services, and log messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, only the `frr` package was upgraded.
+    If no reboot is required after the upgrade completes, the upgrade ends, restarts all upgraded services, and log messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, only the `frr` package is upgraded.
 
     ```
     Policy: Service frr.service action stop postponed
@@ -251,7 +251,7 @@ To upgrade the switch using package upgrade:
 
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 
-- The `/etc/os-release` and `/etc/lsb-release` files are updated to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *disk image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 3.7.1, these two files display the release as 3.7.1 after the upgrade.
+- The `/etc/os-release` and `/etc/lsb-release` files are updated to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *disk image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 4.1.0, these two files display the release as 4.1.0 after the upgrade.
 - The `/etc/image-release` file is updated **only** when you run a disk image install. Therefore, if you run a disk image install of Cumulus Linux 4.0.0, followed by a package upgrade to 4.1.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 4.0.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
@@ -286,7 +286,7 @@ For networks with MLAG deployments, Cumulus Networks only supports upgrading to 
 4. Run the `onie-install -a -i <image-location>` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.0.0-mlx-amd64.bin
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
     ```
 
 5. Reboot the switch:

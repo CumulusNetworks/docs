@@ -9,8 +9,7 @@ pageID: 8362860
 ---
 {{%notice warning%}}
 
-OVSDB server high availability is an [early access
-feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
+OVSDB server high availability is an {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202933878" text="early access feature">}}
 in Cumulus Linux 3.7.
 
 {{%/notice%}}
@@ -20,8 +19,8 @@ mode* and *OVSDB server high availability mode* (where the data plane is
 running in active-active mode). For information about VMware NSX in
 standalone mode and for a description of the components that work
 together to integrate VMware NSX and Cumulus Linux, see
-[Integrating Hardware VTEPs with VMware NSX-MH](../Integrating-Hardware-VTEPs-with-VMware-NSX-MH/)
-or [Integrating Hardware VTEPs with VMware NSX-V](../Integrating-Hardware-VTEPs-with-VMware-NSX-V/).
+{{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH">}}
+or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V">}}.
 
 {{%notice note%}}
 
@@ -69,7 +68,7 @@ role again.
 Before you configure OVSDB server high availability, make sure you have
 **two switches running Cumulus Linux in an MLAG configuration**. Cumulus
 Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`),
-which support [VLAN-aware bridges](../../../Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode/).
+which support {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}.
 
 The following example configuration in the `/etc/network/interfaces`
 file shows the *minimum* MLAG configuration required (the MLAG peerlink
@@ -79,7 +78,7 @@ dual-connected bonds are identified in the NSX controller by their
 interface names prepended with the name of the particular switch to
 which they belong). When you create the Gateway Service for the
 dual-connected bonds (described in
-[Configuring the Transport and Logical Layers](#configure-the-transport-and-logical-layers),
+{{<link url="#configure-the-transport-and-logical-layers" text="Configuring the Transport and Logical Layers">}},
 below), make sure to select the `clag-id` named interfaces instead of
 the underlying individual physical ports. All the logical network
 configurations are provisioned by the NSX controller.
@@ -130,11 +129,8 @@ To configure OVSDB server high availability, you need to:
 
   - Determine on which switch you want to run the active OVSDB server
     (the MLAG primary switch or the MLAG secondary switch).
-
   - Configure the NSX integration on both switches.
-
   - Configure the Transport and Logical Layers from the NSX Manager.
-
   - Verify the VXLAN Configuration.
 
 {{%notice note%}}
@@ -277,8 +273,8 @@ vtep-bootstrap` or run the command `vtep-bootstrap --help`.
 After you finish configuring the NSX integration on both the MLAG
 primary and MLAG secondary switch, you need to configure the transport
 and logical layers from the NSX Manager. Refer to
-[Configuring the Transport and Logical Layers (NSX-MH)](../Integrating-Hardware-VTEPs-with-VMware-NSX-MH/#configure-the-transport-and-logical-layers)
-or [Configuring the Transport and Logical Layers (NSX-V](../Integrating-Hardware-VTEPs-with-VMware-NSX-V/#configure-the-transport-and-logical-layers)).
+{{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH/#configure-the-transport-and-logical-layers" text="Configuring the Transport and Logical Layers (NSX-MH)">}}
+or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V/#configure-the-transport-and-logical-layers" text="Configuring the Transport and Logical Layers (NSX-V)">}}.
 
 ## Troubleshooting
 
@@ -300,7 +296,7 @@ following command:
     database: hardware_vtep
 
 To check that the active OVSDB server is connected to the NSX
-controller, run the ` ovsdb-client dump Manager  `command:
+controller, run the `ovsdb-client dump Manager` command:
 
     cumulus@switch:~$ sudo ovsdb-client dump Manager
     Manager table

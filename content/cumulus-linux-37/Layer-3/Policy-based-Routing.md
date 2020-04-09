@@ -40,7 +40,7 @@ To use PBR in Cumulus linux, you define a PBR policy and apply it to the ingress
 
 {{%notice note%}}
 
-For Tomahawk and Tomahawk+ platforms, you must configure the switch to operate in non-atomic mode, which offers better scaling as all TCAM resources are used to actively impact traffic. Add the line `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf` file. For more information, see [Nonatomic Update Mode and Atomic Update Mode](../../System-Configuration/Netfilter-ACLs/#nonatomic-update-mode-and-update-mode).
+For Tomahawk and Tomahawk+ platforms, you must configure the switch to operate in non-atomic mode, which offers better scaling as all TCAM resources are used to actively impact traffic. Add the line `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf` file. For more information, see {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-update-mode" text="Nonatomic Update Mode and Atomic Update Mode">}}.
 
 {{%/notice%}}
 

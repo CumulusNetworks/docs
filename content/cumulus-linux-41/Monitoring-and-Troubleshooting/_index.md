@@ -65,16 +65,16 @@ To change the serial console baud rate:
 
 1. Edit the `/etc/default/grub` file. The two relevant lines in `/etc/default/grub` are as follows; replace the *115200* value with a valid value specified above in the `--speed` variable in the first line and in the `console` variable in the second line:
 
-```
-GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"
-GRUB_CMDLINE_LINUX="console=ttyS1,115200n8 cl_platform=accton_as5712_54x"
-```
+   ```
+   GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"
+   GRUB_CMDLINE_LINUX="console=ttyS1,115200n8 cl_platform=accton_as5712_54x"
+   ```
 
 2. After you save your changes to the grub configuration, type the following at the command prompt:
 
-```
-cumulus@switch:~$ update-grub
-```
+   ```
+   cumulus@switch:~$ update-grub
+   ```
 
 3. If you plan on accessing the switch BIOS over the serial console, you need to update the baud rate in the switch BIOS. For more information, see {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/203884473" text="this knowledge base article">}}.
 
@@ -121,8 +121,8 @@ For information about the version of Cumulus Linux running on the switch, run th
 cumulus@switch:~$ net show version
 NCLU_VERSION=1.0-cl4u1
 DISTRIB_ID="Cumulus Linux"
-DISTRIB_RELEASE=4.0.0
-DISTRIB_DESCRIPTION="Cumulus Linux 4.0.0"
+DISTRIB_RELEASE=4.1.0
+DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
 ```
 
 For general information about the switch, run `net show system`, which gathers information about the switch from a number of files in the system:
@@ -131,7 +131,7 @@ For general information about the switch, run `net show system`, which gathers i
 cumulus@switch:~$ net show system
 Hostname......... celRED
 
-Build............ Cumulus Linux 4.0.0
+Build............ Cumulus Linux 4.1.0
 Uptime........... 8 days, 12:24:01.770000
 
 Model............ Cel REDSTONE
@@ -227,11 +227,11 @@ To send other log files (such as `switchd` logs) to a `syslog` server:
 
 1. Create a file in `/etc/rsyslog.d/`. Make sure the filename starts with a number lower than 99 so that it executes before log messages are dropped in, such as `20-clagd.conf` or `25-switchd.conf`. The example file below is called `/etc/rsyslog.d/11-remotesyslog.conf`. Add content similar to the following:
 
-```
-## Logging switchd messages to remote syslog server
+   ```
+   ## Logging switchd messages to remote syslog server
 
-@192.168.1.2:514
-```
+   @192.168.1.2:514
+   ```
 
    This configuration sends log messages to a remote `syslog` server
    for the following processes: `clagd`, `switchd`, `ptmd`, `rdnbrd`,
@@ -245,25 +245,25 @@ For TCP-based syslog, use two @@ before the IP address *@@192.168.1.2:514*.
 
 Running `syslog` over TCP places a burden on the switch to queue packets in the `syslog` buffer. This may cause detrimental effects if the remote `syslog` server becomes unavailable.
 
-{{%/notice%}}
+   {{%/notice%}}
 
    {{%notice note%}}
 
 The numbering of the files in `/etc/rsyslog.d/` dictates how the rules are installed into `rsyslog.d`. If you want to remotely log only the messages in `/var/syslog` but not those in `/var/log/clagd.log` or `/var/log/switchd.log`, then name the file `98-remotesyslog.conf;` the number in the filename is lower than `/var/syslog` file `99-syslog.conf`.
 
-{{%/notice%}}
+   {{%/notice%}}
 
    {{%notice note%}}
 
 Do not use the `imfile` module with any file written by `rsyslogd`.
 
-{{%/notice%}}
+   {{%/notice%}}
 
 2. Restart `rsyslog`.
 
-```
-cumulus@switch:~$ sudo systemctl restart rsyslog.service
-```
+   ```
+   cumulus@switch:~$ sudo systemctl restart rsyslog.service
+   ```
 
 ### Write to syslog with Management VRF Enabled
 

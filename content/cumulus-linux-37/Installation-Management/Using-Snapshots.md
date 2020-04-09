@@ -7,13 +7,13 @@ aliases:
  - /pages/viewpage.action?pageId=8362648
 pageID: 8362648
 ---
-Cumulus Linux supports the ability to take snapshots of the complete file system as well as the ability to roll back to a previous snapshot. Snapshots are performed automatically right before and after you upgrade Cumulus Linux using [package install](../Upgrading-Cumulus-Linux/), and right before and after you commit a switch configuration using [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/). In addition, you can take a snapshot at any time. You can roll back the entire file system to a specific snapshot or just retrieve specific files.
+Cumulus Linux supports the ability to take snapshots of the complete file system as well as the ability to roll back to a previous snapshot. Snapshots are performed automatically right before and after you upgrade Cumulus Linux using {{<link url="Upgrading-Cumulus-Linux" text="package install">}}, and right before and after you commit a switch configuration using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. In addition, you can take a snapshot at any time. You can roll back the entire file system to a specific snapshot or just retrieve specific files.
 
 The primary snapshot components include:
 
-- [btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page) - an underlying file system in Cumulus Linux, which supports snapshots.
-- [snapper](http://snapper.io/documentation.html) - a userspace utility to create and manage snapshots on demand as well as taking snapshots automatically before and after running `apt-get upgrade|install|remove|dist-upgrade`. You can use `snapper` to roll back to earlier snapshots, view existing snapshots, or delete one or more snapshots.
-- [NCLU](../../System-Configuration/Network-Command-Line-Utility-NCLU/)
+- {{<exlink url="https://btrfs.wiki.kernel.org/index.php/Main_Page" text="btrfs">}} - an underlying file system in Cumulus Linux, which supports snapshots.
+- {{<exlink url="http://snapper.io/documentation.html" text="snapper">}} - a userspace utility to create and manage snapshots on demand as well as taking snapshots automatically before and after running `apt-get upgrade|install|remove|dist-upgrade`. You can use `snapper` to roll back to earlier snapshots, view existing snapshots, or delete one or more snapshots.
+- {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}
  - takes snapshots automatically before and after committing network configurations. You can use NCLU to roll back to earlier snapshots, view existing snapshots, or delete one or more snapshots.
 
 ## Install the Snapshot Package

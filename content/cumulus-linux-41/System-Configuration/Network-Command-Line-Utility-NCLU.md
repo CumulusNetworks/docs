@@ -353,11 +353,11 @@ cumulus@switch:~$ sudo nano /etc/netd.conf
 # 'clear', 'net abort', 'net commit' and restart services
 # to apply those changes
 users_with_edit = root, cumulus, netoperator
-groups_with_edit = root, cumulus
+groups_with_edit = netedit
 
 # Control which users/groups are allowed to run 'show' commands
 users_with_show = root, cumulus, netoperator
-groups_with_show = root, cumulus
+groups_with_show = netshow, netedit
 ```
 
 To configure a new user group to use NCLU, add that group to the `groups_with_edit` and `groups_with_show` lines in the file.

@@ -1,6 +1,8 @@
 <!-- internal Hugo template for google analytics -->
 {{ template "_internal/google_analytics_async.html" . }}
-<script type="text/javascript">
+
+<!-- Marketo data for scoring -->
+<script>
     (function() {
         var didInit = false;
         function initMunchkin() {
@@ -23,6 +25,7 @@
     })();
 </script>
 
+<!-- 6sense data used by demand gen --> 
 <script>
     window._6si = window._6si || [];
     window._6si.push(['enableEventTracking', true]);
@@ -39,6 +42,7 @@
     })();
 </script>
 
+<!-- insided forums menu --> 
 <script>
     (function(w,d,s){var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='//embeddable-widgets-usw2.insided.com/cumulusnetworks-en.insided-conversational.js';f.parentNode.insertBefore(j,f);})(window,document,'script');
 </script>

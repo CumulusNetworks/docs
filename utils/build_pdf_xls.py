@@ -82,6 +82,7 @@ def request_pdf(product):
 def get_dir_list():
     '''
     Get a list of directories to place PDF content into.
+    This ignores all CL versions before 37 and all netq versions before 24
 
     Returns a list of directory names, assuming the "content" folder as a parent
     '''
@@ -105,7 +106,6 @@ def get_xls_files():
     '''
     Generate XLS files from docraptor.
     The process is simpler than PDF process so it is a self-contained method that directly downloads and writes the xls files.
-
     '''
     dir_list = get_dir_list()
     for directory in dir_list:

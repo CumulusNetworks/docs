@@ -11,7 +11,7 @@ toc: 5
 You can now install the NetQ software using the NetQ CLI.
 
 {{<notice info>}}
-This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install NetQ Platform">}} before continuing here.
+This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install NetQ System Platform">}} before continuing here.
 {{</notice>}}
 
 To install NetQ:
@@ -25,11 +25,34 @@ To install NetQ:
     Run the following command on your NetQ platform server or NetQ Appliance:
 
     ```
-    cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-2.4.1.tgz
+    cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-2.4.1.tgz
     ```
 
     {{<notice tip>}}
-You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface eth0</code> above.
+You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface &lt;ifname&gt;</code> above.
+    {{</notice>}}
+
+    Run the `netq show opta-health` command to verify all applications are operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
+
+    ```
+    cumulus@hostname:~$ netq show opta-health
+    Application                                            Status    Namespace      Restarts    Timestamp
+    -----------------------------------------------------  --------  -------------  ----------  ------------------------
+    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2020
+    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2020
+    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2020
+    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2020
+    ...
+    ```
+
+    {{<notice note>}}
+    If any of the applications or services display Status as DOWN after 30 minutes, open a support ticket and attach the output of the <code>opta-support</code> command.
     {{</notice>}}
     </details>
     <details><summary>For On-premises, Server Cluster Deployment</summary>
@@ -43,6 +66,29 @@ You can specify the IP address instead of the interface name here: use <code>ip-
     {{<notice tip>}}
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface eth0</code> above.
     {{</notice>}}
+
+    Run the `netq show opta-health` command to verify all applications are operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
+
+    ```
+    cumulus@hostname:~$ netq show opta-health
+    Application                                            Status    Namespace      Restarts    Timestamp
+    -----------------------------------------------------  --------  -------------  ----------  ------------------------
+    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2020
+    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2020
+    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2020
+    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2020
+    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2020
+    ...
+    ```
+
+    {{<notice note>}}
+    If any of the applications or services display Status as DOWN after 30 minutes, open a support ticket and attach the output of the <code>opta-support</code> command.
+    {{</notice>}}
     </details>
     <details><summary>For Cloud, Single Server Deployment</summary>
 
@@ -55,6 +101,13 @@ You can specify the IP address instead of the interface name here: use <code>ip-
     {{<notice tip>}}
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface eth0</code> above.
     {{</notice>}}
+
+    Run the `netq show opta-health` command to verify all applications are operating properly.
+
+    ```
+    cumulus@hostname:~$ netq show opta-health
+    OPTA is healthy
+    ```
     </details>
     <details><summary>For Cloud, Server Cluster Deployment</summary>
     
@@ -67,4 +120,11 @@ You can specify the IP address instead of the interface name here: use <code>ip-
     {{<notice tip>}}
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface eth0</code> above.
     {{</notice>}}
+
+    Run the `netq show opta-health` command to verify all applications are operating properly.
+
+    ```
+    cumulus@hostname:~$ netq show opta-health
+    OPTA is healthy
+    ```
     </details>

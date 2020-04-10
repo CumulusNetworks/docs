@@ -206,12 +206,16 @@ def build_markdown_header(product, version):
     product - the product_string output, i.e., "Cumulus Linux"
     version - the Major.Minor release version, i.e., "4.0"
     '''
+    if product == "Cumulus Linux":
+        weight = "-30"
+    elif product == "Cumulus NetQ":
+        weight = "635"
     output = []
 
     output.append("---\n")
     output.append("title: {} {} Release Notes\n".format(product, version))
     output.append("author: Cumulus Networks\n")
-    output.append("weight: -30\n")
+    output.append("weight: {}\n".format(weight))
     output.append("product: {}\n".format(product))
     output.append("version: \"{}\"\n".format(version))
     output.append("toc: 1\n")

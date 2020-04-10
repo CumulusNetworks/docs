@@ -43,4 +43,4 @@ title: "Cumulus Networks Documentation Home"
 
 
 ## Contributor Guide
-{{< pageref contributor-guide "Contributor Guide" >}} 
+[Contributor Guide"](/contributor-guide)

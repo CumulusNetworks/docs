@@ -105,7 +105,8 @@ You can optionally specify a port or VRF.
     cumulus@switch:~$ netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf rocket
 
 This example shows how to prevent the agent from consuming no more than 40% of
-CPU resources on a Cumulus Linux switch.
+CPU resources on a Cumulus Linux switch. This setting requires Cumulus Linux
+versions 3.7.12 or later and 4.1.0 or later to be running on the switch.
 
     netq config add agent cpu-limit 40
 

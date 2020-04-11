@@ -1,12 +1,11 @@
 ---
 title: Cumulus NetQ 2.4 Release Notes
 author: Cumulus Networks
-weight: -30
+weight: 635
 product: Cumulus NetQ
 version: "2.4"
 toc: 1
 type: rn
-draft: True
 pdfhidden: True
 ---
 
@@ -17,6 +16,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="NETQ-5182"></a> [NETQ-5182](#NETQ-5182) <a name="NETQ-5182"></a> | When a switch or host reports its memory size in GB rather than MB, the NetQ Agent cannot parse the information and thus fails to register with the NetQ server. Contact customer support if you run into this issue. | 2.4.0-2.4.1 | |
 | <a name="NETQ-4927"></a> [NETQ-4927](#NETQ-4927) <a name="NETQ-4927"></a> | Admin UI: If the Master Installation phase fails during NetQ installation, refreshing the page causes the error log to be lost. On failure, download the error log, then run `netq bootstrap reset` followed by `netq bootstrap master interface` on the node before restarting the installation process. | 2.4.1 | |
 | <a name="NETQ-3451"></a> [NETQ-3451](#NETQ-3451) <a name="NETQ-3451"></a> | NetQ UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session. | 2.3.0-2.4.1 | |
 
@@ -32,6 +32,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="NETQ-5182"></a> [NETQ-5182](#NETQ-5182) <a name="NETQ-5182"></a> | When a switch or host reports its memory size in GB rather than MB, the NetQ Agent cannot parse the information and thus fails to register with the NetQ server. Contact customer support if you run into this issue. | 2.4.0 | |
 | <a name="NETQ-4419"></a> [NETQ-4419](#NETQ-4419) <a name="NETQ-4419"></a> | NetQ Admin UI: When installing NetQ with the Admin UI, the job status is presented to show progress. However, when an error is encountered while running individual tasks, the UI may feel unresponsive. Please wait for at least 15 minutes to receive a response. | 2.4.0 | |
 | <a name="NETQ-4113"></a> [NETQ-4113](#NETQ-4113) <a name="NETQ-4113"></a> | NetQ UI: On medium- and large-sized Scheduled Trace cards, the destination field does not accept IPv6 addresses. They are reported as invalid destination IP addresses. The source field on these cards accepts IPv6 addresses. | 2.3.1-2.4.0 | |
 | <a name="NETQ-3916"></a> [NETQ-3916](#NETQ-3916) <a name="NETQ-3916"></a> | NetQ UI and CLI: EVPN failure details do not appear in the full screen EVPN Service card or when running 'netq show validation results type evpn' in the NetQ CLI, even though the EVPN failure is seen on validation. | 2.3.1-2.4.0 | |

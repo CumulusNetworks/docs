@@ -83,7 +83,7 @@ You must enable PIM on all interfaces facing multicast sources or multicast rece
 
    {{%notice note%}}
 
-In Cumulus Linux  and later the *sm* keyword is no longer required. In Cumulus Linux releases 3.7 and earlier, the correct command is `net add interface swp1 pim sm`.
+In Cumulus Linux 4.0 and later the *sm* keyword is no longer required. In Cumulus Linux releases 3.7 and earlier, the correct command is `net add interface swp1 pim sm`.
 
    {{%/notice%}}
 

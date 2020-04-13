@@ -10,7 +10,7 @@ pdfhidden: True
 ---
 
 
-<a href="/cumulus-linux-41/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.0 Release Notes xls" />&nbsp;&nbsp;&nbsp;&nbsp;Download all 4.0 release notes as .xls</a>
+<a href="/cumulus-linux-40/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.0 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-linux-40/rn.xls">Download all 4.0 release notes as .xls</a>
 ## 4.0.0 Release Notes
 ### Open issues in 4.0.0
 

@@ -1,9 +1,9 @@
 ---
-title: Cumulus NetQ 2.4 Release Notes
+title: Cumulus NetQ 3.0 Release Notes
 author: Cumulus Networks
-weight: 635
+weight: 652
 product: Cumulus NetQ
-version: "2.4"
+version: "3.0"
 toc: 1
 type: rn
 pdfhidden: True

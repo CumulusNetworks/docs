@@ -1,7 +1,7 @@
 ---
 title: Application Management
 author: Cumulus Networks
-weight: 630
+weight: 310
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950

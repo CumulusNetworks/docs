@@ -14,33 +14,33 @@ pdfhidden: True
 | Package | Version | License(s) |
 |---	        |---	        |---	    |
 | [acpica-tools](/cumulus-linux-41/Whats-New/licenses/acpica-tools.txt) | 20160831-1 | Dual GPLv2/ACPICA Licence;GPL;GPL-2 |
-| [audisp-tacplus](/cumulus-linux-41/Whats-New/licenses/audisp-tacplus.txt) | 1.0.3-cl4u1 | GPL-2+(*);GPL-2+(*) |
-| [bcm-dbg-tools](/cumulus-linux-41/Whats-New/licenses/bcm-dbg-tools.txt) | 6.5.14-cl4u3 | Cumulus Proprietary(*);GPL-2(debian/*) |
-| [bcm-sdk](/cumulus-linux-41/Whats-New/licenses/bcm-sdk.txt) | 6.5.14-cl4u3 | Cumulus Proprietary(*);GPL-2(debian/*) |
-| [bcm-sdk-dbg](/cumulus-linux-41/Whats-New/licenses/bcm-sdk-dbg.txt) | 6.5.14-cl4u3 | Cumulus Proprietary(*);GPL-2(debian/*) |
-| [bcm-sdk-dev](/cumulus-linux-41/Whats-New/licenses/bcm-sdk-dev.txt) | 6.5.14-cl4u3 | Cumulus Proprietary(*);GPL-2(debian/*) |
-| [bcm-utils](/cumulus-linux-41/Whats-New/licenses/bcm-utils.txt) | 6.5.14-cl4u3 | Cumulus Proprietary(*);GPL-2(debian/*) |
+| [audisp-tacplus](/cumulus-linux-41/Whats-New/licenses/audisp-tacplus.txt) | 1.0.3-cl4u1 | GPL-2+(&#42;);GPL-2+(&#42;) |
+| [bcm-dbg-tools](/cumulus-linux-41/Whats-New/licenses/bcm-dbg-tools.txt) | 6.5.14-cl4u3 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [bcm-sdk](/cumulus-linux-41/Whats-New/licenses/bcm-sdk.txt) | 6.5.14-cl4u3 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [bcm-sdk-dbg](/cumulus-linux-41/Whats-New/licenses/bcm-sdk-dbg.txt) | 6.5.14-cl4u3 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [bcm-sdk-dev](/cumulus-linux-41/Whats-New/licenses/bcm-sdk-dev.txt) | 6.5.14-cl4u3 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [bcm-utils](/cumulus-linux-41/Whats-New/licenses/bcm-utils.txt) | 6.5.14-cl4u3 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
 | [bridge-utils](/cumulus-linux-41/Whats-New/licenses/bridge-utils.txt) | 1.5-9-cl4u1 | GPL;GPL-2 |
-| [clag](/cumulus-linux-41/Whats-New/licenses/clag.txt) | 1.3.0-cl4u3 | Cumulus Networks Proprietary(*);GPL-2(debian/*);Cumulus Networks Proprietary(debian/*);GPL-2(debian/*) |
+| [clag](/cumulus-linux-41/Whats-New/licenses/clag.txt) | 1.3.0-cl4u3 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;);Cumulus Networks Proprietary(debian/&#42;);GPL-2(debian/&#42;) |
 | [cl-parsers](/cumulus-linux-41/Whats-New/licenses/cl-parsers.txt) | 4.0-cl4u2 | Cumulus Networks Proprietary |
 | [cron](/cumulus-linux-41/Whats-New/licenses/cron.txt) | 3.0pl1-133-cl4u1 | Artistic;GPL;GPL-2;GPL-2+;ISC;Paul-Vixie's-license |
 | [cumulus-archive-keyring](/cumulus-linux-41/Whats-New/licenses/cumulus-archive-keyring.txt) | 4-cl4u2 | Cumulus Networks Proprietary |
-| [cumulus-basefiles](/cumulus-linux-41/Whats-New/licenses/cumulus-basefiles.txt) | 4.1.1 | GPL-2(*) |
-| [cumulus-hyperconverged](/cumulus-linux-41/Whats-New/licenses/cumulus-hyperconverged.txt) | 0.1-cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*);Cumulus Networks Proprietary(debian/*);GPL-2(debian/*) |
-| [cumulus-image](/cumulus-linux-41/Whats-New/licenses/cumulus-image.txt) | 4.0-cl4u1 | GPL-2(*);GPL-2(debian/*);GPL-2(debian/*) |
-| [cumulus-initramfs](/cumulus-linux-41/Whats-New/licenses/cumulus-initramfs.txt) | 4.0-cl4u2 | GPL-2(*) |
-| [cumulus-local-apt-archive](/cumulus-linux-41/Whats-New/licenses/cumulus-local-apt-archive.txt) | 1.0.0-cl4u1 | Cumulus Proprietary(*) |
-| [cumulus-net-snmp-addons](/cumulus-linux-41/Whats-New/licenses/cumulus-net-snmp-addons.txt) | 1-cl4u4 | GPL-2(*);GPL-2(debian/*) |
-| [cumulus-newpackages-bcm](/cumulus-linux-41/Whats-New/licenses/cumulus-newpackages-bcm.txt) | 1.0.0-cl4u1 | GPL-3.0+(*);GPL-3.0+(debian/*);GPL-3.0+(debian/*) |
-| [cumulus-newpackages-mlx](/cumulus-linux-41/Whats-New/licenses/cumulus-newpackages-mlx.txt) | 1.0.0-cl4u1 | GPL-3.0+(*);GPL-3.0+(debian/*);GPL-3.0+(debian/*) |
-| [cumulus-newpackages-vx](/cumulus-linux-41/Whats-New/licenses/cumulus-newpackages-vx.txt) | 1.0.0-cl4u1 | GPL-3.0+(*);GPL-3.0+(debian/*);GPL-3.0+(debian/*) |
-| [cumulus-onie](/cumulus-linux-41/Whats-New/licenses/cumulus-onie.txt) | 0.12-cl4u6 | GPL-2+(*) |
-| [cumulus-onie-firmware](/cumulus-linux-41/Whats-New/licenses/cumulus-onie-firmware.txt) | 0.12-cl4u6 | GPL-2+(*) |
-| [cumulus-overrides](/cumulus-linux-41/Whats-New/licenses/cumulus-overrides.txt) | 4.0-cl4u4 | Cumulus Networks Proprietary(*);GPL-2(debian/*) |
-| [cumulus-platform](/cumulus-linux-41/Whats-New/licenses/cumulus-platform.txt) | 4.0-cl4u2 | Cumulus Networks Proprietary(*);GPL-2(dist-packages/eeprom_ipmi_fru.py);Elagin(dist-packages/cumulus/sdnotify.py);MIT(dist-packages/ordereddict.py);GPL-2(debian/*) |
-| [cumulus-poe](/cumulus-linux-41/Whats-New/licenses/cumulus-poe.txt) | 4.0-cl4u3 | Cumulus Proprietary(*);GPL-2(debian/*) |
-| [cumulus-tools](/cumulus-linux-41/Whats-New/licenses/cumulus-tools.txt) | 4.0-cl4u4 | Cumulus Networks Proprietary(*);GPL-2(debian/*);Cumulus Networks Proprietary(debian/*.8 |
-| [dmidecode](/cumulus-linux-41/Whats-New/licenses/dmidecode.txt) | 3.0-cl3u4 | GPL-2(*);GPL-2(debian/*) |
+| [cumulus-basefiles](/cumulus-linux-41/Whats-New/licenses/cumulus-basefiles.txt) | 4.1.1 | GPL-2(&#42;) |
+| [cumulus-hyperconverged](/cumulus-linux-41/Whats-New/licenses/cumulus-hyperconverged.txt) | 0.1-cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;);Cumulus Networks Proprietary(debian/&#42;);GPL-2(debian/&#42;) |
+| [cumulus-image](/cumulus-linux-41/Whats-New/licenses/cumulus-image.txt) | 4.0-cl4u1 | GPL-2(&#42;);GPL-2(debian/&#42;);GPL-2(debian/&#42;) |
+| [cumulus-initramfs](/cumulus-linux-41/Whats-New/licenses/cumulus-initramfs.txt) | 4.0-cl4u2 | GPL-2(&#42;) |
+| [cumulus-local-apt-archive](/cumulus-linux-41/Whats-New/licenses/cumulus-local-apt-archive.txt) | 1.0.0-cl4u1 | Cumulus Proprietary(&#42;) |
+| [cumulus-net-snmp-addons](/cumulus-linux-41/Whats-New/licenses/cumulus-net-snmp-addons.txt) | 1-cl4u4 | GPL-2(&#42;);GPL-2(debian/&#42;) |
+| [cumulus-newpackages-bcm](/cumulus-linux-41/Whats-New/licenses/cumulus-newpackages-bcm.txt) | 1.0.0-cl4u1 | GPL-3.0+(&#42;);GPL-3.0+(debian/&#42;);GPL-3.0+(debian/&#42;) |
+| [cumulus-newpackages-mlx](/cumulus-linux-41/Whats-New/licenses/cumulus-newpackages-mlx.txt) | 1.0.0-cl4u1 | GPL-3.0+(&#42;);GPL-3.0+(debian/&#42;);GPL-3.0+(debian/&#42;) |
+| [cumulus-newpackages-vx](/cumulus-linux-41/Whats-New/licenses/cumulus-newpackages-vx.txt) | 1.0.0-cl4u1 | GPL-3.0+(&#42;);GPL-3.0+(debian/&#42;);GPL-3.0+(debian/&#42;) |
+| [cumulus-onie](/cumulus-linux-41/Whats-New/licenses/cumulus-onie.txt) | 0.12-cl4u6 | GPL-2+(&#42;) |
+| [cumulus-onie-firmware](/cumulus-linux-41/Whats-New/licenses/cumulus-onie-firmware.txt) | 0.12-cl4u6 | GPL-2+(&#42;) |
+| [cumulus-overrides](/cumulus-linux-41/Whats-New/licenses/cumulus-overrides.txt) | 4.0-cl4u4 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [cumulus-platform](/cumulus-linux-41/Whats-New/licenses/cumulus-platform.txt) | 4.0-cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(dist-packages/eeprom_ipmi_fru.py);Elagin(dist-packages/cumulus/sdnotify.py);MIT(dist-packages/ordereddict.py);GPL-2(debian/&#42;) |
+| [cumulus-poe](/cumulus-linux-41/Whats-New/licenses/cumulus-poe.txt) | 4.0-cl4u3 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [cumulus-tools](/cumulus-linux-41/Whats-New/licenses/cumulus-tools.txt) | 4.0-cl4u4 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;);Cumulus Networks Proprietary(debian/&#42;.8 |
+| [dmidecode](/cumulus-linux-41/Whats-New/licenses/dmidecode.txt) | 3.0-cl3u4 | GPL-2(&#42;);GPL-2(debian/&#42;) |
 | [ebtables](/cumulus-linux-41/Whats-New/licenses/ebtables.txt) | 2.0.10.4-3-cl4u1 | GPL;GPL-2 |
 | [ethtool](/cumulus-linux-41/Whats-New/licenses/ethtool.txt) | 4.19.0-cl4u1 | GPL;GPL-2 |
 | [ethtool-dbg](/cumulus-linux-41/Whats-New/licenses/ethtool-dbg.txt) | 4.19.0-cl4u1 | GPL;GPL-2 |
@@ -61,7 +61,7 @@ pdfhidden: True
 | [grub-uboot-dbg](/cumulus-linux-41/Whats-New/licenses/grub-uboot-dbg.txt) | 2.02+dfsg1-cl4u1 | CC-BY-SA-3.0;Expat;GPL;GPL-3;GPL-3+ |
 | [hsflowd](/cumulus-linux-41/Whats-New/licenses/hsflowd.txt) | 2.0.11-cl4u1 | Adaptive |
 | [hw-management](/cumulus-linux-41/Whats-New/licenses/hw-management.txt) | 1.0-cl4u3 | NO LICENSE FOUND |
-| [ifupdown2](/cumulus-linux-41/Whats-New/licenses/ifupdown2.txt) | 2.0.1-cl4u2 | GPL-2(*);GPL-2(debian/*);GPL-2(debian/*) |
+| [ifupdown2](/cumulus-linux-41/Whats-New/licenses/ifupdown2.txt) | 2.0.1-cl4u2 | GPL-2(&#42;);GPL-2(debian/&#42;);GPL-2(debian/&#42;) |
 | [iproute2](/cumulus-linux-41/Whats-New/licenses/iproute2.txt) | 4.19.0-cl4u2 | GPL;GPL-2 |
 | [iproute2-doc](/cumulus-linux-41/Whats-New/licenses/iproute2-doc.txt) | 4.19.0-cl4u2 | GPL;GPL-2 |
 | [iptables](/cumulus-linux-41/Whats-New/licenses/iptables.txt) | 1.8.2-3-cl4u1 | Artistic-2;custom;GPL;GPL-2;GPL-2+ |
@@ -85,7 +85,7 @@ pdfhidden: True
 | [isc-dhcp-relay](/cumulus-linux-41/Whats-New/licenses/isc-dhcp-relay.txt) | 4.4.1-cl4u4 | GPL;GPL-2;ISC;MPL-2;MPL-2.0 |
 | [isc-dhcp-server](/cumulus-linux-41/Whats-New/licenses/isc-dhcp-server.txt) | 4.4.1-cl4u4 | GPL;GPL-2;ISC;MPL-2;MPL-2.0 |
 | [isc-dhcp-server-ldap](/cumulus-linux-41/Whats-New/licenses/isc-dhcp-server-ldap.txt) | 4.4.1-cl4u4 | GPL;GPL-2;ISC;MPL-2;MPL-2.0 |
-| [libdb5.3](/cumulus-linux-41/Whats-New/licenses/libdb5.3.txt) | 9999-cl4u1 | GPL-2(*);GPL-2(debian/*) |
+| [libdb5.3](/cumulus-linux-41/Whats-New/licenses/libdb5.3.txt) | 9999-cl4u1 | GPL-2(&#42;);GPL-2(debian/&#42;) |
 | [libnl-3-200](/cumulus-linux-41/Whats-New/licenses/libnl-3-200.txt) | 3.2.27-cl4u2 | GPL;GPL-2;LGPL-2 |
 | [libnl-3-200-dbg](/cumulus-linux-41/Whats-New/licenses/libnl-3-200-dbg.txt) | 3.2.27-cl4u2 | GPL;GPL-2;LGPL-2 |
 | [libnl-3-dev](/cumulus-linux-41/Whats-New/licenses/libnl-3-dev.txt) | 3.2.27-cl4u2 | GPL;GPL-2;LGPL-2 |
@@ -100,17 +100,17 @@ pdfhidden: True
 | [libnl-route-3-200](/cumulus-linux-41/Whats-New/licenses/libnl-route-3-200.txt) | 3.2.27-cl4u2 | GPL;GPL-2;LGPL-2 |
 | [libnl-route-3-dev](/cumulus-linux-41/Whats-New/licenses/libnl-route-3-dev.txt) | 3.2.27-cl4u2 | GPL;GPL-2;LGPL-2 |
 | [libnl-utils](/cumulus-linux-41/Whats-New/licenses/libnl-utils.txt) | 3.2.27-cl4u2 | GPL;GPL-2;LGPL-2 |
-| [libnss-mapuser](/cumulus-linux-41/Whats-New/licenses/libnss-mapuser.txt) | 1.1.0-cl4u1 | GPL-2+(*) |
-| [libnss-tacplus](/cumulus-linux-41/Whats-New/licenses/libnss-tacplus.txt) | 1.0.4-cl4u1 | GPL-2+(*) |
-| [libpam-radius-auth](/cumulus-linux-41/Whats-New/licenses/libpam-radius-auth.txt) | 1.5.0-cl4u1 | GPL-2+(*) |
-| [radius-shell](/cumulus-linux-41/Whats-New/licenses/radius-shell.txt) | 1.5.0-cl4u1 | GPL-2+(*) |
+| [libnss-mapuser](/cumulus-linux-41/Whats-New/licenses/libnss-mapuser.txt) | 1.1.0-cl4u1 | GPL-2+(&#42;) |
+| [libnss-tacplus](/cumulus-linux-41/Whats-New/licenses/libnss-tacplus.txt) | 1.0.4-cl4u1 | GPL-2+(&#42;) |
+| [libpam-radius-auth](/cumulus-linux-41/Whats-New/licenses/libpam-radius-auth.txt) | 1.5.0-cl4u1 | GPL-2+(&#42;) |
+| [radius-shell](/cumulus-linux-41/Whats-New/licenses/radius-shell.txt) | 1.5.0-cl4u1 | GPL-2+(&#42;) |
 | [libpam-tacplus](/cumulus-linux-41/Whats-New/licenses/libpam-tacplus.txt) | 1.4.3-cl4u1 | GPL;GPL-2 |
 | [libpam-tacplus-dev](/cumulus-linux-41/Whats-New/licenses/libpam-tacplus-dev.txt) | 1.4.3-cl4u1 | GPL;GPL-2 |
 | [libtac2](/cumulus-linux-41/Whats-New/licenses/libtac2.txt) | 1.4.3-cl4u1 | GPL;GPL-2 |
 | [libtac2-bin](/cumulus-linux-41/Whats-New/licenses/libtac2-bin.txt) | 1.4.3-cl4u1 | GPL;GPL-2 |
 | [libtac-dev](/cumulus-linux-41/Whats-New/licenses/libtac-dev.txt) | 1.4.3-cl4u1 | GPL;GPL-2 |
-| [libtacplus-map1](/cumulus-linux-41/Whats-New/licenses/libtacplus-map1.txt) | 1.0.1-cl4u1 | GPL-2+(*);GPL-2+(*) |
-| [libtacplus-map-dev](/cumulus-linux-41/Whats-New/licenses/libtacplus-map-dev.txt) | 1.0.1-cl4u1 | GPL-2+(*);GPL-2+(*) |
+| [libtacplus-map1](/cumulus-linux-41/Whats-New/licenses/libtacplus-map1.txt) | 1.0.1-cl4u1 | GPL-2+(&#42;);GPL-2+(&#42;) |
+| [libtacplus-map-dev](/cumulus-linux-41/Whats-New/licenses/libtacplus-map-dev.txt) | 1.0.1-cl4u1 | GPL-2+(&#42;);GPL-2+(&#42;) |
 | [l1-tools](/cumulus-linux-41/Whats-New/licenses/l1-tools.txt) | 4.0-cl4u2 | Cumulus Networks Proprietary |
 | [linux-doc](/cumulus-linux-41/Whats-New/licenses/linux-doc.txt) | 4.19+63+cl4u1 | GPL;GPL-2 |
 | [linux-headers-amd64](/cumulus-linux-41/Whats-New/licenses/linux-headers-amd64.txt) | 4.19+63+cl4u1 | GPL;GPL-2 |
@@ -121,36 +121,36 @@ pdfhidden: True
 | [linux-image-debug-amd64-dbg](/cumulus-linux-41/Whats-New/licenses/linux-image-debug-amd64-dbg.txt) | 4.19+63+cl4u1 | GPL;GPL-2 |
 | [linux-source](/cumulus-linux-41/Whats-New/licenses/linux-source.txt) | 4.19+63+cl4u1 | GPL;GPL-2 |
 | [linux-tools](/cumulus-linux-41/Whats-New/licenses/linux-tools.txt) | 4.19+63+cl4u1 | GPL;GPL-2 |
-| [linux-headers-4.19.0-cl-1-all](/cumulus-linux-41/Whats-New/licenses/linux-headers-4.19.0-cl-1-all.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-headers-4.19.0-cl-1-all-amd64](/cumulus-linux-41/Whats-New/licenses/linux-headers-4.19.0-cl-1-all-amd64.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-headers-4.19.0-cl-1-all-armel](/cumulus-linux-41/Whats-New/licenses/linux-headers-4.19.0-cl-1-all-armel.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-headers-4.19.0-cl-1-common](/cumulus-linux-41/Whats-New/licenses/linux-headers-4.19.0-cl-1-common.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-headers-4.19.0-cl-1-common-debug](/cumulus-linux-41/Whats-New/licenses/linux-headers-4.19.0-cl-1-common-debug.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-image-4.19.0-cl-1-amd64](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-amd64.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-image-4.19.0-cl-1-amd64-dbg](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-amd64-dbg.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-image-4.19.0-cl-1-debug-amd64](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-debug-amd64.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-image-4.19.0-cl-1-debug-amd64-dbg](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-debug-amd64-dbg.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-image-4.19.0-cl-1-debug-iproc](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-debug-iproc.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-image-4.19.0-cl-1-debug-iproc-dbg](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-debug-iproc-dbg.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-image-4.19.0-cl-1-iproc](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-iproc.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-image-4.19.0-cl-1-iproc-dbg](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-iproc-dbg.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-libc-dev](/cumulus-linux-41/Whats-New/licenses/linux-libc-dev.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-source-4.19](/cumulus-linux-41/Whats-New/licenses/linux-source-4.19.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linux-support-4.19.0-cl-1](/cumulus-linux-41/Whats-New/licenses/linux-support-4.19.0-cl-1.txt) | 4.19.94-1+cl4u3 | GPL-2(*);GPL-2(debian/*);Unicode-data(fs/nls/mac-*);Xen-interface(include/xen/interface/*) |
-| [linuxptp](/cumulus-linux-41/Whats-New/licenses/linuxptp.txt) | 1.8-cl4u1 | GPL-2(*);GPL-2(fault.c fault.h);GPL-2(phc_ctl.c);GPL-2(clockadj.h);GPL-2(address.h notification.h);GPL-2(debian/*);GPL-2(debian/*.service) |
+| [linux-headers-4.19.0-cl-1-all](/cumulus-linux-41/Whats-New/licenses/linux-headers-4.19.0-cl-1-all.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-headers-4.19.0-cl-1-all-amd64](/cumulus-linux-41/Whats-New/licenses/linux-headers-4.19.0-cl-1-all-amd64.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-headers-4.19.0-cl-1-all-armel](/cumulus-linux-41/Whats-New/licenses/linux-headers-4.19.0-cl-1-all-armel.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-headers-4.19.0-cl-1-common](/cumulus-linux-41/Whats-New/licenses/linux-headers-4.19.0-cl-1-common.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-headers-4.19.0-cl-1-common-debug](/cumulus-linux-41/Whats-New/licenses/linux-headers-4.19.0-cl-1-common-debug.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-image-4.19.0-cl-1-amd64](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-amd64.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-image-4.19.0-cl-1-amd64-dbg](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-amd64-dbg.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-image-4.19.0-cl-1-debug-amd64](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-debug-amd64.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-image-4.19.0-cl-1-debug-amd64-dbg](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-debug-amd64-dbg.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-image-4.19.0-cl-1-debug-iproc](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-debug-iproc.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-image-4.19.0-cl-1-debug-iproc-dbg](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-debug-iproc-dbg.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-image-4.19.0-cl-1-iproc](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-iproc.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-image-4.19.0-cl-1-iproc-dbg](/cumulus-linux-41/Whats-New/licenses/linux-image-4.19.0-cl-1-iproc-dbg.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-libc-dev](/cumulus-linux-41/Whats-New/licenses/linux-libc-dev.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-source-4.19](/cumulus-linux-41/Whats-New/licenses/linux-source-4.19.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linux-support-4.19.0-cl-1](/cumulus-linux-41/Whats-New/licenses/linux-support-4.19.0-cl-1.txt) | 4.19.94-1+cl4u3 | GPL-2(&#42;);GPL-2(debian/&#42;);Unicode-data(fs/nls/mac-&#42;);Xen-interface(include/xen/interface/&#42;) |
+| [linuxptp](/cumulus-linux-41/Whats-New/licenses/linuxptp.txt) | 1.8-cl4u1 | GPL-2(&#42;);GPL-2(fault.c fault.h);GPL-2(phc_ctl.c);GPL-2(clockadj.h);GPL-2(address.h notification.h);GPL-2(debian/&#42;);GPL-2(debian/&#42;.service) |
 | [liblldpctl-dev](/cumulus-linux-41/Whats-New/licenses/liblldpctl-dev.txt) | 1.0.4-0-cl4u3 | APSL-2;BSD;BSD-2-clause;BSD-3-clause;Expat;GPL;GPL-2;GPL-2+;GPL-2+ with Autoconf exception;ISC;permissive |
 | [lldpd](/cumulus-linux-41/Whats-New/licenses/lldpd.txt) | 1.0.4-0-cl4u3 | APSL-2;BSD;BSD-2-clause;BSD-3-clause;Expat;GPL;GPL-2;GPL-2+;GPL-2+ with Autoconf exception;ISC;permissive |
 | [lldpd-dbg](/cumulus-linux-41/Whats-New/licenses/lldpd-dbg.txt) | 1.0.4-0-cl4u3 | APSL-2;BSD;BSD-2-clause;BSD-3-clause;Expat;GPL;GPL-2;GPL-2+;GPL-2+ with Autoconf exception;ISC;permissive |
-| [mlnx-en-utils](/cumulus-linux-41/Whats-New/licenses/mlnx-en-utils.txt) | 4.2-1.0.1.0.g75959ea | GPL-2(*) |
-| [mlnx-fw-updater](/cumulus-linux-41/Whats-New/licenses/mlnx-fw-updater.txt) | 4.2-1.0.1.0 | Proprietary(*) |
+| [mlnx-en-utils](/cumulus-linux-41/Whats-New/licenses/mlnx-en-utils.txt) | 4.2-1.0.1.0.g75959ea | GPL-2(&#42;) |
+| [mlnx-fw-updater](/cumulus-linux-41/Whats-New/licenses/mlnx-fw-updater.txt) | 4.2-1.0.1.0 | Proprietary(&#42;) |
 | [kernel-mft-dkms-4.19.0-cl-1-amd64](/cumulus-linux-41/Whats-New/licenses/kernel-mft-dkms-4.19.0-cl-1-amd64.txt) | 4.12.0.11-cl4u2.b1 | NO LICENSE FOUND |
 | [mft](/cumulus-linux-41/Whats-New/licenses/mft.txt) | 4.12.0.11-cl4u2.b1 | NO LICENSE FOUND |
 | [mft-oem](/cumulus-linux-41/Whats-New/licenses/mft-oem.txt) | 4.12.0.11-cl4u2.b1 | NO LICENSE FOUND |
 | [mstflint](/cumulus-linux-41/Whats-New/licenses/mstflint.txt) | 4.8.0-1.4.g501cec1.42100 | GPL;GPL-2;GPL-2+;<special license> |
 | [mstpd](/cumulus-linux-41/Whats-New/licenses/mstpd.txt) | 0.r37-cl4u1 | GPL;GPL-2;GPLv2. |
 | [mstpd-dbg](/cumulus-linux-41/Whats-New/licenses/mstpd-dbg.txt) | 0.r37-cl4u1 | GPL;GPL-2;GPLv2. |
-| [nclu](/cumulus-linux-41/Whats-New/licenses/nclu.txt) | 1.0-cl4u5 | Cumulus Networks Proprietary(*);GPL-2(debian/*);Cumulus Networks Proprietary(debian/*.8 |
-| [neighmgrd](/cumulus-linux-41/Whats-New/licenses/neighmgrd.txt) | 4.0-cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*);Cumulus Networks Proprietary(debian/*);GPL-2(debian/*) |
+| [nclu](/cumulus-linux-41/Whats-New/licenses/nclu.txt) | 1.0-cl4u5 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;);Cumulus Networks Proprietary(debian/&#42;.8 |
+| [neighmgrd](/cumulus-linux-41/Whats-New/licenses/neighmgrd.txt) | 4.0-cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;);Cumulus Networks Proprietary(debian/&#42;);GPL-2(debian/&#42;) |
 | [libsnmp35](/cumulus-linux-41/Whats-New/licenses/libsnmp35.txt) | 5.8.0-cl4u7 | BSD |
 | [libsnmp-base](/cumulus-linux-41/Whats-New/licenses/libsnmp-base.txt) | 5.8.0-cl4u7 | BSD |
 | [libsnmp-perl](/cumulus-linux-41/Whats-New/licenses/libsnmp-perl.txt) | 5.8.0-cl4u7 | BSD |
@@ -159,8 +159,8 @@ pdfhidden: True
 | [ntpdate](/cumulus-linux-41/Whats-New/licenses/ntpdate.txt) | 4.2.8p12+dfsg-4+cl4u9 | ISC |
 | [ntp-doc](/cumulus-linux-41/Whats-New/licenses/ntp-doc.txt) | 4.2.8p12+dfsg-4+cl4u9 | NO LICENSE FOUND |
 | [sntp](/cumulus-linux-41/Whats-New/licenses/sntp.txt) | 4.2.8p12+dfsg-4+cl4u9 | ISC |
-| [onie-tools](/cumulus-linux-41/Whats-New/licenses/onie-tools.txt) | 3.2-cl4u1 | GPL-2(*);GPL-2(debian/*) |
-| [onie-u-boot](/cumulus-linux-41/Whats-New/licenses/onie-u-boot.txt) | 0.5-cl4u1 | GPL-2.0+(*);GPL-2.0+(*) |
+| [onie-tools](/cumulus-linux-41/Whats-New/licenses/onie-tools.txt) | 3.2-cl4u1 | GPL-2(&#42;);GPL-2(debian/&#42;) |
+| [onie-u-boot](/cumulus-linux-41/Whats-New/licenses/onie-u-boot.txt) | 0.5-cl4u1 | GPL-2.0+(&#42;);GPL-2.0+(&#42;) |
 | [openvswitch-brcompat](/cumulus-linux-41/Whats-New/licenses/openvswitch-brcompat.txt) | 2.8.90-1-cl4u2 | NO LICENSE FOUND |
 | [openvswitch-common](/cumulus-linux-41/Whats-New/licenses/openvswitch-common.txt) | 2.8.90-1-cl4u2 | LGPL-2.1 |
 | [openvswitch-controller](/cumulus-linux-41/Whats-New/licenses/openvswitch-controller.txt) | 2.8.90-1-cl4u2 | NO LICENSE FOUND |
@@ -173,51 +173,51 @@ pdfhidden: True
 | [openvswitch-vtep](/cumulus-linux-41/Whats-New/licenses/openvswitch-vtep.txt) | 2.8.90-1-cl4u2 | LGPL-2.1 |
 | [ovsdbmonitor](/cumulus-linux-41/Whats-New/licenses/ovsdbmonitor.txt) | 2.8.90-1-cl4u2 | LGPL-2.1 |
 | [python-openvswitch](/cumulus-linux-41/Whats-New/licenses/python-openvswitch.txt) | 2.8.90-1-cl4u2 | LGPL-2.1 |
-| [platform-modules-4.19.0-cl-1-amd64](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-amd64.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*) |
-| [platform-modules-4.19.0-cl-1-amd64-dbg](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-amd64-dbg.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*) |
-| [platform-modules-4.19.0-cl-1-debug-amd64](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-debug-amd64.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*) |
-| [platform-modules-4.19.0-cl-1-debug-amd64-dbg](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-debug-amd64-dbg.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*) |
-| [platform-modules-4.19.0-cl-1-debug-iproc](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-debug-iproc.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*) |
-| [platform-modules-4.19.0-cl-1-debug-iproc-dbg](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-debug-iproc-dbg.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*) |
-| [platform-modules-4.19.0-cl-1-iproc](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-iproc.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*) |
-| [platform-modules-4.19.0-cl-1-iproc-dbg](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-iproc-dbg.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*) |
-| [portwd](/cumulus-linux-41/Whats-New/licenses/portwd.txt) | 4.0-cl4u2 | GPL-2(*) |
-| [libptm-dev](/cumulus-linux-41/Whats-New/licenses/libptm-dev.txt) | 4.0-cl4u1.b1 | EPL-1(*);GPL-2(debian/*) |
-| [ptmd](/cumulus-linux-41/Whats-New/licenses/ptmd.txt) | 4.0-cl4u1.b1 | EPL-1(*);GPL-2(debian/*) |
+| [platform-modules-4.19.0-cl-1-amd64](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-amd64.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [platform-modules-4.19.0-cl-1-amd64-dbg](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-amd64-dbg.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [platform-modules-4.19.0-cl-1-debug-amd64](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-debug-amd64.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [platform-modules-4.19.0-cl-1-debug-amd64-dbg](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-debug-amd64-dbg.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [platform-modules-4.19.0-cl-1-debug-iproc](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-debug-iproc.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [platform-modules-4.19.0-cl-1-debug-iproc-dbg](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-debug-iproc-dbg.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [platform-modules-4.19.0-cl-1-iproc](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-iproc.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [platform-modules-4.19.0-cl-1-iproc-dbg](/cumulus-linux-41/Whats-New/licenses/platform-modules-4.19.0-cl-1-iproc-dbg.txt) | 4.0+cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [portwd](/cumulus-linux-41/Whats-New/licenses/portwd.txt) | 4.0-cl4u2 | GPL-2(&#42;) |
+| [libptm-dev](/cumulus-linux-41/Whats-New/licenses/libptm-dev.txt) | 4.0-cl4u1.b1 | EPL-1(&#42;);GPL-2(debian/&#42;) |
+| [ptmd](/cumulus-linux-41/Whats-New/licenses/ptmd.txt) | 4.0-cl4u1.b1 | EPL-1(&#42;);GPL-2(debian/&#42;) |
 | [python3-jsonschema](/cumulus-linux-41/Whats-New/licenses/python3-jsonschema.txt) | 3.1.1+CUE.2-cl4u1 | Expat;GPL;GPL-2 |
 | [python3-nlmanager](/cumulus-linux-41/Whats-New/licenses/python3-nlmanager.txt) | 5.0-cl4u2 | GPL;GPL-2 |
-| [python-cumulus-restapi](/cumulus-linux-41/Whats-New/licenses/python-cumulus-restapi.txt) | 0.1-cl4u2 | Cumulus Networks Proprietary(*);GPL-2(debian/*);Cumulus Networks Proprietary(debian/*.{service |
-| [python-network-docopt](/cumulus-linux-41/Whats-New/licenses/python-network-docopt.txt) | 0.1.11-cl4u1 | GPL-2+(*) |
+| [python-cumulus-restapi](/cumulus-linux-41/Whats-New/licenses/python-cumulus-restapi.txt) | 0.1-cl4u2 | Cumulus Networks Proprietary(&#42;);GPL-2(debian/&#42;);Cumulus Networks Proprietary(debian/&#42;.{service |
+| [python-network-docopt](/cumulus-linux-41/Whats-New/licenses/python-network-docopt.txt) | 0.1.11-cl4u1 | GPL-2+(&#42;) |
 | [python-nlmanager](/cumulus-linux-41/Whats-New/licenses/python-nlmanager.txt) | 4.1-cl4u2 | MIT-like |
-| [python-rdnbrd](/cumulus-linux-41/Whats-New/licenses/python-rdnbrd.txt) | 3.0-cl4u1 | GPL-2(*);GPL-2(debian/*) |
-| [reboot-notifier](/cumulus-linux-41/Whats-New/licenses/reboot-notifier.txt) | 0.5-cl4u1 | GPL-3.0+(*);GPL-3.0+(debian/*);GPL-3.0+(debian/*) |
+| [python-rdnbrd](/cumulus-linux-41/Whats-New/licenses/python-rdnbrd.txt) | 3.0-cl4u1 | GPL-2(&#42;);GPL-2(debian/&#42;) |
+| [reboot-notifier](/cumulus-linux-41/Whats-New/licenses/reboot-notifier.txt) | 0.5-cl4u1 | GPL-3.0+(&#42;);GPL-3.0+(debian/&#42;);GPL-3.0+(debian/&#42;) |
 | [python3-ruamel.yaml](/cumulus-linux-41/Whats-New/licenses/python3-ruamel.yaml.txt) | 0.15.89-3-cl4u1 | Expat |
-| [switchd](/cumulus-linux-41/Whats-New/licenses/switchd.txt) | 1.0-cl4u2 | Cumulus Proprietary(*);GPL-2(debian/*) |
-| [switchd-bcm-dbg](/cumulus-linux-41/Whats-New/licenses/switchd-bcm-dbg.txt) | 1.0-cl4u2 | Cumulus Proprietary(*);GPL-2(debian/*) |
-| [switchd-dbg](/cumulus-linux-41/Whats-New/licenses/switchd-dbg.txt) | 1.0-cl4u2 | Cumulus Proprietary(*);GPL-2(debian/*) |
-| [switchd-halbcm](/cumulus-linux-41/Whats-New/licenses/switchd-halbcm.txt) | 1.0-cl4u2 | Cumulus Proprietary(*);GPL-2(debian/*) |
-| [switchd-halmlx](/cumulus-linux-41/Whats-New/licenses/switchd-halmlx.txt) | 1.0-cl4u2 | Cumulus Proprietary(*);GPL-2(debian/*) |
-| [switchd-mlx-dbg](/cumulus-linux-41/Whats-New/licenses/switchd-mlx-dbg.txt) | 1.0-cl4u2 | Cumulus Proprietary(*);GPL-2(debian/*) |
+| [switchd](/cumulus-linux-41/Whats-New/licenses/switchd.txt) | 1.0-cl4u2 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [switchd-bcm-dbg](/cumulus-linux-41/Whats-New/licenses/switchd-bcm-dbg.txt) | 1.0-cl4u2 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [switchd-dbg](/cumulus-linux-41/Whats-New/licenses/switchd-dbg.txt) | 1.0-cl4u2 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [switchd-halbcm](/cumulus-linux-41/Whats-New/licenses/switchd-halbcm.txt) | 1.0-cl4u2 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [switchd-halmlx](/cumulus-linux-41/Whats-New/licenses/switchd-halmlx.txt) | 1.0-cl4u2 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
+| [switchd-mlx-dbg](/cumulus-linux-41/Whats-New/licenses/switchd-mlx-dbg.txt) | 1.0-cl4u2 | Cumulus Proprietary(&#42;);GPL-2(debian/&#42;) |
 | [sx-kernel-4.19.0-cl-1-amd64](/cumulus-linux-41/Whats-New/licenses/sx-kernel-4.19.0-cl-1-amd64.txt) | 1.mlnx.4.3.3260+cl4u2 | BSD;Common Public License;GPL |
 | [sx-sdk-eth](/cumulus-linux-41/Whats-New/licenses/sx-sdk-eth.txt) | 1.mlnx.4.3.3260-cl4u11 | NO LICENSE FOUND |
 | [sx-sdk-eth-dbg](/cumulus-linux-41/Whats-New/licenses/sx-sdk-eth-dbg.txt) | 1.mlnx.4.3.3260-cl4u11 | BSD;Common Public License;GPL |
 | [sx-sdk-eth-dev](/cumulus-linux-41/Whats-New/licenses/sx-sdk-eth-dev.txt) | 1.mlnx.4.3.3260-cl4u11 | NO LICENSE FOUND |
-| [tacplus-auth](/cumulus-linux-41/Whats-New/licenses/tacplus-auth.txt) | 1.0.3-cl4u1 | GPL-2+(*);GPL-2+(*) |
-| [tacplus-client](/cumulus-linux-41/Whats-New/licenses/tacplus-client.txt) | 1.0.1-cl4u1 | GPL-2(*);GPL-2(debian/*) |
-| [mgmt-vrf](/cumulus-linux-41/Whats-New/licenses/mgmt-vrf.txt) | 1.0-cl4u2 | GPL-2(*);GPL-2(debian/*) |
-| [vrf](/cumulus-linux-41/Whats-New/licenses/vrf.txt) | 1.0-cl4u2 | GPL-2(*);GPL-2(debian/*) |
-| [vx-qa-config](/cumulus-linux-41/Whats-New/licenses/vx-qa-config.txt) | 4.0-cl4u5 | Cumulus Networks Proprietary(*);GPLv2(debian/*) |
+| [tacplus-auth](/cumulus-linux-41/Whats-New/licenses/tacplus-auth.txt) | 1.0.3-cl4u1 | GPL-2+(&#42;);GPL-2+(&#42;) |
+| [tacplus-client](/cumulus-linux-41/Whats-New/licenses/tacplus-client.txt) | 1.0.1-cl4u1 | GPL-2(&#42;);GPL-2(debian/&#42;) |
+| [mgmt-vrf](/cumulus-linux-41/Whats-New/licenses/mgmt-vrf.txt) | 1.0-cl4u2 | GPL-2(&#42;);GPL-2(debian/&#42;) |
+| [vrf](/cumulus-linux-41/Whats-New/licenses/vrf.txt) | 1.0-cl4u2 | GPL-2(&#42;);GPL-2(debian/&#42;) |
+| [vx-qa-config](/cumulus-linux-41/Whats-New/licenses/vx-qa-config.txt) | 4.0-cl4u5 | Cumulus Networks Proprietary(&#42;);GPLv2(debian/&#42;) |
 | [watchdog](/cumulus-linux-41/Whats-New/licenses/watchdog.txt) | 5.14-cl4u1 | GPL |
-| [hostapd](/cumulus-linux-41/Whats-New/licenses/hostapd.txt) | 2.8.0-cl4u5 | BSD-3-clause(*);BSD-3-clause or GPL-2(hostapd/logwatch/*);BSD-3-clause(hostapd/Android.mk);BSD-3-clause(hostapd/hostapd.8);BSD-3-clause(hs20/*);BSD-3-clause(patches/*);BSD-3-clause(src/ap/acs.*);BSD-3-clause(src/ap/ap_list.*);BSD-3-clause(src/ap/dfs.*);BSD-3-clause(src/ap/gas_serv.*);BSD-3-clause(src/ap/hs20.*);BSD-3-clause(src/ap/ieee802_11_ht.c);BSD-3-clause(src/ap/p2p_hostapd.*);BSD-3-clause(src/ap/vlan_util.*);BSD-3-clause(src/common/gas.*);BSD-3-clause(src/common/ieee802_11_defs.h);BSD-3-clause(src/common/wpa_helpers.*);BSD-3-clause(src/crypto/aes-internal*);BSD-3-clause(src/crypto/des-internal.c);BSD-3-clause(src/crypto/md4-internal.c);BSD-3-clause(src/crypto/md5-internal.c);BSD-3-clause(src/crypto/sha1-internal.c);BSD-3-clause(src/drivers/driver_atheros.c);BSD-3-clause(src/drivers/driver_bsd.c);BSD-3-clause(src/drivers/driver_macsec_qca.c);BSD-3-clause(src/drivers/driver_madwifi.c);BSD-3-clause(src/drivers/driver_nl80211.c);BSD-3-clause(src/drivers/driver_none.c);BSD-3-clause(src/drivers/driver_openbsd.c);BSD-3-clause(src/drivers/driver_roboswitch.c);BSD-3-clause(src/drivers/driver_wired.c);ISC(src/drivers/nl80211_copy.h);BSD-3-clause(src/eap_common/eap_pwd_common.*);BSD-3-clause(src/eap_peer/eap_proxy*);BSD-3-clause(src/l2_packet/l2_packet_freebsd.c);BSD-3-clause(src/p2p/*);BSD-3-clause(src/pae/*);BSD-3-clause(src/rsn_supp/tdls.c);public-domain(src/tls/libtommath.c);BSD-3-clause(src/utils/browser*);BSD-3-clause(src/utils/radiotap.c);BSD-3-clause(src/utils/radiotap.h);BSD-3-clause(src/wps/http.h);BSD-3-clause(src/wps/httpread.*);BSD-3-clause(src/wps/ndef.c);BSD-3-clause(src/wps/wps_validate.c);BSD-3-clause(wpa_supplicant/dbus/dbus_common.*);BSD-3-clause(wpa_supplicant/dbus/dbus_dict_helpers.*);BSD-3-clause(wpa_supplicant/dbus/dbus_new_handlers_p2p.*);BSD-3-clause(wpa_supplicant/utils/log2pcap.py);public-domain(wpa_supplicant/wpa_gui-qt4/icons/ap.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/group.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/invitation.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/laptop.svg);BSD-3-clause or GPL-2(wpa_supplicant/wpa_gui-qt4/icons/wpa_gui.svg);BSD-3-clause(wpa_supplicant/wpa_gui-qt4/peers.*);BSD-3-clause(wpa_supplicant/wpa_gui-qt4/signalbar.*);BSD-3-clause(wpa_supplicant/Android.mk);BSD-3-clause(wpa_supplicant/ap.*);BSD-3-clause(wpa_supplicant/autoscan*);BSD-3-clause(wpa_supplicant/gas_query.*);BSD-3-clause(wpa_supplicant/interworking.*);BSD-3-clause(debian/*);BSD-3-clause(debian/*);GPL-2(debian/*);ISC(debian/*);public-domain(debian/*) |
-| [hostapd-dbg](/cumulus-linux-41/Whats-New/licenses/hostapd-dbg.txt) | 2.8.0-cl4u5 | BSD-3-clause(*);BSD-3-clause or GPL-2(hostapd/logwatch/*);BSD-3-clause(hostapd/Android.mk);BSD-3-clause(hostapd/hostapd.8);BSD-3-clause(hs20/*);BSD-3-clause(patches/*);BSD-3-clause(src/ap/acs.*);BSD-3-clause(src/ap/ap_list.*);BSD-3-clause(src/ap/dfs.*);BSD-3-clause(src/ap/gas_serv.*);BSD-3-clause(src/ap/hs20.*);BSD-3-clause(src/ap/ieee802_11_ht.c);BSD-3-clause(src/ap/p2p_hostapd.*);BSD-3-clause(src/ap/vlan_util.*);BSD-3-clause(src/common/gas.*);BSD-3-clause(src/common/ieee802_11_defs.h);BSD-3-clause(src/common/wpa_helpers.*);BSD-3-clause(src/crypto/aes-internal*);BSD-3-clause(src/crypto/des-internal.c);BSD-3-clause(src/crypto/md4-internal.c);BSD-3-clause(src/crypto/md5-internal.c);BSD-3-clause(src/crypto/sha1-internal.c);BSD-3-clause(src/drivers/driver_atheros.c);BSD-3-clause(src/drivers/driver_bsd.c);BSD-3-clause(src/drivers/driver_macsec_qca.c);BSD-3-clause(src/drivers/driver_madwifi.c);BSD-3-clause(src/drivers/driver_nl80211.c);BSD-3-clause(src/drivers/driver_none.c);BSD-3-clause(src/drivers/driver_openbsd.c);BSD-3-clause(src/drivers/driver_roboswitch.c);BSD-3-clause(src/drivers/driver_wired.c);ISC(src/drivers/nl80211_copy.h);BSD-3-clause(src/eap_common/eap_pwd_common.*);BSD-3-clause(src/eap_peer/eap_proxy*);BSD-3-clause(src/l2_packet/l2_packet_freebsd.c);BSD-3-clause(src/p2p/*);BSD-3-clause(src/pae/*);BSD-3-clause(src/rsn_supp/tdls.c);public-domain(src/tls/libtommath.c);BSD-3-clause(src/utils/browser*);BSD-3-clause(src/utils/radiotap.c);BSD-3-clause(src/utils/radiotap.h);BSD-3-clause(src/wps/http.h);BSD-3-clause(src/wps/httpread.*);BSD-3-clause(src/wps/ndef.c);BSD-3-clause(src/wps/wps_validate.c);BSD-3-clause(wpa_supplicant/dbus/dbus_common.*);BSD-3-clause(wpa_supplicant/dbus/dbus_dict_helpers.*);BSD-3-clause(wpa_supplicant/dbus/dbus_new_handlers_p2p.*);BSD-3-clause(wpa_supplicant/utils/log2pcap.py);public-domain(wpa_supplicant/wpa_gui-qt4/icons/ap.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/group.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/invitation.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/laptop.svg);BSD-3-clause or GPL-2(wpa_supplicant/wpa_gui-qt4/icons/wpa_gui.svg);BSD-3-clause(wpa_supplicant/wpa_gui-qt4/peers.*);BSD-3-clause(wpa_supplicant/wpa_gui-qt4/signalbar.*);BSD-3-clause(wpa_supplicant/Android.mk);BSD-3-clause(wpa_supplicant/ap.*);BSD-3-clause(wpa_supplicant/autoscan*);BSD-3-clause(wpa_supplicant/gas_query.*);BSD-3-clause(wpa_supplicant/interworking.*);BSD-3-clause(debian/*);BSD-3-clause(debian/*);GPL-2(debian/*);ISC(debian/*);public-domain(debian/*) |
+| [hostapd](/cumulus-linux-41/Whats-New/licenses/hostapd.txt) | 2.8.0-cl4u5 | BSD-3-clause(&#42;);BSD-3-clause or GPL-2(hostapd/logwatch/&#42;);BSD-3-clause(hostapd/Android.mk);BSD-3-clause(hostapd/hostapd.8);BSD-3-clause(hs20/&#42;);BSD-3-clause(patches/&#42;);BSD-3-clause(src/ap/acs.&#42;);BSD-3-clause(src/ap/ap_list.&#42;);BSD-3-clause(src/ap/dfs.&#42;);BSD-3-clause(src/ap/gas_serv.&#42;);BSD-3-clause(src/ap/hs20.&#42;);BSD-3-clause(src/ap/ieee802_11_ht.c);BSD-3-clause(src/ap/p2p_hostapd.&#42;);BSD-3-clause(src/ap/vlan_util.&#42;);BSD-3-clause(src/common/gas.&#42;);BSD-3-clause(src/common/ieee802_11_defs.h);BSD-3-clause(src/common/wpa_helpers.&#42;);BSD-3-clause(src/crypto/aes-internal&#42;);BSD-3-clause(src/crypto/des-internal.c);BSD-3-clause(src/crypto/md4-internal.c);BSD-3-clause(src/crypto/md5-internal.c);BSD-3-clause(src/crypto/sha1-internal.c);BSD-3-clause(src/drivers/driver_atheros.c);BSD-3-clause(src/drivers/driver_bsd.c);BSD-3-clause(src/drivers/driver_macsec_qca.c);BSD-3-clause(src/drivers/driver_madwifi.c);BSD-3-clause(src/drivers/driver_nl80211.c);BSD-3-clause(src/drivers/driver_none.c);BSD-3-clause(src/drivers/driver_openbsd.c);BSD-3-clause(src/drivers/driver_roboswitch.c);BSD-3-clause(src/drivers/driver_wired.c);ISC(src/drivers/nl80211_copy.h);BSD-3-clause(src/eap_common/eap_pwd_common.&#42;);BSD-3-clause(src/eap_peer/eap_proxy&#42;);BSD-3-clause(src/l2_packet/l2_packet_freebsd.c);BSD-3-clause(src/p2p/&#42;);BSD-3-clause(src/pae/&#42;);BSD-3-clause(src/rsn_supp/tdls.c);public-domain(src/tls/libtommath.c);BSD-3-clause(src/utils/browser&#42;);BSD-3-clause(src/utils/radiotap.c);BSD-3-clause(src/utils/radiotap.h);BSD-3-clause(src/wps/http.h);BSD-3-clause(src/wps/httpread.&#42;);BSD-3-clause(src/wps/ndef.c);BSD-3-clause(src/wps/wps_validate.c);BSD-3-clause(wpa_supplicant/dbus/dbus_common.&#42;);BSD-3-clause(wpa_supplicant/dbus/dbus_dict_helpers.&#42;);BSD-3-clause(wpa_supplicant/dbus/dbus_new_handlers_p2p.&#42;);BSD-3-clause(wpa_supplicant/utils/log2pcap.py);public-domain(wpa_supplicant/wpa_gui-qt4/icons/ap.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/group.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/invitation.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/laptop.svg);BSD-3-clause or GPL-2(wpa_supplicant/wpa_gui-qt4/icons/wpa_gui.svg);BSD-3-clause(wpa_supplicant/wpa_gui-qt4/peers.&#42;);BSD-3-clause(wpa_supplicant/wpa_gui-qt4/signalbar.&#42;);BSD-3-clause(wpa_supplicant/Android.mk);BSD-3-clause(wpa_supplicant/ap.&#42;);BSD-3-clause(wpa_supplicant/autoscan&#42;);BSD-3-clause(wpa_supplicant/gas_query.&#42;);BSD-3-clause(wpa_supplicant/interworking.&#42;);BSD-3-clause(debian/&#42;);BSD-3-clause(debian/&#42;);GPL-2(debian/&#42;);ISC(debian/&#42;);public-domain(debian/&#42;) |
+| [hostapd-dbg](/cumulus-linux-41/Whats-New/licenses/hostapd-dbg.txt) | 2.8.0-cl4u5 | BSD-3-clause(&#42;);BSD-3-clause or GPL-2(hostapd/logwatch/&#42;);BSD-3-clause(hostapd/Android.mk);BSD-3-clause(hostapd/hostapd.8);BSD-3-clause(hs20/&#42;);BSD-3-clause(patches/&#42;);BSD-3-clause(src/ap/acs.&#42;);BSD-3-clause(src/ap/ap_list.&#42;);BSD-3-clause(src/ap/dfs.&#42;);BSD-3-clause(src/ap/gas_serv.&#42;);BSD-3-clause(src/ap/hs20.&#42;);BSD-3-clause(src/ap/ieee802_11_ht.c);BSD-3-clause(src/ap/p2p_hostapd.&#42;);BSD-3-clause(src/ap/vlan_util.&#42;);BSD-3-clause(src/common/gas.&#42;);BSD-3-clause(src/common/ieee802_11_defs.h);BSD-3-clause(src/common/wpa_helpers.&#42;);BSD-3-clause(src/crypto/aes-internal&#42;);BSD-3-clause(src/crypto/des-internal.c);BSD-3-clause(src/crypto/md4-internal.c);BSD-3-clause(src/crypto/md5-internal.c);BSD-3-clause(src/crypto/sha1-internal.c);BSD-3-clause(src/drivers/driver_atheros.c);BSD-3-clause(src/drivers/driver_bsd.c);BSD-3-clause(src/drivers/driver_macsec_qca.c);BSD-3-clause(src/drivers/driver_madwifi.c);BSD-3-clause(src/drivers/driver_nl80211.c);BSD-3-clause(src/drivers/driver_none.c);BSD-3-clause(src/drivers/driver_openbsd.c);BSD-3-clause(src/drivers/driver_roboswitch.c);BSD-3-clause(src/drivers/driver_wired.c);ISC(src/drivers/nl80211_copy.h);BSD-3-clause(src/eap_common/eap_pwd_common.&#42;);BSD-3-clause(src/eap_peer/eap_proxy&#42;);BSD-3-clause(src/l2_packet/l2_packet_freebsd.c);BSD-3-clause(src/p2p/&#42;);BSD-3-clause(src/pae/&#42;);BSD-3-clause(src/rsn_supp/tdls.c);public-domain(src/tls/libtommath.c);BSD-3-clause(src/utils/browser&#42;);BSD-3-clause(src/utils/radiotap.c);BSD-3-clause(src/utils/radiotap.h);BSD-3-clause(src/wps/http.h);BSD-3-clause(src/wps/httpread.&#42;);BSD-3-clause(src/wps/ndef.c);BSD-3-clause(src/wps/wps_validate.c);BSD-3-clause(wpa_supplicant/dbus/dbus_common.&#42;);BSD-3-clause(wpa_supplicant/dbus/dbus_dict_helpers.&#42;);BSD-3-clause(wpa_supplicant/dbus/dbus_new_handlers_p2p.&#42;);BSD-3-clause(wpa_supplicant/utils/log2pcap.py);public-domain(wpa_supplicant/wpa_gui-qt4/icons/ap.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/group.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/invitation.svg);public-domain(wpa_supplicant/wpa_gui-qt4/icons/laptop.svg);BSD-3-clause or GPL-2(wpa_supplicant/wpa_gui-qt4/icons/wpa_gui.svg);BSD-3-clause(wpa_supplicant/wpa_gui-qt4/peers.&#42;);BSD-3-clause(wpa_supplicant/wpa_gui-qt4/signalbar.&#42;);BSD-3-clause(wpa_supplicant/Android.mk);BSD-3-clause(wpa_supplicant/ap.&#42;);BSD-3-clause(wpa_supplicant/autoscan&#42;);BSD-3-clause(wpa_supplicant/gas_query.&#42;);BSD-3-clause(wpa_supplicant/interworking.&#42;);BSD-3-clause(debian/&#42;);BSD-3-clause(debian/&#42;);GPL-2(debian/&#42;);ISC(debian/&#42;);public-domain(debian/&#42;) |
 | [libacl1](/cumulus-linux-41/Whats-New/licenses/libacl1.txt) | 2.2.53-4 | GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2+ |
 | [acpi](/cumulus-linux-41/Whats-New/licenses/acpi.txt) | 1.7-1.1 | GPL |
 | [acpid](/cumulus-linux-41/Whats-New/licenses/acpid.txt) | 2.0.31-1 | GPL;GPL-2 |
 | [acpi-support-base](/cumulus-linux-41/Whats-New/licenses/acpi-support-base.txt) | 0.142-8 | GPL;GPL-2 |
 | [adduser](/cumulus-linux-41/Whats-New/licenses/adduser.txt) | 3.118 | GPL;GPL-2 |
 | [adwaita-icon-theme](/cumulus-linux-41/Whats-New/licenses/adwaita-icon-theme.txt) | 3.30.1-1 | CC-BY-3.0-US;CC-BY-SA-2.0-IT;CC-BY-SA-3.0;CC-BY-SA-3.0-Unported;CC-BY-SA-3.0-US;GFDL-1;GFDL-1.2+;GPL;GPL-unspecified;LGPL-3 |
-| [python3-alabaster](/cumulus-linux-41/Whats-New/licenses/python3-alabaster.txt) | 0.7.8-1 | BSD-3-clause(    MANIFEST.in);permissive(debian/*) |
-| [python-alabaster](/cumulus-linux-41/Whats-New/licenses/python-alabaster.txt) | 0.7.8-1 | BSD-3-clause(    MANIFEST.in);permissive(debian/*) |
+| [python3-alabaster](/cumulus-linux-41/Whats-New/licenses/python3-alabaster.txt) | 0.7.8-1 | BSD-3-clause(    MANIFEST.in);permissive(debian/&#42;) |
+| [python-alabaster](/cumulus-linux-41/Whats-New/licenses/python-alabaster.txt) | 0.7.8-1 | BSD-3-clause(    MANIFEST.in);permissive(debian/&#42;) |
 | [libasound2](/cumulus-linux-41/Whats-New/licenses/libasound2.txt) | 1.1.8-1 | LGPL-2;LPGL-2.1+ |
 | [libasound2-data](/cumulus-linux-41/Whats-New/licenses/libasound2-data.txt) | 1.1.8-1 | LGPL-2;LPGL-2.1+ |
 | [libasound2-dev](/cumulus-linux-41/Whats-New/licenses/libasound2-dev.txt) | 1.1.8-1 | LGPL-2;LPGL-2.1+ |
@@ -228,11 +228,11 @@ pdfhidden: True
 | [apt-utils](/cumulus-linux-41/Whats-New/licenses/apt-utils.txt) | 1.8.2 | GPL;GPL-2;GPLv2+ |
 | [libapt-inst2.0](/cumulus-linux-41/Whats-New/licenses/libapt-inst2.0.txt) | 1.8.2 | GPL;GPL-2;GPLv2+ |
 | [libapt-pkg5.0](/cumulus-linux-41/Whats-New/licenses/libapt-pkg5.0.txt) | 1.8.2 | GPL;GPL-2;GPLv2+ |
-| [libargon2-1](/cumulus-linux-41/Whats-New/licenses/libargon2-1.txt) | 0~20171227-0.2 | CC0 or Apache-2.0(*);CC0 or Apache-2.0(src/blake2/*);CC0 or Apache-2.0(src/encoding.c);CC0(debian/*);CC0(debian/argon2.1);CC0(debian/argon2.1);Apache-2.0(debian/argon2.1) |
+| [libargon2-1](/cumulus-linux-41/Whats-New/licenses/libargon2-1.txt) | 0~20171227-0.2 | CC0 or Apache-2.0(&#42;);CC0 or Apache-2.0(src/blake2/&#42;);CC0 or Apache-2.0(src/encoding.c);CC0(debian/&#42;);CC0(debian/argon2.1);CC0(debian/argon2.1);Apache-2.0(debian/argon2.1) |
 | [arping](/cumulus-linux-41/Whats-New/licenses/arping.txt) | 2.19-6 | GPL;GPL-2;GPL-2+ |
 | [arptables](/cumulus-linux-41/Whats-New/licenses/arptables.txt) | 0.0.4+snapshot20181021-4 | GPL;GPL-2 |
 | [python-asn1crypto](/cumulus-linux-41/Whats-New/licenses/python-asn1crypto.txt) | 0.24.0-1 | Expat |
-| [at](/cumulus-linux-41/Whats-New/licenses/at.txt) | 3.1.23-1 | GPL-2+(*);GPL-2+(getloadavg.c);GPL-3+(posixtm.*);ISC(parsetime.pl);GPL-2+(parsetime.pl);GPL-3+(parsetime.pl);ISC(parsetime.pl) |
+| [at](/cumulus-linux-41/Whats-New/licenses/at.txt) | 3.1.23-1 | GPL-2+(&#42;);GPL-2+(getloadavg.c);GPL-3+(posixtm.&#42;);ISC(parsetime.pl);GPL-2+(parsetime.pl);GPL-3+(parsetime.pl);ISC(parsetime.pl) |
 | [atftp](/cumulus-linux-41/Whats-New/licenses/atftp.txt) | 0.7.git20120829-3.1 | GPL |
 | [atftpd](/cumulus-linux-41/Whats-New/licenses/atftpd.txt) | 0.7.git20120829-3.1 | GPL |
 | [libatk1.0-0](/cumulus-linux-41/Whats-New/licenses/libatk1.0-0.txt) | 2.30.0-2 | LGPL-2 |
@@ -247,12 +247,12 @@ pdfhidden: True
 | [libauparse0](/cumulus-linux-41/Whats-New/licenses/libauparse0.txt) | 2.8.4-3 | GPL;GPL-1;GPL-2;LGPL-2;LGPL-2.1 |
 | [libauparse-dev](/cumulus-linux-41/Whats-New/licenses/libauparse-dev.txt) | 2.8.4-3 | GPL;GPL-1;GPL-2;LGPL-2;LGPL-2.1 |
 | [autoconf-archive](/cumulus-linux-41/Whats-New/licenses/autoconf-archive.txt) | 20180313-1 | BSD;GFDL-1;GPL;GPL-2;GPL-3;LGPL-2;LGPL-3;MIT;public domain;zlib |
-| [autoconf](/cumulus-linux-41/Whats-New/licenses/autoconf.txt) | 2.69-11 | GPL-3+(*);GPL-3+ with Autoconf exception(Files:);permissive-short-disclaimer(BUGS README INSTALL NEWS README TODO doc/install.texi);permissive-long-disclaimer(Makefile.in aclocal.m4);permissive-without-disclaimer(emacs/Makefile.in m4/autobuild.m4);permissive-without-notices-or-disclaimer(configure);GPL-2+ with Autoconf exception(Files:);GPL-2+(Files:);MIT-X-Consortium(build-aux/install-sh);GPL-3+ with Texinfo exception(build-aux/texinfo.tex);GFDL-1.3+(doc/*.info doc/*.texi);no-modification(doc/fdl.texi);permissive(doc/gen-oids.texi);other(debian/*) |
+| [autoconf](/cumulus-linux-41/Whats-New/licenses/autoconf.txt) | 2.69-11 | GPL-3+(&#42;);GPL-3+ with Autoconf exception(Files:);permissive-short-disclaimer(BUGS README INSTALL NEWS README TODO doc/install.texi);permissive-long-disclaimer(Makefile.in aclocal.m4);permissive-without-disclaimer(emacs/Makefile.in m4/autobuild.m4);permissive-without-notices-or-disclaimer(configure);GPL-2+ with Autoconf exception(Files:);GPL-2+(Files:);MIT-X-Consortium(build-aux/install-sh);GPL-3+ with Texinfo exception(build-aux/texinfo.tex);GFDL-1.3+(doc/&#42;.info doc/&#42;.texi);no-modification(doc/fdl.texi);permissive(doc/gen-oids.texi);other(debian/&#42;) |
 | [autogen](/cumulus-linux-41/Whats-New/licenses/autogen.txt) | 5.18.12-4 | BSD;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;GPL-3+.;LGPL-2;LGPL-2.1+;LGPL-3+;Modified_BSD |
 | [libopts25](/cumulus-linux-41/Whats-New/licenses/libopts25.txt) | 5.18.12-4 | BSD;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;GPL-3+.;LGPL-2;LGPL-2.1+;LGPL-3+;Modified_BSD |
 | [libopts25-dev](/cumulus-linux-41/Whats-New/licenses/libopts25-dev.txt) | 5.18.12-4 | BSD;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;GPL-3+.;LGPL-2;LGPL-2.1+;LGPL-3+;Modified_BSD |
 | [automake](/cumulus-linux-41/Whats-New/licenses/automake.txt) | 1.16.1-4 | GFDL-1;GFDL-NIV-1.3+;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;permissive |
-| [python-automat](/cumulus-linux-41/Whats-New/licenses/python-automat.txt) | 0.6.0-1 | Expat(*);Expat(debian/*);Expat(debian/*) |
+| [python-automat](/cumulus-linux-41/Whats-New/licenses/python-automat.txt) | 0.6.0-1 | Expat(&#42;);Expat(debian/&#42;);Expat(debian/&#42;) |
 | [autotools-dev](/cumulus-linux-41/Whats-New/licenses/autotools-dev.txt) | 20180224.1 | GPL |
 | [libavahi-client3](/cumulus-linux-41/Whats-New/licenses/libavahi-client3.txt) | 0.7-4+b1 | GPL;GPL-2;LGPL-2 |
 | [libavahi-client-dev](/cumulus-linux-41/Whats-New/licenses/libavahi-client-dev.txt) | 0.7-4+b1 | GPL;GPL-2;LGPL-2 |
@@ -266,7 +266,7 @@ pdfhidden: True
 | [base-passwd](/cumulus-linux-41/Whats-New/licenses/base-passwd.txt) | 3.5.46 | GPL;GPL-2;PD |
 | [bash](/cumulus-linux-41/Whats-New/licenses/bash.txt) | 5.0-4 | GPL;GPL-3 |
 | [bash-completion](/cumulus-linux-41/Whats-New/licenses/bash-completion.txt) | 2.8-6 | GPL;GPL-2;GPL-2+ |
-| [bc](/cumulus-linux-41/Whats-New/licenses/bc.txt) | 1.07.1-2+b1 | GPL-2.0+(*);permissive(doc/dc.info);permissive'(doc/bc.texi);GPL-2.0+ with Texinfo exception(doc/texinfo.tex);X11 and public-domain(install-sh);GPL-2.0+(debian/*);GPL-2.0+(debian/*) |
+| [bc](/cumulus-linux-41/Whats-New/licenses/bc.txt) | 1.07.1-2+b1 | GPL-2.0+(&#42;);permissive(doc/dc.info);permissive'(doc/bc.texi);GPL-2.0+ with Texinfo exception(doc/texinfo.tex);X11 and public-domain(install-sh);GPL-2.0+(debian/&#42;);GPL-2.0+(debian/&#42;) |
 | [bind9-host](/cumulus-linux-41/Whats-New/licenses/bind9-host.txt) | 9.11.5.P4+dfsg-5.1 | BSD;BSD-2-clause;BSD-3-clause;BSD-4-clause;ISC;MPL-2;MPL-2.0 |
 | [bind9utils](/cumulus-linux-41/Whats-New/licenses/bind9utils.txt) | 9.11.5.P4+dfsg-5.1 | BSD;BSD-2-clause;BSD-3-clause;BSD-4-clause;ISC;MPL-2;MPL-2.0 |
 | [dnsutils](/cumulus-linux-41/Whats-New/licenses/dnsutils.txt) | 9.11.5.P4+dfsg-5.1 | BSD;BSD-2-clause;BSD-3-clause;BSD-4-clause;ISC;MPL-2;MPL-2.0 |
@@ -286,8 +286,8 @@ pdfhidden: True
 | [binutils](/cumulus-linux-41/Whats-New/licenses/binutils.txt) | 2.31.1-16 | GFDL;GPL;LGPL |
 | [binutils-arm-linux-gnueabi](/cumulus-linux-41/Whats-New/licenses/binutils-arm-linux-gnueabi.txt) | 2.31.1-16 | GFDL;GPL;LGPL |
 | [binutils-common](/cumulus-linux-41/Whats-New/licenses/binutils-common.txt) | 2.31.1-16 | GFDL;GPL;LGPL |
-| [bison](/cumulus-linux-41/Whats-New/licenses/bison.txt) | 3.3.2.dfsg-1 | GPL-3+(*);GPL-2+(debian/*) |
-| [libbison-dev](/cumulus-linux-41/Whats-New/licenses/libbison-dev.txt) | 3.3.2.dfsg-1 | GPL-3+(*);GPL-2+(debian/*) |
+| [bison](/cumulus-linux-41/Whats-New/licenses/bison.txt) | 3.3.2.dfsg-1 | GPL-3+(&#42;);GPL-2+(debian/&#42;) |
+| [libbison-dev](/cumulus-linux-41/Whats-New/licenses/libbison-dev.txt) | 3.3.2.dfsg-1 | GPL-3+(&#42;);GPL-2+(debian/&#42;) |
 | [libbluetooth3](/cumulus-linux-41/Whats-New/licenses/libbluetooth3.txt) | 5.50-1.2~deb10u1 | Apache-2;Apache-2.0;BSD;BSD-2-clause;Expat;GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2.1+;MIT |
 | [libbrlapi0.6](/cumulus-linux-41/Whats-New/licenses/libbrlapi0.6.txt) | 5.6-10 | LGPL-2 |
 | [libbrotli1](/cumulus-linux-41/Whats-New/licenses/libbrotli1.txt) | 1.0.7-2 | MIT |
@@ -295,14 +295,14 @@ pdfhidden: True
 | [btrfs-progs](/cumulus-linux-41/Whats-New/licenses/btrfs-progs.txt) | 4.20.1-2 | GPL;GPL-2;GPL-2+;TLP-4 |
 | [build-essential](/cumulus-linux-41/Whats-New/licenses/build-essential.txt) | 12.6 | GPL |
 | [busybox](/cumulus-linux-41/Whats-New/licenses/busybox.txt) | 1.30.1-4 | GPL;GPL-2 |
-| [bwm-ng](/cumulus-linux-41/Whats-New/licenses/bwm-ng.txt) | 0.6.1-6 | GPL-2+(*);GPL-2+(debian/*);GPL-2+(debian/*) |
+| [bwm-ng](/cumulus-linux-41/Whats-New/licenses/bwm-ng.txt) | 0.6.1-6 | GPL-2+(&#42;);GPL-2+(debian/&#42;);GPL-2+(debian/&#42;) |
 | [bzip2](/cumulus-linux-41/Whats-New/licenses/bzip2.txt) | 1.0.6-9.2~deb10u1 | BSD;BSD-variant;GPL;GPL-2 |
 | [libbz2-1.0](/cumulus-linux-41/Whats-New/licenses/libbz2-1.0.txt) | 1.0.6-9.2~deb10u1 | BSD;BSD-variant;GPL;GPL-2 |
 | [bzr](/cumulus-linux-41/Whats-New/licenses/bzr.txt) | 2.7.0+bzr6622-15 | GPL;GPL-2;GPL-2+ |
 | [python-bzrlib](/cumulus-linux-41/Whats-New/licenses/python-bzrlib.txt) | 2.7.0+bzr6622-15 | GPL;GPL-2;GPL-2+ |
 | [ca-certificates](/cumulus-linux-41/Whats-New/licenses/ca-certificates.txt) | 20190110 | NO LICENSE FOUND |
 | [libcairo2](/cumulus-linux-41/Whats-New/licenses/libcairo2.txt) | 1.16.0-4 | LGPL-2 |
-| [libcapstone3](/cumulus-linux-41/Whats-New/licenses/libcapstone3.txt) | 4.0.1+really+3.0.5-1 | BSD-3-clause(*);BSD_LLVM(arch/AArch64/AArch64BaseInfo.c);GPL-2+(debian/*);BSD-3-clause(debian/*);BSD_LLVM(debian/*) |
+| [libcapstone3](/cumulus-linux-41/Whats-New/licenses/libcapstone3.txt) | 4.0.1+really+3.0.5-1 | BSD-3-clause(&#42;);BSD_LLVM(arch/AArch64/AArch64BaseInfo.c);GPL-2+(debian/&#42;);BSD-3-clause(debian/&#42;);BSD_LLVM(debian/&#42;) |
 | [libc-ares2](/cumulus-linux-41/Whats-New/licenses/libc-ares2.txt) | 1.14.0-1 | GPL;MIT |
 | [libc-ares-dev](/cumulus-linux-41/Whats-New/licenses/libc-ares-dev.txt) | 1.14.0-1 | GPL;MIT |
 | [cdbs](/cumulus-linux-41/Whats-New/licenses/cdbs.txt) | 0.4.159 | FSFUL;FSFUL~config.status;FSFULLR;FSFULLR~Makefile.in;FSFULLR~not_FSF;GPL;GPL-2;GPL-2+;GPL-2+ with Autoconf exception;GPL-3;GPL-3+;MIT;X11 |
@@ -316,7 +316,7 @@ pdfhidden: True
 | [config-package-dev](/cumulus-linux-41/Whats-New/licenses/config-package-dev.txt) | 5.5 | NO LICENSE FOUND |
 | [conntrack](/cumulus-linux-41/Whats-New/licenses/conntrack.txt) | 1.4.5-2 | GPL;GPL-2;GPL-2+ |
 | [keyboard-configuration](/cumulus-linux-41/Whats-New/licenses/keyboard-configuration.txt) | 1.193~deb10u1 | NO LICENSE FOUND |
-| [python-constantly](/cumulus-linux-41/Whats-New/licenses/python-constantly.txt) | 15.1.0-1 | MIT(*);CC0(versioneer.py);MIT(debian/*);MIT(debian/*);CC0(debian/*) |
+| [python-constantly](/cumulus-linux-41/Whats-New/licenses/python-constantly.txt) | 15.1.0-1 | MIT(&#42;);CC0(versioneer.py);MIT(debian/&#42;);MIT(debian/&#42;);CC0(debian/&#42;) |
 | [coreutils](/cumulus-linux-41/Whats-New/licenses/coreutils.txt) | 8.30-3 | GPL;GPL-3 |
 | [python3-cov-core](/cumulus-linux-41/Whats-New/licenses/python3-cov-core.txt) | 1.15.0-2 | Expat/MIT;GPL;GPL-3;MIT |
 | [cpio](/cumulus-linux-41/Whats-New/licenses/cpio.txt) | 2.12+dfsg-9 | GPL;GPL-3 |
@@ -326,9 +326,9 @@ pdfhidden: True
 | [curl](/cumulus-linux-41/Whats-New/licenses/curl.txt) | 7.64.0-4+deb10u1 | BSD;BSD-3-Clause;BSD-4-Clause;curl;ISC;other;public-domain |
 | [libcurl3-gnutls](/cumulus-linux-41/Whats-New/licenses/libcurl3-gnutls.txt) | 7.64.0-4+deb10u1 | BSD;BSD-3-Clause;BSD-4-Clause;curl;ISC;other;public-domain |
 | [libcurl4](/cumulus-linux-41/Whats-New/licenses/libcurl4.txt) | 7.64.0-4+deb10u1 | BSD;BSD-3-Clause;BSD-4-Clause;curl;ISC;other;public-domain |
-| [libsasl2-2](/cumulus-linux-41/Whats-New/licenses/libsasl2-2.txt) | 2.1.27+dfsg-1+deb10u1 | BSD-4-clause(*);GPL-3+(debian/*);GPL-3+(debian/saslfinger/*);GPL-3+(debian/gen-auth/*);GPL-3+(debian/gen-auth/*);BSD-4-clause(debian/gen-auth/*) |
-| [libsasl2-modules](/cumulus-linux-41/Whats-New/licenses/libsasl2-modules.txt) | 2.1.27+dfsg-1+deb10u1 | BSD-4-clause(*);GPL-3+(debian/*);GPL-3+(debian/saslfinger/*);GPL-3+(debian/gen-auth/*);GPL-3+(debian/gen-auth/*);BSD-4-clause(debian/gen-auth/*) |
-| [libsasl2-modules-db](/cumulus-linux-41/Whats-New/licenses/libsasl2-modules-db.txt) | 2.1.27+dfsg-1+deb10u1 | BSD-4-clause(*);GPL-3+(debian/*);GPL-3+(debian/saslfinger/*);GPL-3+(debian/gen-auth/*);GPL-3+(debian/gen-auth/*);BSD-4-clause(debian/gen-auth/*) |
+| [libsasl2-2](/cumulus-linux-41/Whats-New/licenses/libsasl2-2.txt) | 2.1.27+dfsg-1+deb10u1 | BSD-4-clause(&#42;);GPL-3+(debian/&#42;);GPL-3+(debian/saslfinger/&#42;);GPL-3+(debian/gen-auth/&#42;);GPL-3+(debian/gen-auth/&#42;);BSD-4-clause(debian/gen-auth/&#42;) |
+| [libsasl2-modules](/cumulus-linux-41/Whats-New/licenses/libsasl2-modules.txt) | 2.1.27+dfsg-1+deb10u1 | BSD-4-clause(&#42;);GPL-3+(debian/&#42;);GPL-3+(debian/saslfinger/&#42;);GPL-3+(debian/gen-auth/&#42;);GPL-3+(debian/gen-auth/&#42;);BSD-4-clause(debian/gen-auth/&#42;) |
+| [libsasl2-modules-db](/cumulus-linux-41/Whats-New/licenses/libsasl2-modules-db.txt) | 2.1.27+dfsg-1+deb10u1 | BSD-4-clause(&#42;);GPL-3+(debian/&#42;);GPL-3+(debian/saslfinger/&#42;);GPL-3+(debian/gen-auth/&#42;);GPL-3+(debian/gen-auth/&#42;);BSD-4-clause(debian/gen-auth/&#42;) |
 | [cython](/cumulus-linux-41/Whats-New/licenses/cython.txt) | 0.29.2-2 | Apache-2;Apache-2.0 |
 | [cython3](/cumulus-linux-41/Whats-New/licenses/cython3.txt) | 0.29.2-2 | Apache-2;Apache-2.0 |
 | [dash](/cumulus-linux-41/Whats-New/licenses/dash.txt) | 0.5.10.2-5 | GPL |
@@ -347,10 +347,10 @@ pdfhidden: True
 | [libfdt1](/cumulus-linux-41/Whats-New/licenses/libfdt1.txt) | 1.4.7-3 | BSD;BSD-2-clause;GPL;GPL-2;GPL-2+;LGPL-2.1+ |
 | [devscripts](/cumulus-linux-41/Whats-New/licenses/devscripts.txt) | 2.19.5+deb10u1 | Artistic;Artistic-2.0;GPL;GPL-1;GPL-1+;GPL-2;GPL-2+;GPL-3;GPL-3+;ISC;public domain;Public-Domain |
 | [dh-autoreconf](/cumulus-linux-41/Whats-New/licenses/dh-autoreconf.txt) | 19 | GPL;GPL-2;GPL-2+ |
-| [dh-exec](/cumulus-linux-41/Whats-New/licenses/dh-exec.txt) | 0.23.1 | GPL-3+(*);GPL-3+(*) |
+| [dh-exec](/cumulus-linux-41/Whats-New/licenses/dh-exec.txt) | 0.23.1 | GPL-3+(&#42;);GPL-3+(&#42;) |
 | [dh-python](/cumulus-linux-41/Whats-New/licenses/dh-python.txt) | 3.20190308 | Expat |
 | [runit-helper](/cumulus-linux-41/Whats-New/licenses/runit-helper.txt) | 2.8.6 | GPL;GPL-3;GPL-3+ |
-| [dh-virtualenv](/cumulus-linux-41/Whats-New/licenses/dh-virtualenv.txt) | 1.1-1 | GPL-2+(*) |
+| [dh-virtualenv](/cumulus-linux-41/Whats-New/licenses/dh-virtualenv.txt) | 1.1-1 | GPL-2+(&#42;) |
 | [dialog](/cumulus-linux-41/Whats-New/licenses/dialog.txt) | 1.3-20190211-1 | LGPL-2 |
 | [diffstat](/cumulus-linux-41/Whats-New/licenses/diffstat.txt) | 1.62-1 | NO LICENSE FOUND |
 | [diffutils](/cumulus-linux-41/Whats-New/licenses/diffutils.txt) | 3.7-3 | GFDL;GPL |
@@ -367,7 +367,7 @@ pdfhidden: True
 | [docbook-utils](/cumulus-linux-41/Whats-New/licenses/docbook-utils.txt) | 0.6.14-3.3 | GPL |
 | [docbook-xml](/cumulus-linux-41/Whats-New/licenses/docbook-xml.txt) | 4.5-8 | GPL |
 | [docbook-xsl](/cumulus-linux-41/Whats-New/licenses/docbook-xsl.txt) | 1.79.1+dfsg-2 | GPL;GPL-2;MIT |
-| [python-docopt](/cumulus-linux-41/Whats-New/licenses/python-docopt.txt) | 0.6.2-2 | MIT/X11(*);GPL-3(debian/*) |
+| [python-docopt](/cumulus-linux-41/Whats-New/licenses/python-docopt.txt) | 0.6.2-2 | MIT/X11(&#42;);GPL-3(debian/&#42;) |
 | [dos2unix](/cumulus-linux-41/Whats-New/licenses/dos2unix.txt) | 7.4.0-1 | BSD;BSD-2-clause;GPL;GPL-2;GPL-2+;Public-Domain |
 | [dosfstools](/cumulus-linux-41/Whats-New/licenses/dosfstools.txt) | 4.1-2 | GPL;GPL-3;GPL-3+;public domain;public-domain |
 | [dpkg](/cumulus-linux-41/Whats-New/licenses/dpkg.txt) | 1.19.7 | BSD;BSD-2-clause;GPL;GPL-2;GPL-2+;public domain;public-domain-md5;public-domain-s-s-d |
@@ -387,11 +387,11 @@ pdfhidden: True
 | [libext2fs-dev](/cumulus-linux-41/Whats-New/licenses/libext2fs-dev.txt) | 1.44.5-1+deb10u3 | BSD;GPL;GPL-2;LGPL-2;MIT |
 | [libss2](/cumulus-linux-41/Whats-New/licenses/libss2.txt) | 1.44.5-1+deb10u3 | MIT |
 | [ed](/cumulus-linux-41/Whats-New/licenses/ed.txt) | 1.15-1 | BSD;BSD-2-Clause;FCONF;FDOC;FLOG;GFDL-1;GFDL-NIV-1.3+;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+ |
-| [efibootmgr](/cumulus-linux-41/Whats-New/licenses/efibootmgr.txt) | 15-1 | GPL-2.0+(*);GPL-2.0+(debian/*);GPL-2.0+(debian/*) |
-| [libefiboot1](/cumulus-linux-41/Whats-New/licenses/libefiboot1.txt) | 37-2 | LGPL-2.0+(*);GPL-2.0+(debian/*);LGPL-2.0+(debian/*);GPL-2.0+(debian/*) |
-| [libefiboot-dev](/cumulus-linux-41/Whats-New/licenses/libefiboot-dev.txt) | 37-2 | LGPL-2.0+(*);GPL-2.0+(debian/*);LGPL-2.0+(debian/*);GPL-2.0+(debian/*) |
-| [libefivar1](/cumulus-linux-41/Whats-New/licenses/libefivar1.txt) | 37-2 | LGPL-2.0+(*);GPL-2.0+(debian/*);LGPL-2.0+(debian/*);GPL-2.0+(debian/*) |
-| [libefivar-dev](/cumulus-linux-41/Whats-New/licenses/libefivar-dev.txt) | 37-2 | LGPL-2.0+(*);GPL-2.0+(debian/*);LGPL-2.0+(debian/*);GPL-2.0+(debian/*) |
+| [efibootmgr](/cumulus-linux-41/Whats-New/licenses/efibootmgr.txt) | 15-1 | GPL-2.0+(&#42;);GPL-2.0+(debian/&#42;);GPL-2.0+(debian/&#42;) |
+| [libefiboot1](/cumulus-linux-41/Whats-New/licenses/libefiboot1.txt) | 37-2 | LGPL-2.0+(&#42;);GPL-2.0+(debian/&#42;);LGPL-2.0+(debian/&#42;);GPL-2.0+(debian/&#42;) |
+| [libefiboot-dev](/cumulus-linux-41/Whats-New/licenses/libefiboot-dev.txt) | 37-2 | LGPL-2.0+(&#42;);GPL-2.0+(debian/&#42;);LGPL-2.0+(debian/&#42;);GPL-2.0+(debian/&#42;) |
+| [libefivar1](/cumulus-linux-41/Whats-New/licenses/libefivar1.txt) | 37-2 | LGPL-2.0+(&#42;);GPL-2.0+(debian/&#42;);LGPL-2.0+(debian/&#42;);GPL-2.0+(debian/&#42;) |
+| [libefivar-dev](/cumulus-linux-41/Whats-New/licenses/libefivar-dev.txt) | 37-2 | LGPL-2.0+(&#42;);GPL-2.0+(debian/&#42;);LGPL-2.0+(debian/&#42;);GPL-2.0+(debian/&#42;) |
 | [eject](/cumulus-linux-41/Whats-New/licenses/eject.txt) | 2.1.5+deb1+cvs20081104-13.2 | GPL;GPL-2 |
 | [libdw1](/cumulus-linux-41/Whats-New/licenses/libdw1.txt) | 0.176-1.1 | GPL;GPL-2;GPL-3;LGPL- |
 | [libelf1](/cumulus-linux-41/Whats-New/licenses/libelf1.txt) | 0.176-1.1 | GPL;GPL-2;GPL-3;LGPL- |
@@ -401,9 +401,9 @@ pdfhidden: True
 | [emacsen-common](/cumulus-linux-41/Whats-New/licenses/emacsen-common.txt) | 3.0.4 | GPL |
 | [python-enum34](/cumulus-linux-41/Whats-New/licenses/python-enum34.txt) | 1.1.6-2 | GPL;GPL-3 |
 | [equivs](/cumulus-linux-41/Whats-New/licenses/equivs.txt) | 2.2.0 | NO LICENSE FOUND |
-| [etckeeper](/cumulus-linux-41/Whats-New/licenses/etckeeper.txt) | 1.18.10-1 | GPL-2+(*);BSD-2-clause(pkgng/*) |
-| [libexpat1](/cumulus-linux-41/Whats-New/licenses/libexpat1.txt) | 2.2.6-2+deb10u1 | MIT(*);MIT(debian/*);MIT(debian/*) |
-| [libexpat1-dev](/cumulus-linux-41/Whats-New/licenses/libexpat1-dev.txt) | 2.2.6-2+deb10u1 | MIT(*);MIT(debian/*);MIT(debian/*) |
+| [etckeeper](/cumulus-linux-41/Whats-New/licenses/etckeeper.txt) | 1.18.10-1 | GPL-2+(&#42;);BSD-2-clause(pkgng/&#42;) |
+| [libexpat1](/cumulus-linux-41/Whats-New/licenses/libexpat1.txt) | 2.2.6-2+deb10u1 | MIT(&#42;);MIT(debian/&#42;);MIT(debian/&#42;) |
+| [libexpat1-dev](/cumulus-linux-41/Whats-New/licenses/libexpat1-dev.txt) | 2.2.6-2+deb10u1 | MIT(&#42;);MIT(debian/&#42;);MIT(debian/&#42;) |
 | [expect](/cumulus-linux-41/Whats-New/licenses/expect.txt) | 5.45.4-2 | PD;public domain |
 | [tcl-expect](/cumulus-linux-41/Whats-New/licenses/tcl-expect.txt) | 5.45.4-2 | PD;public domain |
 | [fakeroot](/cumulus-linux-41/Whats-New/licenses/fakeroot.txt) | 1.23-1 | Artistic;GPL;GPL-3 |
@@ -420,20 +420,20 @@ pdfhidden: True
 | [fontconfig](/cumulus-linux-41/Whats-New/licenses/fontconfig.txt) | 2.13.1-2 | BSD-like |
 | [fontconfig-config](/cumulus-linux-41/Whats-New/licenses/fontconfig-config.txt) | 2.13.1-2 | BSD-like |
 | [libfontconfig1](/cumulus-linux-41/Whats-New/licenses/libfontconfig1.txt) | 2.13.1-2 | BSD-like |
-| [fonts-dejavu-core](/cumulus-linux-41/Whats-New/licenses/fonts-dejavu-core.txt) | 2.37-1 | bitstream-vera(*);GPL-2+(debian/*) |
-| [ttf-dejavu-core](/cumulus-linux-41/Whats-New/licenses/ttf-dejavu-core.txt) | 2.37-1 | bitstream-vera(*);GPL-2+(debian/*) |
-| [fonts-font-awesome](/cumulus-linux-41/Whats-New/licenses/fonts-font-awesome.txt) | 5.0.10+really4.7.0~dfsg-1 | Expat(*);OFL-1.1(fonts/*);Expat(css/*);Expat(debian/*);Expat(debian/*);OFL-1.1(debian/*) |
-| [fonts-lato](/cumulus-linux-41/Whats-New/licenses/fonts-lato.txt) | 2.0-2 | OFL-1.1(*);GPL-2+(debian/*) |
-| [fonts-roboto-slab](/cumulus-linux-41/Whats-New/licenses/fonts-roboto-slab.txt) | 1.100263+20170512-1 | Apache-2.0(    *) |
-| [freeipmi-common](/cumulus-linux-41/Whats-New/licenses/freeipmi-common.txt) | 1.6.3-1.1 | GPL-3+(*);LGPL-3+(common/src/portability/freeipmi-argp*);LGPL-3+(debian/*);LGPL-3+(debian/*) |
+| [fonts-dejavu-core](/cumulus-linux-41/Whats-New/licenses/fonts-dejavu-core.txt) | 2.37-1 | bitstream-vera(&#42;);GPL-2+(debian/&#42;) |
+| [ttf-dejavu-core](/cumulus-linux-41/Whats-New/licenses/ttf-dejavu-core.txt) | 2.37-1 | bitstream-vera(&#42;);GPL-2+(debian/&#42;) |
+| [fonts-font-awesome](/cumulus-linux-41/Whats-New/licenses/fonts-font-awesome.txt) | 5.0.10+really4.7.0~dfsg-1 | Expat(&#42;);OFL-1.1(fonts/&#42;);Expat(css/&#42;);Expat(debian/&#42;);Expat(debian/&#42;);OFL-1.1(debian/&#42;) |
+| [fonts-lato](/cumulus-linux-41/Whats-New/licenses/fonts-lato.txt) | 2.0-2 | OFL-1.1(&#42;);GPL-2+(debian/&#42;) |
+| [fonts-roboto-slab](/cumulus-linux-41/Whats-New/licenses/fonts-roboto-slab.txt) | 1.100263+20170512-1 | Apache-2.0(    &#42;) |
+| [freeipmi-common](/cumulus-linux-41/Whats-New/licenses/freeipmi-common.txt) | 1.6.3-1.1 | GPL-3+(&#42;);LGPL-3+(common/src/portability/freeipmi-argp&#42;);LGPL-3+(debian/&#42;);LGPL-3+(debian/&#42;) |
 | [freetype2-doc](/cumulus-linux-41/Whats-New/licenses/freetype2-doc.txt) | 2.9.1-3+deb10u1 | BSD;BSD-3-Clause;Catharon-OSL;FSFUL;FSFULLR;FTL;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;MIT;OpenGroup-BSD-like;Permissive;public domain;Public-Domain;zlib;Zlib |
 | [libfreetype6](/cumulus-linux-41/Whats-New/licenses/libfreetype6.txt) | 2.9.1-3+deb10u1 | BSD;BSD-3-Clause;Catharon-OSL;FSFUL;FSFULLR;FTL;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;MIT;OpenGroup-BSD-like;Permissive;public domain;Public-Domain;zlib;Zlib |
 | [libfreetype6-dev](/cumulus-linux-41/Whats-New/licenses/libfreetype6-dev.txt) | 2.9.1-3+deb10u1 | BSD;BSD-3-Clause;Catharon-OSL;FSFUL;FSFULLR;FTL;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;MIT;OpenGroup-BSD-like;Permissive;public domain;Public-Domain;zlib;Zlib |
 | [libfribidi0](/cumulus-linux-41/Whats-New/licenses/libfribidi0.txt) | 1.0.5-3.1+deb10u1 | LGPL-2;LGPL-2.1+ |
-| [libfstrm0](/cumulus-linux-41/Whats-New/licenses/libfstrm0.txt) | 0.4.0-1 | Apache-2.0(*);Gray-Watson(libmy/argv.c libmy/argv.h libmy/argv_loc.h);Apache-2.0(libmy/argv.c libmy/argv.h libmy/argv_loc.h);Gray-Watson(libmy/argv.c libmy/argv.h libmy/argv_loc.h) |
+| [libfstrm0](/cumulus-linux-41/Whats-New/licenses/libfstrm0.txt) | 0.4.0-1 | Apache-2.0(&#42;);Gray-Watson(libmy/argv.c libmy/argv.h libmy/argv_loc.h);Apache-2.0(libmy/argv.c libmy/argv.h libmy/argv_loc.h);Gray-Watson(libmy/argv.c libmy/argv.h libmy/argv_loc.h) |
 | [libfuse2](/cumulus-linux-41/Whats-New/licenses/libfuse2.txt) | 2.9.9-1 | GPL;GPL-2;GPL-2+;LGPL-2 |
 | [libfuse-dev](/cumulus-linux-41/Whats-New/licenses/libfuse-dev.txt) | 2.9.9-1 | GPL;GPL-2;GPL-2+;LGPL-2 |
-| [gawk](/cumulus-linux-41/Whats-New/licenses/gawk.txt) | 4.2.1+dfsg-1 | GPL-3+(*);GPL-3+(debian/*);GPL-3+(debian/*) |
+| [gawk](/cumulus-linux-41/Whats-New/licenses/gawk.txt) | 4.2.1+dfsg-1 | GPL-3+(&#42;);GPL-3+(debian/&#42;);GPL-3+(debian/&#42;) |
 | [gcc-7-base](/cumulus-linux-41/Whats-New/licenses/gcc-7-base.txt) | 7.4.0-6 | Artistic;BSD;GFDL-1;GPL;GPL-2;GPL-3;LGPL;zlib |
 | [gcc-8-base](/cumulus-linux-41/Whats-New/licenses/gcc-8-base.txt) | 8.3.0-6 | Artistic;BSD;GFDL-1;GPL;GPL-2;GPL-3;LGPL;zlib |
 | [cpp](/cumulus-linux-41/Whats-New/licenses/cpp.txt) | 8.3.0-1 | GPL |
@@ -441,7 +441,7 @@ pdfhidden: True
 | [gdbserver](/cumulus-linux-41/Whats-New/licenses/gdbserver.txt) | 8.2.1-2+b3 | BSD;BSD-3-clause;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;GPL-3+ with GCC-Runtime-3.1 exception;LGPL-2;LGPL-2+;LGPL-2.1+ |
 | [libgdbm6](/cumulus-linux-41/Whats-New/licenses/libgdbm6.txt) | 1.18.1-4 | GFDL-NIV-1.3+;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+ |
 | [libgdbm-compat4](/cumulus-linux-41/Whats-New/licenses/libgdbm-compat4.txt) | 1.18.1-4 | GFDL-NIV-1.3+;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+ |
-| [gdisk](/cumulus-linux-41/Whats-New/licenses/gdisk.txt) | 1.0.3-1.1 | LGPL-2.0+(*);LGPL-2.0+(debian/*);LGPL-2.0+(crc32.cc crc32.h);LGPL-2.0+(crc32.cc crc32.h) |
+| [gdisk](/cumulus-linux-41/Whats-New/licenses/gdisk.txt) | 1.0.3-1.1 | LGPL-2.0+(&#42;);LGPL-2.0+(debian/&#42;);LGPL-2.0+(crc32.cc crc32.h);LGPL-2.0+(crc32.cc crc32.h) |
 | [libgdk-pixbuf2.0-0](/cumulus-linux-41/Whats-New/licenses/libgdk-pixbuf2.0-0.txt) | 2.38.1+dfsg-1 | GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2+;MPL-1.1-or-LGPL-2+ |
 | [libgdk-pixbuf2.0-common](/cumulus-linux-41/Whats-New/licenses/libgdk-pixbuf2.0-common.txt) | 2.38.1+dfsg-1 | GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2+;MPL-1.1-or-LGPL-2+ |
 | [libgeoip1](/cumulus-linux-41/Whats-New/licenses/libgeoip1.txt) | 1.6.12-1 | ISC;LGPL-2;LGPL-2.1+ |
@@ -484,21 +484,21 @@ pdfhidden: True
 | [libgnutls30](/cumulus-linux-41/Whats-New/licenses/libgnutls30.txt) | 3.6.7-4+deb10u3 | Apache-2;CC0 license;GFDL-1;GPL;GPL-3);GPLv3+;LGPL;LGPL-3;LGPLv3+_or_GPLv2+;MIT;The main library is licensed under GNU Lesser;The MIT License (MIT) |
 | [libgnutls-dane0](/cumulus-linux-41/Whats-New/licenses/libgnutls-dane0.txt) | 3.6.7-4+deb10u3 | Apache-2;CC0 license;GFDL-1;GPL;GPL-3);GPLv3+;LGPL;LGPL-3;LGPLv3+_or_GPLv2+;MIT;The main library is licensed under GNU Lesser;The MIT License (MIT) |
 | [libgnutls-openssl27](/cumulus-linux-41/Whats-New/licenses/libgnutls-openssl27.txt) | 3.6.7-4+deb10u3 | Apache-2;CC0 license;GFDL-1;GPL;GPL-3);GPLv3+;LGPL;LGPL-3;LGPLv3+_or_GPLv2+;MIT;The main library is licensed under GNU Lesser;The MIT License (MIT) |
-| [libgoogle-perftools4](/cumulus-linux-41/Whats-New/licenses/libgoogle-perftools4.txt) | 2.7-1 | BSD-3-clause(*);GPL-2+(debian/*) |
-| [libtcmalloc-minimal4](/cumulus-linux-41/Whats-New/licenses/libtcmalloc-minimal4.txt) | 2.7-1 | BSD-3-clause(*);GPL-2+(debian/*) |
+| [libgoogle-perftools4](/cumulus-linux-41/Whats-New/licenses/libgoogle-perftools4.txt) | 2.7-1 | BSD-3-clause(&#42;);GPL-2+(debian/&#42;) |
+| [libtcmalloc-minimal4](/cumulus-linux-41/Whats-New/licenses/libtcmalloc-minimal4.txt) | 2.7-1 | BSD-3-clause(&#42;);GPL-2+(debian/&#42;) |
 | [gpm](/cumulus-linux-41/Whats-New/licenses/gpm.txt) | 1.20.7-5 | GPL;GPL-2;GPL-2.0+;GPL-3;GPL-3.0+ |
 | [libgpm2](/cumulus-linux-41/Whats-New/licenses/libgpm2.txt) | 1.20.7-5 | GPL;GPL-2;GPL-2.0+;GPL-3;GPL-3.0+ |
 | [libgraphite2-3](/cumulus-linux-41/Whats-New/licenses/libgraphite2-3.txt) | 1.3.13-7 | Artistic;custom-sil-open-font-license;GPL;GPL-1;GPL-1+;GPL-2;GPL-2+;LGPL-2;LGPL-2.1+;LGPL-2.1+ ;MPL-1;MPL-1.1;public-domain |
-| [graphviz](/cumulus-linux-41/Whats-New/licenses/graphviz.txt) | 2.40.1-6 | EPL-1.0(*);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/*);EPL-1.0(debian/*) |
-| [libcdt5](/cumulus-linux-41/Whats-New/licenses/libcdt5.txt) | 2.40.1-6 | EPL-1.0(*);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/*);EPL-1.0(debian/*) |
-| [libcgraph6](/cumulus-linux-41/Whats-New/licenses/libcgraph6.txt) | 2.40.1-6 | EPL-1.0(*);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/*);EPL-1.0(debian/*) |
-| [libgraphviz-dev](/cumulus-linux-41/Whats-New/licenses/libgraphviz-dev.txt) | 2.40.1-6 | EPL-1.0(*);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/*);EPL-1.0(debian/*) |
-| [libgvc6](/cumulus-linux-41/Whats-New/licenses/libgvc6.txt) | 2.40.1-6 | EPL-1.0(*);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/*);EPL-1.0(debian/*) |
-| [libgvc6-plugins-gtk](/cumulus-linux-41/Whats-New/licenses/libgvc6-plugins-gtk.txt) | 2.40.1-6 | EPL-1.0(*);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/*);EPL-1.0(debian/*) |
-| [libgvpr2](/cumulus-linux-41/Whats-New/licenses/libgvpr2.txt) | 2.40.1-6 | EPL-1.0(*);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/*);EPL-1.0(debian/*) |
-| [liblab-gamut1](/cumulus-linux-41/Whats-New/licenses/liblab-gamut1.txt) | 2.40.1-6 | EPL-1.0(*);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/*);EPL-1.0(debian/*) |
-| [libpathplan4](/cumulus-linux-41/Whats-New/licenses/libpathplan4.txt) | 2.40.1-6 | EPL-1.0(*);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/*);EPL-1.0(debian/*) |
-| [libxdot4](/cumulus-linux-41/Whats-New/licenses/libxdot4.txt) | 2.40.1-6 | EPL-1.0(*);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/*);EPL-1.0(debian/*) |
+| [graphviz](/cumulus-linux-41/Whats-New/licenses/graphviz.txt) | 2.40.1-6 | EPL-1.0(&#42;);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/&#42;);EPL-1.0(debian/&#42;) |
+| [libcdt5](/cumulus-linux-41/Whats-New/licenses/libcdt5.txt) | 2.40.1-6 | EPL-1.0(&#42;);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/&#42;);EPL-1.0(debian/&#42;) |
+| [libcgraph6](/cumulus-linux-41/Whats-New/licenses/libcgraph6.txt) | 2.40.1-6 | EPL-1.0(&#42;);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/&#42;);EPL-1.0(debian/&#42;) |
+| [libgraphviz-dev](/cumulus-linux-41/Whats-New/licenses/libgraphviz-dev.txt) | 2.40.1-6 | EPL-1.0(&#42;);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/&#42;);EPL-1.0(debian/&#42;) |
+| [libgvc6](/cumulus-linux-41/Whats-New/licenses/libgvc6.txt) | 2.40.1-6 | EPL-1.0(&#42;);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/&#42;);EPL-1.0(debian/&#42;) |
+| [libgvc6-plugins-gtk](/cumulus-linux-41/Whats-New/licenses/libgvc6-plugins-gtk.txt) | 2.40.1-6 | EPL-1.0(&#42;);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/&#42;);EPL-1.0(debian/&#42;) |
+| [libgvpr2](/cumulus-linux-41/Whats-New/licenses/libgvpr2.txt) | 2.40.1-6 | EPL-1.0(&#42;);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/&#42;);EPL-1.0(debian/&#42;) |
+| [liblab-gamut1](/cumulus-linux-41/Whats-New/licenses/liblab-gamut1.txt) | 2.40.1-6 | EPL-1.0(&#42;);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/&#42;);EPL-1.0(debian/&#42;) |
+| [libpathplan4](/cumulus-linux-41/Whats-New/licenses/libpathplan4.txt) | 2.40.1-6 | EPL-1.0(&#42;);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/&#42;);EPL-1.0(debian/&#42;) |
+| [libxdot4](/cumulus-linux-41/Whats-New/licenses/libxdot4.txt) | 2.40.1-6 | EPL-1.0(&#42;);MIT(cmd/smyrna/arcball.[ch]);zlib-style(cmd/smyrna/md5.[ch]);X/MIT(cmd/smyrna/trackball.[ch]);EPL-1.0(debian/&#42;);EPL-1.0(debian/&#42;) |
 | [grep](/cumulus-linux-41/Whats-New/licenses/grep.txt) | 3.3-1 | GPL;GPL-3;GPL-3+ |
 | [groff-base](/cumulus-linux-41/Whats-New/licenses/groff-base.txt) | 1.22.4-3 | BSD;GFDL-1;GPL;GPL-3;MIT;public domain |
 | [libgrpc++1](/cumulus-linux-41/Whats-New/licenses/libgrpc++1.txt) | 1.16.1-1 | Apache-2;Apache-2.0;BSD;BSD-3-clause;Expat;GPL;GPL-2;GPL-2+;ISC;MIT;Zlib |
@@ -511,22 +511,22 @@ pdfhidden: True
 | [libgtk2.0-0](/cumulus-linux-41/Whats-New/licenses/libgtk2.0-0.txt) | 2.24.32-3 | LGPL-2;other |
 | [libgtk2.0-common](/cumulus-linux-41/Whats-New/licenses/libgtk2.0-common.txt) | 2.24.32-3 | LGPL-2;other |
 | [gtk-update-icon-cache](/cumulus-linux-41/Whats-New/licenses/gtk-update-icon-cache.txt) | 3.24.5-1 | Apache-2;Apache-2.0;Expat;LGPL-2;LGPL-2+;LGPL-2.1+;other;SWL;zlib |
-| [libgts-0.7-5](/cumulus-linux-41/Whats-New/licenses/libgts-0.7-5.txt) | 0.7.6+darcs121130-4 | LGPL-2+(*);LGPL-2+(src/curvature.c);LGPL-2+(src/isotetra.c);LGPL-2+(src/stripe.c);LGPL-2+(debian/*);LGPL-2+(debian/*) |
+| [libgts-0.7-5](/cumulus-linux-41/Whats-New/licenses/libgts-0.7-5.txt) | 0.7.6+darcs121130-4 | LGPL-2+(&#42;);LGPL-2+(src/curvature.c);LGPL-2+(src/isotetra.c);LGPL-2+(src/stripe.c);LGPL-2+(debian/&#42;);LGPL-2+(debian/&#42;) |
 | [guile-2.0-libs](/cumulus-linux-41/Whats-New/licenses/guile-2.0-libs.txt) | 2.0.13+1-5.1 | LGPL |
 | [gunicorn](/cumulus-linux-41/Whats-New/licenses/gunicorn.txt) | 19.9.0-1 | BSD;BSD-3-clause;GPL;GPL-3;GPL-3+;MIT |
 | [python-gunicorn](/cumulus-linux-41/Whats-New/licenses/python-gunicorn.txt) | 19.9.0-1 | BSD;BSD-3-clause;GPL;GPL-3;GPL-3+;MIT |
 | [gzip](/cumulus-linux-41/Whats-New/licenses/gzip.txt) | 1.9-3 | GPL |
 | [libharfbuzz0b](/cumulus-linux-41/Whats-New/licenses/libharfbuzz0b.txt) | 2.3.1-1 | MIT |
 | [libharfbuzz-icu0](/cumulus-linux-41/Whats-New/licenses/libharfbuzz-icu0.txt) | 2.3.1-1 | MIT |
-| [haveged](/cumulus-linux-41/Whats-New/licenses/haveged.txt) | 1.9.1-7 | GPL-3+(*);GPL-3+(debian/*);GPL-3+(src/havege.c src/havege.h);GPL-3+(src/havegetest.c);GPL-3+(src/cpuid-43.h);GPL-3+(contrib/diags/data_prep.c);GPL-3+(init.d/sysv.lsb init.d/sysv.redhat);public-domain(nist/dfft.c);permissive-mconf(nist/mconf.h);permissive-nist(nist/packtest.c);GPL-3+(nist/packtest.c) |
-| [libhavege1](/cumulus-linux-41/Whats-New/licenses/libhavege1.txt) | 1.9.1-7 | GPL-3+(*);GPL-3+(debian/*);GPL-3+(src/havege.c src/havege.h);GPL-3+(src/havegetest.c);GPL-3+(src/cpuid-43.h);GPL-3+(contrib/diags/data_prep.c);GPL-3+(init.d/sysv.lsb init.d/sysv.redhat);public-domain(nist/dfft.c);permissive-mconf(nist/mconf.h);permissive-nist(nist/packtest.c);GPL-3+(nist/packtest.c) |
+| [haveged](/cumulus-linux-41/Whats-New/licenses/haveged.txt) | 1.9.1-7 | GPL-3+(&#42;);GPL-3+(debian/&#42;);GPL-3+(src/havege.c src/havege.h);GPL-3+(src/havegetest.c);GPL-3+(src/cpuid-43.h);GPL-3+(contrib/diags/data_prep.c);GPL-3+(init.d/sysv.lsb init.d/sysv.redhat);public-domain(nist/dfft.c);permissive-mconf(nist/mconf.h);permissive-nist(nist/packtest.c);GPL-3+(nist/packtest.c) |
+| [libhavege1](/cumulus-linux-41/Whats-New/licenses/libhavege1.txt) | 1.9.1-7 | GPL-3+(&#42;);GPL-3+(debian/&#42;);GPL-3+(src/havege.c src/havege.h);GPL-3+(src/havegetest.c);GPL-3+(src/cpuid-43.h);GPL-3+(contrib/diags/data_prep.c);GPL-3+(init.d/sysv.lsb init.d/sysv.redhat);public-domain(nist/dfft.c);permissive-mconf(nist/mconf.h);permissive-nist(nist/packtest.c);GPL-3+(nist/packtest.c) |
 | [hdparm](/cumulus-linux-41/Whats-New/licenses/hdparm.txt) | 9.58+ds-1 | BSD;BSD-2-clause;GPL;GPL-2;GPL-2+;hdparm |
 | [help2man](/cumulus-linux-41/Whats-New/licenses/help2man.txt) | 1.47.8 | GPL;GPL-3;GPL-3+ |
 | [hicolor-icon-theme](/cumulus-linux-41/Whats-New/licenses/hicolor-icon-theme.txt) | 0.17-2 | GPL;GPL-2;GPL-2+ |
 | [libhiredis0.14](/cumulus-linux-41/Whats-New/licenses/libhiredis0.14.txt) | 0.14.0-3 | BSD;BSD-3-Clause |
 | [hostname](/cumulus-linux-41/Whats-New/licenses/hostname.txt) | 3.21 | GPL;GPL-2 |
 | [htop](/cumulus-linux-41/Whats-New/licenses/htop.txt) | 2.2.0-1+b1 | GPL;GPL-2;GPL-2+ |
-| [python-hyperlink](/cumulus-linux-41/Whats-New/licenses/python-hyperlink.txt) | 17.3.1-2 | Expat(*);Expat(debian/*);Expat(debian/*) |
+| [python-hyperlink](/cumulus-linux-41/Whats-New/licenses/python-hyperlink.txt) | 17.3.1-2 | Expat(&#42;);Expat(debian/&#42;);Expat(debian/&#42;) |
 | [i2c-tools](/cumulus-linux-41/Whats-New/licenses/i2c-tools.txt) | 4.1-1 | GPL;GPL-2;LGPL-2 |
 | [libi2c0](/cumulus-linux-41/Whats-New/licenses/libi2c0.txt) | 4.1-1 | GPL;GPL-2;LGPL-2 |
 | [python-smbus](/cumulus-linux-41/Whats-New/licenses/python-smbus.txt) | 4.1-1 | GPL;GPL-2;LGPL-2 |
@@ -536,8 +536,8 @@ pdfhidden: True
 | [ieee-data](/cumulus-linux-41/Whats-New/licenses/ieee-data.txt) | 20180805.1 | GPL;GPL-2;GPL-2+;other;WTFPL-2 |
 | [ifplugd](/cumulus-linux-41/Whats-New/licenses/ifplugd.txt) | 0.28-19.4 | GPL;GPL-2 |
 | [libijs-0.35](/cumulus-linux-41/Whats-New/licenses/libijs-0.35.txt) | 0.35-14 | Expat;Expat~X;Expat~X with X exception;GAP;GAP~configure;GAP~Makefile.in;GPL;GPL-2;GPL-2+;GPL-2+ with Autoconf exception;MIT |
-| [python-incremental](/cumulus-linux-41/Whats-New/licenses/python-incremental.txt) | 16.10.1-3 | MIT(*);MIT(debian/*);MIT(debian/*) |
-| [python3-inflection](/cumulus-linux-41/Whats-New/licenses/python3-inflection.txt) | 0.3.1-1 | MIT-style(*);MIT-style(debian/*);MIT-style(debian/*) |
+| [python-incremental](/cumulus-linux-41/Whats-New/licenses/python-incremental.txt) | 16.10.1-3 | MIT(&#42;);MIT(debian/&#42;);MIT(debian/&#42;) |
+| [python3-inflection](/cumulus-linux-41/Whats-New/licenses/python3-inflection.txt) | 0.3.1-1 | MIT-style(&#42;);MIT-style(debian/&#42;);MIT-style(debian/&#42;) |
 | [initramfs-tools](/cumulus-linux-41/Whats-New/licenses/initramfs-tools.txt) | 0.133+deb10u1 | GPL;GPL-2 |
 | [initramfs-tools-core](/cumulus-linux-41/Whats-New/licenses/initramfs-tools-core.txt) | 0.133+deb10u1 | GPL;GPL-2 |
 | [init](/cumulus-linux-41/Whats-New/licenses/init.txt) | 1.56+nmu1 | BSD;BSD-3-clause;GPL;GPL-2;GPL-2+ |
@@ -551,22 +551,22 @@ pdfhidden: True
 | [libiperf0](/cumulus-linux-41/Whats-New/licenses/libiperf0.txt) | 3.6-2 | BSD;BSD-2-clause;BSD-3-clause;GPL;GPL-2;GPL-2+;GPL-3;MIT;MIT/X11;NCSA;permissive;public domain;public-domain |
 | [iperf](/cumulus-linux-41/Whats-New/licenses/iperf.txt) | 2.0.12+dfsg1-2 | BSD;BSD-3-clause;GPL;GPL-2;GPL-2+;ISC;LGPL-2;LGPL-2+;MIT;public domain |
 | [ipmitool](/cumulus-linux-41/Whats-New/licenses/ipmitool.txt) | 1.8.18-6 | BSD;BSD-3-clause |
-| [iptraf-ng](/cumulus-linux-41/Whats-New/licenses/iptraf-ng.txt) | 1.1.4-6+b1 | GPL-2(*);GPL-2(debian/*);GPL-2(debian/*) |
+| [iptraf-ng](/cumulus-linux-41/Whats-New/licenses/iptraf-ng.txt) | 1.1.4-6+b1 | GPL-2(&#42;);GPL-2(debian/&#42;);GPL-2(debian/&#42;) |
 | [ipxe-qemu](/cumulus-linux-41/Whats-New/licenses/ipxe-qemu.txt) | 1.0.0+git-20190125.36a4c85-1 | BSD;BSD-2-clause;BSD-3-clause;GPL;GPL-2;GPL-2+;LGPL-2+;LGPL-2.1+ |
 | [irqbalance](/cumulus-linux-41/Whats-New/licenses/irqbalance.txt) | 1.5.0-3 | GPL |
 | [libisl19](/cumulus-linux-41/Whats-New/licenses/libisl19.txt) | 0.20-2 | BSD;BSD-2-clause;LGPL-2;LGPL-2.1+;MIT |
 | [iso-codes](/cumulus-linux-41/Whats-New/licenses/iso-codes.txt) | 4.2-1 | LGPL-2;LGPL-2.1+ |
 | [libjbig2dec0](/cumulus-linux-41/Whats-New/licenses/libjbig2dec0.txt) | 0.16-1 | AGPL-3+;BSD;BSD-2-clause;GPL;GPL-3;GPL-3+;LGPL-2;LGPL-2.1+;pubic-domain;public domain;public-domain |
-| [libjbig0](/cumulus-linux-41/Whats-New/licenses/libjbig0.txt) | 2.1-3.1+b2 | GPL-2+(*);GPL-2+(debian/*) |
+| [libjbig0](/cumulus-linux-41/Whats-New/licenses/libjbig0.txt) | 2.1-3.1+b2 | GPL-2+(&#42;);GPL-2+(debian/&#42;) |
 | [libjte1](/cumulus-linux-41/Whats-New/licenses/libjte1.txt) | 1.21-1 | GPL;GPL-2;LGPL-2 |
 | [python3-jinja2](/cumulus-linux-41/Whats-New/licenses/python3-jinja2.txt) | 2.10-2 | GPL;MIT |
 | [python-jinja2](/cumulus-linux-41/Whats-New/licenses/python-jinja2.txt) | 2.10-2 | GPL;MIT |
-| [jq](/cumulus-linux-41/Whats-New/licenses/jq.txt) | 1.5+dfsg-2+b1 | MIT(*);CC-BY-3.0(docs/* jq.1);Apache-2.0(docs/public/bootstrap/*);Expat(jv_dtoa.c);GPL-2.0+(debian/*) |
-| [libjq1](/cumulus-linux-41/Whats-New/licenses/libjq1.txt) | 1.5+dfsg-2+b1 | MIT(*);CC-BY-3.0(docs/* jq.1);Apache-2.0(docs/public/bootstrap/*);Expat(jv_dtoa.c);GPL-2.0+(debian/*) |
+| [jq](/cumulus-linux-41/Whats-New/licenses/jq.txt) | 1.5+dfsg-2+b1 | MIT(&#42;);CC-BY-3.0(docs/&#42; jq.1);Apache-2.0(docs/public/bootstrap/&#42;);Expat(jv_dtoa.c);GPL-2.0+(debian/&#42;) |
+| [libjq1](/cumulus-linux-41/Whats-New/licenses/libjq1.txt) | 1.5+dfsg-2+b1 | MIT(&#42;);CC-BY-3.0(docs/&#42; jq.1);Apache-2.0(docs/public/bootstrap/&#42;);Expat(jv_dtoa.c);GPL-2.0+(debian/&#42;) |
 | [libjs-jquery](/cumulus-linux-41/Whats-New/licenses/libjs-jquery.txt) | 3.3.1~dfsg-3 | BSD;BSD-3-clause;GPL;GPL-2;GPL-2>;MIT |
 | [libjson-c3](/cumulus-linux-41/Whats-New/licenses/libjson-c3.txt) | 0.12.1+ds-2 | Expat |
 | [libjson-c-dev](/cumulus-linux-41/Whats-New/licenses/libjson-c-dev.txt) | 0.12.1+ds-2 | Expat |
-| [kbd](/cumulus-linux-41/Whats-New/licenses/kbd.txt) | 2.0.4-4 | GPL-2+(*);GPL-2+(src/libkeymap/*);GPL-any(src/kbdrate.c docs/man/man8/kbdrate.8);GPL-any(src/dumpkeys.c src/libkeymap/analyze.l);GPL-any(src/setfont.c docs/man/man8/setfont.8);GPL-any(src/loadkeys.c src/libkeymap/parser.y src/libkeymap/dump.c);GPL-any(docs/man/man1/psfaddtable.1 docs/man/man1/psfgettable.1);GPL-any(src/chvt.c src/clrunimap.c src/deallocvt.c src/fgconsole.c);GPL-any(docs/man/man1misc/splitfont.1 docs/man/man1/openvt.1);GPL-any(src/setvtrgb.c);GPL-2-with-exceptions(data/consolefonts/);GPL-2+(src/vlock/*);GPL-2+(debian/*);GPL-any(debian/*);GPL-2+(debian/*) |
+| [kbd](/cumulus-linux-41/Whats-New/licenses/kbd.txt) | 2.0.4-4 | GPL-2+(&#42;);GPL-2+(src/libkeymap/&#42;);GPL-any(src/kbdrate.c docs/man/man8/kbdrate.8);GPL-any(src/dumpkeys.c src/libkeymap/analyze.l);GPL-any(src/setfont.c docs/man/man8/setfont.8);GPL-any(src/loadkeys.c src/libkeymap/parser.y src/libkeymap/dump.c);GPL-any(docs/man/man1/psfaddtable.1 docs/man/man1/psfgettable.1);GPL-any(src/chvt.c src/clrunimap.c src/deallocvt.c src/fgconsole.c);GPL-any(docs/man/man1misc/splitfont.1 docs/man/man1/openvt.1);GPL-any(src/setvtrgb.c);GPL-2-with-exceptions(data/consolefonts/);GPL-2+(src/vlock/&#42;);GPL-2+(debian/&#42;);GPL-any(debian/&#42;);GPL-2+(debian/&#42;) |
 | [kernel-wedge](/cumulus-linux-41/Whats-New/licenses/kernel-wedge.txt) | 2.99 | GPL |
 | [kexec-tools](/cumulus-linux-41/Whats-New/licenses/kexec-tools.txt) | 2.0.18-1 | GPL;GPL-2 |
 | [libkeyutils1](/cumulus-linux-41/Whats-New/licenses/libkeyutils1.txt) | 1.6-6 | GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2+ |
@@ -587,14 +587,14 @@ pdfhidden: True
 | [libapt-pkg-perl](/cumulus-linux-41/Whats-New/licenses/libapt-pkg-perl.txt) | 0.1.34+b1 | GPL |
 | [libarchive-zip-perl](/cumulus-linux-41/Whats-New/licenses/libarchive-zip-perl.txt) | 1.64-1 | Artistic;GPL;GPL-1;GPL-1+;Info-ZIP |
 | [libassuan0](/cumulus-linux-41/Whats-New/licenses/libassuan0.txt) | 2.5.2-1 | GAP;GAP~FSF;GPL;GPL-2;GPL-2+;GPL-2+ with libtool exception;GPL-3;GPL-3+;LGPL-2;LGPL-2.1+;LGPL-3;LGPL-3+ |
-| [libasyncns0](/cumulus-linux-41/Whats-New/licenses/libasyncns0.txt) | 0.8-6 | LGPL-2.1+(*);LGPL-2.1+(debian/*);LGPL-2.1+(debian/*) |
+| [libasyncns0](/cumulus-linux-41/Whats-New/licenses/libasyncns0.txt) | 0.8-6 | LGPL-2.1+(&#42;);LGPL-2.1+(debian/&#42;);LGPL-2.1+(debian/&#42;) |
 | [libb-hooks-op-check-perl](/cumulus-linux-41/Whats-New/licenses/libb-hooks-op-check-perl.txt) | 0.22-1+b1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libbsd0](/cumulus-linux-41/Whats-New/licenses/libbsd0.txt) | 0.9.1-2 | Beerware;BSD;BSD-2-clause;BSD-2-clause-author;BSD-2-clause-NetBSD;BSD-2-clause-verbatim;BSD-3-clause;BSD-3-clause-author;BSD-3-clause-John-Birrell;BSD-3-clause-Regents;BSD-4-clause-Christopher-G-Demetriou;BSD-4-clause-Niels-Provos;BSD-5-clause-Peter-Wemm;Expat;ISC;ISC-Original;public domain;public-domain;public-domain-Colin-Plumb |
 | [libbsd-dev](/cumulus-linux-41/Whats-New/licenses/libbsd-dev.txt) | 0.9.1-2 | Beerware;BSD;BSD-2-clause;BSD-2-clause-author;BSD-2-clause-NetBSD;BSD-2-clause-verbatim;BSD-3-clause;BSD-3-clause-author;BSD-3-clause-John-Birrell;BSD-3-clause-Regents;BSD-4-clause-Christopher-G-Demetriou;BSD-4-clause-Niels-Provos;BSD-5-clause-Peter-Wemm;Expat;ISC;ISC-Original;public domain;public-domain;public-domain-Colin-Plumb |
 | [libburn4](/cumulus-linux-41/Whats-New/licenses/libburn4.txt) | 1.5.0-1+deb10u1 | GPL;GPL-2;GPL-2+ |
 | [libcaca0](/cumulus-linux-41/Whats-New/licenses/libcaca0.txt) | 0.99.beta19-2.1 | LGPL |
 | [libcaca-dev](/cumulus-linux-41/Whats-New/licenses/libcaca-dev.txt) | 0.99.beta19-2.1 | LGPL |
-| [libcacard0](/cumulus-linux-41/Whats-New/licenses/libcacard0.txt) | 2.6.1-1 | LGPL-2.1+(    *);  auto-permissive(    m4/*);  GPL-3.0+ with autoconf exception(    m4/ax_append_compile_flags.m4);  GPL-2.0+(    src/glib-compat.h);  LGPL-2.1+(    m4/ax_code_coverage.m4);GPL-2+(debian/*);LGPL-2.1+(debian/*) |
+| [libcacard0](/cumulus-linux-41/Whats-New/licenses/libcacard0.txt) | 2.6.1-1 | LGPL-2.1+(    &#42;);  auto-permissive(    m4/&#42;);  GPL-3.0+ with autoconf exception(    m4/ax_append_compile_flags.m4);  GPL-2.0+(    src/glib-compat.h);  LGPL-2.1+(    m4/ax_code_coverage.m4);GPL-2+(debian/&#42;);LGPL-2.1+(debian/&#42;) |
 | [libcap2](/cumulus-linux-41/Whats-New/licenses/libcap2.txt) | 2.25-2 | BSD;BSD-3-clause;GPL;GPL-2;GPL-2+ |
 | [libcap2-bin](/cumulus-linux-41/Whats-New/licenses/libcap2-bin.txt) | 2.25-2 | BSD;BSD-3-clause;GPL;GPL-2;GPL-2+ |
 | [libcap-dev](/cumulus-linux-41/Whats-New/licenses/libcap-dev.txt) | 2.25-2 | BSD;BSD-3-clause;GPL;GPL-2;GPL-2+ |
@@ -602,9 +602,9 @@ pdfhidden: True
 | [libcap-ng-dev](/cumulus-linux-41/Whats-New/licenses/libcap-ng-dev.txt) | 0.7.9-2 | GPL;GPL-2;GPL-3;LGPL-2 |
 | [libcapture-tiny-perl](/cumulus-linux-41/Whats-New/licenses/libcapture-tiny-perl.txt) | 0.48-1 | Apache-2;Apache-2.0;Artistic;GPL;GPL-1;GPL-1+ |
 | [libcgi-pm-perl](/cumulus-linux-41/Whats-New/licenses/libcgi-pm-perl.txt) | 4.40-1 | Artistic;Artistic-2.0;GPL;GPL-1;GPL-1+ |
-| [cgroup-bin](/cumulus-linux-41/Whats-New/licenses/cgroup-bin.txt) | 0.41-8.1 | LGPL-2.1(*);BSD-3-clause or GPL-2 |
-| [cgroup-tools](/cumulus-linux-41/Whats-New/licenses/cgroup-tools.txt) | 0.41-8.1 | LGPL-2.1(*);BSD-3-clause or GPL-2 |
-| [libcgroup1](/cumulus-linux-41/Whats-New/licenses/libcgroup1.txt) | 0.41-8.1 | LGPL-2.1(*);BSD-3-clause or GPL-2 |
+| [cgroup-bin](/cumulus-linux-41/Whats-New/licenses/cgroup-bin.txt) | 0.41-8.1 | LGPL-2.1(&#42;);BSD-3-clause or GPL-2 |
+| [cgroup-tools](/cumulus-linux-41/Whats-New/licenses/cgroup-tools.txt) | 0.41-8.1 | LGPL-2.1(&#42;);BSD-3-clause or GPL-2 |
+| [libcgroup1](/cumulus-linux-41/Whats-New/licenses/libcgroup1.txt) | 0.41-8.1 | LGPL-2.1(&#42;);BSD-3-clause or GPL-2 |
 | [libclass-accessor-perl](/cumulus-linux-41/Whats-New/licenses/libclass-accessor-perl.txt) | 0.51-1 | Artistic;GPL;GPL-1+ |
 | [libclass-method-modifiers-perl](/cumulus-linux-41/Whats-New/licenses/libclass-method-modifiers-perl.txt) | 2.12-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libcli1.9](/cumulus-linux-41/Whats-New/licenses/libcli1.9.txt) | 1.9.7-2+b11 | LGPL |
@@ -635,7 +635,7 @@ pdfhidden: True
 | [libedit2](/cumulus-linux-41/Whats-New/licenses/libedit2.txt) | 3.1-20181209-1 | BSD;BSD-3-clause |
 | [libedit-dev](/cumulus-linux-41/Whats-New/licenses/libedit-dev.txt) | 3.1-20181209-1 | BSD;BSD-3-clause |
 | [libemail-valid-perl](/cumulus-linux-41/Whats-New/licenses/libemail-valid-perl.txt) | 1.202-1 | Artistic;GPL;GPL-1;GPL-1+ |
-| [libencode-locale-perl](/cumulus-linux-41/Whats-New/licenses/libencode-locale-perl.txt) | 1.05-1 | Artistic or GPL-1+(*);Artistic or GPL-1+(debian/*);Artistic(debian/*);GPL-1+(debian/*) |
+| [libencode-locale-perl](/cumulus-linux-41/Whats-New/licenses/libencode-locale-perl.txt) | 1.05-1 | Artistic or GPL-1+(&#42;);Artistic or GPL-1+(debian/&#42;);Artistic(debian/&#42;);GPL-1+(debian/&#42;) |
 | [libepoxy0](/cumulus-linux-41/Whats-New/licenses/libepoxy0.txt) | 1.5.3-0.1 | Expat |
 | [liberror-perl](/cumulus-linux-41/Whats-New/licenses/liberror-perl.txt) | 0.17027-2 | Artistic;GPL;GPL-1;GPL-1+;MIT;MIT/X11 |
 | [libestr0](/cumulus-linux-41/Whats-New/licenses/libestr0.txt) | 0.1.10-2.1 | LGPL-2 |
@@ -646,9 +646,9 @@ pdfhidden: True
 | [libevent-openssl-2.1-6](/cumulus-linux-41/Whats-New/licenses/libevent-openssl-2.1-6.txt) | 2.1.8-stable-4 | BSD |
 | [libevent-pthreads-2.1-6](/cumulus-linux-41/Whats-New/licenses/libevent-pthreads-2.1-6.txt) | 2.1.8-stable-4 | BSD |
 | [libexporter-tiny-perl](/cumulus-linux-41/Whats-New/licenses/libexporter-tiny-perl.txt) | 1.002001-1 | Artistic;GPL;GPL-1;GPL-1+;GPL-3;GPL-3+ |
-| [libfastjson4](/cumulus-linux-41/Whats-New/licenses/libfastjson4.txt) | 0.99.8-2 | Expat(*);Apache-2.0(atomic.h);Expat(atomic.h);Apache-2.0(atomic.h) |
+| [libfastjson4](/cumulus-linux-41/Whats-New/licenses/libfastjson4.txt) | 0.99.8-2 | Expat(&#42;);Apache-2.0(atomic.h);Expat(atomic.h);Apache-2.0(atomic.h) |
 | [libffi6](/cumulus-linux-41/Whats-New/licenses/libffi6.txt) | 3.2.1-9 | GPL |
-| [libfile-fnmatch-perl](/cumulus-linux-41/Whats-New/licenses/libfile-fnmatch-perl.txt) | 0.02-2+b6 | Artistic or GPL-1+(*);Artistic or GPL-1+(ppport.h);Artistic or GPL-1+(debian/*);Artistic(debian/*);GPL-1+(debian/*) |
+| [libfile-fnmatch-perl](/cumulus-linux-41/Whats-New/licenses/libfile-fnmatch-perl.txt) | 0.02-2+b6 | Artistic or GPL-1+(&#42;);Artistic or GPL-1+(ppport.h);Artistic or GPL-1+(debian/&#42;);Artistic(debian/&#42;);GPL-1+(debian/&#42;) |
 | [libfile-homedir-perl](/cumulus-linux-41/Whats-New/licenses/libfile-homedir-perl.txt) | 1.004-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libfile-listing-perl](/cumulus-linux-41/Whats-New/licenses/libfile-listing-perl.txt) | 6.04-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libfile-which-perl](/cumulus-linux-41/Whats-New/licenses/libfile-which-perl.txt) | 1.23-1 | Artistic;GPL;GPL-1;GPL-1+ |
@@ -658,34 +658,34 @@ pdfhidden: True
 | [libgcrypt20](/cumulus-linux-41/Whats-New/licenses/libgcrypt20.txt) | 1.8.4-5 | BSD;GPL;GPL-2;LGPL;MIT;public domain |
 | [libgcrypt20-dev](/cumulus-linux-41/Whats-New/licenses/libgcrypt20-dev.txt) | 1.8.4-5 | BSD;GPL;GPL-2;LGPL;MIT;public domain |
 | [libgd3](/cumulus-linux-41/Whats-New/licenses/libgd3.txt) | 2.2.5-5.2 | BSD;BSD-3-clause;GAP~configure;GAP~Makefile.in;GD;GPL;GPL-2;GPL-2+;GPL-2+ with Autoconf exception;HPND;MIT;WEBP;XFIG |
-| [libglu1-mesa](/cumulus-linux-41/Whats-New/licenses/libglu1-mesa.txt) | 9.0.0-2.1+b3 | SGI-2(*);SGI-1.1(src/libnurbs/internals/*.cc);LGPL-2(include/GL/glu_mangle.h);GPL-2(debian/*) |
-| [libglu1-mesa-dev](/cumulus-linux-41/Whats-New/licenses/libglu1-mesa-dev.txt) | 9.0.0-2.1+b3 | SGI-2(*);SGI-1.1(src/libnurbs/internals/*.cc);LGPL-2(include/GL/glu_mangle.h);GPL-2(debian/*) |
-| [libegl1](/cumulus-linux-41/Whats-New/licenses/libegl1.txt) | 1.1.0-1 | MIT(*);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON*);BSD-1-clause(Files:	src/util/uthash/*);MIT(debian/*);MIT(debian/*);BSD-1-clause(debian/*);GPL-3+(debian/*) |
-| [libgl1](/cumulus-linux-41/Whats-New/licenses/libgl1.txt) | 1.1.0-1 | MIT(*);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON*);BSD-1-clause(Files:	src/util/uthash/*);MIT(debian/*);MIT(debian/*);BSD-1-clause(debian/*);GPL-3+(debian/*) |
-| [libgles1](/cumulus-linux-41/Whats-New/licenses/libgles1.txt) | 1.1.0-1 | MIT(*);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON*);BSD-1-clause(Files:	src/util/uthash/*);MIT(debian/*);MIT(debian/*);BSD-1-clause(debian/*);GPL-3+(debian/*) |
-| [libgles2](/cumulus-linux-41/Whats-New/licenses/libgles2.txt) | 1.1.0-1 | MIT(*);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON*);BSD-1-clause(Files:	src/util/uthash/*);MIT(debian/*);MIT(debian/*);BSD-1-clause(debian/*);GPL-3+(debian/*) |
-| [libglvnd0](/cumulus-linux-41/Whats-New/licenses/libglvnd0.txt) | 1.1.0-1 | MIT(*);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON*);BSD-1-clause(Files:	src/util/uthash/*);MIT(debian/*);MIT(debian/*);BSD-1-clause(debian/*);GPL-3+(debian/*) |
-| [libglvnd-core-dev](/cumulus-linux-41/Whats-New/licenses/libglvnd-core-dev.txt) | 1.1.0-1 | MIT(*);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON*);BSD-1-clause(Files:	src/util/uthash/*);MIT(debian/*);MIT(debian/*);BSD-1-clause(debian/*);GPL-3+(debian/*) |
-| [libglvnd-dev](/cumulus-linux-41/Whats-New/licenses/libglvnd-dev.txt) | 1.1.0-1 | MIT(*);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON*);BSD-1-clause(Files:	src/util/uthash/*);MIT(debian/*);MIT(debian/*);BSD-1-clause(debian/*);GPL-3+(debian/*) |
-| [libglx0](/cumulus-linux-41/Whats-New/licenses/libglx0.txt) | 1.1.0-1 | MIT(*);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON*);BSD-1-clause(Files:	src/util/uthash/*);MIT(debian/*);MIT(debian/*);BSD-1-clause(debian/*);GPL-3+(debian/*) |
-| [libopengl0](/cumulus-linux-41/Whats-New/licenses/libopengl0.txt) | 1.1.0-1 | MIT(*);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON*);BSD-1-clause(Files:	src/util/uthash/*);MIT(debian/*);MIT(debian/*);BSD-1-clause(debian/*);GPL-3+(debian/*) |
+| [libglu1-mesa](/cumulus-linux-41/Whats-New/licenses/libglu1-mesa.txt) | 9.0.0-2.1+b3 | SGI-2(&#42;);SGI-1.1(src/libnurbs/internals/&#42;.cc);LGPL-2(include/GL/glu_mangle.h);GPL-2(debian/&#42;) |
+| [libglu1-mesa-dev](/cumulus-linux-41/Whats-New/licenses/libglu1-mesa-dev.txt) | 9.0.0-2.1+b3 | SGI-2(&#42;);SGI-1.1(src/libnurbs/internals/&#42;.cc);LGPL-2(include/GL/glu_mangle.h);GPL-2(debian/&#42;) |
+| [libegl1](/cumulus-linux-41/Whats-New/licenses/libegl1.txt) | 1.1.0-1 | MIT(&#42;);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON&#42;);BSD-1-clause(Files:	src/util/uthash/&#42;);MIT(debian/&#42;);MIT(debian/&#42;);BSD-1-clause(debian/&#42;);GPL-3+(debian/&#42;) |
+| [libgl1](/cumulus-linux-41/Whats-New/licenses/libgl1.txt) | 1.1.0-1 | MIT(&#42;);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON&#42;);BSD-1-clause(Files:	src/util/uthash/&#42;);MIT(debian/&#42;);MIT(debian/&#42;);BSD-1-clause(debian/&#42;);GPL-3+(debian/&#42;) |
+| [libgles1](/cumulus-linux-41/Whats-New/licenses/libgles1.txt) | 1.1.0-1 | MIT(&#42;);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON&#42;);BSD-1-clause(Files:	src/util/uthash/&#42;);MIT(debian/&#42;);MIT(debian/&#42;);BSD-1-clause(debian/&#42;);GPL-3+(debian/&#42;) |
+| [libgles2](/cumulus-linux-41/Whats-New/licenses/libgles2.txt) | 1.1.0-1 | MIT(&#42;);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON&#42;);BSD-1-clause(Files:	src/util/uthash/&#42;);MIT(debian/&#42;);MIT(debian/&#42;);BSD-1-clause(debian/&#42;);GPL-3+(debian/&#42;) |
+| [libglvnd0](/cumulus-linux-41/Whats-New/licenses/libglvnd0.txt) | 1.1.0-1 | MIT(&#42;);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON&#42;);BSD-1-clause(Files:	src/util/uthash/&#42;);MIT(debian/&#42;);MIT(debian/&#42;);BSD-1-clause(debian/&#42;);GPL-3+(debian/&#42;) |
+| [libglvnd-core-dev](/cumulus-linux-41/Whats-New/licenses/libglvnd-core-dev.txt) | 1.1.0-1 | MIT(&#42;);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON&#42;);BSD-1-clause(Files:	src/util/uthash/&#42;);MIT(debian/&#42;);MIT(debian/&#42;);BSD-1-clause(debian/&#42;);GPL-3+(debian/&#42;) |
+| [libglvnd-dev](/cumulus-linux-41/Whats-New/licenses/libglvnd-dev.txt) | 1.1.0-1 | MIT(&#42;);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON&#42;);BSD-1-clause(Files:	src/util/uthash/&#42;);MIT(debian/&#42;);MIT(debian/&#42;);BSD-1-clause(debian/&#42;);GPL-3+(debian/&#42;) |
+| [libglx0](/cumulus-linux-41/Whats-New/licenses/libglx0.txt) | 1.1.0-1 | MIT(&#42;);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON&#42;);BSD-1-clause(Files:	src/util/uthash/&#42;);MIT(debian/&#42;);MIT(debian/&#42;);BSD-1-clause(debian/&#42;);GPL-3+(debian/&#42;) |
+| [libopengl0](/cumulus-linux-41/Whats-New/licenses/libopengl0.txt) | 1.1.0-1 | MIT(&#42;);MIT(include/c99_compat.h);MIT(include/glvnd_list.h);MIT(Files:	include/KHR/khrplatform.h);MIT(Files:	include/compiler.h);MIT(Files:	include/GL/glx.h);public-domain(m4/ax_check_enable_debug.m4);GPL-3+(m4/ax_check_link_flag.m4);GPL-3+(m4/ax_pthread.m4);MIT(Files:	src/generate/gen_gldispatch_mapi.py);MIT(Files:	src/GLdispatch/vnd-glapi/entry.h);MIT(Files:	src/GLdispatch/vnd-glapi/u_current_tsd.c);MIT(Files:	src/GLdispatch/vnd-glapi/mapi_glapi.c);MIT(Files:	src/util/cJSON&#42;);BSD-1-clause(Files:	src/util/uthash/&#42;);MIT(debian/&#42;);MIT(debian/&#42;);BSD-1-clause(debian/&#42;);GPL-3+(debian/&#42;) |
 | [libgpg-error0](/cumulus-linux-41/Whats-New/licenses/libgpg-error0.txt) | 1.35-1 | BSD;BSD-3-clause;g10-permissive;GPL;GPL-3;GPL-3+;LGPL-2;LGPL-2.1+ |
 | [libgpg-error-dev](/cumulus-linux-41/Whats-New/licenses/libgpg-error-dev.txt) | 1.35-1 | BSD;BSD-3-clause;g10-permissive;GPL;GPL-3;GPL-3+;LGPL-2;LGPL-2.1+ |
 | [libhtml-parser-perl](/cumulus-linux-41/Whats-New/licenses/libhtml-parser-perl.txt) | 3.72-3+b3 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libhtml-tagset-perl](/cumulus-linux-41/Whats-New/licenses/libhtml-tagset-perl.txt) | 3.20-3 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libhtml-tree-perl](/cumulus-linux-41/Whats-New/licenses/libhtml-tree-perl.txt) | 5.07-2 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libhttp-cookies-perl](/cumulus-linux-41/Whats-New/licenses/libhttp-cookies-perl.txt) | 6.04-1 | Artistic;GPL;GPL-1;GPL-1+ |
-| [libhttp-date-perl](/cumulus-linux-41/Whats-New/licenses/libhttp-date-perl.txt) | 6.02-1 | Artistic or GPL-1+(*);Artistic or GPL-1+(debian/*);Artistic(debian/*);GPL-1+(debian/*) |
+| [libhttp-date-perl](/cumulus-linux-41/Whats-New/licenses/libhttp-date-perl.txt) | 6.02-1 | Artistic or GPL-1+(&#42;);Artistic or GPL-1+(debian/&#42;);Artistic(debian/&#42;);GPL-1+(debian/&#42;) |
 | [libhttp-message-perl](/cumulus-linux-41/Whats-New/licenses/libhttp-message-perl.txt) | 6.18-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libhttp-negotiate-perl](/cumulus-linux-41/Whats-New/licenses/libhttp-negotiate-perl.txt) | 6.01-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libice6](/cumulus-linux-41/Whats-New/licenses/libice6.txt) | 1.0.9-2 | MIT |
-| [libidn2-0](/cumulus-linux-41/Whats-New/licenses/libidn2-0.txt) | 2.0.5-1+deb10u1 | GPL-3+(*);LGPL-3+ or GPL-2+(*.c *.h);GPL-3+(build-aux/* lib/* GNUmakefile maint.mk);GPL-3+(doc/gdoc);Unicode(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);GPL-3+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);GPL-2+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);LGPL-3+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);Unicode(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt) |
-| [libidn2-dev](/cumulus-linux-41/Whats-New/licenses/libidn2-dev.txt) | 2.0.5-1+deb10u1 | GPL-3+(*);LGPL-3+ or GPL-2+(*.c *.h);GPL-3+(build-aux/* lib/* GNUmakefile maint.mk);GPL-3+(doc/gdoc);Unicode(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);GPL-3+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);GPL-2+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);LGPL-3+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);Unicode(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt) |
-| [libidn11](/cumulus-linux-41/Whats-New/licenses/libidn11.txt) | 1.33-2.2 | GPL-3+(*);GFDL-1.3+(doc/libidn.texi);LGPL-3+ or GPL-2+(csharp/*);LGPL-3+ or GPL-2+(java/*);GPL-3+(gl/* gltests/* build-aux/* GNUmakefile maint.mk);LGPL-3+ or GPL-2+(lib/*);GPL-3+(lib/gen-unicode-tables.pl);LGPL-3+ or GPL-2+(lib/punycode.?);LGPL-3+ or GPL-2+(lib/nfkc.c);LGPL-2.1+(lib/gl/* lib/gltests/*);GPL-3+(doc/gdoc);GAP(doc/man/*) |
-| [libidn11-dev](/cumulus-linux-41/Whats-New/licenses/libidn11-dev.txt) | 1.33-2.2 | GPL-3+(*);GFDL-1.3+(doc/libidn.texi);LGPL-3+ or GPL-2+(csharp/*);LGPL-3+ or GPL-2+(java/*);GPL-3+(gl/* gltests/* build-aux/* GNUmakefile maint.mk);LGPL-3+ or GPL-2+(lib/*);GPL-3+(lib/gen-unicode-tables.pl);LGPL-3+ or GPL-2+(lib/punycode.?);LGPL-3+ or GPL-2+(lib/nfkc.c);LGPL-2.1+(lib/gl/* lib/gltests/*);GPL-3+(doc/gdoc);GAP(doc/man/*) |
-| [libimport-into-perl](/cumulus-linux-41/Whats-New/licenses/libimport-into-perl.txt) | 1.002005-1 | Artistic or GPL-1+(*);Artistic or GPL-1+(debian/*);Artistic(debian/*);GPL-1+(debian/*) |
+| [libidn2-0](/cumulus-linux-41/Whats-New/licenses/libidn2-0.txt) | 2.0.5-1+deb10u1 | GPL-3+(&#42;);LGPL-3+ or GPL-2+(&#42;.c &#42;.h);GPL-3+(build-aux/&#42; lib/&#42; GNUmakefile maint.mk);GPL-3+(doc/gdoc);Unicode(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);GPL-3+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);GPL-2+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);LGPL-3+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);Unicode(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt) |
+| [libidn2-dev](/cumulus-linux-41/Whats-New/licenses/libidn2-dev.txt) | 2.0.5-1+deb10u1 | GPL-3+(&#42;);LGPL-3+ or GPL-2+(&#42;.c &#42;.h);GPL-3+(build-aux/&#42; lib/&#42; GNUmakefile maint.mk);GPL-3+(doc/gdoc);Unicode(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);GPL-3+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);GPL-2+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);LGPL-3+(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt);Unicode(lib/IdnaMappingTable.txt lib/DerivedNormalizationProps.txt tests/IdnaTest.txt) |
+| [libidn11](/cumulus-linux-41/Whats-New/licenses/libidn11.txt) | 1.33-2.2 | GPL-3+(&#42;);GFDL-1.3+(doc/libidn.texi);LGPL-3+ or GPL-2+(csharp/&#42;);LGPL-3+ or GPL-2+(java/&#42;);GPL-3+(gl/&#42; gltests/&#42; build-aux/&#42; GNUmakefile maint.mk);LGPL-3+ or GPL-2+(lib/&#42;);GPL-3+(lib/gen-unicode-tables.pl);LGPL-3+ or GPL-2+(lib/punycode.?);LGPL-3+ or GPL-2+(lib/nfkc.c);LGPL-2.1+(lib/gl/&#42; lib/gltests/&#42;);GPL-3+(doc/gdoc);GAP(doc/man/&#42;) |
+| [libidn11-dev](/cumulus-linux-41/Whats-New/licenses/libidn11-dev.txt) | 1.33-2.2 | GPL-3+(&#42;);GFDL-1.3+(doc/libidn.texi);LGPL-3+ or GPL-2+(csharp/&#42;);LGPL-3+ or GPL-2+(java/&#42;);GPL-3+(gl/&#42; gltests/&#42; build-aux/&#42; GNUmakefile maint.mk);LGPL-3+ or GPL-2+(lib/&#42;);GPL-3+(lib/gen-unicode-tables.pl);LGPL-3+ or GPL-2+(lib/punycode.?);LGPL-3+ or GPL-2+(lib/nfkc.c);LGPL-2.1+(lib/gl/&#42; lib/gltests/&#42;);GPL-3+(doc/gdoc);GAP(doc/man/&#42;) |
+| [libimport-into-perl](/cumulus-linux-41/Whats-New/licenses/libimport-into-perl.txt) | 1.002005-1 | Artistic or GPL-1+(&#42;);Artistic or GPL-1+(debian/&#42;);Artistic(debian/&#42;);GPL-1+(debian/&#42;) |
 | [libio-async-perl](/cumulus-linux-41/Whats-New/licenses/libio-async-perl.txt) | 0.72-1 | Artistic;GPL;GPL-1;GPL-1+ |
-| [libio-html-perl](/cumulus-linux-41/Whats-New/licenses/libio-html-perl.txt) | 1.001-1 | Artistic or GPL-1+(*);License:(*);GPL-3+(debian/*);Artistic(debian/*);GPL-1+(debian/*);GPL-3+(debian/*) |
+| [libio-html-perl](/cumulus-linux-41/Whats-New/licenses/libio-html-perl.txt) | 1.001-1 | Artistic or GPL-1+(&#42;);License:(&#42;);GPL-3+(debian/&#42;);Artistic(debian/&#42;);GPL-1+(debian/&#42;);GPL-3+(debian/&#42;) |
 | [libio-pty-perl](/cumulus-linux-41/Whats-New/licenses/libio-pty-perl.txt) | 1.08-1.1+b5 | Artistic;GPL |
 | [libio-socket-ssl-perl](/cumulus-linux-41/Whats-New/licenses/libio-socket-ssl-perl.txt) | 2.060-3 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libio-string-perl](/cumulus-linux-41/Whats-New/licenses/libio-string-perl.txt) | 1.08-3 | Artistic;GPL;GPL-1 |
@@ -693,8 +693,8 @@ pdfhidden: True
 | [libisoburn1](/cumulus-linux-41/Whats-New/licenses/libisoburn1.txt) | 1.5.0-1 | BSD;BSD-2-clause;FSFUL;GPL;GPL-2;GPL-2+;GPL-3 |
 | [xorriso](/cumulus-linux-41/Whats-New/licenses/xorriso.txt) | 1.5.0-1 | BSD;BSD-2-clause;FSFUL;GPL;GPL-2;GPL-2+;GPL-3 |
 | [libisofs6](/cumulus-linux-41/Whats-New/licenses/libisofs6.txt) | 1.5.0-1 | FSFUL;GPL;GPL-2;GPL-2+ |
-| [libjpeg62-turbo](/cumulus-linux-41/Whats-New/licenses/libjpeg62-turbo.txt) | 1.5.2-2+b1 | BSD-BY-LC-NE(*);BSD-3(debian/*);BSD-BY-LC-NE(debian/extras/*);Expat(debian/missing-sources/jquery* doc/html/jquery.js);BSD-BY-LC-NE(debian/missing-sources/jquery* doc/html/jquery.js);BSD-3(debian/missing-sources/jquery* doc/html/jquery.js);Expat(debian/missing-sources/jquery* doc/html/jquery.js) |
-| [libjpeg62-turbo-dev](/cumulus-linux-41/Whats-New/licenses/libjpeg62-turbo-dev.txt) | 1.5.2-2+b1 | BSD-BY-LC-NE(*);BSD-3(debian/*);BSD-BY-LC-NE(debian/extras/*);Expat(debian/missing-sources/jquery* doc/html/jquery.js);BSD-BY-LC-NE(debian/missing-sources/jquery* doc/html/jquery.js);BSD-3(debian/missing-sources/jquery* doc/html/jquery.js);Expat(debian/missing-sources/jquery* doc/html/jquery.js) |
+| [libjpeg62-turbo](/cumulus-linux-41/Whats-New/licenses/libjpeg62-turbo.txt) | 1.5.2-2+b1 | BSD-BY-LC-NE(&#42;);BSD-3(debian/&#42;);BSD-BY-LC-NE(debian/extras/&#42;);Expat(debian/missing-sources/jquery&#42; doc/html/jquery.js);BSD-BY-LC-NE(debian/missing-sources/jquery&#42; doc/html/jquery.js);BSD-3(debian/missing-sources/jquery&#42; doc/html/jquery.js);Expat(debian/missing-sources/jquery&#42; doc/html/jquery.js) |
+| [libjpeg62-turbo-dev](/cumulus-linux-41/Whats-New/licenses/libjpeg62-turbo-dev.txt) | 1.5.2-2+b1 | BSD-BY-LC-NE(&#42;);BSD-3(debian/&#42;);BSD-BY-LC-NE(debian/extras/&#42;);Expat(debian/missing-sources/jquery&#42; doc/html/jquery.js);BSD-BY-LC-NE(debian/missing-sources/jquery&#42; doc/html/jquery.js);BSD-3(debian/missing-sources/jquery&#42; doc/html/jquery.js);Expat(debian/missing-sources/jquery&#42; doc/html/jquery.js) |
 | [libksba8](/cumulus-linux-41/Whats-New/licenses/libksba8.txt) | 1.3.5-2 | GPL;GPL-3 |
 | [liblinear3](/cumulus-linux-41/Whats-New/licenses/liblinear3.txt) | 2.1.0+dfsg-4 | BSD;BSD-3-clause |
 | [liblist-moreutils-perl](/cumulus-linux-41/Whats-New/licenses/liblist-moreutils-perl.txt) | 0.416-1+b4 | Apache-2;Apache-2.0;Artistic;GPL;GPL-1;GPL-1+ |
@@ -702,22 +702,22 @@ pdfhidden: True
 | [liblognorm5](/cumulus-linux-41/Whats-New/licenses/liblognorm5.txt) | 2.0.5-1 | Apache-2;Apache-2.0;LGPL-2;LGPL-2.1+ |
 | [liblwp-mediatypes-perl](/cumulus-linux-41/Whats-New/licenses/liblwp-mediatypes-perl.txt) | 6.02-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [liblwp-protocol-https-perl](/cumulus-linux-41/Whats-New/licenses/liblwp-protocol-https-perl.txt) | 6.07-2 | Artistic;GPL;GPL-1;GPL-1+ |
-| [libmaxminddb0](/cumulus-linux-41/Whats-New/licenses/libmaxminddb0.txt) | 1.3.2-1 | Apache-2.0(*);CC-BY-SA(t/maxmind-db/*);GPL-2+(t/libtap/*);GPL-2+(debian/*);Apache-2.0(debian/*);GPL-2+(debian/*);BSD-2-clause and BSD-3-clause and BSD-4-clause(src/maxminddb-compat-util.h) |
+| [libmaxminddb0](/cumulus-linux-41/Whats-New/licenses/libmaxminddb0.txt) | 1.3.2-1 | Apache-2.0(&#42;);CC-BY-SA(t/maxmind-db/&#42;);GPL-2+(t/libtap/&#42;);GPL-2+(debian/&#42;);Apache-2.0(debian/&#42;);GPL-2+(debian/&#42;);BSD-2-clause and BSD-3-clause and BSD-4-clause(src/maxminddb-compat-util.h) |
 | [libmng1](/cumulus-linux-41/Whats-New/licenses/libmng1.txt) | 1.0.10+dfsg-3.1+b5 | BSD;zlib |
-| [libmnl0](/cumulus-linux-41/Whats-New/licenses/libmnl0.txt) | 1.0.4-2 | LGPL-2.1(*);GPL-2+(debian/*);GPL-2+(debian/*);LGPL-2.1(debian/*) |
-| [libmnl-dev](/cumulus-linux-41/Whats-New/licenses/libmnl-dev.txt) | 1.0.4-2 | LGPL-2.1(*);GPL-2+(debian/*);GPL-2+(debian/*);LGPL-2.1(debian/*) |
+| [libmnl0](/cumulus-linux-41/Whats-New/licenses/libmnl0.txt) | 1.0.4-2 | LGPL-2.1(&#42;);GPL-2+(debian/&#42;);GPL-2+(debian/&#42;);LGPL-2.1(debian/&#42;) |
+| [libmnl-dev](/cumulus-linux-41/Whats-New/licenses/libmnl-dev.txt) | 1.0.4-2 | LGPL-2.1(&#42;);GPL-2+(debian/&#42;);GPL-2+(debian/&#42;);LGPL-2.1(debian/&#42;) |
 | [libmodule-runtime-perl](/cumulus-linux-41/Whats-New/licenses/libmodule-runtime-perl.txt) | 0.016-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libmoo-perl](/cumulus-linux-41/Whats-New/licenses/libmoo-perl.txt) | 2.003004-2 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libmspack0](/cumulus-linux-41/Whats-New/licenses/libmspack0.txt) | 0.10.1-1 | LGPL-2;LGPL-2.1 |
 | [libnet-dns-perl](/cumulus-linux-41/Whats-New/licenses/libnet-dns-perl.txt) | 1.19-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libnet-dns-sec-perl](/cumulus-linux-41/Whats-New/licenses/libnet-dns-sec-perl.txt) | 1.11-1 | Artistic;BSD;BSD-ish;GPL;GPL-1;GPL-1+ |
 | [libnet-domain-tld-perl](/cumulus-linux-41/Whats-New/licenses/libnet-domain-tld-perl.txt) | 1.75-1 | Artistic;GPL;GPL-1;GPL-1+ |
-| [libnetfilter-conntrack3](/cumulus-linux-41/Whats-New/licenses/libnetfilter-conntrack3.txt) | 1.0.7-1 | GPL-2+(*);GPL-2+(*) |
+| [libnetfilter-conntrack3](/cumulus-linux-41/Whats-New/licenses/libnetfilter-conntrack3.txt) | 1.0.7-1 | GPL-2+(&#42;);GPL-2+(&#42;) |
 | [libnet-http-perl](/cumulus-linux-41/Whats-New/licenses/libnet-http-perl.txt) | 6.18-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libnet-ip-perl](/cumulus-linux-41/Whats-New/licenses/libnet-ip-perl.txt) | 1.26-2 | Artistic;Expat;GPL;GPL-1;GPL-1+ |
 | [libnet-libidn-perl](/cumulus-linux-41/Whats-New/licenses/libnet-libidn-perl.txt) | 0.12.ds-3+b1 | Artistic;GPL;GPL-1;GPL-1+ |
-| [libnet1](/cumulus-linux-41/Whats-New/licenses/libnet1.txt) | 1.1.6+dfsg-3.1 | BSD-2(debian/*);BSD-4(include/bpf.h);BSD-3(include/ifaddrlist.h);BSD-2 or other(include/libnet/libnet-asn1.h);BSD-2(sample/bgp4*);BSD-2(sample/icmp_redirect.c);BSD-2(sample/icmp_timeexceed.c);BSD-2(sample/ospf*);BSD-2(sample/ping_of_death.c);BSD-3 or other(srct/libnet_asn1.c);BSD-2(src/libnet_build_fddi.c);BSD-2(src/libnet_build_ipsec.c);BSD-2(src/libnet_build_link.c);BSD-2(src/libnet_dll.c);BSD-3(src/libnet_link_dlpi.c);BSD-3(src/libnet_link_nit.c);BSD-3(src/libnet_link_snit.c);BSD-2(src/libnet_link_win32.c);BSD-2(*);BSD-2(*);BSD-3(*);BSD-4(*);other(*) |
-| [libnet1-dev](/cumulus-linux-41/Whats-New/licenses/libnet1-dev.txt) | 1.1.6+dfsg-3.1 | BSD-2(debian/*);BSD-4(include/bpf.h);BSD-3(include/ifaddrlist.h);BSD-2 or other(include/libnet/libnet-asn1.h);BSD-2(sample/bgp4*);BSD-2(sample/icmp_redirect.c);BSD-2(sample/icmp_timeexceed.c);BSD-2(sample/ospf*);BSD-2(sample/ping_of_death.c);BSD-3 or other(srct/libnet_asn1.c);BSD-2(src/libnet_build_fddi.c);BSD-2(src/libnet_build_ipsec.c);BSD-2(src/libnet_build_link.c);BSD-2(src/libnet_dll.c);BSD-3(src/libnet_link_dlpi.c);BSD-3(src/libnet_link_nit.c);BSD-3(src/libnet_link_snit.c);BSD-2(src/libnet_link_win32.c);BSD-2(*);BSD-2(*);BSD-3(*);BSD-4(*);other(*) |
+| [libnet1](/cumulus-linux-41/Whats-New/licenses/libnet1.txt) | 1.1.6+dfsg-3.1 | BSD-2(debian/&#42;);BSD-4(include/bpf.h);BSD-3(include/ifaddrlist.h);BSD-2 or other(include/libnet/libnet-asn1.h);BSD-2(sample/bgp4&#42;);BSD-2(sample/icmp_redirect.c);BSD-2(sample/icmp_timeexceed.c);BSD-2(sample/ospf&#42;);BSD-2(sample/ping_of_death.c);BSD-3 or other(srct/libnet_asn1.c);BSD-2(src/libnet_build_fddi.c);BSD-2(src/libnet_build_ipsec.c);BSD-2(src/libnet_build_link.c);BSD-2(src/libnet_dll.c);BSD-3(src/libnet_link_dlpi.c);BSD-3(src/libnet_link_nit.c);BSD-3(src/libnet_link_snit.c);BSD-2(src/libnet_link_win32.c);BSD-2(&#42;);BSD-2(&#42;);BSD-3(&#42;);BSD-4(&#42;);other(&#42;) |
+| [libnet1-dev](/cumulus-linux-41/Whats-New/licenses/libnet1-dev.txt) | 1.1.6+dfsg-3.1 | BSD-2(debian/&#42;);BSD-4(include/bpf.h);BSD-3(include/ifaddrlist.h);BSD-2 or other(include/libnet/libnet-asn1.h);BSD-2(sample/bgp4&#42;);BSD-2(sample/icmp_redirect.c);BSD-2(sample/icmp_timeexceed.c);BSD-2(sample/ospf&#42;);BSD-2(sample/ping_of_death.c);BSD-3 or other(srct/libnet_asn1.c);BSD-2(src/libnet_build_fddi.c);BSD-2(src/libnet_build_ipsec.c);BSD-2(src/libnet_build_link.c);BSD-2(src/libnet_dll.c);BSD-3(src/libnet_link_dlpi.c);BSD-3(src/libnet_link_nit.c);BSD-3(src/libnet_link_snit.c);BSD-2(src/libnet_link_win32.c);BSD-2(&#42;);BSD-2(&#42;);BSD-3(&#42;);BSD-4(&#42;);other(&#42;) |
 | [libnet-ssleay-perl](/cumulus-linux-41/Whats-New/licenses/libnet-ssleay-perl.txt) | 1.85-2+b1 | Artistic;Artistic-2.0;GPL;GPL-1;GPL-1+ |
 | [libnfnetlink0](/cumulus-linux-41/Whats-New/licenses/libnfnetlink0.txt) | 1.0.1-3+b1 | GPL |
 | [libnfnetlink-dev](/cumulus-linux-41/Whats-New/licenses/libnfnetlink-dev.txt) | 1.0.1-3+b1 | GPL |
@@ -733,7 +733,7 @@ pdfhidden: True
 | [libparse-debianchangelog-perl](/cumulus-linux-41/Whats-New/licenses/libparse-debianchangelog-perl.txt) | 1.2.0-13 | GPL;GPL-2;GPL-2+ |
 | [libpath-tiny-perl](/cumulus-linux-41/Whats-New/licenses/libpath-tiny-perl.txt) | 0.108-1 | Apache-2;Apache-2.0;GPL;GPL-3;GPL-3+ |
 | [libpcap0.8](/cumulus-linux-41/Whats-New/licenses/libpcap0.8.txt) | 1.8.1-6 | BSD |
-| [libperlio-gzip-perl](/cumulus-linux-41/Whats-New/licenses/libperlio-gzip-perl.txt) | 0.19-1+b5 | Artistic or GPL-1+(*);Artistic or GPL-1+(debian/*);Artistic(debian/*);GPL-1+(debian/*) |
+| [libperlio-gzip-perl](/cumulus-linux-41/Whats-New/licenses/libperlio-gzip-perl.txt) | 0.19-1+b5 | Artistic or GPL-1+(&#42;);Artistic or GPL-1+(debian/&#42;);Artistic(debian/&#42;);GPL-1+(debian/&#42;) |
 | [libpipeline1](/cumulus-linux-41/Whats-New/licenses/libpipeline1.txt) | 1.5.1-2 | GPL;GPL-2;GPL-2+;GPL-3;GPL-3+ |
 | [libpng16-16](/cumulus-linux-41/Whats-New/licenses/libpng16-16.txt) | 1.6.36-6 | Apache-2;Apache-2.0;BSD;BSD-3-clause;BSD-like-with-advertising-clause;expat;GPL;GPL-2;GPL-2+;libpng;libpng OR Apache-2.0 OR BSD-3-clause |
 | [libpng-dev](/cumulus-linux-41/Whats-New/licenses/libpng-dev.txt) | 1.6.36-6 | Apache-2;Apache-2.0;BSD;BSD-3-clause;BSD-like-with-advertising-clause;expat;GPL;GPL-2;GPL-2+;libpng;libpng OR Apache-2.0 OR BSD-3-clause |
@@ -765,7 +765,7 @@ pdfhidden: True
 | [libssh-dev](/cumulus-linux-41/Whats-New/licenses/libssh-dev.txt) | 0.8.7-1 | BSD;BSD-2-clause;BSD-3-clause;LGPL-2;LGPL-2.1;LGPL-2.1+~OpenSSL;public-domain |
 | [libssh-gcrypt-4](/cumulus-linux-41/Whats-New/licenses/libssh-gcrypt-4.txt) | 0.8.7-1 | BSD;BSD-2-clause;BSD-3-clause;LGPL-2;LGPL-2.1;LGPL-2.1+~OpenSSL;public-domain |
 | [libstrictures-perl](/cumulus-linux-41/Whats-New/licenses/libstrictures-perl.txt) | 2.000005-1 | Artistic;GPL;GPL-1;GPL-1+ |
-| [libstruct-dumb-perl](/cumulus-linux-41/Whats-New/licenses/libstruct-dumb-perl.txt) | 0.09-1 | Artistic or GPL-1+(*);Artistic or GPL-1+(debian/*);Artistic(debian/*);GPL-1+(debian/*) |
+| [libstruct-dumb-perl](/cumulus-linux-41/Whats-New/licenses/libstruct-dumb-perl.txt) | 0.09-1 | Artistic or GPL-1+(&#42;);Artistic or GPL-1+(debian/&#42;);Artistic(debian/&#42;);GPL-1+(debian/&#42;) |
 | [libsub-exporter-progressive-perl](/cumulus-linux-41/Whats-New/licenses/libsub-exporter-progressive-perl.txt) | 0.001013-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libsub-name-perl](/cumulus-linux-41/Whats-New/licenses/libsub-name-perl.txt) | 0.21-1+b3 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libsub-quote-perl](/cumulus-linux-41/Whats-New/licenses/libsub-quote-perl.txt) | 2.005001-1 | Artistic;GPL;GPL-1;GPL-1+ |
@@ -773,12 +773,12 @@ pdfhidden: True
 | [libtasn1-6-dev](/cumulus-linux-41/Whats-New/licenses/libtasn1-6-dev.txt) | 4.13-3 | GFDL-1;GPL;GPL-3;LGPL;LGPL-2 |
 | [libtext-charwidth-perl](/cumulus-linux-41/Whats-New/licenses/libtext-charwidth-perl.txt) | 0.04-7.1+b1 | Artistic;GPL;GPL-2 |
 | [libtext-iconv-perl](/cumulus-linux-41/Whats-New/licenses/libtext-iconv-perl.txt) | 1.7-5+b7 | Artistic;GPL;GPL-2 |
-| [libtext-levenshtein-perl](/cumulus-linux-41/Whats-New/licenses/libtext-levenshtein-perl.txt) | 0.13-1 | Artistic or GPL-1+(*);Artistic or GPL-1+(debian/*);Artistic(debian/*);GPL-1+(debian/*) |
+| [libtext-levenshtein-perl](/cumulus-linux-41/Whats-New/licenses/libtext-levenshtein-perl.txt) | 0.13-1 | Artistic or GPL-1+(&#42;);Artistic or GPL-1+(debian/&#42;);Artistic(debian/&#42;);GPL-1+(debian/&#42;) |
 | [libtext-unidecode-perl](/cumulus-linux-41/Whats-New/licenses/libtext-unidecode-perl.txt) | 1.30-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libtext-wrapi18n-perl](/cumulus-linux-41/Whats-New/licenses/libtext-wrapi18n-perl.txt) | 0.06-7.1 | Artistic;GPL |
 | [libthai0](/cumulus-linux-41/Whats-New/licenses/libthai0.txt) | 0.1.28-2 | GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2.1+ |
 | [libthai-data](/cumulus-linux-41/Whats-New/licenses/libthai-data.txt) | 0.1.28-2 | GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2.1+ |
-| [libtimedate-perl](/cumulus-linux-41/Whats-New/licenses/libtimedate-perl.txt) | 2.3000-2+deb10u1 | Artistic or GPL-1+(*);Artistic or GPL-1+(lib/Date/Language/Bulgarian.pm);Artistic or GPL-1+(debian/*);Artistic(debian/*);GPL-1+(debian/*) |
+| [libtimedate-perl](/cumulus-linux-41/Whats-New/licenses/libtimedate-perl.txt) | 2.3000-2+deb10u1 | Artistic or GPL-1+(&#42;);Artistic or GPL-1+(lib/Date/Language/Bulgarian.pm);Artistic or GPL-1+(debian/&#42;);Artistic(debian/&#42;);GPL-1+(debian/&#42;) |
 | [libltdl7](/cumulus-linux-41/Whats-New/licenses/libltdl7.txt) | 2.4.6-9 | GFDL;GPL |
 | [libtool](/cumulus-linux-41/Whats-New/licenses/libtool.txt) | 2.4.6-9 | GFDL;GPL |
 | [libtry-tiny-perl](/cumulus-linux-41/Whats-New/licenses/libtry-tiny-perl.txt) | 0.30-1 | Expat |
@@ -856,7 +856,7 @@ pdfhidden: True
 | [libxtst6](/cumulus-linux-41/Whats-New/licenses/libxtst6.txt) | 1.2.3-1 | MIT |
 | [libxxf86vm1](/cumulus-linux-41/Whats-New/licenses/libxxf86vm1.txt) | 1.1.4-1+b2 | BSD |
 | [libxxf86vm-dev](/cumulus-linux-41/Whats-New/licenses/libxxf86vm-dev.txt) | 1.1.4-1+b2 | BSD |
-| [libyaml-0-2](/cumulus-linux-41/Whats-New/licenses/libyaml-0-2.txt) | 0.2.1-1 | Expat(*);permissive(debian/*) |
+| [libyaml-0-2](/cumulus-linux-41/Whats-New/licenses/libyaml-0-2.txt) | 0.2.1-1 | Expat(&#42;);permissive(debian/&#42;) |
 | [libyaml-libyaml-perl](/cumulus-linux-41/Whats-New/licenses/libyaml-libyaml-perl.txt) | 0.76+repack-1 | Artistic;GPL;GPL-1;GPL-1+ |
 | [libyang0.16](/cumulus-linux-41/Whats-New/licenses/libyang0.16.txt) | 0.16.105-1 | Apache-2;Apache-2.0;BSD;BSD-2-clause;BSD-3-clause;BSD-3-clause AND Apache-2.0;EPL-1.0;Expat;GPL;GPL-3;IETF-BSD-3-clause |
 | [libyang-dev](/cumulus-linux-41/Whats-New/licenses/libyang-dev.txt) | 0.16.105-1 | Apache-2;Apache-2.0;BSD;BSD-2-clause;BSD-3-clause;BSD-3-clause AND Apache-2.0;EPL-1.0;Expat;GPL;GPL-3;IETF-BSD-3-clause |
@@ -869,13 +869,13 @@ pdfhidden: True
 | [linux-perf](/cumulus-linux-41/Whats-New/licenses/linux-perf.txt) | 4.19+105+deb10u3 | GPL;GPL-2 |
 | [linux-kbuild-4.19](/cumulus-linux-41/Whats-New/licenses/linux-kbuild-4.19.txt) | 4.19.37-5+deb10u2 | CRYPTOGAMS;GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2.1;Unicode-data;X11;Xen-interface |
 | [linux-perf-4.19](/cumulus-linux-41/Whats-New/licenses/linux-perf-4.19.txt) | 4.19.98-1 | CRYPTOGAMS;GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2.1;Unicode-data;X11;Xen-interface |
-| [libsctp1](/cumulus-linux-41/Whats-New/licenses/libsctp1.txt) | 1.0.18+dfsg-1 | GPL-2.0+(*);LGPL-2.1+(src/lib/*);BSD-3-clause(src/withsctp/*);GPL-2.0+(src/withsctp/*);LGPL-2.1+(src/withsctp/*);BSD-3-clause(src/withsctp/*) |
+| [libsctp1](/cumulus-linux-41/Whats-New/licenses/libsctp1.txt) | 1.0.18+dfsg-1 | GPL-2.0+(&#42;);LGPL-2.1+(src/lib/&#42;);BSD-3-clause(src/withsctp/&#42;);GPL-2.0+(src/withsctp/&#42;);LGPL-2.1+(src/withsctp/&#42;);BSD-3-clause(src/withsctp/&#42;) |
 | [clang](/cumulus-linux-41/Whats-New/licenses/clang.txt) | 7.0-47 | GPL |
 | [clang-7](/cumulus-linux-41/Whats-New/licenses/clang-7.txt) | 7.0.1-8 | Apple;ARM;BSD;BSD-3-clause;BSD-3-Clause;Expat;LLVM;MIT;NCSA;Polly;public domain;public-domain;Python;solar-public-domain;U-OF-I-BSD-LIKE |
 | [libclang1-7](/cumulus-linux-41/Whats-New/licenses/libclang1-7.txt) | 7.0.1-8 | Apple;ARM;BSD;BSD-3-clause;BSD-3-Clause;Expat;LLVM;MIT;NCSA;Polly;public domain;public-domain;Python;solar-public-domain;U-OF-I-BSD-LIKE |
 | [libclang-common-7-dev](/cumulus-linux-41/Whats-New/licenses/libclang-common-7-dev.txt) | 7.0.1-8 | Apple;ARM;BSD;BSD-3-clause;BSD-3-Clause;Expat;LLVM;MIT;NCSA;Polly;public domain;public-domain;Python;solar-public-domain;U-OF-I-BSD-LIKE |
 | [libllvm7](/cumulus-linux-41/Whats-New/licenses/libllvm7.txt) | 7.0.1-8 | Apple;ARM;BSD;BSD-3-clause;BSD-3-Clause;Expat;LLVM;MIT;NCSA;Polly;public domain;public-domain;Python;solar-public-domain;U-OF-I-BSD-LIKE |
-| [liblmdb0](/cumulus-linux-41/Whats-New/licenses/liblmdb0.txt) | 0.9.22-1 | OpenLDAP-2.8(*);OpenLDAP-2.8(debian/*);OpenLDAP-2.8(debian/*);The OpenLDAP Public License(debian/*) |
+| [liblmdb0](/cumulus-linux-41/Whats-New/licenses/liblmdb0.txt) | 0.9.22-1 | OpenLDAP-2.8(&#42;);OpenLDAP-2.8(debian/&#42;);OpenLDAP-2.8(debian/&#42;);The OpenLDAP Public License(debian/&#42;) |
 | [fonts-lmodern](/cumulus-linux-41/Whats-New/licenses/fonts-lmodern.txt) | 2.004.5-6 | GPL;GPL-2;public domain |
 | [libsensors4-dev](/cumulus-linux-41/Whats-New/licenses/libsensors4-dev.txt) | 3.5.0-3 | GPL;GPL-2;LGPL-2 |
 | [libsensors5](/cumulus-linux-41/Whats-New/licenses/libsensors5.txt) | 3.5.0-3 | GPL;GPL-2;LGPL-2 |
@@ -884,13 +884,13 @@ pdfhidden: True
 | [logrotate](/cumulus-linux-41/Whats-New/licenses/logrotate.txt) | 3.14.0-4 | GPL;GPL-2 |
 | [lsb-base](/cumulus-linux-41/Whats-New/licenses/lsb-base.txt) | 10.2019051400 | BSD;BSD-3-clause;GPL;GPL-2 |
 | [lsb-release](/cumulus-linux-41/Whats-New/licenses/lsb-release.txt) | 10.2019051400 | BSD;BSD-3-clause;GPL;GPL-2 |
-| [lsof](/cumulus-linux-41/Whats-New/licenses/lsof.txt) | 4.91+dfsg-1 | Purdue(*);BSD-4-clause(debian/*);BSD-4-clause(dialects/freebsd/include/procfs/pfsnode.h);Purdue(dialects/darwin/libproc/dstore.c dialects/darwin/libproc/ddev.c dialects/darwin/libproc/dsock.c dialects/darwin/libproc/dproc.c dialects/darwin/libproc/dproto.h dialects/darwin/libproc/dlsof.h dialects/darwin/libproc/dfile.c dialects/darwin/libproc/dmnt.c dialects/darwin/libproc/machine.h [portins thereof]);BSD-4-clause(dialects/du/ddev.c[portions] dialects/osr/include/sys/cdefs.h);BSD-4-clause(dialects/osr/include/netdb.h);BSD-4-clause(print.c[portions]);GPL-2+(scripts/sort_res.perl5);LGPL-2+(regex.h lib/regex.c [portions thereof]);sendmail(lib/snpf.c);BSD-4-clause(lib/snpf.c);Purdue(lib/snpf.c);LGPL-2+(lib/snpf.c);GPL-2+(lib/snpf.c) |
+| [lsof](/cumulus-linux-41/Whats-New/licenses/lsof.txt) | 4.91+dfsg-1 | Purdue(&#42;);BSD-4-clause(debian/&#42;);BSD-4-clause(dialects/freebsd/include/procfs/pfsnode.h);Purdue(dialects/darwin/libproc/dstore.c dialects/darwin/libproc/ddev.c dialects/darwin/libproc/dsock.c dialects/darwin/libproc/dproc.c dialects/darwin/libproc/dproto.h dialects/darwin/libproc/dlsof.h dialects/darwin/libproc/dfile.c dialects/darwin/libproc/dmnt.c dialects/darwin/libproc/machine.h [portins thereof]);BSD-4-clause(dialects/du/ddev.c[portions] dialects/osr/include/sys/cdefs.h);BSD-4-clause(dialects/osr/include/netdb.h);BSD-4-clause(print.c[portions]);GPL-2+(scripts/sort_res.perl5);LGPL-2+(regex.h lib/regex.c [portions thereof]);sendmail(lib/snpf.c);BSD-4-clause(lib/snpf.c);Purdue(lib/snpf.c);LGPL-2+(lib/snpf.c);GPL-2+(lib/snpf.c) |
 | [liblttng-ctl0](/cumulus-linux-41/Whats-New/licenses/liblttng-ctl0.txt) | 2.10.6-1 | BSD;BSD-2-clause;Expat;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;LGPL-2;LGPL-2.1;LGPL-2.1+ |
 | [lttng-tools](/cumulus-linux-41/Whats-New/licenses/lttng-tools.txt) | 2.10.6-1 | BSD;BSD-2-clause;Expat;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;LGPL-2;LGPL-2.1;LGPL-2.1+ |
 | [lttng-modules-dkms](/cumulus-linux-41/Whats-New/licenses/lttng-modules-dkms.txt) | 2.10.8-1 | Expat;GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2.1 |
 | [liblua5.1-0](/cumulus-linux-41/Whats-New/licenses/liblua5.1-0.txt) | 5.1.5-8.1+b2 | BSD |
 | [liblua5.2-0](/cumulus-linux-41/Whats-New/licenses/liblua5.2-0.txt) | 5.2.4-1.1+b2 | Expat |
-| [liblua5.3-0](/cumulus-linux-41/Whats-New/licenses/liblua5.3-0.txt) | 5.3.3-1.1 | Expat(*) |
+| [liblua5.3-0](/cumulus-linux-41/Whats-New/licenses/liblua5.3-0.txt) | 5.3.3-1.1 | Expat(&#42;) |
 | [libluajit-5.1-2](/cumulus-linux-41/Whats-New/licenses/libluajit-5.1-2.txt) | 2.1.0~beta3+dfsg-5.1 | MIT;MIT/X;PD;public domain |
 | [libluajit-5.1-common](/cumulus-linux-41/Whats-New/licenses/libluajit-5.1-common.txt) | 2.1.0~beta3+dfsg-5.1 | MIT;MIT/X;PD;public domain |
 | [dmeventd](/cumulus-linux-41/Whats-New/licenses/dmeventd.txt) | 1.02.155-3 | BSD;BSD-2-Clause;GPL;GPL-2;GPL-2.0;GPL-2.0+;LGPL-2;LGPL-2.1;MIT |
@@ -906,10 +906,10 @@ pdfhidden: True
 | [lzma](/cumulus-linux-41/Whats-New/licenses/lzma.txt) | 9.22-2.1 | public domain |
 | [liblzo2-2](/cumulus-linux-41/Whats-New/licenses/liblzo2-2.txt) | 2.10-0.1 | GPL;GPL-2 |
 | [m4](/cumulus-linux-41/Whats-New/licenses/m4.txt) | 1.4.18-2 | GFDL;GPL |
-| [magit](/cumulus-linux-41/Whats-New/licenses/magit.txt) | 2.90.1-2 | GPL-3+(*);GPL-3+(debian/*);GPL-3+(debian/*) |
+| [magit](/cumulus-linux-41/Whats-New/licenses/magit.txt) | 2.90.1-2 | GPL-3+(&#42;);GPL-3+(debian/&#42;);GPL-3+(debian/&#42;) |
 | [makedev](/cumulus-linux-41/Whats-New/licenses/makedev.txt) | 2.3.1-94 | GPL |
 | [make](/cumulus-linux-41/Whats-New/licenses/make.txt) | 4.2.1-1.2 | GPL;GPL-3;GPL-3+ |
-| [python-mako](/cumulus-linux-41/Whats-New/licenses/python-mako.txt) | 1.0.7+ds1-1 | Expat(*);BSD-3-clause(examples/bench/basic.py);Expat(debian/*);BSD-3-clause(debian/mako.vim);WTFPL(debian/mako_indent.vim);WTFPL(debian/mako_indent.vim);Expat(debian/mako_indent.vim);BSD-3-clause(debian/mako_indent.vim) |
+| [python-mako](/cumulus-linux-41/Whats-New/licenses/python-mako.txt) | 1.0.7+ds1-1 | Expat(&#42;);BSD-3-clause(examples/bench/basic.py);Expat(debian/&#42;);BSD-3-clause(debian/mako.vim);WTFPL(debian/mako_indent.vim);WTFPL(debian/mako_indent.vim);Expat(debian/mako_indent.vim);BSD-3-clause(debian/mako_indent.vim) |
 | [man-db](/cumulus-linux-41/Whats-New/licenses/man-db.txt) | 2.8.5-2 | GPL;GPL-2;GPL-2+;GPL-3;GPL-3+ |
 | [manpages](/cumulus-linux-41/Whats-New/licenses/manpages.txt) | 4.16-2 | BSD;BSD-3-clause;BSD-4-clause;Expat;freely-redistributable;GPL;GPL-2;GPL-2+;henry-spencer-regex;LDPv1;public domain;public-domain;verbatim |
 | [libmariadb3](/cumulus-linux-41/Whats-New/licenses/libmariadb3.txt) | 10.3.22-0+deb10u1 | Artistic;BSD;BSD-2-clause;BSD-3-clause;GPL;GPL-2;GPL-2+;GPL-2+-with-bison-exception;GPL-3;GPL-3+;GPL-3+-with-bison-exception;GPL-verbatim;LGPL;LGPL-2;LGPL-2.1+;MIT;MIT/X11;public domain;public-domain;Python;SWsoft;unlimited-free-doc;zlib;zlib/libpng |
@@ -921,7 +921,7 @@ pdfhidden: True
 | [python-markupsafe](/cumulus-linux-41/Whats-New/licenses/python-markupsafe.txt) | 1.1.0-1 | BSD |
 | [mawk](/cumulus-linux-41/Whats-New/licenses/mawk.txt) | 1.3.3-17+b3 | GPL;GPL-2 |
 | [mdadm](/cumulus-linux-41/Whats-New/licenses/mdadm.txt) | 4.1-1 | GPL;GPL-2 |
-| [memtester](/cumulus-linux-41/Whats-New/licenses/memtester.txt) | 4.3.0-4+b1 | GPL-2(*);GPL-2+(debian/*);GPL-2(debian/*);GPL-2+(debian/*) |
+| [memtester](/cumulus-linux-41/Whats-New/licenses/memtester.txt) | 4.3.0-4+b1 | GPL-2(&#42;);GPL-2+(debian/&#42;);GPL-2(debian/&#42;);GPL-2+(debian/&#42;) |
 | [libegl-mesa0](/cumulus-linux-41/Whats-New/licenses/libegl-mesa0.txt) | 18.3.6-2+deb10u1 | Apache-2;Apache-2.0;BSD;BSD-2-clause;BSD-3-clause;BSL;GPL;Khronos;MIT;MLAA;SGI |
 | [libgbm1](/cumulus-linux-41/Whats-New/licenses/libgbm1.txt) | 18.3.6-2+deb10u1 | Apache-2;Apache-2.0;BSD;BSD-2-clause;BSD-3-clause;BSL;GPL;Khronos;MIT;MLAA;SGI |
 | [libgl1-mesa-dev](/cumulus-linux-41/Whats-New/licenses/libgl1-mesa-dev.txt) | 18.3.6-2+deb10u1 | Apache-2;Apache-2.0;BSD;BSD-2-clause;BSD-3-clause;BSL;GPL;Khronos;MIT;MLAA;SGI |
@@ -934,10 +934,10 @@ pdfhidden: True
 | [python3-more-itertools](/cumulus-linux-41/Whats-New/licenses/python3-more-itertools.txt) | 4.2.0-1 | MIT;MIT-style |
 | [python-more-itertools](/cumulus-linux-41/Whats-New/licenses/python-more-itertools.txt) | 4.2.0-1 | MIT;MIT-style |
 | [libmpc3](/cumulus-linux-41/Whats-New/licenses/libmpc3.txt) | 1.1.0-1 | LGPL-2 |
-| [libmpdec2](/cumulus-linux-41/Whats-New/licenses/libmpdec2.txt) | 2.4.2-2 | BSD(*);BSD(libmpdec/vcstdint.h);GPL-2+(debian/*) |
+| [libmpdec2](/cumulus-linux-41/Whats-New/licenses/libmpdec2.txt) | 2.4.2-2 | BSD(&#42;);BSD(libmpdec/vcstdint.h);GPL-2+(debian/&#42;) |
 | [libmpfr6](/cumulus-linux-41/Whats-New/licenses/libmpfr6.txt) | 4.0.2-1 | GFDL-1;LGPL-3 |
 | [mtd-utils](/cumulus-linux-41/Whats-New/licenses/mtd-utils.txt) | 2.0.1-1 | GPL;GPL-2;MIT |
-| [mtr-tiny](/cumulus-linux-41/Whats-New/licenses/mtr-tiny.txt) | 0.92-2 | GPL-2+(*);GPL-2+(debian/*);GPL-2+(debian/*) |
+| [mtr-tiny](/cumulus-linux-41/Whats-New/licenses/mtr-tiny.txt) | 0.92-2 | GPL-2+(&#42;);GPL-2+(debian/&#42;);GPL-2+(debian/&#42;) |
 | [default-libmysqlclient-dev](/cumulus-linux-41/Whats-New/licenses/default-libmysqlclient-dev.txt) | 1.0.5 | GPL;GPL-2;GPL-2+ |
 | [mysql-common](/cumulus-linux-41/Whats-New/licenses/mysql-common.txt) | 5.8+1.0.5 | GPL;GPL-2;GPL-2+ |
 | [mz](/cumulus-linux-41/Whats-New/licenses/mz.txt) | 0.40-1.1+b1 | GPL;GPL-2;GPL-2+ |
@@ -983,19 +983,19 @@ pdfhidden: True
 | [ninvaders](/cumulus-linux-41/Whats-New/licenses/ninvaders.txt) | 0.1.1-3+b3 | GPL |
 | [nmap-common](/cumulus-linux-41/Whats-New/licenses/nmap-common.txt) | 7.70+dfsg1-6 | BSD;BSD-3-clause-author1;BSD-3-clause-author2;BSD-3-clause-authors-copyright-holders;BSD-3-clause-copyright-holders-contributors;BSD-3-clause-institute;BSD-4-clause;BSD-like-SVN;Expat;GPL;GPL-2;GPL-2+;ISC;nmap-GPL-2;preserve-copyright;retain-copyright-cisco;unlimited-retain-copyright |
 | [python3-nose2](/cumulus-linux-41/Whats-New/licenses/python3-nose2.txt) | 0.8.0-1 | BEOPEN;BSD;BSD-2-clause;CNRI;Python |
-| [libnpth0](/cumulus-linux-41/Whats-New/licenses/libnpth0.txt) | 1.6-1 | LGPL-2.1+(*);LGPL-2.1+(debian/*);LGPL-2.1+(debian/*) |
-| [libnspr4](/cumulus-linux-41/Whats-New/licenses/libnspr4.txt) | 4.20-1 | MPL-2.0(*) |
-| [libnss3](/cumulus-linux-41/Whats-New/licenses/libnss3.txt) | 3.42.1-1+deb10u2 | MPL-2.0(*);Zlib(nss/lib/zlib/*);BSD-3(nss/lib/dbm/*);public-domain(nss/lib/sqlite/sqlite3.c |
+| [libnpth0](/cumulus-linux-41/Whats-New/licenses/libnpth0.txt) | 1.6-1 | LGPL-2.1+(&#42;);LGPL-2.1+(debian/&#42;);LGPL-2.1+(debian/&#42;) |
+| [libnspr4](/cumulus-linux-41/Whats-New/licenses/libnspr4.txt) | 4.20-1 | MPL-2.0(&#42;) |
+| [libnss3](/cumulus-linux-41/Whats-New/licenses/libnss3.txt) | 3.42.1-1+deb10u2 | MPL-2.0(&#42;);Zlib(nss/lib/zlib/&#42;);BSD-3(nss/lib/dbm/&#42;);public-domain(nss/lib/sqlite/sqlite3.c |
 | [libnss-ldapd](/cumulus-linux-41/Whats-New/licenses/libnss-ldapd.txt) | 0.9.10-2 | GPL;LGPL-2 |
 | [libpam-ldapd](/cumulus-linux-41/Whats-New/licenses/libpam-ldapd.txt) | 0.9.10-2 | GPL;LGPL-2 |
 | [nslcd](/cumulus-linux-41/Whats-New/licenses/nslcd.txt) | 0.9.10-2 | GPL;LGPL-2 |
 | [libnuma1](/cumulus-linux-41/Whats-New/licenses/libnuma1.txt) | 2.0.12-1 | GPL;LGPL |
 | [nuttcp](/cumulus-linux-41/Whats-New/licenses/nuttcp.txt) | 6.1.2-4+b1 | BSD;GPL;GPL-2;public domain |
-| [csvtool](/cumulus-linux-41/Whats-New/licenses/csvtool.txt) | 1.5-1+b2 | LGPL-2-with-linking-exception(*);GPL-2+(debian/*) |
+| [csvtool](/cumulus-linux-41/Whats-New/licenses/csvtool.txt) | 1.5-1+b2 | LGPL-2-with-linking-exception(&#42;);GPL-2+(debian/&#42;) |
 | [ocaml-base-nox](/cumulus-linux-41/Whats-New/licenses/ocaml-base-nox.txt) | 4.05.0-11 | GPL;GPL-2;LGPL-2;QPL-1 | LGPL-2 | other |
 | [libostyle1c2](/cumulus-linux-41/Whats-New/licenses/libostyle1c2.txt) | 1.4devel1-21.3+b1 | GPL;GPL-2 |
 | [openjade](/cumulus-linux-41/Whats-New/licenses/openjade.txt) | 1.4devel1-21.3+b1 | GPL;GPL-2 |
-| [libopenjp2-7](/cumulus-linux-41/Whats-New/licenses/libopenjp2-7.txt) | 2.3.0-2+deb10u1 | BSD-2(src/lib/openjpip/*);BSD-2(src/lib/openjpip/query_parser.h);BSD-2(src/lib/openjp3d/*);BSD-2(src/lib/openjp3d/jp3d.c);BSD-2(src/lib/openjp3d/openjp3d.c);BSD-2(src/lib/openjp3d/t1_3d.c);BSD-2(src/lib/openjp3d/event.h);BSD-2(src/lib/openjp3d/raw.h);BSD-2(src/lib/openmj2/*);BSD-2(src/lib/openmj2/jp2.c);BSD-2(src/lib/openmj2/jp2.h);BSD-2(src/lib/openmj2/opj_malloc.h);BSD-2(src/lib/openmj2/event.h);BSD-2(src/lib/openmj2/j2k.h);BSD-2(src/lib/openmj2/mj2.c);BSD-2(src/lib/openmj2/openjpeg.h);BSD-2(src/lib/openmj2/raw.h);BSD-2(src/lib/openmj2/t1.c);BSD-2(src/lib/openmj2/mj2.h);BSD-2(src/lib/openmj2/dwt.c);BSD-2(src/lib/openmj2/mj2_convert.h);BSD-2(src/lib/openjp2/jp2.h);BSD-2(Files:);BSD-2(src/lib/openjp2/opj_stdint.h);BSD-2(src/lib/openjp2/opj_malloc.h);BSD-2(src/lib/openjp2/j2k.h);BSD-2(src/bin/common/opj_string.h);BSD-2(src/lib/openjp2/opj_malloc.c);BSD-2(src/lib/openjp2/mqc.h);BSD-2(src/lib/openjp2/tgt.h);BSD-2(src/lib/openjp2/pi.c);BSD-2(src/lib/openjp2/t1_generate_luts.c);BSD-2(src/lib/openjp2/invert.h);BSD-2(src/lib/openjp2/raw.c);BSD-2(src/lib/openjp2/bio.c);BSD-2(src/lib/openjp2/tcd.c);BSD-2(src/lib/openjp2/dwt.c);BSD-2(src/lib/openjp2/j2k.c);BSD-2(src/lib/openjp2/t2.h);BSD-2(src/lib/openjp2/image.h);BSD-2(src/lib/openjp2/thix_manager.c);BSD-2(src/lib/openjp2/openjpeg.c);BSD-2(src/lib/openjpwl/*);BSD-2(src/bin/wx/OPJViewer/source/license.txt);BSD-2(src/bin/wx/OPJViewer/source/OPJViewer.cpp);BSD-2(src/bin/jp2/index.c);MIT(src/bin/jp2/windirent.h);BSD-2(src/bin/jp2/opj_decompress.c);BSD-2(src/bin/jp2/opj_compress.c);BSD-2(src/bin/jp2/convert.h);BSD-2(src/bin/jp2/convert.c);BSD-2(src/bin/jp2/opj_dump.c);BSD-2(src/bin/jp3d/opj_jp3d_decompress.c);BSD-3(src/bin/jp3d/getopt.c);BSD-2(src/bin/common/color.c);BSD-2(src/bin/mj2/opj_mj2_decompress.c);BSD-2(src/bin/mj2/opj_mj2_wrap.c);public-domain(src/bin/mj2/mj2_to_metadata.c);BSD-2(src/bin/jpip/*);BSD-2(src/bin/jpip/opj_server.c);BSD-2(src/bin/jpwl/index.c);MIT(src/bin/jpwl/windirent.h);BSD-2(src/bin/jpwl/opj_jpwl_decompress.c);BSD-2(src/bin/jpwl/convert.h);BSD-2(tests/compare_dump_files.c);BSD-2(tests/j2k_random_tile_access.c);BSD-2(tests/unit/testempty2.c);BSD-2(tests/test_tile_decoder.c);BSD-2(wrapping/java/openjp2/index.c);BSD-2(wrapping/java/openjp2/JavaOpenJPEG.c);BSD-2(wrapping/java/openjp2/java-sources/org/openJpeg/OpenJPEGJavaDecoder.java);LIBPNG(thirdparty/libpng/*);MIT(thirdparty/liblcms2/*);ZLIB(thirdparty/include/zconf.h);ZLIB(thirdparty/include/zlib.h);ZLIB(thirdparty/libz/infback.c);ZLIB(thirdparty/libz/gzwrite.c);ZLIB(thirdparty/libz/inflate.c);ZLIB(thirdparty/libz/inftrees.h);ZLIB(thirdparty/libz/gzclose.c);ZLIB(thirdparty/libz/compress.c);ZLIB(thirdparty/libz/adler32.c);ZLIB(thirdparty/libz/uncompr.c);ZLIB(thirdparty/libz/inffast.h);ZLIB(thirdparty/libz/zutil.c);ZLIB(thirdparty/libz/crc32.c);ZLIB(thirdparty/libz/inffast.c);LIBTIFF(thirdparty/libtiff/*);LIBTIFF(thirdparty/libtiff/tif_lzma.c);LIBTIFF-PIXAR(thirdparty/libtiff/tif_pixarlog.c);LIBTIFF(thirdparty/libtiff/tif_strip.c);LIBTIFF(thirdparty/libtiff/tif_ojpeg.c);LIBTIFF(thirdparty/libtiff/tif_zip.c);LIBTIFF(thirdparty/libtiff/tif_fax3.h);LIBTIFF-GLARSON(thirdparty/libtiff/tif_luv.c);LIBTIFF(thirdparty/libtiff/tif_version.c);LIBTIFF(thirdparty/libtiff/tif_stream.cxx);BSD-2(doc/openjpip.dox.in);BSD-2(doc/mainpage.dox.in);BSD-2(cmake/FindCPPCHECK.cmake);BSD-2(tools/ctest_scripts/toolchain-mingw64.cmake);BSD-2(cmake/FindKAKADU.cmake);BSD-2(tests/profiling/filter_massif_output.py);BSD-2(src/lib/openjp2/tls_keys.h);BSD-2(debian/*);BSD-2(debian/*);MIT(debian/*);ZLIB(debian/*);LIBTIFF(debian/*) |
+| [libopenjp2-7](/cumulus-linux-41/Whats-New/licenses/libopenjp2-7.txt) | 2.3.0-2+deb10u1 | BSD-2(src/lib/openjpip/&#42;);BSD-2(src/lib/openjpip/query_parser.h);BSD-2(src/lib/openjp3d/&#42;);BSD-2(src/lib/openjp3d/jp3d.c);BSD-2(src/lib/openjp3d/openjp3d.c);BSD-2(src/lib/openjp3d/t1_3d.c);BSD-2(src/lib/openjp3d/event.h);BSD-2(src/lib/openjp3d/raw.h);BSD-2(src/lib/openmj2/&#42;);BSD-2(src/lib/openmj2/jp2.c);BSD-2(src/lib/openmj2/jp2.h);BSD-2(src/lib/openmj2/opj_malloc.h);BSD-2(src/lib/openmj2/event.h);BSD-2(src/lib/openmj2/j2k.h);BSD-2(src/lib/openmj2/mj2.c);BSD-2(src/lib/openmj2/openjpeg.h);BSD-2(src/lib/openmj2/raw.h);BSD-2(src/lib/openmj2/t1.c);BSD-2(src/lib/openmj2/mj2.h);BSD-2(src/lib/openmj2/dwt.c);BSD-2(src/lib/openmj2/mj2_convert.h);BSD-2(src/lib/openjp2/jp2.h);BSD-2(Files:);BSD-2(src/lib/openjp2/opj_stdint.h);BSD-2(src/lib/openjp2/opj_malloc.h);BSD-2(src/lib/openjp2/j2k.h);BSD-2(src/bin/common/opj_string.h);BSD-2(src/lib/openjp2/opj_malloc.c);BSD-2(src/lib/openjp2/mqc.h);BSD-2(src/lib/openjp2/tgt.h);BSD-2(src/lib/openjp2/pi.c);BSD-2(src/lib/openjp2/t1_generate_luts.c);BSD-2(src/lib/openjp2/invert.h);BSD-2(src/lib/openjp2/raw.c);BSD-2(src/lib/openjp2/bio.c);BSD-2(src/lib/openjp2/tcd.c);BSD-2(src/lib/openjp2/dwt.c);BSD-2(src/lib/openjp2/j2k.c);BSD-2(src/lib/openjp2/t2.h);BSD-2(src/lib/openjp2/image.h);BSD-2(src/lib/openjp2/thix_manager.c);BSD-2(src/lib/openjp2/openjpeg.c);BSD-2(src/lib/openjpwl/&#42;);BSD-2(src/bin/wx/OPJViewer/source/license.txt);BSD-2(src/bin/wx/OPJViewer/source/OPJViewer.cpp);BSD-2(src/bin/jp2/index.c);MIT(src/bin/jp2/windirent.h);BSD-2(src/bin/jp2/opj_decompress.c);BSD-2(src/bin/jp2/opj_compress.c);BSD-2(src/bin/jp2/convert.h);BSD-2(src/bin/jp2/convert.c);BSD-2(src/bin/jp2/opj_dump.c);BSD-2(src/bin/jp3d/opj_jp3d_decompress.c);BSD-3(src/bin/jp3d/getopt.c);BSD-2(src/bin/common/color.c);BSD-2(src/bin/mj2/opj_mj2_decompress.c);BSD-2(src/bin/mj2/opj_mj2_wrap.c);public-domain(src/bin/mj2/mj2_to_metadata.c);BSD-2(src/bin/jpip/&#42;);BSD-2(src/bin/jpip/opj_server.c);BSD-2(src/bin/jpwl/index.c);MIT(src/bin/jpwl/windirent.h);BSD-2(src/bin/jpwl/opj_jpwl_decompress.c);BSD-2(src/bin/jpwl/convert.h);BSD-2(tests/compare_dump_files.c);BSD-2(tests/j2k_random_tile_access.c);BSD-2(tests/unit/testempty2.c);BSD-2(tests/test_tile_decoder.c);BSD-2(wrapping/java/openjp2/index.c);BSD-2(wrapping/java/openjp2/JavaOpenJPEG.c);BSD-2(wrapping/java/openjp2/java-sources/org/openJpeg/OpenJPEGJavaDecoder.java);LIBPNG(thirdparty/libpng/&#42;);MIT(thirdparty/liblcms2/&#42;);ZLIB(thirdparty/include/zconf.h);ZLIB(thirdparty/include/zlib.h);ZLIB(thirdparty/libz/infback.c);ZLIB(thirdparty/libz/gzwrite.c);ZLIB(thirdparty/libz/inflate.c);ZLIB(thirdparty/libz/inftrees.h);ZLIB(thirdparty/libz/gzclose.c);ZLIB(thirdparty/libz/compress.c);ZLIB(thirdparty/libz/adler32.c);ZLIB(thirdparty/libz/uncompr.c);ZLIB(thirdparty/libz/inffast.h);ZLIB(thirdparty/libz/zutil.c);ZLIB(thirdparty/libz/crc32.c);ZLIB(thirdparty/libz/inffast.c);LIBTIFF(thirdparty/libtiff/&#42;);LIBTIFF(thirdparty/libtiff/tif_lzma.c);LIBTIFF-PIXAR(thirdparty/libtiff/tif_pixarlog.c);LIBTIFF(thirdparty/libtiff/tif_strip.c);LIBTIFF(thirdparty/libtiff/tif_ojpeg.c);LIBTIFF(thirdparty/libtiff/tif_zip.c);LIBTIFF(thirdparty/libtiff/tif_fax3.h);LIBTIFF-GLARSON(thirdparty/libtiff/tif_luv.c);LIBTIFF(thirdparty/libtiff/tif_version.c);LIBTIFF(thirdparty/libtiff/tif_stream.cxx);BSD-2(doc/openjpip.dox.in);BSD-2(doc/mainpage.dox.in);BSD-2(cmake/FindCPPCHECK.cmake);BSD-2(tools/ctest_scripts/toolchain-mingw64.cmake);BSD-2(cmake/FindKAKADU.cmake);BSD-2(tests/profiling/filter_massif_output.py);BSD-2(src/lib/openjp2/tls_keys.h);BSD-2(debian/&#42;);BSD-2(debian/&#42;);MIT(debian/&#42;);ZLIB(debian/&#42;);LIBTIFF(debian/&#42;) |
 | [ldap-utils](/cumulus-linux-41/Whats-New/licenses/ldap-utils.txt) | 2.4.47+dfsg-3+deb10u1 | ISC;MIT |
 | [libldap-2.4-2](/cumulus-linux-41/Whats-New/licenses/libldap-2.4-2.txt) | 2.4.47+dfsg-3+deb10u1 | ISC;MIT |
 | [libldap2-dev](/cumulus-linux-41/Whats-New/licenses/libldap2-dev.txt) | 2.4.47+dfsg-3+deb10u1 | ISC;MIT |
@@ -1006,7 +1006,7 @@ pdfhidden: True
 | [libssl1.1](/cumulus-linux-41/Whats-New/licenses/libssl1.1.txt) | 1.1.1d-0+deb10u2 | BSD;OpenSSL;SSLeay |
 | [libssl-dev](/cumulus-linux-41/Whats-New/licenses/libssl-dev.txt) | 1.1.1d-0+deb10u2 | BSD;OpenSSL;SSLeay |
 | [openssl](/cumulus-linux-41/Whats-New/licenses/openssl.txt) | 1.1.1d-0+deb10u2 | BSD;OpenSSL;SSLeay |
-| [open-vm-tools](/cumulus-linux-41/Whats-New/licenses/open-vm-tools.txt) | 10.3.10-1+deb10u2 | LGPL-2.1(*);GPL-2(*/Makefile* modules/*);BSD-3(lib/include/bsd* lib/string/bsd*);MIT(*)(lib/misc/base64.c);MIT(**)(Files:);GPL-2+(debian/*);BSD-3(debian/*);GPL-2(debian/*);GPL-2+(debian/*);LGPL-2.1(debian/*);MIT(*)(debian/*);MIT(**)(debian/*) |
+| [open-vm-tools](/cumulus-linux-41/Whats-New/licenses/open-vm-tools.txt) | 10.3.10-1+deb10u2 | LGPL-2.1(&#42;);GPL-2(&#42;/Makefile&#42; modules/&#42;);BSD-3(lib/include/bsd&#42; lib/string/bsd&#42;);MIT(&#42;)(lib/misc/base64.c);MIT(&#42;&#42;)(Files:);GPL-2+(debian/&#42;);BSD-3(debian/&#42;);GPL-2(debian/&#42;);GPL-2+(debian/&#42;);LGPL-2.1(debian/&#42;);MIT(&#42;)(debian/&#42;);MIT(&#42;&#42;)(debian/&#42;) |
 | [libopus0](/cumulus-linux-41/Whats-New/licenses/libopus0.txt) | 1.3-1 | NO LICENSE FOUND |
 | [liborc-0.4-0](/cumulus-linux-41/Whats-New/licenses/liborc-0.4-0.txt) | 0.4.28-3.1 | BSD |
 | [libp11-kit0](/cumulus-linux-41/Whats-New/licenses/libp11-kit0.txt) | 0.23.15-2 | BSD;BSD-3-Clause;ISC;ISC+IBM;permissive-like-automake-output;same-as-rest-of-p11kit |
@@ -1035,11 +1035,11 @@ pdfhidden: True
 | [libpcrecpp0v5](/cumulus-linux-41/Whats-New/licenses/libpcrecpp0v5.txt) | 8.39-12 | BSD |
 | [libpcsclite1](/cumulus-linux-41/Whats-New/licenses/libpcsclite1.txt) | 1.8.24-1 | BSD;BSD-3-clause;Expat;GPL;GPL-3;GPL-3+;ISC |
 | [libpcsclite-dev](/cumulus-linux-41/Whats-New/licenses/libpcsclite-dev.txt) | 1.8.24-1 | BSD;BSD-3-clause;Expat;GPL;GPL-3;GPL-3+;ISC |
-| [libperl5.28](/cumulus-linux-41/Whats-New/licenses/libperl5.28.txt) | 5.28.1-6 | GPL-1+ or Artistic(*);GPL-1+ or Artistic(perlio.c);GPL-1+ or Artistic(malloc.c);GPL-1+ or Artistic(pp_sort.c);GPL-1+ or Artistic(mro.c);GPL-1+ or Artistic(perl.c);Expat(time64.c);REGCOMP |
-| [libperl-dev](/cumulus-linux-41/Whats-New/licenses/libperl-dev.txt) | 5.28.1-6 | GPL-1+ or Artistic(*);GPL-1+ or Artistic(perlio.c);GPL-1+ or Artistic(malloc.c);GPL-1+ or Artistic(pp_sort.c);GPL-1+ or Artistic(mro.c);GPL-1+ or Artistic(perl.c);Expat(time64.c);REGCOMP |
+| [libperl5.28](/cumulus-linux-41/Whats-New/licenses/libperl5.28.txt) | 5.28.1-6 | GPL-1+ or Artistic(&#42;);GPL-1+ or Artistic(perlio.c);GPL-1+ or Artistic(malloc.c);GPL-1+ or Artistic(pp_sort.c);GPL-1+ or Artistic(mro.c);GPL-1+ or Artistic(perl.c);Expat(time64.c);REGCOMP |
+| [libperl-dev](/cumulus-linux-41/Whats-New/licenses/libperl-dev.txt) | 5.28.1-6 | GPL-1+ or Artistic(&#42;);GPL-1+ or Artistic(perlio.c);GPL-1+ or Artistic(malloc.c);GPL-1+ or Artistic(pp_sort.c);GPL-1+ or Artistic(mro.c);GPL-1+ or Artistic(perl.c);Expat(time64.c);REGCOMP |
 | [perl-openssl-defaults](/cumulus-linux-41/Whats-New/licenses/perl-openssl-defaults.txt) | 3 | Artistic;GPL;GPL-1;GPL-1+ |
-| [perl-base](/cumulus-linux-41/Whats-New/licenses/perl-base.txt) | 5.28.1-6 | GPL-1+ or Artistic(*);GPL-1+ or Artistic(perlio.c);GPL-1+ or Artistic(malloc.c);GPL-1+ or Artistic(pp_sort.c);GPL-1+ or Artistic(mro.c);GPL-1+ or Artistic(perl.c);Expat(time64.c);REGCOMP |
-| [perl-modules-5.28](/cumulus-linux-41/Whats-New/licenses/perl-modules-5.28.txt) | 5.28.1-6 | GPL-1+ or Artistic(*);GPL-1+ or Artistic(perlio.c);GPL-1+ or Artistic(malloc.c);GPL-1+ or Artistic(pp_sort.c);GPL-1+ or Artistic(mro.c);GPL-1+ or Artistic(perl.c);Expat(time64.c);REGCOMP |
+| [perl-base](/cumulus-linux-41/Whats-New/licenses/perl-base.txt) | 5.28.1-6 | GPL-1+ or Artistic(&#42;);GPL-1+ or Artistic(perlio.c);GPL-1+ or Artistic(malloc.c);GPL-1+ or Artistic(pp_sort.c);GPL-1+ or Artistic(mro.c);GPL-1+ or Artistic(perl.c);Expat(time64.c);REGCOMP |
+| [perl-modules-5.28](/cumulus-linux-41/Whats-New/licenses/perl-modules-5.28.txt) | 5.28.1-6 | GPL-1+ or Artistic(&#42;);GPL-1+ or Artistic(perlio.c);GPL-1+ or Artistic(malloc.c);GPL-1+ or Artistic(pp_sort.c);GPL-1+ or Artistic(mro.c);GPL-1+ or Artistic(perl.c);Expat(time64.c);REGCOMP |
 | [pinentry-curses](/cumulus-linux-41/Whats-New/licenses/pinentry-curses.txt) | 1.1.0-2 | GPL;GPL-2;GPL-2+;LGPL-3;LGPL-3+;MIT;X11 |
 | [libpixman-1-0](/cumulus-linux-41/Whats-New/licenses/libpixman-1-0.txt) | 0.36.0-1 | MIT |
 | [pkg-config](/cumulus-linux-41/Whats-New/licenses/pkg-config.txt) | 0.29-6 | GPL |
@@ -1047,8 +1047,8 @@ pdfhidden: True
 | [po-debconf](/cumulus-linux-41/Whats-New/licenses/po-debconf.txt) | 1.0.21 | GPL;GPL-2;GPL-2+ |
 | [poppler-data](/cumulus-linux-41/Whats-New/licenses/poppler-data.txt) | 0.4.9-2 | AGPL-3+;BSD;BSD-3-cluase;GPL;GPL-2;MIT |
 | [libpopt0](/cumulus-linux-41/Whats-New/licenses/libpopt0.txt) | 1.16-12 | GPL;GPL-2;GPL-2+;MIT;X-Consortium |
-| [libpotrace0](/cumulus-linux-41/Whats-New/licenses/libpotrace0.txt) | 1.15-1 | GPL-2+(*);GPL-2+(debian/*);GPL-2+(debian/*) |
-| [pps-tools](/cumulus-linux-41/Whats-New/licenses/pps-tools.txt) | 1.0.2-1 | GPL-2+(debian/*);GPL-2+(*);GPL-2+(*) |
+| [libpotrace0](/cumulus-linux-41/Whats-New/licenses/libpotrace0.txt) | 1.15-1 | GPL-2+(&#42;);GPL-2+(debian/&#42;);GPL-2+(debian/&#42;) |
+| [pps-tools](/cumulus-linux-41/Whats-New/licenses/pps-tools.txt) | 1.0.2-1 | GPL-2+(debian/&#42;);GPL-2+(&#42;);GPL-2+(&#42;) |
 | [libprocps7](/cumulus-linux-41/Whats-New/licenses/libprocps7.txt) | 3.3.15-2 | GPL;GPL-2;GPL-2.0+;LGPL-2;LGPL-2.0+;LGPL-2.1+ |
 | [procps](/cumulus-linux-41/Whats-New/licenses/procps.txt) | 3.3.15-2 | GPL;GPL-2;GPL-2.0+;LGPL-2;LGPL-2.0+;LGPL-2.1+ |
 | [libprotobuf-c1](/cumulus-linux-41/Whats-New/licenses/libprotobuf-c1.txt) | 1.3.1-1+b1 | BSD;BSD-2-Clause;BSD-3-Clause;permissive |
@@ -1059,7 +1059,7 @@ pdfhidden: True
 | [libprotoc17](/cumulus-linux-41/Whats-New/licenses/libprotoc17.txt) | 3.6.1.3-2 | Apache-2;Apache-2.0;BSD;BSD-3-Clause~Bloomberg;BSD-3-Clause~Google;BSD-3-Clause~RedHat;Expat;GPL;GPL-2;GPL-3;GPLWithACException;Public-Domain |
 | [protobuf-compiler](/cumulus-linux-41/Whats-New/licenses/protobuf-compiler.txt) | 3.6.1.3-2 | Apache-2;Apache-2.0;BSD;BSD-3-Clause~Bloomberg;BSD-3-Clause~Google;BSD-3-Clause~RedHat;Expat;GPL;GPL-2;GPL-3;GPLWithACException;Public-Domain |
 | [python-protobuf](/cumulus-linux-41/Whats-New/licenses/python-protobuf.txt) | 3.6.1.3-2 | Apache-2;Apache-2.0;BSD;BSD-3-Clause~Bloomberg;BSD-3-Clause~Google;BSD-3-Clause~RedHat;Expat;GPL;GPL-2;GPL-3;GPLWithACException;Public-Domain |
-| [psmisc](/cumulus-linux-41/Whats-New/licenses/psmisc.txt) | 23.2-1 | GPL-2+(*);GPL-2+(src/lists.h);GPL-2+(src/peekfd.c);GPL-2+(src/peekfd.c) |
+| [psmisc](/cumulus-linux-41/Whats-New/licenses/psmisc.txt) | 23.2-1 | GPL-2+(&#42;);GPL-2+(src/lists.h);GPL-2+(src/peekfd.c);GPL-2+(src/peekfd.c) |
 | [ptpd](/cumulus-linux-41/Whats-New/licenses/ptpd.txt) | 2.3.1-debian1-4 | BSD |
 | [publicsuffix](/cumulus-linux-41/Whats-New/licenses/publicsuffix.txt) | 20190415.1030-1 | CC0;MPL-2.0 |
 | [libpulse0](/cumulus-linux-41/Whats-New/licenses/libpulse0.txt) | 12.2-4+deb10u1 | GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2+;LGPL-2.1+ |
@@ -1067,7 +1067,7 @@ pdfhidden: True
 | [libpulse-mainloop-glib0](/cumulus-linux-41/Whats-New/licenses/libpulse-mainloop-glib0.txt) | 12.2-4+deb10u1 | GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2+;LGPL-2.1+ |
 | [pv](/cumulus-linux-41/Whats-New/licenses/pv.txt) | 1.6.6-1 | Artistic;GPL;GPL-2;GPL-2+ |
 | [pxz](/cumulus-linux-41/Whats-New/licenses/pxz.txt) | 4.999.99~beta5+gitfcfea93-5 | GPL;GPL-2 |
-| [python-pyasn1](/cumulus-linux-41/Whats-New/licenses/python-pyasn1.txt) | 0.4.2-3 | BSD-2-clause(*);GPL-2+(debian/*);BSD-2-clause(debian/*) |
+| [python-pyasn1](/cumulus-linux-41/Whats-New/licenses/python-pyasn1.txt) | 0.4.2-3 | BSD-2-clause(&#42;);GPL-2+(debian/&#42;);BSD-2-clause(debian/&#42;) |
 | [python3-pycodestyle](/cumulus-linux-41/Whats-New/licenses/python3-pycodestyle.txt) | 2.4.0-2 | Expat |
 | [python3-pyflakes](/cumulus-linux-41/Whats-New/licenses/python3-pyflakes.txt) | 2.0.0-1 | MIT |
 | [python3-pygments](/cumulus-linux-41/Whats-New/licenses/python3-pygments.txt) | 2.3.1+dfsg-1 | Apache-2;BSD |
@@ -1078,7 +1078,7 @@ pdfhidden: True
 | [python-serial](/cumulus-linux-41/Whats-New/licenses/python-serial.txt) | 3.4-4 | oldPython |
 | [python3-pytest](/cumulus-linux-41/Whats-New/licenses/python3-pytest.txt) | 3.10.1-2 | BSD;BSD-3-clause;Expat |
 | [python-pytest](/cumulus-linux-41/Whats-New/licenses/python-pytest.txt) | 3.10.1-2 | BSD;BSD-3-clause;Expat |
-| [python3-pytest-runner](/cumulus-linux-41/Whats-New/licenses/python3-pytest-runner.txt) | 2.11.1-1.1 | Expat(*);Expat(debian/*);Expat(debian/*) |
+| [python3-pytest-runner](/cumulus-linux-41/Whats-New/licenses/python3-pytest-runner.txt) | 2.11.1-1.1 | Expat(&#42;);Expat(debian/&#42;);Expat(debian/&#42;) |
 | [libpython2.7-minimal](/cumulus-linux-41/Whats-New/licenses/libpython2.7-minimal.txt) | 2.7.16-2+deb10u1 | Apache-2;BEOPEN;BSD;CNRI;GPL;GPL-2;ISC;OpenSSL;Python;SSLeay;zlib |
 | [python2.7](/cumulus-linux-41/Whats-New/licenses/python2.7.txt) | 2.7.16-2+deb10u1 | Apache-2;BEOPEN;BSD;CNRI;GPL;GPL-2;ISC;OpenSSL;Python;SSLeay;zlib |
 | [python2.7-minimal](/cumulus-linux-41/Whats-New/licenses/python2.7-minimal.txt) | 2.7.16-2+deb10u1 | Apache-2;BEOPEN;BSD;CNRI;GPL;GPL-2;ISC;OpenSSL;Python;SSLeay;zlib |
@@ -1094,8 +1094,8 @@ pdfhidden: True
 | [python3-apt](/cumulus-linux-41/Whats-New/licenses/python3-apt.txt) | 1.8.4.1 | GPL;GPL-2;GPL-2+;Permissive |
 | [python-apt](/cumulus-linux-41/Whats-New/licenses/python-apt.txt) | 1.8.4.1 | GPL;GPL-2;GPL-2+;Permissive |
 | [python-apt-common](/cumulus-linux-41/Whats-New/licenses/python-apt-common.txt) | 1.8.4.1 | GPL;GPL-2;GPL-2+;Permissive |
-| [python3-argcomplete](/cumulus-linux-41/Whats-New/licenses/python3-argcomplete.txt) | 1.8.1-1 | Apache-2.0(*);Apache-2.0(debian/*);Apache-2.0(debian/*) |
-| [python-argcomplete](/cumulus-linux-41/Whats-New/licenses/python-argcomplete.txt) | 1.8.1-1 | Apache-2.0(*);Apache-2.0(debian/*);Apache-2.0(debian/*) |
+| [python3-argcomplete](/cumulus-linux-41/Whats-New/licenses/python3-argcomplete.txt) | 1.8.1-1 | Apache-2.0(&#42;);Apache-2.0(debian/&#42;);Apache-2.0(debian/&#42;) |
+| [python-argcomplete](/cumulus-linux-41/Whats-New/licenses/python-argcomplete.txt) | 1.8.1-1 | Apache-2.0(&#42;);Apache-2.0(debian/&#42;);Apache-2.0(debian/&#42;) |
 | [python3-atomicwrites](/cumulus-linux-41/Whats-New/licenses/python3-atomicwrites.txt) | 1.1.5-2 | Expat |
 | [python-atomicwrites](/cumulus-linux-41/Whats-New/licenses/python-atomicwrites.txt) | 1.1.5-2 | Expat |
 | [python3-attr](/cumulus-linux-41/Whats-New/licenses/python3-attr.txt) | 18.2.0-1 | Expat;MIT |
@@ -1107,7 +1107,7 @@ pdfhidden: True
 | [python-certifi](/cumulus-linux-41/Whats-New/licenses/python-certifi.txt) | 2018.8.24-1 | GPL;GPL-2;MPL-2 |
 | [python-cffi-backend](/cumulus-linux-41/Whats-New/licenses/python-cffi-backend.txt) | 1.12.2-1 | Expat |
 | [python3-click](/cumulus-linux-41/Whats-New/licenses/python3-click.txt) | 7.0-1 | BSD;BSD-3-clause;BSD-3-clause |
-| [python3-colorama](/cumulus-linux-41/Whats-New/licenses/python3-colorama.txt) | 0.3.7-1 | BSD-3(*);GPL-2+(debian/*) |
+| [python3-colorama](/cumulus-linux-41/Whats-New/licenses/python3-colorama.txt) | 0.3.7-1 | BSD-3(&#42;);GPL-2+(debian/&#42;) |
 | [python3-coverage](/cumulus-linux-41/Whats-New/licenses/python3-coverage.txt) | 4.5.2+dfsg.1-1 | Apache-2;Expat;GPL;GPL-2;GPL-3;GPL-3+;MIT |
 | [python-coverage-doc](/cumulus-linux-41/Whats-New/licenses/python-coverage-doc.txt) | 4.5.2+dfsg.1-1 | Apache-2;Expat;GPL;GPL-2;GPL-3;GPL-3+;MIT |
 | [python-cryptography](/cumulus-linux-41/Whats-New/licenses/python-cryptography.txt) | 2.6.1-3+deb10u2 | Apache;Apache-2;Expat |
@@ -1128,7 +1128,7 @@ pdfhidden: True
 | [python-docutils](/cumulus-linux-41/Whats-New/licenses/python-docutils.txt) | 0.14+dfsg-4 | BEOPEN;BSD;BSD-2-clause;BSD-3-clause;CNRI;GPL;GPL-3;GPL-3+;LGPL-2;LGPL-2.1+;public domain;public-domain;Python-2.1.1 |
 | [python-dpkt](/cumulus-linux-41/Whats-New/licenses/python-dpkt.txt) | 1.9.2-1 | BSD;BSD-3-clause;GPL;GPL-2;GPL-2+ |
 | [python-eventlet](/cumulus-linux-41/Whats-New/licenses/python-eventlet.txt) | 0.20.0-6 | Apache-2;Apache-2.0;ccp-bsd;Expat;generic-bsd;voidspace-bsd |
-| [python-falcon](/cumulus-linux-41/Whats-New/licenses/python-falcon.txt) | 1.0.0-2+b3 | Apache-2(*);Apache-2(debian/*);Apache-2(debian/*) |
+| [python-falcon](/cumulus-linux-41/Whats-New/licenses/python-falcon.txt) | 1.0.0-2+b3 | Apache-2(&#42;);Apache-2(debian/&#42;);Apache-2(debian/&#42;) |
 | [python3-flake8](/cumulus-linux-41/Whats-New/licenses/python3-flake8.txt) | 3.6.0-1 | Expat |
 | [python-funcsigs](/cumulus-linux-41/Whats-New/licenses/python-funcsigs.txt) | 1.0.2-4 | Apache-2 |
 | [python-greenlet](/cumulus-linux-41/Whats-New/licenses/python-greenlet.txt) | 0.4.15-2 | GPL;GPL-3;MIT;PSFL-2 |
@@ -1139,17 +1139,17 @@ pdfhidden: True
 | [python-imagesize](/cumulus-linux-41/Whats-New/licenses/python-imagesize.txt) | 1.0.0-1 | Expat |
 | [python-ipaddress](/cumulus-linux-41/Whats-New/licenses/python-ipaddress.txt) | 1.0.17-1 | Expat;PSF-2;Python |
 | [python-ipaddr](/cumulus-linux-41/Whats-New/licenses/python-ipaddr.txt) | 2.2.0-2 | Apache-2 |
-| [python3-itsdangerous](/cumulus-linux-41/Whats-New/licenses/python3-itsdangerous.txt) | 0.24+dfsg1-2 | BSD-3-clause(*);GPL-3+(debian/*) |
-| [python3-lockfile](/cumulus-linux-41/Whats-New/licenses/python3-lockfile.txt) | 0.12.2-2 | Expat(*);Expat(lockfile/pidlockfile.py);Expat(debian/*);GPL-3+(Files:);Expat(Files:);GPL-3+(Files:) |
-| [python-lockfile](/cumulus-linux-41/Whats-New/licenses/python-lockfile.txt) | 0.12.2-2 | Expat(*);Expat(lockfile/pidlockfile.py);Expat(debian/*);GPL-3+(Files:);Expat(Files:);GPL-3+(Files:) |
-| [python3-mccabe](/cumulus-linux-41/Whats-New/licenses/python3-mccabe.txt) | 0.6.1-2 | Expat(*);Expat(debian/*);Expat(debian/*) |
+| [python3-itsdangerous](/cumulus-linux-41/Whats-New/licenses/python3-itsdangerous.txt) | 0.24+dfsg1-2 | BSD-3-clause(&#42;);GPL-3+(debian/&#42;) |
+| [python3-lockfile](/cumulus-linux-41/Whats-New/licenses/python3-lockfile.txt) | 0.12.2-2 | Expat(&#42;);Expat(lockfile/pidlockfile.py);Expat(debian/&#42;);GPL-3+(Files:);Expat(Files:);GPL-3+(Files:) |
+| [python-lockfile](/cumulus-linux-41/Whats-New/licenses/python-lockfile.txt) | 0.12.2-2 | Expat(&#42;);Expat(lockfile/pidlockfile.py);Expat(debian/&#42;);GPL-3+(Files:);Expat(Files:);GPL-3+(Files:) |
+| [python3-mccabe](/cumulus-linux-41/Whats-New/licenses/python3-mccabe.txt) | 0.6.1-2 | Expat(&#42;);Expat(debian/&#42;);Expat(debian/&#42;) |
 | [python-mimeparse](/cumulus-linux-41/Whats-New/licenses/python-mimeparse.txt) | 0.1.4-3.1 | Expat |
 | [python3-mock](/cumulus-linux-41/Whats-New/licenses/python3-mock.txt) | 2.0.0-4 | BSD;BSD-3-clause |
 | [python-netaddr](/cumulus-linux-41/Whats-New/licenses/python-netaddr.txt) | 0.7.19-1 | BSD |
 | [python-oslo.config](/cumulus-linux-41/Whats-New/licenses/python-oslo.config.txt) | 6.4.1-1 | Apache-2;Apache-2.0 |
 | [python-oslo.i18n](/cumulus-linux-41/Whats-New/licenses/python-oslo.i18n.txt) | 3.21.0-2 | Apache-2 |
-| [python3-packaging](/cumulus-linux-41/Whats-New/licenses/python3-packaging.txt) | 19.0-1 | Apache-2.0(*);BSD-3-clause(debian/*);BSD-3-clause(debian/*) |
-| [python-packaging](/cumulus-linux-41/Whats-New/licenses/python-packaging.txt) | 19.0-1 | Apache-2.0(*);BSD-3-clause(debian/*);BSD-3-clause(debian/*) |
+| [python3-packaging](/cumulus-linux-41/Whats-New/licenses/python3-packaging.txt) | 19.0-1 | Apache-2.0(&#42;);BSD-3-clause(debian/&#42;);BSD-3-clause(debian/&#42;) |
+| [python-packaging](/cumulus-linux-41/Whats-New/licenses/python-packaging.txt) | 19.0-1 | Apache-2.0(&#42;);BSD-3-clause(debian/&#42;);BSD-3-clause(debian/&#42;) |
 | [python-pathlib2](/cumulus-linux-41/Whats-New/licenses/python-pathlib2.txt) | 2.3.3-1 | Expat |
 | [python3-pbr](/cumulus-linux-41/Whats-New/licenses/python3-pbr.txt) | 4.2.0-5 | Apache-2;BSD;BSD-2-clause;BSD-3-clause |
 | [python-pbr](/cumulus-linux-41/Whats-New/licenses/python-pbr.txt) | 4.2.0-5 | Apache-2;BSD;BSD-2-clause;BSD-3-clause |
@@ -1161,22 +1161,22 @@ pdfhidden: True
 | [python3-py](/cumulus-linux-41/Whats-New/licenses/python3-py.txt) | 1.7.0-2 | Expat |
 | [python-py](/cumulus-linux-41/Whats-New/licenses/python-py.txt) | 1.7.0-2 | Expat |
 | [python3-pytest-cov](/cumulus-linux-41/Whats-New/licenses/python3-pytest-cov.txt) | 2.6.0-1 | MIT |
-| [python-qt4](/cumulus-linux-41/Whats-New/licenses/python-qt4.txt) | 4.12.1+dfsg-2+b1 | GPL-2 or GPL-3(*);WTFPL-2(contrib/lang/lang.py);GPL-2(contrib/pymodeltest/*);GPL-2+(contrib/sandbox/sandbox.*);GPL-2+(dbus/*);SecretLabs(elementtree/*);BSD-3-clause(examples/*);LGPL-2.1 with Nokia-1.1 exception or GPL-3(examples/demos/*);GPL-2+(examples/designer/plugins/python/*);GPL-2 or BSD-3-clause(pyuic/*);GPL-2+(debian/*);GPL-2(debian/*);GPL-3(debian/*);GPL-2+(debian/*);LGPL-2.1 with Nokia-1.1 exception(debian/*);BSD-3-clause(debian/*);WTFPL-2(debian/*);SecretLabs(debian/*) |
-| [python-rfc3986](/cumulus-linux-41/Whats-New/licenses/python-rfc3986.txt) | 0.3.1-2 | Apache-2(*);Apache-2(debian/*);Apache-2(debian/*) |
+| [python-qt4](/cumulus-linux-41/Whats-New/licenses/python-qt4.txt) | 4.12.1+dfsg-2+b1 | GPL-2 or GPL-3(&#42;);WTFPL-2(contrib/lang/lang.py);GPL-2(contrib/pymodeltest/&#42;);GPL-2+(contrib/sandbox/sandbox.&#42;);GPL-2+(dbus/&#42;);SecretLabs(elementtree/&#42;);BSD-3-clause(examples/&#42;);LGPL-2.1 with Nokia-1.1 exception or GPL-3(examples/demos/&#42;);GPL-2+(examples/designer/plugins/python/&#42;);GPL-2 or BSD-3-clause(pyuic/&#42;);GPL-2+(debian/&#42;);GPL-2(debian/&#42;);GPL-3(debian/&#42;);GPL-2+(debian/&#42;);LGPL-2.1 with Nokia-1.1 exception(debian/&#42;);BSD-3-clause(debian/&#42;);WTFPL-2(debian/&#42;);SecretLabs(debian/&#42;) |
+| [python-rfc3986](/cumulus-linux-41/Whats-New/licenses/python-rfc3986.txt) | 0.3.1-2 | Apache-2(&#42;);Apache-2(debian/&#42;);Apache-2(debian/&#42;) |
 | [python3-roman](/cumulus-linux-41/Whats-New/licenses/python3-roman.txt) | 2.0.0-3 | BEOPEN;CNRI;GPL;Python-2.1.1;ZPL-2.1 |
 | [python-roman](/cumulus-linux-41/Whats-New/licenses/python-roman.txt) | 2.0.0-3 | BEOPEN;CNRI;GPL;Python-2.1.1;ZPL-2.1 |
 | [python-scandir](/cumulus-linux-41/Whats-New/licenses/python-scandir.txt) | 1.9.0-2 | BSD;BSD-3-clause |
-| [python-service-identity](/cumulus-linux-41/Whats-New/licenses/python-service-identity.txt) | 16.0.0-2 | Expat(*);Expat(debian/*);Expat(debian/*) |
+| [python-service-identity](/cumulus-linux-41/Whats-New/licenses/python-service-identity.txt) | 16.0.0-2 | Expat(&#42;);Expat(debian/&#42;);Expat(debian/&#42;) |
 | [python3-pkg-resources](/cumulus-linux-41/Whats-New/licenses/python3-pkg-resources.txt) | 40.8.0-1 | BEOPEN;CNRI;GPL |
 | [python3-setuptools](/cumulus-linux-41/Whats-New/licenses/python3-setuptools.txt) | 40.8.0-1 | BEOPEN;CNRI;GPL |
 | [python-pkg-resources](/cumulus-linux-41/Whats-New/licenses/python-pkg-resources.txt) | 40.8.0-1 | BEOPEN;CNRI;GPL |
 | [python-setuptools](/cumulus-linux-41/Whats-New/licenses/python-setuptools.txt) | 40.8.0-1 | BEOPEN;CNRI;GPL |
 | [python3-sh](/cumulus-linux-41/Whats-New/licenses/python3-sh.txt) | 1.12.14-1.1 | Expat |
-| [python-tabulate](/cumulus-linux-41/Whats-New/licenses/python-tabulate.txt) | 0.8.2-1 | Expat(*);Expat(debian/*);Expat(debian/*) |
+| [python-tabulate](/cumulus-linux-41/Whats-New/licenses/python-tabulate.txt) | 0.8.2-1 | Expat(&#42;);Expat(debian/&#42;);Expat(debian/&#42;) |
 | [python-termcolor](/cumulus-linux-41/Whats-New/licenses/python-termcolor.txt) | 1.1.0-2 | MIT |
 | [python-typing](/cumulus-linux-41/Whats-New/licenses/python-typing.txt) | 3.6.6-1 | GPL;GPL-2;PSF |
-| [python3-tz](/cumulus-linux-41/Whats-New/licenses/python3-tz.txt) | 2019.1-1 | Expat(*) |
-| [python-tz](/cumulus-linux-41/Whats-New/licenses/python-tz.txt) | 2019.1-1 | Expat(*) |
+| [python3-tz](/cumulus-linux-41/Whats-New/licenses/python3-tz.txt) | 2019.1-1 | Expat(&#42;) |
+| [python-tz](/cumulus-linux-41/Whats-New/licenses/python-tz.txt) | 2019.1-1 | Expat(&#42;) |
 | [python3-urllib3](/cumulus-linux-41/Whats-New/licenses/python3-urllib3.txt) | 1.24.1-1 | Expat;PSF-2 |
 | [python-urllib3](/cumulus-linux-41/Whats-New/licenses/python-urllib3.txt) | 1.24.1-1 | Expat;PSF-2 |
 | [python3-virtualenv](/cumulus-linux-41/Whats-New/licenses/python3-virtualenv.txt) | 15.1.0+ds-2 | Expat |
@@ -1225,15 +1225,15 @@ pdfhidden: True
 | [rsync](/cumulus-linux-41/Whats-New/licenses/rsync.txt) | 3.1.3-6 | GPL;GPL-3 |
 | [rsyslog](/cumulus-linux-41/Whats-New/licenses/rsyslog.txt) | 8.1901.0-1 | Apache-2;Apache-2.0;BSD;BSD-3-clause;GPL;GPL-3;GPL-3.0+;LGPL-3;LGPL-3.0+ |
 | [librtmp1](/cumulus-linux-41/Whats-New/licenses/librtmp1.txt) | 2.4+20151223.gitfa8646d.1-2 | GPL;GPL-2;LGPL-2 |
-| [libruby2.5](/cumulus-linux-41/Whats-New/licenses/libruby2.5.txt) | 2.5.5-3+deb10u1 | BSD-2-clause or Ruby(*);BSD-2-clause(Files:);Expat(Files:);BSD-2-clause(enc/*.c);BSD-2-clause(enc/ascii.c enc/euc_jp.c enc/shift_jis.c enc/windows_31j.c);BSD-2-clause(enc/gb18030.c);BSD-2-clause(enc/encdb.c);BSD-2-clause(enc/windows_1250.c enc/windows_1252.c);BSD-2-clause(enc/windows_1251.c);GPL-3+(misc/ruby-mode.el);BSD-2-clause(lib/rdoc/generator/darkfish.rb lib/rdoc/generator/template/darkfish/*);SIL-1.1(lib/rdoc/generator/template/darkfish/fonts/SourceCodePro*);SIL-1.1(lib/rdoc/generator/template/darkfish/fonts/Lato*);CC-BY-3.0-famfamfam(lib/rdoc/generator/template/darkfish/images/*);Expat(lib/rdoc/generator/json_index.rb lib/rdoc/generator/template/json_index/*);Expat or Ruby(lib/rubygems.rb lib/rubygems/*);PreserveNotice(util.c);BSD-2-clause(random.c);3C-BSD(vsnprintf.c);PublicDomain(Files:);3C-BSD(missing/crypt.c);3C-BSD(missing/setproctitle.c);BSD-3-clause(missing/strlcat.c missing/strlcpy.c);AllPermissions(missing/langinfo.c);PartialGplArtisticAndRuby(win32/win32.*);zlib/libpng(ext/digest/md5/md5.c ext/digest/md5/md5.h);BSD-3-clause(ext/digest/rmd160/rmd160.c ext/digest/rmd160/rmd160.h);BSD-3-clause(ext/digest/sha2/sha2.c ext/digest/sha2/sha2.h);zlib/libpng(ext/nkf/nkf-utf8/config.h ext/nkf/nkf-utf8/nkf.c ext/nkf/nkf-utf8/utf8tbl.c);BSD-3-clause(ext/socket/addrinfo.h ext/socket/getaddrinfo.c ext/socket/getnameinfo.c);GPL-1+ or Artistic(ext/win32ole/win32ole.c);Expat(ccan/list/list.h);CC0(Files:);Unicode(Files:);Permissive(Files:);Permissive(Files:);BSD-2-clause or Ruby(debian/*);Artistic(debian/*);BSD-2-clause(debian/*);3C-BSD(debian/*);BSD-3-clause(debian/*);Expat(debian/*);GPL-1+(debian/*);Ruby(debian/*);SIL-1.1(debian/*);zlib/libpng(debian/*);CC0(debian/*);Unicode(debian/*);Permissive(debian/*);GPL-3+(debian/*);CC-BY-3.0-famfamfam(debian/*) |
-| [ruby2.5](/cumulus-linux-41/Whats-New/licenses/ruby2.5.txt) | 2.5.5-3+deb10u1 | BSD-2-clause or Ruby(*);BSD-2-clause(Files:);Expat(Files:);BSD-2-clause(enc/*.c);BSD-2-clause(enc/ascii.c enc/euc_jp.c enc/shift_jis.c enc/windows_31j.c);BSD-2-clause(enc/gb18030.c);BSD-2-clause(enc/encdb.c);BSD-2-clause(enc/windows_1250.c enc/windows_1252.c);BSD-2-clause(enc/windows_1251.c);GPL-3+(misc/ruby-mode.el);BSD-2-clause(lib/rdoc/generator/darkfish.rb lib/rdoc/generator/template/darkfish/*);SIL-1.1(lib/rdoc/generator/template/darkfish/fonts/SourceCodePro*);SIL-1.1(lib/rdoc/generator/template/darkfish/fonts/Lato*);CC-BY-3.0-famfamfam(lib/rdoc/generator/template/darkfish/images/*);Expat(lib/rdoc/generator/json_index.rb lib/rdoc/generator/template/json_index/*);Expat or Ruby(lib/rubygems.rb lib/rubygems/*);PreserveNotice(util.c);BSD-2-clause(random.c);3C-BSD(vsnprintf.c);PublicDomain(Files:);3C-BSD(missing/crypt.c);3C-BSD(missing/setproctitle.c);BSD-3-clause(missing/strlcat.c missing/strlcpy.c);AllPermissions(missing/langinfo.c);PartialGplArtisticAndRuby(win32/win32.*);zlib/libpng(ext/digest/md5/md5.c ext/digest/md5/md5.h);BSD-3-clause(ext/digest/rmd160/rmd160.c ext/digest/rmd160/rmd160.h);BSD-3-clause(ext/digest/sha2/sha2.c ext/digest/sha2/sha2.h);zlib/libpng(ext/nkf/nkf-utf8/config.h ext/nkf/nkf-utf8/nkf.c ext/nkf/nkf-utf8/utf8tbl.c);BSD-3-clause(ext/socket/addrinfo.h ext/socket/getaddrinfo.c ext/socket/getnameinfo.c);GPL-1+ or Artistic(ext/win32ole/win32ole.c);Expat(ccan/list/list.h);CC0(Files:);Unicode(Files:);Permissive(Files:);Permissive(Files:);BSD-2-clause or Ruby(debian/*);Artistic(debian/*);BSD-2-clause(debian/*);3C-BSD(debian/*);BSD-3-clause(debian/*);Expat(debian/*);GPL-1+(debian/*);Ruby(debian/*);SIL-1.1(debian/*);zlib/libpng(debian/*);CC0(debian/*);Unicode(debian/*);Permissive(debian/*);GPL-3+(debian/*);CC-BY-3.0-famfamfam(debian/*) |
-| [ruby](/cumulus-linux-41/Whats-New/licenses/ruby.txt) | 2.5.1 | RubyLicense(*) |
-| [ruby-did-you-mean](/cumulus-linux-41/Whats-New/licenses/ruby-did-you-mean.txt) | 1.2.1-1 | Expat(*);Expat(debian/*);Expat(debian/*) |
-| [rubygems-integration](/cumulus-linux-41/Whats-New/licenses/rubygems-integration.txt) | 1.11 | Expat(*) |
+| [libruby2.5](/cumulus-linux-41/Whats-New/licenses/libruby2.5.txt) | 2.5.5-3+deb10u1 | BSD-2-clause or Ruby(&#42;);BSD-2-clause(Files:);Expat(Files:);BSD-2-clause(enc/&#42;.c);BSD-2-clause(enc/ascii.c enc/euc_jp.c enc/shift_jis.c enc/windows_31j.c);BSD-2-clause(enc/gb18030.c);BSD-2-clause(enc/encdb.c);BSD-2-clause(enc/windows_1250.c enc/windows_1252.c);BSD-2-clause(enc/windows_1251.c);GPL-3+(misc/ruby-mode.el);BSD-2-clause(lib/rdoc/generator/darkfish.rb lib/rdoc/generator/template/darkfish/&#42;);SIL-1.1(lib/rdoc/generator/template/darkfish/fonts/SourceCodePro&#42;);SIL-1.1(lib/rdoc/generator/template/darkfish/fonts/Lato&#42;);CC-BY-3.0-famfamfam(lib/rdoc/generator/template/darkfish/images/&#42;);Expat(lib/rdoc/generator/json_index.rb lib/rdoc/generator/template/json_index/&#42;);Expat or Ruby(lib/rubygems.rb lib/rubygems/&#42;);PreserveNotice(util.c);BSD-2-clause(random.c);3C-BSD(vsnprintf.c);PublicDomain(Files:);3C-BSD(missing/crypt.c);3C-BSD(missing/setproctitle.c);BSD-3-clause(missing/strlcat.c missing/strlcpy.c);AllPermissions(missing/langinfo.c);PartialGplArtisticAndRuby(win32/win32.&#42;);zlib/libpng(ext/digest/md5/md5.c ext/digest/md5/md5.h);BSD-3-clause(ext/digest/rmd160/rmd160.c ext/digest/rmd160/rmd160.h);BSD-3-clause(ext/digest/sha2/sha2.c ext/digest/sha2/sha2.h);zlib/libpng(ext/nkf/nkf-utf8/config.h ext/nkf/nkf-utf8/nkf.c ext/nkf/nkf-utf8/utf8tbl.c);BSD-3-clause(ext/socket/addrinfo.h ext/socket/getaddrinfo.c ext/socket/getnameinfo.c);GPL-1+ or Artistic(ext/win32ole/win32ole.c);Expat(ccan/list/list.h);CC0(Files:);Unicode(Files:);Permissive(Files:);Permissive(Files:);BSD-2-clause or Ruby(debian/&#42;);Artistic(debian/&#42;);BSD-2-clause(debian/&#42;);3C-BSD(debian/&#42;);BSD-3-clause(debian/&#42;);Expat(debian/&#42;);GPL-1+(debian/&#42;);Ruby(debian/&#42;);SIL-1.1(debian/&#42;);zlib/libpng(debian/&#42;);CC0(debian/&#42;);Unicode(debian/&#42;);Permissive(debian/&#42;);GPL-3+(debian/&#42;);CC-BY-3.0-famfamfam(debian/&#42;) |
+| [ruby2.5](/cumulus-linux-41/Whats-New/licenses/ruby2.5.txt) | 2.5.5-3+deb10u1 | BSD-2-clause or Ruby(&#42;);BSD-2-clause(Files:);Expat(Files:);BSD-2-clause(enc/&#42;.c);BSD-2-clause(enc/ascii.c enc/euc_jp.c enc/shift_jis.c enc/windows_31j.c);BSD-2-clause(enc/gb18030.c);BSD-2-clause(enc/encdb.c);BSD-2-clause(enc/windows_1250.c enc/windows_1252.c);BSD-2-clause(enc/windows_1251.c);GPL-3+(misc/ruby-mode.el);BSD-2-clause(lib/rdoc/generator/darkfish.rb lib/rdoc/generator/template/darkfish/&#42;);SIL-1.1(lib/rdoc/generator/template/darkfish/fonts/SourceCodePro&#42;);SIL-1.1(lib/rdoc/generator/template/darkfish/fonts/Lato&#42;);CC-BY-3.0-famfamfam(lib/rdoc/generator/template/darkfish/images/&#42;);Expat(lib/rdoc/generator/json_index.rb lib/rdoc/generator/template/json_index/&#42;);Expat or Ruby(lib/rubygems.rb lib/rubygems/&#42;);PreserveNotice(util.c);BSD-2-clause(random.c);3C-BSD(vsnprintf.c);PublicDomain(Files:);3C-BSD(missing/crypt.c);3C-BSD(missing/setproctitle.c);BSD-3-clause(missing/strlcat.c missing/strlcpy.c);AllPermissions(missing/langinfo.c);PartialGplArtisticAndRuby(win32/win32.&#42;);zlib/libpng(ext/digest/md5/md5.c ext/digest/md5/md5.h);BSD-3-clause(ext/digest/rmd160/rmd160.c ext/digest/rmd160/rmd160.h);BSD-3-clause(ext/digest/sha2/sha2.c ext/digest/sha2/sha2.h);zlib/libpng(ext/nkf/nkf-utf8/config.h ext/nkf/nkf-utf8/nkf.c ext/nkf/nkf-utf8/utf8tbl.c);BSD-3-clause(ext/socket/addrinfo.h ext/socket/getaddrinfo.c ext/socket/getnameinfo.c);GPL-1+ or Artistic(ext/win32ole/win32ole.c);Expat(ccan/list/list.h);CC0(Files:);Unicode(Files:);Permissive(Files:);Permissive(Files:);BSD-2-clause or Ruby(debian/&#42;);Artistic(debian/&#42;);BSD-2-clause(debian/&#42;);3C-BSD(debian/&#42;);BSD-3-clause(debian/&#42;);Expat(debian/&#42;);GPL-1+(debian/&#42;);Ruby(debian/&#42;);SIL-1.1(debian/&#42;);zlib/libpng(debian/&#42;);CC0(debian/&#42;);Unicode(debian/&#42;);Permissive(debian/&#42;);GPL-3+(debian/&#42;);CC-BY-3.0-famfamfam(debian/&#42;) |
+| [ruby](/cumulus-linux-41/Whats-New/licenses/ruby.txt) | 2.5.1 | RubyLicense(&#42;) |
+| [ruby-did-you-mean](/cumulus-linux-41/Whats-New/licenses/ruby-did-you-mean.txt) | 1.2.1-1 | Expat(&#42;);Expat(debian/&#42;);Expat(debian/&#42;) |
+| [rubygems-integration](/cumulus-linux-41/Whats-New/licenses/rubygems-integration.txt) | 1.11 | Expat(&#42;) |
 | [ruby-minitest](/cumulus-linux-41/Whats-New/licenses/ruby-minitest.txt) | 5.11.3-1 | Expat |
-| [ruby-net-telnet](/cumulus-linux-41/Whats-New/licenses/ruby-net-telnet.txt) | 0.1.1-2 | Ruby(*);Ruby(debian/*);Ruby(debian/*) |
-| [ruby-power-assert](/cumulus-linux-41/Whats-New/licenses/ruby-power-assert.txt) | 1.1.1-1 | BSD-2-clause or Ruby(*);BSD-2-clause or Ruby(debian/*);BSD-2-clause(debian/*);Ruby(debian/*) |
-| [ruby-test-unit](/cumulus-linux-41/Whats-New/licenses/ruby-test-unit.txt) | 3.2.8-1 | BSD-2-clause or Ruby(*);BSD-2-clause or Ruby |
+| [ruby-net-telnet](/cumulus-linux-41/Whats-New/licenses/ruby-net-telnet.txt) | 0.1.1-2 | Ruby(&#42;);Ruby(debian/&#42;);Ruby(debian/&#42;) |
+| [ruby-power-assert](/cumulus-linux-41/Whats-New/licenses/ruby-power-assert.txt) | 1.1.1-1 | BSD-2-clause or Ruby(&#42;);BSD-2-clause or Ruby(debian/&#42;);BSD-2-clause(debian/&#42;);Ruby(debian/&#42;) |
+| [ruby-test-unit](/cumulus-linux-41/Whats-New/licenses/ruby-test-unit.txt) | 3.2.8-1 | BSD-2-clause or Ruby(&#42;);BSD-2-clause or Ruby |
 | [ruby-xmlrpc](/cumulus-linux-41/Whats-New/licenses/ruby-xmlrpc.txt) | 0.3.0-2 | Ruby |
 | [libsbc1](/cumulus-linux-41/Whats-New/licenses/libsbc1.txt) | 1.4-1 | GPL;GPL-2;GPL-2+;LGPL-2;LGPL-2+ |
 | [wamerican](/cumulus-linux-41/Whats-New/licenses/wamerican.txt) | 2018.04.16-1 | public domain |
@@ -1241,7 +1241,7 @@ pdfhidden: True
 | [seabios](/cumulus-linux-41/Whats-New/licenses/seabios.txt) | 1.12.0-1 | Common Public License;LGPL-2;LGPL-3 |
 | [sed](/cumulus-linux-41/Whats-New/licenses/sed.txt) | 4.7-1 | GPL;GPL-3 |
 | [sensible-utils](/cumulus-linux-41/Whats-New/licenses/sensible-utils.txt) | 0.0.12 | All-permissive;configure;GPL;GPL-2;GPL-2+;installsh;MIT;public domain |
-| [sgml-base](/cumulus-linux-41/Whats-New/licenses/sgml-base.txt) | 1.29 | GPL-2+(*);GPL-2+(*) |
+| [sgml-base](/cumulus-linux-41/Whats-New/licenses/sgml-base.txt) | 1.29 | GPL-2+(&#42;);GPL-2+(&#42;) |
 | [sgml-data](/cumulus-linux-41/Whats-New/licenses/sgml-data.txt) | 2.0.11 | NO LICENSE FOUND |
 | [login](/cumulus-linux-41/Whats-New/licenses/login.txt) | 4.5-1.1 | BSD;GPL;GPL-2 |
 | [passwd](/cumulus-linux-41/Whats-New/licenses/passwd.txt) | 4.5-1.1 | BSD;GPL;GPL-2 |
@@ -1252,7 +1252,7 @@ pdfhidden: True
 | [python-six](/cumulus-linux-41/Whats-New/licenses/python-six.txt) | 1.12.0-1 | Expat |
 | [libslang2](/cumulus-linux-41/Whats-New/licenses/libslang2.txt) | 2.3.2-2 | GPL;GPL-2;GPL-2+ |
 | [libslang2-dev](/cumulus-linux-41/Whats-New/licenses/libslang2-dev.txt) | 2.3.2-2 | GPL;GPL-2;GPL-2+ |
-| [smartmontools](/cumulus-linux-41/Whats-New/licenses/smartmontools.txt) | 6.6-1 | GPL-2+(*);GPL-2(debian/*);GPL-2+(debian/*);GPL-2(debian/*) |
+| [smartmontools](/cumulus-linux-41/Whats-New/licenses/smartmontools.txt) | 6.6-1 | GPL-2+(&#42;);GPL-2(debian/&#42;);GPL-2+(debian/&#42;);GPL-2(debian/&#42;) |
 | [libsnappy1v5](/cumulus-linux-41/Whats-New/licenses/libsnappy1v5.txt) | 1.1.7-1 | NO LICENSE FOUND |
 | [socat](/cumulus-linux-41/Whats-New/licenses/socat.txt) | 1.7.3.2-2 | GPL;GPL-2;GPL-3;MIT |
 | [libspandsp2](/cumulus-linux-41/Whats-New/licenses/libspandsp2.txt) | 0.0.6+dfsg-2 | GPL;GPL-2;LGPL-2 |
@@ -1264,8 +1264,8 @@ pdfhidden: True
 | [libspice-server1](/cumulus-linux-41/Whats-New/licenses/libspice-server1.txt) | 0.14.0-1.3 | BSD;BSD-3-clause;LGPL-2;LGPL-2.1+;MIT;zlib |
 | [libsqlite3-0](/cumulus-linux-41/Whats-New/licenses/libsqlite3-0.txt) | 3.27.2-3 | GPL;GPL-2;GPL-2+;public domain;public-domain |
 | [sqlite3](/cumulus-linux-41/Whats-New/licenses/sqlite3.txt) | 3.27.2-3 | GPL;GPL-2;GPL-2+;public domain;public-domain |
-| [sshpass](/cumulus-linux-41/Whats-New/licenses/sshpass.txt) | 1.06-1 | GPL-2+(*) |
-| [ssl-cert](/cumulus-linux-41/Whats-New/licenses/ssl-cert.txt) | 1.0.39 | BSD-3-clause(*);BSD-3-clause(*) |
+| [sshpass](/cumulus-linux-41/Whats-New/licenses/sshpass.txt) | 1.06-1 | GPL-2+(&#42;) |
+| [ssl-cert](/cumulus-linux-41/Whats-New/licenses/ssl-cert.txt) | 1.0.39 | BSD-3-clause(&#42;);BSD-3-clause(&#42;) |
 | [python-stevedore](/cumulus-linux-41/Whats-New/licenses/python-stevedore.txt) | 1.29.0-2 | Apache-2;Apache-2.0 |
 | [stgit](/cumulus-linux-41/Whats-New/licenses/stgit.txt) | 0.18-1 | GPL;GPL-2 |
 | [strace](/cumulus-linux-41/Whats-New/licenses/strace.txt) | 4.26-0.2 | BSD |
@@ -1291,8 +1291,8 @@ pdfhidden: True
 | [tcl](/cumulus-linux-41/Whats-New/licenses/tcl.txt) | 8.6.9+1 | GPL |
 | [tcpdump](/cumulus-linux-41/Whats-New/licenses/tcpdump.txt) | 4.9.3-1~deb10u1 | BSD |
 | [libwrap0](/cumulus-linux-41/Whats-New/licenses/libwrap0.txt) | 7.6.q-28 | BSD |
-| [libteckit0](/cumulus-linux-41/Whats-New/licenses/libteckit0.txt) | 2.5.8+ds2-5 | LGPL-2.1+ or CPL-0.5+(*);LGPL-2.1+ or GPL-2+ or MPL-1.1(SFconv/UtfCodec.*);LGPL-2.1+(debian*/*);LGPL-2.1+(debian*/*);GPL-2+(debian*/*);MPL-1.1(debian*/*);CPL-0.5+(debian*/*) |
-| [teckit](/cumulus-linux-41/Whats-New/licenses/teckit.txt) | 2.5.8+ds2-5 | LGPL-2.1+ or CPL-0.5+(*);LGPL-2.1+ or GPL-2+ or MPL-1.1(SFconv/UtfCodec.*);LGPL-2.1+(debian*/*);LGPL-2.1+(debian*/*);GPL-2+(debian*/*);MPL-1.1(debian*/*);CPL-0.5+(debian*/*) |
+| [libteckit0](/cumulus-linux-41/Whats-New/licenses/libteckit0.txt) | 2.5.8+ds2-5 | LGPL-2.1+ or CPL-0.5+(&#42;);LGPL-2.1+ or GPL-2+ or MPL-1.1(SFconv/UtfCodec.&#42;);LGPL-2.1+(debian&#42;/&#42;);LGPL-2.1+(debian&#42;/&#42;);GPL-2+(debian&#42;/&#42;);MPL-1.1(debian&#42;/&#42;);CPL-0.5+(debian&#42;/&#42;) |
+| [teckit](/cumulus-linux-41/Whats-New/licenses/teckit.txt) | 2.5.8+ds2-5 | LGPL-2.1+ or CPL-0.5+(&#42;);LGPL-2.1+ or GPL-2+ or MPL-1.1(SFconv/UtfCodec.&#42;);LGPL-2.1+(debian&#42;/&#42;);LGPL-2.1+(debian&#42;/&#42;);GPL-2+(debian&#42;/&#42;);MPL-1.1(debian&#42;/&#42;);CPL-0.5+(debian&#42;/&#42;) |
 | [python3-terminaltables](/cumulus-linux-41/Whats-New/licenses/python3-terminaltables.txt) | 3.1.0-2 | MIT |
 | [tex-common](/cumulus-linux-41/Whats-New/licenses/tex-common.txt) | 6.11 | GPL;GPL-2 |
 | [install-info](/cumulus-linux-41/Whats-New/licenses/install-info.txt) | 6.5.0.dfsg.1-4+b1 | GPL;GPL-3 |
@@ -1316,8 +1316,8 @@ pdfhidden: True
 | [libtiff5](/cumulus-linux-41/Whats-New/licenses/libtiff5.txt) | 4.1.0+git191117-2~deb10u1 | BSD-like |
 | [tipa](/cumulus-linux-41/Whats-New/licenses/tipa.txt) | 1.3-20 | GPL;LPPL |
 | [tmux](/cumulus-linux-41/Whats-New/licenses/tmux.txt) | 2.8-3 | BSD;BSD-2;BSD-3 |
-| [trace-cmd](/cumulus-linux-41/Whats-New/licenses/trace-cmd.txt) | 2.6.1-0.1 | GPL-2(*);LGPL-2.1(list.h parse-* plugin_* trace-cmd.h trace-cmd.local);LGPL-2.1(event-parse.c);LGPL-2.1(plugin_hrtimer.c);LGPL-2.1(plugin_mac80211.c);GPL-2(trace-view-store.c);GPL-2(tracecmdgui.py tracecmd.py);GPL-2(Documentation/trace-cmd-check-events.1.txt);GPL-2(debian/*);GPL-2(debian/*);LGPL-2.1(debian/*) |
-| [traceroute](/cumulus-linux-41/Whats-New/licenses/traceroute.txt) | 2.1.0-2 | GPL-2+(*);LGPL-2.1+(libsupp/*);GPL-2+(debian/*);GPL-2+(debian/*);LGPL-2.1+(debian/*) |
+| [trace-cmd](/cumulus-linux-41/Whats-New/licenses/trace-cmd.txt) | 2.6.1-0.1 | GPL-2(&#42;);LGPL-2.1(list.h parse-&#42; plugin_&#42; trace-cmd.h trace-cmd.local);LGPL-2.1(event-parse.c);LGPL-2.1(plugin_hrtimer.c);LGPL-2.1(plugin_mac80211.c);GPL-2(trace-view-store.c);GPL-2(tracecmdgui.py tracecmd.py);GPL-2(Documentation/trace-cmd-check-events.1.txt);GPL-2(debian/&#42;);GPL-2(debian/&#42;);LGPL-2.1(debian/&#42;) |
+| [traceroute](/cumulus-linux-41/Whats-New/licenses/traceroute.txt) | 2.1.0-2 | GPL-2+(&#42;);LGPL-2.1+(libsupp/&#42;);GPL-2+(debian/&#42;);GPL-2+(debian/&#42;);LGPL-2.1+(debian/&#42;) |
 | [tree](/cumulus-linux-41/Whats-New/licenses/tree.txt) | 1.8.0-1 | GPL;GPL-2 |
 | [python-twisted-bin](/cumulus-linux-41/Whats-New/licenses/python-twisted-bin.txt) | 18.9.0-3 | BSD |
 | [python-twisted-conch](/cumulus-linux-41/Whats-New/licenses/python-twisted-conch.txt) | 18.9.0-3 | BSD |
@@ -1332,7 +1332,7 @@ pdfhidden: True
 | [unzip](/cumulus-linux-41/Whats-New/licenses/unzip.txt) | 6.0-23+deb10u1 | BSD |
 | [update-inetd](/cumulus-linux-41/Whats-New/licenses/update-inetd.txt) | 4.49 | GPL;GPL-2;GPL-2+ |
 | [usb.ids](/cumulus-linux-41/Whats-New/licenses/usb.ids.txt) | 2019.07.27-0+deb10u1 | BSD;GPL |
-| [libusbredirparser1](/cumulus-linux-41/Whats-New/licenses/libusbredirparser1.txt) | 0.8.0-1 | LGPL-2.1+(*);GPL-2+(usbredirserver/usbredirserver.c);LGPL-2.1+(debian/*);LGPL-2.1+(debian/*);GPL-2+(debian/*) |
+| [libusbredirparser1](/cumulus-linux-41/Whats-New/licenses/libusbredirparser1.txt) | 0.8.0-1 | LGPL-2.1+(&#42;);GPL-2+(usbredirserver/usbredirserver.c);LGPL-2.1+(debian/&#42;);LGPL-2.1+(debian/&#42;);GPL-2+(debian/&#42;) |
 | [usbutils](/cumulus-linux-41/Whats-New/licenses/usbutils.txt) | 010-3 | GPL;GPL-2 |
 | [liblttng-ust0](/cumulus-linux-41/Whats-New/licenses/liblttng-ust0.txt) | 2.10.3-1 | BSD;BSD-2-clause;BSD-3-clause;Expat;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;LGPL-2;LGPL-2.1;LGPL-2.1+;MIT;Permissive |
 | [liblttng-ust-ctl4](/cumulus-linux-41/Whats-New/licenses/liblttng-ust-ctl4.txt) | 2.10.3-1 | BSD;BSD-2-clause;BSD-3-clause;Expat;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;LGPL-2;LGPL-2.1;LGPL-2.1+;MIT;Permissive |
@@ -1357,7 +1357,7 @@ pdfhidden: True
 | [vim-runtime](/cumulus-linux-41/Whats-New/licenses/vim-runtime.txt) | 8.1.0875-5 | NO LICENSE FOUND |
 | [vim-tiny](/cumulus-linux-41/Whats-New/licenses/vim-tiny.txt) | 8.1.0875-5 | Apache;Apache-2;Artistic;Artistic-1;BSD;BSD-2-clause;BSD-3-clause;Compaq;EDL-1;Expat;GPL;GPL-1;GPL-1+;GPL-2;GPL-2+;LGPL-2;LGPL-2.1+;MIT;OPL-1+;public domain;public-domain;SRA;UC;Vim;Vim-Regexp;X11;XPM |
 | [xxd](/cumulus-linux-41/Whats-New/licenses/xxd.txt) | 8.1.0875-5 | Apache;Apache-2;Artistic;Artistic-1;BSD;BSD-2-clause;BSD-3-clause;Compaq;EDL-1;Expat;GPL;GPL-1;GPL-1+;GPL-2;GPL-2+;LGPL-2;LGPL-2.1+;MIT;OPL-1+;public domain;public-domain;SRA;UC;Vim;Vim-Regexp;X11;XPM |
-| [libvirglrenderer0](/cumulus-linux-41/Whats-New/licenses/libvirglrenderer0.txt) | 0.7.0-2 | Boost(src/gallium/include/c11/*);MIT(src/gallium/auxiliary/*);BSD-3-clause(src/iov.c);MIT(*);MIT(debian/*);Boost(debian/*);MIT(debian/*);BSD-3-clause(debian/*) |
+| [libvirglrenderer0](/cumulus-linux-41/Whats-New/licenses/libvirglrenderer0.txt) | 0.7.0-2 | Boost(src/gallium/include/c11/&#42;);MIT(src/gallium/auxiliary/&#42;);BSD-3-clause(src/iov.c);MIT(&#42;);MIT(debian/&#42;);Boost(debian/&#42;);MIT(debian/&#42;);BSD-3-clause(debian/&#42;) |
 | [virt-what](/cumulus-linux-41/Whats-New/licenses/virt-what.txt) | 1.19-1 | GPL;GPL-2;GPL-2+ |
 | [vlan](/cumulus-linux-41/Whats-New/licenses/vlan.txt) | 2.0.5 | GPL;GPL-2;GPL-2+ |
 | [w3m](/cumulus-linux-41/Whats-New/licenses/w3m.txt) | 0.5.3-37 | copyleft-matrix-c;GPL;GPL-2;GPL-3;GPL-3+ with Autoconf exception;MIT;permissive-aclocal;permissive-configure;permissive-debian;permissive-gitlog2changelog;permissive-matrix-h;permissive-po;permissive-Str;public domain;public-domain;Ruby;Unicode-Data-Files;w3m;X11;X11-install-sh |
@@ -1373,7 +1373,7 @@ pdfhidden: True
 | [libwsutil9](/cumulus-linux-41/Whats-New/licenses/libwsutil9.txt) | 2.6.8-1.1 | BSD;BSD-2-clause;BSD-2-clause-no-conditions;BSD-3-clause;BSD-3-clause-Endance;FSL-Kaz;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;ISC;LGPL-2+;public-domain |
 | [tshark](/cumulus-linux-41/Whats-New/licenses/tshark.txt) | 2.6.8-1.1 | BSD;BSD-2-clause;BSD-2-clause-no-conditions;BSD-3-clause;BSD-3-clause-Endance;FSL-Kaz;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;ISC;LGPL-2+;public-domain |
 | [wireshark-common](/cumulus-linux-41/Whats-New/licenses/wireshark-common.txt) | 2.6.8-1.1 | BSD;BSD-2-clause;BSD-2-clause-no-conditions;BSD-3-clause;BSD-3-clause-Endance;FSL-Kaz;GPL;GPL-2;GPL-2+;GPL-3;GPL-3+;ISC;LGPL-2+;public-domain |
-| [libwoff1](/cumulus-linux-41/Whats-New/licenses/libwoff1.txt) | 1.0.2-1 | Expat(    *);  Expat(    CMakeLists.txt);  Expat(    CMakeLists.txt) |
+| [libwoff1](/cumulus-linux-41/Whats-New/licenses/libwoff1.txt) | 1.0.2-1 | Expat(    &#42;);  Expat(    CMakeLists.txt);  Expat(    CMakeLists.txt) |
 | [xdg-utils](/cumulus-linux-41/Whats-New/licenses/xdg-utils.txt) | 1.1.3-1 | MIT |
 | [libxencall1](/cumulus-linux-41/Whats-New/licenses/libxencall1.txt) | 4.11.3+24-g14b62ab3e5-1~deb10u1 | GPL;GPL-2;LGPL-2 |
 | [libxendevicemodel1](/cumulus-linux-41/Whats-New/licenses/libxendevicemodel1.txt) | 4.11.3+24-g14b62ab3e5-1~deb10u1 | GPL;GPL-2;LGPL-2 |
@@ -1390,7 +1390,7 @@ pdfhidden: True
 | [xml-core](/cumulus-linux-41/Whats-New/licenses/xml-core.txt) | 0.18+nmu1 | GPL;GPL-2;GPL-2+ |
 | [libxmlsec1](/cumulus-linux-41/Whats-New/licenses/libxmlsec1.txt) | 1.2.27-2 | BSD |
 | [libxmlsec1-openssl](/cumulus-linux-41/Whats-New/licenses/libxmlsec1-openssl.txt) | 1.2.27-2 | BSD |
-| [xmlto](/cumulus-linux-41/Whats-New/licenses/xmlto.txt) | 0.0.28-2.1 | GPL-2+(*);GPL-2+(debian/*);GPL-2+(debian/*) |
+| [xmlto](/cumulus-linux-41/Whats-New/licenses/xmlto.txt) | 0.0.28-2.1 | GPL-2+(&#42;);GPL-2+(debian/&#42;);GPL-2+(debian/&#42;) |
 | [x11proto-core-dev](/cumulus-linux-41/Whats-New/licenses/x11proto-core-dev.txt) | 2018.4-4 | MIT;SGI |
 | [x11proto-damage-dev](/cumulus-linux-41/Whats-New/licenses/x11proto-damage-dev.txt) | 2018.4-4 | MIT;SGI |
 | [x11proto-dev](/cumulus-linux-41/Whats-New/licenses/x11proto-dev.txt) | 2018.4-4 | MIT;SGI |
@@ -1410,9 +1410,9 @@ pdfhidden: True
 | [libyajl2](/cumulus-linux-41/Whats-New/licenses/libyajl2.txt) | 2.1.0-3 | ISC |
 | [zile](/cumulus-linux-41/Whats-New/licenses/zile.txt) | 2.4.14-7+b1 | FSFAP;GPL;GPL-3;GPL-3+;MIT;public domain;public-domain |
 | [zip](/cumulus-linux-41/Whats-New/licenses/zip.txt) | 3.0-11+b1 | BSD |
-| [zlib1g](/cumulus-linux-41/Whats-New/licenses/zlib1g.txt) | 1.2.11.dfsg-1 | Zlib(*);Zlib(amiga/Makefile.pup);Zlib(contrib/minizip/*);Zlib(debian/*);Zlib(debian/*) |
-| [zlib1g-dev](/cumulus-linux-41/Whats-New/licenses/zlib1g-dev.txt) | 1.2.11.dfsg-1 | Zlib(*);Zlib(amiga/Makefile.pup);Zlib(contrib/minizip/*);Zlib(debian/*);Zlib(debian/*) |
-| [python-zope.interface](/cumulus-linux-41/Whats-New/licenses/python-zope.interface.txt) | 4.3.2-1+b2 | Zope-2.1(*) |
+| [zlib1g](/cumulus-linux-41/Whats-New/licenses/zlib1g.txt) | 1.2.11.dfsg-1 | Zlib(&#42;);Zlib(amiga/Makefile.pup);Zlib(contrib/minizip/&#42;);Zlib(debian/&#42;);Zlib(debian/&#42;) |
+| [zlib1g-dev](/cumulus-linux-41/Whats-New/licenses/zlib1g-dev.txt) | 1.2.11.dfsg-1 | Zlib(&#42;);Zlib(amiga/Makefile.pup);Zlib(contrib/minizip/&#42;);Zlib(debian/&#42;);Zlib(debian/&#42;) |
+| [python-zope.interface](/cumulus-linux-41/Whats-New/licenses/python-zope.interface.txt) | 4.3.2-1+b2 | Zope-2.1(&#42;) |
 | [libzzip-0-13](/cumulus-linux-41/Whats-New/licenses/libzzip-0-13.txt) | 0.13.62-3.2 | LGPL-2 |
 
 ## 4.1.0 Open Source Software Licenses 
@@ -1554,7 +1554,7 @@ pdfhidden: True
 | [isc-dhcp-common](/cumulus-linux-41/Whats-New/licenses/isc-dhcp-common.txt) | 4.4.1-cl4u4 | GPL;GPL-2;ISC;MPL-2;MPL-2.0 |
 | [isc-dhcp-relay](/cumulus-linux-41/Whats-New/licenses/isc-dhcp-relay.txt) | 4.4.1-cl4u4 | GPL;GPL-2;ISC;MPL-2;MPL-2.0 |
 | [isc-dhcp-server](/cumulus-linux-41/Whats-New/licenses/isc-dhcp-server.txt) | 4.4.1-cl4u4 | GPL;GPL-2;ISC;MPL-2;MPL-2.0 |
-| [kbd](/cumulus-linux-41/Whats-New/licenses/kbd.txt) | 2.0.4-4 | GPL;GPL-*”;GPL-2+;GPL-2”;GPL-2-with-exceptions;GPL-any |
+| [kbd](/cumulus-linux-41/Whats-New/licenses/kbd.txt) | 2.0.4-4 | GPL;GPL-&#42;”;GPL-2+;GPL-2”;GPL-2-with-exceptions;GPL-any |
 | [keyboard-configuration](/cumulus-linux-41/Whats-New/licenses/keyboard-configuration.txt) | 1.193~deb10u1 | GPL;GPL-2;public domain |
 | [klibc-utils](/cumulus-linux-41/Whats-New/licenses/klibc-utils.txt) | 2.0.6-1 | BSD;GPL;GPL-2 |
 | [kmod](/cumulus-linux-41/Whats-New/licenses/kmod.txt) | 26-1 | GPL;GPL-2;LGPL-2 |

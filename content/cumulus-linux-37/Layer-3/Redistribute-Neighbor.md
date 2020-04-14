@@ -30,7 +30,6 @@ Redistribute neighbor was created with these use cases in mind:
 
 Cumulus Networks recommends following these guidelines with redistribute neighbor:
 
-- Use a single logical connection from each host to each leaf.
 - A host can connect to one or more leafs. Each leaf advertises the /32 it sees in its neighbor table.
 - A host-bound bridge/VLAN should be local to each switch only.
 - Leaf switches with redistribute neighbor enabled should be directly connected to the hosts.

@@ -9,12 +9,10 @@ And write markdown files for hugo to render into the respective product and vers
 This will also write the XML files that are used to generate xls files for the release notes.
 '''
 
-import json
-import requests
-import re
 import tarfile
 import os
 from os import listdir
+import requests
 
 def product_string(product):
     '''
@@ -59,7 +57,7 @@ def get_hugo_folder(product, version):
         print("ERROR: Unknown product {}".format(product))
         exit(1)
 
-def build_foss_license_markdown(csv_file, version, product):
+def build_foss_license_markdown(csv_file, version):
     '''
     Builds a list of lines that contain the entire formatted foss licenses in markdown table format.
 
@@ -100,13 +98,14 @@ def build_markdown_header(product, version):
     output.append("product: {}\n".format(product))
     output.append("version: \"{}\"\n".format(version))
     output.append("toc: 1\n")
+    output.append("draft: true\n")
     output.append("pdfhidden: True\n")
     output.append("---\n")
     output.append("\n\n")
 
     return output
 
-def write_foss_licenses(output, product, version, minor=False):
+def write_foss_licenses(output, product, version):
     '''
     Write the RN output to the file for a given version.
 
@@ -121,6 +120,11 @@ def write_foss_licenses(output, product, version, minor=False):
             out_file.write(line)
 
 def build_foss_license_markdown_files(product, version_list):
+    '''
+    Build the markdown file for every version in the version_list
+
+    version_list - a list of product versions like [3.7.2, 3.8.1, 3.9.0, 4.0.0]. Order does not matter.
+    '''
 
     # Sort the lists based on semver, most recent first.
     # I don't know what this does but that's what Stackoverflow is for
@@ -150,7 +154,7 @@ def build_foss_license_markdown_files(product, version_list):
             print("Building markdown for {} {}\n".format(product_string(product), version))
             version_output.append("## {} Open Source Software Licenses \n".format(version))
 
-            version_output.extend(build_foss_license_markdown("content/cumulus-linux-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), version), version, product_string(product)))
+            version_output.extend(build_foss_license_markdown("content/cumulus-linux-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), version), version))
 
         # The version_output now contains the RNs for all maintenance releases in order.
         # Write out the markdown file.
@@ -187,7 +191,9 @@ def process_foss_tar(version):
     return "{}/FOSS-{}.csv".format(license_dir, version)
 
 def main():
-
+    '''
+    Main function
+    '''
     products = {
         "cl": ["3.7.12", "4.1.0", "4.1.1"]
     }

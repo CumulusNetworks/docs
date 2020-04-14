@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>NETQ-5182</td>
+<td><p>When a switch or host reports its memory size in GB rather than MB, the NetQ Agent cannot parse the information and thus fails to register with the NetQ server. Contact customer support if you run into this issue.</p></td>
+<td>2.4.0-2.4.1</td>
+<td></td>
+</tr>
+<tr>
 <td>NETQ-4927</td>
 <td><p>Admin UI: If the Master Installation phase fails during NetQ installation, refreshing the page causes the error log to be lost. On failure, download the error log, then run netq bootstrap reset followed by netq bootstrap master interface on the node before restarting the installation process.</p></td>
 <td>2.4.1</td>
@@ -47,6 +53,12 @@
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>NETQ-5182</td>
+<td><p>When a switch or host reports its memory size in GB rather than MB, the NetQ Agent cannot parse the information and thus fails to register with the NetQ server. Contact customer support if you run into this issue.</p></td>
+<td>2.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>NETQ-4419</td>

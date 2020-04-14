@@ -6,14 +6,14 @@ The script will parse and markdown sanatize the JSON.
 
 And write markdown files for hugo to render into the respective product and version directories.
 
-This will also write the XML files that are used to generate xls files for the release notes. 
+This will also write the XML files that are used to generate xls files for the release notes.
 '''
 
 import json
 import requests
 import re
-import tarfile 
-import os 
+import tarfile
+import os
 from os import listdir
 
 def product_string(product):
@@ -31,12 +31,12 @@ def product_string(product):
         exit(1)
 
 def version_string(version):
-    ''' 
+    '''
     Take in the semver product version and return just the major.minor
 
     version - product version string, like 3.0.0 or 4.1.4
     Return
-     3.0 
+     3.0
      4.1
     '''
 
@@ -44,7 +44,7 @@ def version_string(version):
 
 def get_hugo_folder(product, version):
     '''
-    Take in a product like "cl" and version string like "4.0.0" 
+    Take in a product like "cl" and version string like "4.0.0"
 
     Returns
     Hugo /content directory name, for example cumulus-linux-40
@@ -79,15 +79,15 @@ def build_foss_license_markdown(csv_file, version, product):
         if header:
             output.append("|---	        |---	        |---	    |\n")
             header = False
-    
+
     output.append("\n")
-    
+
     return output
 
 def build_markdown_header(product, version):
     '''
     Produce the hugo front matter for the release note file
-    
+
     product - the product_string output, i.e., "Cumulus Linux"
     version - the Major.Minor release version, i.e., "4.0"
     '''
@@ -103,7 +103,7 @@ def build_markdown_header(product, version):
     output.append("pdfhidden: True\n")
     output.append("---\n")
     output.append("\n\n")
-    
+
     return output
 
 def write_foss_licenses(output, product, version, minor=False):
@@ -121,13 +121,13 @@ def write_foss_licenses(output, product, version, minor=False):
             out_file.write(line)
 
 def build_foss_license_markdown_files(product, version_list):
-    
+
     # Sort the lists based on semver, most recent first.
     # I don't know what this does but that's what Stackoverflow is for
     # https://stackoverflow.com/a/2574090
     version_list.sort(key=lambda s: list(map(int, s.split('.'))), reverse=True)
 
-    # We need to map major.minors to full release list, 
+    # We need to map major.minors to full release list,
     # { 3.7: [3.7.1, 3.7.2, 3.7.3...]
     major_minor = {}
 
@@ -136,14 +136,14 @@ def build_foss_license_markdown_files(product, version_list):
             major_minor[version_string(version)].append(version)
         else:
             major_minor[version_string(version)] = [version]
-    
+
     # Now we have a map of majors.minors to ordered list of maintenance releases
-    # loop over every major and build the RN page for that major 
-    for major in major_minor.keys():        
+    # loop over every major and build the RN page for that major
+    for major in major_minor.keys():
         version_output = []
-        
+
         # We only want to generate the frontmatter once per minor
-        version_output.extend(build_markdown_header(product_string(product), major))    
+        version_output.extend(build_markdown_header(product_string(product), major))
 
         # Loop over all the maintenance releases.
         for version in major_minor[major]:
@@ -152,13 +152,13 @@ def build_foss_license_markdown_files(product, version_list):
 
             version_output.extend(build_foss_license_markdown("content/cumulus-linux-{}/Whats-New/licenses/FOSS-{}.csv".format(version_string(version).replace(".", ""), version), version, product_string(product)))
 
-        # The version_output now contains the RNs for all maintenance releases in order. 
+        # The version_output now contains the RNs for all maintenance releases in order.
         # Write out the markdown file.
         write_foss_licenses(version_output, product, version)
 
 def process_foss_tar(version):
     '''
-    Download the tar file containing the foss licenses. 
+    Download the tar file containing the foss licenses.
 
     version - the version to capture foss tar files for
     '''
@@ -170,7 +170,7 @@ def process_foss_tar(version):
     if response.status_code != 200:
         print('Unable to download {} \nReceived response {}'.format(url, response.status_code))
         exit(1)
-    
+
     with open("temp.tgz", "wb") as f:
         f.write(response.raw.read())
     license_dir = "content/cumulus-linux-{}/Whats-New/licenses/".format(version_string(version).replace(".", ""))
@@ -181,7 +181,7 @@ def process_foss_tar(version):
         if file.endswith(".csv") or file.endswith(".txt"):
             continue
         os.rename("{}{}".format(license_dir, file), "{}{}.txt".format(license_dir, file))
- 
+
     os.remove("temp.tgz")
 
     return "{}/FOSS-{}.csv".format(license_dir, version)
@@ -189,14 +189,14 @@ def process_foss_tar(version):
 def main():
 
     products = {
-        "cl": ["3.7.12", "4.1.0"]
-    } 
+        "cl": ["3.7.12", "4.1.0", "4.1.1"]
+    }
 
     cvs_file_list = []
     for product in products:
         for value in products[product]:
             cvs_file_list.append(process_foss_tar(value))
-        
+
         build_foss_license_markdown_files(product, products[product])
 
         for file in cvs_file_list:

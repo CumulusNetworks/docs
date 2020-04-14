@@ -1318,6 +1318,12 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 <td>3.7.11-3.7.12, 4.1.0</td>
 </tr>
 <tr>
+<td>CM-25674</td>
+<td><p>On Mellanox switches, policer iptables are not working as expected. For example, when using a policer with mode KB/MB/GB to rate-limit interfaces, the syntax is accepted but the data plane transfer speed is not affected by the rule. </p></td>
+<td>3.7.6-3.7.8, 4.0.0-4.1.0</td>
+<td>3.7.9-3.7.12</td>
+</tr>
+<tr>
 <td>CM-25665</td>
 <td><p>On the Broadcom Trident 3 switch, VXLAN encapsulated packets are dropped on the ingress port (tagged layer 2 port) during transit forwarding (the local switch does not terminate the VXLAN tunnel). An example of where this two-layer VXLAN inside VXLAN encapsulation might occur:</p>
 <ul class="alternate" type="square">
@@ -2067,9 +2073,19 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>3.7.2-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25754</td>
+<td><p>A port that is used as both a double tag interface and a VXLAN access side interface does not forward correctly; VXLAN decapsulation is does not occur.  However, do not configure double tagged interfaces on VXLAN uplink ports as this will cause VXLAN routing issues.</p></td>
+<td>3.6.2-3.7.8</td>
+</tr>
+<tr>
 <td>CM-25747</td>
 <td><p>When transitioning from a down state to an up state due to peerlink failure and recovery, MLAG does not start the initDelay timer before trying to bring everything back up.</p></td>
 <td>3.7.7-3.7.10</td>
+</tr>
+<tr>
+<td>CM-25735</td>
+<td><p>When MLAG is re-establishing its peering after a member reboot, the VNIs on the peer briefly go into a protodown state. This can cause complete downtime to dually connected hosts as the member coming back up is still in initDelay. This issue does resolve itself as the VNIs do come back up within ten seconds. </p></td>
+<td>3.7.8</td>
 </tr>
 <tr>
 <td>CM-25718</td>
@@ -2082,11 +2098,24 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>3.7.4-3.7.10</td>
 </tr>
 <tr>
+<td>CM-25664</td>
+<td><p>On the Trident3 platform, you can only add 50 percent of the total ECMP next hops. A log message indicates that the table is full. </p></td>
+<td>3.7.7-3.7.8</td>
+</tr>
+<tr>
 <td>CM-25447</td>
 <td><p>When you define a trap destination using @mgmt, snmpd indicates that the network is unreachable even though the IP address is reachable in the management VRF. <br/>
  To work around this issue, remove @mgmt vrf references in the /etc/snmp/snmpd.conf file, stop snmpd, then start snmpd manually in the management VRF with the systemctl start snmpd@mgmt command. </p>
 </td>
 <td>3.7.6-3.7.10</td>
+</tr>
+<tr>
+<td>CM-25415</td>
+<td><p>In a typical CLOS network, each leaf is connected to all spine nodes; VXLAN packets follow leaf-spine links. However certain failure scenarios or maintenance activity might result in the MLAG primary switch being isolated from the spine layer (the only available network path is now across the peer link). As a result, the MLAG primary switch fails to transmit VXLAN encapsulated packets out on the peer link. It is also possible for the MLAG secondary switch to be isolated from the spine layer and then the problem is seen on the MLAG secondary switch. <br/>
+ The issue occurs because the Broadcom Trident3 switch does not perform VLAN translation for VXLAN encapsulated packets where the tunnel is not terminated. <br/>
+ To work around this issue, configure the BGP peering on a <em>new</em> VLAN interface (for example, vlan4093) instead of the peer link sub-interface (peerlink.4094). </p>
+</td>
+<td>3.7.6</td>
 </tr>
 <tr>
 <td>CM-25376</td>
@@ -2111,10 +2140,32 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>3.7.6-3.7.10</td>
 </tr>
 <tr>
+<td>CM-24784</td>
+<td><p>NCLU is unable to delete a BGP neighbor configuration if there is a VRF VNI mapping in the /etc/frr/frr.conf file. For example, the following NCLU command produces an error: </p>
+ 
+ 
+ cumulus@leaf01$ net del bgp neighbor swp5 interface peer-group spine 
+ 'router bgp 65001' configuration does not have 'neighbor swp5 interface peer-group spine' 
+ 
+ </td>
+<td>3.7.7-3.7.8</td>
+</tr>
+<tr>
 <td>CM-24686</td>
 <td><p>On the EdgeCore AS5812-54X switch, the PSU2 Fan1 fluctuates between OK and LOW. When the fan speed is reported as LOW, the RPM is shown as a negative number. </p>
 </td>
 <td>3.7.3-3.7.12</td>
+</tr>
+<tr>
+<td>CM-24593</td>
+<td><p>On a Dell S5248F (Trident3) switch, packets from switch ports are forwarded to the CPU and are sometimes corrupted. The corruption might result in BGP peerings being down, which can lead to all VXLAN traffic to and from a node to be lost, causing an outage to dually connected hosts in a rack. <br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.3-3.7.8</td>
+</tr>
+<tr>
+<td>CM-24544</td>
+<td><p>If the clagd-vxlan-anycast-ip is removed from the /etc/network/interfaces file (either with the NCLU command or by editing the file manually), MLAG still believes it is present until clagd restarts. </p></td>
+<td>3.7.3-3.7.8</td>
 </tr>
 <tr>
 <td>CM-23792</td>
@@ -2142,6 +2193,12 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>3.5.2-3.7.12</td>
 </tr>
 <tr>
+<td>CM-22608</td>
+<td><p>Mellanox Spectrum and Helix4 switches occasionally send malformed packets and do not send any flow samples (only counters). <br/>
+While this issue is fixed for switches with the Spectrum ASIC, this is a <a href="https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Network-Troubleshooting/Monitoring-System-Statistics-and-Network-Traffic-with-sFlow/#caveats-and-errata" class="external-link" rel="nofollow">known limitation</a> on this Helix4 platform.</p></td>
+<td>3.6.2-3.7.8</td>
+</tr>
+<tr>
 <td>CM-22605</td>
 <td><p>On a Dell S4048 switch, when you set the eth0 speed to 100, either with NCLU or by editing the /etc/network/interfaces file, the igb driver crashes, which brings down eth0. <br/>
 To work around this issue: </p>
@@ -2166,6 +2223,12 @@ To work around this issue: </p>
 <td>CM-20132</td>
 <td><p>On Trident2 switches running 802.3x regular link pause, pause frames are accounted in HwIfInDiscards counters and are dropped instead of processed.</p></td>
 <td>3.5.2-3.7.10</td>
+</tr>
+<tr>
+<td>CM-18537</td>
+<td><p>Drops due to congestion do not appear to be counted on a Mellanox switch. <br/>
+To work around this issue, run the sudo ethtool -S swp1 command to collect interface traffic statistics. </p></td>
+<td>3.4.2-3.7.8</td>
 </tr>
 <tr>
 <td>CM-17557</td>

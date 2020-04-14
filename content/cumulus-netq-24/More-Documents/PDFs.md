@@ -1,8 +1,8 @@
 ---
-title: PDFs
+title: PDF
 author: Cumulus Networks
 weight: 660
 pdfhide: True
 ---
 
-You can download a PDF version of the entire Cumulus NetQ {{% version %}} user guide {{% pdf_link "downloaded here" %}}.
+You can download a PDF version of the entire Cumulus NetQ {{% version %}} user guide {{%pdf_link "here."%}}

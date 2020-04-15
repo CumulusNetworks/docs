@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 4.1 release and lists the new platforms
 
 ## What's New in Cumulus Linux 4.1.1
 
-Cumulus Linux 4.1.1 contains bug fixes only.
+Cumulus Linux 4.1.1 contains security bug fixes.
 
 ## What's New in Cumulus Linux 4.1.0
 

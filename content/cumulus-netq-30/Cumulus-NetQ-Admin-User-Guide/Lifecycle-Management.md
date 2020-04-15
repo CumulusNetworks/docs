@@ -12,11 +12,13 @@ As an administrator, you want to manage the deployment of Cumulus Networks produ
 
 ## Access Lifecycle Management Features
 
-To manage the various lifecycle management features, open the Main Menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} and select **Upgrade Switches**. In preparation for using the installation and upgrade workflow:
+To manage the various lifecycle management features, open the Main Menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} and select **Upgrade Switches**.
 
-- Verify the switches you want to manage are running NetQ 2.4 or later
+In preparation for using the installation and upgrade workflow:
+
+- Configure switch access credentials (required for upgrades)
+- Verify the switches you want to manage are running NetQ Agent 2.4 or later
 - Assign each switch a role (optional, but recommended)
-- Configure switch access credentials
 - Upload the required images
 
 Once you have completed these tasks, you can take advantage of the UI workflow to install or upgrade switch images. Refer to {{<link title="Image Installation and Upgrade">}}.

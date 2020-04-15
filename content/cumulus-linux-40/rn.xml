@@ -22,6 +22,44 @@ cumulus@switch:~$ sudo echo 0 &gt; /var/run/hw-management/config/suspend
 <td></td>
 </tr>
 <tr>
+<td>CM-29151</td>
+<td><p>The following security vulnerability in the gnutls28 / libgnutls* packages has been announced for Cumulus Linux 4.x (Cumulus Linux 3.x is not vulnerable):<br/>
+CVE-2020-15501: GnuTLS 3.6.x before 3.6.13 uses incorrect cryptography for DTLS. The earliest affected version is 3.6.3 (2018-07-16) because of an error in a 2017-10-06 commit. The DTLS client always uses 32 '\0' bytes instead of a random value, and thus contributes no randomness to a DTLS negotiation. This breaks the security guarantees of the DTLS protocol.<br/>
+Vulnerable: &lt;= 3.6.7-4+deb10u2<br/>
+Not vulnerable: 3.6.7-4+deb10u3</p></td>
+<td>4.0.0-4.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29111</td>
+<td><p>Due to a packaging error, all switches installed from the same Cumulus Linux image have the same SSH host keys. This affects switches originally installed with Cumulus Linux 4.0.0 and 4.1.0 from a disk image only (including those that were upgraded by apt to a later release).</p>
+
+<p>As a result, this issue allows an attacker to more easily bypass remote host verification when a user connects by SSH to what is believed to be a previously used remote host but is really the attacker's host. For example, this issue can be exploited by a spoofing or man-in-the-middle attack.</p>
+
+<p>To resolve this issue, generate new SSH host keys for any switch that has Cumulus Linux 4.0.0 or 4.1.0 installed on it:</p>
+
+
+
+cumulus@<span class="code-keyword">switch</span>:~$ sudo rm /etc/ssh/ssh_host*
+cumulus@<span class="code-keyword">switch</span>:~$ sudo dpkg-reconfigure openssh-server
+cumulus@<span class="code-keyword">switch</span>:~$ sudo systemctl restart ssh
+
+
+
+<p>After generating new SSH host keys, SSH clients that have previously logged into that switch will see a warning that the switch's SSH host key changed; this is expected behavior. Be sure to inform anyone who may log in to the switch that you generated new SSH host keys. These users must log in to the affected switches with their SSH clients, where they will be given instructions on how to remove the old SSH host keys from the known hosts files to avoid a spoofing or man-in-the-middle attack directed at their SSH clients.</p>
+
+<p><b>Notes</b> </p>
+
+<ul>
+	<li>This issue is fixed in Cumulus Linux 4.1.1. However, Cumulus Networks recommends you generate new SSH host keys as this is the most reliable solution.</li>
+	<li>If you upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later using apt-get and you didn't generate new SSH host keys, you will need to generate new SSH host keys after the upgrade.</li>
+	<li>If you perform a fresh install of Cumulus Linux 4.1.1 or later using a disk image, you will lose your existing local configuration.</li>
+</ul>
+</td>
+<td>4.0.0-4.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29068</td>
 <td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.0</td>
@@ -938,12 +976,6 @@ Running hypervisors for virtual guest operating systems is not supported on Cumu
 <td>CM-27094</td>
 <td><p>On the Delta AG9032v1 switch, smonctl and sensors report inaccurate PSU current and power.</p></td>
 <td>3.5.0-3.7.12, 4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-27081</td>
-<td><p>On the Broadcom switch with the Tomahawk3 ASIC, such as the EdgeCore Minipack AS8000, if you configure more than 96 ports in a layer 2 bridge, switchd might encounter a timeout error and restart.  </p></td>
-<td>4.0.0-4.1.0</td>
 <td></td>
 </tr>
 <tr>

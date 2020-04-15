@@ -68,33 +68,20 @@ cumulus@hostname:~$ sudo netplan apply
 ```
 
 {{%notice info%}}
-If you have changed the IP address or hostname of the NetQ Appliance, you need to re-register this address with the Kubernetes containers before you can continue.
+If you have changed the IP address or hostname of the NetQ Appliance, you need to re-register this address with NetQ.
 
-1. Reset all Kubernetes administrative settings. Run the command twice to make sure all directories and files have been reset.
+1. Reset the appliance, indicating whether you want to purge any NetQ DB data or keep it.
 
     ```
-    cumulus@hostname:~$ sudo kubeadm reset -f
+    cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]
     ```  
 
-2. Remove the Kubernetes configuration. 
+2. Run the Bootstrap CLI on the appliance. This example uses interface *eth0*. Replace this with your updated IP address, hostname or interface using the `interface <text-opta-ifname>` or `ip-addr <text-ip-addr>` option.
 
     ```
-    cumulus@hostname:~$ sudo rm /home/cumulus/.kube/config
+    cumulus@hostname:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz
     ```
 
-3. Reset the NetQ Platform install daemon.
-
-    ```
-    cumulus@hostname:~$ sudo systemctl reset-failed
-    ```  
-
-4. Reset the Kubernetes service. 
-
-    ```
-    cumulus@hostname:~$ sudo systemctl restart cts-kubectl-config
-    ```  
-
-    **Note**: Allow 15 minutes for the prompt to return.
 {{%/notice%}}
 
 #### Verify NetQ Software and Appliance Readiness
@@ -122,7 +109,7 @@ Now that the appliance is up and running, verify that the software is available 
 
     {{<netq-install/verify-cmd deployment="onprem">}}
 
-5. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+5. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="single">}}
 

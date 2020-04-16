@@ -38,4 +38,4 @@ Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#ipv6-route-replacement" text="IPv6 route replacement option">}} to maintain resilient hashing for IPv6 flows
 - {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="Default reserved VLAN range">}} reduced to 3600-3999
 - The default {{<link url="Switch-Port-Attributes/#mtu" text="MTU">}} has changed to 9216 from 1500
-- New NCLU commands: `net show neighbors`, `net show sensor output`, `net show system leds`
+- New NCLU commands: `net show neighbors`, `net show sensor output`, `net show system leds` `net show system asic`, `net show system ztp`

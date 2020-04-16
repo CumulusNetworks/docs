@@ -2426,7 +2426,7 @@ cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# ip community-list standard COMMUNITY1 permit 100:100
+switch(config)# bgp community-list standard COMMUNITY1 permit 100:100
 switch(config)# exit
 switch# write memory
 switch# exit

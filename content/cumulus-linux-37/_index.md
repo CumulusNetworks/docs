@@ -31,15 +31,15 @@ solutions, and monitoring and troubleshooting recommendations. In
 addition, the quick start guide provides an end-to-end setup process to
 get you started.
 
-<!-- ### User Guide
+## User Guide
 A link to download the Cumulus Linux 3.7.7 Documentation User Guide is
-{{<exlink url="http://docs-cdn.cumulusnetworks.com/Cumulus_Linux_3-7-7_User_Guide.pdf" text="here" >}}. -->
+{{<exlink url="https://drive.google.com/file/d/1EspnJCZXOa3QO2cRJV-qbPWMumKZBtKC/view?usp=sharing" text="here" >}}.
 
-### What's New in this Release?
+## What's New in this Release?
 
 For information on new features, bug fixes, and known issues present in this release, refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360007793174-Cumulus-Linux-3-7-Release-Notes" text="product release notes" >}}.
 
-### Open Source Contributions
+## Open Source Contributions
 
 To implement various Cumulus Linux features, Cumulus Networks has forked various software projects, like CFEngine, `Netdev` and some Puppet Labs packages. The forked code resides in the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks" text="GitHub repository" >}}. 
 
@@ -47,7 +47,7 @@ Cumulus Networks has also developed and released new applications as
 open source. The list of open source projects is on the 
 {{<link title="Cumulus Linux 3.7 Open Source Packages" text="open source software" >}} page.
 
-### Hardware Compatibility List
+## Hardware Compatibility List
 
 You can find the most up-to-date hardware compatibility list (HCL)
 {{<exlink url="https://cumulusnetworks.com/hcl/" text="here" >}}. Use the HCL to confirm that
@@ -55,7 +55,7 @@ your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
 
-### Stay up to Date
+## Stay up to Date
 
 - Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-product-bulletin" text="product bulletin" >}} mailing list to receive important announcements and updates about issues that arise in our products.
 - Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="security announcement" >}} mailing list to receive alerts whenever we update our software for security issues.

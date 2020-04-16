@@ -198,6 +198,12 @@ nat.dynamic_enable = TRUE
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
+{{%notice note%}}
+
+For dynamic NAT to work on switches with the Broadcom Trident3 ASIC, you must also enable static NAT. Uncomment the `nat.static_enable = TRUE` option in addition to the `nat.dynamic_enable = TRUE` option.  
+
+{{%/notice%}}
+
 **Optional Dynamic NAT Settings**
 
 The `/etc/cumulus/switchd.conf` file includes the following configuration options for dynamic NAT. Only change these options if dynamic NAT is enabled.

@@ -7,6 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29259</td>
+<td><p>You might see the following gport error messages in switchd.log:</p>
+
+
+2020-04-10T19:50:01.011224+09:00 E1PDX0V1ELF0001 6 switchd[925]: hal_bcm_mdb.c:530 gport 0x800007a find failed
+2020-04-10T19:50:01.011631+09:00 E1PDX0V1ELF0001 6 switchd[925]: hal_bcm_mdb.c:530 gport 0x8000009 find failed
+
+
+<p>These messages are harmless and can be ignored.</p></td>
+<td>3.7.12, 4.0.0-4.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29178</td>
 <td><p>On Mellanox switches, the thermal monitoring script starts in suspended mode and, as a result, the fans run at sixty percent. You also see the following log message:</p>
 

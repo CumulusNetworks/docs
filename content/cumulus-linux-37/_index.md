@@ -37,15 +37,15 @@ A link to download the Cumulus Linux 3.7.7 Documentation User Guide is
 
 ### What's New in this Release?
 
-For information on new features, bug fixes, and known issues present in this release, refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360007793174-Cumulus-Linux-3-7-Release-Notes" text="product release notes" >}}.
+For a list of the new features in this release, see {{<link url="Whats-New" text="What's New">}}. For bug fixes and known issues present in this release, refer to the {{<link url="Cumulus-Linux-3.7-Release-Notes" text="Cumulus Linux 3.7 Release Notes">}}.
 
 ### Open Source Contributions
 
 To implement various Cumulus Linux features, Cumulus Networks has forked various software projects, like CFEngine, `Netdev` and some Puppet Labs packages. The forked code resides in the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks" text="GitHub repository" >}}. 
 
-Cumulus Networks has also developed and released new applications as
+<!-- Cumulus Networks has also developed and released new applications as
 open source. The list of open source projects is on the 
-{{<link title="Cumulus Linux 3.7 Open Source Packages" text="open source software" >}} page.
+{{<link title="Cumulus Linux 3.7 Open Source Packages" text="open source software" >}} page.-->
 
 ### Hardware Compatibility List
 

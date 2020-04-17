@@ -183,12 +183,6 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
-<td>CM-28442</td>
-<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
-<td>3.7.11-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
 <td>3.7.11-3.7.12</td>
@@ -315,6 +309,23 @@ To work around this issue, execute the vtysh -f &lt;file&gt; command in the auto
 <tr>
 <td>CM-27999</td>
 <td><p>On the EdgeCore AS7326-56X switch, the PSU fans show constant LOW warnings.</p></td>
+<td>3.7.10-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-27982</td>
+<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<ul>
+	<li>The default route is leaked from VRF1 to VRF2</li>
+	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
+You might see logs similar to the following in /var/log/syslog:
+
+kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142ca sp 00007ffd557a86d0 error 4 in switchd[400000+71000]
+
+
+<p>To work around this issue, use a route map to filter the default route (the source VRF is imported into the destination VRF).</p></li>
+</ul>
+</td>
 <td>3.7.10-3.7.12</td>
 <td></td>
 </tr>
@@ -689,7 +700,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 </tr>
 <tr>
 <td>CM-25766</td>
-<td><p>On the Dell-N3048EP switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
+<td><p>On the Dell-N3048EP-ON switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
 <td>3.7.7-3.7.12</td>
 <td></td>
 </tr>
@@ -1712,12 +1723,6 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
-<td>CM-28442</td>
-<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
-<td>3.7.11-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
 <td>3.7.11-3.7.12</td>
@@ -1942,6 +1947,23 @@ To work around this issue, execute the vtysh -f &lt;file&gt; command in the auto
 <tr>
 <td>CM-27999</td>
 <td><p>On the EdgeCore AS7326-56X switch, the PSU fans show constant LOW warnings.</p></td>
+<td>3.7.10-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-27982</td>
+<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<ul>
+	<li>The default route is leaked from VRF1 to VRF2</li>
+	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
+You might see logs similar to the following in /var/log/syslog:
+
+kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142ca sp 00007ffd557a86d0 error 4 in switchd[400000+71000]
+
+
+<p>To work around this issue, use a route map to filter the default route (the source VRF is imported into the destination VRF).</p></li>
+</ul>
+</td>
 <td>3.7.10-3.7.12</td>
 <td></td>
 </tr>
@@ -2455,7 +2477,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 </tr>
 <tr>
 <td>CM-25766</td>
-<td><p>On the Dell-N3048EP switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
+<td><p>On the Dell-N3048EP-ON switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
 <td>3.7.7-3.7.12</td>
 <td></td>
 </tr>
@@ -3857,6 +3879,23 @@ To work around this issue, power cycle the switch. A software reboot does not re
 <td></td>
 </tr>
 <tr>
+<td>CM-27982</td>
+<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<ul>
+	<li>The default route is leaked from VRF1 to VRF2</li>
+	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
+You might see logs similar to the following in /var/log/syslog:
+
+kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142ca sp 00007ffd557a86d0 error 4 in switchd[400000+71000]
+
+
+<p>To work around this issue, use a route map to filter the default route (the source VRF is imported into the destination VRF).</p></li>
+</ul>
+</td>
+<td>3.7.10-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-27947</td>
 <td><p>Broadcom Field Alert - SID - MMU 2B Errors<br/>
 A few of the MMU memories on Broadcom switches are grouped together with single parity control. During SER correction when a parity error occurs on one of those groups, other memory in that group might also report a SER error. This occurs when the memory is accessed either by a packet hit or through a schan operation. This issue can cause SER errors in other memory and cause traffic mis-forwarding or a packet drop.</p></td>
@@ -4624,7 +4663,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 </tr>
 <tr>
 <td>CM-25766</td>
-<td><p>On the Dell-N3048EP switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
+<td><p>On the Dell-N3048EP-ON switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
 <td>3.7.7-3.7.12</td>
 <td></td>
 </tr>
@@ -6289,7 +6328,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 </tr>
 <tr>
 <td>CM-25766</td>
-<td><p>On the Dell-N3048EP switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
+<td><p>On the Dell-N3048EP-ON switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
 <td>3.7.7-3.7.12</td>
 <td></td>
 </tr>
@@ -7823,7 +7862,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 </tr>
 <tr>
 <td>CM-25766</td>
-<td><p>On the Dell-N3048EP switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
+<td><p>On the Dell-N3048EP-ON switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
 <td>3.7.7-3.7.12</td>
 <td></td>
 </tr>
@@ -9256,7 +9295,7 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 </tr>
 <tr>
 <td>CM-25766</td>
-<td><p>On the Dell-N3048EP switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
+<td><p>On the Dell-N3048EP-ON switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
 <td>3.7.7-3.7.12</td>
 <td></td>
 </tr>

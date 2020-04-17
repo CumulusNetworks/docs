@@ -33,7 +33,7 @@ The following table summarizes the new commands available with this release. The
 </tr>
 <tr>
   <td>netq config add agent cpu-limit [&lt;text-limit-number>]</td>
-  <td>Limits the amount of CPU resources the NetQ Agent consumes on a Cumulus Linux switch.</td>
+  <td>Limits the amount of CPU resources the NetQ Agent consumes on a Cumulus Linux switch. This setting requires Cumulus Linux versions 3.7.12 or later and 4.1.0 or later to be running on the switch.</td>
   <td>2.4.1</td>
 </tr>
 <tr>

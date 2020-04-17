@@ -7,6 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29178</td>
+<td><p>On Mellanox switches, the thermal monitoring script starts in suspended mode and, as a result, the fans run at sixty percent. You also see the following log message:</p>
+
+hw-management.sh[847]: Thermal algorithm is manually suspend.
+
+
+<p>To work around this issue, run the following command to enable thermal monitoring:</p>
+
+cumulus@switch:~$ sudo echo 0 &gt; /var/run/hw-management/config/suspend
+
+</td>
+<td>4.0.0-4.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29068</td>
 <td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.0</td>
@@ -246,12 +261,6 @@ Port security is not supported on bond/MLAG interfaces.</p></td>
 <td>4.1.0</td>
 </tr>
 <tr>
-<td>CM-28442</td>
-<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
-<td>3.7.11-3.7.12, 4.0.0-4.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.0</td>
@@ -351,7 +360,8 @@ Fixed: 2.0.5-1+deb10u1</p></td>
 </tr>
 <tr>
 <td>CM-28200</td>
-<td><p>The Mellanox SN3700C switch encounters a memory leak after you apply an EVPN and PIM configuration.</p></td>
+<td><p>The Mellanox SN3700C switch experiences a kernel memory leak in the bridge IPv4 multicast receive function. When IGMP snooping is disabled, received IGMP packets are cloned and the clone is not freed, causing a memory leak.<br/>
+Because this memory leak is in the kernel, you cannot clear it by restarting a service; you must reboot the switch to clear the allocated memory.</p></td>
 <td>4.0.0</td>
 <td>4.1.0</td>
 </tr>
@@ -542,6 +552,23 @@ Fixed version: 4.11.3+24-g14b62ab3e5-1~deb10u1.</p></td>
 <tr>
 <td>CM-27999</td>
 <td><p>On the EdgeCore AS7326-56X switch, the PSU fans show constant LOW warnings.</p></td>
+<td>3.7.10-3.7.12, 4.0.0-4.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-27982</td>
+<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<ul>
+	<li>The default route is leaked from VRF1 to VRF2</li>
+	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
+You might see logs similar to the following in /var/log/syslog:
+
+kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142ca sp 00007ffd557a86d0 error 4 in switchd[400000+71000]
+
+
+<p>To work around this issue, use a route map to filter the default route (the source VRF is imported into the destination VRF).</p></li>
+</ul>
+</td>
 <td>3.7.10-3.7.12, 4.0.0-4.1.0</td>
 <td></td>
 </tr>
@@ -1262,7 +1289,7 @@ To work around this issue, change the MTU on all SVIs and the bridge manually in
 </tr>
 <tr>
 <td>CM-25766</td>
-<td><p>On the Dell-N3048EP switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
+<td><p>On the Dell-N3048EP-ON switch, when you run the sudo -E apt upgrade command, the upgrade does not work. </p></td>
 <td>3.7.7-3.7.12, 4.0.0-4.1.0</td>
 <td></td>
 </tr>

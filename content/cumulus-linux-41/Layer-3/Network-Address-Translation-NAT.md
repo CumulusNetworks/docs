@@ -204,7 +204,7 @@ For dynamic NAT to work on switches with the Broadcom Trident3 ASIC, you must al
 
 {{%/notice%}}
 
-**Optional Dynamic NAT Settings**
+#### Optional Dynamic NAT Settings
 
 The `/etc/cumulus/switchd.conf` file includes the following configuration options for dynamic NAT. Only change these options if dynamic NAT is enabled.
 

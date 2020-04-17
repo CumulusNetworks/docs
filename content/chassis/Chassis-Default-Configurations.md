@@ -5,7 +5,7 @@ weight: 15
 aliases:
  - /display/CHASSIS/Chassis-Default-Configurations
  - /display/CHASSIS/Chassis+Default+Configurations
- - /pages/viewpage.action?pageId=7113477
+
 pageID: 7113477
 product: Cumulus Chassis
 version: "1.0"

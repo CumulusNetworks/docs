@@ -25,14 +25,12 @@ environment pre-installed with scripting languages, server utilities,
 and monitoring tools. Management tasks are accomplished via SSH using
 standard Linux commands or over a serial console connection.
 
-  - [Release Notes for Cumulus Linux 3.1.2](https://support.cumulusnetworks.com/hc/en-us/articles/231974068)
-  - [What's New in Cumulus Linux
-    3.1.2](Whats-New-in-Cumulus-Linux-3.1/)
-  - [Quick Start Guide](Quick-Start-Guide/)
-  - [Installation, Upgrading and Package Management](Installation-Upgrading-and-Package-Management/)
-  - [System Management](System-Management/)
-  - [Configuring and Managing Network Interfaces](Configuring-and-Managing-Network-Interfaces/)
-  - [Layer 1 and Layer 2 Features](Layer-1-and-Layer-2-Features/)
-  - [Layer 3 Features](Layer-3-Features/)
-  - [Monitoring and Troubleshooting](Monitoring-and-Troubleshooting/)
-  - [Network Solutions](Network-Solutions/)
+## What's New in Cumulus Linux 3.1
+
+For information regarding what's new in this release as well as bug fixes and known issues present in
+this release, refer to the product release notes for versions
+[3.1.0](https://support.cumulusnetworks.com/hc/en-us/articles/224473608-Cumulus-Linux-3-1-0-Release-Notes), [3.1.1](https://support.cumulusnetworks.com/hc/en-us/articles/228283788-Cumulus-Linux-3-1-1-Release-Notes) and [3.1.2](https://support.cumulusnetworks.com/hc/en-us/articles/231974068-Cumulus-Linux-3-1-2-Release-Notes).
+
+## Download the User Guide
+
+You can download a PDF of the user guide for versions {{<exlink url="https://drive.google.com/file/d/1AjKT7MhGhz9izdRvPnb74WqS5xL7toAN/view?usp=sharing" text="3.1.0">}}, {{<exlink url="https://drive.google.com/file/d/1V7tiGPn9ZD1H_DZX1wnKbBWYwQFAwp5I/view?usp=sharing" text="3.1.1">}} and {{<exlink url="https://drive.google.com/file/d/1-NcfR6j1wbxXokAxCh04y9Pf3ZHsRNus/view?usp=sharing" text="3.1.2">}}.

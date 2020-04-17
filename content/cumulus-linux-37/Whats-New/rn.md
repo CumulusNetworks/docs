@@ -8,8 +8,6 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-
-
 <a href="/cumulus-linux-37/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-linux-37/rn.xls">Download all 3.7 release notes as .xls</a>
 ## 3.7.12 Release Notes
 ### Open issues in 3.7.12

@@ -29,7 +29,7 @@ In preparation for using the installation and upgrade workflow:
 - Verify the switches you want to manage are running NetQ Agent 2.4 or later
 - Assign each switch a role (optional, but recommended)
 
-Once you have completed these tasks, you can take advantage of the UI workflow to install or upgrade switch images. Refer to {{<link title="#Lifecycle Management" text="Image Installation and Upgrade">}}.
+Once you have completed these tasks, you can take advantage of the UI workflow to install or upgrade switch images. Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}}.
 
 ## Image Management
 
@@ -155,7 +155,22 @@ To remove images:
 
 ## Credential Management
 
+Switch access credentials are needed for performing upgrades. You can choose between basic authentication (username and password) and SSH key-based authentication. These credentials apply to all switches.
 
+To specify access credentials:
+
+1. Open the LCM dashboard.
+
+2. Click the link on the Access card.
+
+3. Select the authentication method; **SSH** or **Basic Authentication**. Basic authentication is selected by default.
+
+4. Based on your selection:
+
+    **Basic**: Enter a username and password
+    **SSH**: Copy and paste your SSH key
+
+5. Click Save.
 
 ## Switch Management
 

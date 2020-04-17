@@ -56,8 +56,8 @@ def version_string(version):
     '''
     if version.count(".") == 1:
         return version
-    else:
-        return version[:version.rfind(".")]
+
+    return version[:version.rfind(".")]
 
 def get_hugo_folder(product, version):
     '''

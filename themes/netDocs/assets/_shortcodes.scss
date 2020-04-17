@@ -39,7 +39,7 @@
   margin-top: $padding-16;
   margin-bottom: $padding-16;
 
-  border: $padding-1 solid $gray-200;
+  border: $padding-1 solid $cn-heather;
   border-radius: $border-radius;
 
   overflow: hidden;
@@ -49,6 +49,7 @@
 
   label {
     display: inline-block;
+    color: $cn-jade;    
     padding: $padding-8 $padding-16;
     border-bottom: $padding-1 transparent;
     cursor: pointer;
@@ -63,7 +64,7 @@
   }
 
   input[type="radio"]:checked + label {
-    border-bottom: $padding-1 solid $color-link;
+    border-bottom: $padding-1 solid $cn-jade;
   }
   input[type="radio"]:checked + label + .book-tabs-content {
     display: block;

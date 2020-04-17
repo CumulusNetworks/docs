@@ -5,7 +5,7 @@ weight: 11
 aliases:
  - /display/CHASSIS/Accessing-the-Console
  - /display/CHASSIS/Accessing+the+Console
- - /pages/viewpage.action?pageId=7766291
+
 pageID: 7766291
 product: Cumulus Chassis
 version: "1.0"

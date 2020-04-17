@@ -157,34 +157,124 @@ To remove images:
 
 Switch access credentials are needed for performing upgrades. You can choose between basic authentication (username and password) and SSH key-based authentication. These credentials apply to all switches.
 
+### Specify Switch Credentials
+
 To specify access credentials:
 
 1. Open the LCM dashboard.
 
 2. Click the link on the Access card.
 
-3. Select the authentication method; **SSH** or **Basic Authentication**. Basic authentication is selected by default.
+3. Select the authentication method you want to use; **SSH** or **Basic Authentication**. Basic authentication is selected by default.
 
 4. Based on your selection:
 
-    **Basic**: Enter a username and password
-    **SSH**: Copy and paste your SSH key
+    - **Basic**: Enter a username and password
+    - **SSH**: Copy and paste your SSH key
 
-5. Click Save.
+    {{<figure src="/images/netq/lcm-access-create-dialog-300.png" width="250">}}
+
+5. Click **Save**.
+
+    The Access card now indicates your credential configuration.
+
+    {{<figure src="/images/netq/lcm-access-configured-300.png" width="200">}}
+
+### Modify Switch Credentials
+
+To change your access credentials:
+
+You can modify your switch access credentials at any time. You can change between authentication methods or change values for either method.
+
+1. Open the LCM dashboard.
+
+2. On the Access card, click the link in the center of the card.
+
+3. Select the authentication method you want to use; **SSH** or **Basic Authentication**. Basic authentication is selected by default.
+
+4. Based on your selection:
+
+    - **Basic**: Enter a new username and/or password
+    - **SSH**: Copy and paste a new SSH key
+
+5. Click **Save**.
 
 ## Switch Management
 
-This lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ 3.0.0 and are available for software installation or upgrade. This includes all switches running Cumulus NetQ 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
+This lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ 3.0.0 and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
+
+A count of the switches NetQ was able to discover and the Cumulus Linux versions that are running on those switches is available from the LCM dashboard.
+
+{{<figure src="/images/netq/lcm-switches-card-300.png" width="200">}}
+
+To view the list of switches, click **Manage** on the Switches card.
 
 <!-- Insert image here -->
 
+Review the list, filtering as needed to determine in the switches you want to upgrade are included. If they are not listed, verify the switches have NetQ 2.4 or later Agents on them.
+
+To verify the NetQ Agent version, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** in the **Network** section. Search for the switches of interest and confirm the applied version in the **Version** column. Upgrade any NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}} for instructions.
+
+After all of the switches you want to upgrade are contained in the list, you can assign roles to them.
+
 ### Role Management
 
-## Configuration Management
+Four pre-defined switch roles are available based on the CLOS architecture:
+
+- Superspine
+- Spine
+- Leaf
+- Exit
+
+Switch roles identify switch dependencies and determine the order in which switches are upgraded. The upgrade process begins with switches having the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally switches with no role assigned. All switches with a given role must be successfully upgraded before the switches with the closest dependent role can be upgraded. For example, a group of seven switches are selected for upgrade. Three are spine switches and four are leaf switches. After all of the spine switches are successfully upgraded, then the leaf switches are upgraded. If one of the spine switches were to fail the upgrade, the other two spine switches are upgraded, but the upgrade process stops after that, leaving the leaf switches untouched.
+
+While role assignment is optional, using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments, and when MLAG pairs are deployed, switch roles avoid upgrade conflicts. For these reasons, Cumulus Networks highly recommends assigning roles to all of your switches.
+
+#### Assign Switch Roles
+
+1. Open the LCM dashboard.
+
+2. On the Switches card, click **Manage**.
+
+3. Select one or more switches that have the same role.
+
+4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
+
+5. Select the role that applies to the selected switch(es).
+
+    {{<figure src="/images/netq/lcm-role-assign-role-selection-300.png" width="300">}}
+
+6. Click **Assign**.
+
+    Note that the Role column is updated with the selected role assigned to the selected switch(es).
+
+    {{<figure src="/images/netq/lcm-switches-listing-300.png" width="700">}}
+
+7. Continue selecting switches and assigning roles until most or all switches have roles assigned.
+
+A bonus of assigning roles to switches is that you can then filter the list of switches by their roles by clicking the appropriate tab.
+
+### Export List of Switches
+
+Using the Switch Management feature you can export a listing of all or a selected set of switches.
+
+To export the switch listing:
+
+1. Open the LCM dashboard.
+
+2. On the Switches card, click **Manage**.
+
+3. Select one or more switches, filtering as needed, or select all switches (click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>).
+
+4. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/>.
+
+5. Choose the export file type and click **Export**.
+
+    {{<figure src="/images/netq/export-data-dialog-222.png" width="250">}}
 
 ## Network Snapshot and Compare
 
-Creating and comparing network snapshots can be used at various times; typically when you are upgrading or changing the configuration of your switches in some way. The instructions here describe how to create and compare network snapshots at any time. Refer to {{<link title="Image Installation and Upgrade">}} to see how it is incorporated into that workflow.
+Creating and comparing network snapshots can be used at various times; typically when you are upgrading or changing the configuration of your switches in some way. The instructions here describe how to create and compare network snapshots at any time. Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}} to see how snapshots are automatically created in that workflow.
 
 ### Create a Network Snapshot
 
@@ -198,7 +288,7 @@ To create a snapshot:
 
 3. Enter a name and, optionally, a descriptive note for the snapshot.
 
-    {{<figure src="/images/netq/snapshot-create-snap-modal-ex-230.png" width="500">}}
+    {{<figure src="/images/netq/snapshot-create-snap-modal-ex-230.png" width="450">}}
 
 4. Click **Finish**.
 
@@ -206,9 +296,9 @@ To create a snapshot:
 
     {{<figure src="/images/netq/snapshot-success-231.png" width="200">}}
 
-    {{%notice note%}}
-If you change your mind and do not want to create the snapshot, click **Back** or **Choose Action**. Do not click **Done** until you are ready to close the card. Done saves the snapshot automatically.
-    {{%/notice%}}
+    {{<notice note>}}
+If you change your mind and do not want to create the snapshot, click <strong>Back</strong> or <strong>Choose Action</strong>. Do not click <strong>Done</strong> until you are ready to close the card. Done saves the snapshot automatically.
+    {{</notice>}}
 
 ### Compare Network Snapshots
 

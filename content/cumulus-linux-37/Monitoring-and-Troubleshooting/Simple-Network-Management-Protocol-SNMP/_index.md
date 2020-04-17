@@ -8,7 +8,7 @@ aliases:
  - /pages/viewpage.action?pageId=8362608
 pageID: 8362608
 ---
-Cumulus Linux uses the open source Net-SNMP agent `snmpd`, version 5.7,
+Cumulus Linux uses the open source Net-SNMP agent `snmpd` version 5.8,
 which provides support for most of the common industry-wide MIBs,
 including interface counters and TCP/UDP IP stack data.
 
@@ -22,7 +22,7 @@ the UCD project. After that, `ucd-snmp` was extended by work done at the
 University of Liverpool as well as later in Denmark. In late 2000, the
 project name changed to `net-snmp` and became a fully-fledged
 collaborative open source project. The version used by Cumulus Networks
-is based on the latest `net-snmp` 5.7 branch with added custom MIBs and
+is based on the latest `net-snmp` 5.8 branch with added custom MIBs and
 pass-through and pass-persist scripts ({{<link url="#pass-persist-scripts" text="see below">}}
 for more information on pass persist scripts).
 
@@ -207,52 +207,9 @@ username passwords and has the option of encrypting the packet contents.
 
 {{%notice note%}}
 
-If you intend to run this service within a
-{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
-including the {{<link url="Management-VRF" text="management VRF">}}, follow
-{{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}
-for configuring the service.
-
-{{%/notice%}}
-
-{{%notice info%}}
-
-Cumulus Linux 3.4 and later releases support configuring SNMP with NCLU.
-While NCLU does not provide functionality to configure every single
-`snmpd` feature, it is the recommended method of configuring `snmpd`.
-You are not restricted to using NCLU for configuration and can edit the
-`/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl`
-commands. For Cumulus Linux versions earlier than 3.0, `snmpd` has a
-default configuration that listens to incoming requests on all
-interfaces.
-
-{{%/notice%}}
-
-{{%notice info%}}
-
-Cumulus Linux 3.6 and later releases support configuring VRFs for
-listening-addresses as well as Trap/Inform support. If management VRF is
-enabled on the switch, this places the eth0 interface in the management
-VRF. When configuring the listening-address for snmp-server, you must
-specify an additional parameter to enable listening on the eth0
-interface with the following command:
-
-`cumulus@router1:~$ net add snmp-server listening-address 10.10.10.10
-vrf mgmt`
-
-These additional parameters are described in detail below.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-You must add a default community string for v1 or v2c environments or
-the `snmpd` daemon does not respond to any requests. For security
-reasons, the default configuration configures `snmpd` to listen to SNMP
-requests on the loopback interface so access to the switch is restricted
-to requests originating from the switch itself. The only required
-commands for `snmpd` to function are a `listening-address` and either a
-`username` or a`  readonly-community ` string.
+- Cumulus Networks recommends that you use NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands. SNMP configuration with NCLU is supported in Cumulus Linux 3.4 and later.
+- Cumulus Linux 3.6 and later provides VRF listening-address, as well as Trap/Inform support. When management VRF is enabled, the eth0 interface is placed in the management VRF. When you configure the `listening-address` for `snmp-server`, you must run the `net add snmp-server listening-address <address> vrf mgmt` command to enable listening on the eth0 interface. These additional parameters are described in detail below.
+- You must add a default community string for v1 or v2c environments so that the `snmpd` daemon can respond to requests. For security reasons, the default configuration configures `snmpd` to listen to SNMP requests on the loopback interface so access to the switch is restricted to requests originating from the switch itself. The only required commands for `snmpd` to function are a `listening-address` and either a `username` or a `readonly-community` string.
 
 {{%/notice%}}
 

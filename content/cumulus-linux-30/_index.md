@@ -14,7 +14,8 @@ cascade:
   siteSlug: cumulus-linux-30
   old: true
 ---
-## Welcome to Cumulus Networks</span>
+
+## Welcome to Cumulus Networks
 
 We are transforming networking with Cumulus Linux, the industry's first,
 full-featured Linux operating system for networking hardware. Cumulus
@@ -25,18 +26,12 @@ environment pre-installed with scripting languages, server utilities,
 and monitoring tools. Management tasks are accomplished via SSH using
 standard Linux commands or over a serial console connection.
 
-{{%notice tip%}}
+## What's New in Cumulus Linux 3.0
 
-This user guide covers Cumulus Linux 3.0.0 through 3.0.1.
+For information regarding what's new in this release as well as bug fixes and known issues present in
+this release, refer to the product release notes for versions
+[3.0.0](https://support.cumulusnetworks.com/hc/en-us/articles/217040088-Cumulus-Linux-3-0-0-Release-Notes) and [3.0.1](https://support.cumulusnetworks.com/hc/en-us/articles/222822047-Cumulus-Linux-3-0-1-Release-Notes).
 
-{{%/notice%}}
+## Download the User Guide
 
-  - [Release Notes for Cumulus Linux 3.0.1](https://support.cumulusnetworks.com/hc/en-us/articles/222822047)
-  - [What's New in Cumulus Linux 3.0.1](Whats-New-in-Cumulus-Linux-3.0.1/)
-  - [Quick Start Guide](Quick-Start-Guide/)
-  - [Installation, Upgrading and Package Management](Installation-Upgrading-and-Package-Management/)
-  - [System Management](System-Management/)
-  - [Configuring and Managing Network Interfaces](Configuring-and-Managing-Network-Interfaces/)
-  - [Layer 2 Features](Layer-1-and-Layer-2-Features/)
-  - [Layer 3 Features](Layer-3-Features/)
-  - [Monitoring and Troubleshooting](Monitoring-and-Troubleshooting/)
+You can download a PDF of the user guide for versions {{<exlink url="https://drive.google.com/file/d/1iG3owSMpyY8thUh0tdWTcv3Dm698vHvz/view?usp=sharing" text="3.0.0">}} and {{<exlink url="https://drive.google.com/file/d/1p0E8InifrSc0-cxiUj6Vn4G2rL52xnQ9/view?usp=sharing" text="3.0.1">}}.

@@ -1452,6 +1452,12 @@ cumulus@switch:~$ cl-resource-query  | grep Mcast
   Total Mcast Routes:         450,   0% of maximum value    450
 ```
 
+{{%notice note%}}
+
+You can also run the NCLU command equivalent:`net show system asic | grep Mcast`.
+
+{{%/notice%}}
+
 For Spectrum chipsets, refer to {{<link url="Routing#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
 
 ### Verify MSDP Session State

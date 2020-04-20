@@ -43,9 +43,9 @@ To configure static VXLAN tunnels, do the following on each leaf:
 
 For example, to configure static VXLAN tunnels on the four leafs in the topology shown above:
 
-<details>
+{{< tabs "TabID45 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Run the following commands on **leaf01**:
 
@@ -105,11 +105,9 @@ cumulus@leaf04:~$ net pending
 cumulus@leaf04:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Configure **leaf01** by editing the `/etc/network/interfaces` file as follows:
 
@@ -257,7 +255,9 @@ iface vni-10
     vxlan-remoteip 10.0.0.13
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Verify the Configuration
 

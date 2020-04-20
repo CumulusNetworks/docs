@@ -16,7 +16,7 @@ Cumulus Networks recommends that you deploy, provision, configure, and upgrade s
 
 {{%notice tip%}}
 
-Be sure to read the knowledge base article 
+Be sure to read the knowledge base article
 {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360010451353" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
 {{%/notice%}}
@@ -25,7 +25,7 @@ Understanding the location of configuration data is required for successful upgr
 
 <details>
 
-<summary>Network Configuration Files </summary>
+<summary>Network Configuration Files</summary>
 
 | File Name and Location | Explanation| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | ----------------------------| -------------------- |
@@ -42,7 +42,7 @@ Understanding the location of configuration data is required for successful upgr
 
 <details>
 
-<summary>Additional Commonly Used Files </summary>
+<summary>Additional Commonly Used Files</summary>
 
 | File Name and Location | Explanation| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | --------------------------- | -------------------- |
@@ -218,15 +218,15 @@ To upgrade the switch using package upgrade:
     The default action is to keep your current version.
     *** daemons (Y/I/N/O/D/Z) [default=N] ?
 
-    - To see the differences between the currently installed version and the 
+    - To see the differences between the currently installed version and the
     new version, type `D`- To keep the currently installed version, type `N`.
-    The new package version is installed with the suffix `_.dpkg-dist` 
-    (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and 
-    **before** you reboot, merge your changes with the changes from the newly 
-    installed file.  
-    - To install the new version, type `I`. Your currently installed version is 
-    saved with the suffix `.dpkg-old`.  
-    When the upgrade is complete, you can search for the files with the 
+    The new package version is installed with the suffix `_.dpkg-dist`
+    (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and
+    **before** you reboot, merge your changes with the changes from the newly
+    installed file.
+    - To install the new version, type `I`. Your currently installed version is
+    saved with the suffix `.dpkg-old`.
+    When the upgrade is complete, you can search for the files with the
     `sudo find / -mount -type f -name '*.dpkg-*'` command.
     ```
 
@@ -260,7 +260,7 @@ If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}
 
 {{%notice warning%}}
 
-For networks with MLAG deployments, Cumulus Networks only supports upgrading to Cumulus Linux 4.1 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.1. Version 3.7.10 is available on the 
+For networks with MLAG deployments, Cumulus Networks only supports upgrading to Cumulus Linux 4.1 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.1. Version 3.7.10 is available on the
 {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}} on our website.
 
 {{%/notice%}}

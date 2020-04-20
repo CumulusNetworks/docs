@@ -21,7 +21,7 @@ Bridge members can be individual physical interfaces, bonds, or logical interfac
 
 {{%notice tip%}}
 
-Cumulus Networks recommends using *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. The bridge driver in Cumulus Linux is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, read 
+Cumulus Networks recommends using *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. The bridge driver in Cumulus Linux is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, read
 {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204909397" text="this knowledge base article">}}.
 
 {{%/notice%}}
@@ -48,7 +48,7 @@ The MAC address for a frame is learned when the frame enters the bridge through 
 The following example output shows a MAC address table for the bridge:
 
 ```
-cumulus@switch:~$ net show bridge macs 
+cumulus@switch:~$ net show bridge macs
 VLAN      Master    Interface    MAC                  TunnelDest  State      Flags    LastSeen
 --------  --------  -----------  -----------------  ------------  ---------  -------  -----------------
 untagged  bridge    swp1         44:38:39:00:00:03                                    00:00:15
@@ -65,9 +65,9 @@ The bridge ageing option is in the {{<link url="Network-Command-Line-Utility-NCL
 
 To configure bridge ageing:
 
-<details>
+{{< tabs "TabID67 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Run the `net add bridge bridge ageing` command. The following example commands set MAC address ageing to 600 seconds:
 
@@ -77,16 +77,14 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add `bridge-ageing` to the bridge stanza, then run the `ifreload -a` command. The following example sets MAC address ageing to 600 seconds.
 
 ```
-cumulus@switch:~$ sudo nano /etc/network/interfaces 
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto bridge
 iface bridge
@@ -98,7 +96,9 @@ iface bridge
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Configure an SVI (Switch VLAN Interface)
 
@@ -112,9 +112,9 @@ When you add an interface to a bridge, it ceases to function as a router interfa
 
 To configure the SVI:
 
-<details>
+{{< tabs "TabID114 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Run the `net add bridge` and `net add vlan` commands. The following example commands configure an SVI using swp1 and swp2, and VLAN ID 10.
 
@@ -125,11 +125,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the interfaces and VLAN ID you want to use, then run the `ifreload -a` command. The following configures an SVI using swp1 and swp2, and VLAN ID 10. The `bridge-vlan-aware` parameter associates the SVI with the VLAN-aware bridge.
 
@@ -152,7 +150,9 @@ iface bridge.10
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 When you configure a switch initially, all southbound bridge ports might be down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking, which leaves the SVI in the UP state always, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
@@ -160,7 +160,7 @@ To keep the SVI perpetually UP, create a dummy interface, then make the dummy in
 
 <details>
 
-<summary>Example Configuration </summary>
+<summary>Example Configuration</summary>
 
 Consider the following configuration, without a dummy interface in the bridge:
 
@@ -244,9 +244,9 @@ By default, Cumulus Linux automatically generates IPv6 {{<exlink url="https://en
 
 To disable automatic address generation for a regular IPv6 address on a VLAN:
 
-<details>
+{{< tabs "TabID248 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Run the `net add vlan <vlan> ipv6-addrgen off` command. The following example command disables automatic address generation for a regular IPv6 address on a VLAN 100.
 
@@ -256,11 +256,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add the line `ipv6-addrgen off` to the VLAN stanza, then run the `ifreload -a` command. The following example disables automatic address generation for a regular IPv6 address on VLAN 100.
 
@@ -279,13 +277,15 @@ iface vlan 100
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To re-enable automatic link-local address generation for a VLAN:
 
-<details>
+{{< tabs "TabID287 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Run the `net del vlan <vlan> ipv6-addrgen off` command. The following example command re-enables automatic address generation for a regular IPv6 address on VLAN 100.
 
@@ -295,15 +295,15 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off` from the VLAN stanza, then run the `ifreload -a` command.
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## bridge fdb Command Output
 
@@ -319,7 +319,7 @@ The following example shows the `bridge fdb show` command output:
 
 ```
 cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
-02:02:00:00:00:08 dev vx-1001 vlan 1001 offload master bridge 
+02:02:00:00:00:08 dev vx-1001 vlan 1001 offload master bridge
 02:02:00:00:00:08 dev vx-1001 dst 27.0.0.10 self offload
 ```
 

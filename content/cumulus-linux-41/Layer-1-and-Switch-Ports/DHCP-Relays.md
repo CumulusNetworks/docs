@@ -23,9 +23,9 @@ The `dhcpd` and `dhcrelay` services are disabled by default. After you finish co
 
 To configure IPv4 DHCP relays, run the following commands.
 
-<details>
+{{< tabs "TabID25 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 {{%notice warning%}}
 
@@ -59,11 +59,9 @@ cumulus@switch:~$ sudo systemctl enable dhcrelay.service
 cumulus@switch:~$ sudo systemctl restart dhcrelay.service
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client). In the example below, the DHCP server IP address is 172.16.1.102, VLAN 1 (the SVI is vlan1) and the uplinks are swp51 and swp52. If the client-facing interface is a bridge port, specify the switch virtual interface (SVI) name if using a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}} (for example, bridge.100), or the bridge name if using traditional bridging (for example, br100).
 
@@ -74,14 +72,16 @@ cumulus@switch:~$ sudo systemctl restart dhcrelay.service
    OPTIONS=""
    ```
 
-2. Enable then restart the `dhcrelay` service so that the configuration persists between reboots:  
+2. Enable then restart the `dhcrelay` service so that the configuration persists between reboots:
 
    ```
    cumulus@switch:~$ sudo systemctl enable dhcrelay.service
    cumulus@switch:~$ sudo systemctl restart dhcrelay.service
    ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To see the DHCP relay status, use the `systemctl status dhcrelay.service` command:
 
@@ -126,7 +126,7 @@ NCLU commands are not currently available for this feature. Use the following Li
    cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
    ...
    # Additional options that are passed to the DHCP relay daemon?
-   OPTIONS="-a --use-pif-circuit-id" 
+   OPTIONS="-a --use-pif-circuit-id"
    ```
 
 - To customize the Remote ID sub-option, edit the the `/etc/default/isc-dhcp-relay` file and add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters that is used for the Remote ID. For example:
@@ -164,9 +164,9 @@ The following illustration demonstrates how you can control the giaddr with RFC 
 
 To enable RFC 3527 support and control the giaddr, run the following commands.
 
-<details>
+{{< tabs "TabID166 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 1. Run the `net add dhcp relay giaddr-interface` command with the interface/IP address you want to use. The  following example uses the first IP address on the loopback interface as the giaddr:
 
@@ -232,11 +232,9 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
    cumulus@switch:~$ sudo systemctl restart dhcrelay.service
    ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file and provide the `-U` option with the interface or IP address you want to use as the giaddr. The following example uses the first IP address on the loopback interface as the giaddr:
 
@@ -286,7 +284,9 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
    cumulus@switch:~$ sudo systemctl restart dhcrelay.service
    ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
 
@@ -300,9 +300,9 @@ This option impacts all relayed IPv4 packets globally.
 
 To use the gateway IP address as the source IP address:
 
-<details>
+{{< tabs "TabID302 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Run these commands:
 
@@ -312,11 +312,9 @@ cumulus@leaf:~$ net pending
 cumulus@leaf:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file to add `--giaddr-src` to the `OPTIONS` line. An example is shown below.
 
@@ -327,13 +325,15 @@ cumulus@leaf:~$ net commit
    OPTIONS="--giaddr-src"
    ```
 
-2. Restart the `dhcrelay` service to apply the configuration change :  
+2. Restart the `dhcrelay` service to apply the configuration change :
 
    ```
    cumulus@switch:~$ sudo systemctl restart dhcrelay.service
    ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Configure IPv6 DHCP Relays
 
@@ -346,7 +346,7 @@ NCLU commands are not currently available to configure IPv6 relays.
 1. Edit the `/etc/default/isc-dhcp-relay6` file to add the upstream and downstream interfaces. In the example below, the SVI is vlan1, and the interfaces are swp51 and swp52.
 
    ```
-   cumulus@switch:$ sudo nano /etc/default/isc-dhcp-relay6 
+   cumulus@switch:$ sudo nano /etc/default/isc-dhcp-relay6
    SERVERS=" -u 2001:db8:100::2%swp51 -u 2001:db8:100::2%swp52"
    INTF_CMD="-l vlan1"
    ```

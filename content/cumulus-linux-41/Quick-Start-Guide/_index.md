@@ -84,9 +84,9 @@ Typically, switches ship from the manufacturer with a mating DB9 serial cable. S
 
 Switches supported in Cumulus Linux always contain at least one dedicated Ethernet management port, which is named eth0. This interface is geared specifically for out-of-band management use. The management interface uses DHCPv4 for addressing by default. You can set a static IP address with the Network Command Line Utility (NCLU) or by editing the `{{<exlink url="http://manpages.debian.net/man/5/interfaces" text="/etc/network/interfaces">}}` file (Linux).
 
-<details>
+{{< tabs "TabID86 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Set the static IP address with the `interface address` and `interface gateway` NCLU commands:
 
@@ -97,11 +97,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Set a static IP address by editing the `/etc/network/interfaces` file:
 
@@ -114,7 +112,9 @@ iface eth0
     gateway 192.0.2.1
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Configure the Hostname and Timezone
 
@@ -129,9 +129,9 @@ Configure the hostname and timezone for your switch. The hostname identifies the
 
 To change the hostname:
 
-<details>
+{{< tabs "TabID131 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Run the `net add hostname` command, which modifies both the `/etc/hostname` and `/etc/hosts` files with the desired hostname.
 
@@ -141,8 +141,6 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
-
 {{%notice note%}}
 
 - The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
@@ -150,9 +148,9 @@ cumulus@switch:~$ net commit
 
 {{%/notice%}}
 
-<details>
+{{< /tab >}}
 
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 1. Modify the `/etc/hostname` file with the desired hostname:
 
@@ -166,7 +164,9 @@ cumulus@switch:~$ net commit
     cumulus@switch:~$ sudo nano /etc/hosts
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The default timezone on the switch is (Coordinated Universal Time) UTC. Change the timezone on your switch to be the timezone for your location.
 
@@ -229,7 +229,7 @@ There are three ways to install the license onto the switch:
 
 Check that your license is installed with the `cl-license` command.
 
-    cumulus@switch:~$ cl-license 
+    cumulus@switch:~$ cl-license
     user@example.com|$ampleL1cen$et3xt
 
 {{%notice note%}}
@@ -254,9 +254,9 @@ By default, all data plane ports (every Ethernet port except the management inte
 
 To test cable connectivity:
 
-<details>
+{{< tabs "TabID260 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 To administratively enable a port:
 
@@ -322,11 +322,9 @@ UP     vrf1           N/A  65536  NotConfigured
 UP     vxlan4001      N/A  1500   Access/L2                              Master: bridge(UP)
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 To enable a port, run the `ip link set <interface> up` command. For example:
 
@@ -353,7 +351,9 @@ swp1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast state DOWN m
 swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT qlen 500
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Configure Switch Ports
 
@@ -361,9 +361,9 @@ swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode 
 
 Cumulus Linux does not put all ports into a bridge by default. To create a bridge and configure one or more front panel ports as members of the bridge, use the following examples as a guide.
 
-<details>
+{{< tabs "TabID367 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 In the following configuration example, the front panel port swp1 is placed into a bridge called *bridge*.
 
@@ -381,11 +381,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 In the following configuration example, the front panel port swp1 is placed into a bridge called br0:
 
@@ -417,7 +415,9 @@ cumulus@switch:~$ sudo ifquery -a
 cumulus@switch:~$ sudo ifup -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To view the changes in the kernel, use the `brctl` command:
 
@@ -431,9 +431,9 @@ br0             8000.089e01cedcc2       yes              swp1
 
 You can also configure a front panel port or bridge interface as a layer 3 port.
 
-<details>
+{{< tabs "TabID437 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 In the following configuration example, the front panel port swp1 is configured as a layer 3 access port:
 
@@ -452,11 +452,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 In the following configuration example, the front panel port swp1 is configured as a layer 3 access port:
 
@@ -487,7 +485,9 @@ cumulus@switch:~$ sudo ifquery -a
 cumulus@switch:~$ sudo ifup -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To view the changes in the kernel, use the `ip addr show` command:
 
@@ -497,9 +497,9 @@ cumulus@switch:~$ ip addr show
 4. swp1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bridge state UP group default qlen 1000
         link/ether 44:38:39:00:6e:fe brd ff:ff:ff:ff:ff:ff
 ...
-14: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+14: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
     link/ether 44:38:39:00:00:04 brd ff:ff:ff:ff:ff:ff
-    inet6 fe80::4638:39ff:fe00:4/64 scope link 
+    inet6 fe80::4638:39ff:fe00:4/64 scope link
         valid_lft forever preferred_lft forever
 ...
 ```
@@ -516,9 +516,9 @@ The loopback interface *lo* must always be specified in the `/etc/network/interf
 
 To see the status of the loopback interface (lo):
 
-<details>
+{{< tabs "TabID522 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Use the `net show interface lo` command.
 
@@ -547,11 +547,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Use the `ip addr show lo` command.
 
@@ -580,7 +578,9 @@ If an IP address is configured without a mask (as shown above), the IP address b
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Multiple Loopbacks
 

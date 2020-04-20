@@ -634,7 +634,7 @@ To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 pe
 
 {{< tabs "18 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp neighbor 2001:1:1::3 capability extended-nexthop 

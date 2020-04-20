@@ -209,7 +209,7 @@ A count of the switches NetQ was able to discover and the Cumulus Linux versions
 
 To view the list of switches, click **Manage** on the Switches card.
 
-<!-- Insert image here -->
+{{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
 
 Review the list, filtering as needed to determine in the switches you want to upgrade are included. If they are not listed, verify the switches have NetQ 2.4 or later Agents on them.
 
@@ -278,7 +278,7 @@ Creating and comparing network snapshots can be used at various times; typically
 
 ### Create a Network Snapshot
 
-It is simple to capture the state of your network using the snapshot feature.
+It is simple to capture the state of your network currently or for a time in the past using the snapshot feature.
 
 To create a snapshot:
 
@@ -286,18 +286,22 @@ To create a snapshot:
 
 2. Click **Create Snapshot**.
 
-3. Enter a name and, optionally, a descriptive note for the snapshot.
+3. Enter a name for the snapshot.
 
-    {{<figure src="/images/netq/snapshot-create-snap-modal-ex-230.png" width="450">}}
+    {{<figure src="/images/netq/snapshot-create-snap-modal-ex-300.png" width="450">}}
 
-4. Click **Finish**.
+4. Accept the time provided or enter a previous date and time.
+
+5. Optionally, add a descriptive note for the snapshot.
+
+6. Click **Finish**.
 
     A medium Snapshot card appears on your desktop. Spinning arrows are visible while it works. When it finishes you can see the number of items that have been captured, and if any failed. This example shows a successful result.
 
-    {{<figure src="/images/netq/snapshot-success-231.png" width="200">}}
+    {{<figure src="/images/netq/snapshot-success-300.png" width="200">}}
 
     {{<notice note>}}
-If you change your mind and do not want to create the snapshot, click <strong>Back</strong> or <strong>Choose Action</strong>. Do not click <strong>Done</strong> until you are ready to close the card. Done saves the snapshot automatically.
+If you have already created other snapshots, <strong>Compare</strong> is active. Otherwise it is inactive (grayed-out).
     {{</notice>}}
 
 ### Compare Network Snapshots
@@ -312,43 +316,48 @@ To compare network snapshots:
 
 3. Create a second snapshot.
 
-4. Compare the results of the two snapshots:
+4. Compare the results of the two snapshots. Depending on what, if any, cards are open on your workbench:
 
     - If you have the two desired snapshot cards open:
-        - Simply put them next to each other to view an overview.
+        - Simply put them next to each other to view a high-level comparison.
         - Scroll down to see all of the items.
+        - To view a more detailed comparison, click **Compare** on one of the cards. Select the other snapshot from the list.
 
-        {{<figure src="/images/netq/snapshot-compare-snap-results-231.png" width="425">}}
+        {{<figure src="/images/netq/snapshot-compare-snap-results-300.png" width="425">}}
 
     - If you have only one of the cards open:
         - Click **Compare** on the open card.
-        - Select the snapshot to compare with. Note that only snapshots taken before this snapshot appear in the selection list.
+        - Select the other snapshot to compare.
 
-        {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-231.png" width="250">}}
+        {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-300.png" width="250">}}
 
-    - If you have closed one or both of the cards (you may have created them some time before):
+    - If no snapshot cards are open (you may have created them some time before):
         - Click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}}.
         - Click **Compare Snapshots**.
         - Click on the two snapshots you want to compare.
         - Click **Finish**. Note that two snapshots must be selected before **Finish** is active.
 
-        {{<figure src="/images/netq/snapshot-compare-selection-modal-231.png" width="500">}}
+        {{<figure src="/images/netq/snapshot-compare-selection-modal-300.png" width="500">}}
 
     In the latter two cases, the large Snapshot card opens. The only difference is in the card title. If you opened the comparison card from a snapshot on your workbench, the title includes the name of that card. If you open the comparison card through the Snapshot menu, the title is generic, indicating a comparison only. Functionally, you have reached the same point.
 
     {{<figure src="/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
 
-    {{<figure src="/images/netq/snapshot-large-compare-from-modal-240.png" width="500">}}
+    {{<figure src="/images/netq/snapshot-large-compare-from-modal-300.png" width="500">}}
+
+    Scroll down to view all element comparisons.
 
 #### Interpreting the Comparison Data
 
 For each network element that is compared, count values and changes are shown:
 
-{{<figure src="/images/netq/snapshot-large-compare-data-interpretation-240.png" width="300">}}
+{{<figure src="/images/netq/snapshot-large-compare-data-interpretation-300.png" width="300">}}
 
 For example, if the snapshot taken first had a total count of 110 interfaces, changes were made that added 40 interfaces and removed 32 interfaces before the second snapshot was taken, the second snapshot total count of interfaces would be eight more than in the first snapshot, or 118.
 
-From this card, you can also change which snapshots to compare. Select an alternate snapshot from one of the two snapshot dropdowns and then click **Compare**.
+{{<notice tip>}}
+From this card, you can also change which snapshots to compare. Select an alternate snapshot from one of the two snapshot dropdowns and then click <strong>Compare</strong>.
+{{</notice>}}
 
 ##### View Change Details
 
@@ -356,10 +365,13 @@ You can view additional details about the changes that have occurred between the
 
 From this card you can:
 
-- see each of the elements that was added and removed, and various information about each
-- export the results per element
+- View changes for each of the elements that had added and/or removed items, and various information about each; only elements with changes are presented
+- Filter the added and removed items by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}}
+- Export all differences in JSON file format by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}}
 
-{{<figure src="/images/netq/snapshot-fullscr-change-details-230.png" width="700">}}
+{{<figure src="/images/netq/snapshot-fullscr-change-details-300.png" width="700">}}
+
+The following table describes the information provided for each element type when changes are present:
 
 | Element | Data Descriptions |
 | ------- | ----------------- |
@@ -377,7 +389,7 @@ From this card you can:
 | Sensors | <ul><li><strong>Hostname</strong>: Name of the host where sensor resides</li><li><strong>Kind</strong>: Power supply unit, fan, or temperature</li><li><strong>Name</strong>: Name of the sensor that was removed or added</li></ul> |
 | Services | <ul><li><strong>Hostname</strong>: Name of the host where service is running</li><li><strong>Name</strong>: Name of the service that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface associated with service</li></ul> |
 
-## Manage Network Snapshots
+### Manage Network Snapshots
 
 You can create as many snapshots as you like and view them at any time. When a snapshot becomes old and no longer useful, you can remove it.
 
@@ -406,3 +418,75 @@ To remove an existing snapshot:
     Click **Back** or **Choose Action** to cancel the deletion of your selected snapshot(s).
 
 ## Image Installation and Upgrade
+
+The workflow for installation and upgrade using LCM to select switches, choose options, run pre-checks, view job preview, begin job, monitor job, review snapshot comparison and analyze as needed.
+
+{{<figure src="/images/netq/lcm-upgrade-workflow-300.png" width="700">}}
+
+### Prepare
+
+In preparation for switch installation or upgrade, first perform the following steps:
+
+- Upload the required images. Refer to {{<link title="#Image Management" text="Image Management">}}.
+- Configure switch access credentials. Refer to {{<link title="#Credential Management" text="Credential Management">}}.
+- Verify the switches you want to manage are running NetQ Agent 2.4 or later. Refer to {{<link title="#Switch Management" text="Switch Management">}}.
+- Assign each switch a role (optional, but recommended). Refer to {{<link title="#Role Management" text="Role Management">}}.
+
+Your LCM dashboard should look similar to this after you have completed these steps:
+
+{{<figure src="/images/netq/lcm-post-upgrade-prep-300.png" width="700">}}
+
+### Perform Install or Upgrade
+
+To upgrade switches:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**.
+
+2. Click **Manage** on the Switches card.
+
+    {{<figure src="/images/netq/lcm-upgrade-switch-manage-button-300.png" width="700">}}
+
+3. Select the switches you want to upgrade. If needed, use the filter to the list and find these switches.
+
+    {{<figure src="/images/netq/lcm-switch-mgmt-list-switches-selected-300.png" width="700">}}
+
+4. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" height="18" width="18">}}.
+
+    From this point on, the software walks you through the upgrade process, beginning with a review of the switches that you selected for upgrade.
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-tab-300.png" width="500">}}
+
+5. Give the upgrade job a name. This is required.
+
+    {{<notice tip>}}
+    For best presentation, Cumulus Networks recommends keeping the name to a maximum of 20 characters when possible. The name can contain spaces and special characters.
+    {{</notice>}}
+
+6. Verify that the switches you selected are included, and that they have the correct IP address and roles assigned.
+
+    - If you accidentally included a switch that you do NOT want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} to remove it from the upgrade job.
+    - If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} to select a role for that switch, then click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18">}}. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} to discard a role change.
+    
+7. When you are satisfied that the list of switches is accurate for the job, click **Next**.
+
+8. Verify that you want to use the default Cumulus Linux version for this upgrade job. If not, click **Custom** and select an alternate image from the list.
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-describe-tab-300.png" width="500">}}
+
+9. Verify that the switch access authentication method is accurate.  
+
+    *Using global access credentials* indicates you have chosen either basic authentication with a username and password or SSH key-based authentication for all of your switches.
+
+10. Click **Next**.
+
+11. Verify the upgrade job options.
+
+    By default, NetQ takes a network snapshot before the upgrade and then one after the upgrade is complete. It also performs a roll back to the original Cumulus Linux version is the upgrade fails.
+
+    While highly recommended, if you do NOT want the upgrade to perform either of these options, click **No** next to that option.
+
+12. Click **Next**.
+
+13. 
+
+### Analyze Results

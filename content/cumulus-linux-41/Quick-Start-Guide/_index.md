@@ -141,13 +141,6 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-{{%notice note%}}
-
-- The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
-- When you use the NCLU command to set the hostname, DHCP **does not** override the hostname when you reboot the switch. However, if you disable the hostname setting with NCLU, DHCP **does** override the hostname the next time you reboot the switch.
-
-{{%/notice%}}
-
 {{< /tab >}}
 
 {{< tab "Linux Commands ">}}
@@ -167,6 +160,13 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 
 {{< /tabs >}}
+
+{{%notice note%}}
+
+- The command prompt in the terminal does not reflect the new hostname until you either log out of the switch or start a new shell.
+- When you use the NCLU command to set the hostname, DHCP **does not** override the hostname when you reboot the switch. However, if you disable the hostname setting with NCLU, DHCP **does** override the hostname the next time you reboot the switch.
+
+{{%/notice%}}
 
 The default timezone on the switch is (Coordinated Universal Time) UTC. Change the timezone on your switch to be the timezone for your location.
 

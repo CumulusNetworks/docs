@@ -8,14 +8,13 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-
-
 <a href="/cumulus-linux-40/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 4.0 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-linux-40/rn.xls">Download all 4.0 release notes as .xls</a>
 ## 4.0.0 Release Notes
 ### Open issues in 4.0.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-29367"></a> [CM-29367](#CM-29367) <a name="CM-29367"></a> | On switches with the Trident3 ASIC, PFC is not working as expected. If you set the PFC for only one CoS,  pause frames are sent for all CoS traffic. | 3.7.11-3.7.12, 4.0.0-4.1.1 | |
 | <a name="CM-29259"></a> [CM-29259](#CM-29259) <a name="CM-29259"></a> | You might see the following `gport` error messages in `switchd.log`:<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent"><pre class="code-java"><br />2020-04-10T19:50:01.011224+09:00 E1PDX0V1ELF0001 6 switchd&#91;925&#93;: hal_bcm_mdb.c:530 gport 0x800007a find failed<br />2020-04-10T19:50:01.011631+09:00 E1PDX0V1ELF0001 6 switchd&#91;925&#93;: hal_bcm_mdb.c:530 gport 0x8000009 find failed<br /></pre><br />These messages are harmless and can be ignored. | 3.7.12, 4.0.0-4.1.1 | |
 | <a name="CM-29178"></a> [CM-29178](#CM-29178) <a name="CM-29178"></a> | On Mellanox switches, the thermal monitoring script starts in suspended mode and, as a result, the fans run at sixty percent. You also see the following log message:<br /><pre>hw-management.sh&#91;847&#93;: Thermal algorithm is manually suspend.<br /></pre><br />To work around this issue, run the following command to enable thermal monitoring:<br /><pre>cumulus&#64;switch:~$ sudo echo 0 > /var/run/hw-management/config/suspend<br /></pre><br /> | 4.0.0-4.1.1 | |
 | <a name="CM-29151"></a> [CM-29151](#CM-29151) <a name="CM-29151"></a> | The following security vulnerability in the gnutls28 / libgnutls* packages has been announced for Cumulus Linux 4.x (Cumulus Linux 3.x is not vulnerable):<br/>CVE-2020-15501: GnuTLS 3.6.x before 3.6.13 uses incorrect cryptography for DTLS. The earliest affected version is 3.6.3 (2018-07-16) because of an error in a 2017-10-06 commit. The DTLS client always uses 32 '\0' bytes instead of a random value, and thus contributes no randomness to a DTLS negotiation. This breaks the security guarantees of the DTLS protocol.<br/>Vulnerable: <= 3.6.7-4+deb10u2<br/>Not vulnerable: 3.6.7-4+deb10u3 | 4.0.0-4.1.0 | 4.1.1|

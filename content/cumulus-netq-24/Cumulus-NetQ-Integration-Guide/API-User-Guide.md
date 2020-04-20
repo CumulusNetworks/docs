@@ -273,7 +273,7 @@ node.
 
 Make your request to the *interfaces* endpoint to view the status of all
 interfaces. By specifying the *eq-timestamp* option and entering a date
-and time in epoch format, you indicate the data for that time (versus in
+and time in epoch format, you indicate the date for that time (versus in
 the last hour by default), as follows:
 
     curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/interface?eq_timestamp=<time_stamp_in_unix-format>" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool

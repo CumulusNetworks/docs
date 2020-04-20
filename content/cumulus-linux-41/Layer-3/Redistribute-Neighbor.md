@@ -66,9 +66,9 @@ The following example configuration is based on the {{<exlink url="https://githu
 
 The following steps demonstrate how to configure leaf01, but you can follow the same steps on any of the leafs.
 
-<details>
+{{< tabs "TabID68 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 1. Configure the host facing ports using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
 
@@ -123,11 +123,9 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
     cumulus@leaf01:~$ net commit
     ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtsh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 1. Edit the `/etc/network/interfaces` file to configure the host facing ports, using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
 
@@ -181,7 +179,7 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
         leaf01(config)# ip protocol table route-map REDIST_NEIGHBOR
         ```
 
-    4. Redistribute the imported *table* routes in into the appropriate routing protocol.  
+    4. Redistribute the imported *table* routes in into the appropriate routing protocol.
 
         **BGP:**
 
@@ -209,7 +207,9 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
         cumulus@leaf01:~$
         ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. The following example uses OSPF as the routing protocol:
 
@@ -259,7 +259,7 @@ Configure the loopback and physical interfaces. Referring back to the topology d
 
     <details>
 
-    <summary>Click to expand </summary>
+    <summary>Click to expand</summary>
 
     ```
     # The loopback network interface
@@ -323,7 +323,7 @@ Freshly provisioned hosts that have never sent traffic may not ARP for their def
 Run the `systemctl status rdnbrd.service` command:
 
 ```
-cumulus@leaf01:~$ systemctl status rdnbrd.service 
+cumulus@leaf01:~$ systemctl status rdnbrd.service
 * rdnbrd.service - Cumulus Linux Redistribute Neighbor Service
  Loaded: loaded (/lib/systemd/system/rdnbrd.service; enabled)
  Active: active (running) since Wed 2016-05-04 18:29:03 UTC; 1h 13min ago
@@ -337,7 +337,7 @@ cumulus@leaf01:~$ systemctl status rdnbrd.service
 Edit the `/etc/rdnbrd.conf` file, then run `systemctl restart rdnbrd.service`:
 
 ```
-cumulus@leaf01:~$ sudo nano /etc/rdnbrd.conf 
+cumulus@leaf01:~$ sudo nano /etc/rdnbrd.conf
 # syslog logging level CRITICAL, ERROR, WARNING, INFO, or DEBUG
 loglevel = INFO
 

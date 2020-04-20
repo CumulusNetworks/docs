@@ -15,9 +15,9 @@ Static routes are added to the {{<exlink url="https://frrouting.org" text="FRRou
 
 To add static routes:
 
-<details>
+{{< tabs "TabID17 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add routing route 203.0.113.0/24 198.51.100.2
@@ -25,11 +25,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -42,7 +40,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -56,9 +56,9 @@ ip route 203.0.113.0/24 198.51.100.2
 
 To delete a static route:
 
-<details>
+{{< tabs "TabID58 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net del routing route 203.0.113.0/24 198.51.100.2
@@ -66,11 +66,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -83,12 +81,14 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To view static routes, run the NCLU `net show route static` command or the vtysh `show ip route` command. For example:
 
 ```
-cumulus@switch:~$ net show route static 
+cumulus@switch:~$ net show route static
 RIB entry for static
 ====================
 Codes: K - kernel route, C - connected, S - static, R - RIP,
@@ -101,9 +101,9 @@ Codes: K - kernel route, C - connected, S - static, R - RIP,
 
 To add a static multicast route (mroute):
 
-<details>
+{{< tabs "TabID103 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add routing mroute 230.0.0.0/24
@@ -111,11 +111,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -128,7 +126,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -142,9 +142,9 @@ ip mroute 230.0.0.0/24
 
 To delete an mroute:
 
-<details>
+{{< tabs "TabID144 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net del routing mroute 230.0.0.0/24
@@ -152,11 +152,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -169,7 +167,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To view mroutes, run the following command from the `vtysh` shell:
 
@@ -185,9 +185,9 @@ Routing entry for 230.0.0.0/24 using Multicast RIB
 
 You can also create a static route by adding the route to a switch port configuration. For example:
 
-<details>
+{{< tabs "TabID187 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface swp3 ip address 198.51.100.1/24
@@ -196,11 +196,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -215,7 +213,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/network/interfaces` file. For example:
 
@@ -265,19 +265,17 @@ default via 10.0.1.2 dev eth0
 
 To apply a {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route map">}} to filter route updates from Zebra into the Linux kernel:
 
-<details>
+{{< tabs "TabID267 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add routing protocol static route-map myroutemap
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -290,7 +288,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -308,9 +308,9 @@ Cumulus Networks recommends that on each switch, you create a *gateway* or *defa
 
 In the following example, you create a default route in the routing table 0.0.0.0/0, which indicates any IP address can be sent to the gateway, which is another switch with the IP address 10.1.0.1.
 
-<details>
+{{< tabs "TabID310 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add routing route 0.0.0.0/0 10.1.0.1
@@ -318,11 +318,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -335,7 +333,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 

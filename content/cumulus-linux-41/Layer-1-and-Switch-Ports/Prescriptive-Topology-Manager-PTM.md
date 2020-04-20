@@ -194,8 +194,8 @@ When you specify `match_hostname=fqdn`, `ptmd` will match the entire FQDN, (*cum
 
 ```
 graph G {
-          "cumulus-1":"swp44" -- "cumulus-2.domain.com":"swp20" [LLDP="match_hostname=fqdn"] 
-          "cumulus-1":"swp46" -- "cumulus-3":"swp22" [LLDP="match_type=portdescr"] 
+          "cumulus-1":"swp44" -- "cumulus-2.domain.com":"swp20" [LLDP="match_hostname=fqdn"]
+          "cumulus-1":"swp46" -- "cumulus-3":"swp22" [LLDP="match_type=portdescr"]
 }
 ```
 
@@ -227,14 +227,14 @@ switch(config)# ptm-enable
 switch(config)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 To disable the checks, delete the `ptm-enable` parameter from the interface:
 
-<details>
+{{< tabs "TabID234 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net del interface swp51 ptm-enable
@@ -242,11 +242,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>FRR Commands </summary>
+{{< tab "FRR Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -259,13 +257,15 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 If you need to re-enable PTM for that interface:
 
-<details>
+{{< tabs "TabID265 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface swp51 ptm-enable
@@ -273,11 +273,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>FRR Commands </summary>
+{{< tab "FRR Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -291,13 +289,15 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`:
 
-<details>
+{{< tabs "TabID297 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net show interface swp1
@@ -307,16 +307,14 @@ Interface swp1 is up, line protocol is up
   Link downs:     0    last: (never)
   PTM status: disabled
   vrf: Default-IP-Routing-Table
-  index 3 metric 0 mtu 1550 
+  index 3 metric 0 mtu 1550
   flags: <UP,BROADCAST,RUNNING,MULTICAST>
   HWaddr: c4:54:44:bd:01:41
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>FRR Commands </summary>
+{{< tab "FRR Commands ">}}
 
 ```
 switch# show interface swp1
@@ -325,13 +323,15 @@ Interface swp1 is up, line protocol is up
   Link downs:     0    last: (never)
   PTM status: disabled
   vrf: Default-IP-Routing-Table
-  index 3 metric 0 mtu 1550 
+  index 3 metric 0 mtu 1550
   flags: <UP,BROADCAST,RUNNING,MULTICAST>
   HWaddr: c4:54:44:bd:01:41
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## ptmd Service Commands
 
@@ -377,7 +377,7 @@ The examples below contain the following keywords in the output of the `cbl stat
 
 For basic output, use `ptmctl` without any options:
 
-``` 
+```
 cumulus@switch:~$ sudo ptmctl
 
 -------------------------------------------------------------
@@ -386,7 +386,7 @@ port  cbl     BFD     BFD                  BFD    BFD
 -------------------------------------------------------------
 swp1  pass    pass    11.0.0.2             N/A    singlehop
 swp2  pass    N/A     N/A                  N/A    N/A
-swp3  pass    N/A     N/A                  N/A    N/A  
+swp3  pass    N/A     N/A                  N/A    N/A
 ```
 
 For more detailed output, use the `-d` option:
@@ -396,7 +396,7 @@ cumulus@switch:~$ sudo ptmctl -d
 
 --------------------------------------------------------------------------------------
 port  cbl    exp     act      sysname  portID  portDescr  match  last    BFD   BFD
-      status nbr     nbr                                  on     upd     Type  state  
+      status nbr     nbr                                  on     upd     Type  state
 --------------------------------------------------------------------------------------
 swp45 pass   h1:swp1 h1:swp1  h1       swp1    swp1       IfName 5m: 5s  N/A   N/A
 swp46 fail   h2:swp1 h2:swp1  h2       swp1    swp1       IfName 5m: 5s  N/A   N/A
@@ -412,14 +412,14 @@ N/A   N/A       N/A       N/A         N/A         N/A              N/A          
 
 To return information on active BFD sessions `ptmd` is tracking, use the `-b` option:
 
-``` 
+```
 cumulus@switch:~$ sudo ptmctl -b
 
 ----------------------------------------------------------
 port  peer        state  local         type       diag
 
 ----------------------------------------------------------
-swp1  11.0.0.2    Up     N/A           singlehop  N/A  
+swp1  11.0.0.2    Up     N/A           singlehop  N/A
 N/A   12.12.12.1  Up     12.12.12.4    multihop   N/A
 ```
 
@@ -433,16 +433,16 @@ port  sysname  portID  port   match  last
                        descr  on     upd
 ---------------------------------------------
 swp45 h1       swp1    swp1   IfName 5m:59s
-swp46 h2       swp1    swp1   IfName 5m:59s 
+swp46 h2       swp1    swp1   IfName 5m:59s
 ```
 
 To return detailed information on active BFD sessions `ptmd` is tracking, use the `-b` and `-d` option (results are for an IPv6-connected peer):
 
-``` 
+```
 cumulus@switch:~$ sudo ptmctl -b -d
 
 ----------------------------------------------------------------------------------------
-port  peer                 state  local  type       diag  det   tx_timeout  rx_timeout  
+port  peer                 state  local  type       diag  det   tx_timeout  rx_timeout
                                                           mult
 ----------------------------------------------------------------------------------------
 swp1  fe80::202:ff:fe00:1  Up     N/A    singlehop  N/A   3     300         900
@@ -486,7 +486,7 @@ cumulus@switch:~$ sudo ptmctl
 cmd         error
 -------------------------------------------------------------------------
 get-status  Topology file error [/etc/ptm.d/topology.dot]
-            [cannot open file (errno 2)] - please check /var/log/ptmd.log 
+            [cannot open file (errno 2)] - please check /var/log/ptmd.log
             for more info
 ```
 

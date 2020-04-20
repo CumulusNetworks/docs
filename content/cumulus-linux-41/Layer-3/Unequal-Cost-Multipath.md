@@ -59,9 +59,9 @@ Cumulus Linux accepts the bandwidth extended community by default. No additional
 
 The following command examples show how you can set the BGP link bandwidth extended community against **all** prefixes.
 
-<details>
+{{< tabs "TabID61 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 set extcommunity bandwidth num-multipaths
@@ -70,11 +70,9 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands</summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -91,7 +89,9 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -109,9 +109,9 @@ route-map ucmp-route-map permit 10
 
 The following command examples show how you can set the BGP link bandwidth extended community for anycast servers in the 192.168/16 IP address range.
 
-<details>
+{{< tabs "TabID111 ">}}
 
-<summary>NCLU Commands</summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@leaf01:~$ net add routing prefix-list ipv4 anycast-ip permit 192.168.0.0/16 le 32
@@ -122,11 +122,9 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands</summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -144,7 +142,9 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -164,9 +164,9 @@ route-map ucmp-route-map permit 10
 
 For EVPN configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
 
-<details>
+{{< tabs "TabID166 ">}}
 
-<summary>NCLU Commands</summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@leaf01:~$ net add routing route-map ucmp-route-map permit 10 set extcommunity bandwidth num-multipaths
@@ -175,11 +175,9 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands</summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -195,7 +193,9 @@ leaf01# exit
 cumulus@leaf01:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -233,9 +233,9 @@ Either run the NCLU `net add bestpath bandwidth ignore|skip-missing|default-weig
 
 The following commands set link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
 
-<details>
+{{< tabs "TabID235 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp bestpath bandwidth skip-missing
@@ -243,11 +243,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands</summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -260,7 +258,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -293,9 +293,9 @@ You cannot disable just the BGP link bandwidth extended community from being adv
 
 To disable all BGP extended communities on a peer or peer group (per address family), either run the NCLU `net del bgp neighbor <neighbor> send-community extended` command or the vtysh `no neighbor <neighbor> send-community extended` command:
 
-<details>
+{{< tabs "TabID295 ">}}
 
-<summary>NCLU Commands</summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net del bgp neighbor 10.10.0.2 send-community extended
@@ -303,11 +303,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands</summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -320,7 +318,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Show Commands
 
@@ -339,7 +339,7 @@ Paths: (2 available, best #2, table default)
     (fe80::202:ff:fe00:1b) (used)
       Origin IGP, metric 0, valid, external, multipath, bestpath-from-AS 65002
       Extended Community: LB:65002:131072000 (1000.000 Mbps)
-      Last update: Thu Feb 20 18:34:16 2020  
+      Last update: Thu Feb 20 18:34:16 2020
 
   65001
     fe80::202:ff:fe00:15 from l1(swp1) (110.0.0.1)

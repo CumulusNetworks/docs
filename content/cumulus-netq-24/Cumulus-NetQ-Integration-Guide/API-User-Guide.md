@@ -119,7 +119,7 @@ responses, refer to {{<link title="#View the API">}}.
 Make your request to the *bgp* endpoint to obtain status information
 from all nodes running the BGP service, as follows:
 
-    curl --insecure -X GET "<https://<netq.domain>:32708/netq/telemetry/v1/object/bgp " -H "Content-Type: application/json " -H "Authorization: <auth-token> " | python -m json.tool
+    curl --insecure -X GET "<https://<netq.domain>:32708/netq/telemetry/v1/object/bgp" -H "Content-Type: application/json " -H "Authorization: <auth-token> " | python -m json.tool
      
     [
       {
@@ -276,7 +276,7 @@ interfaces. By specifying the *eq-timestamp* option and entering a date
 and time in epoch format, you indicate the data for that time (versus in
 the last hour by default), as follows:
 
-    curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/interface?eq_timestamp=1556046250" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
+    curl -X GET "https://<netq.domain>:32708/netq/telemetry/v1/object/interface?eq_timestamp=<time_stamp_in_unix-format>" -H "Content-Type: application/json" -H "Authorization: <auth-token>" | python -m json.tool
      
     [
       {

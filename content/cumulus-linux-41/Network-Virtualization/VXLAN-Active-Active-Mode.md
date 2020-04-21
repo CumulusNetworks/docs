@@ -73,9 +73,9 @@ With MLAG peering, both switches use an anycast IP address for VXLAN encapsulati
 
 {{< img src = "/images/cumulus-linux/vxlan-active-active-excerpt.png" >}}
 
-<details>
+{{< tabs "TabID291 ">}}
 
-<summary>leaf01 /etc/network/interfaces snippet </summary>
+{{< tab "leaf01 /etc/network/interfaces snippet ">}}
 
 ```
 auto lo
@@ -84,11 +84,9 @@ iface lo inet loopback
   clagd-vxlan-anycast-ip 10.10.10.20
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf02 /etc/network/interfaces snippet </summary>
+{{< tab "leaf02 /etc/network/interfaces snippet ">}}
 
 ```
 auto lo
@@ -97,7 +95,9 @@ iface lo inet loopback
   clagd-vxlan-anycast-ip 10.10.10.20
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Example VXLAN Active-Active Configuration
 
@@ -114,9 +114,9 @@ or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}. The following exa
 
 The IP address configuration for this example:
 
-<details>
+{{< tabs "TabID116 ">}}
 
-<summary>spine01: /etc/network/interfaces </summary>
+{{< tab "spine01 ">}}
 
 ```
 auto lo
@@ -146,11 +146,9 @@ auto swp30
 iface swp30
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>spine02: /etc/network/interfaces </summary>
+{{< tab "spine02 ">}}
 
 ```
 auto lo
@@ -180,11 +178,9 @@ auto swp30
 iface swp30
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf01: /etc/network/interfaces </summary>
+{{< tab "leaf01 ">}}
 
 ```
 auto lo
@@ -258,11 +254,9 @@ auto swp52
 iface swp52
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf02: /etc/network/interfaces </summary>
+{{< tab "leaf02 ">}}
 
 ```
 auto lo
@@ -336,11 +330,9 @@ auto swp52
 iface swp52
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf03: /etc/network/interfaces </summary>
+{{< tab "leaf03 ">}}
 
 ```
 auto lo
@@ -414,11 +406,9 @@ auto swp52
 iface swp52
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf04: /etc/network/interfaces </summary>
+{{< tab "leaf04 ">}}
 
 ```
 auto lo
@@ -492,15 +482,17 @@ auto swp52
 iface swp52
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Host Configuration
 
 In this example, the servers are running Ubuntu 14.04. A layer2 bond must be mapped from server01 and server03 to the respective switch. In Ubuntu, you use subinterfaces.
 
-<details>
+{{< tabs "TabID492 ">}}
 
-<summary>server01 </summary>
+{{< tab "server01 ">}}
 
 ```
 auto lo
@@ -540,11 +532,9 @@ iface bond0.20 inet static
   address 172.16.20.101/24
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary> server03 </summary>
+{{< tab "server03 ">}}
 
 ```
 auto lo
@@ -584,7 +574,9 @@ iface bond0.20 inet static
   address 172.16.20.103/24
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Troubleshooting
 

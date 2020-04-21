@@ -136,9 +136,9 @@ The hash seed is set by the `ecmp_hash_seed` parameter in the `/etc/cumulus/data
 
 For example, to set the hash seed to *50*, run the following commands:
 
-<details>
+{{< tabs "TabID138 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add forwarding ecmp hash-seed 50
@@ -146,11 +146,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the the `/etc/cumulus/datapath/traffic.conf` file, then restart `switchd`. For example:
 
@@ -166,7 +164,9 @@ ecmp_hash_seed = 50
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### ECMP Custom Hashing
 

@@ -56,9 +56,9 @@ The example commands below perform the following configuration:
 - Put all interfaces on the router whose IP address matches subnet 192.0.2.0/16 into area 0.0.0.1.
 - Set swp10 and swp11 as passive interfaces.
 
-<details>
+{{< tabs "TabID58 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add ospf router-id 0.0.0.1
@@ -75,7 +75,7 @@ cumulus@switch:~$ net commit
 Instead of configuring the IP subnet prefix with an area address per network with the `net add ospf` `network` command, you can configure OSPF *per interface* with the `net add interface` command. However, you cannot use both configuration methods at the same time. Here is an example of configuring OSPF per interface:
 
 ```
-cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0 
+cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
 ```
 
 {{%/notice%}}
@@ -95,11 +95,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configuring-FRRouting">}}.
 
@@ -155,7 +153,9 @@ switch(config)# router ospf
 switch(config-router)# redistribute connected
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -184,9 +184,9 @@ Cumulus Networks recommends that you configure the interface as point-to-point u
 
 The following command example sets the network type to point-to-point and the hello interval to 5 seconds. The hello interval can be any value between 1 and 65535 seconds.
 
-<details>
+{{< tabs "TabID186 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface swp1 ospf network point-to-point
@@ -195,11 +195,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -214,7 +212,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example
 
@@ -237,21 +237,19 @@ OSPF uses the following default timers to prevent consecutive SPFs from overburd
 
 The following example commands change the number of milliseconds from the initial event until SPF runs to 80, the number of milliseconds between consecutive SPF runs to 100, and the maximum number of milliseconds between SPFs to 6000.
 
-<details>
+{{< tabs "TabID239 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add ospf timers throttle spf 80 100 6000 
+cumulus@switch:~$ net add ospf timers throttle spf 80 100 6000
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -265,7 +263,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -283,9 +283,9 @@ To configure MD5 authentication on the switch, you need to create a key and a ke
 
 The following example commands create key ID 1 with the key `thisisthekey` and enable MD5 authentication on swp1.
 
-<details>
+{{< tabs "TabID285 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface swp1 ospf message-digest-key 1 md5 thisisthekey
@@ -300,11 +300,9 @@ You can remove existing MD5 authentication hashes with the `net del` command. Fo
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -325,7 +323,9 @@ You can remove existing MD5 authentication hashes with the `no ip ospf message-d
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -385,9 +385,9 @@ External routes are the routes redistributed into OSPF from another protocol. Th
 
 To configure a stub area:
 
-<details>
+{{< tabs "TabID387 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add ospf area 0.0.0.1 stub
@@ -395,11 +395,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -413,7 +411,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -429,9 +429,9 @@ Stub areas still receive information about networks that belong to other areas o
 
 To configure a totally stubby area:
 
-<details>
+{{< tabs "TabID431 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add ospf area 0.0.0.1 stub no-summary
@@ -439,11 +439,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -457,7 +455,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -512,9 +512,9 @@ To configure multi-instance OSPF:
 
 3. Assign and enable an OSPF interface for each instance:
 
-   <details>
+    {{< tabs "TabID514 ">}}
 
-   <summary>NCLU Commands </summary>
+    {{< tab "NCLU Commands ">}}
 
     ```
     cumulus@switch:~$ net add interface swp1 ospf instance-id 11
@@ -527,11 +527,9 @@ To configure multi-instance OSPF:
     cumulus@switch:~$ net commit
     ```
 
-   </details>
+    {{< /tab >}}
 
-   <details>
-
-   <summary>vtysh Commands </summary>
+    {{< tab "vtysh Commands ">}}
 
     ```
     cumulus@switch:~$ sudo vtysh
@@ -552,7 +550,9 @@ To configure multi-instance OSPF:
     cumulus@switch:~$
     ```
 
-   </details>
+    {{< /tab >}}
+
+    {{< /tabs >}}
 
 To confirm that all the OSPF instances are running:
 
@@ -591,7 +591,7 @@ router ospf 22
 If you disable the {{<link url="Configuring-FRRouting" text="integrated">}} FRRouting configuration, you must create a separate `ospfd` configuration file for each instance. The `ospfd.conf` file must include the instance ID in the file name. For example, create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
 
 ```
-cumulus@switch:~$ cat /etc/frr/ospfd-11.conf 
+cumulus@switch:~$ cat /etc/frr/ospfd-11.conf
 !
 hostname zebra
 log file /var/log/frr/zebra.log
@@ -648,9 +648,9 @@ To avoid routing loops, set the bandwidth to a consistent value across all OSPF 
 
 The following example commands configure the auto-cost reference bandwidth for 90Gbps link speed:
 
-<details>
+{{< tabs "TabID654 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add ospf auto-cost reference-bandwidth 90000
@@ -658,11 +658,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -676,7 +674,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -700,9 +700,9 @@ Unnumbered is supported with point-to-point interfaces only.
 
 To configure an unnumbered interface, take the IP address of another interface (called the *anchor*) and use that as the IP address of the unnumbered interface:
 
-<details>
+{{< tabs "TabID706 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Configure the unnumbered interface:
 
@@ -720,11 +720,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux and vtysh Commands </summary>
+{{< tab "Linux and vtysh Commands ">}}
 
 1. Edit the `/etc/network/interfaces` file to configure the unnumbered interface:
 
@@ -765,7 +763,9 @@ cumulus@switch:~$ net commit
     cumulus@switch:~$
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -780,9 +780,9 @@ interface swp1
 
 You can apply a {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route map">}} to filter route updates from Zebra into the Linux kernel.
 
-<details>
+{{< tabs "TabID786 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following example commands apply the route map called `map1`:
 
@@ -792,11 +792,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 The following example commands apply the route map called `map1`:
 
@@ -808,10 +806,12 @@ switch(config)# ip protocol ospf route-map map1
 switch(config)# exit
 switch# write memory
 switch# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -828,9 +828,9 @@ ip protocol ospf route-map map1
 
 To apply a route map to redistributed routes:
 
-<details>
+{{< tabs "TabID834 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following example commands apply the route map called `map1` to redistributed routes:
 
@@ -840,11 +840,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 The following example commands apply the route map called `map1` to redistributed routes:
 
@@ -859,7 +857,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -898,9 +898,9 @@ cumulus@switch:~$
 
 Example configuration for link maintenance:
 
-<details>
+{{< tabs "TabID904 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface swp1 ospf cost 65535
@@ -908,11 +908,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -925,7 +923,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Troubleshooting
 

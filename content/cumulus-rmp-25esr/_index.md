@@ -14,7 +14,7 @@ cascade:
   siteSlug: cumulus-rmp-25esr
   old: true
 ---
-## Welcome to Cumulus Networks</span>
+## Welcome to Cumulus Networks
 
 We are transforming networking with Cumulus Linux, the industry's first,
 full-featured Linux operating system for networking hardware. Cumulus
@@ -36,7 +36,7 @@ up to date documentation.
 Read the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/223501428)
 for new features and known issues in this release.
 
-## Extended Support Release</span>
+## Extended Support Release
 
 This version of Cumulus RMP is an Extended Support Release (ESR).
 Cumulus Linux 2.5 ESR started with Cumulus RMP 2.5.6 and all future
@@ -44,8 +44,8 @@ releases in the 2.5 product family will all be ESR releases. To learn
 about ESR, please read [this
 article](https://support.cumulusnetworks.com/hc/en-us/articles/217132357).
 
-| Cumulus Linux Version | Release Notes                                                                       |
-| --------------------- | ----------------------------------------------------------------------------------- |
+| Cumulus RMP Version | Release Notes   |
+| ------------------- | --------------- |
 | 2.5.12                | [Release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115002080008) |
 | 2.5.11                | [Release notes](https://support.cumulusnetworks.com/hc/en-us/articles/235463847)    |
 | 2.5.10                | [Release notes](https://support.cumulusnetworks.com/hc/en-us/articles/223501428)    |
@@ -54,17 +54,6 @@ article](https://support.cumulusnetworks.com/hc/en-us/articles/217132357).
 | 2.5.7                 | [Release notes](https://support.cumulusnetworks.com/hc/en-us/articles/218015557)    |
 | 2.5.6                 | [Release notes](https://support.cumulusnetworks.com/hc/en-us/articles/216229858)    |
 
-  - [Quick Start Guide](/cumulus-rmp-25esr/Quick-Start-Guide)
+## Download the User Guide
 
-  - [Installation, Upgrading and Package
-    Management](/cumulus-rmp-25esr/System-Management/Installation-Upgrading-and-Package-Management/)
-
-  - [System Management](/cumulus-rmp-25esr/System-Management/)
-
-  - [Configuring and Managing Network
-    Interfaces](/cumulus-rmp-25esr/Configuring-and-Managing-Network-Interfaces/)
-
-  - [Layer 1 and Layer 2
-    Features](/cumulus-rmp-25esr/Layer-1-and-Layer-2-Features/)
-
-  - [Routing](/cumulus-rmp-25esr/Routing)
+You can download a PDF of the user guide for {{<exlink url="https://drive.google.com/file/d/1sMlLpiISMxBb1lMJ_wXBHsBsZk1NumdD/view?usp=sharing" text="Cumulus RMP 2.5.12">}}.

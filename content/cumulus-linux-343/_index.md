@@ -37,25 +37,25 @@ Read the
 [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115013055508)
 for new features and known issues in this release.
 
-### What's New in Cumulus Linux 3.4.3
+## What's New in Cumulus Linux 3.4.3
 
 Cumulus Linux 3.4.3 contains critical bug fixes only. For more
 information on the issues that were fixed, read the 
 [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115014754307).
 
-### What's New in Cumulus Linux 3.4.2
+## What's New in Cumulus Linux 3.4.2
 
 Cumulus Linux 3.4.2 contains critical bug fixes only. For more
 information on the issues that were fixed, read the 
 [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115013055508).
 
-### What's New in Cumulus Linux 3.4.1
+## What's New in Cumulus Linux 3.4.1
 
 Cumulus Linux 3.4.1 contains critical bug fixes only. For more
 information on the issues that were fixed, read the 
 [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115012218847).
 
-### What's New in Cumulus Linux 3.4.0
+## What's New in Cumulus Linux 3.4.0
 
 Cumulus Linux 3.4.0 contains a number of new platforms, features and
 improvements:
@@ -99,7 +99,7 @@ For further information regarding bug fixes and known issues present in
 this release, refer to the 
 [product release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115011217808).
 
-### Open Source Contributions
+## Open Source Contributions
 
 Cumulus Networks has forked various software projects, like CFEngine,
 `Netdev` and some Puppet Labs packages in order to implement various
@@ -112,10 +112,14 @@ applications as well.
 The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com/) page.
 
-### Hardware Compatibility List
+## Hardware Compatibility List
 
 You can find the most up to date hardware compatibility list (HCL)
 [here](http://cumulusnetworks.com/hcl/). Use the HCL to confirm that
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
+
+## Download the User Guide
+
+You can download a PDF of the user guide for versions {{<exlink url="https://drive.google.com/file/d/1Pa5DWr6jipLTWE2oIKTxOeBnWMywQUeu/view?usp=sharing" text="3.4.0">}}, {{<exlink url="https://drive.google.com/file/d/1mY9f7B6YrqSnvlgJ_J0rhajL2umQGagn/view?usp=sharing" text="3.4.1">}}, {{<exlink url="https://drive.google.com/file/d/1F3UiTTNf4-06Pql4jVQufu3QGRhxd88t/view?usp=sharing" text="3.4.2">}} and {{<exlink url="https://drive.google.com/file/d/1U9zbTS5I29XPR0vZPNqJOwBGPl-6ZnFF/view?usp=sharing" text="3.4.3">}}.

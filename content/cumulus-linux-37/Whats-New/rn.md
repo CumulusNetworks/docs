@@ -8,14 +8,14 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-
-
 <a href="/cumulus-linux-37/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 3.7 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-linux-37/rn.xls">Download all 3.7 release notes as .xls</a>
 ## 3.7.12 Release Notes
 ### Open issues in 3.7.12
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-29367"></a> [CM-29367](#CM-29367) <a name="CM-29367"></a> | On switches with the Trident3 ASIC, PFC is not working as expected. If you set the PFC for only one CoS,  pause frames are sent for all CoS traffic. | 3.7.11-3.7.12 | |
+| <a name="CM-29259"></a> [CM-29259](#CM-29259) <a name="CM-29259"></a> | You might see the following `gport` error messages in `switchd.log`:<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent"><pre class="code-java"><br />2020-04-10T19:50:01.011224+09:00 E1PDX0V1ELF0001 6 switchd&#91;925&#93;: hal_bcm_mdb.c:530 gport 0x800007a find failed<br />2020-04-10T19:50:01.011631+09:00 E1PDX0V1ELF0001 6 switchd&#91;925&#93;: hal_bcm_mdb.c:530 gport 0x8000009 find failed<br /></pre><br />These messages are harmless and can be ignored. | 3.7.12 | |
 | <a name="CM-29068"></a> [CM-29068](#CM-29068) <a name="CM-29068"></a> | On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect. | 3.7.11-3.7.12 | |
 | <a name="CM-29040"></a> [CM-29040](#CM-29040) <a name="CM-29040"></a> | The following issue has been found in `e2fsprogs`, a package that contains ext2/ext3/ext4 file system utilities:<br/>CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability. | 3.0.0-3.7.12 | |
 | <a name="CM-28992"></a> [CM-28992](#CM-28992) <a name="CM-28992"></a> | The following security vulnerability has been announced:<br/>CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp. | 3.0.0-3.7.12 | |
@@ -235,6 +235,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-29367"></a> [CM-29367](#CM-29367) <a name="CM-29367"></a> | On switches with the Trident3 ASIC, PFC is not working as expected. If you set the PFC for only one CoS,  pause frames are sent for all CoS traffic. | 3.7.11-3.7.12 | |
 | <a name="CM-29068"></a> [CM-29068](#CM-29068) <a name="CM-29068"></a> | On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect. | 3.7.11-3.7.12 | |
 | <a name="CM-29040"></a> [CM-29040](#CM-29040) <a name="CM-29040"></a> | The following issue has been found in `e2fsprogs`, a package that contains ext2/ext3/ext4 file system utilities:<br/>CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability. | 3.0.0-3.7.12 | |
 | <a name="CM-28992"></a> [CM-28992](#CM-28992) <a name="CM-28992"></a> | The following security vulnerability has been announced:<br/>CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp. | 3.0.0-3.7.12 | |

@@ -56,8 +56,8 @@ def version_string(version):
     '''
     if version.count(".") == 1:
         return version
-    else:
-        return version[:version.rfind(".")]
+
+    return version[:version.rfind(".")]
 
 def get_hugo_folder(product, version):
     '''
@@ -226,6 +226,40 @@ def build_markdown_header(product, version):
 
     return output
 
+def read_markdown_header(product, version):
+    '''
+    To allow for the modification of front matter within the release note files
+    we will read in the existing front matter and use that instead of generating it manually.
+
+    This will rely on a valid YAML closing "---" line as a delimiter
+
+    product - the product_string output, i.e., "Cumulus Linux"
+    version - the Major.Minor release version, i.e., "4.0"
+
+    Returns a list of strings that are the existing front matter.
+    '''
+    directory = get_hugo_folder(product, version)
+
+    if product == "cl":
+        input_file = "content/{}/Whats-New/rn.md".format(directory)
+    elif product == "netq":
+        input_file = "content/{}/More-Documents/rn.md".format(directory)
+
+    look_for_end_of_header = True
+    header_lines = []
+    with open(input_file, "r") as in_file:
+        # skip the first line, it should be just a yaml header of "---"
+        header_lines.append(in_file.readline())
+        while look_for_end_of_header:
+            current_line = in_file.readline()
+            if current_line.strip("\n") == "---":
+                look_for_end_of_header = False
+                break
+            header_lines.append(current_line)
+
+        header_lines.append("---\n")
+    return header_lines
+
 def write_rns(output, file_type, product, version):
     '''
     Write the RN output to the file for a given version.
@@ -291,7 +325,8 @@ def build_rn_markdown_files(product, version_list):
         version_output = []
 
         # We only want to generate the frontmatter once per minor
-        version_output.extend(build_markdown_header(product_string(product), major))
+        #version_output.extend(build_markdown_header(product_string(product), major))
+        version_output.extend(read_markdown_header(product, major))
         hugo_dir = get_hugo_folder(product, major)
         link = "<a href=\"/{}/rn.xls\">".format(hugo_dir)
         version_output.append("{}<img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" /></a>&nbsp;&nbsp;&nbsp;&nbsp;{}Download all {} release notes as .xls</a>\n".format(link, major, link, major))
@@ -419,7 +454,8 @@ def main():
     Until eng provides a dynamic list of releases, this must be extended for every maintenance.
     """
     products = {
-        "cl":  ["3.7.1", "3.7.2", "3.7.3", "3.7.4", "3.7.5", "3.7.6", "3.7.7", "3.7.8", "3.7.9", "3.7.10", "3.7.11", "3.7.12", "4.0.0", "4.1.0"],
+        "cl":  ["3.7.1", "3.7.2", "3.7.3", "3.7.4", "3.7.5", "3.7.6", "3.7.7", "3.7.8", "3.7.9", "3.7.10", "3.7.11", "3.7.12",
+                "4.0.0", "4.1.0", "4.1.1"],
         "netq": ["2.4.0", "2.4.1"]
     }
 

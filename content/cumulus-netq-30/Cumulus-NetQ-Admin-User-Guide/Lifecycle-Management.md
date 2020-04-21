@@ -540,19 +540,29 @@ Two views are available for monitoring the upgrade job.
 
     Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}} to view the detailed view.
 
-On successful completion, you can compare the network snapshots taken before and after the upgrade. You can also download details about the upgrade in the form of a JSON-formatted file, by clicking **Download Report**.
+On successful completion, you can:
 
-{{<figure src="/images/netq/lcm-upgrade-switches-success-detail-300.png" width="700">}}
+- Compare the network snapshots taken before and after the upgrade.
 
-Click **Compare Snapshots** to view the network state before and after the upgrade.
+    {{<figure src="/images/netq/lcm-upgrade-switches-success-detail-300.png" width="700">}}
 
-{{<figure src="/images/netq/lcm-upgrade-switches-compare-snapshots-300.png" width="700">}}
+    Click **Compare Snapshots** to view the network state before and after the upgrade.
 
-Refer to {{<link title="#interpreting-the-comparison-data" text="Interpreting the Comparison Data">}} for information about analyzing these results.
+    {{<figure src="/images/netq/lcm-upgrade-switches-compare-snapshots-300.png" width="700">}}
+
+    Refer to {{<link title="#interpreting-the-comparison-data" text="Interpreting the Comparison Data">}} for information about analyzing these results.
+
+- Download details about the upgrade in the form of a JSON-formatted file, by clicking **Download Report**.
+
+- View the changes on the Switches card of the LCM dashboard.
+
+    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then **Upgrade Switches**.
+
+    {{<figure src="/images/netq/lcm-switches-card-after-upgrade-300.png" width="200">}}
+
+    In our example, all switches have been upgraded to Cumulus Linux 3.7.12.
 
 <!-- How do I get back to the Upgrade History page? -->
-
-
 
 #### Sample Failed Upgrade
 
@@ -575,3 +585,9 @@ If an upgrade job fails for any reason, you can view the associated error(s):
     This example, shows that the upgrade failure was due to bad switch access credentials. You would need to fix those and then create a new upgrade job.
 
     {{<figure src="/images/netq/lcm-upgrade-switches-upgrade-error-message-300.png" width="700">}}
+
+With either a successful or failed upgrade, a new Upgrade History card appears on your LCM dashboard.
+
+{{<figure src="/images/netq/lcm-upgrade-history-card-300.png" width="200">}}
+
+Click **View** to return to the Upgrade History page as needed.

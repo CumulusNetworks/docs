@@ -23,9 +23,9 @@ Be sure to read the knowledge base article
 
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Cumulus Networks recommends you consider making the following files and directories part of a backup strategy.
 
-<details>
+{{< tabs "TabID25 ">}}
 
-<summary>Network Configuration Files</summary>
+{{< tab "Network Configuration Files ">}}
 
 | File Name and Location | Explanation| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | ----------------------------| -------------------- |
@@ -38,11 +38,9 @@ Understanding the location of configuration data is required for successful upgr
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Additional Commonly Used Files</summary>
+{{< tab "Commonly-Used Files ">}}
 
 | File Name and Location | Explanation| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | --------------------------- | -------------------- |
@@ -56,7 +54,7 @@ Understanding the location of configuration data is required for successful upgr
 |`/etc/ssh/` | SSH configuration files | {{<link title="SSH for Remote Access">}} | {{<exlink url="https://wiki.debian.org/SSH">}} |
 | `/etc/sudoers`, `/etc/sudoers.d` | Best practice is to place changes in `/etc/sudoers.d/` instead of `/etc/sudoers`; changes in the `/etc/sudoers.d/` directory are not lost during upgrade. | {{<link title="Using sudo to Delegate Privileges">}} |
 
-</details>
+{{< /tab >}}
 
 {{%notice note%}}
 
@@ -66,9 +64,7 @@ Understanding the location of configuration data is required for successful upgr
 
 {{%/notice%}}
 
-<details>
-
-<summary>Never Migrate these Files between Versions or Switches</summary>
+{{< tab "Never Migrate Files ">}}
 
 | File Name and Location  | Explanation |
 | ----------------------- | ----------- |
@@ -91,7 +87,9 @@ Understanding the location of configuration data is required for successful upgr
 | `/root/.ansible` | Ansible `tmp` files. Do not copy. |
 | `/home/cumulus/.ansible` | Ansible `tmp` files. Do not copy.|
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 If you are using certain forms of network virtualization, including {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}} or {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}}, you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you made to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
 

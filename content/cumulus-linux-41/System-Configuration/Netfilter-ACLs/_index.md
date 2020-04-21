@@ -343,13 +343,13 @@ Example rules for a VLAN-aware bridge:
 
 ```
 [ebtables]
--A FORWARD -i br0.100 -p IPv4 --ip-protocol icmp -j DROP
--A FORWARD -o br0.100 -p IPv4 --ip-protocol icmp -j ACCEPT
+-A FORWARD -i vlan100 -p IPv4 --ip-protocol icmp -j DROP
+-A FORWARD -o vlan100 -p IPv4 --ip-protocol icmp -j ACCEPT
 
-iptables]
--A FORWARD -i br0.100 -p icmp -j DROP
--A FORWARD --out-interface br0.100 -p icmp -j ACCEPT
--A FORWARD --in-interface br0.100 -j POLICE --set-mode  pkt  --set-rate  1 --set-burst 1 --set-class 0
+[iptables]
+-A FORWARD -i vlan100 -p icmp -j DROP
+-A FORWARD --out-interface vlan100 -p icmp -j ACCEPT
+-A FORWARD --in-interface vlan100 -j POLICE --set-mode  pkt  --set-rate  1 --set-burst 1 --set-class 0
 ```
 
 Example rules for a traditional mode bridge:

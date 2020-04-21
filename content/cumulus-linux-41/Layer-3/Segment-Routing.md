@@ -44,9 +44,9 @@ Switches r1 through r5 announce their loopbacks (the 10.1.1.\* addresses above) 
 
 The table below contains the configuration for all five nodes.
 
-<details>
+{{< tabs "TabID47 ">}}
 
-<summary>Node r1 </summary>
+{{< tab "Node r1 ">}}
 
 **/etc/network/interfaces**
 
@@ -117,11 +117,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Node r2 </summary>
+{{< tab "Node r2 ">}}
 
 **/etc/network/interfaces**
 
@@ -192,11 +190,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Node r3 </summary>
+{{< tab "Node r3 ">}}
 
 **/etc/network/interfaces**
 
@@ -267,11 +263,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Node r4</summary>
+{{< tab "Node r4 ">}}
 
 **/etc/network/interfaces**
 
@@ -338,11 +332,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Node r5</summary>
+{{< tab "Node r5 ">}}
 
 **/etc/network/interfaces**
 
@@ -415,7 +407,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Configure Segment Routing
 

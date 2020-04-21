@@ -717,7 +717,7 @@ Command '['/sbin/ifreload', '-a']' returned non-zero exit status 1
 </tr>
 <tr>
 <td>CM-27740</td>
-<td><p>On a Mellanox SN3700C switch, when you run the NCLU net del all command to delete all configuration on the switch, you see an error similar to the following:</p>
+<td><p>When you run the NCLU net del all command to delete all configuration on the switch, you see an error similar to the following:</p>
 
 ERROR: [Errno 2] No such file or directory: '/cumulus/switchd/config/interface/&lt;swp&gt;/port_security/enable'#012Traceback
 

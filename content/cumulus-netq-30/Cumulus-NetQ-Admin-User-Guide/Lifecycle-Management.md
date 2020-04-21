@@ -226,7 +226,12 @@ Four pre-defined switch roles are available based on the CLOS architecture:
 - Leaf
 - Exit
 
-Switch roles identify switch dependencies and determine the order in which switches are upgraded. The upgrade process begins with switches having the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally switches with no role assigned. All switches with a given role must be successfully upgraded before the switches with the closest dependent role can be upgraded. For example, a group of seven switches are selected for upgrade. Three are spine switches and four are leaf switches. After all of the spine switches are successfully upgraded, then the leaf switches are upgraded. If one of the spine switches were to fail the upgrade, the other two spine switches are upgraded, but the upgrade process stops after that, leaving the leaf switches untouched.
+Switch roles are used to:
+
+- Identify switch dependencies and determine the order in which switches are upgraded
+- Determine when to stop if an upgrade fails
+
+When roles are assigned, the upgrade process begins with switches having the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally switches with no role assigned. All switches with a given role must be successfully upgraded before the switches with the closest dependent role can be upgraded. For example, a group of seven switches are selected for upgrade. Three are spine switches and four are leaf switches. After all of the spine switches are successfully upgraded, then the leaf switches are upgraded. If one of the spine switches were to fail the upgrade, the other two spine switches are upgraded, but the upgrade process stops after that, leaving the leaf switches untouched.
 
 While role assignment is optional, using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments, and when MLAG pairs are deployed, switch roles avoid upgrade conflicts. For these reasons, Cumulus Networks highly recommends assigning roles to all of your switches.
 
@@ -354,6 +359,10 @@ For each network element that is compared, count values and changes are shown:
 {{<figure src="/images/netq/snapshot-large-compare-data-interpretation-300.png" width="300">}}
 
 In this example, a change was made to the VLAN. The snapshot taken before the change (17Apr2020) had a total count of 765 neighbors. The snapshot taken after the change (20Apr2020) had a total count of 771 neighbors. Between the two totals you can see the number of neighbors added and removed from one time to the next, resulting in six new neighbors after the change.
+
+{{<notice note>}}
+The red and green coloring indicates only that items were removed (red) or added (green). The coloring does not indicate whether the removal or addition of these items is bad or good.
+{{</notice>}}
 
 {{<notice tip>}}
 From this card, you can also change which snapshots to compare. Select an alternate snapshot from one of the two snapshot dropdowns and then click <strong>Compare</strong>.
@@ -507,10 +516,62 @@ To install or upgrade switches:
 
 ### Analyze Results
 
-After starting the upgrade you can monitor the progress from the preview page. A green circle with rotating arrows is shown above each step as it is working.
+After starting the upgrade you can monitor the progress from the preview page. A green circle with rotating arrows is shown above each step as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the Upgrade History page. The job started most recently is shown at the bottom, and the data is refreshed every minute.
 
-<!-- insert image here part way through process -->
+{{<notice tip>}}
+If you are disconnected while the job is in progress, it may appear as if nothing is happening. Try closing and reopening your view, or refreshing the page.
+{{</notice>}}
 
-On completion you can download details about the upgrade in the form of a JSON-formatted file, by clicking **Download Report**.
+#### Sample Successful Upgrade
 
-### View Upgrade History
+Two views are available for monitoring the upgrade job.
+
+- Monitor the job with full details open:
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-300.png" width="700">}}
+
+- Monitor the job with summary information only:
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-upgrading-summary-300.png" width="700">}}
+
+    Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">}} to view what stage the job is in.
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-stage-view-300.png" width="700">}}
+
+    Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}} to view the detailed view.
+
+On successful completion, you can compare the network snapshots taken before and after the upgrade. You can also download details about the upgrade in the form of a JSON-formatted file, by clicking **Download Report**.
+
+{{<figure src="/images/netq/lcm-upgrade-switches-success-detail-300.png" width="700">}}
+
+Click **Compare Snapshots** to view the network state before and after the upgrade.
+
+{{<figure src="/images/netq/lcm-upgrade-switches-compare-snapshots-300.png" width="700">}}
+
+Refer to {{<link title="#interpreting-the-comparison-data" text="Interpreting the Comparison Data">}} for information about analyzing these results.
+
+<!-- How do I get back to the Upgrade History page? -->
+
+
+
+#### Sample Failed Upgrade
+
+If an upgrade job fails for any reason, you can view the associated error(s):
+
+1. From the Upgrade History dashboard, find the job of interest.
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-fail-summary-300.png" width="700">}}
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">}}.
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}.
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-upgrade-error-open-300.png" width="700">}}
+
+    Note in this example, all of the pre-upgrade tasks were successful, but backup failed on the spine switches.
+
+4. Double-click on an error to view a more detailed error message.
+
+    This example, shows that the upgrade failure was due to bad switch access credentials. You would need to fix those and then create a new upgrade job.
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-upgrade-error-message-300.png" width="700">}}

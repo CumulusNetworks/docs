@@ -14,7 +14,7 @@ Spanning tree protocol (STP) is always recommended in layer 2 topologies as it p
 Cumulus Linux supports RSTP, PVST, and PVRST modes:
 
 - Bridges configured in *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}}* mode operate **only** in RSTP mode.
-- Bridges configured in 
+- Bridges configured in
 *{{<link url="Traditional-Bridge-Mode" text="traditional mode">}}* operate in both PVST and PVRST. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
 
 ### STP for a VLAN-aware Bridge
@@ -48,9 +48,9 @@ For maximum interoperability, when connected to a switch that has a native VLAN 
 
 To check STP status for a bridge:
 
-<details>
+{{< tabs "TabID50 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Run the `net show bridge spanning-tree` command:
 
@@ -164,11 +164,9 @@ bridge:peerlink CIST info
   clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 The `mstpctl` utility provided by the `mstpd` service configures STP. The `mstpd` daemon is an open source project used by Cumulus Linux to implement IEEE802.1D 2004 and IEEE802.1Q 2011.
 
@@ -199,7 +197,9 @@ cumulus@switch:~$ sudo mstpctl showport bridge
   E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Customize Spanning Tree Protocol
 
@@ -211,9 +211,9 @@ If you have a multiple spanning tree instance (MSTI 0, also known as a common sp
 
 To set the tree priority, run the following commands:
 
-<details>
+{{< tabs "TabID213 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following example command sets the tree priority to 8192:
 
@@ -223,11 +223,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Configure the tree priority (`mstpctl-treeprio`) under the *bridge* stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example command sets the tree priority to 8192:
 
@@ -246,11 +244,13 @@ iface bridge
 ...
 ```
 
-``` 
+```
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -274,9 +274,9 @@ It is common for edge ports to be configured as access ports for a simple end ho
 
 To configure PortAdminEdge mode:
 
-<details>
+{{< tabs "TabID276 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following example commands configure PortAdminEdge and BPDU guard for swp5.
 
@@ -287,11 +287,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Configure PortAdminEdge and BPDU guard under the switch port interface stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example configures PortAdminEdge and BPD guard on swp5.
 
@@ -324,7 +322,9 @@ cumulus@switch:~$ sudo mstpctl setportadminedge br2 swp1 yes
 cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp1 yes
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### PortAutoEdge
 
@@ -342,9 +342,9 @@ PortAutoEdge is enabled by default in Cumulus Linux.
 
 To disable PortAutoEdge for an interface:
 
-<details>
+{{< tabs "TabID344 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following example commands disable PortAutoEdge on swp1:
 
@@ -354,11 +354,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-portautoedge no` line, then run the `ifreload -a` command. The following example disables PortAutoEdge on swp1:
 
@@ -377,13 +375,15 @@ iface swp1
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To re-enable PortAutoEdge for an interface:
 
-<details>
+{{< tabs "TabID383 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following example commands re-enable PortAutoEdge on swp1:
 
@@ -393,15 +393,15 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the switch port interface stanza in the `/etc/network/interfaces` file to remove `mstpctl-portautoedge no`, then run the `ifreload -a` command.
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### BPDU Guard
 
@@ -409,9 +409,9 @@ You can configure *BPDU guard* (Bridge Protocol Data Unit) to protect the spanni
 
 To configure BPDU guard:
 
-<details>
+{{< tabs "TabID411 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following example commands set BPDU guard for swp5:
 
@@ -421,11 +421,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-bpduguard yes` line, then run the `ifreload -a` command. The following example sets BPDU guard for interface swp5:
 
@@ -442,7 +440,9 @@ iface swp5
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 If a BPDU is received on the port, STP brings down the port and logs an error in `/var/log/syslog`. The following is a sample error:
 
@@ -452,20 +452,18 @@ mstpd: error, MSTP_IN_rx_bpdu: bridge:bond0 Recvd BPDU on BPDU Guard Port - Port
 
 To determine whether BPDU guard is configured, or if a BPDU has been received:
 
-<details>
+{{< tabs "TabID454 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net show bridge spanning-tree | grep bpdu
   bpdu guard port    yes                bpdu guard error     yes
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 ```
 cumulus@switch:~$ mstpctl showportdetail bridge bond0
@@ -493,7 +491,9 @@ bridge:bond0 CIST info
   clag remote portID F.FFF                   clag system mac      0:0:0:0:0:0
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The only way to recover a port that has been placed in the disabled state is to manually bring up the port with the `sudo ifup <interface>` command. See {{<link title="Interface Configuration and Management">}} for more information about `ifupdown`.
 
@@ -511,9 +511,9 @@ Bridge assurance is disabled by default.
 
 To enable bridge assurance on an interface:
 
-<details>
+{{< tabs "TabID513 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following example commands enable bridge assurance on swp1:
 
@@ -523,11 +523,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-portnetwork yes` line, then run the `ifreload -a` command. The following example enables bridge assurance on swp5:
 
@@ -535,7 +533,7 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to a
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto swp5
-iface swp5 
+iface swp5
     mstpctl-portnetwork yes
 ...
 ```
@@ -561,7 +559,9 @@ cumulus@switch:~$ sudo mstpctl showportdetail br1007 swp1.1007 | grep network
   network port       yes                     BA inconsistent      yes
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To monitor logs for bridge assurance messages, run the following command:
 
@@ -582,9 +582,9 @@ Using BDPU filter might cause layer 2 loops. Use this feature deliberately and w
 
 To configure the BPDU filter on an interface:
 
-<details>
+{{< tabs "TabID584 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following example commands configure the BPDU filter on swp6:
 
@@ -594,11 +594,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the switch port interface stanza in the `/etc/network/interfaces` file to add the `mstpctl-portbpdufilter yes` line, then run the `ifreload -a` command. The following example configures BPDU filter on swp6:
 
@@ -629,7 +627,9 @@ To enable BPDU filter at runtime, run `mstpctl`. For example:
 cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Storm Control
 

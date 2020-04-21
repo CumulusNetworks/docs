@@ -13,6 +13,20 @@
 <td></td>
 </tr>
 <tr>
+<td>CM-29309</td>
+<td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/swichd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29259</td>
 <td><p>You might see the following gport error messages in switchd.log:</p>
 
@@ -26,8 +40,39 @@
 <td></td>
 </tr>
 <tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29165</td>
+<td><p>An inconsistent link-state advertisement may be seen with FRR/OSPF in some circumstances. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This problem has been observed when there are both IPv4 and IPv6 default routes in the routing table.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29068</td>
 <td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29044</td>
+<td><p>A large number of flapping peers causes FRR to require a corresponding update to internal data structures that track peer information. Updating this internal data structure does not delete links that are down due to the flapping. The size of this array then grows to contain both current peers as well as peers that should have been deleted during the flap processing. The contents of this array is processed by FRR to poll the links, which consumes CPU for all items in the array. This additional polling consumes more CPU than necessary but has no functional impact.<br/>
+To work around this issue, restart FRR.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
@@ -39,9 +84,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -105,6 +167,15 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -1726,8 +1797,47 @@ net.ipv6.ip6frag_high_thresh = 262144
 <td></td>
 </tr>
 <tr>
+<td>CM-29309</td>
+<td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/swichd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29068</td>
 <td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29044</td>
+<td><p>A large number of flapping peers causes FRR to require a corresponding update to internal data structures that track peer information. Updating this internal data structure does not delete links that are down due to the flapping. The size of this array then grows to contain both current peers as well as peers that should have been deleted during the flap processing. The contents of this array is processed by FRR to poll the links, which consumes CPU for all items in the array. This additional polling consumes more CPU than necessary but has no functional impact.<br/>
+To work around this issue, restart FRR.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
@@ -1739,9 +1849,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -1771,6 +1898,15 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -3915,6 +4051,32 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -3922,9 +4084,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -3954,6 +4133,15 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -5895,6 +6083,32 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -5902,9 +6116,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -5934,6 +6165,15 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -8325,6 +8565,32 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -8332,9 +8598,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -8364,6 +8647,15 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -10627,6 +10919,32 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -10634,9 +10952,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -10666,6 +11001,15 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -13297,6 +13641,32 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -13304,9 +13674,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -13336,6 +13723,15 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -15936,6 +16332,32 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -15943,9 +16365,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -15968,6 +16407,15 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -18244,6 +18692,32 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -18251,9 +18725,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -18270,6 +18761,15 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -20610,6 +21110,32 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -20617,9 +21143,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -20636,6 +21179,15 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -23140,6 +23692,32 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -23147,9 +23725,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -23166,6 +23761,15 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -25793,6 +26397,32 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29208</td>
+<td><p>The following vulnerability has been announced in ceph; the associated libraries librados2 and librbd1 are available in the Cumulus Linux 3 repository for optional installation.<br/>
+CVE-2020-1760: It was discovered that there was a header-splitting vulnerability in ceph, a distributed storage and file system.<br/>
+Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
+Fixed: 0.80.7-2+deb8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29048</td>
+<td><p>The following vulnerability exists in the ruby2.1 package:<br/>
+CVE-2016-2338: An exploitable heap overflow vulnerability exists in the Psych::Emitter startdocument function of Ruby. In Psych::Emitter startdocument function heap buffer "head" allocation is made based on tags array length. Specially constructed object passed as element of tags array can increase this array size after mentioned allocation and cause heap overflow<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u8<br/>
+Fixed: 2.1.5-2+deb8u9</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29040</td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
@@ -25800,9 +26430,26 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28993</td>
+<td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
+CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
+Vulnerable: &lt;= 52.1-8+deb8u7<br/>
+Fixed: 52.1-8+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28954</td>
+<td><p>The python-twisted-* packages, which are available for optional installation in Cumulus Linux but are not installed by default, were found to have the following security vulnerabilities:<br/>
+CVE-2020-10808: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with two content-length headers, it ignored the first header. When the second content-length value was set to zero, the request body was interpreted as a pipelined request.<br/>
+CVE-2020-10809: In Twisted Web through 19.10.0, there was an HTTP request splitting vulnerability. When presented with a content-length and a chunked encoding header, the content-length took precedence and the remainder of the request body was interpreted as a pipelined request.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -25819,6 +26466,15 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28811</td>
+<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
+vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
+codecs.</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>

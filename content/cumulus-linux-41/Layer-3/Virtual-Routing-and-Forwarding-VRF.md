@@ -1256,9 +1256,9 @@ In the following example, there is one IPv4 network with a VRF named
 
 Configure each DHCP server and relay as follows:
 
-<details>
+{{< tabs "TabID1258 ">}}
 
-<summary>Sample DHCP Server Configuration</summary>
+{{< tab "DHCP Server Configuration ">}}
 
 1. Create the file `isc-dhcp-server-rocket` in `/etc/default/`. Here is sample content:
 
@@ -1306,11 +1306,9 @@ cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcpd -f -q -cf /
     /etc/dhcp/dhcpd-rocket.conf -pf /var/run/dhcpd-rocket.pid swp2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Sample DHCP6 Server Configuration</summary>
+{{< tab "DHCP6 Server Configuration ">}}
 
 1. Create the file `isc-dhcp-server6-turtle` in `/etc/default/`. Here is sample content:
 
@@ -1358,11 +1356,13 @@ cumulus@switch:~$ sudo ip vrf exec turtle dhcpd -6 -q -cf /
   /etc/dhcp/dhcpd6-turtle.conf -pf /var/run/dhcpd6-turtle.pid swp3
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
+{{< /tabs >}}
 
-<summary>Sample DHCP Relay Configuration</summary>
+{{< tabs "TabID1362 ">}}
+
+{{< tab "DHCP Relay Configuration ">}}
 
 1. Create the file `isc-dhcp-relay-rocket` in `/etc/default/`. Here is sample content:
 
@@ -1410,11 +1410,9 @@ cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcrelay -d -q -i /
     swp2s2 -i swp2s3 102.0.0.2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Sample DHCP6 Relay Configuration</summary>
+{{< tab "DHCP6 Relay Configuration ">}}
 
 1. Create the file `isc-dhcp-relay6-turtle` in `/etc/default/`. Here is sample content:
 
@@ -1462,7 +1460,9 @@ cumulus@switch:~$ sudo ip vrf exec turtle /usr/sbin/dhcrelay -d -q -6 -l /
     swp18s0 -u swp18s1 -pf /var/run/dhcrelay6@turtle.pid
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Use ping or traceroute on a VRF
 

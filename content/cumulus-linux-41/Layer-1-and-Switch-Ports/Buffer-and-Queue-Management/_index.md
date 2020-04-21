@@ -45,7 +45,7 @@ The following example `/etc/cumulus/datapath/traffic.conf` datapath configuratio
 
 <details>
 
-<summary>click to see the traffic.conf file</summary>
+<summary>Click to see the traffic.conf file</summary>
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf

@@ -372,9 +372,9 @@ Make sure that the VLAN subinterface is not in your layer 2 domain and does not 
 
 The commands to create the configurations for both spines look like the following. Note that the `clag-id` and `clagd-sys-mac` must be the same for the corresponding bonds on spine01 and spine02:
 
-<details>
+{{< tabs "TabID374 ">}}
 
-<summary>spine01</summary>
+{{< tab "spine01 ">}}
 
 ```
 cumulus@spine01:~$ net show configuration commands
@@ -408,11 +408,9 @@ auto swp4
 iface swp4
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>spine02</summary>
+{{< tab "spine02 ">}}
 
 ```
 cumulus@spine02:~$ net show configuration commands
@@ -446,13 +444,11 @@ auto swp4
 iface swp4
 ```
 
-</details>
-
 Here is an example configuration for the switches leaf01 through leaf04. Note that the `clag-id` and `clagd-sys-mac` must be the same for the corresponding bonds on leaf01 and leaf02 as well as leaf03 and leaf04:
 
-<details>
+{{< /tab >}}
 
-<summary>leaf01</summary>
+{{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ net show configuration commands
@@ -553,11 +549,9 @@ iface vlan100
     vlan-raw-device bridge
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf02</summary>
+{{< tab "leaf02 ">}}
 
 ```
 cumulus@leaf02:~$ net show conf commands
@@ -657,11 +651,9 @@ iface vlan100
     vlan-raw-device bridge
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf03</summary>
+{{< tab "leaf03 ">}}
 
 ```
 cumulus@leaf03:~$ net show conf commands
@@ -762,11 +754,9 @@ iface vlan100
     vlan-raw-device bridge
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf04</summary>
+{{< tab "leaf04 ">}}
 
 ```
 cumulus@leaf04:~$ net show configuration commands
@@ -866,7 +856,9 @@ iface vlan100
     vlan-raw-device bridge
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Disable clagd on an Interface
 

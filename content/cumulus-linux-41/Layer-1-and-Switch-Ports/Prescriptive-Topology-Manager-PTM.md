@@ -244,7 +244,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "FRR Commands ">}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -275,7 +275,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "FRR Commands ">}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -314,7 +314,7 @@ Interface swp1 is up, line protocol is up
 
 {{< /tab >}}
 
-{{< tab "FRR Commands ">}}
+{{< tab "vtysh Commands ">}}
 
 ```
 switch# show interface swp1

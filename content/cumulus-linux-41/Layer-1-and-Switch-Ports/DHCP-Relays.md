@@ -181,11 +181,7 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
    OPTIONS="-U lo"
    ```
 
-   {{%notice note%}}
-
    The first IP address on the loopback interface is typically the 127.0.0.1 address; Cumulus Networks recommends that you use more specific syntax, as shown in the next example.
-
-   {{%/notice%}}
 
    The following example uses IP address 10.0.0.1 on the loopback interface as the giaddr:
 
@@ -245,11 +241,7 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
    OPTIONS="-U lo"
    ```
 
-   {{%notice note%}}
-
    The first IP address on the loopback interface is typically the 127.0.0.1 address; Cumulus Networks recommends that you use more specific syntax, as shown in the next example.
-
-   {{%/notice%}}
 
    The following example uses IP address 10.0.0.1 on the loopback interface as the giaddr:
 

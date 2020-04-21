@@ -3,10 +3,9 @@ title: Cumulus NetQ Administrator User Guide
 author: Cumulus Networks
 weight: 620
 aliases:
- - /display/NETQ/NetQ+Management
- - /pages/viewpage.action?pageId=12321950
 pageID: 12321950
 toc: 3
+draft: true
 ---
 As an administrator, you must secure, configure, and manage your network hardware and software. Tasks associated with managing your physical hardware (switches) and virtual machines (VMs), Cumulus Linux and Cumulus NetQ software are described in this document. These responsibilities are grouped into two categories:
 

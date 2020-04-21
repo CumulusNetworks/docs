@@ -353,7 +353,7 @@ For each network element that is compared, count values and changes are shown:
 
 {{<figure src="/images/netq/snapshot-large-compare-data-interpretation-300.png" width="300">}}
 
-For example, if the snapshot taken first had a total count of 110 interfaces, changes were made that added 40 interfaces and removed 32 interfaces before the second snapshot was taken, the second snapshot total count of interfaces would be eight more than in the first snapshot, or 118.
+In this example, a change was made to the VLAN. The snapshot taken before the change (17Apr2020) had a total count of 765 neighbors. The snapshot taken after the change (20Apr2020) had a total count of 771 neighbors. Between the two totals you can see the number of neighbors added and removed from one time to the next, resulting in six new neighbors after the change.
 
 {{<notice tip>}}
 From this card, you can also change which snapshots to compare. Select an alternate snapshot from one of the two snapshot dropdowns and then click <strong>Compare</strong>.
@@ -438,7 +438,7 @@ Your LCM dashboard should look similar to this after you have completed these st
 
 ### Perform Install or Upgrade
 
-To upgrade switches:
+To install or upgrade switches:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**.
 
@@ -459,13 +459,17 @@ To upgrade switches:
 5. Give the upgrade job a name. This is required.
 
     {{<notice tip>}}
-    For best presentation, Cumulus Networks recommends keeping the name to a maximum of 20 characters when possible. The name can contain spaces and special characters.
+    For best presentation, Cumulus Networks recommends keeping the name to a maximum of 20 characters when possible. The name can contain spaces and special characters. If you choose to use longer names, use the distinguishing part of the name at the beginning.
     {{</notice>}}
 
 6. Verify that the switches you selected are included, and that they have the correct IP address and roles assigned.
 
     - If you accidentally included a switch that you do NOT want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} to remove it from the upgrade job.
     - If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} to select a role for that switch, then click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18">}}. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} to discard a role change.
+
+    In this example, some of the selected switches do not have roles assigned.
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-missing-roles-300.png" width="500">}}
     
 7. When you are satisfied that the list of switches is accurate for the job, click **Next**.
 
@@ -473,20 +477,40 @@ To upgrade switches:
 
     {{<figure src="/images/netq/lcm-upgrade-switches-describe-tab-300.png" width="500">}}
 
-9. Verify that the switch access authentication method is accurate.  
-
-    *Using global access credentials* indicates you have chosen either basic authentication with a username and password or SSH key-based authentication for all of your switches.
+9. Note that the switch access authentication method, *Using global access credentials*, indicates you have chosen either basic authentication with a username and password or SSH key-based authentication for all of your switches. Authentication on a per switch basis is not currently available.
 
 10. Click **Next**.
 
 11. Verify the upgrade job options.
 
-    By default, NetQ takes a network snapshot before the upgrade and then one after the upgrade is complete. It also performs a roll back to the original Cumulus Linux version is the upgrade fails.
+    By default, NetQ takes a network snapshot before the upgrade and then one after the upgrade is complete. It also performs a roll back to the original Cumulus Linux version on any server which fails to upgrade.
 
-    While highly recommended, if you do NOT want the upgrade to perform either of these options, click **No** next to that option.
+    While these options provide a smoother upgrade process and are highly recommended, you have the option to disable these options by clicking **No** next to one or both options.
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-options-tab-300.png" width="500">}}
 
 12. Click **Next**.
 
-13. 
+13. After the pre-checks have completed successfully, click **Preview**.
+
+    If one or more of the pre-checks fails, resolve the related issue and start the upgrade again.
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-precheck-tab-success-300.png" width="500">}}
+
+14. Review the job preview.
+
+    Note the chosen options are visible (top center), the pre-checks were completed successfully (top right and left in Pre-Upgrade Tasks), the order in which the switches are planned for upgrade (center; upgrade starts from the left), and the post-upgrade tasks (right). Any switches without roles are upgraded last and are grouped under the label *Stage1*.
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-preview-job-300.png" width="700">}}
+
+15. When you are happy with the job specifications, click **Start Upgrade**.
 
 ### Analyze Results
+
+After starting the upgrade you can monitor the progress from the preview page. A green circle with rotating arrows is shown above each step as it is working.
+
+<!-- insert image here part way through process -->
+
+On completion you can download details about the upgrade in the form of a JSON-formatted file, by clicking **Download Report**.
+
+### View Upgrade History

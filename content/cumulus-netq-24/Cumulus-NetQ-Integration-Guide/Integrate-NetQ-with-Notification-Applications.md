@@ -129,7 +129,7 @@ A notification configuration must contain one channel, one rule, and one filter.
 
 ### Create Your Channel
 
-For Pager Duty--
+For Pager Duty:
 
 Configure a channel using the integration key for your Pager Duty setup. Verify the configuration.
 
@@ -143,7 +143,7 @@ Configure a channel using the integration key for your Pager Duty setup. Verify 
     pd-netq-events  pagerduty        info             integration-key: c6d666e
                                                     210a8425298ef7abde0d1998      
 
-For Slack--
+For Slack:
 
 Create an *incoming webhook* as described in the documentation for your version of Slack. Verify the configuration.
 
@@ -158,7 +158,7 @@ Create an *incoming webhook* as described in the documentation for your version 
                                             lack.com/services/text/
                                             moretext/evenmoretext
 
-For Syslog--
+For Syslog:
 
 Create the channel using the syslog server hostname (or IP address) and port. Verify the configuration.
 
@@ -189,7 +189,7 @@ Create and verify a rule that accepts all interface events. Verify the configura
 
 Create a filter to tie the rule to the channel. Verify the configuration.
 
-For PagerDuty--
+For PagerDuty:
 
     cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel pd-netq-events
     Successfully added/updated filter notify-all-ifs
@@ -200,7 +200,7 @@ For PagerDuty--
     --------------- ---------- ---------------- ---------------- ----------
     notify-all-ifs  1          info             pd-netq-events   all-ifs
 
-For Slack--
+For Slack:
 
     cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel slk-netq-events
     Successfully added/updated filter notify-all-ifs
@@ -211,7 +211,7 @@ For Slack--
     --------------- ---------- ---------------- ---------------- ----------
     notify-all-ifs  1          info             slk-netq-events   all-ifs
 
-For Syslog--
+For Syslog:
 
     cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel syslog-netq-events
     Successfully added/updated filter notify-all-ifs

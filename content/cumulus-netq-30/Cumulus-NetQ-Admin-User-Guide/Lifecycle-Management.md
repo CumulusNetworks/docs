@@ -19,7 +19,7 @@ The Manage Switch Assets view provides a summary card for switch inventory, uplo
 {{<figure src="/images/netq/lcm-dashboard-300.png" width="700">}}
 
 {{<notice tip>}}
-If you have a workbench open, you can also access this view by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg", height="18", width="18"/> in the workbench header.
+If you have a workbench open, you can also access this view by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg", height="18", width="18"/> (Upgrade) in the workbench header.
 {{</notice>}}
 
 In preparation for using the installation and upgrade workflow:
@@ -79,7 +79,7 @@ To upload missing images:
 
 6. Click **Done**.
 
-7. Click **Downloaded** tab to verify the image is in the repository.
+7. Click **Uploaded** tab to verify the image is in the repository.
 
 8. Repeat Steps 1-7 until all of the missing images are uploaded to the repository. When all of the missing images have been uploaded, the Missing list will be empty.
 
@@ -105,6 +105,8 @@ To upload the Cumulus Linux images that you want to use for upgrade:
 
 #### Specify a Default Image for Upgrade
 
+On initial use of Lifecycle Management, a default image is not specified.
+
 To specify a default Cumulus Linux image:
 
 1. Click the link in the middle of the Cumulus Linux Images card.
@@ -117,6 +119,16 @@ To specify a default Cumulus Linux image:
 
     {{<figure src="/images/netq/lcm-images-card-default-assigned-300.png" width="200">}}
 
+After you have specified a default image, you have the option to change it.
+
+To change the default Cumulus Linux image:
+
+1. Click **change** next to the currently identified default image on the Cumulus Linux Images card.
+
+2. Select the image you want to use as the default image for switch upgrades.
+
+3. Click **Save**.
+
 ### Export Images
 
 Once you have images uploaded to the NetQ LCM repository, you are able to export those images.
@@ -127,7 +139,7 @@ To export images:
 
 2. Click **Manage** on the Cumulus Linux Images card.
 
-3. Select the images you want to export from the **Downloaded** tab. Use the filter option above the table to narrow down a large listing of images.
+3. Select the images you want to export from the **Uploaded** tab. Use the filter option above the table to narrow down a large listing of images.
 
     {{<figure src="/images/netq/lcm-images-downloaded-tab-300.png" width="700">}}
 
@@ -147,7 +159,7 @@ To remove images:
 
 2. Click **Manage** on the Cumulus Linux Images card.
 
-3. On the **Downloaded** tab, select the images you want to remove. Use the filter option above the table to narrow down a large listing of images.
+3. On the **Uploaded** tab, select the images you want to remove. Use the filter option above the table to narrow down a large listing of images.
 
     {{<figure src="/images/netq/lcm-images-downloaded-tab-300.png" width="700">}}
 
@@ -158,6 +170,8 @@ To remove images:
 Switch access credentials are needed for performing upgrades. You can choose between basic authentication (username and password) and SSH key-based authentication. These credentials apply to all switches.
 
 ### Specify Switch Credentials
+
+On initial use of Lifecycle Management, a switch access credentials are not specified.
 
 To specify access credentials:
 
@@ -182,9 +196,9 @@ To specify access credentials:
 
 ### Modify Switch Credentials
 
-To change your access credentials:
-
 You can modify your switch access credentials at any time. You can change between authentication methods or change values for either method.
+
+To change your access credentials:
 
 1. Open the LCM dashboard.
 
@@ -211,7 +225,7 @@ To view the list of switches, click **Manage** on the Switches card.
 
 {{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
 
-Review the list, filtering as needed to determine in the switches you want to upgrade are included. If they are not listed, verify the switches have NetQ 2.4 or later Agents on them.
+Review the list, filtering as needed to determine if the switches you want to upgrade are included. If they are not listed, verify the switches have NetQ 2.4 or later Agents on them.
 
 To verify the NetQ Agent version, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** in the **Network** section. Search for the switches of interest and confirm the applied version in the **Version** column. Upgrade any NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}} for instructions.
 
@@ -229,7 +243,7 @@ Four pre-defined switch roles are available based on the CLOS architecture:
 Switch roles are used to:
 
 - Identify switch dependencies and determine the order in which switches are upgraded
-- Determine when to stop if an upgrade fails
+- Determine when to stop the process if a failure is encountered
 
 When roles are assigned, the upgrade process begins with switches having the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally switches with no role assigned. All switches with a given role must be successfully upgraded before the switches with the closest dependent role can be upgraded. For example, a group of seven switches are selected for upgrade. Three are spine switches and four are leaf switches. After all of the spine switches are successfully upgraded, then the leaf switches are upgraded. If one of the spine switches were to fail the upgrade, the other two spine switches are upgraded, but the upgrade process stops after that, leaving the leaf switches untouched.
 

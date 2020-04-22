@@ -112,7 +112,7 @@ The large LLDP service card contains two tabs.
 
 The *Sessions Summary* tab which displays:
 
-{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-230.png" width="500" >}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-300.png" width="500">}}
 
 <table>
 <colgroup>
@@ -360,7 +360,7 @@ It is useful to know the number of network nodes running the LLDP protocol over 
 
 To view the distribution, open the medium LLDP Service card.
 
-{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200">}}
 
 In this example, we see that 13 nodes are running the LLDP protocol, that there are 52 sessions established, and that no LLDP-related alarms have occurred in the last 24 hours.
 
@@ -370,7 +370,7 @@ You can view the number of missing neighbors in any given time period and how th
 
 To view the distribution, open the large LLDP Service card and view the bottom chart on the left, **Total Sessions with No Nbr**.
 
-{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-no-nbr-highlight-230.png" width="500" >}}
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-no-nbr-highlight-230.png" width="500">}}
 
 In this example, we see that 16 of the 52 sessions are missing the neighbor (peer) device.
 
@@ -386,7 +386,7 @@ To view switches and hosts with the most LLDP sessions:
 
     The table content is sorted by this characteristic, listing nodes running the most LLDP sessions at the top. Scroll down to view those with the fewest sessions.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-300.png" width="500">}}
 
 To compare this data with the same data at a previous time:
 
@@ -398,11 +398,11 @@ To compare this data with the same data at a previous time:
 
 4.  Select the time period that you want to compare with the current time. You can now see whether there are significant differences between     this time period and the previous time period.  
 
-    {{< figure src="/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
+    {{<figure src="/images/netq/time-picker-popup-narrow-222.png" width="150">}}
 
-    {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-past-week-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-past-week-300.png" width="500" >}}
 
-    In this case, notice that the alarms have reduced significantly in the last week. If the changes are unexpected, you can investigate     further by looking at another time frame, determining if more nodes are now running LLDP than previously, looking for changes in the     topology, and so forth.
+    In this case, notice that their are fewer nodes running the protocol, but the total number of sessions running has nearly doubled. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running LLDP than previously, looking for changes in the topology, and so forth.
 
 ### View Devices with the Most Unestablished LLDP Sessions
 
@@ -416,7 +416,7 @@ To view switches with the most unestablished LLDP sessions:
 
     The table content is sorted by this characteristic, listing nodes with the most unestablished CLAG sessions at the top. Scroll down to     view those with the fewest unestablished sessions.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-most-unestab-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-most-unestab-300.png" width="500">}}
 
 Where to go next depends on what data you see, but a few options include:
 

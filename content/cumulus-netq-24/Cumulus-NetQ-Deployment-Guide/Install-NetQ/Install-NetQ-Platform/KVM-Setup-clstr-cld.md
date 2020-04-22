@@ -2,10 +2,6 @@
 title: Set Up Your KVM Virtual Machine for a Cloud Server Cluster
 author: Cumulus Networks
 weight: 75
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
 toc: 5
 bookhidden: true
 ---

@@ -2,10 +2,6 @@
 title: Install the NetQ Appliance Cluster
 author: Cumulus Networks
 weight: 82
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
 toc: 5
 bookhidden: true
 ---
@@ -74,7 +70,7 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
 
     ```
     cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]
-    ```  
+    ```
 
 2. Run the Bootstrap CLI on the appliance. This example uses interface *eth0*. Replace this with your updated IP address, hostname or interface using the `interface <text-opta-ifname>` or `ip-addr <text-ip-addr>` option.
 
@@ -122,7 +118,7 @@ Now that the appliances are up and running, verify that the software is availabl
 Make a note of the private IP addresses you assign to the master and worker nodes. They are needed for the installation steps.
     {{</notice>}}
 
-8. Copy the *netq-bootstrap-2.4.1.tgz* and *NetQ-2.4.1.tgz* files,  downloaded for the master NetQ Appliance, to the */mnt/installables/* directory on the worker NetQ Appliance. 
+8. Copy the *netq-bootstrap-2.4.1.tgz* and *NetQ-2.4.1.tgz* files,  downloaded for the master NetQ Appliance, to the */mnt/installables/* directory on the worker NetQ Appliance.
 
 9. Run the following `systemctl` commands to disable automatic daily upgrades and Message of the Day news.
 

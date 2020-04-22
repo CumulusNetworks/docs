@@ -39,14 +39,14 @@ To protect your ports, ensure that access ports are not assigned to VLAN 1 or an
 The following shows an example of how you configure switch ports 1 to 48 as access ports for VLAN 99:
 
 ```
-net add bridge bridge ports swp1-48
-net add interface swp1-48 bridge access 99
+cumulus@switch:~$ net add bridge bridge ports swp1-48
+cumulus@switch:~$ net add interface swp1-48 bridge access 99
 ```
 
 Ensure that no trunk ports use VLAN 1 and be thoughtful when assigning and pruning (removing) VLANs to ports. In this example, swp3 is added as a trunk port and assigned to VLANs 100 and 200.
 
 ```
-cumulus@switch:~$  net add interface swp3 bridge vids 100,200
+cumulus@switch:~$ net add interface swp3 bridge vids 100,200
 ```
 
 #### Control Plane Policy Policing

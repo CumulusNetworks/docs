@@ -25,7 +25,7 @@ This section discusses issues that have the biggest security impacts with the le
 
 Securing the switch hardware is vital because an attacker with physical access to the hardware can eventually have access to the entire device, allowing them to change configurations, capture all the traffic moving through the switch, and even steal the switch itself. If there is a security breach in the hardware, the entire system is compromised. Securing the router from various attacks or misconfigurations is very important.
 
-### Prevent Denial of Service (DOS)
+### Prevent Denial of Service
 
 Denial of Service (DOS) attacks aim to disrupt normal use of a service or device. To create a DOS attack, an attacker sends a very large number of redundant and unnecessary requests to a target system to overwhelm it and block intended users from accessing the service or application being served by the target system. DOS attacks commonly target routers and firewalls. Cumulus Linux comes with a built-in check system for these types of attacks. When enabled, the switch can intelligently analyze packets coming into the system and drop packets that match specific criteria.
 
@@ -65,7 +65,7 @@ dos.ipv6_min_frag = true
 
 Restart the `switchd` service with the `sudo systemctl restart switchd.service` command for the changes to take effect.
 
-### Switch Port Configuration
+### Configure Switch Ports
 
 Cyber-attackers often steal information through vulnerable switch ports. Many companies with VLANs use VLAN 1 instead of choosing a custom VLAN ID because VLAN 1 is the default VLAN ID on most network devices. Because this default is very well known, it is the first place attackers look to gain VLAN access.
 
@@ -491,7 +491,7 @@ The following example is a starting point to build on. This is a base 802.1X con
     cumulus@switch:~$ net commit
     ```
 
-#### USB
+#### USB Ports
 
 The Cumulus Linux switch comes with several USB ports as part of the external hardware. USB drives are standard among many industries and therefore easily accessible to those who want to do harm to the switch. While a best practice for any switch, disabling the USB ports is especially important if Cumulus Linux is set up in a publicly available area.
 
@@ -509,7 +509,7 @@ Password configurations should be consistent with NIST [password complexity guid
 
 Unnecessary services that remain installed can cause open sockets that become target attack vectors. These services can be accidentally misused and can cause malfunctions. It is important to uninstall any programs or services that are not in use.
 
-#### Emergency User Account
+#### Enable an Emergency User Account
 
 If your organization relies on a central authentication system such as TACACS or RADIUS, consider enabling an emergency administration account to access Cumulus Linux during times when the authentication systems are unavailable. Create the emergency admin account with its age set to never expire.
 
@@ -519,7 +519,7 @@ Run the following command to set the password policy for the emergency administr
 cumulus@switch:~$ sudo chage -I -1 -M 99999 [Emergency_Administrator]
 ```
 
-#### Login Banner
+#### Configure a Login Banner
 
 To prominently disclose the security and restrictions in place on your switch, enable login banners for all users so that they see your text message upon login. Proper disclosure of your security policies upon login can help rule out legal defenses for inappropriate use of the equipment. Consult with the legal representative in your organization to obtain the proper wording of the login banner message.
 
@@ -546,7 +546,7 @@ To enable a login banner for all SSH login sessions:
     cumulus@switch:~$ sudo systemctl restart ssh@mgmt.service
     ```
 
-#### Audit
+#### Configure System Audits
 
 Configure your system to log administrative events, then periodically audit those logs to ensure your system security policies are working as desired, as well as to detect any unauthorized attempts to gain access to your system. Auditing the system can also be helpful when troubleshooting issues. By looking at specific log events, you can identify consistent problems.
 

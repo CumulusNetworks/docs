@@ -112,7 +112,7 @@ The large EVPN service card contains two tabs.
 
 The *Sessions Summary* tab which displays:
 
-{{< figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-230.png" width="500" >}}
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-300.png" width="500">}}
 
 <table>
 <colgroup>
@@ -357,7 +357,7 @@ It is useful to know the number of network nodes running the EVPN protocol over 
 
 To view these distributions, open the medium EVPN Service card.
 
-{{< figure src="/images/netq/ntwk-svcs-all-evpn-medium-230.png" width="200" >}}
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-medium-230.png" width="200">}}
 
 If a visual correlation is apparent, you can dig a little deeper with the large EVPN Service card tabs.
 
@@ -367,7 +367,7 @@ It is useful to know the number of layer 3 VNIs, as it gives you insight into th
 
 To view this distribution, open the large EVPN Service card and view the bottom chart on the left.
 
-{{< figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-vni-chart-230.png" width="500" >}}
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-vni-chart-300.png" width="500">}}
 
 ### View Devices with the Most EVPN Sessions
 
@@ -381,7 +381,7 @@ To view switches and hosts with the most EVPN sessions:
 
     The table content is sorted by this characteristic, listing nodes running the most EVPN sessions at the top. Scroll down to view those with the fewest sessions.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-top-sessions-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-top-sessions-300.png" width="500">}}
 
 To compare this data with the same data at a previous time:
 
@@ -395,9 +395,9 @@ To compare this data with the same data at a previous time:
 
     You can now see whether there are significant differences between this time period and the previous time period.  
 
-    {{< figure src="/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
+    {{<figure src="/images/netq/time-picker-popup-narrow-222.png" width="150">}}
 
-    {{< figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-past-week-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-past-week-230.png" width="500" >}}
 
 If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
 
@@ -413,7 +413,7 @@ To view switches and hosts with the most layer 2 EVPN sessions:
 
     The table content is sorted by this characteristic, listing nodes running the most layer 2 EVPN sessions at the top. Scroll down to view those with the fewest sessions.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l2evpn-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l2evpn-300.png" width="500">}}
 
 To compare this data with the same data at a previous time:
 
@@ -427,9 +427,9 @@ To compare this data with the same data at a previous time:
 
     You can now see whether there are significant differences between this time period and the previous time period.  
 
-    {{< figure src="/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
+    {{<figure src="/images/netq/time-picker-popup-narrow-222.png" width="150">}}
 
-    {{< figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l2-pst-wk-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l2-pst-mo-300.png" width="500">}}
 
 If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
 

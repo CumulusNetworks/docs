@@ -5,13 +5,17 @@ product: Cumulus Networks Guides
 version: "1.0"
 Draft: True
 ---
-Cumulus Linux is a powerful operating system for routers that comes with secure defaults and is ready to use. This document discusses additional security measures to further secure your switch and meet corporate, regulatory, and governmental standards. The topics focus on three types of security measures:
+Cumulus Linux is a powerful operating system for routers that comes with secure defaults and is ready to use. This document discusses additional security measures that enable you to further secure your switch to meet corporate, regulatory, and governmental standards. It focuses on three types of security measures:
 
 - Big impact to security and low impact to usability
 - Medium impact to both security and usability
 - Low impact to security and high impact to usability
 
-Cumulus Networks uses these impacts to help you prioritize how to get the most value from your changes for the time you have available and for the impact to your management practices.
+{{%notice note%}}
+
+Not all security measures are created equal; many can ruin a user experience without adding a significant amount of security. First, focus on security measures with the greatest benefits and the fewest drawbacks. Later, expand to include other security mitigations as your comfort level increases.
+
+{{%/notice%}}
 
 ## Big Impact to Security and Low Impact to Usability
 
@@ -19,21 +23,53 @@ This section discusses issues that have the biggest security impacts with the le
 
 ### Hardware Security
 
-Securing the hardware is vital because an attacker with physical access to the hardware will eventually have access to the entire device, allowing them to change configurations, capture all the traffic moving through the switch, or even steal the switch itself. If there is a security breach in the hardware, the entire system is compromised. Additionally, securing the router from various attacks or misconfigurations is very important.
+Securing the switch hardware is vital because an attacker with physical access to the hardware can eventually have access to the entire device, allowing them to change configurations, capture all the traffic moving through the switch, and even steal the switch itself. If there is a security breach in the hardware, the entire system is compromised. Securing the router from various attacks or misconfigurations is very important.
 
 ### Prevent Denial of Service (DOS)
 
-Denial of Service attacks, or DOS attacks, aim to disrupt normal use of a service or device. To create a DOS attack, an attacker sends a very large number of redundant and unnecessary requests to a target system to overwhelm it and block intended users from accessing the service or application being served by the target system. Routers and firewalls are commonly targeted by DOS attacks. Cumulus Linux comes with a built-in check system for these types of attacks. When enabled, the switch can intelligently analyze packets coming into the system and drop packets that match specific criteria.
+Denial of Service (DOS) attacks aim to disrupt normal use of a service or device. To create a DOS attack, an attacker sends a very large number of redundant and unnecessary requests to a target system to overwhelm it and block intended users from accessing the service or application being served by the target system. DOS attacks commonly target routers and firewalls. Cumulus Linux comes with a built-in check system for these types of attacks. When enabled, the switch can intelligently analyze packets coming into the system and drop packets that match specific criteria.
 
-To enable automatic checks on your switch, open the `/etc/cumulus/datapath/traffic.conf` file in a text editor and change the value of the `dos_enable` setting to `true`.
+To enable automatic checks on your switch, open the `/etc/cumulus/datapath/traffic.conf` file in a text editor and change the value of the `dos_enable` setting to `true`:
 
-To specify which DOS checks you want to enable, open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file and enable the desired DOS check(s) by setting their corresponding value(s) to true. Restart the `switchd` service with the `sudo systemctl restart switchd.service` command for the changes to take effect.
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+...
+dos_enable = true
+```
+
+Restart the `switchd` service with the `sudo systemctl restart switchd.service` command for the changes to take effect.
+
+To specify which DOS checks you want to enable, open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file and enable the desired DOS check(s) by setting the corresponding value(s) to true:
+
+```
+cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf
+...
+# Enabling/disabling Denial of service (DOS) prevetion checks
+# To change the default configuration:
+# enable/disable the individual DOS checks.
+dos.sip_eq_dip = true
+dos.smac_eq_dmac = true
+dos.tcp_hdr_partial = true
+dos.tcp_syn_frag = false
+dos.tcp_ports_eq = true
+dos.tcp_flags_syn_fin = true
+dos.tcp_flags_fup_seq0 = false
+dos.tcp_offset1 = true
+dos.tcp_ctrl0_seq0 = false
+dos.udp_ports_eq = true
+dos.icmp_frag = true
+dos.icmpv4_length = true
+dos.icmpv6_length = true
+dos.ipv6_min_frag = true
+```
+
+Restart the `switchd` service with the `sudo systemctl restart switchd.service` command for the changes to take effect.
 
 ### Switch Port Configuration
 
 Cyber-attackers often steal information through vulnerable switch ports. Many companies with VLANs use VLAN 1 instead of choosing a custom VLAN ID because VLAN 1 is the default VLAN ID on most network devices. Because this default is very well known, it is the first place attackers look to gain VLAN access.
 
-By default, the router configuration protects against VLAN hopping attacks, where an attacker can try to fool the target switch into sending traffic from other networks by using generic tags or by using dynamic VLAN negotiation protocols. If successful, the attacker can gain access to networks that are connected to the switch, but otherwise unavailable to the attacker. Cumulus Linux is built to mitigate this threat by ignoring packet requests coupled with generic tags.
+By default, the router configuration protects against VLAN hopping attacks, where an attacker can try to fool the target switch into sending traffic from other networks by using generic tags or using dynamic VLAN negotiation protocols. If successful, the attacker can gain access to networks that are connected to the switch, but otherwise unavailable to the attacker. Cumulus Linux is built to mitigate this threat by ignoring packet requests coupled with generic tags.
 
 To protect your ports, ensure that access ports are not assigned to VLAN 1 or any unused VLAN ID.
 The following shows an example of how you configure switch ports 1 to 48 as access ports for VLAN 99:
@@ -41,12 +77,14 @@ The following shows an example of how you configure switch ports 1 to 48 as acce
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-48
 cumulus@switch:~$ net add interface swp1-48 bridge access 99
+cumulus@switch:~$ net commit
 ```
 
-Ensure that no trunk ports use VLAN 1 and be thoughtful when assigning and pruning (removing) VLANs to ports. In this example, swp3 is added as a trunk port and assigned to VLANs 100 and 200.
+Ensure that no trunk ports use VLAN 1 and be thoughtful when assigning and removing VLANs to ports. In this example, Cumulus Linux adds swp3 as a trunk port and assigns it to VLANs 100 and 200.
 
 ```
 cumulus@switch:~$ net add interface swp3 bridge vids 100,200
+cumulus@switch:~$ net commit
 ```
 
 ### Control Plane Policy Policing
@@ -77,9 +115,7 @@ cumulus@switch:~$ sudo cl-acltool -L all
 
 Cumulus Linux is packaged with Nginx, an open source web server that supports the Cumulus Linux RESTful API via HTTPS. By default, Nginx is enabled and listening on localhost (127.0.0.1) port 8080. For more information, go [here](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/HTTP-API/).
 
-For backward compatibility, Nginx natively supports the outdated and vulnerable SSLv3 and TLSv1 protocols. To secure against potential exploits using those protocols, disable them using this procedure:
-
-Open the `/etc/nginx/nginx.conf` file in a text editor and edit the `ssl_protocols` line to allow only the TLSv1.1 and TLSv1.2 protocols:
+For backward compatibility, Nginx natively supports the outdated and vulnerable SSLv3 and TLSv1 protocols. To secure against potential exploits using those protocols, you must disable them. Open the `/etc/nginx/nginx.conf` file in a text editor and edit the `ssl_protocols` line to allow only the TLSv1.1 and TLSv1.2 protocols:
 
 ```
 cumulus@switch:~$ sudo nano /etc/nginx/nginx.conf
@@ -93,7 +129,7 @@ Restart the Nginx service for the setting to take effect:
 cumulus@switch:~$ sudo systemctl restart nginx.service
 ```
 
-If you are not using the Cumulus REST API, you can uninstall Nginx. This completely eliminates the TLS attack vector:
+If you are not using the Cumulus REST API, you can uninstall Nginx to completely eliminate the TLS attack vector:
 
 ```
 cumulus@switch:~$ sudo apt-get remove python-cumulus-restapi nginx-common
@@ -113,9 +149,9 @@ cumulus@switch:~$ net add vrf mgmt
 cumulus@switch:~$ net commit
 ```
 
-For more information about working with a management VRF, such as running services in a specific VRF,  refer to the Management VRF documentation.
+For more information about working with a management VRF, such as running services in a specific VRF,  refer to the [Management VRF documentation](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/.)
 
-Also remember to enable all the network services inside each VRF including the following:
+Be sure to enable all the network services inside each VRF including the following:
 
 - Traffic flow reporting
 - Syslog
@@ -130,7 +166,7 @@ Management Access Control List (ACL) is the main list of user permissions for Cu
 Use the following guidelines as a starting point to build your management ACL. These guidelines reference example IP addresses and ports that are shown in detail in the firewall rules in the next section.
 
 - Allow SSH inbound only for the management network (192.168.200.0/24).
-- Allow UDP ports for the DHCP client on the management network (UDP port 67 & 68).
+- Allow UDP ports for the DHCP client on the management network (UDP port 67 and 68).
 - Allow SNMP polling only from specific management stations (192.168.200.1).
 - Allow NTP only from internal network time servers (192.168.200.1).
 - Allow DNS only from configured DNS servers (192.168.200.1).
@@ -142,9 +178,9 @@ Use the following guidelines as a starting point to build your management ACL. T
 - Block transit traffic on the management network (allow ingress to the switch or egress from the switch).
 - Allow traffic to and from the local subnets to be forwarded through the data plane switch ports.
 
-Create iptables rules to restrict traffic flow in both directions; inbound and outbound. In the following example, the switch is assigned the management IP address 192.168.200.29.
+Create iptable rules to restrict traffic flow in both directions; inbound and outbound. In the following example, the switch is assigned the management IP address 192.168.200.29.
 
-To create the sample iptables firewall rules, create the `/etc/cumulus/acl/policy.d/50management-acl.rules` file, then add the following contents to the file:
+To create the sample iptable firewall rules, create the `/etc/cumulus/acl/policy.d/50management-acl.rules` file, then add the following contents to the file:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/50management-acl.rules
@@ -224,10 +260,11 @@ To increase security, configure Cumulus Linux to require the superuser password 
 
 ```
 cumulus@switch:~$ sudo visudo
+...
 Defaults        env_reset,timestamp_timeout=0
 ```
 
-Ensure there are no occurrences of `NOPASSWD` or `!authenticate` in the `/etc/sudoers` file or in files in the `/etc/sudoers.d` directory:
+Ensure that there are no occurrences of `NOPASSWD` or `!authenticate` in the `/etc/sudoers` file or in files in the `/etc/sudoers.d` directory:
 
 ```
 cumulus@switch:~$  sudo grep NOPASSWD /etc/sudoers
@@ -247,7 +284,7 @@ cumulus@switch:~$ sudo nano /etc/security/limits.conf
 hard maxlogins 10
 ```
 
-Add the following lines to the `/etc/profile.d/autologout.sh` script to set the inactivity timeout to five minutes (600 seconds). Create the file if it does not exist already:
+Add the following lines to the `/etc/profile.d/autologout.sh` script to set the inactivity timeout to five minutes (600 seconds). Create the file if it does not exist:
 
 ```
 cumulus@switch:~$ sudo nano /etc/profile.d/autologout.sh
@@ -297,25 +334,24 @@ ls -alL /etc/ssh/ssh_host*key
 
 To secure SSH further, consider enabling or reviewing the following options in the `/etc/ssh/sshd_config` file:
 
-- SSH should listen on the eth0 or management VRF interfaces only. Option: `ListenAddress`
-- Disable root SSH login access. Option: `PermitRootLogin no`
-- Review default SSH cryptographic policy
-- Review enabled ciphers
-- Review Message Authentication Codes
-- Review HostKeyAlgorithms
-- Review KexAlgorithms
-- Enable SSH session timeouts
-- Can be accomplished with a combination of the two options: `ClientAliveInterval`, `ClientAliveCountMax`
-- Use key based authentication
-- Disable SSH compression
+- Make sure SSH listens on the eth0 or management VRF interfaces only. Configure the `ListenAddress` option.
+- Disable root SSH login access. Configure the `PermitRootLogin no` option.
+- Review default SSH cryptographic policy.
+- Review enabled ciphers.
+- Review Message Authentication Codes.
+- Review HostKeyAlgorithms.
+- Review KexAlgorithms.
+- Enable SSH session timeouts. Configure the `ClientAliveInterval` and `ClientAliveCountMax` options.
+- Use key based authentication.
+- Disable SSH compression.
 
-For more information about these options in `sshd`, click [here] (https://linux.die.net/man/5/sshd_config).
+For more information about the options in `sshd`, click [here] (https://linux.die.net/man/5/sshd_config).
 
 ### Secure Network Protocols
 
 #### Enable NTP Authentication
 
-Network time protocol synchronizes the time between a computer client and or server to another time source or server. Time synchronization is critical for authentication and for log management. To mitigate attacks involving forged time synchronization, connect your Cumulus Linux switch to an authenticated NTP server.
+Network time protocol (NTP) synchronizes the time between a computer client and or server to another time source or server. Time synchronization is critical for authentication and log management. To mitigate attacks involving forged time synchronization, connect your Cumulus Linux switch to an authenticated NTP server.
 
 Add authentication keys to the `/etc/ntp.keys` file:
 
@@ -329,7 +365,7 @@ cumulus@switch:~$ sudo nano /etc/ntp.keys
 1  M  cumulus123
 ```
 
-After you add the keys to the file above, add at least two servers and their associated trusted keys to the `/etc/ntp.conf` file:
+After you add the keys to the file, add at least two servers and their associated trusted keys to the `/etc/ntp.conf` file:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ntp.conf
@@ -365,6 +401,7 @@ To configure OSPF authentication, two NCLU commands are required: one to add the
 ```
 cumulus@switch:~$ net add interface swp# ospf message-digest-key 1 md5 thisisthekey
 cumulus@switch:~$ net add interface swp# ospf authentication message-digest
+cumulus@switch:~$ net commit
 ```
 
 For more information, click [here](https://docs.cumulusnetworks.com/version/cumulus-linux-37/Layer-3/Open-Shortest-Path-First-OSPF/#configure-md5-authentication-for-ospf-neighbors).
@@ -373,6 +410,7 @@ To configure BGP authentication for an existing BGP neighbor, only a single pass
 
 ```
 cumulus@switch:~$ net add bgp neighbor 1.1.1.1 password BGPPWD
+cumulus@switch:~$ net commit
 ```
 
 For more information, see [here](https://docs.cumulusnetworks.com/version/cumulus-linux-37/Layer-3/Border-Gateway-Protocol-BGP/#configure-md5-enabled-bgp-neighbors).
@@ -420,6 +458,7 @@ The following example is a starting point to build on. This is a base 802.1X con
     cumulus@switch:~$ net add dot1x radius shared-secret supersecret
     cumulus@switch:~$ net add dot1x send-eap-request-id
     cumulus@switch:~$ net add dot1x dynamic-vlan
+    cumulus@switch:~$ net commit
     ```
 
 2. Open the `hostapd.conf` file in a text editor and change the last two values in the file from `1` to `0`:
@@ -449,6 +488,7 @@ The following example is a starting point to build on. This is a base 802.1X con
 
     ```
     cumulus@switch:~$ net add dot1x max-number-stations 1
+    cumulus@switch:~$ net commit
     ```
 
 #### USB
@@ -465,7 +505,7 @@ The default password requirements for Cumulus Linux are strong cryptographic has
 
 Password configurations should be consistent with NIST [password complexity guidelines](https://en.wikipedia.org/wiki/Password_policy#NIST_guidelines), but companies can set their own individual requirements for users.
 
-#### Remove unnecessary Services
+#### Remove Unnecessary Services
 
 Unnecessary services that remain installed can cause open sockets that become target attack vectors. These services can be accidentally misused and can cause malfunctions. It is important to uninstall any programs or services that are not in use.
 
@@ -481,7 +521,7 @@ cumulus@switch:~$ sudo chage -I -1 -M 99999 [Emergency_Administrator]
 
 #### Login Banner
 
-To prominently disclose the security and restrictions in place on your switch, enable login banners for all users so that upon login, each user sees your text message. Proper disclosure of your security policies upon login can help rule out legal defenses for inappropriate use of the equipment. Consult with the legal representative in your organization to obtain the proper wording of the login banner message.
+To prominently disclose the security and restrictions in place on your switch, enable login banners for all users so that they see your text message upon login. Proper disclosure of your security policies upon login can help rule out legal defenses for inappropriate use of the equipment. Consult with the legal representative in your organization to obtain the proper wording of the login banner message.
 
 To enable a login banner for all SSH login sessions:
 
@@ -492,7 +532,7 @@ To enable a login banner for all SSH login sessions:
     You are accessing an Information System (IS) that is provided for authorized use only.
     ```
 
-2. Edit the  `/etc/ssh/sshd_config` file to enable the logon banner. Uncomment the following line:
+2. Edit the  `/etc/ssh/sshd_config` file to enable the logon banner:
 
     ```
     cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
@@ -524,7 +564,7 @@ max_log_file_action = ROTATE
 To view the size of the audit logs:
 
 ```
-df /var/log/audit/ -h
+cumulus@switch:~$ df /var/log/audit/ -h
 Filesystem  	Size  Used Avail Use% Mounted on
 /dev/sda4   	5.8G  931M  4.6G  17% /var/log
 ```
@@ -550,14 +590,12 @@ cumulus@switch:~$ sudo sysctl net.ipv4.conf.default.accept_source_route
 If the default value is not 0, add or update the following line in the `/etc/sysctl.conf` file so the setting persists after a reboot:
 
 ```
+cumulus@switch:~$ sudo nano /etc/sysctl.conf
+...
 net.ipv4.conf.default.accept_source_route=0
 ```
 
-Alternatively, you can create a new file in the `/etc/sysctl.d` directory and add the following text to the file:
-
-```
-net.ipv4.conf.default.accept_source_route=0
-```
+Alternatively, you can create a new file in the `/etc/sysctl.d` directory, then add the `net.ipv4.conf.default.accept_source_route=0` line to the file.
 
 #### ICMP Redirects
 
@@ -578,14 +616,12 @@ cumulus@switch:~$ sudo sysctl net.ipv4.conf.default.accept_redirects
 If the default value is not 0, add or update the following line in the  `/etc/sysctl.conf` file so the setting persists after a reboot:
 
 ```
+cumulus@switch:~$ sudo nano /etc/sysctl.conf
+...
 net.ipv4.conf.default.accept_redirects =0
 ```
 
-Alternatively, you can create a new file in the `/etc/sysctl.d` directory and add the following line:
-
-```
-net.ipv4.conf.default.accept_redirects =0
-```
+Alternatively, you can create a new file in the `/etc/sysctl.d` directory and add the `net.ipv4.conf.default.accept_redirects =0` line.
 
 To prevent IPv4 ICMP redirect messages from being sent, set the current behavior with the following commands:
 
@@ -599,9 +635,7 @@ Check the default (boot up) setting:
 ```
 cumulus@switch:~$ sudo sysctl net.ipv4.conf.default.send_redirects
 net.ipv4.conf.default.send_redirects = 1
-```
 
-```
 cumulus@switch:~$ sudo sysctl net.ipv4.conf.all.send_redirects
 net.ipv4.conf.all.send_redirects = 1
 ```
@@ -609,16 +643,13 @@ net.ipv4.conf.all.send_redirects = 1
 If the default value is not 0, add or update the following lines in the `/etc/sysctl.conf` file so the setting persists after a reboot:
 
 ```
+cumulus@switch:~$ sudo nano /etc/sysctl.conf
+...
 net.ipv4.conf.default.send_redirects=0
 net.ipv4.conf.all.send_redirects=0
 ```
 
-Alternatively, you can create a new file in the `/etc/sysctl.d` directory and add the following lines:
-
-```
-net.ipv4.conf.default.send_redirects=0
-net.ipv4.conf.all.send_redirects=0
-```
+Alternatively, you can create a new file in the `/etc/sysctl.d` directory and add the `net.ipv4.conf.default.send_redirects=0` and `net.ipv4.conf.all.send_redirects=0` lines.
 
 ## Low Impact to Security, High Impact to Usability
 
@@ -628,12 +659,8 @@ This section discusses items that have a relatively low impact on security but h
 
 A bootloader is the program that launches the operating system when the switch is powered on or rebooted. Adding a password to the bootloader does not significantly improve the security of a system but it can cause accidental outages.
 
-For example, if you configure the switch to have a bootloader password, then later you work on the switch remotely and make a change that requires a system reboot, when the system begins to boot, it halts and waits for the bootloader password, which you cannot enter unless you are physically at the switch. Instead of a quick reboot, the switch sits offline until someone can enter the bootloader password on the switch and allow it to launch the operating system and bring the switch back online.
+For example, if you configure the switch to have a bootloader password, then work on the switch remotely and make a change that requires a system reboot, when the system begins to boot, it halts and waits for the bootloader password, which you cannot enter unless you are physically at the switch. Instead of a quick reboot, the switch sits offline until someone can enter the bootloader password on the switch and allow it to launch the operating system and bring the switch back online.
 
 ### Debian Packages
 
 One of the most tempting services to configure is the Debian package manager that controls the software and updates installed on your switch. For example, you might think it is be a good idea to configure the package manager to remove all outdated software packages after a new update is completed. While it makes more disk space available, it also prevents you from quickly rolling back to a previous version if a software glitch causes the system to malfunction or stop communicating.
-
-### Not All Security Measures are Created Equal
-
-Cumulus Linux comes out of the box ready for use and with built-in security. However, if you need to customize the default security configuration or add additional security controls, the measures described in this document will help achieve the required result. Not all security measures are created equal, and many can ruin a user experience without adding a significant amount of security. First, focus on security measures with the greatest benefits and the fewest drawbacks. Later, expand to include other security mitigations as your comfort level increases.

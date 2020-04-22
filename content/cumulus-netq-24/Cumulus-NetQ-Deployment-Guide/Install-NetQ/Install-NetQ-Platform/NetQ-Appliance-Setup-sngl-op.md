@@ -2,10 +2,6 @@
 title: Install the NetQ Appliance
 author: Cumulus Networks
 weight: 80
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
 toc: 5
 bookhidden: true
 ---
@@ -74,7 +70,7 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
 
     ```
     cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]
-    ```  
+    ```
 
 2. Run the Bootstrap CLI on the appliance. This example uses interface *eth0*. Replace this with your updated IP address, hostname or interface using the `interface <text-opta-ifname>` or `ip-addr <text-ip-addr>` option.
 

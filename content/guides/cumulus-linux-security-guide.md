@@ -29,7 +29,7 @@ To enable automatic checks on your switch, open the `/etc/cumulus/datapath/traff
 
 To specify which DOS checks you want to enable, open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file and enable the desired DOS check(s) by setting their corresponding value(s) to true. Restart the `switchd` service with the `sudo systemctl restart switchd.service` command for the changes to take effect.
 
-#### Switch Port Configuration
+### Switch Port Configuration
 
 Cyber-attackers often steal information through vulnerable switch ports. Many companies with VLANs use VLAN 1 instead of choosing a custom VLAN ID because VLAN 1 is the default VLAN ID on most network devices. Because this default is very well known, it is the first place attackers look to gain VLAN access.
 
@@ -49,7 +49,7 @@ Ensure that no trunk ports use VLAN 1 and be thoughtful when assigning and pruni
 cumulus@switch:~$ net add interface swp3 bridge vids 100,200
 ```
 
-#### Control Plane Policy Policing
+### Control Plane Policy Policing
 
 Cumulus Linux comes out of the box with a default control plane security policy that is located in the `/etc/cumulus/acl/policy.d/` directory. You can see a full list of the default rules [here](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Netfilter-ACLs/Default-Cumulus-Linux-ACL-Configuration/).
 
@@ -73,7 +73,7 @@ You can verify that the rules are applied with the following command:
 cumulus@switch:~$ sudo cl-acltool -L all
 ```
 
-#### Disable Insecure SSL and TLS Protocol Versions in Nginx
+### Disable Insecure SSL and TLS Protocol Versions in Nginx
 
 Cumulus Linux is packaged with Nginx, an open source web server that supports the Cumulus Linux RESTful API via HTTPS. By default, Nginx is enabled and listening on localhost (127.0.0.1) port 8080. For more information, go [here](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/HTTP-API/).
 
@@ -522,6 +522,7 @@ max_log_file_action = ROTATE
 ```
 
 To view the size of the audit logs:
+
 ```
 df /var/log/audit/ -h
 Filesystem  	Size  Used Avail Use% Mounted on
@@ -633,6 +634,6 @@ For example, if you configure the switch to have a bootloader password, then lat
 
 One of the most tempting services to configure is the Debian package manager that controls the software and updates installed on your switch. For example, you might think it is be a good idea to configure the package manager to remove all outdated software packages after a new update is completed. While it makes more disk space available, it also prevents you from quickly rolling back to a previous version if a software glitch causes the system to malfunction or stop communicating.
 
-## Not All Security Measures are Created Equal
+### Not All Security Measures are Created Equal
 
 Cumulus Linux comes out of the box ready for use and with built-in security. However, if you need to customize the default security configuration or add additional security controls, the measures described in this document will help achieve the required result. Not all security measures are created equal, and many can ruin a user experience without adding a significant amount of security. First, focus on security measures with the greatest benefits and the fewest drawbacks. Later, expand to include other security mitigations as your comfort level increases.

@@ -416,7 +416,7 @@ To view switches with the most unestablished LLDP sessions:
 
     The table content is sorted by this characteristic, listing nodes with the most unestablished CLAG sessions at the top. Scroll down to     view those with the fewest unestablished sessions.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-most-unestab-230.png" width="500">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-most-unestab-300.png" width="500">}}
 
 Where to go next depends on what data you see, but a few options include:
 

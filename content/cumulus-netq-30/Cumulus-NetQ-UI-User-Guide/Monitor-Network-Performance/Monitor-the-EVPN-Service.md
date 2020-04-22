@@ -445,7 +445,7 @@ To view switches and hosts with the most layer 3 EVPN sessions:
 
     The table content is sorted by this characteristic, listing nodes running the most layer 3 EVPN sessions at the top. Scroll down to view those with the fewest sessions.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l3evpn-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-most-l3evpn-300.png" width="500">}}
 
 To compare this data with the same data at a previous time:
 

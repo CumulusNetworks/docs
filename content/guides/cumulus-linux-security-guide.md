@@ -5,13 +5,13 @@ product: Cumulus Networks Guides
 version: "1.0"
 Draft: True
 ---
-Cumulus Linux is a powerful operating system for routers that comes with secure defaults and is ready to use. This whitepaper discusses additional security measures to further secure your switch and meet corporate, regulatory, and governmental standards. The topics focus on three types of security measures:
+Cumulus Linux is a powerful operating system for routers that comes with secure defaults and is ready to use. This document discusses additional security measures to further secure your switch and meet corporate, regulatory, and governmental standards. The topics focus on three types of security measures:
 
 - Big impact to security and low impact to usability
 - Medium impact to both security and usability
 - Low impact to security and high impact to usability
 
-These impacts are all relative but Cumulus Networks uses them to help you prioritize how to get the most value from your changes for the time you have available and for the impact to your management practices.
+Cumulus Networks uses these impacts to help you prioritize how to get the most value from your changes for the time you have available and for the impact to your management practices.
 
 ## Big Impact to Security and Low Impact to Usability
 

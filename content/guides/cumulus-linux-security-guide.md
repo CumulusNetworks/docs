@@ -13,7 +13,7 @@ Cumulus Linux is a powerful operating system for routers that comes with secure 
 
 {{%notice note%}}
 
-Not all security measures are created equal; many can ruin a user experience without adding a significant amount of security. First, focus on security measures with the greatest benefits and the fewest drawbacks. Later, expand to include other security mitigations as your comfort level increases.
+Not all security measures are created equal; many can ruin a user experience without adding a significant amount of security. Cumulus Networks recommends that you focus on security measures with the greatest benefits and the fewest drawbacks. Then, expand to include other security mitigations as your comfort level increases.
 
 {{%/notice%}}
 
